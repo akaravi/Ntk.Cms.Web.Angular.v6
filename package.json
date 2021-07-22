@@ -1,5 +1,5 @@
 {
-    "name": "metronic-angular-demo3",
+    "name": "metronic-angular-demo2",
     "version": "7.2.8",
     "scripts": {
         "ng": "ng",
@@ -31,13 +31,13 @@
         "apexcharts": "^3.20.0",
         "bootstrap": "^4.6.0",
         "clipboard": "^2.0.6",
+        "highlight.js": "^10.4.0",
+        "highlightjs-line-numbers.js": "^2.8.0",
         "moment": "^2.27.0",
         "ng-apexcharts": "^1.5.1",
         "ng-inline-svg": "^10.1.0",
         "ngx-clipboard": "^13.0.1",
         "ngx-highlightjs": "^4.1.3",
-        "highlight.js": "^10.4.0",
-        "highlightjs-line-numbers.js": "^2.8.0",
         "ngx-perfect-scrollbar": "^9.0.0",
         "object-path": "^0.11.4",
         "perfect-scrollbar": "^1.5.0",

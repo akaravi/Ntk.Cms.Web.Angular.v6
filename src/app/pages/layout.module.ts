@@ -5,16 +5,12 @@ import { PagesRoutingModule } from './pages-routing.module';
 import {
   NgbDropdownModule,
   NgbProgressbarModule,
-  NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslationModule } from '../modules/i18n/translation.module';
 import { LayoutComponent } from './_layout/layout.component';
 import { ScriptsInitComponent } from './_layout/init/scipts-init/scripts-init.component';
 import { HeaderMobileComponent } from './_layout/components/header-mobile/header-mobile.component';
 import { AsideComponent } from './_layout/components/aside/aside.component';
-import { AsideStaticComponent } from './_layout/components/aside/aside-static/aside-static.component';
-import { AsideDynamicComponent } from './_layout/components/aside/aside-dynamic/aside-dynamic.component';
-import { AsideSearchComponent } from './_layout/components/aside/aside-search/aside-search.component';
 import { FooterComponent } from './_layout/components/footer/footer.component';
 import { HeaderComponent } from './_layout/components/header/header.component';
 import { HeaderMenuComponent } from './_layout/components/header/header-menu/header-menu.component';
@@ -23,8 +19,8 @@ import { ExtrasModule } from '../_metronic/partials/layout/extras/extras.module'
 import { LanguageSelectorComponent } from './_layout/components/topbar/language-selector/language-selector.component';
 import { CoreModule } from '../_metronic/core';
 import { SubheaderModule } from '../_metronic/partials/layout/subheader/subheader.module';
+import { AsideDynamicComponent } from './_layout/components/aside-dynamic/aside-dynamic.component';
 import { HeaderMenuDynamicComponent } from './_layout/components/header/header-menu-dynamic/header-menu-dynamic.component';
-import { DropdownMenusModule } from '../_metronic/partials/content/dropdown-menus/dropdown-menus.module';
 
 @NgModule({
   declarations: [
@@ -38,8 +34,6 @@ import { DropdownMenusModule } from '../_metronic/partials/content/dropdown-menu
     TopbarComponent,
     LanguageSelectorComponent,
     AsideDynamicComponent,
-    AsideStaticComponent,
-    AsideSearchComponent,
     HeaderMenuDynamicComponent,
   ],
   imports: [
@@ -50,10 +44,8 @@ import { DropdownMenusModule } from '../_metronic/partials/content/dropdown-menu
     ExtrasModule,
     NgbDropdownModule,
     NgbProgressbarModule,
-    NgbTooltipModule,
     CoreModule,
     SubheaderModule,
-    DropdownMenusModule,
   ],
 })
 export class LayoutModule { }

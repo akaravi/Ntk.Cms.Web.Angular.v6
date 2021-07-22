@@ -330,6 +330,12 @@ export const DynamicHeaderMenuConfig = {
           ]
         },
         {
+          title: 'User Profile',
+          bullet: 'dot',
+          icon: 'flaticon-user',
+          page: '/user-profile'
+        },
+        {
           title: 'Error Pages',
           bullet: 'dot',
           icon: 'flaticon2-list-2',

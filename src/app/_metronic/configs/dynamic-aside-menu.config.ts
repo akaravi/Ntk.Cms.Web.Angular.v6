@@ -326,9 +326,6 @@ export const DynamicAsideMenuConfig = {
       svg: './assets/media/svg/icons/Communication/Add-user.svg',
       page: '/user-profile',
     },
-    {
-
-    },
     { section: 'Custom' },
     {
       title: 'Wizards',

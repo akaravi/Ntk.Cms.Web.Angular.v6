@@ -1,37 +1,41 @@
-<!--begin::Menu Container-->
-<ng-container *ngIf="menuConfig && menuConfig.items">
-  <div
-    id="kt_aside_menu"
-    class="aside-menu min-h-lg-800px"
-    [ngClass]="asideMenuCSSClasses"
-    data-menu-vertical="1"
-    [attr.data-menu-scroll]="asideMenuScroll"
-    [attr.data-menu-dropdown]="asideMenuDropdown"
-    data-menu-dropdown-timeout="500"
-  >
-    <!-- begin::Menu Nav -->
-    <ul class="menu-nav px-10 py-5" [ngClass]="ulCSSClasses">
-      <ng-container *ngFor="let item of menuConfig.items">
-        <ng-container
-          *ngIf="item.section"
-          [ngTemplateOutlet]="menuItemSectionTemplate"
-          [ngTemplateOutletContext]="{ item: item }"
-        ></ng-container>
-        <ng-container
-          *ngIf="item.separator"
-          [ngTemplateOutlet]="menuItemSeparatorTemplate"
-        ></ng-container>
-        <ng-container
-          *ngIf="item.title"
-          [ngTemplateOutlet]="menu1LevelTemplate"
-          [ngTemplateOutletContext]="{ item: item }"
-        ></ng-container>
-      </ng-container>
-    </ul>
-    <!-- end::Menu Nav -->
-  </div>
-  <!--end::Menu Container-->
-</ng-container>
+<!--begin::Aside Menu-->
+<div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+  <!--begin::Menu Container-->
+  <ng-container *ngIf="menuConfig && menuConfig.items">
+    <div
+      id="kt_aside_menu"
+      class="aside-menu min-h-lg-800px"
+      [ngClass]="asideMenuCSSClasses"
+      data-menu-vertical="1"
+      [attr.data-menu-scroll]="asideMenuScroll"
+      [attr.data-menu-dropdown]="asideMenuDropdown"
+      data-menu-dropdown-timeout="500"
+    >
+      <!-- begin::Menu Nav -->
+      <ul class="menu-nav" [ngClass]="ulCSSClasses">
+        <ng-container *ngFor="let item of menuConfig.items">
+          <ng-container
+            *ngIf="item.section"
+            [ngTemplateOutlet]="menuItemSectionTemplate"
+            [ngTemplateOutletContext]="{ item: item }"
+          ></ng-container>
+          <ng-container
+            *ngIf="item.separator"
+            [ngTemplateOutlet]="menuItemSeparatorTemplate"
+          ></ng-container>
+          <ng-container
+            *ngIf="item.title"
+            [ngTemplateOutlet]="menu1LevelTemplate"
+            [ngTemplateOutletContext]="{ item: item }"
+          ></ng-container>
+        </ng-container>
+      </ul>
+      <!-- end::Menu Nav -->
+    </div>
+    <!--end::Menu Container-->
+  </ng-container>
+</div>
+<!--end::Aside Menu-->
 
 <!-- begin::1 Level -->
 <ng-template #menu1LevelTemplate let-item="item">

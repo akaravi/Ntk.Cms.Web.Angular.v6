@@ -10,6 +10,7 @@ import KTLayoutFooter from '../../../../../assets/js/layout/base/footer';
 export class FooterComponent implements OnInit, AfterViewInit {
   footerContainerCSSClasses: string;
   currentYear: string;
+  footerLayout: string;
 
   constructor(private layout: LayoutService) {
     const currentDate = new Date();
@@ -20,6 +21,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
     this.footerContainerCSSClasses = this.layout.getStringCSSClasses(
       'footer_container'
     );
+    this.footerLayout = this.layout.getProp('footer.layout');
   }
 
   ngAfterViewInit() {

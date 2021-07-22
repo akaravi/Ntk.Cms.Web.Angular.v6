@@ -20,48 +20,7 @@
 @import "./assets/sass/style.angular.scss";
 
 // For RTL, check this documentation https://keenthemes.com/metronic/?page=docs&section=angular-rtl
-// @import "./assets/sass/style.angular.rtl.css";
-
-// Default Layout themes
-// @import "./assets/sass/themes/layout/header/base/light.scss";
-// @import "./assets/sass/themes/layout/header/menu/light.scss";
-// @import "./assets/sass/themes/layout/brand/dark.scss";
-// @import "./assets/sass/themes/layout/aside/dark.scss";
-
-// Header themes
-// .header-base-light {
-//     @import "./assets/sass/themes/layout/header/base/light.scss";
-// }
-
-// .header-base-dark {
-//     @import "./assets/sass/themes/layout/header/base/dark.scss";
-// }
-
-// Header Menu themes
-// .header-menu-light {
-//     @import "./assets/sass/themes/layout/header/menu/light.scss";
-// }
-// .header-menu-dark {
-//     @import "./assets/sass/themes/layout/header/menu/dark.scss";
-// }
-
-// Brand themes
-// .brand-dark {
-//   @import "./assets/sass/themes/layout/brand/dark.scss";
-// }
-
-// .brand-light {
-//   @import "./assets/sass/themes/layout/brand/light.scss";
-// }
-
-// Aside themes
-// .aside-dark {
-//   @import "./assets/sass/themes/layout/aside/dark.scss";
-// }
-
-// .aside-light {
-//   @import "./assets/sass/themes/layout/aside/light.scss";
-// }
+// @import "./assets/sass/style.angular.rtl.css";s
 
 // hide bootstrap dropdown arrow globally
 .dropdown-toggle::after {
@@ -91,7 +50,7 @@
   }
 
   .table.table-head-custom thead th.sortable-active {
-    color: #1BC5BD !important;
+    color: #6993FF !important;
   }
 }
 

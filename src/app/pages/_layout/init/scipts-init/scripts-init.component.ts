@@ -1,8 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { KTUtil } from '../../../../../assets/js/components/util';
 import { NavigationCancel, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { KTUtil } from '../../../../../assets/js/components/util';
-import KTLayoutAsideToggle from '../../../../../assets/js/layout/base/aside-toggle';
 import KTLayoutStickyCard from '../../../../../assets/js/layout/base/sticky-card';
 import KTLayoutStretchedCard from '../../../../../assets/js/layout/base/stretched-card';
 import { LayoutService } from '../../../../_metronic/core';
@@ -23,7 +22,7 @@ export class ScriptsInitComponent implements OnInit, AfterViewInit, OnDestroy {
     this.asideSelfMinimizeToggle = this.layout.getProp(
       'aside.self.minimize.toggle'
     );
-    // this.routingChanges();
+    this.routingChanges();
   }
 
   ngAfterViewInit() {
@@ -32,12 +31,6 @@ export class ScriptsInitComponent implements OnInit, AfterViewInit, OnDestroy {
       KTLayoutAside.init('kt_aside');
       // Init Aside Menu
       KTLayoutAsideMenu.init('kt_aside_menu');
-
-      if (this.asideSelfMinimizeToggle) {
-        // Init Aside Menu Toggle
-        KTLayoutAsideToggle.init('kt_aside_toggle');
-      }
-
       // Init Sticky Card
       KTLayoutStickyCard.init('kt_page_sticky_card');
       // Init Stretched Card
@@ -48,6 +41,10 @@ export class ScriptsInitComponent implements OnInit, AfterViewInit, OnDestroy {
   routingChanges() {
     const routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
+        const offCanvas = KTLayoutAside.getOffcanvas();
+        if (offCanvas) {
+          offCanvas.hide();
+        }
         const btnQuickUserClose = document.getElementById('kt_quick_user_close');
         if (btnQuickUserClose) {
           btnQuickUserClose.click();

@@ -36,10 +36,12 @@ export class LayoutInitService {
     const config = this.layout.getConfig();
     const updatedConfig = Object.assign({}, config);
     const subheaderFixed = this.layout.getProp('subheader.fixed');
-    const subheaderStyle = this.layout.getProp(
-      'subheader.style'
+    const headerSelfFixedDesktop = this.layout.getProp(
+      'header.self.fixed.desktop'
     );
-    if (subheaderFixed && subheaderStyle === 'solid') {
+    if (subheaderFixed && headerSelfFixedDesktop) {
+      updatedConfig.subheader.style = 'solid';
+    } else {
       updatedConfig.subheader.fixed = false;
     }
 
@@ -48,10 +50,10 @@ export class LayoutInitService {
 
   private initLayout() {
     const selfBodyBackgroundImage = this.layout.getProp(
-      'self.body.backgroundImage'
+      'self.backgroundImage'
     );
     if (selfBodyBackgroundImage) {
-      document.body.style.backgroundImage = `url("${selfBodyBackgroundImage}")`;
+      document.body.style.backgroundImage = `url("./assets/media/${selfBodyBackgroundImage}")`;
     }
 
     const selfBodyClass = (
@@ -61,17 +63,55 @@ export class LayoutInitService {
       const bodyClasses: string[] = selfBodyClass.split(' ');
       bodyClasses.forEach((cssClass) => document.body.classList.add(cssClass));
     }
+
+    document.body.classList.add('quick-panel-right');
+    document.body.classList.add('demo-panel-right');
+    document.body.classList.add('offcanvas-right');
   }
 
   private initLoader() { }
 
   // init header and subheader menu
   private initHeader() {
+    // Fixed header
+    const headerSelfFixedDesktop = this.layout.getProp(
+      'header.self.fixed.desktop'
+    );
+    if (headerSelfFixedDesktop) {
+      document.body.classList.add('header-fixed');
+      this.layout.setCSSClass('header', 'header-fixed');
+    } else {
+      document.body.classList.add('header-static');
+    }
+
     const headerSelfFixedMobile = this.layout.getProp(
       'header.self.fixed.mobile'
     );
     if (headerSelfFixedMobile) {
       document.body.classList.add('header-mobile-fixed');
+      this.layout.setCSSClass('header_mobile', 'header-mobile-fixed');
+    }
+
+    // Menu
+    const headerMenuSelfDisplay = this.layout.getProp(
+      'header.menu.self.display'
+    );
+    const headerMenuSelfLayout = this.layout.getProp('header.menu.self.layout');
+    if (headerMenuSelfDisplay) {
+      this.layout.setCSSClass(
+        'header_menu',
+        `header-menu-layout-${headerMenuSelfLayout}`
+      );
+
+      if (this.layout.getProp('header.menu.self.rootArrow')) {
+        this.layout.setCSSClass('header_menu', 'header-menu-root-arrow');
+      }
+    }
+
+    if (this.layout.getProp('header.self.width') === 'fluid') {
+      this.layout.setCSSClass('header_container', 'container-fluid');
+    } else {
+      this.layout.setCSSClass('header_container', 'container');
     }
   }
 
@@ -85,12 +125,14 @@ export class LayoutInitService {
 
     // Fixed content head
     const subheaderFixed = this.layout.getProp('subheader.fixed');
-    const subheaderStyle = this.layout.getProp(
-      'subheader.style'
+    const headerSelfFixedDesktop = this.layout.getProp(
+      'header.self.fixed.desktop'
     );
-    if (subheaderFixed && subheaderStyle === 'solid') {
+    if (subheaderFixed && headerSelfFixedDesktop) {
       document.body.classList.add('subheader-fixed');
     }
+
+    const subheaderStyle = this.layout.getProp('subheader.style');
     if (subheaderStyle) {
       this.layout.setCSSClass('subheader', `subheader-${subheaderStyle}`);
     }
@@ -99,10 +141,6 @@ export class LayoutInitService {
       this.layout.setCSSClass('subheader_container', 'container-fluid');
     } else {
       this.layout.setCSSClass('subheader_container', 'container');
-    }
-
-    if (this.layout.getProp('subheader.clear')) {
-      this.layout.setCSSClass('subheader', 'mb-0');
     }
   }
 
@@ -131,31 +169,7 @@ export class LayoutInitService {
 
     // Enable Aside
     document.body.classList.add('aside-enabled');
-
-    // Fixed Aside
-    if (this.layout.getProp('aside.self.fixed')) {
-      document.body.classList.add('aside-fixed');
-      this.layout.setCSSClass('aside', 'aside-fixed');
-    } else {
-      document.body.classList.add('aside-static');
-    }
-
-    // Aside Secondary
-    if (this.layout.getProp('aside.secondary.display')) {
-      document.body.classList.add('aside-secondary-enabled');
-    } else {
-      document.body.classList.add('aside-secondary-disabled');
-    }
-
-    // Check Aside
-    if (this.layout.getProp('aside.self.display') !== true) {
-      return;
-    }
-
-    // Default fixed
-    if (this.layout.getProp('aside.self.minimize.default')) {
-      document.body.classList.add('aside-minimize');
-    }
+    document.body.classList.add('aside-static');
 
     // Menu
     // Dropdown Submenu
@@ -186,12 +200,6 @@ export class LayoutInitService {
 
   // init footer
   private initFooter() {
-    // Fixed header
-    if (this.layout.getProp('footer.fixed') === true) {
-      document.body.classList.add('footer-fixed');
-      this.layout.setCSSClass('footer', 'bg-white');
-    }
-
     if (this.layout.getProp('footer.width') === 'fluid') {
       this.layout.setCSSClass('footer_container', 'container-fluid');
     } else {

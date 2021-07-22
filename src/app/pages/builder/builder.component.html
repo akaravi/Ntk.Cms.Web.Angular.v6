@@ -19,7 +19,7 @@
           [ngClass]="getActiveTabCSSClass(1)"
           role="tab"
         >
-          Mobile Header
+          Header
         </a>
       </li>
       <li class="nav-item">
@@ -74,22 +74,113 @@
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(1)">
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right"
-              >Fixed Header:</label
+              >Desktop Fixed Header:</label
             >
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
                 <label>
                   <input
                     type="checkbox"
-                    name="builder[header][self][fixed][mobile]"
-                    [(ngModel)]="model.header.self.fixed.mobile"
+                    name="builder[header][self][fixed][desktop]"
+                    [(ngModel)]="model.header.self.fixed.desktop"
                     value="true"
                   />
                   <span></span>
                 </label>
               </span>
               <div class="form-text text-muted">
-                Enable fixed header for mobile mode
+                Enable fixed header for desktop mode
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right"
+              >Header Width:</label
+            >
+            <div class="col-lg-9 col-xl-4">
+              <select
+                class="form-control form-control-solid"
+                name="builder[header][self][width]"
+                [(ngModel)]="model.header.self.width"
+              >
+                <option value="fluid">Fluid</option>
+                <option value="fixed">Fixed</option>
+              </select>
+              <div class="form-text text-muted">Select header width type.</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right"
+              >Display Header Menu:</label
+            >
+            <div class="col-lg-9 col-xl-4">
+              <span class="switch switch-icon">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="builder[header][menu][self][display]"
+                    [(ngModel)]="model.header.menu.self.display"
+                    value="true"
+                  />
+                  <span></span>
+                </label>
+              </span>
+              <div class="form-text text-muted">Display header menu</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right"
+              >Static Header Menu:</label
+            >
+            <div class="col-lg-9 col-xl-4">
+              <span class="switch switch-icon">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="builder[header][menu][self][static]"
+                    [(ngModel)]="model.header.menu.self.static"
+                    value="true"
+                  />
+                  <span></span>
+                </label>
+              </span>
+              <div class="form-text text-muted">Static header menu</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right"
+              >Header Menu Layout:</label
+            >
+            <div class="col-lg-9 col-xl-4">
+              <select
+                class="form-control form-control-solid"
+                name="builder[header][menu][self][layout]"
+                [(ngModel)]="model.header.menu.self.layout"
+              >
+                <option value="default">Default</option>
+                <option value="tab">Tab</option>
+              </select>
+              <div class="form-text text-muted">Select header width type.</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right"
+              >Header Menu Arrows:</label
+            >
+            <div class="col-lg-9 col-xl-4">
+              <span class="switch switch-icon">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="builder[header][menu][self][rootArrow]"
+                    [(ngModel)]="model.header.menu.self.rootArrow"
+                    value="true"
+                  />
+                  <span></span>
+                </label>
+              </span>
+              <div class="form-text text-muted">
+                Enable header menu root link arrows
               </div>
             </div>
           </div>
@@ -118,28 +209,6 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Fixed Subheader:</label
-            >
-            <div class="col-lg-9 col-xl-4">
-              <span class="switch switch-icon">
-                <label>
-                  <input
-                    type="checkbox"
-                    name="builder[subheader][fixed]"
-                    [(ngModel)]="model.subheader.fixed"
-                    value="true"
-                  />
-                  <span></span>
-                </label>
-              </span>
-              <div class="form-text text-muted">
-                Enable fixed(sticky) subheader. Requires
-                <code>Solid</code> subheader style.
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right">Width:</label>
             <div class="col-lg-9 col-xl-4">
               <select
@@ -151,42 +220,6 @@
                 <option value="fixed">Fixed</option>
               </select>
               <div class="form-text text-muted">Select layout width type.</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Subheader Style:</label
-            >
-            <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[subheader][style]"
-                [(ngModel)]="model.subheader.style"
-              >
-                <option value="transparent">Transparent</option>
-                <option value="solid">Solid</option>
-              </select>
-              <div class="form-text text-muted">Select subheader style</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Subheader Layout:</label
-            >
-            <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[layout][subheader][layoutVersion]"
-                [(ngModel)]="model.subheader.layoutVersion"
-              >
-                <option value="v1">Subheader 1</option>
-                <option value="v2">Subheader 2</option>
-                <option value="v3">Subheader 3</option>
-                <option value="v4">Subheader 4</option>
-                <option value="v5">Subheader 5</option>
-                <option value="v6">Subheader 6</option>
-              </select>
-              <div class="form-text text-muted">Select subheader layout</div>
             </div>
           </div>
         </div>
@@ -215,44 +248,24 @@
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(4)">
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right"
-              >Display Secondary Panel:</label
+              >Display:</label
             >
             <div class="col-lg-9 col-xl-6">
               <span class="switch switch-icon">
                 <label>
                   <input
                     type="checkbox"
-                    name="builder[aside][secondary][display]"
-                    [(ngModel)]="model.aside.secondary.display"
+                    name="builder[aside][self][display]"
+                    [(ngModel)]="model.aside.self.display"
                     value="true"
                   />
                   <span></span>
                 </label>
               </span>
-              <div class="form-text text-muted">
-                Display aside secondary panel
-              </div>
+              <div class="form-text text-muted">Display aside</div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Minimize:</label
-            >
-            <div class="col-lg-9 col-xl-4">
-              <span class="switch switch-icon">
-                <label>
-                  <input
-                    type="checkbox"
-                    name="builde[aside][self][minimize][toggle]"
-                    [(ngModel)]="model.aside.self.minimize.toggle"
-                    value="true"
-                  />
-                  <span></span>
-                </label>
-              </span>
-              <div class="form-text text-muted">Allow aside minimizing</div>
-            </div>
-          </div>
+
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right"
               >Static aside menu:</label
@@ -275,22 +288,24 @@
 
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right"
-              >Default Minimize:</label
+              >Submenu toggle dropdown:</label
             >
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
                 <label>
                   <input
                     type="checkbox"
-                    name="builder[aside][self][minimize][default]"
-                    [(ngModel)]="model.aside.self.minimize.default"
+                    name="builder[aside][menu][dropdown]"
+                    [(ngModel)]="model.aside.menu.dropdown"
                     value="true"
                   />
                   <span></span>
                 </label>
               </span>
               <div class="form-text text-muted">
-                Set aside minimized by default
+                Select Submenu Toggle mode (works only when
+                <code>Scroll</code> is disabled. *By default - mode is
+                'accordion').
               </div>
             </div>
           </div>
@@ -301,21 +316,18 @@
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(5)">
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right"
-              >Fixed Desktop Footer:</label
+              >Footer Layout:</label
             >
             <div class="col-lg-9 col-xl-4">
-              <span class="switch switch-icon">
-                <label>
-                  <input
-                    type="checkbox"
-                    name="builder[footer][fixed]"
-                    [(ngModel)]="model.footer.fixed"
-                    value="true"
-                  />
-                  <span></span>
-                </label>
-              </span>
-              <div class="form-text text-muted">Set fixed desktop footer</div>
+              <select
+                class="form-control form-control-solid"
+                name="builder[footer][layout]"
+                [(ngModel)]="model.footer.layout"
+              >
+                <option value="compact">Compact</option>
+                <option value="extended">Extended</option>
+              </select>
+              <div class="form-text text-muted">Select footer layout.</div>
             </div>
           </div>
           <div class="form-group row">
@@ -373,8 +385,7 @@
     <!--begin::Example-->
     <div class="example mb-10">
       <p>
-        Use for layout config in
-        <code>/src/app/_metronic/configs/default-layout.config.ts</code>
+        Use for layout config in <code>src/app/_metronic/configs/default-layout.config.ts</code>
       </p>
       <div class="example-code">
         <div class="example-code">

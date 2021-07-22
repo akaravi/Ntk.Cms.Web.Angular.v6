@@ -11,30 +11,17 @@
   <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
     <div class="d-flex flex-row flex-column-fluid page">
-      <!-- begin:: Aside Left -->
-      <ng-container *ngIf="asideSelfDisplay">
-        <!--begin::STATIC Aside-->
-        <app-aside
-          #ktAside
-          id="kt_aside"
-          class="aside aside-left d-flex"
-          [ngClass]="asideCSSClasses"
-        ></app-aside>
-        <!--end::STATIC Aside-->
-
-        <!--begin::DYNAMIC Aside-->
-        <!-- <app-aside-dynamic
-          #ktAside
-          id="kt_aside"
-          class="aside aside-left d-flex"
-          [ngClass]="asideCSSClasses"
-        ></app-aside-dynamic> -->
-        <!--end::DYNAMIC Aside-->
-      </ng-container>
-      <!-- end:: Aside Left -->
-
       <!--begin::Wrapper-->
       <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+        <!-- begin:: Header -->
+        <app-header
+          #ktHeader
+          id="kt_header"
+          class="header"
+          [ngClass]="headerCSSClasses"
+        ></app-header>
+        <!-- end:: Header -->
+
         <!-- begin:: Content -->
         <div
           class="content d-flex flex-column flex-column-fluid"
@@ -49,7 +36,37 @@
 
           <!-- begin:: Content Body -->
           <ng-container *ngIf="contentExtended">
-            <router-outlet></router-outlet>
+            <ng-container *ngIf="asideSelfDisplay">
+              <div class="d-lg-flex flex-row-fluid">
+                <ng-container *ngIf="asideMenuStatic">
+                  <!--begin::STATIC Aside-->
+                  <app-aside
+                    #ktAside
+                    id="kt_aside"
+                    class="aside aside-left d-flex flex-column flex-row-auto"
+                    [ngClass]="asideCSSClasses"
+                  ></app-aside>
+
+                  <!--end::STATIC Aside -->
+                </ng-container>
+                <ng-container *ngIf="!asideMenuStatic">
+                  <!--begin::DYNAMIC Aside-->
+                  <app-aside-dynamic
+                    #ktAside
+                    id="kt_aside"
+                    class="aside aside-left d-flex flex-column flex-row-auto"
+                    [ngClass]="asideCSSClasses"
+                  ></app-aside-dynamic>
+                  <!--end::DYNAMIC Aside-->
+                </ng-container>
+                <div class="content-wrapper">
+                  <router-outlet></router-outlet>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!asideSelfDisplay">
+              <router-outlet></router-outlet>
+            </ng-container>
           </ng-container>
 
           <ng-container *ngIf="!contentExtended">
@@ -57,7 +74,38 @@
             <div class="d-flex flex-column-fluid">
               <!--begin::Container-->
               <div [ngClass]="contentContainerClasses">
-                <router-outlet></router-outlet>
+                <ng-container *ngIf="asideSelfDisplay">
+                  <div class="d-lg-flex flex-row-fluid">
+                    <ng-container *ngIf="asideMenuStatic">
+                      <!--begin::STATIC Aside-->
+                      <app-aside
+                        #ktAside
+                        id="kt_aside"
+                        class="aside aside-left d-flex flex-column flex-row-auto"
+                        [ngClass]="asideCSSClasses"
+                      ></app-aside>
+
+                      <!--end::STATIC Aside -->
+                    </ng-container>
+                    <ng-container *ngIf="!asideMenuStatic">
+                      <!--begin::DYNAMIC Aside-->
+                      <app-aside-dynamic
+                        #ktAside
+                        id="kt_aside"
+                        class="aside aside-left d-flex flex-column flex-row-auto"
+                        [ngClass]="asideCSSClasses"
+                      ></app-aside-dynamic>
+                      <!--end::DYNAMIC Aside-->
+                    </ng-container>
+
+                    <div class="content-wrapper flex-row-fluid">
+                      <router-outlet></router-outlet>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="!asideSelfDisplay">
+                  <router-outlet></router-outlet>
+                </ng-container>
                 <!--end::Container-->
               </div>
             </div>
@@ -66,16 +114,27 @@
           <!-- end:: Content Body -->
         </div>
         <!-- end:: Content -->
-        <ng-container *ngIf="footerDisplay">
-          <!--doc: add "bg-white" class to have footer with solod background color-->
-          <!--begin::Footer-->
+        <!--begin::Footer-->
+        <!-- compact -->
+        <ng-container *ngIf="footerLayout === 'compact'">
           <app-footer
-            class="footer py-4 d-flex flex-lg-column"
+            class="footer bg-white py-4 d-flex flex-lg-column"
             id="kt_footer"
             [ngClass]="footerCSSClasses"
           ></app-footer>
-          <!--end::Footer-->
         </ng-container>
+        <!-- extended -->
+        <ng-container *ngIf="footerLayout === 'extended'">
+          <app-footer
+            class="footer kt-grid__item bgi-position-center-center bgi-size-cover bgi-no-cover"
+            id="kt_footer"
+            [ngClass]="footerCSSClasses"
+            style="background-image: url('./assets/media/bg/bg-2.jpg')"
+          >
+            ></app-footer
+          >
+        </ng-container>
+        <!--end::Footer-->
       </div>
       <!--end::Wrapper-->
     </div>

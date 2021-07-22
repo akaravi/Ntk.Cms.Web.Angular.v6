@@ -17,6 +17,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   // Public variables
   selfLayout = 'default';
   asideSelfDisplay: true;
+  asideMenuStatic: true;
   contentClasses = '';
   contentContainerClasses = '';
   subheaderDisplay = true;
@@ -26,6 +27,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   headerMobileClasses = '';
   headerMobileAttributes = {};
   footerDisplay: boolean;
+  footerLayout: string;
   footerCSSClasses: string;
   headerCSSClasses: string;
   headerHTMLAttributes: any = {};
@@ -52,6 +54,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     // build view by layout config settings
     this.selfLayout = this.layout.getProp('self.layout');
     this.asideSelfDisplay = this.layout.getProp('aside.self.display');
+    this.asideMenuStatic = this.layout.getProp('aside.menu.static');
     this.subheaderDisplay = this.layout.getProp('subheader.display');
     this.contentClasses = this.layout.getStringCSSClasses('content');
     this.contentContainerClasses = this.layout.getStringCSSClasses(
@@ -64,8 +67,11 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     this.headerMobileAttributes = this.layout.getHTMLAttributes(
       'header_mobile'
     );
+    // Footer view
     this.footerDisplay = this.layout.getProp('footer.display');
     this.footerCSSClasses = this.layout.getStringCSSClasses('footer');
+    this.footerLayout = this.layout.getProp('footer.layout');
+    // Header view
     this.headerCSSClasses = this.layout.getStringCSSClasses('header');
     this.headerHTMLAttributes = this.layout.getHTMLAttributes('header');
     // offcanvases

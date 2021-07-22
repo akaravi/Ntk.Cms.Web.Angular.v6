@@ -9,6 +9,7 @@ import KTLayoutQuickActions from '../../../../../assets/js/layout/extended/quick
 import KTLayoutQuickCartPanel from '../../../../../assets/js/layout/extended/quick-cart';
 import KTLayoutQuickPanel from '../../../../../assets/js/layout/extended/quick-panel';
 import KTLayoutQuickUser from '../../../../../assets/js/layout/extended/quick-user';
+import KTLayoutHeaderTopbar from '../../../../../assets/js/layout/base/header-topbar';
 import { KTUtil } from '../../../../../assets/js/components/util';
 
 @Component({
@@ -31,9 +32,6 @@ export class TopbarComponent implements OnInit, AfterViewInit {
   extrasLanguagesDisplay: boolean;
   extrasUserDisplay: boolean;
   extrasUserLayout: 'offcanvas' | 'dropdown';
-  // layout
-  asideSecondaryDisplay: boolean;
-  asideSelfMinimizeToggle: boolean;
 
   constructor(private layout: LayoutService, private auth: AuthService) {
     this.user$ = this.auth.currentUserSubject.asObservable();
@@ -65,9 +63,6 @@ export class TopbarComponent implements OnInit, AfterViewInit {
     this.extrasQuickPanelDisplay = this.layout.getProp(
       'extras.quickPanel.display'
     );
-    // layout
-    this.asideSecondaryDisplay = this.layout.getProp('aside.secondary.display');
-    this.asideSelfMinimizeToggle = this.layout.getProp('aside.self.minimize.toggle');
   }
 
   ngAfterViewInit(): void {
@@ -108,6 +103,9 @@ export class TopbarComponent implements OnInit, AfterViewInit {
         // Init Quick User Panel
         KTLayoutQuickUser.init('kt_quick_user');
       }
+
+      // Init Header Topbar For Mobile Mode
+      KTLayoutHeaderTopbar.init('kt_header_mobile_topbar_toggle');
     });
   }
 }
