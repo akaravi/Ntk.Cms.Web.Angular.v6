@@ -100,8 +100,8 @@
             <mat-hint align="end">{{ Source.value.length }} / 500</mat-hint>
           </mat-form-field>
           <!-- Tag Field -->
-          <app-tag-autocomplete (optionChange)="onActionTagChange($event)" [optionPlaceholder]="' + Tag '">
-          </app-tag-autocomplete>
+          <app-cms-tag-autocomplete (optionChange)="onActionTagChange($event)" [optionPlaceholder]="' + Tag '">
+          </app-cms-tag-autocomplete>
           <!-- KeywordModel Field -->
           <tag-input [(ngModel)]="keywordDataModel" name="keywordDataModel" [placeholder]="'+ کلمه کلیدی'"
             [secondaryPlaceholder]="'انتخاب کلمات کلیدی نسبت به مطلب'" [identifyBy]="'display'">
