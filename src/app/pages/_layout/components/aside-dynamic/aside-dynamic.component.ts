@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { CoreAuthService, CoreCpMainMenuModel, CoreCpMainMenuService, ErrorExceptionResult, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { DynamicAsideMenuConfig } from 'src/app/_metronic/configs/dynamic-aside-menu.config';
+import { environment } from 'src/environments/environment';
 import { LayoutService, DynamicAsideMenuService } from '../../../../_metronic/core';
 
 @Component({
@@ -10,7 +13,7 @@ import { LayoutService, DynamicAsideMenuService } from '../../../../_metronic/co
   styleUrls: ['./aside-dynamic.component.scss']
 })
 export class AsideDynamicComponent implements OnInit, OnDestroy {
-  menuConfig: any;
+  menuConfigitems: any;
   subscriptions: Subscription[] = [];
 
   disableAsideSelfDisplay: boolean;
@@ -30,8 +33,13 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
     private layout: LayoutService,
     private router: Router,
     private menu: DynamicAsideMenuService,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef,
+    private coreCpMainMenuService: CoreCpMainMenuService,
+    public coreAuthService: CoreAuthService,
+    private cmsApiStore: NtkCmsApiStoreService,
+  ) { }
 
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     // load view settings
     this.disableAsideSelfDisplay =
@@ -60,11 +68,19 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
     this.subscriptions.push(routerSubscr);
 
     // menu load
-    const menuSubscr = this.menu.menuConfig$.subscribe(res => {
-      this.menuConfig = res;
-      this.cdr.detectChanges();
+
+    this.DataGetCpMenu();
+
+    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+      this.DataGetCpMenu();
     });
-    this.subscriptions.push(menuSubscr);
+
+
+    // const menuSubscr = this.menu.menuConfig$.subscribe(res => {
+    //   this.menuConfig = res;
+    //   this.cdr.detectChanges();
+    // });
+    // this.subscriptions.push(menuSubscr);
   }
 
   private getLogo() {
@@ -74,7 +90,57 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
       return './assets/media/logos/logo-light.png';
     }
   }
-
+  DataGetCpMenu(): void {
+    this.menuConfigitems = [{
+      title: 'Dashboard',
+      root: true,
+      icon: 'flaticon2-architecture-and-city',
+      svg: './assets/media/svg/icons/Design/Layers.svg',
+      page: '/dashboard',
+      translate: 'MENU.DASHBOARD',
+      bullet: 'dot',
+    }];
+    this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
+      (next) => {
+        const list = [];
+        next.ListItems.forEach(element => {
+          list.push(this.listItemAdd(element, true));
+        });
+        list.forEach(element => {
+          this.menuConfigitems.push(element);
+        });
+        if (environment.loadDemoMenu) {
+          DynamicAsideMenuConfig.items.forEach(element => {
+            this.menuConfigitems.push(element);
+          });
+        }
+      }
+    );
+  }
+  listItemAdd(item: CoreCpMainMenuModel, rootStatus = false): any {
+    let retOut: any;
+    retOut = {
+      title: item.Title,
+      root: rootStatus,
+      page: item.RouteAddressLink,
+      Color: item.Color,
+      Icon: item.Icon,
+      svg: '',
+    };
+    if (item.Children && item.Children.length > 0) {
+      retOut.submenu = this.listItemsChildAdd(item);
+    }
+    return retOut;
+  }
+  listItemsChildAdd(item: CoreCpMainMenuModel): any {
+    const list = [];
+    if (item && item.Children) {
+      item.Children.forEach(element => {
+        list.push(this.listItemAdd(element));
+      });
+    }
+    return list;
+  }
   isMenuItemActive(path) {
     if (!this.currentUrl || !path) {
       return false;
@@ -92,6 +158,8 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.cmsApiStoreSubscribe.unsubscribe();
+
     this.subscriptions.forEach(sb => sb.unsubscribe());
   }
 }

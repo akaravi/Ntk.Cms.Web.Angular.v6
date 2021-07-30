@@ -37,16 +37,7 @@
       >
         <!--begin::Header Menu-->
         <!-- Don't change id => 'kt_header_menu' -->
-        <ng-container *ngIf="headerMenuSelfStatic">
-          <!-- STATIC MENU -->
-          <app-header-menu
-            #ktHeaderMenu
-            id="kt_header_menu"
-            class="header-menu header-menu-left header-menu-mobile"
-            [ngClass]="headerMenuCSSClasses"
-          ></app-header-menu>
-        </ng-container>
-        <ng-container *ngIf="!headerMenuSelfStatic">
+    
           <!-- DYNAMIC MENU -->
           <app-header-menu-dynamic
             #ktHeaderMenu
@@ -54,7 +45,6 @@
             class="header-menu header-menu-left header-menu-mobile"
             [ngClass]="headerMenuCSSClasses"
           ></app-header-menu-dynamic>
-        </ng-container>
         <!--end::Header Menu-->
       </div>
       <!--end::Header Menu Wrapper-->

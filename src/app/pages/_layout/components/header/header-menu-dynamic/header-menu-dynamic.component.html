@@ -1,7 +1,7 @@
-<ng-container *ngIf="menuConfig && menuConfig.items">
+<ng-container *ngIf="menuConfigitems ">
   <!-- begin::Header Nav -->
   <ul class="menu-nav" [ngClass]="ulCSSClasses">
-    <ng-container *ngFor="let item of menuConfig.items">
+    <ng-container *ngFor="let item of menuConfigitems">
       <ng-container
         *ngIf="item.title"
         [ngTemplateOutlet]="menu1LevelTemplate"

@@ -38,18 +38,7 @@
           <ng-container *ngIf="contentExtended">
             <ng-container *ngIf="asideSelfDisplay">
               <div class="d-lg-flex flex-row-fluid">
-                <ng-container *ngIf="asideMenuStatic">
-                  <!--begin::STATIC Aside-->
-                  <app-aside
-                    #ktAside
-                    id="kt_aside"
-                    class="aside aside-left d-flex flex-column flex-row-auto"
-                    [ngClass]="asideCSSClasses"
-                  ></app-aside>
-
-                  <!--end::STATIC Aside -->
-                </ng-container>
-                <ng-container *ngIf="!asideMenuStatic">
+        
                   <!--begin::DYNAMIC Aside-->
                   <app-aside-dynamic
                     #ktAside
@@ -58,7 +47,6 @@
                     [ngClass]="asideCSSClasses"
                   ></app-aside-dynamic>
                   <!--end::DYNAMIC Aside-->
-                </ng-container>
                 <div class="content-wrapper">
                   <router-outlet></router-outlet>
                 </div>
@@ -76,18 +64,7 @@
               <div [ngClass]="contentContainerClasses">
                 <ng-container *ngIf="asideSelfDisplay">
                   <div class="d-lg-flex flex-row-fluid">
-                    <ng-container *ngIf="asideMenuStatic">
-                      <!--begin::STATIC Aside-->
-                      <app-aside
-                        #ktAside
-                        id="kt_aside"
-                        class="aside aside-left d-flex flex-column flex-row-auto"
-                        [ngClass]="asideCSSClasses"
-                      ></app-aside>
-
-                      <!--end::STATIC Aside -->
-                    </ng-container>
-                    <ng-container *ngIf="!asideMenuStatic">
+     
                       <!--begin::DYNAMIC Aside-->
                       <app-aside-dynamic
                         #ktAside
@@ -96,8 +73,6 @@
                         [ngClass]="asideCSSClasses"
                       ></app-aside-dynamic>
                       <!--end::DYNAMIC Aside-->
-                    </ng-container>
-
                     <div class="content-wrapper flex-row-fluid">
                       <router-outlet></router-outlet>
                     </div>
