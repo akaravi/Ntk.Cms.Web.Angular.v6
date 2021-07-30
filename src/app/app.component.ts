@@ -97,7 +97,7 @@ export class AppComponent implements OnInit, OnDestroy {
       };
       this.translationService.setLanguage(this.translationService.getSelectedLanguage());
       this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
-    }
+    } 
   }
   getEnumRecordStatus(): void {
     this.coreEnumService.ServiceEnumRecordStatus().subscribe((res) => {

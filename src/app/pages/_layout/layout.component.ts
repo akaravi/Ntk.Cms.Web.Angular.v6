@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { LayoutService, LayoutInitService } from '../../_metronic/core';
 import KTLayoutContent from '../../../assets/js/layout/base/content';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-layout',
@@ -45,12 +46,17 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   constructor(
     private initService: LayoutInitService,
-    private layout: LayoutService
+    private layout: LayoutService,
+    private tokenHelper: TokenHelper,
   ) {
     this.initService.init();
   }
 
   ngOnInit(): void {
+    // First Token Info
+    this.tokenHelper.CurrentTokenInfoRenew();
+    this.tokenHelper.CheckRouteByToken();
+
     // build view by layout config settings
     this.selfLayout = this.layout.getProp('self.layout');
     this.asideSelfDisplay = this.layout.getProp('aside.self.display');
