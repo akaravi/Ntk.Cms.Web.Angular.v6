@@ -1,13 +1,13 @@
 <!--begin::Aside Menu-->
 <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
   <!--begin::Menu Container-->
-  <ng-container *ngIf="menuConfigitems ">
+  <ng-container *ngIf="menuConfig  ">
     <div id="kt_aside_menu" class="aside-menu min-h-lg-800px" [ngClass]="asideMenuCSSClasses" data-menu-vertical="1"
       [attr.data-menu-scroll]="asideMenuScroll" [attr.data-menu-dropdown]="asideMenuDropdown"
       data-menu-dropdown-timeout="500">
       <!-- begin::Menu Nav -->
       <ul class="menu-nav" [ngClass]="ulCSSClasses">
-        <ng-container *ngFor="let item of menuConfigitems">
+        <ng-container *ngFor="let item of menuConfig">
           <ng-container *ngIf="item.section" [ngTemplateOutlet]="menuItemSectionTemplate"
             [ngTemplateOutletContext]="{ item: item }"></ng-container>
           <ng-container *ngIf="item.separator" [ngTemplateOutlet]="menuItemSeparatorTemplate"></ng-container>
