@@ -21,6 +21,8 @@ import { TeardownLogic } from 'rxjs';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
+import { CoreAuthService, CoreEnumService } from 'ntk-cms-api';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 function appInitializer(authService: AuthService) {
   return () => {
@@ -73,6 +75,8 @@ export function CreateTranslateLoader(http: HttpClient): any {
     NgbModule,
   ],
   providers: [
+    CoreAuthService,
+    CoreEnumService,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
@@ -91,6 +95,7 @@ export function CreateTranslateLoader(http: HttpClient): any {
         },
       },
     },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })

@@ -16,6 +16,9 @@ import { locale as deLang } from './modules/i18n/vocabs/de';
 import { locale as frLang } from './modules/i18n/vocabs/fr';
 import { SplashScreenService } from './_metronic/partials/layout/splash-screen/splash-screen.service';
 import { TableExtendedService } from './_metronic/shared/crud-table';
+import { CoreAuthService, CoreEnumService, EnumDeviceType, EnumOperatingSystemType, TokenDeviceClientInfoDtoModel } from 'ntk-cms-api';
+import { CmsStoreService } from './core/reducers/cmsStore.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -28,11 +31,17 @@ export class AppComponent implements OnInit, OnDestroy {
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
   constructor(
+    private coreAuthService: CoreAuthService,
     private translationService: TranslationService,
     private splashScreenService: SplashScreenService,
     private router: Router,
-    private tableService: TableExtendedService
+    private tableService: TableExtendedService,
+    private coreEnumService: CoreEnumService,
+    private cmsStoreService: CmsStoreService
   ) {
+    if (environment.cmsServerConfig.configApiServerPath && environment.cmsServerConfig.configApiServerPath.length > 0) {
+      this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
+    }
     // register translations
     this.translationService.loadTranslations(
       enLang,
@@ -62,6 +71,38 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
     this.unsubscribe.push(routerSubscription);
+
+    this.getDeviceToken();
+    this.getEnumRecordStatus();
+  }
+  getDeviceToken(): void {
+    const DeviceToken = this.coreAuthService.getDeviceToken();
+    if (!DeviceToken || DeviceToken.length === 0) {
+      const model: TokenDeviceClientInfoDtoModel = {
+        SecurityKey: environment.cmsTokenConfig.SecurityKey,
+        ClientMACAddress: '',
+        OSType: EnumOperatingSystemType.none,
+        DeviceType: EnumDeviceType.WebSite,
+        PackageName: '',
+        AppBuildVer: 0,
+        AppSourceVer: '',
+        Country: '',
+        DeviceBrand: '',
+        Language: this.translationService.getSelectedLanguage(),
+        LocationLat: '',
+        LocationLong: '',
+        SimCard: '',
+        NotificationId: ''
+
+      };
+      this.translationService.setLanguage(this.translationService.getSelectedLanguage());
+      this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
+    }
+  }
+  getEnumRecordStatus(): void {
+    this.coreEnumService.ServiceEnumRecordStatus().subscribe((res) => {
+      this.cmsStoreService.setState({ EnumRecordStatus: res });
+    });
   }
 
   ngOnDestroy() {
