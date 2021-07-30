@@ -1,0 +1,51 @@
+<!--optionMethod 1-->
+<div class="table" *ngIf="optionMethod===1">
+  <div class="th" *ngIf="optionViewHead">
+    <div class="td">پارامتر</div>
+    <div class="td">مقادیر</div>
+    <div class="clear"></div>
+  </div>
+  <div class="tr" *ngFor="let head of dataModel | keys : optionFields ">
+    <div class="td">{{(optionFields && optionFields.size>0)? optionFields.get(head): head}}</div>
+    <div class="td">{{dataModel[head]}}</div>
+    <div style="clear: both;"></div>
+  </div>
+</div>
+<!--optionMethod 2-->
+<div class="table" *ngIf="optionMethod===2">
+  <div class="th" *ngIf="optionViewHead">
+    <div class="td" *ngFor="let head of dataModel[0] | keys : optionFields" >{{(optionFields && optionFields.size>0)?
+      optionFields.get(head): head}}</div>
+    <div class="clear"></div>
+  </div>
+  <div class="tr" *ngFor="let item of dataModel">
+    <div class="td" *ngFor="let list of item | keys: optionFields">{{item[list]}}</div>
+    <div style="clear: both;"></div>
+  </div>
+</div>
+<table *ngIf="optionMethod===2">
+  <thead *ngIf="optionViewHead">
+    <tr>
+      <th *ngFor="let head of dataModel[0] | keys : optionFields">{{(optionFields && optionFields.size>0)?
+        optionFields.get(head): head}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dataModel">
+      <td *ngFor="let list of item | keys: optionFields">{{item[list]}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--optionMethod 3-->
+<div class="table" *ngIf="optionMethod===3">
+  <div class="th" *ngIf="optionViewHead">
+    <div class="td" *ngFor="let head of dataModel[0] | keys : optionFields" >{{(optionFields && optionFields.size>0)?
+      optionFields.get(head): head}}</div>
+    <div class="clear"></div>
+  </div>
+  <div class="tr">
+    <div class="td"  *ngFor="let list of dataModel | keys : optionFields">{{dataModel[list]}}</div>
+    <div style="clear: both;"></div>
+  </div>
+</div>

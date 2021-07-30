@@ -1,0 +1,294 @@
+import {
+  CoreEnumService,
+  EnumModel,
+  ErrorExceptionResult,
+  FormInfoModel,
+  CoreCpMainMenuService,
+  CoreCpMainMenuModel,
+  AccessModel,
+  DataFieldInfoModel,
+  CoreModuleModel,
+  CoreUserGroupModel,
+  CoreCpMainMenuCmsUserGroupModel,
+  CoreCpMainMenuCmsUserGroupService,
+  FilterModel,
+  FilterDataModel
+} from 'ntk-cms-api';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Inject,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { MatStepper } from '@angular/material/stepper';
+import { TranslateService } from '@ngx-translate/core';
+
+@Component({
+  selector: 'app-core-user-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss'],
+})
+export class CoreCpMainMenuEditComponent implements OnInit {
+  requestId = 0;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private cmsStoreService: CmsStoreService,
+    private dialogRef: MatDialogRef<CoreCpMainMenuEditComponent>,
+    public coreEnumService: CoreEnumService,
+    public coreCpMainMenuService: CoreCpMainMenuService,
+    public coreCpMainMenuCmsUserGroupService: CoreCpMainMenuCmsUserGroupService,
+    private cmsToastrService: CmsToastrService,
+    private publicHelper: PublicHelper,
+    private translate: TranslateService,
+  ) {
+    if (data) {
+      this.requestId = +data.id || 0;
+    }
+
+  }
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+
+
+  appLanguage = 'fa';
+
+  loading = new ProgressSpinnerModel();
+  dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
+  dataModel: CoreCpMainMenuModel = new CoreCpMainMenuModel();
+
+  formInfo: FormInfoModel = new FormInfoModel();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataAccessModel: AccessModel;
+
+  fileManagerOpenForm = false;
+  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  dataCoreCpMainMenuModel: CoreUserGroupModel[];
+  dataCoreCpMainMenuIds: number[] = [];
+  dataCoreCpMainMenuCmsUserGroupModel: CoreCpMainMenuCmsUserGroupModel[];
+
+  ngOnInit(): void {
+    if (this.requestId > 0) {
+      this.formInfo.FormTitle = 'ویرایش  ';
+      this.DataGetOneContent();
+    } else {
+      this.cmsToastrService.typeErrorComponentAction();
+      this.dialogRef.close({ dialogChangedDate: false });
+      return;
+    }
+
+    this.getEnumRecordStatus();
+    this.getEnumMenuPlaceType();
+    this.DataGetAllMenuCoreUserGroup();
+  }
+  getEnumMenuPlaceType(): void {
+    this.coreEnumService.ServiceEnumMenuPlaceType().subscribe((next) => {
+      this.dataModelEnumMenuPlaceTypeResult = next;
+    });
+  }
+  getEnumRecordStatus(): void {
+    if (this.storeSnapshot
+      && this.storeSnapshot.EnumRecordStatus
+      && this.storeSnapshot.EnumRecordStatus
+      && this.storeSnapshot.EnumRecordStatus.IsSuccess
+      && this.storeSnapshot.EnumRecordStatus.ListItems
+      && this.storeSnapshot.EnumRecordStatus.ListItems.length > 0) {
+      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatus;
+    }
+  }
+  DataGetOneContent(): void {
+    if (this.requestId <= 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
+
+    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormError = '';
+    this.loading.display = true;
+    /*َAccess Field*/
+    this.coreCpMainMenuService.setAccessLoad();
+    this.coreCpMainMenuService.ServiceGetOneById(this.requestId).subscribe(
+      (next) => {
+        /*َAccess Field*/
+        this.dataAccessModel = next.Access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+        this.dataModel = next.Item;
+        if (next.IsSuccess) {
+
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.display = false;
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.display = false;
+      }
+    );
+  }
+  DataGetAllMenuCoreUserGroup(): void {
+
+    if (this.requestId <= 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
+
+    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormError = '';
+    this.loading.display = true;
+    const filteModelContent = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'CmsCpMainMenu_Id';
+    filter.Value = this.requestId;
+    filteModelContent.Filters.push(filter);
+
+    this.coreCpMainMenuCmsUserGroupService.ServiceGetAll(filteModelContent).subscribe(
+      (next) => {
+        this.dataCoreCpMainMenuCmsUserGroupModel = next.ListItems;
+        const listG: number[] = [];
+        this.dataCoreCpMainMenuCmsUserGroupModel.forEach(element => {
+          listG.push(element.CmsUserGroup_Id);
+        });
+        this.dataCoreCpMainMenuIds = listG;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.display = false;
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.display = false;
+      }
+    );
+  }
+
+  DataEditContent(): void {
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.FormError = '';
+    this.loading.display = true;
+    this.coreCpMainMenuService.ServiceEdit(this.dataModel).subscribe(
+      (next) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.dataModelResult = next;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.cmsToastrService.typeSuccessEdit();
+          this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.display = false;
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+        this.loading.display = false;
+      }
+    );
+  }
+  onFormSubmit(): void {
+    if (!this.formGroup.valid) {
+      return;
+    }
+    this.formInfo.FormSubmitAllow = false;
+    this.DataEditContent();
+  }
+  onFormCancel(): void {
+    this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
+    if (event.previouslySelectedIndex < event.selectedIndex) {
+      if (!this.formGroup.valid) {
+        this.cmsToastrService.typeErrorFormInvalid();
+        setTimeout(() => {
+          stepper.selectedIndex = event.previouslySelectedIndex;
+          // stepper.previous();
+        }, 10);
+      }
+    }
+  }
+  onActionSelectorModuleSelect(model: CoreModuleModel): void {
+    this.dataModel.LinkModuleId = null;
+    if (model && model.Id > 0) {
+      this.dataModel.LinkModuleId = model.Id;
+    }
+  }
+  onActionSelectorSelect(model: CoreCpMainMenuModel): void {
+    this.dataModel.LinkParentId = null;
+    if (model && model.Id > 0) {
+      this.dataModel.LinkParentId = model.Id;
+    }
+  }
+  onActionSelectorUserCategorySelect(model: CoreUserGroupModel[]): void {
+    this.dataCoreCpMainMenuModel = model;
+  }
+  onActionSelectorUserCategorySelectAdded(model: CoreUserGroupModel): void {
+    const entity = new CoreCpMainMenuCmsUserGroupModel();
+    entity.CmsUserGroup_Id = model.Id;
+    entity.CmsCpMainMenu_Id = this.dataModel.Id;
+
+    this.coreCpMainMenuCmsUserGroupService.ServiceAdd(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+
+      }
+    );
+  }
+  onActionSelectorUserCategorySelectRemoved(model: CoreUserGroupModel): void {
+    const entity = new CoreCpMainMenuCmsUserGroupModel();
+    entity.CmsUserGroup_Id = model.Id;
+    entity.CmsCpMainMenu_Id = this.dataModel.Id;
+
+    this.coreCpMainMenuCmsUserGroupService.ServiceDeleteEntity(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+      }
+    );
+  }
+  onIconPickerSelect(model: any): void {
+    this.dataModel.Icon = model;
+  }
+
+}

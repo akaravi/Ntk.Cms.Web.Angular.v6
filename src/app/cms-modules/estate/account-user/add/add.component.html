@@ -1,0 +1,120 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+
+      <!-- Title Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required
+          [disabled]="!fieldsInfo['Title']?.AccessAddField" />
+        <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Title = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="Title.errors?.required">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- LinkCmsUserId Field -->
+      <app-cms-user-selector (optionSelect)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.LinkCmsUserId"
+        [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField"></app-cms-user-selector>
+      <!-- LinkLocationId Field -->
+      <app-cms-location-selector (optionSelect)="onActionSelectorLocation($event)"
+        [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه جغرافیایی'"
+        [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessAddField"></app-cms-location-selector>
+      <!-- JoinId Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['JoinId']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.JoinId" name="dataModel.JoinId" #JoinId type="text"
+          placeholder="{{fieldsInfo['JoinId']?.FieldTitle}}" minlength="0" maxlength="64"
+          [disabled]="!fieldsInfo['JoinId']?.AccessAddField" />
+        <mat-icon matSuffix *ngIf="dataModel.JoinId" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.JoinId = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ JoinId.value.length }} / 64</mat-hint>
+      </mat-form-field>
+      <!-- SerialRfId Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['SerialRfId']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.SerialRfId" name="dataModel.SerialRfId" #SerialRfId type="text"
+          placeholder="{{fieldsInfo['SerialRfId']?.FieldTitle}}" minlength="0" maxlength="64"
+          [disabled]="!fieldsInfo['SerialRfId']?.AccessAddField" />
+        <mat-icon matSuffix *ngIf="dataModel.SerialRfId" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.SerialRfId = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ SerialRfId.value.length }} / 64</mat-hint>
+      </mat-form-field>
+      <!-- SerialNumber Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['SerialNumber']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.SerialNumber" name="dataModel.SerialNumber" #SerialNumber type="text"
+          placeholder="{{fieldsInfo['SerialNumber']?.FieldTitle}}" minlength="0" maxlength="64"
+          [disabled]="!fieldsInfo['SerialNumber']?.AccessAddField" />
+        <mat-icon matSuffix *ngIf="dataModel.SerialNumber" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.SerialNumber = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ SerialNumber.value.length }} / 64</mat-hint>
+      </mat-form-field>
+      <!-- PlaceProduction Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['PlaceProduction']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.PlaceProduction" name="dataModel.PlaceProduction" #PlaceProduction
+          type="text" placeholder="{{fieldsInfo['PlaceProduction']?.FieldTitle}}" minlength="0" maxlength="64"
+          [disabled]="!fieldsInfo['PlaceProduction']?.AccessAddField" />
+        <mat-icon matSuffix *ngIf="dataModel.PlaceProduction" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.PlaceProduction = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ PlaceProduction.value.length }} / 64</mat-hint>
+      </mat-form-field>
+      <!-- Description Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+          placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5
+          [disabled]="!fieldsInfo['Description']?.AccessAddField"></textarea>
+        <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Description = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+        <mat-error *ngIf="Description.errors?.required">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- Address Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['Address']?.FieldTitle}}</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.Address" name="dataModel.Address" #Address type="text"
+          placeholder="{{fieldsInfo['Address']?.FieldTitle}}" minlength="1" maxlength="500" required rows=5
+          [disabled]="!fieldsInfo['Address']?.AccessAddField"></textarea>
+        <mat-icon matSuffix *ngIf="dataModel.Address" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Address = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
+        <mat-error *ngIf="Address.errors?.required">
+          Address is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
+      <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" id='main-map'></app-cms-map>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,108 @@
+@media (max-width: 1399px){
+  .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
+    flex: 0 0 calc(25% - 0.25rem);
+  }
+}
+form{
+  text-align: right;
+}
+.wrapper{
+  display: flex;
+  padding-top: 15px;
+}
+.lbl-status{
+  width: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 5px;
+}
+.status-select{
+  width: 970px;
+}
+textarea{
+  resize: none;
+}
+.calender-select{
+  width: 252px;
+}
+.next-modal{
+  width: 100px;
+  margin-right: 15px;
+}
+.pb-4, .py-4 {
+  padding-bottom: 7px !important;
+  padding-top: 7px !important;
+}
+tag-input{
+  width: 1000px;
+}
+//Fix personnal bug leaflet
+.leaflet-pane{
+  img{
+      position: absolute !important;
+  }
+}
+.fs-container {
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.lbl-content{
+  width: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 25px;
+}
+@media (min-width: 1400px){
+  .col-xxl-7 {
+    max-width: 100% !important;
+    flex: 0 0 100%;
+  }
+}
+.heroes {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+.heroes li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+.heroes li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.heroes li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.heroes li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+.heroes .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color:#405061;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}

@@ -1,0 +1,141 @@
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
+      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
+      <app-progress-spinner [options]="loading">
+      </app-progress-spinner>
+      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+
+        <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+          <!-- RecordStatus Field -->
+          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+              [disabled]="!fieldsInfo['RecordStatus']?.AccessAddField" name="dataModel.RecordStatus"
+              #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+              <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+            </mat-select>
+            <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
+            <mat-error *ngIf="RecordStatus.errors?.required">
+              {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <!-- LinkApplicationId Field -->
+          <app-application-app-selector (optionSelect)="onActionSelectApplication($event)"
+            [optionSelectForce]="this.dataModel.LinkApplicationId" [optionPlaceholder]="' اپلیکیشن'"
+            [optionDisabled]="!fieldsInfo['LinkApplicationId']?.AccessAddField"></app-application-app-selector>
+          <!-- Title Field -->
+          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
+            <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessAddField"
+              name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessAddField" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
+            <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
+            <mat-error *ngIf="Title.errors?.required">
+              {{ fieldsInfo['Title']?.FieldTitle }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <!-- Description Field -->
+          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Description']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['Description']?.FieldDescription }}</mat-label>
+            <textarea matInput [(ngModel)]="dataModel.Description"
+              [disabled]="!fieldsInfo['Description']?.AccessAddField" name="dataModel.Description" #Description
+              type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" row="10" minlength="3" maxlength="100" required></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.Description && fieldsInfo['Description']?.AccessAddField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.Description = ''">close</mat-icon>
+            <mat-icon *ngIf="fieldsInfo['Description']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+            <mat-hint align="end">{{ 'Application.Source.Description_hint' | translate }}</mat-hint>
+            <mat-hint align="start">{{ Description.value.length }} / 100</mat-hint>
+            <mat-error *ngIf="Description.errors?.required">
+              {{ fieldsInfo['Description']?.FieldDescription }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button (click)="onActionBackToParent()"
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BACK' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+          </div>
+        </mat-step>
+
+
+        <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
+          <p>عکسها و فایل های اپلیکیشن</p>
+          <!-- LinkMainImageId Field -->
+          <div class="mb-3">
+            <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+              src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
+          </div>
+          <div class="mb-9">
+            <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">
+
+              <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
+              <input matInput [(ngModel)]="dataModel.LinkMainImageId"
+                [disabled]="!fieldsInfo['LinkMainImageId']?.AccessAddField" name="dataModel.LinkMainImageId"
+                #LinkMainImageId type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+              <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId && fieldsInfo['LinkMainImageId']?.AccessAddField"
+                matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+              <mat-icon *ngIf="fieldsInfo['LinkMainImageId']?.AccessAddField" matSuffix
+                (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+            </mat-form-field>
+
+            <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
+              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+              [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+          <!-- LinkMainVideoId Field -->
+          <div class="mb-3">
+            <img *ngIf="dataModel?.LinkMainVideoIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+              src="{{dataModel.LinkMainVideoIdSrc}}" height="50" width="50" />
+          </div>
+          <div class="mb-9">
+            <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LinkMainVideoId']?.AccessWatchField">
+
+              <mat-label (click)="fileManagerOpenFormVideo = true">{{fieldsInfo['LinkMainVideoId']?.FieldTitle}}
+              </mat-label>
+              <input matInput [(ngModel)]="dataModel.LinkMainVideoId"
+                [disabled]="!fieldsInfo['LinkMainVideoId']?.AccessAddField" name="dataModel.LinkMainVideoId"
+                #LinkMainVideoId type="text" placeholder="شناسه فایل اصلی"  autocomplete="off"  (click)="fileManagerOpenFormVideo = true" />
+              <mat-icon matSuffix *ngIf="dataModel.LinkMainVideoId && fieldsInfo['LinkMainVideoId']?.AccessAddField"
+                matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainVideoId = null">close</mat-icon>
+              <mat-icon *ngIf="fieldsInfo['LinkMainVideoId']?.AccessAddField" matSuffix
+                (click)="fileManagerOpenFormVideo = true">mode_edit</mat-icon>
+            </mat-form-field>
+
+            <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainVideoId($event)" [language]="appLanguage"
+              [isPopup]="true" [(openForm)]="fileManagerOpenFormVideo" [tree]="fileManagerTree"
+              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainVideo"
+              [openFilemanagerButtonView]="false"></cms-file-manager>
+          </div>
+
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button matStepperPrevious
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+
+
+      </mat-horizontal-stepper>
+
+    </form>
+
+  </div>
+  <!--end::Container-->
+</div>

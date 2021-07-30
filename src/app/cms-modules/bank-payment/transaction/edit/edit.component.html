@@ -1,0 +1,82 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+      <!-- RecordStatus Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+          [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField" name="dataModel.RecordStatus"
+          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+          <mat-option *ngFor="
+            let item of dataModelEnumRecordStatusResult.ListItems;
+            index as i
+          " [value]="item.Value">{{ item.Description }}</mat-option>
+        </mat-select>
+        <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
+        <mat-error *ngIf="RecordStatus.errors?.required">
+          {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- BankStatus Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BankStatus']?.AccessWatchField">
+        <mat-select placeholder="{{fieldsInfo['BankStatus']?.FieldTitle}}" [(ngModel)]="dataModel.BankStatus"
+          [disabled]="!fieldsInfo['BankStatus']?.AccessEditField" name="dataModel.BankStatus" #BankStatus="ngModel"
+          panelClass="BankStatus-{{ dataModel.BankStatus }}" required>
+          <mat-option *ngFor="
+                  let item of dataModelEnumTransactionBankStatusResult.ListItems;
+                  index as i
+                " [value]="item.Value">{{ item.Description }}</mat-option>
+        </mat-select>
+        <mat-hint align="end">{{ 'Application.Source.BankStatus_hint' | translate }}</mat-hint>
+        <mat-error *ngIf="BankStatus.errors?.required">
+          {{ fieldsInfo['BankStatus']?.FieldTitle }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- TransactionStatus Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['TransactionStatus']?.AccessWatchField">
+        <mat-select placeholder="{{fieldsInfo['TransactionStatus']?.FieldTitle}}"
+          [(ngModel)]="dataModel.TransactionStatus" [disabled]="!fieldsInfo['TransactionStatus']?.AccessEditField"
+          name="dataModel.RecordStatus" #TransactionStatus="ngModel"
+          panelClass="TransactionStatus-{{ dataModel.TransactionStatus }}" required>
+          <mat-option *ngFor="
+            let item of dataModelEnumTransactionRecordStatusResult.ListItems;
+            index as i
+          " [value]="item.Value">{{ item.Description }}</mat-option>
+        </mat-select>
+        <mat-hint align="end">{{ 'Application.Source.TransactionStatus_hint' | translate }}</mat-hint>
+        <mat-error *ngIf="TransactionStatus.errors?.required">
+          {{ fieldsInfo['TransactionStatus']?.FieldTitle }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LinkPrivateSiteConfigId Field -->
+      <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true"
+        [optionSelectForce]=" this.dataModel.LinkPrivateSiteConfigId" [optionPlaceholder]="'حساب'">
+      </app-bankpayment-privatesiteconfig-selector>
+      <!-- LinkUserId Field -->
+      <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkUserId"
+        [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
+      <!-- LinkUserId Field -->
+
+
+      <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

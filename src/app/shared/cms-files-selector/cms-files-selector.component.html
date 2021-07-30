@@ -1,0 +1,51 @@
+<!-- files Field -->
+<div class="mb-12">
+  <mat-form-field class="example-full-width">
+    <mat-label (click)="fileManagerOpenForm = true">فایل
+    </mat-label>
+    <input matInput name="dataModel.LinkMainImageId" #LinkMainImageId type="text" placeholder="شناسه فایل اصلی"
+      (click)="fileManagerOpenForm = true" />
+    <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+  </mat-form-field>
+  <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
+    [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
+    [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [openFilemanagerButtonView]="false">
+  </cms-file-manager>
+</div>
+<!-- TABLE  -->
+<table>
+  <tr>
+    <td>شناسه فایل</td>
+    <td></td>
+    <td>لینک </td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let item of dataFileModel | keyvalue">
+    <td>{{item.key}}</td>
+    <td>
+      <img *ngIf="item.value?.toLowerCase().indexOf('.png')>0 || item.value?.toLowerCase().indexOf('.jpg')>0 || item.value?.toLowerCase().indexOf('.jpeg')>0|| item.value?.toLowerCase().indexOf('.gif')>0"
+        style="vertical-align:middle;" aria-hidden src="{{item.value}}" height="50" width="50" />
+
+      <audio *ngIf="item.value?.toLowerCase().indexOf('.mp3')>0 || item.value?.toLowerCase().indexOf('.wave')>0 || item.value?.toLowerCase().indexOf('.acc')>0"
+        controls>
+        <source src="{{item.value}}" type="audio/mp3">
+        Your browser does not support the audio tag.
+      </audio>
+
+      <video *ngIf="item.value?.toLowerCase().indexOf('mp4')>0" controls>
+        <source src="{{item.value}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </td>
+    <td>
+      <button type="button" ngxClipboard *ngxClipboardIfSupported [cbContent]="item.value"
+        (cbOnSuccess)="onActionCopied()">
+        Copy
+      </button>
+    </td>
+    <td><button (click)="onActionFileSelectedRemove(item.key)" type="button" class="btn btn-danger  ml-2">حذف</button>
+    </td>
+  </tr>
+
+</table>
+<!-- TABLE  -->

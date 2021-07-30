@@ -1,0 +1,18 @@
+  <div class="row">
+    <div class="col" *ngFor="let item of dataModelResult.ListItems">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{item.Title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image  style="width: 200px;height: 200px;"  src="{{item.LinkModuleFileLogoIdSrc}}">
+        <mat-card-content>
+          <p>
+            {{item.Description }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="onActionSelect(item)">{{'ACTION.SELECT' | translate}}</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>

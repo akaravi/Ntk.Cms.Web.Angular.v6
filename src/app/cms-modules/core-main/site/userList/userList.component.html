@@ -1,0 +1,175 @@
+<div class="row">
+  <div class="col-xl-12">
+    <div class="button-row">
+      <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
+        class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+      <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.LinkSiteId>0"
+        (click)="onActionbuttonEditRow()" type="button" class="btn btn-warning ml-2" data-toggle="modal"
+        data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+      <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.LinkSiteId>0"
+        (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger  ml-2">{{'ACTION.DELETE' | translate}}</button>
+
+      <a class="btn btn-secondary btn-sm BTN">
+        <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
+      </a>
+
+      <a class="btn btn-success btn-sm BTN">
+        <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
+        </mat-slide-toggle>
+      </a>
+      <a class="btn btn-info btn-sm BTN">
+        <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
+        </mat-slide-toggle>
+      </a>
+      <button (click)="onActionbuttonReload()" type="button" class="btn btn-warning BTN">{{'ACTION.RELOAD' | translate}}</button>
+      <button (click)="onActionBackToParentSiteList()" *ngIf="this.requestLinkSiteId>0" type="button"
+        class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
+      <button (click)="onActionBackToParentUserList()" *ngIf="this.requestLinkUserId>0" type="button"
+        class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
+      <button (click)="onActionBackToParentUserGroupList()" *ngIf="this.requestLinkUserGroupId>0" type="button"
+        class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
+      <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
+      <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
+      <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
+    </div>
+
+    <app-progress-spinner [options]="loading">
+    </app-progress-spinner>
+
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+        <!-- LinkSiteId Column -->
+        <ng-container matColumnDef="LinkSiteId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.FieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.LinkSiteId}} </mat-cell>
+        </ng-container>
+        <!-- LinkUserId Column -->
+        <ng-container matColumnDef="LinkUserId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserId']?.FieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.LinkUserId}} </mat-cell>
+        </ng-container>
+        <!-- LinkUserGroupId Column -->
+        <ng-container matColumnDef="LinkUserGroupId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserGroupId']?.FieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.LinkUserGroupId}} </mat-cell>
+        </ng-container>
+
+        <!-- RecordStatus Column -->
+        <ng-container matColumnDef="RecordStatus">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
+        </ng-container>
+        <!-- Username Column -->
+        <ng-container matColumnDef="virtual_CmsUser.Username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> نام کاربری </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.Username}} </mat-cell>
+        </ng-container>
+        <!-- Mobile Column -->
+        <ng-container matColumnDef="virtual_CmsUser.Mobile">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.Mobile}} </mat-cell>
+        </ng-container>
+        <!-- Email Column -->
+        <ng-container matColumnDef="virtual_CmsUser.Email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.Email}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="virtual_CmsUser.Name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.Name}} </mat-cell>
+        </ng-container>
+        <!-- LastName Column -->
+        <ng-container matColumnDef="virtual_CmsUser.LastName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> LastName </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.LastName}} </mat-cell>
+        </ng-container>
+        <!-- CompanyName Column -->
+        <ng-container matColumnDef="virtual_CmsUser.CompanyName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.CompanyName}} </mat-cell>
+        </ng-container>
+        <!-- CompanyName Column -->
+        <ng-container matColumnDef="virtual_CmsUserGroup.Title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Group Title </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsUserGroup.Title}} </mat-cell>
+        </ng-container>
+        <!-- CompanyName Column -->
+        <ng-container matColumnDef="virtual_CmsSite.Title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Site Title </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsSite.Title}} </mat-cell>
+        </ng-container>
+        <!-- CompanyName Column -->
+        <ng-container matColumnDef="virtual_CmsSite.Domain">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Site Domain </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsSite.Domain}} </mat-cell>
+        </ng-container>
+        <!-- CompanyName Column -->
+        <ng-container matColumnDef="virtual_CmsSite.SubDomain">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Site SubDomain </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.virtual_CmsSite.SubDomain}} </mat-cell>
+        </ng-container>
+        <!-- CreatedDate Column -->
+        <ng-container matColumnDef="CreatedDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        </ng-container>
+        <!-- UpdatedDate Column -->
+        <ng-container matColumnDef="UpdatedDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
+        </ng-container>
+        <!-- Action Column -->
+        <ng-container matColumnDef="Action">
+          <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+          <mat-cell *matCellDef="let row" class=' Action'>
+            <!-- Action Menu -->
+            <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #actionMenu="matMenu">
+              <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
+                <mat-icon>mode_edit</mat-icon>
+                <span>{{'ACTION.EDIT' | translate}}</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonDeleteRow(row)"
+                *ngIf="dataModelResult.Access.AccessDeleteRow">
+                <mat-icon>delete_forever</mat-icon>
+                <span>{{'ACTION.DELETE' | translate}}</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonSiteList(row)">
+                <mat-icon>web</mat-icon>
+                <span>سایت های عضو</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonEditSiteRow(row)">
+                <mat-icon>mode_edit</mat-icon>
+                <span>ویرایش سایت</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonEditUserRow(row)">
+                <mat-icon>mode_edit</mat-icon>
+                <span>ویرایش کاربر</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+          [ngStyle]="{'background':( row.LinkSiteId === tableRowSelected.LinkSiteId  && row.LinkUserId===tableRowSelected.LinkUserId )? '#d3d3da' :'' }">
+
+        </mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
+        [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+        [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+
+    </div>
+
+  </div>
+</div>

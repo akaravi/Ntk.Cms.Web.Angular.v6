@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+
+      <!-- LinkUserId Field -->
+      <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkUserId"
+        [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
+      <!-- LinkMemberUserId Field -->
+      <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkMemberUserId"
+        [optionPlaceholder]="'عضو'"></app-cms-member-selector>
+
+      <!-- ModuleName Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ModuleName</mat-label>
+        <input matInput [(ngModel)]="dataModel.ModuleName" name="dataModel.ModuleName" #ModuleName
+          type="text" placeholder="ModuleName" />
+        <mat-icon matSuffix *ngIf="dataModel.ModuleName" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ModuleName = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <!-- ModuleEntityName Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ModuleEntityName</mat-label>
+        <input matInput [(ngModel)]="dataModel.ModuleEntityName" name="dataModel.ModuleEntityName" #ModuleEntityName type="text"
+          placeholder="ModuleEntityName" />
+        <mat-icon matSuffix *ngIf="dataModel.ModuleEntityName" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ModuleEntityName = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!-- EntityId Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>EntityId</mat-label>
+        <input matInput [(ngModel)]="dataModel.EntityId" name="dataModel.EntityId" #EntityId type="text"
+          placeholder="EntityId" />
+        <mat-icon matSuffix *ngIf="dataModel.EntityId" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.EntityId = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <!-- Description Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description
+          type="text" placeholder="Description" />
+        <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Description = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+
+      <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div [innerHTML]="dataModel | prettyjson"></div>
+      </div>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

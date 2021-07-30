@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demo2-app": {
+    "ntk-cms-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,9 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/ntk-cms-web",
             "showCircularDependencies": false,
             "allowedCommonJsDependencies": [
+              "lodash",
               "object-path",
               "apexcharts",
               "clipboard.js",
@@ -30,7 +31,14 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
+              },
+              "src/favicon.ico", 
+              "src/assets"],
             "styles": ["src/styles.scss"],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js",
@@ -71,18 +79,20 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo2-app:build"
+            "browserTarget": "ntk-cms-web:build",
+            "optimization":false
+
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo2-app:build:production"
+              "browserTarget": "ntk-cms-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo2-app:build"
+            "browserTarget": "ntk-cms-web:build"
           }
         },
         "test": {
@@ -92,7 +102,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "leaflet/"
+              },
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": ["src/styles.scss"],
             "scripts": []
           }
@@ -112,18 +130,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "demo2-app:serve"
+            "devServerTarget": "ntk-cms-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "demo2-app:serve:production"
+              "devServerTarget": "ntk-cms-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "demo2-app",
+  "defaultProject": "ntk-cms-web",
   "cli": {
     "analytics": false
   }

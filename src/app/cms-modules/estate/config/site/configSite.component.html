@@ -1,0 +1,128 @@
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
+      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
+      <app-progress-spinner [options]="loading">
+      </app-progress-spinner>
+      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+        <mat-step label="تنظیمات ماژول" state="main">
+          <p>تنظیمات که ماژول به سایت به کارگیری می شود </p>
+          <!-- StatusRenderUser Field -->
+          <div class="example-full-width">
+            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.StatusRenderUser"
+              name="dataConfigSiteValuesModel.StatusRenderUser">
+              StatusRenderUser
+            </mat-slide-toggle>
+          </div>
+          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+            <div [innerHTML]="dataConfigSiteValuesModel | prettyjson"></div>
+
+          </div>
+
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button (click)="onActionBackToParent()"
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BACK' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+
+        <mat-step label="مقادیر ذخیره شده" state="main">
+          <p>مقادیر ذخیره شده توسط سیستم </p>
+          <!-- RowCount Field -->
+          <div class="example-full-width">
+            <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.RowCount" name="dataSiteStorageModel.RowCount">
+              RowCount
+            </mat-slide-toggle>
+          </div>
+          <!-- MainDataContentRowCount Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>MainDataContentRowCount</mat-label>
+            <input matInput [(ngModel)]="dataSiteStorageModel.MainDataContentRowCount"
+              name="dataSiteStorageModel.MainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
+              type="number" placeholder="0"  />
+            <mat-icon matSuffix *ngIf="dataSiteStorageModel.MainDataContentRowCount" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataSiteStorageModel.MainDataContentRowCount = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+
+          </mat-form-field>
+          <!-- UpdatedContent Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>UpdatedContent</mat-label>
+            <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent"
+              [(ngModel)]="dataSiteStorageModel.UpdatedContent" name="dataSiteStorageModel.UpdatedContent" />
+            <mat-icon matSuffix *ngIf="dataSiteStorageModel.UpdatedContent " matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataSiteStorageModel.UpdatedContent = null">close</mat-icon>
+            <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedContent"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #dataSiteStorageModel_UpdatedContent></mat-datepicker>
+          </mat-form-field>
+
+
+          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+            <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
+          </div>
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button matStepperPrevious
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="دسترسی" state="main">
+          <p>دسترسی ها این وب سایت به این ماژول</p>
+          <!-- MainDataContentRowCount Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>MainDataContentRowCount</mat-label>
+            <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.MainDataContentRowCount"
+              name="dataConfigSiteAccessValuesModel.MainDataContentRowCount"
+              #dataConfigSiteAccessValuesModel_MainDataContentRowCount type="number" placeholder="0" required />
+            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.MainDataContentRowCount" matSuffix
+              mat-icon-button aria-label="Clear"
+              (click)="dataConfigSiteAccessValuesModel.MainDataContentRowCount = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="dataConfigSiteAccessValuesModel_MainDataContentRowCount.errors?.required">
+              MainDataContentRowCount is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+            <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
+          </div>
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button matStepperPrevious
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+
+      </mat-horizontal-stepper>
+    </form>
+  </div>
+  <!--end::Container-->
+</div>

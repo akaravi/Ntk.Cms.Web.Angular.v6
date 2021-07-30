@@ -1,0 +1,134 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+      <!-- RecordStatus Field -->
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
+          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+          <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+        </mat-select>
+        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+        <mat-error *ngIf="RecordStatus.errors?.required">
+          RecordStatus is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- SerialNumber Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['SerialNumber']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.SerialNumber" name="dataModel.SerialNumber" #SerialNumber type="text"
+          placeholder="Serial Number" minlength="3" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.SerialNumber" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.SerialNumber = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ SerialNumber.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="SerialNumber.errors?.required">
+          {{fieldsInfo['SerialNumber']?.FieldTitle}} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- PwdForUse Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['PwdForUse']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.PwdForUse" name="dataModel.PwdForUse" #PwdForUse type="text"
+          placeholder="Serial Number" minlength="3" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.PwdForUse" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.PwdForUse = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ PwdForUse.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="PwdForUse.errors?.required">
+          {{fieldsInfo['PwdForUse']?.FieldTitle}} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LinkModuleSaleHeaderId Field -->
+      <app-core-modulesaleheader-selector (optionSelect)="onActionSelectHeader($event)"
+        [optionSelectForce]="this.dataModel.LinkModuleSaleHeaderId" [optionPlaceholder]="'دسته بندی'"
+        [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderId']?.AccessEditField">
+      </app-core-modulesaleheader-selector>
+      <!-- HasDemo Field -->
+      <div class="example-full-width">
+        <mat-slide-toggle [(ngModel)]="dataModel.HasDemo" *ngIf="fieldsInfo['HasDemo']?.AccessWatchField"
+          [disabled]="!fieldsInfo['HasDemo']?.AccessEditField" name="dataModel.HasDemo">
+          {{fieldsInfo['HasDemo']?.FieldTitle}}
+        </mat-slide-toggle>
+      </div>
+      <!-- HasUsed Field -->
+      <div class="example-full-width">
+        <mat-slide-toggle [(ngModel)]="dataModel.HasUsed" *ngIf="fieldsInfo['HasUsed']?.AccessWatchField"
+          [disabled]="!fieldsInfo['HasUsed']?.AccessEditField" name="dataModel.HasUsed">
+          {{fieldsInfo['HasUsed']?.FieldTitle}}
+        </mat-slide-toggle>
+      </div>
+      <!-- NumberOfMaxUse Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['NumberOfMaxUse']?.AccessWatchField">
+        <mat-label>{{ fieldsInfo['NumberOfMaxUse']?.FieldTitle }}</mat-label>
+        <input matInput [(ngModel)]="dataModel.NumberOfMaxUse"
+          [disabled]="!fieldsInfo['NumberOfMaxUse']?.AccessEditField" name="dataModel.NumberOfMaxUse" #NumberOfMaxUse
+          type="number" placeholder="0" required />
+        <mat-icon matSuffix *ngIf="dataModel.NumberOfMaxUse && fieldsInfo['NumberOfMaxUse']?.AccessEditField" matSuffix
+          mat-icon-button aria-label="Clear" (click)="dataModel.NumberOfMaxUse = null">close</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['NumberOfMaxUse']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="NumberOfMaxUse.errors?.required">
+          {{ fieldsInfo['NumberOfMaxUse']?.FieldTitle }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- MaxExpireToUse Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['MaxExpireToUse']?.AccessWatchField">
+        <mat-label>{{fieldsInfo['MaxExpireToUse']?.FieldTitle}}</mat-label>
+        <input matInput [matDatepicker]="MaxExpireToUse" [(ngModel)]="dataModel.MaxExpireToUse"
+          name="dataModel.MaxExpireToUse" />
+        <mat-icon matSuffix *ngIf="dataModel.MaxExpireToUse && fieldsInfo['MaxExpireToUse']?.AccessEditField" matSuffix
+          mat-icon-button aria-label="Clear" (click)="dataModel.MaxExpireToUse = null">close</mat-icon>
+        <mat-datepicker-toggle matSuffix [for]="MaxExpireToUse"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #MaxExpireToUse></mat-datepicker>
+      </mat-form-field>
+
+      <!-- NumberOfRegistered Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['NumberOfRegistered']?.AccessWatchField">
+        <mat-label>{{ fieldsInfo['NumberOfRegistered']?.FieldTitle }}</mat-label>
+        <input matInput [(ngModel)]="dataModel.NumberOfRegistered"
+          [disabled]="!fieldsInfo['NumberOfRegistered']?.AccessEditField" name="dataModel.NumberOfRegistered"
+          #NumberOfRegistered type="number" placeholder="0" required />
+        <mat-icon matSuffix *ngIf="dataModel.NumberOfRegistered && fieldsInfo['NumberOfRegistered']?.AccessEditField"
+          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.NumberOfRegistered = null">close</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['NumberOfRegistered']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="NumberOfRegistered.errors?.required">
+          {{ fieldsInfo['NumberOfRegistered']?.FieldTitle }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+         <!-- AllowReuseDay Field -->
+         <mat-form-field class="example-full-width" *ngIf="fieldsInfo['AllowReuseDay']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['AllowReuseDay']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.AllowReuseDay" [disabled]="!fieldsInfo['AllowReuseDay']?.AccessEditField"
+            name="dataModel.AllowReuseDay" #AllowReuseDay type="number" placeholder="0" required />
+          <mat-icon matSuffix *ngIf="dataModel.AllowReuseDay && fieldsInfo['AllowReuseDay']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.AllowReuseDay = null">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['AllowReuseDay']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="AllowReuseDay.errors?.required">
+            {{ fieldsInfo['AllowReuseDay']?.FieldTitle }} is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

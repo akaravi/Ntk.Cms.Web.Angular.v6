@@ -1,3 +1,4 @@
+import { TranslationWidth } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -643,6 +644,9 @@ export class I18n {
 // Define custom service providing the months and weekdays translations
 @Injectable()
 export class CustomDatepickerI18n extends NgbDatepickerI18n {
+  getWeekdayLabel(weekday: number, width?: TranslationWidth): string {
+    throw new Error('Method not implemented.');
+  }
   getDayAriaLabel(date: NgbDateStruct): string {
     throw new Error('Method not implemented.'); // TODO: implement this
   }

@@ -1,0 +1,24 @@
+<div class="table" >
+  <div class="tr">
+    <div class="td">{{fieldsInfo['Title']?.FieldTitle}} : </div>
+    <div class="td">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td">{{fieldsInfo['Id']?.FieldTitle}} : </div>
+    <div class="td">{{dataModelResult?.Item?.Id}}</div>
+    <div style="clear: both;"></div>
+  </div>
+  <div class="tr">
+    <div class="td">{{fieldsInfo['FromDate']?.FieldTitle}} : </div>
+    <div class="td">{{publicHelper.LocaleDate( dataModelResult?.Item?.FromDate)}}
+    </div>
+    <div class="td">{{fieldsInfo['ExpireDate']?.FieldTitle}} : </div>
+    <div class="td">{{publicHelper.LocaleDate(dataModelResult?.Item?.ExpireDate)}}</div>
+    <div style="clear: both;"></div>
+  </div>
+  <div class="tr">
+    <div class="td">{{fieldsInfo['SalePrice']?.FieldTitle}} :</div>
+    <div class="td">{{dataModelResult?.Item?.SalePrice}}</div>
+    <div class="td">{{fieldsInfo['HasDemo']?.FieldTitle}} :</div>
+    <div class="td">{{dataModelResult?.Item?.HasDemo}}</div>
+    <div style="clear: both;"></div>
+  </div>
+</div>

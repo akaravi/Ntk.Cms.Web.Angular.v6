@@ -1,29 +1,37 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ClipboardModule } from 'ngx-clipboard';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
 import { AuthService } from './modules/auth/_services/auth.service';
 import { FakeAPIService } from './_fake/fake-api.service';
 import { environment } from 'src/environments/environment';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 // Highlight JS
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/splash-screen.module';
+import { TeardownLogic } from 'rxjs';
+import { SharedModule } from './shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
+import { CmsStoreModule } from './core/reducers/cmsStore.module';
 
 function appInitializer(authService: AuthService) {
   return () => {
-    return new Promise((resolve) => {
+    return new Promise<TeardownLogic>((resolve) => {
       authService.getUserByToken().subscribe().add(resolve);
     });
   };
 }
-
+export function CreateTranslateLoader(http: HttpClient): any {
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,6 +39,25 @@ function appInitializer(authService: AuthService) {
     BrowserAnimationsModule,
     SplashScreenModule,
     TranslateModule.forRoot(),
+    SharedModule.forRoot(),
+    ToastrModule.forRoot({
+      // timeOut: 0,
+      timeOut: 5000,
+      enableHtml: true,
+      positionClass: 'toast-bottom-right',
+      // positionClass: "toast-bottom-full-width",
+      preventDuplicates: true,
+      closeButton: true,
+      // extendedTimeOut: 0,
+      extendedTimeOut: 1000,
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (CreateTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     HttpClientModule,
     HighlightModule,
     ClipboardModule,
@@ -40,8 +67,9 @@ function appInitializer(authService: AuthService) {
         dataEncapsulation: false,
       })
       : [],
-    AppRoutingModule,
+    AppRouting,
     InlineSVGModule.forRoot(),
+    CmsStoreModule.forRoot(),
     NgbModule,
   ],
   providers: [

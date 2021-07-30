@@ -1,0 +1,94 @@
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
+      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
+      <app-progress-spinner [options]="loading">
+      </app-progress-spinner>
+      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+
+        <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+
+          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+              [disabled]="!fieldsInfo['RecordStatus']?.AccessAddField" name="dataModel.RecordStatus"
+              #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+              <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+            </mat-select>
+            <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
+            <mat-error *ngIf="RecordStatus.errors?.required">
+              {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <app-ticketing-departemen-selector (optionSelect)="onActionSelectSource($event)"
+            [optionSelectForce]="this.dataModel.LinkTicketingDepartemenId" [optionPlaceholder]="'دپارتمان'"
+            [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.AccessAddField"></app-ticketing-departemen-selector>
+
+
+
+          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['HtmlBody']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['HtmlBody']?.FieldHtmlBody }}</mat-label>
+            <textarea matInput [(ngModel)]="dataModel.HtmlBody" [disabled]="!fieldsInfo['HtmlBody']?.AccessAddField"
+              name="dataModel.HtmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" row="5" minlength="0"
+              maxlength="1000"></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.HtmlBody && fieldsInfo['HtmlBody']?.AccessAddField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.HtmlBody = ''">close</mat-icon>
+            <mat-icon *ngIf="fieldsInfo['HtmlBody']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+            <mat-hint align="end">{{ 'Application.Source.HtmlBody_hint' | translate }}</mat-hint>
+            <mat-hint align="start">{{ HtmlBody.value.length }} / 1000</mat-hint>
+
+          </mat-form-field>
+
+
+
+
+
+
+          <div *ngIf="formInfo.FormSubmitAllow">
+           <button type="button" mat-button  (click)="onActionBackToParent()"
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BACK' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+          </div>
+        </mat-step>
+
+
+
+
+
+
+        <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
+          <p>عکسها و فایل های </p>
+
+
+
+
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button matStepperPrevious
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+
+
+
+      </mat-horizontal-stepper>
+
+    </form>
+
+  </div>
+  <!--end::Container-->
+</div>

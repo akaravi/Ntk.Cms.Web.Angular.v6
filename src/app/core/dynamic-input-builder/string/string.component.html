@@ -1,0 +1,18 @@
+<ng-container *ngIf="!optionDefaultValue || optionDefaultValue.length==0">
+  <input matInput type="text" [(ngModel)]="modelDate" name="inputtext" [required]="optionRequired"/>
+</ng-container>
+<ng-container *ngIf="optionDefaultValue && optionDefaultValue.length>0">
+  <ng-container *ngIf="!optionMultipleChoice">
+    <mat-radio-group  [(ngModel)]="modelDate">
+      <mat-radio-button class="example-radio-button" *ngFor="let item of optionDefaultValue" [value]="item">
+        {{item}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </ng-container>
+  <ng-container *ngIf="optionMultipleChoice">
+    <mat-checkbox *ngFor="let item of optionDefaultValue,index as i " (change)="onActionSelect(item)" class="example-radio-button"
+      [(ngModel)]="itemSelected[item]">
+      {{item}}
+    </mat-checkbox>
+  </ng-container>
+</ng-container>

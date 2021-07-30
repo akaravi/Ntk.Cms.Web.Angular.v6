@@ -1,0 +1,52 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{dataItemModel.Title}}</mat-card-title>
+    <mat-card-subtitle>ver : {{dataItemModel.AppVersion}}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="uploader-wrapper">
+    <app-cms-file-uploader (optionUploadSuccess)="OnActionUploadSuccess($event)">
+    </app-cms-file-uploader>
+  </div>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <mat-card-content>
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['AppVersion']?.AccessWatchField">
+        <mat-label>{{ fieldsInfo['AppVersion']?.FieldAppVersion }}</mat-label>
+        <input matInput [(ngModel)]="dataModel.AppVersion" [disabled]="!fieldsInfo['AppVersion']?.AccessEditField"
+          name="dataModel.AppVersion" #AppVersion type="number" placeholder="ورژن" min="0" max="1000" required />
+        <mat-icon matSuffix *ngIf="dataModel.AppVersion && fieldsInfo['AppVersion']?.AccessEditField" matSuffix
+          mat-icon-button aria-label="Clear" (click)="dataModel.AppVersion = 0">close</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['AppVersion']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="AppVersion.errors?.required">
+          {{ fieldsInfo['AppVersion']?.FieldAppVersion }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LastBuildAppKey']?.AccessWatchField">
+        <mat-label>{{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }}</mat-label>
+        <input matInput [(ngModel)]="dataModel.LastBuildAppKey"
+          [disabled]="!fieldsInfo['LastBuildAppKey']?.AccessEditField" name="dataModel.LastBuildAppKey" #LastBuildAppKey
+          type="text" placeholder="کلید ساخت اپ" minlength="0" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.LastBuildAppKey && fieldsInfo['LastBuildAppKey']?.AccessEditField"
+          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LastBuildAppKey = ''">close</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['LastBuildAppKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ 'Application.Source.LastBuildAppKey_hint' | translate }}</mat-hint>
+        <mat-hint align="start">{{ LastBuildAppKey.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="LastBuildAppKey.errors?.required">
+          {{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="form-actions">
+        <button type="submit" *ngIf="formInfo.FormSubmitAllow" class="btn btn-raised btn-primary"
+          [disabled]="!vform.form.valid">
+          <i class="fa fa-check-square-o"></i> ثبت
+        </button>
+        <button (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+          <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
+        </button>
+      </div>
+    </mat-card-actions>
+  </form>
+</mat-card>

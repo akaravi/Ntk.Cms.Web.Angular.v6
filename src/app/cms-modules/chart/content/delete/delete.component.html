@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>...</h2>
+<mat-dialog-content>
+
+
+    <form #vform="ngForm" class="form form-horizontal">
+      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <div *ngIf="!loading.display" class="form-body">
+        <h4 class="form-section mb-8">
+          <i class="ft-user"></i> {{'TITLE.DELETE_ROW_DATA' | translate}}
+        </h4>
+
+        <div class="form-group row">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+            <input matInput [(ngModel)]="dataModelResultContent.Item.Title" name="dataModelResultContent.Item.Title"
+              #Writer type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"  required readonly />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+            <textarea matInput [(ngModel)]="dataModelResultContent.Item.Description"
+              name="dataModelResultContent.Item.Description" #Content type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1"
+              maxlength="100" readonly required rows=5></textarea>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        </small>
+      </div>
+      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+
+        <button type="button" (click)="onFormDelete()"
+          [disabled]=" !formInfo.ButtonSubmittedEnabled" class="btn btn-raised btn-warning mr-1">
+          <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
+        </button>
+        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
+      </div>
+    </form>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+
+  </mat-dialog-actions>

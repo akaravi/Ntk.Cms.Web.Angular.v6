@@ -1,0 +1,13 @@
+<ng-template #progressSpinnerRef  class="message">
+    <mat-progress-spinner  [color]="optionsData.color" [diameter]="optionsData.diameter" [mode]="optionsData.mode" [strokeWidth]="optionsData.strokeWidth" [value]="optionsData.value">
+    </mat-progress-spinner>
+    <br />
+    <div >{{ optionsData.message }}</div>
+</ng-template>
+<div  *ngIf="!optionsData.Globally && optionsData.display" class="message">
+  <mat-progress-spinner  [color]="optionsData.color" [diameter]="optionsData.diameter" [mode]="optionsData.mode" [strokeWidth]="optionsData.strokeWidth" [value]="optionsData.value">
+  </mat-progress-spinner>
+  <br />
+  <div >{{ optionsData.message }}</div>
+
+</div>

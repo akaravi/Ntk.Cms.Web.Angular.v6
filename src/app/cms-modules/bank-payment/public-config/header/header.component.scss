@@ -1,0 +1,29 @@
+.table {
+  display: table;
+  border: 1px solid #40A1F5;
+  padding: 2px;
+}
+.table .th {
+  display: table-row;
+  background-color: #40a1f577;
+  color: #fff;
+  font-weight: bold;
+}
+.table .tr:nth-child(odd) {
+background-color: #F9F9F9;
+}
+.table .tr{
+ display: table-row;
+ border-bottom: 1px solid #000;
+}
+.table .td {
+ display: table-cell;
+ padding: 15px;
+ border-bottom: 1px solid #40A1F5;
+}
+.table .tr:last-child .td{
+ border: 0;
+}
+.clear {
+ clear: both;
+}

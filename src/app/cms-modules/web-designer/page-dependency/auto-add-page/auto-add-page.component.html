@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+      <!-- LinkPageTemplateGuId Field -->
+      <app-webdesigner-pagetemplate-selector (optionSelect)="onActionSelectModule($event)"
+        [optionSelectForce]="this.dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'قالب را انتحاب کنید'"
+        [optionDisabled]="false">
+      </app-webdesigner-pagetemplate-selector>
+      <!-- LinkPageParentGuId Field -->
+      <app-webdesigner-page-selector (optionSelect)="onActionSelectParent($event)" *ngIf="dataModel.LinkPageTemplateGuId && dataModel.LinkPageTemplateGuId.length>0"
+        [optionMasterPage]="true"
+        [optionMasterTemplateId]="dataModel.LinkPageTemplateGuId"
+        [optionPlaceholder]="'صفحه والد'"
+        [optionDisabled]="false">
+      </app-webdesigner-page-selector>
+
+      <!-- PageDependencyIsDefualtPage Field -->
+      <div class="example-full-width">
+        <mat-slide-toggle [(ngModel)]="dataModel.PageDependencyIsDefualtPage"
+          name="dataModel.PageDependencyIsDefualtPage">
+          {{fieldsInfo['PageDependencyIsDefualtPage']?.FieldTitle}}
+        </mat-slide-toggle>
+      </div>
+
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

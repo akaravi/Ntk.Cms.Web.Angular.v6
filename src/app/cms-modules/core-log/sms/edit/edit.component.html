@@ -1,0 +1,127 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+
+      <!-- SendStatusType Field -->
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.SendStatusType" name="dataModel.SendStatusType"
+          #SendStatusType="ngModel" panelClass="SendStatusType-{{ dataModel.SendStatusType }}" required>
+          <mat-option *ngFor="
+                let item of dataModelEnumSendSmsStatusTypeResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+        </mat-select>
+        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+        <mat-error *ngIf="SendStatusType.errors?.required">
+          SendStatusType is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LinkUserId Field -->
+      <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkSiteId"
+        [optionPlaceholder]="'سایت'"></app-cms-site-selector>
+      <!-- LinkUserId Field -->
+      <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkUserId"
+        [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
+      <!-- LinkMemberUserId Field -->
+      <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkMemberUserId"
+        [optionPlaceholder]="'عضو'"></app-cms-member-selector>
+
+      <!-- ModuleName Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ModuleName</mat-label>
+        <input matInput [(ngModel)]="dataModel.ModuleName" name="dataModel.ModuleName" #ModuleName type="text"
+          placeholder="ModuleName" />
+        <mat-icon matSuffix *ngIf="dataModel.ModuleName" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ModuleName = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <!-- ModuleEntityName Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ModuleEntityName</mat-label>
+        <input matInput [(ngModel)]="dataModel.ModuleEntityName" name="dataModel.ModuleEntityName" #ModuleEntityName
+          type="text" placeholder="ModuleEntityName" />
+        <mat-icon matSuffix *ngIf="dataModel.ModuleEntityName" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ModuleEntityName = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!-- ModuleEntityId Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ModuleEntityId</mat-label>
+        <input matInput [(ngModel)]="dataModel.ModuleEntityId" name="dataModel.ModuleEntityId" #ModuleEntityId
+          type="text" placeholder="ModuleEntityId" />
+        <mat-icon matSuffix *ngIf="dataModel.ModuleEntityId" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ModuleEntityId = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <!-- FromNumber Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>FromNumber</mat-label>
+        <input matInput [(ngModel)]="dataModel.FromNumber" name="dataModel.FromNumber" #FromNumber type="text"
+          placeholder="FromNumber" />
+        <mat-icon matSuffix *ngIf="dataModel.FromNumber" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.FromNumber = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!-- ToNumber Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ToNumber</mat-label>
+        <input matInput [(ngModel)]="dataModel.ToNumber" name="dataModel.ToNumber" #ToNumber type="text"
+          placeholder="ToNumber" />
+        <mat-icon matSuffix *ngIf="dataModel.ToNumber" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ToNumber = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <!-- ApiNumber Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ApiNumber</mat-label>
+        <input matInput [(ngModel)]="dataModel.ApiNumber" name="dataModel.ApiNumber" #ApiNumber type="text"
+          placeholder="ApiNumber" />
+        <mat-icon matSuffix *ngIf="dataModel.ApiNumber" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ApiNumber = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!-- Message Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Message</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.Message" name="dataModel.Message" #Message type="text"
+          placeholder="Message"></textarea>
+        <mat-icon matSuffix *ngIf="dataModel.Message" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Message = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <!-- ReturnApi Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>ReturnApi</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.ReturnApi" name="dataModel.ReturnApi" #ReturnApi type="text"
+          placeholder="ReturnApi"></textarea>
+        <mat-icon matSuffix *ngIf="dataModel.ReturnApi" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ReturnApi = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div [innerHTML]="dataModel | prettyjson"></div>
+      </div>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

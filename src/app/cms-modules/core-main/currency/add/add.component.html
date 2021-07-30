@@ -1,0 +1,110 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+
+      <!-- RecordStatus Field -->
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+          required>
+          <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+        </mat-select>
+        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+        <mat-error *ngIf="RecordStatus.errors?.required">
+          RecordStatus is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- Title Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="20" required />
+        <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Title = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ Title.value.length }} / 20</mat-hint>
+        <mat-error *ngIf="Title.errors?.required">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- Symbol Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['Symbol']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.Symbol" name="dataModel.Symbol" #Symbol type="text"
+          placeholder="{{fieldsInfo['Symbol']?.FieldTitle}}" minlength="1" maxlength="20" required />
+        <mat-icon matSuffix *ngIf="dataModel.Symbol" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Symbol = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ Symbol.value.length }} / 20</mat-hint>
+        <mat-error *ngIf="Symbol.errors?.required">
+          Symbol is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- ExchangeBuyRatio Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['ExchangeBuyRatio']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.ExchangeBuyRatio" name="dataModel.ExchangeBuyRatio" #ExchangeBuyRatio
+          type="number" placeholder="{{fieldsInfo['ExchangeBuyRatio']?.FieldTitle}}" required  step="0.001" />
+        <mat-icon matSuffix *ngIf="dataModel.ExchangeBuyRatio" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ExchangeBuyRatio = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="ExchangeBuyRatio.errors?.required">
+          ExchangeBuyRatio is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- ExchangeSaleRatio Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['ExchangeSaleRatio']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.ExchangeSaleRatio" name="dataModel.ExchangeSaleRatio" #ExchangeSaleRatio
+          type="number" placeholder="{{fieldsInfo['ExchangeSaleRatio']?.FieldTitle}}" required step="0.001"/>
+        <mat-icon matSuffix *ngIf="dataModel.ExchangeSaleRatio" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ExchangeSaleRatio = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="ExchangeSaleRatio.errors?.required">
+          ExchangeSaleRatio is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LinkMainImageId Field -->
+      <div class="mb-3">
+        <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
+      </div>
+      <div class="mb-9">
+        <mat-form-field class="example-full-width">
+          <mat-label (click)="fileManagerOpenForm = true">فایل آیکن
+          </mat-label>
+          <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+            type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+          <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+          <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+        </mat-form-field>
+        <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
+          [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+          [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+      </div>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

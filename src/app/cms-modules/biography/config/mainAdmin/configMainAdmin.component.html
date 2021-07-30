@@ -1,0 +1,153 @@
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
+      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
+      <app-progress-spinner [options]="loading">
+      </app-progress-spinner>
+      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+
+        <mat-step label="{{'TITLE.Default_module_settings'|translate}}" state="main" *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+          <p>{{'TITLE.Settings_that_are_used_in_the_first_assignment_of_the_module_to_the_site' |translate}}</p>
+          <!-- StatusRenderUser Field -->
+          <div class="example-full-width">
+            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.StatusRenderUser"
+              name="dataConfigSiteValuesDefaultModel.StatusRenderUser">
+              StatusRenderUser
+            </mat-slide-toggle>
+          </div>
+          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+            <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
+          </div>
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button (click)="onActionBackToParent()"
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BACK' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="{{'TITLE.Default_access'|translate}}" state="main" *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+          <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
+
+          <!-- MainDataContentRowCount Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>MainDataContentRowCount</mat-label>
+            <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
+              name="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
+              #dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount type="number" placeholder="0" required />
+            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount" matSuffix
+              mat-icon-button aria-label="Clear"
+              (click)="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount.errors?.required">
+              MainDataContentRowCount is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+            <div [innerHTML]="dataConfigSiteAccessValuesDefaultModel | prettyjson"></div>
+          </div>
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button matStepperPrevious
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+        <mat-step label="{{'TITLE.System_management_settings'|translate}}" state="main">
+          <p>{{'TITLE.The_whole_system_management_settings_for_this_module'|translate}}</p>
+
+          <!-- AccessBuy Field -->
+          <div class="example-full-width">
+            <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy"
+              name="dataConfigAdminMainModel.AccessBuy">
+              AccessBuy
+            </mat-slide-toggle>
+          </div>
+          <!-- AccessBuyPrice Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>AccessBuyPrice</mat-label>
+            <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyPrice"
+              name="dataConfigAdminMainModel.AccessBuyPrice" #dataConfigAdminMainModel_AccessBuyPrice type="number"
+              placeholder="0" required />
+            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyPrice" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyPrice = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="dataConfigAdminMainModel_AccessBuyPrice.errors?.required">
+              AccessBuyPrice is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- AccessBuyMonth Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>AccessBuyMonth</mat-label>
+            <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyMonth"
+              name="dataConfigAdminMainModel.AccessBuyMonth" #dataConfigAdminMainModel_AccessBuyMonth type="number"
+              placeholder="0" required />
+            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyMonth" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyMonth = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="dataConfigAdminMainModel_AccessBuyMonth.errors?.required">
+              AccessBuyMonth is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="example-full-width">
+            <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
+              name="dataConfigAdminMainModel.AccessFree">
+              AccessFree
+            </mat-slide-toggle>
+          </div>
+          <!-- AccessFreeDay Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>AccessFreeDay</mat-label>
+            <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessFreeDay"
+              name="dataConfigAdminMainModel.AccessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
+              placeholder="0" required />
+            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessFreeDay" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigAdminMainModel.AccessFreeDay = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="dataConfigAdminMainModel_AccessFreeDay.errors?.required">
+              AccessFreeDay is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+            <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
+          </div>
+          <div *ngIf="formInfo.FormSubmitAllow">
+            <button type="button" mat-button matStepperPrevious
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.BEFOR' | translate}}
+            </button>
+            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
+              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.NEXT' | translate}}
+            </button>
+            <button type="submit" mat-button [disabled]="!vform.form.valid"
+              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+              {{'ACTION.SAVE' | translate}}
+            </button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </form>
+  </div>
+  <!--end::Container-->
+</div>

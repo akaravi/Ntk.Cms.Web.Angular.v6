@@ -1,0 +1,178 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div *ngIf="!loading.display" class="form-body">
+
+      <!-- Title Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.Title = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="Title.errors?.required">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- HasSalePrice Field -->
+      <div class="example-full-width">
+        <mat-slide-toggle [(ngModel)]="dataModel.HasSalePrice" *ngIf="fieldsInfo['HasSalePrice']?.AccessWatchField"
+          [disabled]="!fieldsInfo['HasSalePrice']?.AccessEditField" name="dataModel.HasSalePrice">
+          {{fieldsInfo['HasSalePrice']?.FieldTitle}}
+        </mat-slide-toggle>
+      </div>
+      <!-- UnitSalePrice Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['UnitSalePrice']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.UnitSalePrice" name="dataModel.UnitSalePrice" #UnitSalePrice type="text"
+          placeholder="{{fieldsInfo['UnitSalePrice']?.FieldTitle}}" minlength="1" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.UnitSalePrice" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.UnitSalePrice = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ UnitSalePrice.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="UnitSalePrice.errors?.required">
+          UnitSalePrice is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- SalePriceMin Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['SalePriceMin']?.AccessWatchField">
+        <mat-label> {{fieldsInfo['SalePriceMin']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.SalePriceMin" name="dataModel.SalePriceMin" #SalePriceMin type="number"
+          [disabled]="!fieldsInfo['SalePriceMin']?.AccessEditField"
+          placeholder="{{fieldsInfo['SalePriceMin']?.FieldTitle}}" />
+        <mat-icon matSuffix *ngIf="dataModel.SalePriceMin" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.SalePriceMin = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!-- SalePriceMax Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['SalePriceMax']?.AccessWatchField">
+        <mat-label> {{fieldsInfo['SalePriceMax']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.SalePriceMax" name="dataModel.SalePriceMax" #SalePriceMax type="number"
+          [disabled]="!fieldsInfo['SalePriceMax']?.AccessEditField"
+          placeholder="{{fieldsInfo['SalePriceMax']?.FieldTitle}}" />
+        <mat-icon matSuffix *ngIf="dataModel.SalePriceMax" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.SalePriceMax = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+
+      <!-- HasRentPrice Field -->
+      <div class="example-full-width">
+        <mat-slide-toggle [(ngModel)]="dataModel.HasRentPrice" *ngIf="fieldsInfo['HasRentPrice']?.AccessWatchField"
+          [disabled]="!fieldsInfo['HasRentPrice']?.AccessEditField" name="dataModel.HasRentPrice">
+          {{fieldsInfo['HasRentPrice']?.FieldTitle}}
+        </mat-slide-toggle>
+      </div>
+      <!-- UnitRentPrice Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['UnitRentPrice']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.UnitRentPrice" name="dataModel.UnitRentPrice" #UnitRentPrice type="text"
+          placeholder="{{fieldsInfo['UnitRentPrice']?.FieldTitle}}" minlength="1" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.UnitRentPrice" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.UnitRentPrice = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ UnitRentPrice.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="UnitRentPrice.errors?.required">
+          UnitRentPrice is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- RentPriceMin Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RentPriceMin']?.AccessWatchField">
+        <mat-label> {{fieldsInfo['RentPriceMin']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.RentPriceMin" name="dataModel.RentPriceMin" #RentPriceMin type="number"
+          [disabled]="!fieldsInfo['RentPriceMin']?.AccessEditField"
+          placeholder="{{fieldsInfo['RentPriceMin']?.FieldTitle}}" />
+        <mat-icon matSuffix *ngIf="dataModel.RentPriceMin" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.RentPriceMin = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!-- RentPriceMax Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RentPriceMax']?.AccessWatchField">
+        <mat-label> {{fieldsInfo['RentPriceMax']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.RentPriceMax" name="dataModel.RentPriceMax" #RentPriceMax type="number"
+          [disabled]="!fieldsInfo['RentPriceMax']?.AccessEditField"
+          placeholder="{{fieldsInfo['RentPriceMax']?.FieldTitle}}" />
+        <mat-icon matSuffix *ngIf="dataModel.RentPriceMax" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.RentPriceMax = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+
+      <!-- HasDepositPrice Field -->
+      <div class="example-full-width">
+        <mat-slide-toggle [(ngModel)]="dataModel.HasDepositPrice"
+          *ngIf="fieldsInfo['HasDepositPrice']?.AccessWatchField"
+          [disabled]="!fieldsInfo['HasDepositPrice']?.AccessEditField" name="dataModel.HasDepositPrice">
+          {{fieldsInfo['HasDepositPrice']?.FieldTitle}}
+        </mat-slide-toggle>
+      </div>
+      <!-- UnitDepositPrice Field -->
+      <mat-form-field class="example-full-width">
+        <mat-label>{{fieldsInfo['UnitDepositPrice']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.UnitDepositPrice" name="dataModel.UnitDepositPrice" #UnitDepositPrice
+          type="text" placeholder="{{fieldsInfo['UnitDepositPrice']?.FieldTitle}}" minlength="1" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.UnitDepositPrice" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.UnitDepositPrice = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ UnitDepositPrice.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="UnitDepositPrice.errors?.required">
+          UnitDepositPrice is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- DepositPriceMin Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['DepositPriceMin']?.AccessWatchField">
+        <mat-label> {{fieldsInfo['DepositPriceMin']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.DepositPriceMin" name="dataModel.DepositPriceMin" #DepositPriceMin
+          type="number" [disabled]="!fieldsInfo['DepositPriceMin']?.AccessEditField"
+          placeholder="{{fieldsInfo['DepositPriceMin']?.FieldTitle}}" />
+        <mat-icon matSuffix *ngIf="dataModel.DepositPriceMin" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.DepositPriceMin = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!-- DepositPriceMax Field -->
+      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['DepositPriceMax']?.AccessWatchField">
+        <mat-label> {{fieldsInfo['DepositPriceMax']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.DepositPriceMax" name="dataModel.DepositPriceMax" #DepositPriceMax
+          type="number" [disabled]="!fieldsInfo['DepositPriceMax']?.AccessEditField"
+          placeholder="{{fieldsInfo['DepositPriceMax']?.FieldTitle}}" />
+        <mat-icon matSuffix *ngIf="dataModel.DepositPriceMax" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.DepositPriceMax = 1">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+          <!-- Description Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+            <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+              placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500"
+              rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.Description = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+            <mat-error *ngIf="Description.errors?.required">
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

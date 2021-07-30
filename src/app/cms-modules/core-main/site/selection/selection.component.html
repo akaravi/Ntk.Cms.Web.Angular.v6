@@ -1,0 +1,75 @@
+<div *ngIf="this.statusCheckExistWebSite" class="card card-custom card-stretch gutter-b">
+  <!-- Header -->
+  <div class="card-header border-0 mt-4">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label font-weight-bolder text-dark">بررسی حساب کاربری</span>
+      <span class="text-muted mt-3 font-weight-bold font-size-sm">بررسی سایتهایی که شما در آن عضویت دارید..</span>
+    </h3>
+    <div class="card-toolbar">
+      ...
+    </div>
+  </div>
+  <!-- Body -->
+  <div class="card-body pt-8">
+  </div>
+</div>
+
+
+<app-core-site-add-first
+  *ngIf="!this.statusCheckExistWebSite && (!dataModelResult || !dataModelResult.ListItems || dataModelResult.ListItems.length === 0)">
+</app-core-site-add-first>
+
+
+<div
+  *ngIf="!this.statusCheckExistWebSite && dataModelResult && dataModelResult.ListItems && dataModelResult.ListItems.length > 0"
+  class=" container ">
+  <div class="row">
+    <div *ngFor="let item of dataModelResult.ListItems" style="margin-left: 10px;">
+      <div (click)="onActionClickSelectSite(item.Id)" class="card card-custom card-stretch gutter-b cursor-pointer"
+        style="top: 15px;width: fit-content;">
+        <div class="card-body d-flex flex-column">
+          <div class="flex-grow-1 pb-5">
+            <div class="d-flex align-items-center pr-2 mb-6 ">
+              <span class="text-muted font-weight-bold font-size-lg flex-grow-1">
+                {{item.Title}}
+              </span>
+              <div class="symbol symbol-50">
+                <span class="symbol-label bg-light-light">
+                  <img src="{{item.MainImageSrc}}" class="h-90px align-self-center custom" width="40px" height="40px"
+                    alt="">
+                </span>
+              </div>
+            </div>
+            <p class="text-dark font-weight-bolder text-hover-primary font-size-h4">
+              دامنه
+            </p>
+            <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
+              {{item.CurrentSiteDomainUrl}}
+            </p>
+          </div>
+          <div>
+            <p class="text-dark font-weight-bolder text-hover-primary font-size-h4 ">
+              تاریخ ثبت
+            </p>
+            <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
+              {{item.CreatedDate|persianDate}}
+            </p>
+          </div>
+          <div *ngIf="item.ExpireDate">
+            <p class="text-dark font-weight-bolder text-hover-primary font-size-h4 ">
+              تاریخ انقضا
+            </p>
+            <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
+              {{item.ExpireDate|persianDate}}
+            </p>
+          </div>
+
+          <br>
+          <button (click)="onActionClickSelectSite(item.Id)" type="button"
+            [disabled]="!this.formInfo.ButtonSubmittedEnabled" class="btn btn-warning BTN">ورود</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<app-progress-spinner [options]="loading">
+</app-progress-spinner>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+  
+    <!-- LinkModuleId Column -->
+    <ng-container matColumnDef="LinkModuleId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleId']?.FieldTitle}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.LinkModuleId | cmstitle : dataModelCoreModuleResult.ListItems}} </mat-cell>
+    </ng-container>
+    <!-- MonthLength Column -->
+    <ng-container matColumnDef="MonthLength">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['MonthLength']?.FieldTitle}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.MonthLength}} </mat-cell>
+    </ng-container>
+    <!-- EnumCmsModuleSaleItemType Column -->
+    <ng-container matColumnDef="EnumCmsModuleSaleItemType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['EnumCmsModuleSaleItemType']?.FieldTitle}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.EnumCmsModuleSaleItemType | enums :
+        dataModelEnumCmsModuleSaleItemTypeResult.ListItems}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+      [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
+    [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+
+</div>

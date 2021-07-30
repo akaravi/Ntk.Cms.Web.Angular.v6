@@ -1,0 +1,116 @@
+<!--begin::Signin-->
+<div class="login-form login-signin">
+  <!--begin::Form-->
+  <form class="form" #vform="ngForm" novalidate="novalidate" id="kt_login_signin_form" (ngSubmit)="onActionSubmit()">
+    <!--begin::Title-->
+    <div class="pb-13 pt-lg-0 pt-5">
+      <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
+        {{'TRANSLATOR.WELCOME' | translate}}
+      </h3>
+
+    </div>
+    <!--end::Title-->
+
+
+    <!--Mobile Field-->
+    <mat-form-field *ngIf="loginType=='mobile'" class="example-full-width">
+      <mat-label> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile"
+        [disabled]=" !formInfo.ButtonSubmittedEnabled" #Mobile type="text" autocomplete="off"
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4"
+        placeholder=" {{'AUTH.INPUT.MOBILE' | translate}}" minlength="5" maxlength="20" required />
+      <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Mobile = ''">
+        close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Mobile.errors?.required">
+        Mobile is <strong>required</strong>
+      </mat-error>
+      <mat-hint align="start" (click)="onloginTypeChange('email')" style="color: blue;" >ورود با ایمیل</mat-hint>
+    </mat-form-field>
+    <!--Email Field-->
+    <mat-form-field *ngIf="loginType=='email'" class="example-full-width">
+      <mat-label> {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email"
+        [disabled]=" !formInfo.ButtonSubmittedEnabled" #Email type="email" autocomplete="off"
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4"
+        placeholder=" {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5" maxlength="50" required />
+      <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Email = ''">
+        close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Email.errors?.required">
+        Email is <strong>required</strong>
+      </mat-error>
+      <mat-hint align="start" (click)="onloginTypeChange('mobile')"  style="color: color(35, 214, 89);">ورود با موبایل</mat-hint>
+    </mat-form-field>
+    <!--Password Field-->
+    <mat-form-field class="example-full-width">
+      <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password"
+        [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="password"
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
+        placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="50" required />
+      <mat-icon matSuffix *ngIf="dataModel.Password" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Password = ''">
+        close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Password.value.length }} / 20</mat-hint>
+      <mat-error *ngIf="Password.errors?.required">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!--CaptchaText Field-->
+    <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
+    <mat-icon matSuffix (click)="onCaptchaOrder()" >refresh</mat-icon>
+
+    <mat-form-field class="example-full-width">
+      <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
+        [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4" autocomplete="off"
+        placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+      <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.CaptchaText = ''">
+        close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="CaptchaText.errors?.required">
+        CaptchaText is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+
+    <!--begin::Action-->
+    <div class="pb-lg-0 pb-5">
+      <button type="submit" [disabled]="vform.invalid || !formInfo.ButtonSubmittedEnabled"
+        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
+        {{'AUTH.LOGIN.BUTTON' | translate}}
+      </button>
+      <br>
+      <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+      class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
+      {{'AUTH.LOGIN.SMS' | translate}}
+    </button>
+      <button type="button" [routerLink]="['/auth/forgot-password']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
+        {{'AUTH.FORGOT.TITLE' | translate}}
+      </button>
+      <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
+        {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
+      </button>
+
+
+
+      <ng-container *ngIf="isLoading$ | async">
+        <span class="spinner spinner-primary ml-5"></span>
+      </ng-container>
+    </div>
+    <!--end::Action-->
+  </form>
+  <!--end::Form-->
+</div>
+<!--end::Signin-->

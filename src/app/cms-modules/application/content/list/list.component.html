@@ -1,0 +1,154 @@
+<div class="row">
+  <div *ngIf="requestLinkSourceId===0 && requestLinkThemeConfigId===0" class="col-xl-3">
+    <app-application-source-tree (optionSelect)="onActionSelectorSelect($event)"></app-application-source-tree>
+  </div>
+  <div [ngClass]="(requestLinkSourceId===0 && requestLinkThemeConfigId===0)?'col-xl-9':'col-xl-12'">
+    <div class="button-row">
+      <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
+        class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+      <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"
+        type="button" class="btn btn-warning ml-2" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+      <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0"
+        (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger  ml-2">{{'ACTION.DELETE' | translate}}</button>
+
+      <a class="btn btn-secondary btn-sm BTN">
+        <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
+      </a>
+
+      <a class="btn btn-success btn-sm BTN">
+        <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
+        </mat-slide-toggle>
+      </a>
+      <a class="btn btn-info btn-sm BTN">
+        <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
+        </mat-slide-toggle>
+      </a>
+      <button (click)="onActionbuttonReload()" type="button" class="btn btn-warning BTN">{{'ACTION.RELOAD' | translate}}</button>
+      <button (click)="onActionbuttonUploadApp()"
+        *ngIf="tableRowSelected.Id>0 && this.tokenInfo.UserAccessAdminAllowToProfessionalData" type="button"
+        class="btn btn-warning BTN">بارگزاری فایل نصب</button>
+      <button (click)="onActionbuttonUploadUpdate()"
+        *ngIf="tableRowSelected.Id>0 && this.tokenInfo.UserAccessAdminAllowToProfessionalData" type="button"
+        class="btn btn-warning BTN">بارگزاری فایل برروزرسانی</button>
+      <button (click)="onActionbuttonBuildApp()" *ngIf="tableRowSelected.Id>0" type="button"
+        class="btn btn-warning BTN">ساخت اپ</button>
+      <button (click)="onActionbuttonDownloadApp()" *ngIf="tableRowSelected.Id>0 && tableRowSelected.LastSuccessfullyBuildDate" type="button"
+        class="btn btn-warning BTN">دانلود اپ</button>
+      <button (click)="onActionBackToParent()" *ngIf="requestLinkSourceId>0" type="button"
+        class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
+            <button (click)="onActionBackToParentTheme()" *ngIf="requestLinkThemeConfigId>0" type="button"
+        class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
+      <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
+      <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
+      <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
+
+    </div>
+
+    <app-progress-spinner [options]="loading">
+    </app-progress-spinner>
+
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+        <!-- ID Column -->
+        <ng-container matColumnDef="Id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+        </ng-container>
+        <!-- LinkSiteId Column -->
+        <ng-container matColumnDef="LinkSiteId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.FieldTitle}} </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.LinkSiteId}} </mat-cell>
+        </ng-container>
+        <!-- LinkApplicationId Column -->
+        <ng-container matColumnDef="LinkSourceId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSourceId']?.FieldTitle}}</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.LinkSourceId}} </mat-cell>
+        </ng-container>
+
+        <!-- RecordStatus Column -->
+        <ng-container matColumnDef="RecordStatus">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}} </mat-header-cell>
+          <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
+        </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="Title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+        </ng-container>
+        <!-- AppVersion Column -->
+        <ng-container matColumnDef="AppVersion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['AppVersion']?.FieldTitle }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.AppVersion}} </mat-cell>
+        </ng-container>
+        <!-- CreatedDate Column -->
+        <ng-container matColumnDef="CreatedDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}} </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        </ng-container>
+        <!-- UpdatedDate Column -->
+        <ng-container matColumnDef="UpdatedDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}} </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
+        </ng-container>
+                <!-- LastSuccessfullyBuildDate Column -->
+                <ng-container matColumnDef="LastSuccessfullyBuildDate">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['LastSuccessfullyBuildDate']?.FieldTitle }} </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.LastSuccessfullyBuildDate) }} </mat-cell>
+                </ng-container>
+        <!-- Action Column -->
+        <ng-container matColumnDef="Action">
+          <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+          <mat-cell *matCellDef="let row" class=' Action'>
+            <!-- Action Menu -->
+            <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #actionMenu="matMenu">
+              <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
+                <mat-icon>mode_edit</mat-icon>
+                <span>{{'ACTION.EDIT' | translate}}</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+                <mat-icon>delete_forever</mat-icon>
+                <span>{{'ACTION.DELETE' | translate}}</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonBuildApp(row)">
+                <mat-icon>devices_other</mat-icon>
+                <span>ساخت اپ</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonDownloadApp(row)" *ngIf="row.LastSuccessfullyBuildDate">
+                <mat-icon>devices_other</mat-icon>
+                <span>دانلود اپ</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonMemberList(row)" *ngIf="row.LastSuccessfullyBuildDate">
+                <mat-icon>user</mat-icon>
+                <span>کاربران</span>
+              </button>
+               <button mat-menu-item (click)="onActionbuttonIntroList(row)" *ngIf="row.LastSuccessfullyBuildDate">
+                <mat-icon>help</mat-icon>
+                <span>راهنما</span>
+              </button>
+              <button mat-menu-item (click)="onActionbuttonNotifictionActionSend(row)"
+              >
+              <mat-icon>sms</mat-icon>
+              <span>ارسال نوتیفیکیشن</span>
+            </button>
+            </mat-menu>
+
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+          [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+        </mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
+        [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+        [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+
+    </div>
+
+  </div>
+</div>
