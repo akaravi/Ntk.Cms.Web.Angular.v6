@@ -1,5 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CoreAuthService, CoreCpMainMenuModel, CoreCpMainMenuService, ErrorExceptionResult, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { LayoutService } from '../../../../_metronic/core';
 
 @Component({
@@ -7,7 +11,7 @@ import { LayoutService } from '../../../../_metronic/core';
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.scss'],
 })
-export class AsideComponent implements OnInit {
+export class AsideComponent implements OnInit, OnDestroy {
   disableAsideSelfDisplay: boolean;
   headerLogo: string;
   brandSkin: string;
@@ -20,9 +24,20 @@ export class AsideComponent implements OnInit {
   asideMenuScroll = 1;
   asideSelfMinimizeToggle = false;
 
-  constructor(private layout: LayoutService, private loc: Location) { }
+  constructor(
+    private layout: LayoutService,
+    private loc: Location,
+    private coreCpMainMenuService: CoreCpMainMenuService,
+    public coreAuthService: CoreAuthService,
+    private cmsApiStore: NtkCmsApiStoreService,
+    public router: Router,
 
+  ) { }
+  env = environment;
+  resultCoreCpMainMenu: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
+
     // load view settings
     this.disableAsideSelfDisplay =
       this.layout.getProp('aside.self.display') === false;
@@ -40,13 +55,29 @@ export class AsideComponent implements OnInit {
     this.asideMenuCSSClasses = `${this.asideMenuCSSClasses} ${this.asideMenuScroll === 1 ? 'scroll my-4 ps ps--active-y' : ''}`;
     // Routing
     this.location = this.loc;
-  }
+    this.DataGetCpMenu();
 
+    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+      this.DataGetCpMenu();
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
   private getLogo() {
     if (this.brandSkin === 'light') {
       return './assets/media/logos/logo-dark.png';
     } else {
       return './assets/media/logos/logo-light.png';
     }
+  }
+
+  DataGetCpMenu(): void {
+    this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
+      (next) => {
+        this.resultCoreCpMainMenu = next;
+      }
+    );
+
   }
 }
