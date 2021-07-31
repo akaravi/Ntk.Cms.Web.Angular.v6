@@ -153,7 +153,7 @@
 
 <ng-container *ngIf="extrasUserDisplay">
   <ng-container *ngIf="extrasUserLayout === 'offcanvas'">
-    <ng-container *ngIf="tokenInfo">
+    <ng-container *ngIf="tokenInfo && tokenInfo.UserId>0">
       <!--begin::User-->
       <div class="topbar-item">
         <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto"
@@ -173,7 +173,7 @@
 
   <ng-container *ngIf="extrasUserLayout === 'dropdown'">
     <!--begin::User-->
-    <ng-container *ngIf="tokenInfo">
+    <ng-container *ngIf="tokenInfo && tokenInfo.UserId>0">
       <div class="dropdown" ngbDropdown placement="bottom-right">
         <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px" ngbDropdownToggle>
           <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto">

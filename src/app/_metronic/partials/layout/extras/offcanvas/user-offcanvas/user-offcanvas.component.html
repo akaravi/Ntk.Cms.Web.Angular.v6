@@ -5,7 +5,7 @@
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
       <h3 class="font-weight-bold m-0">
         {{'TITLE.User_Profile'| translate}}
-        <small class="text-muted font-size-sm ml-2">12 messages</small>
+        <small class="text-muted font-size-sm ml-2">12 {{'TITLE.MESSAGES'| translate}}</small>
       </h3>
       <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
         <i class="ki ki-close icon-xs text-muted"></i>
@@ -38,12 +38,12 @@
                 </span>
                 <span class="navi-text text-muted text-hover-primary">{{
                   this.tokenInfo.UserId
-                }}</span>
+                  }}</span>
               </span>
             </a>
 
-            <a class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5 cursor-pointer" (click)="logout()">Sign
-              Out</a>
+            <a class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5 cursor-pointer"
+              (click)="logout()">>{{'TITLE.Sing_Out'| translate}}</a>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
       <!--begin::Nav-->
       <div class="navi navi-spacer-x-0 p-0">
         <!--begin::Item-->
-        <a class="navi-item cursor-pointer" routerLink="/user-profile">
+        <a class="navi-item cursor-pointer" routerLink="{{'/core/user/edit/' +this.tokenInfo.UserId}}">
           <div class="navi-link">
             <div class="symbol symbol-40 bg-light mr-3">
               <div class="symbol-label">
@@ -67,10 +67,10 @@
             </div>
             <div class="navi-text">
               <div class="font-weight-bold">
-                My Profile
+                {{'TITLE.User_Profile'| translate}}
               </div>
               <div class="text-muted">
-                Account settings and more
+                {{'TITLE.Account_settings_and_more'| translate}}
                 <span class="label label-light-danger label-inline font-weight-bold">update</span>
               </div>
             </div>
@@ -90,10 +90,10 @@
             </div>
             <div class="navi-text">
               <div class="font-weight-bold">
-                My Messages
+                {{'TITLE.My_Messages'| translate}}
               </div>
               <div class="text-muted">
-                Inbox and tasks
+                {{'TITLE.Inbox_and_tasks'| translate}}
               </div>
             </div>
           </div>

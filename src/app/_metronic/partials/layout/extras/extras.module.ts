@@ -21,6 +21,7 @@ import { CoreModule } from '../../../core';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TranslationModule } from 'src/app/core/i18n/translation.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -49,7 +50,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     CoreModule,
     RouterModule,
-    TranslationModule
+    TranslationModule,
+    SharedModule.forRoot(),
   ],
   providers: [
     {

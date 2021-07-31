@@ -1,5 +1,4 @@
-
-<ng-container *ngIf="tokenInfo">
+<ng-container *ngIf="tokenInfo && tokenInfo.UserId>0">
   <ng-container *ngIf="extrasUserDropdownStyle === 'light'">
     <!--begin::Header-->
     <div class="d-flex align-items-center p-8 rounded-top">
@@ -13,10 +12,8 @@
       <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
         {{ tokenInfo.Name}} {{ tokenInfo.LastName }}
       </div>
-      <span
-        class="label label-light-success label-lg font-weight-bold label-inline"
-        >3 messages</span
-      >
+      <span class="label label-light-success label-lg font-weight-bold label-inline">3 {{'TITLE.MESSAGES'| translate}}
+      </span>
       <!--end::Text-->
     </div>
     <div class="separator separator-solid"></div>
@@ -27,15 +24,12 @@
     <!--begin::Header-->
     <div
       class="d-flex align-items-center justify-content-between flex-wrap p-8 bgi-size-cover bgi-no-repeat rounded-top"
-      style="background-image: url('./assets/media/misc/bg-1.jpg');"
-    >
+      style="background-image: url('./assets/media/misc/bg-1.jpg');">
       <div class="d-flex align-items-center mr-2">
         <!--begin::Symbol-->
         <div class="symbol bg-white-o-15 mr-3">
-          <span
-            class="symbol-label text-success font-weight-bold font-size-h4"
-            >{{ tokenInfo.Name | firstLetter }}</span
-          >
+          <span class="symbol-label text-success font-weight-bold font-size-h4">{{ tokenInfo.Name | firstLetter
+            }}</span>
         </div>
         <!--end::Symbol-->
 
@@ -45,9 +39,7 @@
         </div>
         <!--end::Text-->
       </div>
-      <span class="label label-success label-lg font-weight-bold label-inline"
-        >3 messages</span
-      >
+      <span class="label label-success label-lg font-weight-bold label-inline">3 {{'TITLE.MESSAGES'| translate}}</span>
     </div>
     <!--end::Header-->
   </ng-container>
@@ -55,7 +47,7 @@
   <!--begin::Nav-->
   <div class="navi navi-spacer-x-0 pt-5">
     <!--begin::Item-->
-    <a class="navi-item px-8 cursor-pointer" routerLink="/user-profile">
+    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/core/user/edit/' +this.tokenInfo.UserId}}">
       <div class="navi-link">
         <div class="navi-icon mr-2">
           <i class="flaticon2-calendar-3 text-success"></i>
@@ -65,10 +57,9 @@
             {{'TITLE.User_Profile'| translate}}
           </div>
           <div class="text-muted">
-            Account settings and more
-            <span class="label label-light-danger label-inline font-weight-bold"
-              >update</span
-            >
+            {{'TITLE.Account_settings_and_more'| translate}}
+
+            <span class="label label-light-danger label-inline font-weight-bold">update</span>
           </div>
         </div>
       </div>
@@ -83,10 +74,10 @@
         </div>
         <div class="navi-text">
           <div class="font-weight-bold">
-            My Messages
+            {{'TITLE.My_Messages'| translate}}
           </div>
           <div class="text-muted">
-            Inbox and tasks
+            {{'TITLE.Inbox_and_tasks'| translate}}
           </div>
         </div>
       </div>
@@ -128,15 +119,14 @@
       </div>
     </a>
     <!--end::Item-->
+    <div class="navi-separator mt-3"></div>
+    <app-cms-token-access></app-cms-token-access>
 
     <!--begin::Footer-->
     <div class="navi-separator mt-3"></div>
     <div class="navi-footer px-8 py-5">
-      <a
-        class="btn btn-light-primary font-weight-bold cursor-pointer"
-        (click)="logout()"
-        >Sign Out</a
-      >
+      <a class="btn btn-light-primary font-weight-bold cursor-pointer" (click)="logout()">{{'TITLE.Sing_Out'|
+        translate}}</a>
       <a class="btn btn-clean font-weight-bold cursor-pointer">Upgrade Plan</a>
     </div>
     <!--end::Footer-->

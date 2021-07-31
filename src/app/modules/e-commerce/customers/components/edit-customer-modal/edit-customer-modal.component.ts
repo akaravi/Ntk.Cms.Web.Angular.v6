@@ -133,6 +133,7 @@ export class EditCustomerModalComponent implements OnInit, OnDestroy {
 
   // helpers for View
   isControlValid(controlName: string): boolean {
+    return true;
     const control = this.formGroup.controls[controlName];
     return control.valid && (control.dirty || control.touched);
   }

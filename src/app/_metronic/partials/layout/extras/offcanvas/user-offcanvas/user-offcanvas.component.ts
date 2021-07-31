@@ -4,7 +4,10 @@ import { Observable, Subscription } from 'rxjs';
 import { UserModel } from '../../../../../../modules/auth/_models/user.model';
 import { AuthService } from '../../../../../../modules/auth/_services/auth.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
   selector: 'app-user-offcanvas',
@@ -18,12 +21,15 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   constructor(
     private layout: LayoutService,
     private auth: AuthService,
+    private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
     private cmsApiStore: NtkCmsApiStoreService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router,
   ) { }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
+  loading = new ProgressSpinnerModel();
 
   ngOnInit(): void {
     this.extrasUserOffcanvasDirection = `offcanvas-${this.layout.getProp(
@@ -36,12 +42,19 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
       this.tokenInfo = value;
       this.cdr.detectChanges();
     });
-
-
   }
-
-  logout() {
-    this.auth.logout();
+  async logout() {
+    // this.auth.logout();
+    this.cmsToastrService.typeOrderActionLogout();
+    const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
+      this.loading.display = false;
+      if (next.IsSuccess) {
+        this.cmsToastrService.typeSuccessLogout();
+      } else {
+        this.cmsToastrService.typeErrorLogout();
+      }
+      return;
+    })).toPromise();
     document.location.reload();
   }
   ngOnDestroy(): void {

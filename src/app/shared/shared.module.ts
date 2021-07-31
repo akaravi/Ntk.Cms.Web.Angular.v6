@@ -68,6 +68,9 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { ClipboardModule } from 'ngx-clipboard';
 import { CmsTagAutocompleteComponent } from './cms-tag-autocomplete/cms-tag-autocomplete.component';
 import { TranslationModule } from '../core/i18n/translation.module';
+import { CmsTokenAccessComponent } from './cms-token-access/cmsTokenAccess.component';
+import { CmsNoticeComponent } from './cms-notice/cms-notice.component';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 
 
@@ -87,6 +90,7 @@ import { TranslationModule } from '../core/i18n/translation.module';
     NgbDropdownModule,
     CmsFileManagerModule,
     ClipboardModule,
+    InlineSVGModule,
   ],
   entryComponents: [
     // All components about to be loaded "dynamically" need to be declared in the entryComponents section.
@@ -127,6 +131,8 @@ import { TranslationModule } from '../core/i18n/translation.module';
     CmsFormBuilderPropertiesComponent,
     CmsBankpaymentGridComponent,
     CmsFilesSelectorComponent,
+    CmsTokenAccessComponent,
+    CmsNoticeComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -182,6 +188,8 @@ import { TranslationModule } from '../core/i18n/translation.module';
     CmsFormBuilderPropertiesComponent,
     CmsBankpaymentGridComponent,
     CmsFilesSelectorComponent,
+    CmsTokenAccessComponent,
+    CmsNoticeComponent,
     /**input */
     StringComponent,
     IntComponent,

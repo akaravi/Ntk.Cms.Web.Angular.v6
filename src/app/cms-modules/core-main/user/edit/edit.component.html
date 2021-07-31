@@ -1,3 +1,54 @@
+<app-cms-notice [svg]="'./assets/media/svg/icons/Tools/Tools.svg'">
+  <p>
+    The layout builder is to assist your set and configure your preferred
+    project layout specifications and preview it in real time. The configured
+    layout options will be saved until you change or reset them. To use the
+    layout builder, choose the layout options and click the
+    <code>Preview</code> button to preview the changes.
+  </p>
+</app-cms-notice>
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-title h4" id="example-modal-sizes-title-lg">
+      header
+    </div>
+  </div>
+  <div class="overlay overlay-block cursor-default modal-body" style="min-height: 404px">
+    <ng-container *ngIf="loading.display">
+      <div class="overlay-layer bg-transparent">
+        <div class="spinner spinner-lg spinner-success"></div>
+      </div>
+    </ng-container>
+    <ng-container  *ngIf="!loading.display">
+      <div class="form-group row">
+        <div class="col-lg-4">
+          
+        </div>
+        <div class="col-lg-4">
+          
+        </div>
+        <div class="col-lg-4">
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-lg-4">
+          
+        </div>
+        <div class="col-lg-4">
+          
+        </div>
+        <div class="col-lg-4">
+          
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="modal-footer">
+    footer
+  </div>
+</div>
+
 <div class="d-flex flex-column-fluid">
   <!--begin::Container-->
   <div class="container">
@@ -10,8 +61,9 @@
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
           <!-- RecordStatus Field -->
           <mat-form-field class="example-full-width">
-            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-              #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+              name="dataModel.RecordStatus" #RecordStatus="ngModel"
+              panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
               <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -83,9 +135,10 @@
           <!-- ExpireDate Field -->
           <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-            <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-                <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate"
+              name="dataModel.ExpireDate" />
+            <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #ExpireDate></mat-datepicker>
           </mat-form-field>
@@ -96,7 +149,7 @@
 
 
           <div *ngIf="formInfo.FormSubmitAllow">
-           <button type="button" mat-button  (click)="onActionBackToParent()"
+            <button type="button" mat-button (click)="onActionBackToParent()"
               class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
               {{'ACTION.BACK' | translate}}
             </button> <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
@@ -116,7 +169,7 @@
             <mat-label> {{fieldsInfo['Name']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.Name" name="dataModel.Name" #Name type="text"
               [disabled]="!fieldsInfo['Name']?.AccessEditField" placeholder="{{fieldsInfo['Name']?.FieldTitle}}"
-              minlength="3" maxlength="100"  />
+              minlength="3" maxlength="100" />
             <mat-icon matSuffix *ngIf="dataModel.Name" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.Name = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -132,7 +185,7 @@
             <mat-label> {{fieldsInfo['LastName']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.LastName" name="dataModel.LastName" #LastName type="text"
               [disabled]="!fieldsInfo['LastName']?.AccessEditField" placeholder="{{fieldsInfo['LastName']?.FieldTitle}}"
-              minlength="3" maxlength="100"  />
+              minlength="3" maxlength="100" />
             <mat-icon matSuffix *ngIf="dataModel.LastName" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.LastName = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
