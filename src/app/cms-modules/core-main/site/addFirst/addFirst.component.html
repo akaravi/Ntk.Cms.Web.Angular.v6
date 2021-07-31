@@ -48,9 +48,8 @@
                   <app-core-sitecategory-selector (optionSelect)="onActionSelectorSelect($event)"
                     [optionPlaceholder]="'نوع سامانه'" [optionDisabled]="false"></app-core-sitecategory-selector>
 
-                  <div *ngIf="formInfo.FormSubmitAllow">
-                    <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-                      class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+                    <button type="button"  mat-raised-button color="primary"  [disabled]="!vform.form.valid"  matStepperNext>
                       {{'ACTION.NEXT' | translate}}
                     </button>
                   </div>
@@ -61,13 +60,11 @@
                   <app-core-sitecategorycmsmodule-listview [optionSiteCategoryId]="modelDateSiteCategory?.Id">
                   </app-core-sitecategorycmsmodule-listview>
 
-                  <div *ngIf="formInfo.FormSubmitAllow">
-                    <button type="button" mat-button matStepperPrevious
-                      class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+                    <button type="button" mat-raised-button color="primary" matStepperPrevious>
                       {{'ACTION.BEFOR' | translate}}
                     </button>
-                    <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-                      class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+                    <button type="button"  mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
                       {{'ACTION.NEXT' | translate}}
                     </button>
                   </div>
@@ -123,13 +120,11 @@
                     <small class="form-text text-muted danger">{{ formInfo.FormError }}
                     </small>
                   </div>
-                  <div *ngIf="formInfo.FormSubmitAllow">
-                    <button type="button" mat-button matStepperPrevious
-                      class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+                    <button type="button" mat-raised-button color="primary"  matStepperPrevious>
                       {{'ACTION.BEFOR' | translate}}
                     </button>
-                    <button type="submit" mat-button [disabled]="!vform.form.valid"
-                      class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+                    <button type="submit"  mat-raised-button color="success" [disabled]="!vform.form.valid">
                       {{'ACTION.SAVE' | translate}}
                     </button>
                   </div>

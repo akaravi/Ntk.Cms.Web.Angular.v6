@@ -82,16 +82,13 @@
 
 
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button (click)="onActionBackToParent()"
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-
           </div>
         </mat-step>
 
@@ -203,7 +200,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkFacebook']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkFacebook"
               [disabled]="!fieldsInfo['AboutUsLinkFacebook']?.AccessAddField" name="dataModel.AboutUsLinkFacebook"
-              #AboutUsLinkFacebook type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkFacebook type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkFacebook && fieldsInfo['AboutUsLinkFacebook']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkFacebook = ''">close</mat-icon>
@@ -214,7 +211,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkTwitter']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkTwitter"
               [disabled]="!fieldsInfo['AboutUsLinkTwitter']?.AccessAddField" name="dataModel.AboutUsLinkTwitter"
-              #AboutUsLinkTwitter type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkTwitter type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix *ngIf="dataModel.AboutUsLinkTwitter && fieldsInfo['AboutUsLinkTwitter']?.AccessAddField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkTwitter = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['AboutUsLinkTwitter']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -224,7 +221,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkGooglePlus']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkGooglePlus"
               [disabled]="!fieldsInfo['AboutUsLinkGooglePlus']?.AccessAddField" name="dataModel.AboutUsLinkGooglePlus"
-              #AboutUsLinkGooglePlus type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkGooglePlus type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkGooglePlus && fieldsInfo['AboutUsLinkGooglePlus']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkGooglePlus = ''">close</mat-icon>
@@ -235,7 +232,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkInstagram']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkInstagram"
               [disabled]="!fieldsInfo['AboutUsLinkInstagram']?.AccessAddField" name="dataModel.AboutUsLinkInstagram"
-              #AboutUsLinkInstagram type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkInstagram type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkInstagram && fieldsInfo['AboutUsLinkInstagram']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkInstagram = ''">close</mat-icon>
@@ -246,7 +243,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinklinkedin']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinklinkedin"
               [disabled]="!fieldsInfo['AboutUsLinklinkedin']?.AccessAddField" name="dataModel.AboutUsLinklinkedin"
-              #AboutUsLinklinkedin type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinklinkedin type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinklinkedin && fieldsInfo['AboutUsLinklinkedin']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinklinkedin = ''">close</mat-icon>
@@ -257,7 +254,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkYahoo']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkYahoo"
               [disabled]="!fieldsInfo['AboutUsLinkYahoo']?.AccessAddField" name="dataModel.AboutUsLinkYahoo"
-              #AboutUsLinkYahoo type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkYahoo type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix *ngIf="dataModel.AboutUsLinkYahoo && fieldsInfo['AboutUsLinkYahoo']?.AccessAddField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkYahoo = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['AboutUsLinkYahoo']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -299,7 +296,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkRss']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkRss"
               [disabled]="!fieldsInfo['AboutUsLinkRss']?.AccessAddField" name="dataModel.AboutUsLinkRss" #AboutUsLinkRss
-              type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix *ngIf="dataModel.AboutUsLinkRss && fieldsInfo['AboutUsLinkRss']?.AccessAddField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkRss = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['AboutUsLinkRss']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -310,13 +307,11 @@
 
 
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -386,13 +381,11 @@
           </mat-form-field>
 
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -508,13 +501,11 @@
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -523,8 +514,7 @@
         <mat-step label="تنظیمات قالب و ساخت" state="otherinfo">
           <p>تنظیمات پیش فرض مدیریت کل در ساخت</p>
 
-          <mat-form-field class="ntk-full-width"
-            *ngIf="fieldsInfo['ConfigBuilderAdminJsonValues']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigBuilderAdminJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ConfigBuilderAdminJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.ConfigBuilderAdminJsonValues"
               [disabled]="!fieldsInfo['ConfigBuilderAdminJsonValues']?.AccessAddField"
@@ -534,8 +524,7 @@
               aria-label="Clear" (click)="dataModel.ConfigBuilderAdminJsonValues = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
-          <mat-form-field class="ntk-full-width"
-            *ngIf="fieldsInfo['ConfigRuntimeAdminJsonValues']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigRuntimeAdminJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ConfigRuntimeAdminJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.ConfigRuntimeAdminJsonValues"
               [disabled]="!fieldsInfo['ConfigRuntimeAdminJsonValues']?.AccessAddField"
@@ -545,8 +534,7 @@
               aria-label="Clear" (click)="dataModel.ConfigRuntimeAdminJsonValues = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
-          <mat-form-field class="ntk-full-width"
-            *ngIf="fieldsInfo['ConfigBuilderSiteJsonValues']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigBuilderSiteJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ConfigBuilderSiteJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.ConfigBuilderSiteJsonValues"
               [disabled]="!fieldsInfo['ConfigBuilderSiteJsonValues']?.AccessAddField"
@@ -556,8 +544,7 @@
               aria-label="Clear" (click)="dataModel.ConfigBuilderSiteJsonValues = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
-          <mat-form-field class="ntk-full-width"
-            *ngIf="fieldsInfo['ConfigRuntimeSiteJsonValues']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigRuntimeSiteJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ConfigRuntimeSiteJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.ConfigRuntimeSiteJsonValues"
               [disabled]="!fieldsInfo['ConfigRuntimeSiteJsonValues']?.AccessAddField"
@@ -700,13 +687,11 @@
 
 
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -856,13 +841,11 @@
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="submit" mat-button [disabled]="!vform.form.valid"
-              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>

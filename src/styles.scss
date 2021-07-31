@@ -134,6 +134,47 @@ mat-paginator {
   max-width: 500px;
   width: 100%;
 }
+.ntk-button-row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 10px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0  0.20), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
+}
+.ntk-button-row button{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.mat-button.mat-success,
+.mat-stroked-button.mat-success {
+    color: #155724;
+}
+.mat-button.mat-success:hover,
+.mat-stroked-button.mat-success:hover {
+  background-color: #f0fff3;
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+  color: #f0fff3;
+  background-color: #155724;
+}
+
+.mat-icon-button.mat-success {
+  color:#155724;
+}
 /*
 karavi
 */

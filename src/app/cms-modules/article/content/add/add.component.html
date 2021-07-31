@@ -75,13 +75,11 @@
           <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main" [(ngModel)]="dataModel.Body"
             name="dataModel.Body"></angular-editor>
 
-       <div *ngIf="formInfo.FormSubmitAllow">
-           <button type="button" mat-button  (click)="onActionBackToParent()"
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+                 <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -107,13 +105,11 @@
             [secondaryPlaceholder]="'انتخاب کلمات کلیدی نسبت به مطلب'" [identifyBy]="'display'">
 
           </tag-input>
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -185,13 +181,11 @@
           </div>
 
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -294,13 +288,11 @@
 
 
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -362,13 +354,11 @@
           </div>
           <!-- TABLE  -->
 
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -376,16 +366,14 @@
         <mat-step label="موقعیت مکانی" state="loaction">
           <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
           <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" id='main-map'></app-cms-map>
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="submit" mat-button [disabled]="!vform.form.valid"
-              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-          </div>
+            </div>
         </mat-step>
 
         <!-- Icon overrides. -->

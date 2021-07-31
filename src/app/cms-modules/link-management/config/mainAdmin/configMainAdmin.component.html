@@ -19,17 +19,14 @@
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
           </div>
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button (click)="onActionBackToParent()"
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+            <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-button [disabled]="!vform.form.valid"
-              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
@@ -55,17 +52,14 @@
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteAccessValuesDefaultModel | prettyjson"></div>
           </div>
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button"  mat-raised-button color="accent"   matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" color="primary"  [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-button [disabled]="!vform.form.valid"
-              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
@@ -131,17 +125,14 @@
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
           </div>
-          <div *ngIf="formInfo.FormSubmitAllow">
-            <button type="button" mat-button matStepperPrevious
-              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button"  mat-raised-button color="accent"   matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-              class="btn btn-outline-primary font-weight-bold text-uppercase px-9 py-4">
+            <button type="button" color="primary"  [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-button [disabled]="!vform.form.valid"
-              class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>

@@ -58,7 +58,7 @@
   the Router service to help you define navigation paths among views. The router provides
   sophisticated in-browser navigational capabilities.</p>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>رد می کنم</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>قبول دارم</button>
+<mat-dialog-actions align="end"  class="ntk-button-row">
+  <button mat-raised-button color="accent"  mat-dialog-close>رد می کنم</button>
+  <button  mat-raised-button color="success" [mat-dialog-close]="true" cdkFocusInitial>قبول دارم</button>
 </mat-dialog-actions>

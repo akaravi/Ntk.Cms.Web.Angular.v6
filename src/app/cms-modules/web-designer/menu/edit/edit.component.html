@@ -8,8 +8,9 @@
       <mat-step label="مشخصات منو" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-            #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+            name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+            required>
             <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -63,7 +64,8 @@
           <mat-label> {{fieldsInfo['RouteAddressLink']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.RouteAddressLink" name="dataModel.RouteAddressLink" #RouteAddressLink
             type="text" [disabled]="!fieldsInfo['RouteAddressLink']?.AccessEditField"
-            placeholder="{{fieldsInfo['RouteAddressLink']?.FieldTitle}}" minlength="0" maxlength="100" style="direction: ltr;text-align: left;" />
+            placeholder="{{fieldsInfo['RouteAddressLink']?.FieldTitle}}" minlength="0" maxlength="100"
+            style="direction: ltr;text-align: left;" />
           <mat-icon matSuffix *ngIf="dataModel.RouteAddressLink" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.RouteAddressLink = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -116,8 +118,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Description']?.AccessWatchField">
           <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500"
-            rows="1"></textarea>
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows="1"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -133,12 +134,9 @@
 
 
 
-        <div *ngIf="formInfo.FormSubmitAllow">
-          <a class="btn btn-secondary btn-sm BTN">
-            <button (click)="onFormCancel()" type="button" class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
-          </a>
-          <button type="submit" mat-button [disabled]="!vform.form.valid"
-            class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}
           </button>
         </div>

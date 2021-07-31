@@ -9,8 +9,9 @@
       <mat-step label="مشخصات منو" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-            #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+            name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+            required>
             <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -138,8 +139,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Description']?.AccessWatchField">
           <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500"
-            rows="1"></textarea>
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows="1"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -149,11 +149,10 @@
           </mat-error>
         </mat-form-field>
 
-        <div *ngIf="formInfo.FormSubmitAllow">
-          <a class="btn btn-secondary btn-sm BTN">
-            <button (click)="onFormCancel()" type="button" class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
-          </a> <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
-            class="btn btn-primary font-weight-bold text-uppercase px-9 py-4">
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
+
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
         </div>
@@ -186,14 +185,13 @@
         <app-core-usercategory-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"
           (optionSelect)="onActionSelectorUserCategorySelect($event)"
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
-          (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)"></app-core-usercategory-selectionlist>
-        <div *ngIf="formInfo.FormSubmitAllow">
-          <button type="button" mat-button matStepperPrevious
-            class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+          (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
+        </app-core-usercategory-selectionlist>
+        <div *ngIf="formInfo.FormSubmitAllow"  class="ntk-button-row">
+          <button type="button"  mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
-          <button type="submit" mat-button [disabled]="!vform.form.valid"
-            class="btn btn-success font-weight-bold text-uppercase px-9 py-4">
+          <button type="submit"  mat-raised-button color="success" [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}
           </button>
 
