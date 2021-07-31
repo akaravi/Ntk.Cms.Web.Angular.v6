@@ -1,6 +1,8 @@
+cccc
 <!-- begin::User Panel-->
 <div id="kt_quick_user" class="offcanvas p-10" [ngClass]="extrasUserOffcanvasDirection">
-  <ng-container *ngIf="user$ | async as _user">
+  <ng-container *ngIf="this.tokenInfo">
+    dddd
     <!--begin::Header-->
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
       <h3 class="font-weight-bold m-0">
@@ -23,10 +25,10 @@
         </div>
         <div class="d-flex flex-column">
           <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
-            {{ _user.firstname }} {{ _user.lastname }}
+            {{ this.tokenInfo.Name }} {{ this.tokenInfo.LastName }}
           </a>
           <div class="text-muted mt-1">
-            Application Developer
+            {{this.tokenInfo.UserAccessAreaType}}
           </div>
           <div class="navi mt-2">
             <a href="#" class="navi-item">
@@ -37,7 +39,7 @@
                     " cacheSVG="true" class="svg-icon svg-icon-lg svg-icon-primary"></span>
                 </span>
                 <span class="navi-text text-muted text-hover-primary">{{
-                  _user.email
+                  this.tokenInfo.UserId
                 }}</span>
               </span>
             </a>

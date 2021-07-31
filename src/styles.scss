@@ -17,7 +17,7 @@
 @import "./assets/plugins/keenthemes-icons/font/ki.css";
 
 // Metronic styles (replace these path when using RTL css below)
-@import "./assets/sass/style.angular.scss";
+// @import "./assets/sass/style.angular.scss";
 
 // For RTL, check this documentation https://keenthemes.com/metronic/?page=docs&section=angular-rtl
 @import "./assets/sass/style.angular.rtl.css";
@@ -62,3 +62,70 @@
   height: 3px;
   width: 100%;
 }
+/*
+karavi
+*/
+.button-row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 10px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0  0.20), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
+}
+mat-tree {
+  font-family: IRANSansWeb;
+}
+category-tree-invisible {
+  display: none;
+}
+.category-tree {
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.20), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0  0.12);
+}
+.category-tree ul,
+.category-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+.mat-form-field-wrapper {
+  font-size:small;
+}
+table {
+ width: 100%;
+ margin-top: 20px;
+ font-family: IRANSansWeb;
+}
+mat-paginator {
+ display: flex;
+}
+.align-Btn {
+ margin-top: 20px;
+ width: 100%;
+ height: auto;
+ border: 1px;
+ padding-block: 22px;
+ padding-right: 8px;
+ border-radius: 5px;
+ background: white;
+ box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+}
+.BTN {
+  margin-right: 5px;
+}
+::ng-deep .mat-slide-toggle-content {
+  font-family: "IRANSansWeb" !important;
+}
+.btn-bg-info {
+  color: white;
+}
+/*
+karavi
+*/

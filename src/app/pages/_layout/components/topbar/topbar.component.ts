@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { LayoutService } from '../../../../_metronic/core';
 import { AuthService } from '../../../../modules/auth/_services/auth.service';
 import { UserModel } from '../../../../modules/auth/_models/user.model';
@@ -11,14 +11,15 @@ import KTLayoutQuickPanel from '../../../../../assets/js/layout/extended/quick-p
 import KTLayoutQuickUser from '../../../../../assets/js/layout/extended/quick-user';
 import KTLayoutHeaderTopbar from '../../../../../assets/js/layout/base/header-topbar';
 import { KTUtil } from '../../../../../assets/js/components/util';
+import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.scss'],
 })
-export class TopbarComponent implements OnInit, AfterViewInit {
-  user$: Observable<UserModel>;
+export class TopbarComponent implements OnInit, AfterViewInit, OnDestroy {
+  // user$: Observable<UserModel>;
   // tobbar extras
   extraSearchDisplay: boolean;
   extrasSearchLayout: 'offcanvas' | 'dropdown';
@@ -33,10 +34,17 @@ export class TopbarComponent implements OnInit, AfterViewInit {
   extrasUserDisplay: boolean;
   extrasUserLayout: 'offcanvas' | 'dropdown';
 
-  constructor(private layout: LayoutService, private auth: AuthService) {
-    this.user$ = this.auth.currentUserSubject.asObservable();
-  }
+  constructor(
+    private layout: LayoutService,
+    private auth: AuthService,
+    private cmsApiStore: NtkCmsApiStoreService,
+    private cdr: ChangeDetectorRef
+  ) {
+    // this.user$ = this.auth.currentUserSubject.asObservable();
 
+  }
+  tokenInfo: TokenInfoModel;
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     // topbar extras
     this.extraSearchDisplay = this.layout.getProp('extras.search.display');
@@ -63,6 +71,12 @@ export class TopbarComponent implements OnInit, AfterViewInit {
     this.extrasQuickPanelDisplay = this.layout.getProp(
       'extras.quickPanel.display'
     );
+
+    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
+      this.tokenInfo = value;
+      this.cdr.detectChanges();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -107,5 +121,8 @@ export class TopbarComponent implements OnInit, AfterViewInit {
       // Init Header Topbar For Mobile Mode
       KTLayoutHeaderTopbar.init('kt_header_mobile_topbar_toggle');
     });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
 }

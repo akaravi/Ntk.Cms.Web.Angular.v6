@@ -1,7 +1,9 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { CoreAuthService, EnumDeviceType, EnumOperatingSystemType, NtkCmsApiStoreService, TokenDeviceClientInfoDtoModel, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TranslationService } from 'src/app/modules/i18n/translation.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +12,7 @@ export class TokenHelper implements OnDestroy {
   constructor(
     public coreAuthService: CoreAuthService,
     private cmsApiStore: NtkCmsApiStoreService,
+    private translationService: TranslationService,
     private router: Router,
   ) {
 
@@ -24,6 +27,33 @@ export class TokenHelper implements OnDestroy {
   }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();
+  }
+  getCurrentToken(): void {
+    this.coreAuthService.ServiceCurrentToken();
+  }
+  getDeviceToken(): void {
+    const DeviceToken = this.coreAuthService.getDeviceToken();
+    if (!DeviceToken || DeviceToken.length === 0) {
+      const model: TokenDeviceClientInfoDtoModel = {
+        SecurityKey: environment.cmsTokenConfig.SecurityKey,
+        ClientMACAddress: '',
+        OSType: EnumOperatingSystemType.none,
+        DeviceType: EnumDeviceType.WebSite,
+        PackageName: '',
+        AppBuildVer: 0,
+        AppSourceVer: '',
+        Country: '',
+        DeviceBrand: '',
+        Language: this.translationService.getSelectedLanguage(),
+        LocationLat: '',
+        LocationLong: '',
+        SimCard: '',
+        NotificationId: ''
+
+      };
+      this.translationService.setLanguage(this.translationService.getSelectedLanguage());
+      this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
+    }
   }
   CheckRouteByToken(): void {
     this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;

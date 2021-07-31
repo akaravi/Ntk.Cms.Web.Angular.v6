@@ -169,7 +169,7 @@ export const DefaultLayoutConfig = {
   extras: {
     // Search
     search: {
-      display: true,
+      display: false,
       layout: 'dropdown', // offcanvas, dropdown,
       offcanvas: {
         direction: 'right',
@@ -178,7 +178,7 @@ export const DefaultLayoutConfig = {
 
     // Notifications
     notifications: {
-      display: true,
+      display: false,
       layout: 'dropdown', // offcanvas, dropdown,
       dropdown: {
         style: 'dark', // light|dark
@@ -190,7 +190,7 @@ export const DefaultLayoutConfig = {
 
     // Quick Actionss
     quickActions: {
-      display: true,
+      display: false,
       layout: 'dropdown', // offcanvas, dropdown,
       dropdown: {
         style: 'dark', // light|dark
@@ -219,7 +219,7 @@ export const DefaultLayoutConfig = {
 
     // Cart
     cart: {
-      display: true,
+      display: false,
       layout: 'dropdown', // offcanvas, dropdown,
       offcanvas: {
         direction: 'right',
@@ -231,12 +231,12 @@ export const DefaultLayoutConfig = {
 
     // Chat
     chat: {
-      display: true,
+      display: false,
     },
 
     // Quick Panel
     quickPanel: {
-      display: true,
+      display: false,
       offcanvas: {
         direction: 'right',
       },

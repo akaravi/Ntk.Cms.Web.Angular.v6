@@ -39,9 +39,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('ktHeaderMenu', { static: true }) ktHeaderMenu: ElementRef;
   loader$: Observable<number>;
 
-  private loaderSubject: BehaviorSubject<number> = new BehaviorSubject<number>(
-    0
-  );
+  private loaderSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
   constructor(private layout: LayoutService, private router: Router) {

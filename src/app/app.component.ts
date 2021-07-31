@@ -19,6 +19,7 @@ import { TableExtendedService } from './_metronic/shared/crud-table';
 import { CoreAuthService, CoreEnumService, EnumDeviceType, EnumOperatingSystemType, TokenDeviceClientInfoDtoModel } from 'ntk-cms-api';
 import { CmsStoreService } from './core/reducers/cmsStore.service';
 import { environment } from 'src/environments/environment';
+import { TokenHelper } from './core/helpers/tokenHelper';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,7 +38,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private tableService: TableExtendedService,
     private coreEnumService: CoreEnumService,
-    private cmsStoreService: CmsStoreService
+    private cmsStoreService: CmsStoreService,
+    private tokenHelper: TokenHelper
   ) {
     if (environment.cmsServerConfig.configApiServerPath && environment.cmsServerConfig.configApiServerPath.length > 0) {
       this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
@@ -72,33 +74,11 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     this.unsubscribe.push(routerSubscription);
 
-    this.getDeviceToken();
+    this.tokenHelper.getDeviceToken();
+    // this.tokenHelper.getCurrentToken();
     this.getEnumRecordStatus();
   }
-  getDeviceToken(): void {
-    const DeviceToken = this.coreAuthService.getDeviceToken();
-    if (!DeviceToken || DeviceToken.length === 0) {
-      const model: TokenDeviceClientInfoDtoModel = {
-        SecurityKey: environment.cmsTokenConfig.SecurityKey,
-        ClientMACAddress: '',
-        OSType: EnumOperatingSystemType.none,
-        DeviceType: EnumDeviceType.WebSite,
-        PackageName: '',
-        AppBuildVer: 0,
-        AppSourceVer: '',
-        Country: '',
-        DeviceBrand: '',
-        Language: this.translationService.getSelectedLanguage(),
-        LocationLat: '',
-        LocationLong: '',
-        SimCard: '',
-        NotificationId: ''
-
-      };
-      this.translationService.setLanguage(this.translationService.getSelectedLanguage());
-      this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
-    } 
-  }
+  
   getEnumRecordStatus(): void {
     this.coreEnumService.ServiceEnumRecordStatus().subscribe((res) => {
       this.cmsStoreService.setState({ EnumRecordStatus: res });

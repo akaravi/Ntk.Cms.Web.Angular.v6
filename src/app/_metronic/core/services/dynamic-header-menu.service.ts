@@ -46,7 +46,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
   }
   DataGetCpMenu(): void {
     const menuItems: any = [{
-      title: 'Dashboards',
+      title: 'Dashboard',
       root: true,
       alignment: 'left',
       page: '/dashboard',

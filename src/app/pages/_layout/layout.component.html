@@ -38,7 +38,8 @@
           <ng-container *ngIf="contentExtended">
             <ng-container *ngIf="asideSelfDisplay">
               <div class="d-lg-flex flex-row-fluid">
-        
+      
+                <ng-container *ngIf="!asideMenuStatic">
                   <!--begin::DYNAMIC Aside-->
                   <app-aside-dynamic
                     #ktAside
@@ -47,6 +48,7 @@
                     [ngClass]="asideCSSClasses"
                   ></app-aside-dynamic>
                   <!--end::DYNAMIC Aside-->
+                </ng-container>
                 <div class="content-wrapper">
                   <router-outlet></router-outlet>
                 </div>
@@ -64,7 +66,8 @@
               <div [ngClass]="contentContainerClasses">
                 <ng-container *ngIf="asideSelfDisplay">
                   <div class="d-lg-flex flex-row-fluid">
-     
+               
+                    <ng-container *ngIf="!asideMenuStatic">
                       <!--begin::DYNAMIC Aside-->
                       <app-aside-dynamic
                         #ktAside
@@ -73,6 +76,8 @@
                         [ngClass]="asideCSSClasses"
                       ></app-aside-dynamic>
                       <!--end::DYNAMIC Aside-->
+                    </ng-container>
+
                     <div class="content-wrapper flex-row-fluid">
                       <router-outlet></router-outlet>
                     </div>
@@ -136,7 +141,6 @@
     <ng-container *ngIf="extrasQuickPanelDisplay">
       <app-quick-panel-offcanvas></app-quick-panel-offcanvas>
     </ng-container>
-
     <ng-container *ngIf="extrasUserOffcanvasDisplay">
       <app-user-offcanvas></app-user-offcanvas>
     </ng-container>
