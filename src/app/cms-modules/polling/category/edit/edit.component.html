@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
 
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -18,7 +18,7 @@
           RecordStatus is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
           minlength="3" maxlength="100" required />
@@ -31,7 +31,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
@@ -49,7 +49,7 @@
           src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
       </div>
       <div class="mb-9">
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label (click)="fileManagerOpenForm = true">فایل آیکن
           </mat-label>
           <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId

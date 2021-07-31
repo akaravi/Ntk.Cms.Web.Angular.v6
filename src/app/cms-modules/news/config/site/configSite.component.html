@@ -9,7 +9,7 @@
         <mat-step label="تنظیمات ماژول" state="main">
           <p>تنظیمات که ماژول به سایت به کارگیری می شود </p>
           <!-- StatusRenderUser Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.StatusRenderUser"
               name="dataConfigSiteValuesModel.StatusRenderUser">
               StatusRenderUser
@@ -39,13 +39,13 @@
         <mat-step label="مقادیر ذخیره شده" state="main">
           <p>مقادیر ذخیره شده توسط سیستم </p>
           <!-- RowCount Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.RowCount" name="dataSiteStorageModel.RowCount">
               RowCount
             </mat-slide-toggle>
           </div>
           <!-- MainDataContentRowCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataSiteStorageModel.MainDataContentRowCount"
               name="dataSiteStorageModel.MainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
@@ -56,7 +56,7 @@
 
           </mat-form-field>
           <!-- UpdatedContent Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>UpdatedContent</mat-label>
             <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent"
               [(ngModel)]="dataSiteStorageModel.UpdatedContent" name="dataSiteStorageModel.UpdatedContent" />
@@ -67,7 +67,7 @@
           </mat-form-field>
 
           <!-- UpdatedNewsCategory Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>UpdatedNewsCategory</mat-label>
             <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedNewsCategory"
               [(ngModel)]="dataSiteStorageModel.UpdatedNewsCategory" name="dataSiteStorageModel.UpdatedNewsCategory" />
@@ -78,7 +78,7 @@
           </mat-form-field>
 
           <!-- UpdatedNewsContent Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>UpdatedNewsContent</mat-label>
             <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedNewsContent"
               [(ngModel)]="dataSiteStorageModel.UpdatedNewsContent" name="dataSiteStorageModel.UpdatedNewsContent" />
@@ -109,7 +109,7 @@
         <mat-step label="دسترسی" state="main">
           <p>دسترسی ها این وب سایت به این ماژول</p>
           <!-- MainDataContentRowCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.MainDataContentRowCount"
               name="dataConfigSiteAccessValuesModel.MainDataContentRowCount"

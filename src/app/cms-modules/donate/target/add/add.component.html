@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
           name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
           required>
@@ -23,7 +23,7 @@
         [optionSelectForce]="dataModel.LinkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
       </app-donate-targetcategory-selector>
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
           placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -36,7 +36,7 @@
         </mat-error>
       </mat-form-field>
       <!-- Description Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="1000" required
@@ -51,14 +51,14 @@
       </mat-form-field>
 
       <!-- IsPublic Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.IsPublic" *ngIf="fieldsInfo['IsPublic']?.AccessWatchField"
           [disabled]="!fieldsInfo['IsPublic']?.AccessAddField" name="dataModel.IsPublic">
           {{fieldsInfo['IsPublic']?.FieldTitle}}
         </mat-slide-toggle>
       </div>
       <!-- ToWebAddress Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['ToWebAddress']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.ToWebAddress" name="dataModel.ToWebAddress" #ToWebAddress type="text"
           placeholder="https://...." minlength="0" maxlength="100"  style="text-align: left;" dir="ltr" />
@@ -69,7 +69,7 @@
 
       </mat-form-field>
       <!-- HashMd5 Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['HashMd5']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.HashMd5" name="dataModel.HashMd5" #HashMd5 type="text" placeholder="...."
           minlength="0" maxlength="100" />
@@ -79,7 +79,7 @@
         <mat-hint align="end">{{ HashMd5.value.length }} / 100</mat-hint>
       </mat-form-field>
       <!-- Key Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Key']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Key" name="dataModel.Key" #Key type="text" placeholder="...."
           minlength="0" maxlength="100" />
@@ -90,7 +90,7 @@
       </mat-form-field>
 
       <!-- CurrentClickCount Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['CurrentClickCount']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.CurrentClickCount" name="dataModel.CurrentClickCount" #CurrentClickCount
           type="number" placeholder="0" />
@@ -99,7 +99,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- CurrentViewCount Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['CurrentViewCount']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.CurrentViewCount" name="dataModel.CurrentViewCount" #CurrentViewCount
           type="number" placeholder="0" />
@@ -109,7 +109,7 @@
       </mat-form-field>
 
       <!-- CurrentPaymentCount Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['CurrentPaymentCount']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.CurrentPaymentCount" name="dataModel.CurrentPaymentCount"
           #CurrentPaymentCount type="number" placeholder="0" />
@@ -119,7 +119,7 @@
       </mat-form-field>
 
       <!-- CurrentPaymentSum Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['CurrentPaymentSum']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.CurrentPaymentSum" name="dataModel.CurrentPaymentSum" #CurrentPaymentSum
           type="number" placeholder="0" />
@@ -128,7 +128,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- LinkCmsUserId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['LinkCmsUserId']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.LinkCmsUserId" name="dataModel.LinkCmsUserId" #LinkCmsUserId
           type="number" placeholder="0" />
@@ -142,7 +142,7 @@
           src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
       </div>
       <div class="mb-9">
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label (click)="fileManagerOpenForm = true">فایل آیکن
           </mat-label>
           <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId

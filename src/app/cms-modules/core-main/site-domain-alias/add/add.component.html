@@ -7,7 +7,7 @@
 
 
       <div>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
             #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
             <mat-option *ngFor="
@@ -22,7 +22,7 @@
         </mat-form-field>
         <app-core-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
           [optionSelectForce]="dataModel.LinkCmsSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label>Domain</mat-label>
           <input matInput [(ngModel)]="dataModel.Domain" name="dataModel.Domain" #Domain type="text"
             placeholder="Domain" minlength="3" maxlength="50" required />
@@ -34,7 +34,7 @@
             Domain is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label>SubDomain</mat-label>
           <input matInput [(ngModel)]="dataModel.SubDomain" name="dataModel.SubDomain" #SubDomain type="text"
             placeholder="SubDomain" minlength="0" maxlength="50" required />

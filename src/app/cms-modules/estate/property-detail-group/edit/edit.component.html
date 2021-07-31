@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
           placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -22,7 +22,7 @@
         [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'دسته بندی'" [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField">
       </app-estate-propertytypelanduse-selector>
       <!-- IconFont Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['IconFont']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.AccessWatchField">
         <mat-label> {{fieldsInfo['IconFont']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.IconFont" name="dataModel.IconFont" #IconFont
           [iconPicker]="dataModel.IconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
@@ -35,7 +35,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- IconColor Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['IconColor']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconColor']?.AccessWatchField">
         <mat-label> {{fieldsInfo['IconColor']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.IconColor" name="dataModel.IconColor" #IconColor
           [value]="dataModel.IconColor" [style.background]="dataModel.IconColor" [(colorPicker)]="dataModel.IconColor"
@@ -47,7 +47,7 @@
       </mat-form-field>
 
       <!-- ShowInFormOrder Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ShowInFormOrder']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInFormOrder']?.AccessWatchField">
         <mat-label> {{fieldsInfo['ShowInFormOrder']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.ShowInFormOrder" name="dataModel.ShowInFormOrder" #ShowInFormOrder
           type="number" [disabled]="!fieldsInfo['ShowInFormOrder']?.AccessEditField"
@@ -57,7 +57,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- Description Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500"

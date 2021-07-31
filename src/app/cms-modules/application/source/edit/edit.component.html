@@ -9,7 +9,7 @@
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
           <!-- RecordStatus Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
               [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField" name="dataModel.RecordStatus"
               #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
@@ -25,7 +25,7 @@
           </mat-form-field>
 
           <!-- Title Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessEditField"
               name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
@@ -39,7 +39,7 @@
             </mat-error>
           </mat-form-field>
           <!-- TitleResourceLanguage Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
             <mat-label> {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
               #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessEditField"
@@ -54,7 +54,7 @@
             </mat-error>
           </mat-form-field>
           <!-- OSType Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['OSType']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['OSType']?.AccessWatchField">
             <mat-select placeholder="{{fieldsInfo['OSType']?.FieldTitle}}" [(ngModel)]="dataModel.OSType"
               name="dataModel.OSType" #OSType="ngModel" required>
               <mat-option *ngFor="
@@ -68,7 +68,7 @@
             </mat-error>
           </mat-form-field>
           <!-- ClassName Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ClassName']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ClassName']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ClassName']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.ClassName" [disabled]="!fieldsInfo['ClassName']?.AccessEditField"
               name="dataModel.ClassName" #ClassName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
@@ -82,7 +82,7 @@
             </mat-error>
           </mat-form-field>
           <!-- PackageName Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['PackageName']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PackageName']?.AccessWatchField">
             <mat-label>{{fieldsInfo['PackageName']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.PackageName" [disabled]="!fieldsInfo['PackageName']?.AccessEditField"
               name="dataModel.PackageName" #PackageName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
@@ -97,7 +97,7 @@
           </mat-form-field>
 
           <!-- Extension Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Extension']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Extension']?.AccessWatchField">
             <mat-label>{{fieldsInfo['Extension']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.Extension" [disabled]="!fieldsInfo['Extension']?.AccessEditField"
               name="dataModel.Extension" #Extension type="text" placeholder="exe" minlength="1" maxlength="10"
@@ -112,7 +112,7 @@
             </mat-error>
           </mat-form-field>
           <!-- ExtensionUpdateFile Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExtensionUpdateFile']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExtensionUpdateFile']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ExtensionUpdateFile']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.ExtensionUpdateFile"
               [disabled]="!fieldsInfo['ExtensionUpdateFile']?.AccessEditField" name="dataModel.ExtensionUpdateFile"
@@ -145,7 +145,7 @@
           <p>تنظیمات ساخت اپلیکیشن و برروز رسانی را انتخاب کنید</p>
 
           <!-- DefaultAppId Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['DefaultAppId']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DefaultAppId']?.AccessWatchField">
             <mat-label>{{fieldsInfo['DefaultAppId']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.DefaultAppId"
               [disabled]="!fieldsInfo['DefaultAppId']?.AccessEditField" name="dataModel.DefaultAppId" #DefaultAppId
@@ -155,21 +155,21 @@
             <mat-icon *ngIf="fieldsInfo['DefaultAppId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           </mat-form-field>
           <!-- IsPublish Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.IsPublish" *ngIf="fieldsInfo['IsPublish']?.AccessWatchField"
               [disabled]="!fieldsInfo['IsPublish']?.AccessEditField" name="dataModel.IsPublish">
               {{fieldsInfo['IsPublish']?.FieldTitle}}
             </mat-slide-toggle>
           </div>
           <!-- ForceUpdate Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.ForceUpdate" *ngIf="fieldsInfo['ForceUpdate']?.AccessWatchField"
               [disabled]="!fieldsInfo['ForceUpdate']?.AccessEditField" name="dataModel.ForceUpdate">
               {{fieldsInfo['ForceUpdate']?.FieldTitle}}
             </mat-slide-toggle>
           </div>
           <!-- UpdateSourceByGit Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.UpdateSourceByGit"
               *ngIf="fieldsInfo['UpdateSourceByGit']?.AccessWatchField"
               [disabled]="!fieldsInfo['UpdateSourceByGit']?.AccessEditField" name="dataModel.UpdateSourceByGit">
@@ -177,7 +177,7 @@
             </mat-slide-toggle>
           </div>
           <!-- IsAbilityGradleBuild Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.IsAbilityGradleBuild"
               *ngIf="fieldsInfo['IsAbilityGradleBuild']?.AccessWatchField"
               [disabled]="!fieldsInfo['IsAbilityGradleBuild']?.AccessEditField" name="dataModel.IsAbilityGradleBuild">
@@ -185,7 +185,7 @@
             </mat-slide-toggle>
           </div>
           <!-- SourceNameGit Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['SourceNameGit']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SourceNameGit']?.AccessWatchField">
             <mat-label>{{fieldsInfo['SourceNameGit']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.SourceNameGit"
               [disabled]="!fieldsInfo['SourceNameGit']?.AccessEditField" name="dataModel.SourceNameGit" #SourceNameGit
@@ -197,7 +197,7 @@
           </mat-form-field>
 
           <!-- FireBaseServerKey Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['FireBaseServerKey']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FireBaseServerKey']?.AccessWatchField">
             <mat-label>{{fieldsInfo['FireBaseServerKey']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.FireBaseServerKey"
               [disabled]="!fieldsInfo['FireBaseServerKey']?.AccessEditField" name="dataModel.FireBaseServerKey"
@@ -225,7 +225,7 @@
               src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
           </div>
           <div class="mb-9">
-            <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">
+            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">
 
               <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainImageId"
@@ -267,7 +267,7 @@
           </app-cms-sitecategory-selectionlist>
 
           <hr>
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="fieldsInfo['DefaultConfigBuilderAdminJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['DefaultConfigBuilderAdminJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.DefaultConfigBuilderAdminJsonValues"
@@ -278,7 +278,7 @@
               aria-label="Clear" (click)="dataModel.DefaultConfigBuilderAdminJsonValues = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="fieldsInfo['DefaultConfigRuntimeAdminJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['DefaultConfigRuntimeAdminJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.DefaultConfigRuntimeAdminJsonValues"
@@ -289,7 +289,7 @@
               aria-label="Clear" (click)="dataModel.DefaultConfigRuntimeAdminJsonValues = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="fieldsInfo['DefaultConfigBuilderSiteJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['DefaultConfigBuilderSiteJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.DefaultConfigBuilderSiteJsonValues"
@@ -300,7 +300,7 @@
               aria-label="Clear" (click)="dataModel.DefaultConfigBuilderSiteJsonValues = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="fieldsInfo['DefaultConfigRuntimeSiteJsonValues']?.AccessWatchField">
             <mat-label>{{fieldsInfo['DefaultConfigRuntimeSiteJsonValues']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.DefaultConfigRuntimeSiteJsonValues"
@@ -319,11 +319,11 @@
 
 
 
-          <table class="example-full-width" cellspacing="0">
+          <table class="ntk-full-width" cellspacing="0">
 
             <tr>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey1String']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey1String']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey1String']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey1String"
                     [disabled]="!fieldsInfo['BuildKey1String']?.AccessEditField" name="dataModel.BuildKey1String"
@@ -332,7 +332,7 @@
                 </mat-form-field>
               </td>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey1Value']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey1Value']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey1Value']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey1Value"
                     [disabled]="!fieldsInfo['BuildKey1Value']?.AccessEditField" name="dataModel.BuildKey1Value"
@@ -345,7 +345,7 @@
 
             <tr>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey2String']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey2String']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey2String']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey2String"
                     [disabled]="!fieldsInfo['BuildKey2String']?.AccessEditField" name="dataModel.BuildKey2String"
@@ -354,7 +354,7 @@
                 </mat-form-field>
               </td>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey2Value']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey2Value']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey2Value']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey2Value"
                     [disabled]="!fieldsInfo['BuildKey2Value']?.AccessEditField" name="dataModel.BuildKey2Value"
@@ -368,7 +368,7 @@
 
             <tr>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey3String']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey3String']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey3String']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey3String"
                     [disabled]="!fieldsInfo['BuildKey3String']?.AccessEditField" name="dataModel.BuildKey3String"
@@ -377,7 +377,7 @@
                 </mat-form-field>
               </td>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey3Value']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey3Value']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey3Value']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey3Value"
                     [disabled]="!fieldsInfo['BuildKey3Value']?.AccessEditField" name="dataModel.BuildKey3Value"
@@ -390,7 +390,7 @@
 
             <tr>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey4String']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey4String']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey4String']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey4String"
                     [disabled]="!fieldsInfo['BuildKey4String']?.AccessEditField" name="dataModel.BuildKey4String"
@@ -399,7 +399,7 @@
                 </mat-form-field>
               </td>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey4Value']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey4Value']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey4Value']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey4Value"
                     [disabled]="!fieldsInfo['BuildKey4Value']?.AccessEditField" name="dataModel.BuildKey4Value"
@@ -413,7 +413,7 @@
 
             <tr>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey5String']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey5String']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey5String']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey5String"
                     [disabled]="!fieldsInfo['BuildKey5String']?.AccessEditField" name="dataModel.BuildKey5String"
@@ -422,7 +422,7 @@
                 </mat-form-field>
               </td>
               <td>
-                <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BuildKey5Value']?.AccessWatchField">
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey5Value']?.AccessWatchField">
                   <mat-label>{{fieldsInfo['BuildKey5Value']?.FieldTitle}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.BuildKey5Value"
                     [disabled]="!fieldsInfo['BuildKey5Value']?.AccessEditField" name="dataModel.BuildKey5Value"
@@ -471,7 +471,7 @@
 
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LastSuccessfullyBuildDate']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastSuccessfullyBuildDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['LastSuccessfullyBuildDate']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.LastSuccessfullyBuildDate"
               [disabled]="!fieldsInfo['LastSuccessfullyBuildDate']?.AccessEditField"
@@ -483,7 +483,7 @@
           </mat-form-field>
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LastBuildCommandDate']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['LastBuildCommandDate']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.LastBuildCommandDate"
               [disabled]="!fieldsInfo['LastBuildCommandDate']?.AccessEditField" name="dataModel.LastBuildCommandDate"
@@ -493,7 +493,7 @@
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LastBuildCommandBy']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandBy']?.AccessWatchField">
             <mat-label>{{fieldsInfo['LastBuildCommandBy']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.LastBuildCommandBy"
               [disabled]="!fieldsInfo['LastBuildCommandBy']?.AccessEditField" name="dataModel.LastBuildCommandBy"
@@ -505,7 +505,7 @@
 
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LastBuildCommandDate']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['LastBuildCommandDate']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.LastBuildCommandDate"
               [disabled]="!fieldsInfo['LastBuildCommandDate']?.AccessEditField" name="dataModel.LastBuildCommandDate"
@@ -516,7 +516,7 @@
           </mat-form-field>
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LastBuildCommandBy']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandBy']?.AccessWatchField">
             <mat-label>{{fieldsInfo['LastBuildCommandBy']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.LastBuildCommandBy"
               [disabled]="!fieldsInfo['LastBuildCommandBy']?.AccessEditField" name="dataModel.LastBuildCommandBy"
@@ -527,7 +527,7 @@
           </mat-form-field>
 
 
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="fieldsInfo['LastUnsuccessfullyBuildErrorDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['LastUnsuccessfullyBuildErrorDate']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.LastUnsuccessfullyBuildErrorDate"
@@ -539,7 +539,7 @@
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="fieldsInfo['LastUnsuccessfullyBuildErrorMessage']?.AccessWatchField">
             <mat-label>{{fieldsInfo['LastUnsuccessfullyBuildErrorMessage']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.LastUnsuccessfullyBuildErrorMessage"

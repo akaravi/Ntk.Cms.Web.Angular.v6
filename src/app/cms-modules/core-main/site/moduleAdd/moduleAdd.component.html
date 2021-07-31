@@ -6,7 +6,7 @@
 
 
         <div>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
               #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
               <mat-option *ngFor="
@@ -28,7 +28,7 @@
             [optionSelectForce]="dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'">
           </app-core-module-selector>
            <!-- ExpireDate Field -->
-           <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
             <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
                 <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix

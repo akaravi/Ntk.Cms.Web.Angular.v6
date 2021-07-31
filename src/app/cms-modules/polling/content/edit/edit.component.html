@@ -9,7 +9,7 @@
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
               #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
               <mat-option *ngFor="
@@ -25,7 +25,7 @@
           <app-polling-category-selector (optionSelect)="onActionSelectorSelect($event)"
             [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'دسته بندی'">
           </app-polling-category-selector>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
               minlength="3" maxlength="100" required />
@@ -38,7 +38,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>سوال</mat-label>
             <textarea matInput [(ngModel)]="dataModel.Question" name="dataModel.Question" #Question type="text"
               placeholder="سوال" minlength="1" maxlength="1000" required rows="5"></textarea>
@@ -51,7 +51,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>حداکثر مجموع امتیاز</mat-label>
             <input matInput [(ngModel)]="dataModel.MaxVoteForThisContent" name="dataModel.MaxVoteForThisContent"
               #MaxVoteForThisContent type="number" placeholder="حداکثر امتیازی که کاربری می تواند بدهد" min="1" max="100"
@@ -64,7 +64,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>حداکثر امتیاز به هر گزینه</mat-label>
             <input matInput [(ngModel)]="dataModel.MaxVoteForEachOption" name="dataModel.MaxVoteForEachOption"
               #MaxVoteForEachOption type="number" placeholder="حداکثر امتیازی که کاربری می تواند بدهد" min="1" max="100"
@@ -79,7 +79,7 @@
 
 
 
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.ViewStatisticsAfterVote"
               *ngIf="fieldsInfo['ViewStatisticsAfterVote']?.AccessWatchField"
               [disabled]="!fieldsInfo['ViewStatisticsAfterVote']?.AccessEditField"
@@ -89,7 +89,7 @@
           </div>
 
 
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.ViewStatisticsBeforeVote"
               *ngIf="fieldsInfo['ViewStatisticsBeforeVote']?.AccessWatchField"
               [disabled]="!fieldsInfo['ViewStatisticsBeforeVote']?.AccessEditField"
@@ -98,7 +98,7 @@
             </mat-slide-toggle>
           </div>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>تاریخ شروع</mat-label>
             <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
                  <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
@@ -108,7 +108,7 @@
           </mat-form-field>
 
             <!-- ExpireDate Field -->
-            <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
               <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
               <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
                   <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
@@ -134,7 +134,7 @@
         <mat-step label="گزینه های نظر سنجی" state="seo">
           <p>این بخش برای نوع و کزینه ای نظر سنجی می باشد</p>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>گزینه</mat-label>
             <input matInput [(ngModel)]="optionSelected.Option" name="optionSelected.Option" #optionSelected_Option
               type="text" placeholder="گزینه" minlength="1" maxlength="200" />
@@ -144,7 +144,7 @@
             <mat-hint align="end">{{ optionSelected_Option.value.length }} / 200</mat-hint>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>پاسخ</mat-label>
             <textarea matInput [(ngModel)]="optionSelected.OptionAnswer" name="optionSelected.OptionAnswer"
               #optionSelected_OptionAnswer type="text" placeholder="پاسخ" minlength="0" maxlength="500"
@@ -155,7 +155,7 @@
             <mat-hint align="end">{{ optionSelected_OptionAnswer.value.length }} / 500</mat-hint>
           </mat-form-field>
 
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="optionSelected.IsCorrectAnswer" name="optionSelected.IsCorrectAnswer">
               این گزینه صحیح است
             </mat-slide-toggle>
@@ -239,7 +239,7 @@
               src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
           </div>
           <div class="mb-9">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="ntk-full-width">
 
               <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
@@ -261,7 +261,7 @@
             </audio>
           </div>
           <div class="mb-9">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="ntk-full-width">
               <input matInput [(ngModel)]="dataModel.LinkFilePodcastId" name="dataModel.LinkFilePodcastId"
                 #LinkFilePodcastId type="text" placeholder="شناسه فایل صوتی"
                 (click)="fileManagerOpenFormPodcast = true" />
@@ -282,7 +282,7 @@
             </video>
           </div>
           <div class="mb-9">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="ntk-full-width">
               <input matInput [(ngModel)]="dataModel.LinkFileMovieId" name="dataModel.LinkFileMovieId" #LinkFileMovieId
                 type="text" placeholder="شناسه فایل ویدیو" (click)="fileManagerOpenFormMovie = true" />
               <mat-icon matSuffix *ngIf="dataModel.LinkFileMovieId" matSuffix mat-icon-button aria-label="Clear"

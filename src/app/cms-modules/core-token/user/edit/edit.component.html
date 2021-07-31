@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -19,7 +19,7 @@
         </mat-error>
       </mat-form-field>
       <!-- LinkMemberUserId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.LinkMemberUserId" name="dataModel.LinkMemberUserId"
           #LinkMemberUserId="ngModel" panelClass="LinkMemberUserId-{{ dataModel.LinkMemberUserId }}" required>
           <mat-option *ngFor="
@@ -33,7 +33,7 @@
         </mat-error>
       </mat-form-field>
       <!-- UserAccessAreaType Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.UserAccessAreaType" name="dataModel.UserAccessAreaType"
           #UserAccessAreaType="ngModel" panelClass="UserAccessAreaType-{{ dataModel.UserAccessAreaType }}" required>
           <mat-option *ngFor="
@@ -57,7 +57,7 @@
       <app-cms-member-selector (optionSelect)="onActionMemberSelect($event)" [optionDisabled]="false"
         [optionSelectForce]=" this.dataModel.LinkMemberUserId" [optionPlaceholder]="'عضو'"></app-cms-member-selector>
       <!-- UserAccessAdminAllowToAllData Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.UserAccessAdminAllowToAllData"
           *ngIf="fieldsInfo['UserAccessAdminAllowToAllData']?.AccessWatchField"
           [disabled]="!fieldsInfo['UserAccessAdminAllowToAllData']?.AccessEditField"
@@ -66,7 +66,7 @@
         </mat-slide-toggle>
       </div>
       <!-- LinkUserId Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.UserAccessAdminAllowToProfessionalData"
           *ngIf="fieldsInfo['UserAccessAdminAllowToProfessionalData']?.AccessWatchField"
           [disabled]="!fieldsInfo['UserAccessAdminAllowToProfessionalData']?.AccessEditField"
@@ -75,7 +75,7 @@
         </mat-slide-toggle>
       </div>
       <!-- RememberOnDevice Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.RememberOnDevice"
           *ngIf="fieldsInfo['RememberOnDevice']?.AccessWatchField"
           [disabled]="!fieldsInfo['RememberOnDevice']?.AccessEditField" name="dataModel.RememberOnDevice">
@@ -84,7 +84,7 @@
       </div>
 
       <!-- BrowserLanguage Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>BrowserLanguage</mat-label>
         <input matInput [(ngModel)]="dataModel.BrowserLanguage" name="dataModel.BrowserLanguage" #BrowserLanguage
           type="text" placeholder="BrowserLanguage" />
@@ -93,7 +93,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- UserLanguage Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>UserLanguage</mat-label>
         <input matInput [(ngModel)]="dataModel.UserLanguage" name="dataModel.UserLanguage" #UserLanguage type="text"
           placeholder="UserLanguage" />
@@ -102,7 +102,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- DeviceClientMAC Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>DeviceClientMAC</mat-label>
         <input matInput [(ngModel)]="dataModel.DeviceClientMAC" name="dataModel.DeviceClientMAC" #DeviceClientMAC
           type="text" placeholder="DeviceClientMAC" />
@@ -111,7 +111,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- Token Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>Token</mat-label>
         <input matInput [(ngModel)]="dataModel.Token" name="dataModel.Token" #Token type="text" placeholder="Token" />
         <mat-icon matSuffix *ngIf="dataModel.Token" matSuffix mat-icon-button aria-label="Clear"
@@ -119,7 +119,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- LinkDeviceId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>LinkDeviceId</mat-label>
         <input matInput [(ngModel)]="dataModel.LinkDeviceId" name="dataModel.LinkDeviceId" #LinkDeviceId type="text"
           placeholder="LinkDeviceId" />
@@ -129,7 +129,7 @@
       </mat-form-field>
 
       <!-- LinkApplicationId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>LinkApplicationId</mat-label>
         <input matInput [(ngModel)]="dataModel.LinkApplicationId" name="dataModel.LinkApplicationId" #LinkApplicationId
           type="text" placeholder="LinkApplicationId" />
@@ -139,7 +139,7 @@
       </mat-form-field>
 
       <!-- ExpireDate Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
         <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
         <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
         <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix

@@ -59,7 +59,7 @@ export class CoreUserEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
   dataModel: CoreUserModel = new CoreUserModel();
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+   @ViewChild('vform', { static: false })   formGroup: FormGroup;
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();

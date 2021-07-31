@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
       <!-- SendStatusType Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.SendStatusType" name="dataModel.SendStatusType"
           #SendStatusType="ngModel" panelClass="SendStatusType-{{ dataModel.SendStatusType }}" required>
           <mat-option *ngFor="
@@ -30,7 +30,7 @@
         [optionPlaceholder]="'عضو'"></app-cms-member-selector>
 
       <!-- ModuleName Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>ModuleName</mat-label>
         <input matInput [(ngModel)]="dataModel.ModuleName" name="dataModel.ModuleName" #ModuleName type="text"
           placeholder="ModuleName" />
@@ -40,7 +40,7 @@
       </mat-form-field>
 
       <!-- ModuleEntityName Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>ModuleEntityName</mat-label>
         <input matInput [(ngModel)]="dataModel.ModuleEntityName" name="dataModel.ModuleEntityName" #ModuleEntityName
           type="text" placeholder="ModuleEntityName" />
@@ -49,7 +49,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- ModuleEntityId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>ModuleEntityId</mat-label>
         <input matInput [(ngModel)]="dataModel.ModuleEntityId" name="dataModel.ModuleEntityId" #ModuleEntityId
           type="text" placeholder="ModuleEntityId" />
@@ -59,7 +59,7 @@
       </mat-form-field>
 
       <!-- FromNumber Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>FromNumber</mat-label>
         <input matInput [(ngModel)]="dataModel.FromNumber" name="dataModel.FromNumber" #FromNumber type="text"
           placeholder="FromNumber" />
@@ -68,7 +68,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- ToNumber Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>ToNumber</mat-label>
         <input matInput [(ngModel)]="dataModel.ToNumber" name="dataModel.ToNumber" #ToNumber type="text"
           placeholder="ToNumber" />
@@ -78,7 +78,7 @@
       </mat-form-field>
 
       <!-- ApiNumber Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>ApiNumber</mat-label>
         <input matInput [(ngModel)]="dataModel.ApiNumber" name="dataModel.ApiNumber" #ApiNumber type="text"
           placeholder="ApiNumber" />
@@ -87,7 +87,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- Message Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>Message</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Message" name="dataModel.Message" #Message type="text"
           placeholder="Message"></textarea>
@@ -97,7 +97,7 @@
       </mat-form-field>
 
       <!-- ReturnApi Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>ReturnApi</mat-label>
         <textarea matInput [(ngModel)]="dataModel.ReturnApi" name="dataModel.ReturnApi" #ReturnApi type="text"
           placeholder="ReturnApi"></textarea>

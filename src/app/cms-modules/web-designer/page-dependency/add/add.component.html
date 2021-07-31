@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -20,7 +20,7 @@
 
 
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
           minlength="3" maxlength="100" required [disabled]="!fieldsInfo['Title']?.AccessAddField"/>
@@ -33,13 +33,13 @@
         </mat-error>
       </mat-form-field>
       <!-- TitleML Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
         <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
       </mat-form-field>
 
       <!-- TitleResourceLanguage Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
           #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessAddField"/>
@@ -57,7 +57,7 @@
         [optionDisabled]="!fieldsInfo['LinkModuleId']?.AccessAddField">
       </app-cms-module-selector>
       <!-- CmsModuleClassName Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['CmsModuleClassName']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.CmsModuleClassName" name="dataModel.CmsModuleClassName"
           #CmsModuleClassName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required [disabled]="!fieldsInfo['CmsModuleClassName']?.AccessAddField"/>
@@ -70,7 +70,7 @@
         </mat-error>
       </mat-form-field>
       <!-- ClassActionName Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['ClassActionName']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.ClassActionName" name="dataModel.ClassActionName" #ClassActionName
           type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"  [disabled]="!fieldsInfo['ClassActionName']?.AccessAddField" />

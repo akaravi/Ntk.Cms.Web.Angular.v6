@@ -6,7 +6,7 @@
 
 
       <!-- UsedUsername Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>UsedUsername</mat-label>
         <input matInput [(ngModel)]="dataModel.UsedUsername" name="dataModel.UsedUsername" #UsedUsername type="text"
           placeholder="UsedUsername" />
@@ -17,7 +17,7 @@
 
 
       <!-- UsedPwd Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>UsedPwd</mat-label>
         <input matInput [(ngModel)]="dataModel.UsedPwd" name="dataModel.UsedPwd" #UsedPwd type="text"
           placeholder="UsedPwd" />
@@ -28,7 +28,7 @@
 
 
       <!-- UserAccessAreaType Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.UserAccessAreaType" name="dataModel.UserAccessAreaType"
           #UserAccessAreaType="ngModel" panelClass="UserAccessAreaType-{{ dataModel.UserAccessAreaType }}" required>
           <mat-option *ngFor="
@@ -52,7 +52,7 @@
       <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkMemberUserId"
         [optionPlaceholder]="'عضو'"></app-cms-member-selector>
       <!-- LinkDeviceId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>LinkDeviceId</mat-label>
         <input matInput [(ngModel)]="dataModel.LinkDeviceId" name="dataModel.LinkDeviceId" #LinkDeviceId type="text"
           placeholder="LinkDeviceId" />
@@ -62,7 +62,7 @@
       </mat-form-field>
 
       <!-- LinkApplicationId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>LinkApplicationId</mat-label>
         <input matInput [(ngModel)]="dataModel.LinkApplicationId" name="dataModel.LinkApplicationId" #LinkApplicationId
           type="text" placeholder="LinkApplicationId" />
@@ -73,7 +73,7 @@
 
 
       <!-- DeviceClientMAC Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>DeviceClientMAC</mat-label>
         <input matInput [(ngModel)]="dataModel.DeviceClientMAC" name="dataModel.DeviceClientMAC" #DeviceClientMAC
           type="text" placeholder="DeviceClientMAC" />

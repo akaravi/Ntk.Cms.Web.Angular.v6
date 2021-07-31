@@ -13,7 +13,7 @@
 
 
     <!--Mobile Field-->
-    <mat-form-field *ngIf="loginType=='mobile'" class="example-full-width">
+    <mat-form-field *ngIf="loginType=='mobile'" class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile"
         [disabled]=" !formInfo.ButtonSubmittedEnabled" #Mobile type="text" autocomplete="off"
@@ -30,7 +30,7 @@
       <mat-hint align="start" (click)="onloginTypeChange('email')" style="color: blue;" >ورود با ایمیل</mat-hint>
     </mat-form-field>
     <!--Email Field-->
-    <mat-form-field *ngIf="loginType=='email'" class="example-full-width">
+    <mat-form-field *ngIf="loginType=='email'" class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email"
         [disabled]=" !formInfo.ButtonSubmittedEnabled" #Email type="email" autocomplete="off"
@@ -47,7 +47,7 @@
       <mat-hint align="start" (click)="onloginTypeChange('mobile')"  style="color: color(35, 214, 89);">ورود با موبایل</mat-hint>
     </mat-form-field>
     <!--Password Field-->
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password"
         [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="password"
@@ -66,7 +66,7 @@
     <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
     <mat-icon matSuffix (click)="onCaptchaOrder()" >refresh</mat-icon>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
         [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"

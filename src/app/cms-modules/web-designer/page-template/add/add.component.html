@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -20,7 +20,7 @@
 
 
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
           minlength="3" maxlength="100" required [disabled]="!fieldsInfo['Title']?.AccessAddField"/>
@@ -35,7 +35,7 @@
 
 
       <!-- Folder Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Folder']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Folder" name="dataModel.Folder"
           #Folder type="text" placeholder="مسیر شاخه" minlength="3" maxlength="100" required [disabled]="!fieldsInfo['Folder']?.AccessAddField"/>
@@ -49,7 +49,7 @@
       </mat-form-field>
 
       <!-- IndexFile Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['IndexFile']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.IndexFile" name="dataModel.IndexFile"
           #IndexFile type="text" placeholder="index.html" minlength="3" maxlength="100" required [disabled]="!fieldsInfo['IndexFile']?.AccessAddField"/>
@@ -62,7 +62,7 @@
         </mat-error>
       </mat-form-field>
        <!-- Description Field -->
-       <mat-form-field class="example-full-width">
+       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>

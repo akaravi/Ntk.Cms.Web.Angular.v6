@@ -9,7 +9,7 @@
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
               [disabled]="!fieldsInfo['RecordStatus']?.AccessAddField" name="dataModel.RecordStatus"
               #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
@@ -29,7 +29,7 @@
             [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.AccessAddField"></app-ticketing-departemen-selector>
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['FullName']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FullName']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['FullName']?.FieldFullName }}</mat-label>
             <input matInput [(ngModel)]="dataModel.FullName" [disabled]="!fieldsInfo['FullName']?.AccessAddField"
               name="dataModel.FullName" #FullName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100"
@@ -44,7 +44,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessAddField"
               name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -58,7 +58,7 @@
           </mat-form-field>
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['PhoneNo']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PhoneNo']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['PhoneNo']?.FieldPhoneNo }}</mat-label>
             <input matInput [(ngModel)]="dataModel.PhoneNo" [disabled]="!fieldsInfo['PhoneNo']?.AccessAddField"
               name="dataModel.PhoneNo" #PhoneNo type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100"
@@ -73,7 +73,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Email']?.FieldEmail }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Email" [disabled]="!fieldsInfo['Email']?.AccessAddField"
               name="dataModel.Email" #Email type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -87,7 +87,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessAddField"
               name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -100,7 +100,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['HtmlBody']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HtmlBody']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['HtmlBody']?.FieldHtmlBody }}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.HtmlBody" [disabled]="!fieldsInfo['HtmlBody']?.AccessAddField"
               name="dataModel.HtmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" row="5" minlength="0"
@@ -114,7 +114,7 @@
           </mat-form-field>
 
              <!-- ExpireDate Field -->
-             <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+             <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
               <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
               <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
                   <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix
@@ -145,7 +145,7 @@
 
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['UserIpAddress']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserIpAddress']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['UserIpAddress']?.FieldUserIpAddress }}</mat-label>
             <input matInput [(ngModel)]="dataModel.UserIpAddress"
               [disabled]="!fieldsInfo['UserIpAddress']?.AccessAddField" name="dataModel.UserIpAddress" #UserIpAddress
@@ -158,7 +158,7 @@
 
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['DeviceInformation']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeviceInformation']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['DeviceInformation']?.FieldDeviceInformation }}</mat-label>
             <input matInput [(ngModel)]="dataModel.DeviceInformation"
               [disabled]="!fieldsInfo['DeviceInformation']?.AccessAddField" name="dataModel.DeviceInformation"

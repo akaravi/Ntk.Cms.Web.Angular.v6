@@ -10,14 +10,14 @@
         <mat-step label="{{'TITLE.Default_module_settings'|translate}}" state="main" *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <p>{{'TITLE.Settings_that_are_used_in_the_first_assignment_of_the_module_to_the_site' |translate}}</p>
           <!-- StatusRenderUser Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.StatusRenderUser"
               name="dataConfigSiteValuesDefaultModel.StatusRenderUser">
               StatusRenderUser
             </mat-slide-toggle>
           </div>
           <!-- DomainsGoogleSitekey Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>DomainsGoogleSitekey</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey"
               name="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey"
@@ -31,7 +31,7 @@
           </mat-form-field>
 
           <!-- DomainsGoogleSecretkey Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>DomainsGoogleSecretkey</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey"
               name="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey"
@@ -44,14 +44,14 @@
               DomainsGoogleSecretkey is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryBool"
               name="dataConfigSiteValuesDefaultModel.UserRegidteryBool">
               UserRegidteryBool
             </mat-slide-toggle>
           </div>
           <!-- UserRegidteryRecordStatus Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-select placeholder="وضعیت" [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus"
               name="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus" #UserRegidteryRecordStatus="ngModel"
               panelClass="UserRegidteryRecordStatus-{{ dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus }}"
@@ -67,7 +67,7 @@
             </mat-error>
           </mat-form-field>
           <!-- UserRegidteryExpireDateDay Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>UserRegidteryExpireDateDay</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay"
               name="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay"
@@ -81,7 +81,7 @@
             </mat-error>
           </mat-form-field>
           <!-- RSSCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>RSSCount</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.RSSCount"
               name="dataConfigSiteValuesDefaultModel.RSSCount" #dataConfigSiteValuesDefaultModel_RSSCount type="number"
@@ -118,7 +118,7 @@
           <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
 
           <!-- MainDataContentRowCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
               name="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
@@ -134,7 +134,7 @@
 
 
           <!-- DomainsList Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>DomainsList</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.DomainsList"
               name="dataConfigSiteAccessValuesDefaultModel.DomainsList"
@@ -148,7 +148,7 @@
 
 
           <!-- MaxAdminCpUserCreation Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MaxAdminCpUserCreation</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
               name="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
@@ -165,7 +165,7 @@
 
 
           <!-- MaxUserCreation Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MaxUserCreation</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
               name="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
@@ -202,14 +202,14 @@
           <p>{{'TITLE.The_whole_system_management_settings_for_this_module'|translate}}</p>
 
           <!-- AccessBuy Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy"
               name="dataConfigAdminMainModel.AccessBuy">
               AccessBuy
             </mat-slide-toggle>
           </div>
           <!-- AccessBuyPrice Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AccessBuyPrice</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyPrice"
               name="dataConfigAdminMainModel.AccessBuyPrice" #dataConfigAdminMainModel_AccessBuyPrice type="number"
@@ -223,7 +223,7 @@
           </mat-form-field>
 
           <!-- AccessBuyMonth Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AccessBuyMonth</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyMonth"
               name="dataConfigAdminMainModel.AccessBuyMonth" #dataConfigAdminMainModel_AccessBuyMonth type="number"
@@ -236,14 +236,14 @@
             </mat-error>
           </mat-form-field>
           <!-- AccessFree Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
               name="dataConfigAdminMainModel.AccessFree">
               AccessFree
             </mat-slide-toggle>
           </div>
           <!-- AccessFreeDay Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AccessFreeDay</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessFreeDay"
               name="dataConfigAdminMainModel.AccessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
@@ -259,7 +259,7 @@
 
 
           <!-- DomainsList Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>DomainsList</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.DomainsList"
               name="dataConfigAdminMainModel.DomainsList" #dataConfigAdminMainModel_DomainsList type="number"
@@ -273,7 +273,7 @@
           </mat-form-field>
 
           <!-- AdminCpUserRegidteryBool Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AdminCpUserRegidteryBool"
               name="dataConfigAdminMainModel.AdminCpUserRegidteryBool">
               AdminCpUserRegidteryBool
@@ -281,7 +281,7 @@
           </div>
 
           <!-- AdminCpUserRegidteryExpireDateDay Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AdminCpUserRegidteryExpireDateDay</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"
               name="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"

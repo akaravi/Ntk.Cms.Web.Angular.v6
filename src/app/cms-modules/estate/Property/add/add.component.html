@@ -10,7 +10,7 @@
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
           <!-- RecordStatus Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
               name="dataModel.RecordStatus" #RecordStatus="ngModel"
               panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
@@ -25,7 +25,7 @@
             </mat-error>
           </mat-form-field>
           <!-- Title Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
               placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -38,7 +38,7 @@
             </mat-error>
           </mat-form-field>
           <!-- CaseCode Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['CaseCode']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.CaseCode" name="dataModel.CaseCode" #CaseCode type="text"
               placeholder="{{fieldsInfo['CaseCode']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -66,7 +66,7 @@
           </app-estate-propertytypelanduse-selector>
           <br>
           <!-- CreatedYaer Field -->
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected.TitleCreatedYaer.length>1">
             <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
             <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="text"
@@ -77,7 +77,7 @@
 
           </mat-form-field>
           <!-- Partition Field -->
-          <mat-form-field class="example-full-width"
+          <mat-form-field class="ntk-full-width"
             *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected.TitlePartition.length>1">
             <mat-label>{{PropertyTypeSelected.TitlePartition}}</mat-label>
             <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="text"
@@ -88,7 +88,7 @@
 
           </mat-form-field>
           <!-- Area Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Area']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.Area" name="dataModel.Area" #Area type="text"
               placeholder="{{fieldsInfo['Area']?.FieldTitle}}" />
@@ -112,7 +112,7 @@
             [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه'">
           </app-cms-location-selector>
           <!-- Address Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Address']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.Address" name="dataModel.Address" #Address type="text"
               placeholder="{{fieldsInfo['Address']?.FieldTitle}}" minlength="1" maxlength="500" rows=5
@@ -123,7 +123,7 @@
             <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
           </mat-form-field>
           <!-- Description Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
               placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
@@ -137,7 +137,7 @@
           </mat-form-field>
           <hr>
           <!-- AboutAgentTel Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['AboutAgentTel']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutAgentTel" name="dataModel.AboutAgentTel" #AboutAgentTel
               type="text" placeholder="{{fieldsInfo['AboutAgentTel']?.FieldTitle}}" minlength="0" maxlength="100" />
@@ -147,7 +147,7 @@
             <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
           </mat-form-field>
           <!-- AboutAgentMobile Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutAgentMobile" name="dataModel.AboutAgentMobile" #AboutAgentMobile
               type="text" placeholder="{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}" minlength="0" maxlength="100" />
@@ -159,7 +159,7 @@
 
           <hr>
           <!-- AboutCustomerTel Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutCustomerTel" name="dataModel.AboutCustomerTel" #AboutCustomerTel
               type="text" placeholder="{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}" minlength="0" maxlength="100" />
@@ -169,7 +169,7 @@
             <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
           </mat-form-field>
           <!-- AboutCustomerMobile Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutCustomerMobile" name="dataModel.AboutCustomerMobile"
               #AboutCustomerMobile type="text" placeholder="{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}"
@@ -216,7 +216,7 @@
               <ng-container *ngFor="let itemDetail of itemGroup.PropertyDetails">
                 <ng-container [ngSwitch]="itemDetail.InputDataType">
                   <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.String" class="example-full-width">
+                  <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
                     <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                     <app-input-string [(model)]="propertyDetails[itemDetail.Id]"
                       [optionForceUseDefaultValue]="itemDetail.ConfigValueForceUseDefaultValue"
@@ -224,27 +224,27 @@
                       [optionDefaultValue]="itemDetail.ConfigValueDefaultValue"></app-input-string>
                   </div>
                   <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Int" class="example-full-width">
+                  <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
                     <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                     <app-input-int [(model)]="propertyDetails[itemDetail.Id]"></app-input-int>
                   </div>
                   <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Boolean" class="example-full-width">
+                  <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
                     <app-input-boolean [(model)]="propertyDetails[itemDetail.Id]">{{itemDetail.Title}}
                     </app-input-boolean>
                   </div>
                   <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Float" class="example-full-width">
+                  <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
                     <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                     <app-input-float [(model)]="propertyDetails[itemDetail.Id]"></app-input-float>
                   </div>
                   <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Date" class="example-full-width">
+                  <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
                     <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                     <app-input-date [(model)]="propertyDetails[itemDetail.Id]"></app-input-date>
                   </div>
                   <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.TextArea" class="example-full-width">
+                  <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
                     <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                     <app-input-textarea [(model)]="propertyDetails[itemDetail.Id]"></app-input-textarea>
                   </div>
@@ -288,7 +288,7 @@
 
 
             <!-- SalePrice Field -->
-            <mat-form-field class="example-full-width" *ngIf="contractTypeSelected.HasSalePrice">
+            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
               <mat-label>Sale Price</mat-label>
               <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
                 #CurrentClickCount type="number" placeholder="0" />
@@ -299,7 +299,7 @@
               <mat-label> ( {{contractTypeSelected.UnitSalePrice}} ) </mat-label>
             </mat-form-field>
             <!-- RentPrice Field -->
-            <mat-form-field class="example-full-width" *ngIf="contractTypeSelected.HasRentPrice">
+            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
               <mat-label>Rent Price</mat-label>
               <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
                 #CurrentClickCount type="number" placeholder="0" />
@@ -310,7 +310,7 @@
               <mat-label> ( {{contractTypeSelected.UnitRentPrice}} ) </mat-label>
             </mat-form-field>
             <!-- DepositPrice Field -->
-            <mat-form-field class="example-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
+            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
               <mat-label>Rent Price</mat-label>
               <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
                 #CurrentClickCount type="number" placeholder="0" />
@@ -390,7 +390,7 @@
               src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
           </div>
           <div class="mb-9">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="ntk-full-width">
 
               <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId

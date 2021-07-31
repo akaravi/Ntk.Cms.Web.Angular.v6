@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -32,7 +32,7 @@
 
 
       <!-- IsRequired Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.IsRequired" *ngIf="fieldsInfo['IsRequired']?.AccessWatchField"
           [disabled]="!fieldsInfo['IsRequired']?.AccessEditField" name="dataModel.IsRequired">
           {{fieldsInfo['IsRequired']?.FieldTitle}}

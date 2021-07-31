@@ -10,7 +10,7 @@
       {{'AUTH.REGISTER.DESC' | translate}}
 
       <div>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.FIRSTNAME' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Name" name="dataModel.Name" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Name type="text" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
@@ -24,7 +24,7 @@
             Name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.LASTNAME' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Family" name="dataModel.Family" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Family type="text"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
@@ -39,7 +39,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Email type="email" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
@@ -54,7 +54,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
@@ -74,7 +74,7 @@
         (passwordStrength)="passwordValid($event)"
         ></app-password-strength>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.RePassword" name="dataModel.RePassword" [disabled]=" !formInfo.ButtonSubmittedEnabled" #RePassword type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
@@ -96,7 +96,7 @@
         <!--CaptchaText Field-->
         <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
         <mat-icon matSuffix (click)="onCaptchaOrder()" >refresh</mat-icon>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.CaptchaText"  name="dataModel.CaptchaText" [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"

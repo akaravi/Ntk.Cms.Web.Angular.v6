@@ -71,6 +71,7 @@ import { TranslationModule } from '../core/i18n/translation.module';
 import { CmsTokenAccessComponent } from './cms-token-access/cmsTokenAccess.component';
 import { CmsNoticeComponent } from './cms-notice/cms-notice.component';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { CmsCardComponent } from './cms-card/cms-card.component';
 
 
 
@@ -133,6 +134,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
     CmsNoticeComponent,
+    CmsCardComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -190,6 +192,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
     CmsNoticeComponent,
+    CmsCardComponent,
     /**input */
     StringComponent,
     IntComponent,

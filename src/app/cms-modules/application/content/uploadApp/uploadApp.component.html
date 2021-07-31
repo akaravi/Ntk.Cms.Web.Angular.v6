@@ -10,7 +10,7 @@
   </div>
   <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
     <mat-card-content>
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['AppVersion']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AppVersion']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['AppVersion']?.FieldAppVersion }}</mat-label>
         <input matInput [(ngModel)]="dataModel.AppVersion" [disabled]="!fieldsInfo['AppVersion']?.AccessEditField"
           name="dataModel.AppVersion" #AppVersion type="number" placeholder="ورژن" min="0" max="1000" required />
@@ -22,7 +22,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['LastBuildAppKey']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildAppKey']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }}</mat-label>
         <input matInput [(ngModel)]="dataModel.LastBuildAppKey"
           [disabled]="!fieldsInfo['LastBuildAppKey']?.AccessEditField" name="dataModel.LastBuildAppKey" #LastBuildAppKey

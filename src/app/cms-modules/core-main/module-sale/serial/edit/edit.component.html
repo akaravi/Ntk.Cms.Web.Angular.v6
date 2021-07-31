@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -18,7 +18,7 @@
         </mat-error>
       </mat-form-field>
       <!-- SerialNumber Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['SerialNumber']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.SerialNumber" name="dataModel.SerialNumber" #SerialNumber type="text"
           placeholder="Serial Number" minlength="3" maxlength="100" required />
@@ -31,7 +31,7 @@
         </mat-error>
       </mat-form-field>
       <!-- PwdForUse Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['PwdForUse']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.PwdForUse" name="dataModel.PwdForUse" #PwdForUse type="text"
           placeholder="Serial Number" minlength="3" maxlength="100" required />
@@ -50,21 +50,21 @@
         [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderId']?.AccessEditField">
       </app-core-modulesaleheader-selector>
       <!-- HasDemo Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.HasDemo" *ngIf="fieldsInfo['HasDemo']?.AccessWatchField"
           [disabled]="!fieldsInfo['HasDemo']?.AccessEditField" name="dataModel.HasDemo">
           {{fieldsInfo['HasDemo']?.FieldTitle}}
         </mat-slide-toggle>
       </div>
       <!-- HasUsed Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.HasUsed" *ngIf="fieldsInfo['HasUsed']?.AccessWatchField"
           [disabled]="!fieldsInfo['HasUsed']?.AccessEditField" name="dataModel.HasUsed">
           {{fieldsInfo['HasUsed']?.FieldTitle}}
         </mat-slide-toggle>
       </div>
       <!-- NumberOfMaxUse Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['NumberOfMaxUse']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['NumberOfMaxUse']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['NumberOfMaxUse']?.FieldTitle }}</mat-label>
         <input matInput [(ngModel)]="dataModel.NumberOfMaxUse"
           [disabled]="!fieldsInfo['NumberOfMaxUse']?.AccessEditField" name="dataModel.NumberOfMaxUse" #NumberOfMaxUse
@@ -78,7 +78,7 @@
       </mat-form-field>
 
       <!-- MaxExpireToUse Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['MaxExpireToUse']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MaxExpireToUse']?.AccessWatchField">
         <mat-label>{{fieldsInfo['MaxExpireToUse']?.FieldTitle}}</mat-label>
         <input matInput [matDatepicker]="MaxExpireToUse" [(ngModel)]="dataModel.MaxExpireToUse"
           name="dataModel.MaxExpireToUse" />
@@ -89,7 +89,7 @@
       </mat-form-field>
 
       <!-- NumberOfRegistered Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['NumberOfRegistered']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['NumberOfRegistered']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['NumberOfRegistered']?.FieldTitle }}</mat-label>
         <input matInput [(ngModel)]="dataModel.NumberOfRegistered"
           [disabled]="!fieldsInfo['NumberOfRegistered']?.AccessEditField" name="dataModel.NumberOfRegistered"
@@ -102,7 +102,7 @@
         </mat-error>
       </mat-form-field>
          <!-- AllowReuseDay Field -->
-         <mat-form-field class="example-full-width" *ngIf="fieldsInfo['AllowReuseDay']?.AccessWatchField">
+         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AllowReuseDay']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['AllowReuseDay']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.AllowReuseDay" [disabled]="!fieldsInfo['AllowReuseDay']?.AccessEditField"
             name="dataModel.AllowReuseDay" #AllowReuseDay type="number" placeholder="0" required />

@@ -10,14 +10,14 @@
           <p>تنظیمات که ماژول به سایت به کارگیری می شود </p>
 
           <!-- StatusRenderUser Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.StatusRenderUser"
               name="dataConfigSiteValuesModel.StatusRenderUser">
               StatusRenderUser
             </mat-slide-toggle>
           </div>
           <!-- DomainsGoogleSitekey Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>DomainsGoogleSitekey</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesModel.DomainsGoogleSitekey"
               name="dataConfigSiteValuesModel.DomainsGoogleSitekey" #dataConfigSiteValuesModel_DomainsGoogleSitekey
@@ -31,7 +31,7 @@
           </mat-form-field>
 
           <!-- DomainsGoogleSecretkey Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>DomainsGoogleSecretkey</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesModel.DomainsGoogleSecretkey"
               name="dataConfigSiteValuesModel.DomainsGoogleSecretkey" #dataConfigSiteValuesModel_DomainsGoogleSecretkey
@@ -43,14 +43,14 @@
               DomainsGoogleSecretkey is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.UserRegidteryBool"
               name="dataConfigSiteValuesModel.UserRegidteryBool">
               UserRegidteryBool
             </mat-slide-toggle>
           </div>
           <!-- UserRegidteryRecordStatus Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-select placeholder="وضعیت" [(ngModel)]="dataConfigSiteValuesModel.UserRegidteryRecordStatus"
               name="dataConfigSiteValuesModel.UserRegidteryRecordStatus" #UserRegidteryRecordStatus="ngModel"
               panelClass="UserRegidteryRecordStatus-{{ dataConfigSiteValuesModel.UserRegidteryRecordStatus }}" required>
@@ -65,7 +65,7 @@
             </mat-error>
           </mat-form-field>
           <!-- UserRegidteryExpireDateDay Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>UserRegidteryExpireDateDay</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesModel.UserRegidteryExpireDateDay"
               name="dataConfigSiteValuesModel.UserRegidteryExpireDateDay"
@@ -78,7 +78,7 @@
             </mat-error>
           </mat-form-field>
           <!-- RSSCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>RSSCount</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesModel.RSSCount" name="dataConfigSiteValuesModel.RSSCount"
               #dataConfigSiteValuesModel_RSSCount type="number" placeholder="0" />
@@ -115,13 +115,13 @@
         <mat-step label="مقادیر ذخیره شده" state="main">
           <p>مقادیر ذخیره شده توسط سیستم </p>
           <!-- RowCount Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.RowCount" name="dataSiteStorageModel.RowCount">
               RowCount
             </mat-slide-toggle>
           </div>
           <!-- MainDataContentRowCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataSiteStorageModel.MainDataContentRowCount"
               name="dataSiteStorageModel.MainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
@@ -132,7 +132,7 @@
 
           </mat-form-field>
           <!-- UpdatedContent Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>UpdatedContent</mat-label>
             <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent"
               [(ngModel)]="dataSiteStorageModel.UpdatedContent" name="dataSiteStorageModel.UpdatedContent" />
@@ -143,7 +143,7 @@
           </mat-form-field>
 
           <!-- UserCreation Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>UserCreation</mat-label>
             <input matInput [matDatepicker]="dataSiteStorageModel_UserCreation"
               [(ngModel)]="dataSiteStorageModel.UserCreation" name="dataSiteStorageModel.UserCreation" type="number" />
@@ -154,7 +154,7 @@
           </mat-form-field>
 
           <!-- AdminCpUserCreation Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AdminCpUserCreation</mat-label>
             <input matInput [matDatepicker]="dataSiteStorageModel_AdminCpUserCreation"
               [(ngModel)]="dataSiteStorageModel.AdminCpUserCreation" name="dataSiteStorageModel.AdminCpUserCreation"
@@ -186,7 +186,7 @@
         <mat-step label="دسترسی" state="main">
           <p>دسترسی ها این وب سایت به این ماژول</p>
           <!-- MainDataContentRowCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.MainDataContentRowCount"
               name="dataConfigSiteAccessValuesModel.MainDataContentRowCount"

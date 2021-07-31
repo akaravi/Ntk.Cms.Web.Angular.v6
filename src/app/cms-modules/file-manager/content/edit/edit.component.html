@@ -9,7 +9,7 @@
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
               #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
               <mat-option *ngFor="
@@ -25,7 +25,7 @@
           <app-file-category-selector (optionSelect)="onActionSelectorSelect($event)"
             [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'دسته بندی'">
           </app-file-category-selector>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.FileName" name="dataModel.FileName" #FileName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
               minlength="3" maxlength="100" required />
@@ -38,7 +38,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
               placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows="5"></textarea>
@@ -51,7 +51,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>تاریخ شروع</mat-label>
             <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
                  <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
@@ -61,7 +61,7 @@
           </mat-form-field>
 
           <!-- ExpireDate Field -->
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
             <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
                 <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
@@ -87,7 +87,7 @@
 
         <mat-step label="موتور های سرچ" state="seo">
           <p>این بخش کمک می کند موتورهای سرچ بهتر مطالب را ایندکس کنند</p>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>آدرس صفحه منبع مطلب</mat-label>
             <input matInput [(ngModel)]="dataModel.Source" name="dataModel.Source" #Source type="text" dir="ltr"
               style="text-align: left;" placeholder="لینک وب سایت مرجع محتوا" minlength="3" maxlength="500" />

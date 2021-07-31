@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
           [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
@@ -19,7 +19,7 @@
         </mat-error>
       </mat-form-field>
       <!-- BankStatus Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['BankStatus']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BankStatus']?.AccessWatchField">
         <mat-select placeholder="{{fieldsInfo['BankStatus']?.FieldTitle}}" [(ngModel)]="dataModel.BankStatus"
           [disabled]="!fieldsInfo['BankStatus']?.AccessEditField" name="dataModel.BankStatus" #BankStatus="ngModel"
           panelClass="BankStatus-{{ dataModel.BankStatus }}" required>
@@ -34,7 +34,7 @@
         </mat-error>
       </mat-form-field>
       <!-- TransactionStatus Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['TransactionStatus']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TransactionStatus']?.AccessWatchField">
         <mat-select placeholder="{{fieldsInfo['TransactionStatus']?.FieldTitle}}"
           [(ngModel)]="dataModel.TransactionStatus" [disabled]="!fieldsInfo['TransactionStatus']?.AccessEditField"
           name="dataModel.RecordStatus" #TransactionStatus="ngModel"

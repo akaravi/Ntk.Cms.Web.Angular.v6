@@ -18,7 +18,7 @@
               <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
                 <mat-step label="مشخضات سامانه" state="main">
                   <!-- Title Field -->
-                  <mat-form-field class="example-full-width">
+                  <mat-form-field class="ntk-full-width">
                     <mat-label>عنوان سامانه</mat-label>
                     <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
                       placeholder="عنوان سامانه" minlength="3" maxlength="100" required />
@@ -31,7 +31,7 @@
                     </mat-error>
                   </mat-form-field>
                   <!-- Description Field -->
-                  <mat-form-field class="example-full-width">
+                  <mat-form-field class="ntk-full-width">
                     <mat-label>توضیحات کوتاه در باره این سامانه</mat-label>
                     <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description
                       type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500"
@@ -76,7 +76,7 @@
                   <p>از لیست دامنه های موجود یک دامنه را انتخاب کنید و عنوان لاتین برای متناسب با نام سامانه خود برای
                     آدرس دهی انخاب نمایید</p>
                   <!-- Domain Field -->
-                  <mat-form-field class="example-full-width">
+                  <mat-form-field class="ntk-full-width">
                     <mat-select placeholder="دامنه" [(ngModel)]="dataModel.Domain" name="dataModel.Domain"
                       #Domain="ngModel" panelClass="recordStatus-{{ dataModel.Domain }}">
                       <mat-option *ngFor="

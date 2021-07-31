@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -23,7 +23,7 @@
         [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منوی والد'">
       </app-core-guide-selector>
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
           minlength="3" maxlength="100" required />
@@ -36,7 +36,7 @@
         </mat-error>
       </mat-form-field>
       <!-- Key Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>Key</mat-label>
         <input matInput [(ngModel)]="dataModel.Key" name="dataModel.Key" #Key type="text" placeholder="Key"
           minlength="3" maxlength="100" required />

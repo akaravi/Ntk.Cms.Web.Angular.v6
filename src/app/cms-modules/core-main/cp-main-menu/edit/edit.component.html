@@ -8,7 +8,7 @@
     <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
       <mat-step label="مشخصات منو" state="main">
         <!-- RecordStatus Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
             #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
             <mat-option *ngFor="
@@ -26,7 +26,7 @@
           [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منوی والد'">
         </app-core-cpmainmenu-selector>
         <!-- Title Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Title']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
             [disabled]="!fieldsInfo['Title']?.AccessEditField" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
@@ -42,7 +42,7 @@
 
 
         <!-- TitleResourceLanguage Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
           <mat-label> {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
             #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessEditField"
@@ -56,12 +56,12 @@
           </mat-error>
         </mat-form-field>
         <!-- TitleML Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
           <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
         </mat-form-field>
         <!-- MenuPlaceType Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-select placeholder="محل منو" [(ngModel)]="dataModel.MenuPlaceType" name="dataModel.MenuPlaceType"
             #MenuPlaceType="ngModel" panelClass="MenuPlaceType-{{ dataModel.MenuPlaceType }}">
             <mat-option *ngFor="
@@ -71,7 +71,7 @@
           </mat-select>
         </mat-form-field>
         <!-- AddressLink Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['AddressLink']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AddressLink']?.AccessWatchField">
           <mat-label> {{fieldsInfo['AddressLink']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.AddressLink" name="dataModel.AddressLink" #AddressLink type="text"
             [disabled]="!fieldsInfo['AddressLink']?.AccessEditField"
@@ -82,7 +82,7 @@
           <mat-hint align="end">{{ AddressLink.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- RouteAddressLink Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.AccessWatchField">
           <mat-label> {{fieldsInfo['RouteAddressLink']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.RouteAddressLink" name="dataModel.RouteAddressLink" #RouteAddressLink
             type="text" [disabled]="!fieldsInfo['RouteAddressLink']?.AccessEditField"
@@ -93,7 +93,7 @@
           <mat-hint align="end">{{ RouteAddressLink.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- RouteAddressBlankPage Field -->
-        <div class="example-full-width">
+        <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.RouteAddressBlankPage"
             *ngIf="fieldsInfo['RouteAddressBlankPage']?.AccessWatchField"
             [disabled]="!fieldsInfo['RouteAddressBlankPage']?.AccessEditField" name="dataModel.RouteAddressBlankPage">
@@ -101,7 +101,7 @@
           </mat-slide-toggle>
         </div>
         <!-- Color Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Color']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Color']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Color']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Color" name="dataModel.Color" #Color [value]="dataModel.Color"
             [style.background]="dataModel.Color" [(colorPicker)]="dataModel.Color" type="text"
@@ -112,7 +112,7 @@
         </mat-form-field>
 
         <!-- Icon Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Icon']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Icon']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Icon']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Icon" name="dataModel.Icon" #Icon [iconPicker]="dataModel.Icon"
             [ipIconPack]="['fa']" [ipPosition]="'top'" (iconPickerSelect)="onIconPickerSelect($event)" type="text"
@@ -125,7 +125,7 @@
         </mat-form-field>
 
         <!-- ShowInMenuOrder Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ShowInMenuOrder']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInMenuOrder']?.AccessWatchField">
           <mat-label> {{fieldsInfo['ShowInMenuOrder']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.ShowInMenuOrder" name="dataModel.ShowInMenuOrder" #ShowInMenuOrder
             type="number" [disabled]="!fieldsInfo['ShowInMenuOrder']?.AccessEditField"
@@ -135,7 +135,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Description Field -->
-        <mat-form-field class="example-full-width" *ngIf="fieldsInfo['Description']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Description']?.AccessWatchField">
           <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
             placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500"
@@ -163,14 +163,14 @@
         <p>دسترسی ها به این محتوا را مشخص کنید</p>
 
         <!-- ShowInMenu Field -->
-        <div class="example-full-width">
+        <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.ShowInMenu" *ngIf="fieldsInfo['ShowInMenu']?.AccessWatchField"
             [disabled]="!fieldsInfo['ShowInMenu']?.AccessEditField" name="dataModel.ShowInMenu">
             {{fieldsInfo['ShowInMenu']?.FieldTitle}}
           </mat-slide-toggle>
         </div>
         <!-- ShowInAccessAdminAllowToProfessionalData Field -->
-        <div class="example-full-width">
+        <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.ShowInAccessAdminAllowToProfessionalData"
             *ngIf="fieldsInfo['ShowInAccessAdminAllowToProfessionalData']?.AccessWatchField"
             [disabled]="!fieldsInfo['ShowInAccessAdminAllowToProfessionalData']?.AccessEditField"

@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -18,7 +18,7 @@
         </mat-error>
       </mat-form-field>
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
           minlength="3" maxlength="100" required />
@@ -51,7 +51,7 @@
           src="{{dataModel.LinkFileContentIdSrc}}" height="50" width="50" />
       </div>
       <div class="mb-9">
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label (click)="fileManagerOpenForm = true">فایل مدارک
           </mat-label>
           <input matInput [(ngModel)]="dataModel.LinkFileContentId" name="dataModel.LinkFileContentId" #LinkFileContentId
@@ -65,7 +65,7 @@
           [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
       </div>
       <!-- Description Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
@@ -81,7 +81,7 @@
       <hr>
 
       <!-- IsApproved Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.IsApproved" *ngIf="fieldsInfo['IsApproved']?.AccessWatchField"
           [disabled]="!fieldsInfo['IsApproved']?.AccessEditField" name="dataModel.IsApproved">
           {{fieldsInfo['IsApproved']?.FieldTitle}}
@@ -89,7 +89,7 @@
       </div>
 
       <!-- ApprovedResult Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['ApprovedResult']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.ApprovedResult" name="dataModel.ApprovedResult" #ApprovedResult
           type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
@@ -102,7 +102,7 @@
         </mat-error>
       </mat-form-field>
       <!-- ApproveCheckDate Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ApproveCheckDate']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApproveCheckDate']?.AccessWatchField">
         <mat-label>{{fieldsInfo['ApproveCheckDate']?.FieldTitle}}</mat-label>
         <input matInput [matDatepicker]="ApproveCheckDate" [(ngModel)]="dataModel.ApproveCheckDate"
           name="dataModel.ApproveCheckDate" />
@@ -115,7 +115,7 @@
       </mat-form-field>
 
       <!-- ExpireDate Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
         <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
         <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
         <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix

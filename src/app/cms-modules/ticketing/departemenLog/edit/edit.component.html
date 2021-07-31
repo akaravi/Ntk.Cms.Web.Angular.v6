@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
         <!-- RecordStatus Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
             #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
             <mat-option *ngFor="

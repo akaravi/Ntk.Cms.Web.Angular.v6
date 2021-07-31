@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
           placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required
@@ -26,7 +26,7 @@
         [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه جغرافیایی'"
         [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessAddField"></app-cms-location-selector>
       <!-- JoinId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['JoinId']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.JoinId" name="dataModel.JoinId" #JoinId type="text"
           placeholder="{{fieldsInfo['JoinId']?.FieldTitle}}" minlength="0" maxlength="64"
@@ -37,7 +37,7 @@
         <mat-hint align="end">{{ JoinId.value.length }} / 64</mat-hint>
       </mat-form-field>
       <!-- SerialRfId Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['SerialRfId']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.SerialRfId" name="dataModel.SerialRfId" #SerialRfId type="text"
           placeholder="{{fieldsInfo['SerialRfId']?.FieldTitle}}" minlength="0" maxlength="64"
@@ -48,7 +48,7 @@
         <mat-hint align="end">{{ SerialRfId.value.length }} / 64</mat-hint>
       </mat-form-field>
       <!-- SerialNumber Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['SerialNumber']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.SerialNumber" name="dataModel.SerialNumber" #SerialNumber type="text"
           placeholder="{{fieldsInfo['SerialNumber']?.FieldTitle}}" minlength="0" maxlength="64"
@@ -59,7 +59,7 @@
         <mat-hint align="end">{{ SerialNumber.value.length }} / 64</mat-hint>
       </mat-form-field>
       <!-- PlaceProduction Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['PlaceProduction']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.PlaceProduction" name="dataModel.PlaceProduction" #PlaceProduction
           type="text" placeholder="{{fieldsInfo['PlaceProduction']?.FieldTitle}}" minlength="0" maxlength="64"
@@ -70,7 +70,7 @@
         <mat-hint align="end">{{ PlaceProduction.value.length }} / 64</mat-hint>
       </mat-form-field>
       <!-- Description Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5
@@ -84,7 +84,7 @@
         </mat-error>
       </mat-form-field>
       <!-- Address Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Address']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Address" name="dataModel.Address" #Address type="text"
           placeholder="{{fieldsInfo['Address']?.FieldTitle}}" minlength="1" maxlength="500" required rows=5

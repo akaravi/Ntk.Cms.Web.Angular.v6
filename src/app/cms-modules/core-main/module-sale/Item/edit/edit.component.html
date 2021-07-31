@@ -4,7 +4,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
       <!-- RecordStatus Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
           <mat-option *ngFor="
@@ -18,7 +18,7 @@
         </mat-error>
       </mat-form-field>
       <!-- EnumCmsModuleSaleItemType Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.EnumCmsModuleSaleItemType"
           name="dataModel.EnumCmsModuleSaleItemType" #EnumCmsModuleSaleItemType="ngModel"
           panelClass="EnumCmsModuleSaleItemType-{{ dataModel.EnumCmsModuleSaleItemType }}" required>
@@ -44,7 +44,7 @@
       </app-core-modulesaleheader-selector>
 
       <!-- MonthLength Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['MonthLength']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MonthLength']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['MonthLength']?.FieldTitle }}</mat-label>
         <input matInput [(ngModel)]="dataModel.MonthLength" [disabled]="!fieldsInfo['MonthLength']?.AccessEditField"
           name="dataModel.MonthLength" #MonthLength type="number" placeholder="0" required />
@@ -56,7 +56,7 @@
         </mat-error>
       </mat-form-field>
       <!-- ExpireDate Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
         <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
         <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
         <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
@@ -65,7 +65,7 @@
         <mat-datepicker touchUi #ExpireDate></mat-datepicker>
       </mat-form-field>
       <!-- Description Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
@@ -78,7 +78,7 @@
         </mat-error>
       </mat-form-field>
       <!-- ModuleSiteAccessJsonValue Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['ModuleSiteAccessJsonValue']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.ModuleSiteAccessJsonValue" name="dataModel.ModuleSiteAccessJsonValue"
           #ModuleSiteAccessJsonValue type="text" placeholder="Json" minlength="0" maxlength="1000" rows=5></textarea>

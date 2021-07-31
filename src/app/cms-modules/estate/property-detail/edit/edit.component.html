@@ -5,7 +5,7 @@
     <div *ngIf="!loading.display" class="form-body">
 
       <!-- Title Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
           placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
@@ -27,7 +27,7 @@
         [optionSelectForce]="dataModel.LinkPropertyDetailGroupId" [optionPlaceholder]="'دسته بندی'" [optionDisabled]="!fieldsInfo['LinkPropertyDetailGroupId']?.AccessEditField">
       </app-estate-propertydetailgroup-selector>
       <!-- IconFont Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['IconFont']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.AccessWatchField">
         <mat-label> {{fieldsInfo['IconFont']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.IconFont" name="dataModel.IconFont" #IconFont
           [iconPicker]="dataModel.IconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
@@ -40,7 +40,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- IconColor Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['IconColor']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconColor']?.AccessWatchField">
         <mat-label> {{fieldsInfo['IconColor']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.IconColor" name="dataModel.IconColor" #IconColor
           [value]="dataModel.IconColor" [style.background]="dataModel.IconColor" [(colorPicker)]="dataModel.IconColor"
@@ -52,7 +52,7 @@
       </mat-form-field>
 
       <!-- ShowInFormOrder Field -->
-      <mat-form-field class="example-full-width" *ngIf="fieldsInfo['ShowInFormOrder']?.AccessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInFormOrder']?.AccessWatchField">
         <mat-label> {{fieldsInfo['ShowInFormOrder']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.ShowInFormOrder" name="dataModel.ShowInFormOrder" #ShowInFormOrder
           type="number" [disabled]="!fieldsInfo['ShowInFormOrder']?.AccessEditField"
@@ -62,7 +62,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- InputDataType Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-select placeholder="نوع" [(ngModel)]="dataModel.InputDataType" name="dataModel.InputDataType"
           #InputDataType="ngModel" panelClass="InputDataType-{{ dataModel.InputDataType }}">
           <mat-option *ngFor="
@@ -72,7 +72,7 @@
         </mat-select>
       </mat-form-field>
       <!-- Unit Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Unit']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Unit" name="dataModel.Unit" #Unit type="text"
           placeholder="{{fieldsInfo['Unit']?.FieldTitle}}" minlength="1" maxlength="64" />
@@ -84,7 +84,7 @@
       </mat-form-field>
 
       <!-- ConfigValueIntValueMin Field -->
-      <mat-form-field class="example-full-width" *ngIf="dataModel.InputDataType==1 ||dataModel.InputDataType==3">
+      <mat-form-field class="ntk-full-width" *ngIf="dataModel.InputDataType==1 ||dataModel.InputDataType==3">
         <mat-label>{{fieldsInfo['ConfigValueIntValueMin']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.ConfigValueIntValueMin" name="dataModel.ConfigValueIntValueMin"
           #ConfigValueIntValueMin type="number" placeholder="{{fieldsInfo['ConfigValueIntValueMin']?.FieldTitle}}" />
@@ -93,7 +93,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- ConfigValueIntValueMax Field -->
-      <mat-form-field class="example-full-width" *ngIf="dataModel.InputDataType==1 ||dataModel.InputDataType==3">
+      <mat-form-field class="ntk-full-width" *ngIf="dataModel.InputDataType==1 ||dataModel.InputDataType==3">
         <mat-label>{{fieldsInfo['ConfigValueIntValueMax']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.ConfigValueIntValueMax" name="dataModel.ConfigValueIntValueMax"
           #ConfigValueIntValueMax type="number" placeholder="{{fieldsInfo['ConfigValueIntValueMax']?.FieldTitle}}" />
@@ -102,7 +102,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- InvisibleForEndUser Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.InvisibleForEndUser"
           *ngIf="fieldsInfo['InvisibleForEndUser']?.AccessWatchField"
           [disabled]="!fieldsInfo['InvisibleForEndUser']?.AccessEditField" name="dataModel.InvisibleForEndUser">
@@ -110,7 +110,7 @@
         </mat-slide-toggle>
       </div>
       <!-- InvisibleForSubmiter Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.InvisibleForSubmiter"
           *ngIf="fieldsInfo['InvisibleForSubmiter']?.AccessWatchField"
           [disabled]="!fieldsInfo['InvisibleForSubmiter']?.AccessEditField" name="dataModel.InvisibleForSubmiter">
@@ -118,14 +118,14 @@
         </mat-slide-toggle>
       </div>
       <!-- Required Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.Required" *ngIf="fieldsInfo['Required']?.AccessWatchField"
           [disabled]="!fieldsInfo['Required']?.AccessEditField" name="dataModel.Required">
           {{fieldsInfo['Required']?.FieldTitle}}
         </mat-slide-toggle>
       </div>
       <!-- IsHistoryable Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.IsHistoryable" *ngIf="fieldsInfo['IsHistoryable']?.AccessWatchField"
           [disabled]="!fieldsInfo['IsHistoryable']?.AccessEditField" name="dataModel.IsHistoryable">
           {{fieldsInfo['IsHistoryable']?.FieldTitle}}
@@ -133,7 +133,7 @@
       </div>
 
       <!-- ConfigValueForceUseDefaultValue Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.ConfigValueForceUseDefaultValue"
           *ngIf="fieldsInfo['ConfigValueForceUseDefaultValue']?.AccessWatchField"
           [disabled]="!fieldsInfo['ConfigValueForceUseDefaultValue']?.AccessEditField"
@@ -142,7 +142,7 @@
         </mat-slide-toggle>
       </div>
       <!-- ConfigValueMultipleChoice Field -->
-      <div class="example-full-width">
+      <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.ConfigValueMultipleChoice"
           *ngIf="dataModel.ConfigValueForceUseDefaultValue && fieldsInfo['ConfigValueMultipleChoice']?.AccessWatchField"
           [disabled]="!fieldsInfo['ConfigValueMultipleChoice']?.AccessEditField"
@@ -157,7 +157,7 @@
       </tag-input>
 
       <!-- Description Field -->
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>

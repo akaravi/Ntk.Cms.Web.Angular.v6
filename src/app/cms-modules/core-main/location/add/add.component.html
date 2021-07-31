@@ -6,7 +6,7 @@
 
       <div>
         <!-- RecordStatus Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
             #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
             <mat-option *ngFor="
@@ -20,7 +20,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LocationType Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-select placeholder="نوع منطقه" [(ngModel)]="dataModel.LocationType" name="dataModel.LocationType"
             #LocationType="ngModel" panelClass="LocationType-{{ dataModel.LocationType }}">
             <mat-option *ngFor="
@@ -39,7 +39,7 @@
           [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منطقه والد'">
         </app-core-location-selector>
         <!-- Title Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
             minlength="3" maxlength="100" required />
@@ -52,7 +52,7 @@
           </mat-error>
         </mat-form-field>
         <!-- GeoLocationLatitude Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label>Geo Location Latitude</mat-label>
           <input matInput [(ngModel)]="dataModel.GeoLocationLatitude" name="dataModel.GeoLocationLatitude"
             #GeoLocationLatitude type="number" placeholder="Geo Location Latitude" />
@@ -61,7 +61,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- GeoLocationLongitude Field -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="ntk-full-width">
           <mat-label>Geo Location Longitude</mat-label>
           <input matInput [(ngModel)]="dataModel.GeoLocationLongitude" name="dataModel.GeoLocationLongitude"
             #GeoLocationLongitude type="number" placeholder="Geo Location Latitude" />

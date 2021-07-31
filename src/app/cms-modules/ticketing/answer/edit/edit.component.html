@@ -9,7 +9,7 @@
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
               [disabled]="!fieldsInfo['RecordStatus']?.AccessAddField" name="dataModel.RecordStatus"
               #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
@@ -30,7 +30,7 @@
 
 
 
-          <mat-form-field class="example-full-width" *ngIf="fieldsInfo['HtmlBody']?.AccessWatchField">
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HtmlBody']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['HtmlBody']?.FieldHtmlBody }}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.HtmlBody" [disabled]="!fieldsInfo['HtmlBody']?.AccessAddField"
               name="dataModel.HtmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" row="5" minlength="0"

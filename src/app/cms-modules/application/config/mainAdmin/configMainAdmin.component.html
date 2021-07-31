@@ -10,7 +10,7 @@
         <mat-step label="{{'TITLE.Default_module_settings'|translate}}" state="main" *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <p>{{'TITLE.Settings_that_are_used_in_the_first_assignment_of_the_module_to_the_site' |translate}}</p>
           <!-- StatusRenderUser Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.StatusRenderUser"
               name="dataConfigSiteValuesDefaultModel.StatusRenderUser">
               StatusRenderUser
@@ -38,7 +38,7 @@
           <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
 
           <!-- MainDataContentRowCount Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
               name="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
@@ -53,7 +53,7 @@
           </mat-form-field>
 
           <!-- MaxAppCreation Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>MaxAppCreation</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxAppCreation"
               name="dataConfigSiteAccessValuesDefaultModel.MaxAppCreation"
@@ -89,14 +89,14 @@
           <p>{{'TITLE.The_whole_system_management_settings_for_this_module'|translate}}</p>
 
           <!-- AccessBuy Field -->
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy"
               name="dataConfigAdminMainModel.AccessBuy">
               AccessBuy
             </mat-slide-toggle>
           </div>
           <!-- AccessBuyPrice Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AccessBuyPrice</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyPrice"
               name="dataConfigAdminMainModel.AccessBuyPrice" #dataConfigAdminMainModel_AccessBuyPrice type="number"
@@ -110,7 +110,7 @@
           </mat-form-field>
 
           <!-- AccessBuyMonth Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AccessBuyMonth</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyMonth"
               name="dataConfigAdminMainModel.AccessBuyMonth" #dataConfigAdminMainModel_AccessBuyMonth type="number"
@@ -123,14 +123,14 @@
             </mat-error>
           </mat-form-field>
 
-          <div class="example-full-width">
+          <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
               name="dataConfigAdminMainModel.AccessFree">
               AccessFree
             </mat-slide-toggle>
           </div>
           <!-- AccessFreeDay Field -->
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="ntk-full-width">
             <mat-label>AccessFreeDay</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessFreeDay"
               name="dataConfigAdminMainModel.AccessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
