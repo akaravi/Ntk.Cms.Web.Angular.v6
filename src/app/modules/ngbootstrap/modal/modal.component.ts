@@ -92,7 +92,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';\n
     selector: 'ngbd-modal-content',
     template: \`
         <div class="modal-header">
-            <h4 class="modal-title">Hi there!</h4>
+            <h4 class="modal-title">{{'TRANSLATOR.HI'|translate}} there!</h4>
             <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -459,7 +459,7 @@ export class NgbdModalVerticallycentered {
   selector: 'app-ngbd-modal-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Hi there!</h4>
+      <h4 class="modal-title">hi there!</h4>
       <button
         type="button"
         class="close"

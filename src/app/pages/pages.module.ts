@@ -6,7 +6,6 @@ import {
   NgbDropdownModule,
   NgbProgressbarModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { TranslationModule } from '../modules/i18n/translation.module';
 import { LayoutComponent } from './_layout/layout.component';
 import { ScriptsInitComponent } from './_layout/init/scipts-init/scripts-init.component';
 import { HeaderMobileComponent } from './_layout/components/header-mobile/header-mobile.component';
@@ -21,6 +20,7 @@ import { HeaderMenuDynamicComponent } from './_layout/components/header/header-m
 import { CoreSiteModule } from '../cms-modules/core-main/site/coreSite.module';
 import { SharedModule } from '../shared/shared.module';
 import { CoreAuthService, CoreCpMainMenuService } from 'ntk-cms-api';
+import { TranslationModule } from '../core/i18n/translation.module';
 
 @NgModule({
   declarations: [

@@ -88,7 +88,7 @@ export class Modal2Component {
   template: ` <div class="col-xl-12">
     <div class="col-xl-12">
       <br />
-      <h1 mat-dialog-title>Hi {{ data.name }}</h1>
+      <h1 mat-dialog-title>hi {{ data.name }}</h1>
       <div mat-dialog-content>
         <p>What's your favorite animal?</p>
         <mat-form-field>
@@ -119,7 +119,7 @@ export class ModalComponent {
 const basic = {
   beforeCodeTitle: 'Dialog Overview',
   htmlCode: `
-		<h1 mat-dialog-title>Hi {{data.name}}</h1>
+		<h1 mat-dialog-title>{{'TRANSLATOR.HI'|translate}} {{data.name}}</h1>
 		<div mat-dialog-content>
 		  <p>What's your favorite animal?</p>
 		  <mat-form-field>
@@ -160,7 +160,7 @@ export class DialogOverviewExample {\n
 @Component({
   selector: 'dialog-overview-example-dialog',
   template: \`
-    <h1 mat-dialog-title>Hi {{data.name}}</h1>
+    <h1 mat-dialog-title>{{'TRANSLATOR.HI'|translate}} {{data.name}}</h1>
     <div mat-dialog-content>
       <p>What's your favorite animal?</p>
       <mat-form-field>

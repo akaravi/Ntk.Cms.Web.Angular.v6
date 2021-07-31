@@ -6,20 +6,20 @@ import {
 } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { TranslationService } from './modules/i18n/translation.service';
 // language list
-import { locale as enLang } from './modules/i18n/vocabs/en';
-import { locale as chLang } from './modules/i18n/vocabs/ch';
-import { locale as esLang } from './modules/i18n/vocabs/es';
-import { locale as jpLang } from './modules/i18n/vocabs/jp';
-import { locale as deLang } from './modules/i18n/vocabs/de';
-import { locale as frLang } from './modules/i18n/vocabs/fr';
+// import { locale as enLang } from './modules/i18n/vocabs/en';
+// import { locale as chLang } from './modules/i18n/vocabs/ch';
+// import { locale as esLang } from './modules/i18n/vocabs/es';
+// import { locale as jpLang } from './modules/i18n/vocabs/jp';
+// import { locale as deLang } from './modules/i18n/vocabs/de';
+// import { locale as frLang } from './modules/i18n/vocabs/fr';
 import { SplashScreenService } from './_metronic/partials/layout/splash-screen/splash-screen.service';
 import { TableExtendedService } from './_metronic/shared/crud-table';
 import { CoreAuthService, CoreEnumService, EnumDeviceType, EnumOperatingSystemType, TokenDeviceClientInfoDtoModel } from 'ntk-cms-api';
 import { CmsStoreService } from './core/reducers/cmsStore.service';
 import { environment } from 'src/environments/environment';
 import { TokenHelper } from './core/helpers/tokenHelper';
+import { TranslationService } from './core/i18n/translation.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -45,14 +45,14 @@ export class AppComponent implements OnInit, OnDestroy {
       this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
     }
     // register translations
-    this.translationService.loadTranslations(
-      enLang,
-      chLang,
-      esLang,
-      jpLang,
-      deLang,
-      frLang
-    );
+    // this.translationService.loadTranslations(
+    //   enLang,
+    //   chLang,
+    //   esLang,
+    //   jpLang,
+    //   deLang,
+    //   frLang
+    // );
   }
 
   ngOnInit() {
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.tokenHelper.getCurrentToken();
     this.getEnumRecordStatus();
   }
-  
+
   getEnumRecordStatus(): void {
     this.coreEnumService.ServiceEnumRecordStatus().subscribe((res) => {
       this.cmsStoreService.setState({ EnumRecordStatus: res });

@@ -19,7 +19,6 @@ import { BoolStatusClassPipe } from '../core/pipe/boolStatusClass.pipe';
 import { PersianDateFull } from '../core/pipe/PersianDatePipe/persian-date-full.pipe';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
 import { OverlayService } from './overlay/overlay.service';
-import { TranslationModule } from '../core/i18n/translation.module';
 import { HttpConfigInterceptor } from '../core/interceptor/httpConfigInterceptor';
 import { KeysPipe } from '../core/pipe/keys.pipe';
 import { EnumsPipe } from '../core/pipe/enums.pipe';
@@ -68,6 +67,7 @@ import { CmsFilesSelectorComponent } from './cms-files-selector/cms-files-select
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { ClipboardModule } from 'ngx-clipboard';
 import { CmsTagAutocompleteComponent } from './cms-tag-autocomplete/cms-tag-autocomplete.component';
+import { TranslationModule } from '../core/i18n/translation.module';
 
 
 

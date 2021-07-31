@@ -1,9 +1,17 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoreAuthService, EnumDeviceType, EnumOperatingSystemType, NtkCmsApiStoreService, TokenDeviceClientInfoDtoModel, TokenInfoModel } from 'ntk-cms-api';
+import {
+  CoreAuthService,
+  EnumDeviceType,
+  EnumOperatingSystemType,
+  NtkCmsApiStoreService,
+  TokenDeviceClientInfoDtoModel,
+  TokenInfoModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { TranslationService } from 'src/app/modules/i18n/translation.service';
+
 import { environment } from 'src/environments/environment';
+import { TranslationService } from '../i18n/translation.service';
 
 @Injectable({
   providedIn: 'root',
