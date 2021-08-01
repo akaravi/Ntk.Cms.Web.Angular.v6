@@ -22,6 +22,18 @@
 // For RTL, check this documentation https://keenthemes.com/metronic/?page=docs&section=angular-rtl
 @import "./assets/sass/style.angular.rtl.css";
 
+
+
+/*
+ karavi import
+*/
+@import "~leaflet/dist/leaflet.css";
+@import "~ntk-cms-filemanager/src/assets/styles.scss";
+@import "~ngx-toastr/toastr.css";
+/*
+ karavi import
+*/
+
 // hide bootstrap dropdown arrow globally
 .dropdown-toggle::after {
   display: none !important;
