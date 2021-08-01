@@ -107,7 +107,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
           if (next.IsSuccess) {
             if (next.Item.Language === lang) {
               this.cmsToastrService.toastr.success('دسترسی به زبان جدید تایید شد', title);
-              window.location.reload();
+              // window.location.reload();
             } else {
               this.cmsToastrService.toastr.warning('دسترسی به زبان جدید تایید نشد', title);
             }
