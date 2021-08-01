@@ -7,12 +7,15 @@ import {
   CoreUserModel,
   AccessModel,
   DataFieldInfoModel,
+  NtkCmsApiStoreService,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import {
   Component,
   OnInit,
   ViewChild,
   Inject,
+  OnDestroy,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -29,13 +32,15 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-core-user-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class CoreUserEditComponent implements OnInit {
+export class CoreUserEditComponent implements OnInit, OnDestroy {
   constructor(
     private cmsStoreService: CmsStoreService,
     private activatedRoute: ActivatedRoute,
@@ -43,13 +48,22 @@ export class CoreUserEditComponent implements OnInit {
     public coreUserService: CoreUserService,
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
+    private tokenHelper: TokenHelper,
+    private cmsApiStore: NtkCmsApiStoreService,
     private router: Router,
     private translate: TranslateService,
   ) {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
+      this.tokenInfo = value;
+      this.DataGetOneContent();
+    });
   }
+  tokenInfo: TokenInfoModel;
+  cmsApiStoreSubscribe: Subscription;
+
   requestId = 0;
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
 
@@ -59,7 +73,7 @@ export class CoreUserEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
   dataModel: CoreUserModel = new CoreUserModel();
-   @ViewChild('vform', { static: false })   formGroup: FormGroup;
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
@@ -83,15 +97,16 @@ export class CoreUserEditComponent implements OnInit {
     this.DataGetOneContent();
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-    if (this.storeSnapshot
-      && this.storeSnapshot.EnumRecordStatus
-      && this.storeSnapshot.EnumRecordStatus
-      && this.storeSnapshot.EnumRecordStatus.IsSuccess
-      && this.storeSnapshot.EnumRecordStatus.ListItems
-      && this.storeSnapshot.EnumRecordStatus.ListItems.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatus;
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
+  async getEnumRecordStatus(): Promise<void> {
+    debugger
+    if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
+      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
     }
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    debugger
   }
   DataGetOneContent(): void {
 
@@ -136,8 +151,11 @@ export class CoreUserEditComponent implements OnInit {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
+          if (next.Item.Id === this.tokenInfo.UserId) {
+            this.tokenHelper.getCurrentToken();
+          }
           // setTimeout(() => this.router.navigate(['/core/user/']), 100);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';

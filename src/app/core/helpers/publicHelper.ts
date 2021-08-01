@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
-import { AccessModel, DataFieldInfoModel, ErrorExceptionResultBase } from 'ntk-cms-api';
+import { AccessModel, CoreEnumService, DataFieldInfoModel, EnumModel, ErrorExceptionResult, ErrorExceptionResultBase } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
 
 @Injectable({
@@ -15,7 +17,8 @@ export class PublicHelper {
     private router: Router,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
-
+    private coreEnumService: CoreEnumService,
+    private cmsStoreService: CmsStoreService
   ) { }
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -166,6 +169,14 @@ export class PublicHelper {
       .replace(/[x]/g, _ => (Math.random() * 16 | 0).toString(16))
       .toLowerCase();
 
-    return  oid ;
+    return oid;
+  }
+  public storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumModel>> {
+    if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
+      return this.storeSnapshot.EnumRecordStatusModelStore;
+    }
+    return await this.coreEnumService.ServiceEnumRecordStatus()
+      .pipe(map(response => { return response; })).toPromise();
   }
 }

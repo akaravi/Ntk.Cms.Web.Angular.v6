@@ -5,6 +5,7 @@ import {
   EnumDeviceType,
   EnumOperatingSystemType,
   NtkCmsApiStoreService,
+  SET_TOKEN_INFO,
   TokenDeviceClientInfoDtoModel,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
+import { CmsStoreService } from '../reducers/cmsStore.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +21,7 @@ import { TranslationService } from '../i18n/translation.service';
 export class TokenHelper implements OnDestroy {
   constructor(
     public coreAuthService: CoreAuthService,
+    private cmsStoreService: CmsStoreService,
     private cmsApiStore: NtkCmsApiStoreService,
     private translationService: TranslationService,
     private router: Router,
@@ -37,7 +40,10 @@ export class TokenHelper implements OnDestroy {
     this.coreAuthService.CurrentTokenInfoRenew();
   }
   getCurrentToken(): void {
-    this.coreAuthService.ServiceCurrentToken();
+    this.coreAuthService.ServiceCurrentToken().subscribe((res) => {
+      // this.cmsStoreService.setState({ tokenInfoModelStore: res.Item });
+      this.cmsApiStore.setState({type: SET_TOKEN_INFO,payload: res.Item });
+    });
   }
   getDeviceToken(): void {
     const DeviceToken = this.coreAuthService.getDeviceToken();

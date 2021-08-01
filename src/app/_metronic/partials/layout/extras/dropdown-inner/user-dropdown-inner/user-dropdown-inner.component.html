@@ -4,7 +4,7 @@
     <div class="d-flex align-items-center p-8 rounded-top">
       <!--begin::Symbol-->
       <div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
-        <img src="./assets/media/users/300_21.jpg" alt="" />
+        <img src="{{ (tokenInfo.LinkMainImageIdSrc && tokenInfo.LinkMainImageIdSrc.length>0) ? tokenInfo.LinkMainImageIdSrc : './assets/media/users/300_21.jpg' }}" alt="" />
       </div>
       <!--end::Symbol-->
 
@@ -92,10 +92,10 @@
         </div>
         <div class="navi-text">
           <div class="font-weight-bold">
-            My Activities
+            {{'TITLE.My_Activities'| translate}}
           </div>
           <div class="text-muted">
-            Logs and notifications
+            {{'TITLE.Logs_and_notifications'| translate}}
           </div>
         </div>
       </div>
@@ -110,10 +110,11 @@
         </div>
         <div class="navi-text">
           <div class="font-weight-bold">
-            My Tasks
+            {{'TITLE.My_Tasks'| translate}}
+
           </div>
           <div class="text-muted">
-            latest tasks and projects
+            {{'TITLE.latest_tasks_and_projects'| translate}}
           </div>
         </div>
       </div>

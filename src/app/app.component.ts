@@ -20,6 +20,7 @@ import { CmsStoreService } from './core/reducers/cmsStore.service';
 import { environment } from 'src/environments/environment';
 import { TokenHelper } from './core/helpers/tokenHelper';
 import { TranslationService } from './core/i18n/translation.service';
+import { PublicHelper } from './core/helpers/publicHelper';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private tableService: TableExtendedService,
     private coreEnumService: CoreEnumService,
-    private cmsStoreService: CmsStoreService,
+    private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper
   ) {
     if (environment.cmsServerConfig.configApiServerPath && environment.cmsServerConfig.configApiServerPath.length > 0) {
@@ -76,14 +77,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.tokenHelper.getDeviceToken();
     // this.tokenHelper.getCurrentToken();
-    this.getEnumRecordStatus();
+    this.publicHelper.getEnumRecordStatus();
   }
 
-  getEnumRecordStatus(): void {
-    this.coreEnumService.ServiceEnumRecordStatus().subscribe((res) => {
-      this.cmsStoreService.setState({ EnumRecordStatus: res });
-    });
-  }
+
 
   ngOnDestroy() {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());

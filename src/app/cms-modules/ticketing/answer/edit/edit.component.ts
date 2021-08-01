@@ -66,13 +66,8 @@ export class TicketingAnswerEditComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   getEnumRecordStatus(): void {
-    if (this.storeSnapshot &&
-      this.storeSnapshot.EnumRecordStatus &&
-      this.storeSnapshot.EnumRecordStatus &&
-      this.storeSnapshot.EnumRecordStatus.IsSuccess &&
-      this.storeSnapshot.EnumRecordStatus.ListItems &&
-      this.storeSnapshot.EnumRecordStatus.ListItems.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatus;
+if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
+      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
     }
   }
 
