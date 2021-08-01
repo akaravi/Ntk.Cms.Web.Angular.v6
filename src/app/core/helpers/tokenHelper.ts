@@ -10,6 +10,7 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
@@ -36,14 +37,20 @@ export class TokenHelper implements OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
+  async getCurrentToken(): Promise<TokenInfoModel> {
+    const storeSnapshot = this.cmsApiStore.getStateSnapshot();
+    if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
+      this.tokenInfo = storeSnapshot.ntkCmsAPiState.tokenInfo;
+      return storeSnapshot.ntkCmsAPiState.tokenInfo;
+    }
+    return await this.coreAuthService.ServiceCurrentToken()
+      .pipe(map(response => {
+        this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: response.Item });
+        return response.Item;
+      })).toPromise();
+  }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();
-  }
-  getCurrentToken(): void {
-    this.coreAuthService.ServiceCurrentToken().subscribe((res) => {
-      // this.cmsStoreService.setState({ tokenInfoModelStore: res.Item });
-      this.cmsApiStore.setState({type: SET_TOKEN_INFO,payload: res.Item });
-    });
   }
   getDeviceToken(): void {
     const DeviceToken = this.coreAuthService.getDeviceToken();
@@ -70,7 +77,10 @@ export class TokenHelper implements OnDestroy {
     }
   }
   CheckRouteByToken(): void {
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    const storeSnapshot = this.cmsApiStore.getStateSnapshot();
+    if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
+      this.tokenInfo = storeSnapshot.ntkCmsAPiState.tokenInfo;
+    }
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
 

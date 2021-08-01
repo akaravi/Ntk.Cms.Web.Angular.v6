@@ -34,6 +34,7 @@ export const environment = {
     PathRegistery: '/auth/singup',
     PathSelectSite: '/core/site/select',
     Pathdashboard: '/dashboard/',
+    ToolbarLinkUrlPath: 'https://ntk.ir',
   },
   cmsTokenConfig: {
     SecurityKey: '123456789',
