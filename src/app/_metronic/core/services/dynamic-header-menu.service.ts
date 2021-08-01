@@ -46,7 +46,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
   }
   DataGetCpMenu(): void {
     const menuItems: any = [{
-      title: 'Dashboard',
+      title: 'داشبورد',
       root: true,
       alignment: 'left',
       page: '/dashboard',
@@ -60,7 +60,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
         });
 
         menuItems.push({
-          title: 'menu',
+          title: 'منو',
           bullet: 'dot',
           icon: 'flaticon-web',
           page: '',

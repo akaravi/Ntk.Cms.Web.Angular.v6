@@ -12,7 +12,6 @@ import { CmsStatistListComponent } from './cms-statist-list/cmsStatistList.compo
 import { CmsExportListComponent } from './cms-export-list/cmsExportList.component';
 import { CmsMapComponent } from './cms-map/cmsMap.Component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-// import { TagAutocompleteComponent } from '../modules/core-module/tag/autocomplete/autocomplete.component';
 import { TagInputModule } from 'ngx-chips';
 import { RecordStatusClassPipe } from '../core/pipe/recordStatusClass.pipe';
 import { BoolStatusClassPipe } from '../core/pipe/boolStatusClass.pipe';
@@ -71,10 +70,8 @@ import { TranslationModule } from '../core/i18n/translation.module';
 import { CmsTokenAccessComponent } from './cms-token-access/cmsTokenAccess.component';
 import { CmsNoticeComponent } from './cms-notice/cms-notice.component';
 import { InlineSVGModule } from 'ng-inline-svg';
-import { CmsCardComponent } from './cms-card/cms-card.component';
-
-
-
+import { CmsHtmlCardComponent } from './cms-html-card/cms-html-card.component';
+import { CmsHtmlModalComponent } from './cms-html-modal/cms-html-modal.component';
 
 @NgModule({
   imports: [
@@ -134,7 +131,8 @@ import { CmsCardComponent } from './cms-card/cms-card.component';
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
     CmsNoticeComponent,
-    CmsCardComponent,
+    CmsHtmlCardComponent,
+    CmsHtmlModalComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -192,7 +190,8 @@ import { CmsCardComponent } from './cms-card/cms-card.component';
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
     CmsNoticeComponent,
-    CmsCardComponent,
+    CmsHtmlCardComponent,
+    CmsHtmlModalComponent,
     /**input */
     StringComponent,
     IntComponent,

@@ -4,10 +4,11 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <div *ngIf="!loading.display" class="form-body">
 
-<!-- RecordStatus Field -->
+      <!-- RecordStatus Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+          required>
           <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.ListItems;
                   index as i
@@ -21,8 +22,8 @@
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
-          minlength="3" maxlength="100" required />
+        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.Title = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -55,7 +56,7 @@
           <mat-label (click)="fileManagerOpenForm = true">فایل آیکن
           </mat-label>
           <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
-            type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+            type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
           <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId " matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.LinkMainImageId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

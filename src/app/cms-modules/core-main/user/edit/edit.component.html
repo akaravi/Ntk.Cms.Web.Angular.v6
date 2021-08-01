@@ -1,8 +1,9 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-card [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
-      <p>ویرایش :</p>
-      {{dataModel.Name}} {{dataModel.LastName}}
+      <h3 class="card-label">
+        ویرایش : {{dataModel.Name}} {{dataModel.LastName}}
+      </h3>
     </ng-container>
     <ng-container cms-body>
       <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
@@ -101,7 +102,7 @@
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-             <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -300,7 +301,7 @@
 
     </ng-container>
     <ng-container cms-footer>
-  
+
     </ng-container>
-  </app-cms-card>
+  </app-cms-html-card>
 </form>

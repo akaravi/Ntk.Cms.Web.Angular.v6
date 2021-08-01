@@ -46,14 +46,14 @@ export class AppComponent implements OnInit, OnDestroy {
       this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
     }
     // register translations
-    // this.translationService.loadTranslations(
+     this.translationService.loadTranslations(
     //   enLang,
     //   chLang,
     //   esLang,
     //   jpLang,
     //   deLang,
     //   frLang
-    // );
+     );
   }
 
   ngOnInit() {

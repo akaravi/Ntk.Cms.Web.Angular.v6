@@ -3,10 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
-  selector: 'app-cms-card',
-  templateUrl: './cms-card.component.html',
+  selector: 'app-cms-html-card',
+  templateUrl: './cms-html-card.component.html',
 })
-export class CmsCardComponent implements OnInit {
+export class CmsHtmlCardComponent implements OnInit {
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
     this.loading = v;

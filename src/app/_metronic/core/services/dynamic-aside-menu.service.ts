@@ -45,7 +45,7 @@ export class DynamicAsideMenuService implements OnDestroy {
   }
   DataGetCpMenu(): void {
     const menuItems: any = [{
-      title: 'Dashboard',
+      title: 'داشبورد',
       root: true,
       icon: 'flaticon2-architecture-and-city',
       svg: './assets/media/svg/icons/Design/Layers.svg',
