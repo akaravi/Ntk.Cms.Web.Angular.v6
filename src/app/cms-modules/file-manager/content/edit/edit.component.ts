@@ -55,7 +55,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   otherInfoTabledisplayedColumns = ['Id', 'Title', 'TypeId', 'Action'];
   similarTabledisplayedColumns = ['Id', 'RecordStatus', 'Title', 'Action'];
   similarTabledataSource = new MatTableDataSource<FileContentModel>();
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   loading = new ProgressSpinnerModel();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypePodcast = ['mp3'];
@@ -91,10 +91,8 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
   }
 
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {

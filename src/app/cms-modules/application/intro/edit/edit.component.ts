@@ -60,7 +60,7 @@ export class ApplicationIntroEditComponent implements OnInit {
   appLanguage = 'fa';
 
   fileManagerTree: TreeModel;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
   ngOnInit(): void {
     if (this.requestId === 0) {
@@ -70,10 +70,8 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.DataGetOne(this.requestId);
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {

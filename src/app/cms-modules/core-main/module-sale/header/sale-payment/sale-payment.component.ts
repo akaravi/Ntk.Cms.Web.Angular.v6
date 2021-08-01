@@ -63,7 +63,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
   dataModelCalculate: CoreModuleSaleHeaderCalculateDtoModel = new CoreModuleSaleHeaderCalculateDtoModel();
   dataModelPayment: CoreModuleSaleHeaderPaymentDtoModel = new CoreModuleSaleHeaderPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
   ngOnInit(): void {
 

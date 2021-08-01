@@ -56,7 +56,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));
     if (this.requestDepartemenId === 0) {
@@ -67,10 +67,8 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
     this.DataGetAccess();
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {

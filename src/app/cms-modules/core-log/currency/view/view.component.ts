@@ -53,7 +53,7 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.formInfo.FormTitle = 'مشاهده  ';

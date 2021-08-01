@@ -65,7 +65,7 @@ export class CoreConfigSiteComponent implements OnInit {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -80,10 +80,8 @@ export class CoreConfigSiteComponent implements OnInit {
     this.onLoadDate();
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {

@@ -69,7 +69,7 @@ export class BiographyCategoryAddComponent implements OnInit {
 
   fileManagerOpenForm = false;
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
@@ -81,10 +81,8 @@ export class BiographyCategoryAddComponent implements OnInit {
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
 

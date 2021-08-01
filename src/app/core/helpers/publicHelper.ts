@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
-import { AccessModel, CoreEnumService, DataFieldInfoModel, EnumModel, ErrorExceptionResult, ErrorExceptionResultBase } from 'ntk-cms-api';
+import { AccessModel, CoreEnumService, CoreSiteModel, CoreSiteService, DataFieldInfoModel, EnumModel, ErrorExceptionResult, ErrorExceptionResultBase, ItemState } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -18,6 +18,7 @@ export class PublicHelper {
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
     private coreEnumService: CoreEnumService,
+    private coreSiteService: CoreSiteService,
     private cmsStoreService: CmsStoreService
   ) { }
   editorConfig: AngularEditorConfig = {
@@ -171,12 +172,27 @@ export class PublicHelper {
 
     return oid;
   }
-  public storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumModel>> {
-    if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      return this.storeSnapshot.EnumRecordStatusModelStore;
+    const storeSnapshot = this.cmsStoreService.getStateSnapshot();
+    if (storeSnapshot?.EnumRecordStatusResultStore?.ListItems?.length > 0) {
+      return storeSnapshot.EnumRecordStatusResultStore;
     }
     return await this.coreEnumService.ServiceEnumRecordStatus()
-      .pipe(map(response => { return response; })).toPromise();
+      .pipe(map(response => {
+        this.cmsStoreService.setState({ EnumRecordStatusResultStore: response });
+        return response;
+      })).toPromise();
+  }
+  async getCurrentSite(): Promise<ErrorExceptionResult<CoreSiteModel>> {
+    const storeSnapshot = this.cmsStoreService.getStateSnapshot();
+    if (storeSnapshot?.CoreSiteResultStore) {
+      return storeSnapshot.CoreSiteResultStore;
+    }
+    return await this.coreSiteService.ServiceCurrectSite()
+      .pipe(map(response => {
+        this.cmsStoreService.setState({ CoreSiteResultStore: response });
+        return response;
+      })).toPromise();
   }
 }

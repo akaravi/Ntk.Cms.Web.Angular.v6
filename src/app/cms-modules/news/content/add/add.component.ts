@@ -94,7 +94,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   private mapModel: leafletMap;
 
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   ngOnInit(): void {
     this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
     if (this.requestCategoryId === 0) {
@@ -148,10 +148,8 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     this.dataModel.LinkFileMovieId = model.id;
     this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   receiveMap(model: leafletMap): void {

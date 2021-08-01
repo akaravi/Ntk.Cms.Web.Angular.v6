@@ -71,7 +71,7 @@ export class CoreSiteCategoryEditComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   dataCoreCpMainMenuModel: CoreModuleModel[];
   dataCoreCpMainMenuIds: number[] = [];
   dataCoreSiteCategoryCmsModuleModel: CoreSiteCategoryCmsModuleModel[];
@@ -88,10 +88,8 @@ export class CoreSiteCategoryEditComponent implements OnInit {
     this.DataGetAllSiteCategoryCmsModule();
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     if (this.requestId <= 0) {

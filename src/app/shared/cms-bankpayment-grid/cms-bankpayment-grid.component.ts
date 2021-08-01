@@ -42,7 +42,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModel: BlogCategoryModel = new BlogCategoryModel();
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;

@@ -103,7 +103,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = {};
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {
@@ -130,10 +130,8 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.dataModel.LinkFileMovieId = model.id;
     this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
 

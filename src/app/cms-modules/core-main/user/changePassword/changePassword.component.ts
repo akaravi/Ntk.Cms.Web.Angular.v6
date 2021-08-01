@@ -77,7 +77,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   dataCoreUserIds: number[] = [];
   cmsApiStoreSubscribe: Subscription;
 

@@ -70,7 +70,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   fileManagerOpenFormSmallFile = false;
   fileManagerOpenFormBigFile = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   SmallImageIdSrc = '';
   BigImageIdSrc = '';
   applicationMemberInfoModel = new ApplicationMemberInfoModel();

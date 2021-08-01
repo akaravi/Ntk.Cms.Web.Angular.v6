@@ -52,7 +52,7 @@ export class HyperShopContentViewComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {

@@ -52,7 +52,7 @@ export class TicketingTemplateAddComponent implements OnInit {
   dataModel: TicketingTemplateModel = new TicketingTemplateModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
 
   ngOnInit(): void {
@@ -60,10 +60,8 @@ export class TicketingTemplateAddComponent implements OnInit {
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetAccess(): void {

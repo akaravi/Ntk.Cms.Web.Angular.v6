@@ -69,7 +69,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   dataCoreSiteCategoryModel: CoreSiteCategoryModel[];
   dataCoreSiteCategoryIds: number[] = [];
   dataWebDesignerMainPageTemplateSiteCategoryModel: WebDesignerMainPageTemplateSiteCategoryModel[];
@@ -86,10 +86,8 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     this.getEnumRecordStatus();
     this.DataGetAllSourceSiteCategory();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
 

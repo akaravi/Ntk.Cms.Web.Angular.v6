@@ -72,7 +72,7 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
 
 
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -106,10 +106,8 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetOneContent(): void {

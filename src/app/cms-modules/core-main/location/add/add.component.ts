@@ -73,7 +73,7 @@ export class CoreLocationAddComponent implements OnInit {
 
   fileManagerOpenForm = false;
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
 
   ngOnInit(): void {
@@ -89,10 +89,8 @@ export class CoreLocationAddComponent implements OnInit {
       this.dataModelEnumLocationTypeResult = next;
     });
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
 

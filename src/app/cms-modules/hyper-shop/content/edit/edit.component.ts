@@ -62,7 +62,7 @@ export class HyperShopContentEditComponent implements OnInit {
 
   fileManagerOpenForm = false;
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
   ngOnInit(): void {
     this.formInfo.FormTitle = 'ویرایش  ';
@@ -74,10 +74,8 @@ export class HyperShopContentEditComponent implements OnInit {
     this.DataGetOneContent();
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetOneContent(): void {

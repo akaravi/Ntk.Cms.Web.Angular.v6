@@ -53,16 +53,14 @@ export class ApplicationSourceAddComponent implements OnInit {
   appLanguage = 'fa';
 
   fileManagerTree: TreeModel;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   ngOnInit(): void {
     this.DataGetAccess();
     this.getEnumRecordStatus();
     this.getEnumOsType();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
   getEnumOsType(): void {
     this.applicationEnumService.ServiceEnumOSType().subscribe((res) => {

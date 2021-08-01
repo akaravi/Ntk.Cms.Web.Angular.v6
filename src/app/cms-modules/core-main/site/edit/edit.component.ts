@@ -70,7 +70,7 @@ export class CoreSiteEditComponent implements OnInit {
   mapOptonCenter = {};
   keywordDataModel = [];
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {
@@ -92,10 +92,8 @@ export class CoreSiteEditComponent implements OnInit {
       this.dataModelEnumLanguageResult = next;
     });
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {

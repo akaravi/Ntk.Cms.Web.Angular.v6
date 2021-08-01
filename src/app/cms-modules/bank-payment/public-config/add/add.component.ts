@@ -64,7 +64,7 @@ export class BankPaymentPublicConfigAddComponent implements OnInit {
 
   fileManagerOpenForm = false;
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
 
   ngOnInit(): void {
@@ -72,10 +72,8 @@ export class BankPaymentPublicConfigAddComponent implements OnInit {
     this.formInfo.FormTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
 

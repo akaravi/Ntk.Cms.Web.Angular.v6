@@ -58,7 +58,7 @@ export class FileCategoryEditComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
@@ -95,10 +95,8 @@ export class FileCategoryEditComponent implements OnInit {
     this.getEnumRecordStatus();
   }
 
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetOneContent(): void {

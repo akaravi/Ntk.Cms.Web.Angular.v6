@@ -72,7 +72,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
 
 
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
   ngOnInit(): void {
     if (this.requestId.length > 0) {
@@ -92,10 +92,8 @@ export class WebDesignerMainPageEditComponent implements OnInit {
       this.dataModelEnumPageAbilityTypeResult = next;
     });
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
 

@@ -56,7 +56,7 @@ export class CoreTokenMicroServiceLogViewComponent implements OnInit, OnDestroy 
   dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.formInfo.FormTitle = 'مشاهده  ';

@@ -38,7 +38,7 @@ export class WebDesignerMainPageTemplateHeaderComponent implements OnInit {
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
 
   ngOnInit(): void {
     if (this.optionId.length > 0) {
@@ -46,10 +46,8 @@ export class WebDesignerMainPageTemplateHeaderComponent implements OnInit {
     }
     this.getEnumRecordStatus();
   }
-  getEnumRecordStatus(): void {
-if (this.storeSnapshot?.EnumRecordStatusModelStore?.ListItems?.length > 0) {
-      this.dataModelEnumRecordStatusResult = this.storeSnapshot.EnumRecordStatusModelStore;
-    }
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     this.loading.display = true;

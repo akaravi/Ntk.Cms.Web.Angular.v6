@@ -62,7 +62,7 @@ export class HyperShopConfigMainAdminComponent implements OnInit {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {

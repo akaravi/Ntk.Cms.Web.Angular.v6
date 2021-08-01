@@ -68,7 +68,7 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
 
 
   fileManagerOpenForm = false;
-  storeSnapshot = this.cmsStoreService.getStateSnapshot();
+  
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
