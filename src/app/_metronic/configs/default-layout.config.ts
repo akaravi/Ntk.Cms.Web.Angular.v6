@@ -190,8 +190,8 @@ export const DefaultLayoutConfig = {
 
     // Quick Actionss
     quickActions: {
-      display: false,
-      layout: 'dropdown', // offcanvas, dropdown,
+      display: true,
+      layout: 'offcanvas', // offcanvas, dropdown,
       dropdown: {
         style: 'dark', // light|dark
       },
