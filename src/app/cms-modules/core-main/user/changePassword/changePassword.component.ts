@@ -36,6 +36,7 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-user-changepassword',
@@ -53,6 +54,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     public coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -77,13 +79,16 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   fileManagerOpenForm = false;
-  
+
   dataCoreUserIds: number[] = [];
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
     this.formInfo.FormTitle = 'تغییر کلمه عبور  ';
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });
@@ -102,7 +107,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {

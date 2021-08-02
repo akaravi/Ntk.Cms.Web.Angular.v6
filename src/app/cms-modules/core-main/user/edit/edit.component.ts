@@ -55,7 +55,10 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   ) {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
       this.DataGetOneContent();
@@ -81,7 +84,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   fileManagerOpenForm = false;
-  
+
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
@@ -101,7 +104,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
 

@@ -22,12 +22,15 @@ export class BuilderComponent implements OnInit, AfterViewInit, OnDestroy {
   model: any;
   @ViewChild('form', { static: true }) form: NgForm;
   activeTabId = 1;
-  constructor(private layout: LayoutService,
+  constructor(
+    private layout: LayoutService,
     private el: ElementRef,
     private tokenHelper: TokenHelper,
     private cmsApiStore: NtkCmsApiStoreService,
   ) {
-    this.tokenHelper.getCurrentToken();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });

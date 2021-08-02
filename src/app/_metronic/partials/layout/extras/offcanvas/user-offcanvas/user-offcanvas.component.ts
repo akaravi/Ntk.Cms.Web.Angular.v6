@@ -8,6 +8,7 @@ import { CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-user-offcanvas',
@@ -25,7 +26,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
-    private router: Router,
+    private tokenHelper: TokenHelper,
   ) { }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
@@ -36,8 +37,9 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
       'extras.user.offcanvas.direction'
     )}`;
     // this.user$ = this.auth.currentUserSubject.asObservable();
-
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
       this.cdr.detectChanges();

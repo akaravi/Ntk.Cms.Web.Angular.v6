@@ -29,6 +29,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreModuleTagEditComponent } from '../edit/edit.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-tag-list',
@@ -43,7 +44,7 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
     private tagContentService: CoreModuleTagService,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog
   ) {
     // this.optionsCategoryTree.parentMethods = {
@@ -88,7 +89,10 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

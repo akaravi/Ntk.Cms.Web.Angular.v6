@@ -32,6 +32,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoreSiteModuleEditComponent } from '../moduleEdit/moduleEdit.component';
 import { CoreSiteModuleAddComponent } from '../moduleAdd/moduleAdd.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-site-module-list',
@@ -50,6 +51,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     private coreModuleService: CoreModuleService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public dialog: MatDialog,
+    private tokenHelper: TokenHelper,
     private router: Router,
   ) {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
@@ -118,7 +120,10 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

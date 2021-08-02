@@ -32,6 +32,7 @@ import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateM
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-site-domainalias-edit',
@@ -48,7 +49,7 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
     public coreLogErrorService: CoreLogErrorService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
-    private coreUserService: CoreUserService,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -68,7 +69,7 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
 
 
   fileManagerOpenForm = false;
-  
+
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -80,7 +81,10 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });

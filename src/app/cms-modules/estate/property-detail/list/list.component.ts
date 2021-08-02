@@ -35,6 +35,7 @@ import { EstatePropertyDetailEditComponent } from '../edit/edit.component';
 import { EstatePropertyDetailAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-hypershop-category-list',
@@ -52,6 +53,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog) {
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
@@ -79,8 +81,10 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
 
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailModel> = new ErrorExceptionResult<EstatePropertyDetailModel>();
-  dataModelEstatePropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
-  dataModelEstatePropertyDetailGroupResult: ErrorExceptionResult<EstatePropertyDetailGroupModel> = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
+  dataModelEstatePropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel>
+    = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
+  dataModelEstatePropertyDetailGroupResult: ErrorExceptionResult<EstatePropertyDetailGroupModel>
+    = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -111,7 +115,10 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

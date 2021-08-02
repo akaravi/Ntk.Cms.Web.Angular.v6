@@ -22,6 +22,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-modulesaleitem-listview',
@@ -41,6 +42,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private coreModuleService: CoreModuleService,
     private coreEnumService: CoreEnumService,
+    private tokenHelper: TokenHelper,
   ) {
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -69,7 +71,10 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -106,7 +111,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
       fastfilter.Value = this.linkHeaderId;
       filteModel.Filters.push(fastfilter);
     }
-    filteModel.SortColumn = "Id";
+    filteModel.SortColumn = 'Id';
     this.coreModuleSaleItemService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

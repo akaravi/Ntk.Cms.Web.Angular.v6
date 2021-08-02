@@ -18,6 +18,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-sitecategorycmsmodule-listview',
@@ -35,6 +36,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
   ) {
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -63,7 +65,10 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

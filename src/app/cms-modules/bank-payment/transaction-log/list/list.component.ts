@@ -28,6 +28,7 @@ import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { BankPaymentTransactionLogViewComponent } from '../view/view.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-bankpayment-transactionlog-list',
@@ -44,6 +45,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
     private cmsToastrService: CmsToastrService,
     private bankPaymentEnumService: BankPaymentEnumService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -100,7 +102,10 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
     }
 
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

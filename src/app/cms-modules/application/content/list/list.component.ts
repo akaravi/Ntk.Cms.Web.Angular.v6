@@ -31,6 +31,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { ApplicationLogNotificationActionSendComponent } from '../../notification/action-send/action-send.component';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-application-app-list',
@@ -49,7 +50,9 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private router: Router,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private tokenHelper: TokenHelper,
+    ) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -111,7 +114,10 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.filteModelContent.Filters.push(filter);
     }
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

@@ -23,6 +23,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-application-memberinfo-view',
@@ -33,12 +34,12 @@ export class HyperShopContentViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<HyperShopContentViewComponent>,
     public coreEnumService: CoreEnumService,
     public hyperShopContentService: HyperShopContentService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -52,7 +53,7 @@ export class HyperShopContentViewComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  
+
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -63,7 +64,10 @@ export class HyperShopContentViewComponent implements OnInit, OnDestroy {
       return;
     }
     this.DataGetOneContent();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });

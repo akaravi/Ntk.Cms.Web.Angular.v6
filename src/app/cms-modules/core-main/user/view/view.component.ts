@@ -23,6 +23,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-application-memberinfo-view',
@@ -40,6 +41,7 @@ export class CoreUserViewComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private tokenHelper: TokenHelper,
   ) {
     if (data) {
       this.requestId = + data.id || 0;
@@ -59,7 +61,7 @@ export class CoreUserViewComponent implements OnInit, OnDestroy {
 
 
   fileManagerOpenForm = false;
-  
+
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -70,7 +72,10 @@ export class CoreUserViewComponent implements OnInit, OnDestroy {
       return;
     }
     this.DataGetOneContent();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });

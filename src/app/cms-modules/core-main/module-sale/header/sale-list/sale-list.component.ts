@@ -25,6 +25,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { CoreModuleSaleHeaderSalePaymentComponent } from '../sale-payment/sale-payment.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-modulesaleheader-sale-list',
@@ -40,6 +41,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     private coreModuleService: CoreModuleService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog) {
   }
@@ -77,7 +79,10 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
 
   ngOnInit(): void {
 
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
 
       this.tokenInfo = next;

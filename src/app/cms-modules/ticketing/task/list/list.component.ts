@@ -29,6 +29,7 @@ import { Subscription } from 'rxjs';
 import { TicketingTaskEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TicketingTaskAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-application-app-list',
@@ -45,6 +46,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -93,7 +95,10 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

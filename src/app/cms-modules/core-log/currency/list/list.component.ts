@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreLogCurrencyViewComponent } from '../view/view.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-corelog-user-list',
@@ -47,6 +48,7 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
+    private tokenHelper: TokenHelper,
     private router: Router,
   ) {
     this.requestLinkCurrencyId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCurrencyId'));
@@ -107,7 +109,10 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

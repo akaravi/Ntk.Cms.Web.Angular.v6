@@ -31,6 +31,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoreLogSmsEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreLogSmsViewComponent } from '../view/view.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-corelog-user-list',
@@ -49,6 +50,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private activatedRoute: ActivatedRoute,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog,
     private router: Router,
   ) {
@@ -126,7 +128,10 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

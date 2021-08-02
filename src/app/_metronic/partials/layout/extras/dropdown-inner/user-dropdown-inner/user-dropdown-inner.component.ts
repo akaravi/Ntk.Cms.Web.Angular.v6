@@ -8,6 +8,7 @@ import { CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-user-dropdown-inner',
   templateUrl: './user-dropdown-inner.component.html',
@@ -24,7 +25,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
-    private router: Router,
+    private tokenHelper: TokenHelper,
   ) {
 
 
@@ -38,7 +39,9 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
       'extras.user.dropdown.style'
     );
     // this.user$ = this.auth.currentUserSubject.asObservable();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
       this.cdr.detectChanges();

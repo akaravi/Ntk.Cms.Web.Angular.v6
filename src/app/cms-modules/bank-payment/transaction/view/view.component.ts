@@ -24,6 +24,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-bankpayment-transaction-view',
@@ -40,7 +41,7 @@ export class BankPaymentTransactionViewComponent implements OnInit, OnDestroy {
     public bankPaymentTransactionService: BankPaymentTransactionService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
-    private coreUserService: CoreUserService,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -56,7 +57,7 @@ export class BankPaymentTransactionViewComponent implements OnInit, OnDestroy {
   dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  
+
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.formInfo.FormTitle = 'مشاهده  ';
@@ -66,7 +67,10 @@ export class BankPaymentTransactionViewComponent implements OnInit, OnDestroy {
       return;
     }
     this.DataGetOneContent();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });

@@ -29,6 +29,7 @@ import { DonateTargetDeleteComponent } from '../delete/delete.component';
 import { Observable, Subscription } from 'rxjs';
 import { DonateTargetAddComponent } from '../add/add.component';
 import { DonateTargetEditComponent } from '../edit/edit.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-polling-content-list',
@@ -43,6 +44,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     private donateTargetService: DonateTargetService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog
   ) {
     // this.optionsCategoryTree.parentMethods = {
@@ -87,7 +89,10 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

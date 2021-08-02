@@ -32,6 +32,7 @@ import { Subscription } from 'rxjs';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-userclaimcontent-checklist',
@@ -47,10 +48,10 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private coreUserClaimTypeService: CoreUserClaimTypeService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
@@ -90,7 +91,10 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

@@ -12,6 +12,7 @@ import KTLayoutQuickUser from '../../../../../assets/js/layout/extended/quick-us
 import KTLayoutHeaderTopbar from '../../../../../assets/js/layout/base/header-topbar';
 import { KTUtil } from '../../../../../assets/js/components/util';
 import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-topbar',
@@ -36,7 +37,7 @@ export class TopbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private layout: LayoutService,
-    private auth: AuthService,
+    private tokenHelper: TokenHelper,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef
   ) {
@@ -72,7 +73,10 @@ export class TopbarComponent implements OnInit, AfterViewInit, OnDestroy {
       'extras.quickPanel.display'
     );
 
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
       this.cdr.detectChanges();

@@ -27,6 +27,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { ApplicationLogNotificationViewComponent } from '../view/view.component';
 import { ApplicationLogNotificationActionSendComponent } from '../action-send/action-send.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-application-notification-list',
@@ -43,6 +44,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -109,7 +111,10 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
 
     }
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

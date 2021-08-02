@@ -32,6 +32,7 @@ import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateM
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-site-domainalias-edit',
@@ -42,12 +43,12 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<CoreTokenUserBadLoginEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreTokenUserBadLoginService: CoreTokenUserBadLoginService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -70,7 +71,7 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
 
 
   fileManagerOpenForm = false;
-  
+
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -82,7 +83,10 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });
@@ -100,7 +104,7 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetOneContent(): void {

@@ -29,6 +29,7 @@ import { Subscription } from 'rxjs';
 import { CoreModuleSaleHeaderEditComponent } from '../edit/edit.component';
 import { CoreModuleSaleHeaderAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-modulesaleheader-list',
@@ -44,6 +45,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
     this.requestHeaderGroupId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkHeaderGroupId'));
@@ -103,7 +105,10 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

@@ -9,6 +9,7 @@ import {
   CoreSiteModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
@@ -22,9 +23,12 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     public coreAuthService: CoreAuthService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
+    private tokenHelper: TokenHelper,
   ) {
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
 
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
@@ -188,7 +192,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
       (next) => {
         this.loadingStatus = false;
         if (next.IsSuccess) {
-          if (next.Item.SiteId === +this.inputSiteId ) {
+          if (next.Item.SiteId === +this.inputSiteId) {
             this.cmsToastrService.toastr.success('دسترسی به سایت جدید تایید شد', title);
             this.inputSiteId = null;
             this.inputUserId = null;
@@ -208,7 +212,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
   onActionSiteSelect(model: CoreSiteModel): void {
     if (model && model.Id > 0) {
       // this.inputSiteId = model.Id;
-      if ( model.Id !== this.tokenInfo.SiteId) {
+      if (model.Id !== this.tokenInfo.SiteId) {
         this.onActionbuttonSelectSite();
       }
     }

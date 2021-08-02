@@ -17,6 +17,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -28,12 +29,12 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<TicketingDepartemenLogEditComponent>,
     public coreEnumService: CoreEnumService,
     public ticketingDepartemenLogService: TicketingDepartemenLogService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -50,7 +51,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fileManagerOpenForm = false;
-  
+
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -61,14 +62,17 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
       return;
     }
     this.DataGetOneContent();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();

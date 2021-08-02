@@ -25,6 +25,7 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-ticketing-departemenoperator-list',
@@ -40,6 +41,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -90,7 +92,10 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

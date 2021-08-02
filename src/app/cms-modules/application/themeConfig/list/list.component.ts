@@ -3,10 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   ApplicationThemeConfigModel,
-  ApplicationAppService,
   ApplicationSourceModel,
   ApplicationThemeConfigService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
@@ -28,6 +26,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { ApplicationThemeConfigAddComponent } from '../add/add.component';
 import { ApplicationThemeConfigEditComponent } from '../edit/edit.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-application-app-list',
@@ -43,6 +42,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -94,7 +94,10 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       this.filteModelContent.Filters.push(filter);
     }
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

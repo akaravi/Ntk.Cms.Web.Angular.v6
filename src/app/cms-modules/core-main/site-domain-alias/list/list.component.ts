@@ -29,6 +29,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoreSiteDomainAliasAddComponent } from '../add/add.component';
 import { CoreSiteDomainAliasEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-site-domainalias-list',
@@ -46,6 +47,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
+    private tokenHelper: TokenHelper,
     private router: Router,
   ) {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
@@ -105,7 +107,10 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

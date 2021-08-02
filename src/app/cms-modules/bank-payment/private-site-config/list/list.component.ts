@@ -31,6 +31,7 @@ import { BankPaymentPrivateSiteConfigAddComponent } from '../add/add.component';
 import { BankPaymentPrivateSiteConfigEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { BankPaymentPrivateSiteConfigPaymentTestComponent } from '../paymentTest/paymentTest.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-bankpayment-privateconfig-list',
@@ -47,6 +48,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -99,7 +101,10 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.filteModelContent.Filters.push(filter);
     }
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

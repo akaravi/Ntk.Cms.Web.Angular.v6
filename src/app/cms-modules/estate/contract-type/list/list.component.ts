@@ -28,6 +28,7 @@ import { Subscription } from 'rxjs';
 import { EstateContractTypeEditComponent } from '../edit/edit.component';
 import { EstateContractTypeAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-hypershop-category-list',
@@ -41,6 +42,7 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
@@ -89,7 +91,10 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

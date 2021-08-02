@@ -27,6 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewsCommentEditComponent } from '../edit/edit.component';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -49,7 +50,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
@@ -95,7 +96,10 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.requestContentId = + Number(this.activatedRoute.snapshot.paramMap.get('ContentId'));
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((x) => x.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

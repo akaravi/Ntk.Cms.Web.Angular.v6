@@ -28,9 +28,10 @@ import { Subscription } from 'rxjs';
 import { EstateAccountAgencyTypeUserEditComponent } from '../edit/edit.component';
 import { EstateAccountAgencyTypeUserAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-estate-AccountAgencyTypeUser-list',
+  selector: 'app-estate-accountagencytypeuser-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
@@ -42,6 +43,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -88,7 +90,10 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

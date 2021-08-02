@@ -32,6 +32,7 @@ import { BankPaymentTransactionEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -53,6 +54,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     private bankPaymentEnumService: BankPaymentEnumService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -119,7 +121,10 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
 
     }
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

@@ -24,6 +24,7 @@ import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -37,12 +38,12 @@ export class BankPaymentConfigSiteComponent implements OnInit {
     private configService: BankPaymentConfigurationService,
     private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
-    private translate: TranslateService,) {
+    private translate: TranslateService, ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   dataSiteStorageModel = new BankPaymentModuleSiteStorageValuesModel();
@@ -63,13 +64,16 @@ export class BankPaymentConfigSiteComponent implements OnInit {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  
+
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
@@ -117,7 +121,7 @@ export class BankPaymentConfigSiteComponent implements OnInit {
 
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/modulelist']);
-    }
+  }
 
   GetServiceSiteStorage(SiteId: number): void {
     this.formInfo.FormSubmitAllow = false;

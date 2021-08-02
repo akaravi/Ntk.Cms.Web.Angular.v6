@@ -23,6 +23,7 @@ import { TreeModel } from 'ntk-cms-filemanager';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -30,19 +31,19 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './configMainAdmin.component.html',
   styleUrls: ['./configMainAdmin.component.scss']
 })
-export class CoreConfigMainAdminComponent implements OnInit , OnDestroy {
+export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: CoreConfigurationService,
     private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     private translate: TranslateService,
-    ) {
+  ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   dataConfigSiteValuesDefaultModel = new CoreModuleConfigSiteValuesModel();
@@ -65,13 +66,16 @@ export class CoreConfigMainAdminComponent implements OnInit , OnDestroy {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  
+
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
@@ -84,7 +88,7 @@ export class CoreConfigMainAdminComponent implements OnInit , OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {

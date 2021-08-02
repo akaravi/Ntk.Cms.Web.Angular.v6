@@ -26,6 +26,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FileContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-file-content-list',
@@ -40,6 +41,7 @@ export class FileContentListComponent implements OnInit, OnDestroy {
     private fileContentService: FileContentService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog
   ) {
     // this.optionsCategoryTree.parentMethods = {
@@ -82,7 +84,10 @@ export class FileContentListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

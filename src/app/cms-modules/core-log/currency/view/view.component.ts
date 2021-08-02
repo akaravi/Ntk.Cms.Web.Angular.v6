@@ -23,6 +23,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-bankpayment-transactionlog-view',
@@ -40,6 +41,7 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private tokenHelper: TokenHelper,
   ) {
     if (data) {
       this.requestId = data.id + '';
@@ -53,7 +55,7 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  
+
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.formInfo.FormTitle = 'مشاهده  ';
@@ -63,7 +65,10 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
       return;
     }
     this.DataGetOneContent();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.tokenInfo = next;
     });

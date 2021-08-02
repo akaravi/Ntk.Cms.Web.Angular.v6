@@ -34,6 +34,7 @@ import { Subscription } from 'rxjs';
 import { CoreUserClaimTypeEditComponent } from '../edit/edit.component';
 import { CoreUserClaimTypeAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-userclaimtype-list',
@@ -47,10 +48,9 @@ export class CoreUserClaimTypeListComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private coreUserGroupService: CoreUserGroupService,
-    private coreSiteCategoryService: CoreSiteCategoryService,
     private coreEnumService: CoreEnumService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -101,7 +101,10 @@ export class CoreUserClaimTypeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

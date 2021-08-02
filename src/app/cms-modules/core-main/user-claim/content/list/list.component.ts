@@ -31,6 +31,7 @@ import { Subscription } from 'rxjs';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-userclaimcontent-list',
@@ -49,6 +50,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private coreUserClaimTypeService: CoreUserClaimTypeService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
     this.requestLinkUserClaimTypeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimTypeId'));
@@ -112,7 +114,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
     'LinkUserId',
     'LinkUserClaimTypeId',
     'IsApproved',
-     'CreatedDate',
+    'CreatedDate',
     'UpdatedDate',
     'ExpireDate',
     'Action'
@@ -126,7 +128,10 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

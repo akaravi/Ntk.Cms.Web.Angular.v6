@@ -28,6 +28,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreSiteCategoryCmsModuleEditComponent } from '../edit/edit.component';
 import { CoreSiteCategoryCmsModuleAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -45,6 +46,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private tokenHelper: TokenHelper,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
@@ -107,7 +109,10 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'LinkCmsModuleId';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
     }
     // register translations
-     this.translationService.loadTranslations(
+    this.translationService.loadTranslations(
     //   enLang,
     //   chLang,
     //   esLang,
@@ -76,7 +76,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.unsubscribe.push(routerSubscription);
 
     this.tokenHelper.getDeviceToken();
-    // this.tokenHelper.getCurrentToken();
     this.publicHelper.getEnumRecordStatus();
   }
 

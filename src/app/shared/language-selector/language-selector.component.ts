@@ -3,6 +3,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { AuthRenewTokenModel, CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslationService } from '../../core/i18n/translation.service';
 
@@ -62,9 +63,13 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     public coreAuthService: CoreAuthService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     private router: Router
   ) {
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
 
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;

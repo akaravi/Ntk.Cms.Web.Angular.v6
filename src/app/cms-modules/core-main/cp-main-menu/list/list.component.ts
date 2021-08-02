@@ -31,6 +31,7 @@ import { CoreCpMainMenuEditComponent } from '../edit/edit.component';
 import { CoreCpMainMenuAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-user-list',
   templateUrl: './list.component.html',
@@ -43,7 +44,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
+    private tokenHelper: TokenHelper,
     public coreEnumService: CoreEnumService,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
@@ -97,7 +98,10 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

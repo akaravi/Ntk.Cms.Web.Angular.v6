@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
 import { CoreDeviceEditComponent } from '../edit/edit.component';
 import { CoreDeviceAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-sitecategory-list',
@@ -45,6 +46,7 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     private coreEnumService: CoreEnumService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
@@ -108,7 +110,10 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -145,7 +150,7 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-         
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }

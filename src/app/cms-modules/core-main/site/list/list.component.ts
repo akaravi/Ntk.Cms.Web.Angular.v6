@@ -29,6 +29,7 @@ import { Subscription } from 'rxjs';
 import { CoreSiteDeleteComponent } from '../delete/delete.component';
 import { CoreSiteEditComponent } from '../edit/edit.component';
 import { CoreSiteAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-site-list',
@@ -45,6 +46,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
@@ -113,7 +115,10 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -389,7 +394,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   onActionBackToParentUserList(): void {
     this.router.navigate(['/core/user/']);
   }
-   onActionBackToParentSiteCategoryList(): void {
+  onActionBackToParentSiteCategoryList(): void {
     this.router.navigate(['/core/sitecategory/']);
   }
 }

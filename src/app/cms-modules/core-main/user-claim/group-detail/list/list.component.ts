@@ -32,6 +32,7 @@ import { Subscription } from 'rxjs';
 import { CoreUserClaimGroupDetailEditComponent } from '../edit/edit.component';
 import { CoreUserClaimGroupDetailAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-userclaimgroupdetail-list',
@@ -51,6 +52,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     private coreUserClaimTypeService: CoreUserClaimTypeService,
     private coreUserClaimGroupService: CoreUserClaimGroupService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.requestLinkUserClaimTypeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimTypeId'));
     this.requestLinkUserClaimGroupId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimGroupId'));
@@ -114,7 +116,10 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

@@ -26,6 +26,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ArticleContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-article-content-list',
@@ -40,6 +41,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     private contentService: ArticleContentService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog
   ) {
     this.optionsSearch.parentMethods = {
@@ -81,7 +83,10 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   GetAllWithHierarchyCategoryId = false;
   ngOnInit(): void {
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

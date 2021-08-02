@@ -26,6 +26,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BlogContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-blog-content-list',
@@ -39,6 +40,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     private contentService: BlogContentService,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog
   ) {
@@ -86,7 +88,10 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

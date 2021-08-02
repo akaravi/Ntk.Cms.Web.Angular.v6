@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CoreLogErrorEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-coretoken-user-list',
@@ -49,6 +50,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private router: Router,
+    private tokenHelper: TokenHelper,
   ) {
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkDeviceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDeviceId'));
@@ -116,7 +118,10 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

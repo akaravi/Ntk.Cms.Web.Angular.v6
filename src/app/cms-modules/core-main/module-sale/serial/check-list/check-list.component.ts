@@ -25,6 +25,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-modulesaleserial-check-list',
@@ -42,6 +43,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     public coreEnumService: CoreEnumService,
     private activatedRoute: ActivatedRoute,
     private coreModuleService: CoreModuleService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog) {
     this.requestSerial = this.activatedRoute.snapshot.paramMap.get('Serial');
@@ -81,7 +83,10 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     if (this.requestSerial && this.requestSerial.length > 0) {
       this.DataCheckUseSerialForSite(this.requestSerial);
     }
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       if (this.requestSerial && this.requestSerial.length > 0) {
         this.DataCheckUseSerialForSite(this.requestSerial);

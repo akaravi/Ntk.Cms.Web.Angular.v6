@@ -4,17 +4,20 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { LayoutService, LayoutInitService } from '../../_metronic/core';
 import KTLayoutContent from '../../../assets/js/layout/base/content';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnInit, AfterViewInit {
+export class LayoutComponent implements OnInit, AfterViewInit , OnDestroy {
   // Public variables
   selfLayout = 'default';
   asideSelfDisplay: true;
@@ -48,9 +51,18 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     private initService: LayoutInitService,
     private layout: LayoutService,
     private tokenHelper: TokenHelper,
+    private cmsApiStore: NtkCmsApiStoreService,
   ) {
     this.initService.init();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+      this.tokenInfo = next;
+    });
   }
+  tokenInfo: TokenInfoModel = new TokenInfoModel();
+  cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
     // First Token Info
@@ -114,7 +126,9 @@ export class LayoutComponent implements OnInit, AfterViewInit {
       'extras.scrolltop.display'
     );
   }
-
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
   ngAfterViewInit(): void {
     if (this.ktAside) {
       for (const key in this.asideHTMLAttributes) {

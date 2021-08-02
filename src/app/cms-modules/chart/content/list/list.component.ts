@@ -27,6 +27,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChartContentDeleteComponent } from '../delete/delete.component';
 import { Observable, Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-chart-content-list',
@@ -41,6 +42,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
     private contentService: ChartContentService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog
   ) {
     this.optionsSearch.parentMethods = {
@@ -80,7 +82,10 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

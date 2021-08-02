@@ -33,6 +33,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { WebDesignerMainPageDependencyAutoAddPageComponent } from '../auto-add-page/auto-add-page.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-webdesigner-pagedependency-list',
@@ -50,6 +51,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     private coreModuleService: CoreModuleService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public http: HttpClient,
     public dialog: MatDialog) {
     this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
@@ -105,7 +107,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -230,7 +235,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     })
       .pipe(
         map((ret: any) => {
-          var retOut = this.webDesignerMainPageDependencyService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
+          // tslint:disable-next-line: max-line-length
+          const retOut = this.webDesignerMainPageDependencyService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
           if (retOut.IsSuccess) {
             this.cmsToastrService.typeSuccessAdd();
             this.DataGetAll();

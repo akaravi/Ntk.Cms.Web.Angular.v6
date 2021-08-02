@@ -34,6 +34,7 @@ import { WebDesignerMainPageAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { environment } from 'src/environments/environment';
 import { DOCUMENT } from '@angular/common';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-webdesigner-page-list',
@@ -54,6 +55,7 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
     private webDesignerMainPageTemplateService: WebDesignerMainPageTemplateService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     if (this.activatedRoute.snapshot.paramMap.get('LinkPageTemplateGuId')) {
       this.requestLinkPageTemplateGuId = this.activatedRoute.snapshot.paramMap.get('LinkPageTemplateGuId');
@@ -135,7 +137,10 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

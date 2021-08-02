@@ -28,6 +28,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreSiteUserAddComponent } from '../userAdd/userAdd.component';
 import { CoreSiteUserEditComponent } from '../userEdit/userEdit.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-site-user-list',
@@ -46,6 +47,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
@@ -125,7 +127,10 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

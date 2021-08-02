@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
 import { WebDesignerMainPageTemplateEditComponent } from '../edit/edit.component';
 import { WebDesignerMainPageTemplateAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-webdesigner-pagetemplate-list',
@@ -43,7 +44,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private coreModuleService: CoreModuleService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
@@ -94,7 +95,10 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

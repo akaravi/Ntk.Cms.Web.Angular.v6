@@ -33,6 +33,7 @@ import { EstatePropertyDetailGroupEditComponent } from '../edit/edit.component';
 import { EstatePropertyDetailGroupAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-hypershop-category-list',
@@ -47,6 +48,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
@@ -67,7 +69,8 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
 
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailGroupModel> = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
-  dataModelEstatePropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
+  dataModelEstatePropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> =
+    new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -96,7 +99,10 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;

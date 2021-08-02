@@ -31,6 +31,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoreTokenMicroServiceLogEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreTokenMicroServiceLogViewComponent } from '../view/view.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-coretoken-user-list',
@@ -42,7 +43,6 @@ export class CoreTokenMicroServiceLogListComponent implements OnInit, OnDestroy 
   requestLinkUserId = 0;
   requestLinkDeviceId = 0;
   constructor(
-    private coreEnumService: CoreEnumService,
     private coreTokenMicroServiceLogService: CoreTokenMicroServiceLogService,
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
@@ -50,6 +50,7 @@ export class CoreTokenMicroServiceLogListComponent implements OnInit, OnDestroy 
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
+    private tokenHelper: TokenHelper,
     private router: Router,
   ) {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
@@ -128,7 +129,10 @@ export class CoreTokenMicroServiceLogListComponent implements OnInit, OnDestroy 
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
     this.DataGetAll();
-    this.tokenInfo = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
