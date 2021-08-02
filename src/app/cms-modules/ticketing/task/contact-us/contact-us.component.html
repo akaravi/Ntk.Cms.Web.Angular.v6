@@ -448,112 +448,150 @@
         </div>
       </div>
       <!--end::Section-->
-
-      <!--begin::Card-->
-      <div class="card card-custom gutter-b">
-        <div class="card-header">
-          <div class="card-title">
-            <h5 class="card-label">
-              سوالات خود را برای ما ارسال کنید
-            </h5>
-          </div>
-        </div>
-        <!--begin::Form-->
-        <form class="form" (ngSubmit)="onFormSubmit()" #vform="ngForm">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-xl-3"></div>
-              <div class="col-xl-6">
-                <!--begin::ورودی-->
-                <div class="form-group">
-                  <label>نام و نام خانوادگی</label>
-                  <input type="text" [(ngModel)]="dataModel.FullName" name="dataModel.FullName" #FullName required
-                    class="form-control form-control-solid form-control-lg" placeholder="نام و نام خانوادگی خود را وارد کنید" />
-                  <mat-error *ngIf="FullName.errors?.required">
-                    FullName is <strong>required</strong>
-                  </mat-error>
-                </div>
-                <!--end::ورودی-->
-
-                <!--begin::ورودی-->
-                <div class="form-group">
-                  <label>تلفن</label>
-                  <input type="text" [(ngModel)]="dataModel.PhoneNo" name="dataModel.PhoneNo" #PhoneNo required
-                    class="form-control form-control-solid form-control-lg" placeholder="تلفن خود را وارد کنید" />
-
-                  <mat-error *ngIf="PhoneNo.errors?.required">
-                    PhoneNo is <strong>required</strong>
-                  </mat-error>
-                </div>
-                <!--end::ورودی-->
-
-                <!--begin::ورودی-->
-                <div class="form-group">
-                  <label>آدرس الکترونیک</label>
-                  <input type="email" [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email required
-                    class="form-control form-control-solid form-control-lg" placeholder="ایمیل را وارد کنید" />
-
-                  <mat-error *ngIf="Email.errors?.required">
-                    Email is <strong>required</strong>
-                  </mat-error>
-
-                </div>
-                <!--end::ورودی-->
-
-                <!--begin::ورودی-->
-                <div class="form-group">
-                  <label for="exampleتکس اریا">پیام شما</label>
-                  <textarea [(ngModel)]="dataModel.HtmlBody" name="dataModel.HtmlBody" #HtmlBody class="form-control form-control-solid form-control-lg"
-                    id="exampleتکس اریا" rows="3" required></textarea>
-  
-                  <mat-error *ngIf="HtmlBody.errors?.required">
-                    HtmlBody is <strong>required</strong>
-                  </mat-error>
-                  <span class="form-text text-muted">ما هرگز ایمیل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>
-                </div>
-                <!--end::ورودی-->
-
-
-                <!--CaptchaText Field-->
-                <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-                <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
-
-                <mat-form-field class="ntk-full-width">
-                  <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
-                  <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
-                    [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"
-                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4" autocomplete="off"
-                    placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-                  <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="dataModel.CaptchaText = ''">
-                    close</mat-icon>
-                  <mat-icon matSuffix>mode_edit</mat-icon>
-                  <mat-error *ngIf="CaptchaText.errors?.required">
-                    CaptchaText is <strong>required</strong>
-                  </mat-error>
-                </mat-form-field>
+      <ng-container *ngIf="this.formInfo?.FormSubmitedStatus != enumFormSubmitedStatus.Success">
+        <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+          <app-cms-html-card [optionLoading]="loading">
+            <ng-container cms-header>
+              <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+              <div class="card-title">
+                <h5 class="card-label">
+                  سوالات خود را برای ما ارسال کنید
+                </h5>
               </div>
-              <div class="col-xl-3"></div>
-            </div>
-          </div>
+              <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+            </ng-container>
+            <ng-container cms-body>
+              <!--begin::cms-body-->
+              <div class="row">
+                <div class="col-xl-3"></div>
+                <div class="col-xl-6">
+                  <!--begin::ورودی-->
+                  <div class="form-group">
+                    <label>نام و نام خانوادگی</label>
+                    <input type="text" [(ngModel)]="dataModel.FullName" name="dataModel.FullName" #FullName required
+                      class="form-control form-control-solid form-control-lg"
+                      placeholder="نام و نام خانوادگی خود را وارد کنید" />
+                    <mat-error *ngIf="FullName.errors?.required">
+                      FullName is <strong>required</strong>
+                    </mat-error>
+                  </div>
+                  <!--end::ورودی-->
 
-          <!--begin::اقدامات-->
-          <div class="card-footer">
-            <div class="row">
-              <div class="col-xl-3"></div>
+                  <!--begin::ورودی-->
+                  <div class="form-group">
+                    <label>تلفن</label>
+                    <input type="text" [(ngModel)]="dataModel.PhoneNo" name="dataModel.PhoneNo" #PhoneNo required
+                      class="form-control form-control-solid form-control-lg" placeholder="تلفن خود را وارد کنید" />
+
+                    <mat-error *ngIf="PhoneNo.errors?.required">
+                      PhoneNo is <strong>required</strong>
+                    </mat-error>
+                  </div>
+                  <!--end::ورودی-->
+
+                  <!--begin::ورودی-->
+                  <div class="form-group">
+                    <label>آدرس الکترونیک</label>
+                    <input type="email" [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email required
+                      class="form-control form-control-solid form-control-lg" placeholder="ایمیل را وارد کنید" />
+
+                    <mat-error *ngIf="Email.errors?.required">
+                      Email is <strong>required</strong>
+                    </mat-error>
+
+                  </div>
+                  <!--end::ورودی-->
+
+                  <!--begin::ورودی-->
+                  <div class="form-group">
+                    <label for="exampleتکس اریا">پیام شما</label>
+                    <textarea [(ngModel)]="dataModel.HtmlBody" name="dataModel.HtmlBody" #HtmlBody
+                      class="form-control form-control-solid form-control-lg" id="exampleتکس اریا" rows="3"
+                      required></textarea>
+
+                    <mat-error *ngIf="HtmlBody.errors?.required">
+                      HtmlBody is <strong>required</strong>
+                    </mat-error>
+                    <span class="form-text text-muted">ما هرگز ایمیل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>
+                  </div>
+                  <!--end::ورودی-->
+
+
+                  <!--CaptchaText Field-->
+                  <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
+                  <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
+
+                  <mat-form-field class="ntk-full-width">
+                    <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+                    <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
+                      [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"
+                      class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4"
+                      autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+                    <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
+                      (click)="dataModel.CaptchaText = ''">
+                      close</mat-icon>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="CaptchaText.errors?.required">
+                      CaptchaText is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+                <div class="col-xl-3"></div>
+              </div>
+              <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+            </ng-container>
+            <ng-container cms-footer>
+              <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
               <div class="col-xl-6 ntk-button-row">
-                <button type="submit" mat-raised-button color="submit" >ارسال</button>
-                <button type="reset" mat-raised-button >لغو</button>
+                <button type="submit" mat-raised-button color="submit">ارسال</button>
+                <button type="reset" mat-raised-button>لغو</button>
               </div>
-              <div class="col-xl-3"></div>
-            </div>
-          </div>
-          <!--end::اقدامات-->
+              <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+            </ng-container>
+          </app-cms-html-card>
         </form>
-        <!--end::Form-->
-      </div>
-      <!--end::Card-->
+      </ng-container>
 
+      <ng-container *ngIf="this.formInfo?.FormSubmitedStatus == enumFormSubmitedStatus.Success">
+        <!--begin::Row-->
+        <div class="row">
+          <div class="col-lg-12">
+            <!--begin::کال اوت-->
+            <div class="card card-custom mb-2 bg-diagonal bg-diagonal-light-primary">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between p-4">
+                  <!--begin::Content-->
+                  <div class="d-flex flex-column mr-5">
+                    <a href="#" class="h4 text-dark text-hover-primary mb-5">
+                      پیام شما در سامانه ثبت شد.
+                    </a>
+                    <p class="text-dark-50">
+                      برای پیگری های بعدی کد پیگیری را یاداشت نمایید.
+                    </p>
+                    <div [innerHTML]="this.dataModelResult.Item?.virtual_Departemen?.DefaultAnswerBody">
+                      
+                    </div>
+                  </div>
+                  <!--end::Content-->
+
+                  <!--begin::دکمه-->
+                  <div class="ml-6 flex-shrink-0" style="font-size: xx-large;">
+                    <b>
+                      کد پیگیری :
+                      {{this.dataModelResult.Item.Id}}
+                    </b>
+                  </div>
+                  <!--end::دکمه-->
+                </div>
+              </div>
+            </div>
+            <!--end::کال اوت-->
+          </div>
+
+        </div>
+        <!--end::Row-->
+      </ng-container>
     </div>
     <!--end::Container-->
   </div>

@@ -69,6 +69,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
       }
       this.cdr.detectChanges();
     });
+    
   }
 
   async logout() {

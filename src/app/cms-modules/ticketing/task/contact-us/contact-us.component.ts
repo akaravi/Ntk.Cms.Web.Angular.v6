@@ -1,7 +1,6 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AccessModel,
@@ -16,14 +15,12 @@ import {
   TicketingTaskDtoModel,
   CoreAuthService,
   CaptchaModel,
+  EnumFormSubmitedStatus,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { Map as leafletMap } from 'leaflet';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
+import { TreeModel } from 'ntk-cms-filemanager';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -41,7 +38,8 @@ export class TicketingTaskContactUsComponent implements OnInit {
     private ticketingTaskService: TicketingTaskService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
-    private translate: TranslateService,) {
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -63,7 +61,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
   captchaModel: CaptchaModel = new CaptchaModel();
   expireDate: string;
   aoutoCaptchaOrder = 1;
-
+  enumFormSubmitedStatus = EnumFormSubmitedStatus;
   ngOnInit(): void {
     this.requestLinkDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDepartemenId'));
     this.onCaptchaOrder();
@@ -115,18 +113,23 @@ export class TicketingTaskContactUsComponent implements OnInit {
           this.loading.display = false;
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
+          debugger
           if (next.IsSuccess) {
+            this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Success;
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             // setTimeout(() => this.router.navigate(['/dasbor']), 100);
           } else {
+            this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Error;
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.cdr.markForCheck();
         },
         (error) => {
           this.loading.display = false;
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
+          this.cdr.markForCheck();
         }
       );
   }

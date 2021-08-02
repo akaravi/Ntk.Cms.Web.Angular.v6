@@ -12,7 +12,9 @@
       <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
         {{ tokenInfo.Name}} {{ tokenInfo.LastName }}
       </div>
-      <span class="label label-light-success label-lg font-weight-bold label-inline">3 {{'TITLE.MESSAGES'| translate}}
+      <span class="label label-light-info label-lg font-weight-bold label-inline">{{'TITLE.User_Id'| translate}}:{{this.tokenInfo.UserId}}
+      </span>
+      <span class="label label-light-success label-lg font-weight-bold label-inline">{{'TITLE.Site_Id'| translate}}:{{this.tokenInfo.SiteId}}
       </span>
       <!--end::Text-->
     </div>
@@ -39,7 +41,10 @@
         </div>
         <!--end::Text-->
       </div>
-      <span class="label label-success label-lg font-weight-bold label-inline">3 {{'TITLE.MESSAGES'| translate}}</span>
+      <span class="label label-info label-lg font-weight-bold label-inline">{{'TITLE.User_Id'| translate}}:{{this.tokenInfo.UserId}}
+      </span>
+      <span class="label label-success label-lg font-weight-bold label-inline">{{'TITLE.Site_Id'| translate}}:{{this.tokenInfo.SiteId}}
+      </span>
     </div>
     <!--end::Header-->
   </ng-container>
@@ -59,7 +64,7 @@
           <div class="text-muted">
             {{'TITLE.Account_settings_and_more'| translate}}
 
-            <span class="label label-light-danger label-inline font-weight-bold">update</span>
+            <span class="label label-light-danger label-inline font-weight-bold">3 {{'TITLE.MESSAGES'| translate}}</span>
           </div>
         </div>
       </div>
