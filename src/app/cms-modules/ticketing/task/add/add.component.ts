@@ -24,7 +24,7 @@ import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-aplication-intro-add',
+  selector: 'app-ticketing-task-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })

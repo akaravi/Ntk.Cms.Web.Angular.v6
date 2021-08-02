@@ -105,6 +105,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
 
   tabledisplayedColumns: string[] = [
     'Id',
+    'Description',
     'LinkSiteId',
     'LinkUserId',
     'LinkMemberUserId',
@@ -114,7 +115,6 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
     'UserAccessAdminAllowToProfessionalData',
     'RememberOnDevice',
     'CreatedDate',
-    'ExpireDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();

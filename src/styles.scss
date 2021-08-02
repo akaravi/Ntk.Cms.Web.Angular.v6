@@ -169,10 +169,10 @@ mat-paginator {
   margin-right: 5px;
   margin-left: 5px;
 }
-
+/*mat-raised-button*/
 .mat-button.mat-success,
 .mat-stroked-button.mat-success {
-    color: #155724;
+    color: #208045;
 }
 .mat-button.mat-success:hover,
 .mat-stroked-button.mat-success:hover {
@@ -184,12 +184,32 @@ mat-paginator {
 .mat-fab.mat-success,
 .mat-mini-fab.mat-success {
   color: #f0fff3;
-  background-color: #155724;
+  background-color: #208045;
+}
+.mat-icon-button.mat-success {
+  color:#208045;
+}
+/*mat-raised-button*/
+.mat-button.mat-submit,
+.mat-stroked-button.mat-submit {
+    color: #3c64bb;
+}
+.mat-button.mat-submit:hover,
+.mat-stroked-button.mat-submit:hover {
+  background-color: #f0fff3;
 }
 
-.mat-icon-button.mat-success {
-  color:#155724;
+.mat-raised-button.mat-submit,
+.mat-flat-button.mat-submit,
+.mat-fab.mat-submit,
+.mat-mini-fab.mat-submit {
+  color: #f0fff3;
+  background-color: #3c64bb;
 }
+.mat-icon-button.mat-submit {
+  color:#3c64bb;
+}
+/*mat-raised-button*/
 /*
 karavi
 */

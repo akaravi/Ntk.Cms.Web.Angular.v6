@@ -79,7 +79,7 @@
         <!--end:Item-->
 
         <!--begin::Item-->
-        <a class="navi-item cursor-pointer">
+        <a class="navi-item cursor-pointer" routerLink="{{'/ticketing/task-me'}}">
           <div class="navi-link">
             <div class="symbol symbol-40 bg-light mr-3">
               <div class="symbol-label">
@@ -99,9 +99,32 @@
           </div>
         </a>
         <!--end:Item-->
+   <!--begin::Item-->
+   <a class="navi-item cursor-pointer" routerLink="{{'/coretoken/userlog'}}">
+    <div class="navi-link">
+      <div class="symbol symbol-40 bg-light mr-3">
+        <div class="symbol-label">
+          <span [inlineSVG]="
+              './assets/media/svg/icons/Communication/Mail-opened.svg'
+            " cacheSVG="true" class="svg-icon svg-icon-md svg-icon-primary"></span>
+        </div>
+      </div>
+      <div class="navi-text">
+        <div class="font-weight-bold">
+          {{'TITLE.My_Tasks'| translate}}
+        </div>
+        <div class="text-muted">
+          {{'TITLE.latest_tasks_and_projects'| translate}}
+        </div>
+      </div>
+    </div>
+  </a>
+  <!--end:Item-->
 
         <!--begin::Item-->
-        <a class="navi-item cursor-pointer">
+        <ng-container *ngIf="IsAdminSite">
+
+        <a class="navi-item cursor-pointer" routerLink="{{'/ticketing/task'}}">
           <div class="navi-link">
             <div class="symbol symbol-40 bg-light mr-3">
               <div class="symbol-label">
@@ -120,29 +143,10 @@
             </div>
           </div>
         </a>
+        </ng-container>
         <!--end:Item-->
 
-        <!--begin::Item-->
-        <a class="navi-item cursor-pointer">
-          <div class="navi-link">
-            <div class="symbol symbol-40 bg-light mr-3">
-              <div class="symbol-label">
-                <span [inlineSVG]="
-                    './assets/media/svg/icons/Communication/Mail-opened.svg'
-                  " cacheSVG="true" class="svg-icon svg-icon-md svg-icon-primary"></span>
-              </div>
-            </div>
-            <div class="navi-text">
-              <div class="font-weight-bold">
-                {{'TITLE.My_Tasks'| translate}}
-              </div>
-              <div class="text-muted">
-                {{'TITLE.latest_tasks_and_projects'| translate}}
-              </div>
-            </div>
-          </div>
-        </a>
-        <!--end:Item-->
+     
       </div>
       <!--end::Nav-->
 

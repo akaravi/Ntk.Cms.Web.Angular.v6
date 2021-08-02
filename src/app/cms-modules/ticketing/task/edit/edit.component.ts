@@ -25,7 +25,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-aplication-app-edit',
+  selector: 'app-ticketing-task-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })

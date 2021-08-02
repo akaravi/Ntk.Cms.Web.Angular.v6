@@ -67,7 +67,7 @@
     <!--end::Item-->
 
     <!--begin::Item-->
-    <a class="navi-item px-8 cursor-pointer">
+    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task-me'}}">
       <div class="navi-link">
         <div class="navi-icon mr-2">
           <i class="flaticon2-mail text-warning"></i>
@@ -85,7 +85,28 @@
     <!--end::Item-->
 
     <!--begin::Item-->
-    <a class="navi-item px-8 cursor-pointer">
+    <ng-container *ngIf="IsAdminSite">
+    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task'}}">
+      <div class="navi-link">
+        <div class="navi-icon mr-2">
+          <i class="flaticon2-hourglass text-primary"></i>
+        </div>
+        <div class="navi-text">
+          <div class="font-weight-bold">
+            {{'TITLE.My_Tasks'| translate}}
+            
+          </div>
+          <div class="text-muted">
+            {{'TITLE.latest_tasks_and_projects'| translate}}
+          </div>
+        </div>
+      </div>
+    </a>
+  </ng-container>
+    <!--end::Item-->
+
+    <!--begin::Item-->
+    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/coretoken/userlog'}}">
       <div class="navi-link">
         <div class="navi-icon mr-2">
           <i class="flaticon2-rocket-1 text-danger"></i>
@@ -102,24 +123,6 @@
     </a>
     <!--end::Item-->
 
-    <!--begin::Item-->
-    <a class="navi-item px-8 cursor-pointer">
-      <div class="navi-link">
-        <div class="navi-icon mr-2">
-          <i class="flaticon2-hourglass text-primary"></i>
-        </div>
-        <div class="navi-text">
-          <div class="font-weight-bold">
-            {{'TITLE.My_Tasks'| translate}}
-
-          </div>
-          <div class="text-muted">
-            {{'TITLE.latest_tasks_and_projects'| translate}}
-          </div>
-        </div>
-      </div>
-    </a>
-    <!--end::Item-->
     <div class="navi-separator mt-3"></div>
     <app-cms-token-access></app-cms-token-access>
 

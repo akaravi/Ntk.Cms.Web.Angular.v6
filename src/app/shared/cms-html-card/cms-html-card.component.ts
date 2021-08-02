@@ -16,5 +16,21 @@ export class CmsHtmlCardComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  /*
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+  --------------------------------------
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      -------------------------------------------------------------------
+    </ng-container>
+    <ng-container cms-footer>
+-------------------------------------------------------------------
+    </ng-container>
+  </app-cms-html-card>
+</form>
+*/
 }
-

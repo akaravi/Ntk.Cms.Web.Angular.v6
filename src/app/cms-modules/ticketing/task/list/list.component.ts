@@ -32,7 +32,7 @@ import { TicketingTaskAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-application-app-list',
+  selector: 'app-ticketing-task-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })

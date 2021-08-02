@@ -50,6 +50,7 @@ import { TicketingConfigMainAdminComponent } from './config/mainAdmin/configMain
 import { TicketingAnswerListComponent } from './answer/list/list.component';
 import { TicketingAnswerAddComponent } from './answer/add/add.component';
 import { TicketingAnswerEditComponent } from './answer/edit/edit.component';
+import { TicketingTaskContactUsComponent } from './task/contact-us/contact-us.component';
 
 
 
@@ -78,6 +79,7 @@ import { TicketingAnswerEditComponent } from './answer/edit/edit.component';
     TicketingTaskListComponent,
     TicketingTaskEditComponent,
     TicketingTaskAddComponent,
+    TicketingTaskContactUsComponent,
     /* */
     TicketingDepartemenOperatorListComponent,
     TicketingDepartemenLogEditComponent,

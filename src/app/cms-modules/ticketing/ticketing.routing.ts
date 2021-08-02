@@ -11,6 +11,7 @@ import { TicketingConfigMainAdminComponent } from './config/mainAdmin/configMain
 import { TicketingConfigSiteComponent } from './config/site/configSite.component';
 import { TicketingDepartemenLogListComponent } from './departemenLog/list/list.component';
 import { TicketingAnswerListComponent } from './answer/list/list.component';
+import { TicketingTaskContactUsComponent } from './task/contact-us/contact-us.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
         path: 'template/:DepartemenId',
         component: TicketingTemplateListComponent
       }
+      ,
+      {
+        path: 'contactus',
+        component: TicketingTaskContactUsComponent
+      },
       ,
       {
         path: 'task',

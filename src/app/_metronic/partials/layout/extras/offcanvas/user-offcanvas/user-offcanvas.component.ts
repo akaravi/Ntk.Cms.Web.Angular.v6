@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { UserModel } from '../../../../../../modules/auth/_models/user.model';
 import { AuthService } from '../../../../../../modules/auth/_services/auth.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { CoreAuthService, EnumManageUserAccessAreaTypes, EnumManageUserAccessControllerTypes, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -31,7 +31,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
-
+  IsAdminSite = false;
   ngOnInit(): void {
     this.extrasUserOffcanvasDirection = `offcanvas-${this.layout.getProp(
       'extras.user.offcanvas.direction'
@@ -39,12 +39,35 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     // this.user$ = this.auth.currentUserSubject.asObservable();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      if (this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminCpSite
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminMainCms
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminResellerCms
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportCpSite
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportMainCms
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
+        this.IsAdminSite = true;
+      }
+      else {
+        this.IsAdminSite = false;
+      }
     });
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
+      if (this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminCpSite
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminMainCms
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminResellerCms
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportCpSite
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportMainCms
+        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
+        this.IsAdminSite = true;
+      }
+      else {
+        this.IsAdminSite = false;
+      }
       this.cdr.detectChanges();
     });
   }
+
   async logout() {
     // this.auth.logout();
     this.cmsToastrService.typeOrderActionLogout();

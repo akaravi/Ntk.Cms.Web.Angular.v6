@@ -45,7 +45,7 @@ export class AuthSingInComponent implements OnInit {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.hasError = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
-    this.dataModel.lang=this.translationService.getSelectedLanguage();
+    this.dataModel.lang = this.translationService.getSelectedLanguage();
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
       (res) => {
         if (res.IsSuccess) {
