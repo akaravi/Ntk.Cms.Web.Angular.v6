@@ -16,5 +16,26 @@ export class CmsHtmlModalComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  /*
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-modal [optionLoading]="loading">
+    <ng-container cms-header>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      --------------------------------------
+      <!--end::cms-body-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-modal>
+</form>
+*/
 }
 

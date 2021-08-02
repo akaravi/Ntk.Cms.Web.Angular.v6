@@ -21,14 +21,20 @@ export class CmsHtmlCardComponent implements OnInit {
   <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
-  --------------------------------------
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      --------------------------------------
+      <!--end::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
-      -------------------------------------------------------------------
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
     <ng-container cms-footer>
--------------------------------------------------------------------
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
   </app-cms-html-card>
 </form>

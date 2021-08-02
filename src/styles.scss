@@ -18,10 +18,8 @@
 
 // Metronic styles (replace these path when using RTL css below)
 // @import "./assets/sass/style.angular.scss";
-// For RTL, 
+// For RTL,
 @import "./assets/sass/style.angular.rtl.css";
-
-
 
 /*
  karavi import
@@ -61,7 +59,7 @@
   }
 
   .table.table-head-custom thead th.sortable-active {
-    color: #6993FF !important;
+    color: #6993ff !important;
   }
 }
 
@@ -90,7 +88,7 @@ body {
   border-radius: 5px;
   background: white;
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0  0.20), 0 8px 10px 1px color(0 0 0 0.14),
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
     0 3px 14px 2px color(0 0 0 0.12);
 }
 mat-tree {
@@ -100,8 +98,8 @@ category-tree-invisible {
   display: none;
 }
 .category-tree {
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.20), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0  0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
 }
 .category-tree ul,
 .category-tree li {
@@ -110,26 +108,26 @@ category-tree-invisible {
   list-style-type: none;
 }
 .mat-form-field-wrapper {
-  font-size:small;
+  font-size: small;
 }
 table {
- width: 100%;
- margin-top: 20px;
- font-family: IRANSansWeb;
+  width: 100%;
+  margin-top: 20px;
+  font-family: IRANSansWeb;
 }
 mat-paginator {
- display: flex;
+  display: flex;
 }
 .align-Btn {
- margin-top: 20px;
- width: 100%;
- height: auto;
- border: 1px;
- padding-block: 22px;
- padding-right: 8px;
- border-radius: 5px;
- background: white;
- box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding-block: 22px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
 }
 .BTN {
   margin-right: 5px;
@@ -142,7 +140,7 @@ mat-paginator {
   color: white;
 }
 .ntk-full-width {
-	width: 100%;
+  width: 100%;
 }
 .ntk-form {
   min-width: 150px;
@@ -152,6 +150,7 @@ mat-paginator {
 .ntk-button-row {
   margin-top: 10px;
   margin-bottom: 10px;
+  margin: auto;
   width: 100%;
   height: auto;
   border: 1px;
@@ -160,10 +159,10 @@ mat-paginator {
   border-radius: 5px;
   background: white;
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0  0.20), 0 8px 10px 1px color(0 0 0 0.14),
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
     0 3px 14px 2px color(0 0 0 0.12);
 }
-.ntk-button-row button{
+.ntk-button-row button {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-right: 5px;
@@ -172,7 +171,7 @@ mat-paginator {
 /*mat-raised-button*/
 .mat-button.mat-success,
 .mat-stroked-button.mat-success {
-    color: #208045;
+  color: #208045;
 }
 .mat-button.mat-success:hover,
 .mat-stroked-button.mat-success:hover {
@@ -187,12 +186,12 @@ mat-paginator {
   background-color: #208045;
 }
 .mat-icon-button.mat-success {
-  color:#208045;
+  color: #208045;
 }
 /*mat-raised-button*/
 .mat-button.mat-submit,
 .mat-stroked-button.mat-submit {
-    color: #3c64bb;
+  color: #3c64bb;
 }
 .mat-button.mat-submit:hover,
 .mat-stroked-button.mat-submit:hover {
@@ -207,7 +206,7 @@ mat-paginator {
   background-color: #3c64bb;
 }
 .mat-icon-button.mat-submit {
-  color:#3c64bb;
+  color: #3c64bb;
 }
 /*mat-raised-button*/
 /*
@@ -216,7 +215,6 @@ karavi
 /*
 karavi tooltip guid
 */
-
 
 .tooltip-example {
   text-align: center;
