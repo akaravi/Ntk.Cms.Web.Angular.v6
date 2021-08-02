@@ -5,8 +5,6 @@
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
       <h3 class="font-weight-bold m-0">
         {{'TITLE.User_Profile'| translate}}
-        <small class="text-muted font-size-sm ml-2">{{'TITLE.User_Id'| translate}}:{{this.tokenInfo.UserId}}</small>
-        <small class="text-muted font-size-sm ml-2">{{'TITLE.Site_Id'| translate}}:{{this.tokenInfo.SiteId}}</small>
       </h3>
       <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
         <i class="ki ki-close icon-xs text-muted"></i>
@@ -27,7 +25,7 @@
             {{ this.tokenInfo.Name }} {{ this.tokenInfo.LastName }}
           </a>
           <div class="text-muted mt-1">
-            {{this.tokenInfo.UserAccessAreaType}}
+            {{this.tokenInfo.UserTypeTitle}}
           </div>
           <div class="navi mt-2">
             <a href="#" class="navi-item">
@@ -37,7 +35,7 @@
                       './assets/media/svg/icons/Communication/Mail-notification.svg'
                     " cacheSVG="true" class="svg-icon svg-icon-lg svg-icon-primary"></span>
                 </span>
-                <span class="navi-text text-muted text-hover-primary">{{this.tokenInfo.UserId}}</span>
+                <span class="navi-text text-muted text-hover-primary">{{this.tokenInfo.Username}}</span>
               </span>
             </a>
 
@@ -70,9 +68,9 @@
               </div>
               <div class="text-muted">
                 {{'TITLE.Account_settings_and_more'| translate}}
-                <span class="label label-light-danger label-inline font-weight-bold">{{'TITLE.User_Id'|
+                <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
                   translate}}:{{this.tokenInfo.UserId}}</span>
-                <span class="label label-light-danger label-inline font-weight-bold">{{'TITLE.Site_Id'|
+                <span class="label label-light-success label-inline font-weight-bold">{{'TITLE.Site_Id'|
                   translate}}:{{this.tokenInfo.SiteId}}</span>
               </div>
             </div>
@@ -103,7 +101,8 @@
         </a>
         <!--end:Item-->
         <!--begin::Item-->
-        <a class="navi-item cursor-pointer" routerLink="{{'/coretoken/userlog'}}">
+        <ng-container *ngIf="IsAdminSite">
+        <a class="navi-item cursor-pointer" routerLink="{{'/ticketing/task'}}">
           <div class="navi-link">
             <div class="symbol symbol-40 bg-light mr-3">
               <div class="symbol-label">
@@ -122,12 +121,13 @@
             </div>
           </div>
         </a>
+        </ng-container>
         <!--end:Item-->
 
         <!--begin::Item-->
         <ng-container *ngIf="IsAdminSite">
 
-          <a class="navi-item cursor-pointer" routerLink="{{'/ticketing/task'}}">
+          <a class="navi-item cursor-pointer" routerLink="{{'/coretoken/userlog'}}">
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">
@@ -159,78 +159,7 @@
 
       <!--begin::Notifications-->
       <div>
-        <!--begin:Heading-->
-        <h5 class="mb-5">
-          Recent Notifications
-        </h5>
-        <!--end:Heading-->
-
-        <!--begin::Item-->
-        <div class="d-flex align-items-center bg-light-warning rounded p-5 gutter-b">
-          <span class="svg-icon svg-icon-warning mr-5">
-            <span [inlineSVG]="'./assets/media/svg/icons/Home/Library.svg'" cacheSVG="true"
-              class="svg-icon svg-icon-lg"></span>
-          </span>
-
-          <div class="d-flex flex-column flex-grow-1 mr-2">
-            <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another purpose
-              persuade</a>
-            <span class="text-muted font-size-sm">Due in 2 Days</span>
-          </div>
-
-          <span class="font-weight-bolder text-warning py-1 font-size-lg">+28%</span>
-        </div>
-        <!--end::Item-->
-
-        <!--begin::Item-->
-        <div class="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
-          <span class="svg-icon svg-icon-success mr-5">
-            <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" cacheSVG="true"
-              class="svg-icon svg-icon-lg"></span>
-          </span>
-          <div class="d-flex flex-column flex-grow-1 mr-2">
-            <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Would be to
-              people</a>
-            <span class="text-muted font-size-sm">Due in 2 Days</span>
-          </div>
-
-          <span class="font-weight-bolder text-success py-1 font-size-lg">+50%</span>
-        </div>
-        <!--end::Item-->
-
-        <!--begin::Item-->
-        <div class="d-flex align-items-center bg-light-danger rounded p-5 gutter-b">
-          <span class="svg-icon svg-icon-danger mr-5">
-            <span [inlineSVG]="
-                './assets/media/svg/icons/Communication/Group-chat.svg'
-              " cacheSVG="true" class="svg-icon svg-icon-lg"></span>
-          </span>
-          <div class="d-flex flex-column flex-grow-1 mr-2">
-            <a href="#" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Purpose would be to
-              persuade</a>
-            <span class="text-muted font-size-sm">Due in 2 Days</span>
-          </div>
-
-          <span class="font-weight-bolder text-danger py-1 font-size-lg">-27%</span>
-        </div>
-        <!--end::Item-->
-
-        <!--begin::Item-->
-        <div class="d-flex align-items-center bg-light-info rounded p-5">
-          <span class="svg-icon svg-icon-info mr-5">
-            <span [inlineSVG]="'./assets/media/svg/icons/General/Attachment2.svg'" cacheSVG="true"
-              class="svg-icon svg-icon-lg"></span>
-          </span>
-
-          <div class="d-flex flex-column flex-grow-1 mr-2">
-            <a href="#" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">The best
-              product</a>
-            <span class="text-muted font-size-sm">Due in 2 Days</span>
-          </div>
-
-          <span class="font-weight-bolder text-info py-1 font-size-lg">+8%</span>
-        </div>
-        <!--end::Item-->
+          <app-cms-token-access></app-cms-token-access>
       </div>
       <!--end::Notifications-->
     </div>

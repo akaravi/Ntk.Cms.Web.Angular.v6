@@ -4,7 +4,9 @@
     <div class="d-flex align-items-center p-8 rounded-top">
       <!--begin::Symbol-->
       <div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
-        <img src="{{ (tokenInfo.LinkMainImageIdSrc && tokenInfo.LinkMainImageIdSrc.length>0) ? tokenInfo.LinkMainImageIdSrc : './assets/media/users/300_21.jpg' }}" alt="" />
+        <img
+          src="{{ (tokenInfo.LinkMainImageIdSrc && tokenInfo.LinkMainImageIdSrc.length>0) ? tokenInfo.LinkMainImageIdSrc : './assets/media/users/300_21.jpg' }}"
+          alt="" />
       </div>
       <!--end::Symbol-->
 
@@ -12,9 +14,7 @@
       <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
         {{ tokenInfo.Name}} {{ tokenInfo.LastName }}
       </div>
-      <span class="label label-light-info label-lg font-weight-bold label-inline">{{'TITLE.User_Id'| translate}}:{{this.tokenInfo.UserId}}
-      </span>
-      <span class="label label-light-success label-lg font-weight-bold label-inline">{{'TITLE.Site_Id'| translate}}:{{this.tokenInfo.SiteId}}
+      <span class="label label-light-info label-lg font-weight-bold label-inline">{{ tokenInfo.UserTypeTitle }}
       </span>
       <!--end::Text-->
     </div>
@@ -41,10 +41,9 @@
         </div>
         <!--end::Text-->
       </div>
-      <span class="label label-info label-lg font-weight-bold label-inline">{{'TITLE.User_Id'| translate}}:{{this.tokenInfo.UserId}}
+      <span class="label label-info label-lg font-weight-bold label-inline">{{ tokenInfo.UserTypeTitle }}
       </span>
-      <span class="label label-success label-lg font-weight-bold label-inline">{{'TITLE.Site_Id'| translate}}:{{this.tokenInfo.SiteId}}
-      </span>
+      
     </div>
     <!--end::Header-->
   </ng-container>
@@ -64,7 +63,11 @@
           <div class="text-muted">
             {{'TITLE.Account_settings_and_more'| translate}}
 
-            <span class="label label-light-danger label-inline font-weight-bold">3 {{'TITLE.MESSAGES'| translate}}</span>
+            <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
+              translate}}:{{this.tokenInfo.UserId}}</span>
+              <span class="label label-light-success label-inline font-weight-bold">{{'TITLE.Site_Id'|
+                translate}}:{{this.tokenInfo.SiteId}}</span>
+
           </div>
         </div>
       </div>
@@ -83,6 +86,8 @@
           </div>
           <div class="text-muted">
             {{'TITLE.Inbox_and_tasks'| translate}}
+            <span class="label label-light-info label-inline font-weight-bold">3 {{'TITLE.MESSAGES'|translate}}</span>
+            
           </div>
         </div>
       </div>
@@ -91,23 +96,23 @@
 
     <!--begin::Item-->
     <ng-container *ngIf="IsAdminSite">
-    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task'}}">
-      <div class="navi-link">
-        <div class="navi-icon mr-2">
-          <i class="flaticon2-hourglass text-primary"></i>
-        </div>
-        <div class="navi-text">
-          <div class="font-weight-bold">
-            {{'TITLE.My_Tasks'| translate}}
-            
+      <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task'}}">
+        <div class="navi-link">
+          <div class="navi-icon mr-2">
+            <i class="flaticon2-hourglass text-primary"></i>
           </div>
-          <div class="text-muted">
-            {{'TITLE.latest_tasks_and_projects'| translate}}
+          <div class="navi-text">
+            <div class="font-weight-bold">
+              {{'TITLE.My_Tasks'| translate}}
+
+            </div>
+            <div class="text-muted">
+              {{'TITLE.latest_tasks_and_projects'| translate}}
+            </div>
           </div>
         </div>
-      </div>
-    </a>
-  </ng-container>
+      </a>
+    </ng-container>
     <!--end::Item-->
 
     <!--begin::Item-->

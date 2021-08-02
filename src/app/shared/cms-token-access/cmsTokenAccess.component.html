@@ -29,6 +29,8 @@
     <input [(ngModel)]="inputSiteId" type="text" class="form-control" placeholder="شناسه سایت">
   </div>
   <!-- LinkCmsSiteId Field -->
-  <app-cms-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
-    [optionSelectForce]=" this.tokenInfo.SiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
+  <div style="margin: 4px;">
+    <app-cms-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
+      [optionSelectForce]=" this.tokenInfo.SiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
+  </div>
 </div>
