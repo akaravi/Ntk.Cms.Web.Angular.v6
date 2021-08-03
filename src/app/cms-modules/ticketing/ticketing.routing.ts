@@ -12,6 +12,7 @@ import { TicketingConfigSiteComponent } from './config/site/configSite.component
 import { TicketingDepartemenLogListComponent } from './departemenLog/list/list.component';
 import { TicketingAnswerListComponent } from './answer/list/list.component';
 import { TicketingTaskContactUsComponent } from './task/contact-us/contact-us.component';
+import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.component';
 
 const routes: Routes = [
   {
@@ -54,13 +55,14 @@ const routes: Routes = [
       },
       {
         path: 'faq',
-        component: TicketingFaqListComponent
+        component: TicketingFaqOriginListComponent
       },
       {
         path: 'faq/:DepartemenId',
         component: TicketingFaqListComponent
       }
-      , {
+      ,
+      {
         path: 'template',
         component: TicketingTemplateListComponent
       },
@@ -72,7 +74,7 @@ const routes: Routes = [
       {
         path: 'contactus',
         component: TicketingTaskContactUsComponent
-      },
+      }
       ,
       {
         path: 'task',
@@ -95,8 +97,7 @@ const routes: Routes = [
       {
         path: 'answer/LinkTicketId/:LinkTicketId',
         component: TicketingAnswerListComponent
-      },
-
+      }
     ]
   },
 ];

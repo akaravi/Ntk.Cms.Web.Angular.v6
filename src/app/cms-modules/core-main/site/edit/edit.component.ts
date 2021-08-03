@@ -1,6 +1,6 @@
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +14,7 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   CoreSiteCategoryModel,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -25,6 +26,7 @@ import * as Leaflet from 'leaflet';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { CoreSiteCategoryCmsModule } from '../../site-category/coreSiteCategory.module';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -36,15 +38,19 @@ export class CoreSiteEditComponent implements OnInit {
   requestId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private coreSiteService: CoreSiteService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private translate: TranslateService,
-    ) {
+    private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper
+  ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
@@ -60,8 +66,9 @@ export class CoreSiteEditComponent implements OnInit {
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFavIconId = false;
   fileManagerOpenFormLinkFileIdLogo = false;
-  fileManagerOpenFormLinkImageLogoId=false;
+  fileManagerOpenFormLinkImageLogoId = false;
   appLanguage = 'fa';
+  tokenInfo = new TokenInfoModel();
 
   fileManagerTree: TreeModel;
   mapMarker: any;
@@ -70,9 +77,12 @@ export class CoreSiteEditComponent implements OnInit {
   mapOptonCenter = {};
   keywordDataModel = [];
 
-  
+
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    if (this.requestId === 0) {
+      this.requestId = this.tokenInfo.SiteId;
+    }
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
@@ -93,7 +103,7 @@ export class CoreSiteEditComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {
@@ -158,6 +168,8 @@ export class CoreSiteEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.cdr.detectChanges();
+
         },
         (error) => {
           this.loading.display = false;
@@ -188,6 +200,8 @@ export class CoreSiteEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
+          this.cdr.detectChanges();
+
         },
         (error) => {
           this.loading.display = false;

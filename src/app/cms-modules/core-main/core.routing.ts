@@ -94,7 +94,7 @@ const routes: Routes = [
         path: 'guide',
         loadChildren: () =>
           import('./guides/coreGuide.module').then((m) => m.CoreGuideCmsModule),
-      },
+      }
     ]
   },
 ];

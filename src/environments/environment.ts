@@ -10,12 +10,14 @@ export const environment = {
   apiUrl: 'https://your-domain.com/api',
   developing: false,
   loadDemoMenu: true,
-  appVersion: '1.05.011',
+  loadDemoDashboard: true,
+  appVersion: '1.05.101',
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
     // configApiServerPath: 'https://apicms.ir/api/v1/',
     configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+    // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
     configMvcServerPath: 'https://oco.ir',
     configCpanelImages: '/cpanelv1/images/',
     configPathFileByIdAndName: 'https://oco.ir/files/',

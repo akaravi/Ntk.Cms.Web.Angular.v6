@@ -51,6 +51,7 @@ import { TicketingAnswerListComponent } from './answer/list/list.component';
 import { TicketingAnswerAddComponent } from './answer/add/add.component';
 import { TicketingAnswerEditComponent } from './answer/edit/edit.component';
 import { TicketingTaskContactUsComponent } from './task/contact-us/contact-us.component';
+import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.component';
 
 
 
@@ -71,6 +72,7 @@ import { TicketingTaskContactUsComponent } from './task/contact-us/contact-us.co
     TicketingFaqAddComponent,
     TicketingFaqEditComponent,
     TicketingFaqListComponent,
+    TicketingFaqOriginListComponent,
     /* */
     TicketingTemplateAddComponent,
     TicketingTemplateEditComponent,

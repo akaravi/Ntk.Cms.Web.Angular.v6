@@ -1,22 +1,12 @@
 <!--begin::Quick Actions Panel-->
-<div
-  id="kt_quick_actions"
-  class="offcanvas p-10"
-  [ngClass]="extrasQuickActionsOffcanvasDirectionCSSClasses"
->
+<div id="kt_quick_actions" class="offcanvas p-10" [ngClass]="extrasQuickActionsOffcanvasDirectionCSSClasses">
   <!--begin::Header-->
-  <div
-    class="offcanvas-header d-flex align-items-center justify-content-between pb-10"
-  >
+  <div class="offcanvas-header d-flex align-items-center justify-content-between pb-10">
     <h3 class="font-weight-bold m-0">
-      Quick Actions
+      {{'TITLE.Quick_Actions'| translate}}
       <small class="text-muted font-size-sm ml-2">finance & reports</small>
     </h3>
-    <a
-      href="#"
-      class="btn btn-xs btn-icon btn-light btn-hover-primary"
-      id="kt_quick_actions_close"
-    >
+    <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_actions_close">
       <i class="ki ki-close icon-xs text-muted"></i>
     </a>
   </div>
@@ -27,38 +17,23 @@
     <div class="row gutter-b">
       <!--begin::Item-->
       <div class="col-6">
-        <a
-          href="#"
-          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
-        >
-          <span
-            [inlineSVG]="'./assets/media/svg/icons/Shopping/Euro.svg'"
-            cacheSVG="true"
-            class="svg-icon svg-icon-3x svg-icon-primary m-0"
-          ></span>
-          <span class="d-block font-weight-bold font-size-h6 mt-2"
-            >Accounting</span
-          >
+        <a [routerLink]="'/ticketing/faq'"
+          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
+          <span [inlineSVG]="'./assets/media/svg/icons/Shopping/Box1.svg'" cacheSVG="true"
+            class="svg-icon svg-icon-3x svg-icon-primary m-0"></span>
+          <span class="d-block font-weight-bold font-size-h6 mt-2">{{'TITLE.FAQ'|translate}}</span>
         </a>
       </div>
       <!--end::Item-->
 
+
       <!--begin::Item-->
       <div class="col-6">
-        <a
-          href="#"
-          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
-        >
-          <span
-            [inlineSVG]="
-              './assets/media/svg/icons/Communication/Mail-attachment.svg'
-            "
-            cacheSVG="true"
-            class="svg-icon svg-icon-3x svg-icon-primary m-0"
-          ></span>
-          <span class="d-block font-weight-bold font-size-h6 mt-2"
-            >Members</span
-          >
+        <a [routerLink]="'/ticketing/contactus'"
+          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
+          <span [inlineSVG]="'./assets/media/svg/icons/Communication/Mail-attachment.svg'" cacheSVG="true"
+            class="svg-icon svg-icon-3x svg-icon-primary m-0"></span>
+          <span class="d-block font-weight-bold font-size-h6 mt-2">{{'TITLE.Contactus'|translate}}</span>
         </a>
       </div>
       <!--end::Item-->
@@ -66,36 +41,22 @@
     <div class="row gutter-b">
       <!--begin::Item-->
       <div class="col-6">
-        <a
-          href="#"
-          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
-        >
-          <span
-            [inlineSVG]="'./assets/media/svg/icons/Shopping/Box2.svg'"
-            cacheSVG="true"
-            class="svg-icon svg-icon-3x svg-icon-primary m-0"
-          ></span>
-          <span class="d-block font-weight-bold font-size-h6 mt-2"
-            >Projects</span
-          >
+        <a [routerLink]="'core/site/edit'"
+          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
+          <span [inlineSVG]="'./assets/media/svg/icons/General/Settings-1.svg'" cacheSVG="true"
+            class="svg-icon svg-icon-3x svg-icon-primary m-0"></span>
+          <span class="d-block font-weight-bold font-size-h6 mt-2">{{'TITLE.Config_Site'|translate}}</span>
         </a>
       </div>
       <!--end::Item-->
 
       <!--begin::Item-->
       <div class="col-6">
-        <a
-          href="#"
-          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
-        >
-          <span
-            [inlineSVG]="'./assets/media/svg/icons/Communication/Group.svg'"
-            cacheSVG="true"
-            class="svg-icon svg-icon-3x svg-icon-primary m-0"
-          ></span>
-          <span class="d-block font-weight-bold font-size-h6 mt-2"
-            >Customers</span
-          >
+        <a [routerLink]="'core/site/modulelist'"
+          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
+          <span [inlineSVG]="'./assets/media/svg/icons/General/Thunder-move.svg'" cacheSVG="true"
+            class="svg-icon svg-icon-3x svg-icon-primary m-0"></span>
+          <span class="d-block font-weight-bold font-size-h6 mt-2">{{'TITLE.Config_Modules_And_Renew'|translate}}</span>
         </a>
       </div>
       <!--end::Item-->
@@ -103,55 +64,18 @@
     <div class="row gutter-b">
       <!--begin::Item-->
       <div class="col-6">
-        <a
-          href="#"
-          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
-        >
-          <span
-            [inlineSVG]="'./assets/media/svg/icons/Shopping/Chart-bar1.svg'"
-            cacheSVG="true"
-            class="svg-icon svg-icon-3x svg-icon-primary m-0"
-          ></span>
-          <span class="d-block font-weight-bold font-size-h6 mt-2">Email</span>
+        <a [routerLink]="'core/site/edit'"
+          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
+          <span [inlineSVG]="'./assets/media/svg/icons/Code/CMD.svg'" cacheSVG="true"
+            class="svg-icon svg-icon-3x svg-icon-primary m-0"></span>
+          <span class="d-block font-weight-bold font-size-h6 mt-2">{{'TITLE.Select_Site'|translate}}</span>
         </a>
       </div>
       <!--end::Item-->
 
-      <!--begin::Item-->
-      <div class="col-6">
-        <a
-          href="#"
-          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
-        >
-          <span
-            [inlineSVG]="'./assets/media/svg/icons/Design/Color-profile.svg'"
-            cacheSVG="true"
-            class="svg-icon svg-icon-3x svg-icon-primary m-0"
-          ></span>
-          <span class="d-block font-weight-bold font-size-h6 mt-2"
-            >Settings</span
-          >
-        </a>
-      </div>
-      <!--end::Item-->
+
     </div>
-    <div class="row">
-      <!--begin::Item-->
-      <div class="col-6">
-        <a
-          href="#"
-          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
-        >
-          <span
-            [inlineSVG]="'./assets/media/svg/icons/Shopping/Euro.svg'"
-            cacheSVG="true"
-            class="svg-icon svg-icon-3x svg-icon-primary m-0"
-          ></span>
-          <span class="d-block font-weight-bold font-size-h6 mt-2">Orders</span>
-        </a>
-      </div>
-      <!--end::Item-->
-    </div>
+
   </div>
   <!--end::Content-->
 </div>

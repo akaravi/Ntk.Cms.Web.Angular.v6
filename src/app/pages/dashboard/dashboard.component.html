@@ -1,1 +1,6 @@
-<app-dashboard-wrapper></app-dashboard-wrapper>
+<div class="col-lg-6 col-xxl-4">
+    <app-news-content-widget></app-news-content-widget>
+</div>
+<ng-container *ngIf="this.env.loadDemoDashboard">
+    <app-dashboard-wrapper></app-dashboard-wrapper>
+</ng-container>

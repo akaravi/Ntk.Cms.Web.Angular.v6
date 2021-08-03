@@ -39,6 +39,10 @@ const routes: Routes = [
         component: CoreSiteAddComponent
       },
       {
+        path: 'edit',
+        component: CoreSiteEditComponent
+      },
+      {
         path: 'edit/:Id',
         component: CoreSiteEditComponent
       },

@@ -1,5 +1,5 @@
 export const DefaultLayoutConfig = {
-  demo: 'demo2',
+  demo: 'demo1',
   // Javascript Settings
   js: {
     breakpoints: {
@@ -111,7 +111,7 @@ export const DefaultLayoutConfig = {
 
   // Subheader
   subheader: {
-    display: true,
+    display: false,
     displayDesc: false,
     displayDaterangepicker: true,
     breadcrumb: {
@@ -161,7 +161,7 @@ export const DefaultLayoutConfig = {
   footer: {
     display: true,
     width: 'fixed', // fluid/fixed
-    fixed: true,
+    fixed: false,
     layout: 'compact' // compact/extended
   },
 
@@ -191,7 +191,7 @@ export const DefaultLayoutConfig = {
     // Quick Actionss
     quickActions: {
       display: true,
-      layout: 'offcanvas', // offcanvas, dropdown,
+      layout: 'dropdown', // offcanvas, dropdown,
       dropdown: {
         style: 'dark', // light|dark
       },
@@ -203,7 +203,7 @@ export const DefaultLayoutConfig = {
     // User
     user: {
       display: true,
-      layout: 'offcanvas', // offcanvas, dropdown,
+      layout: 'dropdown', // offcanvas, dropdown,
       dropdown: {
         style: 'light', // light|dark
       },

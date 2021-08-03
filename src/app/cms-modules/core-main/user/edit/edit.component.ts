@@ -16,6 +16,7 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -42,7 +43,6 @@ import { Subscription } from 'rxjs';
 })
 export class CoreUserEditComponent implements OnInit, OnDestroy {
   constructor(
-    private cmsStoreService: CmsStoreService,
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public coreUserService: CoreUserService,
@@ -51,6 +51,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cmsApiStore: NtkCmsApiStoreService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
@@ -92,6 +93,9 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.requestId === 0) {
+      this.requestId = this.tokenInfo.UserId;
+    }
+    if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
@@ -131,6 +135,8 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.display = false;
+        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
@@ -161,6 +167,8 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.display = false;
+        this.cdr.detectChanges();
+
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;

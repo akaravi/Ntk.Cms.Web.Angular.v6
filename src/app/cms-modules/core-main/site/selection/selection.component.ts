@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,6 +33,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     private translationService: TranslationService,
     private coreSiteService: CoreSiteService,
     private cmsToastrService: CmsToastrService,
+    private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
 
@@ -84,10 +85,13 @@ export class CoreSiteSelectionComponent implements OnInit {
             this.cmsToastrService.typeErrorSelected();
             this.formInfo.ButtonSubmittedEnabled = true;
           }
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
+          this.cdr.detectChanges();
+
         }
       )
     );
