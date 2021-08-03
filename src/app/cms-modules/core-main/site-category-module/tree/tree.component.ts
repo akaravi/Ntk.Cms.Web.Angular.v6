@@ -72,18 +72,18 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
 
       },
       (error) => {
-        this.loading.Stop("main");
+        this.loading.Stop('main');
 
         this.cmsToastrService.typeError(error);
 
@@ -157,7 +157,7 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start("main");
+          this.loading.Start('main');
           this.categoryService.ServiceDeleteEntity(this.dataModelSelect).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -166,11 +166,11 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             }
           );
         }

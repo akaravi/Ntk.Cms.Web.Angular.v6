@@ -104,7 +104,7 @@ export class CoreModuleSaleHeaderAddComponent implements OnInit {
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.coreModuleSaleHeaderService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -119,12 +119,12 @@ export class CoreModuleSaleHeaderAddComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

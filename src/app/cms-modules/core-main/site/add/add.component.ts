@@ -146,13 +146,13 @@ export class CoreSiteAddComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start("main");
+    this.loading.Start('main');
 
     this.coreSiteService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop("main");
+          this.loading.Stop('main');
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -164,7 +164,7 @@ export class CoreSiteAddComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.Stop("main");
+          this.loading.Stop('main');
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

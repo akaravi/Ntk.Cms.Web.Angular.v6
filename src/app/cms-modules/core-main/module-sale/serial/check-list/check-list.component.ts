@@ -115,7 +115,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   DataCheckUseSerialForSite(serial: string): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.tableSource.data = [];
     const model = new CoreModuleCheckSerialForSiteDtoModel();
@@ -133,12 +133,12 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -146,7 +146,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe(
       (next) => {
@@ -158,12 +158,12 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

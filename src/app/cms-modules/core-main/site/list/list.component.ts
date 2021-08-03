@@ -131,7 +131,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -161,12 +161,12 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

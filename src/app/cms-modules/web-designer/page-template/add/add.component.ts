@@ -97,7 +97,7 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.webDesignerMainPageTemplateService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -112,12 +112,12 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

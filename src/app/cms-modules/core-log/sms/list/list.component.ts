@@ -152,7 +152,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreLogSmsModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -182,12 +182,12 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -293,7 +293,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start("main");
+          this.loading.Start('main');
           this.coreLogSmsService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -302,11 +302,11 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             }
           );
         }

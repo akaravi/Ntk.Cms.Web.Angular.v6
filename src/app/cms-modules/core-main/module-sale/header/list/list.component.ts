@@ -122,7 +122,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleHeaderModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -147,12 +147,12 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -259,7 +259,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start("main");
+          this.loading.Start('main');
           this.coreModuleSaleHeaderService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -268,11 +268,11 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             }
           );
         }

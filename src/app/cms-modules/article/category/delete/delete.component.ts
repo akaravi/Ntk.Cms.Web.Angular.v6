@@ -60,7 +60,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
       return;
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.categoryService.setAccessLoad();
     this.categoryService
       .ServiceGetOneById(this.requestId)
@@ -77,13 +77,13 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
 
@@ -92,7 +92,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     const filterModel: FilterModel = new FilterModel();
     filterModel.RowPerPage = 100;
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.categoryService
       .ServiceGetAll(filterModel)
       .subscribe(
@@ -106,13 +106,13 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
 
@@ -134,7 +134,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
     }
 
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.categoryService
       .ServiceMove(this.requestId, this.dataModel.NewCatId)
       .subscribe(
@@ -149,14 +149,14 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           }
           this.formInfo.FormSubmitAllow = true;
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
   }
@@ -168,7 +168,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
 
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.categoryService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -185,14 +185,14 @@ export class ArticleCategoryDeleteComponent implements OnInit {
             this.dialogRef.close({ dialogChangedDate: true });
           }
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
 
@@ -216,6 +216,6 @@ export class ArticleCategoryDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-    this.loading.Stop("main");
+    this.loading.Stop('main');
   }
 }

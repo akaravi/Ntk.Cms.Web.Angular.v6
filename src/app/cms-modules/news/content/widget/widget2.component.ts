@@ -10,9 +10,9 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
   styleUrls: ['./widget2.component.scss']
 })
 
-export class NewsContentWidget2Component implements OnInit {
+export class NewsContentWidget2Component implements OnInit, OnDestroy {
   @Input() cssClass = '';
-  @Input() widgetHeight = '150px';
+  @Input() widgetHeight = '200px';
   @Input() baseColor = 'success';
   textInverseCSSClass;
   constructor(
@@ -25,7 +25,7 @@ export class NewsContentWidget2Component implements OnInit {
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'اخبار های ثبت شده';
+    this.widgetInfoModel.title = 'اخبارهای ثبت شده';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/news/content';
 
@@ -56,7 +56,7 @@ export class NewsContentWidget2Component implements OnInit {
         this.loading.Stop('All');
       },
       (error) => {
-          this.loading.Stop('All');
+        this.loading.Stop('All');
       }
     );
 

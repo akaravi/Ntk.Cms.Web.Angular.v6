@@ -52,7 +52,7 @@ export class NewsContentDeleteComponent implements OnInit {
       return;
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
@@ -69,13 +69,13 @@ export class NewsContentDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
 
@@ -91,7 +91,7 @@ export class NewsContentDeleteComponent implements OnInit {
 
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.contentService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -108,20 +108,20 @@ export class NewsContentDeleteComponent implements OnInit {
             this.dialogRef.close({ dialogChangedDate: true });
           }
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
 
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-    this.loading.Stop("main");
+    this.loading.Stop('main');
   }
 }

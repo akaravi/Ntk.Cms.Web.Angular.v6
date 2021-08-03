@@ -125,7 +125,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentTransactionLogModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -150,12 +150,12 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

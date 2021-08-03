@@ -72,7 +72,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     // this.auth.logout();
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
-      this.loading.Stop("main");
+      this.loading.Stop('main');
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessLogout();
       } else {

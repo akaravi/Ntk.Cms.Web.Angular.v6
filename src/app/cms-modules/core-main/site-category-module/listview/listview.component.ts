@@ -81,7 +81,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteCategoryCmsModuleModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
 
@@ -101,11 +101,11 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

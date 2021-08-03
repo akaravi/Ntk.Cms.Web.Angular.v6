@@ -122,7 +122,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentPublicConfigModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -140,12 +140,12 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -245,7 +245,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start("main");
+          this.loading.Start('main');
           this.bankPaymentPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -254,11 +254,11 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             }
           );
         }

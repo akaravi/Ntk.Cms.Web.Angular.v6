@@ -99,7 +99,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingFaqModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -127,12 +127,12 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
         }
         this.cdr.detectChanges();
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -149,13 +149,13 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
         this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

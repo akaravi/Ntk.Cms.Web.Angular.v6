@@ -130,7 +130,7 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingDepartemenLogModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -161,12 +161,12 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

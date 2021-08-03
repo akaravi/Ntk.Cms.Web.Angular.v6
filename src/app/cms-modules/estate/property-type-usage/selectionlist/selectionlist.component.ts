@@ -49,7 +49,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
     // this.loading.backdropEnabled = false;
 
     this.loading.Globally = false;
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsStatus = new Map<string, boolean>();
@@ -64,11 +64,11 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
           });
 
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

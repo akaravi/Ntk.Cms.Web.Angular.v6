@@ -104,7 +104,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new BiographyContentModel();
 
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -135,12 +135,12 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -188,12 +188,12 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
       /** Normal */

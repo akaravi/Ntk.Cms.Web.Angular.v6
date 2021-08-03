@@ -105,7 +105,7 @@ export class CmsApplicationSelectorComponent implements OnInit {
       }
     }
     this.loading.Globally = false;
-    this.loading.Start("main");
+    this.loading.Start('main');
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {

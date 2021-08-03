@@ -122,7 +122,7 @@ export class EstatePropertyEditComponent implements OnInit {
   DataGetOne(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.estatePropertyService.setAccessLoad();
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
@@ -167,11 +167,11 @@ export class EstatePropertyEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -214,7 +214,7 @@ export class EstatePropertyEditComponent implements OnInit {
   DataEdit(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start("main");
+    this.loading.Start('main');
     if (this.dataFileModelFiles) {
       const keys = Array.from(this.dataFileModelFiles.keys());
       if (keys && keys.length > 0) {
@@ -242,12 +242,12 @@ export class EstatePropertyEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

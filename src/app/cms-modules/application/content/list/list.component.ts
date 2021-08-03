@@ -130,7 +130,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationAppModel();
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     const filter = new FilterDataModel();
@@ -176,12 +176,12 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -299,7 +299,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start("main");
+          this.loading.Start('main');
           this.applicationAppService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -308,11 +308,11 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             }
           );
         }
@@ -441,11 +441,11 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = mode;
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.applicationAppService.ServiceBuild(this.tableRowSelected.Id).subscribe(
       (next) => {
-        this.loading.Stop("main");
+        this.loading.Stop('main');
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
         }
@@ -456,7 +456,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
 

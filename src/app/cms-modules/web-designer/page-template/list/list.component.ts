@@ -112,7 +112,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageTemplateModel();
 
-    this.loading.Start("main");
+    this.loading.Start('main');
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -130,12 +130,12 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }
@@ -235,7 +235,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start("main");
+          this.loading.Start('main');
           this.bankPaymentPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -244,11 +244,11 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop("main");
+              this.loading.Stop('main');
             }
           );
         }

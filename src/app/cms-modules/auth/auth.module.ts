@@ -25,7 +25,7 @@ import { AuthSingInBySmsComponent } from './singin-bysms/singin-bysms.component'
   ],
   imports: [
     CommonModule,
-    SharedModule,
+    SharedModule.forRoot(),
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,

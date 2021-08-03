@@ -90,7 +90,7 @@ export class CoreTokenMicroServiceLogViewComponent implements OnInit, OnDestroy 
   DataGetOneContent(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start("main");
+    this.loading.Start('main');
     /*َAccess Field*/
     this.coreTokenMicroServiceLogService.setAccessLoad();
 
@@ -108,11 +108,11 @@ export class CoreTokenMicroServiceLogViewComponent implements OnInit, OnDestroy 
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop("main");
+        this.loading.Stop('main');
       }
     );
   }

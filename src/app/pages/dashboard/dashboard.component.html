@@ -1,65 +1,76 @@
 <div class="row">
-    <div class="col-lg-6 col-xxl-4">
-        <app-core-user-widget></app-core-user-widget>
-    </div>
-    <div class="col-lg-6 col-xxl-4">
-        <app-core-site-widget-status></app-core-site-widget-status>
-    </div>
-    <div class="col-lg-6 col-xxl-4">
-        <app-core-site-widget-module></app-core-site-widget-module>
-    </div>
+  <div class="col-lg-6 col-xxl-4">
+    <app-core-user-widget></app-core-user-widget>
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+    <app-core-site-widget-status></app-core-site-widget-status>
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+    <app-core-site-widget-module></app-core-site-widget-module>
+  </div>
 </div>
 <div class="col-xl-4">
-<i class="mdi mdi-abjad-arabic:"></i>  </div>
-  <div class="col-xl-8">
-    <div class="row">
-      <div class="col-xl-3">
-        bbbb
-      </div>
-      <div class="col-xl-9">
-        ccccc
-      </div>
+  <i class="mdi mdi-abjad-arabic:"></i>
+</div>
+<div class="col-xl-8">
+  <div class="row">
+    <div class="col-xl-3">
+      <app-chart-content-widget2 *ngIf="CheckModuleExist('chart')" cssClass="gutter-b" [widgetHeight]="'200px'"
+      [baseColor]="'primary'"></app-chart-content-widget2>
     </div>
-    <div class="row">
-      <div class="col-xl-6">
-        dddddd
-        <div class="row">
-          <div class="col-xl-6">
-            <app-news-content-widget2 *ngIf="CheckModuleExist('news')" cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'primary'"
-            ></app-news-content-widget2>
-          </div>
-          <div class="col-xl-6">
-            <app-news-content-widget2 *ngIf="CheckModuleExist('news')" [widgetHeight]="'150px'" >
-            </app-news-content-widget2>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-6">
-        app-tiles-widget14
-      </div>
+    <div class="col-xl-9">
+      <app-article-content-widget2 *ngIf="CheckModuleExist('article')" cssClass="gutter-b" [widgetHeight]="'200px'"
+      [baseColor]="'primary'"></app-article-content-widget2>
     </div>
   </div>
-<div class="row">
-    <div class="col-lg-6 col-xxl-4">
-        <app-core-site-widget-count></app-core-site-widget-count>
-    </div>
-
-    <div class="col-lg-6 col-xxl-4">
-        <app-application-app-widget *ngIf="CheckModuleExist('application')"></app-application-app-widget>
-    </div>
-    <div class="col-lg-6 col-xxl-4">
-        <app-application-memberinfo-widget *ngIf="CheckModuleExist('application')"></app-application-memberinfo-widget>
-    </div>
-    <div class="col-lg-6 col-xxl-4">
-        <app-news-content-widget2 *ngIf="CheckModuleExist('news')" cssClass="gutter-b" [widgetHeight]="'150px'"
+  <div class="row">
+    <div class="col-xl-6">
+      <app-biography-content-widget2 *ngIf="CheckModuleExist('biography')" cssClass="gutter-b" [widgetHeight]="'200px'"
+      [baseColor]="'primary'"></app-biography-content-widget2>
+      <div class="row">
+        <div class="col-xl-6">
+          <app-news-content-widget2 *ngIf="CheckModuleExist('news')" cssClass="gutter-b" [widgetHeight]="'200px'"
             [baseColor]="'primary'"></app-news-content-widget2>
+        </div>
+        <div class="col-xl-6">
+          <app-application-app-widget2 *ngIf="CheckModuleExist('application')" cssClass="gutter-b"
+            [widgetHeight]="'200px'" [baseColor]="'primary'">
+          </app-application-app-widget2>
+        </div>
+      </div>
     </div>
-    <div class="col-lg-6 col-xxl-4">
-        <app-article-content-widget *ngIf="CheckModuleExist('article')"></app-article-content-widget>
-    </div>
-    <div class="col-lg-6 col-xxl-4">
-    </div>
+    <div class="col-xl-6">
+      <app-blog-content-widget2 *ngIf="CheckModuleExist('blog')" cssClass="gutter-b" [widgetHeight]="'200px'"
+      [baseColor]="'primary'"></app-blog-content-widget2>
+        </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 col-xxl-4">
+    <app-core-site-widget-count></app-core-site-widget-count>
+  </div>
+
+  <div class="col-lg-6 col-xxl-4">
+    <app-application-app-widget *ngIf="CheckModuleExist('application')"></app-application-app-widget>
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+    <app-application-memberinfo-widget *ngIf="CheckModuleExist('application')"></app-application-memberinfo-widget>
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+    
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+
+  </div>
+  <div class="col-lg-6 col-xxl-4">
+  </div>
 </div>
 <ng-container *ngIf="this.env.loadDemoDashboard">
-    <app-dashboard-wrapper></app-dashboard-wrapper>
+  <app-dashboard-wrapper></app-dashboard-wrapper>
 </ng-container>

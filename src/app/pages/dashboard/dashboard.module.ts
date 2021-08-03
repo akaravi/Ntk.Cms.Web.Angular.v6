@@ -17,6 +17,8 @@ import {
   ApplicationAppService,
   ApplicationMemberInfoService,
   ArticleContentService,
+  BiographyContentService,
+  BlogContentService,
   ChartContentService,
   CoreSiteService,
   CoreUserService,
@@ -27,16 +29,31 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NewsContentWidget2Component } from 'src/app/cms-modules/news/content/widget/widget2.component';
 import { CmsHtmlWidgetComponent } from 'src/app/shared/cms-html-widget/cms-html-widget.component';
+import { TranslationModule } from 'src/app/core/i18n/translation.module';
+import { ApplicationAppWidget2Component } from 'src/app/cms-modules/application/content/widget/widget2.component';
+import { ArticleContentWidget2Component } from 'src/app/cms-modules/article/content/widget/widget2.component';
+import { BiographyContentWidgetComponent } from 'src/app/cms-modules/biography/content/widget/widget.component';
+import { BiographyContentWidget2Component } from 'src/app/cms-modules/biography/content/widget/widget2.component';
+import { BlogContentWidgetComponent } from 'src/app/cms-modules/blog/content/widget/widget.component';
+import { BlogContentWidget2Component } from 'src/app/cms-modules/blog/content/widget/widget2.component';
+import { ChartContentWidget2Component } from 'src/app/cms-modules/chart/content/widget/widget2.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ApplicationAppWidgetComponent,
+    ApplicationAppWidget2Component,
     ApplicationMemberInfoWidgetComponent,
     NewsContentWidgetComponent,
     NewsContentWidget2Component,
     ChartContentWidgetComponent,
+    ChartContentWidget2Component,
     ArticleContentWidgetComponent,
+    ArticleContentWidget2Component,
+    BiographyContentWidgetComponent,
+    BiographyContentWidget2Component,
+    BlogContentWidgetComponent,
+    BlogContentWidget2Component,
     CoreSiteWidgetCountComponent,
     CoreSiteWidgetStatusComponent,
     CoreSiteWidgetModuleComponent,
@@ -57,13 +74,16 @@ import { CmsHtmlWidgetComponent } from 'src/app/shared/cms-html-widget/cms-html-
     DashboardsModule,
     InlineSVGModule,
     NgApexchartsModule,
-    SharedModule,
+    TranslationModule,
+    SharedModule.forRoot(),
   ],
   providers: [
     PublicHelper,
     ApplicationAppService,
     ApplicationMemberInfoService,
     NewsContentService,
+    BiographyContentService,
+    BlogContentService,
     ChartContentService,
     ArticleContentService,
     CoreSiteService,

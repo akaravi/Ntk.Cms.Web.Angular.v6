@@ -62,12 +62,12 @@ export class CmsBankpaymentGridComponent implements OnInit {
           else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
     }
@@ -80,12 +80,12 @@ export class CmsBankpaymentGridComponent implements OnInit {
           else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop("main");
+          this.loading.Stop('main');
         }
       );
     }
