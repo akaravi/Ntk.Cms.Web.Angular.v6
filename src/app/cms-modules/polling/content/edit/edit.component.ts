@@ -138,7 +138,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     /*َAccess Field*/
     this.pollingContentService.setAccessLoad();
     this.pollingContentService
@@ -150,7 +150,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -164,13 +164,13 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
             this.DataOptionGetAll();
             // this.DataOtherInfoGetAll();
             // this.DataSimilarGetAllIds();
-            this.loading.display = false;
+            this.loading.Stop("main");
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -214,27 +214,27 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
 
     this.pollingContentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
           if (next.IsSuccess) {
 
             this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            this.loading.display = false;
+            this.loading.Stop("main");
             setTimeout(() => this.router.navigate(['/polling/content']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

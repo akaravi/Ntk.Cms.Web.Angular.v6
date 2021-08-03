@@ -117,7 +117,7 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
-    this.loading.display = true;
+    this.loading.Start("main");
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -126,10 +126,10 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.treeControl.dataNodes = this.dataModelResult.ListItems;
           this.loadCheked();
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
-        this.loading.display = false;
+        this.loading.Stop("main");
         this.cmsToastrService.typeError(error);
       }
     );

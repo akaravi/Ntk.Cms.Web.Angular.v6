@@ -30,13 +30,13 @@ export class ApplicationAppDownloadComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
 
     this.applicationAppService
       .ServiceGetOneById(requestId)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataModel = next.Item;
@@ -46,7 +46,7 @@ export class ApplicationAppDownloadComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }

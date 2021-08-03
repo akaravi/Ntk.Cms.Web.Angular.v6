@@ -102,7 +102,7 @@ export class CoreLogSmsEditComponent implements OnInit, OnDestroy {
 
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     /*َAccess Field*/
     this.coreLogSmsService.setAccessLoad();
 
@@ -120,11 +120,11 @@ export class CoreLogSmsEditComponent implements OnInit, OnDestroy {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

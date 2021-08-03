@@ -112,7 +112,7 @@ export class CmsUserSelectorComponent implements OnInit {
       }
     }
     this.loading.Globally = false;
-    this.loading.display = true;
+    this.loading.Start("main");
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {

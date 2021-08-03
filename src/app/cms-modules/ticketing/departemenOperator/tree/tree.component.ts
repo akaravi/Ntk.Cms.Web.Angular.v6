@@ -68,18 +68,18 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
-    this.loading.display = true;
+    this.loading.Start("main");
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
 
       },
       (error) => {
-        this.loading.display = false;
+        this.loading.Stop("main");
 
         this.cmsToastrService.typeError(error);
 

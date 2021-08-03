@@ -93,7 +93,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
 
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.webDesignerMainPageTemplateService.setAccessLoad();
     this.webDesignerMainPageTemplateService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
@@ -108,11 +108,11 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }
@@ -120,7 +120,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.webDesignerMainPageTemplateService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -135,19 +135,19 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }
   DataGetAllSourceSiteCategory(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkPageTemplateId';
@@ -169,11 +169,11 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

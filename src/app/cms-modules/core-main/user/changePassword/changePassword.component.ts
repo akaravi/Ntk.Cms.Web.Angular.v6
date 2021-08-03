@@ -99,7 +99,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     if (this.requestLinkUserId > 0) {
       this.dataModel.LinkUserId = this.requestLinkUserId;
     }
@@ -115,12 +115,12 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

@@ -113,7 +113,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   }
   DataGetAll(): void {
     this.tableRowSelected = new CoreUserClaimCheckModel();
-    this.loading.display = true;
+    this.loading.Start("main");
     this.loading.Globally = false;
 
     if (this.requestLinkUserId > 0 && this.requestLinkSiteId > 0) {
@@ -134,12 +134,12 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.display = false;
+          this.loading.Stop("main");
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.display = false;
+          this.loading.Stop("main");
         }
       );
       /** */
@@ -159,12 +159,12 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.display = false;
+          this.loading.Stop("main");
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.display = false;
+          this.loading.Stop("main");
         }
       );
       /** */

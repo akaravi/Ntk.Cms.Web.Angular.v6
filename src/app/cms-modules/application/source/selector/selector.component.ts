@@ -88,7 +88,7 @@ export class ApplicationSourceSelectorComponent implements OnInit {
       filteModel.Filters.push(filter);
     }
     this.loading.Globally = false;
-    this.loading.display = true;
+    this.loading.Start("main");
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {

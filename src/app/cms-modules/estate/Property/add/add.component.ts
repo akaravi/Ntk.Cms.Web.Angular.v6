@@ -161,7 +161,7 @@ export class EstatePropertyAddComponent implements OnInit {
   DataAdd(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     if (this.dataFileModelFiles) {
       const keys = Array.from(this.dataFileModelFiles.keys());
       if (keys && keys.length > 0) {
@@ -181,19 +181,19 @@ export class EstatePropertyAddComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.loading.display = false;
+          this.loading.Stop("main");
           setTimeout(() => this.router.navigate(['/estate/property']), 100);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

@@ -52,7 +52,7 @@ export class FileContentDeleteComponent implements OnInit {
       return;
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.fileContentService.setAccessLoad();
     this.fileContentService
       .ServiceGetOneById(this.requestId)
@@ -69,13 +69,13 @@ export class FileContentDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.display = false;
+          this.loading.Stop("main");
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.display = false;
+          this.loading.Stop("main");
         }
       );
 
@@ -91,7 +91,7 @@ export class FileContentDeleteComponent implements OnInit {
 
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.display = true;
+    this.loading.Start("main");
     this.fileContentService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -108,20 +108,20 @@ export class FileContentDeleteComponent implements OnInit {
             this.dialogRef.close({ dialogChangedDate: true });
           }
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.display = false;
+          this.loading.Stop("main");
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.display = false;
+          this.loading.Stop("main");
         }
       );
 
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-    this.loading.display = false;
+    this.loading.Stop("main");
   }
 }

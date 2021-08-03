@@ -128,7 +128,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationLogNotificationModel();
 
-    this.loading.display = true;
+    this.loading.Start("main");
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -170,12 +170,12 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

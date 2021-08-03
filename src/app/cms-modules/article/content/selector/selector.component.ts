@@ -87,7 +87,7 @@ ngOnInit(): void {
       filteModel.Filters.push(filter);
     }
     this.loading.Globally = false;
-    this.loading.display = true;
+    this.loading.Start("main");
     return this.contentService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {

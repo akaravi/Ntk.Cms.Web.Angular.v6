@@ -136,7 +136,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
 
-    this.loading.display = true;
+    this.loading.Start("main");
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -155,12 +155,12 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }
@@ -242,7 +242,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.display = true;
+          this.loading.Start("main");
           this.coreModuleSaleInvoiceDetailService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -251,11 +251,11 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.display = false;
+              this.loading.Stop("main");
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.display = false;
+              this.loading.Stop("main");
             }
           );
         }

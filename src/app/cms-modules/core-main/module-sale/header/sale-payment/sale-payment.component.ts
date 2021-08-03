@@ -81,12 +81,12 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }
@@ -101,12 +101,12 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

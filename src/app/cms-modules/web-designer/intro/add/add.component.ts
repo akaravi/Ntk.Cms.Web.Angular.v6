@@ -102,13 +102,13 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
 
     this.webDesignerMainIntroService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -120,7 +120,7 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

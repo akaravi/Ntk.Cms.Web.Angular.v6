@@ -130,12 +130,12 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.configService
       .ServiceSiteStorage(SiteId)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataSiteStorageModel = next.Item;
@@ -144,7 +144,7 @@ export class ApplicationConfigSiteComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -154,12 +154,12 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataSiteStorageModel = next.Item;
@@ -168,7 +168,7 @@ export class ApplicationConfigSiteComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -179,12 +179,12 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.configService
       .ServiceSiteConfig(SiteId)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesModel = next.Item;
@@ -193,7 +193,7 @@ export class ApplicationConfigSiteComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -203,12 +203,12 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.configService
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesModel = next.Item;
@@ -217,7 +217,7 @@ export class ApplicationConfigSiteComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -228,12 +228,12 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.configService
       .ServiceSiteAccess(SiteId)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesModel = next.Item;
@@ -242,7 +242,7 @@ export class ApplicationConfigSiteComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -252,12 +252,12 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
       .subscribe(
         async (next) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesModel = next.Item;
@@ -266,7 +266,7 @@ export class ApplicationConfigSiteComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.display = false;
+          this.loading.Stop("main");
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }

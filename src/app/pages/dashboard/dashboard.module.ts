@@ -22,6 +22,11 @@ import {
   CoreUserService,
   NewsContentService
 } from 'ntk-cms-api';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { InlineSVGModule } from 'ng-inline-svg';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { NewsContentWidget2Component } from 'src/app/cms-modules/news/content/widget/widget2.component';
+import { CmsHtmlWidgetComponent } from 'src/app/shared/cms-html-widget/cms-html-widget.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +34,17 @@ import {
     ApplicationAppWidgetComponent,
     ApplicationMemberInfoWidgetComponent,
     NewsContentWidgetComponent,
+    NewsContentWidget2Component,
     ChartContentWidgetComponent,
     ArticleContentWidgetComponent,
     CoreSiteWidgetCountComponent,
     CoreSiteWidgetStatusComponent,
     CoreSiteWidgetModuleComponent,
     CoreUserWidgetComponent,
+    CmsHtmlWidgetComponent,
+  ],
+  exports: [
+    CmsHtmlWidgetComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +55,9 @@ import {
       },
     ]),
     DashboardsModule,
+    InlineSVGModule,
+    NgApexchartsModule,
+    SharedModule,
   ],
   providers: [
     PublicHelper,

@@ -108,7 +108,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationSourceModel();
 
-    this.loading.display = true;
+    this.loading.Start("main");
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -147,12 +147,12 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }
@@ -238,7 +238,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.display = true;
+          this.loading.Start("main");
           this.applicationSourceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -247,11 +247,11 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.display = false;
+              this.loading.Stop("main");
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.display = false;
+              this.loading.Stop("main");
             }
           );
         }
@@ -346,11 +346,11 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = mode;
-    this.loading.display = true;
+    this.loading.Start("main");
     this.loading.Globally = false;
     this.applicationSourceService.ServiceBuildApp(this.tableRowSelected.Id).subscribe(
       (next) => {
-        this.loading.display = false;
+        this.loading.Stop("main");
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
         }
@@ -361,7 +361,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
 

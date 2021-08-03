@@ -8,7 +8,38 @@
     <div class="col-lg-6 col-xxl-4">
         <app-core-site-widget-module></app-core-site-widget-module>
     </div>
-
+</div>
+<div class="col-xl-4">
+<i class="mdi mdi-abjad-arabic:"></i>  </div>
+  <div class="col-xl-8">
+    <div class="row">
+      <div class="col-xl-3">
+        bbbb
+      </div>
+      <div class="col-xl-9">
+        ccccc
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6">
+        dddddd
+        <div class="row">
+          <div class="col-xl-6">
+            <app-news-content-widget2 *ngIf="CheckModuleExist('news')" cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'primary'"
+            ></app-news-content-widget2>
+          </div>
+          <div class="col-xl-6">
+            <app-news-content-widget2 *ngIf="CheckModuleExist('news')" [widgetHeight]="'150px'" >
+            </app-news-content-widget2>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        app-tiles-widget14
+      </div>
+    </div>
+  </div>
+<div class="row">
     <div class="col-lg-6 col-xxl-4">
         <app-core-site-widget-count></app-core-site-widget-count>
     </div>
@@ -20,7 +51,8 @@
         <app-application-memberinfo-widget *ngIf="CheckModuleExist('application')"></app-application-memberinfo-widget>
     </div>
     <div class="col-lg-6 col-xxl-4">
-        <app-news-content-widget *ngIf="CheckModuleExist('news')"></app-news-content-widget>
+        <app-news-content-widget2 *ngIf="CheckModuleExist('news')" cssClass="gutter-b" [widgetHeight]="'150px'"
+            [baseColor]="'primary'"></app-news-content-widget2>
     </div>
     <div class="col-lg-6 col-xxl-4">
         <app-article-content-widget *ngIf="CheckModuleExist('article')"></app-article-content-widget>

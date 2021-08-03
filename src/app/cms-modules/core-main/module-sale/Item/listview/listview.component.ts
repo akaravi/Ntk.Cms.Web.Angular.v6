@@ -100,7 +100,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleItemModel();
 
-    this.loading.display = true;
+    this.loading.Start("main");
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
 
@@ -120,11 +120,11 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

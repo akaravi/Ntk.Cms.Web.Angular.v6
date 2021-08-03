@@ -50,7 +50,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
     this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.loading.display = true;
+    this.loading.Start("main");
     this.bankPaymentPublicConfigService.setAccessLoad();
     this.bankPaymentPublicConfigService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -60,11 +60,11 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
         } else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

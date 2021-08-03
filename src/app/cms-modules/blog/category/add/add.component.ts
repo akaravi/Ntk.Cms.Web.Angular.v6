@@ -108,7 +108,7 @@ export class BlogCategoryAddComponent implements OnInit {
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.display = true;
+    this.loading.Start("main");
 
     this.categoryService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
@@ -123,12 +123,12 @@ export class BlogCategoryAddComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }

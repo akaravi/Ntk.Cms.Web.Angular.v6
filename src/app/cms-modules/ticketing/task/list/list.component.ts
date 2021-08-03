@@ -112,7 +112,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingTaskModel();
 
-    this.loading.display = true;
+    this.loading.Start("main");
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -159,12 +159,12 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.loading.display = false;
+        this.loading.Stop("main");
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.display = false;
+        this.loading.Stop("main");
       }
     );
   }
@@ -296,7 +296,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.display = true;
+          this.loading.Start("main");
           this.ticketingTaskService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -304,11 +304,11 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.display = false;
+              this.loading.Stop("main");
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.display = false;
+              this.loading.Stop("main");
             }
           );
         }
