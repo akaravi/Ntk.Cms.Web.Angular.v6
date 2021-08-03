@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
-import { AccessModel, CoreEnumService, CoreSiteModel, CoreSiteService, DataFieldInfoModel, EnumModel, ErrorExceptionResult, ErrorExceptionResultBase, ItemState } from 'ntk-cms-api';
+import { AccessModel, CoreEnumService, CoreModuleModel, CoreModuleService, CoreSiteModel, CoreSiteService, DataFieldInfoModel, EnumModel, ErrorExceptionResult, ErrorExceptionResultBase, ItemState } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -19,6 +19,7 @@ export class PublicHelper {
     private translate: TranslateService,
     private coreEnumService: CoreEnumService,
     private coreSiteService: CoreSiteService,
+    private coreModuleService: CoreModuleService,
     private cmsStoreService: CmsStoreService
   ) { }
   editorConfig: AngularEditorConfig = {
@@ -172,7 +173,7 @@ export class PublicHelper {
 
     return oid;
   }
-  
+
   async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
     if (storeSnapshot?.EnumRecordStatusResultStore?.ListItems?.length > 0) {
@@ -195,4 +196,17 @@ export class PublicHelper {
         return response;
       })).toPromise();
   }
+  async getCurrentSiteModule(): Promise<ErrorExceptionResult<CoreModuleModel>> {
+    const storeSnapshot = this.cmsStoreService.getStateSnapshot();
+    if (storeSnapshot?.CoreModuleResultStore) {
+      return storeSnapshot.CoreModuleResultStore;
+    }
+    return await this.coreModuleService.ServiceGetAllModuleName(null)
+      .pipe(map(response => {
+        this.cmsStoreService.setState({ CoreModuleResultStore: response });
+        return response;
+      })).toPromise();
+  }
+
+
 }

@@ -61,7 +61,7 @@ export class ApplicationIntroAddComponent implements OnInit {
   appLanguage = 'fa';
 
   fileManagerTree: TreeModel;
-  
+
 
   ngOnInit(): void {
     this.requestLinkApplicationId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkApplicationId'));
@@ -74,7 +74,7 @@ export class ApplicationIntroAddComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {

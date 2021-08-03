@@ -1,5 +1,5 @@
 export const DefaultLayoutConfig = {
-  demo: 'demo1',
+  demo: 'demo2',
   // Javascript Settings
   js: {
     breakpoints: {

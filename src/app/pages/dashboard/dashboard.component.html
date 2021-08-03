@@ -1,5 +1,32 @@
-<div class="col-lg-6 col-xxl-4">
-    <app-news-content-widget></app-news-content-widget>
+<div class="row">
+    <div class="col-lg-6 col-xxl-4">
+        <app-core-user-widget></app-core-user-widget>
+    </div>
+    <div class="col-lg-6 col-xxl-4">
+        <app-core-site-widget-status></app-core-site-widget-status>
+    </div>
+    <div class="col-lg-6 col-xxl-4">
+        <app-core-site-widget-module></app-core-site-widget-module>
+    </div>
+
+    <div class="col-lg-6 col-xxl-4">
+        <app-core-site-widget-count></app-core-site-widget-count>
+    </div>
+
+    <div class="col-lg-6 col-xxl-4">
+        <app-application-app-widget *ngIf="CheckModuleExist('application')"></app-application-app-widget>
+    </div>
+    <div class="col-lg-6 col-xxl-4">
+        <app-application-memberinfo-widget *ngIf="CheckModuleExist('application')"></app-application-memberinfo-widget>
+    </div>
+    <div class="col-lg-6 col-xxl-4">
+        <app-news-content-widget *ngIf="CheckModuleExist('news')"></app-news-content-widget>
+    </div>
+    <div class="col-lg-6 col-xxl-4">
+        <app-article-content-widget *ngIf="CheckModuleExist('article')"></app-article-content-widget>
+    </div>
+    <div class="col-lg-6 col-xxl-4">
+    </div>
 </div>
 <ng-container *ngIf="this.env.loadDemoDashboard">
     <app-dashboard-wrapper></app-dashboard-wrapper>
