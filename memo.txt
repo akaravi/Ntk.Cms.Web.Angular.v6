@@ -1,0 +1,55 @@
+npm install --save --legacy-peer-deps
+npm i --legacy-peer-deps
+
+========================
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/akaravi/Ntk.Cms.Web.AngularV3.git
+git push -u origin main
+
+
+npm run build-prod
+ng build --prod --source-map
+
+ng serve  --open
+===================RTL
+npm run rtl
+
+
+=========================================Update all npm
+npm i -g npm-check-updates
+ncu -u
+npm install --force
+ng serve --open
+
+=========================================Update all npm
+
+============================ this only ok
+Press the windows-button on your keyboard.
+Type ‘PowerShell’
+Right-click Windows PowerShell
+Click Run as Administrator
+Run the following command and confirm with ‘Y’
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+============================
+path Add
+%appdata%\npm
+=======================
+setx path "%path%;%appdata%\npm
+npm install --global http-server
+==============================
+git config core.ignorecase false
+git config --global core.ignorecase false
+=============================
+ng update --next @angular/cli --force
+npm install typescript@latest
+=========================================
+ng build --prod
+ng build --prod --build-optimizer
+ng serve --disable-host-check
+./ngrok http 4200 -host-header=rewrite localhost:4200
+./ngrok http  -host-header=rewrite localhost:4200
