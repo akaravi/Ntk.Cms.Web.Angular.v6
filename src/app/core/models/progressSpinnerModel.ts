@@ -12,37 +12,44 @@ export class ProgressSpinnerModel {
   backdropEnabled = true;
   Globally = true;
   positionGloballyCenter = true;
+  processRunList: string[];
+  display = false;
+  private processRun = new Map<string, boolean>();
   Start(name: string): void {
     this.processRun.set(name, true);
     const retOut = [];
     for (const [key, value] of this.processRun) {
-      if (value) {
+      if (value && value === true) {
         retOut.push(key);
       }
     }
     this.processRunList = retOut;
+    /** Display */
+    if (retOut && retOut.length > 0) {
+      this.display = true;
+    }
+    else {
+      this.display = false;
+    }    /** Display */
   }
+
   Stop(name: string): void {
     this.processRun.set(name, false);
     const retOut = [];
     for (const [key, value] of this.processRun) {
-      if (value) {
+      if (value && value === true) {
         retOut.push(key);
       }
     }
     this.processRunList = retOut;
-  }
-  private processRun = new Map<string, boolean>();
-  processRunList: string[];
-  get display(): boolean {
-    if (!this.processRun || this.processRun.size === 0) {
-      return false;
+    /** Display */
+    if (retOut && retOut.length > 0) {
+      this.display = true;
     }
-    for (const value of this.processRun.values()) {
-      if (value) {
-        return true;
-      }
+    else {
+      this.display = false;
     }
-    return false;
+    /** Display */
   }
+
 }

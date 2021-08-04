@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BlogContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -20,6 +20,7 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
   constructor(
     private service: BlogContentService,
     private cmsApiStore: NtkCmsApiStoreService,
+    private cdr: ChangeDetectorRef,
   ) { }
   filteModelContent = new FilterModel();
   modelData = new Map<string, number>();
@@ -56,9 +57,11 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop('All');
+        this.cdr.detectChanges();
       },
       (error) => {
         this.loading.Stop('All');
+        this.cdr.detectChanges();
       }
     );
 
@@ -73,10 +76,12 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop('Active');
+        this.cdr.detectChanges();
       }
       ,
       (error) => {
         this.loading.Stop('Active');
+        this.cdr.detectChanges();
       }
     );
   }

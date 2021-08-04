@@ -11,7 +11,7 @@ export const environment = {
   developing: false,
   loadDemoMenu: true,
   loadDemoDashboard: true,
-  appVersion: '1.05.101',
+  appVersion: '1.00.000',
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,

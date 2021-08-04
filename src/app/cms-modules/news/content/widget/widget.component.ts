@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -20,6 +20,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   constructor(
     private service: NewsContentService,
     private cmsApiStore: NtkCmsApiStoreService,
+    private cdr: ChangeDetectorRef,
   ) { }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'اخبار های ثبت شده';
@@ -61,9 +62,11 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.modelData.set('Active', next.TotalRowCount);
         }
+        this.cdr.detectChanges();
       }
       ,
       (error) => {
+        this.cdr.detectChanges();
       }
     );
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ApplicationAppService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -16,6 +16,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
   constructor(
     private service: ApplicationAppService,
     private cmsApiStore: NtkCmsApiStoreService,
+    private cdr: ChangeDetectorRef,
   ) { }
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
@@ -35,7 +36,6 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
 
   onActionStatist(): void {
@@ -52,11 +52,15 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
           this.widgetInfoModel.link = '/application/app/add';
         }
         this.loading.Stop('All');
+        this.cdr.detectChanges();
+
       },
       (error) => {
         this.loading.Stop('All');
         this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
         this.widgetInfoModel.link = '/application/app';
+        this.cdr.detectChanges();
+
       }
     );
 

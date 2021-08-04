@@ -1,11 +1,9 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   TicketingFaqModel,
   TicketingFaqService,
-  ApplicationSourceModel,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
@@ -13,7 +11,6 @@ import {
   NtkCmsApiStoreService,
   TokenInfoModel,
   TicketingDepartemenModel,
-  EnumRecordStatus,
   DataFieldInfoModel,
   TicketingDepartemenService
 } from 'ntk-cms-api';
@@ -21,15 +18,11 @@ import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { TicketingFaqEditComponent } from '../edit/edit.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { TicketingFaqAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
@@ -69,6 +62,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
+  loadingCat = new ProgressSpinnerModel();
   tableRowsSelected: Array<TicketingFaqModel> = [];
   tableRowSelected: TicketingFaqModel = new TicketingFaqModel();
   tableSource: MatTableDataSource<TicketingFaqModel> = new MatTableDataSource<TicketingFaqModel>();
@@ -125,9 +119,8 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.cdr.detectChanges();
-
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
@@ -137,6 +130,8 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     );
   }
   DataDepartemenGetAll(): void {
+    this.loadingCat.Start('main');
+
     this.ticketingDepartemenService.ServiceGetAllOrigin(null).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -149,13 +144,13 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.loading.Stop('main');
+        this.loadingCat.Stop('main');
         this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop('main');
+        this.loadingCat.Stop('main');
       }
     );
   }

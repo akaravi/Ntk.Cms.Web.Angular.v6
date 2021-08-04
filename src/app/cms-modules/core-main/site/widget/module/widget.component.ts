@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   CoreModuleSiteService,
   EnumFilterDataModelSearchTypes,
@@ -27,6 +27,7 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
   constructor(
     private service: CoreModuleSiteService,
     private cmsApiStore: NtkCmsApiStoreService,
+    private cdr: ChangeDetectorRef,
   ) { }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'ماژول های ثبت شده';
@@ -52,9 +53,11 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop('All');
+        this.cdr.detectChanges();
       },
       (error) => {
         this.loading.Stop('All');
+        this.cdr.detectChanges();
       }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -68,10 +71,12 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop('Active');
+        this.cdr.detectChanges();
       }
       ,
       (error) => {
         this.loading.Stop('Active');
+        this.cdr.detectChanges();
       }
     );
 

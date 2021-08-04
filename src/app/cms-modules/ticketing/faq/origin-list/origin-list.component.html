@@ -18,6 +18,9 @@
         </div>
     </div>
     <!--end::Hero-->
+
+
+
     <!--begin::Section-->
     <div class=" container  mt-n15">
         <!--begin::Card-->
@@ -27,10 +30,12 @@
                 <!--begin::Row-->
                 <div class="row">
                     <div class="col-lg-3">
+                     
                         <!--begin::Navigation-->
                         <ul class="navi navi-link-rounded navi-accent navi-hover navi-active nav flex-column mb-8 mb-lg-0"
                             role="tablist">
                             <!--begin::Nav Item-->
+                            <app-cms-html-loading [optionLoading]="loadingCat">
                             <ng-container *ngFor="let departemenItem of dataDepartemenModelResult.ListItems">
                                 <li class="navi-item mb-{{departemenItem.Id}}">
                                     <a [class]="DataDepartemanLinkSelect===departemenItem.Id? 'navi-link active':'navi-link'" data-toggle="tab" (click)="onActionbuttonDeparteman(departemenItem.Id)" >
@@ -39,6 +44,7 @@
                                     </a>
                                 </li>
                             </ng-container>
+                        </app-cms-html-loading>
                             <!--end::Nav Item-->
                         </ul>
                         <!--end::Navigation-->
@@ -50,6 +56,7 @@
                             <!--begin::Accordion-->
                             <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="faq">
                                 <!--begin::Item-->
+                                <app-cms-html-loading [optionLoading]="loading">
                                 <ng-container *ngFor="let faqItem of dataModelResult.ListItems">
                                     <div class="card border-top-0">
                                         <!--begin::Header-->
@@ -86,6 +93,7 @@
                                         <!--end::Body-->
                                     </div>
                                 </ng-container>
+                            </app-cms-html-loading>
                                 <!--end::Item-->
 
                             </div>

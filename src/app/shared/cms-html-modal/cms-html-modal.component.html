@@ -19,9 +19,7 @@
 <!--end::Body-->
 <!--begin::Footer-->
 <mat-dialog-actions align="end">
-  <ng-container *ngIf="!loading.display">
-    <ng-content select="[cms-footer]"></ng-content>
-  </ng-container>
+    <ng-content  *ngIf="!loading.display" select="[cms-footer]"></ng-content>
 </mat-dialog-actions>
 <!--end::Footer-->
 <!--end::Form-->

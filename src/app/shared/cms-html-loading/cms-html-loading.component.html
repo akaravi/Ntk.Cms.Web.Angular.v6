@@ -1,0 +1,8 @@
+<ng-container *ngIf="loading.display">
+  <div class="overlay-layer bg-transparent">
+    <div class="spinner spinner-lg spinner-success"></div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!loading.display">
+  <ng-content></ng-content>
+</ng-container>
