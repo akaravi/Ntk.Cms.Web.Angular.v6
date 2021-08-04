@@ -1,35 +1,42 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ArticleContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { BlogContentService, CoreSiteService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 
 @Component({
-  selector: 'app-article-content-widget',
-  templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
+  selector: 'app-core-site-widget-count2',
+  templateUrl: './widget2.component.html',
+  styleUrls: ['./widget2.component.scss']
 })
-export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
+
+export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
+  @Input() cssClass = '';
+  @Input() widgetHeight = '200px';
+  @Input() baseColor = 'success';
+  textInverseCSSClass;
+  constructor(
+    private service: CoreSiteService,
+    private cmsApiStore: NtkCmsApiStoreService,
+  ) { }
   filteModelContent = new FilterModel();
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
-  indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info'];
   loading = new ProgressSpinnerModel();
-
-  constructor(
-    private service: ArticleContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
-  ) { }
-  ngOnInit(): void {
-    this.widgetInfoModel.title = 'مقالات ثبت شده';
+  ngOnInit() {
+    this.widgetInfoModel.title = 'سایت های عضو';
     this.widgetInfoModel.description = '';
-    this.widgetInfoModel.link = '/article/content';
+    this.widgetInfoModel.link = '/site/list';
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
       this.onActionStatist();
     });
+
+    this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
+    this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
+
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -70,5 +77,8 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
         this.loading.Stop('Active');
       }
     );
+  }
+  translateHelp(t: string, v: string): string {
+    return t + v;
   }
 }

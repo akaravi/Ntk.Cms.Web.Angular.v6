@@ -37,6 +37,8 @@ import { BiographyContentWidget2Component } from 'src/app/cms-modules/biography/
 import { BlogContentWidgetComponent } from 'src/app/cms-modules/blog/content/widget/widget.component';
 import { BlogContentWidget2Component } from 'src/app/cms-modules/blog/content/widget/widget2.component';
 import { ChartContentWidget2Component } from 'src/app/cms-modules/chart/content/widget/widget2.component';
+import { ApplicationMemberInfoWidget2Component } from 'src/app/cms-modules/application/memberInfo/widget/widget2.component';
+import { CoreSiteWidgetCount2Component } from 'src/app/cms-modules/core-main/site/widget/count/widget2.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { ChartContentWidget2Component } from 'src/app/cms-modules/chart/content/
     ApplicationAppWidgetComponent,
     ApplicationAppWidget2Component,
     ApplicationMemberInfoWidgetComponent,
+    ApplicationMemberInfoWidget2Component,
     NewsContentWidgetComponent,
     NewsContentWidget2Component,
     ChartContentWidgetComponent,
@@ -55,6 +58,7 @@ import { ChartContentWidget2Component } from 'src/app/cms-modules/chart/content/
     BlogContentWidgetComponent,
     BlogContentWidget2Component,
     CoreSiteWidgetCountComponent,
+    CoreSiteWidgetCount2Component,
     CoreSiteWidgetStatusComponent,
     CoreSiteWidgetModuleComponent,
     CoreUserWidgetComponent,

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChartContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 
 @Component({
@@ -14,6 +15,8 @@ export class ChartContentWidgetComponent implements OnInit, OnDestroy {
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info'];
+  loading = new ProgressSpinnerModel();
+
   constructor(
     private service: ChartContentService,
     private cmsApiStore: NtkCmsApiStoreService,
@@ -34,6 +37,8 @@ export class ChartContentWidgetComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
+    this.loading.Start('Active');
+    this.loading.Start('All');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
@@ -41,8 +46,10 @@ export class ChartContentWidgetComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.modelData.set('All', next.TotalRowCount);
         }
+        this.loading.Stop('All');
       },
       (error) => {
+        this.loading.Stop('All');
       }
     );
 
@@ -56,9 +63,11 @@ export class ChartContentWidgetComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.modelData.set('Active', next.TotalRowCount);
         }
+        this.loading.Stop('Active');
       }
       ,
       (error) => {
+        this.loading.Stop('Active');
       }
     );
   }

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CoreUserService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { PersianCalendarService } from 'src/app/core/pipe/PersianDatePipe/persian-date.service';
 
@@ -16,6 +17,8 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info'];
+  loading = new ProgressSpinnerModel();
+
   constructor(
     private service: CoreUserService,
     private cmsApiStore: NtkCmsApiStoreService,
@@ -43,6 +46,7 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
     if (!this.tokenInfoModel.UserId || this.tokenInfoModel.UserId <= 0) {
       return;
     }
+    this.loading.Start('All');
     this.widgetInfoModel.link = '/core/user/edit/' + this.tokenInfoModel.UserId;
     this.modelData.set('Id', this.tokenInfoModel.UserId + '');
     this.modelData.set('Username', '...');
@@ -73,8 +77,10 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
             this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(next.Item.ExpireDate));
           }
         }
+        this.loading.Stop('All');
       },
       (error) => {
+        this.loading.Stop('All');
       }
     );
 

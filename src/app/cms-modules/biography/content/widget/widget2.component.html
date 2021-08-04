@@ -4,7 +4,7 @@
     <app-cms-html-widget [optionLoading]="loading">
       <ng-container cms-header>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        <span [inlineSVG]="'./assets/media/svg/icons/Layout/Layout-4-blocks.svg'"
+        <span [inlineSVG]="'./assets/media/svg/icons/Communication/Adress-book2.svg'"
           class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </ng-container>
@@ -18,7 +18,7 @@
       </ng-container>
       <ng-container cms-footer>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <a href="#" [ngClass]="textInverseCSSClass"
+        <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active"  [ngClass]="textInverseCSSClass"
           class="font-weight-bold font-size-lg mt-1">{{widgetInfoModel.title}}</a>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
       </ng-container>

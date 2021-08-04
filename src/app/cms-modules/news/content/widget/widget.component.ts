@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 
 @Component({
@@ -14,6 +15,8 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info'];
+  loading = new ProgressSpinnerModel();
+
   constructor(
     private service: NewsContentService,
     private cmsApiStore: NtkCmsApiStoreService,
@@ -34,6 +37,8 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
+    this.loading.Start('Active');
+    this.loading.Start('All');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(

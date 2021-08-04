@@ -26,7 +26,7 @@ export class CmsHtmlWidgetComponent implements OnInit {
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       --------------------------------------
-      <!--end::cms-body-->
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
     <ng-container cms-footer>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
