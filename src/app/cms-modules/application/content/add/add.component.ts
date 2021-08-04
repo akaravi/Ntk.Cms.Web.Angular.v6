@@ -70,13 +70,13 @@ export class ApplicationAppAddComponent implements OnInit {
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = {};
-  
+
   ngOnInit(): void {
     this.requestSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));
-    if (this.requestSourceId === 0) {
-      this.cmsToastrService.typeErrorAddRowParentIsNull();
-      return;
-    }
+    // if (this.requestSourceId === 0) {
+    //   this.cmsToastrService.typeErrorAddRowParentIsNull();
+    //   return;
+    // }
     this.dataModel.LinkSourceId = this.requestSourceId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
@@ -88,7 +88,7 @@ export class ApplicationAppAddComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {
@@ -128,7 +128,7 @@ export class ApplicationAppAddComponent implements OnInit {
 
   DataAddContent(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert =this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
     this.applicationAppService.setAccessLoad();
@@ -224,7 +224,7 @@ export class ApplicationAppAddComponent implements OnInit {
       this.cmsToastrService.typeErrorMessage(
         this.translate.instant('MESSAGE.The_source_of_the_information_application_is_not_known'),
         this.translate.instant('MESSAGE.Specify_the_source')
-        );
+      );
       return;
     }
     this.dataModel.LinkSourceId = model.Id;
@@ -235,7 +235,7 @@ export class ApplicationAppAddComponent implements OnInit {
         this.translate.instant('MESSAGE.Information_application_format_is_not_clear'),
         this.translate.instant('MESSAGE.Specify_the_template'));
 
-     return;
+      return;
     }
     this.dataModel.LinkThemeConfigId = model.Id;
   }

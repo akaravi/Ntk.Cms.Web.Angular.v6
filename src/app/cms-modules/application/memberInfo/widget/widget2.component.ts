@@ -14,7 +14,9 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
   @Input() cssClass = '';
   @Input() widgetHeight = '200px';
   @Input() baseColor = 'success';
+  @Input() iconColor = 'success';
   textInverseCSSClass;
+  svgCSSClass;
   constructor(
     private service: ApplicationMemberInfoService,
     private cmsApiStore: NtkCmsApiStoreService,
@@ -25,7 +27,7 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'اپلیکیشن ثبت شده';
+    this.widgetInfoModel.title = 'عضو ثبت شده';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/application/content';
 
@@ -36,7 +38,7 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
 
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
     this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
-
+    this.svgCSSClass = `svg-icon--${this.iconColor}`;
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();

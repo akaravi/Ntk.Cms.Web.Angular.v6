@@ -60,6 +60,10 @@ const routes: Routes = [
         component: ApplicationAppListComponent
       },
       {
+        path: 'app/add',
+        component: ApplicationAppAddComponent,
+      },
+      {
         path: 'app/add/:SourceId',
         component: ApplicationAppAddComponent
       },
