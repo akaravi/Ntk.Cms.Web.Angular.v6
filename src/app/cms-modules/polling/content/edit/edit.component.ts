@@ -180,7 +180,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت گزینه ها از سرور';
     this.formInfo.FormError = '';
-    this.loadingOption.display = true;
+    this.loadingOption.Start('main')
 
 
     const filteModel = new FilterModel();
@@ -193,7 +193,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loadingOption.display = false;
+          this.loadingOption.Stop('main');
           this.formInfo.FormSubmitAllow = true;
           this.dataOptionModelResult = next;
           if (next.IsSuccess) {
@@ -204,7 +204,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loadingOption.display = false;
+          this.loadingOption.Stop('main');
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }

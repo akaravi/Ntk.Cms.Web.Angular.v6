@@ -42,7 +42,6 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
 
   }
-
   onActionStatist(): void {
     this.loading.Start('Active');
     this.loading.Start('All');
@@ -77,5 +76,8 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
         this.loading.Stop('Active');
       }
     );
+  }
+  translateHelp(t: string, v: string): string {
+    return t + v;
   }
 }

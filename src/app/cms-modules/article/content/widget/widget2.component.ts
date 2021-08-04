@@ -78,4 +78,7 @@ export class ArticleContentWidget2Component implements OnInit, OnDestroy {
       }
     );
   }
+  translateHelp(t: string, v: string): string {
+    return t + v;
+  }
 }

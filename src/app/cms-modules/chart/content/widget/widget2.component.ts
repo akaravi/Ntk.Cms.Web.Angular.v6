@@ -78,4 +78,7 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
       }
     );
   }
+  translateHelp(t: string, v: string): string {
+    return t + v;
+  }
 }

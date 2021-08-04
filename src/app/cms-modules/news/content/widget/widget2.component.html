@@ -12,7 +12,7 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <div *ngFor="let item of modelData| keyvalue ; index as i" [ngClass]="textInverseCSSClass"
           class="font-weight-bolder font-size-h2 mt-3">
-          {{('TITLE.'+item.key)|translate}} : {{item.value}}
+          {{translateHelp('TITLE.',item.key)|translate}} : {{item.value}}
         </div>
         <!--end::cms-body-->
       </ng-container>
