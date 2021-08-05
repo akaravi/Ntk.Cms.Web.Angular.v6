@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -32,15 +33,15 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy {
+export class CoreSiteCategoryCmsModuleTreeComponent  implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: CoreSiteCategoryCmsModuleService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
   }
   @Input() set optionSelectForce(x: number | CoreSiteCategoryCmsModuleModel) {
@@ -73,6 +74,7 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -80,13 +82,12 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }
@@ -158,6 +159,7 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+          this.cdr.detectChanges();
           this.categoryService.ServiceDeleteEntity(this.dataModelSelect).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -167,10 +169,12 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             }
           );
         }

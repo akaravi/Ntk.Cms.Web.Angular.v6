@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -32,13 +33,13 @@ import { BankPaymentPublicConfigAddComponent } from '../add/add.component';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
+export class BankPaymentPublicConfigTreeComponent  implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: BankPaymentPublicConfigService,
-    private router: Router,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
   }
@@ -72,6 +73,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -79,13 +81,12 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

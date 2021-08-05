@@ -65,7 +65,7 @@
           </div>
 
           <br>
-          <button (click)="onActionClickSelectSite(item.Id)" type="button"
+          <button *ngIf="this.formInfo.ButtonSubmittedEnabled || selectSiteId==item.Id" (click)="onActionClickSelectSite(item.Id)" type="button" 
             [disabled]="!this.formInfo.ButtonSubmittedEnabled" class="btn btn-warning BTN">ورود</button>
 
         </div>

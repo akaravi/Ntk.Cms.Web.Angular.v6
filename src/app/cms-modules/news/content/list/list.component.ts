@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   CoreAuthService,
@@ -43,7 +43,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -130,11 +131,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
+          this.cdr.detectChanges();
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -183,11 +186,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
+          this.cdr.detectChanges();
         }
       );
       /** Normal */

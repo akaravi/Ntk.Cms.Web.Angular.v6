@@ -73,6 +73,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { CmsHtmlCardComponent } from './cms-html-card/cms-html-card.component';
 import { CmsHtmlModalComponent } from './cms-html-modal/cms-html-modal.component';
 import { CmsHtmlLoadingComponent } from './cms-html-loading/cms-html-loading.component';
+import { CmsHtmlListComponent } from './cms-html-list/cms-html-list.component';
 
 @NgModule({
   imports: [
@@ -135,6 +136,7 @@ import { CmsHtmlLoadingComponent } from './cms-html-loading/cms-html-loading.com
     CmsHtmlCardComponent,
     CmsHtmlModalComponent,
     CmsHtmlLoadingComponent,
+    CmsHtmlListComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -195,7 +197,8 @@ import { CmsHtmlLoadingComponent } from './cms-html-loading/cms-html-loading.com
     CmsHtmlCardComponent,
     CmsHtmlModalComponent,
     CmsHtmlLoadingComponent,
-    /**input */
+    CmsHtmlListComponent,
+    /** input */
     StringComponent,
     IntComponent,
     BooleanComponent,

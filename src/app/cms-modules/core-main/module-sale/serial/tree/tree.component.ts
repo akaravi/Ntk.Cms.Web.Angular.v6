@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -32,14 +33,15 @@ import { CoreModuleSaleSerialAddComponent } from '../add/add.component';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
+export class CoreModuleSaleSerialTreeComponent  implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: CoreModuleSaleSerialService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
   }
   @Input() set optionSelectForce(x: number | CoreModuleSaleSerialModel) {
@@ -72,6 +74,7 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -79,13 +82,12 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

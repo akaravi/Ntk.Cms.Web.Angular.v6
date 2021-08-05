@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -34,14 +35,15 @@ import { CoreSiteAddComponent } from '../add/add.component';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class CoreSiteTreeComponent implements OnInit, OnDestroy {
+export class CoreSiteTreeComponent  implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: CoreSiteService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
   }
   @Input() set optionSelectForce(x: number | CoreSiteModel) {
@@ -74,6 +76,7 @@ export class CoreSiteTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -81,13 +84,12 @@ export class CoreSiteTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

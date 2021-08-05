@@ -24,10 +24,6 @@ import { TranslationService } from 'src/app/core/i18n/translation.service';
 })
 export class CoreSiteSelectionComponent implements OnInit {
 
-  subManager = new Subscription();
-  filterModel = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreSiteModel>;
-
   constructor(
     private coreAuthService: CoreAuthService,
     private translationService: TranslationService,
@@ -38,8 +34,13 @@ export class CoreSiteSelectionComponent implements OnInit {
   ) {
 
   }
+
+  subManager = new Subscription();
+  filterModel = new FilterModel();
+  dataModelResult: ErrorExceptionResult<CoreSiteModel>;
   formInfo: FormInfoModel = new FormInfoModel();
   statusCheckExistWebSite = true;
+  selectSiteId = 0;
   ngOnInit(): void {
     // this.dataModel = this.activatedRoute.snapshot.data.list;
     this.DataGetAll();
@@ -56,23 +57,26 @@ export class CoreSiteSelectionComponent implements OnInit {
         else {
           this.cmsToastrService.typeError(next.ErrorMessage);
         }
+        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
+        this.cdr.detectChanges();
+
       }
     );
   }
-
   onActionClickSelectSite(id: number): void {
     if (!this.formInfo.ButtonSubmittedEnabled) {
       return;
     }
-
+    this.selectSiteId = id;
     this.formInfo.ButtonSubmittedEnabled = false;
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
     authModel.SiteId = id;
-    authModel.Lang= this.translationService.getSelectedLanguage()
+    authModel.Lang = this.translationService.getSelectedLanguage();
     this.subManager.add(
       this.coreAuthService.ServiceRenewToken(authModel).subscribe(
         (res) => {
@@ -108,9 +112,12 @@ export class CoreSiteSelectionComponent implements OnInit {
             if (next.IsSuccess) {
               this.router.navigate([environment.cmsUiConfig.Pathdashboard]);
             }
+            this.cdr.detectChanges();
           },
           (error) => {
             this.cmsToastrService.typeError(error);
+            this.cdr.detectChanges();
+
           }
         )
       );

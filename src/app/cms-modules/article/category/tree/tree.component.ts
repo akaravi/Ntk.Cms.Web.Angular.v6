@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -32,13 +33,15 @@ import { ArticleCategoryAddComponent } from '../add/add.component';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
+export class ArticleCategoryTreeComponent  implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: ArticleCategoryService,
     public dialog: MatDialog,
+    private cdr: ChangeDetectorRef
+
   ) {
   }
   @Input() set optionSelectForce(x: number | ArticleCategoryModel) {
@@ -71,6 +74,7 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -78,13 +82,12 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

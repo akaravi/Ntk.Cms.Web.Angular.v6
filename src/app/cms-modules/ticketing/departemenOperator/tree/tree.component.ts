@@ -1,7 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -29,15 +31,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class TicketingDepartemenOperatorTreeComponent implements OnInit {
+export class TicketingDepartemenOperatorTreeComponent implements OnInit , OnDestroy{
   constructor(
-    private cmsApiStore :NtkCmsApiStoreService,
+    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: TicketingDepartemenOperatorService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
 
   ) {
+  }
+  @Input() set optionSelectForce(x: number | TicketingDepartemenOperatorModel) {
+    this.onActionSelectForce(x);
   }
   dataModelSelect: TicketingDepartemenOperatorModel = new TicketingDepartemenOperatorModel();
   dataModelResult: ErrorExceptionResult<TicketingDepartemenOperatorModel> = new ErrorExceptionResult<TicketingDepartemenOperatorModel>();
@@ -46,21 +52,18 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit {
   treeControl = new NestedTreeControl<TicketingDepartemenOperatorModel>(node => null);
   dataSource = new MatTreeNestedDataSource<TicketingDepartemenOperatorModel>();
   @Output() optionSelect = new EventEmitter<TicketingDepartemenOperatorModel>();
+  cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: number | TicketingDepartemenOperatorModel) {
-    this.onActionSelectForce(x);
-  }
 
   hasChild = (_: number, node: TicketingDepartemenOperatorModel) => false;
 
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.cmsApiStoreSubscribe =  this.cmsApiStore.getState((state) =>  state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
       this.DataGetAll();
     });
   }
-  cmsApiStoreSubscribe:Subscription;
   ngOnDestroy() {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
@@ -69,6 +72,7 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -76,13 +80,12 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }
@@ -115,7 +118,7 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-const message = 'دسته بندی انتخاب نشده است';
+      const message = 'دسته بندی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -129,7 +132,7 @@ const message = 'دسته بندی انتخاب نشده است';
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-const message = 'دسته بندی انتخاب نشده است';
+      const message = 'دسته بندی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

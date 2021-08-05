@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -32,7 +33,7 @@ import { CoreModuleTagCategoryDeleteComponent } from '../delete/delete.component
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
+export class CoreModuleTagCategoryTreeComponent  implements OnInit, OnDestroy {
 
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
@@ -40,6 +41,7 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public categoryService: CoreModuleTagCategoryService,
     public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
   }
   @Input() set optionSelectForce(x: number | CoreModuleTagCategoryModel) {
@@ -72,6 +74,7 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -79,13 +82,12 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

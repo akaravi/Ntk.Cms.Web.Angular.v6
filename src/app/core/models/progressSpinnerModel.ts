@@ -15,6 +15,17 @@ export class ProgressSpinnerModel {
   processRunList: string[];
   display = false;
   private processRun = new Map<string, boolean>();
+  displayItem(name: string): boolean {
+    if (!this.processRun) {
+      return false;
+    }
+    for (const [key, value] of this.processRun) {
+      if (key === name) {
+        return value;
+      }
+    }
+    return false;
+  }
   Start(name: string): void {
     this.processRun.set(name, true);
     const retOut = [];
@@ -32,7 +43,6 @@ export class ProgressSpinnerModel {
       this.display = false;
     }    /** Display */
   }
-
   Stop(name: string): void {
     this.processRun.set(name, false);
     const retOut = [];

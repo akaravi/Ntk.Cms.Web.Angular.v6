@@ -1,5 +1,6 @@
 import { ProgressSpinnerModel } from './../../../../core/models/progressSpinnerModel';
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -35,13 +36,14 @@ import { PollingCategoryAddComponent } from '../add/add.component';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
+export class PollingCategoryTreeComponent  implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: PollingCategoryService,
     public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
   }
   @Input() set optionSelectForce(x: number | PollingCategoryModel) {
@@ -81,13 +83,12 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

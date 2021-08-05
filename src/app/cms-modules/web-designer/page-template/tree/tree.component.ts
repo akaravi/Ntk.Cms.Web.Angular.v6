@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -39,7 +40,8 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
     public coreEnumService: CoreEnumService,
     public categoryService: WebDesignerMainPageTemplateService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
   }
   @Input() set optionSelectForce(x: number | WebDesignerMainPageTemplateModel) {
@@ -79,13 +81,12 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

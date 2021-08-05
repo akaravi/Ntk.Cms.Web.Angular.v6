@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -34,14 +35,15 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy {
+export class EstatePropertyTypeLanduseTreeComponent  implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: EstatePropertyTypeLanduseService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
   }
   @Input() set optionSelectForce(x: number | EstatePropertyTypeLanduseModel) {
@@ -81,13 +83,12 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-
+        this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('main');
-
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }
@@ -158,6 +159,7 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+          this.cdr.detectChanges();
           this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -167,10 +169,12 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             }
           );
         }

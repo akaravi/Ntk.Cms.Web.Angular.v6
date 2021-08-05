@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-offcanvas',
@@ -32,7 +33,9 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   IsAdminSite = false;
+  env = environment;
   ngOnInit(): void {
+    
     this.extrasUserOffcanvasDirection = `offcanvas-${this.layout.getProp(
       'extras.user.offcanvas.direction'
     )}`;
