@@ -149,8 +149,8 @@ mat-paginator {
   width: 100%;
 }
 .ntk-button-row {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   margin: auto;
   width: 100%;
   height: auto;
@@ -168,6 +168,102 @@ mat-paginator {
   margin-bottom: 5px;
   margin-right: 5px;
   margin-left: 5px;
+}
+.ntk-cms-html-tree-header {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
+}
+.ntk-cms-html-tree-header button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.ntk-cms-html-tree-body {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
+}
+.ntk-cms-html-tree-footer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
+}
+.ntk-cms-html-list-header {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
+}
+.ntk-cms-html-list-header button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.ntk-cms-html-list-body {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
+}
+.ntk-cms-html-list-footer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+    0 3px 14px 2px color(0 0 0 0.12);
 }
 /*mat-raised-button*/
 .mat-button.mat-success,

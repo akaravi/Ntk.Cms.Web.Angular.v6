@@ -23,7 +23,8 @@
         <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
         </mat-slide-toggle>
       </a>
-      <button (click)="onActionbuttonReload()" type="button" class="btn btn-warning BTN">{{'ACTION.RELOAD' | translate}}</button>
+      <button (click)="onActionbuttonReload()" type="button" class="btn btn-info BTN"><mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
+      
       <button (click)="onActionbuttonUploadApp()"
         *ngIf="tableRowSelected.Id>0 && this.tokenInfo.UserAccessAdminAllowToProfessionalData" type="button"
         class="btn btn-warning BTN">بارگزاری فایل نصب</button>

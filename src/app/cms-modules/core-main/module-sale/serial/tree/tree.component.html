@@ -1,6 +1,5 @@
-<app-cms-html-card [optionLoading]="loading">
+<app-cms-html-tree [optionLoading]="loading">
     <ng-container cms-header>
-        <h3 class="card-label">
             <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
             <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
                 class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
@@ -10,7 +9,6 @@
                 class="btn btn-info  ml-2">...</button>
 
             <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        </h3>
     </ng-container>
     <ng-container cms-body>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -44,4 +42,4 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
-</app-cms-html-card>
+</app-cms-html-tree>

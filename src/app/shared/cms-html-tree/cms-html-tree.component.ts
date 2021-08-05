@@ -3,10 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
-  selector: 'app-cms-html-card',
-  templateUrl: './cms-html-card.component.html',
+  selector: 'app-cms-html-tree',
+  templateUrl: './cms-html-tree.component.html',
 })
-export class CmsHtmlCardComponent implements OnInit {
+export class CmsHtmlTreeComponent implements OnInit {
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
     this.loading = v;
@@ -17,14 +17,11 @@ export class CmsHtmlCardComponent implements OnInit {
 
   }
   /*
-<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
+  <app-cms-html-tree [optionLoading]="loading">
     <ng-container cms-header>
-      <h3 class="card-label">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       --------------------------------------
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      </h3>
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -36,7 +33,7 @@ export class CmsHtmlCardComponent implements OnInit {
       --------------------------------------
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
-  </app-cms-html-card>
-</form>
+  </app-cms-html-tree>
 */
 }
+

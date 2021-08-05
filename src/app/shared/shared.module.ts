@@ -74,6 +74,7 @@ import { CmsHtmlCardComponent } from './cms-html-card/cms-html-card.component';
 import { CmsHtmlModalComponent } from './cms-html-modal/cms-html-modal.component';
 import { CmsHtmlLoadingComponent } from './cms-html-loading/cms-html-loading.component';
 import { CmsHtmlListComponent } from './cms-html-list/cms-html-list.component';
+import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
 
 @NgModule({
   imports: [
@@ -137,6 +138,7 @@ import { CmsHtmlListComponent } from './cms-html-list/cms-html-list.component';
     CmsHtmlModalComponent,
     CmsHtmlLoadingComponent,
     CmsHtmlListComponent,
+    CmsHtmlTreeComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -198,6 +200,7 @@ import { CmsHtmlListComponent } from './cms-html-list/cms-html-list.component';
     CmsHtmlModalComponent,
     CmsHtmlLoadingComponent,
     CmsHtmlListComponent,
+    CmsHtmlTreeComponent,
     /** input */
     StringComponent,
     IntComponent,
