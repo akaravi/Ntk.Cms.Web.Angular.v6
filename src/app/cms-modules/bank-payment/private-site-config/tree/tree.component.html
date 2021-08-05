@@ -8,7 +8,7 @@
     <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
       class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Id>0" (click)="onActionEdit()" type="button"
-      class="btn btn-warning ml-2">{{'ACTION.EDIT' | translate}}</button>
+      class="btn btn-warning">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
       class="btn btn-info">
       <mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>

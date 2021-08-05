@@ -3,7 +3,7 @@
     <div class="button-row">
 
       <button *ngIf=" tableRowSelected.LinkTypeId>0" (click)="onActionbuttonEditRow()" type="button"
-        class="btn btn-warning ml-2" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+        class="btn btn-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
 
       <button (click)="onActionbuttonReload()" type="button" class="btn btn-info BTN"><mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
       <button (click)="onActionBackToParent()" *ngIf="this.requestLinkUserId>0" type="button"

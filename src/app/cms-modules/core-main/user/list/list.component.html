@@ -2,7 +2,7 @@
   <div class="col-xl-12">
     <div class="button-row">
       <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected.Id>0" (click)="onActionbuttonViewRow()"
-        type="button" class="btn btn-info ml-2" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
+        type="button" class="btn btn-info"  data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
       <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
         class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
       <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"
