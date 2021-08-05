@@ -6,9 +6,9 @@
     <ng-container cms-action>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
         <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button" class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Id>0" (click)="onActionEdit()" type="button" class="btn btn-warning ml-2">{{'ACTION.EDIT' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect.Id>0" (click)="onActionDelete()" type="button" class="btn btn-danger  ml-2">{{'ACTION.DELETE' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button" class="btn btn-info  ml-1"><mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
+        <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Id>0" (click)="onActionEdit()" type="button" class="btn btn-warning">{{'ACTION.EDIT' | translate}}</button>
+        <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect.Id>0" (click)="onActionDelete()" type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
+        <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button" class="btn btn-info"><mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
       </ng-container>
       <ng-container cms-body>

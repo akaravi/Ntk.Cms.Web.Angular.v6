@@ -16,10 +16,10 @@
       (click)="onActionbuttonViewRow()" type="button" class="btn btn-info ml-2" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id && tableRowSelected.Id"
-      (click)="onActionbuttonEditRow()" type="button" class="btn btn-warning ml-2" data-toggle="modal"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow &&tableRowSelected.Id && tableRowSelected.Id"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger  ml-2">{{'ACTION.DELETE' | translate}}</button>
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
 
     <a class="btn btn-secondary btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>

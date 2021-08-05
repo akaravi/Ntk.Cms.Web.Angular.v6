@@ -10,10 +10,10 @@
         data-target="#categoryModal">{{'ACTION.ADD' |
         translate}}</button>
       <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id &&  tableRowSelected.Id.length>0"
-        (click)="onActionbuttonEditRow()" type="button" class="btn btn-warning ml-2" data-toggle="modal"
+        (click)="onActionbuttonEditRow()" type="button" class="btn btn-warning" data-toggle="modal"
         data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
       <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id &&  tableRowSelected.Id.length>0"
-        (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger  ml-2">{{'ACTION.DELETE' |
+        (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger">{{'ACTION.DELETE' |
         translate}}</button>
 
       <a class="btn btn-secondary btn-sm BTN">

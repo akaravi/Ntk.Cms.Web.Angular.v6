@@ -7,9 +7,9 @@
       <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
         class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
       <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"
-        type="button" class="btn btn-warning ml-2" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+        type="button" class="btn btn-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
       <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0"
-        (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger  ml-2">{{'ACTION.DELETE' | translate}}</button>
+        (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
 
       <a class="btn btn-secondary btn-sm BTN">
         <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
