@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({

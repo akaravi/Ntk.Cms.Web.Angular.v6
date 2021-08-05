@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
@@ -22,6 +21,11 @@ export class CmsHtmlTreeComponent implements OnInit {
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       --------------------------------------
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </ng-container>
+    <ng-container cms-action>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->

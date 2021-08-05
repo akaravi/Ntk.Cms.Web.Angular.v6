@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
@@ -7,6 +6,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   templateUrl: './cms-html-list.component.html',
 })
 export class CmsHtmlListComponent implements OnInit {
+  @Input() optionTreeDisplay = true;
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
     this.loading = v;
@@ -17,7 +17,7 @@ export class CmsHtmlListComponent implements OnInit {
 
   }
   /*
-  <app-cms-html-list [optionLoading]="loading">
+  <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
     <ng-container cms-tree>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
       --------------------------------------
@@ -27,6 +27,16 @@ export class CmsHtmlListComponent implements OnInit {
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       --------------------------------------
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </ng-container>
+    <ng-container cms-action>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    </ng-container>
+    <ng-container cms-action-area>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->

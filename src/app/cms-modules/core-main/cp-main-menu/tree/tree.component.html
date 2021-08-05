@@ -1,13 +1,17 @@
 <app-cms-html-tree [optionLoading]="loading">
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
-    class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
-  <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Id>0" (click)="onActionEdit()" type="button"
-    class="btn btn-warning ml-2">{{'ACTION.EDIT' | translate}}</button>
-  <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
-    class="btn btn-info  ml-2">...</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </ng-container>
+  <ng-container cms-action>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
+      class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Id>0" (click)="onActionEdit()" type="button"
+      class="btn btn-warning ml-2">{{'ACTION.EDIT' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
+      class="btn btn-info  ml-2">...</button>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -29,7 +33,7 @@
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
               </mat-icon>
             </button>
-            <i [ngClass]="node.Icon"  [style.color]="node.Color" aria-hidden="true"></i>
+            <i [ngClass]="node.Icon" [style.color]="node.Color" aria-hidden="true"></i>
             &nbsp;&nbsp;&nbsp;&nbsp;
             {{node.Title}}
           </div>
@@ -43,7 +47,7 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-tree>

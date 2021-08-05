@@ -4,8 +4,8 @@
     <app-news-category-tree (optionSelect)="onActionSelectorSelect($event)"></app-news-category-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
-  <ng-container cms-header>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <ng-container cms-action>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.Access.AccessAddRow && this.categoryModelSelected?.Id>0"
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
@@ -37,7 +37,7 @@
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->

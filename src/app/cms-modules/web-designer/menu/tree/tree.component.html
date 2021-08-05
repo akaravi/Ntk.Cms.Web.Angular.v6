@@ -1,13 +1,17 @@
 <app-cms-html-tree [optionLoading]="loading">
   <ng-container cms-header>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
-        class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
-      <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect?.Id?.length >0" (click)="onActionEdit()"
-        type="button" class="btn btn-warning ml-2">{{'ACTION.EDIT' | translate}}</button>
-      <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
-        class="btn btn-info  ml-2">...</button>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </ng-container>
+  <ng-container cms-action>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
+      class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect?.Id?.length >0" (click)="onActionEdit()"
+      type="button" class="btn btn-warning ml-2">{{'ACTION.EDIT' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
+      class="btn btn-info  ml-2">...</button>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
