@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -25,6 +25,7 @@ export class ApplicationAppSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: ApplicationAppService) {
 
 
@@ -43,7 +44,7 @@ export class ApplicationAppSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -88,6 +89,7 @@ ngOnInit(): void {
     }
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -105,16 +107,14 @@ ngOnInit(): void {
       ).toPromise();
   }
   onActionSelect(model: ApplicationAppModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

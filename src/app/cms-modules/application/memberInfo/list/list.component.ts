@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   ApplicationAppModel,
@@ -45,6 +45,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -126,6 +127,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ApplicationMemberInfoModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -166,11 +168,13 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }
@@ -279,6 +283,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+          this.cdr.detectChanges();
           this.applicationMemberInfoService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -288,10 +293,12 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             }
           );
         }
@@ -341,7 +348,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
-      data: { LinkApplicationMemberId: this.tableRowSelected.Id}
+      data: { LinkApplicationMemberId: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

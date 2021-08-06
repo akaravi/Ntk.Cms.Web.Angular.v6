@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { ApplicationAppModel, ApplicationAppService, FormInfoModel } from 'ntk-cms-api';
@@ -11,12 +11,14 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   styleUrls: ['./download.component.scss']
 })
 export class ApplicationAppDownloadComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public dataModel: ApplicationAppModel,
-              private dialogRef: MatDialogRef<ApplicationAppDownloadComponent>,
-              private applicationAppService: ApplicationAppService,
-              private cmsToastrService: CmsToastrService,
-              private translate: TranslateService,
-                ) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dataModel: ApplicationAppModel,
+    private dialogRef: MatDialogRef<ApplicationAppDownloadComponent>,
+    private applicationAppService: ApplicationAppService,
+    private cmsToastrService: CmsToastrService,
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
+  ) {
 
   }
   formInfo: FormInfoModel = new FormInfoModel();
@@ -31,12 +33,14 @@ export class ApplicationAppDownloadComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
 
     this.applicationAppService
       .ServiceGetOneById(requestId)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataModel = next.Item;
@@ -47,6 +51,7 @@ export class ApplicationAppDownloadComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -55,11 +60,11 @@ export class ApplicationAppDownloadComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
-  onActionDownloadApp(): void{
+  onActionDownloadApp(): void {
     window.open(this.dataModel.DownloadLinkSrc);
 
   }
-  onActionDownloadUpdate(): void{
+  onActionDownloadUpdate(): void {
     window.open(this.dataModel.DownloadLinkUpdateSrc);
 
   }

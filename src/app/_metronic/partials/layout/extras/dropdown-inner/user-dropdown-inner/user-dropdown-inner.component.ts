@@ -78,6 +78,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
       this.loading.Stop('main');
+    this.cdr.detectChanges();
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessLogout();
       } else {

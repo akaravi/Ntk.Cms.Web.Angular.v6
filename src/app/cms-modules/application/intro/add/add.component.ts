@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,6 +40,7 @@ export class ApplicationIntroAddComponent implements OnInit {
     private applicationIntroService: ApplicationIntroService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     private router: Router) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -114,12 +115,14 @@ export class ApplicationIntroAddComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
 
     this.applicationIntroService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -132,6 +135,7 @@ export class ApplicationIntroAddComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

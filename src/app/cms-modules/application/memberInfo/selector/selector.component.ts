@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -25,6 +25,7 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: ApplicationMemberInfoService) {
 
 
@@ -129,6 +130,7 @@ ngOnInit(): void {
     }
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {

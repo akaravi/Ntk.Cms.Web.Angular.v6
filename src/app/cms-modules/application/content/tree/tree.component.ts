@@ -31,7 +31,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class ApplicationAppTreeComponent  implements OnInit , OnDestroy {
+export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,

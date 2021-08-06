@@ -15,6 +15,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -41,6 +42,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     public applicationLogNotificationService: ApplicationLogNotificationService,
     private cmsToastrService: CmsToastrService,
     private cmsStoreService: CmsStoreService,
+    private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
     private translate: TranslateService,
   ) {
@@ -70,7 +72,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   fileManagerOpenFormSmallFile = false;
   fileManagerOpenFormBigFile = false;
-  
+
   SmallImageIdSrc = '';
   BigImageIdSrc = '';
   applicationMemberInfoModel = new ApplicationMemberInfoModel();
@@ -99,13 +101,14 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
 
     this.applicationLogNotificationService.ServiceSendNotification(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
@@ -114,11 +117,13 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }

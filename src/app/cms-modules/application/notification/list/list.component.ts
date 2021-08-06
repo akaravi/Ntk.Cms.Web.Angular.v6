@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   ApplicationAppModel,
@@ -42,6 +42,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     private activatedRoute: ActivatedRoute,
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -129,6 +130,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.tableRowSelected = new ApplicationLogNotificationModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -171,11 +173,13 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

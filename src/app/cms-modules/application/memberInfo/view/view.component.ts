@@ -16,6 +16,7 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -40,6 +41,7 @@ export class ApplicationMemberInfoViewComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public applicationMemberInfoService: ApplicationMemberInfoService,
     private cmsApiStore: NtkCmsApiStoreService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
@@ -98,6 +100,7 @@ export class ApplicationMemberInfoViewComponent implements OnInit, OnDestroy {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     /*َAccess Field*/
     this.applicationMemberInfoService.setAccessLoad();
 
@@ -116,10 +119,12 @@ export class ApplicationMemberInfoViewComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

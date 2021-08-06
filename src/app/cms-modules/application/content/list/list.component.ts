@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   ApplicationAppModel,
@@ -49,10 +49,11 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
-    ) {
+  ) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -131,6 +132,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationAppModel();
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     const filter = new FilterDataModel();
@@ -177,11 +179,13 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
 
         }
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
   }
@@ -300,6 +304,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+          this.cdr.detectChanges();
           this.applicationAppService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -309,10 +314,12 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+              this.cdr.detectChanges();
             }
           );
         }
@@ -442,10 +449,12 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = mode;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.applicationAppService.ServiceBuild(this.tableRowSelected.Id).subscribe(
       (next) => {
         this.loading.Stop('main');
+        this.cdr.detectChanges();
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
         }
@@ -457,6 +466,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+        this.cdr.detectChanges();
       }
     );
 

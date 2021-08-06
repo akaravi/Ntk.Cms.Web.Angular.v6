@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -42,6 +42,7 @@ export class ApplicationAppEditComponent implements OnInit {
     private applicationAppService: ApplicationAppService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     private router: Router) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -70,7 +71,7 @@ export class ApplicationAppEditComponent implements OnInit {
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = {};
 
-  
+
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (!this.requestId || this.requestId === 0) {
@@ -87,7 +88,7 @@ export class ApplicationAppEditComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {
@@ -112,6 +113,7 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     /*َAccess Field*/
     this.applicationAppService.setAccessLoad();
     this.applicationAppService
@@ -122,6 +124,7 @@ export class ApplicationAppEditComponent implements OnInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -138,6 +141,7 @@ export class ApplicationAppEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -148,11 +152,13 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.applicationAppService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -166,6 +172,7 @@ export class ApplicationAppEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

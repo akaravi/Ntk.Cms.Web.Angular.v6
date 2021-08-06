@@ -35,7 +35,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   IsAdminSite = false;
   env = environment;
   ngOnInit(): void {
-    
+
     this.extrasUserOffcanvasDirection = `offcanvas-${this.layout.getProp(
       'extras.user.offcanvas.direction'
     )}`;
@@ -76,6 +76,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
       this.loading.Stop('main');
+      this.cdr.detectChanges();
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessLogout();
       } else {
