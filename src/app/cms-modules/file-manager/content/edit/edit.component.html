@@ -1,17 +1,22 @@
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
-      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
-      <app-progress-spinner [options]="loading">
-      </app-progress-spinner>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
           <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-              #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+              name="dataModel.RecordStatus" #RecordStatus="ngModel"
+              panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
               <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -27,8 +32,8 @@
           </app-file-category-selector>
           <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.FileName" name="dataModel.FileName" #FileName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
+            <input matInput [(ngModel)]="dataModel.FileName" name="dataModel.FileName" #FileName type="text"
+              placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.FileName" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.FileName = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -54,8 +59,8 @@
           <mat-form-field class="ntk-full-width">
             <mat-label>تاریخ شروع</mat-label>
             <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
-                 <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #FromDate></mat-datepicker>
           </mat-form-field>
@@ -63,21 +68,22 @@
           <!-- ExpireDate Field -->
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-            <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-                <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate"
+              name="dataModel.ExpireDate" />
+            <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #ExpireDate></mat-datepicker>
           </mat-form-field>
           <hr class="pb-5" />
-          <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main" [(ngModel)]="dataModel.Body"
-            name="dataModel.Body"></angular-editor>
+          <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main"
+            [(ngModel)]="dataModel.Body" name="dataModel.Body"></angular-editor>
 
-                 <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -106,7 +112,7 @@
             [secondaryPlaceholder]="'انتخاب کلمات کلیدی نسبت به مطلب'" [identifyBy]="'display'">
 
           </tag-input>
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -120,14 +126,14 @@
           <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
           <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
             id='main-map'></app-cms-map>
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
         <!-- Icon overrides. -->
@@ -146,8 +152,17 @@
 
       </mat-horizontal-stepper>
 
-    </form>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-  </div>
-  <!--end::Container-->
-</div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

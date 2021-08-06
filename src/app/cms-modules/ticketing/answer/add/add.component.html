@@ -1,11 +1,15 @@
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
-      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
-      <app-progress-spinner [options]="loading">
-      </app-progress-spinner>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
@@ -26,14 +30,15 @@
 
           <app-ticketing-departemen-selector (optionSelect)="onActionSelectSource($event)"
             [optionSelectForce]="this.dataModel.LinkTicketingDepartemenId" [optionPlaceholder]="'دپارتمان'"
-            [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.AccessAddField"></app-ticketing-departemen-selector>
+            [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.AccessAddField">
+          </app-ticketing-departemen-selector>
 
 
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HtmlBody']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['HtmlBody']?.FieldHtmlBody }}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.HtmlBody" [disabled]="!fieldsInfo['HtmlBody']?.AccessAddField"
-              name="dataModel.HtmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" row="5" minlength="0"
-              maxlength="1000"></textarea>
+              name="dataModel.HtmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" row="5"
+              minlength="0" maxlength="1000"></textarea>
             <mat-icon matSuffix *ngIf="dataModel.HtmlBody && fieldsInfo['HtmlBody']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.HtmlBody = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['HtmlBody']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -46,11 +51,11 @@
 
 
 
-                    <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -68,22 +73,31 @@
 
 
 
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
 
 
       </mat-horizontal-stepper>
 
-    </form>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-  </div>
-  <!--end::Container-->
-</div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

@@ -1,7 +1,7 @@
 <!--begin::Card-->
 <div class="card card-custom gutter-b">
   <!--begin::Header-->
-  <div class="card-header card-header-tabs-line">
+  <div *ngIf="optionHeaderDisplay" class="card-header card-header-tabs-line">
     <div class="card-title">
       <ng-content select="[cms-header]"></ng-content>
     </div>
@@ -18,9 +18,8 @@
   <!--begin::Footer-->
   <div class="card-body">
     <div class="row">
-      <ng-container *ngIf="!loading.display">
-        <ng-content select="[cms-footer]"></ng-content>
-      </ng-container>
+      <ng-content select="[cms-message]"></ng-content>
+      <ng-content *ngIf="optionFooterDisplay && !loading.display" select="[cms-footer]"></ng-content>
     </div>
   </div>
   <!--end::Footer-->

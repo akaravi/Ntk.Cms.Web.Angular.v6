@@ -1,10 +1,15 @@
-<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
-<mat-dialog-content>
-  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <div *ngIf="!loading.display" class="form-body">
-
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card  [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      {{ formInfo.FormTitle }}
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
         <mat-step label="مشخصات " state="main">
           <mat-form-field class="ntk-full-width">
             <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
@@ -87,9 +92,17 @@
           </div>
         </mat-step>
       </mat-horizontal-stepper>
-    </div>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-
-</mat-dialog-actions>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+	<ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

@@ -90,7 +90,7 @@
                         aria-haspopup="false" aria-expanded="false">{{ dataModel.Domain === undefined ? 'دامنه' :
                         dataModel.Domain }}</button>
                       <div class="dropdown-menu">
-                        <option (click)="domain(item.Domain)" class="cursor-pointer"
+                        <option (click)="domain(item)" class="cursor-pointer"
                           *ngFor="let item of dataModelResultDomains.ListItems;let i = index" value="{{item}}"
                           [attr.selected]="i==0 ? 'selected' : null">{{item}}</option>
                       </div>

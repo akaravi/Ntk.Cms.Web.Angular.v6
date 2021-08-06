@@ -1,14 +1,20 @@
-<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
-<mat-dialog-content>
-  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <div *ngIf="!loading.display" class="form-body">
-
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.FormTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
       <!-- AccountUserType Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['AccountUserType']?.FieldTitle}}" [(ngModel)]="dataModel.AccountUserType" name="dataModel.AccountUserType"
-          #AccountUserType="ngModel" panelClass="AccountUserType-{{ dataModel.AccountUserType }}" required>
+        <mat-select placeholder="{{fieldsInfo['AccountUserType']?.FieldTitle}}" [(ngModel)]="dataModel.AccountUserType"
+          name="dataModel.AccountUserType" #AccountUserType="ngModel"
+          panelClass="AccountUserType-{{ dataModel.AccountUserType }}" required>
           <mat-option *ngFor="
                 let item of dataModelEnumEstateUserTypeResult.ListItems;
                 index as i
@@ -22,34 +28,42 @@
 
       <!-- LinkAccountUserId Field -->
       <app-estate-accountuser-selector (optionSelect)="onActionSelectorAccountUser($event)"
-        [optionSelectForce]="dataModel.LinkAccountUserId" [optionPlaceholder]="'user'"></app-estate-accountuser-selector>
+        [optionSelectForce]="dataModel.LinkAccountUserId" [optionPlaceholder]="'user'">
+      </app-estate-accountuser-selector>
 
-        <!-- LinkAccountAgencyId Field -->
+      <!-- LinkAccountAgencyId Field -->
       <app-estate-accountagency-selector (optionSelect)="onActionSelectorAccountAgency($event)"
-      [optionSelectForce]="dataModel.LinkAccountAgencyId" [optionPlaceholder]="'Agency'"></app-estate-accountagency-selector>
+        [optionSelectForce]="dataModel.LinkAccountAgencyId" [optionPlaceholder]="'Agency'">
+      </app-estate-accountagency-selector>
 
-        <!-- LinkPropertyId Field -->
+      <!-- LinkPropertyId Field -->
       <app-estate-property-selector (optionSelect)="onActionSelectorProperty($event)"
-      [optionSelectForce]="dataModel.LinkPropertyId" [optionPlaceholder]="'Property'"></app-estate-property-selector>
+        [optionSelectForce]="dataModel.LinkPropertyId" [optionPlaceholder]="'Property'"></app-estate-property-selector>
 
 
-
-
-    </div>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
-    </small>
-  </div>
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-    </button>
-    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
-      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-    </button>
-  </div>
-</mat-dialog-actions>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        </small>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
+        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
+          [disabled]="!vform.form.valid">
+          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+        </button>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

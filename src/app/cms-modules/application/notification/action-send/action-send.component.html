@@ -1,8 +1,14 @@
-<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
-<mat-dialog-content>
-  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <div *ngIf="!loading.display" class="form-body">
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.FormTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <!-- AppId Field -->
       <app-application-app-selector (optionSelect)="onActionSelectApp($event)" *ngIf="LinkMemberId.length===0"
         [optionSelectForce]="this.dataModel.AppId" [optionPlaceholder]="'اپلیکیشن'"></app-application-app-selector>
@@ -15,8 +21,8 @@
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>Title</mat-label>
-        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{'TITLE.TITLE' | translate}}"
-          minlength="3" maxlength="100" required />
+        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+          placeholder="{{'TITLE.TITLE' | translate}}" minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.Title = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -57,7 +63,7 @@
       <mat-form-field class="ntk-full-width">
         <mat-label>Json</mat-label>
         <textarea matInput [(ngModel)]="dataModel.ContentJson" name="dataModel.ContentJson" #ContentJson type="text"
-          placeholder="Json" minlength="0" maxlength="500" ></textarea>
+          placeholder="Json" minlength="0" maxlength="500"></textarea>
         <mat-icon matSuffix *ngIf="dataModel.ContentJson" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.ContentJson = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -78,7 +84,7 @@
           <mat-label (click)="fileManagerOpenFormSmallFile = true">فایل عکس کوچک
           </mat-label>
           <input matInput [(ngModel)]="dataModel.SmallImageId" name="dataModel.SmallImageId" #SmallImageId type="text"
-            placeholder="شناسه فایل اصلی"   autocomplete="off" (click)="fileManagerOpenFormSmallFile = true" />
+            placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenFormSmallFile = true" />
           <mat-icon matSuffix *ngIf="dataModel.SmallImageId " matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.SmallImageId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenFormSmallFile = true">mode_edit</mat-icon>
@@ -99,7 +105,7 @@
           <mat-label (click)="fileManagerOpenFormBigFile = true">فایل عکس اصلی
           </mat-label>
           <input matInput [(ngModel)]="dataModel.BigImageId" name="dataModel.BigImageId" #BigImageId type="text"
-            placeholder="شناسه فایل اصلی"   autocomplete="off" (click)="fileManagerOpenFormBigFile = true" />
+            placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenFormBigFile = true" />
           <mat-icon matSuffix *ngIf="dataModel.BigImageId " matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.BigImageId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenFormBigFile = true">mode_edit</mat-icon>
@@ -109,22 +115,29 @@
           [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
           [openFilemanagerButtonView]="false"></cms-file-manager>
       </div>
-    </div>
-
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
-    </small>
-  </div>
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-    </button>
-    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
-      <i class="fa fa-check-square-o"></i> ارسال
-    </button>
-  </div>
-</mat-dialog-actions>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        </small>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
+        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
+          [disabled]="!vform.form.valid">
+          <i class="fa fa-check-square-o"></i> ارسال
+        </button>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

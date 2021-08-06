@@ -2,11 +2,14 @@
   <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
         ویرایش : {{dataModel.Name}} {{dataModel.LastName}}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
           <!-- RecordStatus Field -->
@@ -299,9 +302,17 @@
 
       </mat-horizontal-stepper>
 
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </ng-container>
     <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
   </app-cms-html-card>
 </form>

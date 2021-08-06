@@ -1,11 +1,15 @@
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
-      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
-      <app-progress-spinner [options]="loading">
-      </app-progress-spinner>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
           <!-- RecordStatus Field -->
@@ -32,7 +36,8 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessEditField"
-              name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+              name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+              maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['Title']?.AccessEditField" matSuffix>mode_edit</mat-icon>
@@ -46,7 +51,8 @@
             <mat-label>{{ fieldsInfo['Description']?.FieldDescription }}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.Description"
               [disabled]="!fieldsInfo['Description']?.AccessEditField" name="dataModel.Description" #Description
-              type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" row="10" minlength="3" maxlength="100" required></textarea>
+              type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" row="10" minlength="3" maxlength="100"
+              required></textarea>
             <mat-icon matSuffix *ngIf="dataModel.Description && fieldsInfo['Description']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.Description = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['Description']?.AccessEditField" matSuffix>mode_edit</mat-icon>
@@ -61,7 +67,7 @@
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -81,7 +87,8 @@
               <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainImageId"
                 [disabled]="!fieldsInfo['LinkMainImageId']?.AccessEditField" name="dataModel.LinkMainImageId"
-                #LinkMainImageId type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+                #LinkMainImageId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+                (click)="fileManagerOpenForm = true" />
               <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId && fieldsInfo['LinkMainImageId']?.AccessEditField"
                 matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainImageId = null">close</mat-icon>
               <mat-icon *ngIf="fieldsInfo['LinkMainImageId']?.AccessEditField" matSuffix
@@ -105,7 +112,8 @@
               </mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainVideoId"
                 [disabled]="!fieldsInfo['LinkMainVideoId']?.AccessEditField" name="dataModel.LinkMainVideoId"
-                #LinkMainVideoId type="text" placeholder="شناسه فایل اصلی"  autocomplete="off"  (click)="fileManagerOpenFormVideo = true" />
+                #LinkMainVideoId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+                (click)="fileManagerOpenFormVideo = true" />
               <mat-icon matSuffix *ngIf="dataModel.LinkMainVideoId && fieldsInfo['LinkMainVideoId']?.AccessEditField"
                 matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainVideoId = null">close</mat-icon>
               <mat-icon *ngIf="fieldsInfo['LinkMainVideoId']?.AccessEditField" matSuffix
@@ -117,20 +125,29 @@
               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainVideo"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
       </mat-horizontal-stepper>
 
-    </form>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-  </div>
-  <!--end::Container-->
-</div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

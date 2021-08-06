@@ -1,11 +1,15 @@
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
-      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
-      <app-progress-spinner [options]="loading">
-      </app-progress-spinner>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
@@ -75,11 +79,11 @@
           <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main"
             [(ngModel)]="dataModel.Body" name="dataModel.Body"></angular-editor>
 
-<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-             <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -90,11 +94,11 @@
             (optionSelectChecked)="onActionCategorySelectChecked($event)"
             (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-news-category-treeselector>
           <br>
-<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-             <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -143,7 +147,7 @@
 
               <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
-                type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+                type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
               <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
                 (click)="dataModel.LinkMainImageId = null">close</mat-icon>
               <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -195,7 +199,7 @@
               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -281,7 +285,7 @@
           <!-- TABLE  -->
 
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -351,7 +355,7 @@
           </div>
           <!-- TABLE  -->
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -364,14 +368,14 @@
           <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
           <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
             id='main-map'></app-cms-map>
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
         <!-- Icon overrides. -->
@@ -390,8 +394,17 @@
 
       </mat-horizontal-stepper>
 
-    </form>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-  </div>
-  <!--end::Container-->
-</div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

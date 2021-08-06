@@ -6,6 +6,10 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   templateUrl: './cms-html-list.component.html',
 })
 export class CmsHtmlListComponent implements OnInit {
+  @Input() optionHeaderDisplay = true;
+  @Input() optionActionDisplay = true;
+  @Input() optionFooterDisplay = true;
+  
   @Input() optionTreeDisplay = true;
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
@@ -42,6 +46,11 @@ export class CmsHtmlListComponent implements OnInit {
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       --------------------------------------
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </ng-container>
     <ng-container cms-footer>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->

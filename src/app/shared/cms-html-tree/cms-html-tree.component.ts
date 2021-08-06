@@ -6,6 +6,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   templateUrl: './cms-html-tree.component.html',
 })
 export class CmsHtmlTreeComponent implements OnInit {
+  @Input() optionHeaderDisplay = true;
+  @Input() optionActionDisplay = true;
+  @Input() optionFooterDisplay = true;
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
     this.loading = v;

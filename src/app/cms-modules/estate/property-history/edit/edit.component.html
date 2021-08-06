@@ -1,9 +1,14 @@
-<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
-<mat-dialog-content>
-  <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <div *ngIf="!loading.display" class="form-body">
-
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.FormTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -17,24 +22,31 @@
           Title is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
 
-
-    </div>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
-    </small>
-  </div>
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-    </button>
-    <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
-      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-    </button>
-  </div>
-</mat-dialog-actions>
+      <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        </small>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
+        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
+          [disabled]="!vform.form.valid">
+          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+        </button>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

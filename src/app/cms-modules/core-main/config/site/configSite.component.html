@@ -1,11 +1,15 @@
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
-      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
-      <app-progress-spinner [options]="loading">
-      </app-progress-spinner>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
         <mat-step label="تنظیمات ماژول" state="main">
           <p>تنظیمات که ماژول به سایت به کارگیری می شود </p>
 
@@ -96,14 +100,14 @@
 
           </div>
 
-            <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
             <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
@@ -122,7 +126,7 @@
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataSiteStorageModel.MainDataContentRowCount"
               name="dataSiteStorageModel.MainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
-              type="number" placeholder="0"  />
+              type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataSiteStorageModel.MainDataContentRowCount" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataSiteStorageModel.MainDataContentRowCount = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -165,14 +169,14 @@
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
           </div>
-<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button"  mat-raised-button color="accent"   matStepperPrevious>
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary"  [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
@@ -197,21 +201,32 @@
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
           </div>
-<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button"  mat-raised-button color="accent"   matStepperPrevious>
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary"  [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
         </mat-step>
 
       </mat-horizontal-stepper>
-    </form>
-  </div>
-  <!--end::Container-->
-</div>
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

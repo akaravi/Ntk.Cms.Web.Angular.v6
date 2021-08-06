@@ -1,11 +1,15 @@
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
-      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
-      <app-progress-spinner [options]="loading">
-      </app-progress-spinner>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
@@ -26,14 +30,15 @@
 
           <app-ticketing-departemen-selector (optionSelect)="onActionSelectSource($event)"
             [optionSelectForce]="this.dataModel.LinkTicketingDepartemenId" [optionPlaceholder]="'دپارتمان'"
-            [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.AccessAddField"></app-ticketing-departemen-selector>
+            [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.AccessAddField">
+          </app-ticketing-departemen-selector>
 
 
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FullName']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['FullName']?.FieldFullName }}</mat-label>
             <input matInput [(ngModel)]="dataModel.FullName" [disabled]="!fieldsInfo['FullName']?.AccessAddField"
-              name="dataModel.FullName" #FullName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100"
-              required />
+              name="dataModel.FullName" #FullName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
+              minlength="3" maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.FullName && fieldsInfo['FullName']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.FullName = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['FullName']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -47,7 +52,8 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessAddField"
-              name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+              name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+              maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessAddField" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -61,8 +67,8 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PhoneNo']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['PhoneNo']?.FieldPhoneNo }}</mat-label>
             <input matInput [(ngModel)]="dataModel.PhoneNo" [disabled]="!fieldsInfo['PhoneNo']?.AccessAddField"
-              name="dataModel.PhoneNo" #PhoneNo type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100"
-              required />
+              name="dataModel.PhoneNo" #PhoneNo type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
+              minlength="3" maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.PhoneNo && fieldsInfo['PhoneNo']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.PhoneNo = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['PhoneNo']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -76,7 +82,8 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Email']?.FieldEmail }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Email" [disabled]="!fieldsInfo['Email']?.AccessAddField"
-              name="dataModel.Email" #Email type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+              name="dataModel.Email" #Email type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+              maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.Email && fieldsInfo['Email']?.AccessAddField" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataModel.Email = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['Email']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -90,7 +97,8 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessAddField"
-              name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+              name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+              maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessAddField" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -103,8 +111,8 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HtmlBody']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['HtmlBody']?.FieldHtmlBody }}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.HtmlBody" [disabled]="!fieldsInfo['HtmlBody']?.AccessAddField"
-              name="dataModel.HtmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" row="5" minlength="0"
-              maxlength="1000"></textarea>
+              name="dataModel.HtmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" row="5"
+              minlength="0" maxlength="1000"></textarea>
             <mat-icon matSuffix *ngIf="dataModel.HtmlBody && fieldsInfo['HtmlBody']?.AccessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.HtmlBody = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['HtmlBody']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -116,9 +124,10 @@
           <!-- ExpireDate Field -->
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-            <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-                <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate"
+              name="dataModel.ExpireDate" />
+            <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #ExpireDate></mat-datepicker>
           </mat-form-field>
@@ -127,11 +136,11 @@
 
 
 
-                    <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -160,7 +169,8 @@
             <mat-label>{{ fieldsInfo['DeviceInformation']?.FieldDeviceInformation }}</mat-label>
             <input matInput [(ngModel)]="dataModel.DeviceInformation"
               [disabled]="!fieldsInfo['DeviceInformation']?.AccessAddField" name="dataModel.DeviceInformation"
-              #DeviceInformation type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="0" maxlength="100" />
+              #DeviceInformation type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="0"
+              maxlength="100" />
             <mat-icon matSuffix *ngIf="dataModel.DeviceInformation && fieldsInfo['DeviceInformation']?.AccessAddField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.DeviceInformation = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['DeviceInformation']?.AccessAddField" matSuffix>mode_edit</mat-icon>
@@ -170,7 +180,7 @@
           </mat-form-field>
 
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -193,22 +203,31 @@
 
 
 
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
 
 
       </mat-horizontal-stepper>
 
-    </form>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-  </div>
-  <!--end::Container-->
-</div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

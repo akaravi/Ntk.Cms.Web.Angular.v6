@@ -6,6 +6,10 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   templateUrl: './cms-html-card.component.html',
 })
 export class CmsHtmlCardComponent implements OnInit {
+  @Input() optionHeaderDisplay = true;
+  @Input() optionActionDisplay = true;
+  @Input() optionFooterDisplay = true;
+  
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
     this.loading = v;
@@ -29,6 +33,11 @@ export class CmsHtmlCardComponent implements OnInit {
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       --------------------------------------
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      --------------------------------------
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </ng-container>
     <ng-container cms-footer>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->

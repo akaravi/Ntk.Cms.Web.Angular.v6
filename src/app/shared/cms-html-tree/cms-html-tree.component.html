@@ -1,7 +1,7 @@
 <!--begin::Header-->
-<div class="ntk-cms-html-tree-header">
-  <ng-content select="[cms-header]"></ng-content>
-  <ng-content select="[cms-action]"></ng-content>
+<div  *ngIf="optionHeaderDisplay ||optionActionDisplay" class="ntk-cms-html-tree-header">
+  <ng-content  *ngIf="optionHeaderDisplay" select="[cms-header]"></ng-content>
+  <ng-content  *ngIf="optionActionDisplay" select="[cms-action]"></ng-content>
 </div>
 <!--end::Header-->
 <!--begin::Body-->
@@ -17,7 +17,7 @@
 </div>
 <!--end::Body-->
 <!--begin::Footer-->
-<div class="ntk-cms-html-tree-footer">
+<div *ngIf="optionFooterDisplay" class="ntk-cms-html-tree-footer">
   <ng-content *ngIf="!loading.display" select="[cms-footer]"></ng-content>
 </div>
 <!--end::Footer-->

@@ -1,16 +1,21 @@
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <form (ngSubmit)="onFormSubmit()" #vform="ngForm"
-      class="form mt-0 mt-lg-10 fv-plugins-bootstrap fv-plugins-framework">
-      <app-progress-spinner [options]="loading">
-      </app-progress-spinner>
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <app-cms-html-card [optionLoading]="loading">
+    <ng-container cms-header>
+      <h3 class="card-label">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      </h3>
+    </ng-container>
+    <ng-container cms-body>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
           <!-- RecordStatus Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-              #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+              name="dataModel.RecordStatus" #RecordStatus="ngModel"
+              panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
               <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -28,8 +33,8 @@
           <!-- Title Field -->
           <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
+            <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+              placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.Title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -79,7 +84,7 @@
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -104,7 +109,7 @@
           <tag-input [(ngModel)]="keywordDataModel" name="keywordDataModel" [placeholder]="'+ کلمه کلیدی'"
             [secondaryPlaceholder]="'انتخاب کلمات کلیدی نسبت به مطلب'" [identifyBy]="'display'">
           </tag-input>
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -125,7 +130,7 @@
 
               <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
-                type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+                type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
               <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
                 (click)="dataModel.LinkMainImageId = null">close</mat-icon>
               <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -179,7 +184,7 @@
               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -196,7 +201,8 @@
           <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="contentOtherInfoSelected.Title" name="contentOtherInfoSelected.Title"
-              #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" />
+              #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
+              minlength="3" maxlength="100" />
             <mat-icon matSuffix *ngIf="contentOtherInfoSelected.Title" matSuffix mat-icon-button aria-label="Clear"
               (click)="contentOtherInfoSelected.Title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -236,12 +242,12 @@
             <mat-table [dataSource]="otherInfoTabledataSource">
               <!-- Title Column -->
               <ng-container matColumnDef="Title">
-                <mat-header-cell *matHeaderCellDef>  {{fieldsInfo['Title']?.FieldTitle}}  </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
               </ng-container>
               <!-- TypeId Column -->
               <ng-container matColumnDef="TypeId">
-                <mat-header-cell *matHeaderCellDef>  {{fieldsInfo['TypeId']?.FieldTitle}}  </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{fieldsInfo['TypeId']?.FieldTitle}} </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.TypeId}} </mat-cell>
               </ng-container>
               <!-- Action Column -->
@@ -260,7 +266,7 @@
           </div>
           <!-- TABLE  -->
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -329,7 +335,7 @@
           </div>
           <!-- TABLE  -->
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -342,14 +348,14 @@
           <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
           <!-- map Field -->
           <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" id='main-map'></app-cms-map>
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
         <!-- Icon overrides. -->
@@ -368,8 +374,17 @@
 
       </mat-horizontal-stepper>
 
-    </form>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </ng-container>
+    <ng-container cms-message>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-  </div>
-  <!--end::Container-->
-</div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </ng-container>
+    <ng-container cms-footer>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </ng-container>
+  </app-cms-html-card>
+</form>

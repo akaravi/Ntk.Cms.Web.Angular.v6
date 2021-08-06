@@ -6,9 +6,9 @@
   </div>
   <div [ngClass]="optionTreeDisplay?'col-xl-9':'col-xl-12'">
     <!--begin::Header-->
-    <div class="ntk-cms-html-list-header">
-      <ng-content select="[cms-header]"></ng-content>
-      <ng-content select="[cms-action]"></ng-content>
+    <div *ngIf="optionHeaderDisplay ||optionActionDisplay" class="ntk-cms-html-list-header">
+      <ng-content *ngIf="optionHeaderDisplay" select="[cms-header]"></ng-content>
+      <ng-content *ngIf="optionActionDisplay" select="[cms-action]"></ng-content>
     </div>
     <!--end::Header-->
     <ng-content select="[cms-action-area]"></ng-content>
@@ -26,7 +26,8 @@
     <!--end::Body-->
     <!--begin::Footer-->
     <div class="ntk-cms-html-list-footer">
-      <ng-content *ngIf="!loading.display" select="[cms-footer]"></ng-content>
+      <ng-content select="[cms-message]"></ng-content>
+      <ng-content *ngIf="optionFooterDisplay && !loading.display" select="[cms-footer]"></ng-content>
     </div>
     <!--end::Footer-->
   </div>
