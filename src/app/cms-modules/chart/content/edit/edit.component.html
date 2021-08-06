@@ -3,7 +3,7 @@
     <ng-container cms-header>
       <h3 class="card-label">
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        --------------------------------------
+        {{ formInfo.FormTitle }}
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
@@ -95,8 +95,8 @@
             (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-chart-category-treeselector>
           <br>
           <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button (click)="onActionBackToParent()">
-              {{'ACTION.BACK' | translate}}
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
+              {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}

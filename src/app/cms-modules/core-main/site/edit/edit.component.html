@@ -1,10 +1,10 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      --------------------------------------
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        --------------------------------------
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
@@ -135,7 +135,7 @@
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -181,7 +181,8 @@
             <mat-label>{{ fieldsInfo['CurrentSiteDomainUrl']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.CurrentSiteDomainUrl"
               [disabled]="!fieldsInfo['CurrentSiteDomainUrl']?.AccessEditField" name="dataModel.CurrentSiteDomainUrl"
-              #CurrentSiteDomainUrl type="text" placeholder="https://...." minlength="3" maxlength="100"  style="text-align: left;" dir="ltr" />
+              #CurrentSiteDomainUrl type="text" placeholder="https://...." minlength="3" maxlength="100"
+              style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.CurrentSiteDomainUrl && fieldsInfo['CurrentSiteDomainUrl']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.CurrentSiteDomainUrl = ''">close</mat-icon>
@@ -192,8 +193,8 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Redirect']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['Redirect']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.Redirect" [disabled]="!fieldsInfo['Redirect']?.AccessEditField"
-              name="dataModel.Redirect" #Redirect type="text" placeholder="https://...." minlength="3"
-              maxlength="100"  style="text-align: left;" dir="ltr" />
+              name="dataModel.Redirect" #Redirect type="text" placeholder="https://...." minlength="3" maxlength="100"
+              style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix *ngIf="dataModel.Redirect && fieldsInfo['Redirect']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.Redirect = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['Redirect']?.AccessEditField" matSuffix>mode_edit</mat-icon>
@@ -212,10 +213,10 @@
           </mat-form-field>
 
           <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button (click)="onActionBackToParent()">
-              {{'ACTION.BACK' | translate}}
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
+              {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -238,9 +239,8 @@
                 [disabled]="!fieldsInfo['LinkImageLogoId']?.AccessAddField" name="dataModel.LinkImageLogoId"
                 #LinkImageLogoId type="text" placeholder="شناسه فایل اصلی"
                 (click)="fileManagerOpenFormLinkImageLogoId = true" />
-              <mat-icon matSuffix
-                *ngIf="dataModel.LinkImageLogoId && fieldsInfo['LinkImageLogoId']?.AccessAddField" matSuffix
-                mat-icon-button aria-label="Clear" (click)="dataModel.LinkImageLogoId = null">close</mat-icon>
+              <mat-icon matSuffix *ngIf="dataModel.LinkImageLogoId && fieldsInfo['LinkImageLogoId']?.AccessAddField"
+                matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkImageLogoId = null">close</mat-icon>
               <mat-icon *ngIf="fieldsInfo['LinkImageLogoId']?.AccessAddField" matSuffix
                 (click)="fileManagerOpenFormLinkImageLogoId = true">mode_edit</mat-icon>
             </mat-form-field>
@@ -323,7 +323,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkFacebook']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkFacebook"
               [disabled]="!fieldsInfo['AboutUsLinkFacebook']?.AccessEditField" name="dataModel.AboutUsLinkFacebook"
-              #AboutUsLinkFacebook type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkFacebook type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkFacebook && fieldsInfo['AboutUsLinkFacebook']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkFacebook = ''">close</mat-icon>
@@ -334,7 +334,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkTwitter']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkTwitter"
               [disabled]="!fieldsInfo['AboutUsLinkTwitter']?.AccessEditField" name="dataModel.AboutUsLinkTwitter"
-              #AboutUsLinkTwitter type="text" placeholder="https://...."  style="text-align: left;" dir="ltr" />
+              #AboutUsLinkTwitter type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkTwitter && fieldsInfo['AboutUsLinkTwitter']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkTwitter = ''">close</mat-icon>
@@ -345,7 +345,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkGooglePlus']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkGooglePlus"
               [disabled]="!fieldsInfo['AboutUsLinkGooglePlus']?.AccessEditField" name="dataModel.AboutUsLinkGooglePlus"
-              #AboutUsLinkGooglePlus type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkGooglePlus type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkGooglePlus && fieldsInfo['AboutUsLinkGooglePlus']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkGooglePlus = ''">close</mat-icon>
@@ -356,7 +356,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkInstagram']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkInstagram"
               [disabled]="!fieldsInfo['AboutUsLinkInstagram']?.AccessEditField" name="dataModel.AboutUsLinkInstagram"
-              #AboutUsLinkInstagram type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkInstagram type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkInstagram && fieldsInfo['AboutUsLinkInstagram']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkInstagram = ''">close</mat-icon>
@@ -367,7 +367,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinklinkedin']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinklinkedin"
               [disabled]="!fieldsInfo['AboutUsLinklinkedin']?.AccessEditField" name="dataModel.AboutUsLinklinkedin"
-              #AboutUsLinklinkedin type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinklinkedin type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinklinkedin && fieldsInfo['AboutUsLinklinkedin']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinklinkedin = ''">close</mat-icon>
@@ -378,7 +378,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkYahoo']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkYahoo"
               [disabled]="!fieldsInfo['AboutUsLinkYahoo']?.AccessEditField" name="dataModel.AboutUsLinkYahoo"
-              #AboutUsLinkYahoo type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkYahoo type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix *ngIf="dataModel.AboutUsLinkYahoo && fieldsInfo['AboutUsLinkYahoo']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkYahoo = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['AboutUsLinkYahoo']?.AccessEditField" matSuffix>mode_edit</mat-icon>
@@ -388,7 +388,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkYoutube']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkYoutube"
               [disabled]="!fieldsInfo['AboutUsLinkYoutube']?.AccessEditField" name="dataModel.AboutUsLinkYoutube"
-              #AboutUsLinkYoutube type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkYoutube type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkYoutube && fieldsInfo['AboutUsLinkYoutube']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkYoutube = ''">close</mat-icon>
@@ -399,7 +399,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkTelegram']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkTelegram"
               [disabled]="!fieldsInfo['AboutUsLinkTelegram']?.AccessEditField" name="dataModel.AboutUsLinkTelegram"
-              #AboutUsLinkTelegram type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkTelegram type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkTelegram && fieldsInfo['AboutUsLinkTelegram']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkTelegram = ''">close</mat-icon>
@@ -410,7 +410,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkPinterest']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkPinterest"
               [disabled]="!fieldsInfo['AboutUsLinkPinterest']?.AccessEditField" name="dataModel.AboutUsLinkPinterest"
-              #AboutUsLinkPinterest type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkPinterest type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkPinterest && fieldsInfo['AboutUsLinkPinterest']?.AccessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkPinterest = ''">close</mat-icon>
@@ -421,7 +421,7 @@
             <mat-label>{{ fieldsInfo['AboutUsLinkRss']?.FieldTitle }}</mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkRss"
               [disabled]="!fieldsInfo['AboutUsLinkRss']?.AccessEditField" name="dataModel.AboutUsLinkRss"
-              #AboutUsLinkRss type="text" placeholder="https://...."  style="text-align: left;" dir="ltr"/>
+              #AboutUsLinkRss type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
             <mat-icon matSuffix *ngIf="dataModel.AboutUsLinkRss && fieldsInfo['AboutUsLinkRss']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkRss = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['AboutUsLinkRss']?.AccessEditField" matSuffix>mode_edit</mat-icon>
@@ -456,7 +456,7 @@
 
 
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -514,30 +514,29 @@
             <mat-datepicker-toggle matSuffix [for]="AccountingFormUpdatedDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #AccountingFormUpdatedDate></mat-datepicker>
           </mat-form-field>
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
       </mat-horizontal-stepper>
 
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
-	<ng-container cms-message>
+    <ng-container cms-message>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </ng-container>
     <ng-container cms-footer>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
   </app-cms-html-card>
 </form>
-

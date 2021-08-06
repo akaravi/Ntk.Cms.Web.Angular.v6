@@ -550,7 +550,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
         async (next) => {
           this.loading.Stop('main');
           this.cdr.detectChanges();
-          const itemList = []
+          const itemList = [];
           next.ListItems.forEach(element => {
             itemList.push(element.LinkCategoryId);
           });

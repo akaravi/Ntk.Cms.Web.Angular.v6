@@ -93,7 +93,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   private mapModel: leafletMap;
 
 
-  
+
   ngOnInit(): void {
     this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
     if (this.requestCategoryId === 0) {
@@ -148,7 +148,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   receiveMap(model: leafletMap): void {
@@ -203,7 +203,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
 
   DataAddContent(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert =this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
     this.cdr.detectChanges();
@@ -213,18 +213,18 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
 
-            this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
             setTimeout(() => this.router.navigate(['/news/content/']), 100);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -232,7 +232,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -278,7 +278,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -306,7 +306,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
