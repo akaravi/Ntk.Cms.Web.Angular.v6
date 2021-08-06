@@ -1,6 +1,6 @@
 
 import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   ApplicationSourceModel,
@@ -42,6 +42,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -149,13 +150,13 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -242,7 +243,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.applicationSourceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -252,12 +253,12 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             }
           );
         }
@@ -358,7 +359,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.applicationSourceService.ServiceBuildApp(this.tableRowSelected.Id).subscribe(
       (next) => {
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
         }
@@ -370,7 +371,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
 

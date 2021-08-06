@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { CoreEnumService, ErrorExceptionResult, FilterDataModel, FilterModel, CoreUserGroupModel, CoreUserGroupService } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -18,6 +18,7 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     public categoryService: CoreUserGroupService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
   }
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
@@ -27,7 +28,7 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
   formControl = new FormControl();
   fieldsStatus: Map<number, boolean> = new Map<number, boolean>();
 
-    @Input() optionDisabled = false;
+  @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<string>();
   @Output() optionSelect = new EventEmitter<CoreUserGroupModel[]>();
@@ -66,12 +67,12 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
 
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

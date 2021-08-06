@@ -1,6 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreModuleSaleInvoiceDetailModel,
@@ -51,6 +51,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     private coreEnumService: CoreEnumService,
     private tokenHelper: TokenHelper,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.requestLinkInvoiceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkInvoiceId'));
 
@@ -157,13 +158,13 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -246,7 +247,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.coreModuleSaleInvoiceDetailService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -256,12 +257,12 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             }
           );
         }

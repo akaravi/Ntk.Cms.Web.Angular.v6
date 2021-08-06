@@ -13,6 +13,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -38,12 +39,12 @@ export class CoreModuleTagEditComponent implements OnInit {
   requestParentId = 0;
    constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<CoreModuleTagEditComponent>,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     public coreModuleTagService: CoreModuleTagService,
     private cmsToastrService: CmsToastrService,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {

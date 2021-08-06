@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
@@ -52,6 +52,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private contentTagService: ChartContentTagService,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -93,7 +94,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
   private mapModel: leafletMap;
 
 
-  
+
   ngOnInit(): void {
     this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
     if (this.requestCategoryId === 0) {
@@ -147,7 +148,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
     this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   receiveMap(model: leafletMap): void {
@@ -212,7 +213,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -223,7 +224,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
             setTimeout(() => this.router.navigate(['/chart/content/']), 100);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -231,7 +232,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -277,7 +278,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
       },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -305,7 +306,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
       },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

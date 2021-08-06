@@ -1,5 +1,5 @@
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreSiteCategoryCmsModuleModel,
@@ -36,6 +36,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
   }
@@ -103,12 +104,12 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
           this.tableSource.data = next.ListItems;
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

@@ -19,6 +19,7 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -49,6 +50,7 @@ export class CoreTokenMicroServiceLogEditComponent implements OnInit, OnDestroy 
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
     if (data) {
@@ -141,12 +143,12 @@ export class CoreTokenMicroServiceLogEditComponent implements OnInit, OnDestroy 
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

@@ -13,16 +13,15 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import {
-  NodeInterface,
   TreeModel,
 } from 'ntk-cms-filemanager';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -35,12 +34,12 @@ export class WebDesignerMainPageDependencyEditComponent implements OnInit {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<WebDesignerMainPageDependencyEditComponent>,
     public coreEnumService: CoreEnumService,
     public webDesignerMainPageDependencyService: WebDesignerMainPageDependencyService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {

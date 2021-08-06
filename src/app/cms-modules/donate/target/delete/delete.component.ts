@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   Inject,
   OnInit,
@@ -29,6 +30,7 @@ export class DonateTargetDeleteComponent implements OnInit {
     private dialogRef: MatDialogRef<DonateTargetDeleteComponent>,
     private publicHelper: PublicHelper,
     private donateTargetService: DonateTargetService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
     if (data) {

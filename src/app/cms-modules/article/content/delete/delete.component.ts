@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   Inject,
   OnInit,
@@ -28,6 +29,7 @@ export class ArticleContentDeleteComponent implements OnInit {
     private dialogRef: MatDialogRef<ArticleContentDeleteComponent>,
     private publicHelper: PublicHelper,
     private contentService: ArticleContentService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
     if (data) {
@@ -73,14 +75,14 @@ export class ArticleContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
 
@@ -115,7 +117,7 @@ export class ArticleContentDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -123,7 +125,7 @@ export class ArticleContentDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
 

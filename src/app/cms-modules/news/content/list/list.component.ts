@@ -132,13 +132,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -187,13 +187,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
       /** Normal */

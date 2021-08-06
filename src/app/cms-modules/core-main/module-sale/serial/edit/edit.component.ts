@@ -13,6 +13,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -40,6 +41,7 @@ export class CoreModuleSaleSerialEditComponent implements OnInit {
     public coreModuleSaleSerialService: CoreModuleSaleSerialService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {
@@ -58,13 +60,13 @@ export class CoreModuleSaleSerialEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<CoreModuleSaleSerialModel> = new ErrorExceptionResult<CoreModuleSaleSerialModel>();
   dataModel: CoreModuleSaleSerialModel = new CoreModuleSaleSerialModel();
-    fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
   fileManagerOpenForm = false;
-  
+
 
   ngOnInit(): void {
     if (this.requestId > 0) {
@@ -79,7 +81,7 @@ export class CoreModuleSaleSerialEditComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     if (this.requestId <= 0) {
@@ -101,18 +103,18 @@ export class CoreModuleSaleSerialEditComponent implements OnInit {
 
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Id;
           this.formInfo.FormAlert = '';
-              } else {
+        } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage( next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -131,19 +133,19 @@ export class CoreModuleSaleSerialEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
-              } else {
+        } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage( next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

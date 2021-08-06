@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -26,6 +26,7 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: WebDesignerMainPageService) {
   }
   @Input() set optionMasterTemplateId(x: string) {
@@ -126,6 +127,8 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();

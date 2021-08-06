@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -36,6 +37,7 @@ export class BiographyCategoryTreeSelectorComponent implements OnInit, OnDestroy
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: BiographyCategoryService,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
   ) {
     //
@@ -128,11 +130,11 @@ export class BiographyCategoryTreeSelectorComponent implements OnInit, OnDestroy
           this.loadCheked();
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
         this.cmsToastrService.typeError(error);
       }
     );

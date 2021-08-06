@@ -6,7 +6,6 @@ import {
   WebDesignerMainPageTemplateService,
   WebDesignerMainPageTemplateModel,
   DataFieldInfoModel,
-  CoreModuleModel,
   CoreSiteCategoryModel,
   WebDesignerMainPageTemplateSiteCategoryModel,
   WebDesignerMainPageTemplateSiteCategoryService,
@@ -18,16 +17,15 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import {
-  NodeInterface,
   TreeModel,
 } from 'ntk-cms-filemanager';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -40,13 +38,13 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<WebDesignerMainPageTemplateEditComponent>,
     public coreEnumService: CoreEnumService,
     public webDesignerMainPageTemplateService: WebDesignerMainPageTemplateService,
     public webDesignerMainPageTemplateSiteCategoryService: WebDesignerMainPageTemplateSiteCategoryService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {
@@ -69,7 +67,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fileManagerOpenForm = false;
-  
+
   dataCoreSiteCategoryModel: CoreSiteCategoryModel[];
   dataCoreSiteCategoryIds: number[] = [];
   dataWebDesignerMainPageTemplateSiteCategoryModel: WebDesignerMainPageTemplateSiteCategoryModel[];
@@ -87,7 +85,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     this.DataGetAllSourceSiteCategory();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
 
@@ -110,12 +108,12 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -140,13 +138,13 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -177,12 +175,12 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

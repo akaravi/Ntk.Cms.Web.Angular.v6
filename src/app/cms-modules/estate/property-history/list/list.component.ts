@@ -1,11 +1,10 @@
 
 import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   EstatePropertyHistoryModel,
   EstatePropertyHistoryService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -44,6 +43,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),

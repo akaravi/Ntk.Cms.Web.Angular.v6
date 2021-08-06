@@ -19,6 +19,7 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -49,6 +50,7 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
     if (data) {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   EnumSortType,
@@ -42,6 +42,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
     this.optionsSearch.parentMethods = {
@@ -133,13 +134,13 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -188,13 +189,13 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
       /** Normal */

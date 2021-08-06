@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -30,12 +30,12 @@ export class TicketingAnswerEditComponent implements OnInit {
   requestId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private ticketingAnswerService: TicketingAnswerService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -55,7 +55,7 @@ export class TicketingAnswerEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  
+
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {
@@ -66,7 +66,7 @@ export class TicketingAnswerEditComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {
@@ -95,7 +95,7 @@ export class TicketingAnswerEditComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -108,7 +108,7 @@ export class TicketingAnswerEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -126,7 +126,7 @@ export class TicketingAnswerEditComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -139,7 +139,7 @@ export class TicketingAnswerEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

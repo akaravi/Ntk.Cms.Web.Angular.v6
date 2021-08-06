@@ -34,7 +34,7 @@ import { NewsCategoryAddComponent } from '../add/add.component';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class NewsCategoryTreeComponent  implements OnInit, OnDestroy {
+export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
@@ -82,11 +82,11 @@ export class NewsCategoryTreeComponent  implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
         this.cmsToastrService.typeError(error);
 
       }

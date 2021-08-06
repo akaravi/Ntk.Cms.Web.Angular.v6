@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
@@ -35,6 +35,7 @@ export class ApplicationSourceAddComponent implements OnInit {
     private applicationSourceService: ApplicationSourceService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     private router: Router) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -53,14 +54,14 @@ export class ApplicationSourceAddComponent implements OnInit {
   appLanguage = 'fa';
 
   fileManagerTree: TreeModel;
-  
+
   ngOnInit(): void {
     this.DataGetAccess();
     this.getEnumRecordStatus();
     this.getEnumOsType();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   getEnumOsType(): void {
     this.applicationEnumService.ServiceEnumOSType().subscribe((res) => {
@@ -103,7 +104,7 @@ export class ApplicationSourceAddComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -111,7 +112,7 @@ export class ApplicationSourceAddComponent implements OnInit {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
             setTimeout(() => this.router.navigate(['/application/source/']), 100);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -119,7 +120,7 @@ export class ApplicationSourceAddComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

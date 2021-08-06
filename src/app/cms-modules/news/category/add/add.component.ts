@@ -12,6 +12,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -21,7 +22,6 @@ import {
   TreeModel,
   NodeInterface,
 } from 'ntk-cms-filemanager';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -38,8 +38,8 @@ export class NewsCategoryAddComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public categoryService: NewsCategoryService,
     private cmsToastrService: CmsToastrService,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {

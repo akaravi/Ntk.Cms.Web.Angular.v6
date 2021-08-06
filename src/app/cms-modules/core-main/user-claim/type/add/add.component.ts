@@ -16,6 +16,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -43,6 +44,7 @@ export class CoreUserClaimTypeAddComponent implements OnInit {
     public coreUserClaimTypeService: CoreUserClaimTypeService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -66,7 +68,7 @@ export class CoreUserClaimTypeAddComponent implements OnInit {
 
   fileManagerOpenForm = false;
 
-  
+
 
 
   ngOnInit(): void {
@@ -100,7 +102,7 @@ export class CoreUserClaimTypeAddComponent implements OnInit {
       );
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
 
@@ -124,13 +126,13 @@ export class CoreUserClaimTypeAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

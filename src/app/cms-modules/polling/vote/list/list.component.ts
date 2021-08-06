@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   CoreAuthService,
   EnumSortType,
@@ -52,6 +52,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -155,13 +156,13 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -297,7 +298,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.pollingVoteService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -307,12 +308,12 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             }
           );
         }

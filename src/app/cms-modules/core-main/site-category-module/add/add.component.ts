@@ -15,6 +15,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -34,12 +35,12 @@ export class CoreSiteCategoryCmsModuleAddComponent implements OnInit {
   requestLinkCmsSiteCategoryId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<CoreSiteCategoryCmsModuleAddComponent>,
     public coreEnumService: CoreEnumService,
     public coreSiteCategoryCmsModuleService: CoreSiteCategoryCmsModuleService,
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {
@@ -69,14 +70,14 @@ export class CoreSiteCategoryCmsModuleAddComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
   fileManagerOpenForm = false;
-  
+
 
   ngOnInit(): void {
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetAccess(): void {
@@ -117,13 +118,13 @@ export class CoreSiteCategoryCmsModuleAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

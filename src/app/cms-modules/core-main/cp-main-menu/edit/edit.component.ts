@@ -19,6 +19,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -46,6 +47,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     public coreCpMainMenuCmsUserGroupService: CoreCpMainMenuCmsUserGroupService,
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {
@@ -69,7 +71,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
   dataAccessModel: AccessModel;
 
   fileManagerOpenForm = false;
-  
+
   dataCoreCpMainMenuModel: CoreUserGroupModel[];
   dataCoreCpMainMenuIds: number[] = [];
   dataCoreCpMainMenuCmsUserGroupModel: CoreCpMainMenuCmsUserGroupModel[];
@@ -94,7 +96,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     if (this.requestId <= 0) {
@@ -124,12 +126,12 @@ export class CoreCpMainMenuEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -166,12 +168,12 @@ export class CoreCpMainMenuEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -195,13 +197,13 @@ export class CoreCpMainMenuEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

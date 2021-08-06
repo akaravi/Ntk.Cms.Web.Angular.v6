@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   BankPaymentPrivateSiteConfigModel,
@@ -49,6 +49,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -163,13 +164,13 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -287,7 +288,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.bankPaymentPrivateSiteConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -297,12 +298,12 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             }
           );
         }

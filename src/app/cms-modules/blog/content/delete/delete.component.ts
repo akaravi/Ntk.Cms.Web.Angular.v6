@@ -1,14 +1,13 @@
 import {
+  ChangeDetectorRef,
   Component,
   Inject,
-  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { CoreEnumService, ErrorExceptionResult, FormInfoModel, ItemState, BlogContentModel, BlogContentService, DataFieldInfoModel } from 'ntk-cms-api';
+import { ErrorExceptionResult, FormInfoModel, BlogContentModel, BlogContentService, DataFieldInfoModel } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -25,6 +24,7 @@ export class BlogContentDeleteComponent implements OnInit {
     private dialogRef: MatDialogRef<BlogContentDeleteComponent>,
     private publicHelper: PublicHelper,
     private contentService: BlogContentService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
     if (data) {
@@ -71,14 +71,14 @@ export class BlogContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
 
@@ -113,7 +113,7 @@ export class BlogContentDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -121,7 +121,7 @@ export class BlogContentDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
 

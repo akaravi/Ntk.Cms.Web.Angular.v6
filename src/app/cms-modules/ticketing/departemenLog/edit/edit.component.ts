@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   TicketingDepartemenLogModel,
@@ -35,6 +35,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -97,12 +98,12 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

@@ -12,6 +12,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -38,7 +39,7 @@ export class ChartCategoryAddComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public categoryService: ChartCategoryService,
     private cmsToastrService: CmsToastrService,
-    private cmsStoreService: CmsStoreService,
+    private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
     private translate: TranslateService,
   ) {
@@ -68,7 +69,7 @@ export class ChartCategoryAddComponent implements OnInit {
 
   fileManagerOpenForm = false;
 
-  
+
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
@@ -81,7 +82,7 @@ export class ChartCategoryAddComponent implements OnInit {
     this.DataGetAccess();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
 
@@ -123,13 +124,13 @@ export class ChartCategoryAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

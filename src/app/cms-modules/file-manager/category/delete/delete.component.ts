@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   ErrorExceptionResult,
@@ -27,6 +27,7 @@ export class FileCategoryDeleteComponent implements OnInit {
     private dialogRef: MatDialogRef<FileCategoryDeleteComponent>,
     private publicHelper: PublicHelper,
     private fileCategoryService: FileCategoryService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
     if (data) {
@@ -77,14 +78,14 @@ export class FileCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
 
@@ -109,14 +110,14 @@ export class FileCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
 
@@ -155,7 +156,7 @@ export class FileCategoryDeleteComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -163,7 +164,7 @@ export class FileCategoryDeleteComponent implements OnInit {
           this.formInfo.ButtonSubmittedEnabled = true;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
   }
@@ -194,7 +195,7 @@ export class FileCategoryDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -202,7 +203,7 @@ export class FileCategoryDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
 

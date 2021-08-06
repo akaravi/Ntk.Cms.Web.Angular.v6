@@ -1,6 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreModuleSaleHeaderService,
@@ -43,6 +43,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
     private coreModuleService: CoreModuleService,
     private tokenHelper: TokenHelper,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
   }
   showBuy = false;
@@ -139,13 +140,13 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

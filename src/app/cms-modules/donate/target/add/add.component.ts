@@ -13,6 +13,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -39,8 +40,8 @@ export class DonateTargetAddComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public donateTargetService: DonateTargetService,
     private cmsToastrService: CmsToastrService,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {

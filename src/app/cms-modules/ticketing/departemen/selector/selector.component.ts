@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -25,6 +25,7 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: TicketingDepartemenService) {
 
 
@@ -34,7 +35,7 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<TicketingDepartemenModel[]>;
-    @Input() optionDisabled = false;
+  @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<string>();
   @Output() optionSelect = new EventEmitter<TicketingDepartemenModel>();
@@ -43,7 +44,7 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -102,6 +103,8 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();
@@ -110,7 +113,7 @@ ngOnInit(): void {
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
-  onActionSelectClear(): void{
+  onActionSelectClear(): void {
     this.formControl.setValue(null);
     this.optionSelect.emit(null);
   }

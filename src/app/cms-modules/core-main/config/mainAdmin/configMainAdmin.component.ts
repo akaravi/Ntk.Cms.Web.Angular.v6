@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -42,6 +42,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -143,7 +144,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -153,7 +154,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -170,7 +171,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -180,7 +181,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -198,7 +199,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -208,7 +209,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -225,7 +226,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -235,7 +236,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -252,7 +253,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -262,7 +263,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -279,7 +280,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -289,7 +290,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }

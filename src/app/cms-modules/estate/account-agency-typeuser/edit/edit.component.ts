@@ -17,6 +17,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -31,7 +32,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-AccountAgencyTypeUser-edit',
+  selector: 'app-estate-accountagencytypeuser-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
@@ -39,13 +40,13 @@ export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<EstateAccountAgencyTypeUserEditComponent>,
     public coreEnumService: CoreEnumService,
     public estateEnumService: EstateEnumService,
     public estateAccountAgencyTypeUserService: EstateAccountAgencyTypeUserService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {

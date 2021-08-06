@@ -19,6 +19,7 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -43,13 +44,13 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<CoreLogErrorEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreLogErrorService: CoreLogErrorService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -123,12 +124,12 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

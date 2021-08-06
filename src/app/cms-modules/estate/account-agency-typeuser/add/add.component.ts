@@ -18,6 +18,7 @@ import {
   OnInit,
   ViewChild,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -33,20 +34,20 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-AccountAgencyTypeUser-add',
+  selector: 'app-estate-accountagencytypeuser-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
 export class EstateAccountAgencyTypeUserAddComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<EstateAccountAgencyTypeUserAddComponent>,
     public coreEnumService: CoreEnumService,
     public estateEnumService: EstateEnumService,
     public estateAccountAgencyTypeUserService: EstateAccountAgencyTypeUserService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -65,7 +66,7 @@ export class EstateAccountAgencyTypeUserAddComponent implements OnInit {
   dataModelEnumEstateUserTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
   fileManagerOpenForm = false;
-  
+
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'اضافه کردن  ';
@@ -80,7 +81,7 @@ export class EstateAccountAgencyTypeUserAddComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetAccess(): void {
@@ -109,7 +110,7 @@ export class EstateAccountAgencyTypeUserAddComponent implements OnInit {
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
@@ -118,14 +119,14 @@ export class EstateAccountAgencyTypeUserAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
         this.formInfo.FormSubmitAllow = true;
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

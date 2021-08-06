@@ -1,6 +1,6 @@
 
 import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   WebDesignerMainPageTemplateModel,
@@ -46,6 +46,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -132,13 +133,13 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -239,7 +240,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.bankPaymentPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -249,12 +250,12 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             }
           );
         }

@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -29,12 +29,12 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private ticketingDepartemenOperatorService: TicketingDepartemenOperatorService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -56,7 +56,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  
+
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));
     if (this.requestDepartemenId === 0) {
@@ -68,7 +68,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {
@@ -115,7 +115,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -128,7 +128,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

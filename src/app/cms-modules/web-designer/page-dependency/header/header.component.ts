@@ -10,10 +10,10 @@ import {
   Component,
   OnInit,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
@@ -23,10 +23,10 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 })
 export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
   constructor(
-    private cmsStoreService: CmsStoreService,
     public coreEnumService: CoreEnumService,
     public webDesignerMainPageDependencyService: WebDesignerMainPageDependencyService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
 
@@ -39,7 +39,7 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
-  
+
 
   ngOnInit(): void {
     if (this.optionId.length > 0) {
@@ -48,7 +48,7 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
@@ -63,12 +63,12 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

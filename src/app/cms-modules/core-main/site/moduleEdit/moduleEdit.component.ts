@@ -18,6 +18,7 @@ import {
   ViewChild,
   Inject,
   ViewContainerRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -44,12 +45,12 @@ export class CoreSiteModuleEditComponent implements OnInit {
   requestLinkModuleId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<CoreSiteModuleEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreModuleSiteService: CoreModuleSiteService,
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
 
   ) {

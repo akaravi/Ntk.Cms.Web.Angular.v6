@@ -1,6 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreUserClaimGroupDetailModel,
@@ -53,6 +53,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     private coreUserClaimGroupService: CoreUserClaimGroupService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.requestLinkUserClaimTypeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimTypeId'));
     this.requestLinkUserClaimGroupId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimGroupId'));
@@ -175,13 +176,13 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -293,7 +294,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.coreUserClaimGroupDetailService.ServiceDeleteEntity(this.tableRowSelected).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -303,12 +304,12 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             }
           );
         }

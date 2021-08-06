@@ -45,7 +45,8 @@ export class ApplicationConfigSiteComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,) {
+    private translate: TranslateService,
+  ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   dataSiteStorageModel = new ApplicationModuleSiteStorageValuesModel();

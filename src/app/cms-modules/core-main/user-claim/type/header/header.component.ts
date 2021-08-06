@@ -10,6 +10,7 @@ import {
   Component,
   OnInit,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -23,10 +24,10 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 })
 export class CoreUserClaimTypeHeaderComponent implements OnInit {
   constructor(
-    private cmsStoreService: CmsStoreService,
     public coreEnumService: CoreEnumService,
     public coreUserClaimTypeService: CoreUserClaimTypeService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
 

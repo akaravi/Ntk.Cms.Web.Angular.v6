@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -11,7 +11,6 @@ import {
   LinkManagementModuleConfigAdminMainValuesModel,
   LinkManagementModuleConfigSiteAccessValuesModel,
   LinkManagementModuleConfigSiteValuesModel,
-  LinkManagementModuleSiteStorageValuesModel,
   NtkCmsApiStoreService,
   TokenInfoModel,
 } from 'ntk-cms-api';
@@ -19,7 +18,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'ntk-cms-filemanager';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -41,7 +39,8 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService, ) {
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService,) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   dataConfigSiteValuesDefaultModel = new LinkManagementModuleConfigSiteValuesModel();
@@ -133,7 +132,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -143,7 +142,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -160,7 +159,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -170,7 +169,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -188,7 +187,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -198,7 +197,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -215,7 +214,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -225,7 +224,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -242,7 +241,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -252,7 +251,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -269,7 +268,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -279,7 +278,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }

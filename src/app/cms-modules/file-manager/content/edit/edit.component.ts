@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
@@ -14,7 +14,7 @@ import {
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { TreeModel } from 'ntk-cms-filemanager';
 import { Map as leafletMap } from 'leaflet';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
@@ -22,7 +22,6 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -35,12 +34,12 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   requestId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
     private fileContentService: FileContentService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
 
   ) {
@@ -55,7 +54,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   otherInfoTabledisplayedColumns = ['Id', 'Title', 'TypeId', 'Action'];
   similarTabledisplayedColumns = ['Id', 'RecordStatus', 'Title', 'Action'];
   similarTabledataSource = new MatTableDataSource<FileContentModel>();
-  
+
   loading = new ProgressSpinnerModel();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypePodcast = ['mp3'];
@@ -92,7 +91,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   }
 
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {
@@ -140,7 +139,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -154,14 +153,14 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
             this.dataModel.Keyword = this.dataModel.Keyword + '';
             this.keywordDataModel = this.dataModel.Keyword.split(',');
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -180,15 +179,15 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
           if (next.IsSuccess) {
 
-            this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
             setTimeout(() => this.router.navigate(['/file/content/edit/', this.requestId]), 100);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -196,7 +195,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

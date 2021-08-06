@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   EnumRecordStatus,
@@ -42,6 +42,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
     // this.optionsCategoryTree.parentMethods = {
@@ -138,13 +139,13 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -193,13 +194,13 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
       /** Normal */

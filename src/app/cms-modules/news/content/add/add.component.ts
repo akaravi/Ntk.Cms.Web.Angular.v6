@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
@@ -29,7 +29,6 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -43,7 +42,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   requestCategoryId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private contentService: NewsContentService,
@@ -52,6 +50,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private contentTagService: NewsContentTagService,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
 
   ) {

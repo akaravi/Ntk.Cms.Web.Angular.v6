@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -16,7 +16,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -29,12 +28,12 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
   requestId = '';
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private webDesignerMainIntroService: WebDesignerMainIntroService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (this.activatedRoute.snapshot.paramMap.get('Id')) {

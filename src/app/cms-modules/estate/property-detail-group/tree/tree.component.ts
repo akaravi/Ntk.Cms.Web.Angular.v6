@@ -36,7 +36,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class EstatePropertyDetailGroupTreeComponent  implements OnInit, OnDestroy {
+export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy {
   requestLinkPropertyTypeLanduseId = '';
   constructor(
     private cmsApiStore: NtkCmsApiStoreService,
@@ -96,12 +96,12 @@ export class EstatePropertyDetailGroupTreeComponent  implements OnInit, OnDestro
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -172,7 +172,7 @@ export class EstatePropertyDetailGroupTreeComponent  implements OnInit, OnDestro
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -182,13 +182,13 @@ export class EstatePropertyDetailGroupTreeComponent  implements OnInit, OnDestro
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
               this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
               this.cdr.detectChanges();
             }
           );

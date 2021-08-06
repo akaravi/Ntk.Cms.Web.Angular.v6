@@ -10,6 +10,7 @@ import {
   Component,
   OnInit,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -27,6 +28,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public bankPaymentPublicConfigService: BankPaymentPublicConfigService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
 
@@ -38,7 +40,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
-  
+
 
   ngOnInit(): void {
     if (this.optionId > 0) {
@@ -47,7 +49,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
@@ -62,12 +64,12 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

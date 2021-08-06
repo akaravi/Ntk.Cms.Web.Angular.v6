@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -43,6 +43,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     private applicationSourceSiteCategoryService: ApplicationSourceSiteCategoryService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     private router: Router) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -62,7 +63,7 @@ export class ApplicationSourceEditComponent implements OnInit {
   appLanguage = 'fa';
 
   fileManagerTree: TreeModel;
-  
+
   dataCoreSiteCategoryModel: CoreSiteCategoryModel[];
   dataCoreSiteCategoryIds: number[] = [];
   dataApplicationSourceSiteCategoryModel: ApplicationSourceSiteCategoryModel[];
@@ -78,7 +79,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.getEnumOsType();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   getEnumOsType(): void {
     this.applicationEnumService.ServiceEnumOSType().subscribe((res) => {
@@ -110,7 +111,7 @@ export class ApplicationSourceEditComponent implements OnInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -122,7 +123,7 @@ export class ApplicationSourceEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -141,7 +142,7 @@ export class ApplicationSourceEditComponent implements OnInit {
 
     this.applicationSourceSiteCategoryService.ServiceGetAll(filteModelContent).subscribe(
       (next) => {
-         this.dataApplicationSourceSiteCategoryModel = next.ListItems;
+        this.dataApplicationSourceSiteCategoryModel = next.ListItems;
         const listG: number[] = [];
         this.dataApplicationSourceSiteCategoryModel.forEach(element => {
           listG.push(element.LinkSiteCagegoryId);
@@ -155,12 +156,12 @@ export class ApplicationSourceEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -176,11 +177,11 @@ export class ApplicationSourceEditComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
-            this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/source/']), 100);
           } else {
@@ -189,7 +190,7 @@ export class ApplicationSourceEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

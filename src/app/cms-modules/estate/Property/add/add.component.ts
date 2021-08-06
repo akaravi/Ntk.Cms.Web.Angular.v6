@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   EstatePropertyModel,
@@ -26,7 +26,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
@@ -46,7 +45,6 @@ export class EstatePropertyAddComponent implements OnInit {
   requestLinkPropertyTypeLanduseId = '';
   requestLinkPropertyTypeUsageId = '';
   constructor(
-    private cmsStoreService: CmsStoreService,
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public estateContractTypeService: EstateContractTypeService,
@@ -55,6 +53,7 @@ export class EstatePropertyAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
@@ -86,7 +85,7 @@ export class EstatePropertyAddComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fileManagerOpenForm = false;
-  
+
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
@@ -116,7 +115,7 @@ export class EstatePropertyAddComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetAccess(): void {
@@ -183,7 +182,7 @@ export class EstatePropertyAddComponent implements OnInit {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           setTimeout(() => this.router.navigate(['/estate/property']), 100);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -191,13 +190,13 @@ export class EstatePropertyAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

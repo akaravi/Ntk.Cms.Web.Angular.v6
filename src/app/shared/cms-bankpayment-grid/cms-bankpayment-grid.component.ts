@@ -10,6 +10,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -28,7 +29,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
   constructor(
     public bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
     private cmsToastrService: CmsToastrService,
-    private cmsStoreService: CmsStoreService,
+    private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
 
@@ -42,7 +43,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModel: BlogCategoryModel = new BlogCategoryModel();
 
-  
+
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
@@ -63,13 +64,13 @@ export class CmsBankpaymentGridComponent implements OnInit {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
     }
@@ -83,13 +84,13 @@ export class CmsBankpaymentGridComponent implements OnInit {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
     }

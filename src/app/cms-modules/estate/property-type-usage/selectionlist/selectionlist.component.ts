@@ -1,8 +1,12 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { CoreEnumService, ErrorExceptionResult, FilterDataModel, FilterModel, EstatePropertyTypeUsageModel, EstatePropertyTypeUsageService } from 'ntk-cms-api';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import {
+  CoreEnumService,
+  ErrorExceptionResult,
+  FilterModel,
+  EstatePropertyTypeUsageModel,
+  EstatePropertyTypeUsageService
+} from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -18,6 +22,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     public categoryService: EstatePropertyTypeUsageService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
@@ -66,12 +71,12 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
 
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

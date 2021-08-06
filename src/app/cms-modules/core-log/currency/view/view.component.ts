@@ -15,6 +15,7 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -34,13 +35,13 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
-    private dialogRef: MatDialogRef<CoreLogCurrencyViewComponent>,
+        private dialogRef: MatDialogRef<CoreLogCurrencyViewComponent>,
     public coreEnumService: CoreEnumService,
     public coreLogCurrencyService: CoreLogCurrencyService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
     if (data) {

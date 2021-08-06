@@ -1,6 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreModuleSaleItemModel,
@@ -45,6 +45,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     private coreModuleService: CoreModuleService,
     private tokenHelper: TokenHelper,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.requestSerial = this.activatedRoute.snapshot.paramMap.get('Serial');
   }
@@ -135,13 +136,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -163,13 +164,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

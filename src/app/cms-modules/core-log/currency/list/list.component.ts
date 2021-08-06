@@ -1,6 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreSiteModel,
@@ -40,7 +40,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
   requestLinkCurrencyId = 0;
   constructor(
-    private coreEnumService: CoreEnumService,
     private coreLogCurrencyService: CoreLogCurrencyService,
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
@@ -49,6 +48,7 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
     this.requestLinkCurrencyId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCurrencyId'));

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -25,6 +25,7 @@ export class CoreSiteDomainAliasSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: CoreSiteDomainAliasService) {
   }
   dataModelResult: ErrorExceptionResult<CoreSiteDomainAliasModel> = new ErrorExceptionResult<CoreSiteDomainAliasModel>();
@@ -100,6 +101,8 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();

@@ -102,6 +102,8 @@ export class ApplicationAppSelectorComponent implements OnInit {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();

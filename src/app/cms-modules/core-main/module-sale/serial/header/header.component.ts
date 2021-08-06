@@ -10,6 +10,7 @@ import {
   Component,
   OnInit,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -23,10 +24,10 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 })
 export class CoreModuleSaleSerialHeaderComponent implements OnInit {
   constructor(
-    private cmsStoreService: CmsStoreService,
     public coreEnumService: CoreEnumService,
     public coreModuleSaleSerialService: CoreModuleSaleSerialService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
 
@@ -39,7 +40,7 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
-  
+
 
   ngOnInit(): void {
     if (this.optionId > 0) {
@@ -48,7 +49,7 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
@@ -63,12 +64,12 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

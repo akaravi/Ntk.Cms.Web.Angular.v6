@@ -1,6 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   WebDesignerMainPageDependencyModel,
@@ -53,6 +53,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     private router: Router,
     private tokenHelper: TokenHelper,
     public http: HttpClient,
+    private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
 
@@ -157,13 +158,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -301,7 +302,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.webDesignerMainPageDependencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -311,12 +312,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+              this.cdr.detectChanges();
             }
           );
         }

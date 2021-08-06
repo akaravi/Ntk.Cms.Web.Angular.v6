@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   EstatePropertyModel,
@@ -25,9 +25,7 @@ import {
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
@@ -46,7 +44,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class EstatePropertyEditComponent implements OnInit {
   requestId = '';
   constructor(
-    private cmsStoreService: CmsStoreService,
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public estateContractTypeService: EstateContractTypeService,
@@ -55,6 +52,7 @@ export class EstatePropertyEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');

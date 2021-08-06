@@ -42,6 +42,7 @@ export class CoreModuleAddComponent implements OnInit {
     public coreModuleService: CoreModuleService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
 

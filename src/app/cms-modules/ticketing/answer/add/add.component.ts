@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -29,14 +29,14 @@ export class TicketingAnswerAddComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private ticketingAnswerService: TicketingAnswerService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
-    ) {
+  ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestLinkTicketId = 0;
@@ -57,7 +57,7 @@ export class TicketingAnswerAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = {};
-  
+
   ngOnInit(): void {
     this.requestLinkTicketId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTicketId'));
     if (this.requestLinkTicketId === 0) {
@@ -69,7 +69,7 @@ export class TicketingAnswerAddComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
@@ -110,11 +110,11 @@ export class TicketingAnswerAddComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
-            this.formInfo.FormAlert =this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/app/']), 100);
           } else {
@@ -123,7 +123,7 @@ export class TicketingAnswerAddComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

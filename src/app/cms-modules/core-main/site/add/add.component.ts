@@ -1,6 +1,6 @@
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -36,14 +36,14 @@ export class CoreSiteAddComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private coreSiteService: CoreSiteService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
-    ) {
+  ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestId = 0;
@@ -62,7 +62,7 @@ export class CoreSiteAddComponent implements OnInit {
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFavIconId = false;
   fileManagerOpenFormLinkFileIdLogo = false;
-  fileManagerOpenFormLinkImageLogoId=false;
+  fileManagerOpenFormLinkImageLogoId = false;
   appLanguage = 'fa';
 
   fileManagerTree: TreeModel;
@@ -72,7 +72,7 @@ export class CoreSiteAddComponent implements OnInit {
   mapOptonCenter = {};
   keywordDataModel = [];
 
-  
+
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId > 0) {
@@ -94,7 +94,7 @@ export class CoreSiteAddComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   onFormSubmit(): void {
@@ -154,7 +154,7 @@ export class CoreSiteAddComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -167,7 +167,7 @@ export class CoreSiteAddComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

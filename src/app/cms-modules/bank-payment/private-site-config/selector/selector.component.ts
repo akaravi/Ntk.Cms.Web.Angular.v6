@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -26,6 +26,7 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: BankPaymentPrivateSiteConfigService) {
 
 
@@ -48,7 +49,7 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
   @Output() optionSelect = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
 
   @Input() optionReload = () => this.onActionReload();
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -125,21 +126,21 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: BankPaymentPrivateSiteConfigModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

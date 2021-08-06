@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { CoreEnumService, ErrorExceptionResult, FilterModel, CoreSiteCategoryModel, CoreSiteCategoryService } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -16,6 +16,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     public categoryService: CoreSiteCategoryService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
   }
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -26,6 +26,7 @@ export class ArticleCategorySelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: ArticleCategoryService) {
 
   }
@@ -42,7 +43,7 @@ export class ArticleCategorySelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -72,7 +73,7 @@ ngOnInit(): void {
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
-        let filter = new FilterDataModel();
+    let filter = new FilterDataModel();
     filter.PropertyName = 'Title';
     filter.Value = text;
     filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
@@ -101,6 +102,8 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();

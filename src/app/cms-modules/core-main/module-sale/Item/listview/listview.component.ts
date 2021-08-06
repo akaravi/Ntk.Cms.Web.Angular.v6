@@ -1,5 +1,5 @@
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreEnumService,
@@ -42,6 +42,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private coreModuleService: CoreModuleService,
     private coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
   }
@@ -122,12 +123,12 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
           this.tableSource.data = next.ListItems;
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

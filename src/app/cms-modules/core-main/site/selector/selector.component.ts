@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -25,6 +25,7 @@ export class CoreSiteSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: CoreSiteService) {
 
   }
@@ -42,7 +43,7 @@ export class CoreSiteSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -62,10 +63,10 @@ ngOnInit(): void {
   }
 
   displayFn(model?: CoreSiteModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.Title) : undefined;
   }
   displayOption(model?: CoreSiteModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.Title) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreSiteModel[]> {
     const filteModel = new FilterModel();
@@ -123,21 +124,21 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: CoreSiteModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

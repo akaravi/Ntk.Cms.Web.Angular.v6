@@ -19,6 +19,7 @@ import {
   ViewChild,
   Inject,
   ViewContainerRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -51,6 +52,7 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
     public coreSiteCategoryCmsModuleService: CoreSiteCategoryCmsModuleService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     private publicHelper: PublicHelper,
 
   ) {

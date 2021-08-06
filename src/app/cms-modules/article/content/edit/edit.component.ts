@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
@@ -56,6 +56,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     private cmsToastrService: CmsToastrService,
     private contentCategoryService: ArticleContentCategoryService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -106,7 +107,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
   mapOptonCenter = {};
 
 
-  
+
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {
@@ -133,7 +134,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
 
@@ -179,7 +180,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -196,14 +197,14 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -230,7 +231,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.dataContentTagModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -243,14 +244,14 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
 
 
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -276,7 +277,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.dataContentOtherInfoModelResult = next;
           if (next.IsSuccess) {
@@ -288,7 +289,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -319,7 +320,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.dataContentSimilarModelResult = next;
           if (next.IsSuccess) {
@@ -339,7 +340,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -373,7 +374,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
 
           if (next.IsSuccess) {
@@ -385,7 +386,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -403,18 +404,18 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
           if (next.IsSuccess) {
 
-            this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModel);
             this.loading.Stop('main');
-    this.cdr.detectChanges();
+            this.cdr.detectChanges();
             // setTimeout(() => this.router.navigate(['/article/content/edit/', this.requestId]), 100);
             setTimeout(() => this.router.navigate(['/article/content']), 1000);
           } else {
@@ -423,7 +424,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -549,8 +550,8 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
-          const itemList = []
+          this.cdr.detectChanges();
+          const itemList = [];
           next.ListItems.forEach(element => {
             itemList.push(element.LinkCategoryId);
           });
@@ -560,7 +561,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }

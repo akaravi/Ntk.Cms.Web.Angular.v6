@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -17,7 +17,7 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-estate-AccountAgencyTypeUser-selector',
+  selector: 'app-estate-accountagencytypeuser-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
@@ -25,6 +25,7 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: EstateAccountAgencyTypeUserService) {
 
 
@@ -43,7 +44,7 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -63,10 +64,10 @@ ngOnInit(): void {
   }
 
   displayFn(model?: EstateAccountAgencyTypeUserModel): string | undefined {
-    return model ? model.Id  : undefined;
+    return model ? model.Id : undefined;
   }
   displayOption(model?: EstateAccountAgencyTypeUserModel): string | undefined {
-    return model ? model.Id  : undefined;
+    return model ? model.Id : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstateAccountAgencyTypeUserModel[]> {
     const filteModel = new FilterModel();
@@ -101,21 +102,21 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: EstateAccountAgencyTypeUserModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

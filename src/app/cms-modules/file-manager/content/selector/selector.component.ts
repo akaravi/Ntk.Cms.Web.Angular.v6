@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -24,6 +24,7 @@ import { Output } from '@angular/core';
 export class FileContentSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public contentService: FileContentService) {
   }
   dataModelResult: ErrorExceptionResult<FileContentModel> = new ErrorExceptionResult<FileContentModel>();
@@ -38,7 +39,7 @@ export class FileContentSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | FileContentModel) {
     this.onActionSelectForce(x);
   }
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -97,6 +98,8 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })).toPromise();
   }
@@ -105,7 +108,7 @@ ngOnInit(): void {
     this.optionSelect.emit(this.dataModelSelect);
 
   }
-  onActionSelectClear(): void{
+  onActionSelectClear(): void {
     this.formControl.setValue(null);
     this.optionSelect.emit(null);
   }

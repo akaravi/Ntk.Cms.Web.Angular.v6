@@ -112,10 +112,9 @@ export class TicketingTaskContactUsComponent implements OnInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
-          debugger
           if (next.IsSuccess) {
             this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Success;
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
@@ -129,7 +128,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.cdr.markForCheck();

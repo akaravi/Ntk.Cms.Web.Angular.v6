@@ -16,6 +16,7 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -38,6 +39,7 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
     private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<ApplicationLogNotificationViewComponent>,
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public applicationLogNotificationService: ApplicationLogNotificationService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
@@ -111,12 +113,12 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   Inject,
   Input,
@@ -25,6 +26,7 @@ export class FileContentDeleteComponent implements OnInit {
     private dialogRef: MatDialogRef<FileContentDeleteComponent>,
     private publicHelper: PublicHelper,
     private fileContentService: FileContentService,
+    private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
     if (data) {

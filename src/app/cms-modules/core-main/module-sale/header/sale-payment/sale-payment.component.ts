@@ -13,6 +13,7 @@ import {
   Component,
   OnInit,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -37,7 +38,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     public coreModuleSaleHeaderService: CoreModuleSaleHeaderService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
-    private cmsStoreService: CmsStoreService,
+    private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
     if (data) {
@@ -50,7 +51,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     }
 
     this.dataModelCalculate.LinkHeaderId = this.requestLinkHeaderId;
-    this.dataModelPayment.LinkHeaderId = this.requestLinkHeaderId ;
+    this.dataModelPayment.LinkHeaderId = this.requestLinkHeaderId;
     this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
@@ -63,7 +64,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
   dataModelCalculate: CoreModuleSaleHeaderCalculateDtoModel = new CoreModuleSaleHeaderCalculateDtoModel();
   dataModelPayment: CoreModuleSaleHeaderPaymentDtoModel = new CoreModuleSaleHeaderPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  
+
 
   ngOnInit(): void {
 
@@ -82,13 +83,13 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }
@@ -97,20 +98,20 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
       (next) => {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;
-            this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-            this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
+          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
+          this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
         }
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+        this.cdr.detectChanges();
       }
     );
   }

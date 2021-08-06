@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -25,6 +25,7 @@ export class CmsMemberSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public categoryService: MemberUserService) {
   }
   dataModelResult: ErrorExceptionResult<MemberUserModel> = new ErrorExceptionResult<MemberUserModel>();
@@ -118,6 +119,8 @@ export class CmsMemberSelectorComponent implements OnInit {
       .pipe(
         map(response => {
           this.dataModelResult = response;
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })
       ).toPromise();

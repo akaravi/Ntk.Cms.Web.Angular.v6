@@ -179,7 +179,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -196,7 +196,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
             this.loading.Stop('main');
-    this.cdr.detectChanges();
             this.cdr.detectChanges();
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
@@ -204,7 +203,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -232,7 +231,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.dataContentTagModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -245,7 +244,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
 
 
             this.loading.Stop('main');
-    this.cdr.detectChanges();
             this.cdr.detectChanges();
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
@@ -253,7 +251,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -280,7 +278,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.dataContentOtherInfoModelResult = next;
           if (next.IsSuccess) {
@@ -292,7 +290,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -324,7 +322,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.dataContentSimilarModelResult = next;
           if (next.IsSuccess) {
@@ -344,7 +342,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -384,13 +382,13 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
   }
@@ -421,13 +419,13 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
   }
@@ -557,13 +555,13 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           this.dataContentCategoryModel = itemList;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
           this.loading.Stop('main');
-    this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       );
   }

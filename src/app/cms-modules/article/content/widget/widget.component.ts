@@ -20,7 +20,7 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
   constructor(
     private service: ArticleContentService,
     private cmsApiStore: NtkCmsApiStoreService,
-    private cdr: ChangeDetectorRef  ) { }
+    private cdr: ChangeDetectorRef) { }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'مقالات ثبت شده';
     this.widgetInfoModel.description = '';

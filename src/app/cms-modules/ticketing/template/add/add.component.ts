@@ -28,12 +28,12 @@ export class TicketingTemplateAddComponent implements OnInit {
   requestParentId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cmsStoreService: CmsStoreService,
     private dialogRef: MatDialogRef<TicketingTemplateAddComponent>,
     public coreEnumService: CoreEnumService,
     public ticketingTemplateService: TicketingTemplateService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     if (data) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -26,6 +26,7 @@ import { Output } from '@angular/core';
 export class ArticleContentSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
+    private cdr: ChangeDetectorRef,
     public contentService: ArticleContentService) {
 
 
@@ -42,7 +43,7 @@ export class ArticleContentSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | ArticleContentModel) {
     this.onActionSelectForce(x);
   }
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -101,6 +102,8 @@ ngOnInit(): void {
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
           }
           /*select First Item */
+          this.loading.Stop('main');
+          this.cdr.detectChanges();
           return response.ListItems;
         })).toPromise();
   }
