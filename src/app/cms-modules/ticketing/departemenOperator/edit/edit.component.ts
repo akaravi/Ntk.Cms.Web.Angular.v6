@@ -88,6 +88,7 @@ export class TicketingDepartemenOperatorEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     /*َAccess Field*/
     this.ticketingDepartemenOperatorService.setAccessLoad();
     this.ticketingDepartemenOperatorService
@@ -99,6 +100,7 @@ export class TicketingDepartemenOperatorEditComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -110,6 +112,7 @@ export class TicketingDepartemenOperatorEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -120,12 +123,14 @@ export class TicketingDepartemenOperatorEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
 
     this.ticketingDepartemenOperatorService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -138,6 +143,7 @@ export class TicketingDepartemenOperatorEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

@@ -105,12 +105,14 @@ export class TicketingTaskContactUsComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.ticketingTaskService
       .ServiceContactUS(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           debugger
@@ -127,6 +129,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.cdr.markForCheck();

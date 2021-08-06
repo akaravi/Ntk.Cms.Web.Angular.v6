@@ -91,6 +91,7 @@ export class CoreModuleEditComponent implements OnInit {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.coreModuleService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.dataModel = next.Item;
@@ -105,10 +106,12 @@ export class CoreModuleEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage( next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -117,6 +120,7 @@ export class CoreModuleEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.coreModuleService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -132,11 +136,13 @@ export class CoreModuleEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage( next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

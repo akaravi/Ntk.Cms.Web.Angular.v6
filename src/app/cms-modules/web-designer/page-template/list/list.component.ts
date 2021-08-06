@@ -113,6 +113,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
     this.tableRowSelected = new WebDesignerMainPageTemplateModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -131,11 +132,13 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -236,6 +239,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.bankPaymentPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -245,10 +249,12 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             }
           );
         }

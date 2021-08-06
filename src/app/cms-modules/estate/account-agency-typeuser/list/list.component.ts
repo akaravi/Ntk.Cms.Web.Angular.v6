@@ -107,6 +107,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     this.tableRowSelected = new EstateAccountAgencyTypeUserModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -124,11 +125,13 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -228,6 +231,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.estateAccountAgencyTypeUserService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -237,10 +241,12 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             }
           );
         }

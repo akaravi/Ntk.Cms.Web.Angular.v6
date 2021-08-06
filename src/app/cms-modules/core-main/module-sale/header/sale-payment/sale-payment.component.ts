@@ -82,11 +82,13 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -102,11 +104,13 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

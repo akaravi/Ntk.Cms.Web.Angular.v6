@@ -107,6 +107,7 @@ export class DonateTargetCategoryAddComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
 
     this.donateTargetCategoryService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
@@ -122,11 +123,13 @@ export class DonateTargetCategoryAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage( next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

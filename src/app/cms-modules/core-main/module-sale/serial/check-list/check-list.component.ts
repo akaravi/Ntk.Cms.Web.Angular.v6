@@ -116,6 +116,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.tableSource.data = [];
     const model = new CoreModuleCheckSerialForSiteDtoModel();
@@ -134,11 +135,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -147,6 +150,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe(
       (next) => {
@@ -159,11 +163,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

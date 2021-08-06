@@ -127,11 +127,13 @@ export class BlogConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteConfigDefault()
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -141,6 +143,7 @@ export class BlogConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -151,11 +154,13 @@ export class BlogConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteConfigDefaultSave(this.dataConfigSiteValuesDefaultModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -165,6 +170,7 @@ export class BlogConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -175,11 +181,13 @@ export class BlogConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteAccessDefault()
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -189,6 +197,7 @@ export class BlogConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -199,11 +208,13 @@ export class BlogConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteAccessDefaultSave(this.dataConfigSiteAccessValuesDefaultModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -213,6 +224,7 @@ export class BlogConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -223,11 +235,13 @@ export class BlogConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceAdminMain()
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -237,6 +251,7 @@ export class BlogConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -247,11 +262,13 @@ export class BlogConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -261,6 +278,7 @@ export class BlogConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }

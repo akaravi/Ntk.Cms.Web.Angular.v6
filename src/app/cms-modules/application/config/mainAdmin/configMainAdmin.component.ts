@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -42,9 +42,10 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private translate: TranslateService,
+    private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
 
-    ) {
+  ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   dataConfigSiteValuesDefaultModel = new ApplicationModuleConfigSiteValuesModel();
@@ -127,11 +128,13 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteConfigDefault()
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -141,6 +144,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -151,11 +155,13 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteConfigDefaultSave(this.dataConfigSiteValuesDefaultModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
@@ -165,6 +171,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -177,11 +184,13 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteAccessDefault()
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -191,6 +200,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -201,11 +211,13 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceSiteAccessDefaultSave(this.dataConfigSiteAccessValuesDefaultModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
@@ -215,6 +227,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -226,11 +239,13 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceAdminMain()
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -240,6 +255,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -250,11 +266,13 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.configService
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
@@ -264,6 +282,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
+          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }

@@ -118,6 +118,7 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -127,9 +128,11 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.loadCheked();
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.loading.Stop('main');
+    this.cdr.detectChanges();
         this.cmsToastrService.typeError(error);
       }
     );

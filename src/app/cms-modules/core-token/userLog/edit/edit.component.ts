@@ -122,6 +122,7 @@ export class CoreTokenUserLogEditComponent implements OnInit, OnDestroy {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     /*َAccess Field*/
     this.coreTokenUserLogService.setAccessLoad();
     this.coreTokenUserLogService.ServiceGetOneById(this.requestId).subscribe(
@@ -140,10 +141,12 @@ export class CoreTokenUserLogEditComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

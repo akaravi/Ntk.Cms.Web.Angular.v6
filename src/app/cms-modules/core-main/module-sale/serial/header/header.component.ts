@@ -52,6 +52,7 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.coreModuleSaleSerialService.setAccessLoad();
     this.coreModuleSaleSerialService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -62,10 +63,12 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

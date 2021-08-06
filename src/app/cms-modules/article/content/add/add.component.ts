@@ -205,12 +205,14 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
+    this.cdr.detectChanges();
 
     this.contentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -221,6 +223,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
             this.loading.Stop('main');
+    this.cdr.detectChanges();
             setTimeout(() => this.router.navigate(['/article/content/']), 100);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -228,6 +231,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -272,6 +276,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
       },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -299,6 +304,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
       },
         (error) => {
           this.loading.Stop('main');
+    this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

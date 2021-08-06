@@ -48,6 +48,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
 
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsStatus = new Map<number, boolean>();
@@ -63,10 +64,12 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
 
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

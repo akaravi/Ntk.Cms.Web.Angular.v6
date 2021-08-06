@@ -52,6 +52,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe(
@@ -67,12 +68,14 @@ export class NewsCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         }
       );
 
@@ -82,6 +85,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     const filterModel: FilterModel = new FilterModel();
     filterModel.RowPerPage = 100;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService
       .ServiceGetAll(filterModel)
       .subscribe(
@@ -96,12 +100,14 @@ export class NewsCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         }
       );
 
@@ -124,6 +130,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
 
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService
       .ServiceMove(this.requestId, this.dataModel.NewCatId)
       .subscribe(
@@ -139,6 +146,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -146,6 +154,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.formInfo.ButtonSubmittedEnabled = true;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         }
       );
   }
@@ -158,6 +167,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -175,6 +185,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -182,6 +193,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         }
       );
 
@@ -206,5 +218,6 @@ export class NewsCategoryDeleteComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
     this.loading.Stop('main');
+    this.cdr.detectChanges();
   }
 }

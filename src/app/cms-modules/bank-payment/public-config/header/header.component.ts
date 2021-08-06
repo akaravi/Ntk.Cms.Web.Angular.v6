@@ -51,6 +51,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.bankPaymentPublicConfigService.setAccessLoad();
     this.bankPaymentPublicConfigService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -61,10 +62,12 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

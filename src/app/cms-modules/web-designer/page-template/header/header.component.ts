@@ -51,6 +51,7 @@ export class WebDesignerMainPageTemplateHeaderComponent implements OnInit {
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.webDesignerMainPageTemplateService.setAccessLoad();
     this.webDesignerMainPageTemplateService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -61,10 +62,12 @@ export class WebDesignerMainPageTemplateHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

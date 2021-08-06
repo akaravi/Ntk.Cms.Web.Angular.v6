@@ -109,6 +109,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ApplicationSourceModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -148,11 +149,13 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -239,6 +242,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.applicationSourceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -248,10 +252,12 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             }
           );
         }
@@ -347,10 +353,12 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = mode;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.applicationSourceService.ServiceBuildApp(this.tableRowSelected.Id).subscribe(
       (next) => {
         this.loading.Stop('main');
+    this.cdr.detectChanges();
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
         }
@@ -362,6 +370,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
 

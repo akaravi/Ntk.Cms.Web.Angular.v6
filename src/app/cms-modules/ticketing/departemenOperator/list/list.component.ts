@@ -110,6 +110,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     this.tableRowSelected = new TicketingDepartemenOperatorModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -159,11 +160,13 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
 
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }

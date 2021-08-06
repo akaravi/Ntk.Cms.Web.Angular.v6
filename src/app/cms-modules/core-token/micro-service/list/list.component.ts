@@ -161,6 +161,7 @@ export class CoreTokenMicroServiceListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreTokenMicroServiceModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -191,11 +192,13 @@ export class CoreTokenMicroServiceListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -302,6 +305,7 @@ export class CoreTokenMicroServiceListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.coreTokenMicroServiceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -311,10 +315,12 @@ export class CoreTokenMicroServiceListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             }
           );
         }

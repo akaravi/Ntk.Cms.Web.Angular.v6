@@ -114,6 +114,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   DataGetAll(): void {
     this.tableRowSelected = new CoreUserClaimCheckModel();
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
 
     if (this.requestLinkUserId > 0 && this.requestLinkSiteId > 0) {
@@ -135,11 +136,13 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
             }
           }
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         }
       );
       /** */
@@ -160,11 +163,13 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
             }
           }
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         }
       );
       /** */

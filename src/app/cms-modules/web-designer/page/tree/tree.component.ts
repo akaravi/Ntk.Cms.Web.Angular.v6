@@ -74,6 +74,7 @@ export class WebDesignerMainPageTreeComponent  implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -81,12 +82,12 @@ export class WebDesignerMainPageTreeComponent  implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+    this.cdr.detectChanges();
       }
     );
   }

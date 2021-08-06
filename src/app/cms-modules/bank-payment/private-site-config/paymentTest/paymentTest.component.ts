@@ -105,11 +105,13 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
+    this.cdr.detectChanges();
         }
       )).toPromise();
   }

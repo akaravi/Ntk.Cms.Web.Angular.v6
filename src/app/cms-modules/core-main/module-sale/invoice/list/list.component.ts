@@ -111,6 +111,7 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreModuleSaleInvoiceModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -136,11 +137,13 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -230,6 +233,7 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.coreModuleSaleInvoiceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -239,10 +243,12 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             }
           );
         }

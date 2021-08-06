@@ -124,6 +124,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     this.tableRowSelected = new EstatePropertyDetailGroupModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -141,11 +142,13 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -268,6 +271,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.estatePropertyDetailGroupService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -277,10 +281,12 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             }
           );
         }

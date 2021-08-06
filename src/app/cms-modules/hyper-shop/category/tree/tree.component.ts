@@ -76,6 +76,7 @@ export class HyperShopCategoryTreeComponent  implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -83,12 +84,12 @@ export class HyperShopCategoryTreeComponent  implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+    this.cdr.detectChanges();
       }
     );
   }
@@ -159,6 +160,7 @@ export class HyperShopCategoryTreeComponent  implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.categoryService.ServiceDelete(this.dataModelSelect.Code).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -168,11 +170,13 @@ export class HyperShopCategoryTreeComponent  implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
               this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
               this.cdr.detectChanges();
             }
           );

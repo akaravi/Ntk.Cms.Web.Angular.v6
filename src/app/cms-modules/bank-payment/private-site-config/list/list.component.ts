@@ -119,6 +119,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.tableRowSelected = new BankPaymentPrivateSiteConfigModel();
 
     this.loading.Start('main');
+    this.cdr.detectChanges();
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
@@ -162,11 +163,13 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
           }
         }
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
+    this.cdr.detectChanges();
       }
     );
   }
@@ -284,6 +287,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
+    this.cdr.detectChanges();
           this.bankPaymentPrivateSiteConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -293,10 +297,12 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
+    this.cdr.detectChanges();
             }
           );
         }

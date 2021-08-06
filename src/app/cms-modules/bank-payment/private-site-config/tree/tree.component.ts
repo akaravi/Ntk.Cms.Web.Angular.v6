@@ -82,12 +82,12 @@ export class BankPaymentPrivateSiteConfigTreeComponent  implements OnInit, OnDes
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+    this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+    this.cdr.detectChanges();
       }
     );
   }

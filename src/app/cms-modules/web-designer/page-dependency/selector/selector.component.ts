@@ -88,6 +88,7 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
     }
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {

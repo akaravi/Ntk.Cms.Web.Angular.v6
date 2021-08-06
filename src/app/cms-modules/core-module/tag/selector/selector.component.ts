@@ -88,6 +88,7 @@ ngOnInit(): void {
     }
     this.loading.Globally = false;
     this.loading.Start('main');
+    this.cdr.detectChanges();
     return this.coreModuleTagService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
