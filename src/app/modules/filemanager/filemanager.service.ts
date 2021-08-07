@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { FileItem } from './models/fileItem'
+import { FileItem } from './models/fileItem';
 import { FileManagerApiService } from './filemanager.apiService';
 import { FilemanagerConfig } from './filemanager.config';
 import 'rxjs/add/operator/catch';
@@ -27,26 +27,38 @@ export class FileManagerService {
   currentPath: string;
   tempSelection: FileItem[] = [];
   rootItem: FileItem = new FileItem();
-  selected: FileItem
+  selected: FileItem;
   headerData: any = [];
   public IsListMode = false;
 
-  //upload
+  // upload
   // options: UploaderOptions;
   formData: FormData;
   // files: UploadFile[];
   // uploadInput: EventEmitter<UploadInput>;
-  humanizeBytes: Function;
+  humanizeBytes: any; // Function;
   dragOver: boolean;
+
+  // confirmation dialog
+
+  public msg = '';
+
+
+
+
+  // rename
+  public bsModalRef: any;
+  public newName: string;
+  nodePath: string;
 
   setRoot() {
 
-    let fm = new FileItem();
+    const fm = new FileItem();
     fm.name = this._config.rootPath;
-    fm.id = "qwqw";
-    fm.path = "";
+    fm.id = 'qwqw';
+    fm.path = '';
     this.rootItem = fm;
-    this.setSelected(this.rootItem)
+    this.setSelected(this.rootItem);
 
   }
   public toggleView() {
@@ -68,15 +80,16 @@ export class FileManagerService {
         parent: node,
         size: x.size,
         dtCreated: x.dtCreated
-      }
+      };
     });
   }
 
   public setSelected(node: FileItem) {
 
 
-    if (node.type == 'file')
+    if (node.type === 'file') {
       return this.handleFileDblClick(node);
+    }
 
     this.currentPath = node.path;
 
@@ -87,20 +100,20 @@ export class FileManagerService {
   }
 
   handleFileDblClick(node: FileItem) {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   private setHeader(node: FileItem) {
     this.headerData = [];
-    let tempHeaders = []
+    const tempHeaders = [];
     let currentNode = node;
 
     while (currentNode) {
-      tempHeaders.push({ name: (currentNode.parent ? currentNode.name : "Root"), isActive: (node == currentNode), node: currentNode })
+      tempHeaders.push({ name: (currentNode.parent ? currentNode.name : 'Root'), isActive: (node === currentNode), node: currentNode });
       currentNode = currentNode.parent;
     }
 
-    while (tempHeaders.length) this.headerData.push(tempHeaders.pop());
+    while (tempHeaders.length) { this.headerData.push(tempHeaders.pop()); }
   }
 
   public setExSelected(e, item) {
@@ -111,57 +124,51 @@ export class FileManagerService {
       item = e.item;
     }
 
-    if (this.tempSelection.length && event.button == 2 && this.isExSelected(item))
+    if (this.tempSelection.length && event.button === 2 && this.isExSelected(item)) {
       return;
+    }
 
-    if (!event.ctrlKey && !event.shiftKey)
+    if (!event.ctrlKey && !event.shiftKey) {
       this.tempSelection = [];
+    }
 
     if (event.shiftKey) {
 
     }
 
-    if (this.isExSelected(item))
+    if (this.isExSelected(item)) {
       this.tempSelection.splice(this.tempSelection.indexOf(item), 1);
-    else
+    }
+    else {
       this.tempSelection.push(item);
+    }
   }
 
   public isExSelected(item) {
-    if (this.tempSelection)
+    if (this.tempSelection) {
       return this.tempSelection.indexOf(item) > -1;
-    else
+    }
+    else {
       return false;
+    }
   }
 
   public toggleExpand(node) {
     node.isOpen = !node.isOpen;
-    if (node != this.selected)
+    if (node !== this.selected) {
       this.setSelected(node);
+    }
   }
 
   private getSubItems(node: FileItem) {
     node.isLoadingsubItems = true;
     this.apiService.getList(node.path).subscribe((data: any) => {
-      debugger;
-      node.subItems = this.mapSubItems(data, node)
+      node.subItems = this.mapSubItems(data, node);
       node.isLoadingsubItems = false;
     }, () => {
       node.isLoadingsubItems = false;
     });
   }
-
-  //confirmation dialog
-
-  public msg = "";
-
-
-
-
-  // rename
-  public bsModalRef: any;
-  public newName: string;
-  nodePath: string;
 
   public rename(node, template) {
     this.newName = node.name;
@@ -183,32 +190,34 @@ export class FileManagerService {
   }
 
   public download() {
-    let itemsToDownLaod = this.tempSelection.map(x => x.path);
+    const itemsToDownLaod = this.tempSelection.map(x => x.path);
     // this.apiService.download(itemsToDownLaod).subscribe((data: Response) => {
     //   this.downLoadFile(data);
     // })
   }
 
   private downLoadFile(data) {
-    var a = document.createElement("a");
-    var fo = new Blob([data._body]);
-    a.href = URL.createObjectURL(fo)
-    a.download = "downLoaded";
+    const a = document.createElement('a');
+    const fo = new Blob([data._body]);
+    a.href = URL.createObjectURL(fo);
+    a.download = 'downLoaded';
     a.click();
   }
 
   public deleteNode(template) {
 
-    let itemsToDelete = this.tempSelection.map(x => x.path);
-    if (this.tempSelection.length == 1)
+    const itemsToDelete = this.tempSelection.map(x => x.path);
+    if (this.tempSelection.length === 1) {
       this.msg = `Do you want delete ${this.tempSelection[0].name} ?`;
-    else
-      this.msg = "Do you want to delete selected items ?"
+    }
+    else {
+      this.msg = 'Do you want to delete selected items ?';
+    }
     // this.bsModalRef = this.modalService.show(template);
   }
 
   public deleteConfirmed() {
-    let itemsToDelete = this.tempSelection.map(x => x.path);
+    const itemsToDelete = this.tempSelection.map(x => x.path);
 
     // this.apiService.delete(itemsToDelete).subscribe(res => {
     //   if (res.result.success) {
@@ -219,7 +228,7 @@ export class FileManagerService {
     // }, (error) => { this.toast.error(error); });
   }
 
-  //upload methods
+  // upload methods
   public uploadPopup(template) {
     // this.files = [];
     // this.uploadInput = new EventEmitter<UploadInput>();
