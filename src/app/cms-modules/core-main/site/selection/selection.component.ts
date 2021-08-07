@@ -82,7 +82,6 @@ export class CoreSiteSelectionComponent implements OnInit {
         (res) => {
           if (res.IsSuccess) {
             this.cmsToastrService.typeSuccessSelected();
-            this.formInfo.ButtonSubmittedEnabled = true;
             this.router.navigate(['/']);
           }
           else {
