@@ -20,22 +20,13 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NtkSmartModalModule } from 'ngx-ntk-smart-module';
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
-}
 
 @NgModule({
   imports: [
     HttpClientModule,
     CommonModule,
     NtkSmartModalModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
-    })
+    TranslateModule
   ],
   declarations: [
     FileManagerComponent,
@@ -55,7 +46,8 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [
     FileManagerComponent,
     LoadingOverlayComponent,
-    SideViewComponent
+    SideViewComponent,
+    TranslateModule
   ],
   providers: [TranslateService]
 
