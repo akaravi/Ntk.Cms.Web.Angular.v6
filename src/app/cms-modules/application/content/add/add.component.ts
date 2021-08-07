@@ -17,7 +17,7 @@ import {
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { NodeInterface, TreeModel } from 'src/app/modules/filemanager_api';
 import { retry } from 'rxjs/operators';
 import { ApplicationThemeConfigModel } from 'ntk-cms-api';
 import { PoinModel } from 'src/app/core/models/pointModel';

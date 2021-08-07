@@ -14,7 +14,7 @@ import {
   ErrorExceptionResult,
   ErrorExceptionResultBase,
 } from 'ntk-cms-api';
-import { TreeModel } from 'ntk-cms-filemanager';
+import { ConfigInterface, DownloadModeEnum, TreeModel } from 'src/app/modules/filemanager_api';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -32,7 +32,9 @@ export class PublicHelper {
     private coreSiteService: CoreSiteService,
     private coreModuleService: CoreModuleService,
     private cmsStoreService: CmsStoreService
-  ) { }
+  ) {
+    this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
+  }
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -75,8 +77,35 @@ export class PublicHelper {
       ['bold', 'italic'],
       ['fontSize']
     ]
+
   };
-  fileManagerTreeConfig: TreeModel = new TreeModel();
+  treefileConfig: ConfigInterface = {
+    baseURL: 'https://apicms.ir/api/v1/',
+    baseUploadURL: 'https://apifile.ir/api/v1/',
+    api: {
+      listFile: 'FileContent/GetAll',
+      listFolder: 'FileCategory/GetAll',
+      uploadFile: 'upload',
+      downloadFile: 'download',
+      deleteFile: 'FileContent',
+      deleteFolder: 'FileCategory',
+      createFolder: 'FileCategory',
+      createFile: 'FileContent',
+      getOneFile: 'FileContent',
+      getOneFolder: 'FileCategory',
+      renameFile: 'FileContent',
+      renameFolder: 'FileCategory',
+      searchFiles: 'FileCategory/GetAll',
+    },
+    options: {
+      title: 'Select File',
+      allowFolderDownload: DownloadModeEnum.DOWNLOAD_FILES,
+      showFilesInsideTree: false,
+      showSelectFile: true,
+      showSelectFolder: false,
+    }
+  };
+  fileManagerTreeConfig: TreeModel;
   GetfileManagerTreeConfig(): TreeModel {
     this.fileManagerTreeConfig.config.baseURL = environment.cmsServerConfig.configApiServerPath;
     this.fileManagerTreeConfig.config.baseUploadURL = environment.cmsServerConfig.configRouteUploadFileContent;

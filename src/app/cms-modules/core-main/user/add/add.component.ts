@@ -21,7 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import {
   TreeModel,
   NodeInterface,
-} from 'ntk-cms-filemanager';
+} from 'src/app/modules/filemanager_api';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';

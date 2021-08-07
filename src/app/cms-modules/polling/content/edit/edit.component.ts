@@ -18,7 +18,7 @@ import {
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { NodeInterface, TreeModel } from 'src/app/modules/filemanager_api';
 import { Map as leafletMap } from 'leaflet';
 
 

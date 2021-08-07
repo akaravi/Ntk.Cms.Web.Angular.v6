@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
+import { CmsFileManagerModule } from 'src/app/modules/file-manager/file-manager.module';
 import { TagInputModule } from 'ngx-chips';
 import {
   CoreLogCurrencyService,

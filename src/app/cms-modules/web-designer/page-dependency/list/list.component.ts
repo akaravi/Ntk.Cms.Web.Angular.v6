@@ -34,6 +34,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { WebDesignerMainPageDependencyAutoAddPageComponent } from '../auto-add-page/auto-add-page.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-webdesigner-pagedependency-list',
@@ -234,7 +235,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     });
   }
   onActionbuttonNewRowAuto(): any {
-    return this.http.get('http://localhost:2391/api/v1/HtmlBuilder/AutoAdd', {
+
+    return this.http.get(environment.apiUrl + '/HtmlBuilder/AutoAdd', {
       headers: this.webDesignerMainPageDependencyService.getHeaders(),
     })
       .pipe(

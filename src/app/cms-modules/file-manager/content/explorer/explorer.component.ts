@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeModel } from 'ntk-cms-filemanager';
+import { TreeModel } from 'src/app/modules/filemanager_api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { environment } from 'src/environments/environment';
 

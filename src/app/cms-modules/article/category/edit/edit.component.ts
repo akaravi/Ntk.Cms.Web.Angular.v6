@@ -21,7 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import {
   TreeModel,
   NodeInterface,
-} from 'ntk-cms-filemanager';
+} from 'src/app/modules/filemanager_api';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';

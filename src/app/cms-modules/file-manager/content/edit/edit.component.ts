@@ -14,7 +14,7 @@ import {
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TreeModel } from 'ntk-cms-filemanager';
+import { TreeModel } from 'src/app/modules/filemanager_api';
 import { Map as leafletMap } from 'leaflet';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';

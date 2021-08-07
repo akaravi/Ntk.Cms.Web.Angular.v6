@@ -21,7 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
+import { CmsFileManagerModule } from 'src/app/modules/file-manager/file-manager.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TicketingDepartemenListComponent } from './departemen/list/list.component';
 import { TicketingDepartemenSelectorComponent } from './departemen/selector/selector.component';
