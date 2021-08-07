@@ -141,32 +141,6 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
     this.cdr.detectChanges();
-    // this.donateTargetCategoryService
-    //   .ServiceMove(this.requestId, this.dataModel.NewCatId)
-    //   .subscribe(
-    //     (next) => {
-    //       if (!next.IsSuccess) {
-    //         this.formInfo.FormAlert = 'برروز خطا';
-    //         this.formInfo.FormError = next.ErrorMessage;
-    //         this.cmsToastrService.typeErrorMove();
-    //       } else {
-    //         this.formInfo.FormAlert = 'جابجایی با موفقیت انجام شد';
-    //         this.cmsToastrService.typeSuccessMove();
-    //       }
-    //       this.formInfo.FormSubmitAllow = true;
-    //       this.formInfo.ButtonSubmittedEnabled = true;
-    //       this.loading.Stop('main');
-    // this.cdr.detectChanges();
-    //     },
-    //     (error) => {
-    //       this.formInfo.FormAlert = 'برروز خطا';
-    //       this.cmsToastrService.typeError(error);
-    //       this.formInfo.ButtonSubmittedEnabled = true;
-    //       this.formInfo.FormSubmitAllow = true;
-    //       this.loading.Stop('main');
-    // this.cdr.detectChanges();
-    //     }
-    //   );
   }
   onFormDelete(): void {
     if (this.requestId === 0) {
