@@ -27,6 +27,7 @@ import { FileContentSelectorComponent } from './content/selector/selector.compon
 import { FileContentDeleteComponent } from './content/delete/delete.component';
 import { FileContentExplorerComponent } from './content/explorer/explorer.component';
 
+
 @NgModule({
   declarations: [
     FileManagerComponent,
@@ -49,7 +50,8 @@ import { FileContentExplorerComponent } from './content/explorer/explorer.compon
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule
+    CmsFileManagerModule,
+    
   ],
   providers: [
     // CategoryResolver,

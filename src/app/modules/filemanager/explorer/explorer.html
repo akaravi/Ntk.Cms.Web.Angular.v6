@@ -1,0 +1,117 @@
+<style>
+    .modal-header-primary {
+        color: #fff;
+        border-bottom: 1px solid #eee;
+        background-color: #428bca;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+</style>
+
+<div *ngIf="!fms.IsListMode"  class="tile-view">
+    <ul class="tile-view-list">
+        <!-- <li *ngFor="let item of fms.selected.subItems" (dblclick)="fms.setSelected(item)" [ngClass]="{'selected':fms.isExSelected(item)}"
+            [contextMenu]="basicMenu" [contextMenuSubject]="item" (click)="fms.setExSelected($event,item)">
+            <a [title]="item.name">
+                <span [ngClass]="{'glyphicon':true , 'glyphicon-folder-close': item.type=='dir', 'glyphicon-file': item.type=='file'}"></span>
+                <span class="item-text">{{item.name}}</span>
+            </a>
+        </li> -->
+    </ul>
+</div>
+
+<div class="" *ngIf="fms.IsListMode">
+
+    <table class="table table-hover grid-view">
+        <thead>
+           <!-- <tr> <th></th>
+            <th>Name</th>
+          
+            <th>size</th>
+            <th>Date</th> 
+        </tr>-->
+        </thead>
+        <tbody>
+            <!-- <tr  *ngFor="let item of fms.selected.subItems" (dblclick)="fms.setSelected(item)" [ngClass]="{'selected':fms.isExSelected(item)}"
+            [contextMenu]="basicMenu" [contextMenuSubject]="item" (click)="fms.setExSelected($event,item)">
+                <td> <span [ngClass]="{'glyphicon':true , 'glyphicon-folder-close': item.type=='dir', 'glyphicon-file': item.type=='file'}"></span></td>
+                <td><span class="item-text">{{item.name}}</span></td>
+          
+                <td><span class="item-text">{{item.size | fileSize}}</span></td>
+                <td><span class="item-text">  {{item.dtCreated | date}}</span></td>
+            </tr> -->
+        </tbody>
+    </table>
+   
+</div>
+<!-- 
+<context-menu (open)="fms.setExSelected($event,item)">
+    <ng-template contextMenuItem (execute)="fms.download()">
+        <i class="glyphicon glyphicon-cloud-download"></i> Download
+    </ng-template>
+    <ng-template *ngIf="fms.tempSelection.length==1" contextMenuItem let-item (execute)="fms.rename($event.item,rename)">
+        <i class="glyphicon glyphicon-edit"></i> Rename
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">
+        <i class="glyphicon glyphicon-arrow-right"></i> Move
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">
+        <i class="glyphicon glyphicon-copy"></i> Copy
+    </ng-template>
+    <ng-template *ngIf="fms.tempSelection.length==1" contextMenuItem let-item (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">
+        <i *ngIf="fms.tempSelection.length==1" class="glyphicon glyphicon-pencil"></i> Edit
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">
+        <i class="glyphicon glyphicon-lock"></i> Permissions
+    </ng-template>
+    <ng-template contextMenuItem divider="true"></ng-template>
+    <ng-template contextMenuItem let-item (execute)="fms.deleteNode(confirm)">
+        <i class="glyphicon glyphicon-trash"></i> Delete
+    </ng-template>
+
+</context-menu> -->
+
+
+
+<ng-template #rename>
+    <div class="modal-header modal-header-primary">
+        <!-- <button type="button" class="close" (click)="close()">&times;</button> -->
+        <h5 class="modal-title">Rename</h5>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="inputName">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="fms.newName" name="name" id="inputName" placeholder="new name" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="fms.doRename()">OK</button>
+        <button type="button" class="btn btn-default" (click)="fms.bsModalRef.hide()">Cancel</button>
+    </div>
+</ng-template>
+
+<ng-template #confirm>
+    <!-- <div class="modal-header modal-header-primary">
+        <button type="button" class="close" (click)="close()">&times;</button>
+        <h5 class="modal-title">Confirm</h5>
+    </div> -->
+    <div class="modal-body text-center">
+       <p>{{fms.msg}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="fms.deleteConfirmed()">Yes</button>
+        <button type="button" class="btn btn-default" (click)="fms.bsModalRef.hide()">No</button>
+    </div>
+</ng-template>
+
+<ng-template #upload>
+    
+</ng-template>

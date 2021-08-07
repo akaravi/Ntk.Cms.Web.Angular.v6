@@ -1,0 +1,98 @@
+.tile-view{
+    margin: 0 -10px 20px;
+    overflow: hidden;
+}
+
+@media (min-width: 768px){
+     
+.bs-glyphicons {
+    margin-right: 0;
+    margin-left: 0;
+}
+}
+.tile-view-list {
+    padding-left: 0;
+    list-style: none;
+}
+@media(min-width: 768px){
+.tile-view li {
+    width: 12.5%;
+    font-size: 12px;
+}}
+
+.tile-view li:hover a{
+    color: rgb(255, 255, 255);
+    background-color: #666566;
+    cursor: pointer;
+}
+.tile-view li a{
+    color: #222121;
+    text-decoration: none;
+}
+.tile-view li.selected a {
+    color: rgb(255, 255, 255);
+    background-color: #666566;
+    cursor: pointer;
+   
+  }
+
+  .tile-view li:hover{
+    color: rgb(255, 255, 255);
+    background-color: #222121;
+    cursor: pointer;
+}
+
+.tile-view li.selected {
+    color: rgb(255, 255, 255);
+    background-color: #222121;
+    cursor: pointer;
+  }
+
+.tile-view li{
+float: left;
+    width: 90px;
+    height: 90px;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 1.4;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #fff;
+}
+
+.tile-view .glyphicon {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+
+.tile-view .item-text {
+    display: block;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+ .dropdown-menu>li>a>i {
+    margin-right: 4px;
+}
+
+ .dropdown-menu>li>a {
+    padding: 6px 20px;
+}
+
+
+ .modal {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+.grid-view >tbody>tr.seleted{
+background-color: #222121;
+color: #fff;
+}
