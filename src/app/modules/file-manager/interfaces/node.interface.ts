@@ -1,21 +1,16 @@
 export interface NodeInterface {
   isRoot: boolean;
   id: number;
-  pathToNode: string;
-  pathToParent: string;
-  isFolder: boolean;
-  isExpanded: boolean;
-  stayOpen?: boolean;
-  name?: string;
-  children?: any;
-
-  /** karavi add */
   parentId?: number;
   CreatedDate?: Date;
   UpdatedDate?: Date;
+
+  isFolder: boolean;
+  isExpanded: boolean;
+  stayOpen?: boolean;
+  name: string;
   type?: string;
   size?: number;
   downloadLinksrc?: string;
-  // children: NodeInterface[];
-  /** karavi add */
+  children: NodeInterface[];
 }

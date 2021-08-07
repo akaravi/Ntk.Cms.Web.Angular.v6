@@ -8,7 +8,7 @@ import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
-import { CmsFileManagerModule } from 'src/app/modules/file-manager/file-manager.module';
+import { CmsFileManagerModule } from 'src/app/modules/file-manager/cms-filemanager.module';
 import {
   CoreAuthService,
   CoreEnumService,

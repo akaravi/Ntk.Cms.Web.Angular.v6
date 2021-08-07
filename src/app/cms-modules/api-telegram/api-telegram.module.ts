@@ -20,7 +20,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { CmsFileManagerModule } from 'src/app/modules/file-manager/file-manager.module';
+import { CmsFileManagerModule } from 'src/app/modules/file-manager/cms-filemanager.module';
 
 @NgModule({
   declarations: [

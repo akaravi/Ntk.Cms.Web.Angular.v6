@@ -28,7 +28,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreSiteCategoryCmsModule } from '../site-category/coreSiteCategory.module';
 import { CoreSiteCategoryCmsModuleModule } from '../site-category-module/coreSiteCategoryCmsModule.module';
-import { CmsFileManagerModule } from 'src/app/modules/file-manager/file-manager.module';
+import { CmsFileManagerModule } from 'src/app/modules/file-manager/cms-filemanager.module';
 import { CoreSiteModuleListComponent } from './moduleList/moduleList.component';
 import { CoreSiteModuleEditComponent } from './moduleEdit/moduleEdit.component';
 import { CoreSiteModuleAddComponent } from './moduleAdd/moduleAdd.component';

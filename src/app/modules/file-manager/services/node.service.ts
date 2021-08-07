@@ -3,88 +3,136 @@ import { NodeInterface } from '../interfaces/node.interface';
 import { Observable } from 'rxjs';
 import { TreeModel } from '../models/tree.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { FileManagerStoreService, SET_LOADING_STATE, SET_PATH, SET_SELECTED_NODE } from './file-manager-store.service';
-import { ErrorExceptionResult, FileCategoryModel, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import {
+  FileManagerStoreService,
+  SET_LOADING_LIST_ID,
+  SET_LOADING_STATE,
+  SET_PARENT,
+  SET_SELECTED_NODE,
+} from './file-manager-store.service';
+import { BaseService } from './base.service';
+import { map } from 'rxjs/operators';
+import { FileCategoryModel, FileContentModel, FilterDataModel, FilterModel } from 'ntk-cms-api';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class NodeService {
-  public tree: TreeModel;
-  private _path: string;
+export class NodeService extends BaseService {
+  get currentParentId(): number {
+    return this.privateParentId;
+  }
 
+  set currentParentId(value: number) {
+    this.privateParentId = value;
+  }
   constructor(private http: HttpClient, private store: FileManagerStoreService) {
-  }
-  /** karavi base */
-  deviceToken = '';
-  userToken = '';
-  keyUserToken = 'userToken';
-  keyDeviceToken = 'deviceToken';
+    super();
+    this.loadingListIdLive();
+    this.guid = this.newGuid();
+    // console.log('constructor', this.guid);
 
-  getHeaders(): any {
-    const headers = { Authorization: this.getUserToken(), DeviceToken: this.getDeviceToken() };
+  }
+  private guid = '';
 
-    return headers;
+  public serviceTree: TreeModel;
+  private privateParentId: number;
+
+  loadingListId: number[];
+  private S4(): string {
+    const ran = (1 + Math.random()) * 0x10000;
+    return (ran | 0).toString(16).substring(1);
+  }
+  newGuid(): string {
+    const isString = `${this.S4()}${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}${this.S4()}${this.S4()}`;
+
+    return isString;
   }
 
-  getUserToken(): string | null {
-    if (this.userToken && this.userToken.length > 0) {
-      return this.userToken;
-    }
-    const token = localStorage.getItem(this.keyUserToken);
-    if (token && token.length > 0) {
-      return token;
-    }
-    const title = 'تایید توکن';
-    const message = 'لطفا مجددا وارد حساب کاربری خود شوید';
-
-    return '';
-  }
-  getDeviceToken(): string | null {
-    if (this.deviceToken && this.deviceToken.length > 0) {
-      return this.deviceToken;
-    }
-    const token = localStorage.getItem(this.keyDeviceToken);
-    if (token && token.length > 0) {
-      return token;
-    }
-    return '';
-  }
-  errorExceptionResultCheck<TOut>(model: ErrorExceptionResult<TOut> | any): ErrorExceptionResult<TOut> {
-    if (model) {
-      if (!model.IsSuccess) {
-        const title = 'خطا در دریافت اطلاعات از سرور';
-        const message = model.ErrorMessage;
-      }
-    }
-    return model;
-  }
-  /** karavi base */
   // todo ask server to get parent structure
-  public startManagerAt(path: string) {
-    this.currentPath = path;
+  public startManagerAt(parentId: number): void {
+    this.currentParentId = parentId;
     this.refreshCurrentPath();
   }
 
-  public refreshCurrentPath() {
-    this.findNodeByPath(this.currentPath).children = {};
-    this.getNodes(this.currentPath).then(() => {
-      this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.tree.nodes });
-      this.store.dispatch({ type: SET_PATH, payload: this.currentPath });
+  public refreshCurrentPath(): any {
+    this.store.setState({ type: SET_PARENT, payload: this.currentParentId });
+    this.store.setState({ type: SET_LOADING_STATE, payload: true });
+    const children = this.findFolderById(this.currentParentId).children;
+    if (!this.loadingListIdCheckAllowRunApi(this.currentParentId)) {
+      this.store.setState({ type: SET_SELECTED_NODE, payload: this.serviceTree.nodes });
+      this.store.setState({ type: SET_LOADING_STATE, payload: false });
+      return;
+    }
+    this.LoadingListIdAdd(this.currentParentId);
+
+    this.getNodesFolder(this.currentParentId).then(() => {
+      this.store.setState({ type: SET_SELECTED_NODE, payload: this.serviceTree.nodes });
+      this.getNodesFile(this.currentParentId).then(() => {
+        this.store.setState({ type: SET_SELECTED_NODE, payload: this.serviceTree.nodes });
+        this.store.setState({ type: SET_LOADING_STATE, payload: false });
+        this.loadingListIdRemove(this.currentParentId);
+      });
     });
   }
 
-  getNodes(path: string) {
-    return new Promise((resolve => {
-      this.parseNodes(path).subscribe((data: Array<NodeInterface>) => {
-        for (let i = 0; i < data.length; i++) {
-          const parentPath = this.getParentPath(data[i].pathToNode);
-          this.findNodeByPath(parentPath).children[data[i].name] = data[i];
-        }
+  LoadingListIdAdd(id: number): void {
+    if (!this.loadingListId) {
+      this.loadingListId = [];
+    }
+    this.loadingListId.push(id);
+    this.store.setState({ type: SET_LOADING_LIST_ID, payload: this.loadingListId });
+  }
 
+  loadingListIdRemove(id: number): void {
+    if (!this.loadingListId) {
+      this.loadingListId = [];
+      this.store.setState({ type: SET_LOADING_LIST_ID, payload: this.loadingListId });
+      return;
+    }
+    const index = this.loadingListId.indexOf(id);
+    if (index >= 0) {
+      this.loadingListId = this.loadingListId.splice(index, 0);
+    }
+    this.store.setState({ type: SET_LOADING_LIST_ID, payload: this.loadingListId });
+  }
+
+  loadingListIdCheckAllowRunApi(id: number): boolean {
+    if (!this.loadingListId || this.loadingListId.length === 0) {
+      return true;
+    }
+    const index = this.loadingListId.indexOf(id);
+    if (index >= 0) {
+      return false;
+    }
+    return true;
+  }
+
+  loadingListIdLive(): void {
+    this.store
+      .getState((state) => state.fileManagerState.loadingListId)
+      .subscribe((data: number[]) => {
+        this.loadingListId = data;
+      });
+  }
+
+  getNodesFolder(parentId: number): any {
+    return new Promise((resolve) => {
+      return this.getNodesFoldersFromServer(parentId).subscribe((data: Array<NodeInterface>) => {
+        const parent = this.findFolderById(parentId);
+        data.forEach((x) => parent.children.push(x));
         resolve(null);
       });
-    }));
+    });
+  }
+
+  getNodesFile(parentId: number): any {
+    return new Promise((resolve) => {
+      return this.getNodesFilesFromServer(parentId).subscribe((data: Array<NodeInterface>) => {
+        const parent = this.findFolderById(parentId);
+        data.forEach((x) => parent.children.push(x));
+        resolve(null);
+      });
+    });
   }
 
   private getParentPath(path: string): string {
@@ -93,50 +141,17 @@ export class NodeService {
     return parentPath.join('/');
   }
 
-  private parseNodes(path: string): Observable<NodeInterface[]> {
-    return new Observable(observer => {
-      this.getNodesFromServer(path).subscribe((data: Array<any>) => {
-        observer.next(data.map(
-          node => this.createNode(path, node)
-        ));
-        this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
-      });
+  private getNodesFromServerNormal(parentId: number): any {
+    let folderId: any = this.findFolderById(parentId).id;
+    folderId = folderId === 0 ? '' : folderId;
+
+    return this.http.post(this.serviceTree.config.baseURL + this.serviceTree.config.api.listFile, {
+      params: new HttpParams().set('parentPath', folderId),
     });
   }
 
-  private createNode(path, node): NodeInterface {
-    if (node.path[0] !== '/') {
-      console.warn('[Node Service] Server should return initial path with "/"');
-      node.path = '/' + node.path;
-    }
 
-    const ids = node.path.split('/');
-    if (ids.length > 2 && ids[ids.length - 1] === '') {
-      ids.splice(-1, 1);
-      node.path = ids.join('/');
-    }
-
-    const cachedNode = this.findNodeByPath(node.path);
-
-    return <NodeInterface>{
-      id: node.id,
-      isFolder: node.dir,
-      isExpanded: cachedNode ? cachedNode.isExpanded : false,
-      pathToNode: node.path,
-      pathToParent: this.getParentPath(node.path),
-      name: node.name || node.id,
-      children: cachedNode ? cachedNode.children : {}
-    };
-  }
-
-  private getNodesFromServer = (path: string) => {
-    debugger;
-
-    let folderId: any = this.findNodeByPath(path).id;
-    folderId = (folderId === 0 || folderId === '') ? 0 : folderId;
-
-    // return this.http.post(this.tree.config.baseURL + this.tree.config.api.listFile, { params: new HttpParams().set('parentPath', folderId) }
-    // );
+  private getNodesFilesFromServer(folderId: number): Observable<NodeInterface[]> {
     const filterModel = new FilterModel();
     filterModel.RowPerPage = 100;
     filterModel.SortColumn = 'FileName';
@@ -148,73 +163,143 @@ export class NodeService {
     }
     filterModel.Filters.push(filter);
 
-    return this.http.post(this.tree.config.baseURL + this.tree.config.api.listFile, filterModel, { headers: this.getHeaders() }
-    );
-
+    return this.http
+      .post(this.serviceTree.config.baseURL + this.serviceTree.config.api.listFile, filterModel, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        map((ret) => {
+          const data = this.errorExceptionResultCheck<FileContentModel>(ret);
+          const retOut: NodeInterface[] = [];
+          if (data.IsSuccess) {
+            data.ListItems.forEach((x: FileContentModel) => {
+              const row = {
+                id: x.Id,
+                parentId: x.LinkCategoryId,
+                CreatedDate: x.CreatedDate,
+                UpdatedDate: x.UpdatedDate,
+                isFolder: false,
+                isExpanded: false,
+                name: x.FileName || x.Id,
+                downloadLinksrc: x.DownloadLinksrc,
+                children: [],
+                type: x.Extension,
+                size: x.FileSize,
+              } as NodeInterface;
+              retOut.push(row);
+            });
+          }
+          return retOut;
+        }),
+      );
   }
 
-  public findNodeByPath(nodePath: string): NodeInterface {
-    const ids = nodePath.split('/');
-    ids.splice(0, 1);
+  private getNodesFoldersFromServer(folderId: number): Observable<NodeInterface[]> {
+    const filterModel = new FilterModel();
+    filterModel.RowPerPage = 100;
+    filterModel.SortColumn = 'Title';
+    filterModel.Filters = [];
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'LinkParentId';
+    if (folderId > 0) {
+      filter.Value = folderId;
+    }
+    filterModel.Filters.push(filter);
+    // Category
+    return this.http
+      .post(this.serviceTree.config.baseURL + this.serviceTree.config.api.listFolder, filterModel, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        map((ret) => {
+          const data = this.errorExceptionResultCheck<FileCategoryModel>(ret);
 
-    return ids.length === 0 ? this.tree.nodes : ids.reduce((value, index) => value['children'][index], this.tree.nodes);
+          const retOut: NodeInterface[] = [];
+          if (data.IsSuccess) {
+            data.ListItems.forEach((x: FileCategoryModel) => {
+              const row = {
+                id: x.Id,
+                parentId: x.LinkParentId,
+                CreatedDate: x.CreatedDate,
+                UpdatedDate: x.UpdatedDate,
+                isFolder: true,
+                isExpanded: false,
+                name: x.Title || x.Id,
+                downloadLinksrc: '',
+                children: [],
+              } as NodeInterface;
+              retOut.push(row);
+            });
+          }
+          return retOut;
+        }),
+      );
   }
 
-  public findNodeById(id: number): NodeInterface {
-    const result = this.findNodeByIdHelper(id);
+  public SelectFolderById(parentid: number, loadChild: boolean = false, reLoadChild: boolean = false): NodeInterface {
+    const result = this.findFolderByIdHelper(parentid);
+    this.store.setState({ type: SET_LOADING_STATE, payload: false });
 
     if (result === null) {
-      console.warn('[Node Service] Cannot find node by id. Id not existing or not fetched. Returning root.');
-      return this.tree.nodes;
+      return this.serviceTree.nodes;
+    }
+    if (!loadChild) {
+      return result;
+    }
+    if (reLoadChild) {
+      result.children = [];
+    }
+    if (reLoadChild || !result.children || result.children.length === 0) {
+      this.refreshCurrentPath();
+    }
+    return result;
+  }
+
+  public findFolderById(parentid: number): NodeInterface {
+    const result = this.findFolderByIdHelper(parentid);
+    this.store.setState({ type: SET_LOADING_STATE, payload: false });
+
+    if (result === null) {
+      return this.serviceTree.nodes;
     }
 
     return result;
   }
 
-  public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): NodeInterface {
+  public findFolderByIdHelper(id: number, node: NodeInterface = this.serviceTree.nodes): NodeInterface {
     if (node.id === id) {
       return node;
     }
 
-    const keys = Object.keys(node.children);
-
-    for (let i = 0; i < keys.length; i++) {
-      if (typeof node.children[keys[i]] === 'object') {
-        const obj = this.findNodeByIdHelper(id, node.children[keys[i]]);
-        if (obj != null) {
-          return obj;
-        }
+    if (!node.children || node.children.length === 0) {
+      return null;
+    }
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < node.children.length; i++) {
+      const obj = this.findFolderByIdHelper(id, node.children[i]);
+      if (obj != null && obj.isFolder) {
+        return obj;
       }
     }
 
     return null;
   }
 
-  public foldRecursively(node: NodeInterface) {
-    // console.log('folding ', node);
-    const children = node.children;
-
-    Object.keys(children).map((child: string) => {
-      if (!children.hasOwnProperty(child) || !children[child].isExpanded) {
+  public foldRecursively(node: NodeInterface): void {
+    if (!node.children || node.children.length === 0) {
+      return null;
+    }
+    node.children.forEach((child) => {
+      if (!child.children || !child.children.find((x) => x.isExpanded)) {
         return null;
       }
-
-      this.foldRecursively(children[child]);
-      //todo put this getElById into one func (curr inside node.component.ts + fm.component.ts) - this won't be maintainable
-      document.getElementById('tree_' + children[child].pathToNode).classList.add('deselected');
-      children[child].isExpanded = false;
+      this.foldRecursively(child);
+      document.getElementById('tree_' + child.id).classList.add('deselected');
+      child.isExpanded = false;
     });
   }
 
-  public foldAll() {
-    this.foldRecursively(this.tree.nodes);
-  }
-
-  get currentPath(): string {
-    return this._path;
-  }
-
-  set currentPath(value: string) {
-    this._path = value;
+  public foldAll(): void {
+    this.foldRecursively(this.serviceTree.nodes);
   }
 }

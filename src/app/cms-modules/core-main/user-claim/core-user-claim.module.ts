@@ -35,7 +35,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CoreUserClaimContentListComponent } from './content/list/list.component';
 import { CoreUserClaimContentAddComponent } from './content/add/add.component';
 import { CoreUserClaimContentEditComponent } from './content/edit/edit.component';
-import { CmsFileManagerModule } from 'src/app/modules/file-manager/file-manager.module';
+import { CmsFileManagerModule } from 'src/app/modules/file-manager/cms-filemanager.module';
 import { CoreUserClaimContentCheckListComponent } from './content/check-list/check-list.component';
 
 @NgModule({

@@ -1,30 +1,40 @@
 <ng-container *ngIf="isPopup; then itIsPopup else showContent"></ng-container>
 
 <ng-template #itIsPopup>
-  <div *ngIf="!fmOpen">
-    <button class="button big" (click)="fmShowHide()">{{openFilemanagerButtonLabel}}</button>
+  <div>
+    <button  type="button"  class="button big" (click)="fmShowHide(true)" [disabled]="openPopupForm"
+      *ngIf="openFilemanagerButtonView">{{openFilemanagerButtonLabel}}( openPopupForm:{{this.openPopupForm}}
+      )</button>
   </div>
-  <div class="file-manager-backdrop" *ngIf="fmOpen">
-    <div class="fmModalInside">
-      <div *ngIf="fmOpen; then showContent"></div>
-      <div class="buttons-panel">
-        <button class="button big" (click)="confirmSelection()" [disabled]="!selectedNode">{{'filemanager.confirm_selection' | translate}}</button>
-        <button class="button big" (click)="cancelSelection()">{{'filemanager.cancel_selection' | translate}}</button>
+  <div class="modal" #mainModal>
+    <div class="jw-modal-body">
+      <div class="jw-modal">
+        <br>
+        <div *ngIf="this.openPopupForm; then showContent"></div>
+        <div class="buttons-panel">
+          <button type="button" class="button big" (click)="confirmSelection()"
+            [disabled]="!allowConfirmSelection(selectedNode)">{{'filemanager.confirm_selection' | translate}}</button>
+          <button type="button"  class="button big" (click)="cancelSelection()">{{'filemanager.cancel_selection' | translate}}</button>
+        </div>
       </div>
     </div>
+    <div class="jw-modal-background"></div>
   </div>
-</ng-template>
 
+
+</ng-template>
 <ng-template #showContent>
   <div class="content">
     <div class="file-manager-navbar">
       <div class="path">
-        <app-nav-bar></app-nav-bar>
+        <app-nav-bar></app-nav-bar>{{tree.config.options.title}}
+
+        {{configSelectFileType.join(",")}}
       </div>
 
       <div class="navigation">
         <app-navigation>
-          <div class="button close" (click)="fmShowHide()" *ngIf="isPopup">
+          <div class="button close" (click)="fmShowHide(false)" *ngIf="isPopup">
             <i class="fas fa-2x fa-times"></i>
           </div>
         </app-navigation>
@@ -33,41 +43,39 @@
 
     <div class="holder">
       <div class="file-manager-left">
-        <app-tree [treeModel]="tree">
+        <app-tree [treeModel]="nodeService.serviceTree" [config]="tree.config">
           <ng-template let-nodes>
             <ng-container [ngTemplateOutletContext]="{$implicit: nodes}"
-                          [ngTemplateOutlet]="iconTemplate ? iconTemplate : defaultIconTemplate">
+              [ngTemplateOutlet]="iconTemplate ? iconTemplate : defaultIconTemplate">
             </ng-container>
           </ng-template>
         </app-tree>
       </div>
 
       <div class="right">
-        <app-folder-content
-          (openUploadDialog)="handleUploadDialog($event)"
+        <app-folder-content (openUploadDialog)="handleUploadDialog($event)"
           [folderContentTemplate]="folderContentTemplate ? folderContentTemplate : defaultFolderContentTemplate"
           [folderContentNewTemplate]="folderContentNewTemplate ? folderContentNewTemplate : defaultFolderContentNewTemplate"
+          [folderContentReloadTemplate]="folderContentReloadTemplate ? folderContentReloadTemplate : defaultFolderContentReloadTemplate"
           [folderContentBackTemplate]="folderContentBackTemplate ? folderContentBackTemplate : defaultFolderContentBackTemplate">
         </app-folder-content>
       </div>
 
-      <app-side-view id="side-view"
-                     [node]="selectedNode"
-                     [sideViewTemplate]="sideViewTemplate ? sideViewTemplate : defaultSideViewTemplate"
-                     [allowFolderDownload]="tree.config.options.allowFolderDownload"
-                     (clickEvent)="handleFileManagerClickEvent($event)">
+      <app-side-view id="side-view" [node]="selectedNode"
+        [sideViewTemplate]="sideViewTemplate ? sideViewTemplate : defaultSideViewTemplate"
+        [allowFolderDownload]="tree.config.options.allowFolderDownload"
+        (clickEvent)="handleFileManagerClickEvent($event)">
       </app-side-view>
     </div>
   </div>
 
-  <app-upload *ngIf="newDialog"
-              [openDialog]="newDialog"
-              (closeDialog)="handleUploadDialog(false)"
-              (createDir)="handleFileManagerClickEvent({type: 'createFolder', payload: $event})">
+  <app-upload *ngIf="newDialog" [openDialog]="newDialog" [optionApiPath]="tree?.config?.baseUploadURL"
+    (closeDialog)="handleUploadDialog(false)"
+    (createDir)="handleFileManagerClickEvent({type: 'createFolder', payload: $event})"
+    (optionUploadSuccess)="onActionUploadSuccess($event)" >
   </app-upload>
 
-  <app-loading-overlay
-    *ngIf="loading"
+  <app-loading-overlay *ngIf="loading"
     [loadingOverlayTemplate]="loadingOverlayTemplate ? loadingOverlayTemplate : defaultLoadingOverlayTemplate">
   </app-loading-overlay>
 </ng-template>
@@ -117,6 +125,13 @@
     </div>
   </div>
 </ng-template>
+<ng-template let-node #defaultFolderContentReloadTemplate>
+  <div class="file-manager-item">
+    <div class="file-preview" style="width: 100%; height:100%">
+      <i class="fas fa-2x fa-refresh" style="line-height: 5"></i>
+    </div>
+  </div>
+</ng-template>
 <ng-template let-timeoutMessage #defaultLoadingOverlayTemplate>
   <div class="file-manager-backdrop loading" (click)="backdropClicked()">
     <div class="file-manager-error" *ngIf="timeoutMessage">{{timeoutMessage | translate}}</div>
@@ -126,9 +141,35 @@
   </div>
 </ng-template>
 <ng-template let-node #defaultSideViewTemplate>
-  <div style="position: absolute; bottom: 0; width: 100%; margin: 5px auto">
-    <span *ngIf="node.isFolder">{{'filemanager.no_data' | translate}}</span>
-    <span *ngIf="!node.isFolder">{{'filemanager.no_data' | translate}}</span>
+  <div *ngIf="node.isFolder" style="position: absolute; bottom: 0; width: 100%; margin: 5px auto">
+    <span>
+      {{'filemanager.created_date' | translate}}: {{node.CreatedDate}}
+    </span>
+    <br />
+    <span *ngIf="node.UpdatedDate">
+      {{'filemanager.updated_date' | translate}}: {{node.UpdatedDate}}
+    </span>
+  </div>
+  <div *ngIf="!node.isFolder" style="position: absolute; bottom: 0; width: 100%; margin: 5px auto">
+    <span>
+      {{'filemanager.created_date' | translate}}: {{node.CreatedDate}}
+    </span>
+    <br />
+    <span *ngIf="node.UpdatedDate">
+      {{'filemanager.updated_date' | translate}}: {{node.UpdatedDate}}
+    </span>
+    <br />
+    <span>
+      {{'filemanager.type' | translate}}: {{node.type}}
+    </span>
+    <br />
+    <span>
+      {{'filemanager.size' | translate}}: {{node.size}}
+    </span>
+    <br />
+    <span *ngIf="!AllowFileView(selectedNode)" style="color:red;">
+      Only Select : {{configSelectFileType.join(' - ')}}
+    </span>
   </div>
 </ng-template>
 
@@ -144,23 +185,23 @@
     {{'filemanager.new_name' | translate}}
   </p>
   <input type="text" class="rename-input" [value]="selectedNode.name" #renameInput
-         (keyup.enter)="handleFileManagerClickEvent({type: 'rename', value: renameInput.value})">
+    (keyup.enter)="handleFileManagerClickEvent({type: 'rename', value: renameInput.value})">
   <br>
 
+
   <div class="rename-button">
-    <button class="button big"
-            (click)="handleFileManagerClickEvent({type: 'rename', value: renameInput.value})"
-            [disabled]="renameInput.value === selectedNode.name || renameInput.value.length === 0">
+    <button  type="button"  class="button big" (click)="handleFileManagerClickEvent({type: 'rename', value: renameInput.value})"
+      [disabled]="renameInput.value === selectedNode.name || renameInput.value.length === 0">
       {{'filename.rename' | translate}}
     </button>
-    <button class="button big" (click)="renameModal.close()">
+    <button  type="button"  class="button big" (click)="renameModal.close()">
       {{'filemanager.cancel' | translate}}
     </button>
   </div>
 
 </ntk-smart-modal>
-<ntk-smart-modal *ngIf="selectedNode" identifier="confirmDeleteModal" #deleteModal
-                 [dismissable]="false" [closable]="false">
+<ntk-smart-modal *ngIf="selectedNode" identifier="confirmDeleteModal" #deleteModal [dismissable]="false"
+  [closable]="false">
   <h2 class="modal-title">
     <span>{{'filemanager.file_delete_confirm' | translate}}</span>
     <span *ngIf="selectedNode.isFolder">{{'filemanager.folder' | translate}}</span>
@@ -170,23 +211,23 @@
   <div style="width: 100%; margin: 5px auto; text-align: center">{{selectedNode.name}}</div>
 
   <div class="rename-button">
-    <button class="button big" (click)="handleFileManagerClickEvent({type: 'remove'})">
+    <button  type="button"  class="button big" (click)="handleFileManagerClickEvent({type: 'remove'})">
       <span>{{'filemanager.yes_delete_this' | translate}}</span>
       <span *ngIf="selectedNode.isFolder">{{'filemanager.folder' | translate}}</span>
       <span *ngIf="!selectedNode.isFolder">{{'filemanager.file' | translate}}</span>
     </button>
-    <button class="button big" (click)="deleteModal.close()">
+    <button  type="button" class="button big" (click)="deleteModal.close()">
       {{'filemanager.cancel'|translate}}
     </button>
   </div>
 </ntk-smart-modal>
 <ntk-smart-modal identifier="searchModal" #searchModal [closable]="true">
   <h2 class="modal-title" style="margin-bottom: 2px"
-      *ngIf="searchModal.hasData() && searchModal.getData().response.length !== 0">
+    *ngIf="searchModal.hasData() && searchModal.getData().response.length !== 0">
     {{'filemanager.search_results_for' | translate}}
   </h2>
   <h2 class="modal-title" style="margin-bottom: 2px"
-      *ngIf="!searchModal.hasData() || searchModal.getData().response.length === 0">
+    *ngIf="!searchModal.hasData() || searchModal.getData().response.length === 0">
     {{'filemanager.no_results' | translate}}
   </h2>
   <div style="text-align: center" *ngIf="searchModal.hasData()">{{searchModal.getData().searchString}}</div>

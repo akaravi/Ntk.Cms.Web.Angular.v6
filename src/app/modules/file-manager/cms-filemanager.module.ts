@@ -1,7 +1,7 @@
 // import {ModuleWithProviders, NgModule} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FileManagerComponent } from './file-manager.component';
+import { CmsFileManagerComponent } from './cms-filemanager.component';
 import { FolderContentComponent } from './components/folder-content/folder-content.component';
 import { TreeComponent } from './components/tree/tree.component';
 import { NodeListerComponent } from './components/tree/node-lister/node-lister.component';
@@ -15,10 +15,10 @@ import { UploadComponent } from './components/functions/upload/upload.component'
 import { NewFolderComponent } from './components/functions/upload/new-folder/new-folder.component';
 import { SideViewComponent } from './components/side-view/side-view.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-// import {NgxSmartModalModule} from 'ngx-smart-modal';
+import { NtkSmartModalModule } from 'ngx-ntk-smart-module';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NtkSmartModalModule } from 'ngx-ntk-smart-module';
+import { FilePickerModule } from 'ngx-awesome-uploader';
 
 
 @NgModule({
@@ -26,10 +26,11 @@ import { NtkSmartModalModule } from 'ngx-ntk-smart-module';
     HttpClientModule,
     CommonModule,
     NtkSmartModalModule.forRoot(),
-    TranslateModule
+    TranslateModule,
+    FilePickerModule
   ],
   declarations: [
-    FileManagerComponent,
+    CmsFileManagerComponent,
     FolderContentComponent,
     NodeComponent,
     TreeComponent,
@@ -44,7 +45,7 @@ import { NtkSmartModalModule } from 'ngx-ntk-smart-module';
     NavigationComponent
   ],
   exports: [
-    FileManagerComponent,
+    CmsFileManagerComponent,
     LoadingOverlayComponent,
     SideViewComponent,
     TranslateModule

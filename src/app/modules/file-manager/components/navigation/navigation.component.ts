@@ -14,10 +14,10 @@ export class NavigationComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  onClick(input: string) {
-    this.nodeClickedService.searchForString(input);
+  onClick(input: string): void {
+    this.nodeClickedService.actionSearchForString(input);
   }
 }
