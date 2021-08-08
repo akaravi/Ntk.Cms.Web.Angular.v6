@@ -1,0 +1,7 @@
+ 
+<ul *ngFor="let folder of fms.rootItem.subItems | treeFolderFilter" class="tree">
+    <li>
+        <app-filemanage-tree-node [folder]="folder"></app-filemanage-tree-node>
+    </li>
+</ul>
+<!-- <tree-node class="tree" [folder]="fms.rootItem"></tree-node> -->

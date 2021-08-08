@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileManagerService } from '../filemanager.service';
-// import { ContextMenuComponent } from 'ngx-contextmenu';
+import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
     selector: 'app-filemanager-explorer-view',
@@ -16,10 +16,13 @@ export class FileManagerExplorerComponent implements OnInit {
 
     }
 
-    // @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
+    @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
     ngOnInit() { }
 
     showMessage(msg) {
         alert(msg);
+    }
+    close(){
+        
     }
 }

@@ -162,12 +162,19 @@ export class FileManagerService {
 
   private getSubItems(node: FileItem) {
     node.isLoadingsubItems = true;
-    this.apiService.getList(node.path).subscribe((data: any) => {
-      node.subItems = this.mapSubItems(data, node);
-      node.isLoadingsubItems = false;
+    this.apiService.getCategoryList(node.path).subscribe((dataCat: any) => {
+      node.subItems = this.mapSubItems(dataCat, node);
+      this.apiService.getFileList(node.path).subscribe((dataFile: any) => {
+        const fileItems = this.mapSubItems(dataFile, node);
+        node.subItems = node.subItems.concat(fileItems);
+        node.isLoadingsubItems = false;
+      }, () => {
+        node.isLoadingsubItems = false;
+      });
     }, () => {
       node.isLoadingsubItems = false;
     });
+
   }
 
   public rename(node, template) {

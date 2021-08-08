@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FilemanagerConfig } from './filemanager.config';
-import { FileContentService, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { FileCategoryService, FileContentService, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { map } from 'rxjs/operators';
+import { FileItem } from './models/fileItem';
 
 
 @Injectable()
@@ -9,6 +11,7 @@ export class FileManagerApiService {
 
   constructor(
     private fileContentService: FileContentService,
+    private fileCategoryService: FileCategoryService,
   ) { }
 
 
@@ -16,23 +19,64 @@ export class FileManagerApiService {
     return `${this._config.apBaseiUrl}${methodName}?rootpath=${this._config.rootPath}`;
   }
 
-  getList(path: string) {
-
+  getCategoryList(path: string) {
     const folderId = +path | 0;
+    // const filterModel = new FilterModel();
+    // filterModel.RowPerPage = 100;
+    // filterModel.SortColumn = 'Title';
+    // filterModel.Filters = [];
+    // const filter = new FilterDataModel();
+    // filter.PropertyName = 'LinkParentId';
+    // filter.Value = folderId;
 
+    // filterModel.Filters.push(filter);
+    return this.fileCategoryService.ServiceGetSubCategoryFromCategory(folderId).pipe(
+      map((x) => {
+        const retList: FileItem[] = [];
 
-    const filterModel = new FilterModel();
-    filterModel.RowPerPage = 100;
-    filterModel.SortColumn = 'Title';
-    filterModel.Filters = [];
-    const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkParentId';
-    if (folderId > 0) {
-      filter.Value = folderId;
-    }
-    filterModel.Filters.push(filter);
-debugger;
-    return this.fileContentService.ServiceGetAll(filterModel); // .map(x => x.ListItems);
+        x.ListItems.forEach(element => {
+          const item = new FileItem();
+          item.type = 'dir';
+          item.id = element.Id + '';
+          item.name = element.Title;
+          retList.push(item);
+        });
+        return retList;
+      })
+    );
+    //.map(x => x.ListItems);
+    // return this.http.post(this.getUrl(this._config.listAction), { "path": path }).map(x => x.json());
+    // return this.http.post(this.getUrl('/list'), { "path": path }).map(x => {
+    //   return x.json();
+    // });
+
+  }
+  getFileList(path: string) {
+    const folderId = +path | 0;
+    // const filterModel = new FilterModel();
+    // filterModel.RowPerPage = 100;
+    // filterModel.SortColumn = 'Title';
+    // filterModel.Filters = [];
+    // const filter = new FilterDataModel();
+    // filter.PropertyName = 'LinkParentId';
+    // filter.Value = folderId;
+
+    // filterModel.Filters.push(filter);
+    return this.fileContentService.ServiceGetFilesInCategoryId(folderId).pipe(
+      map((x) => {
+        const retList: FileItem[] = [];
+        x.ListItems.forEach(element => {
+          const item = new FileItem();
+          item.type = 'file';
+          item.id = element.Id + '';
+          item.name = element.FileName;
+          item.type = element.Extension;
+          retList.push(item);
+        });
+        return retList;
+      })
+    );
+    //.map(x => x.ListItems);
     // return this.http.post(this.getUrl(this._config.listAction), { "path": path }).map(x => x.json());
     // return this.http.post(this.getUrl('/list'), { "path": path }).map(x => {
     //   return x.json();

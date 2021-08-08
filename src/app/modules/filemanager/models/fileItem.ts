@@ -8,6 +8,8 @@ export class FileItem {
     isOpen?: boolean;
     isSelected?: boolean;
     parent?: FileItem;
+    size: number;
+    dtCreated: Date;
     isLoadingsubItems?: boolean = false;
 }
 
