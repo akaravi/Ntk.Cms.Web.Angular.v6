@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'ngx-file-manager',
-    templateUrl: 'filemanager.html',
-    styleUrls:['filemanager.css']
-     
+    selector: 'app-ngx-file-manager',
+    templateUrl: 'filemanager.component.html',
+    styleUrls: ['filemanager.component.css']
+
 })
 
 export class FileManager2Component implements OnInit {

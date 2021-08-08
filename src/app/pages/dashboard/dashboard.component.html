@@ -1,4 +1,9 @@
 <div class="row">
+  <div class="col-xl-12">
+    <app-ngx-file-manager></app-ngx-file-manager>
+  </div>
+</div>
+<div class="row" *ngIf="expression">
   <div class="col-xl-4">
     <div class="row">
       <div class="col-xl-12">
@@ -31,7 +36,7 @@
       </div>
       <div class="col-xl-4">
         <app-blog-content-widget2 *ngIf="CheckModuleExist('blog')" cssClass="gutter-b" [widgetHeight]="'200px'"
-        [baseColor]="'primary'"></app-blog-content-widget2>
+          [baseColor]="'primary'"></app-blog-content-widget2>
       </div>
     </div>
     <div class="row">
@@ -56,6 +61,6 @@
     </div>
   </div>
 </div>
-<ng-container *ngIf="this.env.loadDemoDashboard">
+<ng-container *ngIf="this.env.loadDemoDashboard && expression">
   <app-dashboard-wrapper></app-dashboard-wrapper>
 </ng-container>

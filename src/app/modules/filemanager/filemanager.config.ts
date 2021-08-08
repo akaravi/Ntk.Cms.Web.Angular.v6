@@ -3,10 +3,10 @@ export class FilemanagerConfig {
 
     public static getConfig() {
         FilemanagerConfig._config = {
-            apBaseiUrl: "http://localhost:2390/api/v1/FmUtil",
-            listAction: "/list",
-            rootPath:"D:\\SourceKaravi"
-        }
+            apBaseiUrl: 'http://localhost:2390/api/v1/FmUtil',
+            listAction: '/list',
+            rootPath: 'D:\\SourceKaravi'
+        };
 
         return FilemanagerConfig._config;
     }
@@ -16,7 +16,7 @@ export class FilemanagerConfig {
 }
 
 interface configData {
-    rootPath:string;
+    rootPath: string;
     apBaseiUrl: string;
     listAction: string;
 

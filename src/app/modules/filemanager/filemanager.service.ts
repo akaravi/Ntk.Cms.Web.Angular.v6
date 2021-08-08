@@ -1,22 +1,22 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { FileItem } from './models/fileItem';
-import { FileManagerApiService } from './filemanager.apiService';
+
+import { FileManagerApiService } from './filemanagerApi.Service';
 import { FilemanagerConfig } from './filemanager.config';
-import 'rxjs/add/operator/catch';
 // import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { FileItem } from './models/fileItem';
+// import { FileItem } from './models/fileItem';
 // import 'rxjs/Rx';
 
 // import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
-import { FileUploadModalComponent } from './upload/fileUpload.component';
+
 
 @Injectable()
 export class FileManagerService {
 
 
-  constructor(private apiService: FileManagerApiService,  private toast: ToastrService) {
+  constructor(private apiService: FileManagerApiService) {
     this.selected = new FileItem();
-
     this.setRoot();
   }
 

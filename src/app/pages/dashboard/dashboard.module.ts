@@ -40,6 +40,7 @@ import { ChartContentWidget2Component } from 'src/app/cms-modules/chart/content/
 import { ApplicationMemberInfoWidget2Component } from 'src/app/cms-modules/application/memberInfo/widget/widget2.component';
 import { CoreSiteWidgetCount2Component } from 'src/app/cms-modules/core-main/site/widget/count/widget2.component';
 import { ApplicationAppWidgetCreateComponent } from 'src/app/cms-modules/application/content/widget/create/widget-create.component';
+import { CmsFileManager2Module } from 'src/app/modules/filemanager/filemanager.module';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ApplicationAppWidgetCreateComponent } from 'src/app/cms-modules/applica
     NgApexchartsModule,
     TranslationModule,
     SharedModule.forRoot(),
+    CmsFileManager2Module
   ],
   providers: [
     PublicHelper,

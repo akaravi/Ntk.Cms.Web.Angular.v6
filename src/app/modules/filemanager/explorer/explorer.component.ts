@@ -1,16 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FileManagerService } from '../filemanager.service';
 // import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
-    selector: 'explorer-view',
-    templateUrl: 'explorer.html',
-    styleUrls: ['explorer.css']
+    selector: 'app-filemanager-explorer-view',
+    templateUrl: 'explorer.component.html',
+    styleUrls: ['explorer.component.css']
 
 })
 
-export class ExplorerComponent implements OnInit {
-    constructor(public fms: FileManagerService) {
+export class FileManagerExplorerComponent implements OnInit {
+    constructor(
+        public fms: FileManagerService
+        ) {
 
     }
 
