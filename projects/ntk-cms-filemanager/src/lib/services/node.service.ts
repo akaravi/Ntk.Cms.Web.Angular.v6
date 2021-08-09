@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { TreeModel } from '../models/tree.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { FileManagerStoreService, SET_LOADING_STATE, SET_PATH, SET_SELECTED_NODE } from './file-manager-store.service';
-import { flatMap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { FileCategoryService, FileContentService } from 'ntk-cms-api';
 
 @Injectable({
@@ -27,7 +27,13 @@ export class NodeService {
     this.currentPath = path;
     this.refreshCurrentPath();
   }
-
+  public refreshCurrentPath_orginal(): void {
+    this.findNodeByPath_orginal(this.currentPath).children = [];
+    this.getNodes_orginal(this.currentPath).then(() => {
+      this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.tree.nodes });
+      this.store.dispatch({ type: SET_PATH, payload: this.currentPath });
+    });
+  }
   public refreshCurrentPath(): void {
     this.findNodeByPath(this.currentPath).children = [];
     this.getNodes(this.currentPath).then(() => {
@@ -35,13 +41,25 @@ export class NodeService {
       this.store.dispatch({ type: SET_PATH, payload: this.currentPath });
     });
   }
+  getNodes_orginal(path: string): Promise<Array<NodeInterface>> {
+    return new Promise((resolve => {
+      this.parseNodes_orginal(path).subscribe((data: Array<NodeInterface>) => {
+        for (let i = 0; i < data.length; i++) {
+          const parentPath = this.getParentPath(data[i].pathToNode);
+          this.findNodeByPath_orginal(parentPath).children[data[i].name] = data[i];
+        }
 
+        resolve(null);
+      });
+    }));
+  }
   getNodes(path: string): Promise<Array<NodeInterface>> {
     return new Promise((resolve => {
       this.parseNodes(path).subscribe((data: Array<NodeInterface>) => {
         for (let i = 0; i < data.length; i++) {
+          //debugger
           const parentPath = this.getParentPath(data[i].pathToNode);
-          this.findNodeByPath(parentPath).children[data[i].name] = data[i];
+          this.findNodeByPath(parentPath).children[data[i].id] = data[i];
         }
 
         resolve(null);
@@ -60,7 +78,7 @@ export class NodeService {
   }
   private parseNodes_orginal(path: string): Observable<NodeInterface[]> {
     return new Observable(observer => {
-      this.getNodesFromServer(path).subscribe((data: Array<any>) => {
+      this.getNodesFromServer_orginal(path).subscribe((data: Array<any>) => {
         observer.next(data.map(node => this.createNode_orginal(path, node)));
         this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
       });
@@ -68,14 +86,13 @@ export class NodeService {
   }
   private parseNodes(path: string): Observable<NodeInterface[]> {
     return new Observable(observer => {
-      this.getNodesFromServerNtk(path).subscribe((data: Array<any>) => {
-        debugger;
+      this.getNodesFromServer(path).subscribe((data: Array<any>) => {
+        //debugger
         observer.next(data.map(node => this.createNode(path, node)));
         this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
       });
     });
   }
-
   private createNode_orginal(path, node): NodeInterface {
     if (node.path[0] !== '/') {
       console.warn('[Node Service] Server should return initial path with "/"');
@@ -88,7 +105,7 @@ export class NodeService {
       node.path = ids.join('/');
     }
 
-    const cachedNode = this.findNodeByPath(node.path);
+    const cachedNode = this.findNodeByPath_orginal(node.path);
 
     return <NodeInterface>{
       id: node.id,
@@ -101,7 +118,7 @@ export class NodeService {
     };
   }
   private createNode(path: string, node: NodeInterface): NodeInterface {
-    debugger
+    //debugger
     if (node.parentId && node.parentId > 0) {
       console.warn('[Node Service] Server should return initial path with "/"');
       node.pathToNode = '/' + node.pathToNode;
@@ -114,20 +131,20 @@ export class NodeService {
     }
 
     const cachedNode = this.findNodeByPath(node.pathToNode);
+    const pathToParentVar = this.getParentPath(node.pathToNode);
 
     return <NodeInterface>{
       id: node.id,
       isFolder: node.isFolder,
       isExpanded: cachedNode ? cachedNode.isExpanded : false,
       pathToNode: node.pathToNode,
-      pathToParent: this.getParentPath(node.pathToNode),
+      pathToParent: pathToParentVar,
       name: node.name || node.id,
-      children: cachedNode ? cachedNode.children : {},
+      children: cachedNode ? cachedNode.children : [],
     };
   }
-
-  private getNodesFromServer(path: string): Observable<any> {
-    let folderId: any = this.findNodeByPath(path).id;
+  private getNodesFromServer_orginal(path: string): Observable<any> {
+    let folderId: any = this.findNodeByPath_orginal(path).id;
     folderId = folderId === 0 ? '' : folderId;
 
     return this.http.get(
@@ -136,57 +153,54 @@ export class NodeService {
     );
 
   }
-  private getNodesFromServerNtk(path: string): Observable<Array<NodeInterface>> {
-    let folderId: any = this.findNodeByPath(path).id;
-    folderId = folderId === 0 ? '' : folderId;
+  private getNodesFromServer(path: string): Observable<Array<NodeInterface>> {
+    debugger;
+    const findN = this.findNodeByPath(path);
+    const folderId = findN ? findN.id : 0;
+    // folderId = folderId === 0 ? '' : folderId;
     const retOut = new Observable<Array<NodeInterface>>(observer => {
-      return this.getCategoryList(path).subscribe(
+      return this.getCategoryList(folderId, path).subscribe(
         xCat => {
-          // return xCat;
-          return this.getFileList(path).subscribe(
+          return this.getFileList(folderId, path).subscribe(
             (
               xfile => {
                 xfile = xfile.concat(xCat);
                 observer.next(xfile);
-                //return ;
               })
           );
         })
     });
-    // const retOut = this.getCategoryList(path).subscribe(
-    //   (xCat => {
-    //     // return xCat;
-    //     return this.getFileList(path).subscribe(
-    //       (
-    //         xfile => {
-    //           xfile = xfile.concat(xCat)
-    //           return xfile;
-    //         })
-    //     );
-    //   })
-    // );
     return retOut;
-
-    // let listCat:Array<NodeInterface> = [];
-    // let listFile:Array<NodeInterface> = [];
-    // const aaa = new Observable(observer => {
-    //   observer.next(this.getCategoryList(path).subscribe(next => { listCat = next }));
-    //   observer.next(this.getFileList(path).subscribe(next => { listFile = next }));
-    //   observer.complete();
-    //   listCat = listCat.concat(listCat);
-    // });
-
-    // return aaa.subscribe(()=>{ return listCat});
   }
-
-  public findNodeByPath(nodePath: string): NodeInterface {
+  public findNodeByPath_orginal(nodePath: string): NodeInterface {
     const ids = nodePath.split('/');
     ids.splice(0, 1);
 
     return ids.length === 0 ? this.tree.nodes : ids.reduce((value, index) => value['children'][index], this.tree.nodes);
   }
+  public findNodeByPath(nodePath: string): NodeInterface {
+    // debugger
+    const ids = nodePath.split('/');
+    ids.splice(0, 1);
+    if (ids.length === 0) {
+      return this.tree.nodes;
+    }
+    const retOut = ids.reduce((value, index) => value['children'][index], this.tree.nodes);
+    return retOut;
+  }
 
+  public findNodeById_orginal(id: number): NodeInterface {
+    const result = this.findNodeByIdHelper_orginal(id);
+
+    if (result === null) {
+      console.warn('[Node Service] Cannot find node by id. Id not existing or not fetched. Returning root.');
+      return this.tree.nodes;
+    }
+
+    return result;
+  }
   public findNodeById(id: number): NodeInterface {
+    //debugger
     const result = this.findNodeByIdHelper(id);
 
     if (result === null) {
@@ -197,7 +211,27 @@ export class NodeService {
     return result;
   }
 
+  public findNodeByIdHelper_orginal(id: number, node: NodeInterface = this.tree.nodes): NodeInterface {
+    if (node.id === id) {
+      return node;
+    }
+
+    const keys = Object.keys(node.children);
+
+    for (let i = 0; i < keys.length; i++) {
+      if (typeof node.children[keys[i]] === 'object') {
+        const obj = this.findNodeByIdHelper_orginal(id, node.children[keys[i]]);
+        if (obj != null) {
+          return obj;
+        }
+      }
+    }
+
+    return null;
+  }
   public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): NodeInterface {
+    //debugger
+
     if (node.id === id) {
       return node;
     }
@@ -216,6 +250,21 @@ export class NodeService {
     return null;
   }
 
+  public foldRecursively_orginal(node: NodeInterface): void {
+    // console.log('folding ', node);
+    const children = node.children;
+
+    Object.keys(children).map((child: string) => {
+      if (!children.hasOwnProperty(child) || !children[child].isExpanded) {
+        return null;
+      }
+
+      this.foldRecursively_orginal(children[child]);
+      //todo put this getElById into one func (curr inside node.component.ts + fm.component.ts) - this won't be maintainable
+      document.getElementById('tree_' + children[child].pathToNode).classList.add('deselected');
+      children[child].isExpanded = false;
+    });
+  }
   public foldRecursively(node: NodeInterface): void {
     // console.log('folding ', node);
     const children = node.children;
@@ -232,6 +281,9 @@ export class NodeService {
     });
   }
 
+  public foldAll_orginal(): void {
+    this.foldRecursively_orginal(this.tree.nodes);
+  }
   public foldAll(): void {
     this.foldRecursively(this.tree.nodes);
   }
@@ -243,8 +295,8 @@ export class NodeService {
   set currentPath(value: string) {
     this._path = value;
   }
-  getCategoryList(path: string): Observable<Array<NodeInterface>> {
-    const folderId = +path | 0;
+  getCategoryList(folderId: number, path: string): Observable<Array<NodeInterface>> {
+    // const folderId = +path | 0;
 
     return this.fileCategoryService.ServiceGetSubCategoryFromCategory(folderId).pipe(
       map((x) => {
@@ -255,23 +307,25 @@ export class NodeService {
             name: element.Title,
             isRoot: true,
             id: element.Id,
-            parentId: element.LinkParentId,
-            pathToNode: '',
-            pathToParent: element.LinkParentId + '',
+            parentId: element.LinkParentId ? element.LinkParentId : null,
+            pathToNode: path + '/' + element.Id,
+            pathToParent: '',
             isFolder: true,
             isExpanded: false
           };
-          if (retList.length < 3) {
+          item.pathToNode = item.pathToNode.replace('//', '/');
+          if (retList.length < 4) {
             retList.push(item);
           }
         });
+
         return retList;
       })
     );
 
   }
-  getFileList(path: string): Observable<Array<NodeInterface>> {
-    const folderId = +path | 0;
+  getFileList(folderId: number, path: string): Observable<Array<NodeInterface>> {
+    // const folderId = +path | 0;
     return this.fileContentService.ServiceGetFilesInCategoryId(folderId).pipe(
       map((x) => {
         const retList: NodeInterface[] = [];
@@ -280,14 +334,14 @@ export class NodeService {
             name: element.FileName,
             isRoot: false,
             id: element.Id,
-            parentId: element.LinkCategoryId,
-            pathToNode: '',
-            pathToParent: element.LinkCategoryId + '',
+            parentId: element.LinkCategoryId ? element.LinkCategoryId : null,
+            pathToNode: path + '/' + (element.LinkCategoryId ? element.LinkCategoryId : ''),
+            pathToParent: '',
             isFolder: false,
             isExpanded: false
           };
-
-          if (retList.length < 3) {
+          item.pathToNode = item.pathToNode.replace('//', '/');
+          if (retList.length < 2) {
             retList.push(item);
           }
         });

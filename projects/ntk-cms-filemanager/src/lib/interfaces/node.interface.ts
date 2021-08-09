@@ -7,7 +7,7 @@ export interface NodeInterface {
   isExpanded: boolean;
   stayOpen?: boolean;
   name?: string;
-  children?: NodeInterface[];
+  children?: any;
 
   type?: string;
   size?: number;
