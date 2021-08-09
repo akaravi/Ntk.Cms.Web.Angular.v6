@@ -6,7 +6,17 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { FileManagerStoreService, SET_LOADING_STATE, SET_PATH, SET_SELECTED_NODE } from './file-manager-store.service';
 import { map } from 'rxjs/operators';
 import { FileCategoryService, FileContentService } from 'ntk-cms-api';
-
+/*
+{
+  size: string           // e.g. '3 KB'
+  url?: string            // download url
+  id: string | number;   // id can be path or database id
+  dir: bool              // is current node dir?
+  path: string           // path to current item (e.g. /folder1/someFile.txt)
+  name?: string          // optional (but we are using id as name if name is not present) (e.g. someFile.txt)
+}
+https://github.com/Chiff/ng6-file-man-express/blob/master/index.js
+*/
 @Injectable({
   providedIn: 'root'
 })
@@ -28,14 +38,14 @@ export class NodeService {
     this.refreshCurrentPath();
   }
   public refreshCurrentPath_orginal(): void {
-    this.findNodeByPath_orginal(this.currentPath).children = [];
+    this.findNodeByPath_orginal(this.currentPath).children = {};
     this.getNodes_orginal(this.currentPath).then(() => {
       this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.tree.nodes });
       this.store.dispatch({ type: SET_PATH, payload: this.currentPath });
     });
   }
   public refreshCurrentPath(): void {
-    this.findNodeByPath(this.currentPath).children = [];
+    this.findNodeByPath(this.currentPath).children = {};
     this.getNodes(this.currentPath).then(() => {
       this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.tree.nodes });
       this.store.dispatch({ type: SET_PATH, payload: this.currentPath });
@@ -57,7 +67,7 @@ export class NodeService {
     return new Promise((resolve => {
       this.parseNodes(path).subscribe((data: Array<NodeInterface>) => {
         for (let i = 0; i < data.length; i++) {
-          //debugger
+
           const parentPath = this.getParentPath(data[i].pathToNode);
           this.findNodeByPath(parentPath).children[data[i].id] = data[i];
         }
@@ -87,7 +97,7 @@ export class NodeService {
   private parseNodes(path: string): Observable<NodeInterface[]> {
     return new Observable(observer => {
       this.getNodesFromServer(path).subscribe((data: Array<any>) => {
-        //debugger
+
         observer.next(data.map(node => this.createNode(path, node)));
         this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
       });
@@ -112,17 +122,17 @@ export class NodeService {
       isFolder: node.dir,
       isExpanded: cachedNode ? cachedNode.isExpanded : false,
       pathToNode: node.path,
-      pathToParent: this.getParentPath(node.path),
+      pathToParent: this.getParentPath_orginal(node.path),
       name: node.name || node.id,
       children: cachedNode ? cachedNode.children : {}
     };
   }
   private createNode(path: string, node: NodeInterface): NodeInterface {
-    //debugger
-    if (node.parentId && node.parentId > 0) {
-      console.warn('[Node Service] Server should return initial path with "/"');
-      node.pathToNode = '/' + node.pathToNode;
-    }
+
+    // if (node.parentId && node.parentId > 0) {
+    //   console.warn('[Node Service] Server should return initial path with "/"');
+    //   node.pathToNode = '/' + node.pathToNode;
+    // }
 
     const ids = node.pathToNode.split('/');
     if (ids.length > 2 && ids[ids.length - 1] === '') {
@@ -140,7 +150,7 @@ export class NodeService {
       pathToNode: node.pathToNode,
       pathToParent: pathToParentVar,
       name: node.name || node.id,
-      children: cachedNode ? cachedNode.children : [],
+      children: cachedNode ? cachedNode.children : {},
     };
   }
   private getNodesFromServer_orginal(path: string): Observable<any> {
@@ -154,7 +164,6 @@ export class NodeService {
 
   }
   private getNodesFromServer(path: string): Observable<Array<NodeInterface>> {
-    debugger;
     const findN = this.findNodeByPath(path);
     const folderId = findN ? findN.id : 0;
     // folderId = folderId === 0 ? '' : folderId;
@@ -179,7 +188,6 @@ export class NodeService {
     return ids.length === 0 ? this.tree.nodes : ids.reduce((value, index) => value['children'][index], this.tree.nodes);
   }
   public findNodeByPath(nodePath: string): NodeInterface {
-    // debugger
     const ids = nodePath.split('/');
     ids.splice(0, 1);
     if (ids.length === 0) {
@@ -200,7 +208,7 @@ export class NodeService {
     return result;
   }
   public findNodeById(id: number): NodeInterface {
-    //debugger
+
     const result = this.findNodeByIdHelper(id);
 
     if (result === null) {
@@ -230,7 +238,7 @@ export class NodeService {
     return null;
   }
   public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): NodeInterface {
-    //debugger
+
 
     if (node.id === id) {
       return node;
@@ -308,17 +316,17 @@ export class NodeService {
             isRoot: true,
             id: element.Id,
             parentId: element.LinkParentId ? element.LinkParentId : null,
-            pathToNode: path + '/' + element.Id,
+            pathToNode: path + '/' + element.Id,// + '/' + element.Id,
             pathToParent: '',
             isFolder: true,
             isExpanded: false
           };
+          item.pathToNode = '/' + item.pathToNode;
           item.pathToNode = item.pathToNode.replace('//', '/');
-          if (retList.length < 4) {
+          // if (retList.length < 4) {
             retList.push(item);
-          }
+          // }
         });
-
         return retList;
       })
     );
@@ -335,15 +343,16 @@ export class NodeService {
             isRoot: false,
             id: element.Id,
             parentId: element.LinkCategoryId ? element.LinkCategoryId : null,
-            pathToNode: path + '/' + (element.LinkCategoryId ? element.LinkCategoryId : ''),
+            pathToNode: path + '/' + element.Id, // + '/' + (element.LinkCategoryId ? element.LinkCategoryId : ''),
             pathToParent: '',
             isFolder: false,
             isExpanded: false
           };
+          item.pathToNode = '/' + item.pathToNode;
           item.pathToNode = item.pathToNode.replace('//', '/');
-          if (retList.length < 2) {
+          // if (retList.length < 2) {
             retList.push(item);
-          }
+          // }
         });
         return retList;
       })
