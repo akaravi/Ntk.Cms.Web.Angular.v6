@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-xl-12">
-    <app-ngx-file-manager></app-ngx-file-manager>
+    <cms-file-manager2 (itemSelected)="itemSelected($event)" [language]="appLanguage" [isPopup]="false" [tree]="tree"
+    [openFilemanagerButtonLabelKey]="'hello.test'"></cms-file-manager2>
   </div>
 </div>
 <div class="row" *ngIf="expression">
