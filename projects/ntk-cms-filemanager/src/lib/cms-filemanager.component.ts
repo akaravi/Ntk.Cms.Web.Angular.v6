@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TreeModel } from './models/tree.model';
 import { NodeService } from './services/node.service';
 import { NodeInterface } from './interfaces/node.interface';
@@ -14,6 +14,8 @@ import { FileManagerStoreService, SET_LOADING_STATE, SET_SELECTED_NODE } from '.
   encapsulation: ViewEncapsulation.None
 })
 export class CmsFileManagerComponent implements OnInit {
+  @ViewChild('mainModal') mainModal: ElementRef;
+
   @Input() iconTemplate: TemplateRef<any>;
   @Input() folderContentTemplate: TemplateRef<any>;
   @Input() folderContentBackTemplate: TemplateRef<any>;
@@ -21,6 +23,8 @@ export class CmsFileManagerComponent implements OnInit {
   @Input() folderContentNewFolderTemplate: TemplateRef<any>;
   @Input() folderContentReloadTemplate: TemplateRef<any>;
 
+
+  @Input() openFilemanagerButtonView = true;
   @Input() loadingOverlayTemplate: TemplateRef<any>;
   @Input() sideViewTemplate: TemplateRef<any>;
   @Input() set selectFileType(model: Array<string>) {
@@ -35,7 +39,26 @@ export class CmsFileManagerComponent implements OnInit {
   @Input() openFilemanagerButtonLabelKey = 'filemanager.open_file_manager';
   @Output() itemClicked = new EventEmitter();
   @Output() itemSelected = new EventEmitter();
-
+  openPopupForm = false;
+  @Output() openFormChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() set openForm(model: boolean) {
+    if (model !== this.openPopupForm && this.mainModal && this.mainModal.nativeElement) {
+      if (model) {
+        this.mainModal.nativeElement.style.display = 'block';
+        document.body.classList.add('jw-modal-open');
+        // this.ntkSmartModalService.getModal('mainModal').open();
+      } else {
+        this.mainModal.nativeElement.style.display = 'none';
+        document.body.classList.remove('jw-modal-open');
+        // this.ntkSmartModalService.getModal('mainModal').close();
+      }
+    }
+    this.openPopupForm = model;
+    this.openFormChange.emit(model);
+  }
+  get openForm(): boolean {
+    return this.openPopupForm;
+  }
 
   openFilemanagerButtonLabel: string;
   private privateLanguage = 'en';
@@ -270,8 +293,12 @@ export class CmsFileManagerComponent implements OnInit {
       .map((el: HTMLElement) => el.classList.remove(className));
   }
 
-  fmShowHide() {
-    this.fmOpen = !this.fmOpen;
+
+  fmShowHide(act: boolean): void {
+    this.openForm = act;
+  }
+  onActionOpen(status: boolean): void {
+    this.fmShowHide(status);
   }
 
   backdropClicked() {
@@ -290,6 +317,20 @@ export class CmsFileManagerComponent implements OnInit {
   confirmSelection() {
     this.fmOpen = false;
     this.itemSelected.emit(this.selectedNode);
+  }
+  allowConfirmSelection(selectedNode: NodeInterface): boolean {
+    if (
+      !selectedNode ||
+      (selectedNode.isFolder && !this.tree.config.options.showSelectFolder) ||
+      (!selectedNode.isFolder && !this.tree.config.options.showSelectFile)
+    ) {
+      return false;
+    }
+    if (!selectedNode.isFolder && !this.AllowFileView(selectedNode)) {
+      return false;
+    }
+
+    return true;
   }
 
   cancelSelection() {

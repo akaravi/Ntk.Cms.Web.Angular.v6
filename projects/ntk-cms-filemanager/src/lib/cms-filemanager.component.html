@@ -1,18 +1,24 @@
 <ng-container *ngIf="isPopup; then itIsPopup else showContent"></ng-container>
 
+
 <ng-template #itIsPopup>
-  <div *ngIf="!fmOpen">
-    <button class="button big" (click)="fmShowHide()">{{openFilemanagerButtonLabel}}</button>
+  <div>
+    <button  type="button"  class="button big" (click)="fmShowHide(true)" [disabled]="openPopupForm"
+      *ngIf="openFilemanagerButtonView">{{openFilemanagerButtonLabel}}</button>
   </div>
-  <div class="file-manager-backdrop" *ngIf="fmOpen">
-    <div class="fmModalInside">
-      <div *ngIf="fmOpen; then showContent"></div>
-      <div class="buttons-panel">
-        <button class="button big" (click)="confirmSelection()"
-          [disabled]="!selectedNode">{{'filemanager.confirm_selection' | translate}}</button>
-        <button class="button big" (click)="cancelSelection()">{{'filemanager.cancel_selection' | translate}}</button>
+  <div class="modal" #mainModal>
+    <div class="jw-modal-body">
+      <div class="jw-modal">
+        <br>
+        <div *ngIf="this.openPopupForm; then showContent"></div>
+        <div class="buttons-panel">
+          <button type="button" class="button big" (click)="confirmSelection()"
+            [disabled]="!allowConfirmSelection(selectedNode)">{{'filemanager.confirm_selection' | translate}}</button>
+          <button type="button"  class="button big" (click)="cancelSelection()">{{'filemanager.cancel_selection' | translate}}</button>
+        </div>
       </div>
     </div>
+    <div class="jw-modal-background"></div>
   </div>
 </ng-template>
 

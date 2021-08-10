@@ -57,21 +57,21 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
     return this.openPopupForm;
   }
 
-  private optionsData: ComponentOptionModel = new ComponentOptionModel();
-  @Output() optionsChange: EventEmitter<ComponentOptionModel> = new EventEmitter<ComponentOptionModel>();
-  @Input() set options(model: ComponentOptionModel) {
-    if (!model) {
-      model = new ComponentOptionModel();
-    }
-    this.optionsData = model;
-    this.optionsData.childMethods = {
-      ActionOpen: (status: boolean) => this.onActionOpen(status),
-    };
-    this.optionsChange.emit(model);
-  }
-  get options(): ComponentOptionModel {
-    return this.optionsData;
-  }
+  // private optionsData: ComponentOptionModel = new ComponentOptionModel();
+  // @Output() optionsChange: EventEmitter<ComponentOptionModel> = new EventEmitter<ComponentOptionModel>();
+  // @Input() set options(model: ComponentOptionModel) {
+  //   if (!model) {
+  //     model = new ComponentOptionModel();
+  //   }
+  //   this.optionsData = model;
+  //   this.optionsData.childMethods = {
+  //     ActionOpen: (status: boolean) => this.onActionOpen(status),
+  //   };
+  //   this.optionsChange.emit(model);
+  // }
+  // get options(): ComponentOptionModel {
+  //   return this.optionsData;
+  // }
 
   openFilemanagerButtonLabel: string;
   private privateLanguage = 'en';

@@ -3,8 +3,7 @@
 <ng-template #itIsPopup>
   <div>
     <button  type="button"  class="button big" (click)="fmShowHide(true)" [disabled]="openPopupForm"
-      *ngIf="openFilemanagerButtonView">{{openFilemanagerButtonLabel}}( openPopupForm:{{this.openPopupForm}}
-      )</button>
+      *ngIf="openFilemanagerButtonView">{{openFilemanagerButtonLabel}}</button>
   </div>
   <div class="modal" #mainModal>
     <div class="jw-modal-body">
@@ -20,8 +19,6 @@
     </div>
     <div class="jw-modal-background"></div>
   </div>
-
-
 </ng-template>
 <ng-template #showContent>
   <div class="content">
