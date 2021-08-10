@@ -43,7 +43,7 @@ import { CoreModuleSaleHeaderGroupHeaderComponent } from './header-group/header/
 import { CoreModuleSaleHeaderHeaderComponent } from './header/header/header.component';
 import { CoreModuleSaleSerialCheckListComponent } from './serial/check-list/check-list.component';
 import { CoreModuleSaleSerialHeaderComponent } from './serial/header/header.component';
-import { CmsFileManagerModule } from 'src/app/modules/file-manager/cms-filemanager.module';
+import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
 import { CoreModuleSaleHeaderSaleListComponent } from './header/sale-list/sale-list.component';
 import { CoreModuleSaleItemListViewComponent } from './Item/listview/listview.component';
 import { CoreModuleSaleHeaderSalePaymentComponent } from './header/sale-payment/sale-payment.component';

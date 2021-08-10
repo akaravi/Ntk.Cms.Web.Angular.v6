@@ -53,7 +53,7 @@ import { FilePickerModule } from 'ngx-awesome-uploader';
   providers: [TranslateService]
 
 })
-export class CmsFileManagerModule {
+export class CmsFileManager2Module {
   // static forRoot(): ModuleWithProviders {
   //   return {
   //     ngModule: FileManagerModule,

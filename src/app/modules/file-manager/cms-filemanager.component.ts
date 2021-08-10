@@ -10,7 +10,7 @@ import { ComponentOptionModel } from './models/componentOptionModel';
 import { FilePreviewModel } from 'ngx-awesome-uploader';
 
 @Component({
-  selector: 'cms-file-manager',
+  selector: 'cms-file-manager2',
   templateUrl: './cms-filemanager.component.html',
   styleUrls: ['./cms-filemanager.component.scss'],
   encapsulation: ViewEncapsulation.None,

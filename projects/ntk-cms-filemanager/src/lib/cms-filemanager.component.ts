@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FileManagerStoreService, SET_LOADING_STATE, SET_SELECTED_NODE } from './services/file-manager-store.service';
 
 @Component({
-  selector: 'cms-file-manager2',
+  selector: 'cms-file-manager',
   templateUrl: './cms-filemanager.component.html',
   styleUrls: ['./cms-filemanager.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -119,8 +119,8 @@ export class CmsFileManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nodeService.tree = this.tree;
-    this.nodeClickedService.tree = this.tree;
+    this.nodeService.serviceTree = this.tree;
+    this.nodeClickedService.serviceTree = this.tree;
 
     this.nodeService.startManagerAt(this.tree.currentPath);
     // this.nodeService.getNodes(this.tree.currentPath).then(() => {

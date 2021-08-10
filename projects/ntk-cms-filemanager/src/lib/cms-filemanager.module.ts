@@ -29,13 +29,14 @@ export function CreateTranslateLoader(http: HttpClient): any {
     HttpClientModule,
     CommonModule,
     NtkSmartModalModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (CreateTranslateLoader),
-        deps: [HttpClient]
-      }
-    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: (CreateTranslateLoader),
+    //     deps: [HttpClient]
+    //   }
+    // }),
+    TranslateModule,
     FilePickerModule
   ],
   declarations: [
@@ -61,7 +62,7 @@ export function CreateTranslateLoader(http: HttpClient): any {
   providers: [TranslateService]
 
 })
-export class CmsFileManager2Module {
+export class CmsFileManagerModule {
   // static forRoot(): ModuleWithProviders {
   //   return {
   //     ngModule: FileManagerModule,

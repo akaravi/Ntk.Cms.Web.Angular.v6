@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { TreeModel } from '../models/tree.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { FileManagerStoreService, SET_LOADING_STATE, SET_PATH, SET_SELECTED_NODE } from './file-manager-store.service';
-import { elementAt, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { FileCategoryService, FileContentService } from 'ntk-cms-api';
 /*
 {
@@ -21,7 +21,7 @@ https://github.com/Chiff/ng6-file-man-express/blob/master/index.js
   providedIn: 'root'
 })
 export class NodeService {
-  public tree: TreeModel;
+  public serviceTree: TreeModel;
   private privatePath: string;
 
   constructor(
@@ -30,8 +30,20 @@ export class NodeService {
     private fileContentService: FileContentService,
     private fileCategoryService: FileCategoryService,
   ) {
+    this.guid = this.newGuid();
+    console.log('constructor:', this.guid);
   }
+  private guid = '';
 
+  private S4(): string {
+    const ran = (1 + Math.random()) * 0x10000;
+    return (ran | 0).toString(16).substring(1);
+  }
+  newGuid(): string {
+    const isString = `${this.S4()}${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}${this.S4()}${this.S4()}`;
+
+    return isString;
+  }
   // todo ask server to get parent structure
   public startManagerAt(path: string): void {
     this.currentPath = path;
@@ -40,14 +52,14 @@ export class NodeService {
   public refreshCurrentPath_orginal(): void {
     this.findNodeByPath_orginal(this.currentPath).children = {};
     this.getNodes_orginal(this.currentPath).then(() => {
-      this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.tree.nodes });
+      this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.serviceTree.nodes });
       this.store.dispatch({ type: SET_PATH, payload: this.currentPath });
     });
   }
   public refreshCurrentPath(): void {
     this.findNodeByPath(this.currentPath).children = {};
     this.getNodes(this.currentPath).then(() => {
-      this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.tree.nodes });
+      this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.serviceTree.nodes });
       this.store.dispatch({ type: SET_PATH, payload: this.currentPath });
     });
   }
@@ -170,7 +182,7 @@ export class NodeService {
     folderId = folderId === 0 ? '' : folderId;
 
     return this.http.get(
-      this.tree.config.baseURL + this.tree.config.api.listFile,
+      this.serviceTree.config.baseURL + this.serviceTree.config.api.listFile,
       { params: new HttpParams().set('parentPath', folderId) }
     );
 
@@ -200,15 +212,15 @@ export class NodeService {
     const ids = nodePath.split('/');
     ids.splice(0, 1);
 
-    return ids.length === 0 ? this.tree.nodes : ids.reduce((value, index) => value['children'][index], this.tree.nodes);
+    return ids.length === 0 ? this.serviceTree.nodes : ids.reduce((value, index) => value['children'][index], this.serviceTree.nodes);
   }
   public findNodeByPath(nodePath: string): NodeInterface {
     const ids = nodePath.split('/');
     ids.splice(0, 1);
     if (ids.length === 0) {
-      return this.tree.nodes;
+      return this.serviceTree.nodes;
     }
-    const retOut = ids.reduce((value, index) => value['children'][index], this.tree.nodes);
+    const retOut = ids.reduce((value, index) => value['children'][index], this.serviceTree.nodes);
     return retOut;
   }
 
@@ -217,7 +229,7 @@ export class NodeService {
 
     if (result === null) {
       console.warn('[Node Service] Cannot find node by id. Id not existing or not fetched. Returning root.');
-      return this.tree.nodes;
+      return this.serviceTree.nodes;
     }
 
     return result;
@@ -228,13 +240,13 @@ export class NodeService {
 
     if (result === null) {
       console.warn('[Node Service] Cannot find node by id. Id not existing or not fetched. Returning root.');
-      return this.tree.nodes;
+      return this.serviceTree.nodes;
     }
 
     return result;
   }
 
-  public findNodeByIdHelper_orginal(id: number, node: NodeInterface = this.tree.nodes): any {
+  public findNodeByIdHelper_orginal(id: number, node: NodeInterface = this.serviceTree.nodes): any {
     if (node.id === id) {
       return node;
     }
@@ -252,7 +264,7 @@ export class NodeService {
 
     return null;
   }
-  public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): any {
+  public findNodeByIdHelper(id: number, node: NodeInterface = this.serviceTree.nodes): any {
     if (node.id === id) {
       return node;
     }
@@ -303,14 +315,14 @@ export class NodeService {
   }
 
   public foldAll_orginal(): void {
-    this.foldRecursively_orginal(this.tree.nodes);
+    this.foldRecursively_orginal(this.serviceTree.nodes);
   }
   public foldAll(refresh = false): void {
     if (refresh) {
       this.refreshCurrentPath();
-      // this.foldRecursively(this.tree.nodes);
+      // this.foldRecursively(this.serviceTree.nodes);
     } else {
-      this.foldRecursively(this.tree.nodes);
+      this.foldRecursively(this.serviceTree.nodes);
     }
   }
 

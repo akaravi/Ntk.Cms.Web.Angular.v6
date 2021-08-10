@@ -30,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { CmsFileManagerModule } from 'src/app/modules/file-manager/cms-filemanager.module';
+import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
 import { NewsCategorySelectorComponent } from './category/selector/selector.component';
 import { NewsContentListComponent } from './content/list/list.component';
 import { NewsCategoryTreeComponent } from './category/tree/tree.component';

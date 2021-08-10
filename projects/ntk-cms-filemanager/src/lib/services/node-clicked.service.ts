@@ -13,7 +13,7 @@ import { FileManagerStoreService } from './file-manager-store.service';
   providedIn: 'root'
 })
 export class NodeClickedService {
-  public tree: TreeModel;
+  public serviceTree: TreeModel;
 
   constructor(
     public ngxSmartModalService: NtkSmartModalService,
@@ -27,7 +27,7 @@ export class NodeClickedService {
 
   public startDownload_orginal(node: NodeInterface): void {
     const parameters = new HttpParams().append('path', node.id + '');
-    this.reachServer('download', this.tree.config.api.downloadFile, parameters);
+    this.reachServer('download', this.serviceTree.config.api.downloadFile, parameters);
   }
   public startDownload(node: NodeInterface): void {
     window.open(node.downloadLinksrc, '_blank');
@@ -37,7 +37,7 @@ export class NodeClickedService {
       'Delete',
       new HttpParams().append('path', node.id + ''),
       'delete',
-      this.tree.config.api.deleteFile,
+      this.serviceTree.config.api.deleteFile,
       () => this.successWithSideViewClose()
     );
   }
@@ -84,7 +84,7 @@ export class NodeClickedService {
       'Search',
       new HttpParams().append('query', input),
       'get',
-      this.tree.config.api.searchFiles,
+      this.serviceTree.config.api.searchFiles,
       (res) => this.searchSuccess(input, res)
     );
   }
@@ -102,7 +102,7 @@ export class NodeClickedService {
         return httpParams;
       })(),
       'post',
-      this.tree.config.api.createFolder
+      this.serviceTree.config.api.createFolder
     );
   }
   public createFolder(currentParent: number, newDirName: string): void {
@@ -134,7 +134,7 @@ export class NodeClickedService {
       'Rename',
       new HttpParams().append('path', node.id + '').append('newName', newName),
       'post',
-      this.tree.config.api.renameFile,
+      this.serviceTree.config.api.renameFile,
       () => this.successWithSideViewClose()
     );
   }
@@ -221,13 +221,13 @@ export class NodeClickedService {
   private reachServer(method: string, apiUrl: string, parameters: HttpParams, data: any = {}): Observable<any> {
     switch (method.toLowerCase()) {
       case 'get':
-        return this.http.get(this.tree.config.baseURL + apiUrl, { params: parameters });
+        return this.http.get(this.serviceTree.config.baseURL + apiUrl, { params: parameters });
       case 'post':
-        return this.http.post(this.tree.config.baseURL + apiUrl, data, { params: parameters });
+        return this.http.post(this.serviceTree.config.baseURL + apiUrl, data, { params: parameters });
       case 'delete':
-        return this.http.delete(this.tree.config.baseURL + apiUrl, { params: parameters });
+        return this.http.delete(this.serviceTree.config.baseURL + apiUrl, { params: parameters });
       case 'download':
-        window.open(this.tree.config.baseURL + apiUrl + '?path=' + parameters.get('path'), '_blank');
+        window.open(this.serviceTree.config.baseURL + apiUrl + '?path=' + parameters.get('path'), '_blank');
         return null;
       default:
         console.warn('[NodeClickedService] Incorrect params for this side-effect');
