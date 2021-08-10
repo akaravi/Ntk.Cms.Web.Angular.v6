@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { TreeModel } from '../models/tree.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { FileManagerStoreService, SET_LOADING_STATE, SET_PATH, SET_SELECTED_NODE } from './file-manager-store.service';
-import { map } from 'rxjs/operators';
+import { elementAt, map } from 'rxjs/operators';
 import { FileCategoryService, FileContentService } from 'ntk-cms-api';
 /*
 {
@@ -58,20 +58,20 @@ export class NodeService {
           const parentPath = this.getParentPath(data[i].pathToNode);
           this.findNodeByPath_orginal(parentPath).children[data[i].name] = data[i];
         }
-
         resolve(null);
       });
     }));
   }
   getNodes(path: string): Promise<Array<NodeInterface>> {
+    const prosses = 'getNodes';
+    this.store.processStart(prosses);
     return new Promise((resolve => {
       this.parseNodes(path).subscribe((data: Array<NodeInterface>) => {
         for (let i = 0; i < data.length; i++) {
-
           const parentPath = this.getParentPath(data[i].pathToNode);
           this.findNodeByPath(parentPath).children[data[i].id] = data[i];
         }
-
+        this.store.processStop(prosses);
         resolve(null);
       });
     }));
@@ -117,7 +117,6 @@ export class NodeService {
     }
 
     const cachedNode = this.findNodeByPath_orginal(node.path);
-
     return <NodeInterface>{
       id: node.id,
       isFolder: node.dir,
@@ -127,6 +126,9 @@ export class NodeService {
       name: node.name || node.id,
       children: cachedNode ? cachedNode.children : {}
     };
+
+
+
   }
   private createNode(path: string, node: NodeInterface): NodeInterface {
 
@@ -143,7 +145,11 @@ export class NodeService {
 
     const cachedNode = this.findNodeByPath(node.pathToNode);
     const pathToParentVar = this.getParentPath(node.pathToNode);
-
+    // node.isExpanded = cachedNode ? cachedNode.isExpanded : false;
+    // node.pathToParent = pathToParentVar;
+    // node.children = cachedNode ? cachedNode.children : {};
+    // node.name = node.name ? node.name : node.id + '';
+    // return node;
     return <NodeInterface>{
       id: node.id,
       isFolder: node.isFolder,
@@ -152,6 +158,11 @@ export class NodeService {
       pathToParent: pathToParentVar,
       name: node.name || node.id,
       children: cachedNode ? cachedNode.children : {},
+      CreatedDate: node.CreatedDate,
+      UpdatedDate: node.UpdatedDate,
+      size: node.size,
+      Extension: node.Extension,
+      downloadLinksrc: node.downloadLinksrc,
     };
   }
   private getNodesFromServer_orginal(path: string): Observable<any> {
@@ -324,7 +335,10 @@ export class NodeService {
             pathToNode: path + '/' + element.Id,
             pathToParent: '',
             isFolder: true,
-            isExpanded: false
+            isExpanded: false,
+            CreatedDate: element.CreatedDate,
+            UpdatedDate: element.UpdatedDate,
+            downloadLinksrc: element.LinkMainImageIdSrc,
           };
           item.pathToNode = '/' + item.pathToNode;
           item.pathToNode = item.pathToNode.replace('//', '/');
@@ -350,7 +364,12 @@ export class NodeService {
             pathToNode: path + '/' + element.Id,
             pathToParent: '',
             isFolder: false,
-            isExpanded: false
+            isExpanded: false,
+            CreatedDate: element.CreatedDate,
+            UpdatedDate: element.UpdatedDate,
+            downloadLinksrc: element.DownloadLinksrc,
+            size: element.FileSize,
+            Extension: element.Extension
           };
           item.pathToNode = '/' + item.pathToNode;
           item.pathToNode = item.pathToNode.replace('//', '/');

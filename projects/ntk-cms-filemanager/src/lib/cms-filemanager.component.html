@@ -145,8 +145,28 @@
 </ng-template>
 <ng-template let-node #defaultSideViewTemplate>
   <div style="position: absolute; bottom: 0; width: 100%; margin: 5px auto">
-    <span *ngIf="node.isFolder">{{'filemanager.no_data' | translate}}</span>
-    <span *ngIf="!node.isFolder">{{'filemanager.no_data' | translate}}</span>
+    <span *ngIf="node.isFolder">
+      <span>
+        {{'filemanager.created_date' | translate}}: {{node.CreatedDate}}
+      </span>
+    </span>
+    <span *ngIf="!node.isFolder">
+      <span>
+        {{'filemanager.created_date' | translate}}: {{node.CreatedDate}}
+      </span>
+      <br />
+      <span>
+        {{'filemanager.type' | translate}}: {{node.type}}
+      </span>
+      <br />
+      <span>
+        {{'filemanager.size' | translate}}: {{node.size}}
+      </span>
+      <br />
+      <span *ngIf="!AllowFileView(selectedNode)" style="color:red;">
+        Only Select : {{configSelectFileType.join(' - ')}}
+      </span>
+    </span>
   </div>
 </ng-template>
 

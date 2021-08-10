@@ -1,9 +1,9 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ContentChild, Input, OnInit, TemplateRef} from '@angular/core';
-import {NodeInterface} from '../../interfaces/node.interface';
-import {TreeModel} from '../../models/tree.model';
-import {NodeService} from '../../services/node.service';
-import {first} from 'rxjs/operators';
-import {FileManagerStoreService, SET_SELECTED_NODE} from '../../services/file-manager-store.service';
+import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { NodeInterface } from '../../interfaces/node.interface';
+import { TreeModel } from '../../models/tree.model';
+import { NodeService } from '../../services/node.service';
+import { first } from 'rxjs/operators';
+import { FileManagerStoreService, SET_SELECTED_NODE } from '../../services/file-manager-store.service';
 import { ConfigInterface } from '../../interfaces/config.interface';
 
 @Component({
@@ -12,7 +12,7 @@ import { ConfigInterface } from '../../interfaces/config.interface';
   styleUrls: ['./tree.component.scss']
 })
 export class TreeComponent implements AfterViewInit, OnInit {
-  @ContentChild(TemplateRef, {static: false}) templateRef: TemplateRef<any>;
+  @ContentChild(TemplateRef, { static: false }) templateRef: TemplateRef<any>;
 
   @Input() treeModel: TreeModel;
   @Input() config: ConfigInterface;
@@ -26,10 +26,15 @@ export class TreeComponent implements AfterViewInit, OnInit {
     private cdr: ChangeDetectorRef
   ) {
     this.store
-    .getState(state => state.fileManagerState.isLoading)
-    .subscribe((isLoading: boolean) => {
-      this.cdr.detectChanges();
-    });
+      .getState(state => state.fileManagerState.inProcessingList)
+      .subscribe(() => {
+        this.cdr.detectChanges();
+      });
+    this.store
+      .getState(state => state.fileManagerState.selectedNode)
+      .subscribe(() => {
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnInit() {
@@ -53,7 +58,8 @@ export class TreeComponent implements AfterViewInit, OnInit {
       .pipe(first())
       .subscribe((path: string) => {
         const nodes = this.nodeService.findNodeByPath(path);
-        this.store.dispatch({type: SET_SELECTED_NODE, payload: nodes});
+        this.store.dispatch({ type: SET_SELECTED_NODE, payload: nodes });
+        this.cdr.detectChanges();
       });
   }
 }

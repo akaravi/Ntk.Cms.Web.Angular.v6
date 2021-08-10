@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NodeInterface } from '../../../interfaces/node.interface';
 
 import { NodeService } from '../../../services/node.service';
@@ -18,12 +18,14 @@ export class NodeComponent implements OnInit {
   constructor(
     private store: FileManagerStoreService,
     private nodeService: NodeService,
-    private nodeClickedService: NodeClickedService
+    private nodeClickedService: NodeClickedService,
+    private cdr: ChangeDetectorRef
   ) {
     this.store
       .getState(state => state.fileManagerState.selectedNode)
       .subscribe((value: NodeInterface) => {
         this.selectedNode = value;
+        this.cdr.detectChanges();
       });
   }
   selectedNode: NodeInterface;
@@ -86,6 +88,7 @@ export class NodeComponent implements OnInit {
 
   private showMenu() {
     this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.node });
+    this.cdr.detectChanges();
   }
 
   private toggleNodeExpanded() {

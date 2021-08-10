@@ -5,15 +5,22 @@
     <div class="side-view-preview-title">{{node.name}}</div>
 
     <div class="side-view-preview-content">
-      <ng-container
-        [ngTemplateOutletContext]="{$implicit: node}"
-        [ngTemplateOutlet]="sideViewTemplate">
+      <div *ngIf="AllowViewImage(node)" class="side-view-preview-content">
+        <img src="{{node.downloadLinksrc}}" loading="lazy" alt="..." class="mb-3"
+          style="max-width: -webkit-fill-available">
+      </div>
+      <div *ngIf="AllowPlayMP3(node)" class="side-view-preview-content">
+        <audio controls>
+          <source src="{{node.downloadLinksrc}}" type="audio/mp3">
+          Your browser does not support the audio tag.
+        </audio>
+      </div>
+      <ng-container [ngTemplateOutletContext]="{$implicit: node}" [ngTemplateOutlet]="sideViewTemplate">
       </ng-container>
     </div>
-
+{{node|json}}
     <div class="side-view-buttons">
-      <button (click)="onClick($event, 'download')" class="button"
-              [disabled]="isDisabled()">
+      <button (click)="onClick($event, 'download')" class="button" [disabled]="isDisabled()">
         {{'filemanager.download' | translate }}
       </button>
       <button (click)="onClick($event, 'renameConfirm')" class="button">{{'filemanager.rename' | translate }}</button>

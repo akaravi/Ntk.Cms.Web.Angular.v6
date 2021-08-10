@@ -27,8 +27,13 @@ export class FolderContentComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {
     this.store
-      .getState(state => state.fileManagerState.isLoading)
-      .subscribe((isLoading: boolean) => {
+      .getState(state => state.fileManagerState.inProcessingList)
+      .subscribe(() => {
+        this.cdr.detectChanges();
+      });
+    this.store
+      .getState(state => state.fileManagerState.selectedNode)
+      .subscribe(() => {
         this.cdr.detectChanges();
       });
   }

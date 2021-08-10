@@ -26,6 +26,11 @@ export class SideViewComponent implements OnInit {
       .subscribe((isLoading: boolean) => {
         this.cdr.detectChanges();
       });
+    this.store
+      .getState(state => state.fileManagerState.selectedNode)
+      .subscribe(() => {
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnInit() {
@@ -44,5 +49,36 @@ export class SideViewComponent implements OnInit {
 
     return false;
   }
-
+  AllowPlayMP3(node: NodeInterface): boolean {
+    if (
+      node.isFolder ||
+      !node.Extension ||
+      node.Extension.length === 0 ||
+      !node.downloadLinksrc ||
+      node.downloadLinksrc.length === 0
+    ) {
+      return false;
+    }
+    if (node.Extension.toLowerCase() === 'mp3') {
+      return true;
+    }
+    return false;
+  }
+  AllowViewImage(node: NodeInterface): boolean {
+    if (
+      node.isFolder ||
+      !node.Extension ||
+      node.Extension.length === 0 ||
+      !node.downloadLinksrc ||
+      node.downloadLinksrc.length === 0
+    ) {
+      return false;
+    }
+    if (node.Extension.toLowerCase() === 'png' || node.Extension.toLowerCase() === 'jpeg'
+      || node.Extension.toLowerCase() === 'gif'
+      || node.Extension.toLowerCase() === 'jpg') {
+      return true;
+    }
+    return false;
+  }
 }

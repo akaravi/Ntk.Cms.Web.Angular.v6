@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {NodeService} from '../../services/node.service';
-import {FileManagerStoreService, SET_PATH} from '../../services/file-manager-store.service';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NodeService } from '../../services/node.service';
+import { FileManagerStoreService, SET_PATH } from '../../services/file-manager-store.service';
 
 @Component({
   selector: 'lib-filemanager-nav-bar',
@@ -16,10 +16,15 @@ export class NavBarComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {
     this.store
-    .getState(state => state.fileManagerState.isLoading)
-    .subscribe((isLoading: boolean) => {
-      this.cdr.detectChanges();
-    });
+      .getState(state => state.fileManagerState.inProcessingList)
+      .subscribe(() => {
+        this.cdr.detectChanges();
+      });
+    this.store
+      .getState(state => state.fileManagerState.selectedNode)
+      .subscribe(() => {
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnInit() {
@@ -33,7 +38,7 @@ export class NavBarComponent implements OnInit {
 
   onClick(path: string[], index: number) {
     const newPath = path.slice(0, index + 1).join('/');
-    this.store.dispatch({type: SET_PATH, payload: newPath});
+    this.store.dispatch({ type: SET_PATH, payload: newPath });
   }
 
 }

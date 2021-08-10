@@ -23,6 +23,12 @@ export class CmsFileManagerComponent implements OnInit {
 
   @Input() loadingOverlayTemplate: TemplateRef<any>;
   @Input() sideViewTemplate: TemplateRef<any>;
+  @Input() set selectFileType(model: Array<string>) {
+    if (model && model.length > 0) {
+      this.configSelectFileType = model;
+    }
+  }
+  configSelectFileType: Array<string> = [];
 
   @Input() tree: TreeModel;
   @Input() isPopup = false;
@@ -60,6 +66,33 @@ export class CmsFileManagerComponent implements OnInit {
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
+
+
+    this.store
+      .getState(state => state.fileManagerState.inProcessingList)
+      .subscribe((inProcessingList: Array<string>) => {
+        this.cdr.detectChanges();
+      });
+    this.store
+      .getState(state => state.fileManagerState.isLoading)
+      .subscribe((isLoading: boolean) => {
+        this.loading = isLoading;
+        this.cdr.detectChanges();
+      });
+    this.store
+      .getState(state => state.fileManagerState.selectedNode)
+      .subscribe((selectedNode: NodeInterface) => {
+        this.cdr.detectChanges();
+        if (!selectedNode) {
+          return;
+        }
+        // fixed highlighting error when closing node but not changing path
+        if ((selectedNode.isExpanded && selectedNode.pathToNode !== this.nodeService.currentPath) && !selectedNode.stayOpen) {
+          return;
+        }
+
+        this.handleFileManagerClickEvent({ type: 'select', node: selectedNode });
+      });
   }
 
   ngOnInit() {
@@ -75,27 +108,7 @@ export class CmsFileManagerComponent implements OnInit {
       this.openFilemanagerButtonLabel = translation;
     });
 
-    this.store
-      .getState(state => state.fileManagerState.isLoading)
-      .subscribe((isLoading: boolean) => {
-        this.loading = isLoading;
-        this.cdr.detectChanges();
-      });
 
-    this.store
-      .getState(state => state.fileManagerState.selectedNode)
-      .subscribe((selectedNode: NodeInterface) => {
-        if (!selectedNode) {
-          return;
-        }
-
-        // fixed highlighting error when closing node but not changing path
-        if ((selectedNode.isExpanded && selectedNode.pathToNode !== this.nodeService.currentPath) && !selectedNode.stayOpen) {
-          return;
-        }
-
-        this.handleFileManagerClickEvent({ type: 'select', node: selectedNode });
-      });
   }
 
   onItemClicked(event: any): void {
@@ -108,6 +121,7 @@ export class CmsFileManagerComponent implements OnInit {
     const node = this.nodeService.findNodeById(data.id);
     this.ngxSmartModalService.getModal('searchModal').close();
     this.store.dispatch({ type: SET_SELECTED_NODE, payload: node });
+    this.cdr.detectChanges();
   }
 
   handleFileManagerClickEvent(event: any) {
@@ -149,7 +163,6 @@ export class CmsFileManagerComponent implements OnInit {
 
       case 'createFolder':
         const parentid = this.nodeService.findNodeByPath(this.nodeService.currentPath).id;
-
         this.nodeClickedService.createFolder(parentid, event.payload);
         return this.onItemClicked({
           type: event.type,
@@ -163,7 +176,7 @@ export class CmsFileManagerComponent implements OnInit {
     if (node.name === 'root') {
       return;
     }
-
+    // debugger
     if (closing) {
       const parentNode = this.nodeService.findNodeByPath(this.nodeService.currentPath);
       this.store.dispatch({ type: SET_SELECTED_NODE, payload: parentNode });
@@ -176,9 +189,10 @@ export class CmsFileManagerComponent implements OnInit {
     }
 
     this.selectedNode = node;
-
+    
     // todo investigate this workaround - warning: [File Manager] failed to find requested node for path: [path]
     if (!document.getElementById('side-view')) {
+      this.cdr.detectChanges();
       return;
     }
 
@@ -187,6 +201,7 @@ export class CmsFileManagerComponent implements OnInit {
     } else {
       document.getElementById('side-view').classList.add('selected');
     }
+    this.cdr.detectChanges();
   }
 
   // todo stay DRY!
@@ -279,5 +294,19 @@ export class CmsFileManagerComponent implements OnInit {
 
   cancelSelection() {
     this.fmOpen = false;
+  }
+  AllowFileView(model: NodeInterface): boolean {
+    if (
+      !model ||
+      model.isFolder ||
+      !model.Extension ||
+      model.Extension.length === 0 ||
+      !this.configSelectFileType ||
+      this.configSelectFileType.length === 0 ||
+      this.configSelectFileType.find((t) => (t && model.Extension && t.toLowerCase() === model.Extension.toLowerCase()))
+    ) {
+      return true;
+    }
+    return false;
   }
 }

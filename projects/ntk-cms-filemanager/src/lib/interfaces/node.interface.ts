@@ -9,7 +9,7 @@ export interface NodeInterface {
   name?: string;
   children?: any;
 
-  type?: string;
+  Extension?: string;
   size?: number;
   parentId?: number;
   CreatedDate?: Date;

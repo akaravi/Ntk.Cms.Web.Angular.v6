@@ -20,10 +20,10 @@
     </lib-filemanager-node>
   </ng-container>
 
-  <div class="new" (click)="newFolderClickedAction()">
+  <div class="new" (click)="newFolderClickedAction()" *ngIf="nodes?.children">
     <ng-container [ngTemplateOutlet]="folderContentNewFolderTemplate"></ng-container>
   </div>
-  <div class="new" (click)="newFileClickedAction()">
+  <div class="new" (click)="newFileClickedAction()" *ngIf="nodes?.children">
     <ng-container [ngTemplateOutlet]="folderContentNewFileTemplate"></ng-container>
   </div>
 </div>

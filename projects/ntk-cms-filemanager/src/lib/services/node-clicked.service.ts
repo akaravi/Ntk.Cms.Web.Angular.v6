@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { NtkSmartModalService } from 'ngx-ntk-smart-module';
 import { first, map } from 'rxjs/operators';
 import { FileCategoryModel, FileCategoryService, FileContentService } from 'ntk-cms-api';
-import { FileManagerStoreService, SET_LOADING_STATE } from './file-manager-store.service';
+import { FileManagerStoreService } from './file-manager-store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +25,12 @@ export class NodeClickedService {
   ) {
   }
 
-  public startDownload(node: NodeInterface): void {
+  public startDownload_orginal(node: NodeInterface): void {
     const parameters = new HttpParams().append('path', node.id + '');
     this.reachServer('download', this.tree.config.api.downloadFile, parameters);
+  }
+  public startDownload(node: NodeInterface): void {
+    window.open(node.downloadLinksrc, '_blank');
   }
   public initDelete_orginal(node: NodeInterface): void {
     this.sideEffectHelper(
@@ -39,7 +42,8 @@ export class NodeClickedService {
     );
   }
   public initDelete(node: NodeInterface): void {
-    this.store.dispatch({ type: SET_LOADING_STATE, payload: true });
+    const prosses = 'initDelete';
+    this.store.processStart(prosses);
     if (node.isFolder) {
       this.fileCategoryService.ServiceDelete(node.id).subscribe(
         (next) => {
@@ -49,11 +53,11 @@ export class NodeClickedService {
           else {
             this.actionFailed('Delete Folder Error', next.ErrorMessage);
           }
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         }
         , (error) => {
           this.actionFailed('Delete Folder Error', error);
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         }
       );
     } else {
@@ -65,11 +69,11 @@ export class NodeClickedService {
           else {
             this.actionFailed('Delete File Error', next.ErrorMessage);
           }
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         }
         , (error) => {
           this.actionFailed('Delete File Error', error);
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         }
       );
     }
@@ -107,7 +111,8 @@ export class NodeClickedService {
     if (currentParent > 0) {
       model.LinkParentId = currentParent;
     }
-    this.store.dispatch({ type: SET_LOADING_STATE, payload: true });
+    const prosses = 'createFolder';
+    this.store.processStart(prosses);
     this.fileCategoryService.ServiceAdd(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -116,11 +121,11 @@ export class NodeClickedService {
         else {
           this.actionFailed('Create Folder Error', next.ErrorMessage);
         }
-        this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        this.store.processStop(prosses);
       }
       , (error) => {
         this.actionFailed('Create Folder Error', error);
-        this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        this.store.processStop(prosses);
       }
     );
   }
@@ -134,36 +139,37 @@ export class NodeClickedService {
     );
   }
   public rename(node: NodeInterface, newName: string): void {
-    this.store.dispatch({ type: SET_LOADING_STATE, payload: true });
+    const prosses = 'rename';
+    this.store.processStart(prosses);
     if (node.isFolder) {
       this.fileCategoryService.ServiceGetOneById(node.id).subscribe((next) => {
         if (next.IsSuccess) {
           next.Item.Title = newName;
           /** update */
           this.fileCategoryService.ServiceEdit(next.Item).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+            (next2) => {
+              if (next2.IsSuccess) {
                 this.successWithSideViewClose();
               }
               else {
                 this.actionFailed('rename Folder Error', next.ErrorMessage);
               }
-              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+              this.store.processStop(prosses);
             }
             , (error) => {
               this.actionFailed('rename Folder Error', error);
-              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+              this.store.processStop(prosses);
             }
           );
           /** update */
         } else {
           this.actionFailed('rename Folder Error', next.ErrorMessage);
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         }
       }
         , (error) => {
           this.actionFailed('rename Folder Error', error);
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         });
 
     } else {
@@ -172,29 +178,29 @@ export class NodeClickedService {
           next.Item.FileName = newName;
           /** update */
           this.fileContentService.ServiceEdit(next.Item).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+            (next2) => {
+              if (next2.IsSuccess) {
                 this.successWithSideViewClose();
               }
               else {
                 this.actionFailed('rename File Error', next.ErrorMessage);
               }
-              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+              this.store.processStop(prosses);
             }
             , (error) => {
               this.actionFailed('rename File Error', error);
-              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+              this.store.processStop(prosses);
             }
           );
           /** update */
         } else {
           this.actionFailed('rename File Error', next.ErrorMessage);
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         }
       }
         , (error) => {
           this.actionFailed('rename File Error', error);
-          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+          this.store.processStop(prosses);
         });
     }
   }
