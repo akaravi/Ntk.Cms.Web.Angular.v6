@@ -1,4 +1,4 @@
-<ul class="node-lister-flist">
+<ul class="node-lister-flist" style="direction: ltr;text-align: left;">
   <!--In order to avoid having to create that extra div, we can instead use ng-container directive-->
   <ng-container *ngFor="let node of obj.keys(nodes)">
     <li class="node-lister-list-item" *ngIf="nodes[node].isFolder || showFiles">

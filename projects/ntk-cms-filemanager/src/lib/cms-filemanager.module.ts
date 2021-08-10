@@ -12,7 +12,7 @@ import {NavBarComponent} from './components/nav-bar/nav-bar.component';
 import {LoadingOverlayComponent} from './components/functions/loading-overlay/loading-overlay.component';
 import {FileSizePipe} from './pipes/file-size.pipe';
 import {UploadComponent} from './components/functions/upload/upload.component';
-import {NewFolderComponent} from './components/functions/upload/new-folder/new-folder.component';
+import {NewFolderComponent} from './components/functions/new-folder/new-folder.component';
 import {SideViewComponent} from './components/side-view/side-view.component';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {NtkSmartModalModule} from 'ngx-ntk-smart-module';

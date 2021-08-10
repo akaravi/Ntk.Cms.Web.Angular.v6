@@ -1,5 +1,6 @@
-import {Component, ContentChild, Input, OnInit, TemplateRef} from '@angular/core';
-import {NodeInterface} from '../../../interfaces/node.interface';
+import { ChangeDetectorRef, Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { NodeInterface } from '../../../interfaces/node.interface';
+import { FileManagerStoreService } from '../../../services/file-manager-store.service';
 
 @Component({
   selector: 'lib-filemanager-node-lister',
@@ -7,13 +8,20 @@ import {NodeInterface} from '../../../interfaces/node.interface';
   styleUrls: ['./node-lister.component.scss']
 })
 export class NodeListerComponent implements OnInit {
-  @ContentChild(TemplateRef, {static: false}) templateRef: TemplateRef<any>;
+  @ContentChild(TemplateRef, { static: false }) templateRef: TemplateRef<any>;
   @Input() nodes: NodeInterface;
   @Input() showFiles: boolean;
 
   obj = Object;
 
-  constructor() {
+  constructor(
+    private store: FileManagerStoreService,
+    private cdr: ChangeDetectorRef) {
+    this.store
+      .getState(state => state.fileManagerState.isLoading)
+      .subscribe((isLoading: boolean) => {
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnInit() {

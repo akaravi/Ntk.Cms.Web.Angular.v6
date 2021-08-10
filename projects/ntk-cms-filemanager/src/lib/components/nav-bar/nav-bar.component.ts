@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NodeService} from '../../services/node.service';
 import {FileManagerStoreService, SET_PATH} from '../../services/file-manager-store.service';
 
@@ -12,8 +12,14 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private store: FileManagerStoreService,
-    private nodeService: NodeService
+    private nodeService: NodeService,
+    private cdr: ChangeDetectorRef
   ) {
+    this.store
+    .getState(state => state.fileManagerState.isLoading)
+    .subscribe((isLoading: boolean) => {
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnInit() {

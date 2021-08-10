@@ -22,7 +22,7 @@ https://github.com/Chiff/ng6-file-man-express/blob/master/index.js
 })
 export class NodeService {
   public tree: TreeModel;
-  private _path: string;
+  private privatePath: string;
 
   constructor(
     private http: HttpClient,
@@ -100,6 +100,7 @@ export class NodeService {
 
         observer.next(data.map(node => this.createNode(path, node)));
         this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+
       });
     });
   }
@@ -164,6 +165,8 @@ export class NodeService {
 
   }
   private getNodesFromServer(path: string): Observable<Array<NodeInterface>> {
+    this.store.dispatch({ type: SET_LOADING_STATE, payload: true });
+
     const findN = this.findNodeByPath(path);
     const folderId = findN ? findN.id : 0;
     // folderId = folderId === 0 ? '' : folderId;
@@ -177,8 +180,9 @@ export class NodeService {
                 observer.next(xfile);
               })
           );
-        })
+        });
     });
+
     return retOut;
   }
   public findNodeByPath_orginal(nodePath: string): NodeInterface {
@@ -219,7 +223,7 @@ export class NodeService {
     return result;
   }
 
-  public findNodeByIdHelper_orginal(id: number, node: NodeInterface = this.tree.nodes): NodeInterface {
+  public findNodeByIdHelper_orginal(id: number, node: NodeInterface = this.tree.nodes): any {
     if (node.id === id) {
       return node;
     }
@@ -237,9 +241,7 @@ export class NodeService {
 
     return null;
   }
-  public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): NodeInterface {
-
-
+  public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): any {
     if (node.id === id) {
       return node;
     }
@@ -268,7 +270,7 @@ export class NodeService {
       }
 
       this.foldRecursively_orginal(children[child]);
-      //todo put this getElById into one func (curr inside node.component.ts + fm.component.ts) - this won't be maintainable
+      // todo put this getElById into one func (curr inside node.component.ts + fm.component.ts) - this won't be maintainable
       document.getElementById('tree_' + children[child].pathToNode).classList.add('deselected');
       children[child].isExpanded = false;
     });
@@ -283,7 +285,7 @@ export class NodeService {
       }
 
       this.foldRecursively(children[child]);
-      //todo put this getElById into one func (curr inside node.component.ts + fm.component.ts) - this won't be maintainable
+      // todo put this getElById into one func (curr inside node.component.ts + fm.component.ts) - this won't be maintainable
       document.getElementById('tree_' + children[child].pathToNode).classList.add('deselected');
       children[child].isExpanded = false;
     });
@@ -292,21 +294,24 @@ export class NodeService {
   public foldAll_orginal(): void {
     this.foldRecursively_orginal(this.tree.nodes);
   }
-  public foldAll(): void {
-    this.foldRecursively(this.tree.nodes);
+  public foldAll(refresh = false): void {
+    if (refresh) {
+      this.refreshCurrentPath();
+      // this.foldRecursively(this.tree.nodes);
+    } else {
+      this.foldRecursively(this.tree.nodes);
+    }
   }
 
   get currentPath(): string {
-    return this._path;
+    return this.privatePath;
   }
 
   set currentPath(value: string) {
-    this._path = value;
+    this.privatePath = value;
   }
   getCategoryList(folderId: number, path: string): Observable<Array<NodeInterface>> {
-    // const folderId = +path | 0;
-
-    return this.fileCategoryService.ServiceGetSubCategoryFromCategory(folderId).pipe(
+    return this.fileCategoryService.ServiceGetAllInCategoryById(folderId).pipe(
       map((x) => {
         const retList: NodeInterface[] = [];
 
@@ -316,7 +321,7 @@ export class NodeService {
             isRoot: true,
             id: element.Id,
             parentId: element.LinkParentId ? element.LinkParentId : null,
-            pathToNode: path + '/' + element.Id,// + '/' + element.Id,
+            pathToNode: path + '/' + element.Id,
             pathToParent: '',
             isFolder: true,
             isExpanded: false
@@ -324,7 +329,7 @@ export class NodeService {
           item.pathToNode = '/' + item.pathToNode;
           item.pathToNode = item.pathToNode.replace('//', '/');
           // if (retList.length < 4) {
-            retList.push(item);
+          retList.push(item);
           // }
         });
         return retList;
@@ -333,8 +338,7 @@ export class NodeService {
 
   }
   getFileList(folderId: number, path: string): Observable<Array<NodeInterface>> {
-    // const folderId = +path | 0;
-    return this.fileContentService.ServiceGetFilesInCategoryId(folderId).pipe(
+    return this.fileContentService.ServiceGetAllInCategoryById(folderId).pipe(
       map((x) => {
         const retList: NodeInterface[] = [];
         x.ListItems.forEach(element => {
@@ -343,7 +347,7 @@ export class NodeService {
             isRoot: false,
             id: element.Id,
             parentId: element.LinkCategoryId ? element.LinkCategoryId : null,
-            pathToNode: path + '/' + element.Id, // + '/' + (element.LinkCategoryId ? element.LinkCategoryId : ''),
+            pathToNode: path + '/' + element.Id,
             pathToParent: '',
             isFolder: false,
             isExpanded: false
@@ -351,7 +355,7 @@ export class NodeService {
           item.pathToNode = '/' + item.pathToNode;
           item.pathToNode = item.pathToNode.replace('//', '/');
           // if (retList.length < 2) {
-            retList.push(item);
+          retList.push(item);
           // }
         });
         return retList;

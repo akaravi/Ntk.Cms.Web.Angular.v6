@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation} from '@angular/core';
-import {NodeInterface} from '../../interfaces/node.interface';
-import {DownloadModeEnum} from '../../enums/download-mode.enum';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { NodeInterface } from '../../interfaces/node.interface';
+import { DownloadModeEnum } from '../../enums/download-mode.enum';
+import { FileManagerStoreService } from '../../services/file-manager-store.service';
 
 @Component({
   selector: 'lib-filemanager-side-view',
@@ -16,14 +17,22 @@ export class SideViewComponent implements OnInit {
 
   @Output() clickEvent = new EventEmitter();
 
-  constructor() {
+  constructor(
+    private store: FileManagerStoreService,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.store
+      .getState(state => state.fileManagerState.isLoading)
+      .subscribe((isLoading: boolean) => {
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnInit() {
   }
 
   onClick(event: any, type: string) {
-    this.clickEvent.emit({type: type, event: event, node: this.node});
+    this.clickEvent.emit({ type: type, event: event, node: this.node });
   }
 
   isDisabled() {

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChild, Input, OnInit, TemplateRef} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ContentChild, Input, OnInit, TemplateRef} from '@angular/core';
 import {NodeInterface} from '../../interfaces/node.interface';
 import {TreeModel} from '../../models/tree.model';
 import {NodeService} from '../../services/node.service';
@@ -22,14 +22,20 @@ export class TreeComponent implements AfterViewInit, OnInit {
 
   constructor(
     private nodeService: NodeService,
-    private store: FileManagerStoreService
+    private store: FileManagerStoreService,
+    private cdr: ChangeDetectorRef
   ) {
+    this.store
+    .getState(state => state.fileManagerState.isLoading)
+    .subscribe((isLoading: boolean) => {
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnInit() {
     this.nodes = this.treeModel.nodes;
 
-    //todo move this store to proper place
+    // todo move this store to proper place
     this.store
       .getState(state => state.fileManagerState.path)
       .subscribe((path: string) => {

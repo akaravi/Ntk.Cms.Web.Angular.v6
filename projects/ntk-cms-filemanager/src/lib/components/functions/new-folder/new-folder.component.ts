@@ -1,12 +1,13 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'lib-filemanager-new-folder',
+  selector: 'lib-filemanager-newfolder',
   templateUrl: './new-folder.component.html',
   styleUrls: ['./new-folder.component.scss']
 })
 export class NewFolderComponent implements OnInit {
+  @Input() openDialog;
   @ViewChild('uploadFolder') uploadFolder: ElementRef;
   @Output() buttonClicked = new EventEmitter();
 

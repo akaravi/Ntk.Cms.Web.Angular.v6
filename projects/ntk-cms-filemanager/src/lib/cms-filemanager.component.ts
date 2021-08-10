@@ -17,19 +17,22 @@ export class CmsFileManagerComponent implements OnInit {
   @Input() iconTemplate: TemplateRef<any>;
   @Input() folderContentTemplate: TemplateRef<any>;
   @Input() folderContentBackTemplate: TemplateRef<any>;
-  @Input() folderContentNewTemplate: TemplateRef<any>;
+  @Input() folderContentNewFileTemplate: TemplateRef<any>;
+  @Input() folderContentNewFolderTemplate: TemplateRef<any>;
+  @Input() folderContentReloadTemplate: TemplateRef<any>;
+
   @Input() loadingOverlayTemplate: TemplateRef<any>;
   @Input() sideViewTemplate: TemplateRef<any>;
 
   @Input() tree: TreeModel;
-  @Input() isPopup: boolean = false;
+  @Input() isPopup = false;
   @Input() openFilemanagerButtonLabelKey = 'filemanager.open_file_manager';
   @Output() itemClicked = new EventEmitter();
   @Output() itemSelected = new EventEmitter();
 
 
   openFilemanagerButtonLabel: string;
-  private privateLanguage: string = 'en';
+  private privateLanguage = 'en';
   @Input() set language(value: string) {
     this.privateLanguage = value;
     this.translate.use(this.language);
@@ -44,7 +47,8 @@ export class CmsFileManagerComponent implements OnInit {
 
   fmOpen = false;
   loading: boolean;
-  newDialog = false;
+  newFileDialog = false;
+  newFolderDialog = false;
 
   constructor(
     private store: FileManagerStoreService,
@@ -125,7 +129,7 @@ export class CmsFileManagerComponent implements OnInit {
       case 'rename':
         this.ngxSmartModalService.getModal('renameModal').close();
 
-        this.nodeClickedService.rename(this.selectedNode.id, event.value);
+        this.nodeClickedService.rename(this.selectedNode, event.value);
         return this.onItemClicked({
           type: event.type,
           node: this.selectedNode,
@@ -262,7 +266,10 @@ export class CmsFileManagerComponent implements OnInit {
   }
 
   handleUploadDialog(event: any) {
-    this.newDialog = event;
+    this.newFileDialog = event;
+  }
+  handleNewFolderDialog(event: any) {
+    this.newFolderDialog = event;
   }
 
   confirmSelection() {

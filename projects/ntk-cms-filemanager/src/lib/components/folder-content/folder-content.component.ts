@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {NodeService} from '../../services/node.service';
-import {NodeInterface} from '../../interfaces/node.interface';
-import {FileManagerStoreService} from '../../services/file-manager-store.service';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { NodeService } from '../../services/node.service';
+import { NodeInterface } from '../../interfaces/node.interface';
+import { FileManagerStoreService } from '../../services/file-manager-store.service';
 
 @Component({
   selector: 'lib-filemanager-folder-content',
@@ -11,18 +11,26 @@ import {FileManagerStoreService} from '../../services/file-manager-store.service
 export class FolderContentComponent implements OnInit {
   @Input() folderContentTemplate: TemplateRef<any>;
   @Input() folderContentBackTemplate: TemplateRef<any>;
-  @Input() folderContentNewTemplate: TemplateRef<any>;
-  @Input() folderContentReloadTemplate: TemplateRef<any>;// karavi
+  @Input() folderContentNewFolderTemplate: TemplateRef<any>;
+  @Input() folderContentNewFileTemplate: TemplateRef<any>;
+  @Input() folderContentReloadTemplate: TemplateRef<any>; // karavi
 
   @Output() openUploadDialog = new EventEmitter();
+  @Output() openNewFolderDialog = new EventEmitter();
 
   nodes: NodeInterface;
   obj = Object;
 
   constructor(
     private nodeService: NodeService,
-    private store: FileManagerStoreService
+    private store: FileManagerStoreService,
+    private cdr: ChangeDetectorRef
   ) {
+    this.store
+      .getState(state => state.fileManagerState.isLoading)
+      .subscribe((isLoading: boolean) => {
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnInit() {
@@ -35,7 +43,11 @@ export class FolderContentComponent implements OnInit {
       });
   }
 
-  newClickedAction() {
+  newFileClickedAction() {
     this.openUploadDialog.emit(true);
+  }
+  
+  newFolderClickedAction() {
+    this.openNewFolderDialog.emit(true);
   }
 }

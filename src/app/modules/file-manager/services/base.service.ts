@@ -46,36 +46,5 @@ export class BaseService {
     }
     return model;
   }
-  // private sideEffectHelper_(
-  //   name: string,
-  //   parameters: HttpParams,
-  //   httpMethod: string,
-  //   apiURL: string,
-  //   successMethod = (a: any) => this.actionSuccess(a),
-  //   failMethod = (a: any, b: any) => this.actionFailed(a, b),
-  // ): void {
-  //   this.ntkSmartModalService.getModal('waitModal').open();
-
-  //   this.reachServer(httpMethod, apiURL, parameters).subscribe(
-  //     (a) => successMethod(a),
-  //     (err) => failMethod(name, err),
-  //   );
-  // }
-
-  // private reachServer_(method: string, apiUrl: string, parameters: HttpParams, data: any = {}): Observable<any> | null {
-  //   switch (method.toLowerCase()) {
-  //     case 'get':
-  //       return this.http.get(this.tree.config.baseURL + apiUrl, { params: parameters });
-  //     case 'post':
-  //       return this.http.post(this.tree.config.baseURL + apiUrl, data, { params: parameters });
-  //     case 'delete':
-  //       return this.http.delete(this.tree.config.baseURL + apiUrl, { params: parameters });
-  //     case 'download':
-  //       window.open(this.tree.config.baseURL + apiUrl + '?path=' + parameters.get('path'), '_blank');
-  //       return null;
-  //     default:
-  //       console.warn('[NodeClickedService] Incorrect params for this side-effect');
-  //       return null;
-  //   }
-  // }
+ 
 }

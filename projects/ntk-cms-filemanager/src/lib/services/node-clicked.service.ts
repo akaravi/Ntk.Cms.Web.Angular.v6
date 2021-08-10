@@ -6,7 +6,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NtkSmartModalService } from 'ngx-ntk-smart-module';
 import { first, map } from 'rxjs/operators';
-import { FileCategoryService, FileContentService } from 'ntk-cms-api';
+import { FileCategoryModel, FileCategoryService, FileContentService } from 'ntk-cms-api';
+import { FileManagerStoreService, SET_LOADING_STATE } from './file-manager-store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,10 @@ export class NodeClickedService {
   constructor(
     public ngxSmartModalService: NtkSmartModalService,
     private nodeService: NodeService,
-
-    private http: HttpClient
+    private store: FileManagerStoreService,
+    private http: HttpClient,
+    private fileContentService: FileContentService,
+    private fileCategoryService: FileCategoryService,
   ) {
   }
 
@@ -26,8 +29,7 @@ export class NodeClickedService {
     const parameters = new HttpParams().append('path', node.id + '');
     this.reachServer('download', this.tree.config.api.downloadFile, parameters);
   }
-
-  public initDelete(node: NodeInterface): void {
+  public initDelete_orginal(node: NodeInterface): void {
     this.sideEffectHelper(
       'Delete',
       new HttpParams().append('path', node.id + ''),
@@ -35,6 +37,42 @@ export class NodeClickedService {
       this.tree.config.api.deleteFile,
       () => this.successWithSideViewClose()
     );
+  }
+  public initDelete(node: NodeInterface): void {
+    this.store.dispatch({ type: SET_LOADING_STATE, payload: true });
+    if (node.isFolder) {
+      this.fileCategoryService.ServiceDelete(node.id).subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            this.successWithSideViewClose();
+          }
+          else {
+            this.actionFailed('Delete Folder Error', next.ErrorMessage);
+          }
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        }
+        , (error) => {
+          this.actionFailed('Delete Folder Error', error);
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        }
+      );
+    } else {
+      this.fileContentService.ServiceDelete(node.id).subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            this.successWithSideViewClose();
+          }
+          else {
+            this.actionFailed('Delete File Error', next.ErrorMessage);
+          }
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        }
+        , (error) => {
+          this.actionFailed('Delete File Error', error);
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        }
+      );
+    }
   }
 
   public searchForString(input: string): void {
@@ -47,7 +85,7 @@ export class NodeClickedService {
     );
   }
 
-  public createFolder(currentParent: number, newDirName: string): void {
+  public createFolder_orginal(currentParent: number, newDirName: string): void {
     this.sideEffectHelper(
       'Create Folder',
       (() => {
@@ -63,15 +101,102 @@ export class NodeClickedService {
       this.tree.config.api.createFolder
     );
   }
-
-  public rename(id: number, newName: string): void {
+  public createFolder(currentParent: number, newDirName: string): void {
+    const model = new FileCategoryModel();
+    model.Title = newDirName;
+    if (currentParent > 0) {
+      model.LinkParentId = currentParent;
+    }
+    this.store.dispatch({ type: SET_LOADING_STATE, payload: true });
+    this.fileCategoryService.ServiceAdd(model).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.successWithSideViewClose();
+        }
+        else {
+          this.actionFailed('Create Folder Error', next.ErrorMessage);
+        }
+        this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+      }
+      , (error) => {
+        this.actionFailed('Create Folder Error', error);
+        this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+      }
+    );
+  }
+  public rename_orginal(node: NodeInterface, newName: string): void {
     this.sideEffectHelper(
       'Rename',
-      new HttpParams().append('path', id + '').append('newName', newName),
+      new HttpParams().append('path', node.id + '').append('newName', newName),
       'post',
       this.tree.config.api.renameFile,
       () => this.successWithSideViewClose()
     );
+  }
+  public rename(node: NodeInterface, newName: string): void {
+    this.store.dispatch({ type: SET_LOADING_STATE, payload: true });
+    if (node.isFolder) {
+      this.fileCategoryService.ServiceGetOneById(node.id).subscribe((next) => {
+        if (next.IsSuccess) {
+          next.Item.Title = newName;
+          /** update */
+          this.fileCategoryService.ServiceEdit(next.Item).subscribe(
+            (next) => {
+              if (next.IsSuccess) {
+                this.successWithSideViewClose();
+              }
+              else {
+                this.actionFailed('rename Folder Error', next.ErrorMessage);
+              }
+              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+            }
+            , (error) => {
+              this.actionFailed('rename Folder Error', error);
+              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+            }
+          );
+          /** update */
+        } else {
+          this.actionFailed('rename Folder Error', next.ErrorMessage);
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        }
+      }
+        , (error) => {
+          this.actionFailed('rename Folder Error', error);
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        });
+
+    } else {
+      this.fileContentService.ServiceGetOneById(node.id).subscribe((next) => {
+        if (next.IsSuccess) {
+          next.Item.FileName = newName;
+          /** update */
+          this.fileContentService.ServiceEdit(next.Item).subscribe(
+            (next) => {
+              if (next.IsSuccess) {
+                this.successWithSideViewClose();
+              }
+              else {
+                this.actionFailed('rename File Error', next.ErrorMessage);
+              }
+              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+            }
+            , (error) => {
+              this.actionFailed('rename File Error', error);
+              this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+            }
+          );
+          /** update */
+        } else {
+          this.actionFailed('rename File Error', next.ErrorMessage);
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        }
+      }
+        , (error) => {
+          this.actionFailed('rename File Error', error);
+          this.store.dispatch({ type: SET_LOADING_STATE, payload: false });
+        });
+    }
   }
 
   private sideEffectHelper(name: string, parameters: HttpParams, httpMethod: string, apiURL: string,

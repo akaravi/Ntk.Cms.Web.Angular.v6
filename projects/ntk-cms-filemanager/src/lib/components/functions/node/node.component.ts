@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NodeInterface} from '../../../interfaces/node.interface';
+import { Component, Input, OnInit } from '@angular/core';
+import { NodeInterface } from '../../../interfaces/node.interface';
 
-import {NodeService} from '../../../services/node.service';
-import {NodeClickedService} from '../../../services/node-clicked.service';
-import {FileManagerStoreService, SET_PATH, SET_SELECTED_NODE} from '../../../services/file-manager-store.service';
-import {DownloadModeEnum} from '../../../enums/download-mode.enum';
+import { NodeService } from '../../../services/node.service';
+import { NodeClickedService } from '../../../services/node-clicked.service';
+import { FileManagerStoreService, SET_PATH, SET_SELECTED_NODE } from '../../../services/file-manager-store.service';
+import { DownloadModeEnum } from '../../../enums/download-mode.enum';
 
 @Component({
   selector: 'lib-filemanager-node',
@@ -20,8 +20,13 @@ export class NodeComponent implements OnInit {
     private nodeService: NodeService,
     private nodeClickedService: NodeClickedService
   ) {
+    this.store
+      .getState(state => state.fileManagerState.selectedNode)
+      .subscribe((value: NodeInterface) => {
+        this.selectedNode = value;
+      });
   }
-
+  selectedNode: NodeInterface;
   public method1CallForClick(event: MouseEvent) {
     event.preventDefault();
 
@@ -45,6 +50,8 @@ export class NodeComponent implements OnInit {
   }
 
   private open() {
+    debugger;
+
     if (!this.node.isFolder) {
       if (this.nodeService?.tree?.config?.options?.allowFolderDownload === DownloadModeEnum.DOWNLOAD_DISABLED) {
         this.isSingleClick = true;
@@ -57,25 +64,30 @@ export class NodeComponent implements OnInit {
     }
 
     if (this.node.stayOpen) {
-      if (this.node.name == 'root') {
-        this.nodeService.foldAll();
+      if (this.node.name === 'root') {
+        if (this.selectedNode && this.selectedNode.id === this.node.id) {
+          this.nodeService.foldAll(true);
+        }
+        else {
+          this.nodeService.foldAll();
+        }
       }
 
-      this.store.dispatch({type: SET_PATH, payload: this.node.pathToNode});
+      this.store.dispatch({ type: SET_PATH, payload: this.node.pathToNode });
       return;
     }
 
     this.toggleNodeExpanded();
 
     if (this.node.isExpanded) {
-      this.store.dispatch({type: SET_PATH, payload: this.node.pathToNode});
+      this.store.dispatch({ type: SET_PATH, payload: this.node.pathToNode });
     }
 
     this.setNodeSelectedState();
   }
 
   private showMenu() {
-    this.store.dispatch({type: SET_SELECTED_NODE, payload: this.node});
+    this.store.dispatch({ type: SET_SELECTED_NODE, payload: this.node });
   }
 
   private toggleNodeExpanded() {
@@ -88,7 +100,7 @@ export class NodeComponent implements OnInit {
 
       this.nodeService.foldRecursively(this.node);
 
-      this.store.dispatch({type: SET_PATH, payload: this.node.pathToParent});
+      this.store.dispatch({ type: SET_PATH, payload: this.node.pathToParent });
     } else {
       document.getElementById('tree_' + this.node.pathToNode).classList.remove('deselected');
     }
