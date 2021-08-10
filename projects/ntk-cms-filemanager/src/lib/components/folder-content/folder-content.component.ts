@@ -46,7 +46,6 @@ export class FolderContentComponent implements OnInit {
   newFileClickedAction() {
     this.openUploadDialog.emit(true);
   }
-  
   newFolderClickedAction() {
     this.openNewFolderDialog.emit(true);
   }

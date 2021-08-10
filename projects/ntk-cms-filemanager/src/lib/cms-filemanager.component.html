@@ -44,9 +44,8 @@
       </div>
 
       <div class="right">
-        <lib-filemanager-folder-content
-         (openUploadDialog)="handleUploadDialog($event)"
-         (openNewFolderDialog)="handleNewFolderDialog($event)"
+        <lib-filemanager-folder-content (openUploadDialog)="handleUploadDialog($event)"
+          (openNewFolderDialog)="handleNewFolderDialog($event)"
           [folderContentTemplate]="folderContentTemplate ? folderContentTemplate : defaultFolderContentTemplate"
           [folderContentNewFileTemplate]="folderContentNewFileTemplate ? folderContentNewFileTemplate : defaultFileContentNewTemplate"
           [folderContentNewFolderTemplate]="folderContentNewFolderTemplate ? folderContentNewFolderTemplate : defaultFolderContentNewTemplate"
@@ -63,10 +62,10 @@
     </div>
   </div>
 
-  <lib-filemanager-upload *ngIf="newFileDialog" [openDialog]="newFileDialog" (closeDialog)="handleUploadDialog(false)"
-    (createDir)="handleFileManagerClickEvent({type: 'createFolder', payload: $event})">
+  <lib-filemanager-upload *ngIf="newFileDialog" [openDialog]="newFileDialog" (closeDialog)="handleUploadDialog(false)">
   </lib-filemanager-upload>
-  <lib-filemanager-newfolder *ngIf="newFolderDialog" [openDialog]="newFolderDialog" (closeDialog)="handleNewFolderDialog(false)"
+  <lib-filemanager-newfolder *ngIf="newFolderDialog" [openDialog]="newFolderDialog"
+    (closeDialog)="handleNewFolderDialog(false)"
     (createDir)="handleFileManagerClickEvent({type: 'createFolder', payload: $event})">
   </lib-filemanager-newfolder>
 

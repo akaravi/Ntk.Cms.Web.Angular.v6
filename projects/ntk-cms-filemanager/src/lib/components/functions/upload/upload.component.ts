@@ -17,10 +17,10 @@ export class UploadComponent implements OnInit, AfterViewInit {
     }
   }
   @Output() closeDialog = new EventEmitter();
-  @Output() createDir = new EventEmitter();
+  // @Output() createDir = new EventEmitter();
 
   uploader: FineUploader;
-  newFolder = false;
+  // newFolder = false;
   counter = 0;
 
   constructor(private http: HttpClient,
@@ -73,17 +73,17 @@ export class UploadComponent implements OnInit, AfterViewInit {
     this.uploader.uploadStoredFiles();
   }
 
-  createNewFolder(input?: string) {
-    if (!this.newFolder) {
-      this.newFolder = true;
-    } else {
-      this.newFolder = false;
-      if (input.length > 0) {
-        this.createDir.emit(input);
-        this.newClickedAction();
-      }
-    }
-  }
+  // createNewFolder(input?: string) {
+  //   if (!this.newFolder) {
+  //     this.newFolder = true;
+  //   } else {
+  //     this.newFolder = false;
+  //     if (input.length > 0) {
+  //       this.createDir.emit(input);
+  //       this.newClickedAction();
+  //     }
+  //   }
+  // }
 
   newClickedAction() {
     this.uploader.cancelAll();
