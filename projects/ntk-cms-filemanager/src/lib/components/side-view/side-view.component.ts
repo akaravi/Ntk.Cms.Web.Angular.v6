@@ -3,7 +3,7 @@ import {NodeInterface} from '../../interfaces/node.interface';
 import {DownloadModeEnum} from '../../enums/download-mode.enum';
 
 @Component({
-  selector: 'app-side-view',
+  selector: 'lib-filemanager-side-view',
   templateUrl: './side-view.component.html',
   styleUrls: ['./side-view.component.scss'],
   encapsulation: ViewEncapsulation.None

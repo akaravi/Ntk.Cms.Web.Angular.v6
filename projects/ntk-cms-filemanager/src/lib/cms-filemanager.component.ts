@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { TreeModel } from './models/tree.model';
 import { NodeService } from './services/node.service';
 import { NodeInterface } from './interfaces/node.interface';
@@ -51,7 +51,8 @@ export class CmsFileManagerComponent implements OnInit {
     private nodeService: NodeService,
     private nodeClickedService: NodeClickedService,
     public ngxSmartModalService: NtkSmartModalService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private cdr: ChangeDetectorRef
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
@@ -74,6 +75,7 @@ export class CmsFileManagerComponent implements OnInit {
       .getState(state => state.fileManagerState.isLoading)
       .subscribe((isLoading: boolean) => {
         this.loading = isLoading;
+        this.cdr.detectChanges();
       });
 
     this.store

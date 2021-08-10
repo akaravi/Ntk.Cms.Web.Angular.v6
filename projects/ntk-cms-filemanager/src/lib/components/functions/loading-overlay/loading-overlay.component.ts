@@ -3,7 +3,7 @@ import {timer} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-loading-overlay',
+  selector: 'lib-filemanager-loading-overlay',
   templateUrl: './loading-overlay.component.html',
   styleUrls: ['./loading-overlay.component.scss']
 })

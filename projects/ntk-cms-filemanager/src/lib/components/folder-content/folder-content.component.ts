@@ -4,7 +4,7 @@ import {NodeInterface} from '../../interfaces/node.interface';
 import {FileManagerStoreService} from '../../services/file-manager-store.service';
 
 @Component({
-  selector: 'app-folder-content',
+  selector: 'lib-filemanager-folder-content',
   templateUrl: './folder-content.component.html',
   styleUrls: ['./folder-content.component.scss']
 })

@@ -2,7 +2,7 @@ import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@a
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-new-folder',
+  selector: 'lib-filemanager-new-folder',
   templateUrl: './new-folder.component.html',
   styleUrls: ['./new-folder.component.scss']
 })

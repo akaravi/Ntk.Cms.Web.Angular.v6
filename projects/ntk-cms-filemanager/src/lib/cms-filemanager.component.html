@@ -19,57 +19,57 @@
   <div class="content">
     <div class="file-manager-navbar">
       <div class="path">
-        <app-nav-bar></app-nav-bar>
+        <lib-filemanager-nav-bar></lib-filemanager-nav-bar>
       </div>
 
       <div class="navigation">
-        <app-navigation>
+        <lib-filemanager-navigation>
           <div class="button close" (click)="fmShowHide()" *ngIf="isPopup">
             <i class="fas fa-2x fa-times"></i>
           </div>
-        </app-navigation>
+        </lib-filemanager-navigation>
       </div>
     </div>
 
     <div class="holder">
       <div class="file-manager-left">
-        <app-tree [treeModel]="tree">
+        <lib-filemanager-tree [treeModel]="tree">
           <ng-template let-nodes>
             <ng-container [ngTemplateOutletContext]="{$implicit: nodes}"
                           [ngTemplateOutlet]="iconTemplate ? iconTemplate : defaultIconTemplate">
             </ng-container>
           </ng-template>
-        </app-tree>
+        </lib-filemanager-tree>
       </div>
 
       <div class="right">
-        <app-folder-content
+        <lib-filemanager-folder-content
           (openUploadDialog)="handleUploadDialog($event)"
           [folderContentTemplate]="folderContentTemplate ? folderContentTemplate : defaultFolderContentTemplate"
           [folderContentNewTemplate]="folderContentNewTemplate ? folderContentNewTemplate : defaultFolderContentNewTemplate"
           [folderContentBackTemplate]="folderContentBackTemplate ? folderContentBackTemplate : defaultFolderContentBackTemplate">
-        </app-folder-content>
+        </lib-filemanager-folder-content>
       </div>
 
-      <app-side-view id="side-view"
+      <lib-filemanager-side-view id="side-view"
                      [node]="selectedNode"
                      [sideViewTemplate]="sideViewTemplate ? sideViewTemplate : defaultSideViewTemplate"
                      [allowFolderDownload]="tree.config.options.allowFolderDownload"
                      (clickEvent)="handleFileManagerClickEvent($event)">
-      </app-side-view>
+      </lib-filemanager-side-view>
     </div>
   </div>
 
-  <app-upload *ngIf="newDialog"
+  <lib-filemanager-upload *ngIf="newDialog"
               [openDialog]="newDialog"
               (closeDialog)="handleUploadDialog(false)"
               (createDir)="handleFileManagerClickEvent({type: 'createFolder', payload: $event})">
-  </app-upload>
+  </lib-filemanager-upload>
 
-  <app-loading-overlay
+  <lib-filemanager-loading-overlay
     *ngIf="loading"
     [loadingOverlayTemplate]="loadingOverlayTemplate ? loadingOverlayTemplate : defaultLoadingOverlayTemplate">
-  </app-loading-overlay>
+  </lib-filemanager-loading-overlay>
 </ng-template>
 
 <ng-template let-node #defaultIconTemplate>

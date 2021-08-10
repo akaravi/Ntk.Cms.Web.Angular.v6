@@ -7,7 +7,7 @@ import {FileManagerStoreService, SET_SELECTED_NODE} from '../../services/file-ma
 import { ConfigInterface } from '../../interfaces/config.interface';
 
 @Component({
-  selector: 'app-tree',
+  selector: 'lib-filemanager-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss']
 })

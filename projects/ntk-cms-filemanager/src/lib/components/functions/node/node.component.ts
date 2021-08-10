@@ -7,7 +7,7 @@ import {FileManagerStoreService, SET_PATH, SET_SELECTED_NODE} from '../../../ser
 import {DownloadModeEnum} from '../../../enums/download-mode.enum';
 
 @Component({
-  selector: 'app-node',
+  selector: 'lib-filemanager-node',
   templateUrl: './node.component.html',
   styleUrls: ['./node.component.scss']
 })

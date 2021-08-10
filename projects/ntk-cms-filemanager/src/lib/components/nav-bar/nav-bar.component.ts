@@ -3,7 +3,7 @@ import {NodeService} from '../../services/node.service';
 import {FileManagerStoreService, SET_PATH} from '../../services/file-manager-store.service';
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'lib-filemanager-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })

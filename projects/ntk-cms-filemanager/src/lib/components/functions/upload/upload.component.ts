@@ -4,7 +4,7 @@ import {FineUploader} from 'fine-uploader';
 import {NodeService} from '../../../services/node.service';
 
 @Component({
-  selector: 'app-upload',
+  selector: 'lib-filemanager-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss', './fine-uploader/fine-uploader.scss'],
   encapsulation: ViewEncapsulation.None

@@ -2,7 +2,7 @@ import {Component, ContentChild, Input, OnInit, TemplateRef} from '@angular/core
 import {NodeInterface} from '../../../interfaces/node.interface';
 
 @Component({
-  selector: 'app-node-lister',
+  selector: 'lib-filemanager-node-lister',
   templateUrl: './node-lister.component.html',
   styleUrls: ['./node-lister.component.scss']
 })
