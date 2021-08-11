@@ -14,7 +14,8 @@ import {
   ErrorExceptionResult,
   ErrorExceptionResultBase,
 } from 'ntk-cms-api';
-import { ConfigInterface, DownloadModeEnum, TreeModel } from 'src/app/modules/filemanager_api';
+import { ConfigInterface, DownloadModeEnum, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
+// import { ConfigInterface, DownloadModeEnum, TreeModel } from 'src/app/modules/filemanager_api';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';

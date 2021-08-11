@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TreeModel } from './models/tree.model';
 import { NodeService } from './services/node.service';
 import { NodeInterface } from './interfaces/node.interface';
@@ -11,10 +11,10 @@ import { FileManagerStoreService, SET_LOADING_STATE, SET_SELECTED_NODE } from '.
   selector: 'cms-file-manager',
   templateUrl: './cms-filemanager.component.html',
   styleUrls: ['./cms-filemanager.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [NodeService, NodeClickedService, FileManagerStoreService]
 })
-export class CmsFileManagerComponent implements OnInit {
-  @ViewChild('mainModal') mainModal: ElementRef;
+export class CmsFileManagerComponent implements OnInit , AfterViewInit {
 
   @Input() iconTemplate: TemplateRef<any>;
   @Input() folderContentTemplate: TemplateRef<any>;
@@ -78,18 +78,32 @@ export class CmsFileManagerComponent implements OnInit {
   loading: boolean;
   newFileDialog = false;
   newFolderDialog = false;
-
+  HighestZIndex = 0;
+  @ViewChild('mainModal') mainModal: ElementRef;
   constructor(
     private store: FileManagerStoreService,
     private nodeService: NodeService,
     private nodeClickedService: NodeClickedService,
     public ngxSmartModalService: NtkSmartModalService,
     public translate: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private el: ElementRef
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
+  }
 
+  ngOnInit() {
+    this.nodeService.serviceTree = this.tree;
+    this.nodeClickedService.serviceTree = this.tree;
+    this.nodeService.startManagerAt(this.tree.currentPath + '');
+    // this.nodeService.getNodes(this.tree.currentPath).then(() => {
+    //   this.store.dispatch({type: SET_SELECTED_NODE, payload: });
+    // });
+
+    this.translate.get(this.openFilemanagerButtonLabelKey).subscribe((translation) => {
+      this.openFilemanagerButtonLabel = translation;
+    });
 
     this.store
       .getState(state => state.fileManagerState.inProcessingList)
@@ -116,24 +130,12 @@ export class CmsFileManagerComponent implements OnInit {
 
         this.handleFileManagerClickEvent({ type: 'select', node: selectedNode });
       });
-  }
-
-  ngOnInit() {
-    this.nodeService.serviceTree = this.tree;
-    this.nodeClickedService.serviceTree = this.tree;
-
-    this.nodeService.startManagerAt(this.tree.currentPath);
-    // this.nodeService.getNodes(this.tree.currentPath).then(() => {
-    //   this.store.dispatch({type: SET_SELECTED_NODE, payload: });
-    // });
-
-    this.translate.get(this.openFilemanagerButtonLabelKey).subscribe((translation) => {
-      this.openFilemanagerButtonLabel = translation;
-    });
 
 
   }
-
+  ngAfterViewInit(): void {
+    this.HighestZIndex = this.findHighestZIndex('div');
+  }
   onItemClicked(event: any): void {
     this.itemClicked.emit(event);
   }
@@ -212,7 +214,7 @@ export class CmsFileManagerComponent implements OnInit {
     }
 
     this.selectedNode = node;
-    
+
     // todo investigate this workaround - warning: [File Manager] failed to find requested node for path: [path]
     if (!document.getElementById('side-view')) {
       this.cdr.detectChanges();
@@ -350,4 +352,19 @@ export class CmsFileManagerComponent implements OnInit {
     }
     return false;
   }
+  findHighestZIndex(elem: string): number {
+    const elems = document.getElementsByTagName(elem);
+    let highest = Number.MIN_SAFE_INTEGER || -(Math.pow(2, 53) - 1);
+    for (let i = 0; i < this.el.nativeElement.length; i++) {
+      const zindex = Number.parseInt(
+        document.defaultView.getComputedStyle(elems[i], null).getPropertyValue('z-index'),
+        10
+      );
+      if (zindex > highest) {
+        highest = zindex;
+      }
+    }
+    return highest;
+  }
+ 
 }

@@ -6,7 +6,6 @@ import { NodeClickedService } from './services/node-clicked.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FileManagerStoreService, SET_LOADING_STATE, SET_SELECTED_NODE } from './services/file-manager-store.service';
 import { NtkSmartModalService } from 'ngx-ntk-smart-module';
-import { ComponentOptionModel } from './models/componentOptionModel';
 import { FilePreviewModel } from 'ngx-awesome-uploader';
 
 @Component({

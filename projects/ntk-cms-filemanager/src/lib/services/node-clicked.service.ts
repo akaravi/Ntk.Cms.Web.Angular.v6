@@ -9,9 +9,10 @@ import { first, map } from 'rxjs/operators';
 import { FileCategoryModel, FileCategoryService, FileContentService } from 'ntk-cms-api';
 import { FileManagerStoreService } from './file-manager-store.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
+@Injectable()
 export class NodeClickedService {
   public serviceTree: TreeModel;
 

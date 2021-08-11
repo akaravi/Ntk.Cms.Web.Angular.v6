@@ -17,9 +17,10 @@ import { FileCategoryService, FileContentService } from 'ntk-cms-api';
 }
 https://github.com/Chiff/ng6-file-man-express/blob/master/index.js
 */
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
+@Injectable()
 export class NodeService {
   public serviceTree: TreeModel;
   private privatePath: string;
@@ -31,7 +32,7 @@ export class NodeService {
     private fileCategoryService: FileCategoryService,
   ) {
     this.guid = this.newGuid();
-    console.log('constructor:', this.guid);
+    console.log('NodeService Constructor:', this.guid);
   }
   private guid = '';
 

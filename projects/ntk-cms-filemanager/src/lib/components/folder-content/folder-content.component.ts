@@ -39,7 +39,7 @@ export class FolderContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nodes = this.nodeService.tree.nodes;
+    this.nodes = this.nodeService.serviceTree.nodes;
 
     this.store
       .getState(state => state.fileManagerState.path)

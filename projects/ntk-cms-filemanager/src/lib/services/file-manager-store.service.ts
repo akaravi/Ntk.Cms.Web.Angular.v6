@@ -12,9 +12,10 @@ const initialState: StateInterface = {
   inProcessingList: []
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
+@Injectable()
 export class FileManagerStoreService {
   private state: AppStore;
 
