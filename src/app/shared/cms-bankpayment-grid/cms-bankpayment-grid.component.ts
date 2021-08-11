@@ -14,11 +14,10 @@ import {
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import {
-  NodeInterface,
-} from 'src/app/modules/filemanager_api';
+
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { NodeInterface } from 'projects/ntk-cms-filemanager/src/public-api';
 
 @Component({
   selector: 'app-cms-bankpayment-grid',
