@@ -5,7 +5,7 @@ import { NodeInterface } from './interfaces/node.interface';
 import { NtkSmartModalService } from 'ngx-ntk-smart-module';
 import { NodeClickedService } from './services/node-clicked.service';
 import { TranslateService } from '@ngx-translate/core';
-import { FileManagerStoreService, SET_LOADING_STATE, SET_SELECTED_NODE } from './services/file-manager-store.service';
+import { FileManagerStoreService, SET_LOADING_STATE, SET_PATH, SET_SELECTED_NODE } from './services/file-manager-store.service';
 
 @Component({
   selector: 'cms-file-manager',
@@ -14,7 +14,7 @@ import { FileManagerStoreService, SET_LOADING_STATE, SET_SELECTED_NODE } from '.
   encapsulation: ViewEncapsulation.None,
   providers: [NodeService, NodeClickedService, FileManagerStoreService]
 })
-export class CmsFileManagerComponent implements OnInit , AfterViewInit {
+export class CmsFileManagerComponent implements OnInit, AfterViewInit {
 
   @Input() iconTemplate: TemplateRef<any>;
   @Input() folderContentTemplate: TemplateRef<any>;
@@ -74,7 +74,7 @@ export class CmsFileManagerComponent implements OnInit , AfterViewInit {
   selectedNode: NodeInterface;
   sideMenuClosed = true;
 
-  fmOpen = false;
+  // fmOpen = false;
   loading: boolean;
   newFileDialog = false;
   newFolderDialog = false;
@@ -96,7 +96,9 @@ export class CmsFileManagerComponent implements OnInit , AfterViewInit {
   ngOnInit() {
     this.nodeService.serviceTree = this.tree;
     this.nodeClickedService.serviceTree = this.tree;
-    this.nodeService.startManagerAt(this.tree.currentPath + '');
+    // this.nodeService.startManagerAt(this.tree.currentPath + '');
+    this.store.dispatch({ type: SET_PATH, payload: this.tree.currentPath });
+
     // this.nodeService.getNodes(this.tree.currentPath).then(() => {
     //   this.store.dispatch({type: SET_SELECTED_NODE, payload: });
     // });
@@ -201,7 +203,6 @@ export class CmsFileManagerComponent implements OnInit , AfterViewInit {
     if (node.name === 'root') {
       return;
     }
-    // debugger
     if (closing) {
       const parentNode = this.nodeService.findNodeByPath(this.nodeService.currentPath);
       this.store.dispatch({ type: SET_SELECTED_NODE, payload: parentNode });
@@ -317,7 +318,7 @@ export class CmsFileManagerComponent implements OnInit , AfterViewInit {
   }
 
   confirmSelection() {
-    this.fmOpen = false;
+    this.fmShowHide(false);
     this.itemSelected.emit(this.selectedNode);
   }
   allowConfirmSelection(selectedNode: NodeInterface): boolean {
@@ -336,7 +337,7 @@ export class CmsFileManagerComponent implements OnInit , AfterViewInit {
   }
 
   cancelSelection() {
-    this.fmOpen = false;
+    this.fmShowHide(false);
   }
   AllowFileView(model: NodeInterface): boolean {
     if (
@@ -366,5 +367,5 @@ export class CmsFileManagerComponent implements OnInit , AfterViewInit {
     }
     return highest;
   }
- 
+
 }
