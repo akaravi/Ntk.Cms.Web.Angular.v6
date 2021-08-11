@@ -55,6 +55,10 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
     }
     this.openPopupForm = model;
     this.openFormChange.emit(model);
+    if (model && this.isPopup && !this.startManagerRuned) {
+      this.nodeService.startManagerAt(this.tree.currentPath + '');
+      this.startManagerRuned = true;
+    }
   }
   get openForm(): boolean {
     return this.openPopupForm;
@@ -79,6 +83,7 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
   newFileDialog = false;
   newFolderDialog = false;
   HighestZIndex = 0;
+  startManagerRuned = false;
   @ViewChild('mainModal') mainModal: ElementRef;
   constructor(
     private store: FileManagerStoreService,
@@ -96,8 +101,11 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.nodeService.serviceTree = this.tree;
     this.nodeClickedService.serviceTree = this.tree;
-    // this.nodeService.startManagerAt(this.tree.currentPath + '');
-    this.store.dispatch({ type: SET_PATH, payload: this.tree.currentPath });
+    if (!this.isPopup) {
+      this.nodeService.startManagerAt(this.tree.currentPath + '');
+      this.startManagerRuned = true;
+    }
+    // this.store.dispatch({ type: SET_PATH, payload: this.tree.currentPath });
 
     // this.nodeService.getNodes(this.tree.currentPath).then(() => {
     //   this.store.dispatch({type: SET_SELECTED_NODE, payload: });
@@ -136,7 +144,7 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    this.HighestZIndex = this.findHighestZIndex('div');
+    // this.HighestZIndex = this.findHighestZIndex('div');
   }
   onItemClicked(event: any): void {
     this.itemClicked.emit(event);
@@ -365,6 +373,7 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
         highest = zindex;
       }
     }
+    console.log('HighestZIndex', highest);
     return highest;
   }
 

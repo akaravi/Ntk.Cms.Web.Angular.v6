@@ -16,6 +16,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "defaultConfiguration": "production",
           "options": {
             "outputPath": "dist/ntk-cms-web",
             "showCircularDependencies": false,
@@ -46,6 +47,14 @@
             ]
           },
           "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -78,6 +87,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "defaultConfiguration": "development",
           "options": {
             "browserTarget": "ntk-cms-web:build",
             "optimization":false
@@ -86,7 +96,10 @@
           "configurations": {
             "production": {
               "browserTarget": "ntk-cms-web:build:production"
-            }
+            },
+            "development": {
+              "browserTarget": "ntk-cms-web:build:development"
+             }
           }
         },
         "extract-i18n": {

@@ -44,11 +44,8 @@ export class TreeComponent implements AfterViewInit, OnInit {
     this.store
       .getState(state => state.fileManagerState.path)
       .subscribe((path: string) => {
-        debugger;
         this.nodeService.getNodes(path);
-
         this.currentTreeLevel = this.treeModel.currentPath;
-
         return this.treeModel.currentPath = path;
       });
   }

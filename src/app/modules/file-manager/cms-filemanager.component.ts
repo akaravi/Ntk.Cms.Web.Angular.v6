@@ -108,9 +108,7 @@ export class CmsFileManager2Component implements OnInit, AfterViewInit {
     this.nodeClickedService.serviceTree = this.tree;
 
     this.nodeService.startManagerAt(this.tree.currentPath);
-    // this.nodeService.getNodes(this.tree.currentPath).then(() => {
-    //   this.store.setState({type: SET_SELECTED_NODE, payload: });
-    // });
+
     this.translate.get(this.openFilemanagerButtonLabelKey).subscribe((translation: any) => {
       this.openFilemanagerButtonLabel = translation;
     });
