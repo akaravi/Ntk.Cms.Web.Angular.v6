@@ -18,7 +18,6 @@
       <ng-container [ngTemplateOutletContext]="{$implicit: node}" [ngTemplateOutlet]="sideViewTemplate">
       </ng-container>
     </div>
-    {{node|json}}
     <div class="side-view-buttons">
       <button type="button" (click)="onClick($event, 'download')" class="button" [disabled]="isDisabled()">
         {{'filemanager.download' | translate }}
