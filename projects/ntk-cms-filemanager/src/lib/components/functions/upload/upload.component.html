@@ -1,7 +1,7 @@
 <div class="backdrop" (click)="newClickedAction()"></div>
 <div class="upload-background">
   <!-- <div class="buttons">
-    <button class="button" [disabled]="newFolder" (click)="createNewFolder()">{{'filemanager.create_new_folder' | translate}}</button>
+    <button  type="button"  class="button" [disabled]="newFolder" (click)="createNewFolder()">{{'filemanager.create_new_folder' | translate}}</button>
   </div>
 
   <div *ngIf="newFolder">
@@ -15,10 +15,10 @@
 
 
   <div class="buttons">
-    <button class="button big" [disabled]="this.counter < 1" (click)="uploadFiles()">
+    <button  type="button" class="button big" [disabled]="this.counter < 1" (click)="uploadFiles()">
       {{'filemanager.upload' | translate }}
     </button>
-    <button class="button big" (click)="newClickedAction()">
+    <button  type="button" class="button big" (click)="newClickedAction()">
       {{'filemanager.close' | translate }}
     </button>
   </div>

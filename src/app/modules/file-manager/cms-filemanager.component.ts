@@ -14,7 +14,7 @@ import { FilePreviewModel } from 'ngx-awesome-uploader';
   styleUrls: ['./cms-filemanager.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CmsFileManagerComponent implements OnInit, AfterViewInit {
+export class CmsFileManager2Component implements OnInit, AfterViewInit {
   @Input() iconTemplate: TemplateRef<any>;
   @Input() folderContentTemplate: TemplateRef<any>;
   @Input() folderContentBackTemplate: TemplateRef<any>;

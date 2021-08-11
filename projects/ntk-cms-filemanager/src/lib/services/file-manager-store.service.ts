@@ -76,6 +76,9 @@ export class FileManagerStoreService {
 export function stateReducer(state: StateInterface = initialState, action: Actions): StateInterface {
   switch (action.type) {
     case SET_PATH:
+      if (action.payload === '') {
+        action.payload = '/';
+      }
       if (state.path === action.payload) {
         return state;
       }

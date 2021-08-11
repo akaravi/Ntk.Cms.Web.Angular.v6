@@ -192,11 +192,11 @@
   <br>
 
   <div class="rename-button">
-    <button class="button big" (click)="handleFileManagerClickEvent({type: 'rename', value: renameInput.value})"
+    <button type="button" class="button big" (click)="handleFileManagerClickEvent({type: 'rename', value: renameInput.value})"
       [disabled]="renameInput.value === selectedNode.name || renameInput.value.length === 0">
       {{'filename.rename' | translate}}
     </button>
-    <button class="button big" (click)="renameModal.close()">
+    <button type="button" class="button big" (click)="renameModal.close()">
       {{'filemanager.cancel' | translate}}
     </button>
   </div>
@@ -213,12 +213,12 @@
   <div style="width: 100%; margin: 5px auto; text-align: center">{{selectedNode.name}}</div>
 
   <div class="rename-button">
-    <button class="button big" (click)="handleFileManagerClickEvent({type: 'remove'})">
+    <button type="button" class="button big" (click)="handleFileManagerClickEvent({type: 'remove'})">
       <span>{{'filemanager.yes_delete_this' | translate}}</span>
       <span *ngIf="selectedNode.isFolder">{{'filemanager.folder' | translate}}</span>
       <span *ngIf="!selectedNode.isFolder">{{'filemanager.file' | translate}}</span>
     </button>
-    <button class="button big" (click)="deleteModal.close()">
+    <button type="button" class="button big" (click)="deleteModal.close()">
       {{'filemanager.cancel'|translate}}
     </button>
   </div>

@@ -1,7 +1,7 @@
 // import {ModuleWithProviders, NgModule} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CmsFileManagerComponent } from './cms-filemanager.component';
+import { CmsFileManager2Component } from './cms-filemanager.component';
 import { FolderContentComponent } from './components/folder-content/folder-content.component';
 import { TreeComponent } from './components/tree/tree.component';
 import { NodeListerComponent } from './components/tree/node-lister/node-lister.component';
@@ -30,7 +30,7 @@ import { FilePickerModule } from 'ngx-awesome-uploader';
     FilePickerModule
   ],
   declarations: [
-    CmsFileManagerComponent,
+    CmsFileManager2Component,
     FolderContentComponent,
     NodeComponent,
     TreeComponent,
@@ -45,7 +45,7 @@ import { FilePickerModule } from 'ngx-awesome-uploader';
     NavigationComponent
   ],
   exports: [
-    CmsFileManagerComponent,
+    CmsFileManager2Component,
     LoadingOverlayComponent,
     SideViewComponent,
     TranslateModule
