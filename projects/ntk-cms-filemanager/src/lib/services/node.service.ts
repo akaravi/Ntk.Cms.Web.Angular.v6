@@ -48,6 +48,7 @@ export class NodeService {
   // todo ask server to get parent structure
   public startManagerAt(path: string): void {
     this.currentPath = path;
+    this.store.dispatch({ type: SET_PATH, payload: path });
     this.refreshCurrentPath();
   }
   public refreshCurrentPath_orginal(): void {
