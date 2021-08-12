@@ -2,7 +2,7 @@
 <div class="upload-background">
   <div class="row">
     <ngx-awesome-uploader class="ntk-awesome-uploader"  #uploader [adapter]="adapter" [fileMaxCount]="3" [fileMaxSize]="700" [uploadType]="'multi'"
-      (validationError)="onValidationError($event)" [fileExtensions]="['pdf', 'jpg', 'jpeg', 'png', 'mp4', 'css']"
+      (validationError)="onValidationError($event)" [fileExtensions]="fileExtensions"
       [enableCropper]="false" (uploadSuccess)="onUploadSuccess($event)" (removeSuccess)="onRemoveSuccess($event)"
       (fileAdded)="onFileAdded($event)" [customValidator]="myCustomValidator" [captions]="captions"
       [accept]="fileTypeAccept">

@@ -56,7 +56,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
   @Input() openDirectUploadView = false;
   adapter = new FileUploaderPickerAdapter(this.http);
   fileTypeAccept = ''; // '.jpg, .png'
-  fileExtensions: string[] = [];
+  fileExtensions: string[] = []; // ['pdf', 'jpg', 'jpeg', 'png', 'mp4', 'css']
   counter = 0;
 
   // @Output() optionUploadSuccess = new EventEmitter<FilePreviewModel>();
