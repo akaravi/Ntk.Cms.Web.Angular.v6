@@ -38,12 +38,17 @@
                 "input": "./node_modules/leaflet/dist/images",
                 "output": "leaflet/"
               },
-              "src/favicon.ico", 
-              "src/assets"],
-            "styles": ["src/styles.scss"],
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/fine-uploader/fine-uploader/fine-uploader-gallery.min.css"
+            ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js",
-              "node_modules/clipboard/dist/clipboard.js"
+              "node_modules/clipboard/dist/clipboard.js",
+              "node_modules/fine-uploader/fine-uploader/fine-uploader.min.js"
             ]
           },
           "configurations": {
@@ -90,8 +95,7 @@
           "defaultConfiguration": "development",
           "options": {
             "browserTarget": "ntk-cms-web:build",
-            "optimization":false
-
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -99,7 +103,7 @@
             },
             "development": {
               "browserTarget": "ntk-cms-web:build:development"
-             }
+            }
           }
         },
         "extract-i18n": {
@@ -124,7 +128,9 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         },
@@ -136,7 +142,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
