@@ -15,7 +15,6 @@ import {
   ErrorExceptionResultBase,
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
-// import { ConfigInterface, DownloadModeEnum, TreeModel } from 'src/app/modules/filemanager_api';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -109,7 +108,7 @@ export class PublicHelper {
   fileManagerTreeConfig: TreeModel;
   GetfileManagerTreeConfig(): TreeModel {
     this.fileManagerTreeConfig.config.baseURL = environment.cmsServerConfig.configApiServerPath;
-    this.fileManagerTreeConfig.config.baseUploadURL = environment.cmsServerConfig.configRouteUploadFileContent;
+    this.fileManagerTreeConfig.config.baseUploadURL = environment.cmsServerConfig.configFileServerPath;
     return this.fileManagerTreeConfig;
   }
   CheckError(model: any): any {

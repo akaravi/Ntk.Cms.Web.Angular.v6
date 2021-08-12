@@ -18,6 +18,9 @@ export const environment = {
     configApiServerPath: 'https://apicms.ir/api/v1/',
     // configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
     // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
+    configFileServerPath: 'https://apifile.ir/api/v1/',
+        // configRouteUploadFileContent: 'https://apicms.ir/api/v1/', // Test Api
+    // configRouteUploadFileContent: 'http://localhost:2392/api/v1/' // Test Api
     configMvcServerPath: 'https://oco.ir',
     configCpanelImages: '/cpanelv1/images/',
     configPathFileByIdAndName: 'https://oco.ir/files/',
@@ -26,9 +29,7 @@ export const environment = {
     // configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
     configHtmlViewServerPath: 'https://ntkcms.com/',
     // configHtmlViewServerPath: 'https://localhost:2391/', // Test Api
-    configRouteUploadFileContent: 'https://apifile.ir/api/v1/upload/',
-    // configRouteUploadFileContent: 'https://apicms.ir/api/v1/upload/', // Test Api
-    // configRouteUploadFileContent: 'http://localhost:2392/api/v1/upload/' // Test Api
+    configRouteUploadFileContent: 'upload/',
   },
   cmsUiConfig: {
     Pathlogin: '/auth/singin',

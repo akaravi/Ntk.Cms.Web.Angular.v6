@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {FineUploader} from 'fine-uploader';
-import {NodeService} from '../../../services/node.service';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FineUploader } from 'fine-uploader';
+import { NodeService } from '../../../services/node.service';
 
 @Component({
   selector: 'lib-filemanager-upload',
@@ -24,7 +24,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
   counter = 0;
 
   constructor(private http: HttpClient,
-              private nodeService: NodeService) {
+    private nodeService: NodeService) {
   }
 
   ngAfterViewInit() {
@@ -35,30 +35,36 @@ export class UploadComponent implements OnInit, AfterViewInit {
       element: document.getElementById('fine-uploader'),
       template: document.getElementById('fine-uploader-template'),
       request: {
-        endpoint: this.nodeService.serviceTree.config.baseURL + this.nodeService.serviceTree.config.api.uploadFile,
+        endpoint: this.nodeService.serviceTree.config.baseUploadURL + this.nodeService.serviceTree.config.api.uploadFile,
         // forceMultipart: false,
         paramsInBody: false,
         params: {
-          parentPath: this.getCurrentPath
+          // parentPath: this.getCurrentPath
         }
       },
       retry: {
         enableAuto: false
       },
       callbacks: {
-        onSubmitted: () => this.counter++,
+        onSubmitted: () => {
+          debugger
+          this.counter++;
+        },
         onCancel: () => {
+          debugger
           this.counter < 0 ? console.warn('wtf?') : this.counter--;
         },
         onAllComplete: (succ: any, fail: any) => {
+          debugger
           if (succ.length > 0) {
             this.counter = 0;
             this.nodeService.refreshCurrentPath();
           }
-        }
+        },
+
       }
     })
-    ;
+      ;
   }
 
   ngOnInit() {
@@ -73,17 +79,6 @@ export class UploadComponent implements OnInit, AfterViewInit {
     this.uploader.uploadStoredFiles();
   }
 
-  // createNewFolder(input?: string) {
-  //   if (!this.newFolder) {
-  //     this.newFolder = true;
-  //   } else {
-  //     this.newFolder = false;
-  //     if (input.length > 0) {
-  //       this.createDir.emit(input);
-  //       this.newClickedAction();
-  //     }
-  //   }
-  // }
 
   newClickedAction() {
     this.uploader.cancelAll();

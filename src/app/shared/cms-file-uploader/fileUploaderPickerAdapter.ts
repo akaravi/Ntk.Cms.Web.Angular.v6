@@ -9,7 +9,7 @@ export class FileUploaderPickerAdapter extends FilePickerAdapter {
     super();
   }
   public uploadFile(fileItem: FilePreviewModel): Observable<UploadResponse> {
-    const ApiPath = environment.cmsServerConfig.configRouteUploadFileContent;
+    const ApiPath = environment.cmsServerConfig.configFileServerPath + environment.cmsServerConfig.configRouteUploadFileContent;
     const form = new FormData();
     form.append('file', fileItem.file);
     const req = new HttpRequest('POST', ApiPath, form, { reportProgress: true });
