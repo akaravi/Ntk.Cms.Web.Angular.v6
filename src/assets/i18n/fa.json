@@ -351,5 +351,7 @@
 	"filemanager.upload_file": "بازگزاری فایل",
 	"filemanager.yes": "بله",
 	"filemanager.yes_delete_this": "این حذف شود",
+	"filemanager.new_file": "فایل جدید",
+	"filemanager.new_folder": "فولدر جدید",
 	"lang": "fa"
 }

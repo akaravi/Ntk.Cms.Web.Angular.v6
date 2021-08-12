@@ -2,6 +2,9 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEnca
 import { HttpClient } from '@angular/common/http';
 import { FineUploader } from 'fine-uploader';
 import { NodeService } from '../../../services/node.service';
+import { ErrorExceptionResult, FileContentModel, FileContentService, FileUploadModel } from 'ntk-cms-api';
+import { FilePreviewModel } from 'ngx-awesome-uploader';
+import { FileUploaderPickerAdapter } from './fileUploaderPickerAdapter';
 
 @Component({
   selector: 'lib-filemanager-upload',
@@ -10,21 +13,18 @@ import { NodeService } from '../../../services/node.service';
   encapsulation: ViewEncapsulation.None
 })
 export class UploadComponent implements OnInit, AfterViewInit {
+  @Output() createFile = new EventEmitter();
   @Input() openDialog;
-  @Input() set optionApiPath(x: string) {
-    if (x && x.length > 0) {
-      // this.adapter.ApiPath = x;
-    }
-  }
+
   @Output() closeDialog = new EventEmitter();
-  // @Output() createDir = new EventEmitter();
 
   uploader: FineUploader;
-  // newFolder = false;
   counter = 0;
-
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private nodeService: NodeService) {
+    this.adapter.baseUploadURL = this.nodeService.serviceTree.config.baseUploadURL;
+    this.adapter.routeUpload = this.nodeService.serviceTree.config.api.uploadFile;
   }
 
   ngAfterViewInit() {
@@ -83,5 +83,35 @@ export class UploadComponent implements OnInit, AfterViewInit {
   newClickedAction() {
     this.uploader.cancelAll();
     this.closeDialog.emit();
+  }
+  adapter = new FileUploaderPickerAdapter(this.http);
+  fileType: string | string[];
+  @Output() optionUploadSuccess = new EventEmitter<FilePreviewModel>();
+
+  uploadSuccess(event: any): void {
+    this.optionUploadSuccess.emit(event);
+  }
+
+  onFileAdded(model: FilePreviewModel): void {
+    console.log('onFileAdded', model);
+  }
+  onUploadSuccess(model: FilePreviewModel): void {
+    if (!model.uploadResponse) {
+    }
+    const ret = model.uploadResponse as ErrorExceptionResult<FileUploadModel>;
+    if (!ret.IsSuccess) {
+
+    }
+    this.createFile.emit({ fileName: model.fileName, uploadFileGUID: ret.Item.FileKey });
+    // const fileModel = new FileContentModel();
+    // fileModel.FileName = model.fileName;
+    // fileModel.UploadFileGUID = ret.Item.FileKey;
+    // const parentId = +this.getCurrentPath | 0;
+    // if (parentId > 0) {
+    //   fileModel.LinkCategoryId = parentId;
+    // }
+    // this.fileContentService.ServiceAdd(fileModel).subscribe(
+    //   (next) => { },
+    //   (error) => { });
   }
 }

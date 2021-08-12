@@ -197,12 +197,22 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
         });
 
       case 'createFolder':
+        debugger
         const parentid = this.nodeService.findNodeByPath(this.nodeService.currentPath).id;
         this.nodeClickedService.createFolder(parentid, event.payload);
         return this.onItemClicked({
           type: event.type,
           parentId: parentid,
           newDirName: event.payload
+        });
+      case 'createFile':
+        const catid = this.nodeService.findNodeByPath(this.nodeService.currentPath).id;
+        this.nodeClickedService.createFile(catid, event.payload.fileName, event.payload.uploadFileGUID);
+        return this.onItemClicked({
+          type: event.type,
+          parentId: catid,
+          fileName: event.payload.fileName,
+          uploadFileGUID: event.payload.uploadFileGUID
         });
     }
   }

@@ -1,5 +1,10 @@
 <div class="backdrop" (click)="newClickedAction()"></div>
 <div class="upload-background">
+  <ngx-awesome-uploader [adapter]="adapter" (uploadSuccess)="uploadSuccess($event)" (fileAdded)="onFileAdded($event)"
+  (uploadSuccess)="onUploadSuccess($event)">
+</ngx-awesome-uploader>
+
+
   <div id="fine-uploader">
   </div>
 

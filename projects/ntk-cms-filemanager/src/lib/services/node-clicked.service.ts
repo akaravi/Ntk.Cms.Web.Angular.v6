@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NtkSmartModalService } from 'ngx-ntk-smart-module';
 import { first, map } from 'rxjs/operators';
-import { FileCategoryModel, FileCategoryService, FileContentService } from 'ntk-cms-api';
+import { FileCategoryModel, FileCategoryService, FileContentModel, FileContentService } from 'ntk-cms-api';
 import { FileManagerStoreService } from './file-manager-store.service';
 
 // @Injectable({
@@ -126,6 +126,32 @@ export class NodeClickedService {
       }
       , (error) => {
         this.actionFailed('Create Folder Error', error);
+        this.store.processStop(prosses);
+      }
+    );
+  }
+  public createFile(currentParent: number, fileName: string, uploadFileGUID: string): void {
+    debugger
+    const model = new FileContentModel();
+    model.FileName = fileName;
+    model.UploadFileGUID = uploadFileGUID;
+    if (currentParent > 0) {
+      model.LinkCategoryId = currentParent;
+    }
+    const prosses = 'createFile';
+    this.store.processStart(prosses);
+    this.fileContentService.ServiceAdd(model).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.successWithSideViewClose();
+        }
+        else {
+          this.actionFailed('Create File Error', next.ErrorMessage);
+        }
+        this.store.processStop(prosses);
+      }
+      , (error) => {
+        this.actionFailed('Create File Error', error);
         this.store.processStop(prosses);
       }
     );

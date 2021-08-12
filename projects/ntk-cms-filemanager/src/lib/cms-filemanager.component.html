@@ -69,12 +69,14 @@
     </div>
   </div>
 
-  <lib-filemanager-upload *ngIf="newFileDialog" [openDialog]="newFileDialog" (closeDialog)="handleUploadDialog(false)">
+  <lib-filemanager-upload *ngIf="newFileDialog" [openDialog]="newFileDialog" (closeDialog)="handleUploadDialog(false)"
+  (createFile)="handleFileManagerClickEvent({type: 'createFile', payload: $event})">
   </lib-filemanager-upload>
   <lib-filemanager-newfolder *ngIf="newFolderDialog" [openDialog]="newFolderDialog"
     (closeDialog)="handleNewFolderDialog(false)"
     (createDir)="handleFileManagerClickEvent({type: 'createFolder', payload: $event})">
   </lib-filemanager-newfolder>
+  
 
   <lib-filemanager-loading-overlay *ngIf="loading"
     [loadingOverlayTemplate]="loadingOverlayTemplate ? loadingOverlayTemplate : defaultLoadingOverlayTemplate">
@@ -213,25 +215,27 @@
   </div>
 </ng-template>
 <ng-template #defaultFolderContentNewTemplate>
-  <div class="file-manager-item">
+  <div class="file-manager-item main">
     <div class="file-preview" style="width: 100%; height:100%">
-      <i class="fas fa-3x fa-plus child" style="line-height: 2"></i>
-      {{'filemanager.folder' | translate}}
+      <i class="fas fa-2x fa-plus child" style="line-height: 2;color: black;"></i>
+      <br>
+      {{'filemanager.new_folder' | translate}}
     </div>
   </div>
 </ng-template>
 <ng-template #defaultFileContentNewTemplate>
-  <div class="file-manager-item">
+  <div class="file-manager-item main">
     <div class="file-preview" style="width: 100%; height:100%">
-      <i class="fas fa-3x fa-plus child" style="line-height: 2"></i>
-      {{'filemanager.file' | translate}}
+      <i class="fas fa-2x fa-upload child" style="line-height: 2;color: black;"></i>
+      <br>
+      {{'filemanager.new_file' | translate}}
     </div>
   </div>
 </ng-template>
 <ng-template let-node #defaultFolderContentReloadTemplate>
-  <div class="file-manager-item">
+  <div class="file-manager-item main">
     <div class="file-preview" style="width: 100%; height:100%">
-      <i class="fas fa-2x fa-refresh" style="line-height: 5"></i>
+      <i class="fas fa-2x fa-sync-alt child" style="line-height: 2;color: black;"></i>
     </div>
   </div>
 </ng-template>

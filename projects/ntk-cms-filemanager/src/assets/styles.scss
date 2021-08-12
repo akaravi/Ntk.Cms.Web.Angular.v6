@@ -194,7 +194,10 @@ i {
   @include effects(border-color, 0.3s);
   @include effects(background-color, 0.3s);
 }
-
+.file-manager-item.main{
+  padding: 10px;
+  background-color:#FFD;
+}
 .file-manager-item.highlighted {
   @include contrast;
   border-color: $main-color;
