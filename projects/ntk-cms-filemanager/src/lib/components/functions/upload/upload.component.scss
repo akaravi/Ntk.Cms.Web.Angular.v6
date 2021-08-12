@@ -1,17 +1,10 @@
-.upload-content {
-  text-align: center;
-  max-height: 25vh;
-  overflow: auto;
-  margin: 10px auto;
+:host {
+  display: block;
 }
-
-.fa-times:before {
-  content: "\f00d";
+.ntk-awesome-uploader {
+  max-width: none !important;
+ 
 }
-
-.buttons {
-  background: #fff;
-  padding: 5px;
-  margin: 10px 0;
+.dropzoneTemplate {
+  font-size: large;
 }
-

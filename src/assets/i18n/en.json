@@ -351,5 +351,8 @@
 	"filemanager.upload_file": "upload file",
 	"filemanager.yes": "yes",
 	"filemanager.yes_delete_this": "yes delete this",
-	"lang": "en"
+	"filemanager.Drag_and_drop_file_here": "Drag and drop file here",
+	"filemanager.Browse_Files": "Browse Files",
+	
+		"lang": "en"
 }

@@ -1,25 +1,5 @@
-<div class="row">
-  <div class="col-xl-12">
-    <!-- <cms-file-manager2 (itemSelected)="itemSelected($event)" [language]="appLanguage" [isPopup]="false" [tree]="tree"
-    [openFilemanagerButtonLabelKey]="'hello.test'"></cms-file-manager2> -->
 
-<!-- 
-    <cms-file-manager (itemSelected)="onActionFileSelectedAboutUsLinkImageId1($event)" [language]="appLanguage"
-    [isPopup]="true" [(openForm)]="fileManagerOpenFormAboutUsLinkImageId1" [tree]="tree1"
-    [openFilemanagerButtonLabelKey]="'select1'" [selectFileType]="selectFileTypeMainImage"
-    [openFilemanagerButtonView]="true"></cms-file-manager>
-
-
-    <cms-file-manager (itemSelected)="onActionFileSelectedAboutUsLinkImageId2($event)" [language]="appLanguage"
-    [isPopup]="true" [(openForm)]="fileManagerOpenFormAboutUsLinkImageId2" [tree]="tree2"
-    [openFilemanagerButtonLabelKey]="'select2'" [selectFileType]="selectFileTypeMainImage"
-    [openFilemanagerButtonView]="true"></cms-file-manager>
-   -->
-
-
-  </div>
-</div>
-<div class="row" *ngIf="expression">
+<div class="row" >
   <div class="col-xl-4">
     <div class="row">
       <div class="col-xl-12">
@@ -77,6 +57,6 @@
     </div>
   </div>
 </div>
-<ng-container *ngIf="this.env.loadDemoDashboard && expression">
+<ng-container *ngIf="this.env.loadDemoDashboard ">
   <app-dashboard-wrapper></app-dashboard-wrapper>
 </ng-container>

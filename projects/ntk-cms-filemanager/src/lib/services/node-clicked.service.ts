@@ -130,8 +130,11 @@ export class NodeClickedService {
       }
     );
   }
-  public createFile(currentParent: number, fileName: string, uploadFileGUID: string): void {
-    debugger
+  public createFile(
+    currentParent: number, fileName: string, uploadFileGUID: string,
+    successMethod: any,
+    failMethod: any
+  ): void {
     const model = new FileContentModel();
     model.FileName = fileName;
     model.UploadFileGUID = uploadFileGUID;
@@ -144,6 +147,9 @@ export class NodeClickedService {
       (next) => {
         if (next.IsSuccess) {
           this.successWithSideViewClose();
+          if (successMethod) {
+            successMethod(next);
+          }
         }
         else {
           this.actionFailed('Create File Error', next.ErrorMessage);
@@ -152,6 +158,9 @@ export class NodeClickedService {
       }
       , (error) => {
         this.actionFailed('Create File Error', error);
+        if (failMethod) {
+          failMethod(error);
+        }
         this.store.processStop(prosses);
       }
     );
@@ -232,7 +241,8 @@ export class NodeClickedService {
     }
   }
 
-  private sideEffectHelper(name: string, parameters: HttpParams, httpMethod: string, apiURL: string,
+  private sideEffectHelper(
+    name: string, parameters: HttpParams, httpMethod: string, apiURL: string,
     successMethod = (a) => this.actionSuccess(a),
     failMethod = (a, b) => this.actionFailed(a, b)
   ): void {

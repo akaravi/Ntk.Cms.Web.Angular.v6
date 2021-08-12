@@ -1,4 +1,16 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { TreeModel } from './models/tree.model';
 import { NodeService } from './services/node.service';
 import { NodeInterface } from './interfaces/node.interface';
@@ -25,6 +37,8 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
 
 
   @Input() openFilemanagerButtonView = true;
+  @Input() openDirectUploadSave = true;
+  @Input() openDirectUploadView = false;
   @Input() loadingOverlayTemplate: TemplateRef<any>;
   @Input() sideViewTemplate: TemplateRef<any>;
   @Input() set selectFileType(model: Array<string>) {
@@ -55,10 +69,14 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
     }
     this.openPopupForm = model;
     this.openFormChange.emit(model);
+    if (this.openDirectUploadView) {
+      this.newFileDialog = true;
+    }
     if (model && this.isPopup && !this.startManagerRuned) {
       this.nodeService.startManagerAt(this.tree.currentPath + '');
       this.startManagerRuned = true;
     }
+
   }
   get openForm(): boolean {
     return this.openPopupForm;
@@ -197,7 +215,6 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
         });
 
       case 'createFolder':
-        debugger
         const parentid = this.nodeService.findNodeByPath(this.nodeService.currentPath).id;
         this.nodeClickedService.createFolder(parentid, event.payload);
         return this.onItemClicked({
@@ -206,8 +223,43 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
           newDirName: event.payload
         });
       case 'createFile':
+        if (this.openDirectUploadView && !this.openDirectUploadSave) {
+          // tslint:disable-next-line: no-angle-bracket-type-assertion
+          const selectedModel = <NodeInterface> {
+            id: event.payload.uploadFileGUID,
+            name: event.payload.uploadFileGUID,
+            isFolder: false
+          };
+          this.selectedNode = selectedModel;
+          this.confirmSelection();
+          return;
+        }
+
+        const failMethod = (error) => {
+
+        };
+        const successMethod = (next) => {
+          // tslint:disable-next-line: no-angle-bracket-type-assertion
+          const selectedModel = <NodeInterface> {
+            id: next.Item.Id,
+            name: next.Item.FileName,
+            downloadLinksrc: next.Item.DownloadLinksrc,
+            size: next.Item.size,
+            Extension: next.Item.Extension,
+            isFolder: false
+          };
+          this.selectedNode = selectedModel;
+          if (this.openDirectUploadView) {
+            this.confirmSelection();
+            return;
+          }
+        };
+
+
         const catid = this.nodeService.findNodeByPath(this.nodeService.currentPath).id;
-        this.nodeClickedService.createFile(catid, event.payload.fileName, event.payload.uploadFileGUID);
+
+        this.nodeClickedService.createFile(catid, event.payload.fileName, event.payload.uploadFileGUID, successMethod, failMethod);
+
         return this.onItemClicked({
           type: event.type,
           parentId: catid,

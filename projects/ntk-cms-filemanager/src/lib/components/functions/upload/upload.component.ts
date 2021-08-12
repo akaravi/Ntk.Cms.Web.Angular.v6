@@ -1,99 +1,103 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FineUploader } from 'fine-uploader';
 import { NodeService } from '../../../services/node.service';
 import { ErrorExceptionResult, FileContentModel, FileContentService, FileUploadModel } from 'ntk-cms-api';
-import { FilePreviewModel } from 'ngx-awesome-uploader';
+import { FilePreviewModel, UploaderCaptions, ValidationError } from 'ngx-awesome-uploader';
 import { FileUploaderPickerAdapter } from './fileUploaderPickerAdapter';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-filemanager-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss', './fine-uploader/fine-uploader.scss'],
+  styleUrls: ['./upload.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class UploadComponent implements OnInit, AfterViewInit {
-  @Output() createFile = new EventEmitter();
-  @Input() openDialog;
 
-  @Output() closeDialog = new EventEmitter();
-
-  uploader: FineUploader;
-  counter = 0;
+  @Input() set optionSelectFileType(model: string | string[]) {
+    this.fileExtensions = [];
+    if (typeof (model) === 'string') {
+      this.fileTypeAccept = '.' + model;
+      this.fileExtensions.push(model);
+      return;
+    }
+    if (typeof (model) === typeof ([])) {
+      let retOut = '';
+      model.forEach(element => {
+        this.fileExtensions.push(element);
+        if (retOut.length > 0) {
+          retOut = retOut + ', ';
+        }
+        retOut = retOut + '.' + element;
+      });
+      this.fileTypeAccept = retOut;
+      return;
+    }
+  }
   constructor(
     private http: HttpClient,
     private nodeService: NodeService) {
     this.adapter.baseUploadURL = this.nodeService.serviceTree.config.baseUploadURL;
     this.adapter.routeUpload = this.nodeService.serviceTree.config.api.uploadFile;
+
   }
 
-  ngAfterViewInit() {
-    this.uploader = new FineUploader({
-      debug: false,
-      autoUpload: false,
-      maxConnections: 1, // todo configurable
-      element: document.getElementById('fine-uploader'),
-      template: document.getElementById('fine-uploader-template'),
-      request: {
-        endpoint: this.nodeService.serviceTree.config.baseUploadURL + this.nodeService.serviceTree.config.api.uploadFile,
-        // forceMultipart: false,
-        paramsInBody: false,
-        params: {
-          // parentPath: this.getCurrentPath
-        }
-      },
-      retry: {
-        enableAuto: false
-      },
-      callbacks: {
-        onSubmitted: () => {
-          debugger
-          this.counter++;
-        },
-        onCancel: () => {
-          debugger
-          this.counter < 0 ? console.warn('wtf?') : this.counter--;
-        },
-        onAllComplete: (succ: any, fail: any) => {
-          debugger
-          if (succ.length > 0) {
-            this.counter = 0;
-            this.nodeService.refreshCurrentPath();
-          }
-        },
 
-      }
-    })
-      ;
-  }
-
-  ngOnInit() {
-  }
 
   get getCurrentPath() {
     const parentPath = this.nodeService.findNodeByPath(this.nodeService.currentPath).id;
     return parentPath === 0 ? '' : parentPath;
   }
+  @Output() createFile = new EventEmitter();
+  @Input() openDialog;
+  @Output() closeDialog = new EventEmitter();
+  @Input() openDirectUploadSave = false;
+  @Input() openDirectUploadView = false;
+  adapter = new FileUploaderPickerAdapter(this.http);
+  fileTypeAccept = ''; // '.jpg, .png'
+  fileExtensions: string[] = [];
+  counter = 0;
+
+  // @Output() optionUploadSuccess = new EventEmitter<FilePreviewModel>();
+
+  // uploadSuccess(event: any): void {
+  //   this.optionUploadSuccess.emit(event);
+  // }
+  public myFiles: FilePreviewModel[] = [];
+  captions: UploaderCaptions = {
+    dropzone: {
+      title: 'Fayllari bura ata bilersiz',
+      or: 'və yaxud',
+      browse: 'Fayl seçin'
+    },
+    cropper: {
+      crop: 'Kəs',
+      cancel: 'Imtina'
+    },
+    previewCard: {
+      remove: 'Sil',
+      uploadError: 'Fayl yüklənmədi'
+    }
+  };
+  ngOnInit() {
+  }
+  ngAfterViewInit() {
+
+  }
 
   uploadFiles() {
-    this.uploader.uploadStoredFiles();
+
   }
 
 
   newClickedAction() {
-    this.uploader.cancelAll();
     this.closeDialog.emit();
   }
-  adapter = new FileUploaderPickerAdapter(this.http);
-  fileType: string | string[];
-  @Output() optionUploadSuccess = new EventEmitter<FilePreviewModel>();
-
-  uploadSuccess(event: any): void {
-    this.optionUploadSuccess.emit(event);
-  }
-
   onFileAdded(model: FilePreviewModel): void {
     console.log('onFileAdded', model);
+    this.myFiles.push(model);
+
   }
   onUploadSuccess(model: FilePreviewModel): void {
     if (!model.uploadResponse) {
@@ -103,15 +107,22 @@ export class UploadComponent implements OnInit, AfterViewInit {
 
     }
     this.createFile.emit({ fileName: model.fileName, uploadFileGUID: ret.Item.FileKey });
-    // const fileModel = new FileContentModel();
-    // fileModel.FileName = model.fileName;
-    // fileModel.UploadFileGUID = ret.Item.FileKey;
-    // const parentId = +this.getCurrentPath | 0;
-    // if (parentId > 0) {
-    //   fileModel.LinkCategoryId = parentId;
+  }
+  public onValidationError(error: ValidationError): void {
+    alert(`Validation Error ${error.error} in ${error.file.name}`);
+  }
+
+  public onRemoveSuccess(e: FilePreviewModel) {
+    console.log(e);
+  }
+
+  public myCustomValidator(file: File): Observable<boolean> {
+    if (!file.name.includes('uploader')) {
+      return of(true).pipe(delay(200));
+    }
+    // if (file.size > 50) {
+    //   return this.http.get('https://vugar.free.beeceptor.com').pipe(map((res) =>  res === 'OK' ));
     // }
-    // this.fileContentService.ServiceAdd(fileModel).subscribe(
-    //   (next) => { },
-    //   (error) => { });
+    return of(false).pipe(delay(200));
   }
 }

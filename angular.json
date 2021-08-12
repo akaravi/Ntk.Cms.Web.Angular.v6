@@ -42,13 +42,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/fine-uploader/fine-uploader/fine-uploader-gallery.min.css"
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js",
-              "node_modules/clipboard/dist/clipboard.js",
-              "node_modules/fine-uploader/fine-uploader/fine-uploader.min.js"
+              "node_modules/clipboard/dist/clipboard.js"
             ]
           },
           "configurations": {

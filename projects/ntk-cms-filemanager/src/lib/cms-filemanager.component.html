@@ -70,6 +70,7 @@
   </div>
 
   <lib-filemanager-upload *ngIf="newFileDialog" [openDialog]="newFileDialog" (closeDialog)="handleUploadDialog(false)"
+  [optionSelectFileType]="configSelectFileType"
   (createFile)="handleFileManagerClickEvent({type: 'createFile', payload: $event})">
   </lib-filemanager-upload>
   <lib-filemanager-newfolder *ngIf="newFolderDialog" [openDialog]="newFolderDialog"
@@ -144,9 +145,9 @@
   
     <div class="rename-button">
       <button type="button" class="button big" (click)="handleFileManagerClickEvent({type: 'remove'})">
-        <span>{{'filemanager.yes_delete_this' | translate}}</span>
-        <span *ngIf="selectedNode.isFolder">{{'filemanager.folder' | translate}}</span>
-        <span *ngIf="!selectedNode.isFolder">{{'filemanager.file' | translate}}</span>
+        <span> {{'filemanager.yes_delete_this' | translate}} </span>
+        <span *ngIf="selectedNode.isFolder"> {{'filemanager.folder' | translate}} </span>
+        <span *ngIf="!selectedNode.isFolder"> {{'filemanager.file' | translate}} </span>
       </button>
       <button type="button" class="button big" (click)="deleteModal.close()">
         {{'filemanager.cancel'|translate}}
