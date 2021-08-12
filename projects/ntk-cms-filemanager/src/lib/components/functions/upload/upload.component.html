@@ -6,11 +6,7 @@
       [enableCropper]="false" (uploadSuccess)="onUploadSuccess($event)" (removeSuccess)="onRemoveSuccess($event)"
       (fileAdded)="onFileAdded($event)" [customValidator]="myCustomValidator" [captions]="captions"
       [accept]="fileTypeAccept">
-      <div class="dropzoneTemplate">
-        <p style="text-align: center"> {{'filemanager.Drag_and_drop_file_here'|translate}}
-        </p>
-        <button class="file-input" type="button">{{'filemanager.Browse_Files'|translate}} </button>
-      </div>
+    
     </ngx-awesome-uploader>
   </div>
   <div class="row">

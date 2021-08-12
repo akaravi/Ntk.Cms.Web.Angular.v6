@@ -67,17 +67,17 @@ export class UploadComponent implements OnInit, AfterViewInit {
   public myFiles: FilePreviewModel[] = [];
   captions: UploaderCaptions = {
     dropzone: {
-      title: 'Fayllari bura ata bilersiz',
-      or: 'və yaxud',
-      browse: 'Fayl seçin'
+      title: 'می توانید فایل ها را در اینجا رها کنید',
+      or: 'یا',
+      browse: 'انتخاب فایل'
     },
     cropper: {
-      crop: 'Kəs',
-      cancel: 'Imtina'
+      crop: 'قطع کردن',
+      cancel: 'انصراف'
     },
     previewCard: {
-      remove: 'Sil',
-      uploadError: 'Fayl yüklənmədi'
+      remove: 'حذف',
+      uploadError: 'برروز خطا در بارگزاری فایل'
     }
   };
   ngOnInit() {
