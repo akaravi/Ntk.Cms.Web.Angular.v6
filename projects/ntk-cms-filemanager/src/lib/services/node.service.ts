@@ -31,20 +31,22 @@ export class NodeService {
     private fileContentService: FileContentService,
     private fileCategoryService: FileCategoryService,
   ) {
+    /** GUID */
     this.guid = this.newGuid();
+    /** GUID */
     console.log('NodeService Constructor:', this.guid);
   }
+  /** GUID */
   private guid = '';
-
   private S4(): string {
     const ran = (1 + Math.random()) * 0x10000;
     return (ran | 0).toString(16).substring(1);
   }
   newGuid(): string {
     const isString = `${this.S4()}${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}${this.S4()}${this.S4()}`;
-
     return isString;
   }
+  /** GUID */
   // todo ask server to get parent structure
   public startManagerAt(path: string): void {
     this.currentPath = path;

@@ -28,7 +28,9 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-  ) { }
+  ) {
+    this.loading.cdr = cdr;
+   }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();

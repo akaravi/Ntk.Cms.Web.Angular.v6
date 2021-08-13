@@ -24,7 +24,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
 
   }
   formInfo: FormInfoModel = new FormInfoModel();
-  hasError: boolean;
   Roulaccespt = false;
   isLoading$: Observable<boolean>;
   captchaModel: CaptchaModel = new CaptchaModel();
@@ -39,19 +38,66 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
   onActionSubmit(): void {
-    this.hasError = false;
+
+    if (!this.dataModel.Email || this.dataModel.Email.length === 0) {
+      this.formInfo.FormError = 'آدرس ایمیل خود را وارد کنید';
+      this.formInfo.FormErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      return;
+    }
+    if (!this.dataModel.Name || this.dataModel.Name.length === 0) {
+      this.formInfo.FormError = 'نام خود را وارد کنید';
+      this.formInfo.FormErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      return;
+    }
+    if (!this.dataModel.Family || this.dataModel.Family.length === 0) {
+      this.formInfo.FormError = 'نام خانوادگی خود را وارد کنید';
+      this.formInfo.FormErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      return;
+    }
+    if (!this.dataModel.Password || this.dataModel.Password.length === 0) {
+      this.formInfo.FormError = 'کلمه عبور را وارد کنید';
+      this.formInfo.FormErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      return;
+    }
+    if (!this.dataModel.RePassword || this.dataModel.RePassword.length === 0) {
+      this.formInfo.FormError = 'تکرار کلمه عبور را وارد کنید';
+      this.formInfo.FormErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      return;
+    }
+    if (!this.dataModel.CaptchaText || this.dataModel.CaptchaText.length === 0) {
+      this.formInfo.FormError = 'محتوای عکس امنیتی را وارد کنید';
+      this.formInfo.FormErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      return;
+    }
+    if (this.dataModel.Password !== this.dataModel.RePassword) {
+      this.formInfo.FormError = 'محتوای کلمه عبور و تکرار کلمه عبور متفاوت است';
+      this.dataModel.Password = '';
+      this.dataModel.RePassword = '';
+      this.formInfo.FormErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      return;
+    }
+    this.formInfo.FormErrorStatus = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.coreAuthService.ServiceSignupUser(this.dataModel).subscribe((next) => {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
+        this.formInfo.FormErrorStatus = false;
         this.router.navigate(['/']);
       } else {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
-        this.hasError = true;
+        this.formInfo.FormErrorStatus = true;
         this.onCaptchaOrder();
       }
     }, (error) => {
       this.cmsToastrService.typeError(error);
+      this.formInfo.FormErrorStatus = true;
       this.onCaptchaOrder();
     });
   }

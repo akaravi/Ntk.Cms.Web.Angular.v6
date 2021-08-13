@@ -28,7 +28,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
-
+    this.loading.cdr = cdr;
 
   }
   tokenInfo: TokenInfoModel;

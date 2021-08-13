@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {
   AuthRenewTokenModel,
   CaptchaModel,
@@ -36,9 +36,11 @@ export class CoreSiteAddFirstComponent implements OnInit {
     private translate: TranslateService,
     private publicHelper: PublicHelper,
     private coreAuthService: CoreAuthService,
+    private cdr: ChangeDetectorRef,
     private router: Router
   ) {
-
+    this.formInfo.FormTitle = 'ایجاد اولین سامانه شما';
+    this.loading.cdr = cdr;
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -63,6 +65,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const processName = 'DataGetAccess';
+    this.loading.Start(processName);
     this.coreSiteService
       .ServiceViewModel()
       .subscribe(
@@ -73,22 +77,32 @@ export class CoreSiteAddFirstComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
+          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(processName);
+          this.cdr.detectChanges();
         }
       );
   }
 
   GetDomainList(): void {
+    const processName = 'GetDomainList';
+    this.loading.Start(processName);
     this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResultDomains = next;
+          this.cdr.detectChanges();
         }
+        this.loading.Stop(processName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
+        this.loading.Stop(processName);
+        this.cdr.detectChanges();
       }
     );
   }
@@ -100,6 +114,9 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.dataModel.Domain = item;
   }
   onCaptchaOrder(): void {
+    const processName = 'onCaptchaOrder';
+    this.loading.Start(processName);
+
     this.dataModel.CaptchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
@@ -116,6 +133,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
         if (!next.IsSuccess) {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
+        this.loading.Stop(processName);
+        this.cdr.detectChanges();
       }
     );
   }
@@ -149,6 +168,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
+    const processName = 'onFormSubmit';
+    this.loading.Start(processName);
     this.coreSiteService.ServiceAddFirstSite(this.dataModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -158,15 +179,22 @@ export class CoreSiteAddFirstComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
         }
+        this.loading.Stop(processName);
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.formInfo.FormSubmitAllow = true;
+        this.loading.Stop(processName);
+        this.cdr.detectChanges();
       }
     );
   }
 
   clickSelectSite(Id: number): void {
+    const processName = 'clickSelectSite';
+    this.loading.Start(processName);
+
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
     authModel.SiteId = Id;
@@ -177,10 +205,14 @@ export class CoreSiteAddFirstComponent implements OnInit {
         } else {
           this.onCaptchaOrder();
         }
+        this.loading.Stop(processName);
+        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.onCaptchaOrder();
+        this.loading.Stop(processName);
+        this.cdr.detectChanges();
       }
     );
   }

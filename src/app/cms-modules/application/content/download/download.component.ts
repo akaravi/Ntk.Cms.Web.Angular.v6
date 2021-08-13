@@ -19,7 +19,7 @@ export class ApplicationAppDownloadComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
-
+    this.loading.cdr = cdr;
   }
   formInfo: FormInfoModel = new FormInfoModel();
   loading = new ProgressSpinnerModel();

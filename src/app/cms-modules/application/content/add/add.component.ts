@@ -44,6 +44,7 @@ export class ApplicationAppAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router) {
+    this.loading.cdr = cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestSourceId = 0;

@@ -44,8 +44,8 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-
   ) {
+    this.loading.cdr = cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   dataConfigSiteValuesDefaultModel = new ApplicationModuleConfigSiteValuesModel();

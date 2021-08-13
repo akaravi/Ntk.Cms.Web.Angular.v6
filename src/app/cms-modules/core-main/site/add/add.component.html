@@ -1,11 +1,11 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <h3 class="card-label">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
         {{formInfo.FormTitle}}
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
