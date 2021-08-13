@@ -127,11 +127,20 @@ export class AuthForgotPasswordComponent implements OnInit {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
+  onCaptchaOrderInProcess = false;
+
   onCaptchaOrder(): void {
+    if (this.onCaptchaOrderInProcess) {
+      return;
+    }
     this.dataModelforgetPasswordBySms.CaptchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
         this.captchaModel = next.Item;
+        this.onCaptchaOrderInProcess = false;
+      },
+      (error)=>{
+        this.onCaptchaOrderInProcess = false;
       }
     );
   }

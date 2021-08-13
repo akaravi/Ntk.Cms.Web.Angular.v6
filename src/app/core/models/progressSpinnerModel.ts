@@ -15,7 +15,7 @@ export class ProgressSpinnerModel {
   positionGloballyCenter = true;
   processRunList: string[];
   display = false;
-  consoleLog = true;
+  consoleLog = false;
   private processRun = new Map<string, boolean>();
   constructor() {
     /** GUID */

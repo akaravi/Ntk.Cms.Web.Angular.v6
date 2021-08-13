@@ -111,7 +111,12 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
+  onCaptchaOrderInProcess = false;
+
   onCaptchaOrder(): void {
+    if (this.onCaptchaOrderInProcess) {
+      return;
+    }
     this.dataModel.CaptchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
@@ -128,6 +133,10 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
         if (!next.IsSuccess) {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
+        this.onCaptchaOrderInProcess = false;
+      }
+      , (error) => {
+        this.onCaptchaOrderInProcess = false;
       }
     );
   }

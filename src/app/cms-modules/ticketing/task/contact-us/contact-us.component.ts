@@ -166,7 +166,12 @@ export class TicketingTaskContactUsComponent implements OnInit {
     }
     this.dataModel.LinkTicketingDepartemenId = model.Id;
   }
+  onCaptchaOrderInProcess = false;
+
   onCaptchaOrder(): void {
+    if (this.onCaptchaOrderInProcess) {
+      return;
+    }
     this.dataModel.CaptchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
@@ -183,6 +188,10 @@ export class TicketingTaskContactUsComponent implements OnInit {
         if (!next.IsSuccess) {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
+        this.onCaptchaOrderInProcess = false;
+      }
+      , (error) => {
+        this.onCaptchaOrderInProcess = false;
       }
     );
   }

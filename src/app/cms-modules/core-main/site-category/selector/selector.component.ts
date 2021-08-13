@@ -27,7 +27,9 @@ export class CoreSiteCategorySelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreSiteCategoryService) {
+    this.loading.cdr = this.cdr;
   }
+
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   dataModelSelect: CoreSiteCategoryModel = new CoreSiteCategoryModel();
   loading = new ProgressSpinnerModel();
@@ -71,7 +73,6 @@ export class CoreSiteCategorySelectorComponent implements OnInit {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
-    // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
     filter.PropertyName = 'Title';
     filter.Value = text;
@@ -86,9 +87,7 @@ export class CoreSiteCategorySelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
-    this.loading.Start('main');
-    this.cdr.detectChanges();
+    this.loading.Start('DataGetAll');
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -99,10 +98,10 @@ export class CoreSiteCategorySelectorComponent implements OnInit {
             this.dataModelResult.ListItems.length > 0) {
             this.optionSelectFirstItem = false;
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
+            this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+          this.loading.Stop('DataGetAll');
           return response.ListItems;
         })
       ).toPromise();
@@ -163,11 +162,7 @@ export class CoreSiteCategorySelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-    //   this.onActionSelect(null);
-    // }
     this.dataModelSelect = new CoreSiteCategoryModel();
-    // this.optionsData.Select = new CoreSiteCategoryModel();
     this.DataGetAll(null);
   }
 }

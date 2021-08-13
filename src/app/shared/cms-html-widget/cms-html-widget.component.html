@@ -7,15 +7,15 @@
 <!--begin::Form-->
 <!--begin::Body-->
 <mat-dialog-content>
-    <div *ngIf="loading.display" class="overlay-layer bg-transparent" >
+    <div *ngIf="loading.display && !loading.Globally" class="overlay-layer bg-transparent" >
       <div class="spinner spinner-lg spinner-success"></div>
     </div>
-    <ng-content *ngIf="!loading.display" select="[cms-body]"></ng-content>
+    <ng-content *ngIf="!loading.display && !loading.Globally" select="[cms-body]"></ng-content>
 </mat-dialog-content>
 <!--end::Body-->
 <!--begin::Footer-->
 <mat-dialog-actions align="end">
-    <ng-content *ngIf="!loading.display" select="[cms-footer]"></ng-content>
+    <ng-content *ngIf="!loading.display && !loading.Globally" select="[cms-footer]"></ng-content>
 </mat-dialog-actions>
 <!--end::Footer-->
 <!--end::Form-->

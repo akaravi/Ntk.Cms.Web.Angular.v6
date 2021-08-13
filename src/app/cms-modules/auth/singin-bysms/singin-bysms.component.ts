@@ -52,7 +52,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
-    this.dataModelAuthUserSignInBySms.lang=this.translationService.getSelectedLanguage();
+    this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
 
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
@@ -78,7 +78,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
-    this.dataModelAuthUserSignInBySms.lang=this.translationService.getSelectedLanguage();
+    this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
 
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
@@ -103,11 +103,20 @@ export class AuthSingInBySmsComponent implements OnInit {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
+  onCaptchaOrderInProcess = false;
+
   onCaptchaOrder(): void {
+    if (this.onCaptchaOrderInProcess) {
+      return;
+    }
     this.dataModelAuthUserSignInBySms.CaptchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
         this.captchaModel = next.Item;
+        this.onCaptchaOrderInProcess = false;
+      }
+      , (error) => {
+        this.onCaptchaOrderInProcess = false;
       }
     );
   }

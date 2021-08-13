@@ -66,7 +66,11 @@ export class AuthSingInComponent implements OnInit {
   onloginTypeChange(model: string): void {
     this.loginType = model;
   }
+  onCaptchaOrderInProcess = false;
   onCaptchaOrder(): void {
+    if (this.onCaptchaOrderInProcess) {
+      return;
+    }
     this.dataModel.CaptchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
@@ -83,6 +87,10 @@ export class AuthSingInComponent implements OnInit {
         if (!next.IsSuccess) {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
+        this.onCaptchaOrderInProcess = false;
+      },
+      (error) => {
+        this.onCaptchaOrderInProcess = false;
       }
     );
   }

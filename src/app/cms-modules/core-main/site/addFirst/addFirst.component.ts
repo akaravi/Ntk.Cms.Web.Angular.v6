@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {
   AuthRenewTokenModel,
-  CaptchaModel,
+
   CoreAuthService,
   CoreSiteAddFirstSiteDtoModel,
   CoreSiteCategoryModel,
@@ -40,30 +40,31 @@ export class CoreSiteAddFirstComponent implements OnInit {
     private router: Router
   ) {
     this.formInfo.FormTitle = 'ایجاد اولین سامانه شما';
-    this.loading.cdr = cdr;
+    this.loading.cdr = this.cdr;
+    this.loadingDomain.cdr = this.cdr;
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  alphaExp = /^[a-zA-Z]+$/;
 
   loading = new ProgressSpinnerModel();
+  loadingDomain = new ProgressSpinnerModel();
 
   dataModel = new CoreSiteAddFirstSiteDtoModel();
   filterModel = new FilterModel();
   dataModelResultDomains = new ErrorExceptionResult<string>();
-  captchaModel: CaptchaModel = new CaptchaModel();
   expireDate: string;
   aoutoCaptchaOrder = 1;
 
   formInfo: FormInfoModel = new FormInfoModel();
   modelDateSiteCategory = new CoreSiteCategoryModel();
-
+  validateDomain = true;
   ngOnInit(): void {
-
-    this.onCaptchaOrder();
     this.DataGetAccess();
-
   }
-
+  checkValidateDomain() {
+    this.validateDomain = this.alphaExp.test(this.dataModel.SubDomain);
+  }
   DataGetAccess(): void {
     const processName = 'DataGetAccess';
     this.loading.Start(processName);
@@ -78,31 +79,31 @@ export class CoreSiteAddFirstComponent implements OnInit {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
           this.loading.Stop(processName);
-          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
           this.loading.Stop(processName);
-          this.cdr.detectChanges();
         }
       );
   }
 
   GetDomainList(): void {
     const processName = 'GetDomainList';
-    this.loading.Start(processName);
+    this.loadingDomain.Start(processName);
     this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResultDomains = next;
-          this.cdr.detectChanges();
+          if (next.ListItems.length > 0) {
+            this.dataModel.Domain = next.ListItems[0];
+          }
+          this.dataModel.SubDomain = 'myname';
         }
-        this.loading.Stop(processName);
+        this.loadingDomain.Stop(processName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
-        this.cdr.detectChanges();
+        this.loadingDomain.Stop(processName);
       }
     );
   }
@@ -113,33 +114,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
   domain(item): void {
     this.dataModel.Domain = item;
   }
-  onCaptchaOrder(): void {
-    const processName = 'onCaptchaOrder';
-    this.loading.Start(processName);
 
-    this.dataModel.CaptchaText = '';
-    this.coreAuthService.ServiceCaptcha().subscribe(
-      (next) => {
-
-        this.captchaModel = next.Item;
-        this.expireDate = next.Item.Expire.split('+')[1];
-        const startDate = new Date();
-        const endDate = new Date(next.Item.Expire);
-        const seconds = (endDate.getTime() - startDate.getTime());
-        if (this.aoutoCaptchaOrder < 10) {
-          this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
-          setTimeout(() => { this.onCaptchaOrder(); }, seconds);
-        }
-        if (!next.IsSuccess) {
-          this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
-        }
-        this.loading.Stop(processName);
-        this.cdr.detectChanges();
-      }
-    );
-  }
   onFormSubmit(): void {
-    this.dataModel.CaptchaKey = this.captchaModel.Key;
     if (this.dataModel.LinkSiteCategoryId <= 0) {
       this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
       return;
@@ -180,13 +156,11 @@ export class CoreSiteAddFirstComponent implements OnInit {
           this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
         }
         this.loading.Stop(processName);
-        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.formInfo.FormSubmitAllow = true;
         this.loading.Stop(processName);
-        this.cdr.detectChanges();
       }
     );
   }
@@ -201,18 +175,13 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (res) => {
         if (res.IsSuccess) {
-          setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 100);
-        } else {
-          this.onCaptchaOrder();
+          setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 1000);
         }
         this.loading.Stop(processName);
-        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.onCaptchaOrder();
         this.loading.Stop(processName);
-        this.cdr.detectChanges();
       }
     );
   }

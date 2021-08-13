@@ -9,7 +9,6 @@ export class CmsHtmlCardComponent implements OnInit {
   @Input() optionHeaderDisplay = true;
   @Input() optionActionDisplay = true;
   @Input() optionFooterDisplay = true;
-  
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
     this.loading = v;

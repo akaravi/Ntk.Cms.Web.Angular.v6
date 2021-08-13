@@ -122,6 +122,7 @@ export class CoreSiteSelectorComponent implements OnInit {
             this.dataModelResult.ListItems.length > 0) {
             this.optionSelectFirstItem = false;
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
+            this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
           this.loading.Stop('main');

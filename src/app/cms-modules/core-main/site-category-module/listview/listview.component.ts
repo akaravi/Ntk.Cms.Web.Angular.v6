@@ -39,6 +39,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
+    this.loading.cdr = this.cdr;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -53,8 +54,6 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
 
 
   tabledisplayedColumns: string[] = [
-    'LinkCmsSiteCategoryId',
-    'LinkCmsModuleId',
     'virtual_CmsSiteCategory.Title',
     'virtual_CmsModule.Title',
     'virtual_CmsModule.Description',
@@ -82,8 +81,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteCategoryCmsModuleModel();
 
-    this.loading.Start('main');
-    this.cdr.detectChanges();
+    
     this.loading.Globally = false;
     this.filteModelContent.AccessLoad = true;
 
@@ -94,7 +92,8 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
       fastfilter.Value = this.linkSiteCategoryId;
       filteModel.Filters.push(fastfilter);
     }
-
+    const processName = 'DataGetAll';
+    this.loading.Start(processName);
     this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -103,13 +102,11 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
         }
-        this.loading.Stop('main');
-        this.cdr.detectChanges();
+        this.loading.Stop(processName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
-        this.cdr.detectChanges();
+        this.loading.Stop(processName);
       }
     );
   }
