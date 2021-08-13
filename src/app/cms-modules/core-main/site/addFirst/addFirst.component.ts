@@ -53,8 +53,6 @@ export class CoreSiteAddFirstComponent implements OnInit {
   dataModel = new CoreSiteAddFirstSiteDtoModel();
   filterModel = new FilterModel();
   dataModelResultDomains = new ErrorExceptionResult<string>();
-  expireDate: string;
-  aoutoCaptchaOrder = 1;
 
   formInfo: FormInfoModel = new FormInfoModel();
   modelDateSiteCategory = new CoreSiteCategoryModel();
@@ -137,12 +135,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
       return;
     }
-    if (!this.dataModel.CaptchaText || this.dataModel.CaptchaText.length === 0) {
-      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.The_content_of_Kapjas_photo_was_not_entered'));
 
-
-      return;
-    }
     this.formInfo.FormSubmitAllow = false;
     const processName = 'onFormSubmit';
     this.loading.Start(processName);
