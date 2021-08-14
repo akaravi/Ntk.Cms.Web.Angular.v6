@@ -20,6 +20,10 @@ export class UploadComponent implements OnInit, AfterViewInit {
     if (typeof (model) === 'string') {
       this.fileTypeAccept = '.' + model;
       this.fileExtensions.push(model);
+      if (this.fileExtensions.length == 0) {
+        this.fileExtensions=null;
+      }
+
       return;
     }
     if (typeof (model) === typeof ([])) {
@@ -32,8 +36,12 @@ export class UploadComponent implements OnInit, AfterViewInit {
         retOut = retOut + '.' + element;
       });
       this.fileTypeAccept = retOut;
+      if (this.fileExtensions.length == 0) {
+        this.fileExtensions=null;
+      }
       return;
     }
+
   }
   constructor(
     private http: HttpClient,
