@@ -14,9 +14,10 @@
     <ng-content select="[cms-action-area]"></ng-content>
     <!--begin::Body-->
     <div class="ntk-cms-html-tree-body">
-      <div *ngIf="loading.display" class="overlay-layer bg-transparent">
+      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <!-- <div *ngIf="loading.display" class="overlay-layer bg-transparent">
         <div class="spinner spinner-lg spinner-success"></div>
-      </div>
+      </div> -->
       <ng-content *ngIf="!loading.display" select="[cms-body]"></ng-content>
     </div>
     <!--end::Body-->

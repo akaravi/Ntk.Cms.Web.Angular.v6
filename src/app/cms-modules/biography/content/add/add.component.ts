@@ -171,7 +171,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
 
   }
 
-  receiveZoom(): void {
+  receiveZoom(mode: leafletMap): void {
   }
   onFormSubmit(): void {
     if (this.dataModel.LinkCategoryId <= 0) {

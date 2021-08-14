@@ -1,15 +1,15 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{formInfo.FormTitle}}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{formInfo.FormTitle}}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper  (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
@@ -59,11 +59,22 @@
             [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessAddField" [optionTypeView]="2"
             [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
           </app-estate-propertytypeusage-selector>
-          <br>
+
+          <!-- LinkPropertyTypeLanduseId Field -->
+          <div
+            *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0 && listTypeLanduse && listTypeLanduse.length>0"
+            style="clear:both;">
+            <div class="ntk-pull-right" *ngFor="let state of listTypeLanduse ">
+              <button type="button" mat-raised-button
+              [attr.disabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessAddField? true : null" 
+                color="{{state.Id===dataModel.LinkPropertyTypeLanduseId ? 'primary' : 'info'}}"
+                (click)="onActionSelectorSelectLanduse(state)">{{ state.Title }}</button>
+            </div>
+          </div>
 
           <!-- LinkPropertyTypeLanduseId Field -->
           <app-estate-propertytypelanduse-selector (optionSelect)="onActionSelectorSelectLanduse($event)"
-            *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
+            *ngIf="(!listTypeLanduse || listTypeLanduse.length===0) && dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
             [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessAddField" [optionTypeView]="2"
             [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
             [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
@@ -191,7 +202,7 @@
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -269,7 +280,7 @@
             <br>
 
           </mat-accordion>
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -372,7 +383,7 @@
             </mat-table>
           </div>
           <!-- TABLE  -->
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -399,8 +410,7 @@
             </mat-form-field>
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
-            [openDirectUploadView]="true"
-              [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
+              [openDirectUploadView]="true" [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
@@ -412,7 +422,7 @@
           <p>لیست فایل های پیوست</p>
           <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles"></app-cms-files-selector>
           <br>
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -425,14 +435,14 @@
         <mat-step label="موقعیت مکانی" state="loaction">
           <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
           <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" id='main-map'></app-cms-map>
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
         <!-- Icon overrides. -->
@@ -453,16 +463,15 @@
 
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
-	<ng-container cms-message>
+    <ng-container cms-message>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </ng-container>
     <ng-container cms-footer>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
   </app-cms-html-card>
 </form>
-

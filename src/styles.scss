@@ -267,6 +267,12 @@ mat-paginator {
   box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
     0 3px 14px 2px color(0 0 0 0.12);
 }
+
+.ntk-pull-right{
+  float:right;
+  margin:3px;
+}
+
 /*mat-raised-button*/
 .mat-button.mat-success,
 .mat-stroked-button.mat-success {

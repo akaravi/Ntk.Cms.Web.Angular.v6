@@ -21,6 +21,10 @@ import {
   FilterModel,
   EstatePropertyDetailValueModel,
   EnumInputDataType,
+  EstatePropertyTypeModel,
+  EstatePropertyTypeService,
+  EstatePropertyTypeUsageService,
+  EstatePropertyTypeLanduseService,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -50,6 +54,8 @@ export class EstatePropertyAddComponent implements OnInit {
     public estateContractTypeService: EstateContractTypeService,
     public estatePropertyService: EstatePropertyService,
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
+    private estatePropertyTypeService: EstatePropertyTypeService,
+    private estatePropertyTypeLanduseService: EstatePropertyTypeLanduseService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     public publicHelper: PublicHelper,
@@ -80,6 +86,9 @@ export class EstatePropertyAddComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModelEstateContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
+  dataModelEstatePropertyTypeResult: ErrorExceptionResult<EstatePropertyTypeModel> = new ErrorExceptionResult<EstatePropertyTypeModel>();
+  dataModelEstatePropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel>
+    = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
   dataModel: EstatePropertyModel = new EstatePropertyModel();
   dataFileModelImgaes = new Map<number, string>();
   dataFileModelFiles = new Map<number, string>();
@@ -109,10 +118,22 @@ export class EstatePropertyAddComponent implements OnInit {
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.getEstateContractType();
+    this.getEstatePropertyType();
+    this.getEstatePropertyTypeLanduse();
   }
   getEstateContractType(): void {
     this.estateContractTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstateContractTypeResult = next;
+    });
+  }
+  getEstatePropertyType(): void {
+    this.estatePropertyTypeService.ServiceGetAll(null).subscribe((next) => {
+      this.dataModelEstatePropertyTypeResult = next;
+    });
+  }
+  getEstatePropertyTypeLanduse(): void {
+    this.estatePropertyTypeLanduseService.ServiceGetAll(null).subscribe((next) => {
+      this.dataModelEstatePropertyTypeLanduseResult = next;
     });
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -235,6 +256,7 @@ export class EstatePropertyAddComponent implements OnInit {
 
   receiveZoom(zoom: number): void {
   }
+  listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
@@ -242,6 +264,19 @@ export class EstatePropertyAddComponent implements OnInit {
       return;
     }
     this.dataModel.LinkPropertyTypeUsageId = model.Id;
+    if (this.dataModelEstatePropertyTypeResult.IsSuccess && this.dataModelEstatePropertyTypeLanduseResult.IsSuccess) {
+      this. listTypeLanduse = [];
+      this.dataModelEstatePropertyTypeResult.ListItems.forEach(element => {
+        if (element.LinkPropertyTypeUsageId === model.Id) {
+          this.dataModelEstatePropertyTypeLanduseResult.ListItems.forEach(elementLanduser => {
+            if (elementLanduser.Id === element.LinkPropertyTypeLanduseId) {
+              this.listTypeLanduse.push(elementLanduser);
+            }
+          });
+
+        }
+      });
+    }
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {

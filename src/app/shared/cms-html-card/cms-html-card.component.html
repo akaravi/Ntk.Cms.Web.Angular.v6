@@ -9,9 +9,10 @@
   <!--end::Header-->
   <!--begin::Body-->
   <div class="card-body">
-    <div *ngIf="loading.display" class="overlay-layer bg-transparent">
+    <!-- <div *ngIf="loading.display" class="overlay-layer bg-transparent">
       <div class="spinner spinner-lg spinner-success"></div>
-    </div>
+    </div> -->
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <ng-content *ngIf="!loading.display" select="[cms-body]"></ng-content>
   </div>
   <!--end::Body-->

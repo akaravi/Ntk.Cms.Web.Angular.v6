@@ -4,14 +4,14 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 export class ProgressSpinnerModel {
   cdr: ChangeDetectorRef;
-  message = 'Loading ... ';
+  message = 'در حال دریافت اطلاعات';
   color?: ThemePalette;
   diameter = 20;
   mode?: ProgressSpinnerMode;
   strokeWidth = 50;
   value?: number;
   backdropEnabled = true;
-  Globally = false;
+  Globally = true;
   positionGloballyCenter = true;
   processRunList: string[];
   display = false;
