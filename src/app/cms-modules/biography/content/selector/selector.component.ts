@@ -28,7 +28,7 @@ export class BiographyContentSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public contentService: BiographyContentService) {
-
+    this.loading.cdr = this.cdr;
 
   }
   dataModelResult: ErrorExceptionResult<BiographyContentModel> = new ErrorExceptionResult<BiographyContentModel>();
@@ -43,7 +43,7 @@ export class BiographyContentSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | BiographyContentModel) {
     this.onActionSelectForce(x);
   }
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -87,9 +87,9 @@ ngOnInit(): void {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return this.contentService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -104,7 +104,7 @@ ngOnInit(): void {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })).toPromise();
   }
@@ -113,7 +113,7 @@ ngOnInit(): void {
     this.optionSelect.emit(this.dataModelSelect);
 
   }
-  onActionSelectClear(): void{
+  onActionSelectClear(): void {
     this.formControl.setValue(null);
     this.optionSelect.emit(null);
   }

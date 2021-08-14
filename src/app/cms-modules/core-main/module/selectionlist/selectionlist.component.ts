@@ -20,6 +20,7 @@ export class CoreModuleSelectionlistComponent implements OnInit {
     public categoryService: CoreModuleService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   dataModelSelect: CoreModuleModel[] = [];
@@ -49,9 +50,9 @@ export class CoreModuleSelectionlistComponent implements OnInit {
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
 
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsStatus = new Map<number, boolean>();
@@ -67,12 +68,12 @@ export class CoreModuleSelectionlistComponent implements OnInit {
 
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

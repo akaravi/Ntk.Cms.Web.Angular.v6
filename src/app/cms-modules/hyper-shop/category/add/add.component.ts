@@ -38,6 +38,7 @@ export class HyperShopCategoryAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -52,7 +53,7 @@ export class HyperShopCategoryAddComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fileManagerOpenForm = false;
-  
+
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'اضافه کردن  ';
@@ -61,35 +62,35 @@ export class HyperShopCategoryAddComponent implements OnInit {
 
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.Image = model.id + '';
     // this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
   }
 
-DataGetAccess(): void {
-  this.hyperShopCategoryService
-    .ServiceViewModel()
-    .subscribe(
-      async (next) => {
-        if (next.IsSuccess) {
-          // this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        } else {
-          this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+  DataGetAccess(): void {
+    this.hyperShopCategoryService
+      .ServiceViewModel()
+      .subscribe(
+        async (next) => {
+          if (next.IsSuccess) {
+            // this.dataAccessModel = next.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+          }
+        },
+        (error) => {
+          this.cmsToastrService.typeErrorGetAccess(error);
         }
-      },
-      (error) => {
-        this.cmsToastrService.typeErrorGetAccess(error);
-      }
-    );
-}
+      );
+  }
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.hyperShopCategoryService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.dataModelResult = next;
@@ -103,14 +104,14 @@ DataGetAccess(): void {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
         this.formInfo.FormSubmitAllow = true;
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }

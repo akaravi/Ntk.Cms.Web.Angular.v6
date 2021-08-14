@@ -24,6 +24,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
     public categoryService: EstatePropertyTypeUsageService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   dataModelSelect: EstatePropertyTypeUsageModel[] = [];
@@ -53,9 +54,9 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
 
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsStatus = new Map<string, boolean>();
@@ -71,12 +72,12 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
 
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

@@ -27,6 +27,7 @@ export class CmsUserGroupSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreUserGroupService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
   dataModelSelect: CoreUserGroupModel = new CoreUserGroupModel();
@@ -112,9 +113,9 @@ export class CmsUserGroupSelectorComponent implements OnInit {
 
       }
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -129,7 +130,7 @@ export class CmsUserGroupSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

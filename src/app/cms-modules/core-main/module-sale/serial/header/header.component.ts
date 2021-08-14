@@ -14,7 +14,6 @@ import {
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
@@ -30,7 +29,7 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
-
+    this.loading.cdr = this.cdr;
   }
   @Input() optionId = 0;
 
@@ -53,7 +52,7 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.coreModuleSaleSerialService.setAccessLoad();
     this.coreModuleSaleSerialService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -64,12 +63,12 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

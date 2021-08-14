@@ -27,13 +27,14 @@ export class CoreSiteDomainAliasSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreSiteDomainAliasService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreSiteDomainAliasModel> = new ErrorExceptionResult<CoreSiteDomainAliasModel>();
   dataModelSelect: CoreSiteDomainAliasModel = new CoreSiteDomainAliasModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreSiteDomainAliasModel[]>;
-    @Input() optionDisabled = false;
+  @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<string>();
   @Output() optionSelect = new EventEmitter<CoreSiteDomainAliasModel>();
@@ -42,7 +43,7 @@ export class CoreSiteDomainAliasSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -86,9 +87,9 @@ ngOnInit(): void {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -103,7 +104,7 @@ ngOnInit(): void {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();
@@ -112,7 +113,7 @@ ngOnInit(): void {
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
-  onActionSelectClear(): void{
+  onActionSelectClear(): void {
     this.formControl.setValue(null);
     this.optionSelect.emit(null);
   }

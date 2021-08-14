@@ -42,6 +42,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
+    this.loading.cdr = this.cdr;
   }
   @Input() set optionSelectForce(x: number | BankPaymentPublicConfigModel) {
     this.onActionSelectForce(x);
@@ -71,9 +72,9 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -81,12 +82,12 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

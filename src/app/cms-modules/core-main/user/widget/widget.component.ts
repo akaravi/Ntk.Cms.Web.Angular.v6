@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { CoreUserService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { CoreUserService, FilterModel, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
@@ -24,7 +24,9 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private persianCalendarService: PersianCalendarService,
     private cdr: ChangeDetectorRef,
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+  }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'شما :';
     this.widgetInfoModel.description = 'خلاصه مشخصات حساب کاربری شما';

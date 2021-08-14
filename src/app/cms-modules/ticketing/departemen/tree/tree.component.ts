@@ -12,7 +12,6 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
@@ -22,7 +21,6 @@ import {
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TicketingDepartemenDeleteComponent } from '../delete/delete.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -41,10 +39,10 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: TicketingDepartemenService,
-    private router: Router,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
   ) {
+    this.loading.cdr = this.cdr;
   }
   @Input() set optionSelectForce(x: number | TicketingDepartemenModel) {
     this.onActionSelectForce(x);
@@ -74,9 +72,9 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -84,12 +82,12 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

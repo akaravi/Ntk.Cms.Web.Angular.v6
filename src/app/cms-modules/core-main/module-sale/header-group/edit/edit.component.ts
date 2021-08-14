@@ -21,7 +21,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -42,6 +41,7 @@ export class CoreModuleSaleHeaderGroupEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -90,7 +90,7 @@ export class CoreModuleSaleHeaderGroupEditComponent implements OnInit {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.coreModuleSaleHeaderGroupService.setAccessLoad();
     this.coreModuleSaleHeaderGroupService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
@@ -107,12 +107,12 @@ export class CoreModuleSaleHeaderGroupEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -121,7 +121,7 @@ export class CoreModuleSaleHeaderGroupEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.coreModuleSaleHeaderGroupService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -137,13 +137,13 @@ export class CoreModuleSaleHeaderGroupEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

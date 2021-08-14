@@ -17,7 +17,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -35,7 +34,9 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,) {
+    private translate: TranslateService,
+  ) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestDepartemenId = 0;
@@ -108,14 +109,14 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.ticketingDepartemenOperatorService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -128,7 +129,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

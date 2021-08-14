@@ -1,11 +1,9 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { LayoutService } from '../../../../../core';
-import { UserModel } from '../../../../../../modules/auth/_models/user.model';
 import { AuthService } from '../../../../../../modules/auth/_services/auth.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CoreAuthService, EnumManageUserAccessControllerTypes, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
-import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -28,7 +26,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = cdr;
+    this.loading.cdr = this.cdr;
 
   }
   tokenInfo: TokenInfoModel;
@@ -78,7 +76,6 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
       this.loading.Stop('main');
-      this.cdr.detectChanges();
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessLogout();
       } else {

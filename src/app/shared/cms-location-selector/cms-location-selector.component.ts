@@ -27,6 +27,7 @@ export class CmsLocationSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreLocationService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
   dataModelSelect: CoreLocationModel = new CoreLocationModel();
@@ -59,10 +60,10 @@ export class CmsLocationSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreLocationModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.Title) : undefined;
   }
   displayOption(model?: CoreLocationModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.Title) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreLocationModel[]> {
     const filteModel = new FilterModel();
@@ -97,9 +98,9 @@ export class CmsLocationSelectorComponent implements OnInit {
 
       }
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -114,22 +115,20 @@ export class CmsLocationSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: CoreLocationModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

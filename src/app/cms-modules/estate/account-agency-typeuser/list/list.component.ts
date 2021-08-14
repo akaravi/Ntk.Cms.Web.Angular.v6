@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   EstateAccountAgencyTypeUserModel,
   EstateAccountAgencyTypeUserService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -46,6 +45,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -108,8 +108,8 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     this.tableRowSelected = new EstateAccountAgencyTypeUserModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+    
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -126,13 +126,13 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }
@@ -232,7 +232,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+
           this.estateAccountAgencyTypeUserService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -242,12 +242,12 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+
             }
           );
         }

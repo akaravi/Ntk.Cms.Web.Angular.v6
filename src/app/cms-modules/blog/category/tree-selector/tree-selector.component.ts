@@ -40,7 +40,7 @@ export class BlogCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
   ) {
-    //
+    this.loading.cdr = this.cdr;
     this.checklistSelection.changed.subscribe(x => {
       if (!this.runComplate) {
         return;
@@ -84,7 +84,7 @@ export class BlogCategoryTreeSelectorComponent implements OnInit, OnDestroy {
 
 
   hasChild = (_: number, node: BlogCategoryModel) => !!node.Children && node.Children.length > 0;
-  hasNoContent = (_: number, _nodeData: BlogCategoryModel) => _nodeData.Children;
+  hasNoContent = (_: number, nodeData: BlogCategoryModel) => nodeData.Children;
 
 
   ngOnInit(): void {
@@ -118,9 +118,9 @@ export class BlogCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -130,11 +130,11 @@ export class BlogCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.loadCheked();
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
         this.cmsToastrService.typeError(error);
       }
     );

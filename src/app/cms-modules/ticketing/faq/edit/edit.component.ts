@@ -36,6 +36,7 @@ export class TicketingFaqEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -62,7 +63,7 @@ export class TicketingFaqEditComponent implements OnInit {
 
   fileManagerOpenForm = false;
 
-  
+
 
   ngOnInit(): void {
     this.formInfo.FormTitle = 'ویرایش  ';
@@ -75,7 +76,7 @@ export class TicketingFaqEditComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetOneContent(): void {
@@ -87,7 +88,7 @@ export class TicketingFaqEditComponent implements OnInit {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.ticketingFaqService.setAccessLoad();
     this.ticketingFaqService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
@@ -115,12 +116,12 @@ export class TicketingFaqEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }
@@ -129,7 +130,7 @@ export class TicketingFaqEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.dataModel.LinkFileIds = '';
     if (this.dataFileModel) {
       const keys = Array.from(this.dataFileModel.keys());
@@ -142,7 +143,7 @@ export class TicketingFaqEditComponent implements OnInit {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert =this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
@@ -152,13 +153,13 @@ export class TicketingFaqEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }

@@ -19,7 +19,7 @@ export class ApplicationAppDownloadComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
-    this.loading.cdr = cdr;
+    this.loading.cdr = this.cdr;
   }
   formInfo: FormInfoModel = new FormInfoModel();
   loading = new ProgressSpinnerModel();
@@ -33,14 +33,13 @@ export class ApplicationAppDownloadComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.applicationAppService
       .ServiceGetOneById(requestId)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataModel = next.Item;
@@ -48,12 +47,13 @@ export class ApplicationAppDownloadComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.loading.Stop('main');
         },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop('main');
         }
       );
   }

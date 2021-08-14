@@ -27,13 +27,14 @@ export class CoreLocationSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreLocationService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
   dataModelSelect: CoreLocationModel = new CoreLocationModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreLocationModel[]>;
-    @Input() optionDisabled = false;
+  @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<string>();
   @Output() optionSelect = new EventEmitter<CoreLocationModel>();
@@ -42,7 +43,7 @@ export class CoreLocationSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -62,10 +63,10 @@ ngOnInit(): void {
   }
 
   displayFn(model?: CoreLocationModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.Title) : undefined;
   }
   displayOption(model?: CoreLocationModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.Title) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreLocationModel[]> {
     const filteModel = new FilterModel();
@@ -86,9 +87,9 @@ ngOnInit(): void {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -103,7 +104,7 @@ ngOnInit(): void {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();
@@ -112,7 +113,7 @@ ngOnInit(): void {
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
-  onActionSelectClear(): void{
+  onActionSelectClear(): void {
     this.formControl.setValue(null);
     this.optionSelect.emit(null);
   }

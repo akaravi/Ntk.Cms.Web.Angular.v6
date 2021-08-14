@@ -12,10 +12,7 @@ import {
   TokenInfoModel,
   NtkCmsApiStoreService,
   EnumRecordStatus,
-  DataFieldInfoModel,
-  CoreCpMainMenuService,
-  CoreCurrencyService,
-  CoreCurrencyModel
+  DataFieldInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -51,6 +48,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -120,8 +118,8 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.tableRowSelected = new BankPaymentPrivateSiteConfigModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -164,13 +162,13 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
           }
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -288,7 +286,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-          this.cdr.detectChanges();
+
           this.bankPaymentPrivateSiteConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -298,12 +296,12 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             }
           );
         }

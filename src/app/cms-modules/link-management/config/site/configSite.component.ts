@@ -40,7 +40,9 @@ export class LinkManagementConfigSiteComponent implements OnInit {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,) {
+    private translate: TranslateService,
+  ) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   dataSiteStorageModel = new LinkManagementModuleSiteStorageValuesModel();
@@ -127,13 +129,13 @@ export class LinkManagementConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.configService
       .ServiceSiteStorage(SiteId)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataSiteStorageModel = next.Item;
@@ -143,7 +145,7 @@ export class LinkManagementConfigSiteComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -154,13 +156,13 @@ export class LinkManagementConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataSiteStorageModel = next.Item;
@@ -170,7 +172,7 @@ export class LinkManagementConfigSiteComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -181,13 +183,13 @@ export class LinkManagementConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.configService
       .ServiceSiteConfig(SiteId)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesModel = next.Item;
@@ -197,7 +199,7 @@ export class LinkManagementConfigSiteComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -208,13 +210,13 @@ export class LinkManagementConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.configService
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesModel = next.Item;
@@ -224,7 +226,7 @@ export class LinkManagementConfigSiteComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -236,13 +238,13 @@ export class LinkManagementConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.configService
       .ServiceSiteAccess(SiteId)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesModel = next.Item;
@@ -252,7 +254,7 @@ export class LinkManagementConfigSiteComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -263,13 +265,13 @@ export class LinkManagementConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesModel = next.Item;
@@ -279,7 +281,7 @@ export class LinkManagementConfigSiteComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }

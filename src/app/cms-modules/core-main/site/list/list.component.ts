@@ -27,8 +27,6 @@ import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { CoreSiteDeleteComponent } from '../delete/delete.component';
-import { CoreSiteEditComponent } from '../edit/edit.component';
-import { CoreSiteAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
@@ -50,6 +48,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -133,8 +132,8 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreSiteModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+    
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -164,13 +163,13 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

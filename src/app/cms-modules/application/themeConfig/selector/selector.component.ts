@@ -28,7 +28,7 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: ApplicationThemeConfigService) {
-
+    this.loading.cdr = this.cdr;
 
   }
   @Input() set optionSelectForce(x: number | ApplicationThemeConfigModel) {
@@ -111,9 +111,9 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
     else if (filters && filters.length > 0) {
       filteModel.Filters = filters as FilterDataModel[];
     }
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -128,7 +128,7 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

@@ -41,7 +41,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
-
+    this.loading.cdr = this.cdr;
     /*filter Sort*/
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Ascending;
@@ -94,8 +94,8 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new TicketingFaqModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+    
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -121,13 +121,13 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
 
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

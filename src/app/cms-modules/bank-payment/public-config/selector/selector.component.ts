@@ -27,6 +27,7 @@ export class BankPaymentPublicConfigSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: BankPaymentPublicConfigService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   dataModelSelect: BankPaymentPublicConfigModel = new BankPaymentPublicConfigModel();
@@ -86,9 +87,9 @@ export class BankPaymentPublicConfigSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -103,7 +104,7 @@ export class BankPaymentPublicConfigSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

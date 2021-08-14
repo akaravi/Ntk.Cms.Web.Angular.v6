@@ -56,6 +56,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     public http: HttpClient,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
 
     this.optionsSearch.parentMethods = {
@@ -134,8 +135,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+    
     this.filteModelContent.AccessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
@@ -159,13 +160,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           }
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -304,7 +305,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-          this.cdr.detectChanges();
+
           this.webDesignerMainPageDependencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -314,12 +315,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             }
           );
         }

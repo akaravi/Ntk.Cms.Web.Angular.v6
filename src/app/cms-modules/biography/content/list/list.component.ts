@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  CoreAuthService,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
@@ -26,7 +25,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BiographyContentDeleteComponent } from '../delete/delete.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
@@ -46,6 +45,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
+    this.loading.cdr = this.cdr;
     // this.optionsCategoryTree.parentMethods = {
     //   onActionSelect: (x) => this.onActionSelectorSelect(x),
     // };
@@ -106,8 +106,8 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
 
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -138,13 +138,13 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -193,13 +193,13 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** Normal */

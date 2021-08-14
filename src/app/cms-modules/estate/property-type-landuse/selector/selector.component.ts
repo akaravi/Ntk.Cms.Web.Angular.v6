@@ -27,6 +27,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstatePropertyTypeLanduseService) {
+    this.loading.cdr = this.cdr;
   }
   @Input() set optionSelectForce(x: string | EstatePropertyTypeLanduseModel) {
     this.onActionSelectForce(x);
@@ -106,9 +107,9 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
 
 
 
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -123,7 +124,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

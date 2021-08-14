@@ -1,6 +1,5 @@
 import {
   CoreEnumService,
-  EnumModel,
   ErrorExceptionResult,
   FormInfoModel,
   CoreLogCurrencyService,
@@ -21,7 +20,6 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -35,7 +33,7 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-        private dialogRef: MatDialogRef<CoreLogCurrencyViewComponent>,
+    private dialogRef: MatDialogRef<CoreLogCurrencyViewComponent>,
     public coreEnumService: CoreEnumService,
     public coreLogCurrencyService: CoreLogCurrencyService,
     private cmsApiStore: NtkCmsApiStoreService,
@@ -44,6 +42,7 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = data.id + '';
     }
@@ -86,7 +85,7 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     /*َAccess Field*/
     this.coreLogCurrencyService.setAccessLoad();
 
@@ -105,12 +104,12 @@ export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }

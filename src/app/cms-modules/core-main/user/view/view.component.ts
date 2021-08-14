@@ -43,6 +43,7 @@ export class CoreUserViewComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = + data.id || 0;
     }
@@ -97,7 +98,7 @@ export class CoreUserViewComponent implements OnInit, OnDestroy {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     /*َAccess Field*/
     this.coreUserService.setAccessLoad();
 
@@ -116,12 +117,12 @@ export class CoreUserViewComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

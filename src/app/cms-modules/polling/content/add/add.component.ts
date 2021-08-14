@@ -48,8 +48,10 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
-
   ) {
+    this.loading.cdr = this.cdr;
+    this.loadingOption.cdr = this.cdr;
+
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -156,14 +158,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.pollingContentService
       .ServiceGetOneById(this.dataModelResult.Item.Id)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -178,14 +180,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
             // this.DataOtherInfoGetAll();
             // this.DataSimilarGetAllIds();
             this.loading.Stop('main');
-            this.cdr.detectChanges();
+
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -232,14 +234,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.pollingContentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.dataModelResult = next;
           if (next.IsSuccess) {
             this.cmsToastrService.typeSuccessAdd();
@@ -252,7 +254,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -264,14 +266,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.pollingContentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -279,7 +281,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             this.loading.Stop('main');
-            this.cdr.detectChanges();
+
             setTimeout(() => this.router.navigate(['/polling/content']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -287,7 +289,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }

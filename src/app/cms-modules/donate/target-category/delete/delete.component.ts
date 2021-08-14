@@ -1,9 +1,7 @@
 
-import { Component, OnInit, Input, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
-  CoreEnumService,
   DataFieldInfoModel,
   ErrorExceptionResult,
   FilterModel,
@@ -32,6 +30,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -62,7 +61,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.donateTargetCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe(
@@ -78,14 +77,14 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -95,7 +94,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     const filterModel: FilterModel = new FilterModel();
     filterModel.RowPerPage = 100;
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.donateTargetCategoryService
       .ServiceGetAll(filterModel)
       .subscribe(
@@ -110,14 +109,14 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -140,7 +139,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
 
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
   }
   onFormDelete(): void {
     if (this.requestId === 0) {
@@ -151,7 +150,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.donateTargetCategoryService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -169,7 +168,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -177,7 +176,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -202,6 +201,6 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
     this.loading.Stop('main');
-    this.cdr.detectChanges();
+
   }
 }

@@ -42,7 +42,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./edit.component.scss']
 })
 export class EstatePropertyEditComponent implements OnInit {
-  requestId = '';
   constructor(
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
@@ -55,10 +54,12 @@ export class EstatePropertyEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
 
   }
+  requestId = '';
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
@@ -76,7 +77,7 @@ export class EstatePropertyEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fileManagerOpenForm = false;
-  
+
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   // contractSelected: EstateContractModel;
@@ -93,6 +94,8 @@ export class EstatePropertyEditComponent implements OnInit {
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = {};
+  // ** Accardon */
+  step = 0;
 
 
   ngOnInit(): void {
@@ -114,14 +117,14 @@ export class EstatePropertyEditComponent implements OnInit {
     });
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
   DataGetOne(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.estatePropertyService.setAccessLoad();
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
@@ -140,7 +143,7 @@ export class EstatePropertyEditComponent implements OnInit {
           }
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
           this.formInfo.FormAlert = '';
-          /**
+          /*
           * check file attach list
           */
           if (this.dataModel.LinkFileIds && this.dataModel.LinkFileIds.length > 0) {
@@ -167,12 +170,12 @@ export class EstatePropertyEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }
@@ -189,7 +192,7 @@ export class EstatePropertyEditComponent implements OnInit {
         async (next) => {
           if (next.IsSuccess) {
             this.dataModel.PropertyDetailGroups = next.ListItems;
-            //** load Value */
+            /** load Value */
             this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
               itemGroup.PropertyDetails.forEach(element => {
                 this.propertyDetails[element.Id] = 0;
@@ -202,7 +205,7 @@ export class EstatePropertyEditComponent implements OnInit {
                 }
               });
             });
-            //** load Value */
+            /** load Value */
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
@@ -216,7 +219,7 @@ export class EstatePropertyEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     if (this.dataFileModelFiles) {
       const keys = Array.from(this.dataFileModelFiles.keys());
       if (keys && keys.length > 0) {
@@ -245,13 +248,13 @@ export class EstatePropertyEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }
@@ -354,7 +357,7 @@ export class EstatePropertyEditComponent implements OnInit {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
-    //** Save Value */
+    /** Save Value */
     this.dataModel.PropertyDetailValues = [];
     this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
       itemGroup.PropertyDetails.forEach(element => {
@@ -365,7 +368,7 @@ export class EstatePropertyEditComponent implements OnInit {
         this.dataModel.PropertyDetailValues.push(value);
       });
     });
-    //** Save Value */
+    /** Save Value */
     if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
       const message = 'نوع معامله ملک مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
@@ -439,8 +442,6 @@ export class EstatePropertyEditComponent implements OnInit {
   onActionBackToParent(): void {
     this.router.navigate(['/estate/property/']);
   }
-  // ** Accardon */
-  step = 0;
   setStep(index: number): void {
     this.step = index;
   }

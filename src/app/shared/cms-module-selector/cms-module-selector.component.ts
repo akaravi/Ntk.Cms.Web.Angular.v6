@@ -27,6 +27,7 @@ export class CmsModuleSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreModuleService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   dataModelSelect: CoreModuleModel = new CoreModuleModel();
@@ -59,10 +60,10 @@ export class CmsModuleSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreModuleModel): string | undefined {
-    return model ? (model.Title + ' # ' + model.ClassName ) : undefined;
+    return model ? (model.Title + ' # ' + model.ClassName) : undefined;
   }
   displayOption(model?: CoreModuleModel): string | undefined {
-    return model ? (model.Title + ' # ' + model.ClassName ) : undefined;
+    return model ? (model.Title + ' # ' + model.ClassName) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreModuleModel[]> {
     const filteModel = new FilterModel();
@@ -112,9 +113,9 @@ export class CmsModuleSelectorComponent implements OnInit {
 
       }
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -129,22 +130,20 @@ export class CmsModuleSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: CoreModuleModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

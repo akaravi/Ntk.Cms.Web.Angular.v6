@@ -18,6 +18,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
     public categoryService: CoreSiteCategoryService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   dataModelSelect: CoreSiteCategoryModel[] = [];
@@ -47,9 +48,9 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
 
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsStatus = new Map<number, boolean>();
@@ -65,12 +66,12 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
 
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }

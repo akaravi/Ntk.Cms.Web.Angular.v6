@@ -1,7 +1,6 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AccessModel,
@@ -17,10 +16,7 @@ import {
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { Map as leafletMap } from 'leaflet';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
+import { TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -39,7 +35,9 @@ export class TicketingTaskEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,) {
+    private translate: TranslateService,
+  ) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -87,7 +85,7 @@ export class TicketingTaskEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     /*َAccess Field*/
     this.ticketingTaskService.setAccessLoad();
     this.ticketingTaskService
@@ -99,7 +97,7 @@ export class TicketingTaskEditComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -112,7 +110,7 @@ export class TicketingTaskEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -123,14 +121,14 @@ export class TicketingTaskEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.ticketingTaskService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -143,7 +141,7 @@ export class TicketingTaskEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

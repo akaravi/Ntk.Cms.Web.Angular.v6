@@ -27,7 +27,7 @@ export class CoreSiteSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreSiteService) {
-
+      this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
   dataModelSelect: CoreSiteModel = new CoreSiteModel();
@@ -109,9 +109,9 @@ export class CoreSiteSelectorComponent implements OnInit {
 
       }
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -126,7 +126,7 @@ export class CoreSiteSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

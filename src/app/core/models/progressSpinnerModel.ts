@@ -11,7 +11,7 @@ export class ProgressSpinnerModel {
   strokeWidth = 50;
   value?: number;
   backdropEnabled = true;
-  Globally = true;
+  Globally = false;
   positionGloballyCenter = true;
   processRunList: string[];
   display = false;

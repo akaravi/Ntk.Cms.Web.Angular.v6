@@ -45,6 +45,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = data.id;
     }
@@ -62,7 +63,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
   fileManagerOpenForm = false;
-  
+
   dataEstatePropertyTypeUsageModel: EstatePropertyTypeUsageModel[];
   dataEstatePropertyTypeUsageIds: string[] = [];
   dataEstatePropertyTypeModel: EstatePropertyTypeModel[];
@@ -79,10 +80,10 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     this.DataGetAllEstateProprtyUsage();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id ;
+    this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
   }
   DataGetOneContent(): void {
@@ -90,7 +91,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.estatePropertyTypeLanduseService.setAccessLoad();
     this.estatePropertyTypeLanduseService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
@@ -106,12 +107,12 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }
@@ -119,7 +120,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkPropertyTypeLanduseId';
@@ -128,7 +129,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
 
     this.estatePropertyTypeService.ServiceGetAll(filteModelContent).subscribe(
       (next) => {
-         this.dataEstatePropertyTypeModel = next.ListItems;
+        this.dataEstatePropertyTypeModel = next.ListItems;
         const listG: string[] = [];
         this.dataEstatePropertyTypeModel.forEach(element => {
           listG.push(element.LinkPropertyTypeUsageId);
@@ -142,12 +143,12 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }
@@ -155,12 +156,12 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.estatePropertyTypeLanduseService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert =  this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
@@ -169,14 +170,14 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
         this.formInfo.FormSubmitAllow = true;
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }

@@ -53,6 +53,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.requestLinkInvoiceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkInvoiceId'));
 
     this.optionsSearch.parentMethods = {
@@ -138,8 +139,8 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -158,13 +159,13 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
           }
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -247,7 +248,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-          this.cdr.detectChanges();
+
           this.coreModuleSaleInvoiceDetailService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -257,12 +258,12 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             }
           );
         }

@@ -28,6 +28,7 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: WebDesignerMainPageService) {
+    this.loading.cdr = this.cdr;
   }
   @Input() set optionMasterTemplateId(x: string) {
     this.masterTemplateId = x;
@@ -79,7 +80,7 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
-    let filterChild = new FilterDataModel();
+    const filterChild = new FilterDataModel();
     if (text && text.length > 0) {
       filter.PropertyName = 'Title';
       filter.Value = text;
@@ -112,9 +113,9 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.And;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -129,7 +130,7 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

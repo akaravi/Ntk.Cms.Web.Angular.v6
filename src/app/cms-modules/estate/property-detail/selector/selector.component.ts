@@ -25,6 +25,7 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstatePropertyDetailService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailModel> = new ErrorExceptionResult<EstatePropertyDetailModel>();
   dataModelSelect: EstatePropertyDetailModel = new EstatePropertyDetailModel();
@@ -84,9 +85,9 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -101,7 +102,7 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

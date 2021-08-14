@@ -21,7 +21,6 @@ import {
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CoreModuleSaleItemEditComponent } from '../edit/edit.component';
@@ -39,11 +38,10 @@ export class CoreModuleSaleItemTreeComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: CoreModuleSaleItemService,
-    private router: Router,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-
   ) {
+    this.loading.cdr = this.cdr;
   }
   @Input() set optionSelectForce(x: number | CoreModuleSaleItemModel) {
     this.onActionSelectForce(x);
@@ -73,9 +71,9 @@ export class CoreModuleSaleItemTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -83,12 +81,12 @@ export class CoreModuleSaleItemTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

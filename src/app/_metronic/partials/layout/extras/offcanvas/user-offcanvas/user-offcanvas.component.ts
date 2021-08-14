@@ -29,7 +29,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = cdr;
+    this.loading.cdr = this.cdr;
    }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
@@ -77,13 +77,12 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     // this.auth.logout();
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
-      this.loading.Stop('main');
-      this.cdr.detectChanges();
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessLogout();
       } else {
         this.cmsToastrService.typeErrorLogout();
       }
+      this.loading.Stop('main');
       return;
     })).toPromise();
     document.location.reload();

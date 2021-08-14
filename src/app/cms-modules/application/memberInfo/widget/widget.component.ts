@@ -21,7 +21,9 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
     private service: ApplicationMemberInfoService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+  }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'کاربران شما';
     this.widgetInfoModel.description = 'کاربرانی که در اپلیکیشن های شما وارد شده اند';
@@ -48,13 +50,10 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop('All');
-        this.cdr.detectChanges();
 
       },
       (error) => {
         this.loading.Stop('All');
-        this.cdr.detectChanges();
-
       }
     );
 
@@ -69,12 +68,10 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
       }
       ,
       (error) => {
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
       }
     );
   }

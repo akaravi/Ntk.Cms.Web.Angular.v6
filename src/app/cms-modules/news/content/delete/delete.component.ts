@@ -29,6 +29,7 @@ export class NewsContentDeleteComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -55,7 +56,7 @@ export class NewsContentDeleteComponent implements OnInit {
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
@@ -73,14 +74,14 @@ export class NewsContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -97,7 +98,7 @@ export class NewsContentDeleteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.contentService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -115,7 +116,7 @@ export class NewsContentDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -123,7 +124,7 @@ export class NewsContentDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -131,6 +132,6 @@ export class NewsContentDeleteComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
     this.loading.Stop('main');
-    this.cdr.detectChanges();
+
   }
 }

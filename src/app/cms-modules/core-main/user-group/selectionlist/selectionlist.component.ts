@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { CoreEnumService, ErrorExceptionResult, FilterDataModel, FilterModel, CoreUserGroupModel, CoreUserGroupService } from 'ntk-cms-api';
+import { CoreEnumService, ErrorExceptionResult, FilterModel, CoreUserGroupModel, CoreUserGroupService } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -20,6 +18,7 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
     public categoryService: CoreUserGroupService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
   dataModelSelect: CoreUserGroupModel[] = [];
@@ -49,9 +48,9 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
 
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsStatus = new Map<number, boolean>();
@@ -67,12 +66,12 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
 
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

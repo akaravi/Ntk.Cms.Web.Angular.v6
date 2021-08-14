@@ -18,7 +18,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -29,7 +28,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class ApplicationSourceAddComponent implements OnInit {
   constructor(
     public publicHelper: PublicHelper,
-    private cmsStoreService: CmsStoreService,
     public coreEnumService: CoreEnumService,
     public applicationEnumService: ApplicationEnumService,
     private applicationSourceService: ApplicationSourceService,
@@ -37,6 +35,7 @@ export class ApplicationSourceAddComponent implements OnInit {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private router: Router) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
 
@@ -97,32 +96,30 @@ export class ApplicationSourceAddComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.applicationSourceService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            this.loading.Stop('main');
-            this.cdr.detectChanges();
+
             setTimeout(() => this.router.navigate(['/application/source/']), 100);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop('main');
         },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
+          this.loading.Stop('main');
         }
       );
   }

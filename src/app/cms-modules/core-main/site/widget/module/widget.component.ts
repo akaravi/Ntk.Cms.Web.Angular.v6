@@ -28,7 +28,9 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     private service: CoreModuleSiteService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+  }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'ماژول های ثبت شده';
     this.widgetInfoModel.description = '';
@@ -53,11 +55,11 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop('All');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.loading.Stop('All');
-        this.cdr.detectChanges();
+
       }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -71,12 +73,12 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
+
       }
       ,
       (error) => {
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
+
       }
     );
 

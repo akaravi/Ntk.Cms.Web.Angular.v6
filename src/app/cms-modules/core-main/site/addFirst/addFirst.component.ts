@@ -39,9 +39,9 @@ export class CoreSiteAddFirstComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router
   ) {
-    this.formInfo.FormTitle = 'ایجاد اولین سامانه شما';
     this.loading.cdr = this.cdr;
     this.loadingDomain.cdr = this.cdr;
+    this.formInfo.FormTitle = 'ایجاد اولین سامانه شما';
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -95,7 +95,9 @@ export class CoreSiteAddFirstComponent implements OnInit {
           if (next.ListItems.length > 0) {
             this.dataModel.Domain = next.ListItems[0];
           }
-          this.dataModel.SubDomain = 'myname';
+          if (this.dataModel.SubDomain.length === 0) {
+            this.dataModel.SubDomain = 'myname';
+          }
         }
         this.loadingDomain.Stop(processName);
       },

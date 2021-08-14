@@ -21,7 +21,9 @@ export class ChartContentWidgetComponent implements OnInit, OnDestroy {
     private service: ChartContentService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+  }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'اخبار های ثبت شده';
     this.widgetInfoModel.description = '';

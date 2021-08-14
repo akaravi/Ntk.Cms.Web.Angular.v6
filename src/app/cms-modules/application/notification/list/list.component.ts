@@ -47,6 +47,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     private router: Router,
     private tokenHelper: TokenHelper,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -130,8 +131,8 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.tableRowSelected = new ApplicationLogNotificationModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -173,13 +174,13 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
           }
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

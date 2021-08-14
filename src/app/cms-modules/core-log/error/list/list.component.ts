@@ -4,7 +4,6 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreSiteModel,
-  CoreSiteService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -15,8 +14,7 @@ import {
   CoreLogErrorService,
   CoreLogErrorModel,
   DataFieldInfoModel,
-  EnumModel,
-  CoreEnumService
+  EnumModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,6 +50,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
+    this.loading.cdr = this.cdr;
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkDeviceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDeviceId'));
 
@@ -149,8 +148,8 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreLogErrorModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -169,13 +168,13 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -258,7 +257,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-          this.cdr.detectChanges();
+
           this.coreLogErrorService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -268,12 +267,12 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             }
           );
         }

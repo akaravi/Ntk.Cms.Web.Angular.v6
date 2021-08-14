@@ -29,7 +29,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./contact-us.component.scss']
 })
 export class TicketingTaskContactUsComponent implements OnInit {
-  requestLinkDepartemenId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     private coreAuthService: CoreAuthService,
@@ -40,8 +39,10 @@ export class TicketingTaskContactUsComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
+  requestLinkDepartemenId = 0;
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   loading = new ProgressSpinnerModel();
@@ -62,6 +63,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
   expireDate: string;
   aoutoCaptchaOrder = 1;
   enumFormSubmitedStatus = EnumFormSubmitedStatus;
+  onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.requestLinkDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDepartemenId'));
     this.onCaptchaOrder();
@@ -105,14 +107,14 @@ export class TicketingTaskContactUsComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.ticketingTaskService
       .ServiceContactUS(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -128,7 +130,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.cdr.markForCheck();
@@ -166,7 +168,6 @@ export class TicketingTaskContactUsComponent implements OnInit {
     }
     this.dataModel.LinkTicketingDepartemenId = model.Id;
   }
-  onCaptchaOrderInProcess = false;
 
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {

@@ -33,6 +33,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
+    this.loading.cdr = this.cdr;
     this.loading.cdr = cdr;
   }
   loading = new ProgressSpinnerModel();

@@ -27,7 +27,7 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstatePropertyDetailGroupService) {
-
+    this.loading.cdr = this.cdr;
 
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailGroupModel> = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
@@ -35,6 +35,7 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstatePropertyDetailGroupModel[]>;
+  @Input() optionTypeView = 1;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<string>();
@@ -43,7 +44,7 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | EstatePropertyDetailGroupModel) {
     this.onActionSelectForce(x);
   }
-  @Input() optionTypeView = 1;
+
 
   ngOnInit(): void {
     this.loadOptions();
@@ -89,9 +90,9 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -106,7 +107,7 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

@@ -12,7 +12,6 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
@@ -22,7 +21,6 @@ import {
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EstateContractTypeEditComponent } from '../edit/edit.component';
@@ -45,6 +43,7 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
   ) {
+    this.loading.cdr = this.cdr;
   }
   @Input() set optionSelectForce(x: number | EstateContractTypeModel) {
     this.onActionSelectForce(x);
@@ -74,9 +73,9 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -84,12 +83,12 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -160,7 +159,7 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-          this.cdr.detectChanges();
+
           this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -170,13 +169,13 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
               this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
               this.cdr.detectChanges();
             }
           );

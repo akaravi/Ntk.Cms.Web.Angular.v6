@@ -14,7 +14,6 @@ import {
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
@@ -24,14 +23,13 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 })
 export class BankPaymentPublicConfigHeaderComponent implements OnInit {
   constructor(
-    private cmsStoreService: CmsStoreService,
     public coreEnumService: CoreEnumService,
     public bankPaymentPublicConfigService: BankPaymentPublicConfigService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
-
+    this.loading.cdr = this.cdr;
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();
@@ -53,7 +51,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.bankPaymentPublicConfigService.setAccessLoad();
     this.bankPaymentPublicConfigService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -64,12 +62,12 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

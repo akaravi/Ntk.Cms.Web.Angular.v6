@@ -12,15 +12,12 @@ import {
   EnumModel,
   ErrorExceptionResult,
   FormInfoModel,
-  ApplicationSourceModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
-import { retry } from 'rxjs/operators';
-import { ApplicationThemeConfigModel, ApplicationAppModel } from 'ntk-cms-api';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
+import { ApplicationAppModel } from 'ntk-cms-api';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -33,7 +30,6 @@ export class ApplicationIntroAddComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     public applicationEnumService: ApplicationEnumService,
@@ -42,6 +38,7 @@ export class ApplicationIntroAddComponent implements OnInit {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private router: Router) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestLinkApplicationId = 0;
@@ -115,14 +112,13 @@ export class ApplicationIntroAddComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.applicationIntroService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -132,12 +128,13 @@ export class ApplicationIntroAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
+          this.loading.Stop('main');
         },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
+          this.loading.Stop('main');
         }
       );
   }

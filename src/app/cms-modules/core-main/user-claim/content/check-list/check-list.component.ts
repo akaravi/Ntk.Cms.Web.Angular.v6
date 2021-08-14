@@ -5,16 +5,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreUserClaimContentModel,
   CoreUserClaimContentService,
-  CoreAuthService,
-  EnumSortType,
   ErrorExceptionResult,
   FilterModel,
   NtkCmsApiStoreService,
   TokenInfoModel,
-  FilterDataModel,
-  EnumRecordStatus,
   DataFieldInfoModel,
-  CoreUserClaimGroupModel,
   CoreUserClaimTypeModel,
   CoreUserClaimTypeService,
   CoreUserClaimCheckModel,
@@ -31,7 +26,6 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { Subscription } from 'rxjs';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
@@ -54,6 +48,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 
@@ -115,8 +110,8 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   DataGetAll(): void {
     this.tableRowSelected = new CoreUserClaimCheckModel();
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+    
 
     if (this.requestLinkUserId > 0 && this.requestLinkSiteId > 0) {
       /** */
@@ -137,13 +132,13 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** */
@@ -164,13 +159,13 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** */

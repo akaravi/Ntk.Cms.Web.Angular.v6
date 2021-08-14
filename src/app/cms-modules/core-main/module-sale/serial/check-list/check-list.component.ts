@@ -47,6 +47,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
+    this.loading.cdr = this.cdr;
     this.requestSerial = this.activatedRoute.snapshot.paramMap.get('Serial');
   }
   showBuy = false;
@@ -117,8 +118,8 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.tableSource.data = [];
     const model = new CoreModuleCheckSerialForSiteDtoModel();
     model.serialNumber = serial;
@@ -136,13 +137,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -151,8 +152,8 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -164,13 +165,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

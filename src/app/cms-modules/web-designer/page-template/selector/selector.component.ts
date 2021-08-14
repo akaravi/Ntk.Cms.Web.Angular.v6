@@ -27,6 +27,7 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: WebDesignerMainPageTemplateService) {
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel> = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
   dataModelSelect: WebDesignerMainPageTemplateModel = new WebDesignerMainPageTemplateModel();
@@ -86,9 +87,9 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -103,7 +104,7 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

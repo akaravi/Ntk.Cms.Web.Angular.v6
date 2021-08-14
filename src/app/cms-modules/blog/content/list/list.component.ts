@@ -45,6 +45,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
+    this.loading.cdr = this.cdr;
     // this.optionsCategoryTree.parentMethods = {
     //   onActionSelect: (x) => this.onActionSelectorSelect(x),
     // };
@@ -107,8 +108,8 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
 
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -139,13 +140,13 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -194,13 +195,13 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** Normal */

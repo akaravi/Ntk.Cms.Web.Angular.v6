@@ -15,8 +15,7 @@ import { Subscription } from 'rxjs';
 // import { locale as frLang } from './modules/i18n/vocabs/fr';
 import { SplashScreenService } from './_metronic/partials/layout/splash-screen/splash-screen.service';
 import { TableExtendedService } from './_metronic/shared/crud-table';
-import { CoreAuthService, CoreEnumService, EnumDeviceType, EnumOperatingSystemType, TokenDeviceClientInfoDtoModel } from 'ntk-cms-api';
-import { CmsStoreService } from './core/reducers/cmsStore.service';
+import { CoreAuthService } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
 import { TokenHelper } from './core/helpers/tokenHelper';
 import { TranslationService } from './core/i18n/translation.service';
@@ -38,7 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private splashScreenService: SplashScreenService,
     private router: Router,
     private tableService: TableExtendedService,
-    private coreEnumService: CoreEnumService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper
   ) {

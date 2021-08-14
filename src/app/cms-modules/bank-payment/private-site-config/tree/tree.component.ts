@@ -21,7 +21,6 @@ import {
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPrivateSiteConfigEditComponent } from '../edit/edit.component';
@@ -39,10 +38,10 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: BankPaymentPrivateSiteConfigService,
-    private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
+    this.loading.cdr = this.cdr;
   }
   @Input() set optionSelectForce(x: number | BankPaymentPrivateSiteConfigModel) {
     this.onActionSelectForce(x);
@@ -72,9 +71,9 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -82,12 +81,12 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

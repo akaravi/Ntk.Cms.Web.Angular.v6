@@ -2,14 +2,12 @@ import {
   ChangeDetectorRef,
   Component,
   Inject,
-  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, ItemState, ChartContentModel, ChartContentService } from 'ntk-cms-api';
+import { DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, ChartContentModel, ChartContentService } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -29,6 +27,7 @@ export class ChartContentDeleteComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -55,7 +54,7 @@ export class ChartContentDeleteComponent implements OnInit {
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
@@ -73,14 +72,14 @@ export class ChartContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -97,7 +96,7 @@ export class ChartContentDeleteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.contentService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -115,7 +114,7 @@ export class ChartContentDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -123,7 +122,7 @@ export class ChartContentDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -131,6 +130,6 @@ export class ChartContentDeleteComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
     this.loading.Stop('main');
-    this.cdr.detectChanges();
+
   }
 }

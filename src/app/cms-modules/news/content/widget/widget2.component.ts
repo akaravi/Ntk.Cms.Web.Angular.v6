@@ -21,7 +21,9 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     private service: NewsContentService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+  }
   filteModelContent = new FilterModel();
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
@@ -56,11 +58,11 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop('All');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.loading.Stop('All');
-        this.cdr.detectChanges();
+
       }
     );
 
@@ -75,12 +77,12 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
+
       }
       ,
       (error) => {
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
+
       }
     );
   }

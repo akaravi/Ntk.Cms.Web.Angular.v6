@@ -29,7 +29,7 @@ export class CoreUserClaimGroupHeaderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
-
+    this.loading.cdr = this.cdr;
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();
@@ -38,7 +38,7 @@ export class CoreUserClaimGroupHeaderComponent implements OnInit {
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
-  
+
 
   ngOnInit(): void {
     if (this.optionId > 0) {
@@ -47,11 +47,11 @@ export class CoreUserClaimGroupHeaderComponent implements OnInit {
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult=await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.coreUserClaimGroupService.setAccessLoad();
     this.coreUserClaimGroupService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -62,12 +62,12 @@ export class CoreUserClaimGroupHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }

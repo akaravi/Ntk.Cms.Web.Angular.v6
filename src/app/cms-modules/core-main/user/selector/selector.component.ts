@@ -27,7 +27,7 @@ export class CoreUserSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreUserService) {
-
+    this.loading.cdr = this.cdr;
 
   }
   dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
@@ -35,7 +35,7 @@ export class CoreUserSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreUserModel[]>;
-    @Input() optionDisabled = false;
+  @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<string>();
   @Output() optionSelect = new EventEmitter<CoreUserModel>();
@@ -44,7 +44,7 @@ export class CoreUserSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -64,10 +64,10 @@ ngOnInit(): void {
   }
 
   displayFn(model?: CoreUserModel): string | undefined {
-    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName ) : undefined;
+    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName) : undefined;
   }
   displayOption(model?: CoreUserModel): string | undefined {
-    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName ) : undefined;
+    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserModel[]> {
     const filteModel = new FilterModel();
@@ -117,9 +117,9 @@ ngOnInit(): void {
 
       }
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -134,22 +134,20 @@ ngOnInit(): void {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: CoreUserModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

@@ -15,7 +15,6 @@ import {
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { NodeInterface } from 'projects/ntk-cms-filemanager/src/public-api';
 
@@ -31,8 +30,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-
-
+    this.loading.cdr = this.cdr;
   }
   @Input() optionMasterItem = false;
   @Output() optionSelect = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
@@ -63,13 +61,13 @@ export class CmsBankpaymentGridComponent implements OnInit {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
     }
@@ -83,13 +81,13 @@ export class CmsBankpaymentGridComponent implements OnInit {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
     }

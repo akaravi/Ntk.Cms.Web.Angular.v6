@@ -29,7 +29,7 @@ export class CoreModuleTagSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public coreModuleTagService: CoreModuleTagService) {
 
-
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreModuleTagModel> = new ErrorExceptionResult<CoreModuleTagModel>();
   dataModelSelect: CoreModuleTagModel = new CoreModuleTagModel();
@@ -43,7 +43,7 @@ export class CoreModuleTagSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | CoreModuleTagModel) {
     this.onActionSelectForce(x);
   }
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -87,9 +87,9 @@ ngOnInit(): void {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return this.coreModuleTagService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -104,7 +104,7 @@ ngOnInit(): void {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })).toPromise();
   }

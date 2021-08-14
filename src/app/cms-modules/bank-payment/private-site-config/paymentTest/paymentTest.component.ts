@@ -38,6 +38,7 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestLinkPrivateSiteConfigId = +data.LinkPrivateSiteConfigId || 0;
     }
@@ -107,13 +108,13 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       )).toPromise();
   }

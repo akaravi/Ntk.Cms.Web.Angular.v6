@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  CoreAuthService,
   DataFieldInfoModel,
   EnumClauseType,
   EnumRecordStatus,
@@ -26,7 +25,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChartContentDeleteComponent } from '../delete/delete.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
@@ -46,6 +45,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
+    this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -100,8 +100,8 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ChartContentModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -132,13 +132,13 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -187,13 +187,13 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
       /** Normal */

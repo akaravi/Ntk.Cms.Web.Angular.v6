@@ -29,7 +29,7 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
   ) {
-
+    this.loading.cdr = this.cdr;
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();
@@ -52,7 +52,7 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
   }
   DataGetOneContent(): void {
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.webDesignerMainPageDependencyService.setAccessLoad();
     this.webDesignerMainPageDependencyService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -63,12 +63,12 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

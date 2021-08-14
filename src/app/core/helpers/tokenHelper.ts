@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   CoreAuthService,
@@ -14,7 +14,6 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
-import { CmsStoreService } from '../reducers/cmsStore.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +21,6 @@ import { CmsStoreService } from '../reducers/cmsStore.service';
 export class TokenHelper implements OnDestroy {
   constructor(
     public coreAuthService: CoreAuthService,
-    private cmsStoreService: CmsStoreService,
     private cmsApiStore: NtkCmsApiStoreService,
     private translationService: TranslationService,
     private router: Router,

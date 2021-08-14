@@ -22,7 +22,9 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
 
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+   }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'اپلیکیشن های شما';
     this.widgetInfoModel.description = '';
@@ -50,13 +52,9 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop('All');
-        this.cdr.detectChanges();
-
       },
       (error) => {
         this.loading.Stop('All');
-        this.cdr.detectChanges();
-
       }
     );
 
@@ -71,12 +69,10 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
       }
       ,
       (error) => {
         this.loading.Stop('Active');
-        this.cdr.detectChanges();
       }
     );
   }

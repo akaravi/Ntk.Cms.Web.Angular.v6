@@ -27,7 +27,7 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstatePropertyTypeUsageService) {
-
+    this.loading.cdr = this.cdr;
 
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
@@ -35,6 +35,7 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstatePropertyTypeUsageModel[]>;
+  @Input() optionTypeView = 1;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<string>();
@@ -43,7 +44,7 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | EstatePropertyTypeUsageModel) {
     this.onActionSelectForce(x);
   }
-  @Input() optionTypeView=1;
+
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -88,9 +89,9 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -105,22 +106,20 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: EstatePropertyTypeUsageModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

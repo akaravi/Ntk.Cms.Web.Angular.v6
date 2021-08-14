@@ -17,7 +17,9 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     private service: ApplicationAppService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+   }
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
@@ -52,15 +54,12 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
           this.widgetInfoModel.link = '/application/app/add';
         }
         this.loading.Stop('All');
-        this.cdr.detectChanges();
 
       },
       (error) => {
-        this.loading.Stop('All');
         this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
         this.widgetInfoModel.link = '/application/app';
-        this.cdr.detectChanges();
-
+        this.loading.Stop('All');
       }
     );
 

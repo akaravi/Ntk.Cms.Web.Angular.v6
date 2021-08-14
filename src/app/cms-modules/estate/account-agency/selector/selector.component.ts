@@ -27,7 +27,7 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstateAccountAgencyService) {
-
+    this.loading.cdr = this.cdr;
 
   }
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
@@ -44,7 +44,7 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -64,10 +64,10 @@ ngOnInit(): void {
   }
 
   displayFn(model?: EstateAccountAgencyModel): string | undefined {
-    return model ? model.Title  : undefined;
+    return model ? model.Title : undefined;
   }
   displayOption(model?: EstateAccountAgencyModel): string | undefined {
-    return model ? model.Title  : undefined;
+    return model ? model.Title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstateAccountAgencyModel[]> {
     const filteModel = new FilterModel();
@@ -87,9 +87,9 @@ ngOnInit(): void {
     filter.ClauseType = EnumClauseType.Or;
     filteModel.Filters.push(filter);
 
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -104,22 +104,20 @@ ngOnInit(): void {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();
   }
   onActionSelect(model: EstateAccountAgencyModel): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if(this.optionDisabled)
-    {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

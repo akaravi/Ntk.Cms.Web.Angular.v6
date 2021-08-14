@@ -54,6 +54,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
   ) {
+    this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -132,8 +133,8 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationAppModel();
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
@@ -179,13 +180,13 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
 
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -304,7 +305,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-          this.cdr.detectChanges();
+
           this.applicationAppService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -314,12 +315,12 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             }
           );
         }
@@ -449,12 +450,12 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = mode;
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.applicationAppService.ServiceBuild(this.tableRowSelected.Id).subscribe(
       (next) => {
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
         }
@@ -466,7 +467,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
 

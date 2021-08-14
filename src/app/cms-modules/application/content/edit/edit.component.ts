@@ -22,7 +22,6 @@ import { ApplicationThemeConfigModel } from 'ntk-cms-api';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
 
@@ -36,7 +35,6 @@ export class ApplicationAppEditComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     public applicationEnumService: ApplicationEnumService,
@@ -45,6 +43,7 @@ export class ApplicationAppEditComponent implements OnInit {
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private router: Router) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestId = 0;
@@ -114,7 +113,7 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     /*َAccess Field*/
     this.applicationAppService.setAccessLoad();
     this.applicationAppService
@@ -124,8 +123,7 @@ export class ApplicationAppEditComponent implements OnInit {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -139,12 +137,13 @@ export class ApplicationAppEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.loading.Stop('main');
         },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop('main');
         }
       );
   }
@@ -153,13 +152,12 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.applicationAppService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -170,12 +168,13 @@ export class ApplicationAppEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
+          this.loading.Stop('main');
         },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
+          this.loading.Stop('main');
         }
       );
   }

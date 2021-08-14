@@ -82,7 +82,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     this.tableRowSelected = new CoreSiteCategoryCmsModuleModel();
 
     
-    this.loading.Globally = false;
+    
     this.filteModelContent.AccessLoad = true;
 
     const filteModel = JSON.parse(JSON.stringify(this.filteModelContent));

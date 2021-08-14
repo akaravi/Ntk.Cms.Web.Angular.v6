@@ -45,6 +45,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
+    this.loading.cdr = this.cdr;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -102,8 +103,8 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreModuleSaleItemModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
 
     const filteModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -123,12 +124,12 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
           this.tableSource.data = next.ListItems;
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

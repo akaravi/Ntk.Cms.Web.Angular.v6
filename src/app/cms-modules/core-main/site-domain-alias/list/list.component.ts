@@ -51,6 +51,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
+    this.loading.cdr = this.cdr;
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
 
     if (this.requestId > 0) {
@@ -125,8 +126,8 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreSiteDomainAliasModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+    
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -156,13 +157,13 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -264,7 +265,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-          this.cdr.detectChanges();
+
           this.coreSiteDomainAliasService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -274,12 +275,12 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-              this.cdr.detectChanges();
+
             }
           );
         }

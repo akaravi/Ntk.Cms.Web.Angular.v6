@@ -29,7 +29,6 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -44,7 +43,6 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
   requestCategoryId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cmsStoreService: CmsStoreService,
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
     private contentService: ArticleContentService,
@@ -56,6 +54,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -206,14 +205,14 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.contentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -223,18 +222,18 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
-            this.loading.Stop('main');
-            this.cdr.detectChanges();
+
             setTimeout(() => this.router.navigate(['/article/content/']), 100);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop('main');
         },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
+          this.loading.Stop('main');
         }
       );
   }
@@ -276,10 +275,10 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
         return of(response);
       },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
+          this.loading.Stop('main');
         }
       )).toPromise();
   }
@@ -304,10 +303,10 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
         return of(response);
       },
         (error) => {
-          this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
+          this.loading.Stop('main');
         }
       )).toPromise();
   }

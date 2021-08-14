@@ -383,11 +383,11 @@ $font-family-base:            						Poppins, Helvetica, "sans-serif" !default;
 $font-size-base:              						1rem !default; // Assumes the browser default, typically `13px`
 $font-size-lg:               	 					$font-size-base * 1.08 !default;   // 14.04px
 $font-size-sm:                						$font-size-base * .925 !default;   // 12.025px
-$font-size-xs:                						$font-size-base * .8 !default;     // 10.4px
+$font-size-xs:                						$font-size-base * .8 !default; // 10.4px
 
-$h1-font-size:                                      $font-size-base * 2 !default;      // 26px
+$h1-font-size:                                      $font-size-base * 2 !default;  // 26px
 $h2-font-size:                                      $font-size-base * 1.75 !default;   // 22.75px
-$h3-font-size:                                      $font-size-base * 1.5 !default;    // 19.5px
+$h3-font-size:                                      $font-size-base * 1.5 !default;// 19.5px
 $h4-font-size:                                      $font-size-base * 1.35 !default;   // 17.55px
 $h5-font-size:                                      $font-size-base * 1.25 !default;   // 16.25px
 $h6-font-size:                                      $font-size-base * 1.175 !default;  // 15.275px

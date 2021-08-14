@@ -4,7 +4,6 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreSiteModel,
-  CoreSiteService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -14,9 +13,7 @@ import {
   EnumRecordStatus,
   CoreLogCurrencyService,
   CoreLogCurrencyModel,
-  DataFieldInfoModel,
-  EnumModel,
-  CoreEnumService
+  DataFieldInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -51,6 +48,7 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private router: Router,
   ) {
+    this.loading.cdr = this.cdr;
     this.requestLinkCurrencyId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCurrencyId'));
     if (this.requestLinkCurrencyId > 0) {
       const filter = new FilterDataModel();
@@ -129,8 +127,8 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreLogCurrencyModel();
 
     this.loading.Start('main');
-    this.cdr.detectChanges();
-    this.loading.Globally = false;
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -148,13 +146,13 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-    this.cdr.detectChanges();
+
       }
     );
   }
@@ -238,7 +236,7 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           this.loading.Start('main');
-    this.cdr.detectChanges();
+
           this.coreLogCurrencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -248,12 +246,12 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop('main');
-    this.cdr.detectChanges();
+
             }
           );
         }

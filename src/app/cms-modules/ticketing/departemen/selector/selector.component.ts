@@ -27,8 +27,7 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: TicketingDepartemenService) {
-
-
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<TicketingDepartemenModel> = new ErrorExceptionResult<TicketingDepartemenModel>();
   dataModelSelect: TicketingDepartemenModel = new TicketingDepartemenModel();
@@ -88,9 +87,9 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    this.loading.Globally = false;
+    
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -105,7 +104,7 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           return response.ListItems;
         })
       ).toPromise();

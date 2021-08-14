@@ -1,12 +1,10 @@
 import {
   ErrorExceptionResult,
   FormInfoModel,
-  BankPaymentPrivateSiteConfigService,
   BankPaymentPrivateSiteConfigModel,
   CoreModuleSaleHeaderCalculateDtoModel,
   CoreModuleSaleHeaderPaymentDtoModel,
   CoreModuleSaleHeaderService,
-  CoreModuleSaleInvoiceDetailModel,
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
 } from 'ntk-cms-api';
 import {
@@ -18,7 +16,6 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { BankPaymentInjectPaymentGotoBankStep1CalculateModel } from 'ntk-cms-api/lib/models/dto/bankPayment/bankPaymentInjectPaymentGotoBankStep1CalculateModel';
 import { DOCUMENT } from '@angular/common';
@@ -41,6 +38,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestLinkHeaderId = + data.LinkHeaderId || 0;
     }
@@ -83,13 +81,13 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
@@ -105,13 +103,13 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }

@@ -33,6 +33,7 @@ export class BiographyContentDeleteComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -59,7 +60,7 @@ export class BiographyContentDeleteComponent implements OnInit {
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.biographyContentService.setAccessLoad();
     this.biographyContentService
       .ServiceGetOneById(this.requestId)
@@ -77,14 +78,14 @@ export class BiographyContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -101,7 +102,7 @@ export class BiographyContentDeleteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.biographyContentService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -119,7 +120,7 @@ export class BiographyContentDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -127,7 +128,7 @@ export class BiographyContentDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
         }
       );
 
@@ -135,6 +136,6 @@ export class BiographyContentDeleteComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
     this.loading.Stop('main');
-    this.cdr.detectChanges();
+
   }
 }

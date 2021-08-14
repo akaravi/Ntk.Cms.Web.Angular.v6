@@ -40,7 +40,7 @@ export class ArticleCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
   ) {
-    //
+    this.loading.cdr = this.cdr;
     this.checklistSelection.changed.subscribe(x => {
       if (!this.runComplate) {
         return;
@@ -118,9 +118,9 @@ export class ArticleCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    this.loading.Globally = false;
+
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -130,11 +130,11 @@ export class ArticleCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.loadCheked();
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
         this.cmsToastrService.typeError(error);
       }
     );

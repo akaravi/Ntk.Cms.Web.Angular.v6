@@ -23,8 +23,6 @@ import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/publi
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
-import { CoreSiteCategoryCmsModule } from '../../site-category/coreSiteCategory.module';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
@@ -47,6 +45,7 @@ export class CoreSiteEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper
   ) {
+    this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -138,7 +137,7 @@ export class CoreSiteEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     /*َAccess Field*/
     this.coreSiteService.setAccessLoad();
 
@@ -151,7 +150,7 @@ export class CoreSiteEditComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
 
@@ -175,7 +174,7 @@ export class CoreSiteEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -186,21 +185,21 @@ export class CoreSiteEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
 
     this.coreSiteService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             this.loading.Stop('main');
-            this.cdr.detectChanges();
+
             this.formInfo.FormSubmitAllow = true;
             // setTimeout(() => this.router.navigate(['/core/site/']), 100);
           } else {
@@ -211,7 +210,7 @@ export class CoreSiteEditComponent implements OnInit {
         },
         (error) => {
           this.loading.Stop('main');
-          this.cdr.detectChanges();
+
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }

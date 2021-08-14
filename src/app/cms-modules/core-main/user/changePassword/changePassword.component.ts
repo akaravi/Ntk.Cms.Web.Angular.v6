@@ -49,6 +49,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
+    this.loading.cdr = this.cdr;
     if (data) {
       this.requestLinkUserId = +data.LinkUserId || 0;
     }
@@ -92,7 +93,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-    this.cdr.detectChanges();
+
     if (this.requestLinkUserId > 0) {
       this.dataModel.LinkUserId = this.requestLinkUserId;
     }
@@ -109,13 +110,13 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop('main');
-        this.cdr.detectChanges();
+
       }
     );
   }
