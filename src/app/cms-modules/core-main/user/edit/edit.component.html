@@ -274,7 +274,7 @@
 
           <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
             [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
-            [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [openFilemanagerButtonView]="false">
+            [openDirectUploadView]="true" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [openFilemanagerButtonView]="false">
           </cms-file-manager>
           <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>

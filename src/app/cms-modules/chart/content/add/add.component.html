@@ -137,7 +137,7 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+              [openDirectUploadView]="true"   [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
           <!-- LinkFilePodcastIdSrc Field -->
@@ -159,7 +159,7 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFilePodcastId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypePodcast"
+              [openDirectUploadView]="true"  [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypePodcast"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
           <!-- LinkFileMovieId Field -->
@@ -180,7 +180,7 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileMovieId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
+              [openDirectUploadView]="true"  [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">

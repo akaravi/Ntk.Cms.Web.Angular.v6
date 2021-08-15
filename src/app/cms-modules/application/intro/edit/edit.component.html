@@ -96,7 +96,7 @@
             </mat-form-field>
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
-              [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
+              [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
@@ -122,8 +122,8 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainVideoId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormVideo" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainVideo"
-              [openFilemanagerButtonView]="false"></cms-file-manager>
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainVideo" [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
           <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>

@@ -1,21 +1,22 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{formInfo.FormTitle}}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{formInfo.FormTitle}}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper  (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
           <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-              #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+              name="dataModel.RecordStatus" #RecordStatus="ngModel"
+              panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
               <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -31,8 +32,8 @@
           </app-blog-category-selector>
           <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
+            <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+              placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
             <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.Title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -58,8 +59,8 @@
           <mat-form-field class="ntk-full-width">
             <mat-label>تاریخ شروع</mat-label>
             <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
-                 <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #FromDate></mat-datepicker>
           </mat-form-field>
@@ -67,21 +68,22 @@
           <!-- ExpireDate Field -->
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
             <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-            <input matInput [matDatepicker]= "ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-                <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate"
+              name="dataModel.ExpireDate" />
+            <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #ExpireDate></mat-datepicker>
           </mat-form-field>
           <hr class="pb-5" />
-          <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main" [(ngModel)]="dataModel.Body"
-            name="dataModel.Body"></angular-editor>
+          <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main"
+            [(ngModel)]="dataModel.Body" name="dataModel.Body"></angular-editor>
 
-                         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"  matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -92,11 +94,11 @@
             (optionSelectChecked)="onActionCategorySelectChecked($event)"
             (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-blog-category-treeselector>
           <br>
-<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
-             <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
           </div>
@@ -144,14 +146,14 @@
 
               <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
               <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
-                type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+                type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
               <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
                 (click)="dataModel.LinkMainImageId = null">close</mat-icon>
               <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
             </mat-form-field>
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
-              [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
+              [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
@@ -173,7 +175,7 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFilePodcastId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypePodcast"
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypePodcast"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
           <div class="mb-3">
@@ -184,9 +186,8 @@
           </div>
           <div class="mb-9">
             <mat-form-field class="ntk-full-width">
-              <input matInput [(ngModel)]="dataModel.LinkFileMovieId" name="dataModel.LinkFileMovieId"
-                #LinkFileMovieId type="text" placeholder="شناسه فایل ویدیو"
-                (click)="fileManagerOpenFormMovie = true" />
+              <input matInput [(ngModel)]="dataModel.LinkFileMovieId" name="dataModel.LinkFileMovieId" #LinkFileMovieId
+                type="text" placeholder="شناسه فایل ویدیو" (click)="fileManagerOpenFormMovie = true" />
               <mat-icon matSuffix *ngIf="dataModel.LinkFileMovieId" matSuffix mat-icon-button aria-label="Clear"
                 (click)="dataModel.LinkFileMovieId = null">close</mat-icon>
               <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
@@ -194,10 +195,10 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileMovieId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
+              [openDirectUploadView]="true"  [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -212,7 +213,8 @@
           <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="contentOtherInfoSelected.Title" name="contentOtherInfoSelected.Title"
-              #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" />
+              #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
+              minlength="3" maxlength="100" />
             <mat-icon matSuffix *ngIf="contentOtherInfoSelected.Title" matSuffix mat-icon-button aria-label="Clear"
               (click)="contentOtherInfoSelected.Title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -282,7 +284,7 @@
           <!-- TABLE  -->
 
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -293,13 +295,15 @@
         </mat-step>
         <mat-step label="مطالب مشابه" state="info">
           <p>مطالب مرتبط را مشخص کنید</p>
-          <app-blog-content-selector (optionSelect)="onActionContentSimilarSelect($event)" [optionPlaceholder]="'محتوای مشابه'" >
+          <app-blog-content-selector (optionSelect)="onActionContentSimilarSelect($event)"
+            [optionPlaceholder]="'محتوای مشابه'">
 
 
-            <button *ngIf="contentSimilarSelected && contentSimilarSelected.Id" (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
-            class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-            اضافه به لیست ...
-          </button>
+            <button *ngIf="contentSimilarSelected && contentSimilarSelected.Id"
+              (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
+              class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+              اضافه به لیست ...
+            </button>
           </app-blog-content-selector>
 
 
@@ -327,7 +331,7 @@
               <!-- RecordStatus Column -->
               <ng-container matColumnDef="RecordStatus">
                 <mat-header-cell *matHeaderCellDef> وضعیت </mat-header-cell>
-                <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass" ></i> </mat-cell>
+                <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
               </ng-container>
               <!-- Title Column -->
               <ng-container matColumnDef="Title">
@@ -350,7 +354,7 @@
           </div>
           <!-- TABLE  -->
 
-         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -363,14 +367,14 @@
           <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
           <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
             id='main-map'></app-cms-map>
-                  <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
-            </div>
+          </div>
         </mat-step>
 
         <!-- Icon overrides. -->
@@ -391,14 +395,14 @@
 
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
-	<ng-container cms-message>
+    <ng-container cms-message>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </ng-container>
     <ng-container cms-footer>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
   </app-cms-html-card>

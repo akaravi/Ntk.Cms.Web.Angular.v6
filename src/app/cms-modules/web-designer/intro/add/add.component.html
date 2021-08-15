@@ -114,7 +114,7 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+              [openDirectUploadView]="true"  [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
           <!-- LinkMainVideoId Field -->
@@ -139,7 +139,7 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainVideoId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormVideo" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainVideo"
+              [openDirectUploadView]="true"   [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainVideo"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 

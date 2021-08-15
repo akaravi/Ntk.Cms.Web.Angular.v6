@@ -1,17 +1,18 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.FormTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+          required>
           <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -25,8 +26,8 @@
       <!-- RecordStatus Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
-          minlength="3" maxlength="100" required />
+        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.Title = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -48,16 +49,17 @@
           ClassName is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-        <!-- LinkCurrencyId Field -->
-        <app-cms-currency-selector (optionSelect)="onActionSelectCurrency($event)"
+      <!-- LinkCurrencyId Field -->
+      <app-cms-currency-selector (optionSelect)="onActionSelectCurrency($event)"
         [optionDisabled]="!fieldsInfo['LinkCurrencyId']?.AccessEditField" [optionSelectForce]="dataModel.LinkCurrencyId"
         [optionPlaceholder]="'واحد مالی'">
       </app-cms-currency-selector>
       <!-- Memo Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-        <textarea matInput [(ngModel)]="dataModel.Memo" name="dataModel.Memo" #Memo type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}"
-          minlength="1" maxlength="500" required rows=5></textarea>
+        <textarea matInput [(ngModel)]="dataModel.Memo" name="dataModel.Memo" #Memo type="text"
+          placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" required
+          rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.Memo" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.Memo = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -77,19 +79,21 @@
           <mat-label (click)="fileManagerOpenForm = true">فایل آیکن
           </mat-label>
           <input matInput [(ngModel)]="dataModel.LinkModuleFileLogoId" name="dataModel.LinkModuleFileLogoId"
-            #LinkModuleFileLogoId type="text" placeholder="شناسه فایل اصلی"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
+            #LinkModuleFileLogoId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+            (click)="fileManagerOpenForm = true" />
           <mat-icon matSuffix *ngIf="dataModel.LinkModuleFileLogoId " matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.LinkModuleFileLogoId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
         </mat-form-field>
         <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
           [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
-          [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+          [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false">
+        </cms-file-manager>
       </div>
 
       <p>تنظیمات درگاه عمومی</p>
       <dynamic-form-builder-cms [formGroup]="vform.form" [propertiesInfos]="dataModel?.PublicConfigJsonFormatter"
-      [(jsonValue)]="dataModel.PublicConfigJsonValues"></dynamic-form-builder-cms>
+        [(jsonValue)]="dataModel.PublicConfigJsonValues"></dynamic-form-builder-cms>
 
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
@@ -109,7 +113,8 @@
         <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>
-        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
+          [disabled]="!vform.form.valid">
           <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
         </button>
       </div>

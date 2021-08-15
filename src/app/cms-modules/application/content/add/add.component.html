@@ -196,6 +196,7 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedAboutUsLinkImageId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormAboutUsLinkImageId" [tree]="fileManagerTree"
+              [openDirectUploadView]="true"
               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
@@ -416,7 +417,8 @@
             </mat-form-field>
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileIdIcon($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkFileIdIcon" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+              [openDirectUploadView]="true"
+               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 
@@ -442,7 +444,8 @@
             </mat-form-field>
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileIdLogo($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkFileIdLogo" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+              [openDirectUploadView]="true"
+               [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 
@@ -474,7 +477,8 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileIdSplashScreen($event)"
               [language]="appLanguage" [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkFileIdSplashScreen"
-              [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+              [openDirectUploadView]="true"
+              tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
               [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 
@@ -501,7 +505,8 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkMainImageId" [tree]="fileManagerTree"
-              [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+              [openDirectUploadView]="true"
+                [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
               [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 

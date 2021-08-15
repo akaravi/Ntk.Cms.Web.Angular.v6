@@ -79,7 +79,7 @@
           <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
         </mat-form-field>
         <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
-          [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+        [openDirectUploadView]="true"    [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
           [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
