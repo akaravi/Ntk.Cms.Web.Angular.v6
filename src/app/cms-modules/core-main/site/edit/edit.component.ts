@@ -49,6 +49,10 @@ export class CoreSiteEditComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      if (this.requestId === 0) {
+        this.requestId = this.tokenInfo.SiteId;
+        this.DataGetOne(this.requestId);
+      }
     });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -82,14 +86,15 @@ export class CoreSiteEditComponent implements OnInit {
     if (this.requestId === 0) {
       this.requestId = this.tokenInfo.SiteId;
     }
+    this.getEnumRecordStatus();
+    this.getEnumSiteStatus();
+    this.getEnumLanguage();
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
     this.DataGetOne(this.requestId);
-    this.getEnumRecordStatus();
-    this.getEnumSiteStatus();
-    this.getEnumLanguage();
+
   }
   getEnumSiteStatus(): void {
     this.coreEnumService.ServiceEnumSiteStatus().subscribe((next) => {
@@ -115,7 +120,7 @@ export class CoreSiteEditComponent implements OnInit {
 
       return;
     }
-    this.dataModel.Keyword = '';
+    this.dataModel.SeoKeyword = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -126,7 +131,7 @@ export class CoreSiteEditComponent implements OnInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.Keyword = listKeyword.join(',');
+        this.dataModel.SeoKeyword = listKeyword.join(',');
       }
     }
     this.DataEditContent();
@@ -162,8 +167,8 @@ export class CoreSiteEditComponent implements OnInit {
               this.mapMarkerPoints.push({ lat, lon });
             }
             this.keywordDataModel = [];
-            if (this.dataModel.Keyword && this.dataModel.Keyword.length > 0) {
-              this.keywordDataModel = this.dataModel.Keyword.split(',');
+            if (this.dataModel.SeoKeyword && this.dataModel.SeoKeyword.length > 0) {
+              this.keywordDataModel = this.dataModel.SeoKeyword.split(',');
             }
 
           } else {

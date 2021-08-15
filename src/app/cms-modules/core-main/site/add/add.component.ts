@@ -106,7 +106,7 @@ export class CoreSiteAddComponent implements OnInit {
 
       return;
     }
-    this.dataModel.Keyword = '';
+    this.dataModel.SeoKeyword = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -117,7 +117,7 @@ export class CoreSiteAddComponent implements OnInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.Keyword = listKeyword.join(',');
+        this.dataModel.SeoKeyword = listKeyword.join(',');
       }
     }
     this.DataAddContent();
