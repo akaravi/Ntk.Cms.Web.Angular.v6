@@ -72,7 +72,6 @@ import { CmsNoticeComponent } from './cms-notice/cms-notice.component';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { CmsHtmlCardComponent } from './cms-html-card/cms-html-card.component';
 import { CmsHtmlModalComponent } from './cms-html-modal/cms-html-modal.component';
-import { CmsHtmlLoadingComponent } from './cms-html-loading/cms-html-loading.component';
 import { CmsHtmlListComponent } from './cms-html-list/cms-html-list.component';
 import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
 
@@ -136,7 +135,6 @@ import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
     CmsNoticeComponent,
     CmsHtmlCardComponent,
     CmsHtmlModalComponent,
-    CmsHtmlLoadingComponent,
     CmsHtmlListComponent,
     CmsHtmlTreeComponent,
     /** input */
@@ -198,7 +196,6 @@ import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
     CmsNoticeComponent,
     CmsHtmlCardComponent,
     CmsHtmlModalComponent,
-    CmsHtmlLoadingComponent,
     CmsHtmlListComponent,
     CmsHtmlTreeComponent,
     /** input */

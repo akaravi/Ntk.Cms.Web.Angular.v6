@@ -9,6 +9,8 @@
       </h3>
 
     </div>
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+
     <!--end::Title-->
     <!--Email Field-->
     <mat-form-field class="ntk-full-width">
@@ -67,7 +69,7 @@
 
 
     <!--begin::Action-->
-    <div class="pb-lg-0 pb-5">
+    <div class="pb-lg-0 pb-5" *ngIf="!loading.display">
       <button type="submit" [disabled]="vform.invalid || !formInfo.ButtonSubmittedEnabled"
         class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
         {{'AUTH.LOGIN.BUTTON' | translate}}
@@ -88,11 +90,6 @@
         {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
       </button>
 
-
-
-      <ng-container *ngIf="isLoading$ | async">
-        <span class="spinner spinner-primary ml-5"></span>
-      </ng-container>
     </div>
     <!--end::Action-->
   </form>

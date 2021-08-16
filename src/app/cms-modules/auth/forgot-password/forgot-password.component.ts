@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   CaptchaModel,
@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 enum ErrorStates {
   NotSubmitted,
@@ -36,10 +37,13 @@ export class AuthForgotPasswordComponent implements OnInit {
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {
+    this.loading.cdr = this.cdr;
     this.RePassword = '';
   }
+  loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   passwordIsValid = false;
   RePassword: string;
@@ -55,6 +59,9 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordBySms.CaptchaKey = this.captchaModel.Key;
     this.dataModelforgetPasswordEntryPinCode.Email = '';
     this.dataModelforgetPasswordEntryPinCode.Mobile = this.dataModelforgetPasswordBySms.Mobile;
+    const processName = this.constructor.name +'.ServiceForgetPassword';
+    this.loading.Start(processName, 'در خواست یاد آوری کلمه عبور ');
+
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordBySms)
       .subscribe((res) => {
@@ -67,11 +74,13 @@ export class AuthForgotPasswordComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
+        this.loading.Stop(processName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
+          this.loading.Stop(processName);
         });
   }
   onActionSubmitOrderCodeByEmail(): void {
@@ -80,6 +89,9 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordByEmail.CaptchaKey = this.captchaModel.Key;
     this.dataModelforgetPasswordEntryPinCode.Mobile = '';
     this.dataModelforgetPasswordEntryPinCode.Email = this.dataModelforgetPasswordByEmail.Email;
+
+    const processName = this.constructor.name + '.ServiceForgetPassword';
+    this.loading.Start(processName, 'در خواست یاد آوری کلمه عبور ');
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordByEmail)
       .subscribe((res) => {
@@ -93,17 +105,22 @@ export class AuthForgotPasswordComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
+        this.loading.Stop(processName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
+          this.loading.Stop(processName);
         });
   }
   onActionSubmitEntryPinCode(): void {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelforgetPasswordEntryPinCode.CaptchaKey = this.captchaModel.Key;
+
+    const processName = this.constructor.name + '.ServiceForgetPasswordEntryPinCode';
+    this.loading.Start(processName, 'بررسی کد در سرور');
     this.coreAuthService
       .ServiceForgetPasswordEntryPinCode(this.dataModelforgetPasswordEntryPinCode)
       .subscribe((res) => {
@@ -116,11 +133,13 @@ export class AuthForgotPasswordComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
+        this.loading.Stop(processName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
+          this.loading.Stop(processName);
         }
       );
   }
@@ -134,13 +153,17 @@ export class AuthForgotPasswordComponent implements OnInit {
       return;
     }
     this.dataModelforgetPasswordBySms.CaptchaText = '';
+    const processName = this.constructor.name + '.ServiceCaptcha';
+    this.loading.Start(processName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
         this.captchaModel = next.Item;
         this.onCaptchaOrderInProcess = false;
+        this.loading.Stop(processName);
       },
-      (error)=>{
+      (error) => {
         this.onCaptchaOrderInProcess = false;
+        this.loading.Stop(processName);
       }
     );
   }

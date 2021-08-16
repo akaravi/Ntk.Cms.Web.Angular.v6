@@ -1,8 +1,10 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
+
 <h2 mat-dialog-title>...</h2>
 <mat-dialog-content>
   <form (ngSubmit)="onActionSubmit()" #vform="ngForm" class="form form-horizontal">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <div *ngIf="!loading.display" class="form-body">
+
+    <div class="form-body">
       <h4 class="form-section mb-8">
         <i class="ft-user"></i>
         {{'AUTH.REGISTER.SIGNUP' | translate}}

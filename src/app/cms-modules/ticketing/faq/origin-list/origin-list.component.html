@@ -1,4 +1,3 @@
-        
 <!--begin::Content-->
 <div class="content  pt-0  d-flex flex-column flex-column-fluid" id="kt_content">
 
@@ -9,10 +8,10 @@
         <div class=" container ">
             <div class="d-flex justify-content-between align-items-center pt-25 pb-35">
                 <h3 class="font-weight-bolder text-dark mb-0">
-                    سوالات متداول 
+                    سوالات متداول
                 </h3>
                 <div class="d-flex">
-                    
+
                 </div>
             </div>
         </div>
@@ -30,21 +29,23 @@
                 <!--begin::Row-->
                 <div class="row">
                     <div class="col-lg-3">
-                     
+
                         <!--begin::Navigation-->
                         <ul class="navi navi-link-rounded navi-accent navi-hover navi-active nav flex-column mb-8 mb-lg-0"
                             role="tablist">
                             <!--begin::Nav Item-->
-                            <app-cms-html-loading [optionLoading]="loadingCat">
+                            <app-progress-spinner [options]="loadingCat">
+                            </app-progress-spinner>
                             <ng-container *ngFor="let departemenItem of dataDepartemenModelResult.ListItems">
                                 <li class="navi-item mb-{{departemenItem.Id}}">
-                                    <a [class]="DataDepartemanLinkSelect===departemenItem.Id? 'navi-link active':'navi-link'" data-toggle="tab" (click)="onActionbuttonDeparteman(departemenItem.Id)" >
+                                    <a [class]="DataDepartemanLinkSelect===departemenItem.Id? 'navi-link active':'navi-link'"
+                                        data-toggle="tab" (click)="onActionbuttonDeparteman(departemenItem.Id)">
                                         <span
                                             class="navi-text text-dark-50 font-size-h5 font-weight-bold">{{departemenItem.Title}}</span>
                                     </a>
                                 </li>
                             </ng-container>
-                        </app-cms-html-loading>
+
                             <!--end::Nav Item-->
                         </ul>
                         <!--end::Navigation-->
@@ -54,20 +55,27 @@
                         <!--begin::Tab Content-->
                         <div class="tab-content">
                             <!--begin::Accordion-->
-                            <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="faq">
+                            <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle"
+                                id="faq">
                                 <!--begin::Item-->
-                                <app-cms-html-loading [optionLoading]="loading">
+                                <app-progress-spinner [options]="loading">
+                                </app-progress-spinner>
                                 <ng-container *ngFor="let faqItem of dataModelResult.ListItems">
                                     <div class="card border-top-0">
                                         <!--begin::Header-->
                                         <div class="card-header" id="faqHeading{{faqItem.Id}}">
-                                            <a  [class]="faqItem.Id===DataFaqLinkSelect? 'card-title collapsed text-dark':'card-title text-dark'" data-toggle="collapse" [attr.aria-expanded]="faqItem.Id===DataFaqLinkSelect" *ngIf="DataDepartemanLinkSelect==0 || DataDepartemanLinkSelect===faqItem.LinkTicketingDepartemenId" data-toggle="collapse" (click)="onActionbuttonFaqTitle(faqItem.Id)" role="button">
+                                            <a [class]="faqItem.Id===DataFaqLinkSelect? 'card-title collapsed text-dark':'card-title text-dark'"
+                                                data-toggle="collapse"
+                                                [attr.aria-expanded]="faqItem.Id===DataFaqLinkSelect"
+                                                *ngIf="DataDepartemanLinkSelect==0 || DataDepartemanLinkSelect===faqItem.LinkTicketingDepartemenId"
+                                                data-toggle="collapse" (click)="onActionbuttonFaqTitle(faqItem.Id)"
+                                                role="button">
                                                 <span class="svg-icon svg-icon-primary">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                         height="24px" viewBox="0 0 24 24" version="1.1">
-                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g stroke="none" stroke-width="1" fill="none"
+                                                            fill-rule="evenodd">
                                                             <polygon points="0 0 24 0 24 24 0 24" />
                                                             <path
                                                                 d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
@@ -84,16 +92,17 @@
                                             </a>
                                         </div>
                                         <!--end::Header-->
-    
+
                                         <!--begin::Body-->
-                                        <div [class]="faqItem.Id===DataFaqLinkSelect? 'collapse show':'collapse'"   *ngIf="faqItem.Id===DataFaqLinkSelect" >
-                                            <div class="card-body text-dark-50 font-size-lg pl-12" [innerHTML]="faqItem.Answer">
+                                        <div [class]="faqItem.Id===DataFaqLinkSelect? 'collapse show':'collapse'"
+                                            *ngIf="faqItem.Id===DataFaqLinkSelect">
+                                            <div class="card-body text-dark-50 font-size-lg pl-12"
+                                                [innerHTML]="faqItem.Answer">
                                             </div>
                                         </div>
                                         <!--end::Body-->
                                     </div>
                                 </ng-container>
-                            </app-cms-html-loading>
                                 <!--end::Item-->
 
                             </div>

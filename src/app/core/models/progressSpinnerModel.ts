@@ -1,7 +1,12 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { CmsStoreService } from '../reducers/cmsStore.service';
 
+export class processInfoModel {
+  inRun = false;
+  title = '';
+}
 export class ProgressSpinnerModel {
   cdr: ChangeDetectorRef;
   message = 'در حال دریافت اطلاعات';
@@ -15,12 +20,13 @@ export class ProgressSpinnerModel {
   positionGloballyCenter = true;
   processRunList: string[];
   display = false;
-  consoleLog = false;
-  private processRun = new Map<string, boolean>();
+  consoleLog = true;
+  processInfo = new Map<string, processInfoModel>();
   constructor() {
     /** GUID */
     this.guid = this.newGuid();
     /** GUID */
+
   }
   /** GUID */
   private guid = '';
@@ -35,22 +41,25 @@ export class ProgressSpinnerModel {
   /** GUID */
 
   displayItem(name: string): boolean {
-    if (!this.processRun) {
+    if (!this.processInfo) {
       return false;
     }
-    for (const [key, value] of this.processRun) {
+    for (const [key, value] of this.processInfo) {
       if (key === name) {
-        return value;
+        return value.inRun;
       }
     }
     return false;
   }
-  Start(name: string): void {
 
-    this.processRun.set(name, true);
+  Start(key: string, title: string = '----'): void {
+    let model = new processInfoModel();
+    model.inRun = true;
+    model.title = title;
+    this.processInfo.set(key, model);
     const retOut = [];
-    for (const [key, value] of this.processRun) {
-      if (value && value === true) {
+    for (const [key, value] of this.processInfo) {
+      if (value && value.inRun === true) {
         retOut.push(key);
       }
     }
@@ -60,19 +69,29 @@ export class ProgressSpinnerModel {
       this.display = true;
     }
     else {
+      this.processInfo = new Map<string, processInfoModel>();
       this.display = false;
     }
+
     /** Display */
     if (this.consoleLog) {
       console.log(this.guid, 'Start:', name, 'Display:', this.display, 'processRunList:', this.processRunList);
     }
+    if (this.cdr && !this.display) {
+      this.cdr.detectChanges();
+    }
   }
-  Stop(name: string): void {
+  Stop(key: string): void {
 
-    this.processRun.set(name, false);
+    let model = this.processInfo.get(key);
+    if (!model) {
+      model = new processInfoModel();
+    }
+    model.inRun = false;
+    this.processInfo.set(key, model);
     const retOut = [];
-    for (const [key, value] of this.processRun) {
-      if (value && value === true) {
+    for (const [key, value] of this.processInfo) {
+      if (value && value.inRun === true) {
         retOut.push(key);
       }
     }
@@ -82,12 +101,15 @@ export class ProgressSpinnerModel {
       this.display = true;
     }
     else {
+      this.processInfo = new Map<string, processInfoModel>();
       this.display = false;
     }
+
     /** Display */
     if (this.consoleLog) {
       console.log(this.guid, 'Stop:', name, 'Display:', this.display, 'processRunList:', this.processRunList);
     }
+
     if (this.cdr && !this.display) {
       this.cdr.detectChanges();
     }

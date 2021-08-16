@@ -31,7 +31,7 @@ export class CmsMemberSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<MemberUserModel> = new ErrorExceptionResult<MemberUserModel>();
   dataModelSelect: MemberUserModel = new MemberUserModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<MemberUserModel[]>;
   @Input() optionDisabled = false;

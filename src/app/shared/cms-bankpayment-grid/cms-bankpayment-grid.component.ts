@@ -33,10 +33,11 @@ export class CmsBankpaymentGridComponent implements OnInit {
     this.loading.cdr = this.cdr;
   }
   @Input() optionMasterItem = false;
+  
   @Output() optionSelect = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   dataModelSelect: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
 
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModel: BlogCategoryModel = new BlogCategoryModel();
 

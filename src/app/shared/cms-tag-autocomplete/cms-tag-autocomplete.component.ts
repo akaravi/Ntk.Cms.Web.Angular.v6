@@ -25,8 +25,6 @@ export class CmsTagAutocompleteComponent implements OnInit {
   constructor(
     public coreModuleTagService: CoreModuleTagService,
     private cmsToastrService: CmsToastrService) {
-
-
   }
   datatagDataModelResult: ErrorExceptionResult<CoreModuleTagModel> = new ErrorExceptionResult<CoreModuleTagModel>();
   tagDataModel = [];

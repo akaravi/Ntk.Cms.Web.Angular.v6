@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { MatDialog } from '@angular/material/dialog';
 import { SingupRuleComponent } from '../singupRule/singupRule.Component';
+
 
 @Component({
   selector: 'app-auth-singup',
@@ -19,10 +20,12 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private coreAuthService: CoreAuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {
-
+    this.loading.cdr = this.cdr;
   }
+  loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   Roulaccespt = false;
   isLoading$: Observable<boolean>;
@@ -31,7 +34,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   aoutoCaptchaOrder = 1;
   passwordIsValid = false;
   dataModel: AuthUserSignUpModel = new AuthUserSignUpModel();
-  loading = new ProgressSpinnerModel();
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
@@ -85,6 +87,9 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     }
     this.formInfo.FormErrorStatus = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
+
+    const processName = this.constructor.name + '.ServiceSignupUser';
+    this.loading.Start(processName, 'در حال ساخت حساب کاربری جدید');
     this.coreAuthService.ServiceSignupUser(this.dataModel).subscribe((next) => {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
@@ -94,11 +99,13 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
         this.formInfo.FormErrorStatus = true;
         this.onCaptchaOrder();
+        this.loading.Stop(processName);
       }
     }, (error) => {
       this.cmsToastrService.typeError(error);
       this.formInfo.FormErrorStatus = true;
       this.onCaptchaOrder();
+      this.loading.Stop(processName);
     });
   }
   onRoulaccespt(): void {
@@ -118,6 +125,8 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       return;
     }
     this.dataModel.CaptchaText = '';
+    const processName = this.constructor.name + '.ServiceCaptcha';
+    this.loading.Start(processName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
 
@@ -134,9 +143,11 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
         this.onCaptchaOrderInProcess = false;
+        this.loading.Stop(processName);
       }
       , (error) => {
         this.onCaptchaOrderInProcess = false;
+        this.loading.Stop(processName);
       }
     );
   }

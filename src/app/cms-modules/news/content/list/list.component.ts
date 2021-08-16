@@ -99,9 +99,9 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new NewsContentModel();
 
-    this.loading.Start('main');
 
-    
+
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -109,6 +109,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
 
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
+      const processName = this.constructor.name + '.ServiceGetAllWithHierarchyCategoryId';
+      this.loading.Start(processName, 'دریافت  لیست اطلاعات');
       this.contentService.ServiceGetAllWithHierarchyCategoryId(this.categoryModelSelected.Id, filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -131,14 +133,11 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop('main');
-
+          this.loading.Stop(processName);
         },
         (error) => {
           this.cmsToastrService.typeError(error);
-
-          this.loading.Stop('main');
-
+          this.loading.Stop(processName);
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -162,6 +161,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
         filterModel.Filters.push(filterChild);
       }
       /** filter Category */
+      const processName = this.constructor.name + '.ServiceGetAll';
+      this.loading.Start(processName, 'دریافت  لیست اطلاعات');
       this.contentService.ServiceGetAll(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -186,13 +187,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop('main');
+          this.loading.Stop(processName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop('main');
+          this.loading.Stop(processName);
 
         }
       );
@@ -317,16 +318,20 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
+    const processName = this.constructor.name + '.ServiceGetCount';
+    this.loading.Start(processName, 'دریافت آمار');
     this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
+        this.loading.Stop(processName);
       }
       ,
       (error) => {
         this.cmsToastrService.typeError(error);
+        this.loading.Stop(processName);
       }
     );
 
@@ -342,15 +347,20 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
+
+    const processName = this.constructor.name + '.ServiceExportFile';
+    this.loading.Start(processName, 'دریافت فایل خروجی');
     this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
+        this.loading.Stop(processName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
+        this.loading.Stop(processName);
       }
     );
   }

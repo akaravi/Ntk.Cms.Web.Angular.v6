@@ -1,13 +1,23 @@
-<ng-template #progressSpinnerRef  class="message">
-    <mat-progress-spinner  [color]="optionsData.color" [diameter]="optionsData.diameter" [mode]="optionsData.mode" [strokeWidth]="optionsData.strokeWidth" [value]="optionsData.value">
-    </mat-progress-spinner>
-    <br />
-    <div >{{ optionsData.message }}</div>
-</ng-template>
-<div  *ngIf="!optionsData.Globally && optionsData.display" class="message">
-  <mat-progress-spinner  [color]="optionsData.color" [diameter]="optionsData.diameter" [mode]="optionsData.mode" [strokeWidth]="optionsData.strokeWidth" [value]="optionsData.value">
+<ng-template #progressSpinnerRef class="message">
+  <mat-progress-spinner [color]="optionsData.color" [diameter]="optionsData.diameter" [mode]="optionsData.mode"
+    [strokeWidth]="optionsData.strokeWidth" [value]="optionsData.value">
   </mat-progress-spinner>
   <br />
-  <div >{{ optionsData.message }}</div>
+  <div>{{ optionsData.message }}
+    <br>
+    <ul class="fa-ul" *ngFor="let item of optionsData.processInfo | keyvalue">
+      <li><span class="fa-li">
+          <i
+            [ngClass]="item.value['inRun']?'fas fa-spinner fa-pulse':'fas fa-check-square'"></i></span>{{item.value['title']}}
+      </li>
+    </ul>
+  </div>
+</ng-template>
+<div *ngIf="!optionsData.Globally && optionsData.display" class="message">
+  <mat-progress-spinner [color]="optionsData.color" [diameter]="optionsData.diameter" [mode]="optionsData.mode"
+    [strokeWidth]="optionsData.strokeWidth" [value]="optionsData.value">
+  </mat-progress-spinner>
+  <br />
+  <div>{{ optionsData.message }}</div>
 
 </div>

@@ -219,11 +219,13 @@ export class PublicHelper {
     if (storeSnapshot?.EnumRecordStatusResultStore?.ListItems?.length > 0) {
       return storeSnapshot.EnumRecordStatusResultStore;
     }
+    
     return await this.coreEnumService.ServiceEnumRecordStatus()
       .pipe(map(response => {
         this.cmsStoreService.setState({ EnumRecordStatusResultStore: response });
         return response;
       })).toPromise();
+      
   }
   async getCurrentSite(): Promise<ErrorExceptionResult<CoreSiteModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();

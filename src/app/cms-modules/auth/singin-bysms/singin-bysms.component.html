@@ -1,3 +1,5 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
+
 <div class="login-form login-forgot">
   <!--begin::Form-->
   <form *ngIf="forgetState=='sms'"  class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate"
@@ -61,9 +63,7 @@
         {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
       </a>
 
-      <ng-container *ngIf="isLoading$ | async">
-        <span class="spinner spinner-primary ml-5"></span>
-      </ng-container>
+     
     </div>
     <!--end::Form group-->
     <br>

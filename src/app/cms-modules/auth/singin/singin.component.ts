@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthUserSignInModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
   selector: 'app-auth-singin',
@@ -18,11 +18,12 @@ export class AuthSingInComponent implements OnInit {
     private router: Router,
     private coreAuthService: CoreAuthService,
     private translationService: TranslationService,
-
+    private cdr: ChangeDetectorRef,
   ) {
+    this.loading.cdr = this.cdr;
   }
 
-
+  loading=new  ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel: AuthUserSignInModel = new AuthUserSignInModel();
   captchaModel: CaptchaModel = new CaptchaModel();
@@ -32,7 +33,6 @@ export class AuthSingInComponent implements OnInit {
   // KeenThemes mock, change it to:
   hasError: boolean;
   returnUrl: string;
-  isLoading$: Observable<boolean>;
   loginType = 'email';
   ngOnInit(): void {
     this.onCaptchaOrder();
@@ -46,6 +46,8 @@ export class AuthSingInComponent implements OnInit {
     this.hasError = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.dataModel.lang = this.translationService.getSelectedLanguage();
+    const processName = this.constructor.name + '.ServiceSigninUser';
+    this.loading.Start(processName, 'ورود به حساب کاربری');
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
       (res) => {
         if (res.IsSuccess) {
@@ -56,10 +58,12 @@ export class AuthSingInComponent implements OnInit {
           this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
           this.onCaptchaOrder();
         }
+        this.loading.Stop(processName);
       },
       (error) => {
         this.formInfo.ButtonSubmittedEnabled = true;
         this.cmsToastrService.typeError(error);
+        this.loading.Stop(processName);
       }
     );
   }
@@ -72,6 +76,8 @@ export class AuthSingInComponent implements OnInit {
       return;
     }
     this.dataModel.CaptchaText = '';
+    const processName = this.constructor.name + '.ServiceCaptcha';
+    this.loading.Start(processName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
 
@@ -88,9 +94,11 @@ export class AuthSingInComponent implements OnInit {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
         this.onCaptchaOrderInProcess = false;
+        this.loading.Stop(processName);
       },
       (error) => {
         this.onCaptchaOrderInProcess = false;
+        this.loading.Stop(processName);
       }
     );
   }

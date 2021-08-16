@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 
 
 @Component({
@@ -17,13 +18,15 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public categoryService: CoreSiteCategoryService,
     private cdr: ChangeDetectorRef,
-    private cmsToastrService: CmsToastrService) {
+    private cmsToastrService: CmsToastrService,
+    ) {
     this.loading.cdr = this.cdr;
+
   }
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   dataModelSelect: CoreSiteCategoryModel[] = [];
   dataIdsSelect: number[] = [];
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   fieldsStatus: Map<number, boolean> = new Map<number, boolean>();
 

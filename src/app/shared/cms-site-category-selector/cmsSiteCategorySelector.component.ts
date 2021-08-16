@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 
 
 @Component({
@@ -26,12 +27,13 @@ export class CmsSiteCategorySelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    public categoryService: CoreSiteCategoryService) {
+    public categoryService: CoreSiteCategoryService,
+  ) {
     this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   dataModelSelect: CoreSiteCategoryModel = new CoreSiteCategoryModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreSiteCategoryModel[]>;
   @Input() optionDisabled = false;
@@ -106,7 +108,7 @@ export class CmsSiteCategorySelectorComponent implements OnInit {
 
       }
     }
-    
+
     this.loading.Start('main');
 
     return await this.categoryService.ServiceGetAll(filteModel)

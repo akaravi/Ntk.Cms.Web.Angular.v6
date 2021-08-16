@@ -9,7 +9,7 @@
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper *ngIf="!loading.display" (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
         <mat-step label="مشخضات سامانه" state="main">
           <!-- Title Field -->
           <mat-form-field class="ntk-full-width">
@@ -66,10 +66,12 @@
         </mat-step>
         <mat-step label="امکانات سامانه" state="seo">
           <p>نسبت به نوع سامانه انتخابی شما این امکانات در اختیار این سامانه قرار داده می شود</p>
-          <app-cms-html-loading [optionLoading]="loadingDomain">
-            <app-core-sitecategorycmsmodule-listview [optionSiteCategoryId]="modelDateSiteCategory?.Id">
-            </app-core-sitecategorycmsmodule-listview>
-          </app-cms-html-loading>
+          <app-progress-spinner [options]="loadingDomain">
+          </app-progress-spinner>
+          <app-core-sitecategorycmsmodule-listview *ngIf="!loadingDomain.display"
+            [optionSiteCategoryId]="modelDateSiteCategory?.Id">
+          </app-core-sitecategorycmsmodule-listview>
+
           <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="primary" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}

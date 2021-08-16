@@ -31,7 +31,7 @@ export class CmsUserGroupSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
   dataModelSelect: CoreUserGroupModel = new CoreUserGroupModel();
-  loading = new ProgressSpinnerModel();
+  @Input()  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreUserGroupModel[]>;
   @Input() optionDisabled = false;

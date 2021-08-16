@@ -1,31 +1,33 @@
 <div class="example-container mat-elevation-z8">
-  <app-cms-html-loading [optionLoading]="loading">
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
-
-     
-      <!-- virtual_CmsSiteCategory.Title Column -->
-      <ng-container matColumnDef="virtual_CmsSiteCategory.Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.SITE_CATEGORY' | translate}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.virtual_CmsSiteCategory.Title}} </mat-cell>
-      </ng-container>
-      <!-- virtual_CmsModule.Title Column -->
-      <ng-container matColumnDef="virtual_CmsModule.Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.MODULE' | translate}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.virtual_CmsModule.Title}} </mat-cell>
-      </ng-container>
-      <!-- virtual_CmsModule.Description Column -->
-      <ng-container matColumnDef="virtual_CmsModule.Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.DESCRIPTION' | translate}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.virtual_CmsModule.Description}} </mat-cell>
-      </ng-container>
+  <app-progress-spinner [options]="loading">
+  </app-progress-spinner>
+  <mat-table *ngIf="!loading.display" [dataSource]="tableSource" matSort #tableSort="matSort"
+    (matSortChange)="onTableSortData(tableSort)">
 
 
-      <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
-      </mat-row>
-    </mat-table>
-  </app-cms-html-loading>
+    <!-- virtual_CmsSiteCategory.Title Column -->
+    <ng-container matColumnDef="virtual_CmsSiteCategory.Title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.SITE_CATEGORY' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.virtual_CmsSiteCategory.Title}} </mat-cell>
+    </ng-container>
+    <!-- virtual_CmsModule.Title Column -->
+    <ng-container matColumnDef="virtual_CmsModule.Title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.MODULE' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.virtual_CmsModule.Title}} </mat-cell>
+    </ng-container>
+    <!-- virtual_CmsModule.Description Column -->
+    <ng-container matColumnDef="virtual_CmsModule.Description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.DESCRIPTION' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.virtual_CmsModule.Description}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+      [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+    </mat-row>
+  </mat-table>
+
   <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
     [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
     [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>

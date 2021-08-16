@@ -1,6 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreSiteModel,
@@ -92,7 +92,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
-  loading = new ProgressSpinnerModel();
+  @Input()  loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreModuleSiteModel> = [];
   tableRowSelected: CoreModuleSiteModel = new CoreModuleSiteModel();
   tableSource: MatTableDataSource<CoreModuleSiteModel> = new MatTableDataSource<CoreModuleSiteModel>();

@@ -13,12 +13,13 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 
 @Component({
   selector: 'app-core-sitecategorycmsmodule-listview',
@@ -36,8 +37,8 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -47,7 +48,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryCmsModuleModel> = new ErrorExceptionResult<CoreSiteCategoryCmsModuleModel>();
   tokenInfo = new TokenInfoModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreSiteCategoryCmsModuleModel> = [];
   tableRowSelected: CoreSiteCategoryCmsModuleModel = new CoreSiteCategoryCmsModuleModel();
   tableSource: MatTableDataSource<CoreSiteCategoryCmsModuleModel> = new MatTableDataSource<CoreSiteCategoryCmsModuleModel>();
@@ -80,9 +81,6 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteCategoryCmsModuleModel();
-
-    
-    
     this.filteModelContent.AccessLoad = true;
 
     const filteModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -92,8 +90,8 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
       fastfilter.Value = this.linkSiteCategoryId;
       filteModel.Filters.push(fastfilter);
     }
-    const processName = 'DataGetAll';
-    this.loading.Start(processName);
+    const processName = this.constructor.name + '.ServiceGetAll';
+    this.loading.Start(processName, 'در حال دریافت لیست ماژول ها');
     this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

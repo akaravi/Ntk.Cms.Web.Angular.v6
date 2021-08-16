@@ -9,11 +9,11 @@
   <div *ngIf="loading.display" class="overlay-layer bg-transparent">
     <div class="spinner spinner-lg spinner-success"></div>
   </div>
-  <ng-content *ngIf="!loading.display" select="[cms-body]"></ng-content>
+  <ng-content  select="[cms-body]"></ng-content>
 </div>
 <!--end::Body-->
 <!--begin::Footer-->
 <div *ngIf="optionFooterDisplay" class="ntk-cms-html-tree-footer">
-  <ng-content *ngIf="!loading.display" select="[cms-footer]"></ng-content>
+  <ng-content  select="[cms-footer]"></ng-content>
 </div>
 <!--end::Footer-->

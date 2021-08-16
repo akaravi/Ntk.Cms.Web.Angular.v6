@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -36,7 +36,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.cdr = cdr;
   }
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
 
 
   filterModel = new FilterModel();
@@ -49,7 +49,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     this.DataGetAll();
   }
   DataGetAll(): void {
-    const processName = 'DataGetAll';
+    const processName = this.constructor.name + '.DataGetAll';
     this.loading.Start(processName);
 
     this.coreSiteService.ServiceGetAll(null).subscribe(
@@ -84,7 +84,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     authModel.Lang = this.translationService.getSelectedLanguage();
 
 
-    const processName = 'ServiceRenewToken';
+    const processName = this.constructor.name + '.ServiceRenewToken';
     this.loading.Start(processName);
 
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
@@ -116,7 +116,7 @@ export class CoreSiteSelectionComponent implements OnInit {
       let authModel: AuthRenewTokenModel;
       authModel = new AuthRenewTokenModel();
 
-      const processName = 'onActionAddFirstSite';
+      const processName = this.constructor.name + '.onActionAddFirstSite';
       this.loading.Start(processName);
 
       this.coreAuthService.ServiceRenewToken(authModel).subscribe(

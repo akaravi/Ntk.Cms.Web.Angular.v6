@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private tableService: TableExtendedService,
     private publicHelper: PublicHelper,
-    private tokenHelper: TokenHelper
+    private tokenHelper: TokenHelper,
   ) {
     if (environment.cmsServerConfig.configApiServerPath && environment.cmsServerConfig.configApiServerPath.length > 0) {
       this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);

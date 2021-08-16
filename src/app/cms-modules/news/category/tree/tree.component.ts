@@ -51,7 +51,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: NewsCategoryModel = new NewsCategoryModel();
   dataModelResult: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<NewsCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<NewsCategoryModel>();
   @Output() optionSelect = new EventEmitter<NewsCategoryModel>();
@@ -73,20 +73,21 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    
-    this.loading.Start('main');
 
+
+    const processName = this.constructor.name + '.ServiceGetAll';
+    this.loading.Start(processName, 'دریافت دسته بندی ها');
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.Stop('main');
+        this.loading.Stop(processName);
 
       },
       (error) => {
-        this.loading.Stop('main');
+        this.loading.Stop(processName);
 
         this.cmsToastrService.typeError(error);
 

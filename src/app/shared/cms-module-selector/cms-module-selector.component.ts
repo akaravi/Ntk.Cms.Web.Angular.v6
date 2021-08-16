@@ -31,7 +31,7 @@ export class CmsModuleSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   dataModelSelect: CoreModuleModel = new CoreModuleModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreModuleModel[]>;
   @Input() optionDisabled = false;
@@ -113,7 +113,7 @@ export class CmsModuleSelectorComponent implements OnInit {
 
       }
     }
-    
+
     this.loading.Start('main');
 
     return await this.categoryService.ServiceGetAll(filteModel)

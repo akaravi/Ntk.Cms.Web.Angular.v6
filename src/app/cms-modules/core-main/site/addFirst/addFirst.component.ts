@@ -5,10 +5,9 @@ import {
   CoreAuthService,
   CoreSiteAddFirstSiteDtoModel,
   CoreSiteCategoryModel,
-  CoreSiteCategoryService,
   CoreSiteService,
   DataFieldInfoModel,
-  DomainModel, ErrorExceptionResult,
+  ErrorExceptionResult,
   FilterModel,
   FormInfoModel
 } from 'ntk-cms-api';
@@ -21,7 +20,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { FormGroup } from '@angular/forms';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
+import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 
 @Component({
   selector: 'app-core-site-add-first',
@@ -37,7 +36,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
     private publicHelper: PublicHelper,
     private coreAuthService: CoreAuthService,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
   ) {
     this.loading.cdr = this.cdr;
     this.loadingDomain.cdr = this.cdr;
@@ -47,13 +46,13 @@ export class CoreSiteAddFirstComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   alphaExp = /^[a-zA-Z]+$/;
 
-  loading = new ProgressSpinnerModel();
+  // loading = new ProgressSpinnerModel();
   loadingDomain = new ProgressSpinnerModel();
 
   dataModel = new CoreSiteAddFirstSiteDtoModel();
   filterModel = new FilterModel();
   dataModelResultDomains = new ErrorExceptionResult<string>();
-
+  loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   modelDateSiteCategory = new CoreSiteCategoryModel();
   validateDomain = true;
@@ -64,8 +63,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.validateDomain = this.alphaExp.test(this.dataModel.SubDomain);
   }
   DataGetAccess(): void {
-    const processName = 'DataGetAccess';
-    this.loading.Start(processName);
+    const processName = this.constructor.name + '.DataGetAccess';
+    this.loading.Start(processName, 'دریافت دسترسی ها');
     this.coreSiteService
       .ServiceViewModel()
       .subscribe(
@@ -86,8 +85,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
   }
 
   GetDomainList(): void {
-    const processName = 'GetDomainList';
-    this.loadingDomain.Start(processName);
+    const processName = this.constructor.name + '.GetDomainList';
+    this.loadingDomain.Start(processName, 'دریافت لیست دامنه های مجاز');
     this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -95,7 +94,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
           if (next.ListItems.length > 0) {
             this.dataModel.Domain = next.ListItems[0];
           }
-          if (this.dataModel.SubDomain.length === 0) {
+          if (!this.dataModel.SubDomain || this.dataModel.SubDomain?.length === 0) {
             this.dataModel.SubDomain = 'myname';
           }
         }
@@ -139,8 +138,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
     }
 
     this.formInfo.FormSubmitAllow = false;
-    const processName = 'onFormSubmit';
-    this.loading.Start(processName);
+    const processName = this.constructor.name + '.onFormSubmit';
+    this.loading.Start(processName, 'در حال ثبت اطلاعات اولین سامانه شما');
     this.coreSiteService.ServiceAddFirstSite(this.dataModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -161,8 +160,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
   }
 
   clickSelectSite(Id: number): void {
-    const processName = 'clickSelectSite';
-    this.loading.Start(processName);
+    const processName = this.constructor.name + '.clickSelectSite';
+    this.loading.Start(processName, 'درخواست دسترسی جدید');
 
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();

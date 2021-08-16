@@ -7,16 +7,11 @@ import {
   ViewContainerRef,
   DoCheck,
 } from '@angular/core';
-
 import {
   OverlayConfig,
   OverlayRef,
-  PositionStrategy,
 } from '@angular/cdk/overlay';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { OverlayService } from '../overlay/overlay.service';
-
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({

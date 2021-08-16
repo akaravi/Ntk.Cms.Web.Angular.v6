@@ -31,7 +31,7 @@ export class CmsLocationSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
   dataModelSelect: CoreLocationModel = new CoreLocationModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreLocationModel[]>;
   @Input() optionDisabled = false;
@@ -98,7 +98,7 @@ export class CmsLocationSelectorComponent implements OnInit {
 
       }
     }
-    
+
     this.loading.Start('main');
 
     return await this.categoryService.ServiceGetAll(filteModel)

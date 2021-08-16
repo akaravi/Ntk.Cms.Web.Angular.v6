@@ -13,8 +13,9 @@
   <div class="card-body pt-8">
   </div>
 </div>
-
-<app-cms-html-loading [optionLoading]="loading">
+<app-progress-spinner [options]="loading">
+</app-progress-spinner>
+<div *ngIf="!loading.display">
   <app-core-site-add-first
     *ngIf="!this.statusCheckExistWebSite && (!dataModelResult || !dataModelResult.ListItems || dataModelResult.ListItems.length === 0)">
   </app-core-site-add-first>
@@ -74,4 +75,4 @@
       </div>
     </div>
   </div>
-</app-cms-html-loading>
+</div>
