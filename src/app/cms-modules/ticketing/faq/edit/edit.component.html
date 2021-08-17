@@ -46,7 +46,7 @@
       <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="Answer"
         [(ngModel)]="dataModel.Answer" name="dataModel.Answer"></angular-editor>
       <br>
-      <app-cms-files-selector [(dataFileModel)]="dataFileModel"></app-cms-files-selector>
+      <app-cms-files-selector [(dataFileModel)]="dataFileModel"  [openDirectUploadView]="true"></app-cms-files-selector>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
     <ng-container cms-message>

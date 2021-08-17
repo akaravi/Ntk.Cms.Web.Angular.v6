@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CoreConfigCheckSiteComponent } from './config/check-site/check-site.component';
+import { CoreConfigCheckUserComponent } from './config/check-user/check-user.component';
 import { CoreConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
 import { CoreConfigSiteComponent } from './config/site/configSite.component';
 import { CoreComponent } from './core.component';
@@ -23,6 +25,22 @@ const routes: Routes = [
       {
         path: 'config/site/:LinkSiteId',
         component: CoreConfigSiteComponent
+      },
+      {
+        path: 'config/checkuser',
+        component: CoreConfigCheckUserComponent
+      },
+      {
+        path: 'config/checkuser/:LinkUserId',
+        component: CoreConfigCheckUserComponent
+      },
+      {
+        path: 'config/checksite',
+        component: CoreConfigCheckSiteComponent
+      },
+      {
+        path: 'config/checksite/:LinkSiteId',
+        component: CoreConfigCheckSiteComponent
       },
       /*Config*/
       {

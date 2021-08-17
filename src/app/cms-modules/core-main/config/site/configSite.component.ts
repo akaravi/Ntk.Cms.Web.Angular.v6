@@ -46,6 +46,8 @@ export class CoreConfigSiteComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
+
   }
   dataSiteStorageModel = new CoreModuleSiteStorageValuesModel();
   dataConfigSiteValuesModel = new CoreModuleConfigSiteValuesModel();
@@ -71,7 +73,6 @@ export class CoreConfigSiteComponent implements OnInit {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

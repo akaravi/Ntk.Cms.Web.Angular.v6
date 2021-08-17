@@ -413,11 +413,11 @@
           </div>
           <hr>
           <p>لیست عکس های پیوست</p>
-          <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [optionFileType]="selectFileTypeMainImage">
+          <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes"  [openDirectUploadView]="true" [optionFileType]="selectFileTypeMainImage">
           </app-cms-files-selector>
           <hr>
           <p>لیست فایل های پیوست</p>
-          <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles"></app-cms-files-selector>
+          <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles"  [openDirectUploadView]="true"></app-cms-files-selector>
           <br>
           <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
