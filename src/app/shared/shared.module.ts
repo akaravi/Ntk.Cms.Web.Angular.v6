@@ -52,7 +52,6 @@ import { CmsBankpaymentGridComponent } from './cms-bankpayment-grid/cms-bankpaym
 import { CmsCurrencySelectorComponent } from './cms-currency-selector/cms-currency-selector.component';
 import { CmsLocationSelectorComponent } from './cms-location-selector/cms-location-selector.component';
 import { ValueArrayPipe } from '../core/pipe/valueArray.pipe';
-import { ValueBooleanPipe } from '../core/pipe/valueBoolean.pipe';
 import { StringComponent } from '../core/dynamic-input-builder/string/string.component';
 import { IntComponent } from '../core/dynamic-input-builder/int/int.component';
 import { BooleanComponent } from '../core/dynamic-input-builder/boolean/boolean.component';
@@ -105,7 +104,6 @@ import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
     RecordStatusClassPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
-    ValueBooleanPipe,
     LanguageSelectorComponent,
     CmsSearchListComponent,
     CmsStatistListComponent,
@@ -166,7 +164,6 @@ import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
     RecordStatusClassPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
-    ValueBooleanPipe,
     PersianDate,
     PersianDateFull,
     LanguageSelectorComponent,

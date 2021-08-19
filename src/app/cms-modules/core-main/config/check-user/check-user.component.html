@@ -8,15 +8,11 @@
    
     <mat-table [dataSource]="tableSource" >
           <!-- Warrning Column -->
-          <ng-container matColumnDef="Warrning">
-            <mat-header-cell *matHeaderCellDef > {{'TITLE.Warrning' | translate}} </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.Warrning}} </mat-cell>
+          <ng-container matColumnDef="Accepted">
+            <mat-header-cell *matHeaderCellDef > {{'TITLE.Accepted' | translate}} </mat-header-cell>
+            <mat-cell *matCellDef="let row">  <i [ngClass]="row.Accepted|boolclass"></i> </mat-cell>
         </ng-container>
-        <!-- Key Column -->
-        <ng-container matColumnDef="Key">
-            <mat-header-cell *matHeaderCellDef > {{'TITLE.Key' | translate}} </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.Key}} </mat-cell>
-        </ng-container>
+   
         <!-- Title Column -->
         <ng-container matColumnDef="Title">
             <mat-header-cell *matHeaderCellDef > {{'TITLE.Title' | translate}} </mat-header-cell>

@@ -54,13 +54,13 @@
         [optionPlaceholder]="'صفحه والد'">
       </app-webdesigner-page-selector>
 
-      <!-- PageDependencyIsDefualtPage Field -->
+      <!-- PageDependencyIsDefaultPage Field -->
       <div class="ntk-full-width">
-        <mat-slide-toggle [(ngModel)]="dataModel.PageDependencyIsDefualtPage"
-          *ngIf="fieldsInfo['PageDependencyIsDefualtPage']?.AccessWatchField"
-          [disabled]="!fieldsInfo['PageDependencyIsDefualtPage']?.AccessAddField"
-          name="dataModel.PageDependencyIsDefualtPage">
-          {{fieldsInfo['PageDependencyIsDefualtPage']?.FieldTitle}}
+        <mat-slide-toggle [(ngModel)]="dataModel.PageDependencyIsDefaultPage"
+          *ngIf="fieldsInfo['PageDependencyIsDefaultPage']?.AccessWatchField"
+          [disabled]="!fieldsInfo['PageDependencyIsDefaultPage']?.AccessAddField"
+          name="dataModel.PageDependencyIsDefaultPage">
+          {{fieldsInfo['PageDependencyIsDefaultPage']?.FieldTitle}}
         </mat-slide-toggle>
       </div>
 

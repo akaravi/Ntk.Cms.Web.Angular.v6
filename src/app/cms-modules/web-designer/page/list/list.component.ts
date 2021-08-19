@@ -125,7 +125,7 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
     'LinkPageParentGuId',
     'LinkPageDependencyGuId',
     'LinkPageTemplateGuId',
-    'PageDependencyIsDefualtPage',
+    'PageDependencyIsDefaultPage',
     'ContentPageFindInDefaultSiteCategory',
     'Action'
   ];

@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   BaseModuleSiteCheckSiteModel,
   CoreConfigurationService,
@@ -32,9 +31,7 @@ export class CoreConfigCheckSiteComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
 
   ) {
     this.loading.cdr = this.cdr;
@@ -60,8 +57,7 @@ export class CoreConfigCheckSiteComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
-    'Warrning',
-    'Key',
+    'Accepted',
     'Title',
     'Description'
   ];
