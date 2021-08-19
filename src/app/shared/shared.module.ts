@@ -68,7 +68,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { CmsTagAutocompleteComponent } from './cms-tag-autocomplete/cms-tag-autocomplete.component';
 import { TranslationModule } from '../core/i18n/translation.module';
 import { CmsTokenAccessComponent } from './cms-token-access/cmsTokenAccess.component';
-import { CmsNoticeComponent } from './cms-notice/cms-notice.component';
+import { CmsHtmlNoticeComponent } from './cms-html-notice/cms-html-notice.component';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { CmsHtmlCardComponent } from './cms-html-card/cms-html-card.component';
 import { CmsHtmlModalComponent } from './cms-html-modal/cms-html-modal.component';
@@ -132,7 +132,7 @@ import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
     CmsBankpaymentGridComponent,
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
-    CmsNoticeComponent,
+    CmsHtmlNoticeComponent,
     CmsHtmlCardComponent,
     CmsHtmlModalComponent,
     CmsHtmlListComponent,
@@ -193,7 +193,7 @@ import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
     CmsBankpaymentGridComponent,
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
-    CmsNoticeComponent,
+    CmsHtmlNoticeComponent,
     CmsHtmlCardComponent,
     CmsHtmlModalComponent,
     CmsHtmlListComponent,

@@ -1,35 +1,37 @@
 <app-progress-spinner [options]="loading" ></app-progress-spinner>
+<app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
+    این بخش شما را در تکمیل و اصلاح اطلاعات راهنمایی می کند
+</app-cms-html-notice>
 <div class="example-container mat-elevation-z8">
     <app-progress-spinner [options]="loading">
     </app-progress-spinner>
-    <mat-table *ngIf="!loading.display" [dataSource]="tableSource">
-
-        <!-- Warrning Column -->
-        <ng-container matColumnDef="Warrning">
-            <mat-header-cell *matHeaderCellDef > {{'Warrning' | translate}} </mat-header-cell>
+   
+    <mat-table [dataSource]="tableSource" >
+          <!-- Warrning Column -->
+          <ng-container matColumnDef="Warrning">
+            <mat-header-cell *matHeaderCellDef > {{'TITLE.Warrning' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Warrning}} </mat-cell>
         </ng-container>
         <!-- Key Column -->
         <ng-container matColumnDef="Key">
-            <mat-header-cell *matHeaderCellDef > {{'Key' | translate}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef > {{'TITLE.Key' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Key}} </mat-cell>
         </ng-container>
         <!-- Title Column -->
         <ng-container matColumnDef="Title">
-            <mat-header-cell *matHeaderCellDef > {{'TITLE' | translate}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef > {{'TITLE.Title' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
         </ng-container>
         <!-- Description Column -->
         <ng-container matColumnDef="Description">
-            <mat-header-cell *matHeaderCellDef > {{'Description' | translate}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef > {{'TITLE.Description' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
         </ng-container>
 
-
         <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
-
-    </mat-table>
-
+        <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" >
+        </mat-row>
+      </mat-table>
 
 
 </div>
