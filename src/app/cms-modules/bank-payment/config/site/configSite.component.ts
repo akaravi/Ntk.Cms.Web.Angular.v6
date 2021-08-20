@@ -98,9 +98,11 @@ export class BankPaymentConfigSiteComponent implements OnInit {
     }
 
     if (this.requestLinkSiteId > 0) {
-      this.SetServiceSiteStorageSave(this.requestLinkSiteId);
       this.SetServiceSiteConfigSave(this.requestLinkSiteId);
-      this.SetServiceSiteAccessSave(this.requestLinkSiteId);
+      if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+        this.SetServiceSiteStorageSave(this.requestLinkSiteId);
+        this.SetServiceSiteAccessSave(this.requestLinkSiteId);
+      }
     }
   }
 

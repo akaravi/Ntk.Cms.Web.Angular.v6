@@ -81,6 +81,10 @@ export class EstateConfigMainAdminComponent implements OnInit {
 
     this.onLoadDate();
   }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
+
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
@@ -120,9 +124,8 @@ export class EstateConfigMainAdminComponent implements OnInit {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/core/site/modulelist']);
+    this.router.navigate(['/core/site/']);
   }
-
 
   GetServiceSiteConfigDefault(): void {
     this.formInfo.FormSubmitAllow = false;

@@ -1,10 +1,10 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{formInfo.FormTitle}}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{formInfo.FormTitle}}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
@@ -19,19 +19,26 @@
               StatusRenderUser
             </mat-slide-toggle>
           </div>
+          <!-- UseDataDefaulteSite -->
+          <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.UseDataDefaulteSite"
+              name="dataConfigSiteValuesModel.UseDataDefaulteSite">
+              نمایش اطلاعات سایت پیش فرض در سایت
+            </mat-slide-toggle>
+          </div>
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteValuesModel | prettyjson"></div>
 
           </div>
 
-            <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
             <button type="button" mat-raised-button (click)="onActionBackToParent()">
               {{'ACTION.BACK' | translate}}
             </button>
             <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
@@ -50,7 +57,7 @@
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataSiteStorageModel.MainDataContentRowCount"
               name="dataSiteStorageModel.MainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
-              type="number" placeholder="0"  />
+              type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataSiteStorageModel.MainDataContentRowCount" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataSiteStorageModel.MainDataContentRowCount = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -71,14 +78,14 @@
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
           </div>
-<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button"  mat-raised-button color="accent"   matStepperPrevious>
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary"  [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
@@ -100,36 +107,45 @@
             </mat-error>
           </mat-form-field>
 
+          <!-- UseDataDefaulteSiteId Field -->
+          <mat-form-field class="ntk-full-width">
+            <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
+            <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
+              name="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
+              #dataConfigSiteAccessValuesModel_UseDataDefaulteSiteId type="number" placeholder="0" />
+            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
           </div>
-<div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button"  mat-raised-button color="accent"   matStepperPrevious>
+          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+            <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary"  [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
-            <button type="submit" mat-raised-button color="success"  [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
               {{'ACTION.SAVE' | translate}}
             </button>
           </div>
         </mat-step>
 
       </mat-horizontal-stepper>
- 
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
-	<ng-container cms-message>
+    <ng-container cms-message>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </ng-container>
     <ng-container cms-footer>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
   </app-cms-html-card>
 </form>
-

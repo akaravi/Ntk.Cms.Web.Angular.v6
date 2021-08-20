@@ -107,9 +107,11 @@ export class CoreConfigSiteComponent implements OnInit {
     }
 
     if (this.requestLinkSiteId > 0) {
-      this.SetServiceSiteStorageSave(this.requestLinkSiteId);
       this.SetServiceSiteConfigSave(this.requestLinkSiteId);
-      this.SetServiceSiteAccessSave(this.requestLinkSiteId);
+      if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+        this.SetServiceSiteStorageSave(this.requestLinkSiteId);
+        this.SetServiceSiteAccessSave(this.requestLinkSiteId);
+      }
     }
   }
 
@@ -128,33 +130,33 @@ export class CoreConfigSiteComponent implements OnInit {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/core/site/modulelist']);
+    this.router.navigate(['/core/site/']);
   }
 
   GetServiceSiteStorage(SiteId: number): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    const processName = 'ServiceSiteStorage';
+    this.loading.Start(processName, 'دریافت مقادیر ذخیره شده ماژول');
 
     this.configService
       .ServiceSiteStorage(SiteId)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataSiteStorageModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
-          this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         }
       );
   }
@@ -162,26 +164,26 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
 
+    const processName = 'ServiceSiteStorageSave';
+    this.loading.Start(processName, 'ذخیره مقادیر ذخیره شده ماژول');
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataSiteStorageModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -189,26 +191,25 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
 
+    const processName = 'ServiceSiteConfig';
+    this.loading.Start(processName, 'دریافت تنظیمات ماژول');
     this.configService
       .ServiceSiteConfig(SiteId)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
-          this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -216,26 +217,25 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    const processName = 'ServiceSiteConfigSave';
+    this.loading.Start(processName, 'ذخیره تنظیمات ماژول');
 
     this.configService
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
-          this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -243,26 +243,26 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+
+    const processName = 'ServiceSiteAccess';
+    this.loading.Start(processName, 'دریافت دسترسی های ماژول');
 
     this.configService
       .ServiceSiteAccess(SiteId)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
-          this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -270,26 +270,28 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+
+
+
+    const processName = 'ServiceSiteAccessSave';
+    this.loading.Start(processName, 'ذخیره دسترسی های ماژول');
 
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
-          this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
-          this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         }
       );
   }

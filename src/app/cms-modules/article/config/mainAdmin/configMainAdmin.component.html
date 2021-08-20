@@ -21,6 +21,13 @@
               StatusRenderUser
             </mat-slide-toggle>
           </div>
+          <!-- UseDataDefaulteSite -->
+          <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite"
+              name="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite">
+              نمایش اطلاعات سایت پیش فرض در سایت
+            </mat-slide-toggle>
+          </div>
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
           </div>
@@ -54,7 +61,17 @@
               MainDataContentRowCount is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-
+          <!-- UseDataDefaulteSiteId Field -->
+          <mat-form-field class="ntk-full-width">
+            <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
+            <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
+              name="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
+              #dataConfigSiteAccessValuesDefaultModel_UseDataDefaulteSiteId type="number" placeholder="0" />
+            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId" matSuffix
+              mat-icon-button aria-label="Clear"
+              (click)="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteAccessValuesDefaultModel | prettyjson"></div>
           </div>
@@ -62,7 +79,7 @@
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
@@ -135,7 +152,7 @@
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">

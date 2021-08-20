@@ -12,13 +12,20 @@
       <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
         <mat-step label="تنظیمات ماژول" state="main">
           <p>تنظیمات که ماژول به سایت به کارگیری می شود </p>
-          <!-- StatusRenderUser Field -->
+ <!-- StatusRenderUser Field -->
           <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.StatusRenderUser"
               name="dataConfigSiteValuesModel.StatusRenderUser">
               StatusRenderUser
             </mat-slide-toggle>
           </div>
+                    <!-- UseDataDefaulteSite -->
+                    <div class="ntk-full-width">
+                      <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.UseDataDefaulteSite"
+                        name="dataConfigSiteValuesModel.UseDataDefaulteSite">
+                        نمایش اطلاعات سایت پیش فرض در سایت
+                      </mat-slide-toggle>
+                    </div>
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigSiteValuesModel | prettyjson"></div>
           </div>
@@ -103,6 +110,16 @@
             </mat-error>
           </mat-form-field>
 
+          <!-- UseDataDefaulteSiteId Field -->
+          <mat-form-field class="ntk-full-width">
+            <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
+            <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
+              name="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
+              #dataConfigSiteAccessValuesModel_UseDataDefaulteSiteId type="number" placeholder="0" />
+            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
 
 
           <!-- MaxAppCreation Field -->

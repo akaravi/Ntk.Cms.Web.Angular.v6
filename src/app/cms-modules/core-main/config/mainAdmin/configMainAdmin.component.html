@@ -21,6 +21,13 @@
               StatusRenderUser
             </mat-slide-toggle>
           </div>
+          <!-- UseDataDefaulteSite -->
+          <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite"
+              name="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite">
+              نمایش اطلاعات سایت پیش فرض در سایت
+            </mat-slide-toggle>
+          </div>
           <!-- DomainsGoogleSitekey Field -->
           <mat-form-field class="ntk-full-width">
             <mat-label>DomainsGoogleSitekey</mat-label>
@@ -30,9 +37,7 @@
             <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigSiteValuesDefaultModel_DomainsGoogleSitekey.errors?.required">
-              DomainsGoogleSitekey is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
 
           <!-- DomainsGoogleSecretkey Field -->
@@ -45,9 +50,7 @@
               mat-icon-button aria-label="Clear"
               (click)="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigSiteValuesDefaultModel_DomainsGoogleSecretkey.errors?.required">
-              DomainsGoogleSecretkey is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
           <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryBool"
@@ -59,17 +62,14 @@
           <mat-form-field class="ntk-full-width">
             <mat-select placeholder="وضعیت" [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus"
               name="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus" #UserRegidteryRecordStatus="ngModel"
-              panelClass="UserRegidteryRecordStatus-{{ dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus }}"
-              required>
+              panelClass="UserRegidteryRecordStatus-{{ dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus }}">
               <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
             </mat-select>
             <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-            <mat-error *ngIf="UserRegidteryRecordStatus.errors?.required">
-              {{fieldsInfo['UserRegidteryRecordStatus']?.FieldTitle}} is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
           <!-- UserRegidteryExpireDateDay Field -->
           <mat-form-field class="ntk-full-width">
@@ -81,9 +81,7 @@
               mat-icon-button aria-label="Clear"
               (click)="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigSiteValuesDefaultModel_UserRegidteryExpireDateDay.errors?.required">
-              UserRegidteryExpireDateDay is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
           <!-- RSSCount Field -->
           <mat-form-field class="ntk-full-width">
@@ -94,9 +92,7 @@
             <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.RSSCount" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.RSSCount = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigSiteValuesDefaultModel_RSSCount.errors?.required">
-              RSSCount is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
 
 
@@ -125,16 +121,24 @@
             <mat-label>MainDataContentRowCount</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
               name="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
-              #dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount type="number" placeholder="0" required />
+              #dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount" matSuffix
               mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount = null">close</mat-icon>
+              (click)="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount.errors?.required">
-              MainDataContentRowCount is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
 
+          </mat-form-field>
+          <!-- UseDataDefaulteSiteId Field -->
+          <mat-form-field class="ntk-full-width">
+            <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
+            <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
+              name="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
+              #dataConfigSiteAccessValuesDefaultModel_UseDataDefaulteSiteId type="number" placeholder="0" />
+            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId" matSuffix
+              mat-icon-button aria-label="Clear"
+              (click)="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
 
           <!-- DomainsList Field -->
           <mat-form-field class="ntk-full-width">
@@ -155,32 +159,27 @@
             <mat-label>MaxAdminCpUserCreation</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
               name="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
-              #dataConfigSiteAccessValuesDefaultModel_MaxAdminCpUserCreation type="number" placeholder="0" required />
+              #dataConfigSiteAccessValuesDefaultModel_MaxAdminCpUserCreation type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation" matSuffix
               mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation = null">close</mat-icon>
+              (click)="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigSiteAccessValuesDefaultModel_MaxAdminCpUserCreation.errors?.required">
-              MaxAdminCpUserCreation is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
-
-
 
           <!-- MaxUserCreation Field -->
           <mat-form-field class="ntk-full-width">
             <mat-label>MaxUserCreation</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
               name="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
-              #dataConfigSiteAccessValuesDefaultModel_MaxUserCreation type="number" placeholder="0" required />
+              #dataConfigSiteAccessValuesDefaultModel_MaxUserCreation type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation = null">close
-            </mat-icon>
+              aria-label="Clear" (click)="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigSiteAccessValuesDefaultModel_MaxUserCreation.errors?.required">
-              MaxUserCreation is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
+
+
 
 
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
@@ -190,7 +189,8 @@
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
+
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
@@ -213,13 +213,11 @@
             <mat-label>AccessBuyPrice</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyPrice"
               name="dataConfigAdminMainModel.AccessBuyPrice" #dataConfigAdminMainModel_AccessBuyPrice type="number"
-              placeholder="0" required />
+              placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyPrice" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyPrice = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigAdminMainModel_AccessBuyPrice.errors?.required">
-              AccessBuyPrice is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
 
           <!-- AccessBuyMonth Field -->
@@ -227,13 +225,11 @@
             <mat-label>AccessBuyMonth</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyMonth"
               name="dataConfigAdminMainModel.AccessBuyMonth" #dataConfigAdminMainModel_AccessBuyMonth type="number"
-              placeholder="0" required />
+              placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyMonth" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyMonth = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigAdminMainModel_AccessBuyMonth.errors?.required">
-              AccessBuyMonth is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
           <!-- AccessFree Field -->
           <div class="ntk-full-width">
@@ -247,13 +243,11 @@
             <mat-label>AccessFreeDay</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessFreeDay"
               name="dataConfigAdminMainModel.AccessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
-              placeholder="0" required />
+              placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessFreeDay" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataConfigAdminMainModel.AccessFreeDay = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigAdminMainModel_AccessFreeDay.errors?.required">
-              AccessFreeDay is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
 
 
@@ -263,13 +257,11 @@
             <mat-label>DomainsList</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.DomainsList"
               name="dataConfigAdminMainModel.DomainsList" #dataConfigAdminMainModel_DomainsList type="number"
-              placeholder="0" required />
+              placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.DomainsList" matSuffix mat-icon-button
               aria-label="Clear" (click)="dataConfigAdminMainModel.DomainsList = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigAdminMainModel_DomainsList.errors?.required">
-              DomainsList is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
 
           <!-- AdminCpUserRegidteryBool Field -->
@@ -285,14 +277,12 @@
             <mat-label>AdminCpUserRegidteryExpireDateDay</mat-label>
             <input matInput [(ngModel)]="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"
               name="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"
-              #dataConfigAdminMainModel_AdminCpUserRegidteryExpireDateDay type="number" placeholder="0" required />
+              #dataConfigAdminMainModel_AdminCpUserRegidteryExpireDateDay type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay" matSuffix
               mat-icon-button aria-label="Clear"
               (click)="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-error *ngIf="dataConfigAdminMainModel_AdminCpUserRegidteryExpireDateDay.errors?.required">
-              AdminCpUserRegidteryExpireDateDay is <strong>required</strong>
-            </mat-error>
+
           </mat-form-field>
           <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
             <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
@@ -301,7 +291,7 @@
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
-            <button type="button" color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
               {{'ACTION.NEXT' | translate}}
             </button>
             <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
