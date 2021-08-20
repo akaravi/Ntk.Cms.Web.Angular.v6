@@ -34,6 +34,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 })
 export class EstatePropertyListComponent implements OnInit, OnDestroy {
   requestLinkPropertyTypeLanduseId = '';
+  requestLinkContractTypeId = '';
   constructor(
     private estatePropertyService: EstatePropertyService,
     private activatedRoute: ActivatedRoute,
@@ -47,6 +48,7 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
+    this.requestLinkContractTypeId = this.activatedRoute.snapshot.paramMap.get('LinkContractTypeId');
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -61,6 +63,13 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkPropertyTypeLanduseId';
       filter.Value = this.requestLinkPropertyTypeLanduseId;
+      this.filteModelProperty.Filters.push(filter);
+    }
+    if (this.requestLinkContractTypeId && this.requestLinkContractTypeId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'Contracts';
+      filter.PropertyAnyName = 'LinkEstateContractTypeId';
+      filter.Value = this.requestLinkContractTypeId;
       this.filteModelProperty.Filters.push(filter);
     }
   }

@@ -163,9 +163,6 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
-
-    
     const processName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(processName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService

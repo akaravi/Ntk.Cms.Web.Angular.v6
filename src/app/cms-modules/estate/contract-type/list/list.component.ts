@@ -269,7 +269,7 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/hypershop/content/PareintId/', this.tableRowSelected.Id]);
+    this.router.navigate(['/estate/property/LinkContractTypeId/', this.tableRowSelected.Id]);
   }
 
   onActionbuttonStatist(): void {

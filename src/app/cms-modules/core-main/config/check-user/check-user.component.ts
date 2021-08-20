@@ -88,9 +88,8 @@ export class CoreConfigCheckUserComponent implements OnInit, OnDestroy {
           }
         },
         (error) => {
-          this.loading.Stop(processName);
-
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }

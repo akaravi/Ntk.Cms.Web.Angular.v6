@@ -112,7 +112,7 @@ export class EstatePropertyAddComponent implements OnInit {
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = {};
   listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
-
+  dataProfessional = false;
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'ثبت محتوای جدید';
@@ -450,4 +450,19 @@ export class EstatePropertyAddComponent implements OnInit {
     this.step--;
   }
   // ** Accardon */
+  onActionClickSalePriceAllowAgreement(): void {
+    if (this.contractDataModel.SalePriceByAgreement) {
+      this.contractDataModel.SalePrice = 0;
+    }
+  }
+  onActionClickRentPriceAllowAgreement(): void {
+    if (this.contractDataModel.RentPriceByAgreement) {
+      this.contractDataModel.RentPrice = 0;
+    }
+  }
+  onActionClickDepositPriceByAgreement(): void {
+    if (this.contractDataModel.DepositPriceByAgreement) {
+      this.contractDataModel.DepositPrice = 0;
+    }
+  }
 }

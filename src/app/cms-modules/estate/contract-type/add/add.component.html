@@ -24,12 +24,24 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- HasSalePrice Field -->
+
       <div class="ntk-full-width">
+        <div class="mb-3">
+        <!-- HasSalePrice Field -->
         <mat-slide-toggle [(ngModel)]="dataModel.HasSalePrice" *ngIf="fieldsInfo['HasSalePrice']?.AccessWatchField"
           [disabled]="!fieldsInfo['HasSalePrice']?.AccessEditField" name="dataModel.HasSalePrice">
           {{fieldsInfo['HasSalePrice']?.FieldTitle}}
         </mat-slide-toggle>
+        </div>
+        <div class="mb-3">
+        <!-- RentPriceAllowAgreement Field -->
+        <mat-slide-toggle [(ngModel)]="dataModel.RentPriceAllowAgreement"
+          *ngIf="fieldsInfo['RentPriceAllowAgreement']?.AccessWatchField"
+          [disabled]="!fieldsInfo['RentPriceAllowAgreement']?.AccessEditField" name="dataModel.RentPriceAllowAgreement">
+          {{fieldsInfo['RentPriceAllowAgreement']?.FieldTitle}}
+        </mat-slide-toggle>
+        </div>
+        <div class="mb-3"></div>
       </div>
       <!-- UnitSalePrice Field -->
       <mat-form-field class="ntk-full-width">
@@ -66,12 +78,23 @@
       </mat-form-field>
 
 
-      <!-- HasRentPrice Field -->
+      
       <div class="ntk-full-width">
+        <div class="mb-3">
+        <!-- HasRentPrice Field -->
         <mat-slide-toggle [(ngModel)]="dataModel.HasRentPrice" *ngIf="fieldsInfo['HasRentPrice']?.AccessWatchField"
           [disabled]="!fieldsInfo['HasRentPrice']?.AccessEditField" name="dataModel.HasRentPrice">
           {{fieldsInfo['HasRentPrice']?.FieldTitle}}
         </mat-slide-toggle>
+        </div>
+        <div class="mb-3">
+        <!-- RentPriceAllowAgreement Field -->
+        <mat-slide-toggle [(ngModel)]="dataModel.RentPriceAllowAgreement" *ngIf="fieldsInfo['RentPriceAllowAgreement']?.AccessWatchField"
+          [disabled]="!fieldsInfo['RentPriceAllowAgreement']?.AccessEditField" name="dataModel.RentPriceAllowAgreement">
+          {{fieldsInfo['RentPriceAllowAgreement']?.FieldTitle}}
+        </mat-slide-toggle>
+        </div>
+        <div class="mb-3"></div>
       </div>
       <!-- UnitRentPrice Field -->
       <mat-form-field class="ntk-full-width">
@@ -108,13 +131,25 @@
       </mat-form-field>
 
 
-      <!-- HasDepositPrice Field -->
+      
       <div class="ntk-full-width">
+        <div class="mb-3">
+        <!-- HasDepositPrice Field -->
         <mat-slide-toggle [(ngModel)]="dataModel.HasDepositPrice"
           *ngIf="fieldsInfo['HasDepositPrice']?.AccessWatchField"
           [disabled]="!fieldsInfo['HasDepositPrice']?.AccessEditField" name="dataModel.HasDepositPrice">
           {{fieldsInfo['HasDepositPrice']?.FieldTitle}}
         </mat-slide-toggle>
+        </div>
+        <div class="mb-3">
+        <!-- DepositPriceAllowAgreement Field -->
+        <mat-slide-toggle [(ngModel)]="dataModel.DepositPriceAllowAgreement"
+          *ngIf="fieldsInfo['DepositPriceAllowAgreement']?.AccessWatchField"
+          [disabled]="!fieldsInfo['DepositPriceAllowAgreement']?.AccessEditField" name="dataModel.DepositPriceAllowAgreement">
+          {{fieldsInfo['DepositPriceAllowAgreement']?.FieldTitle}}
+        </mat-slide-toggle>
+        </div>
+        <div class="mb-3"></div>
       </div>
       <!-- UnitDepositPrice Field -->
       <mat-form-field class="ntk-full-width">
