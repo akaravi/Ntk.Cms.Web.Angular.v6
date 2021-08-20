@@ -112,8 +112,13 @@ export class EstatePropertyEditComponent implements OnInit {
     this.DataGetOne();
   }
   getEstateContractType(): void {
+    const processName = this.constructor.name + 'getEstateContractType';
+    this.loading.Start(processName, 'دریافت انواع معامله');
     this.estateContractTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstateContractTypeResult = next;
+      this.loading.Stop(processName);
+    }, () => {
+      this.loading.Stop(processName);
     });
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -123,8 +128,10 @@ export class EstatePropertyEditComponent implements OnInit {
   DataGetOne(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
 
+
+    const processName = this.constructor.name + 'ServiceGetOneById';
+    this.loading.Start(processName, 'دریافت اطلاعات ملک');
     this.estatePropertyService.setAccessLoad();
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
@@ -169,13 +176,12 @@ export class EstatePropertyEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(processName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
-
+        this.loading.Stop(processName);
       }
     );
   }
@@ -187,6 +193,8 @@ export class EstatePropertyEditComponent implements OnInit {
     filter.Value = id;
     filteModelProperty.Filters.push(filter);
     this.dataModel.PropertyDetailGroups = [];
+    const processName = this.constructor.name + 'DataGetPropertyDetailGroup';
+    this.loading.Start(processName, 'دریافت اطلاعات جزئیات');
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe(
         async (next) => {
@@ -209,9 +217,11 @@ export class EstatePropertyEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -219,7 +229,6 @@ export class EstatePropertyEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     this.loading.Start('main');
-
     if (this.dataFileModelFiles) {
       const keys = Array.from(this.dataFileModelFiles.keys());
       if (keys && keys.length > 0) {
@@ -232,6 +241,9 @@ export class EstatePropertyEditComponent implements OnInit {
         this.dataModel.LinkExtraImageIds = keys.join(',');
       }
     }
+    const processName = this.constructor.name + 'ServiceEdit';
+    this.loading.Start(processName, 'ثبت تغیرات اطلاعات ملک');
+
     this.estatePropertyService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -247,14 +259,13 @@ export class EstatePropertyEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(processName);
 
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
-
+        this.loading.Stop(processName);
       }
     );
   }

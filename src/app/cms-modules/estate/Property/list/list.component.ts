@@ -87,7 +87,7 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'LinkSiteId',
     'Title',
-    'ScoreClick',
+    'ViewCount',
     'CreatedDate',
     'UpdatedDate',
     'Action'
@@ -145,10 +145,19 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
               'LinkSiteId',
               0
             );
+            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+              this.tabledisplayedColumns,
+              'Id',
+              0
+            );
           } else {
             this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
               this.tabledisplayedColumns,
               'LinkSiteId'
+            );
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+              this.tabledisplayedColumns,
+              'Id'
             );
           }
           if (this.optionsSearch.childMethods) {

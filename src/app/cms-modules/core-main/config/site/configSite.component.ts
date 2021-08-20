@@ -137,7 +137,7 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    const processName = 'ServiceSiteStorage';
+    const processName = this.constructor.name + 'ServiceSiteStorage';
     this.loading.Start(processName, 'دریافت مقادیر ذخیره شده ماژول');
 
     this.configService
@@ -165,7 +165,7 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
 
-    const processName = 'ServiceSiteStorageSave';
+    const processName = this.constructor.name + 'ServiceSiteStorageSave';
     this.loading.Start(processName, 'ذخیره مقادیر ذخیره شده ماژول');
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
@@ -192,7 +192,7 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
 
-    const processName = 'ServiceSiteConfig';
+    const processName = this.constructor.name + 'ServiceSiteConfig';
     this.loading.Start(processName, 'دریافت تنظیمات ماژول');
     this.configService
       .ServiceSiteConfig(SiteId)
@@ -217,7 +217,7 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    const processName = 'ServiceSiteConfigSave';
+    const processName = this.constructor.name + 'ServiceSiteConfigSave';
     this.loading.Start(processName, 'ذخیره تنظیمات ماژول');
 
     this.configService
@@ -244,7 +244,7 @@ export class CoreConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
 
-    const processName = 'ServiceSiteAccess';
+    const processName = this.constructor.name + 'ServiceSiteAccess';
     this.loading.Start(processName, 'دریافت دسترسی های ماژول');
 
     this.configService
@@ -273,7 +273,7 @@ export class CoreConfigSiteComponent implements OnInit {
 
 
 
-    const processName = 'ServiceSiteAccessSave';
+    const processName = this.constructor.name + 'ServiceSiteAccessSave';
     this.loading.Start(processName, 'ذخیره دسترسی های ماژول');
 
     this.configService

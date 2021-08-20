@@ -87,11 +87,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
-      <!-- ScoreClick Column -->
-      <ng-container matColumnDef="ScoreClick">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ScoreClick']?.FieldTitle}}
+      <!-- ViewCount Column -->
+      <ng-container matColumnDef="ViewCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewCount']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ScoreClick}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.ViewCount}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">

@@ -46,8 +46,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss']
 })
 export class EstatePropertyAddComponent implements OnInit {
-  requestLinkPropertyTypeLanduseId = '';
-  requestLinkPropertyTypeUsageId = '';
   constructor(
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
@@ -75,6 +73,8 @@ export class EstatePropertyAddComponent implements OnInit {
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
+  requestLinkPropertyTypeLanduseId = '';
+  requestLinkPropertyTypeUsageId = '';
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
@@ -111,6 +111,7 @@ export class EstatePropertyAddComponent implements OnInit {
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = {};
+  listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
 
   ngOnInit(): void {
 
@@ -122,18 +123,33 @@ export class EstatePropertyAddComponent implements OnInit {
     this.getEstatePropertyTypeLanduse();
   }
   getEstateContractType(): void {
+    const processName = this.constructor.name + 'getEstateContractType';
+    this.loading.Start(processName, 'دریافت انواع معامله');
     this.estateContractTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstateContractTypeResult = next;
+      this.loading.Stop(processName);
+    }, () => {
+      this.loading.Stop(processName);
     });
   }
   getEstatePropertyType(): void {
+    const processName = this.constructor.name + 'getEstatePropertyType';
+    this.loading.Start(processName, 'دریافت انواع املاک');
     this.estatePropertyTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstatePropertyTypeResult = next;
+      this.loading.Stop(processName);
+    }, () => {
+      this.loading.Stop(processName);
     });
   }
   getEstatePropertyTypeLanduse(): void {
+    const processName = this.constructor.name + 'getEstatePropertyType';
+    this.loading.Start(processName, 'دریافت انواع کاربری');
     this.estatePropertyTypeLanduseService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstatePropertyTypeLanduseResult = next;
+      this.loading.Stop(processName);
+    }, () => {
+      this.loading.Stop(processName);
     });
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -141,6 +157,8 @@ export class EstatePropertyAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const processName = this.constructor.name + 'ServiceViewModel';
+    this.loading.Start(processName, 'دریافت دسترسی های');
     this.estatePropertyService
       .ServiceViewModel()
       .subscribe(
@@ -151,9 +169,11 @@ export class EstatePropertyAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -165,6 +185,8 @@ export class EstatePropertyAddComponent implements OnInit {
     filter.Value = id;
     filteModelProperty.Filters.push(filter);
     this.dataModel.PropertyDetailGroups = [];
+    const processName = this.constructor.name + 'DataGetPropertyDetailGroup';
+    this.loading.Start(processName, 'دریافت جزئیات');
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe(
         async (next) => {
@@ -173,9 +195,11 @@ export class EstatePropertyAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -196,6 +220,8 @@ export class EstatePropertyAddComponent implements OnInit {
         this.dataModel.LinkExtraImageIds = keys.join(',');
       }
     }
+    const processName = this.constructor.name + 'ServiceAdd';
+    this.loading.Start(processName, 'ثبت ملک');
     this.estatePropertyService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -203,22 +229,18 @@ export class EstatePropertyAddComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.loading.Stop('main');
-
           setTimeout(() => this.router.navigate(['/estate/property']), 100);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
-
+        this.loading.Stop(processName);
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
-
+        this.loading.Stop(processName);
       }
     );
   }
@@ -256,7 +278,6 @@ export class EstatePropertyAddComponent implements OnInit {
 
   receiveZoom(zoom: number): void {
   }
-  listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
@@ -265,7 +286,7 @@ export class EstatePropertyAddComponent implements OnInit {
     }
     this.dataModel.LinkPropertyTypeUsageId = model.Id;
     if (this.dataModelEstatePropertyTypeResult.IsSuccess && this.dataModelEstatePropertyTypeLanduseResult.IsSuccess) {
-      this. listTypeLanduse = [];
+      this.listTypeLanduse = [];
       this.dataModelEstatePropertyTypeResult.ListItems.forEach(element => {
         if (element.LinkPropertyTypeUsageId === model.Id) {
           this.dataModelEstatePropertyTypeLanduseResult.ListItems.forEach(elementLanduser => {

@@ -84,7 +84,7 @@ export class EstateConfigMainAdminComponent implements OnInit {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
+ 
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
@@ -131,26 +131,25 @@ export class EstateConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
 
+    const processName = this.constructor.name + 'ServiceSiteConfigDefault';
+    this.loading.Start(processName, 'دریافت تنظیمات پیش فرض ماژول');
     this.configService
       .ServiceSiteConfigDefault()
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -160,24 +159,25 @@ export class EstateConfigMainAdminComponent implements OnInit {
     this.formInfo.FormError = '';
     this.loading.Start('main');
 
+    
+    const processName = this.constructor.name + 'ServiceSiteConfigDefault';
+    this.loading.Start(processName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService
       .ServiceSiteConfigDefaultSave(this.dataConfigSiteValuesDefaultModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
-          this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteValuesDefaultModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.formInfo.FormSubmitAllow = true;
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -186,26 +186,25 @@ export class EstateConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
 
+    const processName = this.constructor.name + 'ServiceSiteAccessDefault';
+    this.loading.Start(processName, 'دریافت دسترسی پیش فرض ماژول');
     this.configService
       .ServiceSiteAccessDefault()
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -213,26 +212,25 @@ export class EstateConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
 
+    const processName = this.constructor.name + 'ServiceSiteAccessDefaultSave';
+    this.loading.Start(processName, 'ذخیره دسترسی پیش فرض ماژول');
     this.configService
       .ServiceSiteAccessDefaultSave(this.dataConfigSiteAccessValuesDefaultModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigSiteAccessValuesDefaultModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -240,26 +238,25 @@ export class EstateConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
-
+    
+    const processName = this.constructor.name + 'ServiceAdminMain';
+    this.loading.Start(processName, 'دریافت تنظیمات ماژول');
     this.configService
       .ServiceAdminMain()
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }
@@ -267,26 +264,25 @@ export class EstateConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
-
+    
+    const processName = this.constructor.name + 'ServiceAdminMain';
+    this.loading.Start(processName, 'ذخیره تنظیمات ماژول');
     this.configService
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataConfigAdminMainModel = next.Item;
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
+          this.loading.Stop(processName);
         },
         (error) => {
-          this.loading.Stop('main');
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(processName);
         }
       );
   }

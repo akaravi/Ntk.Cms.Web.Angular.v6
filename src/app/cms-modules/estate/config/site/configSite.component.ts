@@ -13,6 +13,8 @@ import {
   EstateModuleSiteStorageValuesModel,
   NtkCmsApiStoreService,
   TokenInfoModel,
+  ErrorExceptionResult,
+  EnumModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -55,6 +57,7 @@ export class EstateConfigSiteComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
@@ -78,9 +81,11 @@ export class EstateConfigSiteComponent implements OnInit {
     });
 
     this.onLoadDate();
-
+    this.getEnumRecordStatus();
   }
-
+  async getEnumRecordStatus(): Promise<void> {
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
+  }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
@@ -129,7 +134,7 @@ export class EstateConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    const processName = 'ServiceSiteStorage';
+    const processName = this.constructor.name + 'ServiceSiteStorage';
     this.loading.Start(processName, 'دریافت مقادیر ذخیره شده ماژول');
 
     this.configService
@@ -157,7 +162,7 @@ export class EstateConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
 
-    const processName = 'ServiceSiteStorageSave';
+    const processName = this.constructor.name + 'ServiceSiteStorageSave';
     this.loading.Start(processName, 'ذخیره مقادیر ذخیره شده ماژول');
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
@@ -184,7 +189,7 @@ export class EstateConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
 
-    const processName = 'ServiceSiteConfig';
+    const processName = this.constructor.name + 'ServiceSiteConfig';
     this.loading.Start(processName, 'دریافت تنظیمات ماژول');
     this.configService
       .ServiceSiteConfig(SiteId)
@@ -209,7 +214,7 @@ export class EstateConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    const processName = 'ServiceSiteConfigSave';
+    const processName = this.constructor.name + 'ServiceSiteConfigSave';
     this.loading.Start(processName, 'ذخیره تنظیمات ماژول');
 
     this.configService
@@ -236,7 +241,7 @@ export class EstateConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
 
-    const processName = 'ServiceSiteAccess';
+    const processName = this.constructor.name + 'ServiceSiteAccess';
     this.loading.Start(processName, 'دریافت دسترسی های ماژول');
 
     this.configService
@@ -265,7 +270,7 @@ export class EstateConfigSiteComponent implements OnInit {
 
 
 
-    const processName = 'ServiceSiteAccessSave';
+    const processName = this.constructor.name + 'ServiceSiteAccessSave';
     this.loading.Start(processName, 'ذخیره دسترسی های ماژول');
 
     this.configService
