@@ -371,7 +371,21 @@
                 توافق در رهن
               </mat-slide-toggle>
             </div>
+            <hr>
+              <!-- contractDataModel.Description Field -->
+          <mat-form-field class="ntk-full-width">
+            <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+            <textarea matInput [(ngModel)]="contractDataModel.Description" name="contractDataModel.Description" #contractDataModel_Description type="text"
+              placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="contractDataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+              (click)="contractDataModel.Description = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+
+          </mat-form-field>
+       
           </div>
+
 
           <button (click)="onActionOptionAddToList()" type="button" mat-button
             class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
