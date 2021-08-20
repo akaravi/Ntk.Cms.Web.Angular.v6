@@ -7,9 +7,9 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
         <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
             class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Id.length>0" (click)="onActionEdit()"
+        <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Id  && dataModelSelect.Id.length>0" (click)="onActionEdit()"
             type="button" class="btn btn-warning">{{'ACTION.EDIT' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect.Id.length>0" (click)="onActionDelete()"
+        <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect.Id  && dataModelSelect.Id.length>0" (click)="onActionDelete()"
             type="button" class="btn btn-danger">{{'ACTION.DELETE' |
             translate}}</button>
         <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
