@@ -20,7 +20,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
+import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
@@ -203,5 +203,11 @@ export class EstateAccountUserEditComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  
+  onActionFileSelected(model: NodeInterface): void {
+    this.dataModel.LinkMainImageId = model.id;
+    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+
   }
 }

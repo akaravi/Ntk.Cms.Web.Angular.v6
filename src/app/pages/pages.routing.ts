@@ -181,7 +181,7 @@ const routes: Routes = [
       // ** cms */
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'dashboard', // dashboard // auth
         pathMatch: 'full',
       },
       {

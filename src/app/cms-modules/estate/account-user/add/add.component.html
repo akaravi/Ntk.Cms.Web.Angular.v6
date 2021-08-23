@@ -1,15 +1,34 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <h3 class="card-label">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.FormTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
     </ng-container>
     <ng-container cms-body>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      
+      <!-- LinkMainImageId Field -->
+      <div class="mb-3">
+        <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          src="{{dataModel.LinkMainImageIdSrc}}" height="50" width="50" />
+      </div>
+      <div class="mb-9">
+        <mat-form-field class="ntk-full-width">
+          <mat-label (click)="fileManagerOpenForm = true">عکس پروفایل
+          </mat-label>
+          <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+            type="text" placeholder="شناسه فایل عکس پروفایل" autocomplete="off" (click)="fileManagerOpenForm = true" />
+          <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+          <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+        </mat-form-field>
+        <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
+          [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+          [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false">
+        </cms-file-manager>
+      </div>
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -26,7 +45,8 @@
       </mat-form-field>
       <!-- LinkCmsUserId Field -->
       <app-cms-user-selector (optionSelect)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.LinkCmsUserId"
-        [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField"></app-cms-user-selector>
+        [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField">
+      </app-cms-user-selector>
       <!-- LinkLocationId Field -->
       <app-cms-location-selector (optionSelect)="onActionSelectorLocation($event)"
         [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه جغرافیایی'"
@@ -108,7 +128,7 @@
 
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </ng-container>
-	<ng-container cms-message>
+    <ng-container cms-message>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
       <div class="form-actions">
         <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
@@ -123,7 +143,8 @@
         <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>
-        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
+          [disabled]="!vform.form.valid">
           <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
         </button>
       </div>

@@ -25,10 +25,10 @@ export const environment = {
     configCpanelImages: '/cpanelv1/images/',
     configPathFileByIdAndName: 'https://oco.ir/files/',
     configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
-    configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
-    // configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
-    configHtmlViewServerPath: 'https://ntkcms.com/',
-    // configHtmlViewServerPath: 'https://localhost:2391/', // Test Api
+    // configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
+    configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
+    // configHtmlViewServerPath: 'https://ntkcms.com/',
+    configHtmlViewServerPath: 'https://localhost:2391/', // Test Api
     configRouteUploadFileContent: 'upload/',
   },
   cmsUiConfig: {
