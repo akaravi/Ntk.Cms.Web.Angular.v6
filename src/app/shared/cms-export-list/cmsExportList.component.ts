@@ -45,8 +45,8 @@ export class CmsExportListComponent implements OnInit {
 
     eum = new EnumModel();
     eum.Value = 2;
-    eum.Key = 'FileManeger';
-    eum.Description = 'FileManeger';
+    eum.Key = 'FileManager';
+    eum.Description = 'FileManager';
     this.recieveMethodListItems.push(eum);
   }
   public optionsData: ComponentOptionExportModel = new ComponentOptionExportModel();
