@@ -21,7 +21,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
       this.fileTypeAccept = '.' + model;
       this.fileExtensions.push(model);
       if (this.fileExtensions.length == 0) {
-        this.fileExtensions=null;
+        this.fileExtensions = null;
       }
 
       return;
@@ -37,7 +37,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
       });
       this.fileTypeAccept = retOut;
       if (this.fileExtensions.length == 0) {
-        this.fileExtensions=null;
+        this.fileExtensions = null;
       }
       return;
     }
@@ -59,6 +59,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
   }
   @Output() createFile = new EventEmitter();
   @Input() openDialog;
+  @Input() openSelectFileDescription = '';
   @Output() closeDialog = new EventEmitter();
   @Input() openDirectUploadSave = false;
   @Input() openDirectUploadView = false;
@@ -97,7 +98,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
   uploadFiles() {
 
   }
-
+  allowClose=true;
 
   newClickedAction() {
     this.closeDialog.emit();
@@ -123,7 +124,6 @@ export class UploadComponent implements OnInit, AfterViewInit {
   public onRemoveSuccess(e: FilePreviewModel) {
     console.log(e);
   }
-
   public myCustomValidator(file: File): Observable<boolean> {
     if (!file.name.includes('uploader')) {
       return of(true).pipe(delay(200));

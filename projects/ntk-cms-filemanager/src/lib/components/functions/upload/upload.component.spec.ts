@@ -5,7 +5,7 @@ import { UploadComponent } from './upload.component';
 describe('UploadComponent', () => {
   let component: UploadComponent;
   let fixture: ComponentFixture<UploadComponent>;
-
+  
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ UploadComponent ]

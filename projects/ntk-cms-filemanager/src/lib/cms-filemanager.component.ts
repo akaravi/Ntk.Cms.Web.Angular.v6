@@ -51,6 +51,7 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
   @Input() tree: TreeModel;
   @Input() isPopup = false;
   @Input() openFilemanagerButtonLabelKey = 'filemanager.open_file_manager';
+  @Input() openSelectFileDescription = '';
   @Output() itemClicked = new EventEmitter();
   @Output() itemSelected = new EventEmitter();
   openPopupForm = false;
@@ -225,7 +226,7 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
       case 'createFile':
         if (this.openDirectUploadView && !this.openDirectUploadSave) {
           // tslint:disable-next-line: no-angle-bracket-type-assertion
-          const selectedModel = <NodeInterface> {
+          const selectedModel = <NodeInterface>{
             id: event.payload.uploadFileGUID,
             name: event.payload.uploadFileGUID,
             isFolder: false
@@ -240,7 +241,7 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
         };
         const successMethod = (next) => {
           // tslint:disable-next-line: no-angle-bracket-type-assertion
-          const selectedModel = <NodeInterface> {
+          const selectedModel = <NodeInterface>{
             id: next.Item.Id,
             name: next.Item.FileName,
             downloadLinksrc: next.Item.DownloadLinksrc,

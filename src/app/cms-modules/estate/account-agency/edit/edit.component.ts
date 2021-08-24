@@ -129,6 +129,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
+  
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });

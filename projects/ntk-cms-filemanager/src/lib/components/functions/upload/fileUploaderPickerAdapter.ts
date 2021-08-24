@@ -46,4 +46,5 @@ export class FileUploaderPickerAdapter extends FilePickerAdapter {
       };
     });
   }
+  
 }

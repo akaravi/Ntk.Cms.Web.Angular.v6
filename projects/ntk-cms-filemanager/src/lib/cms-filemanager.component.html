@@ -69,7 +69,7 @@
     </div>
   </div>
 
-  <lib-filemanager-upload *ngIf="newFileDialog" [openDialog]="newFileDialog" (closeDialog)="handleUploadDialog(false)"
+  <lib-filemanager-upload *ngIf="newFileDialog" [openDialog]="newFileDialog" [openSelectFileDescription]="openSelectFileDescription" (closeDialog)="handleUploadDialog(false)"
   [optionSelectFileType]="configSelectFileType"
   (createFile)="handleFileManagerClickEvent({type: 'createFile', payload: $event})">
   </lib-filemanager-upload>
