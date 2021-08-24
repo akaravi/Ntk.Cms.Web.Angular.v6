@@ -141,7 +141,7 @@ const routes: Routes = [
       {
         path: 'filemanager',
         loadChildren: () =>
-          import('../cms-modules/file-manager/filemanager.module').then(m => m.FileManagerModule)
+          import('../cms-modules/file-manager/fileManager.module').then(m => m.FileManagerModule)
       },
       {
         path: 'polling',
