@@ -10,7 +10,7 @@ import { PersianDate } from '../core/pipe/PersianDatePipe/persian-date.pipe';
 import { CmsSearchListComponent } from './cms-search-list/cmsSearchList.component';
 import { CmsStatistListComponent } from './cms-statist-list/cmsStatistList.component';
 import { CmsExportListComponent } from './cms-export-list/cmsExportList.component';
-import { CmsMapComponent } from './cms-map/cms-map.Component';
+import { CmsMapComponent } from './cms-map/cms-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { TagInputModule } from 'ngx-chips';
 import { RecordStatusClassPipe } from '../core/pipe/recordStatusClass.pipe';
