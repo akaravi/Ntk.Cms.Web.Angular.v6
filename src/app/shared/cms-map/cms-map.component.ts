@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cms-map',
-  templateUrl: './cmsMap.component.html',
-  styleUrls: ['./cmsMap.component.scss']
+  templateUrl: './cms-map.component.html',
+  styleUrls: ['./cms-map.component.scss']
 })
 export class CmsMapComponent implements OnInit, OnDestroy {
   @Output() map$: EventEmitter<Map> = new EventEmitter<Map>();
