@@ -1,4 +1,5 @@
 <mat-form-field class="ntk-full-width">
+    <span matPrefix><img *ngIf="dataModelSelect && dataModelSelect.LinkMainImageIdSrc" style="vertical-align:middle;" aria-hidden src="{{dataModelSelect.LinkMainImageIdSrc}}" height="25" width="25" /> &nbsp;</span>
     <input type="text" placeholder="{{optionPlaceholder}}" aria-label="Assignee" matInput [formControl]="formControl" [matAutocomplete]="auto9">
     <mat-autocomplete #auto9="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onActionSelect($event.option.value)">
         <mat-option *ngFor="let state of filteredOptions | async" [value]="state">

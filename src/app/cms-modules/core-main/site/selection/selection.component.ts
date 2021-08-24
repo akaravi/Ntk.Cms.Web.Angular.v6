@@ -38,7 +38,7 @@ export class CoreSiteSelectionComponent implements OnInit {
   }
   @Input() loading = new ProgressSpinnerModel();
 
-
+  today = new Date();
   filterModel = new FilterModel();
   dataModelResult: ErrorExceptionResult<CoreSiteModel>;
   formInfo: FormInfoModel = new FormInfoModel();
@@ -57,6 +57,9 @@ export class CoreSiteSelectionComponent implements OnInit {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.statusCheckExistWebSite = false;
+          if (this.dataModelResult.ListItems?.length === 1) {
+            this.onActionClickSelectSite(this.dataModelResult.ListItems[0].Id);
+          }
         }
         else {
           this.cmsToastrService.typeError(next.ErrorMessage);
