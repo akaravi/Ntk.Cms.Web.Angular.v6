@@ -39,5 +39,5 @@ jobs:
         destination_repo: 'akaravi/Ntk.Cms.Web.Angular.Publish'
         #destination_folder: 'test-dir'
         user_email: 'example@email.com'
-        user_name: 'dmnemec'
+        user_name: 'akaravi'
         commit_message: 'A custom message for the commit'
