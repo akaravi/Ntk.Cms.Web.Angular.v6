@@ -17,8 +17,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-core-config-checkuser',
-  templateUrl: './check-User.component.html',
-  styleUrls: ['./check-User.component.scss']
+  templateUrl: './check-user.component.html',
+  styleUrls: ['./check-user.component.scss']
 })
 export class CoreConfigCheckUserComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;
