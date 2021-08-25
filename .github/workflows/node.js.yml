@@ -30,20 +30,18 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     #- run: npm test
-    - name: Pushes to other repo
-      id: deploy
+    - name: Pushes to another repository
+      id: push_directory
       uses: akaravi/Ntk.Cms.Web.Angular.Publish@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        #source_file: 'dist/ntk-cms-web'
-        #destination_repo: 'akaravi/Ntk.Cms.Web.Angular.Publish'
-        #destination_folder: 'test-dir'
-        #user_email: 'karavi.alireza@gmail.com'
-        #user_name: 'akaravi'
-        #commit_message: 'A custom message for the commit'
         source-directory: 'output'
         destination-github-username: 'akaravi'
         destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
         user-email: karavi.alireza@gmail.com
+        commit-message: See ORIGIN_COMMIT from $GITHUB_REF
         target-branch: main
+    - name: Test get variable exported by push-to-another-repository
+      run: echo $DESTINATION_CLONED_DIRECTORY
+            
