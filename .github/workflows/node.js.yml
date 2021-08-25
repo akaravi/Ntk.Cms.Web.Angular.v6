@@ -32,7 +32,7 @@ jobs:
     #- run: npm test
     - name: Pushes to another repository
       id: push_directory
-      uses: akaravi/Ntk.Cms.Web.Angular.Publish@main
+      uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
@@ -41,7 +41,7 @@ jobs:
         destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
         user-email: karavi.alireza@gmail.com
         commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-        target-branch: main
+        target-branch: master
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY
             
