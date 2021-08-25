@@ -30,8 +30,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     #- run: npm test
-    - name: Pushes test file
-      uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
+    - name: Pushes to other repo
+      uses: akaravi/Ntk.Cms.Web.Angular.Publish@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
