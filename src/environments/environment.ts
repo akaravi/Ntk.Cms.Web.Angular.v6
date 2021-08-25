@@ -5,7 +5,7 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 
 export const environment = {
   production: false,
-  appVersion:'1.05.284',
+  appVersion: '1.00.000',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'https://your-domain.com/api',
@@ -19,7 +19,7 @@ export const environment = {
     configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
     // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
     configFileServerPath: 'https://apifile.ir/api/v1/',
-        // configRouteUploadFileContent: 'https://apicms.ir/api/v1/', // Test Api
+    // configRouteUploadFileContent: 'https://apicms.ir/api/v1/', // Test Api
     // configRouteUploadFileContent: 'http://localhost:2392/api/v1/' // Test Api
     configMvcServerPath: 'https://oco.ir',
     configCpanelImages: '/cpanelv1/images/',
