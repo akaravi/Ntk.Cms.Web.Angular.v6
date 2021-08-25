@@ -34,11 +34,11 @@ jobs:
     - name: Build
       run: npm run build --if-present
     #- run: npm test
-    - name: publish:starters
-      uses: akaravi/Ntk.Cms.Web.Angular.v2@main
+    - name: Push changes
+      uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
       env:
+        branch: develop
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        args: examples johno
+
             
