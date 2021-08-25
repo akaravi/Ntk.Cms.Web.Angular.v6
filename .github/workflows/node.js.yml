@@ -35,10 +35,16 @@ jobs:
       run: npm run build --if-present
     #- run: npm test
     - name: Push changes
-      uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
+      if: success()
+      uses: cpina/github-action-push-to-another-repository@main
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TEST_URL: https://adminpanle.ir
-        WEBPAGETEST_API_KEY: ${{ secrets.WEBPAGETEST_API_KEY }}
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'output'
+        destination-github-username: 'akaravi'
+        destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
+        user-email: karavi.alireza@gmail.com
+        target-branch: master        
+
 
             
