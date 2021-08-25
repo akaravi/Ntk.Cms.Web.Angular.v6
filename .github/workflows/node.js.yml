@@ -39,7 +39,9 @@ jobs:
       if: success()
       uses: cpina/github-action-push-to-another-repository@main
       env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        #API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        API_TOKEN_GITHUB: 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
+        
       with:
         source-directory: 'dist/ntk-cms-web'
         destination-github-username: 'akaravi'
