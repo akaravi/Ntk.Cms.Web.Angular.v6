@@ -38,6 +38,7 @@ jobs:
         source_file: 'dist/ntk-cms-web'
         destination_repo: 'akaravi/Ntk.Cms.Web.Angular.Publish'
         #destination_folder: 'test-dir'
+        destination_folder: ''
         user_email: 'karavi.alireza@gmail.com'
         user_name: 'akaravi'
         commit_message: 'A custom message for the commit'
