@@ -35,7 +35,7 @@ jobs:
       run: npm run build --if-present
     #- run: npm test
     - name: Push
-      uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
+      uses: akaravi/Ntk.Cms.Web.Angular.v2
       env:
         REPO: self
         BRANCH: build # The branch name where you want to push the assets
