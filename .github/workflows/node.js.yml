@@ -34,11 +34,8 @@ jobs:
     - name: Build
       run: npm run build --if-present
     #- run: npm test
-
-    - name: Push
+    - name: Push directory to another repository
       uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+}
 
             
