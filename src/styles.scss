@@ -301,6 +301,10 @@ mat-paginator {
 .ntk-popup span {
   position: absolute;
 }
+.overflow-scroll {
+  height: 80vh;
+  overflow-y: auto;
+}
 /* karavi popup image */
 /*mat-raised-button*/
 .mat-button.mat-success,
