@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { LayoutService } from '../../../../_metronic/core';
 import KTLayoutFooter from '../../../../../assets/js/layout/base/footer';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
   selector: 'app-footer',
@@ -12,7 +13,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   currentYear: string;
   footerLayout: string;
 
-  constructor(private layout: LayoutService) {
+  constructor(private layout: LayoutService, public publicHelper: PublicHelper) {
     const currentDate = new Date();
     this.currentYear = currentDate.getFullYear().toString();
   }
