@@ -4,7 +4,6 @@ import { map, catchError, switchMap, finalize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { TokenInfoModel } from 'ntk-cms-api';
-import { PublicHelper } from '../helpers/publicHelper';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +11,7 @@ import { PublicHelper } from '../helpers/publicHelper';
 export class CmsAuthService implements OnDestroy {
   // private fields
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
-  private authLocalStorageToken = ''; // = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
 
   // public fields
   currentUser$: Observable<TokenInfoModel>;
@@ -23,10 +22,8 @@ export class CmsAuthService implements OnDestroy {
   }
 
   constructor(
-    private router: Router,
-    public publicHelper: PublicHelper,
+    private router: Router
   ) {
-    this.authLocalStorageToken = `${publicHelper.appVersion}-${environment.USERDATA_KEY}`;
     this.currentUserSubject = new BehaviorSubject<TokenInfoModel>(undefined);
     this.currentUser$ = this.currentUserSubject.asObservable();
     // const subscr = this.getUserByToken().subscribe();
