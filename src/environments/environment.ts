@@ -1,40 +1,31 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
 import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 
 export const environment = {
-  production: false,
-  appVersion: '1.00.000',
+  production: true,
+  appVersion: '1.06.031',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'https://your-domain.com/api',
   developing: false,
-  loadDemoMenu: true,
-  loadDemoDashboard: true,
+  loadDemoMenu: false,
+  loadDemoDashboard: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
-    // configApiServerPath: 'https://apicms.ir/api/v1/',
-    configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
-    // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
-    configFileServerPath: 'https://apifile.ir/api/v1/',
-    // configRouteUploadFileContent: 'https://apicms.ir/api/v1/', // Test Api
-    // configRouteUploadFileContent: 'http://localhost:2392/api/v1/' // Test Api
+    configApiServerPath: 'https://apicms.ir/api/v1/',
     configMvcServerPath: 'https://oco.ir',
+    configFileServerPath: 'https://apifile.ir/api/v1/',
     configCpanelImages: '/cpanelv1/images/',
     configPathFileByIdAndName: 'https://oco.ir/files/',
     configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
-    // configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
-    configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
-    // configHtmlViewServerPath: 'https://ntkcms.com/',
-    configHtmlViewServerPath: 'https://localhost:2391/', // Test Api
+    configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
+    configHtmlViewServerPath: 'https://ntkcms.com/',
     configRouteUploadFileContent: 'upload/',
   },
   cmsUiConfig: {
     Pathlogin: '/auth/singin',
     Pathlogout: '/auth/singout',
-    PathRegistery: '/auth/singup',
+    PathRegistery: '/auth/registery',
     PathSelectSite: '/core/site/select',
     Pathdashboard: '/dashboard/',
     ToolbarLinkUrlPath: 'https://ntk.ir',
@@ -47,3 +38,4 @@ export const environment = {
     PackageName: '',
   }
 };
+
