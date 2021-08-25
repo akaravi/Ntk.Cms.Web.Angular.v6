@@ -30,18 +30,15 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     #- run: npm test
-    - name: Pushes to another repository
-      id: push_directory
+    - name: Push
       uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
       env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      with:
-        source-directory: 'output'
-        destination-github-username: 'akaravi'
-        destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
-        user-email: karavi.alireza@gmail.com
-        commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-        target-branch: master
+          REPO: Ntk.Cms.Web.Angular.Publish
+          BRANCH: master # The branch name where you want to push the assets
+          #FOLDER: build # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+  
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY
             
