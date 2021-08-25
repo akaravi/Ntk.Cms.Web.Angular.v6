@@ -33,7 +33,7 @@ jobs:
 
     - name: Build
       #run: npm run build --if-present
-      run: npm run build  --prod --source-map --if-present
+      run: npm run build --prod --source-map --if-present
     #- run: npm test
 
     - name: Push changes
@@ -48,7 +48,7 @@ jobs:
         destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
         user-email: karavi.alireza@gmail.com
         destination-repository-username : 
-        commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+        commit-message: See $GITHUB_REF
         target-branch: master
         
     - name: Test get variable exported by push-to-another-repository

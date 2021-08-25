@@ -19,7 +19,6 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
-import { version } from '../../../../package.json';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +35,7 @@ export class PublicHelper {
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
   }
-  appVersion = version;
+  appVersion = environment.appVersion;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -222,13 +221,13 @@ export class PublicHelper {
     if (storeSnapshot?.EnumRecordStatusResultStore?.ListItems?.length > 0) {
       return storeSnapshot.EnumRecordStatusResultStore;
     }
-    
+
     return await this.coreEnumService.ServiceEnumRecordStatus()
       .pipe(map(response => {
         this.cmsStoreService.setState({ EnumRecordStatusResultStore: response });
         return response;
       })).toPromise();
-      
+
   }
   async getCurrentSite(): Promise<ErrorExceptionResult<CoreSiteModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();

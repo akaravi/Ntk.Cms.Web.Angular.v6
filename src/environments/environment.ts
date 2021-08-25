@@ -5,6 +5,7 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 
 export const environment = {
   production: false,
+  appVersion:'1.05.284',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'https://your-domain.com/api',
