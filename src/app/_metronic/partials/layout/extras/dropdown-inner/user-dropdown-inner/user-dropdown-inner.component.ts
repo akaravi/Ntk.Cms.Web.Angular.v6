@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { environment } from 'src/environments/environment';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+
 @Component({
   selector: 'app-user-dropdown-inner',
   templateUrl: './user-dropdown-inner.component.html',
@@ -25,6 +27,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public publicHelper: PublicHelper,
   ) {
     this.loading.cdr = this.cdr;
 

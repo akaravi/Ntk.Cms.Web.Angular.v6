@@ -1,6 +1,6 @@
 {
-    "name": "metronic-angular-demo2",
-    "version": "7.2.8",
+    "name": "ntk-cms-web-angular-v2",
+    "version": "1.05.282",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",

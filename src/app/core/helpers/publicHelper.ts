@@ -19,6 +19,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
+import { version } from '../../../../package.json';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,8 @@ export class PublicHelper {
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
   }
+  appVersion = version;
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,

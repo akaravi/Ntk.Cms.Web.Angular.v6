@@ -8,7 +8,6 @@ export const environment = {
   developing: false,
   loadDemoMenu: false,
   loadDemoDashboard: false,
-  appVersion: '1.05.282',
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,

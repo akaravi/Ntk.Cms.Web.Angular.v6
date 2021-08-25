@@ -6,6 +6,7 @@ import { AuthModel } from '../_models/auth.model';
 import { AuthHTTPService } from './auth-http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class AuthService implements OnDestroy {
   // private fields
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
-  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+  private authLocalStorageToken = ''; // `${environment.appVersion}-${environment.USERDATA_KEY}`;
 
   // public fields
   currentUser$: Observable<UserModel>;
@@ -32,8 +33,10 @@ export class AuthService implements OnDestroy {
 
   constructor(
     private authHttpService: AuthHTTPService,
+    public publicHelper: PublicHelper,
     private router: Router
   ) {
+    this.authLocalStorageToken = `${publicHelper.appVersion}-${environment.USERDATA_KEY}`;
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.currentUserSubject = new BehaviorSubject<UserModel>(undefined);
     this.currentUser$ = this.currentUserSubject.asObservable();
