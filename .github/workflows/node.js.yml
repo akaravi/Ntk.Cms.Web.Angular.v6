@@ -37,8 +37,8 @@ jobs:
     - name: Push changes
       uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
       env:
-        branch: develop
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TEST_URL: https://adminpanle.ir
+        WEBPAGETEST_API_KEY: ${{ secrets.WEBPAGETEST_API_KEY }}
 
             
