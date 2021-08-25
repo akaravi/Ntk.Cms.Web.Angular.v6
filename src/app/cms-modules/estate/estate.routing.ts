@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EstateConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
 import { EstateConfigSiteComponent } from './config/site/configSite.component';
-import { EstatePropertyListComponent } from './Property/list/list.component';
+import { EstatePropertyListComponent } from './property/list/list.component';
 import { EstateComponent } from './estate.component';
 import { EstateContractTypeListComponent } from './contract-type/list/list.component';
 import { EstatePropertyDetailGroupListComponent } from './property-detail-group/list/list.component';
 import { EstatePropertyDetailListComponent } from './property-detail/list/list.component';
 import { EstateAccountAgencyListComponent } from './account-agency/list/list.component';
 import { EstateAccountUserListComponent } from './account-user/list/list.component';
-import { EstatePropertyAddComponent } from './Property/add/add.component';
-import { EstatePropertyEditComponent } from './Property/edit/edit.component';
+import { EstatePropertyAddComponent } from './property/add/add.component';
+import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/list/list.component';
 import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list/list.component';
+import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,15 @@ const routes: Routes = [
       {
         path: 'property-type-landuse',
         component: EstatePropertyTypeLanduseListComponent
+      },
+      /**/
+      {
+        path: 'property-ads/LinkPropertyId/:LinkPropertyId',
+        component: EstatePropertyAdsListComponent
+      },
+      {
+        path: 'property-ads',
+        component: EstatePropertyAdsListComponent
       },
       /**/
       {

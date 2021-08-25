@@ -32,8 +32,8 @@ jobs:
       run: npm ci
 
     - name: Build
-      #run: npm run build-prod
-      run: npm run build --if-present
+      run: npm run build-prod
+      #run: npm run build --if-present
     #- run: npm test
 
     - name: Push Publish To Other Git repo

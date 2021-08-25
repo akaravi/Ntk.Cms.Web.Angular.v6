@@ -30,7 +30,8 @@ import {
   EstateContractService,
   EstatePropertyDetailService,
   EstatePropertyTypeUsageService,
-  EstatePropertyTypeService
+  EstatePropertyTypeService,
+  EstatePropertyAdsService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,9 +40,9 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { EstateConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
 import { EstateConfigSiteComponent } from './config/site/configSite.component';
 
-import { EstatePropertyAddComponent } from './Property/add/add.component';
-import { EstatePropertyEditComponent } from './Property/edit/edit.component';
-import { EstatePropertyListComponent } from './Property/list/list.component';
+import { EstatePropertyAddComponent } from './property/add/add.component';
+import { EstatePropertyEditComponent } from './property/edit/edit.component';
+import { EstatePropertyListComponent } from './property/list/list.component';
 import { EstateContractTypeAddComponent } from './contract-type/add/add.component';
 import { EstateContractTypeEditComponent } from './contract-type/edit/edit.component';
 import { EstateContractTypeListComponent } from './contract-type/list/list.component';
@@ -62,7 +63,7 @@ import { EstateAccountAgencyTypeUserAddComponent } from './account-agency-typeus
 import { EstateAccountAgencyTypeUserEditComponent } from './account-agency-typeuser/edit/edit.component';
 import { EstateAccountAgencyTypeUserListComponent } from './account-agency-typeuser/list/list.component';
 import { EstateAccountAgencyTypeUserSelectorComponent } from './account-agency-typeuser/selector/selector.component';
-import { EstatePropertySelectorComponent } from './Property/selector/selector.component';
+import { EstatePropertySelectorComponent } from './property/selector/selector.component';
 import { EstateAccountUserAddComponent } from './account-user/add/add.component';
 import { EstateAccountUserEditComponent } from './account-user/edit/edit.component';
 import { EstateAccountUserListComponent } from './account-user/list/list.component';
@@ -90,6 +91,9 @@ import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list
 import { EstatePropertyTypeUsageSelectorComponent } from './property-type-usage/selector/selector.component';
 import { EstatePropertyTypeUsageTreeComponent } from './property-type-usage/tree/tree.component';
 import { EstatePropertyTypeUsageSelectionlistComponent } from './property-type-usage/selectionlist/selectionlist.component';
+import { EstatePropertyAdsAddComponent } from './property-ads/add/add.component';
+import { EstatePropertyAdsEditComponent } from './property-ads/edit/edit.component';
+import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +124,10 @@ import { EstatePropertyTypeUsageSelectionlistComponent } from './property-type-u
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,
     EstatePropertyHistoryListComponent,
+    /* */
+    EstatePropertyAdsAddComponent,
+    EstatePropertyAdsEditComponent,
+    EstatePropertyAdsListComponent,
     /* */
     EstateContractTypeAddComponent,
     EstateContractTypeEditComponent,
@@ -199,6 +207,7 @@ import { EstatePropertyTypeUsageSelectionlistComponent } from './property-type-u
     EstatePropertyTypeLanduseService,
     EstatePropertyTypeUsageService,
     EstatePropertyTypeService,
+    EstatePropertyAdsService,
     /** */
     CmsConfirmationDialogService,
     CoreModuleTagService,
