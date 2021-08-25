@@ -11,6 +11,7 @@
         "rtl": "webpack --config webpack-rtl.config.js"
     },
     "private": true,
+    "starter-name": "gatsby-starter-custom-foobar",
     "dependencies": {
         "@angular/animations": "~11.0.0",
         "@angular/cdk": "^11.0.0",
