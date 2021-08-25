@@ -3,8 +3,9 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { DefaultLayoutConfig } from '../../configs/default-layout.config';
 import * as objectPath from 'object-path';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
-const LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `${environment.appVersion}-layoutConfig`;
+// const LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `${environment.appVersion}-layoutConfig`;
 
 @Injectable({
   providedIn: 'root',
@@ -33,11 +34,14 @@ export class LayoutService {
     aside_menu: {},
   };
 
-  constructor() {}
+  constructor(public publicHelper: PublicHelper,) {
 
+  this.LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `${publicHelper.appVersion}-layoutConfig`;  
+  }
+  LAYOUT_CONFIG_LOCAL_STORAGE_KEY = '';//`${environment.appVersion}-layoutConfig`;
   initConfig(): any {
     const configFromLocalStorage = localStorage.getItem(
-      LAYOUT_CONFIG_LOCAL_STORAGE_KEY
+      this.LAYOUT_CONFIG_LOCAL_STORAGE_KEY
     );
     if (configFromLocalStorage) {
       try {
@@ -52,7 +56,7 @@ export class LayoutService {
   }
 
   private removeConfig() {
-    localStorage.removeItem(LAYOUT_CONFIG_LOCAL_STORAGE_KEY);
+    localStorage.removeItem(this.LAYOUT_CONFIG_LOCAL_STORAGE_KEY);
   }
 
   refreshConfigToDefault() {
@@ -72,7 +76,7 @@ export class LayoutService {
       this.removeConfig();
     } else {
       localStorage.setItem(
-        LAYOUT_CONFIG_LOCAL_STORAGE_KEY,
+        this.LAYOUT_CONFIG_LOCAL_STORAGE_KEY,
         JSON.stringify(config)
       );
     }
