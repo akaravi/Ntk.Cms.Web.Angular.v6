@@ -69,7 +69,7 @@
               {{ fieldsInfo['Title']?.FieldTitle }} is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-     
+
 
           <!-- SubDomain Field -->
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SubDomain']?.AccessWatchField">
@@ -148,8 +148,8 @@
 
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkFavIconId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkFavIconId" [tree]="fileManagerTree"
-            [openDirectUploadView]="true"  [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
-              [openFilemanagerButtonView]="false"></cms-file-manager>
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 
 
@@ -200,11 +200,11 @@
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SeoDescription']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['SeoDescription']?.FieldDescription }}</mat-label>
             <textarea matInput [(ngModel)]="dataModel.SeoDescription"
-              [disabled]="!fieldsInfo['SeoDescription']?.AccessAddField" name="dataModel.SeoDescription"
-              #SeoDescription type="text" placeholder="{{fieldsInfo['SeoDescription']?.FieldTitle}}" row="6"
-              minlength="0" maxlength="1000"></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.SeoDescription && fieldsInfo['SeoDescription']?.AccessAddField" matSuffix
-              mat-icon-button aria-label="Clear" (click)="dataModel.SeoDescription = ''">close</mat-icon>
+              [disabled]="!fieldsInfo['SeoDescription']?.AccessAddField" name="dataModel.SeoDescription" #SeoDescription
+              type="text" placeholder="{{fieldsInfo['SeoDescription']?.FieldTitle}}" row="6" minlength="0"
+              maxlength="1000"></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.SeoDescription && fieldsInfo['SeoDescription']?.AccessAddField"
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.SeoDescription = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['SeoDescription']?.AccessAddField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ SeoDescription.value.length }} / 1000</mat-hint>
 
@@ -230,9 +230,8 @@
             <textarea matInput [(ngModel)]="dataModel.SeoGoogleAnalytics"
               [disabled]="!fieldsInfo['SeoGoogleAnalytics']?.AccessAddField" name="dataModel.SeoGoogleAnalytics"
               #SeoGoogleAnalytics type="text" placeholder="" minlength="" maxlength="1000"></textarea>
-            <mat-icon matSuffix
-              *ngIf="dataModel.SeoGoogleAnalytics && fieldsInfo['SeoGoogleAnalytics']?.AccessAddField" matSuffix
-              mat-icon-button aria-label="Clear" (click)="dataModel.SeoGoogleAnalytics = ''">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.SeoGoogleAnalytics && fieldsInfo['SeoGoogleAnalytics']?.AccessAddField"
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.SeoGoogleAnalytics = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['SeoGoogleAnalytics']?.AccessAddField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ SeoGoogleAnalytics.value.length }} / 1000</mat-hint>
           </mat-form-field>
@@ -270,8 +269,8 @@
             </mat-form-field>
             <cms-file-manager (itemSelected)="onActionFileSelectedLinkImageLogoId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormLinkImageLogoId" [tree]="fileManagerTree"
-              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
-              [openFilemanagerButtonView]="false"></cms-file-manager>
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
           <!-- AboutUsTitle Field -->
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsTitle']?.AccessWatchField">
@@ -339,6 +338,16 @@
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsAddress = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['AboutUsAddress']?.AccessAddField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ AboutUsAddress.value.length }} / 100</mat-hint>
+          </mat-form-field>
+          <!-- AboutUsMoreInfoUrl Field -->
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsMoreInfoUrl']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['AboutUsMoreInfoUrl']?.FieldTitle }}</mat-label>
+            <input matInput [(ngModel)]="dataModel.AboutUsMoreInfoUrl"
+              [disabled]="!fieldsInfo['AboutUsMoreInfoUrl']?.AccessAddField" name="dataModel.AboutUsMoreInfoUrl"
+              #AboutUsMoreInfoUrl type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
+            <mat-icon matSuffix *ngIf="dataModel.AboutUsMoreInfoUrl && fieldsInfo['AboutUsMoreInfoUrl']?.AccessAddField"
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsMoreInfoUrl = ''">close</mat-icon>
+            <mat-icon *ngIf="fieldsInfo['AboutUsMoreInfoUrl']?.AccessAddField" matSuffix>mode_edit</mat-icon>
           </mat-form-field>
           <!-- AboutUsLinkFacebook Field -->
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsLinkFacebook']?.AccessWatchField">
@@ -467,8 +476,8 @@
             </mat-form-field>
             <cms-file-manager (itemSelected)="onActionFileSelectedAboutUsLinkImageId($event)" [language]="appLanguage"
               [isPopup]="true" [(openForm)]="fileManagerOpenFormAboutUsLinkImageId" [tree]="fileManagerTree"
-              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
-              [openFilemanagerButtonView]="false"></cms-file-manager>
+              [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+              [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
           </div>
 
           <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>

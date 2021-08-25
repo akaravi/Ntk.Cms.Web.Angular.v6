@@ -350,6 +350,16 @@
             <mat-icon *ngIf="fieldsInfo['AboutUsAddress']?.AccessEditField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ AboutUsAddress.value.length }} / 100</mat-hint>
           </mat-form-field>
+          <!-- AboutUsMoreInfoUrl Field -->
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsMoreInfoUrl']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['AboutUsMoreInfoUrl']?.FieldTitle }}</mat-label>
+            <input matInput [(ngModel)]="dataModel.AboutUsMoreInfoUrl"
+              [disabled]="!fieldsInfo['AboutUsMoreInfoUrl']?.AccessAddField" name="dataModel.AboutUsMoreInfoUrl"
+              #AboutUsMoreInfoUrl type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
+            <mat-icon matSuffix *ngIf="dataModel.AboutUsMoreInfoUrl && fieldsInfo['AboutUsMoreInfoUrl']?.AccessAddField"
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsMoreInfoUrl = ''">close</mat-icon>
+            <mat-icon *ngIf="fieldsInfo['AboutUsMoreInfoUrl']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
           <!-- AboutUsLinkFacebook Field -->
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsLinkFacebook']?.AccessWatchField">
             <mat-label>{{ fieldsInfo['AboutUsLinkFacebook']?.FieldTitle }}</mat-label>
