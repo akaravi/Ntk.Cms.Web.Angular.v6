@@ -36,7 +36,7 @@ jobs:
       #run: npm run build --if-present
     #- run: npm test
 
-    - name: Push changes
+    - name: Push Publish To Other Git repo
       if: success()
       uses: cpina/github-action-push-to-another-repository@main
       env:
