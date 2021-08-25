@@ -137,7 +137,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('../cms-modules/chart/chart.module').then(m => m.ChartModule)
       },
-
       {
         path: 'filemanager',
         loadChildren: () =>
