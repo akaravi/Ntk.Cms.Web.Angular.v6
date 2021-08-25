@@ -34,8 +34,10 @@ jobs:
     - name: Build
       run: npm run build --if-present
     #- run: npm test
+    
     - name: Push directory to another repository
       uses: akaravi/Ntk.Cms.Web.Angular.Publish@master
+      
 }
 
             
