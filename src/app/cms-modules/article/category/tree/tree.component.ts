@@ -26,6 +26,7 @@ import { ArticleCategoryDeleteComponent } from '../delete/delete.component';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { ArticleCategoryAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public categoryService: ArticleCategoryService,
     public dialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }

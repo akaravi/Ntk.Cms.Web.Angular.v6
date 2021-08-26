@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPublicConfigEditComponent } from '../edit/edit.component';
 import { BankPaymentPublicConfigAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public categoryService: BankPaymentPublicConfigService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

@@ -25,6 +25,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPrivateSiteConfigEditComponent } from '../edit/edit.component';
 import { BankPaymentPrivateSiteConfigAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
     public coreEnumService: CoreEnumService,
     public categoryService: BankPaymentPrivateSiteConfigService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

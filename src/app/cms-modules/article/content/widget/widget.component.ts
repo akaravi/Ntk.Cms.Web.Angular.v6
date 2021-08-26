@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticleContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 
@@ -20,7 +21,9 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
   constructor(
     private service: ArticleContentService,
     private cmsApiStore: NtkCmsApiStoreService,
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
+  ) {
     this.loading.cdr = this.cdr;
   }
   ngOnInit(): void {

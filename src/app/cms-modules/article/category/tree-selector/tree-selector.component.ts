@@ -24,6 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class ArticleCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public categoryService: ArticleCategoryService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog,
   ) {
     this.loading.cdr = this.cdr;
