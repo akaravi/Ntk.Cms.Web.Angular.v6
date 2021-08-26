@@ -81,7 +81,7 @@ export class CoreTokenUserLogEditComponent implements OnInit, OnDestroy {
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
     });
     this.getEnumRecordStatus();
@@ -114,7 +114,7 @@ export class CoreTokenUserLogEditComponent implements OnInit, OnDestroy {
 
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     /*َAccess Field*/
     this.coreTokenUserLogService.setAccessLoad();
@@ -133,12 +133,12 @@ export class CoreTokenUserLogEditComponent implements OnInit, OnDestroy {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

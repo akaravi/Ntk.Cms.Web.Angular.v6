@@ -85,7 +85,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
 
       this.tokenInfo = next;
     });
@@ -124,7 +124,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleHeaderModel();
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -140,13 +140,13 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

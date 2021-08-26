@@ -157,14 +157,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.pollingContentService
       .ServiceGetOneById(this.dataModelResult.Item.Id)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -179,14 +179,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
             this.DataOptionGetAll();
             // this.DataOtherInfoGetAll();
             // this.DataSimilarGetAllIds();
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
@@ -233,14 +233,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.pollingContentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -253,7 +253,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
           this.formInfo.FormSubmitAllow = true;
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
@@ -265,14 +265,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.pollingContentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
@@ -280,7 +280,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
             setTimeout(() => this.router.navigate(['/polling/content']), 1000);
           } else {
@@ -288,7 +288,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);

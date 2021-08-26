@@ -52,7 +52,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
     // this.loading.backdropEnabled = false;
 
     
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
@@ -68,12 +68,12 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
           });
 
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

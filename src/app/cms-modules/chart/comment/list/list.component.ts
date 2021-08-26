@@ -114,7 +114,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ChartContentModel();
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.filteModelContent.AccessLoad = true;
@@ -157,13 +157,13 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );
@@ -298,7 +298,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start('main');
+          this.loading.Start(this.constructor.name + 'main');
 
           this.commentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -308,12 +308,12 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop('main');
+              this.loading.Stop(this.constructor.name + 'main');
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop('main');
+              this.loading.Stop(this.constructor.name + 'main');
 
             }
           );

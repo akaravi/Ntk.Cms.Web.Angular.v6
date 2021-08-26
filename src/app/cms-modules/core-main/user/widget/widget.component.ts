@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CoreUserService, FilterModel, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { PersianCalendarService } from 'src/app/core/pipe/PersianDatePipe/persian-date.service';
@@ -24,6 +25,7 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
     private cmsApiStore: NtkCmsApiStoreService,
     private persianCalendarService: PersianCalendarService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -34,7 +36,7 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
 
 
     this.tokenInfoModel = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfoModel = next;
       this.onActionStatist();
     });
@@ -49,7 +51,7 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
     if (!this.tokenInfoModel.UserId || this.tokenInfoModel.UserId <= 0) {
       return;
     }
-    this.loading.Start('All');
+    this.loading.Start(this.constructor.name + 'All');
     this.widgetInfoModel.link = '/core/user/edit/' + this.tokenInfoModel.UserId;
     this.modelData.set('Id', this.tokenInfoModel.UserId + '');
     this.modelData.set('Username', '...');
@@ -80,11 +82,11 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
             this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(next.Item.ExpireDate));
           }
         }
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
         this.cdr.detectChanges();
       },
       (error) => {
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
         this.cdr.detectChanges();
       }
     );

@@ -74,7 +74,7 @@ export class NewsConfigSiteComponent implements OnInit {
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });

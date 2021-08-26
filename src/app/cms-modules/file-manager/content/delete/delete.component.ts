@@ -55,7 +55,7 @@ export class FileContentDeleteComponent implements OnInit {
       return;
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     this.fileContentService.setAccessLoad();
     this.fileContentService
@@ -73,14 +73,14 @@ export class FileContentDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         }
       );
@@ -97,7 +97,7 @@ export class FileContentDeleteComponent implements OnInit {
 
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     this.fileContentService
       .ServiceDelete(this.requestId)
@@ -115,7 +115,7 @@ export class FileContentDeleteComponent implements OnInit {
             this.dialogRef.close({ dialogChangedDate: true });
           }
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         },
         (error) => {
@@ -123,7 +123,7 @@ export class FileContentDeleteComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         }
       );
@@ -131,7 +131,7 @@ export class FileContentDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-    this.loading.Stop('main');
+    this.loading.Stop(this.constructor.name + 'main');
 
   }
 }

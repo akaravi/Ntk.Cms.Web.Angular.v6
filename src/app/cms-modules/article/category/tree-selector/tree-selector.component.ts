@@ -89,7 +89,7 @@ export class ArticleCategoryTreeSelectorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.DataGetAll();
     });
   }
@@ -119,7 +119,7 @@ export class ArticleCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
@@ -129,11 +129,11 @@ export class ArticleCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.treeControl.dataNodes = this.dataModelResult.ListItems;
           this.loadCheked();
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
         this.cmsToastrService.typeError(error);
       }

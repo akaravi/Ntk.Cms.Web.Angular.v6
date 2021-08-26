@@ -27,6 +27,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CoreUserClaimTypeEditComponent } from '../edit/edit.component';
 import { CoreUserClaimTypeAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
     public categoryService: CoreUserClaimTypeService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -63,7 +65,7 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.DataGetAll();
     });
   }
@@ -73,8 +75,8 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    
-    this.loading.Start('main');
+
+    this.loading.Start(this.constructor.name + 'main');
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
@@ -82,12 +84,12 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

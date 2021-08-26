@@ -89,7 +89,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       if (this.requestSerial && this.requestSerial.length > 0) {
         this.DataCheckUseSerialForSite(this.requestSerial);
       }
@@ -117,7 +117,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   DataCheckUseSerialForSite(serial: string): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.tableSource.data = [];
@@ -136,13 +136,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );
@@ -151,7 +151,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe(
@@ -164,13 +164,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

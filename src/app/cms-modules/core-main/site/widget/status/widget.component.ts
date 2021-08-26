@@ -9,6 +9,7 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { PersianCalendarService } from 'src/app/core/pipe/PersianDatePipe/persian-date.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -31,6 +32,7 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
     private persianCalendarService: PersianCalendarService,
     private cmsToastrService: CmsToastrService,
     private coreAuthService: CoreAuthService,
+    private tokenHelper: TokenHelper,
   ) { }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'سامانه فعال :';
@@ -38,7 +40,7 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/core/site';
 
     this.tokenInfoModel = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfoModel = next;
       this.onActionStatist();
     });

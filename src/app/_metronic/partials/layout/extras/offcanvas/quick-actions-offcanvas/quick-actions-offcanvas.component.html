@@ -40,7 +40,7 @@
     </div>
     <div class="row gutter-b">
       <!--begin::Item-->
-      <div class="col-6">
+      <div class="col-6" *ngIf="this.tokenInfo?.SiteId>0">
         <a [routerLink]="'core/site/edit'"
           class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
           <span [inlineSVG]="'./assets/media/svg/icons/General/Settings-1.svg'" cacheSVG="true"
@@ -51,7 +51,7 @@
       <!--end::Item-->
 
       <!--begin::Item-->
-      <div class="col-6">
+      <div class="col-6" *ngIf="this.tokenInfo?.SiteId>0">
         <a [routerLink]="'core/site/modulelist'"
           class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
           <span [inlineSVG]="'./assets/media/svg/icons/General/Thunder-move.svg'" cacheSVG="true"
@@ -63,7 +63,7 @@
     </div>
     <div class="row gutter-b">
       <!--begin::Item-->
-      <div class="col-6">
+      <div class="col-6" *ngIf="this.tokenInfo?.SiteId>0">
         <a [routerLink]="'core/site/edit'"
           class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
           <span [inlineSVG]="'./assets/media/svg/icons/Code/CMD.svg'" cacheSVG="true"

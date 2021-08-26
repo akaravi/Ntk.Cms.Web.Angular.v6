@@ -74,7 +74,7 @@ export class BiographyConfigMainAdminComponent implements OnInit {
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
@@ -157,7 +157,7 @@ export class BiographyConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     
     const processName = this.constructor.name + 'ServiceSiteConfigDefault';

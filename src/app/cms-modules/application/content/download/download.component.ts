@@ -32,7 +32,7 @@ export class ApplicationAppDownloadComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.applicationAppService
@@ -47,13 +47,13 @@ export class ApplicationAppDownloadComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         }
       );
   }

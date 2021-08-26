@@ -24,6 +24,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -38,8 +39,8 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public categoryService: ApplicationAppService,
     private router: Router,
-    private cdr: ChangeDetectorRef
-
+    private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -61,7 +62,8 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.DataGetAll();
     });
   }
@@ -72,7 +74,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
@@ -80,12 +82,12 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

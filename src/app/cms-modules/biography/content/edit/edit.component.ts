@@ -165,7 +165,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
@@ -175,7 +175,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
         async (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -195,14 +195,14 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
             this.DataTagGetAll();
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
@@ -213,7 +213,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات تگها از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -229,7 +229,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.dataContentTagModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -242,14 +242,14 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
             this.tagIdsData = list;
 
 
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -260,7 +260,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -275,7 +275,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.dataContentOtherInfoModelResult = next;
@@ -287,7 +287,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -298,7 +298,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -321,7 +321,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.dataContentSimilarModelResult = next;
@@ -341,7 +341,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -356,7 +356,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -373,7 +373,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
 
@@ -385,7 +385,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -396,14 +396,14 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.contentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
@@ -414,7 +414,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModel);
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
             // setTimeout(() => this.router.navigate(['/biography/content/edit/', this.requestId]), 100);
             setTimeout(() => this.router.navigate(['/biography/content']), 1000);
@@ -423,7 +423,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
@@ -530,7 +530,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     const filteModel = new FilterModel();
@@ -546,7 +546,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           const itemList = [];
           next.ListItems.forEach(element => {
@@ -557,7 +557,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
 
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);

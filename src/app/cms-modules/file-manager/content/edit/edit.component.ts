@@ -124,7 +124,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     /*َAccess Field*/
     this.fileContentService.setAccessLoad();
@@ -138,7 +138,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -152,14 +152,14 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
             }
             this.dataModel.Keyword = this.dataModel.Keyword + '';
             this.keywordDataModel = this.dataModel.Keyword.split(',');
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
@@ -171,14 +171,14 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.fileContentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
@@ -186,7 +186,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
             setTimeout(() => this.router.navigate(['/file/content/edit/', this.requestId]), 100);
           } else {
@@ -194,7 +194,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);

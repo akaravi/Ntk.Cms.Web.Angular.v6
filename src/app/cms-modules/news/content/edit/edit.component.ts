@@ -163,7 +163,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
@@ -175,7 +175,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -192,14 +192,14 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.DataTagGetAll();
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
@@ -210,7 +210,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات تگها از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -227,7 +227,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.dataContentTagModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -240,14 +240,14 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.tagIdsData = list;
 
 
-            this.loading.Stop('main');
+            this.loading.Stop(this.constructor.name + 'main');
 
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -259,7 +259,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -274,7 +274,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.dataContentOtherInfoModelResult = next;
@@ -286,7 +286,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -297,7 +297,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
 
@@ -318,7 +318,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.dataContentSimilarModelResult = next;
@@ -338,7 +338,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -353,7 +353,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     const filteModel = new FilterModel();
@@ -378,13 +378,13 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         }
       );
@@ -393,7 +393,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.contentService
@@ -415,13 +415,13 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         }
       );
@@ -529,7 +529,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
@@ -551,13 +551,13 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           });
           this.dataContentCategoryModel = itemList;
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         }
       );

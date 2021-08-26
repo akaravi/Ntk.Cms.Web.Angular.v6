@@ -119,7 +119,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
     });
@@ -131,7 +131,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteModel();
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     
     this.filteModelContent.AccessLoad = true;
@@ -162,13 +162,13 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

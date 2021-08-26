@@ -111,7 +111,7 @@ export class ApplicationIntroAddComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.applicationIntroService
@@ -128,13 +128,13 @@ export class ApplicationIntroAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         }
       );
   }

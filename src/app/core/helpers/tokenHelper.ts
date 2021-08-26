@@ -9,7 +9,7 @@ import {
   TokenDeviceClientInfoDtoModel,
   TokenInfoModel
 } from 'ntk-cms-api';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -46,6 +46,9 @@ export class TokenHelper implements OnDestroy {
         this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: response.Item });
         return response.Item;
       })).toPromise();
+  }
+  getCurrentTokenOnChange(): Observable<TokenInfoModel> {
+    return this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo);
   }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();

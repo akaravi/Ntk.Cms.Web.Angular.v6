@@ -97,7 +97,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     /*َAccess Field*/
     this.applicationSourceService.setAccessLoad();
@@ -117,20 +117,20 @@ export class ApplicationSourceEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         }
       );
   }
   DataGetAllSourceSiteCategory(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
@@ -153,12 +153,12 @@ export class ApplicationSourceEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );
@@ -167,7 +167,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.applicationSourceService
@@ -184,13 +184,13 @@ export class ApplicationSourceEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         }
       );
   }

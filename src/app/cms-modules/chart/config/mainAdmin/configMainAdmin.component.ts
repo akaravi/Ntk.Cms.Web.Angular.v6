@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -28,7 +28,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   templateUrl: './configMainAdmin.component.html',
   styleUrls: ['./configMainAdmin.component.scss']
 })
-export class ChartConfigMainAdminComponent implements OnInit {
+export class ChartConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: ChartConfigurationService,
@@ -73,7 +73,7 @@ export class ChartConfigMainAdminComponent implements OnInit {
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
@@ -83,7 +83,7 @@ export class ChartConfigMainAdminComponent implements OnInit {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
- 
+
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
@@ -156,9 +156,9 @@ export class ChartConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
-    
+
     const processName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(processName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService
@@ -237,7 +237,7 @@ export class ChartConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    
+
     const processName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(processName, 'دریافت تنظیمات ماژول');
     this.configService
@@ -263,7 +263,7 @@ export class ChartConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    
+
     const processName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(processName, 'ذخیره تنظیمات ماژول');
     this.configService

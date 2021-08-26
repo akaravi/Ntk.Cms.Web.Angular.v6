@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ApplicationAppService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 
@@ -17,6 +18,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     private service: ApplicationAppService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
    }
@@ -31,7 +33,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/application/app';
 
     this.onActionStatist();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
 
@@ -41,7 +43,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start('All');
+    this.loading.Start(this.constructor.name + 'All');
     this.service.ServiceGetExist(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -53,13 +55,13 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
           this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
           this.widgetInfoModel.link = '/application/app/add';
         }
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
 
       },
       (error) => {
         this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
         this.widgetInfoModel.link = '/application/app';
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
       }
     );
 

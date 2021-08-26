@@ -27,6 +27,7 @@ import { NewsCategoryDeleteComponent } from '../delete/delete.component';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { NewsCategoryAddComponent } from '../add/add.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     public categoryService: NewsCategoryService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -63,7 +65,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.DataGetAll();
     });
   }

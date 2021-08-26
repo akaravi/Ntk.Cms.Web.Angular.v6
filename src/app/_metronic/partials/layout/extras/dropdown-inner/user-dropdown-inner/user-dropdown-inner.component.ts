@@ -56,7 +56,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
         this.IsAdminSite = false;
       }
     });
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
       if (this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminCpSite
         || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminMainCms
@@ -78,7 +78,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     // this.auth.logout();
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
-      this.loading.Stop('main');
+      this.loading.Stop(this.constructor.name + 'main');
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessLogout();
       } else {

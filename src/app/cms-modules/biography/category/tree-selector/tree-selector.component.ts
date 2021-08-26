@@ -24,6 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class BiographyCategoryTreeSelectorComponent implements OnInit, OnDestroy
     public categoryService: BiographyCategoryService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
     this.checklistSelection.changed.subscribe(x => {
@@ -89,7 +91,7 @@ export class BiographyCategoryTreeSelectorComponent implements OnInit, OnDestroy
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe(() => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.DataGetAll();
     });
   }
@@ -119,7 +121,7 @@ export class BiographyCategoryTreeSelectorComponent implements OnInit, OnDestroy
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
@@ -129,11 +131,11 @@ export class BiographyCategoryTreeSelectorComponent implements OnInit, OnDestroy
           this.treeControl.dataNodes = this.dataModelResult.ListItems;
           this.loadCheked();
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
         this.cmsToastrService.typeError(error);
       }

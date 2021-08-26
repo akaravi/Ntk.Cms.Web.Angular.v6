@@ -114,7 +114,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
     });
@@ -134,9 +134,9 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
-    
+
     this.filteModelContent.AccessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
@@ -159,13 +159,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );
@@ -304,7 +304,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start('main');
+          this.loading.Start(this.constructor.name + 'main');
 
           this.webDesignerMainPageDependencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -314,12 +314,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop('main');
+              this.loading.Stop(this.constructor.name + 'main');
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop('main');
+              this.loading.Stop(this.constructor.name + 'main');
 
             }
           );

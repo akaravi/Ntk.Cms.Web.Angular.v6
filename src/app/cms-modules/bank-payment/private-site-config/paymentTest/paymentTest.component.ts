@@ -107,13 +107,13 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
         }
       )).toPromise();

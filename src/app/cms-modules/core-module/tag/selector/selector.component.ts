@@ -88,7 +88,7 @@ export class CoreModuleTagSelectorComponent implements OnInit {
       filteModel.Filters.push(filter);
     }
     
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     return this.coreModuleTagService.ServiceGetAll(filteModel)
       .pipe(
@@ -103,7 +103,7 @@ export class CoreModuleTagSelectorComponent implements OnInit {
             this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           return response.ListItems;
         })).toPromise();

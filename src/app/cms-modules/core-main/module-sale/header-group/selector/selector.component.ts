@@ -88,7 +88,7 @@ export class CoreModuleSaleHeaderGroupSelectorComponent implements OnInit {
       filteModel.Filters.push(filter);
     }
 
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
@@ -103,7 +103,7 @@ export class CoreModuleSaleHeaderGroupSelectorComponent implements OnInit {
             this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           return response.ListItems;
         })

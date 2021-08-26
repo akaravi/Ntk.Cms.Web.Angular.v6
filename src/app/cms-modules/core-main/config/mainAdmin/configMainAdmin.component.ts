@@ -77,7 +77,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
@@ -241,7 +241,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    
+
     const processName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(processName, 'دریافت تنظیمات ماژول');
     this.configService
@@ -267,7 +267,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    
+
     const processName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(processName, 'ذخیره تنظیمات ماژول');
     this.configService

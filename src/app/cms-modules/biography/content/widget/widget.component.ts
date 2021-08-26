@@ -30,7 +30,7 @@ export class BiographyContentWidgetComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/biography/content';
 
     this.onActionStatist();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
   }
@@ -40,8 +40,8 @@ export class BiographyContentWidgetComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start('Active');
-    this.loading.Start('All');
+    this.loading.Start(this.constructor.name + 'Active');
+    this.loading.Start(this.constructor.name + 'All');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
@@ -49,11 +49,11 @@ export class BiographyContentWidgetComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.modelData.set('All', next.TotalRowCount);
         }
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
 
       },
       (error) => {
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
 
       }
     );
@@ -68,12 +68,12 @@ export class BiographyContentWidgetComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.modelData.set('Active', next.TotalRowCount);
         }
-        this.loading.Stop('Active');
+        this.loading.Stop(this.constructor.name + 'Active');
 
       }
       ,
       (error) => {
-        this.loading.Stop('Active');
+        this.loading.Stop(this.constructor.name + 'Active');
 
       }
     );

@@ -31,7 +31,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
         this.DataGetCpMenu();
       }
     });
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
       if (this.tokenInfo && this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId > 0) {
         this.DataGetCpMenu();
@@ -54,7 +54,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
     return this.menuConfigSubject.value;
   }
   ngOnDestroy() {
-    this.cmsApiStoreSubscribe.unsubscribe();
+    this.cmsApiStoreSubscribe .unsubscribe();
   }
   DataGetCpMenu(): void {
     const menuItems: any = [{

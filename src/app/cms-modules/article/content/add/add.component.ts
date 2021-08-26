@@ -204,14 +204,14 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
 
     this.contentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
@@ -227,13 +227,13 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         }
       );
   }
@@ -278,7 +278,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         }
       )).toPromise();
   }
@@ -306,7 +306,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
-          this.loading.Stop('main');
+          this.loading.Stop(this.constructor.name + 'main');
         }
       )).toPromise();
   }

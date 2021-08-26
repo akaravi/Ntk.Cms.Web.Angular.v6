@@ -50,7 +50,7 @@ export class CoreUserClaimGroupHeaderComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.loading.Start('main');
+    this.loading.Start(this.constructor.name + 'main');
 
     this.coreUserClaimGroupService.setAccessLoad();
     this.coreUserClaimGroupService.ServiceGetOneById(this.optionId).subscribe(
@@ -61,12 +61,12 @@ export class CoreUserClaimGroupHeaderComponent implements OnInit {
         } else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop('main');
+        this.loading.Stop(this.constructor.name + 'main');
 
       }
     );

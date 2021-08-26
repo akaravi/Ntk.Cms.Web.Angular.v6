@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LayoutService, DynamicAsideMenuService } from '../../../../_metronic/core';
 
 @Component({
@@ -10,6 +12,24 @@ import { LayoutService, DynamicAsideMenuService } from '../../../../_metronic/co
   styleUrls: ['./aside-dynamic.component.scss']
 })
 export class AsideDynamicComponent implements OnInit, OnDestroy {
+
+
+  constructor(
+    private cmsApiStore: NtkCmsApiStoreService,
+    private layout: LayoutService,
+    private router: Router,
+    private menu: DynamicAsideMenuService,
+    private tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef) {
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
+      this.tokenInfo = value;
+    });
+
+  }
+  tokenInfo: TokenInfoModel;
   menuConfig: any;
   subscriptions: Subscription[] = [];
 
@@ -23,15 +43,9 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
   brandClasses: string;
   asideMenuScroll = 1;
   asideSelfMinimizeToggle = false;
+  cmsApiStoreSubscribe: Subscription;
 
   currentUrl: string;
-
-  constructor(
-    private layout: LayoutService,
-    private router: Router,
-    private menu: DynamicAsideMenuService,
-    private cdr: ChangeDetectorRef) { }
-
   ngOnInit(): void {
     // load view settings
     this.disableAsideSelfDisplay =
@@ -92,6 +106,7 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.cmsApiStoreSubscribe.unsubscribe();
     this.subscriptions.forEach(sb => sb.unsubscribe());
   }
 }

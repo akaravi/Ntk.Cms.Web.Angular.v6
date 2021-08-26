@@ -8,6 +8,7 @@ import {
   NtkCmsApiStoreService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 
@@ -28,6 +29,7 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     private service: CoreModuleSiteService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -37,7 +39,7 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/core/site/modulelist';
 
     this.onActionStatist();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
   }
@@ -47,18 +49,18 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start('Active');
-    this.loading.Start('All');
+    this.loading.Start(this.constructor.name + 'Active');
+    this.loading.Start(this.constructor.name + 'All');
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.modelData.set('All', next.TotalRowCount);
         }
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
 
       },
       (error) => {
-        this.loading.Stop('All');
+        this.loading.Stop(this.constructor.name + 'All');
 
       }
     );
@@ -72,12 +74,12 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.modelData.set('Active', next.TotalRowCount);
         }
-        this.loading.Stop('Active');
+        this.loading.Stop(this.constructor.name + 'Active');
 
       }
       ,
       (error) => {
-        this.loading.Stop('Active');
+        this.loading.Stop(this.constructor.name + 'Active');
 
       }
     );

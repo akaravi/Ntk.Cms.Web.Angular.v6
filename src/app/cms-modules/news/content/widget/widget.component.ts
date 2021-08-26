@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 
@@ -21,6 +22,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     private service: NewsContentService,
     private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
   ) { }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'اخبار های ثبت شده';
@@ -28,7 +30,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/news/content';
 
     this.onActionStatist();
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((next) => {
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
   }
@@ -38,8 +40,8 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start('Active');
-    this.loading.Start('All');
+    this.loading.Start(this.constructor.name + 'Active');
+    this.loading.Start(this.constructor.name + 'All');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
