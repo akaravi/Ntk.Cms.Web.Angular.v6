@@ -74,7 +74,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-    
+
     this.loading.Start(this.constructor.name + 'main');
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(

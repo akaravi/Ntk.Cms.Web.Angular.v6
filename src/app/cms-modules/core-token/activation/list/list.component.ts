@@ -14,7 +14,8 @@ import {
   CoreTokenActivationService,
   CoreTokenActivationModel,
   DataFieldInfoModel,
-  EnumModel} from 'ntk-cms-api';
+  EnumModel
+} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -160,7 +161,7 @@ export class CoreTokenActivationListComponent implements OnInit, OnDestroy {
 
     this.loading.Start(this.constructor.name + 'main');
 
-    
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

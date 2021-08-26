@@ -156,7 +156,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
 
     this.loading.Start(this.constructor.name + 'main');
 
-    
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

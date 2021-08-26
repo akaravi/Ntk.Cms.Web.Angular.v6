@@ -92,7 +92,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreModuleSiteModel> = [];
   tableRowSelected: CoreModuleSiteModel = new CoreModuleSiteModel();
   tableSource: MatTableDataSource<CoreModuleSiteModel> = new MatTableDataSource<CoreModuleSiteModel>();
@@ -149,7 +149,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
 
     this.loading.Start(this.constructor.name + 'main');
 
-    
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

@@ -30,7 +30,7 @@ export class DynamicAsideMenuService implements OnDestroy {
         this.DataGetCpMenu();
       }
     });
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState( (state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
+    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
       if (this.tokenInfo && this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId > 0) {
         this.DataGetCpMenu();
@@ -76,7 +76,7 @@ export class DynamicAsideMenuService implements OnDestroy {
             menuItems.push(element);
           });
         }
-        //this.setMenu(DynamicAsideMenuConfig);
+        // this.setMenu(DynamicAsideMenuConfig);
         this.setMenu(menuItems);
       }
     );
@@ -107,6 +107,6 @@ export class DynamicAsideMenuService implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.cmsApiStoreSubscribe .unsubscribe();
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
 }

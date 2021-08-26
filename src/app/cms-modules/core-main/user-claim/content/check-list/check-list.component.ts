@@ -111,7 +111,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     this.tableRowSelected = new CoreUserClaimCheckModel();
     this.loading.Start(this.constructor.name + 'main');
 
-    
+
 
     if (this.requestLinkUserId > 0 && this.requestLinkSiteId > 0) {
       /** */
