@@ -53,9 +53,9 @@ jobs:
     
     - name: Webhook
       if: success()
-      run: joelwmale/webhook-action@2.1.0
+      uses: joelwmale/webhook-action@2.1.0
       with:
-        url: http://smsban.ir/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=XXXXX
+        url: http://smsban.ir/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=Succ $GITHUB_REF
   
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY    
