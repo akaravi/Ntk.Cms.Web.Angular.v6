@@ -51,11 +51,13 @@ jobs:
         commit-message: See $GITHUB_REF
         target-branch: master
     
-    - name: Webhook
-      if: success()
-      uses: joelwmale/webhook-action@2.1.0
+    - name: Webhook Sms
+      uses: joelwmale/webhook-action@master
       with:
-        url: http://smsban.ir/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=Succ $GITHUB_REF
+        url: http://smsban.ir/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=Angular.v2 Succ $GITHUB_REF
+        #headers: '{"repository": "joelwmale/webhook-action"}'
+        #body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
+        
   
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY    
