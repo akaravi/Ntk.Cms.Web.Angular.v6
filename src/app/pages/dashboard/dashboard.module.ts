@@ -22,6 +22,7 @@ import {
   ChartContentService,
   CoreSiteService,
   CoreUserService,
+  EstatePropertyService,
   NewsContentService
 } from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -41,6 +42,9 @@ import { ApplicationMemberInfoWidget2Component } from 'src/app/cms-modules/appli
 import { CoreSiteWidgetCount2Component } from 'src/app/cms-modules/core-main/site/widget/count/widget2.component';
 import { ApplicationAppWidgetCreateComponent } from 'src/app/cms-modules/application/content/widget/create/widget-create.component';
 import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
+import { EstatePropertyWidgetComponent } from 'src/app/cms-modules/estate/property/widget/widget.component';
+import { EstatePropertyWidget2Component } from 'src/app/cms-modules/estate/property/widget/widget2.component';
+import { EstatePropertyWidgetAddComponent } from 'src/app/cms-modules/estate/property/widget/widget-add.component';
 // import { CmsFileManager2Module } from 'src/app/modules/filemanager/filemanager.module';
 
 @NgModule({
@@ -67,6 +71,9 @@ import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-ap
     CoreSiteWidgetModuleComponent,
     CoreUserWidgetComponent,
     CmsHtmlWidgetComponent,
+    EstatePropertyWidgetComponent,
+    EstatePropertyWidget2Component,
+    EstatePropertyWidgetAddComponent,
   ],
   exports: [
     CmsHtmlWidgetComponent
@@ -93,6 +100,7 @@ import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-ap
     NewsContentService,
     BiographyContentService,
     BlogContentService,
+    EstatePropertyService,
     ChartContentService,
     ArticleContentService,
     CoreSiteService,
