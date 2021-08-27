@@ -18,7 +18,8 @@
       <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email"
         [disabled]=" !formInfo.ButtonSubmittedEnabled" #Email type="text" autocomplete="off"
         class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4"
-        placeholder="{{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5" maxlength="50" required />
+        placeholder="{{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5"
+        maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.Email = ''">
         close</mat-icon>
@@ -54,7 +55,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
-        [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"
+        [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="number"
         class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4" autocomplete="off"
         placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
       <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
@@ -69,13 +70,13 @@
 
 
     <!--begin::Action-->
-    <div class="pb-lg-0 pb-5" >
+    <div class="pb-lg-0 pb-5">
       <button type="submit" [disabled]="vform.invalid || !formInfo.ButtonSubmittedEnabled"
         class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
         {{'AUTH.LOGIN.BUTTON' | translate}}
       </button>
-      
-     
+
+
       <br>
       <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
         class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">

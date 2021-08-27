@@ -15,8 +15,8 @@ export const environment = {
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
-    // configApiServerPath: 'https://apicms.ir/api/v1/',
-    configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+    configApiServerPath: 'https://apicms.ir/api/v1/',
+    // configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
     // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
     configFileServerPath: 'https://apifile.ir/api/v1/',
     // configRouteUploadFileContent: 'https://apicms.ir/api/v1/', // Test Api
@@ -25,10 +25,10 @@ export const environment = {
     configCpanelImages: '/cpanelv1/images/',
     configPathFileByIdAndName: 'https://oco.ir/files/',
     configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
-    // configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
-    configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
-    // configHtmlViewServerPath: 'https://ntkcms.com/',
-    configHtmlViewServerPath: 'https://localhost:2391/', // Test Api
+    configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
+    // configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
+    configHtmlViewServerPath: 'https://ntkcms.com/',
+    // configHtmlViewServerPath: 'https://localhost:2391/', // Test Api
     configRouteUploadFileContent: 'upload/',
   },
   cmsUiConfig: {

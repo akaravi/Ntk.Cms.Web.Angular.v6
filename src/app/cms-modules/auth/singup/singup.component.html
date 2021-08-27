@@ -14,7 +14,8 @@
       <div>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.FIRSTNAME' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Name" name="dataModel.Name" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Name type="text" autocomplete="off"
+          <input matInput [(ngModel)]="dataModel.Name" name="dataModel.Name"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #Name type="text" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
             placeholder=" {{'AUTH.INPUT.FIRSTNAME' | translate}}" minlength="3" maxlength="50" required />
           <mat-icon matSuffix *ngIf="dataModel.Name" matSuffix mat-icon-button aria-label="Clear"
@@ -28,7 +29,8 @@
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.LASTNAME' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Family" name="dataModel.Family" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Family type="text"
+          <input matInput [(ngModel)]="dataModel.Family" name="dataModel.Family"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #Family type="text"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
             placeholder=" {{'AUTH.INPUT.LASTNAME' | translate}}" minlength="3" maxlength="50" required />
           <mat-icon matSuffix *ngIf="dataModel.Family" matSuffix mat-icon-button aria-label="Clear"
@@ -43,7 +45,8 @@
 
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Email type="email" autocomplete="off"
+          <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #Email type="email" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
             placeholder=" {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
@@ -58,7 +61,8 @@
 
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password" [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="password"
+          <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
             placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="20" required />
           <mat-icon matSuffix *ngIf="dataModel.Password" matSuffix mat-icon-button aria-label="Clear"
@@ -71,14 +75,13 @@
           </mat-error>
         </mat-form-field>
 
-        <app-password-strength
-        [passwordToCheck]="dataModel.Password"
-        (passwordStrength)="passwordValid($event)"
-        ></app-password-strength>
+        <app-password-strength [passwordToCheck]="dataModel.Password" (passwordStrength)="passwordValid($event)">
+        </app-password-strength>
 
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.RePassword" name="dataModel.RePassword" [disabled]=" !formInfo.ButtonSubmittedEnabled" #RePassword type="password"
+          <input matInput [(ngModel)]="dataModel.RePassword" name="dataModel.RePassword"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #RePassword type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
             placeholder=" {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}" minlength="3" maxlength="20" required />
           <mat-icon matSuffix *ngIf="dataModel.RePassword" matSuffix mat-icon-button aria-label="Clear"
@@ -97,10 +100,11 @@
 
         <!--CaptchaText Field-->
         <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-        <mat-icon matSuffix (click)="onCaptchaOrder()" >refresh</mat-icon>
+        <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.CaptchaText"  name="dataModel.CaptchaText" [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"
+          <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="number"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
             placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
           <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
@@ -116,8 +120,7 @@
         <div class="form-group">
           <label class="checkbox mb-0">
             <input [(ngModel)]="Roulaccespt" name="Roulaccespt" type="checkbox"
-            [disabled]=" !formInfo.ButtonSubmittedEnabled"
-            />
+              [disabled]=" !formInfo.ButtonSubmittedEnabled" />
             <a (click)="onRoulaccespt()">
               {{'AUTH.REGISTER.AGREE_TERMS' | translate}}
             </a>

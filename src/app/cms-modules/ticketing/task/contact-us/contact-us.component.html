@@ -524,7 +524,7 @@
                   <mat-form-field class="ntk-full-width">
                     <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
                     <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
-                      [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="text"
+                      [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="number"
                       class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4"
                       autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
                     <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
@@ -570,7 +570,7 @@
                       برای پیگری های بعدی کد پیگیری را یاداشت نمایید.
                     </p>
                     <div [innerHTML]="this.dataModelResult.Item?.virtual_Departemen?.DefaultAnswerBody">
-                      
+
                     </div>
                   </div>
                   <!--end::Content-->

@@ -2,7 +2,7 @@
 
 <div class="login-form login-forgot">
   <!--begin::Form-->
-  <form *ngIf="forgetState=='sms'"  class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate"
+  <form *ngIf="forgetState=='sms'" class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate"
     #vformBySms="ngForm" (ngSubmit)="onActionSubmitOrderCodeBySms()" id="kt_login_forgot_form" [ngStyle]="{
       display: errorState === errorStates.NoError ? 'none' : 'block'
     }">
@@ -36,13 +36,13 @@
 
     <!--CaptchaText Field-->
     <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-    <mat-icon matSuffix (click)="onCaptchaOrder()" >refresh</mat-icon>
+    <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.CaptchaText"
         name="dataModelforgetPasswordBySms.CaptchaText" [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText
-        type="text" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
-        placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+        type="number" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+        autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModelAuthUserSignInBySms.CaptchaText = ''">
         close</mat-icon>
@@ -54,7 +54,7 @@
     <!--begin::Form group-->
     <div class="form-group d-flex flex-wrap pb-lg-0">
       <button type="submit" id="kt_login_forgot_submit"
-      [disabled]="vformBySms.invalid || !formInfo.ButtonSubmittedEnabled"
+        [disabled]="vformBySms.invalid || !formInfo.ButtonSubmittedEnabled"
         class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">
         {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}
       </button>
@@ -63,7 +63,7 @@
         {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
       </a>
 
-     
+
     </div>
     <!--end::Form group-->
     <br>
@@ -89,7 +89,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.SINGINBYSMS.PIN_CODE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.Code" name="dataModelAuthUserSignInBySms.Code"
-        [disabled]=" !formInfo.ButtonSubmittedEnabled" #Code type="text" autocomplete="off"
+        [disabled]=" !formInfo.ButtonSubmittedEnabled" #Code type="number" autocomplete="off"
         class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
         placeholder=" {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}" minlength="3" maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.Code" matSuffix mat-icon-button aria-label="Clear"
@@ -104,15 +104,15 @@
 
     <!--CaptchaText Field-->
     <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-    <mat-icon matSuffix (click)="onCaptchaOrder()" >refresh</mat-icon>
+    <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.CaptchaText"
-        name="dataModelAuthUserSignInBySms.CaptchaText" [disabled]=" !formInfo.ButtonSubmittedEnabled"
-        #CaptchaText type="text" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+        name="dataModelAuthUserSignInBySms.CaptchaText" [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText
+        type="number" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
         autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-      <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.CaptchaText" matSuffix mat-icon-button
-        aria-label="Clear" (click)="dataModelAuthUserSignInBySms.CaptchaText = ''">
+      <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModelAuthUserSignInBySms.CaptchaText = ''">
         close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="CaptchaText.errors?.required">
@@ -122,7 +122,7 @@
     <!--begin::Form group-->
     <div class="form-group d-flex flex-wrap pb-lg-0">
       <button type="submit" id="kt_login_forgot_submit"
-      [disabled]="vformEntryCode.invalid || !formInfo.ButtonSubmittedEnabled"
+        [disabled]="vformEntryCode.invalid || !formInfo.ButtonSubmittedEnabled"
         class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">
         {{'AUTH.SINGINBYSMS.LOGIN' | translate}}
       </button>
