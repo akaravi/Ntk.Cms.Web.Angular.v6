@@ -180,7 +180,7 @@ export class CmsSearchListComponent implements OnInit {
   onSetRules(): void {
 
   }
-  getSearchType(operator): number {
+  getSearchType(operator: string): number {
     switch (operator) {
       case 'equal':
         return 0;
@@ -205,5 +205,6 @@ export class CmsSearchListComponent implements OnInit {
       case 'greater_or_equal':
         return 10;
     }
+    return 0;
   }
 }

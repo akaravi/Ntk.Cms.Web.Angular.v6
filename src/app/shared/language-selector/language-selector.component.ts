@@ -91,7 +91,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  setLanguageWithRefresh(lang): void {
+  setLanguageWithRefresh(lang: string): void {
     this.setLanguage(lang);
     /** */
     if (this.tokenInfo && this.tokenInfo.UserId > 0) {
@@ -129,7 +129,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     /** */
   }
 
-  setLanguage(lang): void {
+  setLanguage(lang: string): void {
     this.languages.forEach((language: LanguageFlag) => {
       if (language.lang === lang) {
         language.active = true;

@@ -1,19 +1,25 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "strict": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": false,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "allowJs": true,
+    "checkJs": false,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2018", "dom"],
     "paths": {
       "ntk-cms-filemanager": [
         "dist/ntk-cms-filemanager/ntk-cms-filemanager",
@@ -22,7 +28,10 @@
     }
   },
   "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": false,
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
   }
 }

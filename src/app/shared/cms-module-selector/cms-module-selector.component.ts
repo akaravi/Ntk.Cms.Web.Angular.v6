@@ -147,7 +147,7 @@ export class CmsModuleSelectorComponent implements OnInit {
       return;
     }
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionSelect.emit(new CoreModuleModel());
   }
   push(newvalue: CoreModuleModel): Observable<CoreModuleModel[]> {
     return this.filteredOptions.pipe(map(items => {
