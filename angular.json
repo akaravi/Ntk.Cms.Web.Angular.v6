@@ -52,7 +52,6 @@
           "configurations": {
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
@@ -65,7 +64,6 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
@@ -92,8 +90,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "defaultConfiguration": "development",
           "options": {
-            "browserTarget": "ntk-cms-web:build",
-            "optimization": false
+            "browserTarget": "ntk-cms-web:build"
           },
           "configurations": {
             "production": {
