@@ -47,10 +47,18 @@ jobs:
         destination-github-username: 'akaravi'
         destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
         user-email: karavi.alireza@gmail.com
-        destination-repository-username : 
+        #destination-repository-username : 
         commit-message: See $GITHUB_REF
         target-branch: master
+    
+    - name: Webhook Sms
+      uses: joelwmale/webhook-action@master
+      with:
+        url: 'http://smsban.ir/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=${{ github.repository }} status is ${{ job.status }}'
+        #headers: '{"repository": "joelwmale/webhook-action"}'
+        #body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
         
+  
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY    
 
