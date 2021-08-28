@@ -15,7 +15,7 @@
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
 
-    <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionbuttonNewRowAuto()" type="button"
+    <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionbuttonNewRowAutoDependency()" type="button"
       class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.AUTOADD'|
       translate}} Dependency</button>
 

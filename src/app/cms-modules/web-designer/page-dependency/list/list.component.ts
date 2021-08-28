@@ -54,6 +54,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     private router: Router,
     private tokenHelper: TokenHelper,
     public http: HttpClient,
+    private coreAuthService: CoreAuthService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
@@ -226,8 +227,11 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
-      data: { LinkModuleId: this.categoryModelSelected.Id }
+      data: {
+        LinkModuleId: this.categoryModelSelected.Id
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -235,9 +239,11 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       }
     });
   }
-  onActionbuttonNewRowAuto(): any {
-
-    return this.http.get(environment.apiUrl + '/HtmlBuilder/AutoAdd', {
+  onActionbuttonNewRowAutoDependency(): any {
+    debugger
+    // const userToken = this.coreAuthService.getUserToken();
+    // const aaaa = this.webDesignerMainPageDependencyService.getHeaders();
+    return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
       headers: this.webDesignerMainPageDependencyService.getHeaders(),
     })
       .pipe(
