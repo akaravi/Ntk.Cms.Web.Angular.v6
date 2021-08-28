@@ -19,7 +19,6 @@
           "defaultConfiguration": "production",
           "options": {
             "outputPath": "dist/ntk-cms-web",
-            "showCircularDependencies": false,
             "allowedCommonJsDependencies": [
               "lodash",
               "object-path",
@@ -54,7 +53,7 @@
               "buildOptimizer": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
+              "sourceMap": false,
               "namedChunks": true
             },
             "production": {
