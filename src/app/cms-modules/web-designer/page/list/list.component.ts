@@ -405,7 +405,7 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const urlTemplate = environment.cmsServerConfig.configHtmlViewServerPath + 'page/' + model.Id + '?RenderViewPageByMaster=true&preview=true';
+    const urlTemplate = environment.cmsServerConfig.configMvcServerPath + 'page/' + model.Id + '?RenderViewPageByMaster=true&preview=true';
     // this.document.location.href = urlTemplate;
     window.open(urlTemplate, '_blank');
   }
@@ -425,7 +425,7 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    const urlTemplate = environment.cmsServerConfig.configHtmlViewServerPath + 'page/' + model.Id + '?RenderViewPageByMaster=false&preview=true';
+    const urlTemplate = environment.cmsServerConfig.configMvcServerPath + 'page/' + model.Id + '?RenderViewPageByMaster=false&preview=true';
     // this.document.location.href = urlTemplate;
     window.open(urlTemplate, '_blank');
   }

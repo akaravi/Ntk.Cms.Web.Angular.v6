@@ -13,13 +13,10 @@ export const environment = {
   cmsServerConfig: {
     configApiRetry: 1,
     configApiServerPath: 'https://apicms.ir/api/v1/',
-    configMvcServerPath: 'https://oco.ir',
+    configMvcServerPath: 'https://oco.ir/',
     configFileServerPath: 'https://apifile.ir/api/v1/',
-    configCpanelImages: '/cpanelv1/images/',
-    configPathFileByIdAndName: 'https://oco.ir/files/',
     configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
     configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
-    configHtmlViewServerPath: 'https://ntkcms.com/',
     configRouteUploadFileContent: 'upload/',
   },
   cmsUiConfig: {
