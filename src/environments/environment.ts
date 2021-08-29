@@ -15,16 +15,16 @@ export const environment = {
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
-    // configApiServerPath: 'https://apicms.ir/api/v1/',
-    configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+    configApiServerPath: 'https://apicms.ir/api/v1/',
+    // configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
     // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
     configFileServerPath: 'https://apifile.ir/api/v1/',
     // configRouteUploadFileContent: 'http://localhost:2392/api/v1/' // Test Api
-    // configMvcServerPath: 'https://ntkcms.com/',
-    configMvcServerPath: 'http://localhost:2391/', // Test Api
+    configMvcServerPath: 'https://ntkcms.com/',
+    // configMvcServerPath: 'http://localhost:2391/', // Test Api
     configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
-    // configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
-    configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
+    configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
+    // configHtmlBuilderServerPath: 'http://localhost:5000/', // Test Api
     configRouteUploadFileContent: 'upload/',
   },
   cmsUiConfig: {
