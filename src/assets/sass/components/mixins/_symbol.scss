@@ -20,17 +20,17 @@
     .symbol-badge {
         width: $badge-size;
         height: $badge-size;
-        top: -($badge-size/2);
-        right: -($badge-size/2);
+        top: -($badge-size*0.5);
+        right: -($badge-size*0.5);
 
         &.symbol-badge-bottom {
             top: auto;
-            bottom: -($badge-size/2);
+            bottom: -($badge-size*0.5);
         }
     }
 
     &.symbol-circle {
-        $distance: ($size / 2) * (1.41 - 1) - $badge-size;
+        $distance: ($size * 0.5) * (1.41 - 1) - $badge-size;
 
         .symbol-badge {
             top: $distance;
@@ -60,12 +60,12 @@
     &.symbol-2by3 {
         .symbol-label {
             height: $size;
-            width:  $size * 3/2;
+            width:  $size * 3*0.5;
         }
 
         > img {
             height: $size;
-            width:  $size * 3/2;
+            width:  $size * 3*0.5;
             max-width: auto;
         }
     }

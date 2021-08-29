@@ -22,8 +22,7 @@
             "allowedCommonJsDependencies": [
               "lodash",
               "object-path",
-              "apexcharts",
-              "highlight.js"
+              "apexcharts"
             ],
             "index": "src/index.html",
             "main": "src/main.ts",

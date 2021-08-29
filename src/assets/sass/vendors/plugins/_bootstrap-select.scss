@@ -108,7 +108,7 @@ $bootstrap-select-title-padding: 10px 15px;
                     .check-mark {
                         top: 50%;
                         position: absolute;
-                        margin-top: - (0.8rem / 2) ;
+                        margin-top: - (0.8rem * 0.5) ;
                         font-size: 0.7rem;
                         right: $input-btn-padding-x;
 

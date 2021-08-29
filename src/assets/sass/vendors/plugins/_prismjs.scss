@@ -103,7 +103,7 @@ $example-spacer-x: 1.5rem;
         .example-copy {
             position: absolute;
             top: 0.25rem;
-            right: $example-spacer-x / 2;
+            right: $example-spacer-x * 0.5;
 
             &:hover {
                 color: $primary;

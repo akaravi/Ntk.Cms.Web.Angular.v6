@@ -14,16 +14,13 @@
     <div>
       <!--begin::Code example-->
       <div class="example-code mb-5">
-        <ul
-          ngbNav
-          #nav="ngbNav"
-          class="example-nav nav nav-tabs nav-bold nav-tabs-line nav-tabs-line-2x"
-        >
+        <ul ngbNav #nav="ngbNav" class="example-nav nav nav-tabs nav-bold nav-tabs-line nav-tabs-line-2x">
           <li *ngIf="viewItem.htmlCode" ngbNavItem class="nav-item">
             <a ngbNavLink class="nav-link">HTML</a>
             <ng-template ngbNavContent>
               <div class="example-highlight">
-                <pre><code [highlight]="viewItem.htmlCode"></code></pre>
+                <!-- <pre><code [highlight]="viewItem.htmlCode"></code></pre> -->
+                <pre><code >{{viewItem.htmlCode}}</code></pre>
               </div>
             </ng-template>
           </li>
@@ -31,7 +28,9 @@
             <a ngbNavLink class="nav-link">TypeScript</a>
             <ng-template ngbNavContent>
               <div class="example-highlight">
-                <pre><code [highlight]="viewItem.tsCode"></code></pre>
+                <!-- <pre><code [highlight]="viewItem.tsCode"></code></pre> -->
+
+                <pre><code >{{viewItem.tsCode}}</code></pre>
               </div>
             </ng-template>
           </li>
@@ -39,7 +38,9 @@
             <a ngbNavLink class="nav-link">CSS</a>
             <ng-template ngbTabContent>
               <div class="example-highlight">
-                <pre><code [highlight]="viewItem.cssCode"></code></pre>
+                <!-- <pre><code [highlight]="viewItem.cssCode"></code></pre> -->
+
+                <pre><code >{{viewItem.cssCode}}</code></pre>
               </div>
             </ng-template>
           </li>
@@ -47,7 +48,9 @@
             <a ngbNavLink class="nav-link">SASS</a>
             <ng-template ngbTabContent>
               <div class="example-highlight">
-                <pre><code [highlight]="viewItem.scssCode"></code></pre>
+                <!-- <pre><code [highlight]="viewItem.scssCode"></code></pre> -->
+
+                <pre><code >{{viewItem.scssCode}}</code></pre>
               </div>
             </ng-template>
           </li>
@@ -56,7 +59,9 @@
             <a ngbNavLink class="nav-link">JSON</a>
             <ng-template ngbTabContent>
               <div class="example-highlight">
-                <pre><code [highlight]="viewItem.jsonCode"></code></pre>
+                <!-- <pre><code [highlight]="viewItem.jsonCode"></code></pre> -->
+
+                <pre><code >{{viewItem.jsonCode}}</code></pre>
               </div>
             </ng-template>
           </li>
@@ -71,19 +76,13 @@
       <!-- / view -->
 
       <!-- after Code Title -->
-      <div
-        *ngIf="viewItem.afterCodeTitle"
-        class="kt-portlet__preview"
-        [innerHTML]="viewItem.afterCodeTitle | safe: 'html'"
-      ></div>
+      <div *ngIf="viewItem.afterCodeTitle" class="kt-portlet__preview"
+        [innerHTML]="viewItem.afterCodeTitle | safe: 'html'"></div>
       <!-- / after Code Title -->
 
       <!-- after Code Description -->
-      <div
-        *ngIf="viewItem.afterCodeDescription"
-        class="kt-portlet__preview"
-        [innerHTML]="viewItem.afterCodeDescription | safe: 'html'"
-      ></div>
+      <div *ngIf="viewItem.afterCodeDescription" class="kt-portlet__preview"
+        [innerHTML]="viewItem.afterCodeDescription | safe: 'html'"></div>
     </div>
   </div>
 </div>

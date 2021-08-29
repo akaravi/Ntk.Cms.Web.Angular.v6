@@ -17,7 +17,8 @@ ng build --prod --source-map
 ng serve  --open
 ===================RTL
 npm run rtl
-
+=========================================
+npm rebuild node-sass 
 
 =========================================Update all npm
 npm i -g npm-check-updates

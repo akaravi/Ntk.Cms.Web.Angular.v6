@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { NgbNavModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { InlineSVGModule } from 'ng-inline-svg';
@@ -13,7 +12,6 @@ import { CoreModule } from '../../../core';
   imports: [
     CommonModule,
     CoreModule,
-    HighlightModule,
     PerfectScrollbarModule,
     // ngbootstrap
     NgbNavModule,

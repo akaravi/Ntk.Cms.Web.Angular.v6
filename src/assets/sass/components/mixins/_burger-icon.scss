@@ -30,7 +30,7 @@
   		position: absolute;
 		@include border-radius(get($config, radius));
 		transition: get($config, transition);
-  		top: (get($config, height) / 2) - (get($config, thickness)) + 1px;
+  		top: (get($config, height) * 0.5) - (get($config, thickness)) + 1px;
   		height: get($config, thickness);
   		min-height: get($config, thickness);
   		width: 100%;

@@ -12,7 +12,7 @@
 		z-index: 0;
 		content: '';
 		position: absolute;
-		left: get($timeline-config, time-width) + get($timeline-config, badge-width) / 2 - 2px;
+		left: get($timeline-config, time-width) + get($timeline-config, badge-width) * 0.5 - 2px;
 		width: 4px;
 		top: 0;
 		bottom: 0;

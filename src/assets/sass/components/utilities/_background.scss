@@ -58,7 +58,7 @@
 	// Opacity
 	@for $opacity from 1 through 20 {
 		.bg-#{$color}-o-#{$opacity * 5} {
-			background-color: rgba($value, ($opacity * 20 / 1000)) !important;
+			background-color: rgba($value, ($opacity * 20 * 0.001)) !important;
 		}
 
 		.bg-hover-#{$color}-o-#{$opacity} {
@@ -67,7 +67,7 @@
 
 			&:hover {
 				transition: $transition;
-				background-color: rgba($value, $opacity * 20 / 100) !important;
+				background-color: rgba($value, $opacity * 20 * 0.01) !important;
 			}
 		}
 	}

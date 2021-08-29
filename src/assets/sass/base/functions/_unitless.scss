@@ -3,9 +3,11 @@
 //
 
 
+@use "sass:math";
+
 @function unitless($number) {
     @if type-of($number) == 'number' and not unitless($number) {
-        @return $number / ($number * 0 + 1);
+        @return math.div($number, $number * 0 + 1);
     }
 
     @return $number;

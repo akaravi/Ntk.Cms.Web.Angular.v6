@@ -12,8 +12,7 @@ import { AppComponent } from './app.component';
 import { AuthService } from './modules/auth/_services/auth.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// Highlight JS
-import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+
 import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/splash-screen.module';
 import { TeardownLogic } from 'rxjs';
 import { SharedModule } from './shared/shared.module';
@@ -59,7 +58,6 @@ export function CreateTranslateLoader(http: HttpClient): any {
       }
     }),
     HttpClientModule,
-    HighlightModule,
     ClipboardModule,
     // environment.isMockEnabled
     //   ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
@@ -80,18 +78,6 @@ export function CreateTranslateLoader(http: HttpClient): any {
       useFactory: appInitializer,
       multi: true,
       deps: [AuthService],
-    },
-    {
-      provide: HIGHLIGHT_OPTIONS,
-      useValue: {
-        coreLibraryLoader: () => import('highlight.js/lib/core'),
-        languages: {
-          xml: () => import('highlight.js/lib/languages/xml'),
-          typescript: () => import('highlight.js/lib/languages/typescript'),
-          scss: () => import('highlight.js/lib/languages/scss'),
-          json: () => import('highlight.js/lib/languages/json')
-        },
-      },
     },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
