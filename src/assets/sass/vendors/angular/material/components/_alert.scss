@@ -1,6 +1,7 @@
-//
+/*/
 // Alert
 //
+*/
 
 .mat-alert {
     display: flex;
@@ -45,7 +46,7 @@
         }
     }
 
-    // States
+    /*/ States */
     &.mat-alert-warn {
         background: lighten($danger, 8%);
     }
@@ -58,7 +59,7 @@
         background: lighten($success, 8%);
     }
 
-    // Marginless
+    /*/ Marginless */
     &.mat-alert-marginless {
         margin: 0;
     }

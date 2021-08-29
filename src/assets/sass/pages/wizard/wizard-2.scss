@@ -1,34 +1,35 @@
-//
+/*
 // Wizard 2
 // Pages SASS files are compiled into separate css files
 //
 
 // Initialization of global variables, mixins and functions
+ */
 @import "../../init";
 
 
-// Variables
+/* Variables */
 $wizard-nav-width: 400px;
 $wizard-nav-width-sm: 325px;
 
-// Base
+/* Base */
 .wizard.wizard-2 {
 	display: flex;
 
-	// Nav
+	/* Nav */
 	.wizard-nav {
 		padding: 0;
 		flex: 0 0 $wizard-nav-width;
 		width: $wizard-nav-width;
 		max-width: 100%;
 
-		// Steps
+		/* Steps */
 		.wizard-steps {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 
-			// Step
+			/* Step */
 			.wizard-step {
 				padding: 0.75rem 1.5rem;
 				position: relative;
@@ -111,17 +112,17 @@ $wizard-nav-width-sm: 325px;
 		}
 	}
 
-	// Body
+	/* Body */
 	.wizard-body {
 		width: 100%;
 	}
 }
 
-// Custom desktop range
+/* Custom desktop range */
 @include media-breakpoint-between(lg, xl) {
-	// Base
+	/* Base */
 	.wizard.wizard-2 {
-		// Nav
+		/* Nav */
 		.wizard-nav {
 			flex: 0 0 $wizard-nav-width-sm;
 			width: $wizard-nav-width-sm;
@@ -129,12 +130,12 @@ $wizard-nav-width-sm: 325px;
 	}
 }
 
-// Tablet and mobile mode
+/* Tablet and mobile mode */
 @include media-breakpoint-down(md) {
 	.wizard.wizard-2 {
 		display: block;
 
-		// Nav
+		/* Nav */
 		.wizard-nav {
 			width: 100%;
 			border-bottom: 1px solid $border-color;
@@ -150,7 +151,7 @@ $wizard-nav-width-sm: 325px;
 			}
 		}
 
-		// Body
+		/* Body */
 		.wizard-body {
 			width: 100%;
 		}

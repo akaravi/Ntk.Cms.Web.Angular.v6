@@ -1,27 +1,27 @@
-//
+/*
 // Login 5
 // Pages SASS files are compiled into separate css files
-//
+*/
 
-// Initialization of global variables, mixins and functions
+/*/ Initialization of global variables, mixins and functions */
 @import "../../init";
 
 .login.login-4 {
-    // Container
+    /*/ Container */
     .login-container {
         .login-content {
             width: 450px;
 
-            // Wizard Nav
+            /*/ Wizard Nav */
             .wizard-nav {
                 padding: 0;
 
-                // Steps
+                /*/ Steps */
                 .wizard-steps {
                     display: flex;
                     align-items: center;
 
-                    // Step
+                    /*/ Step */
                     .wizard-step {
                         padding: 0.75rem 0;
                         transition: $transition-link;
@@ -72,7 +72,7 @@
                             }
                         }
 
-                        // Done States
+                        /*/ Done States */
                         &[data-wizard-state="done"] {
                             .wizard-icon {
                                 transition: $transition-link;
@@ -99,7 +99,7 @@
                             }
                         }
 
-                        // Current States
+                        /*/ Current States */
                         &[data-wizard-state="current"] {
                             transition: $transition-link;
 
@@ -137,7 +137,7 @@
         }
     }
 
-    // Aside
+    /*/ Aside */
     .login-aside {
         background: linear-gradient(147.04deg, #CA7B70 0.74%, #5A2119 99.61%);
          width: 700px;
@@ -148,10 +148,10 @@
     }
 }
 
-// Desktop view
+/*/ Desktop view */
 @include media-breakpoint-up(lg) {
     .login.login-4 {
-        // Aside
+        /*/ Aside */
         .login-aside {
             .login-conteiner {
                 min-height: 610px !important;
@@ -161,10 +161,10 @@
     }
 }
 
-// Tablet and Mobile mode
+/*/ Tablet and Mobile mode */
 @include media-breakpoint-between(lg, xl) {
     .login.login-4 {
-        // Aside
+        /*/ Aside */
         .login-aside {
             .login-conteiner {
                 min-height: 420px !important;
@@ -174,19 +174,19 @@
     }
 }
 
-// Tablet & Mobile Modes
+/*/ Tablet & Mobile Modes */
 @include media-breakpoint-down(md) {
     .login.login-4 {
-        // Container
+        /*/ Container */
         .login-container {
-            // Wizard Nav
+            /*/ Wizard Nav */
     	    .wizard-nav {
         		padding: 0;
                 align-content: center;
 
-        		// Steps
+        		/*/ Steps */
         		.wizard-steps {
-    			    // Step
+    			    /*/ Step */
     			    .wizard-step {
                         margin-bottom: .5rem;
                     }
@@ -194,7 +194,7 @@
             }
         }
 
-        // Aside
+        /*/ Aside */
         .login-aside {
             width: 100% !important;
 
@@ -206,15 +206,15 @@
     }
 }
 
-// Mobile mode
+/*/ Mobile mode */
 @include media-breakpoint-down(xs) {
     .login.login-4 {
-        // Container
+        /*/ Container */
         .login-container {
             width: 100%;
-            // Wizard
+            /*/ Wizard */
             .wizard-nav {
-               // Steps
+               /*/ Steps */
                .wizard-steps {
                    display: flex;
                    flex-direction: column;
@@ -240,7 +240,7 @@
             }
         }
 
-        // Aside
+        /*/ Aside */
         .login-aside {
             width: 100% !important;
         }
@@ -249,7 +249,7 @@
 
 @media (max-width: 1800px) {
     .login.login-4 {
-        // Aside
+        /*/ Aside */
         .login-aside {
              width: 600px;
         }

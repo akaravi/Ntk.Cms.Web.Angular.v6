@@ -1,25 +1,26 @@
-//
+/*
 // Wizard 6
 // Pages SASS files are compiled into separate css files
 //
 
 // Initialization of global variables, mixins and functions
+ */
 @import "../../init";
 
 .wizard.wizard-6 {
-    // Content
+    /*/ Content */
     .wizard-content {
 
-        // Wizard Nav
+        /*/ Wizard Nav */
         .wizard-nav {
             padding: 0;
 
-            // Steps
+            /*/ Steps */
             .wizard-steps {
                 display: flex;
                 align-items: center;
 
-                // Step
+                /*/ Step */
                 .wizard-step {
                     padding: 0.75rem 0;
                     transition: $transition-link;
@@ -70,7 +71,7 @@
                         }
                     }
 
-                    // Current States
+                    /*/ Current States */
     				&[data-wizard-state="current"] {
     					transition: $transition-link;
 
@@ -99,7 +100,7 @@
         				}
     				}
 
-                    // Done States
+                    /*/ Done States */
                     &[data-wizard-state="current"]:last-child,
                     &[data-wizard-state="done"] {
                         .wizard-icon {
@@ -132,14 +133,14 @@
     }
 }
 
-// Mobile mode
+/*/ Mobile mode */
 @include media-breakpoint-down(sm) {
     .wizard.wizard-6 {
-        // Container
+        /*/ Container */
         .wizard-content {
-            // Wizard
+            /*/ Wizard */
             .wizard-nav {
-               // Steps
+               /*/ Steps */
                .wizard-steps {
                    .wizard-step {
                        width: 100%;

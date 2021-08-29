@@ -1,9 +1,9 @@
-//
+/*/
 // Dropzone
-//
+*/
 
 
-// Base
+/*/ Base */
 .dropzone {
     min-height: auto;
 }
@@ -52,7 +52,7 @@
         }
     }
 
-	// State colors
+	/*/ State colors */
 	@each $name, $color in $theme-colors {
 		&.dropzone-#{$name} {
 			border-color: $color;
@@ -60,7 +60,7 @@
 	}
 }
 
-// Multipe upload
+/*/ Multipe upload */
 .dropzone.dropzone-multi {
     border: 0;
     padding: 0;

@@ -1,9 +1,9 @@
-//
+/*
 // NoUiSlider
-//
+*/
 
 
-// Base
+/* Base */
 .noUi-target {
     border: 1px solid $input-border-color;
     background: $gray-100;
@@ -15,7 +15,7 @@
         .noUi-handle {
             width: 24px;
             height: 24px;
-            //left: -17px;
+            /*/left: -17px; */
             top: -6px;
             border-radius: 50%;
             outline: none;
@@ -60,7 +60,7 @@
         box-shadow: 0 3px 6px -3px rgba(#000, 0.7);
     }
 
-    // Light option
+    /*/ Light option */
     &.nouislider-light{
         height: 4px;
 
@@ -71,7 +71,7 @@
         }
     }
 
-    // State colors
+    /*/ State colors */
     &.nouislider {
         @each $name, $color in $theme-colors {
             &.nouislider-connect-#{$name} {
@@ -98,14 +98,14 @@
         }
     }
 
-    // No Shadow
+    /*/ No Shadow */
     &.nouislider-shadowless{
         .noUi-handle {
             box-shadow: none;
         }
     }
 
-    // No Border
+    /*/ No Border */
     &.nouislider-borderless{
         border: 0;
     }

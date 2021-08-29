@@ -1,28 +1,28 @@
-//
+/*
 // Login 5
 // Pages SASS files are compiled into separate css files
-//
+*/
 
-// Initialization of global variables, mixins and functions
+/* Initialization of global variables, mixins and functions */
 @import "../../init";
 
 .login.login-5 {
-    // Aside
+    /* Aside */
     .login-aside {
         background-color: $white;
         box-shadow: 0px 0px 40px rgba(177, 187, 208, 0.15);
 
-        // Wizard Nav
+        /* Wizard Nav */
 	    .wizard-nav {
     		padding: 0;
 
-    		// Steps
+    		/* Steps */
     		.wizard-steps {
     			display: flex;
     			flex-direction: column;
     			justify-content: center;
 
-    			// Step
+    			/*/ Step */
     			.wizard-step {
     				padding: 0.75rem 0;
     				transition: $transition-link;
@@ -77,7 +77,7 @@
     					}
     				}
 
-                    // Done States
+                    /*/ Done States */
                     &[data-wizard-state="done"] {
                         .wizard-icon {
     						transition: $transition-link;
@@ -104,7 +104,7 @@
         				}
                     }
 
-                    // Current States
+                    /*/ Current States */
     				&[data-wizard-state="current"] {
     					transition: $transition-link;
 
@@ -142,7 +142,7 @@
         }
     }
 
-    // Content
+    /*/ Content */
     .login-content {
         background-color: #F3F5F9;
 
@@ -155,7 +155,7 @@
     }
 }
 
-// Desktop view
+/*/ Desktop view */
 @include media-breakpoint-up(lg) {
     .login.login-5 {
         .login-aside {
@@ -196,7 +196,7 @@
     }
 }
 
-// Tablet and Mobile mode
+/*/ Tablet and Mobile mode */
 @include media-breakpoint-between(lg, xl) {
     .login.login-5 {
         .login-aside {
@@ -206,7 +206,7 @@
     }
 }
 
-// Tablet & Mobile Modes
+/*/ Tablet & Mobile Modes */
 @include media-breakpoint-down(md) {
     .login.login-5 {
         .login-aside {
@@ -215,19 +215,19 @@
                 background-size: 500px;
             }
 
-            // Logo
+            /*/ Logo */
             .login-logo  {
                 text-align: center;
             }
 
-            // Wizard Nav
+            /*/ Wizard Nav */
     	    .wizard-nav {
         		padding: 0;
                 align-content: center;
 
-        		// Steps
+        		/*/ Steps */
         		.wizard-steps {
-    			    // Step
+    			    /*/ Step */
     			    .wizard-step {
                        margin-bottom: .5rem;
 
@@ -263,7 +263,7 @@
     }
 }
 
-// Mobile mode
+/*/ Mobile mode */
 @include media-breakpoint-down(xs) {
     .login.login-5 {
         .login-aside {

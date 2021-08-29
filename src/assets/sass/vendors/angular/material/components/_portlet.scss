@@ -1,6 +1,6 @@
-// Portlets
+/*/ Portlets */
 .kt-portlet {
-	// Angular source code previewer
+	/*/ Angular source code previewer */
     &.kt-portlet--ngviewer {
         .kt-portlet__body {
             padding: 0;
@@ -35,7 +35,7 @@
         }  
     }  
 
-    // Portlet progress bar
+    /*/ Portlet progress bar */
     .kt-portlet__progress-bar__wrapper {
         height: 5px;
     }
@@ -44,7 +44,7 @@
         height: 5px;
     }
 
-    // Tools
+    /*/ Tools */
     .kt-portlet__head-tools {
         button {
             margin-left: 5px;
@@ -97,7 +97,7 @@
 		}
 	}
 
-	// TODO
+	/*/ TODO */
 	&__head__custom {
 		.kt-portlet__head-label {
 			display: flex;
@@ -107,11 +107,11 @@
 			margin-bottom: 0;
 		}
 	}
-	// TODO
+	/*/ TODO */
 }
 
 
-// remove ng-boostrap dropdown arrow
+/*/ remove ng-boostrap dropdown arrow */
 [ngbdropdowntoggle]::after {
 	display: none !important;
 }

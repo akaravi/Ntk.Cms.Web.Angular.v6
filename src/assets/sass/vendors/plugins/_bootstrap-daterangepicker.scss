@@ -1,10 +1,10 @@
-//
+/*
 // Bootstrap Daterangepicker
-//
+*/
 
 
 
-// Base
+/* Base */
 .daterangepicker {
     padding: 0;
     margin: 0;
@@ -187,7 +187,7 @@
     }
 }
 
-// Mobile mode
+/*/ Mobile mode */
 @include media-breakpoint-down(sm) {
     .daterangepicker {
         &.show-calendar {

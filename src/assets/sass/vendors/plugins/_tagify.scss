@@ -1,6 +1,6 @@
-//
+/*/
 // Tagify
-//
+/*/
 
 
 .tagify {
@@ -77,7 +77,7 @@
 
 
 
-        // State colors
+        /*/ State colors */
         @each $name, $color in $theme-colors {
             &.tagify__tag--#{$name}:not(.tagify--notAllowed) {
                  background-color: $color;
@@ -132,7 +132,7 @@
              }
         }
 
-        // Not Allowed Mode
+        /*/ Not Allowed Mode */
         &.tagify--notAllowed {
             background-color: $danger;
 

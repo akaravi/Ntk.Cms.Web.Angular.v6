@@ -1,9 +1,9 @@
-//
+/*
 // Markdown
-//
+*/
 
 
-// Base
+/*/ Base */
 .md-editor {
     outline: none !important;
     @include border-top-left-radius($border-radius);
@@ -67,7 +67,7 @@
     }
 }
 
-// Validation
+/*/ Validation */
 .is-valid {
     .md-editor {
         border-color: $success;

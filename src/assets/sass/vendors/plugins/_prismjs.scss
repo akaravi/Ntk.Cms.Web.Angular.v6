@@ -1,15 +1,15 @@
-//
+/*
 // Prismjs
-//
+*/
 
 
-// Variables
+/*/ Variables */
 $example-spacer-y: 1.75rem;
 $example-spacer-x: 1.5rem;
 
-// Example
+/*/ Example */
 .example {
-    // Base
+    /*/ Base */
     .example-tools {
         display: flex;
         justify-content: flex-end;
@@ -159,7 +159,7 @@ $example-spacer-x: 1.5rem;
         }
     }
 
-    // Compact mode
+    /*/ Compact mode */
     &.example-compact {
         position: relative;
 

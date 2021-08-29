@@ -1,13 +1,13 @@
-//
+/*
 // Bootstrap Select
-//
+*/
 
 
-// Variables
+/*/ Variables */
 $bootstrap-select-general-padding: 10px 15px;
 $bootstrap-select-title-padding: 10px 15px;
 
-// Base
+/*/ Base */
  .bootstrap-select {
     > .dropdown-toggle {
         position: relative;
@@ -207,7 +207,7 @@ $bootstrap-select-title-padding: 10px 15px;
         padding: $bootstrap-select-general-padding;
     }
 
-    // menu shown state
+    /*/ menu shown state */
     &.show {
         > .dropdown-toggle {
             &.btn-light,
@@ -217,7 +217,7 @@ $bootstrap-select-title-padding: 10px 15px;
         }
     }
 
-    // Validation
+    /*/ Validation */
     &.is-invalid {
         .btn.dropdown-toggle {
             border-color: $danger;
@@ -231,7 +231,7 @@ $bootstrap-select-title-padding: 10px 15px;
         }
     }
 
-    // menu header
+    /*/ menu header */
     .popover-title {
         background: $gray-100;
         border: 0;
@@ -249,7 +249,7 @@ $bootstrap-select-title-padding: 10px 15px;
     }
 }
 
-// Display inside content
+/*/ Display inside content */
 .content {
      .bootstrap-select {
          .dropdown-menu {

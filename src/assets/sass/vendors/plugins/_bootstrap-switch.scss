@@ -1,6 +1,6 @@
-//
+/*
 // Bootstrap Switch
-//
+*/
 
 
 [data-switch=true] {
@@ -13,7 +13,7 @@
         border-color: $input-border-color;
     }
 
-    // Label
+    /*/ Label */
     .bootstrap-switch-label {
         background: $white;
     }
@@ -82,13 +82,13 @@
 .bootstrap-switch {
     border-color: $input-border-color;
 
-    // Label
+    /*/ Label */
     .bootstrap-switch-label {
         color: $dark-75;
         background: #fff;
     }
 
-    // State colors
+    /*/ State colors */
     @each $name, $color in $theme-colors {
         .bootstrap-switch-handle-on.bootstrap-switch-#{$name},
         .bootstrap-switch-handle-off.bootstrap-switch-#{$name} {
@@ -98,7 +98,7 @@
         }
     }
 
-    // Default state
+    /*/ Default state */
     .bootstrap-switch-handle-on.bootstrap-switch-default,
     .bootstrap-switch-handle-off.bootstrap-switch-default {
         background-color: $input-border-color;

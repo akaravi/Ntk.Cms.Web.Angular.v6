@@ -1,11 +1,11 @@
-//
+/*
 // Toastr
-//
+*/
 
 
 
 
-// Base
+/*/ Base */
 .toast {
     transition: $transition;
     background-position: 15px center #{'/*rtl:calc(100% - 15px) center*/'} !important;
@@ -30,19 +30,19 @@
         }
 	}
 
-	// Title
+	/*/ Title */
 	.toast-title {
 		font-size: 1.1rem;
 		font-weight: 500;
 		margin-bottom: 0.25rem;
 	}
 
-	// Message
+	/*/ Message */
 	.toast-message {
 		font-size: 1rem;
 	}
 
-    // States
+    /*/ States */
     &.toast-success {
         background-color: $success;
         color: $success-inverse;

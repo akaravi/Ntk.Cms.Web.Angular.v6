@@ -1,6 +1,6 @@
-//
+/*
 // Bootstrap Notify
-//
+*/
 
 
 .alert[data-notify] {
@@ -28,12 +28,12 @@
         }
     }
 
-    // Tablet mode
+    /*/ Tablet mode */
     @include media-breakpoint-down(md) {
         max-width: 70%;
     }
 
-    // Mobile mode
+    /*/ Mobile mode */
     @include media-breakpoint-down(md) {
         max-width: 90%;
     }
@@ -42,12 +42,12 @@
     &[data-notify-position=bottom-center] {
         width: 30%;
 
-        // Tablet mode
+        /*/ Tablet mode */
         @include media-breakpoint-down(md) {
             width: 70%;
         }
 
-        // Mobile mode
+        /*/ Mobile mode */
         @include media-breakpoint-down(md) {
             width: 90%;
         }

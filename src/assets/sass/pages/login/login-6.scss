@@ -1,24 +1,24 @@
-//
+/*
 // Login 5
 // Pages SASS files are compiled into separate css files
-//
+*/
 
-// Initialization of global variables, mixins and functions
+/*/ Initialization of global variables, mixins and functions */
 @import "../../init";
 
 .login.login-6 {
-    // Content
+    /*/ Content */
     .login-content {
-        // Wizard Nav
+        /*/ Wizard Nav */
 	    .wizard-nav {
     		padding: 0;
 
-    		// Steps
+    		/*/ Steps */
     		.wizard-steps {
     			display: flex;
     		    align-items: center;
 
-    			// Step
+    			/*/ Step */
     			.wizard-step {
     				padding: 0.75rem 0;
     				transition: $transition-link;
@@ -69,7 +69,7 @@
     					}
     				}
 
-                    // Done States
+                    /*/ Done States */
                     &[data-wizard-state="done"] {
                         .wizard-icon {
     						transition: $transition-link;
@@ -96,7 +96,7 @@
         				}
                     }
 
-                    // Current States
+                    /*/ Current States */
     				&[data-wizard-state="current"] {
     					transition: $transition-link;
 
@@ -129,13 +129,13 @@
 	    }
     }
 
-    // Aside
+    /*/ Aside */
     .login-aside {
 
     }
 }
 
-// Desktop view
+/*/ Desktop view */
 @include media-breakpoint-up(lg) {
     .login.login-6 {
         .login-content {
@@ -169,7 +169,7 @@
     }
 }
 
-// Tablet and Mobile mode
+/*/ Tablet and Mobile mode */
 @include media-breakpoint-between(lg, xl) {
     .login.login-6 {
         .login-aside {
@@ -194,7 +194,7 @@
     }
 }
 
-// Tablet & Mobile Modes
+/*/ Tablet & Mobile Modes */
 @include media-breakpoint-down(md) {
     .login.login-6 {
         .login-content {
@@ -202,14 +202,14 @@
                 width: 70%;
             }
 
-            // Wizard Nav
+            /*/ Wizard Nav */
     	    .wizard-nav {
         		padding: 0;
                 align-content: center;
 
-        		// Steps
+        		/*/ Steps */
         		.wizard-steps {
-    			    // Step
+    			    /*/ Step */
     			    .wizard-step {
                        margin-bottom: .5rem;
 
@@ -238,7 +238,7 @@
     }
 }
 
-// Mobile mode
+/*/ Mobile mode */
 @include media-breakpoint-down(xs) {
     .login.login-6 {
         .login-content {

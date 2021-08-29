@@ -1,22 +1,23 @@
-//
+/*
 // Wizard 1
 // Pages SASS files are compiled into separate css files
 //
 
 // Initialization of global variables, mixins and functions
+*/
 @import "../../init";
 
-// Base
+/* Base */
 .wizard.wizard-1 {
-	// Nav
+	/* Nav */
 	.wizard-nav {
-		// Steps
+		/* Steps */
 		.wizard-steps {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 
-			// Step
+			/* Step */
 			.wizard-step {
 				display: flex;
 				align-items: center;
@@ -74,14 +75,14 @@
 	}
 }
 
-// Desktop Mode
+/* Desktop Mode */
 @include media-breakpoint-between(md, lg) {
 	.wizard.wizard-1 {
-		// Nav
+		/* Nav */
 		.wizard-nav {
-			// Steps
+			/* Steps */
 			.wizard-steps {
-				// Step
+				/* Step */
 				.wizard-step {
 					.wizard-label {
 						margin-left: 1.5rem;
@@ -105,22 +106,22 @@
 	}
 }
 
-// Table and Mobile mode
+/* Table and Mobile mode */
 @include media-breakpoint-down(md) {
 	.wizard.wizard-1 {
 	}
 }
 
-// Mobile mode
+/* Mobile mode */
 @include media-breakpoint-down(sm) {
 	.wizard.wizard-1 {
-		// Nav
+		/* Nav */
 		.wizard-nav {
-			// Steps
+			/* Steps */
 			.wizard-steps {
 				flex-direction: column;
 
-				// Step
+				/* Step */
 				.wizard-step {
 					width: 100%;
 					flex-direction: row;

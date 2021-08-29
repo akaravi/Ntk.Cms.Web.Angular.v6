@@ -1,26 +1,27 @@
-//
+/*
 // Wizard 4
 // Pages SASS files are compiled into separate css files
-//
+// 
+*/
 @use "sass:math";
-// Initialization of global variables, mixins and functions
+/* Initialization of global variables, mixins and functions */
 @import "../../init";
 
 
-// Base
+/* Base*/
 .wizard.wizard-4 {
 	flex-direction: column;
 
-	// Nav
+	/* Nav*/
 	.wizard-nav {
-		// Steps
+		/* Steps*/
 		.wizard-steps {
 			display: flex;
 			align-items: flex-end;
 			justify-content: space-between;
 			flex-wrap: wrap;
 
-			// Step
+			/* Step */
 			.wizard-step {
 				display: flex;
 				align-items: center;
@@ -85,7 +86,7 @@
 			}
 
 			@for $i from 2 through 4 {
-				$width:math.div(100, $i) ;//$width: 100 / $i;
+				$width:math.div(100, $i) ;/*$width: 100 / $i; */
 				&[data-total-steps="#{$i}"] {
 					.wizard-step {
 						flex: 0 0 calc(#{$width}% - 0.25rem);
@@ -97,10 +98,10 @@
 	}
 }
 
-// Small Desktop Mode
+/* Small Desktop Mode*/
 @include media-breakpoint-down(xl) {
 	.wizard.wizard-4 {
-		// Nav
+		/* Nav */
 		.wizard-nav {
 			.wizard-steps {
 				.wizard-step {
@@ -130,10 +131,10 @@
 	}
 }
 
-// Mobile mode
+/* Mobile mode */
 @include media-breakpoint-down(sm) {
 	.wizard.wizard-4 {
-		// Nav
+		/* Nav */
 		.wizard-nav {
 			.wizard-steps {
 				flex-direction: column;

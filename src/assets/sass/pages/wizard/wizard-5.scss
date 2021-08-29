@@ -1,28 +1,29 @@
-//
+/*
 // Wizard 5
 // Pages SASS files are compiled into separate css files
 //
 
 // Initialization of global variables, mixins and functions
+*/
 @import "../../init";
 
 .wizard.wizard-5 {
-    // Aside
+    /*/ Aside */
     .wizard-aside {
         @include border-top-left-radius($border-radius);
         @include border-bottom-left-radius($border-radius);
 
-        // Nav
+        /*/ Nav */
 	    .wizard-nav {
     		padding: 0;
 
-    		// Steps
+    		/*/ Steps */
     		.wizard-steps {
     			display: flex;
     			flex-direction: column;
     			justify-content: center;
 
-    			// Step
+    			/*/ Step */
     			.wizard-step {
     				padding: 0.75rem 0;
     				transition: $transition-link;
@@ -77,7 +78,7 @@
     					}
     				}
 
-                    // Current States
+                    /*/ Current States */
     				&[data-wizard-state="current"] {
     					transition: $transition-link;
 
@@ -106,7 +107,7 @@
         				}
     				}
 
-                    // Done States
+                    /*/ Done States */
                     &[data-wizard-state="current"]:last-child,
                     &[data-wizard-state="done"] {
                         .wizard-icon {
@@ -138,7 +139,7 @@
 	    }
     }
 
-    // Content
+    /*/ Content */
     .wizard-content {
         background-color: $gray-100;
         @include border-top-right-radius($border-radius);
@@ -153,24 +154,24 @@
     }
 }
 
-// Tablet & Mobile Modes
+/*/ Tablet & Mobile Modes */
 @include media-breakpoint-down(md) {
     .wizard.wizard-5{
-        // Aside
+        /*/ Aside */
         .wizard-aside {
             @include border-top-left-radius($border-radius);
             @include border-top-right-radius($border-radius);
             @include border-bottom-left-radius(0);
             @include border-bottom-right-radius(0);
 
-            // Nav
+            /*/ Nav */
     	    .wizard-nav {
         		padding: 0;
                 align-content: center;
 
-        		// Steps
+        		/*/ Steps */
         		.wizard-steps {
-    			    // Step
+    			    /*/ Step */
     			    .wizard-step {
                        margin-bottom: .5rem;
 
@@ -182,7 +183,7 @@
             }
         }
 
-        // Content
+        /*/ Content */
         .wizard-content {
             @include border-top-left-radius(0);
             @include border-top-right-radius(0);

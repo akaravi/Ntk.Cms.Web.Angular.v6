@@ -1,9 +1,9 @@
-//
+/*/
 // Select2
-//
+*/
 
 
-// Base
+/*/ Base */
 .select2-container--default {
     .select2-selection--single,
     .select2-selection--multiple {
@@ -133,7 +133,7 @@
         }
     }
 
-    // Results
+    /*/ Results */
     .select2-results__options {
         padding: $input-btn-padding-y 0;
     }
@@ -189,7 +189,7 @@
     }
 }
 
-// Select2 component
+/*/ Select2 component */
 select.select2 {
     opacity: 0;
 }
@@ -199,7 +199,7 @@ select.select2 {
         opacity: 0;
     }
 
-    // pill style
+    /*/ pill style */
     &.select2--elevate {
         .select2-container--default {
             .select2-selection--single,
@@ -209,7 +209,7 @@ select.select2 {
         }
     }
 
-    // pill style
+    /*/ pill style */
     &.select2--solid {
         .select2-container--default {
             .select2-selection--multiple,
@@ -225,7 +225,7 @@ select.select2 {
     }
 }
 
-// Component Validation State
+/*/ Component Validation State */
 @mixin select2-validation-state($state, $color) {
     .form.form-state .is-#{$state} {
         .select2-container--default {
@@ -245,6 +245,6 @@ select.select2 {
     }
 }
 
-// Validation States
+/*/ Validation States */
 @include select2-validation-state(valid, success);
 @include select2-validation-state(invalid, danger);

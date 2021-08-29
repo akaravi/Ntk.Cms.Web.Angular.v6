@@ -1,14 +1,14 @@
-//
+/*/
 // Login 5
 // Pages SASS files are compiled into separate css files
-//
+*/
 
 
-// Initialization of global variables, mixins and functions
+/*/ Initialization of global variables, mixins and functions */
 @import "../../../init";
 
 .login.login-5 {
-    // Form modes
+    /*/ Form modes */
     .login-signin,
     .login-signup,
     .login-forgot {
@@ -58,7 +58,7 @@
     }
 }
 
-// Desktop view
+/*/ Desktop view */
 @include media-breakpoint-up(xs) {
     .login.login-5 {
         .login-form {
@@ -68,12 +68,13 @@
     }
 }
 
-// Tablet and Mobile mode
+
+/*/ Tablet and Mobile mode*/
 @include media-breakpoint-between(lg, xl) {
 
 }
 
-// Mobile mode
+/*/ Mobile mode*/
 @include media-breakpoint-down(xs) {
     .login.login-5 {
         .login-form {

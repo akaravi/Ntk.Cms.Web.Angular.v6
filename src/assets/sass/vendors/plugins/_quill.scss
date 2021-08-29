@@ -1,8 +1,8 @@
-//
+/*
 // Quill
-//
+*/
 
-// Base
+/*/ Base */
 .ql-toolbar {
     font-family: $font-family-base;
 
@@ -138,7 +138,7 @@
             }
         }
 
-        // Tooltip adjustment in modal
+        /*/ Tooltip adjustment in modal */
         .modal & {
             &.ql-editing {
                 left: 20px !important;
@@ -156,7 +156,7 @@
     }
 }
 
-// Plain Style
+/*/ Plain Style */
 .ql-quil.ql-quil-plain {
     .ql-toolbar {
         padding: 0;

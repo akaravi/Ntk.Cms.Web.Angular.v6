@@ -1,10 +1,10 @@
-//
+/*
 // DualListBox
-//
+*/
 
-// Base
+/*/ Base */
 .dual-listbox {
-    // Search input
+    /*/ Search input */
     .dual-listbox__search {
         width: 225px;
         border: 1px solid $gray-200;
@@ -22,7 +22,7 @@
         }
     }
 
-    // Container
+    /*/ Container */
     .dual-listbox__container {
         display: flex;
         flex-wrap: nowrap;

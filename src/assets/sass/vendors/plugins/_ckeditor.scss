@@ -1,9 +1,9 @@
-//
+/*
 // CKEditor
-//
+*/
 
 
-// Base
+/*/ Base */
 .ck-target{
     display: none;
 }
@@ -22,7 +22,7 @@
     }
 }
 
-// CKEditor Classic & Document
+/*/ CKEditor Classic & Document */
 .ck-editor{
     .ck-toolbar{
         @include border-top-radius($border-radius !important);
@@ -34,7 +34,7 @@
     }
 }
 
-// CKEditor Inline / Balloon / Balloon Block
+/*/ CKEditor Inline / Balloon / Balloon Block */
 .ck-body {
     .ck-balloon-panel{
         .ck-content{

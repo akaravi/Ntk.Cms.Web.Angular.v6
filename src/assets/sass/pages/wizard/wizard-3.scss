@@ -1,21 +1,22 @@
-//
+/*
 // Wizard 3
 // Pages SASS files are compiled into separate css files
 //
 
 // Initialization of global variables, mixins and functions
+ */
 @import "../../init";
 
-// Base
+/* Base */
 .wizard.wizard-3 {
-	// Nav
+	/* Nav */
 	.wizard-nav {
-		// Steps
+		/* Steps */
 		.wizard-steps {
 			display: flex;
 			align-items: flex-end;
 
-			// Step
+			/* Step */
 			.wizard-step {
 				display: flex;
 				align-items: center;
@@ -83,10 +84,10 @@
 	}
 }
 
-// portrait tablet and mobile mode
+/* portrait tablet and mobile mode */
 @include media-breakpoint-down(md) {
 	.wizard.wizard-3 {
-		// Nav
+		/* Nav */
 		.wizard-nav {
 			.wizard-steps {
 				flex-direction: column;

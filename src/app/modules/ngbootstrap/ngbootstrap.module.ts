@@ -22,7 +22,7 @@ import {
 import { PaginationComponent } from './pagination/pagination.component';
 import { PopoverComponent } from './popover/popover.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
-import { RatingComponent } from './rating/rating.component';
+// import { RatingComponent } from './rating/rating.component';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { TypeheadComponent } from './typehead/typehead.component';
@@ -76,10 +76,10 @@ const routes: Routes = [
         path: 'progressbar',
         component: ProgressbarComponent,
       },
-      {
-        path: 'rating',
-        component: RatingComponent,
-      },
+      // {
+      //   path: 'rating',
+      //   component: RatingComponent,
+      // },
       {
         path: 'timepicker',
         component: TimepickerComponent,
@@ -125,7 +125,7 @@ const routes: Routes = [
     PaginationComponent,
     PopoverComponent,
     ProgressbarComponent,
-    RatingComponent,
+    // RatingComponent,
     TimepickerComponent,
     TooltipComponent,
     TypeheadComponent,

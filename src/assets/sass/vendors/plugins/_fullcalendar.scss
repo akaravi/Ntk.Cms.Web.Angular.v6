@@ -1,9 +1,9 @@
-//
+/*
 // Fullcalendar
-//
+*/
 
 
-// Base
+/*/ Base */
 @mixin fullcalendar-base() {
     $cell-space-x: 0.5rem;
     $cell-space-y: 0.5rem;
@@ -29,12 +29,12 @@
         .fc-scroller {
             .fc-content-col {
                 padding: $cell-space-y $cell-space-x;
-                //use this for scheduler fix:  padding: 0.0rem 0.2rem 0.0rem 0.2rem;
+                /*/use this for scheduler fix:  padding: 0.0rem 0.2rem 0.0rem 0.2rem; */
 
             }
         }
 
-        // Header
+        /*/ Header */
         th.fc-day-header {
             padding: $head-space-y $head-space-x;
             font-size: 1rem;
@@ -68,22 +68,22 @@
             }
         }
 
-        // Past
+        /*/ Past */
         td.fc-past {
 
         }
 
-        // Today
+        /*/ Today */
         td.fc-today {
 
         }
 
-        // Future
+        /*/ Future */
         td.fc-future {
 
         }
 
-        // Event
+        /*/ Event */
         .fc-event,
         .fc-event-dot {
             padding: 0;
@@ -122,7 +122,7 @@
             }
         }
 
-        // Description
+        /*/ Description */
         .fc-description {
             font-size: 0.9rem;
             margin-top: 0.25rem;
@@ -139,7 +139,7 @@
             font-weight: 500;
         }
 
-        // Popover
+        /*/ Popover */
         .fc-popover {
             @include border-radius($border-radius);
 
@@ -178,7 +178,7 @@
             }
         }
 
-        // Toolbar
+        /*/ Toolbar */
         .fc-toolbar {
             margin-bottom: 1.5rem;
 
@@ -223,7 +223,7 @@
             }
         }
 
-        // Time
+        /*/ Time */
         .fc-axis {
             > span {
                 font-size: 0.9rem;
@@ -240,7 +240,7 @@
 
     @include media-breakpoint-down(lg) {
         .fc-unthemed {
-            // toolbar
+            /*/ toolbar */
             .fc-toolbar {
                 margin-bottom: 1.5rem;
 
@@ -275,32 +275,32 @@
     }
 }
 
-// Theme
+/*/ Theme */
 @mixin fullcalendar-theme() {
     $border-width: 6px;
 
     .fc-unthemed {
-        // General elements
+        /*/ General elements */
         th, td, thead, tbody, .fc-divider, .fc-row, .fc-content, .fc-popover, .fc-list-view, .fc-list-heading td {
             border-color: $gray-200;
         }
 
-        // Past
+        /*/ Past */
         td.fc-past {
 
         }
 
-        // Today
+        /*/ Today */
         td.fc-today {
             background: rgba($primary, 0.025);
         }
 
-        // Future
+        /*/ Future */
         td.fc-future {
 
         }
 
-        // Event
+        /*/ Event */
         .fc-day-grid-event {
             margin: 0;
         }
@@ -346,7 +346,7 @@
             color: $text-muted;
         }
 
-        // Event states
+        /*/ Event states */
         .fc-event,
         .fc-event-dot {
             @each $name, $color in $theme-colors {
@@ -392,7 +392,7 @@
             overflow: hidden;
         }
 
-        // Popover
+        /*/ Popover */
         .fc-popover {
             box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.075);
             background: #fff;
@@ -454,7 +454,7 @@
             }
         }
 
-        // Header
+        /*/ Header */
         th.fc-day-header {
             > a,
             > span {
@@ -462,7 +462,7 @@
             }
         }
 
-        // List heading
+        /*/ List heading */
         .fc-list-heading {
             td {
                 background: $gray-200;
@@ -482,7 +482,7 @@
             background: $gray-100;
         }
 
-        // List item
+        /*/ List item */
         .fc-list-item {
             &:hover {
                 td {
@@ -506,7 +506,7 @@
             }
         }
 
-        // Toolbar
+        /*/ Toolbar */
         .fc-toolbar {
             .fc-button {
                 color: $text-muted;
@@ -548,6 +548,6 @@
     }
 }
 
-// Build
+/*/ Build */
 @include fullcalendar-base();
 @include fullcalendar-theme();

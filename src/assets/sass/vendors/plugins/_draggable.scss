@@ -1,6 +1,6 @@
-//
+/*
 // Draggable
-//
+*/
 
 .draggable {
     transition: opacity 0.3s ease;
@@ -20,13 +20,13 @@
         opacity: 0 !important;
     }
 
-    // Handle
+    /*/ Handle */
     .draggable-handle {
         cursor: move;
     }
 }
 
-// Draggable Zone
+/* Draggable Zone */
 .draggable-zone {
     outline: none !important;
 }

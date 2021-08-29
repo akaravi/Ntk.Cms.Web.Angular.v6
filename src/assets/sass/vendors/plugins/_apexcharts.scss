@@ -1,8 +1,8 @@
-//
+/*
 // Apexcharts
-//
+*/
 
-// Text
+/*/ Text */
 .apexcharts-text,
 .apexcharts-title-text,
 .apexcharts-legend-text {
@@ -18,7 +18,7 @@
 	font-size: $font-size-sm;
 }
 
-// Dropdown
+/*/ Dropdown */
 .apexcharts-toolbar{
 	text-align: left !important;
 }
@@ -42,7 +42,7 @@
 	}
 }
 
-// Tooltips
+/*/ Tooltips */
 .apexcharts-tooltip {
 	&.apexcharts-theme-light {
 		@include border-radius($border-radius);
@@ -81,7 +81,7 @@
 	}
 }
 
-// Border radius integration
+/*/ Border radius integration */
 .card-rounded-bottom {
 	.apexcharts-canvas {
 		svg {
@@ -91,7 +91,7 @@
 	}
 }
 
-// Border radius options
+/*/ Border radius options */
 .rounded {
 	.apexcharts-canvas {
 		svg {

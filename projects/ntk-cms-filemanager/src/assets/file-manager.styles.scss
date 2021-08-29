@@ -218,7 +218,7 @@ i {
   .file-name {
     height: auto;
     width: 100%;
-    z-index: 1; // todo try this without z-index
+    z-index: 1; /*/ todo try this without z-index*/
     @include borders;
     @include contrast;
     margin: 0;

@@ -1,8 +1,8 @@
-//
+/*/
 // Perfect Scrollbar
-//
+*/
 
-// Base
+/* Base */
 .scroll {
     position: relative;
 	overflow: hidden;
@@ -22,7 +22,7 @@
         }
     }
 
-    // Customization
+    /*/ Customization */
     @include perfect-scrollbar-ver-size($custom-scrollbar-size);
     @include perfect-scrollbar-hor-size($custom-scrollbar-size);
     @include perfect-scrollbar-theme($custom-scrollbar-color);
