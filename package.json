@@ -3,8 +3,8 @@
     "version": "1.00.000",
     "scripts": {
         "ng": "ng",
-        "start": "node --max_old_space_size=3192 ./node_modules/@angular/cli/bin/ng serve",
-        "serve": "node --max_old_space_size=16000 ./node_modules/@angular/cli/bin/ng serve",
+        "start3333": "node --max_old_space_size=3192 ./node_modules/@angular/cli/bin/ng serve",
+        "serve2222": "node --max_old_space_size=16000 ./node_modules/@angular/cli/bin/ng serve",
         "build": "ng build",
         "build-prod1": "ng build --prod --aot --build-optimizer",
         "build-prod": "ng build --prod",
