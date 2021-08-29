@@ -23,7 +23,6 @@
               "lodash",
               "object-path",
               "apexcharts",
-              "clipboard.js",
               "highlight.js"
             ],
             "index": "src/index.html",
@@ -44,8 +43,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/apexcharts/dist/apexcharts.min.js",
-              "node_modules/clipboard/dist/clipboard.js"
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {

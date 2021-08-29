@@ -63,7 +63,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { CmsSiteCategorySelectionListComponent } from './cms-site-category-selection-list/cmsSiteCategorySelectionList.component';
 import { CmsFilesSelectorComponent } from './cms-files-selector/cms-files-selector.component';
 import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
-import { ClipboardModule } from 'ngx-clipboard';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 import { CmsTagAutocompleteComponent } from './cms-tag-autocomplete/cms-tag-autocomplete.component';
 import { TranslationModule } from '../core/i18n/translation.module';
 import { CmsTokenAccessComponent } from './cms-token-access/cmsTokenAccess.component';
