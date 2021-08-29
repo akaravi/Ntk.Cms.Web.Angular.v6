@@ -123,33 +123,33 @@ export class EstatePropertyAddComponent implements OnInit {
     this.getEstatePropertyTypeLanduse();
   }
   getEstateContractType(): void {
-    const processName = this.constructor.name + 'getEstateContractType';
-    this.loading.Start(processName, 'دریافت انواع معامله');
+    const pName = this.constructor.name + 'getEstateContractType';
+    this.loading.Start(pName, 'دریافت انواع معامله');
     this.estateContractTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstateContractTypeResult = next;
-      this.loading.Stop(processName);
+      this.loading.Stop(pName);
     }, () => {
-      this.loading.Stop(processName);
+      this.loading.Stop(pName);
     });
   }
   getEstatePropertyType(): void {
-    const processName = this.constructor.name + 'getEstatePropertyType';
-    this.loading.Start(processName, 'دریافت انواع املاک');
+    const pName = this.constructor.name + 'getEstatePropertyType';
+    this.loading.Start(pName, 'دریافت انواع املاک');
     this.estatePropertyTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstatePropertyTypeResult = next;
-      this.loading.Stop(processName);
+      this.loading.Stop(pName);
     }, () => {
-      this.loading.Stop(processName);
+      this.loading.Stop(pName);
     });
   }
   getEstatePropertyTypeLanduse(): void {
-    const processName = this.constructor.name + 'getEstatePropertyType';
-    this.loading.Start(processName, 'دریافت انواع کاربری');
+    const pName = this.constructor.name + 'getEstatePropertyType';
+    this.loading.Start(pName, 'دریافت انواع کاربری');
     this.estatePropertyTypeLanduseService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstatePropertyTypeLanduseResult = next;
-      this.loading.Stop(processName);
+      this.loading.Stop(pName);
     }, () => {
-      this.loading.Stop(processName);
+      this.loading.Stop(pName);
     });
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -157,8 +157,8 @@ export class EstatePropertyAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
-    const processName = this.constructor.name + 'ServiceViewModel';
-    this.loading.Start(processName, 'دریافت دسترسی های');
+    const pName = this.constructor.name + 'ServiceViewModel';
+    this.loading.Start(pName, 'دریافت دسترسی های');
     this.estatePropertyService
       .ServiceViewModel()
       .subscribe(
@@ -169,11 +169,11 @@ export class EstatePropertyAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -185,8 +185,8 @@ export class EstatePropertyAddComponent implements OnInit {
     filter.Value = id;
     filteModelProperty.Filters.push(filter);
     this.dataModel.PropertyDetailGroups = [];
-    const processName = this.constructor.name + 'DataGetPropertyDetailGroup';
-    this.loading.Start(processName, 'دریافت جزئیات');
+    const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
+    this.loading.Start(pName, 'دریافت جزئیات');
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe(
         async (next) => {
@@ -195,11 +195,11 @@ export class EstatePropertyAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -220,8 +220,8 @@ export class EstatePropertyAddComponent implements OnInit {
         this.dataModel.LinkExtraImageIds = keys.join(',');
       }
     }
-    const processName = this.constructor.name + 'ServiceAdd';
-    this.loading.Start(processName, 'ثبت ملک');
+    const pName = this.constructor.name + 'ServiceAdd';
+    this.loading.Start(pName, 'ثبت ملک');
     this.estatePropertyService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -235,12 +235,12 @@ export class EstatePropertyAddComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }

@@ -88,8 +88,8 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     this.formInfo.FormErrorStatus = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
 
-    const processName = this.constructor.name + '.ServiceSignupUser';
-    this.loading.Start(processName, 'در حال ساخت حساب کاربری جدید');
+    const pName = this.constructor.name + '.ServiceSignupUser';
+    this.loading.Start(pName, 'در حال ساخت حساب کاربری جدید');
     this.coreAuthService.ServiceSignupUser(this.dataModel).subscribe((next) => {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
@@ -99,13 +99,13 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
         this.formInfo.FormErrorStatus = true;
         this.onCaptchaOrder();
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     }, (error) => {
       this.cmsToastrService.typeError(error);
       this.formInfo.FormErrorStatus = true;
       this.onCaptchaOrder();
-      this.loading.Stop(processName);
+      this.loading.Stop(pName);
     });
   }
   onRoulaccespt(): void {
@@ -125,8 +125,8 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       return;
     }
     this.dataModel.CaptchaText = '';
-    const processName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(processName, 'دریافت محتوای عکس امنیتی');
+    const pName = this.constructor.name + '.ServiceCaptcha';
+    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
 
@@ -143,11 +143,11 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
       , (error) => {
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }

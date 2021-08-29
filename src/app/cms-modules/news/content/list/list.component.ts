@@ -109,8 +109,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
 
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
-      const processName = this.constructor.name + '.ServiceGetAllWithHierarchyCategoryId';
-      this.loading.Start(processName, 'دریافت  لیست اطلاعات');
+      const pName = this.constructor.name + '.ServiceGetAllWithHierarchyCategoryId';
+      this.loading.Start(pName, 'دریافت  لیست اطلاعات');
       this.contentService.ServiceGetAllWithHierarchyCategoryId(this.categoryModelSelected.Id, filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -133,11 +133,11 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeError(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -161,8 +161,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
         filterModel.Filters.push(filterChild);
       }
       /** filter Category */
-      const processName = this.constructor.name + '.ServiceGetAll';
-      this.loading.Start(processName, 'دریافت  لیست اطلاعات');
+      const pName = this.constructor.name + '.ServiceGetAll';
+      this.loading.Start(pName, 'دریافت  لیست اطلاعات');
       this.contentService.ServiceGetAll(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -187,13 +187,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
 
         }
       );
@@ -318,20 +318,20 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    const processName = this.constructor.name + '.ServiceGetCount';
-    this.loading.Start(processName, 'دریافت آمار');
+    const pName = this.constructor.name + '.ServiceGetCount';
+    this.loading.Start(pName, 'دریافت آمار');
     this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
       ,
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
 
@@ -348,19 +348,19 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
 
-    const processName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(processName, 'دریافت فایل خروجی');
+    const pName = this.constructor.name + '.ServiceExportFile';
+    this.loading.Start(pName, 'دریافت فایل خروجی');
     this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }

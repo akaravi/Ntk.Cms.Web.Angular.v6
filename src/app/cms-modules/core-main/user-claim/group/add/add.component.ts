@@ -140,6 +140,7 @@ export class CoreUserClaimGroupAddComponent implements OnInit {
     this.dataModel.LinkApplicationId = model.Id;
   }
   onActionSelectSiteCategory(model: CoreSiteCategoryModel | null): void {
+    this.dataModel.LinkSiteCategoryId=null;
     if (!model || model.Id <= 0) {
       this.dataModel.LinkSiteCategoryId = null;
       return;
@@ -147,12 +148,11 @@ export class CoreUserClaimGroupAddComponent implements OnInit {
     this.dataModel.LinkSiteCategoryId = model.Id;
   }
   onActionSelectModuleId(model: CoreModuleModel | null): void {
+    this.dataModel.LinkModuleId=null;
     if (!model || model.Id <= 0) {
-      const message = 'ماژول مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkSiteCategoryId = model.Id;
+    this.dataModel.LinkModuleId = model.Id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

@@ -58,8 +58,8 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
 
-    const processName = this.constructor.name + '.ServiceSigninUserBySMS';
-    this.loading.Start(processName, 'ارسال درخواست ورود با یک بار رمز');
+    const pName = this.constructor.name + '.ServiceSigninUserBySMS';
+    this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
       .subscribe((res) => {
@@ -72,13 +72,13 @@ export class AuthSingInBySmsComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         });
   }
 
@@ -87,8 +87,8 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
-    const processName = this.constructor.name + '.ServiceSigninUserBySMS';
-    this.loading.Start(processName, 'ارسال درخواست ورود با یک بار رمز');
+    const pName = this.constructor.name + '.ServiceSigninUserBySMS';
+    this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
       .subscribe((res) => {
@@ -101,13 +101,13 @@ export class AuthSingInBySmsComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -121,17 +121,17 @@ export class AuthSingInBySmsComponent implements OnInit {
       return;
     }
     this.dataModelAuthUserSignInBySms.CaptchaText = '';
-    const processName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(processName, 'دریافت محتوای عکس امنیتی');
+    const pName = this.constructor.name + '.ServiceCaptcha';
+    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
         this.captchaModel = next.Item;
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
       , (error) => {
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }

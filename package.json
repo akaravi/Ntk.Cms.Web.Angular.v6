@@ -6,7 +6,7 @@
         "serve1": "node --max_old_space_size=3192 ./node_modules/@angular/cli/bin/ng serve",
         "serve2": "node --max_old_space_size=16000 ./node_modules/@angular/cli/bin/ng serve",
         "build": "ng build",
-        "build-prod": "ng build --prod --aot --build-optimizer",
+        "build-prod": "ng build --prod --build-optimizer",
         "build-prod2": "ng build --prod",
         "test": "ng test",
         "lint": "ng lint",
@@ -72,7 +72,6 @@
         "karma-coverage": "~2.0.3",
         "karma-jasmine": "~4.0.0",
         "karma-jasmine-html-reporter": "~1.7.0",
-        "ng-packagr": "^12.2.1",
-        "typescript": "~4.3.5"
+        "ng-packagr": "^12.2.1"
     }
 }

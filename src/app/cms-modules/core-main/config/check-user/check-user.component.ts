@@ -74,13 +74,13 @@ export class CoreConfigCheckUserComponent implements OnInit, OnDestroy {
     if (!this.requestLinkUserId || this.requestLinkUserId === 0) {
       return;
     }
-    const processName = this.constructor.name + '.ServiceCheckUser';
-    this.loading.Start(processName, 'بررسی حساب کاربری');
+    const pName = this.constructor.name + '.ServiceCheckUser';
+    this.loading.Start(pName, 'بررسی حساب کاربری');
     this.configService
       .ServiceCheckUser(this.requestLinkUserId)
       .subscribe(
         async (next) => {
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
           if (!next.IsSuccess) {
@@ -89,7 +89,7 @@ export class CoreConfigCheckUserComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }

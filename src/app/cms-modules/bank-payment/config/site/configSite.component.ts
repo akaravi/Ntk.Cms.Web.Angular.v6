@@ -134,8 +134,8 @@ export class BankPaymentConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    const processName = this.constructor.name + 'ServiceSiteStorage';
-    this.loading.Start(processName, 'دریافت مقادیر ذخیره شده ماژول');
+    const pName = this.constructor.name + 'ServiceSiteStorage';
+    this.loading.Start(pName, 'دریافت مقادیر ذخیره شده ماژول');
 
     this.configService
       .ServiceSiteStorage(SiteId)
@@ -148,12 +148,12 @@ export class BankPaymentConfigSiteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetOne(error);
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -162,8 +162,8 @@ export class BankPaymentConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
 
-    const processName = this.constructor.name + 'ServiceSiteStorageSave';
-    this.loading.Start(processName, 'ذخیره مقادیر ذخیره شده ماژول');
+    const pName = this.constructor.name + 'ServiceSiteStorageSave';
+    this.loading.Start(pName, 'ذخیره مقادیر ذخیره شده ماژول');
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
       .subscribe(
@@ -175,12 +175,12 @@ export class BankPaymentConfigSiteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -189,8 +189,8 @@ export class BankPaymentConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
 
-    const processName = this.constructor.name + 'ServiceSiteConfig';
-    this.loading.Start(processName, 'دریافت تنظیمات ماژول');
+    const pName = this.constructor.name + 'ServiceSiteConfig';
+    this.loading.Start(pName, 'دریافت تنظیمات ماژول');
     this.configService
       .ServiceSiteConfig(SiteId)
       .subscribe(
@@ -201,12 +201,12 @@ export class BankPaymentConfigSiteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -214,8 +214,8 @@ export class BankPaymentConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    const processName = this.constructor.name + 'ServiceSiteConfigSave';
-    this.loading.Start(processName, 'ذخیره تنظیمات ماژول');
+    const pName = this.constructor.name + 'ServiceSiteConfigSave';
+    this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
 
     this.configService
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
@@ -227,12 +227,12 @@ export class BankPaymentConfigSiteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -241,8 +241,8 @@ export class BankPaymentConfigSiteComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
 
-    const processName = this.constructor.name + 'ServiceSiteAccess';
-    this.loading.Start(processName, 'دریافت دسترسی های ماژول');
+    const pName = this.constructor.name + 'ServiceSiteAccess';
+    this.loading.Start(pName, 'دریافت دسترسی های ماژول');
 
     this.configService
       .ServiceSiteAccess(SiteId)
@@ -254,12 +254,12 @@ export class BankPaymentConfigSiteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -270,8 +270,8 @@ export class BankPaymentConfigSiteComponent implements OnInit {
 
 
 
-    const processName = this.constructor.name + 'ServiceSiteAccessSave';
-    this.loading.Start(processName, 'ذخیره دسترسی های ماژول');
+    const pName = this.constructor.name + 'ServiceSiteAccessSave';
+    this.loading.Start(pName, 'ذخیره دسترسی های ماژول');
 
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
@@ -283,12 +283,12 @@ export class BankPaymentConfigSiteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetOne(error);
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }

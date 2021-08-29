@@ -74,13 +74,13 @@ export class CoreConfigCheckSiteComponent implements OnInit, OnDestroy {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       return;
     }
-    const processName = this.constructor.name + '.ServiceCheckSite';
-    this.loading.Start(processName, 'بررسی وب سایت');
+    const pName = this.constructor.name + '.ServiceCheckSite';
+    this.loading.Start(pName, 'بررسی وب سایت');
     this.configService
       .ServiceCheckSite(this.requestLinkSiteId)
       .subscribe(
         async (next) => {
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
           if (!next.IsSuccess) {
@@ -88,7 +88,7 @@ export class CoreConfigCheckSiteComponent implements OnInit, OnDestroy {
           }
         },
         (error) => {
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
 
           this.cmsToastrService.typeErrorGetOne(error);
         }

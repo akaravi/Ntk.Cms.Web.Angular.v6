@@ -2,7 +2,7 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 
 export const environment = {
   production: true,
-  appVersion: '1.06.072',
+  appVersion: '1.06.073',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'https://your-domain.com/api',
@@ -13,11 +13,9 @@ export const environment = {
   cmsServerConfig: {
     configApiRetry: 1,
     configApiServerPath: 'https://apicms.ir/api/v1/',
-    configMvcServerPath: 'https://oco.ir/',
-    configFileServerPath: 'https://apifile.ir/api/v1/',
-    configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
+    configMvcServerPath: 'https://ntkcms.com/',
     configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.com/',
-    configRouteUploadFileContent: 'upload/',
+    configFileServerPath: 'https://apifile.ir/api/v1/',
   },
   cmsUiConfig: {
     Pathlogin: '/auth/singin',

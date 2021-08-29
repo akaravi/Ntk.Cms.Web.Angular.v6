@@ -46,8 +46,8 @@ export class AuthSingInComponent implements OnInit {
     this.hasError = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.dataModel.lang = this.translationService.getSelectedLanguage();
-    const processName = this.constructor.name + '.ServiceSigninUser';
-    this.loading.Start(processName, 'ورود به حساب کاربری');
+    const pName = this.constructor.name + '.ServiceSigninUser';
+    this.loading.Start(pName, 'ورود به حساب کاربری');
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
       (res) => {
         if (res.IsSuccess) {
@@ -58,12 +58,12 @@ export class AuthSingInComponent implements OnInit {
           this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
           this.onCaptchaOrder();
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.formInfo.ButtonSubmittedEnabled = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }
@@ -76,8 +76,8 @@ export class AuthSingInComponent implements OnInit {
       return;
     }
     this.dataModel.CaptchaText = '';
-    const processName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(processName, 'دریافت محتوای عکس امنیتی');
+    const pName = this.constructor.name + '.ServiceCaptcha';
+    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
 
@@ -94,11 +94,11 @@ export class AuthSingInComponent implements OnInit {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
         }
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }

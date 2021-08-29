@@ -37,6 +37,7 @@ import { CoreUserClaimContentAddComponent } from './content/add/add.component';
 import { CoreUserClaimContentEditComponent } from './content/edit/edit.component';
 import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
 import { CoreUserClaimContentCheckListComponent } from './content/check-list/check-list.component';
+import { CoreUserClaimTypeSelectionlistComponent } from './type/selectionlist/selectionlist.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CoreUserClaimContentCheckListComponent } from './content/check-list/che
     CoreUserClaimTypeAddComponent,
     CoreUserClaimTypeEditComponent,
     CoreUserClaimTypeSelectorComponent,
+    CoreUserClaimTypeSelectionlistComponent,
     CoreUserClaimTypeTreeComponent,
     CoreUserClaimTypeHeaderComponent,
     /** */
@@ -86,6 +88,7 @@ import { CoreUserClaimContentCheckListComponent } from './content/check-list/che
     CoreUserClaimTypeAddComponent,
     CoreUserClaimTypeEditComponent,
     CoreUserClaimTypeSelectorComponent,
+    CoreUserClaimTypeSelectionlistComponent,
     CoreUserClaimTypeTreeComponent,
     CoreUserClaimTypeHeaderComponent,
     /** */

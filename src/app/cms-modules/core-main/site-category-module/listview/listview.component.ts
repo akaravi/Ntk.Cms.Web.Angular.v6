@@ -90,8 +90,8 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
       fastfilter.Value = this.linkSiteCategoryId;
       filteModel.Filters.push(fastfilter);
     }
-    const processName = this.constructor.name + '.ServiceGetAll';
-    this.loading.Start(processName, 'در حال دریافت لیست ماژول ها');
+    const pName = this.constructor.name + '.ServiceGetAll';
+    this.loading.Start(pName, 'در حال دریافت لیست ماژول ها');
     this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -100,11 +100,11 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }

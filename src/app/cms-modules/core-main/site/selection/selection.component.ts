@@ -49,8 +49,8 @@ export class CoreSiteSelectionComponent implements OnInit {
     this.DataGetAll();
   }
   DataGetAll(): void {
-    const processName = this.constructor.name + '.DataGetAll';
-    this.loading.Start(processName);
+    const pName = this.constructor.name + '.DataGetAll';
+    this.loading.Start(pName);
 
     this.coreSiteService.ServiceGetAll(null).subscribe(
       (next) => {
@@ -64,13 +64,13 @@ export class CoreSiteSelectionComponent implements OnInit {
         else {
           this.cmsToastrService.typeError(next.ErrorMessage);
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
         this.cdr.detectChanges();
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
         this.cdr.detectChanges();
       }
     );
@@ -87,27 +87,27 @@ export class CoreSiteSelectionComponent implements OnInit {
     authModel.Lang = this.translationService.getSelectedLanguage();
 
 
-    const processName = this.constructor.name + '.ServiceRenewToken';
-    this.loading.Start(processName);
+    const pName = this.constructor.name + '.ServiceRenewToken';
+    this.loading.Start(pName);
 
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessSelected();
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
           this.router.navigate(['/']);
         }
         else {
           this.cmsToastrService.typeErrorSelected();
           this.formInfo.ButtonSubmittedEnabled = true;
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
         this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.formInfo.ButtonSubmittedEnabled = true;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
         this.cdr.detectChanges();
       }
     );
@@ -119,20 +119,20 @@ export class CoreSiteSelectionComponent implements OnInit {
       let authModel: AuthRenewTokenModel;
       authModel = new AuthRenewTokenModel();
 
-      const processName = this.constructor.name + '.onActionAddFirstSite';
-      this.loading.Start(processName);
+      const pName = this.constructor.name + '.onActionAddFirstSite';
+      this.loading.Start(pName);
 
       this.coreAuthService.ServiceRenewToken(authModel).subscribe(
         (next) => {
           if (next.IsSuccess) {
             this.router.navigate([environment.cmsUiConfig.Pathdashboard]);
           }
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
           this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
           this.cdr.detectChanges();
         }
       );

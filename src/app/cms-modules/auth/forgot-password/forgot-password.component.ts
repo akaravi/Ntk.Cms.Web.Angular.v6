@@ -59,8 +59,8 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordBySms.CaptchaKey = this.captchaModel.Key;
     this.dataModelforgetPasswordEntryPinCode.Email = '';
     this.dataModelforgetPasswordEntryPinCode.Mobile = this.dataModelforgetPasswordBySms.Mobile;
-    const processName = this.constructor.name +'.ServiceForgetPassword';
-    this.loading.Start(processName, 'در خواست یاد آوری کلمه عبور ');
+    const pName = this.constructor.name +'.ServiceForgetPassword';
+    this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
 
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordBySms)
@@ -74,13 +74,13 @@ export class AuthForgotPasswordComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         });
   }
   onActionSubmitOrderCodeByEmail(): void {
@@ -90,8 +90,8 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordEntryPinCode.Mobile = '';
     this.dataModelforgetPasswordEntryPinCode.Email = this.dataModelforgetPasswordByEmail.Email;
 
-    const processName = this.constructor.name + '.ServiceForgetPassword';
-    this.loading.Start(processName, 'در خواست یاد آوری کلمه عبور ');
+    const pName = this.constructor.name + '.ServiceForgetPassword';
+    this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordByEmail)
       .subscribe((res) => {
@@ -105,13 +105,13 @@ export class AuthForgotPasswordComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         });
   }
   onActionSubmitEntryPinCode(): void {
@@ -119,8 +119,8 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelforgetPasswordEntryPinCode.CaptchaKey = this.captchaModel.Key;
 
-    const processName = this.constructor.name + '.ServiceForgetPasswordEntryPinCode';
-    this.loading.Start(processName, 'بررسی کد در سرور');
+    const pName = this.constructor.name + '.ServiceForgetPasswordEntryPinCode';
+    this.loading.Start(pName, 'بررسی کد در سرور');
     this.coreAuthService
       .ServiceForgetPasswordEntryPinCode(this.dataModelforgetPasswordEntryPinCode)
       .subscribe((res) => {
@@ -133,13 +133,13 @@ export class AuthForgotPasswordComponent implements OnInit {
         }
         this.formInfo.ButtonSubmittedEnabled = true;
         this.onCaptchaOrder();
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -153,17 +153,17 @@ export class AuthForgotPasswordComponent implements OnInit {
       return;
     }
     this.dataModelforgetPasswordBySms.CaptchaText = '';
-    const processName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(processName, 'دریافت محتوای عکس امنیتی');
+    const pName = this.constructor.name + '.ServiceCaptcha';
+    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
         this.captchaModel = next.Item;
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }

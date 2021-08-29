@@ -77,19 +77,19 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
 
 
-    const processName = this.constructor.name + '.ServiceGetAll';
-    this.loading.Start(processName, 'دریافت دسته بندی ها');
+    const pName = this.constructor.name + '.ServiceGetAll';
+    this.loading.Start(pName, 'دریافت دسته بندی ها');
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
 
       },
       (error) => {
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
 
         this.cmsToastrService.typeError(error);
 

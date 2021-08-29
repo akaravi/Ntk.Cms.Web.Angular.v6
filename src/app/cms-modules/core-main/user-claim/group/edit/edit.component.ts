@@ -9,6 +9,11 @@ import {
   CoreSiteCategoryModel,
   CoreModuleModel,
   ApplicationAppModel,
+  CoreUserClaimTypeModel,
+  CoreUserClaimGroupDetailService,
+  CoreUserClaimGroupDetailModel,
+  FilterModel,
+  FilterDataModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -24,6 +29,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-core-userclaimgroup-edit',
@@ -37,6 +44,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     private dialogRef: MatDialogRef<CoreUserClaimGroupEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreUserClaimGroupService: CoreUserClaimGroupService,
+    public coreUserClaimGroupDetailService: CoreUserClaimGroupDetailService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
@@ -66,6 +74,9 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
   dataModelEnumUserClaimGroupActionTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
 
   fileManagerOpenForm = false;
+  dataCoreUserClaimTypeModels: CoreUserClaimTypeModel[];
+  dataCoreCpMainMenuIds: number[] = [];
+  dataCoreUserClaimGroupDetailModels: CoreUserClaimGroupDetailModel[];
 
 
   ngOnInit(): void {
@@ -80,6 +91,8 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
 
     this.getEnumRecordStatus();
     this.getEnumUserClaimGroupActionType();
+    this.DataGetAllCoreUserClaimType();
+
   }
   getEnumUserClaimGroupActionType(): void {
     this.coreEnumService.ServiceEnumUserClaimGroupActionType().subscribe((next) => {
@@ -97,7 +110,8 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
 
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName=this.constructor.name + 'DataGetOneContent';
+    this.loading.Start(pName,'دریافت دسته بندی مدارک');
 
     this.coreUserClaimGroupService.setAccessLoad();
     this.coreUserClaimGroupService.ServiceGetOneById(this.requestId).subscribe(
@@ -114,12 +128,12 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -128,8 +142,8 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
-
+    const pName=this.constructor.name + 'main';
+    this.loading.Start(pName,'ثبت دسته بندی مدارک');
     this.coreUserClaimGroupService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -144,13 +158,13 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -163,6 +177,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     this.dataModel.LinkApplicationId = model.Id;
   }
   onActionSelectSiteCategory(model: CoreSiteCategoryModel | null): void {
+    this.dataModel.LinkSiteCategoryId = null;
     if (!model || model.Id <= 0) {
       this.dataModel.LinkSiteCategoryId = null;
       return;
@@ -170,12 +185,11 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     this.dataModel.LinkSiteCategoryId = model.Id;
   }
   onActionSelectModuleId(model: CoreModuleModel | null): void {
+    this.dataModel.LinkModuleId = null;
     if (!model || model.Id <= 0) {
-      const message = 'ماژول مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkSiteCategoryId = model.Id;
+    this.dataModel.LinkModuleId = model.Id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
@@ -186,5 +200,111 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
+    if (event.previouslySelectedIndex < event.selectedIndex) {
+      if (!this.formGroup.valid) {
+        this.cmsToastrService.typeErrorFormInvalid();
+        setTimeout(() => {
+          stepper.selectedIndex = event.previouslySelectedIndex;
+          // stepper.previous();
+        }, 10);
+      }
+    }
+  }
+  DataGetAllCoreUserClaimType(): void {
+
+    if (this.requestId <= 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
+
+    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormError = '';
+    const pName=this.constructor.name + 'DataGetAllCoreUserClaimType'
+    this.loading.Start(pName,'دریافت لیست مدارک');
+
+    const filteModelContent = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'LinkUserClaimGroupId';
+    filter.Value = this.requestId;
+    filteModelContent.Filters.push(filter);
+
+    this.coreUserClaimGroupDetailService.ServiceGetAll(filteModelContent).subscribe(
+      (next) => {
+        this.dataCoreUserClaimGroupDetailModels = next.ListItems;
+        const listG: number[] = [];
+        this.dataCoreUserClaimGroupDetailModels.forEach(element => {
+          listG.push(element.LinkUserClaimTypeId);
+        });
+        this.dataCoreCpMainMenuIds = listG;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionSelectorUserCategorySelect(model: CoreUserClaimTypeModel[]): void {
+    this.dataCoreUserClaimTypeModels = model;
+  }
+  onActionSelectorUserCategorySelectAdded(model: CoreUserClaimTypeModel): void {
+    const entity = new CoreUserClaimGroupDetailModel();
+    entity.LinkUserClaimTypeId = model.Id;
+    entity.LinkUserClaimGroupId = this.dataModel.Id;
+    entity.IsRequired = true;
+
+    this.coreUserClaimGroupDetailService.ServiceAdd(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+
+      }
+    );
+  }
+  onActionSelectorUserCategorySelectRemoved(model: CoreUserClaimTypeModel): void {
+    const entity = new CoreUserClaimGroupDetailModel();
+    entity.LinkUserClaimTypeId = model.Id;
+    entity.LinkUserClaimGroupId = this.dataModel.Id;
+    
+    this.coreUserClaimGroupDetailService.ServiceDeleteEntity(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+      }
+    );
   }
 }

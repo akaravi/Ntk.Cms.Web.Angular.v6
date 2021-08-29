@@ -63,8 +63,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.validateDomain = this.alphaExp.test(this.dataModel.SubDomain);
   }
   DataGetAccess(): void {
-    const processName = this.constructor.name + '.DataGetAccess';
-    this.loading.Start(processName, 'دریافت دسترسی ها');
+    const pName = this.constructor.name + '.DataGetAccess';
+    this.loading.Start(pName, 'دریافت دسترسی ها');
     this.coreSiteService
       .ServiceViewModel()
       .subscribe(
@@ -75,18 +75,18 @@ export class CoreSiteAddFirstComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
-          this.loading.Stop(processName);
+          this.loading.Stop(pName);
         }
       );
   }
 
   GetDomainList(): void {
-    const processName = this.constructor.name + '.GetDomainList';
-    this.loadingDomain.Start(processName, 'دریافت لیست دامنه های مجاز');
+    const pName = this.constructor.name + '.GetDomainList';
+    this.loadingDomain.Start(pName, 'دریافت لیست دامنه های مجاز');
     this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -98,11 +98,11 @@ export class CoreSiteAddFirstComponent implements OnInit {
             this.dataModel.SubDomain = 'myname';
           }
         }
-        this.loadingDomain.Stop(processName);
+        this.loadingDomain.Stop(pName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loadingDomain.Stop(processName);
+        this.loadingDomain.Stop(pName);
       }
     );
   }
@@ -138,8 +138,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
     }
 
     this.formInfo.FormSubmitAllow = false;
-    const processName = this.constructor.name + '.onFormSubmit';
-    this.loading.Start(processName, 'در حال ثبت اطلاعات اولین سامانه شما');
+    const pName = this.constructor.name + '.onFormSubmit';
+    this.loading.Start(pName, 'در حال ثبت اطلاعات اولین سامانه شما');
     this.coreSiteService.ServiceAddFirstSite(this.dataModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -149,19 +149,19 @@ export class CoreSiteAddFirstComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.formInfo.FormSubmitAllow = true;
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }
 
   clickSelectSite(Id: number): void {
-    const processName = this.constructor.name + '.clickSelectSite';
-    this.loading.Start(processName, 'درخواست دسترسی جدید');
+    const pName = this.constructor.name + '.clickSelectSite';
+    this.loading.Start(pName, 'درخواست دسترسی جدید');
 
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
@@ -171,11 +171,11 @@ export class CoreSiteAddFirstComponent implements OnInit {
         if (res.IsSuccess) {
           setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 1000);
         }
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(processName);
+        this.loading.Stop(pName);
       }
     );
   }
