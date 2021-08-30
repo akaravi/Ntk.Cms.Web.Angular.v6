@@ -24,7 +24,7 @@
   <div *ngIf=" dataModelResult && dataModelResult.ListItems && dataModelResult.ListItems.length > 0"
     class=" container ">
     <div class="row">
-      <div *ngFor="let item of dataModelResult.ListItems" style="margin-left: 10px;">
+      <div *ngFor="let item of dataModelResult.ListItems" style="margin-left: 10px;max-width: min-content;">
         <div *ngIf="selectSiteId==0 || selectSiteId==item.Id" (click)="onActionClickSelectSite(item.Id)"
           class="card card-custom card-stretch gutter-b cursor-pointer" style="top: 15px;width: fit-content;">
           <div class="card-body d-flex flex-column">

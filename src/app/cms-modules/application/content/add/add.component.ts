@@ -68,7 +68,7 @@ export class ApplicationAppAddComponent implements OnInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
 
   ngOnInit(): void {
     this.requestSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));

@@ -43,7 +43,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
   filteredOptions: Observable<EstatePropertyTypeLanduseModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<EstatePropertyTypeLanduseModel>();
   @Input() optionTypeView = 1;
 

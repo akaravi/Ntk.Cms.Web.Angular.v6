@@ -69,7 +69,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   private mapModel: leafletMap;
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
 
   ngOnInit(): void {
     this.formInfo.FormTitle = 'ویرایش  ';

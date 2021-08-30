@@ -36,7 +36,7 @@ export class CoreSiteDomainAliasSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreSiteDomainAliasModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreSiteDomainAliasModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreSiteDomainAliasModel) {

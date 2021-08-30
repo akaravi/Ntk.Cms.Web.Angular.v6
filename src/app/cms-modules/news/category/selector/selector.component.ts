@@ -33,7 +33,7 @@ export class NewsCategorySelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<NewsCategoryModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<NewsCategoryModel>();
   @Input() optionReload = () => this.onActionReload();

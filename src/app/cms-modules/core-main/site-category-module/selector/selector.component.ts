@@ -36,7 +36,7 @@ export class CoreSiteCategoryCmsModuleSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreSiteCategoryCmsModuleModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreSiteCategoryCmsModuleModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreSiteCategoryCmsModuleModel) {

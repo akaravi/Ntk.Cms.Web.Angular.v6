@@ -101,7 +101,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
   private mapModel: leafletMap;
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
 
 
 

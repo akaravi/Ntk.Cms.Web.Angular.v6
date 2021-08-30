@@ -93,7 +93,7 @@ const files = {
 })
 export class SearchDropdownInnerComponent implements OnInit {
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
-  data: any[] = null;
+  data: any[] = [];
   loading: boolean;
 
   constructor(private cdr: ChangeDetectorRef) {}

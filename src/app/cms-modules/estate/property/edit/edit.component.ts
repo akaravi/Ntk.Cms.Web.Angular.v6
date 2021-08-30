@@ -93,7 +93,7 @@ export class EstatePropertyEditComponent implements OnInit {
   private mapModel: leafletMap;
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
   // ** Accardon */
   step = 0;
 

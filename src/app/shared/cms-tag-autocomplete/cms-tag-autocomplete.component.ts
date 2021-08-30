@@ -30,7 +30,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
   tagDataModel = [];
 
 
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionChange = new EventEmitter<number[]>();
   @Input() set optionSelectForce(x: number[]) {
     this.onActionSelectForce(x);

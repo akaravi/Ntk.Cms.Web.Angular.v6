@@ -21,6 +21,7 @@ import { TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
 
 
 @Component({
@@ -62,7 +63,7 @@ export class PollingConfigMainAdminComponent implements OnInit, OnDestroy {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
 
   cmsApiStoreSubscribe: Subscription;
 

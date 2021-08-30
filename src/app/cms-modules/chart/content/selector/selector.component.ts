@@ -36,7 +36,7 @@ export class ChartContentSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ChartContentModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<ChartContentModel>();
   @Input() optionReload = () => this.onActionReload();

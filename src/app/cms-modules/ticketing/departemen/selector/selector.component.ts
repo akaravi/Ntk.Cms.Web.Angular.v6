@@ -36,7 +36,7 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
   filteredOptions: Observable<TicketingDepartemenModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<TicketingDepartemenModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | TicketingDepartemenModel) {

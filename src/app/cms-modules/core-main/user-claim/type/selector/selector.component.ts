@@ -36,7 +36,7 @@ export class CoreUserClaimTypeSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreUserClaimTypeModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreUserClaimTypeModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreUserClaimTypeModel) {

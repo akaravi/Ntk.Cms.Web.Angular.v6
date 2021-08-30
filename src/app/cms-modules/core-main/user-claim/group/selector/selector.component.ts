@@ -36,7 +36,7 @@ export class CoreUserClaimGroupSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreUserClaimGroupModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreUserClaimGroupModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreUserClaimGroupModel) {

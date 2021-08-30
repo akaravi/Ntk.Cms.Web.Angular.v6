@@ -33,7 +33,7 @@ export class ChartCategorySelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ChartCategoryModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<ChartCategoryModel>();
   @Input() optionReload = () => this.onActionReload();

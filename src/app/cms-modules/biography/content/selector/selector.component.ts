@@ -36,7 +36,7 @@ export class BiographyContentSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<BiographyContentModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<BiographyContentModel>();
   @Input() optionReload = () => this.onActionReload();

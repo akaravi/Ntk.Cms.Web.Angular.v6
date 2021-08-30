@@ -34,7 +34,7 @@ export class BlogCategorySelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<BlogCategoryModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<BlogCategoryModel>();
   @Input() optionReload = () => this.onActionReload();

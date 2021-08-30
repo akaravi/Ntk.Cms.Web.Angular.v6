@@ -35,7 +35,7 @@ export class FileCategorySelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<FileCategoryModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<FileCategoryModel>();
   @Input() optionReload = () => this.onActionReload();

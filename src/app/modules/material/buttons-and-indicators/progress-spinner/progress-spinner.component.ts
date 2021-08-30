@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 const basic = {
   beforeCodeTitle: 'Basic progressbar-spinner',
@@ -149,7 +150,7 @@ export class ProgressSpinnerComponent implements OnInit {
   exampleConfig;
 
   color = 'primary';
-  mode = 'determinate';
+  mode = 'determinate' as ProgressSpinnerMode;
   value = 50;
 
   ngOnInit() {

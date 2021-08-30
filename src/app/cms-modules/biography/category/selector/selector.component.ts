@@ -34,7 +34,7 @@ export class BiographyCategorySelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<BiographyCategoryModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<BiographyCategoryModel>();
   @Input() optionReload = () => this.onActionReload();

@@ -45,7 +45,7 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
   parentId = 0;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<ApplicationThemeConfigModel>();
 
   @Input() optionReload = () => this.onActionReload();

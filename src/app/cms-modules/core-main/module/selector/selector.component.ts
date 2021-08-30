@@ -35,8 +35,8 @@ export class CoreModuleSelectorComponent implements OnInit {
   formControl = new FormControl();
   filteredOptions: Observable<CoreModuleModel[]>;
   @Input() optionDisabled = false;
-  @Input() optionSelectFirstItem: false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionSelectFirstItem= false;
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreModuleModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreModuleModel) {

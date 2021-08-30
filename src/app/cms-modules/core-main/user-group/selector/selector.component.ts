@@ -35,7 +35,7 @@ export class CoreUserGroupSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreUserGroupModel[]>;
     @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreUserGroupModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreUserGroupModel) {

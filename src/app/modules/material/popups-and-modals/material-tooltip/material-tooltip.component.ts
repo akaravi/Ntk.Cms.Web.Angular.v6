@@ -195,7 +195,7 @@ export class MaterialTooltipComponent implements OnInit {
   exampleDelay;
   exampleManually;
 
-  position = 'before';
+  position = 'before' ;
 
   ngOnInit() {
     this.exampleBasic = basic;

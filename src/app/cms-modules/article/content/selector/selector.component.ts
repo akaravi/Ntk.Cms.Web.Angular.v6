@@ -36,7 +36,7 @@ export class ArticleContentSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ArticleContentModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<ArticleContentModel>();
   @Input() optionReload = () => this.onActionReload();

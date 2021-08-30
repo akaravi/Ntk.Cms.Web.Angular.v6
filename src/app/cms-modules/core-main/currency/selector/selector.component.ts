@@ -36,7 +36,7 @@ export class CoreCurrencySelectorComponent implements OnInit {
   filteredOptions: Observable<CoreCurrencyModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreCurrencyModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreCurrencyModel) {

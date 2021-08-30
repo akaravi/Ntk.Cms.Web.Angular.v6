@@ -45,6 +45,7 @@ import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-ap
 import { EstatePropertyWidgetComponent } from 'src/app/cms-modules/estate/property/widget/widget.component';
 import { EstatePropertyWidget2Component } from 'src/app/cms-modules/estate/property/widget/widget2.component';
 import { EstatePropertyWidgetAddComponent } from 'src/app/cms-modules/estate/property/widget/widget-add.component';
+import { CoreUserClaimContentWidgetStatusComponent } from 'src/app/cms-modules/core-main/user-claim/content/widget/widget-status.component';
 
 @NgModule({
   declarations: [
@@ -69,10 +70,12 @@ import { EstatePropertyWidgetAddComponent } from 'src/app/cms-modules/estate/pro
     CoreSiteWidgetStatusComponent,
     CoreSiteWidgetModuleComponent,
     CoreUserWidgetComponent,
+    CoreUserClaimContentWidgetStatusComponent,
     CmsHtmlWidgetComponent,
     EstatePropertyWidgetComponent,
     EstatePropertyWidget2Component,
     EstatePropertyWidgetAddComponent,
+    
   ],
   exports: [
     CmsHtmlWidgetComponent

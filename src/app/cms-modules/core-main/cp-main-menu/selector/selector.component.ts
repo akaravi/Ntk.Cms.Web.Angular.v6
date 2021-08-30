@@ -36,7 +36,7 @@ export class CoreCpMainMenuSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreCpMainMenuModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreCpMainMenuModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreCpMainMenuModel) {

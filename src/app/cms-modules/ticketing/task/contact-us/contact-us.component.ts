@@ -22,6 +22,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
 import { TranslateService } from '@ngx-translate/core';
+import { PoinModel } from 'src/app/core/models/pointModel';
 
 @Component({
   selector: 'app-ticketing-task-contactus',
@@ -58,7 +59,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
   captchaModel: CaptchaModel = new CaptchaModel();
   expireDate: string;
   aoutoCaptchaOrder = 1;

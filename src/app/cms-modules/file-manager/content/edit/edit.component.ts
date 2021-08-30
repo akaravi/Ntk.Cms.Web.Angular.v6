@@ -76,7 +76,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   viewMap = false;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {

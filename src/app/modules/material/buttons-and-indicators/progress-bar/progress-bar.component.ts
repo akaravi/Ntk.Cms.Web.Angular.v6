@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ProgressBarMode } from '@angular/material/progress-bar';
 
 const determinate = {
   beforeCodeTitle: 'Determinate progress-bar',
@@ -199,7 +200,7 @@ export class ProgressBarComponent implements OnInit {
   exmapleQuery;
   exampleConfig;
   color = 'primary';
-  mode = 'determinate';
+  mode = 'determinate' as ProgressBarMode;
   value = 50;
   bufferValue = 75;
 

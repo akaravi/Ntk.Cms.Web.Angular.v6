@@ -77,7 +77,7 @@ export class CoreSiteEditComponent implements OnInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
   keywordDataModel = [];
 
 

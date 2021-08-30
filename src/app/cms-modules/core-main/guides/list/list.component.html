@@ -54,7 +54,7 @@
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <p [tooltipGuide]="row.Id" Identity="{{row.Id}}" placement="right" delay="500">{{row.Id}}</p>
+          <p [tooltipGuide]="row.Id" Identity="row.Id" placement="right" delay="500">{{row.Id}}</p>
         </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->

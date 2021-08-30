@@ -34,7 +34,7 @@ export class DonateTargetSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<DonateTargetModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<DonateTargetModel>();
   @Input() optionReload = () => this.onActionReload();

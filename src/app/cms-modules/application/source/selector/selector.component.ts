@@ -37,7 +37,7 @@ export class ApplicationSourceSelectorComponent implements OnInit {
   filteredOptions: Observable<ApplicationSourceModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<ApplicationSourceModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | ApplicationSourceModel) {

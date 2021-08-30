@@ -31,7 +31,7 @@ export class CoreUserClaimTypeSelectionlistComponent implements OnInit {
 
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreUserClaimTypeModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();

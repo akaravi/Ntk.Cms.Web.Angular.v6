@@ -37,7 +37,7 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
   filteredOptions: Observable<EstateAccountAgencyTypeUserModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<EstateAccountAgencyTypeUserModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | EstateAccountAgencyTypeUserModel) {

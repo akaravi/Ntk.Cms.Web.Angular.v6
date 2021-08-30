@@ -37,7 +37,7 @@ export class EstatePropertySelectorComponent implements OnInit {
   filteredOptions: Observable<EstatePropertyModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<EstatePropertyModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | EstatePropertyModel) {

@@ -110,7 +110,7 @@ export class EstatePropertyAddComponent implements OnInit {
   private mapModel: leafletMap;
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
   listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
   dataProfessional = false;
   ngOnInit(): void {

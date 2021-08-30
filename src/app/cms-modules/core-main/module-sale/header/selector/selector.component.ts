@@ -36,7 +36,7 @@ export class CoreModuleSaleHeaderSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreModuleSaleHeaderModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreModuleSaleHeaderModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreModuleSaleHeaderModel) {

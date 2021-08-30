@@ -18,6 +18,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
 import { TranslateService } from '@ngx-translate/core';
+import { PoinModel } from 'src/app/core/models/pointModel';
 
 @Component({
   selector: 'app-aplication-intro-add',
@@ -56,7 +57,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
 
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));

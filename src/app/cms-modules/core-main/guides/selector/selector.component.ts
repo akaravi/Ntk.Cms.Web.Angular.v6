@@ -36,7 +36,7 @@ export class CoreGuideSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreGuideModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreGuideModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreGuideModel) {

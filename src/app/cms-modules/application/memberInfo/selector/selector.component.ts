@@ -36,7 +36,7 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
   filteredOptions: Observable<ApplicationMemberInfoModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<ApplicationMemberInfoModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | ApplicationMemberInfoModel) {

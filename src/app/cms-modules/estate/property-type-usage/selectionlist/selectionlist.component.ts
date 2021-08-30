@@ -35,7 +35,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
 
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<EstatePropertyTypeUsageModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();

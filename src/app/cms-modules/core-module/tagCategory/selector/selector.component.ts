@@ -35,7 +35,7 @@ export class CoreModuleTagCategorySelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreModuleTagCategoryModel[]>;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionSelect = new EventEmitter<CoreModuleTagCategoryModel>();
   @Input() optionReload = () => this.onActionReload();

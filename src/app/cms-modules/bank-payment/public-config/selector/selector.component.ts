@@ -36,7 +36,7 @@ export class BankPaymentPublicConfigSelectorComponent implements OnInit {
   filteredOptions: Observable<BankPaymentPublicConfigModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<BankPaymentPublicConfigModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | BankPaymentPublicConfigModel) {

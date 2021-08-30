@@ -45,7 +45,7 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionMasterPage = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<WebDesignerMainPageModel>();
   masterTemplateId = '';
   @Input() optionReload = () => this.onActionReload();

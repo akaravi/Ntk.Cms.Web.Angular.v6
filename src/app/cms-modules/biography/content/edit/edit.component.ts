@@ -101,7 +101,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter = {};
+  mapOptonCenter =new PoinModel();
 
 
   ngOnInit(): void {

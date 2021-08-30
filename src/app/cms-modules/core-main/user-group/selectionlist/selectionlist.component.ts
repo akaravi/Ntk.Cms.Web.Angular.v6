@@ -29,7 +29,7 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
 
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreUserGroupModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();

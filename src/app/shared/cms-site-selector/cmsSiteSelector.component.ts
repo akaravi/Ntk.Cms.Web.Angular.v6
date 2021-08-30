@@ -36,7 +36,7 @@ export class CmsSiteSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreSiteModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
-  @Input() optionPlaceholder = new EventEmitter<string>();
+  @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<CoreSiteModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreSiteModel) {
