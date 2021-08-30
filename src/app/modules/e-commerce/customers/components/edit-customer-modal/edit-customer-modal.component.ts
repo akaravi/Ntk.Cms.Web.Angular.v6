@@ -59,8 +59,8 @@ export class EditCustomerModalComponent implements OnInit, OnDestroy {
           this.modal.dismiss(errorMessage);
           return of(EMPTY_CUSTOMER);
         })
-      ).subscribe((customer: Customer) => {
-        this.customer = customer;
+      ).subscribe((customer) => {
+        this.customer = customer as Customer;
         this.loadForm();
       });
       this.subscriptions.push(sb);
@@ -111,7 +111,7 @@ export class EditCustomerModalComponent implements OnInit, OnDestroy {
         this.modal.dismiss(errorMessage);
         return of(this.customer);
       }),
-    ).subscribe((res: Customer) => this.customer = res);
+    ).subscribe((res) => this.customer = res as Customer);
     this.subscriptions.push(sbCreate);
   }
 

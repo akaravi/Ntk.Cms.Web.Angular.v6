@@ -52,8 +52,8 @@ export class EditSpecModalComponent implements OnInit, OnDestroy {
           empty.carId = this.productId;
           return of(empty);
         })
-      ).subscribe((spec: ProductSpecification) => {
-        this.spec = spec;
+      ).subscribe((spec) => {
+        this.spec = spec as ProductSpecification;
         this.loadForm();
       });
       this.subscriptions.push(sb);
@@ -98,7 +98,7 @@ export class EditSpecModalComponent implements OnInit, OnDestroy {
         this.modal.dismiss(errorMessage);
         return of(this.spec);
       }),
-    ).subscribe((res: ProductSpecification) => this.spec = res);
+    ).subscribe((res) => this.spec = res as ProductSpecification);
     this.subscriptions.push(sbCreate);
   }
 

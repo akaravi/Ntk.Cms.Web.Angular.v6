@@ -336,7 +336,7 @@ export class TimepickerComponent implements OnInit {
     this.exampleCustomValidation = customValidation;
     this.exampleGlobalConfigurationOfTimepickers = globalConfigurationOfTimepickers;
 
-    this.ctrl = new FormControl('', (control: FormControl) => {
+    this.ctrl = new FormControl('', (control) => {
       const value = control.value;
 
       if (!value) {

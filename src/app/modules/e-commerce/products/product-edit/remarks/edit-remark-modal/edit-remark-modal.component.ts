@@ -55,8 +55,8 @@ export class EditRemarkModalComponent implements OnInit, OnDestroy {
           empty.carId = this.productId;
           return of(empty);
         })
-      ).subscribe((remark: ProductRemark) => {
-        this.remark = remark;
+      ).subscribe((remark) => {
+        this.remark = remark as ProductRemark;
         this.loadForm();
       });
       this.subscriptions.push(sb);
@@ -102,7 +102,7 @@ export class EditRemarkModalComponent implements OnInit, OnDestroy {
         this.modal.dismiss(errorMessage);
         return of(this.remark);
       }),
-    ).subscribe((res: ProductRemark) => this.remark = res);
+    ).subscribe((res) => this.remark = res as ProductRemark);
     this.subscriptions.push(sbCreate);
   }
 

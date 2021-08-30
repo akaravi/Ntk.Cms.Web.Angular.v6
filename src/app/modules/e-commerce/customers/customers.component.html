@@ -146,14 +146,14 @@
 
               <a title="Edit customer" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
                 (click)="edit(customer.id)">
-                <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" cacheSVG="true"
+                <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" [cacheSVG]="true"
                   class="svg-icon svg-icon-md svg-icon-primary">
                 </span>
               </a>
 
               <a title="Delete customer" class="btn btn-icon btn-light btn-hover-danger btn-sm"
                 (click)="delete(customer.id)">
-                <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" cacheSVG="true"
+                <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" [cacheSVG]="true"
                   class="svg-icon svg-icon-md svg-icon-danger">
                 </span>
               </a>

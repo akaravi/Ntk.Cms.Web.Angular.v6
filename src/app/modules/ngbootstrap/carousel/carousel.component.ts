@@ -213,21 +213,21 @@ export class CarouselComponent implements OnInit {
     this._http
       .get('https://picsum.photos/list')
       .pipe(
-        map((images: Array<{ id: number }>) => this._randomImageUrls(images))
+        map((images) => this._randomImageUrls(images as Array<{ id: number }>))
       )
       .subscribe((images) => (this.images = images));
 
     this._http
       .get('https://picsum.photos/list')
       .pipe(
-        map((images: Array<{ id: number }>) => this._randomImageUrls(images))
+        map((images) => this._randomImageUrls(images as (Array<{ id: number }>)))
       )
       .subscribe((images) => (this.secondImages = images));
 
     this._http
       .get('https://picsum.photos/list')
       .pipe(
-        map((images: Array<{ id: number }>) => this._randomImageUrls(images))
+        map((images) => this._randomImageUrls(images as (Array<{ id: number }>)))
       )
       .subscribe((images) => (this.thirdImages = images));
   }

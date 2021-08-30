@@ -67,8 +67,8 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
     this.currentUrl = this.router.url.split(/[?#]/)[0];
     const routerSubscr = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this.currentUrl = event.url;
+    ).subscribe((event) => {
+      this.currentUrl = event['url'];
       this.cdr.detectChanges();
     });
     this.subscriptions.push(routerSubscr);

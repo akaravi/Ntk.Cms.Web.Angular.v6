@@ -364,7 +364,7 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
 
   private removeClass(className: string) {
     Array.from(document.getElementsByClassName(className))
-      .map((el: HTMLElement) => el.classList.remove(className));
+      .map((el) => el.classList.remove(className));
   }
 
 
