@@ -201,7 +201,7 @@ export class RadiobuttonComponent implements OnInit {
   state = '';
   selectedState = '';
 
-  labelPosition = 'before';
+  labelPosition = 'before' as 'before' | 'after';
 
   changeLablesPositions() {
     this.labelPosition = this.labelPosition === 'before' ? 'after' : 'before';

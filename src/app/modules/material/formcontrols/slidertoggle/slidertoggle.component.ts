@@ -148,7 +148,7 @@ export class SlidertoggleComponent implements OnInit {
   checked = false;
   disabled = false;
 
-  labelPosition = 'before';
+  labelPosition = 'before' as 'before' | 'after';
 
   constructor() {}
 

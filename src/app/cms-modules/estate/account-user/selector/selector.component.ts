@@ -40,7 +40,7 @@ export class EstateAccountUserSelectorComponent implements OnInit {
   @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<EstateAccountUserModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | EstateAccountUserModel) {
+  @Input() set optionSelectForce(x: string | number | EstateAccountUserModel) {
     this.onActionSelectForce(x);
   }
 
@@ -87,7 +87,7 @@ export class EstateAccountUserSelectorComponent implements OnInit {
     filter.ClauseType = EnumClauseType.Or;
     filteModel.Filters.push(filter);
 
-    
+
     this.loading.Start(this.constructor.name + 'main');
 
     return await this.categoryService.ServiceGetAll(filteModel)
@@ -134,8 +134,38 @@ export class EstateAccountUserSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | EstateAccountUserModel): void {
-    if (typeof id === 'string' && id.length > 0) {
+  onActionSelectForce(id: string | number | EstateAccountUserModel): void {
+    if (typeof id === 'number' && id > 0) {
+      if (this.dataModelSelect && this.dataModelSelect.LinkCmsUserId === id) {
+        return;
+      }
+      if (this.dataModelResult && this.dataModelResult.ListItems && this.dataModelResult.ListItems.find(x => x.LinkCmsUserId === id)) {
+        const item = this.dataModelResult.ListItems.find(x => x.LinkCmsUserId === id);
+        this.dataModelSelect = item;
+        this.formControl.setValue(item);
+        return;
+      }
+      const filteModel = new FilterModel();
+
+      let filter = new FilterDataModel();
+      filter.PropertyName = 'LinkCmsUserId';
+      filter.Value = id;
+      filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
+      filteModel.Filters.push(filter);
+
+      this.categoryService.ServiceGetAll(filteModel).subscribe((next) => {
+        if (next.IsSuccess) {
+          if (next.ListItems.length > 0) {
+            this.filteredOptions = this.push(next.ListItems[0]);
+            this.dataModelSelect = next.ListItems[0];
+            this.formControl.setValue(next.ListItems[0]);
+            this.optionSelect.emit(next.ListItems[0]);
+          }
+        }
+      });
+      return;
+    }
+    else if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
       }

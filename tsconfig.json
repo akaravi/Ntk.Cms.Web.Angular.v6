@@ -17,6 +17,7 @@
     "importHelpers": true,
     "allowJs": true,
     "checkJs": false,
+    "strictFunctionTypes": true,
     "target": "es2017",
     "module": "es2020",
     "lib": ["es2018", "dom"],
@@ -27,11 +28,31 @@
       ]
     }
   },
-  "angularCompilerOptions": {  
+  "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
-    "strictTemplates": false,
+    "strictTemplates": true,
+    "strictInjectionParameters": true,
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-
-  }
+    "strictAttributeTypes": false,
+    "strictSafeNavigationTypes": false,
+    "strictDomLocalRefTypes": false,
+    "strictOutputEventTypes": false,
+    "strictDomEventTypes": false,
+    "strictLiteralTypes": false,
+    "strictNullChecks":false
+  },
+  "include": ["**/*.js", "**/*.ts", "node_modules/@open-wc/**/*.js"],
+  "exclude": [
+    ".git",
+    ".app-cache",
+    ".npm",
+    ".npm-tmp",
+    "dist",
+    "dist*",
+    "node_modules",
+    "subfolder/dist",
+    "subfolder/node_modules",
+    "**/dist/*",
+    "**/node_modules/*"
+  ]
 }

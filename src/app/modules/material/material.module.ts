@@ -40,7 +40,7 @@ import { GridListComponent } from './layout/grid-list/grid-list.component';
 import { ListComponent } from './layout/list/list.component';
 import { MaterialTabsComponent } from './layout/material-tabs/material-tabs.component';
 import { StepperComponent } from './layout/stepper/stepper.component';
-import { TreeComponent } from './layout/tree/tree.component';
+// import { TreeComponent } from './layout/tree/tree.component';
 // Buttons & indicators
 import { ButtonComponent } from './buttons-and-indicators/button/button.component';
 import { ButtonToggleComponent } from './buttons-and-indicators/button-toggle/button-toggle.component';
@@ -179,10 +179,10 @@ const routes: Routes = [
         path: 'layout/stepper',
         component: StepperComponent,
       },
-      {
-        path: 'layout/tree',
-        component: TreeComponent,
-      },
+      // {
+      //   path: 'layout/tree',
+      //   component: TreeComponent,
+      // },
       {
         path: 'buttons-and-indicators/button',
         component: ButtonComponent,
@@ -306,7 +306,7 @@ const routes: Routes = [
     Modal2Component,
     Modal3Component,
     IconComponent,
-    TreeComponent,
+    // TreeComponent,
     BottomSheetExampleComponent,
   ],
   providers: [
@@ -353,7 +353,7 @@ const routes: Routes = [
     PaginatorComponent,
     SortHeaderComponent,
     MaterialTableComponent,
-    TreeComponent,
+    // TreeComponent,
     BottomSheetComponent,
     BottomSheetExampleComponent,
     RipplesComponent,
