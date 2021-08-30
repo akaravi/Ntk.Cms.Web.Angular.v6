@@ -1,18 +1,26 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import {
-  AuthRenewTokenModel,
-  CoreAuthService,
-  CoreSiteModel,
-  CoreSiteService,
+  CoreUserClaimCheckDtoModel,
+  CoreUserClaimCheckModel,
+  CoreUserClaimContentService,
+  DataFieldInfoModel,
+  EnumRecordStatus,
+  ErrorExceptionResult,
+  FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
-  TokenInfoModel
+  NewsContentService,
+  NtkCmsApiStoreService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-import { PersianCalendarService } from 'src/app/core/pipe/PersianDatePipe/persian-date.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CoreUserClaimContentAddComponent } from '../add/add.component';
+import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-core-userclaimcontent-widget-status',
@@ -20,105 +28,94 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   styleUrls: ['./widget-status.component.scss']
 })
 export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDestroy {
-  tokenInfoModel = new TokenInfoModel();
+  @Input() cssClass = '';
+  @Input() widgetHeight = 'auto';
+  @Input() baseColor = 'success';
+  @Input() iconColor = 'success';
+  textInverseCSSClass;
+  svgCSSClass;
+  constructor(
+    private service: CoreUserClaimContentService,
+    private cmsToastrService: CmsToastrService,
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog,
+    private tokenHelper: TokenHelper,
+    public publicHelper: PublicHelper,
+  ) {
+    this.loading.cdr = this.cdr;
+  }
+  dataModelResult: ErrorExceptionResult<CoreUserClaimCheckModel> = new ErrorExceptionResult<CoreUserClaimCheckModel>();
+
   filteModelContent = new FilterModel();
-  modelData = new Map<string, string>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
-  indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info'];
-  constructor(
-    private service: CoreSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private persianCalendarService: PersianCalendarService,
-    private cmsToastrService: CmsToastrService,
-    private coreAuthService: CoreAuthService,
-    private tokenHelper: TokenHelper,
-  ) { }
-  ngOnInit(): void {
-    this.widgetInfoModel.title = 'سامانه فعال :';
-    this.widgetInfoModel.description = 'خلاصه مشخصات حساب این سامانه ';
-    this.widgetInfoModel.link = '/core/site';
+  loading = new ProgressSpinnerModel();
+  ngOnInit() {
+    this.widgetInfoModel.title = 'مدارک وهویت';
+    this.widgetInfoModel.description = '';
+    this.widgetInfoModel.link = '/core/userclaim/checklist';
 
-    this.tokenInfoModel = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.tokenInfoModel = next;
       this.onActionStatist();
     });
-    this.onActionStatist();
 
+    this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
+    this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
+    this.svgCSSClass = `svg-icon--${this.iconColor}`;
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
 
   }
 
-  onActionStatist(): void {
-    if (!this.tokenInfoModel.SiteId || this.tokenInfoModel.SiteId <= 0) {
+  onActionbuttonEditRow(model: CoreUserClaimCheckModel): void {
+    if (!model || !model.LinkTypeId || model.LinkTypeId === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.widgetInfoModel.link = '/core/site/edit/' + this.tokenInfoModel.SiteId;
-    this.modelData.set('Id', this.tokenInfoModel.SiteId + '');
-    this.modelData.set('Title', '...');
-    this.modelData.set('Domain', '...');
-    this.modelData.set('Sub Domain', '...');
-    this.modelData.set('Created Date', '...');
-    this.modelData.set('Expire Date', '...');
-    this.service.ServiceGetOneById(this.tokenInfoModel.SiteId).subscribe(
+    if (model.LinkContentId && model.LinkContentId > 0) {
+      const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
+        data: { id: model.LinkContentId }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
+          this.onActionStatist();
+        }
+      });
+    } else {
+      const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
+        data: { LinkUserClaimTypeId: model.LinkTypeId }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
+          this.onActionStatist();
+        }
+      });
+    }
+  }
+  onActionStatist(): void {
+
+    const pName = this.constructor.name + 'ServiceClaimCheck';
+    this.loading.Start(pName, 'بررسی تایید مدارک و هویت');
+    this.service.ServiceClaimCheckCurrent().subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.modelData.set('Title', next.Item.Title);
-          this.modelData.set('Domain', next.Item.Domain);
-          this.modelData.set('Sub Domain', next.Item.SubDomain);
-          this.modelData.set('Created Date', this.persianCalendarService.PersianCalendar(next.Item.CreatedDate));
-          if (next.Item.ExpireDate) {
-            this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(next.Item.ExpireDate));
+          this.dataModelResult = next;
+          if (this.dataModelResult.ListItems.find(x => x.RecordStatus != EnumRecordStatus.Pending && !x.IsApproved)) {
+            this.baseColor = 'warnning';
+            this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
+            this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
           }
         }
+        this.loading.Stop(pName);
       },
       (error) => {
+        this.loading.Stop(pName);
       }
     );
-
   }
-  onActionSiteSelect(model: CoreSiteModel): void {
-    if (model && model.Id > 0) {
-      // this.inputSiteId = model.Id;
-      if (model.Id !== this.tokenInfoModel.SiteId) {
-        if (model.Id === this.tokenInfoModel.SiteId) {
-          const etitle = 'هشدار';
-          const emessage = 'شناسه این وب سایت با وب سایتی که در آن هستید یکسان است';
-          this.cmsToastrService.toastr.warning(emessage, etitle);
-          return;
-        }
-        const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
-        authModel.UserAccessAdminAllowToProfessionalData = this.tokenInfoModel.UserAccessAdminAllowToProfessionalData;
-        authModel.UserAccessAdminAllowToAllData = this.tokenInfoModel.UserAccessAdminAllowToAllData;
-        authModel.UserId = this.tokenInfoModel.UserId;
-        authModel.SiteId = model.Id;
-        authModel.Lang = this.tokenInfoModel.Language;
-
-        const title = 'اطلاعات ';
-        const message = 'درخواست تغییر سایت به سرور ارسال شد';
-        this.cmsToastrService.toastr.info(message, title);
-        this.coreAuthService.ServiceRenewToken(authModel).subscribe(
-          (next) => {
-            if (next.IsSuccess) {
-              if (next.Item.SiteId === +model.Id) {
-                this.cmsToastrService.toastr.success('دسترسی به سایت جدید تایید شد', title);
-
-              } else {
-                this.cmsToastrService.toastr.warning('دسترسی به سایت جدید تایید نشد', title);
-              }
-            } else {
-              this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);
-            }
-
-          },
-          (error) => {
-            this.cmsToastrService.typeErrorAccessChange(error);
-          }
-        );
-      }
-    }
+  translateHelp(t: string, v: string): string {
+    return t + v;
   }
 }

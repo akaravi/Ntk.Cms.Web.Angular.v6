@@ -39,7 +39,6 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   requestLinkSiteId = 0;
   constructor(
     private coreUserClaimContentService: CoreUserClaimContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private coreUserClaimTypeService: CoreUserClaimTypeService,
@@ -47,7 +46,8 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog) {
+    public dialog: MatDialog
+  ) {
     this.loading.cdr = this.cdr;
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
