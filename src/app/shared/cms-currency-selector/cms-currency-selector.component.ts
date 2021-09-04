@@ -27,7 +27,7 @@ export class CmsCurrencySelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreCurrencyService) {
-      this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
   dataModelSelect: CoreCurrencyModel = new CoreCurrencyModel();
@@ -98,7 +98,7 @@ export class CmsCurrencySelectorComponent implements OnInit {
 
       }
     }
-    
+
     this.loading.Start(this.constructor.name + 'main');
 
     return await this.categoryService.ServiceGetAll(filteModel)

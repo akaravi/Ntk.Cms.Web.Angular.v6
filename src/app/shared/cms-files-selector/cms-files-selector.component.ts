@@ -27,7 +27,7 @@ export class CmsFilesSelectorComponent implements OnInit {
     }
   }
   @Output() dataFileModelChange: EventEmitter<Map<number, string>> = new EventEmitter<Map<number, string>>();
-  @Input() openDirectUploadView=false;
+  @Input() openDirectUploadView = false;
   @Input() set dataFileModel(model: Map<number, string>) {
     this.optionsData = model;
     this.dataFileModelChange.emit(model);

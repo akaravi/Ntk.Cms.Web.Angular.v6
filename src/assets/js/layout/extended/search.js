@@ -123,7 +123,7 @@ var KTLayoutSearch = function() {
             return;
         }
 
-        if (_isProcessing == true) {
+        if (_isProcessing === true) {
             return;
         }
 

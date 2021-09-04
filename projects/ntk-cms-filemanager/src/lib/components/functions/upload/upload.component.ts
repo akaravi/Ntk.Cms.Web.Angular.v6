@@ -20,7 +20,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
     if (typeof (model) === 'string') {
       this.fileTypeAccept = '.' + model;
       this.fileExtensions.push(model);
-      if (this.fileExtensions.length == 0) {
+      if (this.fileExtensions.length === 0) {
         this.fileExtensions = null;
       }
 
@@ -36,7 +36,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
         retOut = retOut + '.' + element;
       });
       this.fileTypeAccept = retOut;
-      if (this.fileExtensions.length == 0) {
+      if (this.fileExtensions.length === 0) {
         this.fileExtensions = null;
       }
       return;
@@ -98,7 +98,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
   uploadFiles() {
 
   }
-  allowClose=true;
+  allowClose = true;
 
   newClickedAction() {
     this.closeDialog.emit();

@@ -46,5 +46,4 @@ export class BaseService {
     }
     return model;
   }
- 
 }

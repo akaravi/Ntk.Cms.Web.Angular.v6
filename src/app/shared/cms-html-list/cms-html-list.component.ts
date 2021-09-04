@@ -9,7 +9,7 @@ export class CmsHtmlListComponent implements OnInit {
   @Input() optionHeaderDisplay = true;
   @Input() optionActionDisplay = true;
   @Input() optionFooterDisplay = true;
-  
+
   @Input() optionTreeDisplay = true;
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {

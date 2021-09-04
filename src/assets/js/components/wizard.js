@@ -239,7 +239,7 @@ var KTWizard = function(elementId, options) {
 
             // Steps Info
             var stepsInfo = KTUtil.findAll(the.element, '[data-wizard-type="step-info"]');
-            if (stepsInfo &&stepsInfo.length > 0) {
+            if (stepsInfo && stepsInfo.length > 0) {
                 for (var i = 0, len = stepsInfo.length; i < len; i++) {
                     if (i == index) {
                         KTUtil.attr(stepsInfo[i], 'data-wizard-state', 'current');
@@ -251,7 +251,7 @@ var KTWizard = function(elementId, options) {
 
             // Steps Content
             var stepsContent = KTUtil.findAll(the.element, '[data-wizard-type="step-content"]');
-            if (stepsContent&& stepsContent.length > 0) {
+            if (stepsContent && stepsContent.length > 0) {
                 for (var i = 0, len = stepsContent.length; i < len; i++) {
                     if (i == index) {
                         KTUtil.attr(stepsContent[i], 'data-wizard-state', 'current');

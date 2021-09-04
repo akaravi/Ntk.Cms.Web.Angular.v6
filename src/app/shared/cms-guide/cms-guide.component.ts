@@ -65,7 +65,7 @@ export class CmsGuideComponent implements OnInit {
       this.open(content);
     }
   }
-  open(content):void {
+  open(content): void {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
