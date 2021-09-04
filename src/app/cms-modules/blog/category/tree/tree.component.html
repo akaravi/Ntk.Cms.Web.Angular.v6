@@ -1,53 +1,48 @@
-<app-cms-html-tree [optionLoading]="loading">
-    <ng-container cms-header>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-action>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-        <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
-            class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect?.Id>0" (click)="onActionEdit()"
-            type="button" class="btn btn-warning">{{'ACTION.EDIT' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect?.Id>0" (click)="onActionDelete()"
-            type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
-        <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
-            class="btn btn-info">
-            <mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
-        </button>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    </ng-container>
-    <ng-container cms-body>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <mat-tree class="cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
-                [ngStyle]="{'background': dataModelSelect.Id>0 && dataModelSelect.Id === node.Id ? '#d3d3da' : '' }">
-                <button mat-icon-button disabled></button>
-                {{node.Title}}
-            </mat-tree-node>
-            <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-                <li>
-                    <div class="mat-tree-node" (click)="onActionSelect(node)"
-                        [ngStyle]="{'background': dataModelSelect.Id>0 && dataModelSelect.Id === node.Id ? '#d3d3da' : '' }">
-                        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.Title"
-                            (click)="onActionSelect(node)">
-                            <mat-icon class="mat-icon-rtl-mirror">
-                                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                            </mat-icon>
-                        </button>
-                        {{node.Title}}
-                    </div>
-                    <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">
-                        <ng-container matTreeNodeOutlet></ng-container>
-                    </ul>
-                </li>
-            </mat-nested-tree-node>
-        </mat-tree>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-footer>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+<div class="ntk-cms-html-tree-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
+        class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect?.Id>0" (click)="onActionEdit()" type="button"
+        class="btn btn-warning">{{'ACTION.EDIT' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect?.Id>0" (click)="onActionDelete()"
+        type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button" class="btn btn-info">
+        <mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    </button>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
+</div>
+<div class="ntk-cms-html-tree-body">
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-</app-cms-html-tree>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-tree class="cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
+            [ngStyle]="{'background': dataModelSelect.Id>0 && dataModelSelect.Id === node.Id ? '#d3d3da' : '' }">
+            <button mat-icon-button disabled></button>
+            {{node.Title}}
+        </mat-tree-node>
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+            <li>
+                <div class="mat-tree-node" (click)="onActionSelect(node)"
+                    [ngStyle]="{'background': dataModelSelect.Id>0 && dataModelSelect.Id === node.Id ? '#d3d3da' : '' }">
+                    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.Title"
+                        (click)="onActionSelect(node)">
+                        <mat-icon class="mat-icon-rtl-mirror">
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                    {{node.Title}}
+                </div>
+                <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">
+                    <ng-container matTreeNodeOutlet></ng-container>
+                </ul>
+            </li>
+        </mat-nested-tree-node>
+    </mat-tree>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+</div>
+<div class="ntk-cms-html-tree-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>
