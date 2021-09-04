@@ -3,7 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 
-export class processInfoModel {
+export class ProcessInfoModel {
   inRun = false;
   title = '';
 }
@@ -21,7 +21,7 @@ export class ProgressSpinnerModel {
   processRunList: string[];
   display = false;
   consoleLog = true;
-  processInfo = new Map<string, processInfoModel>();
+  processInfo = new Map<string, ProcessInfoModel>();
   constructor() {
     /** GUID */
     this.guid = this.newGuid();
@@ -53,7 +53,7 @@ export class ProgressSpinnerModel {
   }
 
   Start(key: string, title: string = '----'): void {
-    let model = new processInfoModel();
+    let model = new ProcessInfoModel();
     model.inRun = true;
     model.title = title;
     this.processInfo.set(key, model);
@@ -69,7 +69,7 @@ export class ProgressSpinnerModel {
       this.display = true;
     }
     else {
-      this.processInfo = new Map<string, processInfoModel>();
+      this.processInfo = new Map<string, ProcessInfoModel>();
       this.display = false;
     }
 
@@ -85,7 +85,7 @@ export class ProgressSpinnerModel {
 
     let model = this.processInfo.get(key);
     if (!model) {
-      model = new processInfoModel();
+      model = new ProcessInfoModel();
     }
     model.inRun = false;
     this.processInfo.set(key, model);
@@ -101,7 +101,7 @@ export class ProgressSpinnerModel {
       this.display = true;
     }
     else {
-      this.processInfo = new Map<string, processInfoModel>();
+      this.processInfo = new Map<string, ProcessInfoModel>();
       this.display = false;
     }
 
