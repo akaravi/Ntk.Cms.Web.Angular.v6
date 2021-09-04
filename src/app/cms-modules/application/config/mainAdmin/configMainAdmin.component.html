@@ -1,5 +1,5 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-modal [optionLoading]="loading">
+  <app-cms-html-card [optionLoading]="loading">
     <ng-container cms-header>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       {{formInfo.FormTitle}}
@@ -186,5 +186,5 @@
 
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
-  </app-cms-html-modal>
+  </app-cms-html-card>
 </form>
