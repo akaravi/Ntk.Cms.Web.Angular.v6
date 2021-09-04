@@ -1,117 +1,113 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <h3 class="card-label">
-        {{ formInfo.FormTitle }}
-      </h3>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <!-- RecordStatus Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
-          required>
-          <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
           let item of dataModelEnumRecordStatusResult.ListItems;
           index as i
         " [value]="item.Value">{{ item.Description }}</mat-option>
-        </mat-select>
-        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-        <mat-error *ngIf="RecordStatus.errors?.required">
-          RecordStatus is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
 
 
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Username']?.AccessWatchField">
-        <mat-label> {{fieldsInfo['Username']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Username" name="dataModel.Username" #Username type="text"
-          [disabled]="!fieldsInfo['Username']?.AccessAddField" placeholder="{{fieldsInfo['Username']?.FieldTitle}}"
-          minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.Username" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Username = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="Username.errors?.required">
-          Username is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
-        <mat-label> {{fieldsInfo['Email']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email type="text"
-          [disabled]="!fieldsInfo['Email']?.AccessAddField" placeholder="{{fieldsInfo['Email']?.FieldTitle}}"
-          minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Email = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="Email.errors?.required">
-          Email is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Username']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['Username']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Username" name="dataModel.Username" #Username type="text"
+        [disabled]="!fieldsInfo['Username']?.AccessAddField" placeholder="{{fieldsInfo['Username']?.FieldTitle}}"
+        minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.Username" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Username = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Username.errors?.required">
+        Username is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['Email']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email type="text"
+        [disabled]="!fieldsInfo['Email']?.AccessAddField" placeholder="{{fieldsInfo['Email']?.FieldTitle}}"
+        minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Email = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Email.errors?.required">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-      <!-- Mobile Field -->
+    <!-- Mobile Field -->
 
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Mobile']?.AccessWatchField">
-        <mat-label> {{fieldsInfo['Mobile']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text"
-          [disabled]="!fieldsInfo['Mobile']?.AccessAddField" placeholder="00989120000000" minlength="9" maxlength="20"
-          required />
-        <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Mobile = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Mobile.value.length }} / 20</mat-hint>
-        <mat-error *ngIf="Mobile.errors?.required">
-          Mobile is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Mobile']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['Mobile']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text"
+        [disabled]="!fieldsInfo['Mobile']?.AccessAddField" placeholder="00989120000000" minlength="9" maxlength="20"
+        required />
+      <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Mobile = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Mobile.value.length }} / 20</mat-hint>
+      <mat-error *ngIf="Mobile.errors?.required">
+        Mobile is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-      <!-- password Field -->
+    <!-- password Field -->
 
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Pwd']?.AccessWatchField">
-        <mat-label> {{fieldsInfo['Pwd']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Pwd" name="dataModel.Pwd" #Pwd type="password"
-          [disabled]="!fieldsInfo['Pwd']?.AccessAddField" placeholder="{{fieldsInfo['Pwd']?.FieldTitle}}" minlength="3"
-          maxlength="50" required />
-        <mat-icon matSuffix *ngIf="dataModel.Pwd" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Pwd = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Pwd.value.length }} / 50</mat-hint>
-        <mat-error *ngIf="Pwd.errors?.required">
-          password is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <app-password-strength [passwordToCheck]="dataModel.Pwd" (passwordStrength)="passwordValid($event)">
-      </app-password-strength>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Pwd']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['Pwd']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Pwd" name="dataModel.Pwd" #Pwd type="password"
+        [disabled]="!fieldsInfo['Pwd']?.AccessAddField" placeholder="{{fieldsInfo['Pwd']?.FieldTitle}}" minlength="3"
+        maxlength="50" required />
+      <mat-icon matSuffix *ngIf="dataModel.Pwd" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Pwd = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Pwd.value.length }} / 50</mat-hint>
+      <mat-error *ngIf="Pwd.errors?.required">
+        password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <app-password-strength [passwordToCheck]="dataModel.Pwd" (passwordStrength)="passwordValid($event)">
+    </app-password-strength>
 
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.FormError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
-          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
-          [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-        </button>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

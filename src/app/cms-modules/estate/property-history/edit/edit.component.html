@@ -1,13 +1,11 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
+    <div class="ntk-cms-html-card-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <h3 class="card-label">
         {{ formInfo.FormTitle }}
-      </h3>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
+    </div>
+    <div class="ntk-cms-html-card-body">
+	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
@@ -23,8 +21,8 @@
         </mat-error>
       </mat-form-field>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
+    </div>
+    <div class="ntk-cms-html-card-message">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
 
@@ -34,8 +32,8 @@
         </small>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
+    </div>
+    <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
       <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
         <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
@@ -47,6 +45,5 @@
         </button>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+    </div>
 </form>

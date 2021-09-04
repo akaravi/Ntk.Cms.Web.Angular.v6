@@ -1,179 +1,174 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <h3 class="card-label">
-        {{ formInfo.FormTitle }}
-      </h3>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-        <mat-step label="مشخصات منو" state="main">
-          <!-- RecordStatus Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-              name="dataModel.RecordStatus" #RecordStatus="ngModel"
-              panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
-              <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="مشخصات منو" state="main">
+        <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+            name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+            required>
+            <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.ListItems;
                   index as i
                 " [value]="item.Value">{{ item.Description }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-            <mat-error *ngIf="RecordStatus.errors?.required">
-              {{fieldsInfo['RecordStatus']?.FieldTitle}} is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <!-- Title Field -->
-          <app-webdesigner-menu-selector (optionSelect)="onActionSelectorSelect($event)" [optionDisabled]="false"
-            [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منوی والد'">
-          </app-webdesigner-menu-selector>
-          <!-- Title Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-              [disabled]="!fieldsInfo['Title']?.AccessEditField" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Title = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Title.errors?.required">
-              {{fieldsInfo['Title']?.FieldTitle}} is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <!-- TitleML Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
-          </mat-form-field>
-          <!-- TitleEn Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleEn']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['TitleEn']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.TitleEn" name="dataModel.TitleEn" #TitleEn type="text"
-              [disabled]="!fieldsInfo['TitleEn']?.AccessEditField" placeholder="{{fieldsInfo['TitleEn']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.TitleEn" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.TitleEn = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ TitleEn.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="TitleEn.errors?.required">
-              {{fieldsInfo['TitleEn']?.FieldTitle}} is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+          </mat-select>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-error *ngIf="RecordStatus.errors?.required">
+            {{fieldsInfo['RecordStatus']?.FieldTitle}} is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Title Field -->
+        <app-webdesigner-menu-selector (optionSelect)="onActionSelectorSelect($event)" [optionDisabled]="false"
+          [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منوی والد'">
+        </app-webdesigner-menu-selector>
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+            [disabled]="!fieldsInfo['Title']?.AccessEditField" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
+            minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Title = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            {{fieldsInfo['Title']?.FieldTitle}} is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- TitleML Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
+        </mat-form-field>
+        <!-- TitleEn Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleEn']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['TitleEn']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.TitleEn" name="dataModel.TitleEn" #TitleEn type="text"
+            [disabled]="!fieldsInfo['TitleEn']?.AccessEditField" placeholder="{{fieldsInfo['TitleEn']?.FieldTitle}}"
+            minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.TitleEn" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.TitleEn = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ TitleEn.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="TitleEn.errors?.required">
+            {{fieldsInfo['TitleEn']?.FieldTitle}} is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
-          <!-- RouteAddressLink Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['RouteAddressLink']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.RouteAddressLink" name="dataModel.RouteAddressLink" #RouteAddressLink
-              type="text" [disabled]="!fieldsInfo['RouteAddressLink']?.AccessEditField"
-              placeholder="{{fieldsInfo['RouteAddressLink']?.FieldTitle}}" minlength="0" maxlength="100"
-              style="direction: ltr;text-align: left;" />
-            <mat-icon matSuffix *ngIf="dataModel.RouteAddressLink" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.RouteAddressLink = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ RouteAddressLink.value.length }} / 100</mat-hint>
-          </mat-form-field>
-          <!-- RouteAddressBlankPage Field -->
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.RouteAddressBlankPage"
-              *ngIf="fieldsInfo['RouteAddressBlankPage']?.AccessWatchField"
-              [disabled]="!fieldsInfo['RouteAddressBlankPage']?.AccessEditField" name="dataModel.RouteAddressBlankPage">
-              {{fieldsInfo['RouteAddressBlankPage']?.FieldTitle}}
-            </mat-slide-toggle>
-          </div>
+        <!-- RouteAddressLink Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['RouteAddressLink']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.RouteAddressLink" name="dataModel.RouteAddressLink" #RouteAddressLink
+            type="text" [disabled]="!fieldsInfo['RouteAddressLink']?.AccessEditField"
+            placeholder="{{fieldsInfo['RouteAddressLink']?.FieldTitle}}" minlength="0" maxlength="100"
+            style="direction: ltr;text-align: left;" />
+          <mat-icon matSuffix *ngIf="dataModel.RouteAddressLink" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.RouteAddressLink = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ RouteAddressLink.value.length }} / 100</mat-hint>
+        </mat-form-field>
+        <!-- RouteAddressBlankPage Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.RouteAddressBlankPage"
+            *ngIf="fieldsInfo['RouteAddressBlankPage']?.AccessWatchField"
+            [disabled]="!fieldsInfo['RouteAddressBlankPage']?.AccessEditField" name="dataModel.RouteAddressBlankPage">
+            {{fieldsInfo['RouteAddressBlankPage']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
 
-          <!-- Color Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Color']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Color']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Color" name="dataModel.Color" #Color [value]="dataModel.Color"
-              [style.background]="dataModel.Color" [(colorPicker)]="dataModel.Color" type="text"
-              [disabled]="!fieldsInfo['Color']?.AccessEditField" placeholder="{{fieldsInfo['Color']?.FieldTitle}}" />
-            <mat-icon matSuffix *ngIf="dataModel.Color" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Color = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-          </mat-form-field>
+        <!-- Color Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Color']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Color']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Color" name="dataModel.Color" #Color [value]="dataModel.Color"
+            [style.background]="dataModel.Color" [(colorPicker)]="dataModel.Color" type="text"
+            [disabled]="!fieldsInfo['Color']?.AccessEditField" placeholder="{{fieldsInfo['Color']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.Color" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Color = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-          <!-- Icon Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Icon']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Icon']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Icon" name="dataModel.Icon" #Icon [iconPicker]="dataModel.Icon"
-              [ipIconPack]="['fa']" [ipPosition]="'top'" (iconPickerSelect)="onIconPickerSelect($event)" type="text"
-              [disabled]="!fieldsInfo['Icon']?.AccessEditField" placeholder="{{fieldsInfo['Icon']?.FieldTitle}}" />
-            <span class="input-group-addon"><i [ngClass]="dataModel.Icon"></i></span>
-            <mat-icon>{{dataModel.Icon}}</mat-icon>
-            <mat-icon matSuffix *ngIf="dataModel.Icon" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Icon = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-          </mat-form-field>
+        <!-- Icon Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Icon']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Icon']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Icon" name="dataModel.Icon" #Icon [iconPicker]="dataModel.Icon"
+            [ipIconPack]="['fa']" [ipPosition]="'top'" (iconPickerSelect)="onIconPickerSelect($event)" type="text"
+            [disabled]="!fieldsInfo['Icon']?.AccessEditField" placeholder="{{fieldsInfo['Icon']?.FieldTitle}}" />
+          <span class="input-group-addon"><i [ngClass]="dataModel.Icon"></i></span>
+          <mat-icon>{{dataModel.Icon}}</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.Icon" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Icon = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-          <!-- Icon Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInMenuOrder']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['ShowInMenuOrder']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.ShowInMenuOrder" name="dataModel.ShowInMenuOrder" #ShowInMenuOrder
-              type="number" [disabled]="!fieldsInfo['ShowInMenuOrder']?.AccessEditField"
-              placeholder="{{fieldsInfo['ShowInMenuOrder']?.FieldTitle}}" />
-            <mat-icon matSuffix *ngIf="dataModel.ShowInMenuOrder" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.ShowInMenuOrder = 1">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-          </mat-form-field>
-          <!-- Description Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Description']?.AccessWatchField">
-            <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-              placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows="1"></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Description = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
-            <mat-error *ngIf="Description.errors?.required">
-              {{fieldsInfo['Description']?.FieldTitle}} is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
-            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-              {{'ACTION.SAVE' | translate}}
-            </button>
-          </div>
-        </mat-step>
+        <!-- Icon Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInMenuOrder']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['ShowInMenuOrder']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.ShowInMenuOrder" name="dataModel.ShowInMenuOrder" #ShowInMenuOrder
+            type="number" [disabled]="!fieldsInfo['ShowInMenuOrder']?.AccessEditField"
+            placeholder="{{fieldsInfo['ShowInMenuOrder']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.ShowInMenuOrder" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ShowInMenuOrder = 1">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Description']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows="1"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Description = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+          <mat-error *ngIf="Description.errors?.required">
+            {{fieldsInfo['Description']?.FieldTitle}} is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
 
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
 
 
-        <!-- Icon overrides. -->
-        <ng-template matStepperIcon="main">
-          <mat-icon>call_end</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="seo">
-          <mat-icon>call_end</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="file">
-          <mat-icon>forum</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="loaction">
-          <mat-icon>forum</mat-icon>
-        </ng-template>
 
-      </mat-horizontal-stepper>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="main">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="seo">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="file">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="loaction">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </mat-horizontal-stepper>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>
-
-

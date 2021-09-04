@@ -1,54 +1,50 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <h3 class="card-label">
-        {{ formInfo.FormTitle }}
-      </h3>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
 
-      <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
-          required>
-          <mat-option *ngFor="
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.ListItems;
                   index as i
                 " [value]="item.Value">{{ item.Description }}</mat-option>
-        </mat-select>
-        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-        <mat-error *ngIf="RecordStatus.errors?.required">
-          RecordStatus is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.FormError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
-          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
-          [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-        </button>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>
