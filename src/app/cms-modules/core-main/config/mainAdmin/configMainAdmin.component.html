@@ -1,317 +1,313 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <h3 class="card-label">
-        {{ formInfo.FormTitle }}
-      </h3>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <h3 class="card-label">
+      {{ formInfo.FormTitle }}
+    </h3>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
-        <mat-step label="{{'TITLE.Default_module_settings'|translate}}" state="main"
-          *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
-          <p>{{'TITLE.Settings_that_are_used_in_the_first_assignment_of_the_module_to_the_site' |translate}}</p>
-          <!-- StatusRenderUser Field -->
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.StatusRenderUser"
-              name="dataConfigSiteValuesDefaultModel.StatusRenderUser">
-              StatusRenderUser
-            </mat-slide-toggle>
-          </div>
-          <!-- UseDataDefaulteSite -->
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite"
-              name="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite">
-              نمایش اطلاعات سایت پیش فرض در سایت
-            </mat-slide-toggle>
-          </div>
-          <!-- DomainsGoogleSitekey Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>DomainsGoogleSitekey</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey"
-              name="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey"
-              #dataConfigSiteValuesDefaultModel_DomainsGoogleSitekey type="text" placeholder="ad....." />
-            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-step label="{{'TITLE.Default_module_settings'|translate}}" state="main"
+        *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <p>{{'TITLE.Settings_that_are_used_in_the_first_assignment_of_the_module_to_the_site' |translate}}</p>
+        <!-- StatusRenderUser Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.StatusRenderUser"
+            name="dataConfigSiteValuesDefaultModel.StatusRenderUser">
+            StatusRenderUser
+          </mat-slide-toggle>
+        </div>
+        <!-- UseDataDefaulteSite -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite"
+            name="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite">
+            نمایش اطلاعات سایت پیش فرض در سایت
+          </mat-slide-toggle>
+        </div>
+        <!-- DomainsGoogleSitekey Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>DomainsGoogleSitekey</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey"
+            name="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey"
+            #dataConfigSiteValuesDefaultModel_DomainsGoogleSitekey type="text" placeholder="ad....." />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.DomainsGoogleSitekey = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-          </mat-form-field>
+        </mat-form-field>
 
-          <!-- DomainsGoogleSecretkey Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>DomainsGoogleSecretkey</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey"
-              name="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey"
-              #dataConfigSiteValuesDefaultModel_DomainsGoogleSecretkey type="text" placeholder="ad....." />
-            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey" matSuffix
-              mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+        <!-- DomainsGoogleSecretkey Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>DomainsGoogleSecretkey</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey"
+            name="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey"
+            #dataConfigSiteValuesDefaultModel_DomainsGoogleSecretkey type="text" placeholder="ad....." />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.DomainsGoogleSecretkey = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-          </mat-form-field>
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryBool"
-              name="dataConfigSiteValuesDefaultModel.UserRegidteryBool">
-              UserRegidteryBool
-            </mat-slide-toggle>
-          </div>
-          <!-- UserRegidteryRecordStatus Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="وضعیت" [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus"
-              name="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus" #UserRegidteryRecordStatus="ngModel"
-              panelClass="UserRegidteryRecordStatus-{{ dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus }}">
-              <mat-option *ngFor="
+        </mat-form-field>
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryBool"
+            name="dataConfigSiteValuesDefaultModel.UserRegidteryBool">
+            UserRegidteryBool
+          </mat-slide-toggle>
+        </div>
+        <!-- UserRegidteryRecordStatus Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="وضعیت" [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus"
+            name="dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus" #UserRegidteryRecordStatus="ngModel"
+            panelClass="UserRegidteryRecordStatus-{{ dataConfigSiteValuesDefaultModel.UserRegidteryRecordStatus }}">
+            <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          </mat-select>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
 
-          </mat-form-field>
-          <!-- UserRegidteryExpireDateDay Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>UserRegidteryExpireDateDay</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay"
-              name="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay"
-              #dataConfigSiteValuesDefaultModel_UserRegidteryExpireDateDay type="number" placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay" matSuffix
-              mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- UserRegidteryExpireDateDay Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>UserRegidteryExpireDateDay</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay"
+            name="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay"
+            #dataConfigSiteValuesDefaultModel_UserRegidteryExpireDateDay type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay" matSuffix
+            mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteValuesDefaultModel.UserRegidteryExpireDateDay = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-          </mat-form-field>
-          <!-- RSSCount Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>RSSCount</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.RSSCount"
-              name="dataConfigSiteValuesDefaultModel.RSSCount" #dataConfigSiteValuesDefaultModel_RSSCount type="number"
-              placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.RSSCount" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.RSSCount = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- RSSCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>RSSCount</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.RSSCount"
+            name="dataConfigSiteValuesDefaultModel.RSSCount" #dataConfigSiteValuesDefaultModel_RSSCount type="number"
+            placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.RSSCount" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.RSSCount = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-          </mat-form-field>
-
-
-
-          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
-            <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
-          </div>
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button (click)="onActionBackToParent()">
-              {{'ACTION.BACK' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-              {{'ACTION.SAVE' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="{{'TITLE.Default_access'|translate}}" state="main"
-          *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
-          <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
-
-          <!-- MainDataContentRowCount Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>MainDataContentRowCount</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
-              name="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
-              #dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount type="number" placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount" matSuffix
-              mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount = 0">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-
-          </mat-form-field>
-          <!-- UseDataDefaulteSiteId Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
-              name="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
-              #dataConfigSiteAccessValuesDefaultModel_UseDataDefaulteSiteId type="number" placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId" matSuffix
-              mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId = 0">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-          </mat-form-field>
-
-          <!-- DomainsList Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>DomainsList</mat-label>
-            <textarea matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.DomainsList"
-              name="dataConfigSiteAccessValuesDefaultModel.DomainsList"
-              #dataConfigSiteAccessValuesDefaultModel_DomainsList type="text" placeholder="domain.com"
-              rows="10"></textarea>
-            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.DomainsList" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigSiteAccessValuesDefaultModel.DomainsList = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-          </mat-form-field>
+        </mat-form-field>
 
 
 
-          <!-- MaxAdminCpUserCreation Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>MaxAdminCpUserCreation</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
-              name="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
-              #dataConfigSiteAccessValuesDefaultModel_MaxAdminCpUserCreation type="number" placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation" matSuffix
-              mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation = 0">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
+        </div>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.Default_access'|translate}}" state="main"
+        *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
 
-          </mat-form-field>
+        <!-- MainDataContentRowCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>MainDataContentRowCount</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
+            name="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
+            #dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount" matSuffix
+            mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-          <!-- MaxUserCreation Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>MaxUserCreation</mat-label>
-            <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
-              name="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
-              #dataConfigSiteAccessValuesDefaultModel_MaxUserCreation type="number" placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation = 0">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- UseDataDefaulteSiteId Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
+            name="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
+            #dataConfigSiteAccessValuesDefaultModel_UseDataDefaulteSiteId type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId" matSuffix
+            mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-          </mat-form-field>
-
-
-
-
-          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
-            <div [innerHTML]="dataConfigSiteAccessValuesDefaultModel | prettyjson"></div>
-          </div>
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="accent" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-              {{'ACTION.SAVE' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="{{'TITLE.System_management_settings'|translate}}" state="main">
-          <p>{{'TITLE.The_whole_system_management_settings_for_this_module'|translate}}</p>
-
-          <!-- AccessBuy Field -->
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy"
-              name="dataConfigAdminMainModel.AccessBuy">
-              AccessBuy
-            </mat-slide-toggle>
-          </div>
-          <!-- AccessBuyPrice Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>AccessBuyPrice</mat-label>
-            <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyPrice"
-              name="dataConfigAdminMainModel.AccessBuyPrice" #dataConfigAdminMainModel_AccessBuyPrice type="number"
-              placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyPrice" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyPrice = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-
-          </mat-form-field>
-
-          <!-- AccessBuyMonth Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>AccessBuyMonth</mat-label>
-            <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyMonth"
-              name="dataConfigAdminMainModel.AccessBuyMonth" #dataConfigAdminMainModel_AccessBuyMonth type="number"
-              placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyMonth" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyMonth = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-
-          </mat-form-field>
-          <!-- AccessFree Field -->
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
-              name="dataConfigAdminMainModel.AccessFree">
-              AccessFree
-            </mat-slide-toggle>
-          </div>
-          <!-- AccessFreeDay Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>AccessFreeDay</mat-label>
-            <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessFreeDay"
-              name="dataConfigAdminMainModel.AccessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
-              placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessFreeDay" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigAdminMainModel.AccessFreeDay = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-
-          </mat-form-field>
+        <!-- DomainsList Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>DomainsList</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.DomainsList"
+            name="dataConfigSiteAccessValuesDefaultModel.DomainsList"
+            #dataConfigSiteAccessValuesDefaultModel_DomainsList type="text" placeholder="domain.com"
+            rows="10"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.DomainsList" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesDefaultModel.DomainsList = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
 
 
-          <!-- DomainsList Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>DomainsList</mat-label>
-            <input matInput [(ngModel)]="dataConfigAdminMainModel.DomainsList"
-              name="dataConfigAdminMainModel.DomainsList" #dataConfigAdminMainModel_DomainsList type="number"
-              placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.DomainsList" matSuffix mat-icon-button
-              aria-label="Clear" (click)="dataConfigAdminMainModel.DomainsList = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+        <!-- MaxAdminCpUserCreation Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>MaxAdminCpUserCreation</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
+            name="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation"
+            #dataConfigSiteAccessValuesDefaultModel_MaxAdminCpUserCreation type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation" matSuffix
+            mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteAccessValuesDefaultModel.MaxAdminCpUserCreation = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-          </mat-form-field>
+        </mat-form-field>
 
-          <!-- AdminCpUserRegidteryBool Field -->
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AdminCpUserRegidteryBool"
-              name="dataConfigAdminMainModel.AdminCpUserRegidteryBool">
-              AdminCpUserRegidteryBool
-            </mat-slide-toggle>
-          </div>
+        <!-- MaxUserCreation Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>MaxUserCreation</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
+            name="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation"
+            #dataConfigSiteAccessValuesDefaultModel_MaxUserCreation type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesDefaultModel.MaxUserCreation = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-          <!-- AdminCpUserRegidteryExpireDateDay Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>AdminCpUserRegidteryExpireDateDay</mat-label>
-            <input matInput [(ngModel)]="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"
-              name="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"
-              #dataConfigAdminMainModel_AdminCpUserRegidteryExpireDateDay type="number" placeholder="0" />
-            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay" matSuffix
-              mat-icon-button aria-label="Clear"
-              (click)="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-          </mat-form-field>
-          <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
-            <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
-          </div>
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="accent" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-              {{'ACTION.SAVE' | translate}}
-            </button>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataConfigSiteAccessValuesDefaultModel | prettyjson"></div>
+        </div>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.System_management_settings'|translate}}" state="main">
+        <p>{{'TITLE.The_whole_system_management_settings_for_this_module'|translate}}</p>
+
+        <!-- AccessBuy Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy" name="dataConfigAdminMainModel.AccessBuy">
+            AccessBuy
+          </mat-slide-toggle>
+        </div>
+        <!-- AccessBuyPrice Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>AccessBuyPrice</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyPrice"
+            name="dataConfigAdminMainModel.AccessBuyPrice" #dataConfigAdminMainModel_AccessBuyPrice type="number"
+            placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyPrice" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyPrice = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+
+        <!-- AccessBuyMonth Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>AccessBuyMonth</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessBuyMonth"
+            name="dataConfigAdminMainModel.AccessBuyMonth" #dataConfigAdminMainModel_AccessBuyMonth type="number"
+            placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessBuyMonth" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.AccessBuyMonth = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+        <!-- AccessFree Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
+            name="dataConfigAdminMainModel.AccessFree">
+            AccessFree
+          </mat-slide-toggle>
+        </div>
+        <!-- AccessFreeDay Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>AccessFreeDay</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessFreeDay"
+            name="dataConfigAdminMainModel.AccessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
+            placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessFreeDay" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.AccessFreeDay = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+
+
+
+        <!-- DomainsList Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>DomainsList</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.DomainsList" name="dataConfigAdminMainModel.DomainsList"
+            #dataConfigAdminMainModel_DomainsList type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.DomainsList" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataConfigAdminMainModel.DomainsList = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+
+        <!-- AdminCpUserRegidteryBool Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AdminCpUserRegidteryBool"
+            name="dataConfigAdminMainModel.AdminCpUserRegidteryBool">
+            AdminCpUserRegidteryBool
+          </mat-slide-toggle>
+        </div>
+
+        <!-- AdminCpUserRegidteryExpireDateDay Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>AdminCpUserRegidteryExpireDateDay</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"
+            name="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay"
+            #dataConfigAdminMainModel_AdminCpUserRegidteryExpireDateDay type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay" matSuffix
+            mat-icon-button aria-label="Clear"
+            (click)="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
+        </div>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

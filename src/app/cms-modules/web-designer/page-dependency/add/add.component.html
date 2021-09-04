@@ -1,121 +1,119 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <h3 class="card-label">
-        {{ formInfo.FormTitle }}
-      </h3>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <!-- RecordStatus Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
-          required>
-          <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <h3 class="card-label">
+      {{ formInfo.FormTitle }}
+    </h3>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
-        </mat-select>
-        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-        <mat-error *ngIf="RecordStatus.errors?.required">
-          RecordStatus is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
 
-      <!-- Title Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required
-          [disabled]="!fieldsInfo['Title']?.AccessAddField" />
-        <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Title = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="Title.errors?.required">
-          {{fieldsInfo['Title']?.FieldTitle}} is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <!-- TitleML Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
-        <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
-      </mat-form-field>
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required
+        [disabled]="!fieldsInfo['Title']?.AccessAddField" />
+      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        {{fieldsInfo['Title']?.FieldTitle}} is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- TitleML Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
+    </mat-form-field>
 
-      <!-- TitleResourceLanguage Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
-          #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
-          maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessAddField" />
-        <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="TitleResourceLanguage.errors?.required">
-          {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}} is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <!-- LinkModuleId Field -->
-      <app-cms-module-selector (optionSelect)="onActionSelectModule($event)"
-        [optionSelectForce]="this.dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'"
-        [optionDisabled]="!fieldsInfo['LinkModuleId']?.AccessAddField">
-      </app-cms-module-selector>
-      <!-- CmsModuleClassName Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['CmsModuleClassName']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.CmsModuleClassName" name="dataModel.CmsModuleClassName"
-          #CmsModuleClassName type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
-          maxlength="100" required [disabled]="!fieldsInfo['CmsModuleClassName']?.AccessAddField" />
-        <mat-icon matSuffix *ngIf="dataModel.CmsModuleClassName" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.CmsModuleClassName = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ CmsModuleClassName.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="CmsModuleClassName.errors?.required">
-          {{fieldsInfo['CmsModuleClassName']?.FieldTitle}} is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <!-- ClassActionName Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['ClassActionName']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.ClassActionName" name="dataModel.ClassActionName" #ClassActionName
-          type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
-          [disabled]="!fieldsInfo['ClassActionName']?.AccessAddField" />
-        <mat-icon matSuffix *ngIf="dataModel.ClassActionName" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.ClassActionName = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ ClassActionName.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="ClassActionName.errors?.required">
-          {{fieldsInfo['ClassActionName']?.FieldTitle}} is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.FormError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
-          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-        <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary"
-          [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-        </button>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+    <!-- TitleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+        maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessAddField" />
+      <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleResourceLanguage.errors?.required">
+        {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}} is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LinkModuleId Field -->
+    <app-cms-module-selector (optionSelect)="onActionSelectModule($event)"
+      [optionSelectForce]="this.dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'"
+      [optionDisabled]="!fieldsInfo['LinkModuleId']?.AccessAddField">
+    </app-cms-module-selector>
+    <!-- CmsModuleClassName Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['CmsModuleClassName']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.CmsModuleClassName" name="dataModel.CmsModuleClassName" #CmsModuleClassName
+        type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required
+        [disabled]="!fieldsInfo['CmsModuleClassName']?.AccessAddField" />
+      <mat-icon matSuffix *ngIf="dataModel.CmsModuleClassName" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.CmsModuleClassName = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ CmsModuleClassName.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="CmsModuleClassName.errors?.required">
+        {{fieldsInfo['CmsModuleClassName']?.FieldTitle}} is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- ClassActionName Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['ClassActionName']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.ClassActionName" name="dataModel.ClassActionName" #ClassActionName
+        type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"
+        [disabled]="!fieldsInfo['ClassActionName']?.AccessAddField" />
+      <mat-icon matSuffix *ngIf="dataModel.ClassActionName" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.ClassActionName = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ ClassActionName.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="ClassActionName.errors?.required">
+        {{fieldsInfo['ClassActionName']?.FieldTitle}} is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

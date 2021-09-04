@@ -1,13 +1,13 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card  [optionLoading]="loading">
-    <ng-container cms-header>
-      <h3 class="card-label">
+    <div class="ntk-cms-html-card-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{formInfo.FormTitle}}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      <h3 class="card-label">
+        {{ formInfo.FormTitle }}
       </h3>
-    </ng-container>
-    <ng-container cms-body>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <mat-horizontal-stepper  (selectionChange)="onStepClick($event,stepper)" #stepper>
         <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
@@ -378,11 +378,10 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
       
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
+    </div>
+    <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
       
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+    </div>
 </form>

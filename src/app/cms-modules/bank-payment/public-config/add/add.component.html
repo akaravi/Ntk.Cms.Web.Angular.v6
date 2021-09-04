@@ -1,13 +1,13 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
+    <div class="ntk-cms-html-card-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <h3 class="card-label">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
         {{ formInfo.FormTitle }}
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
       </h3>
-    </ng-container>
-    <ng-container cms-body>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <!-- RecordStatus Field -->
       <mat-form-field class="ntk-full-width">
@@ -92,8 +92,8 @@
         </cms-file-manager>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
+    </div>
+    <div class="ntk-cms-html-card-message">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
       <div class="form-actions">
         <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
@@ -101,8 +101,8 @@
         </small>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
+    </div>
+    <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
       <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
@@ -115,6 +115,5 @@
         </button>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+    </div>
 </form>

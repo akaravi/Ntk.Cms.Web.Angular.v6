@@ -1,318 +1,317 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <app-cms-html-card [optionLoading]="loading">
-    <ng-container cms-header>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <h3 class="card-label">
-        ویرایش : {{dataModel.Name}} {{dataModel.LastName}}
-      </h3>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <h3 class="card-label">
+      ویرایش : {{dataModel.Name}} {{dataModel.LastName}}
+    </h3>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
-        <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
-          <!-- RecordStatus Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-              name="dataModel.RecordStatus" #RecordStatus="ngModel"
-              panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
-              <mat-option *ngFor="
+      <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+        <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+            name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+            required>
+            <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.ListItems;
               index as i
             " [value]="item.Value">{{ item.Description }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-            <mat-error *ngIf="RecordStatus.errors?.required">
-              RecordStatus is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+          </mat-select>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-error *ngIf="RecordStatus.errors?.required">
+            RecordStatus is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
 
 
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Username']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Username']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Username" name="dataModel.Username" #Username type="text"
-              [disabled]="!fieldsInfo['Username']?.AccessEditField" placeholder="{{fieldsInfo['Username']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.Username" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Username = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Username.errors?.required">
-              Username is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Email']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email type="text"
-              [disabled]="!fieldsInfo['Email']?.AccessEditField" placeholder="{{fieldsInfo['Email']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Email = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Email.errors?.required">
-              Email is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.EmailConfirmed"
-              *ngIf="fieldsInfo['EmailConfirmed']?.AccessWatchField"
-              [disabled]="!fieldsInfo['EmailConfirmed']?.AccessEditField" name="dataModel.EmailConfirmed">
-              {{fieldsInfo['EmailConfirmed']?.FieldTitle}}
-            </mat-slide-toggle>
-          </div>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Username']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Username']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Username" name="dataModel.Username" #Username type="text"
+            [disabled]="!fieldsInfo['Username']?.AccessEditField" placeholder="{{fieldsInfo['Username']?.FieldTitle}}"
+            minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Username" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Username = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Username.errors?.required">
+            Username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Email']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email type="text"
+            [disabled]="!fieldsInfo['Email']?.AccessEditField" placeholder="{{fieldsInfo['Email']?.FieldTitle}}"
+            minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Email = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Email.errors?.required">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.EmailConfirmed"
+            *ngIf="fieldsInfo['EmailConfirmed']?.AccessWatchField"
+            [disabled]="!fieldsInfo['EmailConfirmed']?.AccessEditField" name="dataModel.EmailConfirmed">
+            {{fieldsInfo['EmailConfirmed']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
 
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Mobile']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Mobile']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text"
-              [disabled]="!fieldsInfo['Mobile']?.AccessEditField" placeholder="{{fieldsInfo['Mobile']?.FieldTitle}}"
-              minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Mobile = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Mobile.errors?.required">
-              Mobile is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Mobile']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Mobile']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text"
+            [disabled]="!fieldsInfo['Mobile']?.AccessEditField" placeholder="{{fieldsInfo['Mobile']?.FieldTitle}}"
+            minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Mobile = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Mobile.errors?.required">
+            Mobile is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
-          <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.MobileConfirmed"
-              *ngIf="fieldsInfo['MobileConfirmed']?.AccessWatchField"
-              [disabled]="!fieldsInfo['MobileConfirmed']?.AccessEditField" name="dataModel.MobileConfirmed">
-              {{fieldsInfo['MobileConfirmed']?.FieldTitle}}
-            </mat-slide-toggle>
-          </div>
-          <!-- ExpireDate Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
-            <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate"
-              name="dataModel.ExpireDate" />
-            <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
-              mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
-            <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #ExpireDate></mat-datepicker>
-          </mat-form-field>
-
-
-
-
-
-
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button (click)="onActionBackToParent()">
-              {{'ACTION.BACK' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-
-        <mat-step label="مشخصات شخصی" state="seo">
-          <p>اطلاهات صاحب حساب را وارد کنید</p>
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.MobileConfirmed"
+            *ngIf="fieldsInfo['MobileConfirmed']?.AccessWatchField"
+            [disabled]="!fieldsInfo['MobileConfirmed']?.AccessEditField" name="dataModel.MobileConfirmed">
+            {{fieldsInfo['MobileConfirmed']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- ExpireDate Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
+          <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
+          <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #ExpireDate></mat-datepicker>
+        </mat-form-field>
 
 
 
 
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Name']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Name']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Name" name="dataModel.Name" #Name type="text"
-              [disabled]="!fieldsInfo['Name']?.AccessEditField" placeholder="{{fieldsInfo['Name']?.FieldTitle}}"
-              minlength="3" maxlength="100" />
-            <mat-icon matSuffix *ngIf="dataModel.Name" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Name = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Name.errors?.required">
-              Name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+
+
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step label="مشخصات شخصی" state="seo">
+        <p>اطلاهات صاحب حساب را وارد کنید</p>
 
 
 
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastName']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['LastName']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.LastName" name="dataModel.LastName" #LastName type="text"
-              [disabled]="!fieldsInfo['LastName']?.AccessEditField" placeholder="{{fieldsInfo['LastName']?.FieldTitle}}"
-              minlength="3" maxlength="100" />
-            <mat-icon matSuffix *ngIf="dataModel.LastName" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.LastName = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ LastName.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="LastName.errors?.required">
-              LastName is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
 
-
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BirthDay']?.AccessWatchField">
-            <mat-label>{{fieldsInfo['BirthDay']?.FieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="BirthDay" [(ngModel)]="dataModel.BirthDay" name="dataModel.BirthDay" />
-            <mat-icon matSuffix *ngIf="dataModel.BirthDay && fieldsInfo['BirthDay']?.AccessEditField" matSuffix
-              mat-icon-button aria-label="Clear" (click)="dataModel.BirthDay = null">close</mat-icon>
-            <mat-datepicker-toggle matSuffix [for]="BirthDay"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #BirthDay></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['CompanyName']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['CompanyName']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.CompanyName" name="dataModel.CompanyName" #CompanyName type="text"
-              [disabled]="!fieldsInfo['CompanyName']?.AccessEditField"
-              placeholder="{{fieldsInfo['CompanyName']?.FieldTitle}}" minlength="3" maxlength="100" />
-            <mat-icon matSuffix *ngIf="dataModel.CompanyName" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.CompanyName = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ CompanyName.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="CompanyName.errors?.required">
-              CompanyName is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Tell']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Tell']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.Tell" name="dataModel.Tell" #Tell type="text"
-              [disabled]="!fieldsInfo['Tell']?.AccessEditField" placeholder="{{fieldsInfo['Tell']?.FieldTitle}}"
-              minlength="3" maxlength="100" />
-            <mat-icon matSuffix *ngIf="dataModel.Tell" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Tell = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Tell.errors?.required">
-              Tell is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PostalCode']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['PostalCode']?.FieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.PostalCode" name="dataModel.PostalCode" #PostalCode type="text"
-              [disabled]="!fieldsInfo['PostalCode']?.AccessEditField"
-              placeholder="{{fieldsInfo['PostalCode']?.FieldTitle}}" minlength="3" maxlength="100" />
-            <mat-icon matSuffix *ngIf="dataModel.PostalCode" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.PostalCode = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ PostalCode.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="PostalCode.errors?.required">
-              PostalCode is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['Address']?.FieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.Address" name="dataModel.Address"
-              [disabled]="!fieldsInfo['Address']?.AccessEditField" #Address type="text"
-              placeholder=" {{fieldsInfo['Address']?.FieldTitle}}" minlength="1" maxlength="1000" rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.Address" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Address = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Address.value.length }} / 1000</mat-hint>
-          </mat-form-field>
-
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="accent" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="تنظیمات امینتی" state="seo">
-          <p>تنظیمات لازیم برای امنیت این حساب کاربری</p>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Name']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Name']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Name" name="dataModel.Name" #Name type="text"
+            [disabled]="!fieldsInfo['Name']?.AccessEditField" placeholder="{{fieldsInfo['Name']?.FieldTitle}}"
+            minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.Name" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Name = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Name.errors?.required">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
 
 
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireLockAccount']?.AccessWatchField">
-            <mat-label>{{fieldsInfo['ExpireLockAccount']?.FieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="ExpireLockAccount" [(ngModel)]="dataModel.ExpireLockAccount"
-              name="dataModel.ExpireLockAccount" />
-            <mat-icon matSuffix *ngIf="dataModel.ExpireLockAccount && fieldsInfo['ExpireLockAccount']?.AccessEditField"
-              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ExpireLockAccount = null">close</mat-icon>
-            <mat-datepicker-toggle matSuffix [for]="ExpireLockAccount"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #ExpireLockAccount></mat-datepicker>
-          </mat-form-field>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastName']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['LastName']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.LastName" name="dataModel.LastName" #LastName type="text"
+            [disabled]="!fieldsInfo['LastName']?.AccessEditField" placeholder="{{fieldsInfo['LastName']?.FieldTitle}}"
+            minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.LastName" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.LastName = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ LastName.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="LastName.errors?.required">
+            LastName is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BirthDay']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['BirthDay']?.FieldTitle}}</mat-label>
+          <input matInput [matDatepicker]="BirthDay" [(ngModel)]="dataModel.BirthDay" name="dataModel.BirthDay" />
+          <mat-icon matSuffix *ngIf="dataModel.BirthDay && fieldsInfo['BirthDay']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.BirthDay = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="BirthDay"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #BirthDay></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['CompanyName']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['CompanyName']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.CompanyName" name="dataModel.CompanyName" #CompanyName type="text"
+            [disabled]="!fieldsInfo['CompanyName']?.AccessEditField"
+            placeholder="{{fieldsInfo['CompanyName']?.FieldTitle}}" minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.CompanyName" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.CompanyName = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ CompanyName.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="CompanyName.errors?.required">
+            CompanyName is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Tell']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Tell']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Tell" name="dataModel.Tell" #Tell type="text"
+            [disabled]="!fieldsInfo['Tell']?.AccessEditField" placeholder="{{fieldsInfo['Tell']?.FieldTitle}}"
+            minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.Tell" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Tell = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Tell.errors?.required">
+            Tell is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PostalCode']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['PostalCode']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.PostalCode" name="dataModel.PostalCode" #PostalCode type="text"
+            [disabled]="!fieldsInfo['PostalCode']?.AccessEditField"
+            placeholder="{{fieldsInfo['PostalCode']?.FieldTitle}}" minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.PostalCode" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.PostalCode = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ PostalCode.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="PostalCode.errors?.required">
+            PostalCode is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['Address']?.FieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.Address" name="dataModel.Address"
+            [disabled]="!fieldsInfo['Address']?.AccessEditField" #Address type="text"
+            placeholder=" {{fieldsInfo['Address']?.FieldTitle}}" minlength="1" maxlength="1000" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.Address" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Address = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Address.value.length }} / 1000</mat-hint>
+        </mat-form-field>
+
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="تنظیمات امینتی" state="seo">
+        <p>تنظیمات لازیم برای امنیت این حساب کاربری</p>
 
 
 
-          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirewallAllowIP']?.AccessWatchField">
-            <mat-label> {{fieldsInfo['FirewallAllowIP']?.FieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.FirewallAllowIP" name="dataModel.FirewallAllowIP"
-              [disabled]="!fieldsInfo['FirewallAllowIP']?.AccessEditField" #FirewallAllowIP type="text"
-              placeholder=" {{fieldsInfo['FirewallAllowIP']?.FieldTitle}}" minlength="1" maxlength="1000"
-              rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.FirewallAllowIP" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.FirewallAllowIP = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ FirewallAllowIP.value.length }} / 1000</mat-hint>
-          </mat-form-field>
-
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="accent" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-          <p>فایل های مربوط به این حساب کاربری</p>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireLockAccount']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['ExpireLockAccount']?.FieldTitle}}</mat-label>
+          <input matInput [matDatepicker]="ExpireLockAccount" [(ngModel)]="dataModel.ExpireLockAccount"
+            name="dataModel.ExpireLockAccount" />
+          <mat-icon matSuffix *ngIf="dataModel.ExpireLockAccount && fieldsInfo['ExpireLockAccount']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ExpireLockAccount = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="ExpireLockAccount"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #ExpireLockAccount></mat-datepicker>
+        </mat-form-field>
 
 
-          <mat-form-field class="ntk-full-width">
-            <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-              src="{{dataModel.LinkMainImageIdSrc}}" class="ntk-hover-zoom" height="50" width="50" />
-            <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
-            <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
-              type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
-            <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.LinkMainImageId = null">close</mat-icon>
-            <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
-          </mat-form-field>
 
-          <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
-            [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
-            [openDirectUploadView]="true" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [openFilemanagerButtonView]="false">
-          </cms-file-manager>
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="accent" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-              {{'ACTION.SAVE' | translate}}
-            </button>
-          </div>
-        </mat-step>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirewallAllowIP']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['FirewallAllowIP']?.FieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.FirewallAllowIP" name="dataModel.FirewallAllowIP"
+            [disabled]="!fieldsInfo['FirewallAllowIP']?.AccessEditField" #FirewallAllowIP type="text"
+            placeholder=" {{fieldsInfo['FirewallAllowIP']?.FieldTitle}}" minlength="1" maxlength="1000"
+            rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.FirewallAllowIP" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.FirewallAllowIP = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ FirewallAllowIP.value.length }} / 1000</mat-hint>
+        </mat-form-field>
 
-        <!-- Icon overrides. -->
-        <ng-template matStepperIcon="main">
-          <mat-icon>call_end</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="seo">
-          <mat-icon>call_end</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="file">
-          <mat-icon>forum</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="loaction">
-          <mat-icon>forum</mat-icon>
-        </ng-template>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
+        <p>فایل های مربوط به این حساب کاربری</p>
 
-      </mat-horizontal-stepper>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-message>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+        <mat-form-field class="ntk-full-width">
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc}}" class="ntk-hover-zoom" height="50" width="50" />
+          <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
+          <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+            type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
+          <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+          <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+        </mat-form-field>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </ng-container>
-    <ng-container cms-footer>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+        <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
+          [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
+          [openDirectUploadView]="true" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+          [openFilemanagerButtonView]="false">
+        </cms-file-manager>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-card>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="main">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="seo">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="file">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="loaction">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+
+    </mat-horizontal-stepper>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

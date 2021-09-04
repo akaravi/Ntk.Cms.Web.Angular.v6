@@ -1,35 +1,34 @@
-<app-cms-html-card [optionLoading]="loading">
-  <ng-container cms-header>
-    <h3 class="card-label">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </h3>
-  </ng-container>
-  <ng-container cms-body>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+<div class="ntk-cms-html-card-header">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <h3 class="card-label">
+    {{ formInfo.FormTitle }}
+  </h3>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+</div>
+<div class="ntk-cms-html-card-body">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
 
-    <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
+  <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </ng-container>
-  <ng-container cms-message>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
-      </small>
-    </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  </ng-container>
-  <ng-container cms-footer>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-      <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
-        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-      </button>
-    </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </ng-container>
-</app-cms-html-card>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+</div>
+<div class="ntk-cms-html-card-message">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+</div>
+<div class="ntk-cms-html-card-footer">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>
