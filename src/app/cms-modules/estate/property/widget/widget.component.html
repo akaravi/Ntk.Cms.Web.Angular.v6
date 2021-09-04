@@ -1,6 +1,5 @@
 <div class="card card-custom card-stretch gutter-b">
-  <app-cms-html-widget [optionLoading]="loading">
-    <ng-container cms-header>
+<div class="ntk-cms-html-widget-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <div class="card-header border-0 mt-4">
         <h3 class="card-title align-items-start flex-column">
@@ -19,8 +18,11 @@
         </div>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-body>
+    </div>
+    <div class="ntk-cms-html-widget-body">
+	   <div *ngIf="loading.display" class="overlay-layer bg-transparent" >
+      <div class="spinner spinner-lg spinner-success"></div>
+    </div>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <div class="card-body pt-8">
         <!--begin::Item-->
@@ -43,11 +45,10 @@
         <!--end::Item-->
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-footer>
+       </div>
+    <div class="ntk-cms-html-widget-footer">     
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
       
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
-  </app-cms-html-widget>
+    </div>
 </div>

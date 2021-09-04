@@ -1,32 +1,33 @@
 <!--begin::Tiles Widget 11-->
 <div class="card card-custom bg-" [ngClass]="cssClass" [ngStyle]="{ height: widgetHeight }">
   <div class="card-body">
-    <app-cms-html-widget [optionLoading]="loading">
-      <ng-container cms-header>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/General/Smile.svg'"
-          class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      </ng-container>
-      <ng-container cms-body>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <div *ngFor="let row of dataModelResult.ListItems ; index as i" [ngClass]="textInverseCSSClass"
-          class="row font-weight-bolder font-size-h5 mt-3">
-          <div class="col-8"> {{row.TypeTitle}} </div>
-          <div class="col-2"><i [ngClass]="row.IsApproved | boolclass"></i></div>
-          <div class="col-2"><i *ngIf="!row.IsApproved" ngClass="fa fa-edit" (click)="onActionbuttonEditRow(row)"></i>
-          </div>
+    <div class="ntk-cms-html-widget-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/General/Smile.svg'"
+        class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-widget-body">
+      <div *ngIf="loading.display" class="overlay-layer bg-transparent">
+        <div class="spinner spinner-lg spinner-success"></div>
+      </div>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <div *ngFor="let row of dataModelResult.ListItems ; index as i" [ngClass]="textInverseCSSClass"
+        class="row font-weight-bolder font-size-h5 mt-3">
+        <div class="col-8"> {{row.TypeTitle}} </div>
+        <div class="col-2"><i [ngClass]="row.IsApproved | boolclass"></i></div>
+        <div class="col-2"><i *ngIf="!row.IsApproved" ngClass="fa fa-edit" (click)="onActionbuttonEditRow(row)"></i>
         </div>
-        <hr>
-        <!--end::cms-body-->
-      </ng-container>
-      <ng-container cms-footer>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
-          class="font-weight-bold font-size-lg mt-1">{{widgetInfoModel.title}}</a>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      </ng-container>
-    </app-cms-html-widget>
+      </div>
+      <hr>
+      <!--end::cms-body-->
+    </div>
+    <div class="ntk-cms-html-widget-footer">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
+        class="font-weight-bold font-size-lg mt-1">{{widgetInfoModel.title}}</a>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
   </div>
 </div>
 <!--end::Tiles Widget 11-->

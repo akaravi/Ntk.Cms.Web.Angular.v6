@@ -3,9 +3,7 @@
   style="background-image: url('./assets/media/stock-600x600/img-16.jpg')">
   <!--begin::Body-->
   <div class="card-body d-flex flex-column align-items-start justify-content-start">
-
-<app-cms-html-widget [optionLoading]="loading">
-  <ng-container cms-header>
+    <div class="ntk-cms-html-widget-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
     <div class="p-1 flex-grow-1">
       <h3 class="text-white font-weight-bolder line-height-lg mb-5">
@@ -13,8 +11,11 @@
       </h3>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </ng-container>
-  <ng-container cms-body>
+  </div>
+  <div class="ntk-cms-html-widget-body">
+   <div *ngIf="loading.display" class="overlay-layer bg-transparent" >
+    <div class="spinner spinner-lg spinner-success"></div>
+  </div>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" class="btn btn-link btn-link-warning font-weight-bold">
       {{widgetInfoModel.title}}
@@ -22,14 +23,14 @@
         class="svg-icon ssvg-icon-lg svg-icon-warning"></span>
     </a>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </ng-container>
-  <ng-container cms-footer>
+	
+	</div>
+  <div class="ntk-cms-html-widget-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
   
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </ng-container>
-</app-cms-html-widget>
+  </div>
 </div>
 <!--end::Body-->
 </div>

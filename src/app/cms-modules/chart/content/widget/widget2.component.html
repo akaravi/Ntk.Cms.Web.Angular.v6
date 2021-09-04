@@ -1,28 +1,29 @@
 <!--begin::Tiles Widget 11-->
 <div class="card card-custom bg-" [ngClass]="cssClass" [ngStyle]="{ height: widgetHeight }">
   <div class="card-body">
-    <app-cms-html-widget [optionLoading]="loading">
-      <ng-container cms-header>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/Shopping/Chart-bar2.svg'"
-          class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      </ng-container>
-      <ng-container cms-body>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <div *ngFor="let item of modelData| keyvalue ; index as i" [ngClass]="textInverseCSSClass"
-          class="font-weight-bolder font-size-h2 mt-3">
-          {{translateHelp('TITLE.',item.key)|translate}} : {{item.value}}
-        </div>
-        <!--end::cms-body-->
-      </ng-container>
-      <ng-container cms-footer>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
-          class="font-weight-bold font-size-lg mt-1">{{widgetInfoModel.title}}</a>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      </ng-container>
-    </app-cms-html-widget>
+    <div class="ntk-cms-html-widget-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/Shopping/Chart-bar2.svg'"
+        class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-widget-body">
+      <div *ngIf="loading.display" class="overlay-layer bg-transparent">
+        <div class="spinner spinner-lg spinner-success"></div>
+      </div>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <div *ngFor="let item of modelData| keyvalue ; index as i" [ngClass]="textInverseCSSClass"
+        class="font-weight-bolder font-size-h2 mt-3">
+        {{translateHelp('TITLE.',item.key)|translate}} : {{item.value}}
+      </div>
+      <!--end::cms-body-->
+    </div>
+    <div class="ntk-cms-html-widget-footer">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
+        class="font-weight-bold font-size-lg mt-1">{{widgetInfoModel.title}}</a>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
   </div>
 </div>
 <!--end::Tiles Widget 11-->
