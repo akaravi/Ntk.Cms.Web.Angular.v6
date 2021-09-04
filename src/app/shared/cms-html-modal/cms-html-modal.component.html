@@ -6,9 +6,6 @@
 <!--begin::Body-->
 <mat-dialog-content>
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
-  <!-- <div *ngIf="loading.display" class="overlay-layer bg-transparent">
-    <div class="spinner spinner-lg spinner-success"></div>
-  </div> -->
   <ng-content  select="[cms-body]"></ng-content>
 </mat-dialog-content>
 <!--end::Body-->

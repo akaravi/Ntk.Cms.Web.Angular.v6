@@ -20,9 +20,7 @@
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-widget-body">
-	   <div *ngIf="loading.display" class="overlay-layer bg-transparent" >
-      <div class="spinner spinner-lg spinner-success"></div>
-    </div>
+	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <div class="card-body pt-8">
         <!--begin::Item-->
