@@ -71,6 +71,8 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
   }
   DataCalculate(): void {
     this.viewCalculate = false;
+    const pName = this.constructor.name + 'ServiceOrderCalculate';
+    this.loading.Start(pName);
     this.coreModuleSaleHeaderService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -92,6 +94,8 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     );
   }
   DataPayment(): void {
+    const pName = this.constructor.name + 'ServiceOrderPayment';
+    this.loading.Start(pName);
     this.coreModuleSaleHeaderService.ServiceOrderPayment(this.dataModelPayment).subscribe(
       (next) => {
         if (next.IsSuccess) {

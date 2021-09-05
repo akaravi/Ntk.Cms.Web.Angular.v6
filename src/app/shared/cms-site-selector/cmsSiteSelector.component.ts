@@ -106,7 +106,7 @@ export class CmsSiteSelectorComponent implements OnInit {
 
       }
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

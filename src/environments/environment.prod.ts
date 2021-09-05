@@ -2,13 +2,14 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 
 export const environment = {
   production: true,
-  appVersion: '1.06.133',
+  appVersion: '1.06.141',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'https://your-domain.com/api',
   developing: false,
   loadDemoMenu: false,
   loadDemoDashboard: false,
+  ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,

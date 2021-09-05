@@ -131,6 +131,6 @@ export class ChartContentDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-   
+
   }
 }

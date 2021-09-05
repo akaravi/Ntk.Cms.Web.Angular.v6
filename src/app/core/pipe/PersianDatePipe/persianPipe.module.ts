@@ -1,15 +1,8 @@
 import { NgModule, Pipe } from '@angular/core';
 import { IRCurrencyPipe, JdatePipe } from 'ngx-persian';
-// import { PersianTimeAgoPipe } from 'persian-time-ago-pipe';
 import { PersianDate } from './persian-date.pipe';
 import { PersianCalendarService } from './persian-date.service';
 
-// @Pipe({
-//   name: 'persianTimeAgo',
-//   pure: false
-// })
-// export class ExPersianTimeAgoPipe extends PersianTimeAgoPipe { }
-//
 @Pipe({
   name: 'irc',
   pure: false

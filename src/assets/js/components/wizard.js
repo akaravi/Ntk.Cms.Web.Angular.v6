@@ -241,7 +241,7 @@ var KTWizard = function(elementId, options) {
             var stepsInfo = KTUtil.findAll(the.element, '[data-wizard-type="step-info"]');
             if (stepsInfo && stepsInfo.length > 0) {
                 for (var i = 0, len = stepsInfo.length; i < len; i++) {
-                    if (i == index) {
+                    if (i === index) {
                         KTUtil.attr(stepsInfo[i], 'data-wizard-state', 'current');
                     } else {
                         KTUtil.removeAttr(stepsInfo[i], 'data-wizard-state');
@@ -253,7 +253,7 @@ var KTWizard = function(elementId, options) {
             var stepsContent = KTUtil.findAll(the.element, '[data-wizard-type="step-content"]');
             if (stepsContent && stepsContent.length > 0) {
                 for (var i = 0, len = stepsContent.length; i < len; i++) {
-                    if (i == index) {
+                    if (i === index) {
                         KTUtil.attr(stepsContent[i], 'data-wizard-state', 'current');
                     } else {
                         KTUtil.removeAttr(stepsContent[i], 'data-wizard-state');
@@ -305,9 +305,9 @@ var KTWizard = function(elementId, options) {
             //KTUtil.triggerCustomEvent(name);
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
-                if (event.name == name) {
-                    if (event.one == true) {
-                        if (event.fired == false) {
+                if (event.name === name) {
+                    if (event.one === true) {
+                        if (event.fired === false) {
                             the.events[i].fired = true;
                             return event.handler.call(this, the);
                         }

@@ -12,7 +12,7 @@ export class TreeModel {
     this._currentPath = '';
     this.config = config;
 
-    this.nodes = <NodeInterface>{
+    this.nodes = ( {
       id: 0,
       pathToNode: '',
       pathToParent: null,
@@ -22,7 +22,7 @@ export class TreeModel {
       name: 'root',
       children: {},
       isRoot: true
-    };
+    } as NodeInterface);
   }
 
   get currentPath(): string {

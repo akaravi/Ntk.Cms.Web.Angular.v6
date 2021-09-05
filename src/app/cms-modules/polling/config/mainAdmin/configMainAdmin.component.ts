@@ -157,10 +157,7 @@ export class PollingConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+   
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService

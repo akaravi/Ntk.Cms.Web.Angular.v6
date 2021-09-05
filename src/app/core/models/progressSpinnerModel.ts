@@ -1,6 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 
 export class ProcessInfoModel {
@@ -26,7 +27,7 @@ export class ProgressSpinnerModel {
     /** GUID */
     this.guid = this.newGuid();
     /** GUID */
-
+    this.consoleLog = environment.ProgressConsoleLog;
   }
   /** GUID */
   private guid = '';

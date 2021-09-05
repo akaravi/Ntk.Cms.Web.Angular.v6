@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -29,7 +29,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
   templateUrl: './configMainAdmin.component.html',
   styleUrls: ['./configMainAdmin.component.scss']
 })
-export class ArticleConfigMainAdminComponent implements OnInit {
+export class ArticleConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: ArticleConfigurationService,
@@ -157,8 +157,8 @@ export class ArticleConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-  
-    
+
+
 
 
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';

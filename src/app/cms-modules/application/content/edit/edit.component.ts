@@ -69,7 +69,7 @@ export class ApplicationAppEditComponent implements OnInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
 
   ngOnInit(): void {
