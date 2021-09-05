@@ -135,7 +135,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -160,13 +161,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -308,7 +309,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start(this.constructor.name + 'main');
+          const pName = this.constructor.name + 'webDesignerMainPageDependencyService.ServiceDelete';
+          this.loading.Start(pName);
 
           this.webDesignerMainPageDependencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -318,12 +320,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             }
           );

@@ -21,7 +21,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
-   }
+  }
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
@@ -49,7 +49,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.rowExist = true;
           this.widgetInfoModel.title = 'ملک جدید اضافه کنید';
-          this.widgetInfoModel.description = 'تعداد املاک ثبت شده : '+next.TotalRowCount;
+          this.widgetInfoModel.description = 'تعداد املاک ثبت شده : ' + next.TotalRowCount;
           this.widgetInfoModel.link = '/estate/property/add';
         }
         else {

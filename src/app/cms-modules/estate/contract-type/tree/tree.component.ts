@@ -76,7 +76,8 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
@@ -84,12 +85,12 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -160,7 +161,8 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start(this.constructor.name + 'main');
+          const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
           this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
             (next) => {
@@ -170,13 +172,13 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
               this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
               this.cdr.detectChanges();
             }

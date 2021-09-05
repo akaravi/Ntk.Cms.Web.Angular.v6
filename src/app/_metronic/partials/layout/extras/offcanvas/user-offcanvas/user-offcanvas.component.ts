@@ -32,7 +32,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
   ) {
     this.loading.cdr = this.cdr;
-   }
+  }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
@@ -76,7 +76,8 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   }
 
   async logout() {
-    // this.auth.logout();
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, 'خروج حساب کاربری');
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
       if (next.IsSuccess) {
@@ -84,7 +85,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
       } else {
         this.cmsToastrService.typeErrorLogout();
       }
-      this.loading.Stop(this.constructor.name + 'main');
+      this.loading.Stop(pName);
       return;
     })).toPromise();
     document.location.reload();

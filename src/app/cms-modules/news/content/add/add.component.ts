@@ -205,14 +205,15 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.contentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
@@ -229,10 +230,10 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
@@ -268,6 +269,8 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     this.otherInfoDataModel.forEach(x => {
       x.LinkContentId = model.Id;
     });
+    const pName = this.constructor.name + 'contentOtherInfoService.ServiceAddBatch';
+    this.loading.Start(pName);
     return this.contentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel).pipe(
       map(response => {
         if (response.IsSuccess) {
@@ -278,7 +281,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
         return of(response);
       },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
@@ -296,6 +299,9 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       row.LinkDestinationId = x.Id;
       dataList.push(row);
     });
+    const pName = this.constructor.name + 'contentSimilarService.ServiceAddBatch';
+    this.loading.Start(pName);
+
     return this.contentSimilarService.ServiceAddBatch(dataList).pipe(
       map(response => {
         if (response.IsSuccess) {
@@ -306,7 +312,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
         return of(response);
       },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);

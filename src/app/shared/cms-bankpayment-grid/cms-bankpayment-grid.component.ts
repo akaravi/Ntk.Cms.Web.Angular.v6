@@ -33,7 +33,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
     this.loading.cdr = this.cdr;
   }
   @Input() optionMasterItem = false;
-  
+
   @Output() optionSelect = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   dataModelSelect: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
 
@@ -53,6 +53,8 @@ export class CmsBankpaymentGridComponent implements OnInit {
   }
   DataGetAll(): void {
     if (this.optionMasterItem) {
+      const pName = this.constructor.name + 'main';
+      this.loading.Start(pName);
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayCoreList().subscribe(
         (next) => {
           if (next.IsSuccess) {
@@ -61,18 +63,20 @@ export class CmsBankpaymentGridComponent implements OnInit {
           else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
     }
     else {
+      const pName = this.constructor.name + 'main';
+      this.loading.Start(pName);
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayList().subscribe(
         (next) => {
           if (next.IsSuccess) {
@@ -81,13 +85,13 @@ export class CmsBankpaymentGridComponent implements OnInit {
           else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );

@@ -82,7 +82,8 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   DataGetOneContent(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.ticketingDepartemenLogService.setAccessLoad();
     this.ticketingDepartemenLogService.ServiceGetOneById(this.requestId).subscribe(
@@ -97,12 +98,12 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

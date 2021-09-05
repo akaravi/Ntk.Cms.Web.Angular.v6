@@ -124,7 +124,8 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleHeaderModel();
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -140,13 +141,13 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -29,7 +29,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
   templateUrl: './configMainAdmin.component.html',
   styleUrls: ['./configMainAdmin.component.scss']
 })
-export class BankPaymentConfigMainAdminComponent implements OnInit {
+export class BankPaymentConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: BankPaymentConfigurationService,
@@ -64,7 +64,7 @@ export class BankPaymentConfigMainAdminComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
   cmsApiStoreSubscribe: Subscription;
 
@@ -85,7 +85,7 @@ export class BankPaymentConfigMainAdminComponent implements OnInit {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
- 
+
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
@@ -158,9 +158,9 @@ export class BankPaymentConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
 
-    
+
+
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService
@@ -239,7 +239,7 @@ export class BankPaymentConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    
+
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
     this.configService
@@ -265,7 +265,7 @@ export class BankPaymentConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    
+
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
     this.configService

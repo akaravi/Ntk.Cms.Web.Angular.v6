@@ -101,7 +101,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
   private mapModel: leafletMap;
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
 
 
@@ -165,7 +165,8 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
@@ -176,7 +177,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -197,13 +198,13 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }
@@ -211,7 +212,8 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات تگها از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -243,13 +245,13 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }
@@ -257,7 +259,8 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -281,13 +284,13 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }
@@ -295,7 +298,8 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -332,13 +336,13 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }
@@ -350,7 +354,8 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -378,13 +383,13 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }
@@ -392,14 +397,15 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.contentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
@@ -414,13 +420,13 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }
@@ -527,7 +533,8 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     const filteModel = new FilterModel();
@@ -550,14 +557,14 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           });
           this.dataContentCategoryModel = itemList;
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }

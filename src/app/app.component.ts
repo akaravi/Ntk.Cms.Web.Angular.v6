@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (url.includes('?')) {
       const httpParams = new HttpParams({ fromString: url.split('?')[1] });
       const site = httpParams.get('site');
-      const siteId = +site | 0;
+      const siteId = +site ;
       if (siteId > 0) {
         localStorage.setItem('siteId', site);
       }

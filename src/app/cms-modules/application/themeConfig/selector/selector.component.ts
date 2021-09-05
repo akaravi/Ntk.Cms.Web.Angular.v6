@@ -112,7 +112,8 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
       filteModel.Filters = filters as FilterDataModel[];
     }
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
@@ -127,7 +128,7 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
             this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           return response.ListItems;
         })

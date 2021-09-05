@@ -27,7 +27,7 @@ export class CmsMemberSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: MemberUserService) {
-      this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;
   }
   dataModelResult: ErrorExceptionResult<MemberUserModel> = new ErrorExceptionResult<MemberUserModel>();
   dataModelSelect: MemberUserModel = new MemberUserModel();
@@ -113,14 +113,15 @@ export class CmsMemberSelectorComponent implements OnInit {
 
       }
     }
-    
-    this.loading.Start(this.constructor.name + 'main');
+
+    const pName = this.constructor.name + 'categoryService.ServiceGetAll';
+    this.loading.Start(pName);
 
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           return response.ListItems;
         })

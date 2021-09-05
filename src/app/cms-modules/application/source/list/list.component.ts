@@ -5,14 +5,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   ApplicationSourceModel,
   ApplicationSourceService,
-  CoreAuthService,
   DataFieldInfoModel,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -36,7 +34,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   constructor(
     private applicationSourceService: ApplicationSourceService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -110,7 +107,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationSourceModel();
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -150,13 +148,13 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -243,7 +241,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start(this.constructor.name + 'main');
+          const pName = this.constructor.name + 'main';
+          this.loading.Start(pName);
 
           this.applicationSourceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -253,12 +252,12 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             }
           );
@@ -354,7 +353,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = mode;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.applicationSourceService.ServiceBuildApp(this.tableRowSelected.Id).subscribe(
@@ -366,12 +366,12 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
         else {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

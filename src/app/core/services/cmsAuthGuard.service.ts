@@ -28,7 +28,7 @@ export class CmsAuthGuard implements CanActivate, OnDestroy {
             this.router.navigate(['auth'], { queryParams: { returnUrl: state.url } });
             return false;
         }
-        
+
         const storeSnapshot = this.cmsApiStore.getStateSnapshot();
         let tokenInfo: TokenInfoModel = new TokenInfoModel();
         if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {

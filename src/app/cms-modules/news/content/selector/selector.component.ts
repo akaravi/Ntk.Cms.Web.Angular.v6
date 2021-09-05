@@ -87,8 +87,9 @@ export class NewsContentSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    
-    this.loading.Start(this.constructor.name + 'main');
+
+    const pName = this.constructor.name + 'ServiceGetAll';
+    this.loading.Start(pName);
 
     return this.contentService.ServiceGetAll(filteModel)
       .pipe(
@@ -103,7 +104,7 @@ export class NewsContentSelectorComponent implements OnInit {
             this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           return response.ListItems;
         })).toPromise();

@@ -150,7 +150,8 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreUserClaimGroupDetailModel();
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -176,13 +177,13 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -294,7 +295,8 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start(this.constructor.name + 'main');
+          const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
           this.coreUserClaimGroupDetailService.ServiceDeleteEntity(this.tableRowSelected).subscribe(
             (next) => {
@@ -304,12 +306,12 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             }
           );

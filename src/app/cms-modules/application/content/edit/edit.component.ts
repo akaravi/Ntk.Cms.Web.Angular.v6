@@ -112,7 +112,8 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'ServiceGetOneById';
+    this.loading.Start(pName);
 
     /*َAccess Field*/
     this.applicationAppService.setAccessLoad();
@@ -137,13 +138,13 @@ export class ApplicationAppEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }
@@ -151,7 +152,8 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.applicationAppService
       .ServiceEdit(this.dataModel)
@@ -163,18 +165,18 @@ export class ApplicationAppEditComponent implements OnInit {
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/application/app/']), 100);
+            setTimeout(() => this.router.navigate(['/application/app/']), 1000);
 
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
         }
       );
   }

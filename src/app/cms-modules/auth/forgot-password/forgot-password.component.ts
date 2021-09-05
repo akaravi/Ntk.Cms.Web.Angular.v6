@@ -24,15 +24,6 @@ enum ErrorStates {
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class AuthForgotPasswordComponent implements OnInit {
-  errorState: ErrorStates = ErrorStates.NotSubmitted;
-  errorStates = ErrorStates;
-  isLoading$: Observable<boolean>;
-  dataModelforgetPasswordBySms: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
-  dataModelforgetPasswordByEmail: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
-  dataModelforgetPasswordEntryPinCode: AuthUserForgetPasswordEntryPinCodeModel = new AuthUserForgetPasswordEntryPinCodeModel();
-  captchaModel: CaptchaModel = new CaptchaModel();
-  // private fields
-  forgetState = 'sms';
   constructor(
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
@@ -43,10 +34,20 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.RePassword = '';
   }
+  errorState: ErrorStates = ErrorStates.NotSubmitted;
+  errorStates = ErrorStates;
+  isLoading$: Observable<boolean>;
+  dataModelforgetPasswordBySms: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
+  dataModelforgetPasswordByEmail: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
+  dataModelforgetPasswordEntryPinCode: AuthUserForgetPasswordEntryPinCodeModel = new AuthUserForgetPasswordEntryPinCodeModel();
+  captchaModel: CaptchaModel = new CaptchaModel();
+  // private fields
+  forgetState = 'sms';
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   passwordIsValid = false;
   RePassword: string;
+  onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
@@ -146,7 +147,6 @@ export class AuthForgotPasswordComponent implements OnInit {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-  onCaptchaOrderInProcess = false;
 
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {

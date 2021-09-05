@@ -203,14 +203,15 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.biographyContentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
@@ -221,7 +222,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
-            this.loading.Stop(this.constructor.name + 'main');
+            this.loading.Stop(pName);
 
             setTimeout(() => this.router.navigate(['/biography/content/']), 1000);
           } else {
@@ -229,7 +230,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
@@ -265,6 +266,9 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     this.otherInfoDataModel.forEach(x => {
       x.LinkContentId = model.Id;
     });
+    const pName = this.constructor.name + 'biographyContentOtherInfoService.ServiceAddBatch';
+    this.loading.Start(pName);
+
     return this.biographyContentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel).pipe(
       map(response => {
         if (response.IsSuccess) {
@@ -275,7 +279,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
         return of(response);
       },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
@@ -293,6 +297,8 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       row.LinkDestinationId = x.Id;
       dataList.push(row);
     });
+    const pName = this.constructor.name + 'biographyContentSimilarService.ServiceAddBatch';
+    this.loading.Start(pName);
     return this.biographyContentSimilarService.ServiceAddBatch(dataList).pipe(
       map(response => {
         if (response.IsSuccess) {
@@ -303,7 +309,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
         return of(response);
       },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);

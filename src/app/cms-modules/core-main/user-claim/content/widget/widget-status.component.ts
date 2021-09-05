@@ -102,7 +102,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResult = next;
-          if (this.dataModelResult.ListItems.find(x => x.RecordStatus != EnumRecordStatus.Pending && !x.IsApproved)) {
+          if (this.dataModelResult.ListItems.find(x => x.RecordStatus !== EnumRecordStatus.Pending && !x.IsApproved)) {
             this.baseColor = 'warnning';
             this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
             this.textInverseCSSClass = `text-inverse-${this.baseColor}`;

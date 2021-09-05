@@ -107,7 +107,8 @@ export class TicketingTaskContactUsComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.ticketingTaskService
@@ -126,11 +127,11 @@ export class TicketingTaskContactUsComponent implements OnInit {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
           this.cdr.markForCheck();
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);

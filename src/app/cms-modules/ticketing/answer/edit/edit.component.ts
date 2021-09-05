@@ -84,7 +84,8 @@ export class TicketingAnswerEditComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     /*َAccess Field*/
     this.ticketingAnswerService.setAccessLoad();
@@ -96,7 +97,7 @@ export class TicketingAnswerEditComponent implements OnInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -109,7 +110,7 @@ export class TicketingAnswerEditComponent implements OnInit {
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
@@ -120,7 +121,8 @@ export class TicketingAnswerEditComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.ticketingAnswerService
@@ -136,11 +138,12 @@ export class TicketingAnswerEditComponent implements OnInit {
             setTimeout(() => this.router.navigate(['/application/app/']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
-          } this.loading.Stop(this.constructor.name + 'main');
+          }
+          this.loading.Stop(pName);
 
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);

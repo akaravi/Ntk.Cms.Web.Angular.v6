@@ -15,7 +15,6 @@ import { SingupRuleComponent } from '../singupRule/singupRule.Component';
   styleUrls: ['./singup.component.scss'],
 })
 export class AuthSingUpComponent implements OnInit, OnDestroy {
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
   constructor(
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -25,6 +24,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
   }
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   Roulaccespt = false;
@@ -34,6 +34,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   aoutoCaptchaOrder = 1;
   passwordIsValid = false;
   dataModel: AuthUserSignUpModel = new AuthUserSignUpModel();
+  onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
@@ -122,7 +123,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-  onCaptchaOrderInProcess = false;
 
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {
