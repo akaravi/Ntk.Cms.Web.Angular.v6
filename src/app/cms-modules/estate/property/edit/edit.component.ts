@@ -251,9 +251,6 @@ export class EstatePropertyEditComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
-          // this.router.navigate(['/estate/property']);
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;

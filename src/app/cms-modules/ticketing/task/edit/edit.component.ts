@@ -57,7 +57,7 @@ export class TicketingTaskEditComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
@@ -128,17 +128,18 @@ export class TicketingTaskEditComponent implements OnInit {
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/application/app/']), 100);
+            setTimeout(() => this.router.navigate(['/application/app/']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
+          this.loading.Stop(this.constructor.name + 'main');
+
         },
         (error) => {
           this.loading.Stop(this.constructor.name + 'main');

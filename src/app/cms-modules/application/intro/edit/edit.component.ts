@@ -139,7 +139,7 @@ export class ApplicationIntroEditComponent implements OnInit {
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/application/intro/']), 100);
+            setTimeout(() => this.router.navigate(['/application/intro/']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }

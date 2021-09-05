@@ -157,7 +157,6 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
           if (next.Item.Id === this.tokenInfo.UserId) {
             this.tokenHelper.getCurrentToken();
           }
-          // setTimeout(() => this.router.navigate(['/core/user/']), 100);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;

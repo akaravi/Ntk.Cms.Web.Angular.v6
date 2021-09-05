@@ -101,7 +101,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
 
   ngOnInit(): void {
@@ -414,13 +414,13 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModel);
-            this.loading.Stop(this.constructor.name + 'main');
 
-            // setTimeout(() => this.router.navigate(['/biography/content/edit/', this.requestId]), 100);
             setTimeout(() => this.router.navigate(['/biography/content']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop(this.constructor.name + 'main');
+
         },
         (error) => {
           this.loading.Stop(this.constructor.name + 'main');

@@ -109,7 +109,7 @@ export class ApplicationSourceAddComponent implements OnInit {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
 
-            setTimeout(() => this.router.navigate(['/application/source/']), 100);
+            setTimeout(() => this.router.navigate(['/application/source/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }

@@ -410,7 +410,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModel);
-            // setTimeout(() => this.router.navigate(['/news/content/edit/', this.requestId]), 100);
             setTimeout(() => this.router.navigate(['/news/content']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);

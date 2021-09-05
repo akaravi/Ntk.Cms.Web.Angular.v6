@@ -240,9 +240,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     });
   }
   onActionbuttonNewRowAutoDependency(): any {
-    debugger
-    // const userToken = this.coreAuthService.getUserToken();
-    // const aaaa = this.webDesignerMainPageDependencyService.getHeaders();
+
     return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
       headers: this.webDesignerMainPageDependencyService.getHeaders(),
     })

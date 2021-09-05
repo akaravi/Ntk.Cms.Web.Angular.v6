@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.initForm();
     // get return url from route parameters or default to '/'
     this.returnUrl =
-        this.route.snapshot.queryParams['returnUrl'.toString()] || '/';
-    }
+      this.route.snapshot.queryParams['returnUrl'.toString()] || '/';
+  }
 
   // convenience getter for easy access to form fields
   get f() {
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe((user: UserModel) => {
         if (user) {
-          this.router.navigate([this.  returnUrl]);
+          this.router.navigate([this.returnUrl]);
         } else {
           this.hasError = true;
         }

@@ -4,7 +4,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 // language list
 // import { locale as enLang } from './modules/i18n/vocabs/en';
@@ -20,6 +20,7 @@ import { environment } from 'src/environments/environment';
 import { TokenHelper } from './core/helpers/tokenHelper';
 import { TranslationService } from './core/i18n/translation.service';
 import { PublicHelper } from './core/helpers/publicHelper';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private translationService: TranslationService,
     private splashScreenService: SplashScreenService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private tableService: TableExtendedService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
@@ -45,16 +47,27 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     // register translations
     this.translationService.loadTranslations(
-    //   enLang,
-    //   chLang,
-    //   esLang,
-    //   jpLang,
-    //   deLang,
-    //   frLang
-     );
+      //   enLang,
+      //   chLang,
+      //   esLang,
+      //   jpLang,
+      //   deLang,
+      //   frLang
+    );
   }
 
   ngOnInit() {
+    const url = window.location.href;
+    if (url.includes('?')) {
+      const httpParams = new HttpParams({ fromString: url.split('?')[1] });
+      const site = httpParams.get('site');
+      const siteId = +site | 0;
+      if (siteId > 0) {
+        localStorage.setItem('siteId', site);
+      }
+    }
+
+
     const routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // clear filtration paginations and others

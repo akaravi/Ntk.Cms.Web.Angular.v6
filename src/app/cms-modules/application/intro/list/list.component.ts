@@ -239,7 +239,7 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/application/intro/edit/', this.tableRowSelected.Id]);
+    setTimeout(() => this.router.navigate(['/application/intro/edit/', this.tableRowSelected.Id]), 1000);
   }
   onActionbuttonDeleteRow(model: ApplicationIntroModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {

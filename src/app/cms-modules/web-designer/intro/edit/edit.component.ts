@@ -129,17 +129,18 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/webdesigner/intro/']), 100);
+            setTimeout(() => this.router.navigate(['/webdesigner/intro/']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
+          this.loading.Stop(this.constructor.name + 'main');
+
         },
         (error) => {
           this.loading.Stop(this.constructor.name + 'main');

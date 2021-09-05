@@ -90,17 +90,21 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
 
     const pName = this.constructor.name + '.ServiceSignupUser';
     this.loading.Start(pName, 'در حال ساخت حساب کاربری جدید');
+    const siteId = + localStorage.getItem('siteId');
+    if (siteId > 0) {
+      this.dataModel.SiteId = siteId;
+    }
     this.coreAuthService.ServiceSignupUser(this.dataModel).subscribe((next) => {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
         this.formInfo.FormErrorStatus = false;
-        this.router.navigate(['/']);
+        setTimeout(() => this.router.navigate(['/']), 1000);
       } else {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
         this.formInfo.FormErrorStatus = true;
         this.onCaptchaOrder();
-        this.loading.Stop(pName);
       }
+      this.loading.Stop(pName);
     }, (error) => {
       this.cmsToastrService.typeError(error);
       this.formInfo.FormErrorStatus = true;

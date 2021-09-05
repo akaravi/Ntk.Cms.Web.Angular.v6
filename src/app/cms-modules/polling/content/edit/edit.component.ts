@@ -88,7 +88,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
 
   ngOnInit(): void {
@@ -233,12 +233,13 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            this.loading.Stop(this.constructor.name + 'main');
 
             setTimeout(() => this.router.navigate(['/polling/content']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop(this.constructor.name + 'main');
+
         },
         (error) => {
           this.loading.Stop(this.constructor.name + 'main');

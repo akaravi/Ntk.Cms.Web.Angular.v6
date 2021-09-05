@@ -223,7 +223,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
 
-            setTimeout(() => this.router.navigate(['/article/content/']), 100);
+            setTimeout(() => this.router.navigate(['/article/content/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }

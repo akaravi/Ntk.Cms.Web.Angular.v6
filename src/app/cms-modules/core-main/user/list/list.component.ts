@@ -435,7 +435,6 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     this.router.navigate(['/core/site/list/LinkUserId', this.tableRowSelected.Id]);
-
   }
   onActionbuttonSiteByGroupList(model: CoreUserModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {

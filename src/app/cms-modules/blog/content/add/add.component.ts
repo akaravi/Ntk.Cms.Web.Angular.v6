@@ -220,12 +220,13 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
-            this.loading.Stop(this.constructor.name + 'main');
 
-            setTimeout(() => this.router.navigate(['/blog/content/']), 100);
+            setTimeout(() => this.router.navigate(['/blog/content/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop(this.constructor.name + 'main');
+
         },
         (error) => {
           this.loading.Stop(this.constructor.name + 'main');

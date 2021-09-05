@@ -59,7 +59,7 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordBySms.CaptchaKey = this.captchaModel.Key;
     this.dataModelforgetPasswordEntryPinCode.Email = '';
     this.dataModelforgetPasswordEntryPinCode.Mobile = this.dataModelforgetPasswordBySms.Mobile;
-    const pName = this.constructor.name +'.ServiceForgetPassword';
+    const pName = this.constructor.name + '.ServiceForgetPassword';
     this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
 
     this.coreAuthService
@@ -126,7 +126,7 @@ export class AuthForgotPasswordComponent implements OnInit {
       .subscribe((res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Your_password_was_changed_successfully'));
-          this.router.navigate(['/']);
+          setTimeout(() => this.router.navigate(['/']), 1000);
         }
         else {
           this.cmsToastrService.typeErrorMessage(res.ErrorMessage);

@@ -229,7 +229,7 @@ export class EstatePropertyAddComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          setTimeout(() => this.router.navigate(['/estate/property']), 100);
+          setTimeout(() => this.router.navigate(['/estate/property']), 1000);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;

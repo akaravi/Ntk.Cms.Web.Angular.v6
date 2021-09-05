@@ -77,7 +77,7 @@ export class CoreSiteEditComponent implements OnInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
   keywordDataModel = [];
 
 
@@ -196,21 +196,17 @@ export class CoreSiteEditComponent implements OnInit {
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            this.loading.Stop(this.constructor.name + 'main');
 
             this.formInfo.FormSubmitAllow = true;
-            // setTimeout(() => this.router.navigate(['/core/site/']), 100);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
-          this.cdr.detectChanges();
+          this.loading.Stop(this.constructor.name + 'main');
 
         },
         (error) => {

@@ -76,7 +76,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   viewMap = false;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {
@@ -186,12 +186,13 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            this.loading.Stop(this.constructor.name + 'main');
 
-            setTimeout(() => this.router.navigate(['/file/content/edit/', this.requestId]), 100);
+            setTimeout(() => this.router.navigate(['/file/content/edit/', this.requestId]), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop(this.constructor.name + 'main');
+
         },
         (error) => {
           this.loading.Stop(this.constructor.name + 'main');

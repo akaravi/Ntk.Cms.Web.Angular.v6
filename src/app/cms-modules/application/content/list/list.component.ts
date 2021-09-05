@@ -247,7 +247,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/application/app/add/', sourceId]);
+    setTimeout(() => this.router.navigate(['/application/app/add/', sourceId]), 1000);
   }
 
   onActionSelectorSelect(model: ApplicationSourceModel | null): void {
@@ -281,7 +281,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     //     this.DataGetAll();
     //   }
     // });
-    this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]);
+    setTimeout(() => this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]), 1000);
 
   }
   onActionbuttonDeleteRow(mode: ApplicationAppModel = this.tableRowSelected): void {
