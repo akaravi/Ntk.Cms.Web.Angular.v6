@@ -102,7 +102,8 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ArticleContentModel();
 
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -134,13 +135,13 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -189,13 +190,13 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );

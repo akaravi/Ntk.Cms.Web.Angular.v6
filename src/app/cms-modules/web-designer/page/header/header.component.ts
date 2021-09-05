@@ -50,7 +50,8 @@ export class WebDesignerMainPageHeaderComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.webDesignerMainPageService.setAccessLoad();
     this.webDesignerMainPageService.ServiceGetOneById(this.optionId).subscribe(
@@ -61,12 +62,12 @@ export class WebDesignerMainPageHeaderComponent implements OnInit {
         } else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

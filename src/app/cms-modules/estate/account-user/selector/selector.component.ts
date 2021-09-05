@@ -88,7 +88,8 @@ export class EstateAccountUserSelectorComponent implements OnInit {
     filteModel.Filters.push(filter);
 
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
@@ -103,7 +104,7 @@ export class EstateAccountUserSelectorComponent implements OnInit {
             this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           return response.ListItems;
         })
@@ -147,7 +148,7 @@ export class EstateAccountUserSelectorComponent implements OnInit {
       }
       const filteModel = new FilterModel();
 
-      let filter = new FilterDataModel();
+      const filter = new FilterDataModel();
       filter.PropertyName = 'LinkCmsUserId';
       filter.Value = id;
       filter.SearchType = EnumFilterDataModelSearchTypes.Equal;

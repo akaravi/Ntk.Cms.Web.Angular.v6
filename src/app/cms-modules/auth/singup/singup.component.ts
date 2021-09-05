@@ -15,7 +15,6 @@ import { SingupRuleComponent } from '../singupRule/singupRule.Component';
   styleUrls: ['./singup.component.scss'],
 })
 export class AuthSingUpComponent implements OnInit, OnDestroy {
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
   constructor(
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -25,6 +24,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
   }
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   Roulaccespt = false;
@@ -34,6 +34,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   aoutoCaptchaOrder = 1;
   passwordIsValid = false;
   dataModel: AuthUserSignUpModel = new AuthUserSignUpModel();
+  onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
@@ -90,17 +91,21 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
 
     const pName = this.constructor.name + '.ServiceSignupUser';
     this.loading.Start(pName, 'در حال ساخت حساب کاربری جدید');
+    const siteId = + localStorage.getItem('siteId');
+    if (siteId > 0) {
+      this.dataModel.SiteId = siteId;
+    }
     this.coreAuthService.ServiceSignupUser(this.dataModel).subscribe((next) => {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
         this.formInfo.FormErrorStatus = false;
-        this.router.navigate(['/']);
+        setTimeout(() => this.router.navigate(['/']), 1000);
       } else {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
         this.formInfo.FormErrorStatus = true;
         this.onCaptchaOrder();
-        this.loading.Stop(pName);
       }
+      this.loading.Stop(pName);
     }, (error) => {
       this.cmsToastrService.typeError(error);
       this.formInfo.FormErrorStatus = true;
@@ -118,7 +123,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-  onCaptchaOrderInProcess = false;
 
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {

@@ -12,7 +12,6 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
@@ -34,7 +33,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 })
 export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   constructor(
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: ApplicationAppService,
@@ -74,7 +72,8 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'categoryService.ServiceGetAll';
+    this.loading.Start(pName);
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
@@ -82,12 +81,12 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
           this.dataModelResult = next;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

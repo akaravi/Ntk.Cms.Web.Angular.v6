@@ -108,7 +108,8 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
 
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     /*َAccess Field*/
     this.coreUserService.setAccessLoad();
@@ -129,13 +130,13 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -144,7 +145,8 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.coreUserService.ServiceEdit(this.dataModel).subscribe(
@@ -157,20 +159,19 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
           if (next.Item.Id === this.tokenInfo.UserId) {
             this.tokenHelper.getCurrentToken();
           }
-          // setTimeout(() => this.router.navigate(['/core/user/']), 100);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
 
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

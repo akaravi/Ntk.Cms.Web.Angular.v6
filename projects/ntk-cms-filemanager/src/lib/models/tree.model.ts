@@ -1,5 +1,5 @@
-import {NodeInterface} from '../interfaces/node.interface';
-import {ConfigInterface} from '../interfaces/config.interface';
+import { NodeInterface } from '../interfaces/node.interface';
+import { ConfigInterface } from '../interfaces/config.interface';
 
 export class TreeModel {
   private _currentPath: string;

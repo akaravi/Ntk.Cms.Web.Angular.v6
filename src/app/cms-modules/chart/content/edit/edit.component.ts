@@ -100,7 +100,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
 
   ngOnInit(): void {
@@ -164,7 +164,8 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
@@ -176,7 +177,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -193,14 +194,14 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
             this.DataTagGetAll();
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
-            this.loading.Stop(this.constructor.name + 'main');
+            this.loading.Stop(pName);
 
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
@@ -211,7 +212,8 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات تگها از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -228,7 +230,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.dataContentTagModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -241,14 +243,14 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
             this.tagIdsData = list;
 
 
-            this.loading.Stop(this.constructor.name + 'main');
+            this.loading.Stop(pName);
 
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -260,7 +262,8 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -275,7 +278,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.dataContentOtherInfoModelResult = next;
@@ -287,7 +290,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -298,7 +301,8 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -319,7 +323,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.dataContentSimilarModelResult = next;
@@ -339,7 +343,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -354,7 +358,8 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
 
@@ -372,7 +377,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
 
@@ -384,7 +389,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
@@ -395,14 +400,15 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.contentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
@@ -413,16 +419,16 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModel);
-            this.loading.Stop(this.constructor.name + 'main');
 
-            // setTimeout(() => this.router.navigate(['/chart/content/edit/', this.requestId]), 100);
             setTimeout(() => this.router.navigate(['/chart/content']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop(pName);
+
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
@@ -532,7 +538,8 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     const filteModel = new FilterModel();
@@ -548,7 +555,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           const itemList = [];
           next.ListItems.forEach(element => {
@@ -559,7 +566,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
 
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);

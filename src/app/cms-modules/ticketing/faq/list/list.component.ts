@@ -114,7 +114,8 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingFaqModel();
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -156,13 +157,13 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -282,7 +283,8 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start(this.constructor.name + 'main');
+          const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
           this.ticketingFaqService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -292,12 +294,12 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             }
           );

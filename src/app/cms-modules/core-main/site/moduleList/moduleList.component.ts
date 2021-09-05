@@ -147,7 +147,8 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSiteModel();
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -164,13 +165,13 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -284,7 +285,8 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start(this.constructor.name + 'main');
+          const pName = this.constructor.name + 'main';
+          this.loading.Start(pName);
 
           this.coreModuleSiteService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -294,12 +296,12 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             }
           );

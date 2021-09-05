@@ -6,7 +6,6 @@ import {
   ApplicationLogNotificationService,
   ApplicationLogNotificationModel,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -38,7 +37,6 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public applicationLogNotificationService: ApplicationLogNotificationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
@@ -91,7 +89,8 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
   DataGetOneContent(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     /*َAccess Field*/
     this.applicationLogNotificationService.setAccessLoad();
@@ -110,12 +109,12 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

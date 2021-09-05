@@ -53,7 +53,8 @@ export class NewsCategoryDeleteComponent implements OnInit {
       return;
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.categoryService
       .ServiceGetOneById(this.requestId)
@@ -69,14 +70,14 @@ export class NewsCategoryDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -86,7 +87,8 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     const filterModel: FilterModel = new FilterModel();
     filterModel.RowPerPage = 100;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.categoryService
       .ServiceGetAll(filterModel)
@@ -101,14 +103,14 @@ export class NewsCategoryDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -131,7 +133,8 @@ export class NewsCategoryDeleteComponent implements OnInit {
     }
 
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.categoryService
       .ServiceMove(this.requestId, this.dataModel.NewCatId)
@@ -147,7 +150,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           }
           this.formInfo.FormSubmitAllow = true;
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
@@ -155,7 +158,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.formInfo.FormSubmitAllow = true;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -168,7 +171,8 @@ export class NewsCategoryDeleteComponent implements OnInit {
 
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.categoryService
       .ServiceDelete(this.requestId)
@@ -186,7 +190,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
             this.dialogRef.close({ dialogChangedDate: true });
           }
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
@@ -194,7 +198,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -219,7 +223,6 @@ export class NewsCategoryDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-    this.loading.Stop(this.constructor.name + 'main');
-
+   
   }
 }

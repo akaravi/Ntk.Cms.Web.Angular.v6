@@ -23,7 +23,7 @@ export class AuthSingInComponent implements OnInit {
     this.loading.cdr = this.cdr;
   }
 
-  loading=new  ProgressSpinnerModel();
+  loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel: AuthUserSignInModel = new AuthUserSignInModel();
   captchaModel: CaptchaModel = new CaptchaModel();
@@ -34,6 +34,7 @@ export class AuthSingInComponent implements OnInit {
   hasError: boolean;
   returnUrl: string;
   loginType = 'email';
+  onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
     // get return url from route parameters or default to '/'
@@ -48,11 +49,20 @@ export class AuthSingInComponent implements OnInit {
     this.dataModel.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUser';
     this.loading.Start(pName, 'ورود به حساب کاربری');
+    const siteId = + localStorage.getItem('siteId');
+    if (siteId > 0) {
+      this.dataModel.SiteId = siteId;
+    }
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
       (res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessLogin();
-          this.router.navigate(['/core/site/selection']);
+          if (res.Item.SiteId > 0) {
+            setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+          }
+          else {
+            setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
+          }
         } else {
           this.formInfo.ButtonSubmittedEnabled = true;
           this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
@@ -70,7 +80,6 @@ export class AuthSingInComponent implements OnInit {
   onloginTypeChange(model: string): void {
     this.loginType = model;
   }
-  onCaptchaOrderInProcess = false;
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {
       return;

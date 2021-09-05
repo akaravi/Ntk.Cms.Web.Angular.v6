@@ -59,7 +59,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
   captchaModel: CaptchaModel = new CaptchaModel();
   expireDate: string;
   aoutoCaptchaOrder = 1;
@@ -107,14 +107,14 @@ export class TicketingTaskContactUsComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.ticketingTaskService
       .ServiceContactUS(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
 
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
@@ -122,15 +122,16 @@ export class TicketingTaskContactUsComponent implements OnInit {
             this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Success;
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            // setTimeout(() => this.router.navigate(['/dasbor']), 100);
           } else {
             this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Error;
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
           this.cdr.markForCheck();
+          this.loading.Stop(pName);
+
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);

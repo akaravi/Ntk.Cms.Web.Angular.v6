@@ -105,7 +105,8 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new BiographyContentModel();
 
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -137,13 +138,13 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -192,13 +193,13 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );

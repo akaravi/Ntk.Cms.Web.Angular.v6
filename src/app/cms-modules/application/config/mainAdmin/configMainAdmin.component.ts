@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -11,7 +11,6 @@ import {
   ApplicationModuleConfigAdminMainValuesModel,
   ApplicationModuleConfigSiteAccessValuesModel,
   ApplicationModuleConfigSiteValuesModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -29,12 +28,11 @@ import { PoinModel } from 'src/app/core/models/pointModel';
   templateUrl: './configMainAdmin.component.html',
   styleUrls: ['./configMainAdmin.component.scss']
 })
-export class ApplicationConfigMainAdminComponent implements OnInit {
+export class ApplicationConfigMainAdminComponent implements OnInit , OnDestroy {
   requestLinkSiteId = 0;
 
   constructor(
     private configService: ApplicationConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
@@ -64,7 +62,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
   cmsApiStoreSubscribe: Subscription;
 
@@ -158,9 +156,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
 
-    
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService
@@ -239,7 +235,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    
+
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
     this.configService
@@ -265,7 +261,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-    
+
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
     this.configService

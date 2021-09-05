@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment';
 })
 export class ToolbarComponent implements OnInit {
   constructor(private router: Router) { }
+  env = environment;
 
   ngOnInit(): void { }
-  env = environment;
   navigateToBuilder() {
     this.router.navigate(['/builder']);
-    
+
   }
 }

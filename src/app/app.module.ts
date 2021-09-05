@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import {ClipboardModule} from '@angular/cdk/clipboard';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CoreAuthService, CoreEnumService } from 'ntk-cms-api';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 function appInitializer(authService: AuthService) {
   return () => {
@@ -83,4 +84,8 @@ export function CreateTranslateLoader(http: HttpClient): any {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+
+  }
+}

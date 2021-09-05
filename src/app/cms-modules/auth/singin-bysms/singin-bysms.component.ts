@@ -24,13 +24,6 @@ enum ErrorStates {
   styleUrls: ['./singin-bysms.component.scss'],
 })
 export class AuthSingInBySmsComponent implements OnInit {
-  errorState: ErrorStates = ErrorStates.NotSubmitted;
-  errorStates = ErrorStates;
-  isLoading$: Observable<boolean>;
-  dataModelAuthUserSignInBySms: AuthUserSignInBySmsDtoModel = new AuthUserSignInBySmsDtoModel();
-  captchaModel: CaptchaModel = new CaptchaModel();
-  // private fields
-  forgetState = 'sms';
   constructor(
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
@@ -42,10 +35,18 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.RePassword = '';
   }
-  loading=new  ProgressSpinnerModel();
+  errorState: ErrorStates = ErrorStates.NotSubmitted;
+  errorStates = ErrorStates;
+  isLoading$: Observable<boolean>;
+  dataModelAuthUserSignInBySms: AuthUserSignInBySmsDtoModel = new AuthUserSignInBySmsDtoModel();
+  captchaModel: CaptchaModel = new CaptchaModel();
+  // private fields
+  forgetState = 'sms';
+  loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   passwordIsValid = false;
   RePassword: string;
+  onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
@@ -89,12 +90,22 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
     this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
+    const siteId = + localStorage.getItem('siteId');
+    if (siteId > 0) {
+      this.dataModelAuthUserSignInBySms.SiteId = siteId;
+    }
+
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
       .subscribe((res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessLogin();
-          this.router.navigate(['/']);
+          if (res.Item.SiteId > 0) {
+            setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+          }
+          else {
+            setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
+          }
         }
         else {
           this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
@@ -114,7 +125,6 @@ export class AuthSingInBySmsComponent implements OnInit {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-  onCaptchaOrderInProcess = false;
 
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {

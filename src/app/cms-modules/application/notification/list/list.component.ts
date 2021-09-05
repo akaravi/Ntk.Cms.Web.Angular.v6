@@ -5,14 +5,12 @@ import {
   ApplicationAppModel,
   ApplicationLogNotificationModel,
   ApplicationLogNotificationService,
-  CoreAuthService,
   DataFieldInfoModel,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -40,7 +38,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
   constructor(
     private applicationLogNotificationService: ApplicationLogNotificationService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
@@ -130,7 +127,8 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationLogNotificationModel();
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -173,13 +171,13 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

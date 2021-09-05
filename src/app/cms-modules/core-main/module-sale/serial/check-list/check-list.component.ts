@@ -117,7 +117,8 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   DataCheckUseSerialForSite(serial: string): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.tableSource.data = [];
@@ -136,13 +137,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -151,7 +152,8 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe(
@@ -164,13 +166,13 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

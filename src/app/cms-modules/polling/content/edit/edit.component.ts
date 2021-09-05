@@ -88,7 +88,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
 
   ngOnInit(): void {
@@ -138,7 +138,8 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     /*َAccess Field*/
     this.pollingContentService.setAccessLoad();
@@ -151,7 +152,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -166,14 +167,14 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
             this.DataOptionGetAll();
             // this.DataOtherInfoGetAll();
             // this.DataSimilarGetAllIds();
-            this.loading.Stop(this.constructor.name + 'main');
+            this.loading.Stop(pName);
 
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
@@ -218,14 +219,15 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
 
     this.pollingContentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
@@ -233,15 +235,16 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            this.loading.Stop(this.constructor.name + 'main');
 
             setTimeout(() => this.router.navigate(['/polling/content']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
+          this.loading.Stop(pName);
+
         },
         (error) => {
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);

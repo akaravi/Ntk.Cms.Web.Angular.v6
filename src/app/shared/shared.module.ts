@@ -74,6 +74,8 @@ import { CmsHtmlModalComponent } from './cms-html-modal/cms-html-modal.component
 import { CmsHtmlListComponent } from './cms-html-list/cms-html-list.component';
 import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
 import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooterDirective, CmsHtmlTreeHeaderDirective } from '../core/directive/cms-html-tree.directive';
+import { FirstLetterPipe } from '../core/pipe/first-letter.pipe';
+import { SafePipe } from '../core/pipe/safe.pipe';
 
 @NgModule({
   imports: [
@@ -97,6 +99,9 @@ import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooter
   ],
   declarations: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
+    PersianDate,
+    PersianDateFull,
+    /** pipe */
     TruncatePipe,
     KeysPipe,
     EnumsPipe,
@@ -105,6 +110,9 @@ import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooter
     RecordStatusClassPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
+    FirstLetterPipe,
+    SafePipe,
+    /** Component */
     LanguageSelectorComponent,
     CmsSearchListComponent,
     CmsStatistListComponent,
@@ -119,8 +127,6 @@ import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooter
     CmsUserGroupSelectorComponent,
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
-    PersianDate,
-    PersianDateFull,
     CmsMapComponent,
     CmsTagAutocompleteComponent,
     ProgressSpinnerComponent,
@@ -161,7 +167,12 @@ import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooter
     CmsFileManagerModule,
     TreeModule,
     ClipboardModule,
+    PersianDate,
+    PersianDateFull,
+    /** pipe */
     TruncatePipe,
+    FirstLetterPipe,
+    SafePipe,
     KeysPipe,
     EnumsPipe,
     CmsTitlePipe,
@@ -169,8 +180,7 @@ import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooter
     RecordStatusClassPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
-    PersianDate,
-    PersianDateFull,
+    /** Component */
     LanguageSelectorComponent,
     CmsSearchListComponent,
     CmsStatistListComponent,

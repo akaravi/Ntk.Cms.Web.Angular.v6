@@ -24,15 +24,6 @@ enum ErrorStates {
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class AuthForgotPasswordComponent implements OnInit {
-  errorState: ErrorStates = ErrorStates.NotSubmitted;
-  errorStates = ErrorStates;
-  isLoading$: Observable<boolean>;
-  dataModelforgetPasswordBySms: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
-  dataModelforgetPasswordByEmail: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
-  dataModelforgetPasswordEntryPinCode: AuthUserForgetPasswordEntryPinCodeModel = new AuthUserForgetPasswordEntryPinCodeModel();
-  captchaModel: CaptchaModel = new CaptchaModel();
-  // private fields
-  forgetState = 'sms';
   constructor(
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
@@ -43,10 +34,20 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.RePassword = '';
   }
+  errorState: ErrorStates = ErrorStates.NotSubmitted;
+  errorStates = ErrorStates;
+  isLoading$: Observable<boolean>;
+  dataModelforgetPasswordBySms: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
+  dataModelforgetPasswordByEmail: AuthUserForgetPasswordModel = new AuthUserForgetPasswordModel();
+  dataModelforgetPasswordEntryPinCode: AuthUserForgetPasswordEntryPinCodeModel = new AuthUserForgetPasswordEntryPinCodeModel();
+  captchaModel: CaptchaModel = new CaptchaModel();
+  // private fields
+  forgetState = 'sms';
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   passwordIsValid = false;
   RePassword: string;
+  onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
@@ -59,7 +60,7 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordBySms.CaptchaKey = this.captchaModel.Key;
     this.dataModelforgetPasswordEntryPinCode.Email = '';
     this.dataModelforgetPasswordEntryPinCode.Mobile = this.dataModelforgetPasswordBySms.Mobile;
-    const pName = this.constructor.name +'.ServiceForgetPassword';
+    const pName = this.constructor.name + '.ServiceForgetPassword';
     this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
 
     this.coreAuthService
@@ -126,7 +127,7 @@ export class AuthForgotPasswordComponent implements OnInit {
       .subscribe((res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Your_password_was_changed_successfully'));
-          this.router.navigate(['/']);
+          setTimeout(() => this.router.navigate(['/']), 1000);
         }
         else {
           this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
@@ -146,7 +147,6 @@ export class AuthForgotPasswordComponent implements OnInit {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-  onCaptchaOrderInProcess = false;
 
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {

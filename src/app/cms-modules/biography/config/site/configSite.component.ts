@@ -66,7 +66,7 @@ export class BiographyConfigSiteComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
   cmsApiStoreSubscribe: Subscription;
 

@@ -121,7 +121,8 @@ export class BlogCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
 
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
@@ -131,11 +132,11 @@ export class BlogCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.treeControl.dataNodes = this.dataModelResult.ListItems;
           this.loadCheked();
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
         this.cmsToastrService.typeError(error);
       }

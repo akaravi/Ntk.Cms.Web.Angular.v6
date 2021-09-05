@@ -90,6 +90,9 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
       this.cmsToastrService.typeErrorFormInvalid();
     }
     this.formInfo.FormSubmitAllow = false;
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
     this.bankPaymentPrivateSiteConfigService.ServiceTestPay(this.dataModel).pipe(
       map((next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -107,13 +110,13 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       )).toPromise();

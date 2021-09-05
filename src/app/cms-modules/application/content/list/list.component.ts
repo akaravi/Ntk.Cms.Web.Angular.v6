@@ -5,7 +5,6 @@ import {
   ApplicationAppModel,
   ApplicationAppService,
   ApplicationSourceModel,
-  CoreAuthService,
   DataFieldInfoModel,
   EnumRecordStatus,
   EnumSortType,
@@ -44,7 +43,6 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   constructor(
     private applicationAppService: ApplicationAppService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
@@ -132,7 +130,8 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationAppModel();
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'applicationAppService.ServiceGetAll';
+    this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
@@ -179,13 +178,13 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
@@ -247,7 +246,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/application/app/add/', sourceId]);
+    setTimeout(() => this.router.navigate(['/application/app/add/', sourceId]), 1000);
   }
 
   onActionSelectorSelect(model: ApplicationSourceModel | null): void {
@@ -281,7 +280,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     //     this.DataGetAll();
     //   }
     // });
-    this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]);
+    setTimeout(() => this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]), 1000);
 
   }
   onActionbuttonDeleteRow(mode: ApplicationAppModel = this.tableRowSelected): void {
@@ -304,7 +303,8 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          this.loading.Start(this.constructor.name + 'main');
+          const pName = this.constructor.name + 'applicationAppService.ServiceDelete';
+          this.loading.Start(pName);
 
           this.applicationAppService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -314,12 +314,12 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             },
             (error) => {
               this.cmsToastrService.typeError(error);
-              this.loading.Stop(this.constructor.name + 'main');
+              this.loading.Stop(pName);
 
             }
           );
@@ -449,12 +449,13 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = mode;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'applicationAppService.ServiceBuild';
+    this.loading.Start(pName);
 
 
     this.applicationAppService.ServiceBuild(this.tableRowSelected.Id).subscribe(
       (next) => {
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
@@ -466,7 +467,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
 
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );

@@ -75,10 +75,11 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
   }
 
   async logout() {
-    // this.auth.logout();
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, 'خروج از حساب کاربری');
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
-      this.loading.Stop(this.constructor.name + 'main');
+      this.loading.Stop(pName);
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessLogout();
       } else {

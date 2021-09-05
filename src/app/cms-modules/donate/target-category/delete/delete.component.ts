@@ -60,7 +60,8 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
       return;
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.donateTargetCategoryService
       .ServiceGetOneById(this.requestId)
@@ -76,14 +77,14 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -93,7 +94,8 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     const filterModel: FilterModel = new FilterModel();
     filterModel.RowPerPage = 100;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.donateTargetCategoryService
       .ServiceGetAll(filterModel)
@@ -108,14 +110,14 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
           } else {
             this.formInfo.FormAlert = '';
           }
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -138,7 +140,8 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     }
 
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
   }
   onFormDelete(): void {
@@ -149,7 +152,8 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
 
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.donateTargetCategoryService
       .ServiceDelete(this.requestId)
@@ -167,7 +171,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
             this.dialogRef.close({ dialogChangedDate: true });
           }
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         },
         (error) => {
@@ -175,7 +179,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
-          this.loading.Stop(this.constructor.name + 'main');
+          this.loading.Stop(pName);
 
         }
       );
@@ -200,7 +204,6 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-    this.loading.Stop(this.constructor.name + 'main');
-
+   
   }
 }

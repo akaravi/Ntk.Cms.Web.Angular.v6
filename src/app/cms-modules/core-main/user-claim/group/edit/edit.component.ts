@@ -110,8 +110,8 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
 
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    const pName=this.constructor.name + 'DataGetOneContent';
-    this.loading.Start(pName,'دریافت دسته بندی مدارک');
+    const pName = this.constructor.name + 'DataGetOneContent';
+    this.loading.Start(pName, 'دریافت دسته بندی مدارک');
 
     this.coreUserClaimGroupService.setAccessLoad();
     this.coreUserClaimGroupService.ServiceGetOneById(this.requestId).subscribe(
@@ -142,8 +142,8 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
-    const pName=this.constructor.name + 'main';
-    this.loading.Start(pName,'ثبت دسته بندی مدارک');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, 'ثبت دسته بندی مدارک');
     this.coreUserClaimGroupService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -221,8 +221,8 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
 
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    const pName=this.constructor.name + 'DataGetAllCoreUserClaimType'
-    this.loading.Start(pName,'دریافت لیست مدارک');
+    const pName = this.constructor.name + 'DataGetAllCoreUserClaimType'
+    this.loading.Start(pName, 'دریافت لیست مدارک');
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
@@ -288,7 +288,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     const entity = new CoreUserClaimGroupDetailModel();
     entity.LinkUserClaimTypeId = model.Id;
     entity.LinkUserClaimGroupId = this.dataModel.Id;
-    
+
     this.coreUserClaimGroupDetailService.ServiceDeleteEntity(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {

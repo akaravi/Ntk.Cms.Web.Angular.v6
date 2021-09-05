@@ -3,6 +3,7 @@ import {
     ActivatedRouteSnapshot,
     RouterStateSnapshot,
     Router,
+    ActivatedRoute,
 } from '@angular/router';
 import { Injectable, OnDestroy } from '@angular/core';
 import { CoreAuthService, ErrorExceptionResult, NtkCmsApiStoreService, SET_TOKEN_INFO, TokenInfoModel } from 'ntk-cms-api';
@@ -21,11 +22,13 @@ export class CmsAuthGuard implements CanActivate, OnDestroy {
     runSubscribe = false;
     subscriptions: Subscription;
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+
         const token = this.coreAuthService.getUserToken();
         if (!token || token.length === 0) {
             this.router.navigate(['auth'], { queryParams: { returnUrl: state.url } });
             return false;
         }
+
         const storeSnapshot = this.cmsApiStore.getStateSnapshot();
         let tokenInfo: TokenInfoModel = new TokenInfoModel();
         if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {

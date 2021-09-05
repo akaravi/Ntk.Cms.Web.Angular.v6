@@ -51,7 +51,8 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.loading.Start(this.constructor.name + 'main');
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
     this.webDesignerMainPageDependencyService.setAccessLoad();
     this.webDesignerMainPageDependencyService.ServiceGetOneById(this.optionId).subscribe(
@@ -62,12 +63,12 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
         } else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loading.Stop(this.constructor.name + 'main');
+        this.loading.Stop(pName);
 
       }
     );
