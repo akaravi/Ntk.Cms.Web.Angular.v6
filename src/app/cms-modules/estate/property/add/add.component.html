@@ -307,7 +307,7 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
               <mat-label>Sale Price</mat-label>
               <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
-                [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="number"
+                matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="text"
                 placeholder="0" />
               <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
                 (click)="contractDataModel.SalePrice = 0">
@@ -328,7 +328,8 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
               <mat-label>Rent Price</mat-label>
               <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
-                [disabled]="contractDataModel.RentPriceByAgreement" #CurrentClickCount type="number" placeholder="0" />
+                matInputCommified [disabled]="contractDataModel.RentPriceByAgreement" #CurrentClickCount type="text"
+                placeholder="0" />
               <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
                 (click)="contractDataModel.RentPrice = 0">
                 close</mat-icon>
@@ -348,7 +349,7 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
               <mat-label>Rent Price</mat-label>
               <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
-                [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="number"
+                matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="text"
                 placeholder="0" />
               <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
                 (click)="contractDataModel.DepositPrice = 0">

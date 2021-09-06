@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -295,7 +295,7 @@
           <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
             <mat-label>Sale Price</mat-label>
             <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
-              #CurrentClickCount type="number" placeholder="0" />
+              matInputCommified #CurrentClickCount type="text" placeholder="0" />
             <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.SalePrice = 0">
               close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -305,7 +305,7 @@
           <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
             <mat-label>Rent Price</mat-label>
             <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
-              #CurrentClickCount type="number" placeholder="0" />
+              matInputCommified #CurrentClickCount type="text" placeholder="0" />
             <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.RentPrice = 0">
               close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -315,7 +315,7 @@
           <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
             <mat-label>Rent Price</mat-label>
             <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
-              #CurrentClickCount type="number" placeholder="0" />
+              matInputCommified #CurrentClickCount type="text" placeholder="0" />
             <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
               (click)="contractDataModel.DepositPrice = 0">
               close</mat-icon>

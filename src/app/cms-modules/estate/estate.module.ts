@@ -79,7 +79,6 @@ import { EstatePropertyDetailSelectorComponent } from './property-detail/selecto
 import { EstatePropertyDetailTreeComponent } from './property-detail/tree/tree.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { BrowserModule } from '@angular/platform-browser';
 import { EstatePropertyTypeLanduseAddComponent } from './property-type-landuse/add/add.component';
 import { EstatePropertyTypeLanduseEditComponent } from './property-type-landuse/edit/edit.component';
 import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/list/list.component';

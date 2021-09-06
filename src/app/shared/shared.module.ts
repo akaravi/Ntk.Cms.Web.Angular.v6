@@ -76,6 +76,7 @@ import { CmsHtmlTreeComponent } from './cms-html-tree/cms-html-tree.component';
 import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooterDirective, CmsHtmlTreeHeaderDirective } from '../core/directive/cms-html-tree.directive';
 import { FirstLetterPipe } from '../core/pipe/first-letter.pipe';
 import { SafePipe } from '../core/pipe/safe.pipe';
+import { MatInputCommifiedDirective } from '../core/directive/mat-input-commified.directive';
 
 @NgModule({
   imports: [
@@ -156,6 +157,7 @@ import { SafePipe } from '../core/pipe/safe.pipe';
     CmsHtmlTreeActionDirective,
     CmsHtmlTreeBodyDirective,
     CmsHtmlTreeFooterDirective,
+    MatInputCommifiedDirective,
   ],
   exports: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
@@ -224,6 +226,7 @@ import { SafePipe } from '../core/pipe/safe.pipe';
     CmsHtmlTreeActionDirective,
     CmsHtmlTreeBodyDirective,
     CmsHtmlTreeFooterDirective,
+    MatInputCommifiedDirective,
   ],
   providers: [
     OverlayService,

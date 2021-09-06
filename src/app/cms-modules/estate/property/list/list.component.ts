@@ -57,8 +57,8 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelProperty.SortColumn = 'Id';
-    this.filteModelProperty.SortType = EnumSortType.Ascending;
+    this.filteModelProperty.SortColumn = 'CreatedDate';
+    this.filteModelProperty.SortType = EnumSortType.Descending;
     if (this.requestLinkPropertyTypeLanduseId && this.requestLinkPropertyTypeLanduseId.length > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkPropertyTypeLanduseId';

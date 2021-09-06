@@ -23,7 +23,6 @@ import {
   EnumInputDataType,
   EstatePropertyTypeModel,
   EstatePropertyTypeService,
-  EstatePropertyTypeUsageService,
   EstatePropertyTypeLanduseService,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';

@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentSiteModule();
+    localStorage.removeItem('siteId');
   }
   async getCurrentSiteModule(): Promise<void> {
     this.dataCoreModuleModelResult = await this.publicHelper.getCurrentSiteModule();
