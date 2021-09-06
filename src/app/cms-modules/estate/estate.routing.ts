@@ -47,6 +47,10 @@ const routes: Routes = [
         component: EstatePropertyListComponent
       },
       {
+        path: 'property/InChecking/:InChecking',
+        component: EstatePropertyListComponent
+      },
+      {
         path: 'property/add',
         component: EstatePropertyAddComponent
       },

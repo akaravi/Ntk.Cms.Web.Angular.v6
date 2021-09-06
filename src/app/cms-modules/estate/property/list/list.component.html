@@ -36,6 +36,10 @@
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
+    <a class="btn btn-secondary btn-sm BTN">
+      <mat-slide-toggle (click)="onActionbuttonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">{{'ACTION.INCHECKING' | translate}}
+      </mat-slide-toggle>
+    </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-info BTN">
       <mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>

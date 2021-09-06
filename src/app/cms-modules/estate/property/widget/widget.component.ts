@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { EstatePropertyService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { EstatePropertyService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService, EnumFilterDataModelSearchTypes } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -40,8 +40,10 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
+    this.loading.Start(this.constructor.name + 'InChecking');
     this.loading.Start(this.constructor.name + 'Active');
     this.loading.Start(this.constructor.name + 'All');
+    this.modelData.set('InChecking', 0);
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
@@ -55,7 +57,7 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
-    const fastfilter = new FilterDataModel();
+    let fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
@@ -65,10 +67,39 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.cdr.detectChanges();
+        this.loading.Stop(this.constructor.name + 'Active');
       }
       ,
       (error) => {
         this.cdr.detectChanges();
+        this.loading.Stop(this.constructor.name + 'Active');
+      }
+    );
+    const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
+    fastfilter = new FilterDataModel();
+    fastfilter.PropertyName = 'RecordStatus';
+    fastfilter.Value = EnumRecordStatus.Available;
+    fastfilter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
+    filterStatist2.Filters.push(fastfilter);
+    this.service.ServiceGetCount(filterStatist2).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          if (next.TotalRowCount > 0) {
+            this.modelData.set('InChecking', next.TotalRowCount);
+            this.widgetInfoModel.link = '/estate/property/InChecking/true';
+          }
+          else {
+            this.modelData.delete('InChecking');
+            this.widgetInfoModel.link = '/estate/property';
+          }
+        }
+        this.cdr.detectChanges();
+        this.loading.Stop(this.constructor.name + 'InChecking');
+      }
+      ,
+      (error) => {
+        this.cdr.detectChanges();
+        this.loading.Stop(this.constructor.name + 'InChecking');
       }
     );
   }

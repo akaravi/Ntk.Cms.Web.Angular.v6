@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { EstatePropertyService, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { EnumFilterDataModelSearchTypes, EnumRecordStatus, EstatePropertyService, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -16,12 +16,13 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: EstatePropertyService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }
+  modelData = new Map<string, number>();
+
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
@@ -44,6 +45,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
 
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'All');
+    this.loading.Start(this.constructor.name + 'InChecking');
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -63,6 +65,30 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
         this.widgetInfoModel.title = 'املاک جدید اضافه کنید';
         this.widgetInfoModel.link = '/estate/property/add';
         this.loading.Stop(this.constructor.name + 'All');
+      }
+    );
+    const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
+    const fastfilter = new FilterDataModel();
+    fastfilter.PropertyName = 'RecordStatus';
+    fastfilter.Value = EnumRecordStatus.Available;
+    fastfilter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
+    filterStatist2.Filters.push(fastfilter);
+    this.service.ServiceGetCount(filterStatist2).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          if (next.TotalRowCount > 0) {
+            this.modelData.set('InChecking', next.TotalRowCount);
+          }
+          else {
+            this.modelData.delete('InChecking');
+          }
+        }
+        this.loading.Stop(this.constructor.name + 'InChecking');
+
+      }
+      ,
+      (error) => {
+        this.loading.Stop(this.constructor.name + 'InChecking');
       }
     );
 

@@ -65,10 +65,12 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.cdr.detectChanges();
+        this.loading.Stop(this.constructor.name + 'Active');
       }
       ,
       (error) => {
         this.cdr.detectChanges();
+        this.loading.Stop(this.constructor.name + 'Active');
       }
     );
   }

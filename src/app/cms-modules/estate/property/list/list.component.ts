@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   EstatePropertyModel,
@@ -12,7 +12,9 @@ import {
   TokenInfoModel,
   EstatePropertyTypeLanduseModel,
   EnumRecordStatus,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumClauseType,
+  EnumFilterDataModelSearchTypes
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -32,13 +34,13 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class EstatePropertyListComponent implements OnInit, OnDestroy {
+export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = '';
   requestLinkContractTypeId = '';
+  requestInChecking = false;
   constructor(
     private estatePropertyService: EstatePropertyService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -49,7 +51,9 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
     this.requestLinkContractTypeId = this.activatedRoute.snapshot.paramMap.get('LinkContractTypeId');
-
+    if (this.activatedRoute.snapshot.paramMap.get('InChecking')) {
+      this.searchInChecking = (this.activatedRoute.snapshot.paramMap.get('InChecking') === 'true');
+    }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -78,7 +82,8 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tablePropertySelected = [];
-
+  searchInChecking = false;
+  searchInCheckingChecked = false;
   filteModelProperty = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -118,6 +123,11 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
     });
 
   }
+  ngAfterViewInit(): void {
+    if (this.searchInChecking) {
+      this.searchInCheckingChecked = true;
+    }
+  }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
@@ -140,7 +150,13 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-
+    if (this.searchInChecking) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'RecordStatus';
+      filter.Value = EnumRecordStatus.Available;
+      filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filterModel.Filters.push(filter);
+    }
     this.estatePropertyService.ServiceGetAll(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -318,7 +334,7 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.estatePropertyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -387,6 +403,11 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy {
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelProperty);
+  }
+
+  onActionbuttonInChecking(model: boolean): void {
+    this.searchInChecking = model;
+    this.DataGetAll();
   }
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();

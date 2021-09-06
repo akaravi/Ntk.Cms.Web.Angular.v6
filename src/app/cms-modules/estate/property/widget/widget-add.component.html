@@ -7,21 +7,35 @@
     <div class="ntk-cms-html-widget-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <div class="p-1 flex-grow-1">
-        <h3 class="text-white font-weight-bolder line-height-lg mb-5">
-          {{widgetInfoModel.title}}<br />{{widgetInfoModel.description}}
-        </h3>
+        <a routerLink="/estate/property/add" routerLinkActive="active">
+          <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+            {{widgetInfoModel.title}}
+          </h3>
+        </a>
+        <a routerLink="/estate/property" routerLinkActive="active" *ngIf="rowExist">
+          <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+            {{widgetInfoModel.description}}
+          </h3>
+        </a>
+        <a routerLink="/estate/property/InChecking/true" routerLinkActive="active"
+          *ngIf="this.modelData.get('InChecking') && this.modelData.get('InChecking')>0">
+          <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+            تعداد ردیف در صف تایید : {{this.modelData.get('InChecking')}}
+          </h3>
+        </a>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-widget-body">
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active"
+      <a routerLink="/estate/property/add" routerLinkActive="active"
         class="btn btn-link btn-link-warning font-weight-bold">
         {{widgetInfoModel.title}}
         <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Arrow-right.svg'"
           class="svg-icon ssvg-icon-lg svg-icon-warning"></span>
       </a>
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
     <div class="ntk-cms-html-widget-footer">
