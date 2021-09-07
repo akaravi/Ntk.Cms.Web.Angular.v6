@@ -77,12 +77,10 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.modelData.set('Active', next.TotalRowCount);
         }
-        this.cdr.detectChanges();
         this.loading.Stop(this.constructor.name + 'Active');
       }
       ,
       (error) => {
-        this.cdr.detectChanges();
         this.loading.Stop(this.constructor.name + 'Active');
       }
     );
@@ -104,12 +102,10 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
             this.widgetInfoModel.link = '/estate/property';
           }
         }
-        this.cdr.detectChanges();
         this.loading.Stop(this.constructor.name + 'InChecking');
       }
       ,
       (error) => {
-        this.cdr.detectChanges();
         this.loading.Stop(this.constructor.name + 'InChecking');
       }
     );

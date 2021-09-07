@@ -174,7 +174,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
             (next) => {
@@ -186,13 +186,11 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
               }
               this.loading.Stop(pName);
 
-              this.cdr.detectChanges();
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
 
-              this.cdr.detectChanges();
             }
           );
         }

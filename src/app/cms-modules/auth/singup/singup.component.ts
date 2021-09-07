@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@ang
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthUserSignUpModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
+import { AuthUserSignInModel, AuthUserSignUpModel, CaptchaModel, CoreAuthService, EnumManageUserAccessTokenTypes, FormInfoModel } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { MatDialog } from '@angular/material/dialog';
@@ -88,7 +88,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     }
     this.formInfo.FormErrorStatus = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
-
     const pName = this.constructor.name + '.ServiceSignupUser';
     this.loading.Start(pName, 'در حال ساخت حساب کاربری جدید');
     const siteId = + localStorage.getItem('siteId');
@@ -99,7 +98,43 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
         this.formInfo.FormErrorStatus = false;
-        setTimeout(() => this.router.navigate(['/']), 1000);
+        // setTimeout(() => this.router.navigate(['/']), 1000);
+
+        /** Login */
+        const dataLoginModel = new AuthUserSignInModel();
+        dataLoginModel.CaptchaKey = this.dataModel.CaptchaKey;
+        dataLoginModel.CaptchaText = this.dataModel.CaptchaText;
+        dataLoginModel.Email = this.dataModel.Email;
+        dataLoginModel.Password = this.dataModel.Password;
+        dataLoginModel.SiteId = this.dataModel.SiteId;
+        dataLoginModel.Mobile = this.dataModel.Mobile;
+        dataLoginModel.UserAccessTokenType = EnumManageUserAccessTokenTypes.ControlPanel;
+        const pName2 = this.constructor.name + 'ServiceSigninUser';
+        this.loading.Start(pName2, 'ورود به حساب کاربری');
+        this.coreAuthService.ServiceSigninUser(dataLoginModel).subscribe(
+          (res) => {
+            if (res.IsSuccess) {
+              this.cmsToastrService.typeSuccessLogin();
+              if (res.Item.SiteId > 0) {
+                setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+              }
+              else {
+                setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
+              }
+            } else {
+              this.formInfo.ButtonSubmittedEnabled = true;
+              this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
+              setTimeout(() => this.router.navigate(['/']), 1000);
+            }
+            this.loading.Stop(pName2);
+          },
+          (error) => {
+            this.formInfo.ButtonSubmittedEnabled = true;
+            this.cmsToastrService.typeError(error);
+            this.loading.Stop(pName2);
+          }
+        );
+        /** Login */
       } else {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
         this.formInfo.FormErrorStatus = true;
@@ -113,6 +148,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       this.loading.Stop(pName);
     });
   }
+
   onRoulaccespt(): void {
     const dialogRef = this.dialog.open(SingupRuleComponent);
     dialogRef.afterClosed().subscribe(result => {

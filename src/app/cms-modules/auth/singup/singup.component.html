@@ -64,12 +64,12 @@
           <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password"
             [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
-            placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="20" required />
+            placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.Password" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Password = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Password.value.length }} / 20</mat-hint>
+          <mat-hint align="end">{{ Password.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Password.errors?.required">
             Password is <strong>required</strong>
           </mat-error>
@@ -83,12 +83,12 @@
           <input matInput [(ngModel)]="dataModel.RePassword" name="dataModel.RePassword"
             [disabled]=" !formInfo.ButtonSubmittedEnabled" #RePassword type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
-            placeholder=" {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}" minlength="3" maxlength="20" required />
+            placeholder=" {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.RePassword" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.RePassword = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ RePassword.value.length }} / 20</mat-hint>
+          <mat-hint align="end">{{ RePassword.value.length }} / 50</mat-hint>
           <mat-error *ngIf="RePassword.errors?.required">
             RePassword is <strong>required</strong>
           </mat-error>

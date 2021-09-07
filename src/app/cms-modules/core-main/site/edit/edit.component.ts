@@ -155,7 +155,6 @@ export class CoreSiteEditComponent implements OnInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-          this.loading.Stop(pName);
 
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
@@ -175,14 +174,13 @@ export class CoreSiteEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
-          this.cdr.detectChanges();
+          this.loading.Stop(pName);
 
         },
         (error) => {
-          this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
+          this.loading.Stop(pName);
         }
       );
   }

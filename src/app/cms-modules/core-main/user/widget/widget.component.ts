@@ -83,11 +83,9 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop(this.constructor.name + 'All');
-        this.cdr.detectChanges();
       },
       (error) => {
         this.loading.Stop(this.constructor.name + 'All');
-        this.cdr.detectChanges();
       }
     );
 

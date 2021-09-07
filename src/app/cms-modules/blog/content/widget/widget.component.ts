@@ -52,11 +52,9 @@ export class BlogContentWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'All');
-        this.cdr.detectChanges();
       },
       (error) => {
         this.loading.Stop(this.constructor.name + 'All');
-        this.cdr.detectChanges();
       }
     );
 
@@ -71,12 +69,10 @@ export class BlogContentWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Active');
-        this.cdr.detectChanges();
       }
       ,
       (error) => {
         this.loading.Stop(this.constructor.name + 'Active');
-        this.cdr.detectChanges();
       }
     );
   }

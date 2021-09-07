@@ -49,7 +49,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     this.DataGetAll();
   }
   DataGetAll(): void {
-    const pName = this.constructor.name + '.DataGetAll';
+    const pName = this.constructor.name + 'ServiceGetAll';
     this.loading.Start(pName);
 
     this.coreSiteService.ServiceGetAll(null).subscribe(
@@ -65,13 +65,11 @@ export class CoreSiteSelectionComponent implements OnInit {
           this.cmsToastrService.typeError(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-        this.cdr.detectChanges();
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-        this.cdr.detectChanges();
       }
     );
   }
@@ -102,13 +100,11 @@ export class CoreSiteSelectionComponent implements OnInit {
           this.formInfo.ButtonSubmittedEnabled = true;
         }
         this.loading.Stop(pName);
-        this.cdr.detectChanges();
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.formInfo.ButtonSubmittedEnabled = true;
         this.loading.Stop(pName);
-        this.cdr.detectChanges();
       }
     );
 
@@ -128,12 +124,10 @@ export class CoreSiteSelectionComponent implements OnInit {
             this.router.navigate([environment.cmsUiConfig.Pathdashboard]);
           }
           this.loading.Stop(pName);
-          this.cdr.detectChanges();
         },
         (error) => {
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-          this.cdr.detectChanges();
         }
       );
     }
