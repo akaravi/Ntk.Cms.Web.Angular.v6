@@ -4,7 +4,8 @@ import {
   CaptchaModel,
   CoreAuthService,
   FormInfoModel,
-  AuthUserSignInBySmsDtoModel
+  AuthUserSignInBySmsDtoModel,
+  EnumManageUserAccessTokenTypes
 } from 'ntk-cms-api';
 import { Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -87,6 +88,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
+    this.dataModelAuthUserSignInBySms.UserAccessTokenType = EnumManageUserAccessTokenTypes.ControlPanel;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
     this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');

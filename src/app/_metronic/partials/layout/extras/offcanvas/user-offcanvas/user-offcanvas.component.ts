@@ -46,12 +46,12 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     // this.user$ = this.auth.currentUserSubject.asObservable();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminCpSite
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminMainCms
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminResellerCms
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportCpSite
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportMainCms
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
+      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminResellerCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
         this.IsAdminSite = true;
       }
       else {
@@ -60,12 +60,12 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminCpSite
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminMainCms
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.AdminResellerCms
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportCpSite
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportMainCms
-        || this.tokenInfo.UserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
+      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminResellerCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
         this.IsAdminSite = true;
       }
       else {
