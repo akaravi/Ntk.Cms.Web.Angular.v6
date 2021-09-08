@@ -8,7 +8,7 @@ import {
   BankPaymentTransactionLogService,
   CoreAuthService,
   DataFieldInfoModel,
-  EnumModel,
+  EnumInfoModel,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
@@ -75,7 +75,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
   tableRowsSelected: Array<BankPaymentTransactionLogModel> = [];
   tableRowSelected: BankPaymentTransactionLogModel = new BankPaymentTransactionLogModel();
   tableSource: MatTableDataSource<BankPaymentTransactionLogModel> = new MatTableDataSource<BankPaymentTransactionLogModel>();
-  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   tabledisplayedColumns: string[] = [
     'Id',

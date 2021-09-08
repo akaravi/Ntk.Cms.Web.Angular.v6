@@ -3,7 +3,7 @@ import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   BlogContentModel,
@@ -64,7 +64,7 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel = new BlogContentModel();
   dataModelResult: ErrorExceptionResult<BlogContentModel> = new ErrorExceptionResult<BlogContentModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypePodcast = ['mp3'];
   selectFileTypeMovie = ['mp4'];

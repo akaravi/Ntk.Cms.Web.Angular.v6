@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   CoreModuleService,
@@ -53,7 +53,7 @@ export class CoreModuleAddComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   dataModel: CoreModuleModel = new CoreModuleModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
 
 

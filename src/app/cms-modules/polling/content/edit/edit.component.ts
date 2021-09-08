@@ -3,7 +3,7 @@ import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
@@ -59,7 +59,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelResult: ErrorExceptionResult<PollingContentModel> = new ErrorExceptionResult<PollingContentModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   optionSelected: PollingOptionModel = new PollingOptionModel();
   optionDataModel = new Array<PollingOptionModel>();
   optionTabledataSource = new MatTableDataSource<PollingOptionModel>();

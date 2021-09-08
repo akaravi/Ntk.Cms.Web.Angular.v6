@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   CoreGuideService,
@@ -57,7 +57,7 @@ export class CoreGuideEditComponent implements OnInit {
   dataModel: CoreGuideModel = new CoreGuideModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataAccessModel: AccessModel;
 
   fileManagerOpenForm = false;

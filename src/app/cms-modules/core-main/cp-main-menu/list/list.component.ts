@@ -15,7 +15,7 @@ import {
   EnumActionGoStep,
   EditStepDtoModel,
   CoreEnumService,
-  EnumModel
+  EnumInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -91,7 +91,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
   ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   expandedElement: CoreCpMainMenuModel | null;

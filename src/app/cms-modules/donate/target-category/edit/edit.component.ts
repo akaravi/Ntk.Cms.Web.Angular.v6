@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   DonateTargetCategoryService,
@@ -59,7 +59,7 @@ export class DonateTargetCategoryEditComponent implements OnInit {
   dataModel: DonateTargetCategoryModel = new DonateTargetCategoryModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
 

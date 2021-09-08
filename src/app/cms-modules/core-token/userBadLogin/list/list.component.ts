@@ -15,7 +15,7 @@ import {
   CoreTokenUserBadLoginService,
   CoreTokenUserBadLoginModel,
   DataFieldInfoModel,
-  EnumModel,
+  EnumInfoModel,
   CoreEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -117,7 +117,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   expandedElement: CoreSiteModel | null;

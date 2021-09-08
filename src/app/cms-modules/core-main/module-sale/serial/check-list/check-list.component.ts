@@ -12,7 +12,7 @@ import {
   DataFieldInfoModel,
   CoreModuleSaleHeaderModel,
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   CoreModuleService,
   CoreModuleModel,
   CoreModuleCheckSerialForSiteDtoModel,
@@ -66,7 +66,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   tableSource: MatTableDataSource<CoreModuleSaleInvoiceDetailModel> = new MatTableDataSource<CoreModuleSaleInvoiceDetailModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   categoryModelSelected: CoreModuleSaleHeaderModel = new CoreModuleSaleHeaderModel();
-  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
 
   tabledisplayedColumns: string[] = [

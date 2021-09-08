@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   BankPaymentTransactionLogService,
@@ -54,7 +54,7 @@ export class BankPaymentTransactionLogViewComponent implements OnInit, OnDestroy
   dataModelResult: ErrorExceptionResult<BankPaymentTransactionLogModel> = new ErrorExceptionResult<BankPaymentTransactionLogModel>();
   dataModel: BankPaymentTransactionLogModel = new BankPaymentTransactionLogModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
 

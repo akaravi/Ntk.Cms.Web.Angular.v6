@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   EstateAccountAgencyTypeUserService,
@@ -60,8 +60,8 @@ export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyTypeUserModel> = new ErrorExceptionResult<EstateAccountAgencyTypeUserModel>();
   dataModel: EstateAccountAgencyTypeUserModel = new EstateAccountAgencyTypeUserModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
-  dataModelEnumEstateUserTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumEstateUserTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
 

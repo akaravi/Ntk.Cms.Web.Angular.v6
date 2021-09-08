@@ -7,7 +7,7 @@ import {
   BankPaymentTransactionService,
   CoreAuthService,
   DataFieldInfoModel,
-  EnumModel,
+  EnumInfoModel,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
@@ -99,8 +99,8 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
-  dataModelEnumTransactionBankStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumTransactionBankStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   expandedElement: BankPaymentTransactionModel | null;
   cmsApiStoreSubscribe: Subscription;

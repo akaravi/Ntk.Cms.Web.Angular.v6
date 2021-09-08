@@ -1,5 +1,5 @@
 import {
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   ApplicationLogNotificationService,
@@ -63,7 +63,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<ApplicationLogNotificationModel> = new ErrorExceptionResult<ApplicationLogNotificationModel>();
   dataModel: SendNotificationModel = new SendNotificationModel();
-  dataModelEnumContentTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumContentTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   fileManagerOpenFormSmallFile = false;
   fileManagerOpenFormBigFile = false;

@@ -5,7 +5,7 @@ import {
   TicketingDepartemenLogService,
   CoreEnumService,
   DataFieldInfoModel,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   NtkCmsApiStoreService,
@@ -50,7 +50,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<TicketingDepartemenLogModel> = new ErrorExceptionResult<TicketingDepartemenLogModel>();
   dataModel: TicketingDepartemenLogModel = new TicketingDepartemenLogModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
 
   cmsApiStoreSubscribe: Subscription;

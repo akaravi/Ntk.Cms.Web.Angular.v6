@@ -1,4 +1,4 @@
-import { EnumModel, ExportFileModel, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { EnumInfoModel, ExportFileModel, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
@@ -12,38 +12,38 @@ import { Input } from '@angular/core';
 })
 export class CmsExportListComponent implements OnInit {
   constructor() {
-    let eum = new EnumModel();
+    let eum = new EnumInfoModel();
     eum.Value = 1;
     eum.Key = 'Excel';
     eum.Description = 'Excel';
     this.fileTypeListItems.push(eum);
 
-    eum = new EnumModel();
+    eum = new EnumInfoModel();
     eum.Value = 2;
     eum.Key = 'PDF';
     eum.Description = 'PDF';
     this.fileTypeListItems.push(eum);
 
-    eum = new EnumModel();
+    eum = new EnumInfoModel();
     eum.Value = 3;
     eum.Key = 'Text';
     eum.Description = 'Text';
     this.fileTypeListItems.push(eum);
 
 
-    eum = new EnumModel();
+    eum = new EnumInfoModel();
     eum.Value = 0;
     eum.Key = 'Now';
     eum.Description = 'Now';
     this.recieveMethodListItems.push(eum);
 
-    eum = new EnumModel();
+    eum = new EnumInfoModel();
     eum.Value = 1;
     eum.Key = 'Email';
     eum.Description = 'Email';
     this.recieveMethodListItems.push(eum);
 
-    eum = new EnumModel();
+    eum = new EnumInfoModel();
     eum.Value = 2;
     eum.Key = 'FileManager';
     eum.Description = 'FileManager';
@@ -68,8 +68,8 @@ export class CmsExportListComponent implements OnInit {
   exportFileModel: ExportFileModel = new ExportFileModel();
   filterModel: FilterModel = new FilterModel();
   modelData: Map<string, string> = new Map<string, string>();
-  fileTypeListItems: Array<EnumModel> = new Array<EnumModel>();
-  recieveMethodListItems: Array<EnumModel> = new Array<EnumModel>();
+  fileTypeListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
+  recieveMethodListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
   ngOnInit(): void { }
   setExportLinkFile(model: Map<string, string>): void {
     this.modelData = model;

@@ -4,7 +4,7 @@ import {
   TicketingTemplateModel,
   TicketingTemplateService,
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   TicketingDepartemenModel,
@@ -58,7 +58,7 @@ export class TicketingTemplateEditComponent implements OnInit {
   dataFileModel = new Map<number, string>();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
 

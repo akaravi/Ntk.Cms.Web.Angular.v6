@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   CoreTokenActivationService,
@@ -54,7 +54,7 @@ export class CoreTokenActivationViewComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreTokenActivationModel> = new ErrorExceptionResult<CoreTokenActivationModel>();
   dataModel: CoreTokenActivationModel = new CoreTokenActivationModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
 

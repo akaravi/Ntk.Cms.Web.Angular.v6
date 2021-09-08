@@ -16,7 +16,7 @@ import {
   DataFieldInfoModel,
   CoreModuleSaleHeaderModel,
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   CoreModuleService,
   CoreModuleModel,
 } from 'ntk-cms-api';
@@ -92,7 +92,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreModuleSaleItemModel> = new MatTableDataSource<CoreModuleSaleItemModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   categoryModelSelected: CoreModuleSaleHeaderModel = new CoreModuleSaleHeaderModel();
-  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
 
   tabledisplayedColumns: string[] = [

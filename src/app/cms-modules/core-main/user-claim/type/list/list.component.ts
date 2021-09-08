@@ -18,7 +18,7 @@ import {
   CoreSiteCategoryService,
   CoreUserGroupModel,
   CoreSiteCategoryModel,
-  EnumModel,
+  EnumInfoModel,
   CoreEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -83,7 +83,7 @@ export class CoreUserClaimTypeListComponent implements OnInit, OnDestroy {
   tableRowSelected: CoreUserClaimTypeModel = new CoreUserClaimTypeModel();
   tableSource: MatTableDataSource<CoreUserClaimTypeModel> = new MatTableDataSource<CoreUserClaimTypeModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumUserClaimKindsResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumUserClaimKindsResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   tabledisplayedColumns: string[] = [

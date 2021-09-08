@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
@@ -67,7 +67,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
   dataContentSimilarModelResult: ErrorExceptionResult<ArticleContentSimilarModel> = new ErrorExceptionResult<ArticleContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<ArticleContentOtherInfoModel>
     = new ErrorExceptionResult<ArticleContentOtherInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataContentCategoryModel: number[] = [];
   similarDataModel = new Array<ArticleContentModel>();
   otherInfoDataModel = new Array<ArticleContentOtherInfoModel>();

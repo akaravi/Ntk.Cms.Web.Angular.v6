@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   CoreLogSmsService,
@@ -54,7 +54,7 @@ export class CoreLogSmsViewComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreLogSmsModel> = new ErrorExceptionResult<CoreLogSmsModel>();
   dataModel: CoreLogSmsModel = new CoreLogSmsModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
 

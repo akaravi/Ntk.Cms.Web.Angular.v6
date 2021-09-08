@@ -15,7 +15,7 @@ import {
   EnumRecordStatus,
   DataFieldInfoModel,
   CoreEnumService,
-  EnumModel
+  EnumInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -87,8 +87,8 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
   tableRowSelected: CoreDeviceModel = new CoreDeviceModel();
   tableSource: MatTableDataSource<CoreDeviceModel> = new MatTableDataSource<CoreDeviceModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumDeviceTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
-  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumDeviceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   tabledisplayedColumns: string[] = [
     'Id',

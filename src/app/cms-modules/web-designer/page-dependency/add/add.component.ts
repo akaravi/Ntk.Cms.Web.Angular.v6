@@ -1,6 +1,6 @@
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   WebDesignerMainPageDependencyService,
@@ -63,7 +63,7 @@ export class WebDesignerMainPageDependencyAddComponent implements OnInit {
     = new ErrorExceptionResult<WebDesignerMainPageDependencyModel>();
   dataModel: WebDesignerMainPageDependencyModel = new WebDesignerMainPageDependencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
 
 

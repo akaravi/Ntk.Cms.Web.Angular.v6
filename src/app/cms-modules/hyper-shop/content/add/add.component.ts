@@ -4,7 +4,7 @@ import {
   HyperShopContentModel,
   HyperShopContentService,
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   HyperShopCategoryModel,
@@ -57,7 +57,7 @@ export class HyperShopContentAddComponent implements OnInit {
   dataModel: HyperShopContentModel = new HyperShopContentModel();
   dataFileModel = new Map<number, string>();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
 
 

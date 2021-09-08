@@ -8,7 +8,7 @@ import {
   CoreModuleSaleItemService,
   CoreModuleService,
   DataFieldInfoModel,
-  EnumModel,
+  EnumInfoModel,
   EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
@@ -58,7 +58,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   tableRowSelected: CoreModuleSaleItemModel = new CoreModuleSaleItemModel();
   tableSource: MatTableDataSource<CoreModuleSaleItemModel> = new MatTableDataSource<CoreModuleSaleItemModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
-  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   tabledisplayedColumns: string[] = [

@@ -3,7 +3,7 @@ import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
   CoreEnumService,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
@@ -70,7 +70,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     new ErrorExceptionResult<BiographyContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<BiographyContentOtherInfoModel> =
     new ErrorExceptionResult<BiographyContentOtherInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumModel> = new ErrorExceptionResult<EnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataContentCategoryModel: number[] = [];
   similarDataModel = new Array<BiographyContentModel>();
   otherInfoDataModel = new Array<BiographyContentOtherInfoModel>();

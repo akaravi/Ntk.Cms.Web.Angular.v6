@@ -10,7 +10,7 @@ import {
   CoreSiteModel,
   CoreSiteService,
   DataFieldInfoModel,
-  EnumModel,
+  EnumInfoModel,
   ErrorExceptionResult,
   ErrorExceptionResultBase,
 } from 'ntk-cms-api';
@@ -216,7 +216,7 @@ export class PublicHelper {
     return oid;
   }
 
-  async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumModel>> {
+  async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumInfoModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
     if (storeSnapshot?.EnumRecordStatusResultStore?.ListItems?.length > 0) {
       return storeSnapshot.EnumRecordStatusResultStore;
