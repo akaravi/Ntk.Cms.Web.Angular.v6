@@ -243,8 +243,8 @@ export class NodeClickedService {
 
   private sideEffectHelper(
     name: string, parameters: HttpParams, httpMethod: string, apiURL: string,
-    successMethod = (a) => this.actionSuccess(a),
-    failMethod = (a, b) => this.actionFailed(a, b)
+    successMethod = (a: any) => this.actionSuccess(a),
+    failMethod = (a: any, b: any) => this.actionFailed(a, b)
   ): void {
     this.ngxSmartModalService.getModal('waitModal').open();
 

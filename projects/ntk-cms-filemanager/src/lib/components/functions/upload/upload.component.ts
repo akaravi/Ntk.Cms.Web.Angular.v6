@@ -53,12 +53,12 @@ export class UploadComponent implements OnInit, AfterViewInit {
 
 
 
-  get getCurrentPath() {
+  get getCurrentPath(): any {
     const parentPath = this.nodeService.findNodeByPath(this.nodeService.currentPath).id;
     return parentPath === 0 ? '' : parentPath;
   }
   @Output() createFile = new EventEmitter();
-  @Input() openDialog;
+  @Input() openDialog = false;
   @Input() openSelectFileDescription = '';
   @Output() closeDialog = new EventEmitter();
   @Input() openDirectUploadSave = false;
@@ -89,9 +89,9 @@ export class UploadComponent implements OnInit, AfterViewInit {
       uploadError: 'برروز خطا در بارگزاری فایل'
     }
   };
-  ngOnInit() {
+  ngOnInit(): void {
   }
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
 
   }
 

@@ -120,7 +120,7 @@ export class NodeService {
       });
     });
   }
-  private createNode_orginal(path, node): NodeInterface {
+  private createNode_orginal(path: string, node: any): NodeInterface {
     if (node.path[0] !== '/') {
       console.warn('[Node Service] Server should return initial path with "/"');
       node.path = '/' + node.path;
@@ -133,7 +133,7 @@ export class NodeService {
     }
 
     const cachedNode = this.findNodeByPath_orginal(node.path);
-    return <NodeInterface>{
+    return  {
       id: node.id,
       isFolder: node.dir,
       isExpanded: cachedNode ? cachedNode.isExpanded : false,
@@ -141,7 +141,7 @@ export class NodeService {
       pathToParent: this.getParentPath_orginal(node.path),
       name: node.name || node.id,
       children: cachedNode ? cachedNode.children : {}
-    };
+    } as NodeInterface;
 
 
 
@@ -166,7 +166,7 @@ export class NodeService {
     // node.children = cachedNode ? cachedNode.children : {};
     // node.name = node.name ? node.name : node.id + '';
     // return node;
-    return <NodeInterface>{
+    return  {
       id: node.id,
       isFolder: node.isFolder,
       isExpanded: cachedNode ? cachedNode.isExpanded : false,
@@ -179,7 +179,7 @@ export class NodeService {
       size: node.size,
       Extension: node.Extension,
       downloadLinksrc: node.downloadLinksrc,
-    };
+    } as NodeInterface;
   }
   private getNodesFromServer_orginal(path: string): Observable<any> {
     let folderId: any = this.findNodeByPath_orginal(path).id;
@@ -216,7 +216,7 @@ export class NodeService {
     const ids = nodePath.split('/');
     ids.splice(0, 1);
 
-    return ids.length === 0 ? this.serviceTree.nodes : ids.reduce((value, index) => value['children'][index], this.serviceTree.nodes);
+    return ids.length === 0 ? this.serviceTree.nodes : ids.reduce((value, index) => value.children[index], this.serviceTree.nodes);
   }
   public findNodeByPath(nodePath: string): NodeInterface {
     const ids = nodePath.split('/');
@@ -224,7 +224,7 @@ export class NodeService {
     if (ids.length === 0) {
       return this.serviceTree.nodes;
     }
-    const retOut = ids.reduce((value, index) => value['children'][index], this.serviceTree.nodes);
+    const retOut = ids.reduce((value, index) => value.children[index], this.serviceTree.nodes);
     return retOut;
   }
 

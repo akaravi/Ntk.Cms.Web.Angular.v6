@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./new-folder.component.scss']
 })
 export class NewFolderComponent implements OnInit {
-  @Input() openDialog;
+  @Input() openDialog = false;
   @ViewChild('uploadFolder') uploadFolder: ElementRef;
   @Output() buttonClicked = new EventEmitter();
   @Output() closeDialog = new EventEmitter();

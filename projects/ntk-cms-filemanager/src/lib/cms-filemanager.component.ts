@@ -236,10 +236,10 @@ export class CmsFileManagerComponent implements OnInit, AfterViewInit {
           return;
         }
 
-        const failMethod = (error) => {
+        const failMethod = (error: any) => {
 
         };
-        const successMethod = (next) => {
+        const successMethod = (next: any) => {
           // tslint:disable-next-line: no-angle-bracket-type-assertion
           const selectedModel = <NodeInterface>{
             id: next.Item.Id,
