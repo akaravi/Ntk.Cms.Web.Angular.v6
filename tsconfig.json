@@ -22,10 +22,7 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "ntk-cms-filemanager": [
-        "dist/ntk-cms-filemanager/ntk-cms-filemanager",
-        "dist/ntk-cms-filemanager"
-      ]
+      
     }
   },
   "angularCompilerOptions": {

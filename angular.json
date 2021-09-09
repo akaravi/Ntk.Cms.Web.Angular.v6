@@ -123,47 +123,8 @@
           }
         }
       }
-    },
-    "ntk-cms-filemanager": {
-      "projectType": "library",
-      "root": "projects/ntk-cms-filemanager",
-      "sourceRoot": "projects/ntk-cms-filemanager/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/ntk-cms-filemanager/tsconfig.lib.json",
-            "project": "projects/ntk-cms-filemanager/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ntk-cms-filemanager/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ntk-cms-filemanager/src/test.ts",
-            "tsConfig": "projects/ntk-cms-filemanager/tsconfig.spec.json",
-            "karmaConfig": "projects/ntk-cms-filemanager/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ntk-cms-filemanager/tsconfig.lib.json",
-              "projects/ntk-cms-filemanager/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
+   
   },
   "defaultProject": "ntk-cms-web"
 }
