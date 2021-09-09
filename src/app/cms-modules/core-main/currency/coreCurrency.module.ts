@@ -15,7 +15,7 @@ import { CoreCurrencyListComponent } from './list/list.component';
 import { TreeviewModule } from 'ngx-treeview';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
-import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
+import { CmsFileManagerModule } from 'src/filemanager-api';
 
 
 @NgModule({

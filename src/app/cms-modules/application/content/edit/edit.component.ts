@@ -23,7 +23,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
-import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
+import { NodeInterface, TreeModel } from 'src/filemanager-api';
 
 
 @Component({

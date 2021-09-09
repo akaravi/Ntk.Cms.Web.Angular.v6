@@ -30,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
+import { CmsFileManagerModule } from 'src/filemanager-api';
 import { BiographyCategorySelectorComponent } from './category/selector/selector.component';
 import { BiographyContentListComponent } from './content/list/list.component';
 import { BiographyCategoryTreeComponent } from './category/tree/tree.component';
