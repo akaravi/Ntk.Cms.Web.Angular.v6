@@ -20,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { CmsFileManagerModule } from 'projects/ntk-cms-filemanager/src/public-api';
+import { CmsFileManagerModule } from 'src/filemanager-api';
 import { PollingCategorySelectorComponent } from './category/selector/selector.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { PollingContentListComponent } from './content/list/list.component';

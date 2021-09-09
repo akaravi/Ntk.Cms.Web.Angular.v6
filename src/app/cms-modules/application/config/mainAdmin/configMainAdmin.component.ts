@@ -19,7 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
+import { TreeModel } from 'src/filemanager-api';
 import { PoinModel } from 'src/app/core/models/pointModel';
 
 

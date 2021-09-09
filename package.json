@@ -53,6 +53,7 @@
         "ngx-toastr": "^14.1.0",
         "ngx-treeview": "^10.0.2",
         "ntk-cms-api": "^1.0.302",
+        "ntk-cms-filemanager": "^1.2.2",
         "object-path": "^0.11.7",
         "perfect-scrollbar": "^1.5.2",
         "rxjs": "~6.6.0",

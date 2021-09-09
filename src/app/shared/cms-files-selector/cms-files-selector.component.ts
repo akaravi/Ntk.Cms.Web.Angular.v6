@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FilePreviewModel } from 'ngx-awesome-uploader/lib/file-preview.model';
-import { NodeInterface, TreeModel } from 'projects/ntk-cms-filemanager/src/public-api';
+import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
