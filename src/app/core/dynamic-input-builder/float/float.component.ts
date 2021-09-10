@@ -16,6 +16,10 @@ export class FloatComponent implements OnInit {
   @Input() optionValueMin: number = null;
   @Input() optionValueMax: number = null;
   @Input() optionRequired = false;
+  @Input() optionTitle = '';
+  @Input() optionPlaceholder = '';
+
+  
   private privateModelDate: number;
   get modelDate(): number {
     return this.privateModelDate;

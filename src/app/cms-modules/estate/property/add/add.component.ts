@@ -363,6 +363,7 @@ export class EstatePropertyAddComponent implements OnInit {
     if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
       const message = 'نوع معامله ملک مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
+      this.formInfo.FormSubmitAllow = true;
       return;
     }
     this.DataAdd();
@@ -384,7 +385,7 @@ export class EstatePropertyAddComponent implements OnInit {
       this.dataModel.Contracts = [];
     }
     this.dataModel.Contracts.push(this.contractDataModel);
-    // this.contractSelected = new EstateContractModel();
+    this.contractDataModel = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.Contracts;
   }
   onActionOptionRemoveFromList(index: number): void {
@@ -396,7 +397,6 @@ export class EstatePropertyAddComponent implements OnInit {
     }
     this.contractDataModel = this.dataModel.Contracts[index];
     this.dataModel.Contracts.splice(index, 1);
-    // this.contractSelected = new EstateContractModel();
     this.contractDataModel = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.Contracts;
   }

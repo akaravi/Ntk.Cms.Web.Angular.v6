@@ -1,1 +1,6 @@
-<input matInput type="number" step="0.01" [(ngModel)]="modelDate" [ngModelOptions]="{standalone: true}" [required]="optionRequired"/>
+<mat-form-field class="ntk-full-width">
+    <mat-label>{{optionTitle}}</mat-label>
+    <input matInput [(ngModel)]="modelDate" name="number"  step="0.01" [#number type="number" placeholder="{{optionPlaceholder}}"
+        [ngModelOptions]="{standalone: true}" [required]="optionRequired" />
+    <mat-icon matSuffix>mode_edit</mat-icon>
+</mat-form-field>

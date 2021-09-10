@@ -69,7 +69,7 @@
         <!-- CreatedYaer Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.LinkPropertyTypeLanduseId">
           <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="text"
+          <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="number"
             placeholder="{{fieldsInfo['CreatedYaer']?.FieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.CreatedYaer" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.CreatedYaer = null">close</mat-icon>
@@ -79,7 +79,7 @@
         <!-- Partition Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.LinkPropertyTypeLanduseId">
           <mat-label>{{PropertyTypeSelected.TitlePartition}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="text"
+          <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="number"
             placeholder="{{PropertyTypeSelected.TitlePartition}}" />
           <mat-icon matSuffix *ngIf="dataModel.Partition" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Partition = 0">close</mat-icon>
@@ -89,7 +89,7 @@
         <!-- Area Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.LinkPropertyTypeLanduseId">
           <mat-label>{{fieldsInfo['Area']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Area" name="dataModel.Area" #Area type="text"
+          <input matInput [(ngModel)]="dataModel.Area" name="dataModel.Area" #Area type="number"
             placeholder="{{fieldsInfo['Area']?.FieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.Area" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Area = 0">close</mat-icon>
@@ -215,17 +215,16 @@
               <ng-container [ngSwitch]="itemDetail.InputDataType">
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                   <app-input-string [(model)]="propertyDetails[itemDetail.Id]"
                     [optionForceUseDefaultValue]="itemDetail.ConfigValueForceUseDefaultValue"
                     [optionMultipleChoice]="itemDetail.ConfigValueMultipleChoice"
-                    [optionDefaultValue]="itemDetail.ConfigValueDefaultValue" [optionRequired]="itemDetail.Required">
+                    [optionDefaultValue]="itemDetail.ConfigValueDefaultValue" [optionRequired]="itemDetail.Required"
+                    [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';" >
                   </app-input-string>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
-                  <app-input-int [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required">
+                  <app-input-int [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required" [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';">
                   </app-input-int>
                 </div>
                 <!-- ngSwitchCase-->
@@ -235,8 +234,7 @@
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
-                  <app-input-float [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required">
+                  <app-input-float [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required" [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';">
                   </app-input-float>
                 </div>
                 <!-- ngSwitchCase-->
@@ -247,17 +245,17 @@
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
-                  <app-input-textarea [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required">
+                  <app-input-textarea [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required"
+                  [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';" >
                   </app-input-textarea>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchDefault class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                   <app-input-string [(model)]="propertyDetails[itemDetail.Id]"
                     [optionForceUseDefaultValue]="itemDetail.ConfigValueForceUseDefaultValue"
                     [optionMultipleChoice]="itemDetail.ConfigValueMultipleChoice"
-                    [optionDefaultValue]="itemDetail.ConfigValueDefaultValue" [optionRequired]="itemDetail.Required">
+                    [optionDefaultValue]="itemDetail.ConfigValueDefaultValue" [optionRequired]="itemDetail.Required"
+                    [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';" >
                   </app-input-string>
                 </div>
               </ng-container>
@@ -290,37 +288,82 @@
         </app-estate-contracttype-selector>
         <div *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
 
-
           <!-- SalePrice Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
-            <mat-label>Sale Price</mat-label>
-            <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
-              matInputCommified #CurrentClickCount type="text" placeholder="0" />
-            <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.SalePrice = 0">
-              close</mat-icon>
+          <div class="mb-9">
+            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
+              <mat-label>Sale Price</mat-label>
+              <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
+                matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="text"
+                placeholder="0" />
+              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                (click)="contractDataModel.SalePrice = 0">
+                close</mat-icon>
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-label> ( {{contractTypeSelected.UnitSalePrice}} ) </mat-label>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-slide-toggle *ngIf="contractTypeSelected.HasSalePrice && contractTypeSelected.SalePriceAllowAgreement"
+              [(ngModel)]="contractDataModel.DepositPriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
+              name="contractDataModel.SalePriceAllowAgreement">
+              توافق در مبلغ فروش
+            </mat-slide-toggle>
+          </div>
+          <div class="mb-9">
+            <!-- RentPrice Field -->
+            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
+              <mat-label>Rent Price</mat-label>
+              <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
+                matInputCommified [disabled]="contractDataModel.RentPriceByAgreement" #CurrentClickCount type="text"
+                placeholder="0" />
+              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                (click)="contractDataModel.RentPrice = 0">
+                close</mat-icon>
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-label> ( {{contractTypeSelected.UnitRentPrice}} ) </mat-label>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-slide-toggle *ngIf="contractTypeSelected.HasRentPrice && contractTypeSelected.RentPriceAllowAgreement"
+              [(ngModel)]="contractDataModel.RentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()"
+              name="contractDataModel.RentPriceByAgreement">
+              توافق در اجاره
+            </mat-slide-toggle>
+          </div>
+          <div class="mb-9">
+            <!-- DepositPrice Field -->
+            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
+              <mat-label>Rent Price</mat-label>
+              <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
+                matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="text"
+                placeholder="0" />
+              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                (click)="contractDataModel.DepositPrice = 0">
+                close</mat-icon>
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-label> ( {{contractTypeSelected.UnitDepositPrice}} ) </mat-label>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-slide-toggle
+              *ngIf="contractTypeSelected.HasDepositPrice && contractTypeSelected.DepositPriceAllowAgreement"
+              [(ngModel)]="contractDataModel.DepositPriceByAgreement" (change)="onActionClickDepositPriceByAgreement()"
+              name="contractDataModel.DepositPriceByAgreement">
+              توافق در رهن
+            </mat-slide-toggle>
+          </div>
+          <hr>
+          <!-- contractDataModel.Description Field -->
+          <mat-form-field class="ntk-full-width">
+            <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+            <textarea matInput [(ngModel)]="contractDataModel.Description" name="contractDataModel.Description"
+              #contractDataModel_Description type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}"
+              minlength="0" maxlength="500" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="contractDataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+              (click)="contractDataModel.Description = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-label> ( {{contractTypeSelected.UnitSalePrice}} ) </mat-label>
-          </mat-form-field>
-          <!-- RentPrice Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
-            <mat-label>Rent Price</mat-label>
-            <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
-              matInputCommified #CurrentClickCount type="text" placeholder="0" />
-            <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.RentPrice = 0">
-              close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-label> ( {{contractTypeSelected.UnitRentPrice}} ) </mat-label>
-          </mat-form-field>
-          <!-- DepositPrice Field -->
-          <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
-            <mat-label>Rent Price</mat-label>
-            <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
-              matInputCommified #CurrentClickCount type="text" placeholder="0" />
-            <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
-              (click)="contractDataModel.DepositPrice = 0">
-              close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-label> ( {{contractTypeSelected.UnitDepositPrice}} ) </mat-label>
+            <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+
           </mat-form-field>
         </div>
 
@@ -344,22 +387,39 @@
             <!-- SalePrice Column -->
             <ng-container matColumnDef="SalePrice">
               <mat-header-cell *matHeaderCellDef> Sale Price </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.SalePrice | number}} ( {{row.ContractType?.UnitSalePrice}} )
+              <mat-cell *matCellDef="let row"> 
+                <ng-container *ngIf="row.SalePrice>0">
+                  {{row.SalePrice | number}} <br>( {{row.ContractType.UnitSalePrice}} )
+                </ng-container>
+                <ng-container *ngIf="row.SalePriceByAgreement">
+                  توافقی
+                </ng-container>
               </mat-cell>
             </ng-container>
             <!-- RentPrice Column -->
             <ng-container matColumnDef="RentPrice">
               <mat-header-cell *matHeaderCellDef> Rent Price </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.RentPrice| number}} ( {{row.ContractType?.UnitRentPrice}} )
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.RentPrice>0">
+                  {{row.RentPrice | number}}<br> ( {{row.ContractType.UnitRentPrice}} )
+                </ng-container>
+                <ng-container *ngIf="row.RentPriceByAgreement">
+                  توافقی
+                </ng-container>
               </mat-cell>
             </ng-container>
             <!-- DepositPrice Column -->
             <ng-container matColumnDef="DepositPrice">
               <mat-header-cell *matHeaderCellDef> Deposit Price </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.DepositPrice| number}} ( {{row.ContractType?.UnitDepositPrice}} )
+              <mat-cell *matCellDef="let row"> 
+                <ng-container *ngIf="row.DepositPrice>0">
+                  {{row.DepositPrice | number}}<br> ( {{row.ContractType.UnitDepositPrice}} )
+                </ng-container>
+                <ng-container *ngIf="row.DepositPriceByAgreement">
+                  توافقی
+                </ng-container>
               </mat-cell>
             </ng-container>
-
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>

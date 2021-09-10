@@ -5,7 +5,7 @@
       {{formInfo.FormTitle}}
     </h3>
 
-    <mat-slide-toggle style="position: absolute;left:10px" [(ngModel)]="dataProfessional" name="dataProfessional">
+    <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
       محتوای تکمیلی
     </mat-slide-toggle>
 
@@ -15,9 +15,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
-
         <!-- RecordStatus Field -->
         <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
@@ -89,7 +87,7 @@
         <mat-form-field class="ntk-full-width"
           *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected.TitleCreatedYaer.length>1">
           <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="text"
+          <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="number"
             placeholder="{{fieldsInfo['CreatedYaer']?.FieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.CreatedYaer" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.CreatedYaer = null">close</mat-icon>
@@ -100,7 +98,7 @@
         <mat-form-field class="ntk-full-width"
           *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected.TitlePartition.length>1">
           <mat-label>{{PropertyTypeSelected.TitlePartition}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="text"
+          <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="number"
             placeholder="{{PropertyTypeSelected.TitlePartition}}" />
           <mat-icon matSuffix *ngIf="dataModel.Partition" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Partition = 0">close</mat-icon>
@@ -110,7 +108,7 @@
         <!-- Area Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Area']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Area" name="dataModel.Area" #Area type="text"
+          <input matInput [(ngModel)]="dataModel.Area" name="dataModel.Area" #Area type="number"
             placeholder="{{fieldsInfo['Area']?.FieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.Area" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Area = 0">close</mat-icon>
@@ -235,16 +233,16 @@
               <ng-container [ngSwitch]="itemDetail.InputDataType">
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
                   <app-input-string [(model)]="propertyDetails[itemDetail.Id]"
                     [optionForceUseDefaultValue]="itemDetail.ConfigValueForceUseDefaultValue"
                     [optionMultipleChoice]="itemDetail.ConfigValueMultipleChoice"
-                    [optionDefaultValue]="itemDetail.ConfigValueDefaultValue"></app-input-string>
+                    [optionDefaultValue]="itemDetail.ConfigValueDefaultValue" [optionTitle]="itemDetail.Title"
+                    style="color:'{{itemDetail.IconColor}}';"></app-input-string>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
-                  <app-input-int [(model)]="propertyDetails[itemDetail.Id]"></app-input-int>
+                  <app-input-int [(model)]="propertyDetails[itemDetail.Id]" [optionTitle]="itemDetail.Title"
+                    style="color:'{{itemDetail.IconColor}}';"></app-input-int>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
@@ -253,8 +251,8 @@
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
-                  <app-input-float [(model)]="propertyDetails[itemDetail.Id]"></app-input-float>
+                  <app-input-float [(model)]="propertyDetails[itemDetail.Id]" [optionTitle]="itemDetail.Title"
+                    style="color:'{{itemDetail.IconColor}}';"></app-input-float>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
@@ -263,23 +261,23 @@
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
-                  <app-input-textarea [(model)]="propertyDetails[itemDetail.Id]"></app-input-textarea>
+                  <app-input-textarea [(model)]="propertyDetails[itemDetail.Id]" [optionTitle]="itemDetail.Title"
+                    style="color:'{{itemDetail.IconColor}}';"></app-input-textarea>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchDefault>
-                  <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
-                  <app-input-string [(model)]="propertyDetails[itemDetail.Id]"></app-input-string>
+                  <app-input-string [(model)]="propertyDetails[itemDetail.Id]" [optionTitle]="itemDetail.Title"
+                    style="color:'{{itemDetail.IconColor}}';"></app-input-string>
                 </div>
               </ng-container>
             </ng-container>
             <mat-action-row>
-              <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">Previous</button>
+              <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.BEFOR' |
+                translate}}</button>
               <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.PropertyDetailGroups.length"
-                (click)="nextStep()">Next</button>
+                (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
               <button mat-button type="button" color="primary" *ngIf="(i+1)==dataModel.PropertyDetailGroups.length"
-                (click)="nextStep()">End</button>
-
+                (click)="nextStep()">{{'ACTION.END' | translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
           <br>
@@ -403,19 +401,43 @@
             <!-- SalePrice Column -->
             <ng-container matColumnDef="SalePrice">
               <mat-header-cell *matHeaderCellDef> Sale Price </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.SalePrice | number}} ( {{row.ContractType.UnitSalePrice}} )
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.SalePrice>0">
+                  {{row.SalePrice | number}}
+                  <br>
+                  ({{row.ContractType.UnitSalePrice}})
+                </ng-container>
+                <ng-container *ngIf="row.SalePriceByAgreement">
+                  توافقی
+                </ng-container>
               </mat-cell>
             </ng-container>
             <!-- RentPrice Column -->
             <ng-container matColumnDef="RentPrice">
               <mat-header-cell *matHeaderCellDef> Rent Price </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.RentPrice| number}} ( {{row.ContractType.UnitRentPrice}} )
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.RentPrice>0">
+                  {{row.RentPrice | number}}
+                  <br>
+                  ({{row.ContractType.UnitRentPrice}})
+                </ng-container>
+                <ng-container *ngIf="row.RentPriceByAgreement">
+                  توافقی
+                </ng-container>
               </mat-cell>
             </ng-container>
             <!-- DepositPrice Column -->
             <ng-container matColumnDef="DepositPrice">
               <mat-header-cell *matHeaderCellDef> Deposit Price </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.DepositPrice| number}} ( {{row.ContractType.UnitDepositPrice}} )
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.DepositPrice>0">
+                  {{row.DepositPrice | number}}
+                  <br>
+                  ({{row.ContractType.UnitDepositPrice}})
+                </ng-container>
+                <ng-container *ngIf="row.DepositPriceByAgreement">
+                  توافقی
+                </ng-container>
               </mat-cell>
             </ng-container>
 

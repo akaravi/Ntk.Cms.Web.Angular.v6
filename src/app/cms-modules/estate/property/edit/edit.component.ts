@@ -80,7 +80,6 @@ export class EstatePropertyEditComponent implements OnInit {
 
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
-  // contractSelected: EstateContractModel;
   contractDataModel = new EstateContractModel();
   optionActionTitle = 'اضافه به لیست';
   loadingOption = new ProgressSpinnerModel();
@@ -380,6 +379,7 @@ export class EstatePropertyEditComponent implements OnInit {
     if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
       const message = 'نوع معامله ملک مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
+      this.formInfo.FormSubmitAllow = true;
       return;
     }
     this.DataEdit();
@@ -400,7 +400,6 @@ export class EstatePropertyEditComponent implements OnInit {
       this.dataModel.Contracts = [];
     }
     this.dataModel.Contracts.push(this.contractDataModel);
-    // this.contractSelected = new EstateContractModel();
     this.contractDataModel = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.Contracts;
   }
@@ -413,7 +412,6 @@ export class EstatePropertyEditComponent implements OnInit {
     }
     this.contractDataModel = this.dataModel.Contracts[index];
     this.dataModel.Contracts.splice(index, 1);
-    // this.contractSelected = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.Contracts;
   }
 
@@ -462,6 +460,20 @@ export class EstatePropertyEditComponent implements OnInit {
     this.step--;
   }
   // ** Accardon */
-
+  onActionClickSalePriceAllowAgreement(): void {
+    if (this.contractDataModel.SalePriceByAgreement) {
+      this.contractDataModel.SalePrice = 0;
+    }
+  }
+  onActionClickRentPriceAllowAgreement(): void {
+    if (this.contractDataModel.RentPriceByAgreement) {
+      this.contractDataModel.RentPrice = 0;
+    }
+  }
+  onActionClickDepositPriceByAgreement(): void {
+    if (this.contractDataModel.DepositPriceByAgreement) {
+      this.contractDataModel.DepositPrice = 0;
+    }
+  }
 }
 

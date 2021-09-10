@@ -22,6 +22,10 @@ export class StringComponent implements OnInit {
   @Input() optionForceUseDefaultValue = false;
   @Input() optionDefaultValue: string[] = [];
   @Input() optionRequired = false;
+  @Input() optionTitle = '';
+  @Input() optionPlaceholder = '';
+  @Input() optionIconColor = '';
+  
   private privateModelDate = '';
   get modelDate(): string {
     return this.privateModelDate;
