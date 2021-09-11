@@ -140,8 +140,11 @@ export class PublicHelper {
   }
 
   LocaleDate(model): string {
-    const d = new Date(model);
-    return d.toLocaleDateString('fa-Ir');
+    if (model) {
+      const d = new Date(model);
+      return d.toLocaleDateString('fa-Ir');
+    }
+    return '';
   }
 
   Truncate(value: string, limit: number = 20, trail: string = '...'): string {
