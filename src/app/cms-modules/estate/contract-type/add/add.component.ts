@@ -6,6 +6,8 @@ import {
   EstateContractTypeService,
   EstateContractTypeModel,
   DataFieldInfoModel,
+  TokenInfoModel,
+  EnumManageUserAccessControllerTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -21,6 +23,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-ticketing-departemen-add',
@@ -36,14 +39,17 @@ export class EstateContractTypeAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    
   }
+  
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';

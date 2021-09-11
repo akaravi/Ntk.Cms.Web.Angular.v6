@@ -24,6 +24,8 @@ import {
   EstatePropertyTypeModel,
   EstatePropertyTypeService,
   EstatePropertyTypeLanduseService,
+  EnumManageUserAccessControllerTypes,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -38,6 +40,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-estate-property-add',
@@ -57,6 +60,7 @@ export class EstatePropertyAddComponent implements OnInit {
     private router: Router,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
@@ -71,13 +75,28 @@ export class EstatePropertyAddComponent implements OnInit {
       this.dataModel.LinkPropertyTypeUsageId = this.requestLinkPropertyTypeUsageId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminResellerCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
+        this.IsAdminSite = true;
+      }
+      else {
+        this.IsAdminSite = false;
+      }
+    });
   }
   requestLinkPropertyTypeLanduseId = '';
   requestLinkPropertyTypeUsageId = '';
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
-
+  IsAdminSite = false;
+  tokenInfo = new TokenInfoModel();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
