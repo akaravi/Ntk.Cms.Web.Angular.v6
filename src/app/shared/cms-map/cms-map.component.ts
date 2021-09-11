@@ -36,9 +36,9 @@ export class CmsMapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const iconRetinaUrl = 'leaflet/marker-icon-2x.png';
-    const iconUrl = 'leaflet/marker-icon.png';
-    const shadowUrl = 'leaflet/marker-shadow.png';
+    const iconRetinaUrl = 'assets/leaflet/marker-icon-2x.png';
+    const iconUrl = 'assets/leaflet/marker-icon.png';
+    const shadowUrl = 'assets/leaflet/marker-shadow.png';
     const iconDefault = L.icon({
       iconRetinaUrl,
       iconUrl,

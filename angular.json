@@ -32,10 +32,14 @@
               {
                 "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
-                "output": "leaflet/"
+                "output": "assets/leaflet/"
               }
             ],
             "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
+              "./node_modules/ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss",
+              "./node_modules/ntk-cms-filemanager/src/assets/styles.scss",
+              "./node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -113,11 +117,16 @@
               {
                 "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
-                "output": "leaflet/"
+                "output": "assets/leaflet/"
               }
             ],
             "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
+              "./node_modules/ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss",
+              "./node_modules/ntk-cms-filemanager/src/assets/styles.scss",
+              "./node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
+              
             ],
             "scripts": []
           }
