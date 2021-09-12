@@ -134,6 +134,7 @@ export class ApplicationAppEditComponent implements OnInit {
             const lon = this.dataModel.AboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
               this.mapMarkerPoints.push({ lat, lon });
+              this.receiveMap();
             }
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
@@ -192,7 +193,10 @@ export class ApplicationAppEditComponent implements OnInit {
       // }
     }
   }
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
 
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {
@@ -271,4 +275,5 @@ export class ApplicationAppEditComponent implements OnInit {
     }
     this.dataModel.LinkThemeConfigId = model.Id;
   }
+
 }

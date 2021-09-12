@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { Map, ZoomAnimEvent, MapOptions, tileLayer } from 'leaflet';
 import { PoinModel } from 'src/app/core/models/pointModel';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './cms-map.component.html',
   styleUrls: ['./cms-map.component.scss']
 })
-export class CmsMapComponent implements OnInit, OnDestroy {
+export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() map$: EventEmitter<Map> = new EventEmitter<Map>();
   @Output() zoom$: EventEmitter<number> = new EventEmitter<number>();
   @Input() options: MapOptions = {
@@ -28,11 +28,15 @@ export class CmsMapComponent implements OnInit, OnDestroy {
       this.map.setView(new L.LatLng(model.lat, model.lon), this.zoom);
     }
   }
+  @Input() set optionCurrentPoint(setPont: boolean) {
+    this.onActionCurrentPoint(setPont);
+  }
   public map: Map;
   public zoom: number;
   destroy = false;
 
   constructor() {
+
   }
 
   ngOnInit(): void {
@@ -50,6 +54,8 @@ export class CmsMapComponent implements OnInit, OnDestroy {
       shadowSize: [41, 41]
     });
     L.Marker.prototype.options.icon = iconDefault;
+  }
+  ngAfterViewInit(): void {
   }
   ngOnDestroy(): void {
     if (this.map) {
@@ -75,4 +81,28 @@ export class CmsMapComponent implements OnInit, OnDestroy {
     this.zoom = e.target.getZoom();
     this.zoom$.emit(this.zoom);
   }
+  onActionCurrentPoint(setPont: boolean) {
+    this.getPosition().then(pos => {
+      debugger;
+      console.log(`Positon: ${pos.lng} ${pos.lat}`);
+
+      L.marker([pos.lat, pos.lon]).addTo(this.map);
+    });
+  }
+  getPosition(): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+        resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+        console.log('lat', resp.coords.longitude);
+        localStorage.setItem('ln', JSON.stringify(resp.coords.longitude));
+        localStorage.setItem('lt', JSON.stringify(resp.coords.longitude));
+      },
+        err => {
+          reject(err);
+        });
+    });
+  }
+
 }
