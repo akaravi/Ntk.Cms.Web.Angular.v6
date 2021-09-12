@@ -86,7 +86,7 @@
       </mat-error>
     </mat-form-field>
     <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
-    <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" id='main-map'></app-cms-map>
+    <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)"  [optonCenter]="mapOptonCenter" id='main-map'></app-cms-map>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>

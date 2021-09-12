@@ -165,6 +165,7 @@ export class CoreSiteEditComponent implements OnInit {
             const lon = this.dataModel.AboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
               this.mapMarkerPoints.push({ lat, lon });
+              this.receiveMap();
             }
             this.keywordDataModel = [];
             if (this.dataModel.SeoKeyword && this.dataModel.SeoKeyword.length > 0) {
@@ -229,7 +230,10 @@ export class CoreSiteEditComponent implements OnInit {
       // }
     }
   }
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
 
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {

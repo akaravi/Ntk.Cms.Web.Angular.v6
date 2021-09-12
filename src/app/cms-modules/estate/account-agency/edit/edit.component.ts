@@ -105,6 +105,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
           const lon = this.dataModel.Geolocationlongitude;
           if (lat > 0 && lon > 0) {
             this.mapMarkerPoints.push({ lat, lon });
+            this.receiveMap();
           }
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -152,7 +153,10 @@ export class EstateAccountAgencyEditComponent implements OnInit {
       }
     );
   }
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
 
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {

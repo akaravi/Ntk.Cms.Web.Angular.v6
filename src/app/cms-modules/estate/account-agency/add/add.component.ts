@@ -24,6 +24,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
+import { PoinModel } from 'src/app/core/models/pointModel';
 
 
 @Component({
@@ -47,6 +48,7 @@ export class EstateAccountAgencyAddComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  mapOptonCenter = new PoinModel();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;

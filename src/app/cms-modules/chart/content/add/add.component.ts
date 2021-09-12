@@ -30,6 +30,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { PoinModel } from 'src/app/core/models/pointModel';
 
 
 @Component({
@@ -59,6 +60,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  mapOptonCenter = new PoinModel();
 
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();

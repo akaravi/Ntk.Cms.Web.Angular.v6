@@ -187,6 +187,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
               this.mapMarkerPoints.push({ lat, lon });
+              this.receiveMap();
             }
             this.dataModel.Keyword = this.dataModel.Keyword + '';
             this.keywordDataModel = this.dataModel.Keyword.split(',');
@@ -718,7 +719,10 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   onActionBackToParent(): void {
     this.router.navigate(['/news/content/']);
   }
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
 
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {

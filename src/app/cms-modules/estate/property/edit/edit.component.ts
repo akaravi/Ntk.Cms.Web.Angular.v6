@@ -165,6 +165,7 @@ export class EstatePropertyEditComponent implements OnInit {
           const lon = this.dataModel.Geolocationlongitude;
           if (lat > 0 && lon > 0) {
             this.mapMarkerPoints.push({ lat, lon });
+            this.receiveMap();
           }
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
           this.formInfo.FormAlert = '';
@@ -284,7 +285,10 @@ export class EstatePropertyEditComponent implements OnInit {
       }
     );
   }
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
 
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {
