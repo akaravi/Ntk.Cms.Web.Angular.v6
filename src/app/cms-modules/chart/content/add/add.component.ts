@@ -152,7 +152,10 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
     this.mapModel.on('click', (e) => {
       // @ts-ignore

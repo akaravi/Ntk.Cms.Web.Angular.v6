@@ -41,6 +41,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 
 @Component({
   selector: 'app-estate-property-add',
@@ -94,6 +95,8 @@ export class EstatePropertyAddComponent implements OnInit {
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
+  @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
+
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
   IsAdminSite = false;
@@ -264,7 +267,10 @@ export class EstatePropertyAddComponent implements OnInit {
     );
   }
 
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
 
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {
@@ -483,5 +489,21 @@ export class EstatePropertyAddComponent implements OnInit {
     if (this.contractDataModel.DepositPriceByAgreement) {
       this.contractDataModel.DepositPrice = 0;
     }
+  } 
+   ActionCurrentPoint(): void {
+    this.childMap.getPosition().then(pos => {
+      const lat = pos.lat;
+      const lon = pos.lon;
+      if (lat > 0 && lon > 0) {
+        if (this.mapMarker !== undefined) {
+          this.mapModel.removeLayer(this.mapMarker);
+        }
+        this.mapMarkerPoints = [];
+        this.mapMarkerPoints.push({ lat, lon });
+        this.dataModel.Geolocationlatitude = lat;
+        this.dataModel.Geolocationlongitude = lon;
+        this.receiveMap();
+      }
+    });
   }
 }

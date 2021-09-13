@@ -96,7 +96,7 @@ export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resp => {
-        resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+        resolve({ lon: resp.coords.longitude, lat: resp.coords.latitude });
         // console.log('lat', resp.coords.longitude);
         // localStorage.setItem('ln', JSON.stringify(resp.coords.longitude));
         // localStorage.setItem('lt', JSON.stringify(resp.coords.longitude));

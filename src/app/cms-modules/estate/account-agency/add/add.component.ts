@@ -122,7 +122,10 @@ export class EstateAccountAgencyAddComponent implements OnInit {
       }
     );
   }
-  receiveMap(model: leafletMap): void {
+  receiveMap(model: leafletMap = this.mapModel): void {
+    if (!model) {
+      return;
+    }
     this.mapModel = model;
     this.mapModel.on('click', (e) => {
       // @ts-ignore

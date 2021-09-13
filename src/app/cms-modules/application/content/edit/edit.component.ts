@@ -280,17 +280,19 @@ export class ApplicationAppEditComponent implements OnInit {
     this.dataModel.LinkThemeConfigId = model.Id;
   }
   ActionCurrentPoint(): void {
-    // this.childMap.onActionCurrentPoint(false);
     this.childMap.getPosition().then(pos => {
-      debugger
       const lat = pos.lat;
       const lon = pos.lon;
       if (lat > 0 && lon > 0) {
+        if (this.mapMarker !== undefined) {
+          this.mapModel.removeLayer(this.mapMarker);
+        }
         this.mapMarkerPoints = [];
         this.mapMarkerPoints.push({ lat, lon });
+        this.dataModel.AboutUsGeolocationlatitude = lat;
+        this.dataModel.AboutUsGeolocationlongitude = lon;
         this.receiveMap();
       }
-      this.receiveMap();
     });
   }
 }
