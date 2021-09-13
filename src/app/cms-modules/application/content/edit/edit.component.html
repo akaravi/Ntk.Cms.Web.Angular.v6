@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -88,6 +88,9 @@
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
           </button>
         </div>
       </mat-step>
@@ -307,8 +310,9 @@
 
 
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
-        <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter"  [optonCenter]="mapOptonCenter"  id='main-map'></app-cms-map>
-<button type="button" click="ActionCurrentPoint">MyPoint</button>
+        <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
+          id='main-map'></app-cms-map>
+        <button type="button" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>
 
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
@@ -317,6 +321,9 @@
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
           </button>
         </div>
       </mat-step>
@@ -393,6 +400,9 @@
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
           </button>
         </div>
       </mat-step>
@@ -524,6 +534,9 @@
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
           </button>
         </div>
       </mat-step>
@@ -711,6 +724,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
         </div>
       </mat-step>
 
@@ -867,6 +883,7 @@
           <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}
           </button>
+
         </div>
       </mat-step>
 

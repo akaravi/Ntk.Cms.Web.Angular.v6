@@ -45,6 +45,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   styleUrls: ['./edit.component.scss']
 })
 export class EstatePropertyEditComponent implements OnInit {
+  requestId = '';
   constructor(
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
@@ -76,7 +77,6 @@ export class EstatePropertyEditComponent implements OnInit {
       }
     });
   }
-  requestId = '';
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
@@ -114,7 +114,7 @@ export class EstatePropertyEditComponent implements OnInit {
   mapOptonCenter = new PoinModel();
   // ** Accardon */
   step = 0;
-
+  hidden = true;
 
   ngOnInit(): void {
     if (this.requestId.length <= 0) {

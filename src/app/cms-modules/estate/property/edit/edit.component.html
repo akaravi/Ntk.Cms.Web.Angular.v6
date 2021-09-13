@@ -122,24 +122,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
         </mat-form-field>
-        <!-- Description Field -->
-        <mat-form-field class="ntk-full-width"  *ngIf="!IsAdminSite">
-          <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=5></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.Description = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
-          <mat-error *ngIf="Description.errors?.required">
-            Description is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- Description Field -->
-        <angular-editor   *ngIf="IsAdminSite" [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main"
-          [(ngModel)]="dataModel.Description" name="dataModel.Description"></angular-editor>
 
-        <hr>
         <!-- AboutAgentTel Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutAgentTel']?.FieldTitle}}</mat-label>
@@ -161,7 +144,7 @@
           <mat-hint align="end">{{ AboutAgentMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
-        <hr>
+
         <!-- AboutCustomerTel Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}</mat-label>
@@ -184,7 +167,22 @@
           <mat-hint align="end">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
-        <hr>
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="!IsAdminSite">
+          <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Description = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
+          <mat-error *ngIf="Description.errors?.required">
+            Description is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Description Field -->
+        <angular-editor *ngIf="IsAdminSite" [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig"
+          id="main" [(ngModel)]="dataModel.Description" name="dataModel.Description"></angular-editor>
 
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
@@ -477,10 +475,11 @@
         <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [openDirectUploadView]="true"
           [optionFileType]="selectFileTypeMainImage">
         </app-cms-files-selector>
-        <hr>
+        <div *ngIf="!hidden">
         <p>لیست فایل های پیوست</p>
         <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
         </app-cms-files-selector>
+        </div>
         <br>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
@@ -495,7 +494,8 @@
       <mat-step label="موقعیت مکانی" state="loaction">
 
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
-        <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter" id='main-map'></app-cms-map>
+        <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
+          id='main-map'></app-cms-map>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}

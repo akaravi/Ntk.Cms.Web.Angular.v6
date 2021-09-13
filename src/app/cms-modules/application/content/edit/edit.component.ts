@@ -24,6 +24,7 @@ import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
+import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 
 
 @Component({
@@ -32,7 +33,7 @@ import { NodeInterface, TreeModel } from 'src/filemanager-api';
   styleUrls: ['./edit.component.scss']
 })
 export class ApplicationAppEditComponent implements OnInit {
-
+  requestId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -46,9 +47,11 @@ export class ApplicationAppEditComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
-  requestId = 0;
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
+
+  @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
+
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
@@ -275,5 +278,7 @@ export class ApplicationAppEditComponent implements OnInit {
     }
     this.dataModel.LinkThemeConfigId = model.Id;
   }
-
+  ActionCurrentPoint(): void {
+    this.childMap.onActionCurrentPoint(false);
+  }
 }

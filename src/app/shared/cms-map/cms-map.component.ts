@@ -21,7 +21,7 @@ export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
     })],
     zoom: 16,
     center: [32.684985, 51.6359425],
-    // center: latLng(0, 0)
+    // center: latLng(0, 0),
   };
   @Input() set optonCenter(model: PoinModel) {
     if (this.map && model && model.lat && model.lon && model.lat !== 0 && model.lon !== 0) {
@@ -54,6 +54,9 @@ export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
       shadowSize: [41, 41]
     });
     L.Marker.prototype.options.icon = iconDefault;
+
+
+
   }
   ngAfterViewInit(): void {
   }
@@ -81,11 +84,9 @@ export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
     this.zoom = e.target.getZoom();
     this.zoom$.emit(this.zoom);
   }
-  onActionCurrentPoint(setPont: boolean) {
+  onActionCurrentPoint(setPont: boolean = true) {
     this.getPosition().then(pos => {
-      debugger;
       console.log(`Positon: ${pos.lng} ${pos.lat}`);
-
       L.marker([pos.lat, pos.lon]).addTo(this.map);
     });
   }

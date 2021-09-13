@@ -48,6 +48,8 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   styleUrls: ['./add.component.scss']
 })
 export class EstatePropertyAddComponent implements OnInit {
+  requestLinkPropertyTypeLanduseId = '';
+  requestLinkPropertyTypeUsageId = '';
   constructor(
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
@@ -90,8 +92,7 @@ export class EstatePropertyAddComponent implements OnInit {
       }
     });
   }
-  requestLinkPropertyTypeLanduseId = '';
-  requestLinkPropertyTypeUsageId = '';
+
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
@@ -131,6 +132,7 @@ export class EstatePropertyAddComponent implements OnInit {
   mapOptonCenter = new PoinModel();
   listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
   dataProfessional = false;
+  hidden = true;
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'ثبت محتوای جدید';
