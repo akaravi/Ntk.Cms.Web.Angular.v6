@@ -164,7 +164,8 @@ export class EstatePropertyEditComponent implements OnInit {
           const lat = this.dataModel.Geolocationlatitude;
           const lon = this.dataModel.Geolocationlongitude;
           if (lat > 0 && lon > 0) {
-            this.mapMarkerPoints.push({ lat, lon });
+               this.mapMarkerPoints=[];
+              this.mapMarkerPoints.push({ lat, lon });
             this.receiveMap();
           }
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;

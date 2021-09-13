@@ -136,6 +136,7 @@ export class ApplicationAppEditComponent implements OnInit {
             const lat = this.dataModel.AboutUsGeolocationlatitude;
             const lon = this.dataModel.AboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
+              this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
@@ -279,6 +280,17 @@ export class ApplicationAppEditComponent implements OnInit {
     this.dataModel.LinkThemeConfigId = model.Id;
   }
   ActionCurrentPoint(): void {
-    this.childMap.onActionCurrentPoint(false);
+    // this.childMap.onActionCurrentPoint(false);
+    this.childMap.getPosition().then(pos => {
+      debugger
+      const lat = pos.lat;
+      const lon = pos.lon;
+      if (lat > 0 && lon > 0) {
+        this.mapMarkerPoints = [];
+        this.mapMarkerPoints.push({ lat, lon });
+        this.receiveMap();
+      }
+      this.receiveMap();
+    });
   }
 }

@@ -186,6 +186,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
             const lat = this.dataModel.Geolocationlatitude;
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
+                 this.mapMarkerPoints=[];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }

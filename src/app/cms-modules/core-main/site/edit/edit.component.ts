@@ -164,6 +164,7 @@ export class CoreSiteEditComponent implements OnInit {
             const lat = this.dataModel.AboutUsGeolocationlatitude;
             const lon = this.dataModel.AboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
+                 this.mapMarkerPoints=[];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }

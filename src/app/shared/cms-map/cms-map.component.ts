@@ -86,24 +86,23 @@ export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
     this.zoom = e.target.getZoom();
     this.zoom$.emit(this.zoom);
   }
-  onActionCurrentPoint(setPont: boolean = true) {
+  onActionCurrentPoint(setPont: boolean = true): any {
     this.getPosition().then(pos => {
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
-      L.marker([pos.lat, pos.lon]).addTo(this.map);
+      // console.log(`Positon: ${pos.lng} ${pos.lat}`);
+      // L.marker([pos.lat, pos.lon]).addTo(this.map);
+      this.map.setView(new L.LatLng(pos.lat, pos.lon), this.zoom);
     });
   }
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {
-
       navigator.geolocation.getCurrentPosition(resp => {
-
         resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
-        console.log('lat', resp.coords.longitude);
-        localStorage.setItem('ln', JSON.stringify(resp.coords.longitude));
-        localStorage.setItem('lt', JSON.stringify(resp.coords.longitude));
+        // console.log('lat', resp.coords.longitude);
+        // localStorage.setItem('ln', JSON.stringify(resp.coords.longitude));
+        // localStorage.setItem('lt', JSON.stringify(resp.coords.longitude));
       },
         err => {
-          reject(err);
+          // reject(err);
           this.cmsToastrService.typeErrorGetPosition();
         });
     });
