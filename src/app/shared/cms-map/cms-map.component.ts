@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, AfterViewIni
 import * as L from 'leaflet';
 import { Map, ZoomAnimEvent, MapOptions, tileLayer } from 'leaflet';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -35,7 +36,8 @@ export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
   public zoom: number;
   destroy = false;
 
-  constructor() {
+  constructor(private cmsToastrService: CmsToastrService,
+  ) {
 
   }
 
@@ -102,6 +104,7 @@ export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
       },
         err => {
           reject(err);
+          this.cmsToastrService.typeErrorGetPosition();
         });
     });
   }

@@ -384,6 +384,14 @@ export class CmsToastrService {
     }
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorAddRowParentIsNull'));
   }
+  typeErrorGetPosition(str: string = ''): void {
+    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorGetPosition');
+
+    if (str && str.length > 0) {
+      message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Error') + ': ' + str;
+    }
+    this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorGetPosition'));
+  }
   typeErrorLogout(str: string = ''): void {
     // let message = 'برروز خطا در خارج شدن از حساب کاربری';
     let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorLogout');
