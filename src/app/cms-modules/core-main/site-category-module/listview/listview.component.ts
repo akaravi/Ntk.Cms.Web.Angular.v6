@@ -9,7 +9,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -19,7 +18,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 
 @Component({
   selector: 'app-core-sitecategorycmsmodule-listview',
@@ -34,7 +32,6 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   linkSiteCategoryId = 0;
   constructor(
     private coreSiteCategoryCmsModuleService: CoreSiteCategoryCmsModuleService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,

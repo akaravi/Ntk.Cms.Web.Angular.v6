@@ -46,7 +46,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
     /** read storage */
     this.siteTypeId = + localStorage.getItem('siteTypeId');
     if (this.siteTypeId > 0) {
-      this.dataModel.LinkSiteCategoryId = this.siteTypeId;
+      // this.dataModel.LinkSiteCategoryId = this.siteTypeId;
     }
     /** read storage */
   }
