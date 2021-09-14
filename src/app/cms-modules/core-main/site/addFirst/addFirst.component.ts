@@ -41,11 +41,19 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loadingDomain.cdr = this.cdr;
     this.formInfo.FormTitle = 'ایجاد اولین سامانه شما';
+
+
+    /** read storage */
+    this. siteTypeId = + localStorage.getItem('siteTypeId');
+    if (this.siteTypeId > 0) {
+      this.dataModel.LinkSiteCategoryId = this.siteTypeId;
+    }
+    /** read storage */
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   alphaExp = /^[a-zA-Z]+$/;
-
+  siteTypeId=0;
   // loading = new ProgressSpinnerModel();
   loadingDomain = new ProgressSpinnerModel();
 

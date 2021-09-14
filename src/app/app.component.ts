@@ -64,6 +64,11 @@ export class AppComponent implements OnInit, OnDestroy {
       if (siteId > 0) {
         localStorage.setItem('siteId', site);
       }
+      const siteType = httpParams.get('sitetype');
+      const siteTypeId = +siteType ;
+      if (siteTypeId > 0) {
+        localStorage.setItem('siteTypeId', siteType);
+      }
       const ResellerSite = httpParams.get('rsite');
       const ResellerSiteId = +ResellerSite ;
       if (ResellerSiteId > 0) {
@@ -74,6 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
       if (ResellerUserId > 0) {
         localStorage.setItem('ResellerUserId', ResellerUser);
       }
+      
     }
 
 

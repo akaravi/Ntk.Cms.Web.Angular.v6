@@ -1,148 +1,148 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.FormTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-	<app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-        <mat-step label="مشخضات سامانه" state="main">
-          <!-- Title Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>عنوان سامانه</mat-label>
-            <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-              placeholder="عنوان سامانه" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Title = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Title.errors?.required">
-              عنوان سامانه الزامی است
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="ntk-full-width">
-            <mat-label>عنوان لاتین</mat-label>
-            <input matInput [(ngModel)]="dataModel.SubDomain" name="dataModel.SubDomain" #SubDomain2 type="text"
-              (ngModelChange)="checkValidateDomain()" placeholder="عنوان لاتین" minlength="3" maxlength="20" required
-              pattern="[a-zA-Z]{2,20}" />
-            <mat-icon matSuffix *ngIf="dataModel.SubDomain" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.SubDomain = 'myname'">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ SubDomain2.value.length }} / 20</mat-hint>
-            <mat-error *ngIf="SubDomain2.errors?.required">
-              عنوان لاتین الزامی است
-            </mat-error>
-            <mat-error *ngIf="!validateDomain">
-              مجاز به ورود فقط کاراکتر لاتین هستید
-            </mat-error>
-          </mat-form-field>
-          <!-- Description Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>توضیحات کوتاه در باره این سامانه</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-              placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.Description = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
-            <mat-error *ngIf="Description.errors?.required">
-              ورود توضیحات سامانه الزامی است
-            </mat-error>
-          </mat-form-field>
-          <!-- sitecategory Field -->
-          <app-core-sitecategory-selector (optionSelect)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
-            [optionSelectForce]="this.dataModel.LinkSiteCategoryId" [optionPlaceholder]="'نوع سامانه'"
-            [optionDisabled]="false"></app-core-sitecategory-selector>
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="مشخضات سامانه" state="main">
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>عنوان سامانه</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+            placeholder="عنوان سامانه" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Title = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            عنوان سامانه الزامی است
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="ntk-full-width">
+          <mat-label>عنوان لاتین</mat-label>
+          <input matInput [(ngModel)]="dataModel.SubDomain" name="dataModel.SubDomain" #SubDomain2 type="text"
+            (ngModelChange)="checkValidateDomain()" placeholder="عنوان لاتین" minlength="3" maxlength="20" required
+            pattern="[a-zA-Z]{2,20}" />
+          <mat-icon matSuffix *ngIf="dataModel.SubDomain" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SubDomain = 'myname'">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ SubDomain2.value.length }} / 20</mat-hint>
+          <mat-error *ngIf="SubDomain2.errors?.required">
+            عنوان لاتین الزامی است
+          </mat-error>
+          <mat-error *ngIf="!validateDomain">
+            مجاز به ورود فقط کاراکتر لاتین هستید
+          </mat-error>
+        </mat-form-field>
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>توضیحات کوتاه در باره این سامانه</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Description = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+          <mat-error *ngIf="Description.errors?.required">
+            ورود توضیحات سامانه الزامی است
+          </mat-error>
+        </mat-form-field>
+        <!-- sitecategory Field -->
+        <app-core-sitecategory-selector (optionSelect)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
+          [optionSelectForce]="this.dataModel.LinkSiteCategoryId" [optionPlaceholder]="'نوع سامانه'"
+          [optionDisabled]="siteTypeId>0"></app-core-sitecategory-selector>
 
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="امکانات سامانه" state="seo">
-          <p>نسبت به نوع سامانه انتخابی شما این امکانات در اختیار این سامانه قرار داده می شود</p>
-          <app-progress-spinner [options]="loadingDomain">
-          </app-progress-spinner>
-          <app-core-sitecategorycmsmodule-listview *ngIf="!loadingDomain.display"
-            [optionSiteCategoryId]="modelDateSiteCategory?.Id">
-          </app-core-sitecategorycmsmodule-listview>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="امکانات سامانه" state="seo">
+        <p>نسبت به نوع سامانه انتخابی شما این امکانات در اختیار این سامانه قرار داده می شود</p>
+        <app-progress-spinner [options]="loadingDomain">
+        </app-progress-spinner>
+        <app-core-sitecategorycmsmodule-listview *ngIf="!loadingDomain.display"
+          [optionSiteCategoryId]="modelDateSiteCategory?.Id">
+        </app-core-sitecategorycmsmodule-listview>
 
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="primary" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="آدرس دسترسی به سامانه" state="seo">
-          <p>از لیست دامنه های موجود یک دامنه را انتخاب کنید و عنوان لاتین برای متناسب با نام سامانه خود برای
-            آدرس دهی انخاب نمایید</p>
-          <!-- Domain Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="دامنه" [(ngModel)]="dataModel.Domain" name="dataModel.Domain" #Domain="ngModel"
-              panelClass="recordStatus-{{ dataModel.Domain }}">
-              <mat-option *ngFor="
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="آدرس دسترسی به سامانه" state="seo">
+        <p>از لیست دامنه های موجود یک دامنه را انتخاب کنید و عنوان لاتین برای متناسب با نام سامانه خود برای
+          آدرس دهی انخاب نمایید</p>
+        <!-- Domain Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="دامنه" [(ngModel)]="dataModel.Domain" name="dataModel.Domain" #Domain="ngModel"
+            panelClass="recordStatus-{{ dataModel.Domain }}">
+            <mat-option *ngFor="
         let item of dataModelResultDomains.ListItems;
         index as i
       " [value]="item">{{ item }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">انتخاب دامنه برای این سامانه</mat-hint>
-          </mat-form-field>
-          <!-- Domain Field -->
-          <div class="input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                aria-haspopup="false" aria-expanded="false">{{ dataModel.Domain === undefined ? 'دامنه' :
-                dataModel.Domain }}</button>
-              <div class="dropdown-menu">
-                <option (click)="domain(item)" class="cursor-pointer"
-                  *ngFor="let item of dataModelResultDomains.ListItems;let i = index" value="{{item}}">{{item}}</option>
-              </div>
-            </div>
-            <input [(ngModel)]="dataModel.SubDomain" name="subDomain" placeholder="YourSubDomain" type="text"
-              class="form-control text-left" aria-label="زیر دامنه  وب سایت " />
-            <div class="input-group-prepend">
-              <input type="text" class="form-control text-left" style="direction: ltr;" value="https://"
-                style="text-align: left;" dir="ltr" readonly />
+          </mat-select>
+          <mat-hint align="end">انتخاب دامنه برای این سامانه</mat-hint>
+        </mat-form-field>
+        <!-- Domain Field -->
+        <div class="input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+              aria-haspopup="false" aria-expanded="false">{{ dataModel.Domain === undefined ? 'دامنه' :
+              dataModel.Domain }}</button>
+            <div class="dropdown-menu">
+              <option (click)="domain(item)" class="cursor-pointer"
+                *ngFor="let item of dataModelResultDomains.ListItems;let i = index" value="{{item}}">{{item}}</option>
             </div>
           </div>
-          آدرس سامانه شما:
-          <div class="text-left text-wrap"
-            style="direction: ltr;font-size: xx-large; color: black;text-align-last:center">
-            https://{{dataModel.SubDomain === undefined ?'' : dataModel.SubDomain + '.'}}{{ dataModel.Domain ===
-            undefined ? '' : dataModel.Domain }}</div>
-
-
-          <div class="form-actions">
-            <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-            <small class="form-text text-muted danger">{{ formInfo.FormError }}
-            </small>
+          <input [(ngModel)]="dataModel.SubDomain" name="subDomain" placeholder="YourSubDomain" type="text"
+            class="form-control text-left" aria-label="زیر دامنه  وب سایت " />
+          <div class="input-group-prepend">
+            <input type="text" class="form-control text-left" style="direction: ltr;" value="https://"
+              style="text-align: left;" dir="ltr" readonly />
           </div>
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-            <button type="button" mat-raised-button color="primary" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-              {{'ACTION.SAVE' | translate}}
-            </button>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </div>
-    <div class="ntk-cms-html-card-message">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      در ساخت سامانه خود دقت لازم را داشته باشید
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </div>
-    <div class="ntk-cms-html-card-footer">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+        </div>
+        آدرس سامانه شما:
+        <div class="text-left text-wrap"
+          style="direction: ltr;font-size: xx-large; color: black;text-align-last:center">
+          https://{{dataModel.SubDomain === undefined ?'' : dataModel.SubDomain + '.'}}{{ dataModel.Domain ===
+          undefined ? '' : dataModel.Domain }}</div>
 
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </div>
+
+        <div class="form-actions">
+          <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+          <small class="form-text text-muted danger">{{ formInfo.FormError }}
+          </small>
+        </div>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    در ساخت سامانه خود دقت لازم را داشته باشید
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>
