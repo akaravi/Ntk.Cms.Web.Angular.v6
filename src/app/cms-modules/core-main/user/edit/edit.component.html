@@ -219,7 +219,14 @@
       <mat-step label="تنظیمات امینتی" state="seo">
         <p>تنظیمات لازیم برای امنیت این حساب کاربری</p>
 
-
+        <!-- LinkResellerUserId Field -->
+        <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerUserId"
+        (optionSelect)="onActionSelectorLinkResellerUserIdSelect($event)"
+          [optionPlaceholder]="'کاربر معرف'"></app-cms-user-selector>
+          <!-- LinkResellerSiteId Field -->
+        <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerSiteId"
+        (optionSelect)="onActionSelectorLinkResellerSiteIdSelect($event)"
+          [optionPlaceholder]="'سایت معرف'"></app-cms-site-selector>
 
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireLockAccount']?.AccessWatchField">
           <mat-label>{{fieldsInfo['ExpireLockAccount']?.FieldTitle}}</mat-label>

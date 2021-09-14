@@ -34,7 +34,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
-    this.RePassword = '';
+    this.RePasswordModel = '';
   }
   errorState: ErrorStates = ErrorStates.NotSubmitted;
   errorStates = ErrorStates;
@@ -46,7 +46,7 @@ export class AuthSingInBySmsComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   passwordIsValid = false;
-  RePassword: string;
+  RePasswordModel = '';
   onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
@@ -92,10 +92,20 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
     this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
+    /** read storage */
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
       this.dataModelAuthUserSignInBySms.SiteId = siteId;
     }
+    const ResellerSiteId = + localStorage.getItem('ResellerSiteId');
+    if (ResellerSiteId > 0) {
+      this.dataModelAuthUserSignInBySms.ResellerSiteId = ResellerSiteId;
+    }
+    const ResellerUserId = + localStorage.getItem('ResellerUserId');
+    if (ResellerUserId > 0) {
+      this.dataModelAuthUserSignInBySms.ResellerUserId = ResellerUserId;
+    }
+    /** read storage */
 
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)

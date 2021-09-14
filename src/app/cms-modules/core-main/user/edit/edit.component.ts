@@ -9,6 +9,7 @@ import {
   DataFieldInfoModel,
   NtkCmsApiStoreService,
   TokenInfoModel,
+  CoreSiteModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -197,5 +198,18 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
       }
     }
   }
-
+  onActionSelectorLinkResellerSiteIdSelect(model: CoreSiteModel | null): void {
+    this.dataModel.LinkResellerSiteId = null;
+    if (!model || model.Id <= 0) {
+      return;
+    }
+    this.dataModel.LinkResellerSiteId = model.Id;
+  }
+  onActionSelectorLinkResellerUserIdSelect(model: CoreUserModel | null): void {
+    this.dataModel.LinkResellerUserId = null;
+    if (!model || model.Id <= 0) {
+      return;
+    }
+    this.dataModel.LinkResellerUserId = model.Id;
+  }
 }

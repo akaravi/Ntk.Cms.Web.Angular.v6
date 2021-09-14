@@ -35,6 +35,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   passwordIsValid = false;
   dataModel: AuthUserSignUpModel = new AuthUserSignUpModel();
   onCaptchaOrderInProcess = false;
+  RePasswordModel = '';
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
@@ -66,7 +67,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
       return;
     }
-    if (!this.dataModel.RePassword || this.dataModel.RePassword.length === 0) {
+    if (!this.RePasswordModel || this.RePasswordModel.length === 0) {
       this.formInfo.FormError = 'تکرار کلمه عبور را وارد کنید';
       this.formInfo.FormErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
@@ -78,10 +79,10 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
       return;
     }
-    if (this.dataModel.Password !== this.dataModel.RePassword) {
+    if (this.dataModel.Password !== this.RePasswordModel) {
       this.formInfo.FormError = 'محتوای کلمه عبور و تکرار کلمه عبور متفاوت است';
       this.dataModel.Password = '';
-      this.dataModel.RePassword = '';
+      this.RePasswordModel = '';
       this.formInfo.FormErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
       return;
@@ -90,10 +91,20 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     const pName = this.constructor.name + '.ServiceSignupUser';
     this.loading.Start(pName, 'در حال ساخت حساب کاربری جدید');
+    /** read storage */
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
       this.dataModel.SiteId = siteId;
     }
+    const ResellerSiteId = + localStorage.getItem('ResellerSiteId');
+    if (ResellerSiteId > 0) {
+      this.dataModel.ResellerSiteId = ResellerSiteId;
+    }
+    const ResellerUserId = + localStorage.getItem('ResellerUserId');
+    if (ResellerUserId > 0) {
+      this.dataModel.ResellerUserId = ResellerUserId;
+    }
+    /** read storage */
     this.coreAuthService.ServiceSignupUser(this.dataModel).subscribe((next) => {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();

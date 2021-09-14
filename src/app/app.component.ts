@@ -37,7 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private translationService: TranslationService,
     private splashScreenService: SplashScreenService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private tableService: TableExtendedService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
@@ -64,6 +63,16 @@ export class AppComponent implements OnInit, OnDestroy {
       const siteId = +site ;
       if (siteId > 0) {
         localStorage.setItem('siteId', site);
+      }
+      const ResellerSite = httpParams.get('rsite');
+      const ResellerSiteId = +ResellerSite ;
+      if (ResellerSiteId > 0) {
+        localStorage.setItem('ResellerSiteId', ResellerSite);
+      }
+      const ResellerUser = httpParams.get('ruser');
+      const ResellerUserId = +ResellerUser ;
+      if (ResellerUserId > 0) {
+        localStorage.setItem('ResellerUserId', ResellerUser);
       }
     }
 

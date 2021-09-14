@@ -80,12 +80,12 @@
 
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.RePassword" name="dataModel.RePassword"
+          <input matInput [(ngModel)]="RePasswordModel" name="RePasswordModel"
             [disabled]=" !formInfo.ButtonSubmittedEnabled" #RePassword type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
             placeholder=" {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}" minlength="3" maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.RePassword" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.RePassword = ''">
+          <mat-icon matSuffix *ngIf="RePasswordModel" matSuffix mat-icon-button aria-label="Clear"
+            (click)="RePasswordModel = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ RePassword.value.length }} / 50</mat-hint>

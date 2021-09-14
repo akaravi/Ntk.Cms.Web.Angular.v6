@@ -32,7 +32,7 @@ export class AuthForgotPasswordComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
-    this.RePassword = '';
+    this.RePasswordModel = '';
   }
   errorState: ErrorStates = ErrorStates.NotSubmitted;
   errorStates = ErrorStates;
@@ -46,7 +46,7 @@ export class AuthForgotPasswordComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   passwordIsValid = false;
-  RePassword: string;
+  RePasswordModel = '';
   onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();

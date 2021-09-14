@@ -53,14 +53,14 @@
     </mat-form-field>
     <!-- LinkSiteId Field -->
     <app-cms-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]=" this.dataModel.LinkSiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
+      [optionSelectForce]="this.dataModel.LinkSiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
 
     <!-- LinkUserId Field -->
     <app-cms-user-selector (optionSelect)="onActionUserSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]=" this.dataModel.LinkUserId" [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
+      [optionSelectForce]="this.dataModel.LinkUserId" [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
     <!-- LinkMemberUserId Field -->
     <app-cms-member-selector (optionSelect)="onActionMemberSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]=" this.dataModel.LinkMemberUserId" [optionPlaceholder]="'عضو'"></app-cms-member-selector>
+      [optionSelectForce]="this.dataModel.LinkMemberUserId" [optionPlaceholder]="'عضو'"></app-cms-member-selector>
     <!-- UserAccessAdminAllowToAllData Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.UserAccessAdminAllowToAllData"
