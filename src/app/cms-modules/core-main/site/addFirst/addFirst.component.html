@@ -64,9 +64,8 @@
       </mat-step>
       <mat-step label="امکانات سامانه" state="seo">
         <p>نسبت به نوع سامانه انتخابی شما این امکانات در اختیار این سامانه قرار داده می شود</p>
-        <app-progress-spinner [options]="loadingDomain">
-        </app-progress-spinner>
-        <app-core-sitecategorycmsmodule-listview *ngIf="!loadingDomain.display"
+        
+        <app-core-sitecategorycmsmodule-listview 
           [optionSiteCategoryId]="modelDateSiteCategory?.Id">
         </app-core-sitecategorycmsmodule-listview>
 
@@ -107,14 +106,14 @@
           <input [(ngModel)]="dataModel.SubDomain" name="subDomain" placeholder="YourSubDomain" type="text"
             class="form-control text-left" aria-label="زیر دامنه  وب سایت " />
           <div class="input-group-prepend">
-            <input type="text" class="form-control text-left" style="direction: ltr;" value="https://"
+            <input type="text" class="form-control text-left" style="direction: ltr;" value="http://"
               style="text-align: left;" dir="ltr" readonly />
           </div>
         </div>
         آدرس سامانه شما:
         <div class="text-left text-wrap"
           style="direction: ltr;font-size: xx-large; color: black;text-align-last:center">
-          https://{{dataModel.SubDomain === undefined ?'' : dataModel.SubDomain + '.'}}{{ dataModel.Domain ===
+          http://{{dataModel.SubDomain === undefined ?'' : dataModel.SubDomain + '.'}}{{ dataModel.Domain ===
           undefined ? '' : dataModel.Domain }}</div>
 
 

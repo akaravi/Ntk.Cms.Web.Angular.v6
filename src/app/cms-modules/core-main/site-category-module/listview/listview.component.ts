@@ -94,6 +94,12 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
         if (next.IsSuccess) {
+          if (this.linkSiteCategoryId && this.linkSiteCategoryId > 0) {
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+              this.tabledisplayedColumns,
+              'virtual_CmsSiteCategory.Title'
+            );
+          }
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
         }

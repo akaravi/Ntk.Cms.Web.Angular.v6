@@ -39,14 +39,13 @@ export class CoreSiteAddFirstComponent implements OnInit {
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
-    this.loadingDomain.cdr = this.cdr;
     this.formInfo.FormTitle = 'ایجاد اولین سامانه شما';
 
 
     /** read storage */
     this.siteTypeId = + localStorage.getItem('siteTypeId');
     if (this.siteTypeId > 0) {
-      // this.dataModel.LinkSiteCategoryId = this.siteTypeId;
+       this.dataModel.LinkSiteCategoryId = this.siteTypeId;
     }
     /** read storage */
   }
@@ -54,9 +53,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   alphaExp = /^[a-zA-Z]+$/;
   siteTypeId = 0;
-  // loading = new ProgressSpinnerModel();
-  loadingDomain = new ProgressSpinnerModel();
-
+  
   dataModel = new CoreSiteAddFirstSiteDtoModel();
   filterModel = new FilterModel();
   dataModelResultDomains = new ErrorExceptionResult<string>();
@@ -80,6 +77,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
           if (next.IsSuccess) {
             // this.dataAccessModel = next.Access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+
+            
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
@@ -94,7 +93,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
   GetDomainList(): void {
     const pName = this.constructor.name + '.GetDomainList';
-    this.loadingDomain.Start(pName, 'دریافت لیست دامنه های مجاز');
+    this.loading.Start(pName, 'دریافت لیست دامنه های مجاز');
     this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -106,11 +105,11 @@ export class CoreSiteAddFirstComponent implements OnInit {
             this.dataModel.SubDomain = 'myname';
           }
         }
-        this.loadingDomain.Stop(pName);
+        this.loading.Stop(pName);
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-        this.loadingDomain.Stop(pName);
+        this.loading.Stop(pName);
       }
     );
   }
