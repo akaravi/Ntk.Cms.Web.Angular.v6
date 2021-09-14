@@ -21,8 +21,10 @@ export class AuthSingInComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
-  }
+    this.firstRun = true;
 
+  }
+  firstRun = true;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel: AuthUserSignInModel = new AuthUserSignInModel();
@@ -40,7 +42,9 @@ export class AuthSingInComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.returnUrl =
       this.route.snapshot.queryParams['returnUrl'.toString()] || '/';
-
+    if (this.firstRun) {
+      this.dataModel.CaptchaText = '0000';
+    }
   }
   onActionSubmit(): void {
     this.formInfo.ButtonSubmittedEnabled = false;
@@ -66,6 +70,7 @@ export class AuthSingInComponent implements OnInit {
             setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
           }
         } else {
+          this.firstRun = false;
           this.formInfo.ButtonSubmittedEnabled = true;
           this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
           this.onCaptchaOrder();

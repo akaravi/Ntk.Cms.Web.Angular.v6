@@ -44,7 +44,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
 
     /** read storage */
-    this. siteTypeId = + localStorage.getItem('siteTypeId');
+    this.siteTypeId = + localStorage.getItem('siteTypeId');
     if (this.siteTypeId > 0) {
       this.dataModel.LinkSiteCategoryId = this.siteTypeId;
     }
@@ -53,7 +53,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   alphaExp = /^[a-zA-Z]+$/;
-  siteTypeId=0;
+  siteTypeId = 0;
   // loading = new ProgressSpinnerModel();
   loadingDomain = new ProgressSpinnerModel();
 
@@ -176,10 +176,10 @@ export class CoreSiteAddFirstComponent implements OnInit {
     authModel.SiteId = Id;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (res) => {
-        if (res.IsSuccess) {
-          setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 1000);
-        }
         this.loading.Stop(pName);
+        if (res.IsSuccess) {
+          setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 2000);
+        }
       },
       (error) => {
         this.cmsToastrService.typeError(error);

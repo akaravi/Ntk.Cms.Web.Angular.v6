@@ -48,26 +48,28 @@
         Password is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-    <!--CaptchaText Field-->
-    <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-    <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
 
-    <mat-form-field class="ntk-full-width">
-      <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
-        [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="number"
-        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4" autocomplete="off"
-        placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-      <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.CaptchaText = ''">
-        close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-error *ngIf="CaptchaText.errors?.required">
-        CaptchaText is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <ng-container *ngIf="!firstRun">
+      <!--CaptchaText Field-->
+      <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
+      <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
 
+      <mat-form-field class="ntk-full-width">
+        <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
+          [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="number"
+          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4" autocomplete="off"
+          placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+        <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.CaptchaText = ''">
+          close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="CaptchaText.errors?.required">
+          CaptchaText is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
 
+    </ng-container>
 
     <!--begin::Action-->
     <div class="pb-lg-0 pb-5">
