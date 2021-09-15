@@ -41,6 +41,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
   }
+  loginAuto = false;
   onActionSubmit(): void {
 
     if (!this.dataModel.Email || this.dataModel.Email.length === 0) {
@@ -109,42 +110,45 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       if (next.IsSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
         this.formInfo.FormErrorStatus = false;
-        // setTimeout(() => this.router.navigate(['/']), 1000);
-
+        if (!this.loginAuto) {
+          setTimeout(() => this.router.navigate(['/']), 1000);
+        }
         /** Login */
-        const dataLoginModel = new AuthUserSignInModel();
-        dataLoginModel.CaptchaKey = this.dataModel.CaptchaKey;
-        dataLoginModel.CaptchaText = this.dataModel.CaptchaText;
-        dataLoginModel.Email = this.dataModel.Email;
-        dataLoginModel.Password = this.dataModel.Password;
-        dataLoginModel.SiteId = this.dataModel.SiteId;
-        dataLoginModel.Mobile = this.dataModel.Mobile;
-        dataLoginModel.UserAccessTokenType = EnumManageUserAccessTokenTypes.ControlPanel;
-        const pName2 = this.constructor.name + 'ServiceSigninUser';
-        this.loading.Start(pName2, 'ورود به حساب کاربری');
-        this.coreAuthService.ServiceSigninUser(dataLoginModel).subscribe(
-          (res) => {
-            if (res.IsSuccess) {
-              this.cmsToastrService.typeSuccessLogin();
-              if (res.Item.SiteId > 0) {
-                setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+        if (this.loginAuto) {
+          const dataLoginModel = new AuthUserSignInModel();
+          dataLoginModel.CaptchaKey = this.dataModel.CaptchaKey;
+          dataLoginModel.CaptchaText = this.dataModel.CaptchaText;
+          dataLoginModel.Email = this.dataModel.Email;
+          dataLoginModel.Password = this.dataModel.Password;
+          dataLoginModel.SiteId = this.dataModel.SiteId;
+          dataLoginModel.Mobile = this.dataModel.Mobile;
+          dataLoginModel.UserAccessTokenType = EnumManageUserAccessTokenTypes.ControlPanel;
+          const pName2 = this.constructor.name + 'ServiceSigninUser';
+          this.loading.Start(pName2, 'ورود به حساب کاربری');
+          this.coreAuthService.ServiceSigninUser(dataLoginModel).subscribe(
+            (res) => {
+              if (res.IsSuccess) {
+                this.cmsToastrService.typeSuccessLogin();
+                if (res.Item.SiteId > 0) {
+                  setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+                }
+                else {
+                  setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
+                }
+              } else {
+                this.formInfo.ButtonSubmittedEnabled = true;
+                this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
+                setTimeout(() => this.router.navigate(['/']), 1000);
               }
-              else {
-                setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
-              }
-            } else {
+              this.loading.Stop(pName2);
+            },
+            (error) => {
               this.formInfo.ButtonSubmittedEnabled = true;
-              this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
-              setTimeout(() => this.router.navigate(['/']), 1000);
+              this.cmsToastrService.typeError(error);
+              this.loading.Stop(pName2);
             }
-            this.loading.Stop(pName2);
-          },
-          (error) => {
-            this.formInfo.ButtonSubmittedEnabled = true;
-            this.cmsToastrService.typeError(error);
-            this.loading.Stop(pName2);
-          }
-        );
+          );
+        }
         /** Login */
       } else {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
