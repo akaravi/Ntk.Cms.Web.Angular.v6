@@ -112,14 +112,14 @@ export class ApplicationSourceSelectorComponent implements OnInit {
       ).toPromise();
   }
   onActionSelect(model: ApplicationSourceModel): void {
-    if (!this.optionDisabled) {
+    if (this.optionDisabled) {
       return;
     }
     this.dataModelSelect = model;
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
-    if (!this.optionDisabled) {
+    if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);

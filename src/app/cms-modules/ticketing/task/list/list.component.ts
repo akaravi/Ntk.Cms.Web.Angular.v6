@@ -218,6 +218,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       parentId = this.categoryModelSelected.Id;
     }
     const dialogRef = this.dialog.open(TicketingTaskAddComponent, {
+      height: '90%',
       data: { LinkDepartemenId: parentId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -250,6 +251,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(TicketingTaskEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

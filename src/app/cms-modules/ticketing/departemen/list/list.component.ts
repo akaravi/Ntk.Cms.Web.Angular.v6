@@ -191,6 +191,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(TicketingDepartemenAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -216,6 +217,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(TicketingDepartemenEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -241,6 +243,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(TicketingDepartemenDeleteComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

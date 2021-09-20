@@ -180,6 +180,7 @@ export class CoreSiteCategoryListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteCategoryAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -205,6 +206,7 @@ export class CoreSiteCategoryListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteCategoryEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

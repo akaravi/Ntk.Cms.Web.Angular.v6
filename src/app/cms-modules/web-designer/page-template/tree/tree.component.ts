@@ -114,6 +114,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(WebDesignerMainPageTemplateAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -134,6 +135,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageTemplateEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

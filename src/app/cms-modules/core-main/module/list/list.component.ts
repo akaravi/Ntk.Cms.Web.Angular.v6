@@ -183,6 +183,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -208,6 +209,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

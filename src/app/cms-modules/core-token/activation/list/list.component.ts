@@ -247,6 +247,7 @@ export class CoreTokenActivationListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreTokenActivationViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -272,6 +273,7 @@ export class CoreTokenActivationListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreTokenActivationEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

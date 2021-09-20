@@ -153,6 +153,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(NewsCategoryEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -178,6 +179,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(NewsCategoryDeleteComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

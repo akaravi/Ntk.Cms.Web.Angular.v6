@@ -220,15 +220,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    // const dialogRef = this.dialog.open(NewsCommentEditComponent, {
-    //   data: { contentId: this.requestContentId }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+
     this.router.navigate(['/application/app/add/', this.requestDepartemenId]);
 
   }
@@ -254,15 +246,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       return;
     }
 
-    // const dialogRef = this.dialog.open(NewsCommentEditComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+  
     this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]);
 
   }
@@ -280,15 +264,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    // const dialogRef = this.dialog.open(NewsCommentDeleteComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+
     this.router.navigate(['/application/app/delete/', this.tableRowSelected.Id]);
 
   }

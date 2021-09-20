@@ -179,6 +179,7 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstateContractTypeAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -204,6 +205,7 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstateContractTypeEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

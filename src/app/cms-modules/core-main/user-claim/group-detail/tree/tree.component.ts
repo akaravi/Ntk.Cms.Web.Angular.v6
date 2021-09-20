@@ -114,6 +114,7 @@ export class CoreUserClaimGroupDetailTreeComponent implements OnInit, OnDestroy 
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(CoreUserClaimGroupDetailAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -134,6 +135,7 @@ export class CoreUserClaimGroupDetailTreeComponent implements OnInit, OnDestroy 
       return;
     }
     const dialogRef = this.dialog.open(CoreUserClaimGroupDetailEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -115,6 +115,7 @@ export class EstateAccountUserTreeComponent implements OnInit, OnDestroy {
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(EstateAccountUserAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -135,6 +136,7 @@ export class EstateAccountUserTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstateAccountUserEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

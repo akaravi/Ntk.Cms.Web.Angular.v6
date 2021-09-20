@@ -113,6 +113,7 @@ export class CoreUserGroupTreeComponent implements OnInit, OnDestroy {
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(CoreUserGroupAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -133,6 +134,7 @@ export class CoreUserGroupTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreUserGroupEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

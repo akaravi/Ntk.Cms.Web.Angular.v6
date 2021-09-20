@@ -218,6 +218,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(CoreSiteModuleAddComponent, {
+      height: '90%',
       data: {
         LinkSiteId: this.requestLinkSiteId,
         LinkModuleId: this.requestLinkModuleId,
@@ -250,6 +251,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteModuleEditComponent, {
+      height: '90%',
       data: {
         LinkSiteId: model.LinkSiteId,
         LinkModuleId: model.LinkModuleId

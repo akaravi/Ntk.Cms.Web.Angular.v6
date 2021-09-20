@@ -185,6 +185,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageTemplateAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -210,6 +211,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageTemplateEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

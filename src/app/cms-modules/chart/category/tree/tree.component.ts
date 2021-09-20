@@ -152,6 +152,7 @@ export class ChartCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(ChartCategoryEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -177,6 +178,7 @@ export class ChartCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(ChartCategoryDeleteComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

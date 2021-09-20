@@ -112,14 +112,7 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
   }
 
   onActionAdd(): void {
-    // const dialogRef = this.dialog.open(CoreSiteCategoryCmsModuleAddComponent, {
-    //   data: {}
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+
   }
 
   onActionEdit(): void {
@@ -132,14 +125,7 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    // const dialogRef = this.dialog.open(CoreSiteCategoryCmsModuleEditComponent, {
-    //   data: { id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+
   }
 
   onActionDelete(): void {

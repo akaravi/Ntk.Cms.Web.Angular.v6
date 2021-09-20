@@ -114,6 +114,7 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(TicketingDepartemenAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -134,6 +135,7 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(TicketingDepartemenEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -155,6 +157,7 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(TicketingDepartemenDeleteComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

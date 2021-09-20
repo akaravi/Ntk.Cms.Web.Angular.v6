@@ -177,6 +177,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstateAccountUserAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -202,6 +203,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstateAccountUserEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

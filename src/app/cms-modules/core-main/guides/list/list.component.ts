@@ -226,6 +226,7 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreGuideAddComponent, {
+      height: '90%',
       data: { parentId: this.categoryModelSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -251,6 +252,7 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreGuideEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

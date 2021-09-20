@@ -179,6 +179,7 @@ export class HyperShopCategoryListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(HyperShopCategoryAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -204,6 +205,7 @@ export class HyperShopCategoryListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(HyperShopCategoryEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Code }
     });
     dialogRef.afterClosed().subscribe(result => {

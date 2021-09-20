@@ -198,6 +198,7 @@ export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
       LinkModuleSaleHeaderId = this.categoryModelSelected.Id;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleSerialAddComponent, {
+      height: '90%',
       data: { LinkModuleSaleHeaderId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -223,6 +224,7 @@ export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleSerialEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

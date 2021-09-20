@@ -285,7 +285,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(ChartContentDeleteComponent, { data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(ChartContentDeleteComponent, { height: '90%',data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {

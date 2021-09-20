@@ -152,6 +152,7 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(BlogCategoryEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -177,6 +178,7 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(BlogCategoryDeleteComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

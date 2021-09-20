@@ -195,6 +195,7 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(CoreLocationAddComponent, {
+      height: '90%',
       data: { id: this.categoryModelSelected?.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -220,6 +221,7 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreLocationEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

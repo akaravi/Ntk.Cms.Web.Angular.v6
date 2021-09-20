@@ -233,6 +233,7 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageAddComponent, {
+      height: '90%',
       data: { LinkPageDependencyGuId: this.requestLinkPageDependencyGuId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -258,6 +259,7 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

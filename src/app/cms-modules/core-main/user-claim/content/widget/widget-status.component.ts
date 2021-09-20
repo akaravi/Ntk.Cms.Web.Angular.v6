@@ -76,6 +76,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
     }
     if (model.LinkContentId && model.LinkContentId > 0) {
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
+        height: '90%',
         data: { id: model.LinkContentId }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -85,6 +86,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
       });
     } else {
       const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
+        height: '90%',
         data: { LinkUserClaimTypeId: model.LinkTypeId }
       });
       dialogRef.afterClosed().subscribe(result => {

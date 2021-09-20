@@ -228,6 +228,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
       return;
     }
     const dialogRef = this.dialog.open(CoreUserClaimGroupDetailAddComponent, {
+      height: '90%',
       data: {
         LinkUserClaimGroupId: this.requestLinkUserClaimGroupId,
         LinkUserClaimTypeId: this.requestLinkUserClaimTypeId,
@@ -257,6 +258,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
       return;
     }
     const dialogRef = this.dialog.open(CoreUserClaimGroupDetailEditComponent, {
+      height: '90%',
       data: { model: this.tableRowSelected }
     });
     dialogRef.afterClosed().subscribe(result => {

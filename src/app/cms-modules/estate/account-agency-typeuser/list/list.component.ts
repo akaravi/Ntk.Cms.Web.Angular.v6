@@ -177,6 +177,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
       return;
     }
     const dialogRef = this.dialog.open(EstateAccountAgencyTypeUserAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -202,6 +203,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
       return;
     }
     const dialogRef = this.dialog.open(EstateAccountAgencyTypeUserEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

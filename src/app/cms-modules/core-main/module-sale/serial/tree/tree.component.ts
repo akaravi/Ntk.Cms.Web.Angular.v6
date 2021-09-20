@@ -113,6 +113,7 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(CoreModuleSaleSerialAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -133,6 +134,7 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleSerialEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

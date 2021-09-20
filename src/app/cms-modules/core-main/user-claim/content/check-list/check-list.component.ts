@@ -177,6 +177,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   onActionbuttonNewRow(): void {
 
     const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -194,6 +195,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     this.tableRowSelected = model;
     if (model.LinkContentId && model.LinkContentId > 0) {
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
+        height: '90%',
         data: { id: this.tableRowSelected.LinkContentId }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -203,6 +205,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
       });
     } else {
       const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
+        height: '90%',
         data: { LinkUserClaimTypeId: this.tableRowSelected.LinkTypeId }
       });
       dialogRef.afterClosed().subscribe(result => {

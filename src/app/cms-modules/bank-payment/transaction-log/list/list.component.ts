@@ -208,6 +208,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
       return;
     }
     const dialogRef = this.dialog.open(BankPaymentTransactionLogViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -234,15 +235,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    // const dialogRef = this.dialog.open(NewsCommentDeleteComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+ 
   }
   onActionbuttonNotifictionActionSend(model: BankPaymentTransactionLogModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id <= 0) {
@@ -258,15 +251,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    // const dialogRef = this.dialog.open(BankPaymentTransactionLogActionSendComponent, {
-    //   data: { LinkApplicationMemberId: this.tableRowSelected.LinkApplicationMemberId }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-
-    //   }
-    // });
+  
   }
   onActionSelectorSelect(model: ApplicationAppModel | null): void {
     this.filteModelContent = new FilterModel();

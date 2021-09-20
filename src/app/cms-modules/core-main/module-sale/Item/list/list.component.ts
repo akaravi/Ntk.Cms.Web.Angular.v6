@@ -223,6 +223,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleItemAddComponent, {
+      height: '90%',
       data: { LinkModuleSaleHeader: this.requestLinkModuleSaleHeader }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -248,6 +249,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleItemEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

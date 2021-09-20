@@ -148,6 +148,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreCpMainMenuEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -172,15 +173,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    // const dialogRef = this.dialog.open(CoreCpMainMenuDeleteComponent, {
-    //   data: { id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+   
   }
 
 }

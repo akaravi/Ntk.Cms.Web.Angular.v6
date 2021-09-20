@@ -228,6 +228,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(ApplicationThemeConfigAddComponent, {
+      height: '90%',
       data: { LinkSourceId: sourceId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -260,6 +261,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(ApplicationThemeConfigEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -285,15 +287,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    // const dialogRef = this.dialog.open(NewsCommentDeleteComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+    
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

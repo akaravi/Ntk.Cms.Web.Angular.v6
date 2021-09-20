@@ -225,6 +225,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       return;
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -251,15 +252,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    // const dialogRef = this.dialog.open(NewsCommentEditComponent, {
-    //   data: { contentId: this.requestContentId }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+    
   }
 
 
@@ -278,15 +271,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       return;
     }
 
-    // const dialogRef = this.dialog.open(NewsCommentEditComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
   }
   onActionbuttonDeleteRow(model: ApplicationLogNotificationModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -304,15 +288,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    // const dialogRef = this.dialog.open(NewsCommentDeleteComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+    
   }
   onActionbuttonNotifictionActionSend(model: ApplicationLogNotificationModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -329,6 +305,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       return;
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
+      height: '90%',
       data: { LinkApplicationMemberId: this.tableRowSelected.LinkApplicationMemberId }
     });
     dialogRef.afterClosed().subscribe(result => {

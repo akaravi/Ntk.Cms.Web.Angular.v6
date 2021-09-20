@@ -221,6 +221,7 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
       parentId = this.categoryModelSelected.Id;
     }
     const dialogRef = this.dialog.open(TicketingFaqAddComponent, {
+      height: '90%',
       data: { parentId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -253,6 +254,7 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(TicketingFaqEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

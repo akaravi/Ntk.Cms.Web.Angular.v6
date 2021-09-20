@@ -208,6 +208,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteDomainAliasAddComponent, {
+      height: '90%',
       data: { id: this.requestId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -233,6 +234,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteDomainAliasEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

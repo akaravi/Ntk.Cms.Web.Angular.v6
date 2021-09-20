@@ -209,6 +209,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreUserAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -234,6 +235,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreUserViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -275,6 +277,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
+      height: '90%',
       data: { LinkUserId: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

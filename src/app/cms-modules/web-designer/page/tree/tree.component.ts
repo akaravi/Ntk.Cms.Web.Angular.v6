@@ -114,6 +114,7 @@ export class WebDesignerMainPageTreeComponent implements OnInit, OnDestroy {
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(WebDesignerMainPageAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -134,6 +135,7 @@ export class WebDesignerMainPageTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

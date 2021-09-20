@@ -215,6 +215,7 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
       parentId = this.categoryModelSelected.Id;
     }
     const dialogRef = this.dialog.open(TicketingTemplateAddComponent, {
+      height: '90%',
       data: { parentId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -247,6 +248,7 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(TicketingTemplateEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

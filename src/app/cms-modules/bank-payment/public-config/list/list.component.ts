@@ -195,6 +195,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(BankPaymentPublicConfigAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -220,6 +221,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(BankPaymentPublicConfigEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

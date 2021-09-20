@@ -217,6 +217,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(TicketingAnswerAddComponent, {
+      height: '90%',
       data: { LinkTicketId: this.categoryModelSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -249,6 +250,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(TicketingAnswerEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

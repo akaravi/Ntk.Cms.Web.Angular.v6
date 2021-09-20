@@ -233,7 +233,7 @@ export class FileContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(FileContentDeleteComponent, { data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(FileContentDeleteComponent, { height: '90%',data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {

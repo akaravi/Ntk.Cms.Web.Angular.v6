@@ -178,6 +178,7 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyTypeUsageAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -203,6 +204,7 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyTypeUsageEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

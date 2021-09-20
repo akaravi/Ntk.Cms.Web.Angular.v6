@@ -230,6 +230,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreCpMainMenuAddComponent, {
+      height: '90%',
       data: { parentId: this.categoryModelSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -255,6 +256,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreCpMainMenuEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

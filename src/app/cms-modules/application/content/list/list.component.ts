@@ -271,15 +271,6 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // const dialogRef = this.dialog.open(NewsCommentEditComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
     setTimeout(() => this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]), 1000);
 
   }
@@ -415,6 +406,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = mode;
     const dialogRef = this.dialog.open(ApplicationAppUploadAppComponent, {
+      height: '90%',
       data: this.tableRowSelected,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -431,6 +423,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = mode;
     const dialogRef = this.dialog.open(ApplicationAppUploadUpdateComponent, {
+      height: '90%',
       data: this.tableRowSelected,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -482,6 +475,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = mode;
     const dialogRef = this.dialog.open(ApplicationAppDownloadComponent, {
+      height: '90%',
       data: this.tableRowSelected,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -506,6 +500,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
+      height: '90%',
       data: { LinkApplicationId: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

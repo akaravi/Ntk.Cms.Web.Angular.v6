@@ -224,6 +224,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       return;
     }
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigAddComponent, {
+      height: '90%',
       data: { contentId: ApplicationId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -256,6 +257,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     }
 
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -380,6 +382,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       return;
     }
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigPaymentTestComponent, {
+      height: '90%',
       data: { LinkPrivateSiteConfigId: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

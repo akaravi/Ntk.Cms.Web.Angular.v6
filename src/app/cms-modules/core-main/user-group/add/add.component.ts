@@ -21,6 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-core-usercategory-add',
@@ -56,6 +57,7 @@ export class CoreUserGroupAddComponent implements OnInit {
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumManageUserAccessControllerTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
 
@@ -65,15 +67,19 @@ export class CoreUserGroupAddComponent implements OnInit {
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'اضافه کردن  ';
-    this.getEnumRecordStatus();
+    this.getEnumManageUserAccessControllerTypes();
     this.DataGetAccess();
-
+    this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-
+  getEnumManageUserAccessControllerTypes(): void {
+    this.coreEnumService.ServiceEnumManageUserAccessControllerTypes().subscribe((next) => {
+      this.dataModelEnumManageUserAccessControllerTypesResult = next;
+    });
+  }
   DataGetAccess(): void {
     this.coreUserGroupService
       .ServiceViewModel()

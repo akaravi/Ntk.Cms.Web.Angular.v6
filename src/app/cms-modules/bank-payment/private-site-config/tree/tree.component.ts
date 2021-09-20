@@ -113,6 +113,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -133,6 +134,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
       return;
     }
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

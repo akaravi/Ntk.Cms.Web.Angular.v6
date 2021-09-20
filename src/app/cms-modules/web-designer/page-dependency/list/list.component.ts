@@ -211,6 +211,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
+      height: '90%',
       data: { LinkModuleId: this.categoryModelSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -230,6 +231,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     }
 
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
+      height: '90%',
       data: {
         LinkModuleId: this.categoryModelSelected.Id
       }
@@ -278,6 +280,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

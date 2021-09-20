@@ -114,6 +114,7 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -134,6 +135,7 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

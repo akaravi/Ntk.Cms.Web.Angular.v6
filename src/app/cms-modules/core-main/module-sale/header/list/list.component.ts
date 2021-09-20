@@ -202,6 +202,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleHeaderAddComponent, {
+      height: '90%',
       data: { parentId: this.requestHeaderGroupId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -227,6 +228,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleHeaderEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

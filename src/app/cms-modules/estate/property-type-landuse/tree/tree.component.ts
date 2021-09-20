@@ -117,6 +117,7 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
 
   onActionAdd(): void {
     const dialogRef = this.dialog.open(EstatePropertyTypeLanduseAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -137,6 +138,7 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyTypeLanduseEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

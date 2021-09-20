@@ -151,6 +151,7 @@ export class DonateTargetCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(DonateTargetCategoryEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -176,6 +177,7 @@ export class DonateTargetCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(DonateTargetCategoryDeleteComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

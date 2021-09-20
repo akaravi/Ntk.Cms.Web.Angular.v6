@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -41,14 +41,14 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkSourceId Field -->
-        <app-application-source-selector (optionSelect)="onActionSelectSource($event)"
+        <app-application-source-selector (optionSelect)="onActionSelectSource($event)" [optionSelectFirstItem]="true"
           [optionSelectForce]="this.dataModel.LinkSourceId" [optionPlaceholder]="fieldsInfo['LinkSourceId']?.FieldTitle"
           [optionDisabled]="!fieldsInfo['LinkSourceId']?.AccessAddField"></app-application-source-selector>
 
         <!-- LinkThemeConfigId Field -->
         <app-application-themeconfig-selector (optionSelect)="onActionSelectTheme($event)"
-          [optionSelectForce]="this.dataModel.LinkThemeConfigId"
-          [optionSelectParentForce]="this.dataModel.LinkThemeConfigId"
+          *ngIf="this.dataModel?.LinkSourceId>0" [optionSelectForce]="this.dataModel.LinkThemeConfigId"
+          [optionSelectParentForce]="this.dataModel.LinkSourceId"
           [optionPlaceholder]="fieldsInfo['LinkThemeConfigId']?.FieldTitle" [optionSelectFirstItem]="true"
           [optionDisabled]="!fieldsInfo['LinkThemeConfigId']?.AccessAddField">
         </app-application-themeconfig-selector>
@@ -300,7 +300,8 @@
         </mat-form-field>
         <!-- map Field -->
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
-        <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter" id='main-map'></app-cms-map>
+        <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
+          id='main-map'></app-cms-map>
 
 
 

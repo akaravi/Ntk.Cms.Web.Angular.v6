@@ -294,7 +294,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(BlogContentDeleteComponent, { data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(BlogContentDeleteComponent, { height: '90%',data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {

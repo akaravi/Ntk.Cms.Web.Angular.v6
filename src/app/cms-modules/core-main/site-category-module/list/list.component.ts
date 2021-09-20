@@ -196,6 +196,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteCategoryCmsModuleAddComponent, {
+      height: '90%',
       data: {
         LinkCmsModuleId: this.requestLinkCmsModuleId,
         LinkCmsSiteCategoryId: this.requestLinkCmsSiteCategoryId
@@ -224,6 +225,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteCategoryCmsModuleEditComponent, {
+      height: '90%',
       data: {
         LinkCmsModuleId: this.tableRowSelected.LinkCmsModuleId,
         LinkCmsSiteCategoryId: this.tableRowSelected.LinkCmsSiteCategoryId

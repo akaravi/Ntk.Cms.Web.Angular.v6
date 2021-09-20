@@ -62,7 +62,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password"
-            [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="password"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #Password type="{{(PasswordView? 'text':'password')}}"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
             placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.Password" matSuffix mat-icon-button aria-label="Clear"
@@ -74,6 +74,7 @@
             Password is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <mat-icon matSuffix (click)="ActionPasswordGenerator()">mode_edit</mat-icon>
 
         <app-password-strength [passwordToCheck]="dataModel.Password" (passwordStrength)="passwordValid($event)">
         </app-password-strength>

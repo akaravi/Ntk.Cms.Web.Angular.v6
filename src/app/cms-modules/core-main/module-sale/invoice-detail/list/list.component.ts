@@ -215,6 +215,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleInvoiceDetailViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -36,12 +36,14 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   dataModel: AuthUserSignUpModel = new AuthUserSignUpModel();
   onCaptchaOrderInProcess = false;
   RePasswordModel = '';
+  PasswordView = false;
+  loginAuto = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
   ngOnDestroy(): void {
   }
-  loginAuto = false;
+  
   onActionSubmit(): void {
 
     if (!this.dataModel.Email || this.dataModel.Email.length === 0) {
@@ -205,5 +207,19 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
         this.loading.Stop(pName);
       }
     );
+  }
+  ActionPasswordGenerator(): void {
+    // const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+    const passwordLength = 10;
+    let password = '';
+
+    for (let i = 0; i <= passwordLength; i++) {
+      const randomNumber = Math.floor(Math.random() * chars.length);
+      password += chars.substring(randomNumber, randomNumber + 1);
+    }
+    this.dataModel.Password = password;
+    this.RePasswordModel = password;
+    this.PasswordView = true;
   }
 }

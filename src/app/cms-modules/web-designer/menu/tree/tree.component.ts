@@ -150,6 +150,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainMenuEditComponent, {
+      height: '90%',
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -287,15 +287,7 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     }
     this.router.navigate(['/estate/property/edit', this.tableRowSelected.Id]);
 
-    // const dialogRef = this.dialog.open(EstatePropertyEditComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+  
   }
   onActionbuttonAdsRow(mode: EstatePropertyModel = this.tableRowSelected): void {
     if (!mode || !mode.Id || mode.Id.length === 0) {

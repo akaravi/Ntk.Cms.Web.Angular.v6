@@ -20,6 +20,22 @@
           RecordStatus is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
+          <!-- UserType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.UserType" name="dataModel.UserType"
+        #UserType="ngModel" panelClass="UserType-{{ dataModel.UserType }}" required>
+        <mat-option *ngFor="
+                let item of dataModelEnumManageUserAccessControllerTypesResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="UserType.errors?.required">
+        UserType is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"

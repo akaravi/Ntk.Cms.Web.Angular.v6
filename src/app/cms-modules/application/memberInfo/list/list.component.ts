@@ -221,6 +221,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(ApplicationMemberInfoViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -246,15 +247,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // const dialogRef = this.dialog.open(NewsCommentEditComponent, {
-    //   data: { id: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
   }
 
   onActionbuttonDeleteRow(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
@@ -348,6 +340,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
+      height: '90%',
       data: { LinkApplicationMemberId: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

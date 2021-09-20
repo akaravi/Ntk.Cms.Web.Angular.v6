@@ -152,7 +152,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
   DataGetAllSourceSiteCategory(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
-    const pName = this.constructor.name + 'main';
+    const pName = this.constructor.name + 'webDesignerMainPageTemplateSiteCategoryService';
     this.loading.Start(pName);
 
     const filteModelContent = new FilterModel();
@@ -193,7 +193,8 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     const entity = new WebDesignerMainPageTemplateSiteCategoryModel();
     entity.LinkSiteCagegoryId = model.Id;
     entity.LinkPageTemplateId = this.dataModel.Id;
-
+    const pName = this.constructor.name + 'webDesignerMainPageTemplateSiteCategoryService.ServiceAdd';
+    this.loading.Start(pName);
     this.webDesignerMainPageTemplateSiteCategoryService.ServiceAdd(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -205,12 +206,12 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-
+        this.loading.Stop(pName);
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-
+        this.loading.Stop(pName);
       }
     );
   }
@@ -218,7 +219,8 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     const entity = new WebDesignerMainPageTemplateSiteCategoryModel();
     entity.LinkSiteCagegoryId = model.Id;
     entity.LinkPageTemplateId = this.dataModel.Id;
-
+    const pName = this.constructor.name + 'webDesignerMainPageTemplateSiteCategoryService.ServiceDeleteEntity';
+    this.loading.Start(pName);
     this.webDesignerMainPageTemplateSiteCategoryService.ServiceDeleteEntity(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -230,10 +232,12 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
+        this.loading.Stop(pName);
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
       }
     );
   }

@@ -233,6 +233,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(BankPaymentTransactionViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -258,6 +259,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(BankPaymentTransactionEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -350,15 +352,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    // const dialogRef = this.dialog.open(BankPaymentTransactionActionSendComponent, {
-    //   data: { LinkUserId: this.tableRowSelected.LinkUserId }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-
-    //   }
-    // });
+   
   }
   onActionSelectorSelect(model: ApplicationAppModel | null): void {
     this.filteModelContent = new FilterModel();

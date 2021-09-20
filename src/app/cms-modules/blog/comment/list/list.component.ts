@@ -246,6 +246,7 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(BlogCommentEditComponent, {
+      height: '90%',
       data: { contentId: this.requestContentId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -273,6 +274,7 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(BlogCommentEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

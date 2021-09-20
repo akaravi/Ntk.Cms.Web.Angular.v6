@@ -247,6 +247,7 @@ export class CoreTokenMicroServiceLogListComponent implements OnInit, OnDestroy 
       return;
     }
     const dialogRef = this.dialog.open(CoreTokenMicroServiceLogViewComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -272,6 +273,7 @@ export class CoreTokenMicroServiceLogListComponent implements OnInit, OnDestroy 
       return;
     }
     const dialogRef = this.dialog.open(CoreTokenMicroServiceLogEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

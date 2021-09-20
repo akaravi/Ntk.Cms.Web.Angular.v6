@@ -253,6 +253,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyDetailAddComponent, {
+      height: '90%',
       data: {
         LinkPropertyTypeLanduseId: this.requestLinkPropertyTypeLanduseId,
         LinkPropertyDetailGroupId: this.categoryModelSelected.Id
@@ -281,6 +282,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyDetailEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

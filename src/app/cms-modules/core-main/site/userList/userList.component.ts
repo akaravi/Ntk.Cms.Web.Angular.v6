@@ -227,6 +227,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteUserAddComponent, {
+      height: '90%',
       data: {
         LinkSiteId: this.requestLinkSiteId,
         LinkUserId: this.requestLinkUserId,
@@ -256,6 +257,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteUserEditComponent, {
+      height: '90%',
       data: {
         LinkSiteId: model.LinkSiteId,
         LinkUserId: model.LinkUserId,

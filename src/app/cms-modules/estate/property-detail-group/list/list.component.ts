@@ -218,6 +218,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyDetailGroupAddComponent, {
+      height: '90%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -243,6 +244,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyDetailGroupEditComponent, {
+      height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
