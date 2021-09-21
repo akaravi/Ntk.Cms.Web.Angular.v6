@@ -63,6 +63,11 @@ const routes: Routes = [
       }
       ,
       {
+        path: 'faq/list',
+        component: TicketingFaqListComponent
+      }
+      ,
+      {
         path: 'template',
         component: TicketingTemplateListComponent
       },

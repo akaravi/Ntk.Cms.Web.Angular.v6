@@ -8,7 +8,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   TicketingDepartemenModel,
   DataFieldInfoModel,
@@ -34,7 +33,6 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
   constructor(
     private ticketingFaqService: TicketingFaqService,
     private ticketingDepartemenService: TicketingDepartemenService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -111,24 +109,18 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     this.ticketingFaqService.ServiceGetAllOrigin(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
         }
         else {
           this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
-
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }

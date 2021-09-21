@@ -62,12 +62,12 @@
         <!-- UseDataDefaulteSiteId Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
-          <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
-            name="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId"
-            #dataConfigSiteAccessValuesDefaultModel_UseDataDefaulteSiteId type="number" placeholder="0" />
-          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId" matSuffix
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.UseDataDefaulteSiteId"
+            name="dataConfigAdminMainModel.UseDataDefaulteSiteId"
+            #dataConfigAdminMainModel_UseDataDefaulteSiteId type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.UseDataDefaulteSiteId" matSuffix
             mat-icon-button aria-label="Clear"
-            (click)="dataConfigSiteAccessValuesDefaultModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+            (click)="dataConfigAdminMainModel.UseDataDefaulteSiteId = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- MaxAppCreation Field -->

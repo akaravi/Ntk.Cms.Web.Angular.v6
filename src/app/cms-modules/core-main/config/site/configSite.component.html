@@ -199,7 +199,7 @@
 
 
         <!-- UseDataDefaulteSiteId Field -->
-        <mat-form-field class="ntk-full-width">
+        <!-- <mat-form-field class="ntk-full-width">
           <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
           <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
             name="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
@@ -207,7 +207,7 @@
           <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
