@@ -116,7 +116,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
           if (next.IsSuccess) {
             this.dataModelResult = next;
             this.tableSource.data = next.ListItems;
-            if (this.tokenInfo.UserAccessAdminAllowToAllData) {
+            if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
               this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
                 this.tabledisplayedColumns,
                 'LinkSiteId',
@@ -171,7 +171,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
           if (next.IsSuccess) {
             this.dataModelResult = next;
             this.tableSource.data = next.ListItems;
-            if (this.tokenInfo.UserAccessAdminAllowToAllData) {
+            if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
               this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
                 this.tabledisplayedColumns,
                 'LinkSiteId',

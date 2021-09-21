@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreModuleModel,
   CoreModuleService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,

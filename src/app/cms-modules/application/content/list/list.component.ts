@@ -152,7 +152,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
 
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData) {
+          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'LinkSiteId',

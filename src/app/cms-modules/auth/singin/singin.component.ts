@@ -78,6 +78,7 @@ export class AuthSingInComponent implements OnInit {
         this.loading.Stop(pName);
       },
       (error) => {
+        this.firstRun = false;
         this.formInfo.ButtonSubmittedEnabled = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);

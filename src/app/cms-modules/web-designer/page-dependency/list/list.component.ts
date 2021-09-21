@@ -160,6 +160,19 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
+          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Id', 0);
+            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'RecordStatus', 1);
+            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Title', 2);
+            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'CmsModuleClassName', 4);
+            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'ClassActionName', 5);
+          } else {
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'Id');
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'RecordStatus');
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'Title');
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'CmsModuleClassName');
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'ClassActionName');
+          }
         }
         this.loading.Stop(pName);
 
