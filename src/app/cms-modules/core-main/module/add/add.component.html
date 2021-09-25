@@ -46,6 +46,12 @@
           Description is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+        <!-- RuleHtmlBody Field -->
+    قوانین
+    <angular-editor [placeholder]="'متن قوانین را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
+      [(ngModel)]="dataModel.RuleHtmlBody" name="dataModel.RuleHtmlBody"></angular-editor>
+
+      
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
     <div class="ntk-cms-html-card-message">

@@ -39,7 +39,7 @@
           </mat-error>
         </mat-form-field>
         <!-- Description Field -->
-        <mat-form-field class="ntk-full-width">
+        <!-- <mat-form-field class="ntk-full-width">
           <mat-label>توضیحات کوتاه در باره این سامانه</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
             placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
@@ -50,7 +50,7 @@
           <mat-error *ngIf="Description.errors?.required">
             ورود توضیحات سامانه الزامی است
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
         <!-- sitecategory Field -->
         <app-core-sitecategory-selector (optionSelect)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
           [optionSelectForce]="this.dataModel.LinkSiteCategoryId" [optionPlaceholder]="'نوع سامانه'"
@@ -68,6 +68,21 @@
         <app-core-sitecategorycmsmodule-listview 
           [optionSiteCategoryId]="modelDateSiteCategory?.Id">
         </app-core-sitecategorycmsmodule-listview>
+
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="توافقنامه سامانه" state="rule" *ngIf="this.modelDateSiteCategory?.RuleHtmlBody && this.modelDateSiteCategory?.RuleHtmlBody.length>0">
+        <p>نسبت به نوع سامانه انتخابی شما این توافقنامه مورد تایید شما می باشد</p>
+        
+
+      <div [innerHTML]="this.modelDateSiteCategory.RuleHtmlBody"></div>
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="primary" matStepperPrevious>

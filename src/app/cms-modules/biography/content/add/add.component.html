@@ -73,7 +73,7 @@
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>
         <hr class="pb-5" />
-        <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="main"
+        <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
           [(ngModel)]="dataModel.Body" name="dataModel.Body"></angular-editor>
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
@@ -222,7 +222,7 @@
           <mat-hint align="end">{{ contentOtherInfoSelected_Source.value.length }} / 500</mat-hint>
         </mat-form-field>
 
-        <angular-editor [placeholder]="'Enter text here...'" [config]="publicHelper.editorConfig" id="OtherInfo"
+        <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="OtherInfo"
           [(ngModel)]="contentOtherInfoSelected.HtmlBody" name="contentOtherInfoSelected.HtmlBody"></angular-editor>
 
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button

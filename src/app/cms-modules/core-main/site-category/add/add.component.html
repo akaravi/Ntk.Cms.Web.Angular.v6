@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -57,6 +57,11 @@
         Description is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    <!-- RuleHtmlBody Field -->
+    قوانین
+    <angular-editor [placeholder]="'متن قوانین را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
+      [(ngModel)]="dataModel.RuleHtmlBody" name="dataModel.RuleHtmlBody"></angular-editor>
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

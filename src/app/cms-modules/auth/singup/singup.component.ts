@@ -154,6 +154,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
         /** Login */
       } else {
         this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
+        this.formInfo.ButtonSubmittedEnabled = true;
         this.formInfo.FormErrorStatus = true;
         this.onCaptchaOrder();
       }
@@ -161,6 +162,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     }, (error) => {
       this.cmsToastrService.typeError(error);
       this.formInfo.FormErrorStatus = true;
+      this.formInfo.ButtonSubmittedEnabled = true;
       this.onCaptchaOrder();
       this.loading.Stop(pName);
     });

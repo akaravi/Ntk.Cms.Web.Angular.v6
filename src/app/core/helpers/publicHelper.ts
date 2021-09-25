@@ -48,7 +48,7 @@ export class PublicHelper {
     translate: 'yes',
     enableToolbar: true,
     showToolbar: true,
-    placeholder: 'Enter text here...',
+    placeholder: 'متن را وارد کنید ...',
     defaultParagraphSeparator: '',
     defaultFontName: '',
     defaultFontSize: '',
