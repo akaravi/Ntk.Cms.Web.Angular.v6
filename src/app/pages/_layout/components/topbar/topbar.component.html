@@ -23,7 +23,7 @@
       <!--end::Toggle-->
 
       <!--begin::Dropdown-->
-      <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg" ngbDropdownMenu>
+      <div class="dropdown-menu p-0 m-0 dropdown-menu-left dropdown-menu-anim-up dropdown-menu-lg" ngbDropdownMenu>
         <app-search-dropdown-inner></app-search-dropdown-inner>
       </div>
       <!--end::Dropdown-->
@@ -172,7 +172,7 @@
   <ng-container *ngIf="extrasUserLayout === 'dropdown'">
     <!--begin::User-->
     <ng-container *ngIf="tokenInfo && tokenInfo.UserId>0">
-      <div class="dropdown" ngbDropdown placement="bottom-right">
+      <div class="dropdown" ngbDropdown placement="bottom-left">
         <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px" ngbDropdownToggle>
           <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto">
             <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">{{'TRANSLATOR.HI'|translate}}</span>
@@ -187,7 +187,7 @@
         <!--end::Toggle-->
         <!--begin::Dropdown-->
         <div ngbDropdownMenu
-          class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg p-0">
+          class="dropdown-menu p-0 m-0 dropdown-menu-left dropdown-menu-anim-up dropdown-menu-lg p-0">
           <app-user-dropdown-inner></app-user-dropdown-inner>
         </div>
       </div>
