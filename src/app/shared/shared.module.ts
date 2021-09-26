@@ -77,6 +77,7 @@ import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooter
 import { FirstLetterPipe } from '../core/pipe/first-letter.pipe';
 import { SafePipe } from '../core/pipe/safe.pipe';
 import { MatInputCommifiedDirective } from '../core/directive/mat-input-commified.directive';
+import { PhoneDirective } from '../core/directive/phone.directive';
 
 @NgModule({
   imports: [
@@ -153,6 +154,7 @@ import { MatInputCommifiedDirective } from '../core/directive/mat-input-commifie
     /** Directive */
     TooltipGuideDirective,
     TooltipDirective,
+    PhoneDirective,
     CmsHtmlTreeHeaderDirective,
     CmsHtmlTreeActionDirective,
     CmsHtmlTreeBodyDirective,
@@ -222,6 +224,7 @@ import { MatInputCommifiedDirective } from '../core/directive/mat-input-commifie
     /** Directive */
     TooltipGuideDirective,
     TooltipDirective,
+    PhoneDirective,
     CmsHtmlTreeHeaderDirective,
     CmsHtmlTreeActionDirective,
     CmsHtmlTreeBodyDirective,

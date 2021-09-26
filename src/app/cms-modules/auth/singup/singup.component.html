@@ -58,6 +58,21 @@
             Email is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <mat-form-field class="ntk-full-width">
+          <mat-label> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
+          <input matInput  [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile"
+            [disabled]=" !formInfo.ButtonSubmittedEnabled" #Mobile type="text" autocomplete="off"
+                        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"   
+                        placeholder="009891" minlength="0" maxlength="50"  />
+          <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Mobile = ''">
+            close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Mobile.value.length }} / 15</mat-hint>
+          <mat-error *ngIf="Mobile.errors?.required">
+            Mobile is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
