@@ -33,7 +33,7 @@
 	"AUTH.FORGOT.RESET_PASSWORD": "تنظیم مجدد رمز عبور",
 	"AUTH.FORGOT.SEND_PIN_CODE": "ارسال کد",
 	"AUTH.FORGOT.SUCCESS": "Your account has been successfully reset.",
-	"AUTH.FORGOT.TITLE": "یادآوری پسورد؟",
+	"AUTH.FORGOT.TITLE": "یادآوری پسورد",
 	"AUTH.GENERAL.BACK_BUTTON": "بازگشت",
 	"AUTH.GENERAL.CONTACT": "تماس",
 	"AUTH.GENERAL.FORGOT_BUTTON": "یادآوری پسورد",
