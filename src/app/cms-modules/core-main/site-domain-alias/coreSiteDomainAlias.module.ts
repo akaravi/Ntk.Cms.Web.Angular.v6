@@ -12,7 +12,7 @@ import { CoreSiteDomainAliasSelectorComponent } from './selector/selector.compon
 import { CoreSiteDomainAliasEditComponent } from './edit/edit.component';
 import { CoreSiteDomainAliasAddComponent } from './add/add.component';
 import { CoreSiteDomainAliasListComponent } from './list/list.component';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
@@ -39,7 +39,7 @@ import { CoreSiteModule } from '../site/coreSite.module';
     FormsModule,
     CoreSiteDomainAliasRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreModuleComponent } from './coreModule.component';
 import { CoreModuleRoutes } from './coreModule.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -24,7 +24,7 @@ import { CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api'
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

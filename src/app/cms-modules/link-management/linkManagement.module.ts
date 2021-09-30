@@ -4,7 +4,7 @@ import { LinkManagementComponent } from './linkManagement.component';
 import { LinkManagementRoutes } from './linkManagement.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -36,7 +36,7 @@ import { LinkManagementConfigMainAdminComponent } from './config/mainAdmin/confi
     LinkManagementRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

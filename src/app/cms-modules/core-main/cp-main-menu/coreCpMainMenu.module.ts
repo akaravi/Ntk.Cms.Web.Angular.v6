@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreCpMainMenuRouting } from './coreCpMainMenu.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -48,7 +48,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CoreCpMainMenuRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

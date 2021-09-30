@@ -10,7 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreSiteCategoryCmsModuleTreeComponent } from './tree/tree.component';
 import { CoreSiteCategoryCmsModuleSelectorComponent } from './selector/selector.component';
 import { CoreSiteCategoryCmsModuleListComponent } from './list/list.component';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreSiteCategoryCmsModuleComponent } from './coreSiteCategoryCmsModule.component';
@@ -49,7 +49,7 @@ import { CoreSiteCategoryCmsModule } from '../site-category/coreSiteCategory.mod
     FormsModule,
     CoreSiteCategoryCmsModuleRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

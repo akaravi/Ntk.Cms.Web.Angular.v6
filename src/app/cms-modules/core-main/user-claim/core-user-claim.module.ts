@@ -8,7 +8,7 @@ import {
   CoreEnumService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreUserClaimComponent } from './core-user-claim.component';
@@ -111,7 +111,7 @@ import { CoreUserClaimTypeSelectionlistComponent } from './type/selectionlist/se
     FormsModule,
     CoreUserClaimRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

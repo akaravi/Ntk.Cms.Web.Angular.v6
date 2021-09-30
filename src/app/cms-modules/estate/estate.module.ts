@@ -4,7 +4,7 @@ import { EstateComponent } from './estate.component';
 import { EstateRoutes } from './estate.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -169,7 +169,7 @@ import { EstatePropertyAdsListComponent } from './property-ads/list/list.compone
     EstateRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

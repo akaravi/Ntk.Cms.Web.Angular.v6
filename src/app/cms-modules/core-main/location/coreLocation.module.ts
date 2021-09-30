@@ -13,7 +13,7 @@ import { CoreLocationSelectorComponent } from './selector/selector.component';
 import { CoreLocationEditComponent } from './edit/edit.component';
 import { CoreLocationAddComponent } from './add/add.component';
 import { CoreLocationListComponent } from './list/list.component';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
@@ -41,7 +41,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     FormsModule,
     CoreLocationRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

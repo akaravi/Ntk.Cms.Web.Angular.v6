@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreLogComponent } from './coreLog.component';
 import { CoreLogRoutes } from './coreLog.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -29,7 +29,7 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

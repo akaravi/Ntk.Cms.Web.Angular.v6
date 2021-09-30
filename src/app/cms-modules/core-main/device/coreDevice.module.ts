@@ -13,7 +13,7 @@ import { CoreDeviceSelectorComponent } from './selector/selector.component';
 import { CoreDeviceEditComponent } from './edit/edit.component';
 import { CoreDeviceAddComponent } from './add/add.component';
 import { CoreDeviceListComponent } from './list/list.component';
-import { TreeviewModule } from 'ngx-treeview';
+// import { TreeviewModule } from 'ngx-treeview';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 
@@ -40,7 +40,7 @@ import { TagInputModule } from 'ngx-chips';
     FormsModule,
     CoreDeviceRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    TreeviewModule.forRoot(),
+    // TreeviewModule.forRoot(),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
