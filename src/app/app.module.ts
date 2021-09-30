@@ -21,6 +21,8 @@ import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CoreAuthService, CoreEnumService } from 'ntk-cms-api';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 function appInitializer(authService: AuthService) {
   return () => {
@@ -70,6 +72,12 @@ export function CreateTranslateLoader(http: HttpClient): any {
     InlineSVGModule.forRoot(),
     CmsStoreModule.forRoot(),
     NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:60000'
+    }),
   ],
   providers: [
     CoreAuthService,
