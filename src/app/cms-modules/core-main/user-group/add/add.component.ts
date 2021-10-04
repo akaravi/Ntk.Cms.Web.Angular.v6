@@ -57,7 +57,7 @@ export class CoreUserGroupAddComponent implements OnInit {
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessControllerTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
 
@@ -67,7 +67,7 @@ export class CoreUserGroupAddComponent implements OnInit {
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'اضافه کردن  ';
-    this.getEnumManageUserAccessControllerTypes();
+    this.getEnumManageUserAccessUserTypes();
     this.DataGetAccess();
     this.getEnumRecordStatus();
   }
@@ -75,9 +75,9 @@ export class CoreUserGroupAddComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-  getEnumManageUserAccessControllerTypes(): void {
-    this.coreEnumService.ServiceEnumManageUserAccessControllerTypes().subscribe((next) => {
-      this.dataModelEnumManageUserAccessControllerTypesResult = next;
+  getEnumManageUserAccessUserTypes(): void {
+    this.coreEnumService.ServiceEnumManageUserAccessUserTypes().subscribe((next) => {
+      this.dataModelEnumManageUserAccessUserTypesResult = next;
     });
   }
   DataGetAccess(): void {

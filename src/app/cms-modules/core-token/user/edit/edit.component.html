@@ -28,7 +28,7 @@
       <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.LinkMemberUserId" name="dataModel.LinkMemberUserId"
         #LinkMemberUserId="ngModel" panelClass="LinkMemberUserId-{{ dataModel.LinkMemberUserId }}" required>
         <mat-option *ngFor="
-                let item of dataModelEnumManageUserAccessControllerTypesResult.ListItems;
+                let item of dataModelEnumManageUserAccessUserTypesResult.ListItems;
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
       </mat-select>

@@ -5,7 +5,6 @@ import {
   CoreAuthService,
   TokenInfoModel,
   NtkCmsApiStoreService,
-  EnumManageUserAccessControllerTypes,
   CoreSiteModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';

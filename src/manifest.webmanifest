@@ -1,6 +1,6 @@
 {
-  "name": "ntk-cms-web",
-  "short_name": "ntk-cms-web",
+  "name": "سامانه مدیریت محتوا",
+  "short_name": "مدیریت محتوا",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

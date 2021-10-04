@@ -26,7 +26,7 @@
       <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.UserType" name="dataModel.UserType"
         #UserType="ngModel" panelClass="UserType-{{ dataModel.UserType }}" required>
         <mat-option *ngFor="
-                let item of dataModelEnumManageUserAccessControllerTypesResult.ListItems;
+                let item of dataModelEnumManageUserAccessUserTypesResult.ListItems;
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
       </mat-select>

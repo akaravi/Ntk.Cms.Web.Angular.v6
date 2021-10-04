@@ -3,7 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { LayoutService } from '../../../../../core';
 import { AuthService } from '../../../../../../modules/auth/_services/auth.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { CoreAuthService, EnumManageUserAccessControllerTypes, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { CoreAuthService, EnumManageUserAccessUserTypes, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -44,12 +44,12 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     // this.user$ = this.auth.currentUserSubject.asObservable();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminResellerCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
+      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
         this.IsAdminSite = true;
       }
       else {
@@ -58,12 +58,12 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.AdminResellerCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessControllerTypes.SupportResellerCms) {
+      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
         this.IsAdminSite = true;
       }
       else {

@@ -6,8 +6,6 @@ import {
   EstateContractTypeService,
   EstateContractTypeModel,
   DataFieldInfoModel,
-  TokenInfoModel,
-  EnumManageUserAccessControllerTypes,
 } from 'ntk-cms-api';
 import {
   Component,

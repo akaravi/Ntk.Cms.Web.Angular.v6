@@ -66,7 +66,7 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessControllerTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   fileManagerOpenForm = false;
@@ -91,7 +91,7 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
     });
     this.getEnumRecordStatus();
     this.getEnumManageUserAccessAreaTypes();
-    this.getEnumManageUserAccessControllerTypes();
+    this.getEnumManageUserAccessUserTypes();
   }
 
   getEnumManageUserAccessAreaTypes(): void {
@@ -99,9 +99,9 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
       this.dataModelEnumManageUserAccessAreaTypesResult = next;
     });
   }
-  getEnumManageUserAccessControllerTypes(): void {
-    this.coreEnumService.ServiceEnumManageUserAccessControllerTypes().subscribe((next) => {
-      this.dataModelEnumManageUserAccessControllerTypesResult = next;
+  getEnumManageUserAccessUserTypes(): void {
+    this.coreEnumService.ServiceEnumManageUserAccessUserTypes().subscribe((next) => {
+      this.dataModelEnumManageUserAccessUserTypesResult = next;
     });
   }
   ngOnDestroy(): void {

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@ang
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthUserSignInModel, AuthUserSignUpModel, CaptchaModel, CoreAuthService, EnumManageUserAccessTokenTypes, FormInfoModel } from 'ntk-cms-api';
+import { AuthUserSignInModel, AuthUserSignUpModel, CaptchaModel, CoreAuthService,  FormInfoModel } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { MatDialog } from '@angular/material/dialog';
@@ -124,7 +124,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
           dataLoginModel.Password = this.dataModel.Password;
           dataLoginModel.SiteId = this.dataModel.SiteId;
           dataLoginModel.Mobile = this.dataModel.Mobile;
-          dataLoginModel.UserAccessTokenType = EnumManageUserAccessTokenTypes.ControlPanel;
+
           const pName2 = this.constructor.name + 'ServiceSigninUser';
           this.loading.Start(pName2, 'ورود به حساب کاربری');
           this.coreAuthService.ServiceSigninUser(dataLoginModel).subscribe(

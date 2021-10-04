@@ -107,7 +107,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessControllerTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   expandedElement: CoreSiteModel | null;
@@ -126,7 +126,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
     });
     this.getEnumManageUserAccessAreaTypes();
-    this.getEnumManageUserAccessControllerTypes();
+    this.getEnumManageUserAccessUserTypes();
   }
 
   getEnumManageUserAccessAreaTypes(): void {
@@ -135,9 +135,9 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     // });
   }
   // {{row.UserAccessAreaType | enums : dataModelEnumManageUserAccessAreaTypesResult.ListItems}}
-  getEnumManageUserAccessControllerTypes(): void {
-    // this.coreEnumService.ServiceEnumManageUserAccessControllerTypes().subscribe((next) => {
-    //   this.dataModelEnumManageUserAccessControllerTypesResult = next;
+  getEnumManageUserAccessUserTypes(): void {
+    // this.coreEnumService.ServiceEnumManageUserAccessUserTypes().subscribe((next) => {
+    //   this.dataModelEnumManageUserAccessUserTypesResult = next;
     // });
   }
   ngOnDestroy(): void {
