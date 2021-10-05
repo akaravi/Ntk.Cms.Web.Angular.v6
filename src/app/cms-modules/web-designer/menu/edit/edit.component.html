@@ -67,12 +67,12 @@
           <mat-label> {{fieldsInfo['RouteAddressLink']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.RouteAddressLink" name="dataModel.RouteAddressLink" #RouteAddressLink
             type="text" [disabled]="!fieldsInfo['RouteAddressLink']?.AccessEditField"
-            placeholder="{{fieldsInfo['RouteAddressLink']?.FieldTitle}}" minlength="0" maxlength="100"
+            placeholder="{{fieldsInfo['RouteAddressLink']?.FieldTitle}}" minlength="0" maxlength="500"
             style="direction: ltr;text-align: left;" />
           <mat-icon matSuffix *ngIf="dataModel.RouteAddressLink" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.RouteAddressLink = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ RouteAddressLink.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ RouteAddressLink.value.length }} / 500</mat-hint>
         </mat-form-field>
         <!-- RouteAddressBlankPage Field -->
         <div class="ntk-full-width">

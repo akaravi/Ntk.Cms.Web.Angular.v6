@@ -64,9 +64,8 @@
       </mat-step>
       <mat-step label="امکانات سامانه" state="seo">
         <p>نسبت به نوع سامانه انتخابی شما این امکانات در اختیار این سامانه قرار داده می شود</p>
-        
-        <app-core-sitecategorycmsmodule-listview 
-          [optionSiteCategoryId]="modelDateSiteCategory?.Id">
+
+        <app-core-sitecategorycmsmodule-listview [optionSiteCategoryId]="modelDateSiteCategory?.Id">
         </app-core-sitecategorycmsmodule-listview>
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
@@ -78,11 +77,12 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="توافقنامه سامانه" state="rule" *ngIf="this.modelDateSiteCategory?.RuleHtmlBody && this.modelDateSiteCategory?.RuleHtmlBody.length>0">
+      <mat-step label="توافقنامه سامانه" state="rule"
+        *ngIf="this.modelDateSiteCategory?.RuleHtmlBody && this.modelDateSiteCategory?.RuleHtmlBody.length>0">
         <p>نسبت به نوع سامانه انتخابی شما این توافقنامه مورد تایید شما می باشد</p>
-        
 
-      <div [innerHTML]="this.modelDateSiteCategory.RuleHtmlBody"></div>
+
+        <div [innerHTML]="this.modelDateSiteCategory.RuleHtmlBody"></div>
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="primary" matStepperPrevious>
@@ -108,8 +108,8 @@
           <mat-hint align="end">انتخاب دامنه برای این سامانه</mat-hint>
         </mat-form-field>
         <!-- Domain Field -->
-        <div class="input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
-          <div class="input-group-prepend">
+        <div class="row input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
+          <div class="input-group-prepend col-4 ">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
               aria-haspopup="false" aria-expanded="false">{{ dataModel.Domain === undefined ? 'دامنه' :
               dataModel.Domain }}</button>
@@ -119,8 +119,8 @@
             </div>
           </div>
           <input [(ngModel)]="dataModel.SubDomain" name="subDomain" placeholder="YourSubDomain" type="text"
-            class="form-control text-left" aria-label="زیر دامنه  وب سایت " />
-          <div class="input-group-prepend">
+            class="form-control text-left  col-4" aria-label="زیر دامنه  وب سایت " />
+          <div class="input-group-prepend  col-4">
             <input type="text" class="form-control text-left" style="direction: ltr;" value="http://"
               style="text-align: left;" dir="ltr" readonly />
           </div>

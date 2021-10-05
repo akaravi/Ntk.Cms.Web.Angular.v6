@@ -52,18 +52,20 @@
       </mat-error>
     </mat-form-field>
     <!--begin::Form group-->
-    <div class="form-group d-flex flex-wrap pb-lg-0">
-      <button type="submit" id="kt_login_forgot_submit"
-        [disabled]="vformBySms.invalid || !formInfo.ButtonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">
-        {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}
-      </button>
-      <a routerLink="/auth/singin" id="kt_login_forgot_cancel"
-        class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-2">
-        {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
-      </a>
-
-
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <button type="submit" id="kt_login_forgot_submit"
+          [disabled]="vformBySms.invalid || !formInfo.ButtonSubmittedEnabled"
+          class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+          {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}
+        </button>
+      </div>
+      <div class="col-12 col-lg-6">
+        <a routerLink="/auth/singin" id="kt_login_forgot_cancel"
+          class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+          {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
+        </a>
+      </div>
     </div>
     <!--end::Form group-->
     <br>
@@ -120,17 +122,20 @@
       </mat-error>
     </mat-form-field>
     <!--begin::Form group-->
-    <div class="form-group d-flex flex-wrap pb-lg-0">
-      <button type="submit" id="kt_login_forgot_submit"
-        [disabled]="vformEntryCode.invalid || !formInfo.ButtonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">
-        {{'AUTH.SINGINBYSMS.LOGIN' | translate}}
-      </button>
-      <a routerLink="/auth/singin" id="kt_login_forgot_cancel"
-        class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-2">
-        {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
-      </a>
-
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <button type="submit" id="kt_login_forgot_submit"
+          [disabled]="vformEntryCode.invalid || !formInfo.ButtonSubmittedEnabled"
+          class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+          {{'AUTH.SINGINBYSMS.LOGIN' | translate}}
+        </button>
+      </div>
+      <div class="col-12 col-lg-6">
+        <a routerLink="/auth/singin" id="kt_login_forgot_cancel"
+          class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+          {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
+        </a>
+      </div>
       <ng-container *ngIf="isLoading$ | async">
         <span class="spinner spinner-primary ml-5"></span>
       </ng-container>

@@ -60,10 +60,10 @@
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
-          <input matInput  [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile"
+          <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile"
             [disabled]=" !formInfo.ButtonSubmittedEnabled" #Mobile type="text" autocomplete="off"
-                        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"   
-                        placeholder="009891" minlength="0" maxlength="50"  />
+            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" placeholder="009891"
+            minlength="0" maxlength="50" />
           <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Mobile = ''">
             close</mat-icon>
@@ -146,17 +146,20 @@
         <!--end::Form group-->
 
         <!--begin::Form group-->
-        <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
-          <button type="submit" id="kt_login_signup_submit"
-            [disabled]="!Roulaccespt ||vform.invalid || !formInfo.ButtonSubmittedEnabled"
-            class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-2">
-            {{'AUTH.REGISTER.CREATE_AN_ACCOUNT' | translate}}
-          </button>
-          <a routerLink="/auth/singin" type="button" id="kt_login_signup_cancel"
-            class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">
-            {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
-          </a>
-
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <button type="submit" id="kt_login_signup_submit"
+              [disabled]="!Roulaccespt ||vform.invalid || !formInfo.ButtonSubmittedEnabled"
+              class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+              {{'AUTH.REGISTER.CREATE_AN_ACCOUNT' | translate}}
+            </button>
+          </div>
+          <div class="col-12 col-lg-6">
+            <a routerLink="/auth/singin" type="button" id="kt_login_signup_cancel"
+              class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+              {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
+            </a>
+          </div>
           <ng-container *ngIf="isLoading$ | async">
             <span class="spinner spinner-primary ml-5"></span>
           </ng-container>

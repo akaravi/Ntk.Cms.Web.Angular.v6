@@ -74,25 +74,29 @@
     <!--begin::Action-->
     <div class="pb-lg-0 pb-5">
       <button type="submit" [disabled]="vform.invalid || !formInfo.ButtonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
+        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3 col-12" style="margin: 1px;">
         {{'AUTH.LOGIN.BUTTON' | translate}}
       </button>
-
-
-      <br>
-      <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
-        {{'AUTH.LOGIN.SMS' | translate}}
-      </button>
-      <button type="button" [routerLink]="['/auth/forgot-password']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
-        {{'AUTH.FORGOT.TITLE' | translate}}
-      </button>
-      <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3" style="margin: 5px;">
-        {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
-      </button>
-
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+            class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+            {{'AUTH.LOGIN.SMS' | translate}}
+          </button>
+        </div>
+        <div class="col-12 col-lg-4">
+          <button type="button" [routerLink]="['/auth/forgot-password']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+            class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+            {{'AUTH.FORGOT.TITLE' | translate}}
+          </button>
+        </div>
+        <div class="col-12 col-lg-4">
+          <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+            class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+            {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
+          </button>
+        </div>
+      </div>
     </div>
     <!--end::Action-->
   </form>

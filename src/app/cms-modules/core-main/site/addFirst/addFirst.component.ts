@@ -77,8 +77,6 @@ export class CoreSiteAddFirstComponent implements OnInit {
           if (next.IsSuccess) {
             // this.dataAccessModel = next.Access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-            
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
