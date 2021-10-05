@@ -76,7 +76,7 @@ export function CreateTranslateLoader(http: HttpClient): any {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:60000'
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [

@@ -16,7 +16,6 @@
           NTK Cms<br />
           World of Data
           <br />
-
         </h3>
 
         <!--end::Aside title-->
@@ -24,7 +23,7 @@
       <!--end::Aside Top-->
 
       <!--begin::Aside Bottom-->
-      <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
+      <div *ngIf="showSplashModel" class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
         style="background-image: url('./assets/media/svg/illustrations/login-visual-1.svg')"></div>
       <!--end::Aside Bottom-->
       ver: {{publicHelper.appVersion}}

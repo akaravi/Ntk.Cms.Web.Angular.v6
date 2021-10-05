@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
@@ -7,11 +7,20 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  constructor(public publicHelper: PublicHelper,) {
+  constructor(public publicHelper: PublicHelper, private cdr: ChangeDetectorRef) {
   }
   today: Date = new Date();
-
+  public innerWidth = 0;
+  showSplashModel = true;
   ngOnInit(): void {
+    this.innerWidth = + window.innerWidth;
+    console.log(this.innerWidth);
+    if (this.innerWidth < 1000) {
+      setTimeout(() => {
+        this.showSplashModel = false;
+        this.cdr.markForCheck();
+      }, 5000);
+    }
   }
 
 }
