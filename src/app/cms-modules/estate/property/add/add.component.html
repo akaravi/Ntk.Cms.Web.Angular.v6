@@ -309,7 +309,7 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
               <mat-label> {{'TITLE.SalePrice' | translate}}</mat-label>
               <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
-                matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="text"
+                matInputCommified [disabled]="contractDataModel.SalePriceByAgreement" #CurrentClickCount type="text"
                 placeholder="0" />
               <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
                 (click)="contractDataModel.SalePrice = 0">
@@ -320,7 +320,7 @@
           </div>
           <div class="mb-3">
             <mat-slide-toggle *ngIf="contractTypeSelected.HasSalePrice && contractTypeSelected.SalePriceAllowAgreement"
-              [(ngModel)]="contractDataModel.DepositPriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
+              [(ngModel)]="contractDataModel.SalePriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
               name="contractDataModel.SalePriceAllowAgreement">
               توافق در مبلغ فروش
             </mat-slide-toggle>
@@ -447,7 +447,7 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionOptionRemoveFromList(i)">{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionOptionRemoveFromList(i)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>

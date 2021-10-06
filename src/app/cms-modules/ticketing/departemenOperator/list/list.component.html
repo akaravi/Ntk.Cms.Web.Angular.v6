@@ -94,8 +94,8 @@
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
-          <small (click)="onActionbuttonEditRow(row)">{{'ACTION.EDIT' | translate}}</small>|
-          <small (click)="onActionbuttonDeleteRow(row)">حذف</small>|
+          <small (click)="onActionbuttonEditRow(row)"><mat-icon aria-hidden="false" style="color: blue;" >edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
+          <small (click)="onActionbuttonDeleteRow(row)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>|
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
