@@ -24,7 +24,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-ticketing-departemen-edit',
+  selector: 'app-estate-propertyads-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
@@ -141,6 +141,14 @@ export class EstatePropertyAdsEditComponent implements OnInit {
       return;
     }
     this.dataModel.LinkPropertyId = model.Id;
+  }
+  onActionSelectorSelectLinkPropertyAdsTypeId(model: EstatePropertyModel | null): void {
+    if (!model || !model.Id || model.Id.length <= 0) {
+      const message = 'شناسه نوع تبلیغ مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.LinkPropertyAdsTypeId = model.Id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

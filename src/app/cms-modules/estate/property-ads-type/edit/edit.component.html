@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+      {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -22,17 +22,6 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionSelect)="onActionSelectorSelectLinkPropertyId($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.AccessAddField" [optionSelectForce]="dataModel.LinkPropertyId"
-      [optionPlaceholder]="'شناسه ملک'">
-    </app-estate-property-selector>
-
-    <!-- LinkPropertyAdsTypeId Field -->
-    <app-estate-property-selector (optionSelect)="onActionSelectorSelectLinkPropertyAdsTypeId($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyAdsTypeId']?.AccessAddField"
-      [optionSelectForce]="dataModel.LinkPropertyAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
-    </app-estate-property-selector>
 
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.AccessWatchField">
@@ -56,26 +45,27 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- FromDate Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>تاریخ شروع</mat-label>
-      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
-      <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
-      <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #FromDate></mat-datepicker>
+    <!-- DayOfActivity Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DayOfActivity']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['DayOfActivity']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.DayOfActivity" name="dataModel.DayOfActivity" #DayOfActivity type="number"
+        [disabled]="!fieldsInfo['DayOfActivity']?.AccessEditField"
+        placeholder="{{fieldsInfo['DayOfActivity']?.FieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.DayOfActivity" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.DayOfActivity = 1">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- ExpireDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
-      <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-      <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
-      <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #ExpireDate></mat-datepicker>
+    <!-- Price Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Price']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['Price']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Price" name="dataModel.Price" #Price type="number"
+        [disabled]="!fieldsInfo['Price']?.AccessEditField" placeholder="{{fieldsInfo['Price']?.FieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.Price" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Price = 1">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
-
+    
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>

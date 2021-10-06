@@ -31,7 +31,8 @@ import {
   EstatePropertyDetailService,
   EstatePropertyTypeUsageService,
   EstatePropertyTypeService,
-  EstatePropertyAdsService
+  EstatePropertyAdsService,
+  EstatePropertyAdsTypeService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -93,6 +94,10 @@ import { EstatePropertyTypeUsageSelectionlistComponent } from './property-type-u
 import { EstatePropertyAdsAddComponent } from './property-ads/add/add.component';
 import { EstatePropertyAdsEditComponent } from './property-ads/edit/edit.component';
 import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
+import { EstatePropertyAdsTypeEditComponent } from './property-ads-type/edit/edit.component';
+import { EstatePropertyAdsTypeListComponent } from './property-ads-type/list/list.component';
+import { EstatePropertyAdsTypeAddComponent } from './property-ads-type/add/add.component';
+import { EstatePropertyAdsTypeSelectorComponent } from './property-ads-type/selector/selector.component';
 
 @NgModule({
   declarations: [
@@ -127,6 +132,11 @@ import { EstatePropertyAdsListComponent } from './property-ads/list/list.compone
     EstatePropertyAdsAddComponent,
     EstatePropertyAdsEditComponent,
     EstatePropertyAdsListComponent,
+    /* */
+    EstatePropertyAdsTypeAddComponent,
+    EstatePropertyAdsTypeEditComponent,
+    EstatePropertyAdsTypeListComponent,
+    EstatePropertyAdsTypeSelectorComponent,
     /* */
     EstateContractTypeAddComponent,
     EstateContractTypeEditComponent,
@@ -207,6 +217,7 @@ import { EstatePropertyAdsListComponent } from './property-ads/list/list.compone
     EstatePropertyTypeUsageService,
     EstatePropertyTypeService,
     EstatePropertyAdsService,
+    EstatePropertyAdsTypeService,
     /** */
     CmsConfirmationDialogService,
     CoreModuleTagService,

@@ -14,6 +14,7 @@ import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/list/list.component';
 import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list/list.component';
 import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
+import { EstatePropertyAdsTypeListComponent } from './property-ads-type/list/list.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,11 @@ const routes: Routes = [
       {
         path: 'property-ads',
         component: EstatePropertyAdsListComponent
+      },
+      /**/
+      {
+        path: 'property-ads-type',
+        component: EstatePropertyAdsTypeListComponent
       },
       /**/
       {

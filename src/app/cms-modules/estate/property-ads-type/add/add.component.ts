@@ -3,8 +3,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  EstatePropertyAdsService,
-  EstatePropertyAdsModel,
+  EstatePropertyAdsTypeService,
+  EstatePropertyAdsTypeModel,
   DataFieldInfoModel,
   EstatePropertyModel,
 } from 'ntk-cms-api';
@@ -24,30 +24,25 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyads-add',
+  selector: 'app-estate-propertyadstype-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class EstatePropertyAdsAddComponent implements OnInit {
-  requestLinkPropertyId = '';
+export class EstatePropertyAdsTypeAddComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstatePropertyAdsAddComponent>,
+    private dialogRef: MatDialogRef<EstatePropertyAdsTypeAddComponent>,
     public coreEnumService: CoreEnumService,
-    public estatePropertyAdsService: EstatePropertyAdsService,
+    public estatePropertyAdsTypeService: EstatePropertyAdsTypeService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (data && data.LinkPropertyId) {
-      this.requestLinkPropertyId = data.LinkPropertyId;
-    }
-    if (this.requestLinkPropertyId.length > 0) {
-      this.dataModel.LinkPropertyId = this.requestLinkPropertyId;
-    }
+  
+ 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -57,8 +52,8 @@ export class EstatePropertyAdsAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyAdsModel> = new ErrorExceptionResult<EstatePropertyAdsModel>();
-  dataModel: EstatePropertyAdsModel = new EstatePropertyAdsModel();
+  dataModelResult: ErrorExceptionResult<EstatePropertyAdsTypeModel> = new ErrorExceptionResult<EstatePropertyAdsTypeModel>();
+  dataModel: EstatePropertyAdsTypeModel = new EstatePropertyAdsTypeModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -75,7 +70,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
-    this.estatePropertyAdsService
+    this.estatePropertyAdsTypeService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -97,7 +92,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estatePropertyAdsService.ServiceAdd(this.dataModel).subscribe(
+    this.estatePropertyAdsTypeService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
@@ -121,23 +116,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
       }
     );
   }
-  onActionSelectorSelectLinkPropertyId(model: EstatePropertyModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'شناسه ملک مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.LinkPropertyId = model.Id;
-  }
-  onActionSelectorSelectLinkPropertyAdsTypeId(model: EstatePropertyModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'شناسه نوع تبلیغ مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.LinkPropertyAdsTypeId = model.Id;
-    this.dataModel.Title = model.Title;
-  }
+
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

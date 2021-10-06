@@ -3,8 +3,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  EstatePropertyAdsService,
-  EstatePropertyAdsModel,
+  EstatePropertyAdsTypeService,
+  EstatePropertyAdsTypeModel,
   DataFieldInfoModel,
   EstatePropertyModel,
 } from 'ntk-cms-api';
@@ -19,34 +19,30 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { NodeInterface, TreeModel } from 'src/filemanager-api';
+import { TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyads-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
+  selector: 'app-estate-propertyadstype-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss'],
 })
-export class EstatePropertyAdsAddComponent implements OnInit {
-  requestLinkPropertyId = '';
-
+export class EstatePropertyAdsTypeEditComponent implements OnInit {
+  requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstatePropertyAdsAddComponent>,
+    private dialogRef: MatDialogRef<EstatePropertyAdsTypeEditComponent>,
     public coreEnumService: CoreEnumService,
-    public estatePropertyAdsService: EstatePropertyAdsService,
+    public estatePropertyAdsTypeService: EstatePropertyAdsTypeService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (data && data.LinkPropertyId) {
-      this.requestLinkPropertyId = data.LinkPropertyId;
-    }
-    if (this.requestLinkPropertyId.length > 0) {
-      this.dataModel.LinkPropertyId = this.requestLinkPropertyId;
+    if (data) {
+      this.requestId = data.id;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -57,52 +53,69 @@ export class EstatePropertyAdsAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyAdsModel> = new ErrorExceptionResult<EstatePropertyAdsModel>();
-  dataModel: EstatePropertyAdsModel = new EstatePropertyAdsModel();
+  dataModelResult: ErrorExceptionResult<EstatePropertyAdsTypeModel> = new ErrorExceptionResult<EstatePropertyAdsTypeModel>();
+  dataModel: EstatePropertyAdsTypeModel = new EstatePropertyAdsTypeModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.FormTitle = 'ویرایش  ';
+    if (!this.requestId || this.requestId.length === 0) {
+      this.cmsToastrService.typeErrorComponentAction();
+      this.dialogRef.close({ dialogChangedDate: false });
+      return;
+    }
+    this.DataGetOneContent();
     this.getEnumRecordStatus();
-    this.DataGetAccess();
-
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-  DataGetAccess(): void {
-    this.estatePropertyAdsService
-      .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
-          }
-        },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+  DataGetOneContent(): void {
+
+    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    this.estatePropertyAdsTypeService.setAccessLoad();
+    this.estatePropertyAdsTypeService.ServiceGetOneById(this.requestId).subscribe(
+      (next) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+
+        this.dataModel = next.Item;
+        if (next.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
-      );
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
   }
-  DataAddContent(): void {
+  DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estatePropertyAdsService.ServiceAdd(this.dataModel).subscribe(
+    this.estatePropertyAdsTypeService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessAdd();
+          this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -121,29 +134,13 @@ export class EstatePropertyAdsAddComponent implements OnInit {
       }
     );
   }
-  onActionSelectorSelectLinkPropertyId(model: EstatePropertyModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'شناسه ملک مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.LinkPropertyId = model.Id;
-  }
-  onActionSelectorSelectLinkPropertyAdsTypeId(model: EstatePropertyModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'شناسه نوع تبلیغ مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.LinkPropertyAdsTypeId = model.Id;
-    this.dataModel.Title = model.Title;
-  }
+  
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
-    this.DataAddContent();
+    this.DataEditContent();
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

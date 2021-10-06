@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -27,7 +27,11 @@
       [optionDisabled]="!fieldsInfo['LinkPropertyId']?.AccessAddField" [optionSelectForce]="dataModel.LinkPropertyId"
       [optionPlaceholder]="'شناسه ملک'">
     </app-estate-property-selector>
-
+    <!-- LinkPropertyAdsTypeId Field -->
+    <app-estate-property-selector (optionSelect)="onActionSelectorSelectLinkPropertyAdsTypeId($event)"
+      [optionDisabled]="!fieldsInfo['LinkPropertyAdsTypeId']?.AccessAddField"
+      [optionSelectForce]="dataModel.LinkPropertyAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
+    </app-estate-property-selector>
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.AccessWatchField">
       <mat-label> {{fieldsInfo['StationLevel']?.FieldTitle}}</mat-label>
