@@ -18,7 +18,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TreeModel } from 'src/filemanager-api';
+import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -170,5 +170,8 @@ export class CoreLocationEditComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
-
+  onActionFileSelected(model: NodeInterface): void {
+    this.dataModel.LinkImageId = model.id;
+    this.dataModel.LinkImageIdSrc = model.downloadLinksrc;
+  }
 }

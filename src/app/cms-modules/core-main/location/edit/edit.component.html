@@ -71,6 +71,23 @@
             (click)="dataModel.GeoLocationLongitude = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
+
+        <mat-form-field class="ntk-full-width">
+          <img *ngIf="dataModel?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+            src="{{dataModel.LinkImageIdSrc}}" class="ntk-hover-zoom" height="50" width="50" />
+          <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
+          <input matInput [(ngModel)]="dataModel.LinkImageId" name="dataModel.LinkImageId" #LinkImageId
+            type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
+          <mat-icon matSuffix *ngIf="dataModel.LinkImageId" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.LinkImageId = null">close</mat-icon>
+          <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+        </mat-form-field>
+
+        <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
+          [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
+          [openDirectUploadView]="true" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+          [openFilemanagerButtonView]="false">
+        </cms-file-manager>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
      </div>
 	 <div class="ntk-cms-html-card-message">
