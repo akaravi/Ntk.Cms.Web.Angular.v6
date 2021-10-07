@@ -53,7 +53,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <img *ngIf="row?.LinkModuleFileLogoIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{row.LinkModuleFileLogoIdSrc}}" height="40" width="40" />
+            src="{{row.LinkModuleFileLogoIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>

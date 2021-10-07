@@ -125,7 +125,7 @@
 
         <div class="mb-3">
           <img *ngIf="dataModel?.LinkFavIconIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkFavIconIdSrc}}" height="50" width="50" />
+            src="{{dataModel.LinkFavIconIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkFavIconId']?.AccessWatchField">
@@ -248,7 +248,7 @@
 
         <div class="mb-3">
           <img *ngIf="dataModel?.LinkImageLogoIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkImageLogoIdSrc}}" height="50" width="50" />
+            src="{{dataModel.LinkImageLogoIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkImageLogoId']?.AccessWatchField">
@@ -451,7 +451,7 @@
         </mat-form-field>
         <div class="mb-3">
           <img *ngIf="dataModel?.AboutUsLinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.AboutUsLinkImageIdSrc}}" height="50" width="50" />
+            src="{{dataModel.AboutUsLinkImageIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsLinkImageId']?.AccessWatchField">

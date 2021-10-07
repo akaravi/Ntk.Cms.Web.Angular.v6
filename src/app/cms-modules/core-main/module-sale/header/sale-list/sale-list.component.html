@@ -14,7 +14,7 @@
             <mat-card-title>{{item.Title}}</mat-card-title>
             <mat-card-subtitle>{{item.SalePrice | currency:' '+currency+' '}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{item.LinkMainImageIdSrc}}">
+          <img mat-card-image src="{{item.LinkMainImageIdSrc | cmsthumbnail}}">
           <mat-card-content>
             <p>
               {{item.Description }}

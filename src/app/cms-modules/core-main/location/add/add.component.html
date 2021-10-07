@@ -75,7 +75,7 @@
 
       <mat-form-field class="ntk-full-width">
         <img *ngIf="dataModel?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-          src="{{dataModel.LinkImageIdSrc}}" class="ntk-hover-zoom" height="50" width="50" />
+          src="{{dataModel.LinkImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
         <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
         <input matInput [(ngModel)]="dataModel.LinkImageId" name="dataModel.LinkImageId" #LinkImageId
           type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />

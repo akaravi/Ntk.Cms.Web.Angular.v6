@@ -78,6 +78,7 @@ import { FirstLetterPipe } from '../core/pipe/first-letter.pipe';
 import { SafePipe } from '../core/pipe/safe.pipe';
 import { MatInputCommifiedDirective } from '../core/directive/mat-input-commified.directive';
 import { PhoneDirective } from '../core/directive/phone.directive';
+import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
 
 @NgModule({
   imports: [
@@ -108,6 +109,7 @@ import { PhoneDirective } from '../core/directive/phone.directive';
     KeysPipe,
     EnumsPipe,
     CmsTitlePipe,
+    CmsImageThumbnailPipe,
     PrettyjsonPipe,
     RecordStatusClassPipe,
     BoolStatusClassPipe,
@@ -180,6 +182,7 @@ import { PhoneDirective } from '../core/directive/phone.directive';
     KeysPipe,
     EnumsPipe,
     CmsTitlePipe,
+    CmsImageThumbnailPipe,
     PrettyjsonPipe,
     RecordStatusClassPipe,
     BoolStatusClassPipe,

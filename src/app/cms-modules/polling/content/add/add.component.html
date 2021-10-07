@@ -235,7 +235,7 @@
         <p>فایل های پیوست محتوا.</p>
         <div class="mb-3">
           <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc}}" class="ntk-hover-zoom" height="50" width="50" />
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
@@ -255,7 +255,7 @@
         </div>
         <div class="mb-3">
           <audio *ngIf="dataModel?.LinkFilePodcastIdSrc?.length>0" controls>
-            <source src="{{dataModel.LinkFilePodcastIdSrc}}" type="audio/mp3">
+            <source src="{{dataModel.LinkFilePodcastIdSrc | cmsthumbnail}}" type="audio/mp3">
             Your browser does not support the audio tag.
           </audio>
         </div>
@@ -276,7 +276,7 @@
         </div>
         <div class="mb-3">
           <video *ngIf="dataModel?.LinkFileMovieIdSrc?.length>0" controls>
-            <source src="{{dataModel.LinkFileMovieIdSrc}}" type="video/mp4">
+            <source src="{{dataModel.LinkFileMovieIdSrc | cmsthumbnail}}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
