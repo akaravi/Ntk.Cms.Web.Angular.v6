@@ -18,7 +18,7 @@
 </div>
 <div class="ntk-cms-html-tree-body">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-tree class="cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree class="category-tree cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
             [ngStyle]="{'background': dataModelSelect.Code.length>0 && dataModelSelect.Code === node.Code ? '#d3d3da' : '' }">
             <button mat-icon-button disabled></button>

@@ -63,6 +63,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   hasChild = (_: number, node: NewsCategoryModel) => !!node.Children && node.Children.length > 0;
 
 
+
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {

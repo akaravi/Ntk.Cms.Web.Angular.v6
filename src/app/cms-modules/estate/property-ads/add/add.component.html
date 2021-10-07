@@ -28,10 +28,10 @@
       [optionPlaceholder]="'شناسه ملک'">
     </app-estate-property-selector>
     <!-- LinkPropertyAdsTypeId Field -->
-    <app-estate-property-selector (optionSelect)="onActionSelectorSelectLinkPropertyAdsTypeId($event)"
+    <app-estate-adstype-selector (optionSelect)="onActionSelectorSelectLinkPropertyAdsTypeId($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyAdsTypeId']?.AccessAddField"
       [optionSelectForce]="dataModel.LinkPropertyAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
-    </app-estate-property-selector>
+    </app-estate-adstype-selector>
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.AccessWatchField">
       <mat-label> {{fieldsInfo['StationLevel']?.FieldTitle}}</mat-label>

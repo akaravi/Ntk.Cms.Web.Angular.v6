@@ -82,19 +82,47 @@ html {
 mat-tree {
   font-family: IRANSansWeb;
 }
-category-tree-invisible {
+// category-tree-invisible {
+//   display: none;
+// }
+// .category-tree {
+//   box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+//     0 3px 14px 2px color(0 0 0 0.12);
+// }
+// .category-tree ul,
+// .category-tree li {
+//   margin-top: 0;
+//   margin-bottom: 0;
+//   list-style-type: none;
+// }
+
+.category-tree-invisible {
   display: none;
 }
-.category-tree {
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
-}
+
 .category-tree ul,
 .category-tree li {
   margin-top: 0;
   margin-bottom: 0;
   list-style-type: none;
 }
+
+/*
+ * This padding sets alignment of the nested nodes.
+ */
+.category-tree .mat-nested-tree-node div[role=group] {
+  padding-right: 40px;
+}
+
+/*
+ * Padding for leaf nodes.
+ * Leaf nodes need to have padding so as to align with other non-leaf nodes
+ * under the same parent.
+ */
+.category-tree div[role=group] > .mat-tree-node {
+  padding-right: 40px;
+}
+
 .mat-form-field-wrapper {
   font-size: small;
 }
