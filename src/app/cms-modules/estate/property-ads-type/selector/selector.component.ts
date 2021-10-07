@@ -6,8 +6,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  EstatePropertyAdsTypeModel,
-  EstatePropertyAdsTypeService
+  EstateAdsTypeModel,
+  EstateAdsTypeService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -17,29 +17,29 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-estate-propertyadstype-selector',
+  selector: 'app-estate-adstype-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstatePropertyAdsTypeSelectorComponent implements OnInit {
+export class EstateAdsTypeSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    public categoryService: EstatePropertyAdsTypeService) {
+    public categoryService: EstateAdsTypeService) {
     this.loading.cdr = this.cdr;
   }
-  dataModelResult: ErrorExceptionResult<EstatePropertyAdsTypeModel> = new ErrorExceptionResult<EstatePropertyAdsTypeModel>();
-  dataModelSelect: EstatePropertyAdsTypeModel = new EstatePropertyAdsTypeModel();
+  dataModelResult: ErrorExceptionResult<EstateAdsTypeModel> = new ErrorExceptionResult<EstateAdsTypeModel>();
+  dataModelSelect: EstateAdsTypeModel = new EstateAdsTypeModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<EstatePropertyAdsTypeModel[]>;
+  filteredOptions: Observable<EstateAdsTypeModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<EstatePropertyAdsTypeModel>();
+  @Output() optionSelect = new EventEmitter<EstateAdsTypeModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | EstatePropertyAdsTypeModel) {
+  @Input() set optionSelectForce(x: string | EstateAdsTypeModel) {
     this.onActionSelectForce(x);
   }
 
@@ -62,13 +62,13 @@ export class EstatePropertyAdsTypeSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: EstatePropertyAdsTypeModel): string | undefined {
+  displayFn(model?: EstateAdsTypeModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  displayOption(model?: EstatePropertyAdsTypeModel): string | undefined {
+  displayOption(model?: EstateAdsTypeModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  async DataGetAll(text: string | any): Promise<EstatePropertyAdsTypeModel[]> {
+  async DataGetAll(text: string | any): Promise<EstateAdsTypeModel[]> {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
@@ -110,7 +110,7 @@ export class EstatePropertyAdsTypeSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: EstatePropertyAdsTypeModel): void {
+  onActionSelect(model: EstateAdsTypeModel): void {
     if (this.optionDisabled) {
       return;
     }
@@ -125,7 +125,7 @@ export class EstatePropertyAdsTypeSelectorComponent implements OnInit {
     this.optionSelect.emit(null);
   }
 
-  push(newvalue: EstatePropertyAdsTypeModel): Observable<EstatePropertyAdsTypeModel[]> {
+  push(newvalue: EstateAdsTypeModel): Observable<EstateAdsTypeModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
         return items;
@@ -135,7 +135,7 @@ export class EstatePropertyAdsTypeSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | EstatePropertyAdsTypeModel): void {
+  onActionSelectForce(id: string | EstateAdsTypeModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
@@ -156,9 +156,9 @@ export class EstatePropertyAdsTypeSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof EstatePropertyAdsTypeModel) {
-      this.filteredOptions = this.push((id as EstatePropertyAdsTypeModel));
-      this.dataModelSelect = (id as EstatePropertyAdsTypeModel);
+    if (typeof id === typeof EstateAdsTypeModel) {
+      this.filteredOptions = this.push((id as EstateAdsTypeModel));
+      this.dataModelSelect = (id as EstateAdsTypeModel);
       this.formControl.setValue(id);
       return;
     }
@@ -169,8 +169,8 @@ export class EstatePropertyAdsTypeSelectorComponent implements OnInit {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);
     // }
-    this.dataModelSelect = new EstatePropertyAdsTypeModel();
-    // this.optionsData.Select = new EstatePropertyAdsTypeModel();
+    this.dataModelSelect = new EstateAdsTypeModel();
+    // this.optionsData.Select = new EstateAdsTypeModel();
     this.DataGetAll(null);
   }
 }

@@ -3,8 +3,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  EstatePropertyAdsTypeService,
-  EstatePropertyAdsTypeModel,
+  EstateAdsTypeService,
+  EstateAdsTypeModel,
   DataFieldInfoModel,
   EstatePropertyModel,
 } from 'ntk-cms-api';
@@ -24,17 +24,17 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyadstype-add',
+  selector: 'app-estate-adstype-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class EstatePropertyAdsTypeAddComponent implements OnInit {
+export class EstateAdsTypeAddComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstatePropertyAdsTypeAddComponent>,
+    private dialogRef: MatDialogRef<EstateAdsTypeAddComponent>,
     public coreEnumService: CoreEnumService,
-    public estatePropertyAdsTypeService: EstatePropertyAdsTypeService,
+    public estateAdsTypeService: EstateAdsTypeService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -52,8 +52,8 @@ export class EstatePropertyAdsTypeAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyAdsTypeModel> = new ErrorExceptionResult<EstatePropertyAdsTypeModel>();
-  dataModel: EstatePropertyAdsTypeModel = new EstatePropertyAdsTypeModel();
+  dataModelResult: ErrorExceptionResult<EstateAdsTypeModel> = new ErrorExceptionResult<EstateAdsTypeModel>();
+  dataModel: EstateAdsTypeModel = new EstateAdsTypeModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -70,7 +70,7 @@ export class EstatePropertyAdsTypeAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
-    this.estatePropertyAdsTypeService
+    this.estateAdsTypeService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -92,7 +92,7 @@ export class EstatePropertyAdsTypeAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estatePropertyAdsTypeService.ServiceAdd(this.dataModel).subscribe(
+    this.estateAdsTypeService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
@@ -126,5 +126,9 @@ export class EstatePropertyAdsTypeAddComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onActionFileSelected(model: NodeInterface): void {
+    this.dataModel.LinkImageId = model.id;
+    this.dataModel.LinkImageIdSrc = model.downloadLinksrc;
   }
 }

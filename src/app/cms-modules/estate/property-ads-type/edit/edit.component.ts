@@ -3,10 +3,9 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  EstatePropertyAdsTypeService,
-  EstatePropertyAdsTypeModel,
+  EstateAdsTypeService,
+  EstateAdsTypeModel,
   DataFieldInfoModel,
-  EstatePropertyModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -19,22 +18,22 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TreeModel } from 'src/filemanager-api';
+import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyadstype-edit',
+  selector: 'app-estate-adstype-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class EstatePropertyAdsTypeEditComponent implements OnInit {
+export class EstateAdsTypeEditComponent implements OnInit {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstatePropertyAdsTypeEditComponent>,
+    private dialogRef: MatDialogRef<EstateAdsTypeEditComponent>,
     public coreEnumService: CoreEnumService,
-    public estatePropertyAdsTypeService: EstatePropertyAdsTypeService,
+    public estateAdsTypeService: EstateAdsTypeService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -53,8 +52,8 @@ export class EstatePropertyAdsTypeEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyAdsTypeModel> = new ErrorExceptionResult<EstatePropertyAdsTypeModel>();
-  dataModel: EstatePropertyAdsTypeModel = new EstatePropertyAdsTypeModel();
+  dataModelResult: ErrorExceptionResult<EstateAdsTypeModel> = new ErrorExceptionResult<EstateAdsTypeModel>();
+  dataModel: EstateAdsTypeModel = new EstateAdsTypeModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -80,8 +79,8 @@ export class EstatePropertyAdsTypeEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estatePropertyAdsTypeService.setAccessLoad();
-    this.estatePropertyAdsTypeService.ServiceGetOneById(this.requestId).subscribe(
+    this.estateAdsTypeService.setAccessLoad();
+    this.estateAdsTypeService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -110,7 +109,7 @@ export class EstatePropertyAdsTypeEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estatePropertyAdsTypeService.ServiceEdit(this.dataModel).subscribe(
+    this.estateAdsTypeService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
@@ -144,5 +143,9 @@ export class EstatePropertyAdsTypeEditComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onActionFileSelected(model: NodeInterface): void {
+    this.dataModel.LinkImageId = model.id;
+    this.dataModel.LinkImageIdSrc = model.downloadLinksrc;
   }
 }

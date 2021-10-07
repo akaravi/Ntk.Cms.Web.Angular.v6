@@ -76,6 +76,8 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
+    'LinkImageIdSrc',
+
     'Id',
     'RecordStatus',
     'Title',
