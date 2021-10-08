@@ -63,6 +63,7 @@
         <mat-cell *matCellDef="let row"><i [ngClass]="row.IconFont" [style.color]="row.IconColor"
             aria-hidden="true"></i></mat-cell>
       </ng-container>
+      
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}}

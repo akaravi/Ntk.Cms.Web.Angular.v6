@@ -75,8 +75,8 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
-    'IconFont',
     'LinkMainImageIdSrc',
+    'IconFont',
     'Title',
     'Description',
     'Action'

@@ -58,10 +58,17 @@
 
         </mat-cell>
       </ng-container>
+      <!-- IconFont Column -->
+      <ng-container matColumnDef="IconFont">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IconFont']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"><i [ngClass]="row.IconFont" [style.color]="row.IconColor" aria-hidden="true"></i>
+        </mat-cell>
+      </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.IconFont" [style.color]="row.IconColor"
+            aria-hidden="true"></i> </mat-cell>
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">

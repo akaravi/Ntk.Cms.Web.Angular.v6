@@ -77,6 +77,7 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
 
   tabledisplayedColumns: string[] = [
     'LinkMainImageIdSrc',
+    'IconFont',
     'Title',
     'Description',
     'Action'

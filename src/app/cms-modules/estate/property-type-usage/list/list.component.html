@@ -62,7 +62,7 @@
       <!-- IconFont Column -->
       <ng-container matColumnDef="IconFont">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IconFont']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"><i [ngClass]="row.IconFont" [style.color]="row.Color" aria-hidden="true"></i>
+        <mat-cell *matCellDef="let row"><i [ngClass]="row.IconFont" [style.color]="row.IconColor" aria-hidden="true"></i>
         </mat-cell>
       </ng-container>
       <!-- ID Column -->
