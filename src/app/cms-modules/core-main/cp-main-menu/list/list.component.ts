@@ -138,7 +138,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.coreCpMainMenuService.ServiceGetAll(filterModel).subscribe(
+    this.coreCpMainMenuService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

@@ -138,7 +138,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.applicationMemberInfoService.ServiceGetAll(filterModel).subscribe(
+    this.applicationMemberInfoService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

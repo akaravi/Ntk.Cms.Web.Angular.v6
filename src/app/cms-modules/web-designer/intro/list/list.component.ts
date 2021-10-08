@@ -118,7 +118,7 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.webDesignerMainIntroService.ServiceGetAll(filterModel).subscribe(
+    this.webDesignerMainIntroService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

@@ -118,7 +118,7 @@ export class CoreUserGroupListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreUserGroupService.ServiceGetAll(filterModel).subscribe(
+    this.coreUserGroupService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

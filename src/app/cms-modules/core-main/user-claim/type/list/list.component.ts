@@ -135,7 +135,7 @@ export class CoreUserClaimTypeListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreUserClaimTypeService.ServiceGetAll(filterModel).subscribe(
+    this.coreUserClaimTypeService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

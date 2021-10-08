@@ -116,7 +116,7 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.estatePropertyTypeUsageService.ServiceGetAll(filterModel).subscribe(
+    this.estatePropertyTypeUsageService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

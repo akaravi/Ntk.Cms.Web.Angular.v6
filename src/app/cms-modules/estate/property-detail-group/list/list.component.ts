@@ -133,7 +133,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.estatePropertyDetailGroupService.ServiceGetAll(filterModel).subscribe(
+    this.estatePropertyDetailGroupService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

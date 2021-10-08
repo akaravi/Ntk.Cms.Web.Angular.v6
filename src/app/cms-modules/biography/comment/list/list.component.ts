@@ -133,7 +133,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       filter.Value = this.requestContentId;
       filterModel.Filters.push(filter);
     }
-    this.biographyCommentService.ServiceGetAll(filterModel).subscribe(
+    this.biographyCommentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

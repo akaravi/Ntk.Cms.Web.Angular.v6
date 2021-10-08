@@ -136,7 +136,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
     this.ticketingAnswerService.setAccessLoad();
-    this.ticketingAnswerService.ServiceGetAll(filterModel).subscribe(
+    this.ticketingAnswerService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

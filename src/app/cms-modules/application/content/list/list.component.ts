@@ -11,7 +11,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -145,7 +144,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
 
-    this.applicationAppService.ServiceGetAll(filterModel).subscribe(
+    this.applicationAppService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

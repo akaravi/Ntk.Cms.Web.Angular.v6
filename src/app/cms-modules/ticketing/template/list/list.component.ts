@@ -127,7 +127,7 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.ticketingTemplateService.ServiceGetAll(filterModel).subscribe(
+    this.ticketingTemplateService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

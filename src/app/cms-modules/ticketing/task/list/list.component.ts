@@ -133,7 +133,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.ticketingTaskService.ServiceGetAll(filterModel).subscribe(
+    this.ticketingTaskService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

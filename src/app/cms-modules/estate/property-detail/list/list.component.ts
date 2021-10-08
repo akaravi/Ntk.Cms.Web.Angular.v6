@@ -162,7 +162,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
-    this.estatePropertyDetailService.ServiceGetAll(filterModel).subscribe(
+    this.estatePropertyDetailService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

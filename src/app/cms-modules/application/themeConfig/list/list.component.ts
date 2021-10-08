@@ -127,7 +127,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.applicationThemeConfigService.ServiceGetAll(filterModel).subscribe(
+    this.applicationThemeConfigService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

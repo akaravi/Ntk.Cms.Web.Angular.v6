@@ -117,7 +117,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     this.ticketingDepartemenService.setAccessLoad();
-    this.ticketingDepartemenService.ServiceGetAll(filterModel).subscribe(
+    this.ticketingDepartemenService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

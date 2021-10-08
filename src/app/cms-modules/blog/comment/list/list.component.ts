@@ -134,7 +134,7 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
       filter.Value = this.requestContentId;
       filterModel.Filters.push(filter);
     }
-    this.commentService.ServiceGetAll(filterModel).subscribe(
+    this.commentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

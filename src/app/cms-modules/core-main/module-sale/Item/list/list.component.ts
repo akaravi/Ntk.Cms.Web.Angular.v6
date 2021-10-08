@@ -160,7 +160,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
-    this.coreModuleSaleItemService.ServiceGetAll(filterModel).subscribe(
+    this.coreModuleSaleItemService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

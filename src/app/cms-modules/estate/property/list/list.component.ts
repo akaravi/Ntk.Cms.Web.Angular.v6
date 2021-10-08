@@ -157,7 +157,7 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.Filters.push(filter);
     }
-    this.estatePropertyService.ServiceGetAll(filterModel).subscribe(
+    this.estatePropertyService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

@@ -139,7 +139,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.webDesignerMainMenuService.ServiceGetAll(filterModel).subscribe(
+    this.webDesignerMainMenuService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

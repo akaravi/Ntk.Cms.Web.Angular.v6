@@ -129,7 +129,7 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
 
-    this.applicationIntroService.ServiceGetAll(filterModel).subscribe(
+    this.applicationIntroService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

@@ -142,7 +142,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.bankPaymentTransactionLogService.ServiceGetAll(filterModel).subscribe(
+    this.bankPaymentTransactionLogService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

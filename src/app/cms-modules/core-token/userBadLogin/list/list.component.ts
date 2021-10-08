@@ -159,7 +159,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreTokenUserBadLoginService.ServiceGetAll(filterModel).subscribe(
+    this.coreTokenUserBadLoginService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

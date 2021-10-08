@@ -115,7 +115,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.estateAccountAgencyTypeUserService.ServiceGetAll(filterModel).subscribe(
+    this.estateAccountAgencyTypeUserService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

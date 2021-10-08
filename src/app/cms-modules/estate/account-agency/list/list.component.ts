@@ -116,7 +116,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.estateAccountAgencyService.ServiceGetAll(filterModel).subscribe(
+    this.estateAccountAgencyService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

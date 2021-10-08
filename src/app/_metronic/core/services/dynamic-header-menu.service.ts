@@ -33,6 +33,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
+      
       if (this.tokenInfo && this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId > 0) {
         this.DataGetCpMenu();
       }

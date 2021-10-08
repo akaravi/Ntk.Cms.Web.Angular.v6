@@ -131,7 +131,7 @@ export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
-    this.coreModuleSaleSerialService.ServiceGetAll(filterModel).subscribe(
+    this.coreModuleSaleSerialService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

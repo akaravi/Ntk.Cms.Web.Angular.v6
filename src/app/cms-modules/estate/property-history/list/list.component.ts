@@ -115,7 +115,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.estatePropertyHistoryService.ServiceGetAll(filterModel).subscribe(
+    this.estatePropertyHistoryService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

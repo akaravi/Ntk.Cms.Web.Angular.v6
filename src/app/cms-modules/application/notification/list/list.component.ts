@@ -142,7 +142,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.applicationLogNotificationService.ServiceGetAll(filterModel).subscribe(
+    this.applicationLogNotificationService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

@@ -129,7 +129,7 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
 
-    this.ticketingFaqService.ServiceGetAll(filterModel).subscribe(
+    this.ticketingFaqService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

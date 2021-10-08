@@ -149,7 +149,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.webDesignerMainPageDependencyService.ServiceGetAll(filterModel).subscribe(
+    this.webDesignerMainPageDependencyService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

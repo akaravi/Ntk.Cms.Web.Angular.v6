@@ -119,7 +119,7 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.estateAdsTypeService.ServiceGetAll(filterModel).subscribe(
+    this.estateAdsTypeService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

@@ -117,7 +117,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    
+
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -128,7 +128,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       filter.Value = this.requestContentId;
       filterModel.Filters.push(filter);
     }
-    this.commentService.ServiceGetAll(filterModel).subscribe(
+    this.commentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -302,7 +302,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.commentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {

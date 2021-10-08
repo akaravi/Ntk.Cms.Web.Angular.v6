@@ -58,7 +58,9 @@ export class CoreSiteSelectionComponent implements OnInit {
           this.dataModelResult = next;
           this.statusCheckExistWebSite = false;
           if (this.dataModelResult.ListItems?.length === 1) {
-            this.onActionClickSelectSite(this.dataModelResult.ListItems[0].Id);
+            setTimeout(() => {
+              this.onActionClickSelectSite(this.dataModelResult.ListItems[0].Id);
+            }, 1000);
           }
         }
         else {
@@ -74,6 +76,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     );
   }
   onActionClickSelectSite(id: number): void {
+
     if (!this.formInfo.ButtonSubmittedEnabled) {
       return;
     }

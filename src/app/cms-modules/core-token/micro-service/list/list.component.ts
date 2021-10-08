@@ -169,7 +169,7 @@ export class CoreTokenMicroServiceListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreTokenMicroServiceService.ServiceGetAll(filterModel).subscribe(
+    this.coreTokenMicroServiceService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

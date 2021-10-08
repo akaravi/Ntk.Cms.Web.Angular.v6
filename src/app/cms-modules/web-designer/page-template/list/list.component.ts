@@ -122,7 +122,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.bankPaymentPublicConfigService.ServiceGetAll(filterModel).subscribe(
+    this.bankPaymentPublicConfigService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

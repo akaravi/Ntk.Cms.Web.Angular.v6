@@ -147,7 +147,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.coreModuleSaleInvoiceDetailService.ServiceGetAll(filterModel).subscribe(
+    this.coreModuleSaleInvoiceDetailService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

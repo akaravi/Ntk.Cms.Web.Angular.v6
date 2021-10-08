@@ -135,7 +135,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreSiteCategoryCmsModuleService.ServiceGetAll(filterModel).subscribe(
+    this.coreSiteCategoryCmsModuleService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

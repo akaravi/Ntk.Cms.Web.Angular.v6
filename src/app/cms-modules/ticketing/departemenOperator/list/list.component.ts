@@ -130,7 +130,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.ticketingDepartemenOperatorService.ServiceGetAll(filterModel).subscribe(
+    this.ticketingDepartemenOperatorService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

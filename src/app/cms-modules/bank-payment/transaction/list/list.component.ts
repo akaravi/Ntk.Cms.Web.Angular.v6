@@ -167,7 +167,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.bankPaymentTransactionService.ServiceGetAll(filterModel).subscribe(
+    this.bankPaymentTransactionService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

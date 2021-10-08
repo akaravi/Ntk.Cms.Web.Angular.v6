@@ -94,10 +94,10 @@ import { EstatePropertyTypeUsageSelectionlistComponent } from './property-type-u
 import { EstatePropertyAdsAddComponent } from './property-ads/add/add.component';
 import { EstatePropertyAdsEditComponent } from './property-ads/edit/edit.component';
 import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
-import { EstateAdsTypeEditComponent } from './property-ads-type/edit/edit.component';
-import { EstateAdsTypeListComponent } from './property-ads-type/list/list.component';
-import { EstateAdsTypeAddComponent } from './property-ads-type/add/add.component';
-import { EstateAdsTypeSelectorComponent } from './property-ads-type/selector/selector.component';
+import { EstateAdsTypeEditComponent } from './ads-type/edit/edit.component';
+import { EstateAdsTypeListComponent } from './ads-type/list/list.component';
+import { EstateAdsTypeAddComponent } from './ads-type/add/add.component';
+import { EstateAdsTypeSelectorComponent } from './ads-type/selector/selector.component';
 
 @NgModule({
   declarations: [

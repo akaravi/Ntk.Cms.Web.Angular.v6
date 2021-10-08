@@ -163,7 +163,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       /** filter Category */
       const pName = this.constructor.name + '.ServiceGetAll';
       this.loading.Start(pName, 'دریافت  لیست اطلاعات');
-      this.contentService.ServiceGetAll(filterModel).subscribe(
+      this.contentService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

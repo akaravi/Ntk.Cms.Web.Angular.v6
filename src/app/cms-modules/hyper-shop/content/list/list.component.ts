@@ -138,7 +138,7 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
 
-    this.hyperShopContentService.ServiceGetAll(filterModel).subscribe(
+    this.hyperShopContentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

@@ -132,7 +132,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.bankPaymentPrivateSiteConfigService.ServiceGetAll(filterModel).subscribe(
+    this.bankPaymentPrivateSiteConfigService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

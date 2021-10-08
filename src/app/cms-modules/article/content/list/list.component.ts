@@ -166,7 +166,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
         filterModel.Filters.push(filterChild);
       }
       /** filter Category */
-      this.contentService.ServiceGetAll(filterModel).subscribe(
+      this.contentService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

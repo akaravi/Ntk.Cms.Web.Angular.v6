@@ -116,7 +116,7 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
     this.pollingContentService.setAccessLoad();
-    this.pollingContentService.ServiceGetAll(filterModel).subscribe(
+    this.pollingContentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

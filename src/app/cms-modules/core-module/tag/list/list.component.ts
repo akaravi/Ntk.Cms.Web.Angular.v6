@@ -121,7 +121,7 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.tagContentService.ServiceGetAll(filterModel).subscribe(
+    this.tagContentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

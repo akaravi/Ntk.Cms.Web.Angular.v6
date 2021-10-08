@@ -120,7 +120,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
     this.donateTargetService.setAccessLoad();
-    this.donateTargetService.ServiceGetAll(filterModel).subscribe(
+    this.donateTargetService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
