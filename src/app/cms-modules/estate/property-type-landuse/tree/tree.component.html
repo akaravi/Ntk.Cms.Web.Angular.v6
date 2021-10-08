@@ -20,7 +20,7 @@
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
             [ngStyle]="{'background': dataModelSelect.Id?.length>0 && dataModelSelect?.Id === node.Id ? '#d3d3da' : '' }">
             <button mat-icon-button disabled></button>
-            {{node.Title}}
+            <i [ngClass]="node.IconFont" [style.color]="node.IconColor" aria-hidden="true"></i>  {{node.Title}}
         </mat-tree-node>
         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
             <li>
@@ -32,7 +32,7 @@
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-                    {{node.Title}}
+                    <i [ngClass]="node.IconFont" [style.color]="node.IconColor" aria-hidden="true"></i>  {{node.Title}}
                 </div>
                 <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">
                     <ng-container matTreeNodeOutlet></ng-container>
