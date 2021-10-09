@@ -275,7 +275,7 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/estate/property/LinkPropertyAdsTypeId/', this.tableRowSelected.Id]);
+    this.router.navigate(['/estate/property/LinkAdsTypeId/', this.tableRowSelected.Id]);
   }
 
   onActionbuttonStatist(): void {

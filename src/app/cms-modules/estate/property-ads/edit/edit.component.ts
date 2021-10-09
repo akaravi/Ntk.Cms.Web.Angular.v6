@@ -142,13 +142,13 @@ export class EstatePropertyAdsEditComponent implements OnInit {
     }
     this.dataModel.LinkPropertyId = model.Id;
   }
-  onActionSelectorSelectLinkPropertyAdsTypeId(model: EstatePropertyModel | null): void {
+  onActionSelectorSelectLinkAdsTypeId(model: EstatePropertyModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'شناسه نوع تبلیغ مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyAdsTypeId = model.Id;
+    this.dataModel.LinkAdsTypeId = model.Id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

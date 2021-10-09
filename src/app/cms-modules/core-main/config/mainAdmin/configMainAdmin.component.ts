@@ -35,7 +35,6 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: CoreConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,

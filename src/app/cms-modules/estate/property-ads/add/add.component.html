@@ -27,10 +27,10 @@
       [optionDisabled]="!fieldsInfo['LinkPropertyId']?.AccessAddField" [optionSelectForce]="dataModel.LinkPropertyId"
       [optionPlaceholder]="'شناسه ملک'">
     </app-estate-property-selector>
-    <!-- LinkPropertyAdsTypeId Field -->
-    <app-estate-adstype-selector (optionSelect)="onActionSelectorSelectLinkPropertyAdsTypeId($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyAdsTypeId']?.AccessAddField"
-      [optionSelectForce]="dataModel.LinkPropertyAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
+    <!-- LinkAdsTypeId Field -->
+    <app-estate-adstype-selector (optionSelect)="onActionSelectorSelectLinkAdsTypeId($event)"
+      [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.AccessAddField"
+      [optionSelectForce]="dataModel.LinkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
     </app-estate-adstype-selector>
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.AccessWatchField">

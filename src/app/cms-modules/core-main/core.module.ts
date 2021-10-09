@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreConfigCheckUserComponent } from './config/check-user/check-user.component';
 import { CoreConfigCheckSiteComponent } from './config/check-site/check-site.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { CoreConfigCheckSiteComponent } from './config/check-site/check-site.com
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
+    AngularEditorModule,
   ],
   declarations: [
     CoreComponent,

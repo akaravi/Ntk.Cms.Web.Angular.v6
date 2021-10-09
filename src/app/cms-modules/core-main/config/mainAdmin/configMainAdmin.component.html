@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -129,11 +129,10 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
           <input matInput [(ngModel)]="dataConfigAdminMainModel.UseDataDefaulteSiteId"
-            name="dataConfigAdminMainModel.UseDataDefaulteSiteId"
-            #dataConfigAdminMainModel_UseDataDefaulteSiteId type="number" placeholder="0" />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.UseDataDefaulteSiteId" matSuffix
-            mat-icon-button aria-label="Clear"
-            (click)="dataConfigAdminMainModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+            name="dataConfigAdminMainModel.UseDataDefaulteSiteId" #dataConfigAdminMainModel_UseDataDefaulteSiteId
+            type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.UseDataDefaulteSiteId" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.UseDataDefaulteSiteId = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
@@ -204,61 +203,61 @@
             AccessBuy
           </mat-slide-toggle>
         </div>
-       <!-- ImageMainSizeWidth Field -->
-       <mat-form-field class="ntk-full-width">
-        <mat-label>ImageMainSizeWidth</mat-label>
-        <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageMainSizeWidth"
-          name="dataConfigAdminMainModel.ImageMainSizeWidth" #dataConfigAdminMainModel_ImageMainSizeWidth
-          type="number" placeholder="0" required />
-        <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageMainSizeWidth" matSuffix mat-icon-button
-          aria-label="Clear" (click)="dataConfigAdminMainModel.ImageMainSizeWidth = null">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-error *ngIf="dataConfigAdminMainModel_ImageMainSizeWidth.errors?.required">
-          ImageMainSizeWidth is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <!-- ImageMainSizeHeight Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>ImageMainSizeHeight</mat-label>
-        <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageMainSizeHeight"
-          name="dataConfigAdminMainModel.ImageMainSizeHeight" #dataConfigAdminMainModel_ImageMainSizeHeight
-          type="number" placeholder="0" required />
-        <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageMainSizeHeight" matSuffix mat-icon-button
-          aria-label="Clear" (click)="dataConfigAdminMainModel.ImageMainSizeHeight = null">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-error *ngIf="dataConfigAdminMainModel_ImageMainSizeHeight.errors?.required">
-          ImageMainSizeHeight is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+        <!-- ImageMainSizeWidth Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ImageMainSizeWidth</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageMainSizeWidth"
+            name="dataConfigAdminMainModel.ImageMainSizeWidth" #dataConfigAdminMainModel_ImageMainSizeWidth
+            type="number" placeholder="0" required />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageMainSizeWidth" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageMainSizeWidth = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="dataConfigAdminMainModel_ImageMainSizeWidth.errors?.required">
+            ImageMainSizeWidth is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- ImageMainSizeHeight Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ImageMainSizeHeight</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageMainSizeHeight"
+            name="dataConfigAdminMainModel.ImageMainSizeHeight" #dataConfigAdminMainModel_ImageMainSizeHeight
+            type="number" placeholder="0" required />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageMainSizeHeight" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageMainSizeHeight = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="dataConfigAdminMainModel_ImageMainSizeHeight.errors?.required">
+            ImageMainSizeHeight is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
 
 
-      <!-- ImageThumbnailSizeWidth Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>ImageThumbnailSizeWidth</mat-label>
-        <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageThumbnailSizeWidth"
-          name="dataConfigAdminMainModel.ImageThumbnailSizeWidth" #dataConfigAdminMainModel_ImageThumbnailSizeWidth
-          type="number" placeholder="0" required />
-        <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageThumbnailSizeWidth" matSuffix mat-icon-button
-          aria-label="Clear" (click)="dataConfigAdminMainModel.ImageThumbnailSizeWidth = null">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-error *ngIf="dataConfigAdminMainModel_ImageThumbnailSizeWidth.errors?.required">
-          ImageThumbnailSizeWidth is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <!-- ImageThumbnailSizeHeight Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>ImageThumbnailSizeHeight</mat-label>
-        <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageThumbnailSizeHeight"
-          name="dataConfigAdminMainModel.ImageThumbnailSizeHeight" #dataConfigAdminMainModel_ImageThumbnailSizeHeight
-          type="number" placeholder="0" required />
-        <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageThumbnailSizeHeight" matSuffix mat-icon-button
-          aria-label="Clear" (click)="dataConfigAdminMainModel.ImageThumbnailSizeHeight = null">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-error *ngIf="dataConfigAdminMainModel_ImageThumbnailSizeHeight.errors?.required">
-          ImageThumbnailSizeHeight is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+        <!-- ImageThumbnailSizeWidth Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ImageThumbnailSizeWidth</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageThumbnailSizeWidth"
+            name="dataConfigAdminMainModel.ImageThumbnailSizeWidth" #dataConfigAdminMainModel_ImageThumbnailSizeWidth
+            type="number" placeholder="0" required />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageThumbnailSizeWidth" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageThumbnailSizeWidth = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="dataConfigAdminMainModel_ImageThumbnailSizeWidth.errors?.required">
+            ImageThumbnailSizeWidth is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- ImageThumbnailSizeHeight Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ImageThumbnailSizeHeight</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageThumbnailSizeHeight"
+            name="dataConfigAdminMainModel.ImageThumbnailSizeHeight" #dataConfigAdminMainModel_ImageThumbnailSizeHeight
+            type="number" placeholder="0" required />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageThumbnailSizeHeight" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageThumbnailSizeHeight = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="dataConfigAdminMainModel_ImageThumbnailSizeHeight.errors?.required">
+            ImageThumbnailSizeHeight is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
         <!-- AccessFree Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
@@ -283,8 +282,9 @@
         <!-- DomainsList Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>DomainsList</mat-label>
-          <input matInput [(ngModel)]="dataConfigAdminMainModel.DomainsList" name="dataConfigAdminMainModel.DomainsList"
-            #dataConfigAdminMainModel_DomainsList type="number" placeholder="0" />
+          <textarea matInput [(ngModel)]="dataConfigAdminMainModel.DomainsList"
+            name="dataConfigAdminMainModel.DomainsList" #dataConfigAdminMainModel_DomainsList type="number"
+            rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.DomainsList" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataConfigAdminMainModel.DomainsList = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -309,8 +309,15 @@
             mat-icon-button aria-label="Clear"
             (click)="dataConfigAdminMainModel.AdminCpUserRegidteryExpireDateDay = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-
         </mat-form-field>
+        
+        <!-- UserMembershipRuleHtmlBody Field -->
+        قوانین عضویت کاربر :
+        <angular-editor [placeholder]="'متن قوانین عضویت کاربر را وارد کنید ...'" [config]="publicHelper.editorConfig"
+          id="maineditor" [(ngModel)]="dataConfigAdminMainModel.UserMembershipRuleHtmlBody"
+          name="dataConfigAdminMainModel.UserMembershipRuleHtmlBody"></angular-editor>
+
+
         <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
         </div>
