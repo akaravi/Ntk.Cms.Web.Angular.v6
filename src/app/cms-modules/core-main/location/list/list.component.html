@@ -76,9 +76,10 @@
       </ng-container>
       <!-- LocationType Column -->
       <ng-container matColumnDef="LocationType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LocationType']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LocationType']?.FieldTitle }}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LocationType}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.LocationType | enums :
+          dataModelEnumLocationTypeResult.ListItems}} </mat-cell>
       </ng-container>
       <!-- GeoLocationLatitude Column -->
       <ng-container matColumnDef="GeoLocationLatitude">

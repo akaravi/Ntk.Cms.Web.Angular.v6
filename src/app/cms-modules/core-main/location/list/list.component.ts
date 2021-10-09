@@ -13,7 +13,9 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumInfoModel,
+  CoreEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -38,7 +40,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class CoreLocationListComponent implements OnInit, OnDestroy {
   constructor(
     private coreLocationService: CoreLocationService,
-    private cmsApiStore: NtkCmsApiStoreService,
+    private coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -73,6 +75,7 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<CoreLocationModel> = [];
   tableRowSelected: CoreLocationModel = new CoreLocationModel();
   tableSource: MatTableDataSource<CoreLocationModel> = new MatTableDataSource<CoreLocationModel>();
+  dataModelEnumLocationTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   tabledisplayedColumns: string[] = [
@@ -104,6 +107,12 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
+    });
+    this.getEnumLocationType();
+  }
+  getEnumLocationType(): void {
+    this.coreEnumService.ServiceEnumLocationType().subscribe((next) => {
+      this.dataModelEnumLocationTypeResult = next;
     });
   }
   ngOnDestroy(): void {

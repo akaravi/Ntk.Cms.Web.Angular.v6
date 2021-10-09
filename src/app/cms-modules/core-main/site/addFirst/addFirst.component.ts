@@ -51,7 +51,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  alphaExp = /^[a-zA-Z]+$/;
+  alphaExp = /^[a-zA-Z0-9]+$/;
   siteTypeId = 0;
   
   dataModel = new CoreSiteAddFirstSiteDtoModel();
