@@ -20,7 +20,6 @@ export class BiographyContentWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: BiographyContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

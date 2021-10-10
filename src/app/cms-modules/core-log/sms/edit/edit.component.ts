@@ -37,7 +37,6 @@ export class CoreLogSmsEditComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<CoreLogSmsEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreLogSmsService: CoreLogSmsService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

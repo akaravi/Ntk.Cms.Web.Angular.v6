@@ -35,8 +35,6 @@ export class DonateConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: DonateConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,

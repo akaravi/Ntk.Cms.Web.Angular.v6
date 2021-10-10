@@ -47,7 +47,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: any,
     private bankPaymentTransactionService: BankPaymentTransactionService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,

@@ -44,7 +44,6 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
   constructor(
     private coreEnumService: CoreEnumService,
     private coreLogSmsService: CoreLogSmsService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

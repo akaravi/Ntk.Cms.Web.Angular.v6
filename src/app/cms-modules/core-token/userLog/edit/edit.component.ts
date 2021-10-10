@@ -37,7 +37,6 @@ export class CoreTokenUserLogEditComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<CoreTokenUserLogEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreTokenUserLogService: CoreTokenUserLogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

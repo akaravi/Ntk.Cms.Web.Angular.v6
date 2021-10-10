@@ -40,7 +40,6 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   constructor(
     private coreSiteService: CoreSiteService,
     private coreAuthService: CoreAuthService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

@@ -33,7 +33,6 @@ export class WebDesignerConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: WebDesignerConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,

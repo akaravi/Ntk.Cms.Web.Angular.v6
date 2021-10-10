@@ -18,7 +18,6 @@ export class DynamicAsideMenuService implements OnDestroy {
   constructor(
     private coreCpMainMenuService: CoreCpMainMenuService,
     public coreAuthService: CoreAuthService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private tokenHelper: TokenHelper
   ) {
     this.menuConfig$ = this.menuConfigSubject.asObservable();
@@ -30,8 +29,9 @@ export class DynamicAsideMenuService implements OnDestroy {
         this.DataGetCpMenu();
       }
     });
-    this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
-      this.tokenInfo = value;
+  
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
       if (this.tokenInfo && this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId > 0) {
         this.DataGetCpMenu();
       }

@@ -36,7 +36,6 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
   constructor(
     private coreModuleSaleHeaderService: CoreModuleSaleHeaderService,
     private coreSiteService: CoreSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,

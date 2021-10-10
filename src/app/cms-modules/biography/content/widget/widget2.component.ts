@@ -20,10 +20,8 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
   svgCSSClass;
   constructor(
     private service: BiographyContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-
   ) {
     this.loading.cdr = this.cdr;
   }

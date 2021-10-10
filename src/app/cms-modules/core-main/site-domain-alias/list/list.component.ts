@@ -41,7 +41,6 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
   constructor(
     private coreSiteDomainAliasService: CoreSiteDomainAliasService,
     private coreSiteService: CoreSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

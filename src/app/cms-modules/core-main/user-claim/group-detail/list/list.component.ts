@@ -44,7 +44,6 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
   requestLinkUserClaimTypeId = 0;
   constructor(
     private coreUserClaimGroupDetailService: CoreUserClaimGroupDetailService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

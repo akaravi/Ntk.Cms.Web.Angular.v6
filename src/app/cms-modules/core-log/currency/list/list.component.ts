@@ -38,7 +38,6 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
   requestLinkCurrencyId = 0;
   constructor(
     private coreLogCurrencyService: CoreLogCurrencyService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

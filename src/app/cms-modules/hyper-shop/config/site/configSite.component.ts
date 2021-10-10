@@ -35,8 +35,6 @@ export class HyperShopConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: HyperShopConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,

@@ -38,7 +38,6 @@ export class HyperShopCategoryListComponent implements OnInit, OnDestroy {
   constructor(
     private hyperShopCategoryService: HyperShopCategoryService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

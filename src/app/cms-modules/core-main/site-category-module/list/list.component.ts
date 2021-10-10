@@ -41,7 +41,6 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
   requestLinkCmsSiteCategoryId = 0;
   constructor(
     private coreSiteCategoryCmsModuleService: CoreSiteCategoryCmsModuleService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

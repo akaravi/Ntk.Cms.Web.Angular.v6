@@ -41,7 +41,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   constructor(
     private webDesignerMainMenuService: WebDesignerMainMenuService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,

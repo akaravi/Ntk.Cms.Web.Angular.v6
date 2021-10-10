@@ -20,7 +20,6 @@ export class CoreSiteWidgetCountComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: CoreSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

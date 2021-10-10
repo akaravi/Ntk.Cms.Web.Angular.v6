@@ -40,7 +40,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestroy {
   constructor(
     private bankPaymentPublicConfigService: WebDesignerMainPageTemplateService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

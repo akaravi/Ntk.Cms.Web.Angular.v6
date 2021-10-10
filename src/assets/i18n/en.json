@@ -18,6 +18,7 @@
 	"ACTION.SELECT": "Select",
 	"ACTION.STATIST": "Statist",
 	"ACTION.VIEW": "View",
+	"ACTION.ADS": "Ads",
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "Confirm Password",
 	"AUTH.FORGOT.DESC": "Enter your email to reset your password",
 	"AUTH.FORGOT.DESCEMAIL": "",

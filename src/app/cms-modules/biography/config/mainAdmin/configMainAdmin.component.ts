@@ -33,7 +33,6 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
   requestLinkSiteId = 0;
   constructor(
     private configService: BiographyConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,

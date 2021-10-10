@@ -33,7 +33,6 @@ export class TicketingConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: TicketingConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,

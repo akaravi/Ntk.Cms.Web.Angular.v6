@@ -41,7 +41,6 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private coreDeviceService: CoreDeviceService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

@@ -44,7 +44,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class CoreUserClaimGroupListComponent implements OnInit, OnDestroy {
   constructor(
     private coreUserClaimGroupService: CoreUserClaimGroupService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

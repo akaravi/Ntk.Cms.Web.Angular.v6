@@ -44,7 +44,6 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;
   constructor(
     private coreUserClaimContentService: CoreUserClaimContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

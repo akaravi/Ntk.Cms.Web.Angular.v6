@@ -20,7 +20,6 @@ export class ChartContentWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: ChartContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

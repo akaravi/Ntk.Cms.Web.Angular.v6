@@ -31,7 +31,6 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<TicketingDepartemenLogEditComponent>,
     public coreEnumService: CoreEnumService,
     public ticketingDepartemenLogService: TicketingDepartemenLogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

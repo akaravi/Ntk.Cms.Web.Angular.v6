@@ -35,8 +35,6 @@ export class PollingConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: PollingConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,

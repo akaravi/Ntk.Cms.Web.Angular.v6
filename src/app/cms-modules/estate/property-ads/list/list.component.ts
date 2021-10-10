@@ -40,7 +40,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   constructor(
     private estatePropertyAdsService: EstatePropertyAdsService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,

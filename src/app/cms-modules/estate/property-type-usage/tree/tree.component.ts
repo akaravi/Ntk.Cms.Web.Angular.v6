@@ -36,7 +36,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 })
 export class EstatePropertyTypeUsageTreeComponent implements OnInit, OnDestroy {
   constructor(
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: EstatePropertyTypeUsageService,

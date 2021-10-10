@@ -51,7 +51,6 @@ export class LayoutComponent implements OnInit, AfterViewInit , OnDestroy {
     private initService: LayoutInitService,
     private layout: LayoutService,
     private tokenHelper: TokenHelper,
-    private cmsApiStore: NtkCmsApiStoreService,
   ) {
     this.initService.init();
     this.tokenHelper.getCurrentToken().then((value) => {

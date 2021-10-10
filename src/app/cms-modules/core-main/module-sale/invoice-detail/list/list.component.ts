@@ -42,7 +42,6 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
   requestLinkInvoiceId = 0;
   constructor(
     private coreModuleSaleInvoiceDetailService: CoreModuleSaleInvoiceDetailService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

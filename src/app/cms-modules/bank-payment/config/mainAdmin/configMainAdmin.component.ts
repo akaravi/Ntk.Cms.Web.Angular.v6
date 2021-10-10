@@ -33,7 +33,6 @@ export class BankPaymentConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: BankPaymentConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,

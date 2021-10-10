@@ -38,7 +38,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class CoreCurrencyListComponent implements OnInit, OnDestroy {
   constructor(
     private coreCurrencyService: CoreCurrencyService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

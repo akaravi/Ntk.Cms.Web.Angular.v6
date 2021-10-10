@@ -35,8 +35,6 @@ export class EstateConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: EstateConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,

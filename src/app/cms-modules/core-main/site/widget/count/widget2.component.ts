@@ -20,7 +20,6 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
   svgCSSClass;
   constructor(
     private service: CoreSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

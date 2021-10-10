@@ -13,8 +13,6 @@ export class QuickActionsDropdownInnerComponent implements OnInit, OnDestroy {
   constructor(
     private layout: LayoutService,
     private tokenHelper: TokenHelper,
-    private cmsApiStore: NtkCmsApiStoreService,
-
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

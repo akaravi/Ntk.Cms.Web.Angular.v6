@@ -42,7 +42,6 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   constructor(
     private coreUserService: CoreUserService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

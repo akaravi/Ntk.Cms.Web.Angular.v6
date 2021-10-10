@@ -37,7 +37,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class DonateTargetListComponent implements OnInit, OnDestroy {
 
   constructor(
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private donateTargetService: DonateTargetService,
     private cmsToastrService: CmsToastrService,

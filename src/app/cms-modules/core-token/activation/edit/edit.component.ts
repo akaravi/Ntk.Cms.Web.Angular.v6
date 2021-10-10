@@ -37,7 +37,6 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<CoreTokenActivationEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreTokenActivationService: CoreTokenActivationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

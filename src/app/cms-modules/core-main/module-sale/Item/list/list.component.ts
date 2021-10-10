@@ -44,7 +44,6 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
   requestLinkModuleSaleHeader = 0;
   constructor(
     private coreModuleSaleItemService: CoreModuleSaleItemService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

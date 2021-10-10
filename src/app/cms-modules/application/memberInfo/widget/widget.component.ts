@@ -20,7 +20,6 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: ApplicationMemberInfoService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

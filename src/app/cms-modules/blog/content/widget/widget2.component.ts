@@ -20,7 +20,6 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
   svgCSSClass;
   constructor(
     private service: BlogContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

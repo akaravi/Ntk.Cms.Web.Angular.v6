@@ -16,7 +16,6 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: ApplicationAppService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

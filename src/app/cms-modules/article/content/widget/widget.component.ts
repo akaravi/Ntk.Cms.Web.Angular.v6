@@ -20,7 +20,6 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: ArticleContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

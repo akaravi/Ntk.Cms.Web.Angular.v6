@@ -37,7 +37,6 @@ export class CoreTokenUserViewComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<CoreTokenUserViewComponent>,
     public coreEnumService: CoreEnumService,
     public coreTokenUserService: CoreTokenUserService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

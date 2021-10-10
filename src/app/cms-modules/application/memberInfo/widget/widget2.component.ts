@@ -20,7 +20,6 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
   svgCSSClass;
   constructor(
     private service: ApplicationMemberInfoService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

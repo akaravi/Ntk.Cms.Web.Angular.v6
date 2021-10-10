@@ -45,7 +45,6 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
   constructor(
     private coreEnumService: CoreEnumService,
     private coreTokenUserBadLoginService: CoreTokenUserBadLoginService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

@@ -35,8 +35,6 @@ export class BlogConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: BlogConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,

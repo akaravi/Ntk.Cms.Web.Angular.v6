@@ -20,7 +20,6 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
   svgCSSClass;
   constructor(
     private service: ChartContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

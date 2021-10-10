@@ -37,7 +37,6 @@ export class CoreModuleSaleInvoiceDetailViewComponent implements OnInit, OnDestr
     private dialogRef: MatDialogRef<CoreModuleSaleInvoiceDetailViewComponent>,
     public coreEnumService: CoreEnumService,
     public coreModuleSaleInvoiceDetailService: CoreModuleSaleInvoiceDetailService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

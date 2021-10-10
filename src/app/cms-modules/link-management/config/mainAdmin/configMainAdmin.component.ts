@@ -33,7 +33,6 @@ export class LinkManagementConfigMainAdminComponent implements OnInit, OnDestroy
   requestLinkSiteId = 0;
   constructor(
     private configService: LinkManagementConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,

@@ -20,7 +20,6 @@ export class BlogContentWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: BlogContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

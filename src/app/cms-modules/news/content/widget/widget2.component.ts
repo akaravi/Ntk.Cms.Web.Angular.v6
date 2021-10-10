@@ -20,7 +20,6 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
   svgCSSClass;
   constructor(
     private service: NewsContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

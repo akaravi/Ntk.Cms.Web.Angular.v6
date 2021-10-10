@@ -28,7 +28,6 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info'];
   constructor(
     private service: CoreSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private persianCalendarService: PersianCalendarService,
     private cmsToastrService: CmsToastrService,
     private coreAuthService: CoreAuthService,
@@ -39,7 +38,9 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.description = 'خلاصه مشخصات حساب این سامانه ';
     this.widgetInfoModel.link = '/core/site';
 
-    this.tokenInfoModel = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfoModel = value;
+    });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfoModel = next;
       this.onActionStatist();

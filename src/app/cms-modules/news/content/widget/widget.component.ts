@@ -20,10 +20,11 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: NewsContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-  ) { }
+  ) {
+    this.loading.cdr = this.cdr;
+  }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'اخبار های ثبت شده';
     this.widgetInfoModel.description = '';

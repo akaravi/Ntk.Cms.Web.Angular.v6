@@ -39,7 +39,6 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   constructor(
     private ticketingAnswerService: TicketingAnswerService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

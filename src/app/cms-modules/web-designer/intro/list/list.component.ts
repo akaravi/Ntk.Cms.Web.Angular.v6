@@ -36,7 +36,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
   constructor(
     private webDesignerMainIntroService: WebDesignerMainIntroService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

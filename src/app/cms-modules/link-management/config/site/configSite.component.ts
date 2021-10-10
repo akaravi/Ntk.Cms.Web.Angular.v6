@@ -35,8 +35,6 @@ export class LinkManagementConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: LinkManagementConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,

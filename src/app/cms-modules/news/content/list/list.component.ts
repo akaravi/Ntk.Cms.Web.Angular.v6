@@ -36,7 +36,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class NewsContentListComponent implements OnInit, OnDestroy {
 
   constructor(
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private contentService: NewsContentService,
     private cmsToastrService: CmsToastrService,

@@ -38,7 +38,6 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   constructor(
     private estatePropertyHistoryService: EstatePropertyHistoryService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

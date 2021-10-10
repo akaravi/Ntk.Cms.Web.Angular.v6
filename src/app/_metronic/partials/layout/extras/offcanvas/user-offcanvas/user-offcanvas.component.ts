@@ -23,10 +23,8 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
 
   constructor(
     private layout: LayoutService,
-    private auth: AuthService,
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,

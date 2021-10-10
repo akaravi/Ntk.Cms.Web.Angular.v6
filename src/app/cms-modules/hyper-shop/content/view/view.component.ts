@@ -36,7 +36,6 @@ export class HyperShopContentViewComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<HyperShopContentViewComponent>,
     public coreEnumService: CoreEnumService,
     public hyperShopContentService: HyperShopContentService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

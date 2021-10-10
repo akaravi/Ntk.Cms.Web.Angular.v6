@@ -40,7 +40,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   constructor(
     private bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

@@ -26,7 +26,6 @@ export class BuilderComponent implements OnInit, AfterViewInit, OnDestroy {
     private layout: LayoutService,
     private el: ElementRef,
     private tokenHelper: TokenHelper,
-    private cmsApiStore: NtkCmsApiStoreService,
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

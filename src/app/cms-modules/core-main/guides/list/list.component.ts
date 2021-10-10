@@ -41,7 +41,6 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
   constructor(
     private coreGuideService: CoreGuideService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,

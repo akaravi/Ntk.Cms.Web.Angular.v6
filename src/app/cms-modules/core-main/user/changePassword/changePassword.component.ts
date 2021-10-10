@@ -40,7 +40,6 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CoreUserChangePasswordComponent>,
-    private cmsApiStore: NtkCmsApiStoreService,
     public coreEnumService: CoreEnumService,
     public coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,

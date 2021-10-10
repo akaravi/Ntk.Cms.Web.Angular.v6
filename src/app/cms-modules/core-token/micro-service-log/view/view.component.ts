@@ -37,7 +37,6 @@ export class CoreTokenMicroServiceLogViewComponent implements OnInit, OnDestroy 
     private dialogRef: MatDialogRef<CoreTokenMicroServiceLogViewComponent>,
     public coreEnumService: CoreEnumService,
     public coreTokenMicroServiceLogService: CoreTokenMicroServiceLogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

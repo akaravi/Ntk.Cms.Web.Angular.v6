@@ -36,8 +36,6 @@ export class ApplicationConfigSiteComponent implements OnInit {
 
   constructor(
     private configService: ApplicationConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
-    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,

@@ -18,7 +18,6 @@ export class DynamicHeaderMenuService implements OnDestroy {
   constructor(
     private coreCpMainMenuService: CoreCpMainMenuService,
     public coreAuthService: CoreAuthService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private tokenHelper: TokenHelper
   ) {
     this.menuConfig$ = this.menuConfigSubject.asObservable();

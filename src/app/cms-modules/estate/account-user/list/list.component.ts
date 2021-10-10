@@ -38,7 +38,6 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   constructor(
     private estateAccountUserService: EstateAccountUserService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

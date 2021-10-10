@@ -38,7 +38,6 @@ export class TopbarComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private layout: LayoutService,
     private tokenHelper: TokenHelper,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef
   ) {
     // this.user$ = this.auth.currentUserSubject.asObservable();

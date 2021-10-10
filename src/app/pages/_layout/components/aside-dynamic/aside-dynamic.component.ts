@@ -15,7 +15,6 @@ export class AsideDynamicComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private cmsApiStore: NtkCmsApiStoreService,
     private layout: LayoutService,
     private router: Router,
     private menu: DynamicAsideMenuService,

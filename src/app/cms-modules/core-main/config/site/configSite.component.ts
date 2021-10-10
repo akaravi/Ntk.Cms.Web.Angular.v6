@@ -35,7 +35,6 @@ export class CoreConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: CoreConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,

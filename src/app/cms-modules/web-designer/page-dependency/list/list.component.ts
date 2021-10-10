@@ -45,7 +45,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   requestLinkModuleId = 0;
   constructor(
     private webDesignerMainPageDependencyService: WebDesignerMainPageDependencyService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

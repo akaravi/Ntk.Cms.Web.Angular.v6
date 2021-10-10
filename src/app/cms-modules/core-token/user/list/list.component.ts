@@ -42,7 +42,6 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
   requestLinkDeviceId = 0;
   constructor(
     private coreTokenUserService: CoreTokenUserService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

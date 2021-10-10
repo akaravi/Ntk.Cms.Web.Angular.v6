@@ -37,7 +37,6 @@ export class CoreTokenMicroServiceEditComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<CoreTokenMicroServiceEditComponent>,
     public coreEnumService: CoreEnumService,
     public coreTokenMicroServiceService: CoreTokenMicroServiceService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

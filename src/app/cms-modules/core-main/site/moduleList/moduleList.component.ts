@@ -44,7 +44,6 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   requestLinkModuleId = 0;
   constructor(
     private coreModuleSiteService: CoreModuleSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,

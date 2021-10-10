@@ -37,7 +37,6 @@ export class CoreUserViewComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<CoreUserViewComponent>,
     public coreEnumService: CoreEnumService,
     public coreUserService: CoreUserService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,

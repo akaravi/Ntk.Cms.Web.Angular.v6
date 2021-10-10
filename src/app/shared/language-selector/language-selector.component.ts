@@ -61,7 +61,6 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   constructor(
     private translationService: TranslationService,
     public coreAuthService: CoreAuthService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private router: Router

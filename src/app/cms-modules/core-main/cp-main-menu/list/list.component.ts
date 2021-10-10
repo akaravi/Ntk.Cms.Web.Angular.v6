@@ -41,7 +41,6 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
   constructor(
     private coreCpMainMenuService: CoreCpMainMenuService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,

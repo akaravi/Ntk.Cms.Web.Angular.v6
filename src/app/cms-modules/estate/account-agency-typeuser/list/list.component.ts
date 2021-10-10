@@ -38,7 +38,6 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
   constructor(
     private estateAccountAgencyTypeUserService: EstateAccountAgencyTypeUserService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

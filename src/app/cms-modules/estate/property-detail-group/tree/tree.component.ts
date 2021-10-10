@@ -38,7 +38,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy {
   requestLinkPropertyTypeLanduseId = '';
   constructor(
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: EstatePropertyDetailGroupService,

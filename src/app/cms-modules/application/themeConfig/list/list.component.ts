@@ -38,7 +38,6 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
   constructor(
     private applicationThemeConfigService: ApplicationThemeConfigService,
     private activatedRoute: ActivatedRoute,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

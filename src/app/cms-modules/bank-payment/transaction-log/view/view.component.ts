@@ -37,7 +37,6 @@ export class BankPaymentTransactionLogViewComponent implements OnInit, OnDestroy
     private dialogRef: MatDialogRef<BankPaymentTransactionLogViewComponent>,
     public coreEnumService: CoreEnumService,
     public bankPaymentTransactionLogService: BankPaymentTransactionLogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

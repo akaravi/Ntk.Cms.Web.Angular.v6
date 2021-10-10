@@ -40,7 +40,6 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
   requestHeaderGroupId = 0;
   constructor(
     private coreModuleSaleHeaderService: CoreModuleSaleHeaderService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

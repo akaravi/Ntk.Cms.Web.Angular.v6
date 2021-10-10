@@ -22,7 +22,6 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: CoreUserService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private persianCalendarService: PersianCalendarService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
@@ -35,7 +34,9 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/core/User';
 
 
-    this.tokenInfoModel = this.cmsApiStore.getStateSnapshot().ntkCmsAPiState.tokenInfo;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfoModel = value;
+    });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfoModel = next;
       this.onActionStatist();

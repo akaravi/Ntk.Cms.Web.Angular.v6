@@ -37,7 +37,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   constructor(
     private ticketingDepartemenService: TicketingDepartemenService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,

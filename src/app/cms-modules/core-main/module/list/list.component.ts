@@ -37,7 +37,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class CoreModuleListComponent implements OnInit, OnDestroy {
   constructor(
     private coreModuleService: CoreModuleService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

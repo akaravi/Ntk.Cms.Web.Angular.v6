@@ -47,7 +47,6 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
   requestLinkPageDependencyGuId = '';
   constructor(
     private bankPaymentPublicConfigService: WebDesignerMainPageService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

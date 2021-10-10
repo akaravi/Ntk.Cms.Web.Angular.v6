@@ -43,7 +43,6 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
-    private cmsApiStore: NtkCmsApiStoreService,
     private router: Router,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,

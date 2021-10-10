@@ -40,7 +40,6 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
   requestLinkDeviceId = 0;
   constructor(
     private coreLogErrorService: CoreLogErrorService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

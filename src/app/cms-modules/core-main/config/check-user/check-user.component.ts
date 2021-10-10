@@ -25,7 +25,6 @@ export class CoreConfigCheckUserComponent implements OnInit, OnDestroy {
 
   constructor(
     private configService: CoreConfigurationService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,

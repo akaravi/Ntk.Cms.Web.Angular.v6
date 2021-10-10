@@ -36,7 +36,6 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   requestSerial = '';
   constructor(
     private coreModuleSaleSerialService: CoreModuleSaleSerialService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,

@@ -34,7 +34,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 })
 export class TicketingDepartemenOperatorTreeComponent implements OnInit, OnDestroy {
   constructor(
-    private cmsApiStore: NtkCmsApiStoreService,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     public categoryService: TicketingDepartemenOperatorService,

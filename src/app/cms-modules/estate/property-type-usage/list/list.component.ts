@@ -39,7 +39,6 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
   constructor(
     private estatePropertyTypeUsageService: EstatePropertyTypeUsageService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private cmsApiStore: NtkCmsApiStoreService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,

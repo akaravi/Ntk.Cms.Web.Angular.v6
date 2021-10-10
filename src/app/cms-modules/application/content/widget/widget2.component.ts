@@ -20,7 +20,6 @@ export class ApplicationAppWidget2Component implements OnInit, OnDestroy {
   svgCSSClass;
   constructor(
     private service: ApplicationAppService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

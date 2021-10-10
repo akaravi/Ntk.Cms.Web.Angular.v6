@@ -27,7 +27,6 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: CoreModuleSiteService,
-    private cmsApiStore: NtkCmsApiStoreService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
