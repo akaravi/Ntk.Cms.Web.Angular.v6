@@ -71,7 +71,7 @@ import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/t
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

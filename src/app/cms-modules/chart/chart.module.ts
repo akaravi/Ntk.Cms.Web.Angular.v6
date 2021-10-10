@@ -72,7 +72,7 @@ import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tre
     ChartRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

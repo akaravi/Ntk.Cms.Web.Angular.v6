@@ -80,7 +80,7 @@ import { BankPaymentPublicConfigHeaderComponent } from './public-config/header/h
     BankPaymentRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

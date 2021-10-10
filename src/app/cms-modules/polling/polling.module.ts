@@ -60,7 +60,7 @@ import { PollingConfigSiteComponent } from './config/site/configSite.component';
     PollingRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

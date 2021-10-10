@@ -57,7 +57,7 @@ import { HyperShopContentViewComponent } from './content/view/view.component';
     HyperShopRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -71,7 +71,7 @@ import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector
     BiographyRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

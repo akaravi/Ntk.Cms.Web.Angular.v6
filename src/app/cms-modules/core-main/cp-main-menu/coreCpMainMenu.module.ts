@@ -48,7 +48,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CoreCpMainMenuRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

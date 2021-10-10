@@ -40,7 +40,7 @@ import { TagInputModule } from 'ngx-chips';
     FormsModule,
     CoreDeviceRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

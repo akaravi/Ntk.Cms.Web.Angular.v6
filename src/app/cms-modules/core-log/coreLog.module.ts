@@ -29,7 +29,7 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -24,7 +24,7 @@ import { CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api'
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

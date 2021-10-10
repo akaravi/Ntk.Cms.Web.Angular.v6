@@ -38,7 +38,7 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
     FormsModule,
     CoreCurrencyRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -82,7 +82,7 @@ import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
     FormsModule,
     CoreSiteRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

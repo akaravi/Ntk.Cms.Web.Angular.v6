@@ -144,7 +144,7 @@ import { CoreModuleSaleHeaderSalePaymentComponent } from './header/sale-payment/
     FormsModule,
     CoreModuleSaleRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -111,7 +111,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     WebDesignerRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

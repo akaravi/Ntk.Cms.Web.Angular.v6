@@ -28,7 +28,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     SmsConfigRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

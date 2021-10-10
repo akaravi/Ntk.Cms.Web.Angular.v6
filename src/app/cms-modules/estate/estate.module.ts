@@ -179,7 +179,7 @@ import { EstateAdsTypeSelectorComponent } from './ads-type/selector/selector.com
     EstateRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

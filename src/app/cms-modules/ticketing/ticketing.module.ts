@@ -102,7 +102,7 @@ import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.c
     TicketingRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

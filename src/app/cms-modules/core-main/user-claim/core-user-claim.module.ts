@@ -111,7 +111,7 @@ import { CoreUserClaimTypeSelectionlistComponent } from './type/selectionlist/se
     FormsModule,
     CoreUserClaimRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -103,7 +103,7 @@ import { CmsFileUploaderModule } from 'src/app/shared/cms-file-uploader/cms-file
     ApplicationRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

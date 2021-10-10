@@ -36,7 +36,7 @@ import { LinkManagementConfigMainAdminComponent } from './config/mainAdmin/confi
     LinkManagementRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

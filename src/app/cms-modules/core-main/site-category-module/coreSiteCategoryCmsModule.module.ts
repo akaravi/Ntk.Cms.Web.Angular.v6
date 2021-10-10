@@ -49,7 +49,7 @@ import { CoreSiteCategoryCmsModule } from '../site-category/coreSiteCategory.mod
     FormsModule,
     CoreSiteCategoryCmsModuleRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

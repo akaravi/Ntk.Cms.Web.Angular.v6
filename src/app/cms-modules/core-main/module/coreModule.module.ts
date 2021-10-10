@@ -42,7 +42,7 @@ import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.
     FormsModule,
     CoreModuleRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

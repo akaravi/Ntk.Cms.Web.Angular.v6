@@ -43,7 +43,7 @@ import { CoreUserGroupSelectionlistComponent } from './selectionlist/selectionli
     FormsModule,
     CoreUserGroupRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

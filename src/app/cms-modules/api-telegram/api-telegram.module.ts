@@ -31,7 +31,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     ApiTelegramRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

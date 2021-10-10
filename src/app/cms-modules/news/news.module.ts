@@ -72,7 +72,7 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
     NewsRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    // TreeviewModule.forRoot(),
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

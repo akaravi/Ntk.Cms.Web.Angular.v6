@@ -13,36 +13,11 @@ const routes: Routes = [
     path: '',
     component: CoreComponent,
     children: [
-      /*Config*/
       {
-        path: 'config/mainadmin',
-        component: CoreConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/core-config.module').then((m) => m.CoreConfigModule),
       },
-      {
-        path: 'config/site',
-        component: CoreConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: CoreConfigSiteComponent
-      },
-      {
-        path: 'config/checkuser',
-        component: CoreConfigCheckUserComponent
-      },
-      {
-        path: 'config/checkuser/:LinkUserId',
-        component: CoreConfigCheckUserComponent
-      },
-      {
-        path: 'config/checksite',
-        component: CoreConfigCheckSiteComponent
-      },
-      {
-        path: 'config/checksite/:LinkSiteId',
-        component: CoreConfigCheckSiteComponent
-      },
-      /*Config*/
       {
         path: 'user',
         loadChildren: () =>
