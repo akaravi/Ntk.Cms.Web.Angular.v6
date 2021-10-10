@@ -5,8 +5,6 @@ import { BiographyContentListComponent } from './content/list/list.component';
 import { BiographyCommentListComponent } from './comment/list/list.component';
 import { BiographyContentEditComponent } from './content/edit/edit.component';
 import { BiographyContentAddComponent } from './content/add/add.component';
-import { BiographyConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { BiographyConfigSiteComponent } from './config/site/configSite.component';
 
 
 const routes: Routes = [
@@ -14,20 +12,13 @@ const routes: Routes = [
     path: '',
     component: BiographyComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: BiographyConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/biography-config.module').then((m) => m.BiographyConfigModule),
       },
-      {
-        path: 'config/site',
-        component: BiographyConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: BiographyConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},

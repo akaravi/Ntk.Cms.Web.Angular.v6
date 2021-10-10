@@ -15,20 +15,13 @@ const routes: Routes = [
     path: '',
     component: PollingComponent,
     children: [
-      /*Config*/
-      {
-        path: 'config/mainadmin',
-        component: PollingConfigMainAdminComponent
-      },
-      {
-        path: 'config/site',
-        component: PollingConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: PollingConfigSiteComponent
-      },
-      /*Config*/
+        /* Config */
+        {
+          path: 'config',
+          loadChildren: () =>
+            import('./config/polling-config.module').then((m) => m.PollingConfigModule),
+        },
+        /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},

@@ -41,17 +41,11 @@ import { ArticleContentSelectorComponent } from './content/selector/selector.com
 import { ArticleContentDeleteComponent } from './content/delete/delete.component';
 import { ArticleCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { ArticleConfigSiteComponent } from './config/site/configSite.component';
-import { ArticleConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
 import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
 
 @NgModule({
   declarations: [
     ArticleComponent,
-    /*Config*/
-    ArticleConfigMainAdminComponent,
-    ArticleConfigSiteComponent,
-    /*Config*/
     ArticleContentAddComponent,
     ArticleContentEditComponent,
     ArticleContentDeleteComponent,
@@ -71,7 +65,6 @@ import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/t
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -12,20 +12,13 @@ const routes: Routes = [
     path: '',
     component: HyperShopComponent,
     children: [
-      /*Config*/
-      {
-        path: 'config/mainadmin',
-        component: HyperShopConfigMainAdminComponent
-      },
-      {
-        path: 'config/site',
-        component: HyperShopConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: HyperShopConfigSiteComponent
-      },
-      /*Config*/
+     /* Config */
+     {
+      path: 'config',
+      loadChildren: () =>
+        import('./config/hyper-shop-config.module').then((m) => m.HyperShopConfigModule),
+    },
+    /* Config */
       {
         path: 'category',
         component: HyperShopCategoryListComponent

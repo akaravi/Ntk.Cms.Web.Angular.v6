@@ -15,20 +15,13 @@ const routes: Routes = [
     path: '',
     component: NewsComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: NewsConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/news-config.module').then((m) => m.NewsConfigModule),
       },
-      {
-        path: 'config/site',
-        component: NewsConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: NewsConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},

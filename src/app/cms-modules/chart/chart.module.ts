@@ -49,10 +49,6 @@ import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tre
 @NgModule({
   declarations: [
     ChartComponent,
-    /*Config*/
-    ChartConfigMainAdminComponent,
-    ChartConfigSiteComponent,
-    /*Config*/
     ChartContentAddComponent,
     ChartContentEditComponent,
     ChartContentDeleteComponent,

@@ -48,10 +48,7 @@ import { BankPaymentPublicConfigHeaderComponent } from './public-config/header/h
 @NgModule({
   declarations: [
     BankPaymentComponent,
-    /*Config*/
-    BankPaymentConfigMainAdminComponent,
-    BankPaymentConfigSiteComponent,
-    /*Config*/
+
 
     BankPaymentPublicConfigAddComponent,
     BankPaymentPublicConfigEditComponent,

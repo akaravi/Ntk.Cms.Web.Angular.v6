@@ -19,20 +19,13 @@ const routes: Routes = [
     path: '',
     component: TicketingComponent,
     children: [
-      /*Config*/
-      {
-        path: 'config/mainadmin',
-        component: TicketingConfigMainAdminComponent
-      },
-      {
-        path: 'config/site',
-        component: TicketingConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: TicketingConfigSiteComponent
-      },
-      /*Config*/
+     /* Config */
+     {
+      path: 'config',
+      loadChildren: () =>
+        import('./config/ticketing-config.module').then((m) => m.TicketingConfigModule),
+    },
+    /* Config */
       {
         path: 'departemen',
         component: TicketingDepartemenListComponent

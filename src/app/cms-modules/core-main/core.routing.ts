@@ -13,11 +13,13 @@ const routes: Routes = [
     path: '',
     component: CoreComponent,
     children: [
+      /* Config */
       {
         path: 'config',
         loadChildren: () =>
           import('./config/core-config.module').then((m) => m.CoreConfigModule),
       },
+      /* Config */
       {
         path: 'user',
         loadChildren: () =>
@@ -28,7 +30,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./user-group/coreUserGroup.module').then((m) => m.CoreUserGroupCmsModule),
       },
-       {
+      {
         path: 'currency',
         loadChildren: () =>
           import('./currency/coreCurrency.module').then((m) => m.CoreCurrencyCmsModule),

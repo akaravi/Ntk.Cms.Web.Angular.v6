@@ -49,10 +49,7 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
 @NgModule({
   declarations: [
     NewsComponent,
-    /*Config*/
-    NewsConfigMainAdminComponent,
-    NewsConfigSiteComponent,
-    /*Config*/
+
     NewsContentAddComponent,
     NewsContentEditComponent,
     NewsContentDeleteComponent,
@@ -72,7 +69,7 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
     NewsRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

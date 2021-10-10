@@ -50,12 +50,12 @@
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
-      <!-- LinkImageIdSrc Column -->
-      <ng-container matColumnDef="LinkImageIdSrc">
+      <!-- LinkMainImageIdSrc Column -->
+      <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{row.LinkImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+            src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>
@@ -95,11 +95,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.DayOfActivity}} </mat-cell>
       </ng-container>
-      <!-- Price Column -->
-      <ng-container matColumnDef="Price">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Price']?.FieldTitle}}
+      <!-- SalePrice Column -->
+      <ng-container matColumnDef="SalePrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SalePrice']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Price}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.SalePrice}} </mat-cell>
       </ng-container>
 
       <!-- Action Column -->

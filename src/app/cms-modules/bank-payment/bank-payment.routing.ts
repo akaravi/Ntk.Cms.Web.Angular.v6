@@ -13,20 +13,13 @@ const routes: Routes = [
     path: '',
     component: BankPaymentComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: BankPaymentConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/bank-payment-config.module').then((m) => m.BankPaymentConfigModule),
       },
-      {
-        path: 'config/site',
-        component: BankPaymentConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: BankPaymentConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
       {
         path: 'publicconfig',
         component: BankPaymentPublicConfigListComponent

@@ -69,24 +69,24 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- Price Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Price']?.AccessWatchField">
-      <mat-label> {{fieldsInfo['Price']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Price" name="dataModel.Price" #Price type="number"
-        [disabled]="!fieldsInfo['Price']?.AccessEditField" placeholder="{{fieldsInfo['Price']?.FieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.Price" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Price = 1">close</mat-icon>
+    <!-- SalePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SalePrice']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['SalePrice']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.SalePrice" name="dataModel.SalePrice" #SalePrice type="number"
+        [disabled]="!fieldsInfo['SalePrice']?.AccessEditField" placeholder="{{fieldsInfo['SalePrice']?.FieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.SalePrice" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.SalePrice = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
-    <!-- LinkImageId Field -->
+    <!-- LinkMainImageId Field -->
     <mat-form-field class="ntk-full-width">
-      <img *ngIf="dataModel?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-        src="{{dataModel.LinkImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+        src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
       <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
-      <input matInput [(ngModel)]="dataModel.LinkImageId" name="dataModel.LinkImageId" #LinkImageId type="text"
+      <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId type="text"
         placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
-      <mat-icon matSuffix *ngIf="dataModel.LinkImageId" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.LinkImageId = null">close</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.LinkMainImageId = null">close</mat-icon>
       <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
     </mat-form-field>
 

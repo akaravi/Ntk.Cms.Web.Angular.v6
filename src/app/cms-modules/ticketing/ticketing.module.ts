@@ -58,10 +58,6 @@ import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.c
 @NgModule({
   declarations: [
     TicketingComponent,
-    /*Config*/
-    TicketingConfigMainAdminComponent,
-    TicketingConfigSiteComponent,
-    /*Config*/
     TicketingDepartemenListComponent,
     TicketingDepartemenAddComponent,
     TicketingDepartemenEditComponent,
@@ -102,7 +98,7 @@ import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.c
     TicketingRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

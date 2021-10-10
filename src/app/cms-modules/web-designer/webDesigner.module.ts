@@ -13,7 +13,6 @@ import {
   CoreAuthService,
   CoreEnumService,
   CoreModuleTagService,
-  WebDesignerConfigurationService,
   WebDesignerEnumService,
   WebDesignerLogPageSafeService,
   WebDesignerMainIntroService,
@@ -27,8 +26,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { WebDesignerConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { WebDesignerConfigSiteComponent } from './config/site/configSite.component';
 import { WebDesignerMainIntroListComponent } from './intro/list/list.component';
 import { WebDesignerMainIntroAddComponent } from './intro/add/add.component';
 import { WebDesignerMainIntroEditComponent } from './intro/edit/edit.component';
@@ -64,11 +61,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
 @NgModule({
   declarations: [
     WebDesignerComponent,
-    /*Config*/
-    WebDesignerConfigMainAdminComponent,
-    WebDesignerConfigSiteComponent,
-    /*Config*/
-    /** */
+     /** */
     WebDesignerMainIntroAddComponent,
     WebDesignerMainIntroEditComponent,
     WebDesignerMainIntroListComponent,
@@ -111,7 +104,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     WebDesignerRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
@@ -127,9 +120,6 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
   providers: [
     CoreEnumService,
     CoreAuthService,
-    /*Config*/
-    WebDesignerConfigurationService,
-    /*Config*/
     CmsConfirmationDialogService,
     CoreModuleTagService,
     WebDesignerLogPageSafeService,

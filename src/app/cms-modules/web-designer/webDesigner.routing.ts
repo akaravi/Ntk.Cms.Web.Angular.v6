@@ -16,20 +16,13 @@ const routes: Routes = [
     path: '',
     component: WebDesignerComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: WebDesignerConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/web-designer-config.module').then((m) => m.WebDesignerConfigModule),
       },
-      {
-        path: 'config/site',
-        component: WebDesignerConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: WebDesignerConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
       /** */
       {
         path: 'intro',
@@ -77,7 +70,7 @@ const routes: Routes = [
         path: 'page/LinkPageTemplateGuId/:LinkPageTemplateGuId',
         component: WebDesignerMainPageListComponent
       },
-           {
+      {
         path: 'page/LinkPageParentGuId/:LinkPageParentGuId',
         component: WebDesignerMainPageListComponent
       },

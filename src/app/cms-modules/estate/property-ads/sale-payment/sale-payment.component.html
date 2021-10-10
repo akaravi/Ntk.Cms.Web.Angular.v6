@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<mat-dialog-content>
+
+  <app-cms-bankpayment-grid [optionMasterItem]="true" (optionSelect)="onActionSelectCalculate($event)">
+  </app-cms-bankpayment-grid>
+  <div *ngIf="viewCalculate">
+    {{ 'FeeTax' }}:
+     {{dataModelCalculateResult.Item.FeeTax|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    <br>
+    {{ 'AmountPure' }}:
+     {{dataModelCalculateResult.Item.AmountPure|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    <br>
+    {{ 'FeeTransport' }}:
+    {{dataModelCalculateResult.Item.FeeTransport|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    <hr>
+    {{ 'Amount' }}:
+    {{dataModelCalculateResult.Item.Amount|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    </small>
+  </div>
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+
+    <button type="submit" (click)="onActionSelectBankPayment()" class="btn btn-raised btn-primary"
+      [disabled]="!viewCalculate">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
+    </button>
+  </div>
+</mat-dialog-actions>

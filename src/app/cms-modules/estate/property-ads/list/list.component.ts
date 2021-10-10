@@ -248,7 +248,7 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.estatePropertyAdsService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -286,7 +286,10 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/estate/property/LinkPropertyAdsId/', this.tableRowSelected.Id]);
   }
+  onActionbuttonBuy(): void {
+    this.router.navigate(['/estate/property-ads/sale/', this.requestLinkPropertyId]);
 
+  }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {

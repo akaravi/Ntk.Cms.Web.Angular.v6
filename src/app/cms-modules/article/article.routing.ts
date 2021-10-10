@@ -16,20 +16,13 @@ const routes: Routes = [
     path: '',
     component: ArticleComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: ArticleConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/article-config.module').then((m) => m.ArticleConfigModule),
       },
-      {
-        path: 'config/site',
-        component: ArticleConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: ArticleConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},

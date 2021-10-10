@@ -9,20 +9,14 @@ const routes: Routes = [
     path: '',
     component: LinkManagementComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: LinkManagementConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/link-management-config.module').then((m) => m.LinkManagementConfigModule),
       },
-      {
-        path: 'config/site',
-        component: LinkManagementConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: LinkManagementConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
+
 
     ]
   },

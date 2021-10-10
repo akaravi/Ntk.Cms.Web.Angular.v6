@@ -10,20 +10,13 @@ const routes: Routes = [
     path: '',
     component: DonateComponent,
     children: [
-      /*Config*/
-      {
-        path: 'config/mainadmin',
-        component: DonateConfigMainAdminComponent
-      },
-      {
-        path: 'config/site',
-        component: DonateConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: DonateConfigSiteComponent
-      },
-      /*Config*/
+          /* Config */
+          {
+            path: 'config',
+            loadChildren: () =>
+              import('./config/donate-config.module').then((m) => m.DonateConfigModule),
+          },
+          /* Config */
       {
         path: 'target',
         component: DonateTargetListComponent

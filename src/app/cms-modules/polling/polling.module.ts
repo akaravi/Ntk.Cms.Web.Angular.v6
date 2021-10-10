@@ -39,10 +39,6 @@ import { PollingConfigSiteComponent } from './config/site/configSite.component';
 @NgModule({
   declarations: [
     PollingComponent,
-    /*Config*/
-    PollingConfigMainAdminComponent,
-    PollingConfigSiteComponent,
-    /*Config*/
     PollingCategorySelectorComponent,
     PollingCategoryAddComponent,
     PollingCategoryEditComponent,
@@ -60,7 +56,7 @@ import { PollingConfigSiteComponent } from './config/site/configSite.component';
     PollingRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

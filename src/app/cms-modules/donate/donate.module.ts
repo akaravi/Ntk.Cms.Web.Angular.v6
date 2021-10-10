@@ -46,10 +46,6 @@ import { DonateTargetCategoryTreeComponent } from './target-category/tree/tree.c
 @NgModule({
   declarations: [
     DonateComponent,
-    /*Config*/
-    DonateConfigMainAdminComponent,
-    DonateConfigSiteComponent,
-    /*Config*/
     /* */
     DonateTargetCategoryAddComponent,
     DonateTargetCategoryEditComponent,

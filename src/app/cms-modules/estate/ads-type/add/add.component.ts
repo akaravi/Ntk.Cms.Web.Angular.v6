@@ -128,7 +128,7 @@ export class EstateAdsTypeAddComponent implements OnInit {
     this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkImageId = model.id;
-    this.dataModel.LinkImageIdSrc = model.downloadLinksrc;
+    this.dataModel.LinkMainImageId = model.id;
+    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
   }
 }

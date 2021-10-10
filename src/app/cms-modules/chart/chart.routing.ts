@@ -15,20 +15,13 @@ const routes: Routes = [
     path: '',
     component: ChartComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: ChartConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/chart-config.module').then((m) => m.ChartConfigModule),
       },
-      {
-        path: 'config/site',
-        component: ChartConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: ChartConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},

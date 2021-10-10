@@ -75,13 +75,13 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
-    'LinkImageIdSrc',
+    'LinkMainImageIdSrc',
     'Title',
     'StationLevel',
     'ViewLevel',
     'LinkPropertyId',
     'DayOfActivity',
-    'Price',
+    'SalePrice',
     'Action'
   ];
 

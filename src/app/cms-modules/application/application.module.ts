@@ -59,10 +59,7 @@ import { CmsFileUploaderModule } from 'src/app/shared/cms-file-uploader/cms-file
 @NgModule({
   declarations: [
     ApplicationComponent,
-    /*Config*/
-    ApplicationConfigMainAdminComponent,
-    ApplicationConfigSiteComponent,
-    /*Config*/
+
     ApplicationSourceListComponent,
     ApplicationSourceTreeComponent,
     ApplicationSourceAddComponent,

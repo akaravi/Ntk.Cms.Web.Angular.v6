@@ -24,16 +24,9 @@ const routes: Routes = [
     children: [
       /*Config*/
       {
-        path: 'config/mainadmin',
-        component: ApplicationConfigMainAdminComponent
-      },
-      {
-        path: 'config/site',
-        component: ApplicationConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: ApplicationConfigSiteComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/application-config.module').then((m) => m.ApplicationConfigModule),
       },
       /*Config*/
       {

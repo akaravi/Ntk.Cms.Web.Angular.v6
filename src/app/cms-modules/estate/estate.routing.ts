@@ -15,26 +15,20 @@ import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/
 import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list/list.component';
 import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
 import { EstateAdsTypeListComponent } from './ads-type/list/list.component';
+import {  EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: EstateComponent,
     children: [
-      /*Config*/
+      /* Config */
       {
-        path: 'config/mainadmin',
-        component: EstateConfigMainAdminComponent
+        path: 'config',
+        loadChildren: () =>
+          import('./config/estate-config.module').then((m) => m.EstateConfigModule),
       },
-      {
-        path: 'config/site',
-        component: EstateConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: EstateConfigSiteComponent
-      },
-      /*Config*/
+      /* Config */
       {
         path: 'property',
         component: EstatePropertyListComponent
@@ -80,6 +74,10 @@ const routes: Routes = [
       {
         path: 'property-ads',
         component: EstatePropertyAdsListComponent
+      },
+      {
+        path: 'property-ads/sale/:LinkPropertyId',
+        component: EstatePropertyAdsSaleListComponent
       },
       /**/
       {

@@ -36,10 +36,6 @@ import { HyperShopContentViewComponent } from './content/view/view.component';
 @NgModule({
   declarations: [
     HyperShopComponent,
-    /*Config*/
-    HyperShopConfigMainAdminComponent,
-    HyperShopConfigSiteComponent,
-    /*Config*/
     /* */
     HyperShopCategoryAddComponent,
     HyperShopCategoryEditComponent,

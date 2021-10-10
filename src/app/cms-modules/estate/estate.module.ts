@@ -98,14 +98,12 @@ import { EstateAdsTypeEditComponent } from './ads-type/edit/edit.component';
 import { EstateAdsTypeListComponent } from './ads-type/list/list.component';
 import { EstateAdsTypeAddComponent } from './ads-type/add/add.component';
 import { EstateAdsTypeSelectorComponent } from './ads-type/selector/selector.component';
+import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
+import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payment/sale-payment.component';
 
 @NgModule({
   declarations: [
     EstateComponent,
-    /*Config*/
-    EstateConfigMainAdminComponent,
-    EstateConfigSiteComponent,
-    /*Config*/
     /* */
     EstatePropertyTypeLanduseAddComponent,
     EstatePropertyTypeLanduseEditComponent,
@@ -132,6 +130,8 @@ import { EstateAdsTypeSelectorComponent } from './ads-type/selector/selector.com
     EstatePropertyAdsAddComponent,
     EstatePropertyAdsEditComponent,
     EstatePropertyAdsListComponent,
+    EstatePropertyAdsSaleListComponent,
+    EstatePropertyAdsSalePaymentComponent,
     /* */
     EstateAdsTypeAddComponent,
     EstateAdsTypeEditComponent,

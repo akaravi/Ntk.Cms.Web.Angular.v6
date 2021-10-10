@@ -26,10 +26,7 @@ import { LinkManagementConfigMainAdminComponent } from './config/mainAdmin/confi
 @NgModule({
   declarations: [
     LinkManagementComponent,
-    /*Config*/
-    LinkManagementConfigMainAdminComponent,
-    LinkManagementConfigSiteComponent,
-    /*Config*/
+
   ],
   imports: [
     CommonModule,
