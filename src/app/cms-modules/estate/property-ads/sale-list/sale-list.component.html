@@ -3,10 +3,8 @@
     <div class="button-row">
       نسبت به نیازمندی های خود و مدت زمان اقدام به خرید نمایید
     </div>
-
     <app-progress-spinner [options]="loading">
     </app-progress-spinner>
-
     <div class="row">
       <div class="col" *ngFor="let item of dataModelResult.ListItems">
         <mat-card class="example-card">
@@ -14,25 +12,19 @@
             <mat-card-title>{{item.Title}}</mat-card-title>
             <mat-card-subtitle>{{item.SalePrice | currency:' '+currency+' '}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{item.LinkMainImageIdSrc | cmsthumbnail}}">
+          <img mat-card-image src="{{item.LinkMainImageIdSrc }}">
           <mat-card-content>
             <p>
               {{item.Description }}
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button (click)="onActionbuttonDetail(item)">{{'ACTION.DETAIL' | translate}}</button>
+
             <button mat-button (click)="onActionbuttonBuy(item)">{{'ACTION.BUY' | translate}}</button>
           </mat-card-actions>
         </mat-card>
       </div>
-      <div *ngIf="this.tableRowSelected && this.tableRowSelected.Id.length >0">
-        <!-- <app-core-modulesaleitem-listview [optionHeaderId]="this.tableRowSelected.Id">
-        </app-core-modulesaleitem-listview> -->
-      </div>
+
     </div>
-
-
-
   </div>
 </div>

@@ -1,22 +1,14 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import {  ActivatedRoute, Router } from '@angular/router';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   EstateAdsTypeService,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
-  DataFieldInfoModel,
   EstateAdsTypeModel,
   CoreEnumService,
   EnumInfoModel,
-  CoreModuleService,
-  CoreModuleModel,
-  CoreModuleSaleInvoiceDetailModel,
-  CoreModuleSaleInvoiceModel,
-  CoreModuleSaleItemModel,
   CoreSiteService,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -33,18 +25,20 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   styleUrls: ['./sale-list.component.scss']
 })
 export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
+  requestLinkPropertyId = '';
   constructor(
     private estateAdsTypeService: EstateAdsTypeService,
-    private coreSiteService: CoreSiteService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
-    private coreModuleService: CoreModuleService,
+    private coreSiteService: CoreSiteService,
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
   }
   showBuy = false;
   comment: string;
@@ -52,18 +46,17 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-  dataModel: CoreModuleSaleInvoiceDetailModel = new CoreModuleSaleInvoiceDetailModel();
+  // dataModel: CoreModuleSaleInvoiceDetailModel = new CoreModuleSaleInvoiceDetailModel();
   dataModelResult: ErrorExceptionResult<EstateAdsTypeModel> = new ErrorExceptionResult<EstateAdsTypeModel>();
-  dataModelItemResult: ErrorExceptionResult<CoreModuleSaleItemModel> = new ErrorExceptionResult<CoreModuleSaleItemModel>();
-  dataModelRegResult: ErrorExceptionResult<CoreModuleSaleInvoiceModel> = new ErrorExceptionResult<CoreModuleSaleInvoiceModel>();
+  // dataModelItemResult: ErrorExceptionResult<CoreModuleSaleItemModel> = new ErrorExceptionResult<CoreModuleSaleItemModel>();
+  // dataModelRegResult: ErrorExceptionResult<CoreModuleSaleInvoiceModel> = new ErrorExceptionResult<CoreModuleSaleInvoiceModel>();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<EstateAdsTypeModel> = [];
+
   tableRowSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   categoryModelSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
   dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
+  // dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
 
   tabledisplayedColumns: string[] = [
     'LinkModuleId',
@@ -74,12 +67,16 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
 
 
 
-  expandedElement: CoreModuleSaleItemModel | null;
+  // expandedElement: CoreModuleSaleItemModel | null;
   cmsApiStoreSubscribe: Subscription;
   currency = '';
 
   ngOnInit(): void {
-
+    if (!this.requestLinkPropertyId || this.requestLinkPropertyId.length === 0) {
+      this.cmsToastrService.typeErrorComponentAction();
+      this.router.navigate(['/estate/property']);
+      return;
+    }
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
@@ -105,13 +102,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
       }
     );
   }
-  getModuleList(): void {
-    const filter = new FilterModel();
-    filter.RowPerPage = 100;
-    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
-      this.dataModelCoreModuleResult = next;
-    });
-  }
+
   getEnumCmsModuleSaleItemType(): void {
     this.coreEnumService.ServiceEnumCmsModuleSaleItemType().subscribe((next) => {
       this.dataModelEnumCmsModuleSaleItemTypeResult = next;
@@ -121,7 +112,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tableRowsSelected = [];
     this.tableRowSelected = new EstateAdsTypeModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -135,7 +125,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.showBuy = true;
           this.dataModelResult = next;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         }
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
@@ -152,16 +141,15 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     );
   }
 
-
-  onActionbuttonDetail(model: EstateAdsTypeModel): void {
-    this.tableRowSelected = model;
-  }
   onActionbuttonBuy(model: EstateAdsTypeModel): void {
     this.tableRowSelected = model;
 
     const dialogRef = this.dialog.open(EstatePropertyAdsSalePaymentComponent, {
       height: '90%',
-      data: { LinkHeaderId: model.Id }
+      data: {
+        LinkPropertyId: this.requestLinkPropertyId,
+        LinkAdsTypeId: model.Id
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -171,6 +159,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/core/modulesale/Header']);
+    this.router.navigate(['/estate/property']);
   }
 }

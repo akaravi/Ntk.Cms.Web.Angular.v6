@@ -2,10 +2,10 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   BankPaymentPrivateSiteConfigModel,
-  CoreModuleSaleHeaderCalculateDtoModel,
-  CoreModuleSaleHeaderPaymentDtoModel,
-  CoreModuleSaleHeaderService,
+  EstateModuleSalePropertyAdsCalculateDtoModel,
+  EstateModuleSalePropertyAdsPaymentDtoModel,
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
+  EstateAdsTypeService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -27,12 +27,13 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sale-payment.component.scss'],
 })
 export class EstatePropertyAdsSalePaymentComponent implements OnInit {
-  requestLinkHeaderId = 0;
+  requestLinkPropertyId = '';
+  requestLinkAdsTypeId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) private document: any,
     private dialogRef: MatDialogRef<EstatePropertyAdsSalePaymentComponent>,
-    public coreModuleSaleHeaderService: CoreModuleSaleHeaderService,
+    public estateAdsTypeService: EstateAdsTypeService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -40,16 +41,28 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      this.requestLinkHeaderId = + data.LinkHeaderId || 0;
+      if (data.LinkPropertyId && data.LinkPropertyId.length > 0) {
+        this.requestLinkPropertyId = data.LinkPropertyId;
+      }
+      if (data.LinkAdsTypeId && data.LinkAdsTypeId.length > 0) {
+        this.requestLinkAdsTypeId = data.LinkAdsTypeId;
+      }
     }
-    if (this.requestLinkHeaderId === 0) {
+    if (this.requestLinkPropertyId.length === 0) {
+      this.cmsToastrService.typeErrorComponentAction();
+      this.dialogRef.close({ dialogChangedDate: false });
+      return;
+    }
+    if (this.requestLinkAdsTypeId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
 
-    this.dataModelCalculate.LinkHeaderId = this.requestLinkHeaderId;
-    this.dataModelPayment.LinkHeaderId = this.requestLinkHeaderId;
+    this.dataModelCalculate.LinkAdsTypeId = this.requestLinkAdsTypeId;
+    this.dataModelCalculate.LinkPropertyId = this.requestLinkPropertyId;
+    this.dataModelPayment.LinkAdsTypeId = this.requestLinkAdsTypeId;
+    this.dataModelPayment.LinkPropertyId = this.requestLinkPropertyId;
     this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
@@ -59,8 +72,8 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>();
   dataModelPaymentResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>();
-  dataModelCalculate: CoreModuleSaleHeaderCalculateDtoModel = new CoreModuleSaleHeaderCalculateDtoModel();
-  dataModelPayment: CoreModuleSaleHeaderPaymentDtoModel = new CoreModuleSaleHeaderPaymentDtoModel();
+  dataModelCalculate: EstateModuleSalePropertyAdsCalculateDtoModel = new EstateModuleSalePropertyAdsCalculateDtoModel();
+  dataModelPayment: EstateModuleSalePropertyAdsPaymentDtoModel = new EstateModuleSalePropertyAdsPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
 
@@ -73,7 +86,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
-    this.coreModuleSaleHeaderService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
+    this.estateAdsTypeService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelCalculateResult = next;
@@ -96,7 +109,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
   DataPayment(): void {
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
-    this.coreModuleSaleHeaderService.ServiceOrderPayment(this.dataModelPayment).subscribe(
+    this.estateAdsTypeService.ServiceOrderPayment(this.dataModelPayment).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;
