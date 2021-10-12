@@ -2,11 +2,11 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   BankPaymentPrivateSiteConfigModel,
-  EstateModuleSalePropertyAdsCalculateDtoModel,
-  EstateModuleSalePropertyAdsPaymentDtoModel,
+  EstateModuleSaleAccountAgencyAdsCalculateDtoModel,
+  EstateModuleSaleAccountAgencyAdsPaymentDtoModel,
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
   EstateAdsTypeService,
-  EstatePropertyAdsService,
+  EstateAccountAgencyAdsService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -23,19 +23,19 @@ import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyads-salepayment',
+  selector: 'app-estate-accountagencyads-salepayment',
   templateUrl: './sale-payment.component.html',
   styleUrls: ['./sale-payment.component.scss'],
 })
-export class EstatePropertyAdsSalePaymentComponent implements OnInit {
-  requestLinkPropertyId = '';
+export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
+  requestLinkAccountAgencyId = '';
   requestLinkAdsTypeId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) private document: any,
-    private dialogRef: MatDialogRef<EstatePropertyAdsSalePaymentComponent>,
+    private dialogRef: MatDialogRef<EstateAccountAgencyAdsSalePaymentComponent>,
     public estateAdsTypeService: EstateAdsTypeService,
-    public estatePropertyAdsService: EstatePropertyAdsService,
+    public estateAccountAgencyAdsService: EstateAccountAgencyAdsService,
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -43,14 +43,14 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      if (data.LinkPropertyId && data.LinkPropertyId.length > 0) {
-        this.requestLinkPropertyId = data.LinkPropertyId;
+      if (data.LinkAccountAgencyId && data.LinkAccountAgencyId.length > 0) {
+        this.requestLinkAccountAgencyId = data.LinkAccountAgencyId;
       }
       if (data.LinkAdsTypeId && data.LinkAdsTypeId.length > 0) {
         this.requestLinkAdsTypeId = data.LinkAdsTypeId;
       }
     }
-    if (this.requestLinkPropertyId.length === 0) {
+    if (this.requestLinkAccountAgencyId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
@@ -62,9 +62,9 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     }
 
     this.dataModelCalculate.LinkAdsTypeId = this.requestLinkAdsTypeId;
-    this.dataModelCalculate.LinkPropertyId = this.requestLinkPropertyId;
+    this.dataModelCalculate.LinkAccountAgencyId = this.requestLinkAccountAgencyId;
     this.dataModelPayment.LinkAdsTypeId = this.requestLinkAdsTypeId;
-    this.dataModelPayment.LinkPropertyId = this.requestLinkPropertyId;
+    this.dataModelPayment.LinkAccountAgencyId = this.requestLinkAccountAgencyId;
     this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
@@ -74,8 +74,8 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>();
   dataModelPaymentResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>();
-  dataModelCalculate: EstateModuleSalePropertyAdsCalculateDtoModel = new EstateModuleSalePropertyAdsCalculateDtoModel();
-  dataModelPayment: EstateModuleSalePropertyAdsPaymentDtoModel = new EstateModuleSalePropertyAdsPaymentDtoModel();
+  dataModelCalculate: EstateModuleSaleAccountAgencyAdsCalculateDtoModel = new EstateModuleSaleAccountAgencyAdsCalculateDtoModel();
+  dataModelPayment: EstateModuleSaleAccountAgencyAdsPaymentDtoModel = new EstateModuleSaleAccountAgencyAdsPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
 
@@ -88,7 +88,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
-    this.estatePropertyAdsService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
+    this.estateAccountAgencyAdsService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelCalculateResult = next;
@@ -111,7 +111,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
   DataPayment(): void {
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
-    this.estatePropertyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe(
+    this.estateAccountAgencyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;
