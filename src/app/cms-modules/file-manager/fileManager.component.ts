@@ -3,8 +3,7 @@ import {Map} from 'leaflet';
 
 @Component({
   selector: 'app-filemanager',
-  templateUrl: './fileManager.component.html',
-  styleUrls: ['./fileManager.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class FileManagerComponent implements OnInit {
 

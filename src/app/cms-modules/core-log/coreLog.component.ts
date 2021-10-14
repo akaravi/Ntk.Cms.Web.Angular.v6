@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-corelog',
-  templateUrl: './coreLog.component.html',
-  styleUrls: ['./coreLog.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreLogComponent implements OnInit {
 

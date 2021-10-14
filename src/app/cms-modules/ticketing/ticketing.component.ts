@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ticketing',
-  templateUrl: './ticketing.component.html',
-  styleUrls: ['./ticketing.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class TicketingComponent implements OnInit {
 

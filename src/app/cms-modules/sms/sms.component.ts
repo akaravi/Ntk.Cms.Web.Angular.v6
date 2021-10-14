@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sms',
-  templateUrl: './sms.component.html',
-  styleUrls: ['./sms.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class SmsComponent implements OnInit {
 

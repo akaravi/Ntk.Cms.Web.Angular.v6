@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-universalmenu',
-  templateUrl: './universalMenu.component.html',
-  styleUrls: ['./universalMenu.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class UniversalMenuComponent implements OnInit {
 

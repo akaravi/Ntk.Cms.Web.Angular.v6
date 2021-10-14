@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-hypershop',
-  templateUrl: './hyperShop.component.html',
-  styleUrls: ['./hyperShop.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class HyperShopComponent implements OnInit {
 

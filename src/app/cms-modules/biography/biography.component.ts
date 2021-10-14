@@ -3,8 +3,7 @@ import {Map} from 'leaflet';
 
 @Component({
   selector: 'app-biography',
-  templateUrl: './biography.component.html',
-  styleUrls: ['./biography.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class BiographyComponent implements OnInit {
 

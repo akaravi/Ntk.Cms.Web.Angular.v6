@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-core-token',
-  templateUrl: './coreToken.component.html',
-  styleUrls: ['./coreToken.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreTokenComponent implements OnInit {
 

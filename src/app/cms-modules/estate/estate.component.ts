@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-estate',
-  templateUrl: './estate.component.html',
-  styleUrls: ['./estate.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class EstateComponent implements OnInit {
 

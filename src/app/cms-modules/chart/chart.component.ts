@@ -3,8 +3,7 @@ import {Map} from 'leaflet';
 
 @Component({
   selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class ChartComponent implements OnInit {
 

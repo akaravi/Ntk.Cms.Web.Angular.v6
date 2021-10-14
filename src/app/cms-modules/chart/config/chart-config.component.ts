@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-chart-config',
-  templateUrl: './chart-config.component.html',
-  styleUrls: ['./chart-config.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class ChartConfigComponent implements OnInit {
 

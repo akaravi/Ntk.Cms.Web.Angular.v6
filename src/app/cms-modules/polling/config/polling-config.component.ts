@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-core-config',
-  templateUrl: './polling-config.component.html',
-  styleUrls: ['./polling-config.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class PollingConfigComponent implements OnInit {
 
