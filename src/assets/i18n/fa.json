@@ -21,7 +21,7 @@
 	"ACTION.STATIST": "آمار",
 	"ACTION.VIEW": "مشاهده",
 	"ACTION.ADS": "تبلیغات",
-	"ACTION.MY_LOCATION":"مکان من",
+	"ACTION.MY_LOCATION": "مکان من",
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "تکرار کلمه عبور جدید",
 	"AUTH.FORGOT.DESC": "ایمیل تان را وارد کنید تا پسوردتان ریست شود",
 	"AUTH.FORGOT.DESCEMAIL": "ایمیل تان را وارد کنید تا کد بازیابی کلمه عبور برای شما ایمیل شود",
@@ -301,8 +301,8 @@
 	"TITLE.OTHER_INFO": "سایر اطلاعات",
 	"TITLE.PICTURE": "عکس",
 	"TITLE.Quick_Actions": "دسترسی سریع",
-	"TITLE.Share_Data":"اشتراک گزاری",
-	"TITLE.Share_Data_Link":"اشتراک گزاری لینک ها",
+	"TITLE.Share_Data": "اشتراک گزاری",
+	"TITLE.Share_Data_Link": "اشتراک گزاری لینک ها",
 	"TITLE.REQUIRED_INFORMATION": "اطلاعات الزامی",
 	"TITLE.SELECT_STATUS": "انتخاب وضعیت این محتوا",
 	"TITLE.SITE": "سایت",
@@ -329,7 +329,7 @@
 	"TITLE.RentPrice": "مبلغ اجاره",
 	"TITLE.DepositPrice": "مبلغ رهن",
 	"TITLE.Contract": "معامله",
-	"TITLE.PriceByAgreement":"توافقی",
+	"TITLE.PriceByAgreement": "توافقی",
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
 	"TRANSLATOR.WELCOME": "خوش آمدید",
@@ -374,12 +374,10 @@
 	"filemanager.Drag_and_drop_file_here": "فایل را اینجا رها کنید",
 	"filemanager.Browse_Files": "انتخاب فایل ها",
 	"lang": "fa",
-	"querybuilder": {
-		"And": "و",
-		"Or": "یا",
-		"AddRule": "و شرط",
-		"Add Group": "و گروه",
-		"Remove":"حذف",
-		"Yes":"بله"
-	  }
+	"querybuilder.And": "و",
+	"querybuilder.Or": "یا",
+	"querybuilder.AddRule": "و شرط",
+	"querybuilder.AddGroup": "و گروه",
+	"querybuilder.Remove": "حذف",
+	"querybuilder.Yes": "بله"
 }

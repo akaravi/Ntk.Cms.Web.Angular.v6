@@ -296,8 +296,8 @@
 	"TITLE.OTHER_INFO": "Other Info",
 	"TITLE.PICTURE": "Picture",
 	"TITLE.Quick_Actions": "Quick Actions",
-	"TITLE.Share_Data":"Share Data",
-	"TITLE.Share_Data_Link":"Share Data Link",
+	"TITLE.Share_Data": "Share Data",
+	"TITLE.Share_Data_Link": "Share Data Link",
 	"TITLE.REQUIRED_INFORMATION": "Required information",
 	"TITLE.SELECT_STATUS": "Select Status Data",
 	"TITLE.SITE": "Site",
@@ -355,14 +355,12 @@
 	"filemanager.yes": "yes",
 	"filemanager.yes_delete_this": "yes delete this",
 	"filemanager.Drag_and_drop_file_here": "Drag and drop file here",
-	"filemanager.Browse_Files": "Browse Files",	
-		"lang": "en",
-		"querybuilder": {
-			"And": "AND",
-			"Or": "OR",
-			"AddRule": "Add Rule",
-			"AddGroup": "Add Group",
-			"Remove":"Remove",
-			"Yes":"Yes"
-		  }
+	"filemanager.Browse_Files": "Browse Files",
+	"lang": "en",
+	"querybuilder.And": "AND",
+	"querybuilder.Or": "OR",
+	"querybuilder.AddRule": "Add Rule",
+	"querybuilder.AddGroup": "Add Group",
+	"querybuilder.Remove": "Remove",
+	"querybuilder.Yes": "Yes"
 }
