@@ -355,7 +355,14 @@
 	"filemanager.yes": "yes",
 	"filemanager.yes_delete_this": "yes delete this",
 	"filemanager.Drag_and_drop_file_here": "Drag and drop file here",
-	"filemanager.Browse_Files": "Browse Files",
-	
-		"lang": "en"
+	"filemanager.Browse_Files": "Browse Files",	
+		"lang": "en",
+		"querybuilder": {
+			"And": "AND",
+			"Or": "OR",
+			"AddRule": "Add Rule",
+			"AddGroup": "Add Group",
+			"Remove":"Remove",
+			"Yes":"Yes"
+		  }
 }

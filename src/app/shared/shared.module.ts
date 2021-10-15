@@ -3,7 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
-import { NgxQueryBuilderModule } from 'ngx-ntk-query-builder';
+import { NgxNtkQueryBuilderModule } from 'ngx-ntk-query-builder';
 import { TreeModule } from '@circlon/angular-tree-component';
 import { TruncatePipe } from '../core/pipe/truncate.pipe';
 import { PersianDate } from '../core/pipe/PersianDatePipe/persian-date.pipe';
@@ -89,7 +89,7 @@ import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
     HttpClientModule,
     MaterialModule,
     TreeModule,
-    NgxQueryBuilderModule,
+    NgxNtkQueryBuilderModule,
     LeafletModule,
     TagInputModule,
     NgbDropdownModule,

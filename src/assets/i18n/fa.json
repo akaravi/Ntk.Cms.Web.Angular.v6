@@ -373,5 +373,13 @@
 	"filemanager.new_folder": "فولدر جدید",
 	"filemanager.Drag_and_drop_file_here": "فایل را اینجا رها کنید",
 	"filemanager.Browse_Files": "انتخاب فایل ها",
-	"lang": "fa"
+	"lang": "fa",
+	"querybuilder": {
+		"And": "و",
+		"Or": "یا",
+		"AddRule": "و شرط",
+		"Add Group": "و گروه",
+		"Remove":"حذف",
+		"Yes":"بله"
+	  }
 }
