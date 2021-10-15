@@ -72,7 +72,16 @@
         </a>
       </div>
       <!--end::Item-->
-
+      <!--begin::Item-->
+      <div class="col-6" *ngIf="this.tokenInfo?.SiteId>0">
+        <a [routerLink]="'core/info'"
+          class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
+          <span [inlineSVG]="'./assets/media/svg/icons/Communication/Share.svg'" cacheSVG="true"
+            class="svg-icon svg-icon-3x svg-icon-primary m-0"></span>
+          <span class="d-block font-weight-bold font-size-h6 mt-2">{{'TITLE.Share_Data'|translate}}</span>
+        </a>
+      </div>
+      <!--end::Item-->
 
     </div>
 
