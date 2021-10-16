@@ -34,6 +34,16 @@
                 "input": "./node_modules/leaflet/dist/images",
                 "output": "assets/leaflet/"
               },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ntk-cms-filemanager/src/assets/",
+                "output": "assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ngx-ntk-query-builder/src/assets/",
+                "output": "assets/"
+              },
               "src/manifest.webmanifest"
             ],
             "styles": [

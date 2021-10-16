@@ -14,7 +14,7 @@ import { CoreSiteCategorySelectorComponent } from './selector/selector.component
 import { CoreSiteCategoryEditComponent } from './edit/edit.component';
 import { CoreSiteCategoryAddComponent } from './add/add.component';
 import { CoreSiteCategoryListComponent } from './list/list.component';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreModuleModule } from '../module/coreModule.module';
@@ -44,7 +44,6 @@ import { CoreModuleModule } from '../module/coreModule.module';
     FormsModule,
     CoreSiteCategoryRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

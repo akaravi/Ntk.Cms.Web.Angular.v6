@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  ArticleConfigurationService,
+  ArticleConfigurationService, CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -39,6 +39,7 @@ import { ArticleConfigRouting } from './article-config.routing';
     AngularEditorModule,
   ],
   providers: [
+    CoreModuleService,
     ArticleConfigurationService,
   ]
 })

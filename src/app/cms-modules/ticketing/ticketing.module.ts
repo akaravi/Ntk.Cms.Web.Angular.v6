@@ -6,6 +6,7 @@ import { TagInputModule } from 'ngx-chips';
 
 import {
   CoreEnumService,
+  CoreModuleService,
   CoreModuleTagService,
   TicketingAnswerService,
   TicketingConfigurationService,
@@ -18,7 +19,7 @@ import {
 } from 'ntk-cms-api';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -105,6 +106,7 @@ import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.c
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     /*Config*/
     TicketingConfigurationService,

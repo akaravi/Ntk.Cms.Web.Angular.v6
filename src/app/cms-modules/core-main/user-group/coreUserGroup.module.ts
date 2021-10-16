@@ -13,7 +13,7 @@ import { CoreUserGroupSelectorComponent } from './selector/selector.component';
 import { CoreUserGroupEditComponent } from './edit/edit.component';
 import { CoreUserGroupAddComponent } from './add/add.component';
 import { CoreUserGroupListComponent } from './list/list.component';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreUserGroupSelectionlistComponent } from './selectionlist/selectionlist.component';

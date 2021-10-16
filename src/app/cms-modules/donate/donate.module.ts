@@ -4,7 +4,7 @@ import { DonateComponent } from './donate.component';
 import { DonateRoutes } from './donate.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -12,6 +12,7 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
   CoreAuthService,
   CoreEnumService,
+  CoreModuleService,
   CoreModuleTagService,
   DonateConfigurationService,
   DonateEnumService,
@@ -69,7 +70,7 @@ import { DonateTargetCategoryTreeComponent } from './target-category/tree/tree.c
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -77,6 +78,7 @@ import { DonateTargetCategoryTreeComponent } from './target-category/tree/tree.c
     DragDropModule,
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     /*Config*/

@@ -5,10 +5,10 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
         class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect.Code.length>0" (click)="onActionEdit()"
+    <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect?.Code?.length>0" (click)="onActionEdit()"
         type="button" class="btn btn-warning">{{'ACTION.EDIT' |
         translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect.Code.length>0" (click)="onActionDelete()"
+    <button *ngIf="dataModelResult.Access.AccessDeleteRow && dataModelSelect?.Code?.length>0" (click)="onActionDelete()"
         type="button" class="btn btn-danger">{{'ACTION.DELETE' |
         translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
@@ -20,14 +20,14 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-tree class="category-tree cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
-            [ngStyle]="{'background': dataModelSelect.Code.length>0 && dataModelSelect.Code === node.Code ? '#d3d3da' : '' }">
+            [ngStyle]="{'background': dataModelSelect?.Code?.length>0 && dataModelSelect.Code === node.Code ? '#d3d3da' : '' }">
             <button mat-icon-button disabled></button>
             {{node.Title}}
         </mat-tree-node>
         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
             <li>
                 <div class="mat-tree-node" (click)="onActionSelect(node)"
-                    [ngStyle]="{'background': dataModelSelect.Code.length>0 && dataModelSelect.Code === node.Code ? '#d3d3da' : '' }">
+                    [ngStyle]="{'background': dataModelSelect?.Code.length>0 && dataModelSelect.Code === node.Code ? '#d3d3da' : '' }">
                     <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.Title"
                         (click)="onActionSelect(node)">
                         <mat-icon class="mat-icon-rtl-mirror">

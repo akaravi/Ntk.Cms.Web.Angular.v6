@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreCpMainMenuRouting } from './coreCpMainMenu.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -10,7 +10,8 @@ import {
    CoreEnumService,
    CoreSiteUserService,
     CoreCpMainMenuService ,
-    CoreCpMainMenuCmsUserGroupService} from 'ntk-cms-api';
+    CoreCpMainMenuCmsUserGroupService,
+    CoreModuleService} from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreCpMainMenuComponent } from './coreCpMainMenu.component';
 import { CoreCpMainMenuListComponent } from './list/list.component';
@@ -48,7 +49,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CoreCpMainMenuRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
@@ -59,6 +59,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DragDropModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreCpMainMenuService,
     CoreCpMainMenuCmsUserGroupService,

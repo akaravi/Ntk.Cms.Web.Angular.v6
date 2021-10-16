@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreLogComponent } from './coreLog.component';
 import { CoreLogRoutes } from './coreLog.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -12,6 +12,7 @@ import {
   CoreLogCurrencyService,
   CoreLogErrorService,
   CoreLogSmsService,
+  CoreModuleService,
 } from 'ntk-cms-api';
 import { CoreLogSmsListComponent } from './sms/list/list.component';
 import { CoreLogErrorEditComponent } from './error/edit/edit.component';
@@ -62,6 +63,7 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     CoreLogCurrencyViewComponent,
   ],
   providers: [
+    CoreModuleService,
     CoreLogErrorService,
     CoreLogSmsService,
     CoreLogCurrencyService,

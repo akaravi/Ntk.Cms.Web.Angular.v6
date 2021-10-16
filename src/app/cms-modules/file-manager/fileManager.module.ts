@@ -6,6 +6,7 @@ import { TagInputModule } from 'ngx-chips';
 
 import {
   CoreEnumService,
+  CoreModuleService,
   CoreModuleTagService,
   FileCategoryService,
   FileContentService,
@@ -14,7 +15,7 @@ import { FileCategoryEditComponent } from './category/edit/edit.component';
 import { FileCategoryDeleteComponent } from './category/delete/delete.component';
 import { FileContentEditComponent } from './content/edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
@@ -50,11 +51,11 @@ import { FileContentExplorerComponent } from './content/explorer/explorer.compon
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     
   ],
   providers: [
-    // CategoryResolver,
+    CoreModuleService,
     FileCategoryService,
     FileContentService,
     CoreEnumService,

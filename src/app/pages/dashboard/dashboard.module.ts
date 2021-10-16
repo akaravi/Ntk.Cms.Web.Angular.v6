@@ -21,6 +21,7 @@ import {
   BlogContentService,
   ChartContentService,
   CoreSiteService,
+  CoreUserClaimContentService,
   CoreUserService,
   EstatePropertyService,
   NewsContentService
@@ -106,6 +107,7 @@ import { CoreUserClaimContentWidgetStatusComponent } from 'src/app/cms-modules/c
     ArticleContentService,
     CoreSiteService,
     CoreUserService,
+    CoreUserClaimContentService,
   ]
 })
 export class DashboardModule { }

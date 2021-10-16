@@ -13,7 +13,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';

@@ -2,16 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  BankPaymentConfigurationService,
-  CoreModuleService,
-  CoreUserGroupService,
+  BankPaymentConfigurationService, CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
 import { BankPaymentConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
 import { BankPaymentConfigSiteComponent } from './site/configSite.component';
 import { BankPaymentConfigCheckUserComponent } from './check-user/check-user.component';
@@ -45,6 +42,7 @@ import { BankPaymentConfigRouting } from './bank-payment-config.routing';
     AngularEditorModule,
   ],
   providers: [
+    CoreModuleService,
     BankPaymentConfigurationService,
   ]
 })

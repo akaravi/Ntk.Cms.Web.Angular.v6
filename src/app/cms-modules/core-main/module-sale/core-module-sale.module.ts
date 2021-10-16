@@ -7,9 +7,10 @@ import {
   CoreModuleSaleItemService,
   CoreModuleSaleInvoiceDetailService,
   CoreModuleSaleInvoiceService,
+  CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreModuleSaleComponent } from './core-module-sale.component';
@@ -144,13 +145,13 @@ import { CoreModuleSaleHeaderSalePaymentComponent } from './header/sale-payment/
     FormsModule,
     CoreModuleSaleRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
   ],
   providers: [
+    CoreModuleService,
     CoreModuleSaleHeaderGroupService,
     CoreModuleSaleSerialService,
     CoreModuleSaleItemService,

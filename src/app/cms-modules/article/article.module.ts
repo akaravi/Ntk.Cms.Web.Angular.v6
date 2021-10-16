@@ -20,14 +20,15 @@ import {
   ArticleShareMainAdminSettingService,
   ArticleShareReciverCategoryService,
   ArticleShareServerCategoryService,
-  ArticleContentCategoryService
+  ArticleContentCategoryService,
+  CoreModuleService
 } from 'ntk-cms-api';
 import { ArticleCategoryEditComponent } from './category/edit/edit.component';
 import { ArticleCategoryDeleteComponent } from './category/delete/delete.component';
 import { ArticleContentEditComponent } from './content/edit/edit.component';
 import { ArticleContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -71,6 +72,7 @@ import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/t
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     /*Config*/
     ArticleConfigurationService,

@@ -20,14 +20,15 @@ import {
   BiographyShareMainAdminSettingService,
   BiographyShareReciverCategoryService,
   BiographyShareServerCategoryService,
-  BiographyContentCategoryService
+  BiographyContentCategoryService,
+  CoreModuleService
 } from 'ntk-cms-api';
 import { BiographyCategoryEditComponent } from './category/edit/edit.component';
 import { BiographyCategoryDeleteComponent } from './category/delete/delete.component';
 import { BiographyContentEditComponent } from './content/edit/edit.component';
 import { BiographyContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -71,6 +72,7 @@ import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreModuleTagService,
     /*Config*/

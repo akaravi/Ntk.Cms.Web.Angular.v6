@@ -5,6 +5,7 @@ import {
   OnInit,
   Input,
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { RuleSet, QueryBuilderFieldMap, Rule } from 'ngx-ntk-query-builder';
 import { AccessModel, EnumClauseType, FilterDataModel } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -33,10 +34,14 @@ export class CmsSearchListComponent implements OnInit {
 
 
   Filters: Array<FilterDataModel>;
+  lang: string;
   model: any;
   query: RuleSet;
   fieldMap: QueryBuilderFieldMap = {};
-  constructor() {
+  constructor(
+    public translate: TranslateService,
+  ) {
+    this.lang = this.translate.currentLang;
 
   }
   ngOnInit(): void {

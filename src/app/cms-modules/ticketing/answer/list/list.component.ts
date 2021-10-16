@@ -143,18 +143,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
-          }
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
@@ -282,7 +271,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.ticketingAnswerService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {

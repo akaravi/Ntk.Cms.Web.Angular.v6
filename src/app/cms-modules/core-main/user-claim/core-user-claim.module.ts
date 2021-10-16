@@ -6,9 +6,10 @@ import {
   CoreUserClaimContentService,
   CoreUserClaimTypeService,
   CoreEnumService,
+  CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreUserClaimComponent } from './core-user-claim.component';
@@ -115,9 +116,10 @@ import { CoreUserClaimTypeSelectionlistComponent } from './type/selectionlist/se
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     /** */
     CoreUserClaimContentService,

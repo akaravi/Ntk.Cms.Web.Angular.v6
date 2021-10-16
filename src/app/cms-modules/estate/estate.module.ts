@@ -4,7 +4,7 @@ import { EstateComponent } from './estate.component';
 import { EstateRoutes } from './estate.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -32,7 +32,9 @@ import {
   EstatePropertyTypeUsageService,
   EstatePropertyTypeService,
   EstatePropertyAdsService,
-  EstateAdsTypeService
+  EstateAdsTypeService,
+  CoreModuleService,
+  FileCategoryService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -179,11 +181,10 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstateRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -193,6 +194,8 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
 
   ],
   providers: [
+    CoreModuleService,
+    FileCategoryService,
     CoreEnumService,
     CoreAuthService,
     /*Config*/

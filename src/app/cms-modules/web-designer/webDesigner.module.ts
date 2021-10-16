@@ -4,7 +4,7 @@ import { WebDesignerComponent } from './webDesigner.component';
 import { WebDesignerRoutes } from './webDesigner.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -12,6 +12,7 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
   CoreAuthService,
   CoreEnumService,
+  CoreModuleService,
   CoreModuleTagService,
   WebDesignerEnumService,
   WebDesignerLogPageSafeService,
@@ -108,7 +109,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -118,6 +119,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     CoreModuleModule,
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     CmsConfirmationDialogService,

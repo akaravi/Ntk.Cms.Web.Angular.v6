@@ -13,13 +13,13 @@ import { FooterComponent } from './_layout/components/footer/footer.component';
 import { HeaderComponent } from './_layout/components/header/header.component';
 import { TopbarComponent } from './_layout/components/topbar/topbar.component';
 import { ExtrasModule } from '../_metronic/partials/layout/extras/extras.module';
-import { CoreModule } from '../_metronic/core';
+import { CoreModule, DynamicAsideMenuService, DynamicHeaderMenuService } from '../_metronic/core';
 import { SubheaderModule } from '../_metronic/partials/layout/subheader/subheader.module';
 import { AsideDynamicComponent } from './_layout/components/aside-dynamic/aside-dynamic.component';
 import { HeaderMenuDynamicComponent } from './_layout/components/header/header-menu-dynamic/header-menu-dynamic.component';
 import { CoreSiteModule } from '../cms-modules/core-main/site/coreSite.module';
 import { SharedModule } from '../shared/shared.module';
-import { CoreAuthService, CoreCpMainMenuService } from 'ntk-cms-api';
+import { CoreAuthService, CoreCpMainMenuService, CoreModuleService } from 'ntk-cms-api';
 import { TranslationModule } from '../core/i18n/translation.module';
 
 @NgModule({
@@ -47,8 +47,11 @@ import { TranslationModule } from '../core/i18n/translation.module';
     SharedModule.forRoot(),
   ],
   providers: [
+    CoreModuleService,
     CoreCpMainMenuService,
     CoreAuthService,
+    DynamicHeaderMenuService,
+    DynamicAsideMenuService,
   ]
 })
 export class PagesModule { }

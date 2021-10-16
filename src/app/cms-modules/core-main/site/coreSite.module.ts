@@ -23,7 +23,7 @@ import { CoreSiteDeleteComponent } from './delete/delete.component';
 import { CoreSiteEditComponent } from './edit/edit.component';
 import { CoreSiteAddComponent } from './add/add.component';
 import { CoreSiteListComponent } from './list/list.component';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreSiteCategoryCmsModule } from '../site-category/coreSiteCategory.module';
@@ -82,13 +82,12 @@ import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
     FormsModule,
     CoreSiteRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
     CoreSiteCategoryCmsModule,
     CoreSiteCategoryCmsModuleModule,
-    CmsFileManagerModule,
+    
     CoreModuleModule,
     CoreUserModule,
     CoreUserGroupCmsModule,

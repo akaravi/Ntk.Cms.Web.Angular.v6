@@ -4,7 +4,7 @@ import { BankPaymentComponent } from './bank-payment.component';
 import { BankPaymentRoutes } from './bank-payment.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -18,7 +18,8 @@ import {
   BankPaymentTransactionService,
   BankPaymentTransactionLogService,
   BankPaymentEnumService,
-  CoreCurrencyService
+  CoreCurrencyService,
+  CoreModuleService
 } from 'ntk-cms-api';
 
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
@@ -76,15 +77,15 @@ import { BankPaymentPublicConfigHeaderComponent } from './public-config/header/h
     CommonModule,
     BankPaymentRoutes,
     FormsModule,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),   
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     DynamicFormBuilderModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     CoreCurrencyService,

@@ -9,7 +9,7 @@ import { ApplicationLogNotificationListComponent } from './notification/list/lis
 import { ApplicationSourceListComponent } from './source/list/list.component';
 import { ApplicationThemeConfigListComponent } from './themeConfig/list/list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -26,7 +26,8 @@ import {
   ApplicationEnumService,
   CoreModuleTagService,
   ApplicationConfigurationService,
-  ApplicationSourceSiteCategoryService
+  ApplicationSourceSiteCategoryService,
+  CoreModuleService
 } from 'ntk-cms-api';
 import { ApplicationSourceTreeComponent } from './source/tree/tree.component';
 import { ApplicationAppTreeComponent } from './content/tree/tree.component';
@@ -104,13 +105,14 @@ import { CmsFileUploaderModule } from 'src/app/shared/cms-file-uploader/cms-file
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
     CmsFileUploaderModule,
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     CmsConfirmationDialogService,

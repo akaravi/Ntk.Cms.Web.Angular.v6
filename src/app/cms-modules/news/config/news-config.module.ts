@@ -2,16 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  NewsConfigurationService,
   CoreModuleService,
-  CoreUserGroupService,
+  NewsConfigurationService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
 import { NewsConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
 import { NewsConfigSiteComponent } from './site/configSite.component';
 import { NewsConfigCheckUserComponent } from './check-user/check-user.component';
@@ -45,6 +43,7 @@ import { NewsConfigRouting } from './news-config.routing';
     AngularEditorModule,
   ],
   providers: [
+    CoreModuleService,
     NewsConfigurationService,
   ]
 })

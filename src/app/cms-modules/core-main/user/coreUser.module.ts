@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreUserRouting } from './coreUser.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CmsFileManagerModule } from 'src/filemanager-api';
-import { CoreEnumService, CoreSiteUserService, CoreUserGroupService, CoreUserService } from 'ntk-cms-api';
+import { CoreEnumService, CoreModuleService, CoreSiteUserService, CoreUserGroupService, CoreUserService } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreUserComponent } from './coreUser.component';
 import { CoreUserListComponent } from './list/list.component';
@@ -50,6 +50,7 @@ import { CoreUserViewComponent } from './view/view.component';
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreUserService,
     CoreUserGroupService,

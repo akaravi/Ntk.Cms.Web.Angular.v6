@@ -2,16 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  CoreConfigurationService,
-  CoreModuleService,
-  CoreUserGroupService,
+  CoreConfigurationService, CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
 import { CoreConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
 import { CoreConfigSiteComponent } from './site/configSite.component';
 import { CoreConfigCheckUserComponent } from './check-user/check-user.component';
@@ -45,6 +42,7 @@ import { CoreConfigRouting } from './core-config.routing';
     AngularEditorModule,
   ],
   providers: [
+    CoreModuleService,
     CoreConfigurationService,
   ]
 })

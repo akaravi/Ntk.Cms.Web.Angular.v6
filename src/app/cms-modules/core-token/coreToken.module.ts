@@ -6,6 +6,7 @@ import { CoreTokenUserListComponent } from './user/list/list.component';
 import { CoreTokenUserEditComponent } from './user/edit/edit.component';
 import {
   CoreEnumService,
+  CoreModuleService,
   CoreTokenActivationService,
   CoreTokenMicroServiceLogService,
   CoreTokenMicroServiceService,
@@ -77,6 +78,7 @@ import { CoreTokenMicroServiceLogViewComponent } from './micro-service-log/view/
 
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreTokenUserService,
     CoreTokenUserLogService,

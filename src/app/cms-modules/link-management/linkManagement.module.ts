@@ -4,7 +4,7 @@ import { LinkManagementComponent } from './linkManagement.component';
 import { LinkManagementRoutes } from './linkManagement.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -14,7 +14,8 @@ import {
   CoreEnumService,
   ApplicationEnumService,
   CoreModuleTagService,
-  LinkManagementConfigurationService
+  LinkManagementConfigurationService,
+  CoreModuleService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,12 +38,13 @@ import { LinkManagementConfigMainAdminComponent } from './config/mainAdmin/confi
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     /*Config*/

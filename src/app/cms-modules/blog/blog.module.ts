@@ -20,14 +20,15 @@ import {
   BlogShareMainAdminSettingService,
   BlogShareReciverCategoryService,
   BlogShareServerCategoryService,
-  BlogContentCategoryService
+  BlogContentCategoryService,
+  CoreModuleService
 } from 'ntk-cms-api';
 import { BlogCategoryEditComponent } from './category/edit/edit.component';
 import { BlogCategoryDeleteComponent } from './category/delete/delete.component';
 import { BlogContentEditComponent } from './content/edit/edit.component';
 import { BlogContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -71,13 +72,13 @@ import { BlogCategoryTreeSelectorComponent } from './category/tree-selector/tree
     BlogRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     /*Config*/
     BlogConfigurationService,

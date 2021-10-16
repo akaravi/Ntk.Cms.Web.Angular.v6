@@ -20,14 +20,15 @@ import {
   ChartContentTagService,
   ChartShareMainAdminSettingService,
   ChartShareReciverCategoryService,
-  ChartShareServerCategoryService
+  ChartShareServerCategoryService,
+  CoreModuleService
 } from 'ntk-cms-api';
 import { ChartCategoryEditComponent } from './category/edit/edit.component';
 import { ChartCategoryDeleteComponent } from './category/delete/delete.component';
 import { ChartContentEditComponent } from './content/edit/edit.component';
 import { ChartContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -68,13 +69,13 @@ import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tre
     ChartRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreModuleTagService,
     CmsConfirmationDialogService,

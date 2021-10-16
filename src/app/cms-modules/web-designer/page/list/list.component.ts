@@ -1,21 +1,17 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   WebDesignerMainPageModel,
   WebDesignerMainPageService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreModuleModel,
-  CoreModuleService,
   WebDesignerMainPageTemplateModel,
   WebDesignerMainPageTemplateService
 } from 'ntk-cms-api';
@@ -33,7 +29,6 @@ import { WebDesignerMainPageEditComponent } from '../edit/edit.component';
 import { WebDesignerMainPageAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { environment } from 'src/environments/environment';
-import { DOCUMENT } from '@angular/common';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({

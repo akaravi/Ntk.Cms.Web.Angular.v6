@@ -12,7 +12,7 @@ import { CoreCurrencySelectorComponent } from './selector/selector.component';
 import { CoreCurrencyEditComponent } from './edit/edit.component';
 import { CoreCurrencyAddComponent } from './add/add.component';
 import { CoreCurrencyListComponent } from './list/list.component';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -38,7 +38,6 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
     FormsModule,
     CoreCurrencyRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

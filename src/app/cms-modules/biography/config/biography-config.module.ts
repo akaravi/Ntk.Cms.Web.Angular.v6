@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  BiographyConfigurationService,
-  CoreModuleService,
-  CoreUserGroupService,
+  BiographyConfigurationService, CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -42,6 +40,7 @@ import { BiographyConfigRouting } from './biography-config.routing';
     AngularEditorModule,
   ],
   providers: [
+    CoreModuleService,
     BiographyConfigurationService,
   ]
 })

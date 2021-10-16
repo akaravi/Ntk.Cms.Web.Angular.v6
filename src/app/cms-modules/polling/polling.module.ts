@@ -6,6 +6,7 @@ import { TagInputModule } from 'ngx-chips';
 
 import {
   CoreEnumService,
+  CoreModuleService,
   CoreModuleTagService,
   PollingCategoryService,
   PollingConfigurationService,
@@ -17,7 +18,7 @@ import {
 import { PollingCategoryEditComponent } from './category/edit/edit.component';
 import { PollingCategoryDeleteComponent } from './category/delete/delete.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -63,6 +64,7 @@ import { PollingConfigSiteComponent } from './config/site/configSite.component';
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     /*Config*/
     PollingConfigurationService,

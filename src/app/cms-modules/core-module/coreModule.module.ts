@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreModuleComponent } from './coreModule.component';
 import { CoreModuleRoutes } from './coreModule.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -15,7 +15,7 @@ import { CoreModuleTagCategoryEditComponent } from './tagCategory/edit/edit.comp
 import { CoreModuleTagCategoryTreeComponent } from './tagCategory/tree/tree.component';
 import { CoreModuleTagCategorySelectorComponent } from './tagCategory/selector/selector.component';
 import { CoreModuleTagSelectorComponent } from './tag/selector/selector.component';
-import { CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CoreModuleService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
 
 
 @NgModule({
@@ -51,6 +51,7 @@ import { CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api'
     CoreModuleTagSelectorComponent,
   ],
   providers: [
+    CoreModuleService,
     CoreModuleTagService,
     CoreModuleTagCategoryService,
   ]

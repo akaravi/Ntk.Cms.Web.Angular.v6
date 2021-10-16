@@ -5,11 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreModuleSaleInvoiceDetailModel,
   CoreModuleSaleInvoiceDetailService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,

@@ -12,7 +12,7 @@ import { CoreModuleSelectorComponent } from './selector/selector.component';
 import { CoreModuleEditComponent } from './edit/edit.component';
 import { CoreModuleAddComponent } from './add/add.component';
 import { CoreModuleListComponent } from './list/list.component';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.component';
@@ -42,7 +42,6 @@ import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.
     FormsModule,
     CoreModuleRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,

@@ -4,7 +4,7 @@ import { HyperShopComponent } from './hyperShop.component';
 import { HyperShopRoutes } from './hyperShop.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -15,7 +15,8 @@ import {
   CoreModuleTagService,
   HyperShopConfigurationService,
   HyperShopCategoryService,
-  HyperShopContentService
+  HyperShopContentService,
+  CoreModuleService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -57,12 +58,13 @@ import { HyperShopContentViewComponent } from './content/view/view.component';
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     /*Config*/

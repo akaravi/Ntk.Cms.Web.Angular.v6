@@ -6,6 +6,7 @@ import { TagInputModule } from 'ngx-chips';
 
 import {
   CoreEnumService,
+  CoreModuleService,
   CoreModuleTagService,
   NewsCategoryService,
   NewsCommentService,
@@ -27,7 +28,7 @@ import { NewsCategoryDeleteComponent } from './category/delete/delete.component'
 import { NewsContentEditComponent } from './content/edit/edit.component';
 import { NewsContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
@@ -76,6 +77,7 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
     CmsFileManagerModule
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreModuleTagService,
     CmsConfirmationDialogService,

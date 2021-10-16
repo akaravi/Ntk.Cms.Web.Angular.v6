@@ -93,7 +93,7 @@ import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
     LeafletModule,
     TagInputModule,
     NgbDropdownModule,
-    CmsFileManagerModule,
+    CmsFileManagerModule.forRoot(),
     ClipboardModule,
     InlineSVGModule,
   ],

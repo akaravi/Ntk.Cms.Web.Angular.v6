@@ -4,7 +4,7 @@ import { SmsActionComponent } from './smsAction.component';
 import { SmsActionRoutes } from './smsAction.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -12,6 +12,7 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
   CoreAuthService,
   CoreEnumService,
+  CoreModuleService,
   CoreModuleTagService
 } from 'ntk-cms-api';
 import {MatIconModule} from '@angular/material/icon';
@@ -32,12 +33,13 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    CmsFileManagerModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     CmsConfirmationDialogService ,

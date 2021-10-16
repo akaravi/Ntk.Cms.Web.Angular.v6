@@ -18,7 +18,9 @@ export class DynamicFormBuilderCmsComponent implements OnInit {
   @Input() propertiesInfos: GetPropertiesInfoModel[] = [];
   @Output() jsonValueChange: EventEmitter<string> = new EventEmitter<string>();
   @Input() set jsonValue(model: string) {
-    this.fieldValue = JSON.parse(model);
+    if (model && model.length > 0) {
+      this.fieldValue = JSON.parse(model);
+    }
   }
   fieldValue: Array<FormBuilderFieldModel>;
   @Input() formGroup: FormGroup;
@@ -31,70 +33,73 @@ export class DynamicFormBuilderCmsComponent implements OnInit {
   ngOnInit(): void {
     this.unsubcribe = this.formGroup.valueChanges.subscribe((update) => {
       const modelValue = {};
-      this.propertiesInfos.forEach(x => {
-        if (update[x.FieldName]) {
-          // modelValue.push({
-          //   fieldName: x.FieldName,
-          //   value: update[x.FieldName]
-          // });
-          modelValue[x.FieldName] = update[x.FieldName];
-        }
-      });
+      if (this.propertiesInfos) {
+        this.propertiesInfos.forEach(x => {
+          if (update[x.FieldName]) {
+            // modelValue.push({
+            //   fieldName: x.FieldName,
+            //   value: update[x.FieldName]
+            // });
+            modelValue[x.FieldName] = update[x.FieldName];
+          }
+        });
+      }
       this.jsonValueChange.emit(JSON.stringify(modelValue));
     });
-
-    this.propertiesInfos.forEach(x => {
-      let fValue = '';
-      if (this.fieldValue) {
-        if (this.fieldValue[x.FieldName]) {
-          fValue = this.fieldValue[x.FieldName];
-        } else if (this.fieldValue.findIndex(y => y.fieldName === x.FieldName) >= 0) {
-          fValue = this.fieldValue.find(y => y.fieldName === x.FieldName).value;
-        } else if (this.fieldValue.findIndex(y => y['fieldname'] === x.FieldName) >= 0) {
-          fValue = this.fieldValue.find(y => y['fieldname'] === x.FieldName).value;
+    if (this.propertiesInfos) {
+      this.propertiesInfos.forEach(x => {
+        let fValue = '';
+        if (this.fieldValue) {
+          if (this.fieldValue[x.FieldName]) {
+            fValue = this.fieldValue[x.FieldName];
+          } else if (this.fieldValue.findIndex(y => y.fieldName === x.FieldName) >= 0) {
+            fValue = this.fieldValue.find(y => y.fieldName === x.FieldName).value;
+          } else if (this.fieldValue.findIndex(y => y['fieldname'] === x.FieldName) >= 0) {
+            fValue = this.fieldValue.find(y => y['fieldname'] === x.FieldName).value;
+          }
         }
-      }
 
 
-      switch (x.FieldType) {
-        case 'System.String':
-          this.fields.push({
-            type: 'text',
-            name: x.FieldName,
-            label: x.FieldTitle,
-            value: fValue,
-            required: false,
-          });
-          break;
-        case 'System.Int64':
-          this.fields.push({
-            type: 'text',
-            name: x.FieldName,
-            label: x.FieldTitle,
-            value: fValue,
-            required: false,
-          });
-          break;
-        case 'System.Int32':
-          this.fields.push({
-            type: 'text',
-            name: x.FieldName,
-            label: x.FieldTitle,
-            value: fValue,
-            required: false,
-          });
-          break;
-        default:
-          this.fields.push({
-            type: 'text',
-            name: x.FieldName,
-            label: x.FieldTitle,
-            value: fValue,
-            required: false,
-          });
-          break;
-      }
-    });
+        switch (x.FieldType) {
+          case 'System.String':
+            this.fields.push({
+              type: 'text',
+              name: x.FieldName,
+              label: x.FieldTitle,
+              value: fValue,
+              required: false,
+            });
+            break;
+          case 'System.Int64':
+            this.fields.push({
+              type: 'text',
+              name: x.FieldName,
+              label: x.FieldTitle,
+              value: fValue,
+              required: false,
+            });
+            break;
+          case 'System.Int32':
+            this.fields.push({
+              type: 'text',
+              name: x.FieldName,
+              label: x.FieldTitle,
+              value: fValue,
+              required: false,
+            });
+            break;
+          default:
+            this.fields.push({
+              type: 'text',
+              name: x.FieldName,
+              label: x.FieldTitle,
+              value: fValue,
+              required: false,
+            });
+            break;
+        }
+      });
+    }
     this.fields.forEach(x => {
       if (x.type == 'checkbox') {
         this.formGroup.addControl(x.name, new FormGroup({}));

@@ -5,18 +5,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   WebDesignerMainPageTemplateModel,
   WebDesignerMainPageTemplateService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreModuleModel,
-  CoreModuleService
-} from 'ntk-cms-api';
+  CoreModuleModel} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';

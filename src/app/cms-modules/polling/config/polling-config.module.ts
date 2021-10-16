@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
+  CoreModuleService,
   PollingConfigurationService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +41,7 @@ import { PollingConfigRouting } from './polling-config.routing';
     AngularEditorModule,
   ],
   providers: [
+    CoreModuleService,
     PollingConfigurationService,
   ]
 })

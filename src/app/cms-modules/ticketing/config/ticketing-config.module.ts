@@ -2,16 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  TicketingConfigurationService,
   CoreModuleService,
-  CoreUserGroupService,
+  TicketingConfigurationService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-// import { TreeviewModule } from 'ngx-treeview';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
 import { TicketingConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
 import { TicketingConfigSiteComponent } from './site/configSite.component';
 import { TicketingConfigCheckUserComponent } from './check-user/check-user.component';
@@ -45,6 +43,7 @@ import { TicketingConfigRouting } from './ticketing-config.routing';
     AngularEditorModule,
   ],
   providers: [
+    CoreModuleService,
     TicketingConfigurationService,
   ]
 })

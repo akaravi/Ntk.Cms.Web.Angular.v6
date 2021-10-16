@@ -18,9 +18,8 @@ import { TeardownLogic } from 'rxjs';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
-import { CoreAuthService, CoreEnumService } from 'ntk-cms-api';
+import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
@@ -82,6 +81,7 @@ export function CreateTranslateLoader(http: HttpClient): any {
   providers: [
     CoreAuthService,
     CoreEnumService,
+    CoreModuleService,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,

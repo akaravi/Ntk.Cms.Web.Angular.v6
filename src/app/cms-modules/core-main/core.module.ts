@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreComponent } from './core.component';
 import { CoreRoutes } from './core.routing';
+import { CoreModuleService } from 'ntk-cms-api';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { CoreRoutes } from './core.routing';
 
   ],
   providers: [
-
+    CoreModuleService
   ]
 })
 export class CoreModule { }

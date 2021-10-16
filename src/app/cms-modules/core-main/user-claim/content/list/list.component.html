@@ -88,11 +88,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
-      </ng-container>
       <!-- LinkUserClaimTypeId Column -->
       <ng-container matColumnDef="LinkUserClaimTypeId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserClaimTypeId']?.FieldTitle}}
