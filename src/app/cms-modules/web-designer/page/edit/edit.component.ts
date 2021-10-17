@@ -8,6 +8,7 @@ import {
   WebDesignerMainPageTemplateModel,
   WebDesignerMainPageDependencyModel,
   WebDesignerEnumService,
+  CoreSiteCategoryModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -205,5 +206,14 @@ export class WebDesignerMainPageEditComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onActionSelectCategory(model: CoreSiteCategoryModel | null): void {
+    if (!model || model.Id <= 0) {
+      const message = 'دسته بندی سایت مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.PageDependencyIsDefaultPageLinkSiteCategoryId = model.Id;
+
   }
 }
