@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-site',
-  templateUrl: './coreSite.component.html',
-  styleUrls: ['./coreSite.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreSiteComponent implements OnInit {
 

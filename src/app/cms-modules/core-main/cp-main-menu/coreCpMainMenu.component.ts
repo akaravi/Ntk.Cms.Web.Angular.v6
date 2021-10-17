@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-core-user',
-  templateUrl: './coreCpMainMenu.component.html',
-  styleUrls: ['./coreCpMainMenu.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreCpMainMenuComponent implements OnInit {
 

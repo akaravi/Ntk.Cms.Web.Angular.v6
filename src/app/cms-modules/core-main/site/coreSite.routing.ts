@@ -9,6 +9,7 @@ import { CoreSiteModuleAddComponent } from './moduleAdd/moduleAdd.component';
 import { CoreSiteAddComponent } from './add/add.component';
 import { CoreSiteEditComponent } from './edit/edit.component';
 import { CoreSiteUserListComponent } from './userList/userList.component';
+import { CoreInfoComponent } from './info/core-info.component';
 
 const routes: Routes = [
   {
@@ -88,8 +89,12 @@ const routes: Routes = [
       {
         path: 'userlist/LinkUserId/:LinkUserId',
         component: CoreSiteUserListComponent
-      }
+      },
       /** userlist */
+      {
+        path: 'info',
+        component:CoreInfoComponent
+      }
     ]
   },
 ];

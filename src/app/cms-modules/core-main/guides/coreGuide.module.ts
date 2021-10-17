@@ -17,6 +17,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreGuideListComponent } from './list/list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CoreInfoComponent } from '../site/info/core-info.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CoreGuideEditComponent,
     CoreGuideSelectorComponent,
     CoreGuideTreeComponent,
+    CoreInfoComponent,
   ],
   exports: [
     CoreGuideComponent,
@@ -35,6 +37,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CoreGuideEditComponent,
     CoreGuideSelectorComponent,
     CoreGuideTreeComponent,
+    CoreInfoComponent,
   ],
   imports: [
     CommonModule,

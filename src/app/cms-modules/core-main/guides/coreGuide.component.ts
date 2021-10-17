@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-site',
-  templateUrl: './coreGuide.component.html',
-  styleUrls: ['./coreGuide.component.scss']
+template: '<router-outlet></router-outlet>',
 })
 export class CoreGuideComponent implements OnInit {
 

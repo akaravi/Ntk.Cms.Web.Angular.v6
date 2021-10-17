@@ -1,9 +1,9 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
+  ایجاد اولین سامانه شما.
+  <br>
+  لطفا تمام دقت لازم را در انتخاب نوع سامانه و دامنه داشته باشید.
+</app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -149,14 +149,5 @@
     </mat-horizontal-stepper>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
-  <div class="ntk-cms-html-card-message">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    در ساخت سامانه خود دقت لازم را داشته باشید
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  </div>
-  <div class="ntk-cms-html-card-footer">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </div>
 </form>

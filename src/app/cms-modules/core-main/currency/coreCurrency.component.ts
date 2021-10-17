@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-core-currency',
-  templateUrl: './coreCurrency.component.html',
-  styleUrls: ['./coreCurrency.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreCurrencyComponent implements OnInit {
 

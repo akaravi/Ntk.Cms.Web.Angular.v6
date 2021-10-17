@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-site',
-  templateUrl: './coreSiteCategory.component.html',
-  styleUrls: ['./coreSiteCategory.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreSiteCategoryComponent implements OnInit {
 

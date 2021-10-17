@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-core-usergroup',
-  templateUrl: './coreUserGroup.component.html',
-  styleUrls: ['./coreUserGroup.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreUserGroupComponent implements OnInit {
 

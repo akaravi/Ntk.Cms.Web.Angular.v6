@@ -1,11 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CoreConfigCheckSiteComponent } from './config/check-site/check-site.component';
-import { CoreConfigCheckUserComponent } from './config/check-user/check-user.component';
-import { CoreConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { CoreConfigSiteComponent } from './config/site/configSite.component';
 import { CoreComponent } from './core.component';
-import { CoreInfoComponent } from './info/core-info.component';
 
 
 
@@ -90,11 +85,8 @@ const routes: Routes = [
         path: 'guide',
         loadChildren: () =>
           import('./guides/coreGuide.module').then((m) => m.CoreGuideCmsModule),
-      },
-      {
-        path: 'info',
-        component:CoreInfoComponent
       }
+     
     ]
   },
 ];

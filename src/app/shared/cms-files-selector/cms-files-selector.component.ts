@@ -51,6 +51,5 @@ export class CmsFilesSelectorComponent implements OnInit {
   }
   onActionCopied(): void {
     this.cmsToastrService.typeSuccessCopedToClipboard();
-
   }
 }

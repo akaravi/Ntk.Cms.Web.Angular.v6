@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-core-user',
-  templateUrl: './coreUser.component.html',
-  styleUrls: ['./coreUser.component.scss']
+  template: '<router-outlet></router-outlet>',
 })
 export class CoreUserComponent implements OnInit {
 
