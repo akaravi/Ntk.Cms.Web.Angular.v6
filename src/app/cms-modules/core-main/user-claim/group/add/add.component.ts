@@ -10,6 +10,7 @@ import {
   CoreUserGroupModel,
   ApplicationAppModel,
   CoreModuleModel,
+  ApplicationSourceModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -139,6 +140,20 @@ export class CoreUserClaimGroupAddComponent implements OnInit {
       return;
     }
     this.dataModel.LinkApplicationId = model.Id;
+  }
+  onActionSelectApplicationSource(model: ApplicationSourceModel | null): void {
+    if (!model || model.Id <= 0) {
+      this.dataModel.LinkApplicationSourceId = null;
+      return;
+    }
+    this.dataModel.LinkApplicationSourceId = model.Id;
+  }
+  onActionSelectUserGroup(model: CoreUserGroupModel | null): void {
+    if (!model || model.Id <= 0) {
+      this.dataModel.LinkUserGroupId = null;
+      return;
+    }
+    this.dataModel.LinkUserGroupId = model.Id;
   }
   onActionSelectSiteCategory(model: CoreSiteCategoryModel | null): void {
     this.dataModel.LinkSiteCategoryId=null;

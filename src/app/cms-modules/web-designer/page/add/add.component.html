@@ -55,15 +55,22 @@
       [optionMasterTemplateId]="dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'">
     </app-webdesigner-page-selector>
 
-    <!-- PageDependencyIsDefaultPage Field -->
-    <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.PageDependencyIsDefaultPage"
-        *ngIf="fieldsInfo['PageDependencyIsDefaultPage']?.AccessWatchField"
-        [disabled]="!fieldsInfo['PageDependencyIsDefaultPage']?.AccessAddField"
-        name="dataModel.PageDependencyIsDefaultPage">
-        {{fieldsInfo['PageDependencyIsDefaultPage']?.FieldTitle}}
-      </mat-slide-toggle>
-    </div>
+  <!-- PageDependencyIsDefaultPage Field -->
+  <div class="ntk-full-width" *ngIf="fieldsInfo['PageDependencyIsDefaultPage']?.AccessWatchField">
+    <mat-slide-toggle [(ngModel)]="dataModel.PageDependencyIsDefaultPage"
+      *ngIf="fieldsInfo['PageDependencyIsDefaultPage']?.AccessWatchField"
+      [disabled]="!fieldsInfo['PageDependencyIsDefaultPage']?.AccessAddField"
+      name="dataModel.PageDependencyIsDefaultPage">
+      {{fieldsInfo['PageDependencyIsDefaultPage']?.FieldTitle}}
+    </mat-slide-toggle>
+  </div>
+  <!-- LinkSiteCategoryId Field -->
+  <app-cms-sitecategory-selector *ngIf="dataModel.PageDependencyIsDefaultPage && fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.AccessWatchField"
+    (optionSelect)="onActionSelectCategory($event)"
+    [optionSelectForce]="this.dataModel.PageDependencyIsDefaultPageLinkSiteCategoryId"
+    [optionPlaceholder]="'نوع وب سایت'"
+    [optionDisabled]="!fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.AccessAddField">
+  </app-cms-sitecategory-selector>
 
     <!-- KeywordModel Field -->
     <tag-input [(ngModel)]="keywordDataModel" name="keywordDataModel" [placeholder]="'+ کلمه کلیدی'"

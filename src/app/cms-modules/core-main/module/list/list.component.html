@@ -45,7 +45,14 @@
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
-
+      <!-- LinkMainImageIdSrc Column -->
+      <ng-container matColumnDef="LinkMainImageIdSrc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+            src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+        </mat-cell>
+      </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>

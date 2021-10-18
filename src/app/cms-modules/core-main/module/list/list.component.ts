@@ -75,6 +75,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
+    'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
     'Title',
@@ -240,7 +241,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.coreModuleService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {

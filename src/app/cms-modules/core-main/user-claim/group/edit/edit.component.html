@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -51,6 +51,7 @@
             ActionType is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <hr>
         <!-- LinkModuleId Field -->
         <app-cms-module-selector (optionSelect)="onActionSelectModuleId($event)"
           [optionSelectForce]="this.dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'"
@@ -64,10 +65,23 @@
           [optionDisabled]="!fieldsInfo['LinkSiteCategoryId']?.AccessEditField">
         </app-cms-sitecategory-selector>
 
+        <!-- LinkUserGroupId Field -->
+        <app-cms-usergroup-selector (optionSelect)="onActionSelectUserGroup($event)"
+          [optionSelectForce]="this.dataModel.LinkUserGroupId" [optionPlaceholder]="'گروه کاربری'"
+          [optionDisabled]="!fieldsInfo['LinkUserGroupId']?.AccessEditField">
+        </app-cms-usergroup-selector>
+
         <!-- LinkApplicationId Field -->
         <app-cms-application-selector (optionSelect)="onActionSelectApplication($event)"
           [optionSelectForce]="this.dataModel.LinkApplicationId" [optionPlaceholder]="'اپلیکشن'"
           [optionDisabled]="!fieldsInfo['LinkApplicationId']?.AccessEditField">
+        </app-cms-application-selector>
+
+
+        <!-- LinkApplicationSourceId Field -->
+        <app-cms-application-selector (optionSelect)="onActionSelectApplicationSource($event)"
+          [optionSelectForce]="this.dataModel.LinkApplicationSourceId" [optionPlaceholder]="'سورس اپلیکیشن'"
+          [optionDisabled]="!fieldsInfo['LinkApplicationSourceId']?.AccessEditField">
         </app-cms-application-selector>
 
 
