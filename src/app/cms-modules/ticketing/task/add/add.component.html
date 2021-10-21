@@ -22,7 +22,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -43,7 +43,7 @@
           <mat-hint align="end">{{ 'Application.Source.FullName_hint' | translate }}</mat-hint>
           <mat-hint align="start">{{ FullName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="FullName.errors?.required">
-            {{ fieldsInfo['FullName']?.FieldFullName }} is <strong>required</strong>
+            {{ fieldsInfo['FullName']?.FieldFullName }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -57,7 +57,7 @@
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            {{ fieldsInfo['Title']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -73,7 +73,7 @@
           <mat-hint align="end">{{ 'Application.Source.PhoneNo_hint' | translate }}</mat-hint>
           <mat-hint align="start">{{ PhoneNo.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PhoneNo.errors?.required">
-            {{ fieldsInfo['PhoneNo']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['PhoneNo']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -88,7 +88,7 @@
           <mat-hint align="end">{{ 'Application.Source.Email_hint' | translate }}</mat-hint>
           <mat-hint align="start">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
-            {{ fieldsInfo['Email']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['Email']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -102,7 +102,7 @@
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            {{ fieldsInfo['Title']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 

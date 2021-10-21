@@ -19,7 +19,7 @@
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
-        RecordStatus is <strong>required</strong>
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -35,7 +35,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
-        {{fieldsInfo['Title']?.FieldTitle}} is <strong>required</strong>
+        {{fieldsInfo['Title']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- TitleML Field -->
@@ -55,7 +55,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleResourceLanguage.errors?.required">
-        {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}} is <strong>required</strong>
+        {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- LinkModuleId Field -->
@@ -74,7 +74,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ CmsModuleClassName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="CmsModuleClassName.errors?.required">
-        {{fieldsInfo['CmsModuleClassName']?.FieldTitle}} is <strong>required</strong>
+        {{fieldsInfo['CmsModuleClassName']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- ClassActionName Field -->
@@ -88,7 +88,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ClassActionName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ClassActionName.errors?.required">
-        {{fieldsInfo['ClassActionName']?.FieldTitle}} is <strong>required</strong>
+        {{fieldsInfo['ClassActionName']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

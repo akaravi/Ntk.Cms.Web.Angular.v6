@@ -103,7 +103,7 @@
             aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.MainDataContentRowCount = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigSiteAccessValuesModel_MainDataContentRowCount.errors?.required">
-            MainDataContentRowCount is <strong>required</strong>
+            MainDataContentRowCount is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -129,7 +129,7 @@
             aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.MaxAppCreation = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigSiteAccessValuesModel_MaxAppCreation.errors?.required">
-            MaxAppCreation is <strong>required</strong>
+            MaxAppCreation is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 

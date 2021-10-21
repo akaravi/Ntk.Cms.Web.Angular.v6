@@ -22,7 +22,6 @@ export class AuthSingInComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.firstRun = true;
-
   }
   firstRun = true;
   loading = new ProgressSpinnerModel();
@@ -47,6 +46,7 @@ export class AuthSingInComponent implements OnInit {
     }
   }
   onActionSubmit(): void {
+    debugger
     this.formInfo.ButtonSubmittedEnabled = false;
     this.hasError = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
@@ -61,6 +61,7 @@ export class AuthSingInComponent implements OnInit {
 
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
       (res) => {
+        debugger
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessLogin();
           if (res.Item.SiteId > 0) {

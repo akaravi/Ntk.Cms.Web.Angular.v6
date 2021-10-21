@@ -30,7 +30,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Mobile.errors?.required">
-        Mobile is <strong>required</strong>
+        Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -48,7 +48,7 @@
         close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="CaptchaText.errors?.required">
-        CaptchaText is <strong>required</strong>
+        CaptchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--begin::Form group-->
@@ -100,7 +100,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Code.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Code.errors?.required">
-        PIN Code is <strong>required</strong>
+        PIN Code is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -118,7 +118,7 @@
         close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="CaptchaText.errors?.required">
-        CaptchaText is <strong>required</strong>
+        CaptchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--begin::Form group-->

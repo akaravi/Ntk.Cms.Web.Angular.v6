@@ -22,7 +22,7 @@
           </mat-select>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            RecordStatus is <strong>required</strong>
+            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -38,7 +38,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Username.errors?.required">
-            Username is <strong>required</strong>
+            Username is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
@@ -51,7 +51,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
-            Email is <strong>required</strong>
+            Email is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <div class="ntk-full-width">
@@ -72,7 +72,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
-            Mobile is <strong>required</strong>
+            Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -124,7 +124,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
-            Name is <strong>required</strong>
+            Name is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -140,7 +140,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ LastName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LastName.errors?.required">
-            LastName is <strong>required</strong>
+            LastName is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -164,7 +164,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ CompanyName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CompanyName.errors?.required">
-            CompanyName is <strong>required</strong>
+            CompanyName is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -179,7 +179,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Tell.errors?.required">
-            Tell is <strong>required</strong>
+            Tell is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -193,7 +193,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ PostalCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PostalCode.errors?.required">
-            PostalCode is <strong>required</strong>
+            PostalCode is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.AccessWatchField">

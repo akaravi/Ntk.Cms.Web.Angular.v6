@@ -22,7 +22,7 @@
           </mat-select>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            RecordStatus is <strong>required</strong>
+            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <app-polling-category-selector (optionSelect)="onActionSelectorSelect($event)"
@@ -37,7 +37,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            Title is <strong>required</strong>
+            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -50,7 +50,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Question.value.length }} / 1000</mat-hint>
           <mat-error *ngIf="Question.errors?.required">
-            Question is <strong>required</strong>
+            Question is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -63,7 +63,7 @@
             (click)="dataModel.MaxVoteForThisContent = 1">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="MaxVoteForThisContent.errors?.required">
-            MaxVoteForThisContent is <strong>required</strong>
+            MaxVoteForThisContent is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -76,7 +76,7 @@
             (click)="dataModel.MaxVoteForEachOption = 1">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="MaxVoteForEachOption.errors?.required">
-            MaxVoteForEachOption is <strong>required</strong>
+            MaxVoteForEachOption is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 

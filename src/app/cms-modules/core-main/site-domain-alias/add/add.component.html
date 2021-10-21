@@ -17,7 +17,7 @@
         </mat-select>
         <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
-          RecordStatus is <strong>required</strong>
+          RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <app-core-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
@@ -31,7 +31,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Domain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Domain.errors?.required">
-          Domain is <strong>required</strong>
+          Domain is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="ntk-full-width">
@@ -43,7 +43,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ SubDomain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="SubDomain.errors?.required">
-          SubDomain is <strong>required</strong>
+          SubDomain is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

@@ -22,7 +22,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -37,7 +37,7 @@
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            {{ fieldsInfo['Title']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- TitleResourceLanguage Field -->
@@ -51,7 +51,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
           <mat-error *ngIf="TitleResourceLanguage.errors?.required">
-            TitleResourceLanguage is <strong>required</strong>
+            TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- OSType Field -->
@@ -65,7 +65,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.Source.OSType_hint' | translate }}</mat-hint>
           <mat-error *ngIf="OSType.errors?.required">
-            {{ fieldsInfo['OSType']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['OSType']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- ClassName Field -->
@@ -79,7 +79,7 @@
           <mat-icon *ngIf="fieldsInfo['ClassName']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ ClassName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="ClassName.errors?.required">
-            ClassName is <strong>required</strong>
+            ClassName is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- PackageName Field -->
@@ -93,7 +93,7 @@
           <mat-icon *ngIf="fieldsInfo['PackageName']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ PackageName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PackageName.errors?.required">
-            PackageName is <strong>required</strong>
+            PackageName is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -108,7 +108,7 @@
           <mat-hint *ngIf="fieldsInfo['Extension']?.AccessEditField" align="end">{{ Extension.value.length }} / 10
           </mat-hint>
           <mat-error *ngIf="Extension.errors?.required">
-            Extension is <strong>required</strong>
+            Extension is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- ExtensionUpdateFile Field -->
@@ -123,7 +123,7 @@
           <mat-icon *ngIf="fieldsInfo['ExtensionUpdateFile']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ ExtensionUpdateFile.value.length }} / 10</mat-hint>
           <mat-error *ngIf="ExtensionUpdateFile.errors?.required">
-            Extension Update File is <strong>required</strong>
+            Extension Update File is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 

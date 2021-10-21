@@ -20,7 +20,7 @@
         </mat-select>
         <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
-          RecordStatus is <strong>required</strong>
+          RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!-- Title Field -->
@@ -33,7 +33,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Title.value.length }} / 20</mat-hint>
         <mat-error *ngIf="Title.errors?.required">
-          Title is <strong>required</strong>
+          Title is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!-- Symbol Field -->
@@ -46,7 +46,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Symbol.value.length }} / 20</mat-hint>
         <mat-error *ngIf="Symbol.errors?.required">
-          Symbol is <strong>required</strong>
+          Symbol is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!-- ExchangeBuyRatio Field -->
@@ -58,7 +58,7 @@
           (click)="dataModel.ExchangeBuyRatio = 1">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="ExchangeBuyRatio.errors?.required">
-          ExchangeBuyRatio is <strong>required</strong>
+          ExchangeBuyRatio is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!-- ExchangeSaleRatio Field -->
@@ -70,7 +70,7 @@
           (click)="dataModel.ExchangeSaleRatio = 1">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="ExchangeSaleRatio.errors?.required">
-          ExchangeSaleRatio is <strong>required</strong>
+          ExchangeSaleRatio is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
 

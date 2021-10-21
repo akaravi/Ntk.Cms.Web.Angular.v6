@@ -24,7 +24,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Name.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
-            Name is <strong>required</strong>
+            Name is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
@@ -39,7 +39,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Family.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Family.errors?.required">
-            Family is <strong>required</strong>
+            Family is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -55,7 +55,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
-            Email is <strong>required</strong>
+            Email is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
@@ -70,7 +70,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Mobile.value.length }} / 15</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
-            Mobile is <strong>required</strong>
+            Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -86,7 +86,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Password.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Password.errors?.required">
-            Password is <strong>required</strong>
+            Password is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <mat-icon matSuffix (click)="ActionPasswordGenerator()">mode_edit</mat-icon>
@@ -106,7 +106,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ RePassword.value.length }} / 50</mat-hint>
           <mat-error *ngIf="RePassword.errors?.required">
-            RePassword is <strong>required</strong>
+            RePassword is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
           <mat-error *ngIf=" RePassword.value!=Password.value">
             پسورد و تاییدیه پسورد با هم مغایرت دارد
@@ -128,7 +128,7 @@
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="CaptchaText.errors?.required">
-            CaptchaText is <strong>required</strong>
+            CaptchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 

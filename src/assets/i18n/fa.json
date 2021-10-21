@@ -272,6 +272,7 @@
 	"MESSAGE.mahyar": "من مهیار نیک نداف هستم",
 	"MESSAGE.registration_completed_successfully": "ثبت با موفقیت انجام شد",
 	"MESSAGE.sending_information_to_the_server": "در حال ارسال اطلاعات به سرور",
+	"MESSAGE.required":"مورد نیاز است",
 	"TITLE.ATTACH_FILES": "فایل های پیوست",
 	"TITLE.Access_Type": "نوع دسترسی",
 	"TITLE.Account_settings_and_more": "تنظیمات حساب کاربری",

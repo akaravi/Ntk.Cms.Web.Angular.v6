@@ -22,7 +22,7 @@
             (click)="dataModel.Amount = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="Amount.errors?.required">
-            Amount is <strong>required</strong>
+            Amount is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- RecordStatus Field -->
@@ -34,7 +34,7 @@
             (click)="dataModel.FeeTransport = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="FeeTransport.errors?.required">
-            FeeTransport is <strong>required</strong>
+            FeeTransport is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- ModuleName Field -->
@@ -74,7 +74,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ LastUrlAddressInUse.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LastUrlAddressInUse.errors?.required">
-            LastUrlAddressInUse is <strong>required</strong>
+            LastUrlAddressInUse is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
       </div>

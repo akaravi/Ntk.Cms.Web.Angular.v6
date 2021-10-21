@@ -21,7 +21,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Name.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="Name.errors?.required">
-        Name is <strong>required</strong>
+        Name is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

@@ -18,7 +18,7 @@
           </mat-select>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            RecordStatus is <strong>required</strong>
+            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- LocationType Field -->
@@ -32,7 +32,7 @@
           </mat-select>
           <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
           <mat-error *ngIf="LocationType.errors?.required">
-            LocationType is <strong>required</strong>
+            LocationType is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -50,7 +50,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            Title is <strong>required</strong>
+            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- GeoLocationLatitude Field -->

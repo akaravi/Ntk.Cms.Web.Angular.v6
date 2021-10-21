@@ -11,7 +11,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ serialNumber.value.length }} / 20</mat-hint>
         <mat-error *ngIf="serialNumber.errors?.required">
-          {{fieldsInfo['serialNumber']?.FieldTitle}} is <strong>required</strong>
+          {{fieldsInfo['serialNumber']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <button (click)="onActionbuttonReload()" type="button" class="btn btn-warning BTN">برسی </button>
@@ -25,7 +25,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ pwdForUse.value.length }} / 20</mat-hint>
         <mat-error *ngIf="pwdForUse.errors?.required">
-          {{fieldsInfo['pwdForUse']?.FieldTitle}} is <strong>required</strong>
+          {{fieldsInfo['pwdForUse']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <button (click)="onActionbuttonBuy()" type="button" class="btn btn-warning BTN" *ngIf="showBuy">خرید </button>

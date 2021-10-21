@@ -19,7 +19,7 @@
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
-        RecordStatus is <strong>required</strong>
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- SerialNumber Field -->
@@ -32,7 +32,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ SerialNumber.value.length }} / 100</mat-hint>
       <mat-error *ngIf="SerialNumber.errors?.required">
-        {{fieldsInfo['SerialNumber']?.FieldTitle}} is <strong>required</strong>
+        {{fieldsInfo['SerialNumber']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- PwdForUse Field -->
@@ -45,7 +45,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ PwdForUse.value.length }} / 100</mat-hint>
       <mat-error *ngIf="PwdForUse.errors?.required">
-        {{fieldsInfo['PwdForUse']?.FieldTitle}} is <strong>required</strong>
+        {{fieldsInfo['PwdForUse']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -77,7 +77,7 @@
         mat-icon-button aria-label="Clear" (click)="dataModel.NumberOfMaxUse = null">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['NumberOfMaxUse']?.AccessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="NumberOfMaxUse.errors?.required">
-        {{ fieldsInfo['NumberOfMaxUse']?.FieldTitle }} is <strong>required</strong>
+        {{ fieldsInfo['NumberOfMaxUse']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -102,7 +102,7 @@
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.NumberOfRegistered = null">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['NumberOfRegistered']?.AccessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="NumberOfRegistered.errors?.required">
-        {{ fieldsInfo['NumberOfRegistered']?.FieldTitle }} is <strong>required</strong>
+        {{ fieldsInfo['NumberOfRegistered']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- AllowReuseDay Field -->
@@ -114,7 +114,7 @@
         mat-icon-button aria-label="Clear" (click)="dataModel.AllowReuseDay = null">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['AllowReuseDay']?.AccessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="AllowReuseDay.errors?.required">
-        {{ fieldsInfo['AllowReuseDay']?.FieldTitle }} is <strong>required</strong>
+        {{ fieldsInfo['AllowReuseDay']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

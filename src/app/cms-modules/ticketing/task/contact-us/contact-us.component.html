@@ -472,7 +472,7 @@
                     class="form-control form-control-solid form-control-lg"
                     placeholder="نام و نام خانوادگی خود را وارد کنید" />
                   <mat-error *ngIf="FullName.errors?.required">
-                    FullName is <strong>required</strong>
+                    FullName is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
                 </div>
                 <!--end::ورودی-->
@@ -484,7 +484,7 @@
                     class="form-control form-control-solid form-control-lg" placeholder="تلفن خود را وارد کنید" />
 
                   <mat-error *ngIf="PhoneNo.errors?.required">
-                    PhoneNo is <strong>required</strong>
+                    PhoneNo is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
                 </div>
                 <!--end::ورودی-->
@@ -496,7 +496,7 @@
                     class="form-control form-control-solid form-control-lg" placeholder="ایمیل را وارد کنید" />
 
                   <mat-error *ngIf="Email.errors?.required">
-                    Email is <strong>required</strong>
+                    Email is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
 
                 </div>
@@ -510,7 +510,7 @@
                     required></textarea>
 
                   <mat-error *ngIf="HtmlBody.errors?.required">
-                    HtmlBody is <strong>required</strong>
+                    HtmlBody is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
                   <span class="form-text text-muted">ما هرگز ایمیل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>
                 </div>
@@ -532,7 +532,7 @@
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
                   <mat-error *ngIf="CaptchaText.errors?.required">
-                    CaptchaText is <strong>required</strong>
+                    CaptchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
                 </mat-form-field>
 

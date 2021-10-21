@@ -18,7 +18,7 @@
           mat-icon-button aria-label="Clear" (click)="dataModel.AppVersion = 0">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['AppVersion']?.AccessEditField" matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="AppVersion.errors?.required">
-          {{ fieldsInfo['AppVersion']?.FieldAppVersion }} is <strong>required</strong>
+          {{ fieldsInfo['AppVersion']?.FieldAppVersion }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
 
@@ -33,7 +33,7 @@
         <mat-hint align="end">{{ 'Application.Source.LastBuildAppKey_hint' | translate }}</mat-hint>
         <mat-hint align="start">{{ LastBuildAppKey.value.length }} / 100</mat-hint>
         <mat-error *ngIf="LastBuildAppKey.errors?.required">
-          {{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }} is <strong>required</strong>
+          {{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
     </mat-card-content>

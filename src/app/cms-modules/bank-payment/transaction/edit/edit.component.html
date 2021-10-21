@@ -19,7 +19,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- BankStatus Field -->
@@ -34,7 +34,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.Source.BankStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="BankStatus.errors?.required">
-            {{ fieldsInfo['BankStatus']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['BankStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- TransactionStatus Field -->
@@ -50,7 +50,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.Source.TransactionStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="TransactionStatus.errors?.required">
-            {{ fieldsInfo['TransactionStatus']?.FieldTitle }} is <strong>required</strong>
+            {{ fieldsInfo['TransactionStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
   
