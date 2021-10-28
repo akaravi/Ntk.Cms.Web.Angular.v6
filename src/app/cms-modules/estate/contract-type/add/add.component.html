@@ -47,7 +47,7 @@
 
 
     <!-- Description Field -->
-    <mat-form-field class="ntk-full-width" >
+    <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
         placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
@@ -68,6 +68,19 @@
         {{fieldsInfo['SalePriceAllowAgreement']?.FieldTitle}}
       </mat-slide-toggle>
     </div>
+    <!-- TitleSalePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.HasSalePrice">
+      <mat-label>{{fieldsInfo['TitleSalePrice']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleSalePrice" name="dataModel.TitleSalePrice" #TitleSalePrice type="text"
+        placeholder="{{fieldsInfo['TitleSalePrice']?.FieldTitle}}" minlength="1" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleSalePrice" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleSalePrice = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleSalePrice.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleSalePrice.errors?.required">
+        TitleSalePrice is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
     <!-- UnitSalePrice Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.HasSalePrice">
       <mat-label>{{fieldsInfo['UnitSalePrice']?.FieldTitle}}</mat-label>
@@ -118,6 +131,19 @@
         {{fieldsInfo['RentPriceAllowAgreement']?.FieldTitle}}
       </mat-slide-toggle>
     </div>
+    <!-- TitleRentPrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.HasRentPrice">
+      <mat-label>{{fieldsInfo['TitleRentPrice']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleRentPrice" name="dataModel.TitleRentPrice" #TitleRentPrice type="text"
+        placeholder="{{fieldsInfo['TitleRentPrice']?.FieldTitle}}" minlength="1" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleRentPrice" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleRentPrice = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleRentPrice.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleRentPrice.errors?.required">
+        TitleRentPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
     <!-- UnitRentPrice Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.HasRentPrice">
       <mat-label>{{fieldsInfo['UnitRentPrice']?.FieldTitle}}</mat-label>
@@ -166,7 +192,20 @@
         {{fieldsInfo['DepositPriceAllowAgreement']?.FieldTitle}}
       </mat-slide-toggle>
     </div>
-
+    <!-- TitleDepositPrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.HasDepositPrice">
+      <mat-label>{{fieldsInfo['TitleDepositPrice']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleDepositPrice" name="dataModel.TitleDepositPrice" #TitleDepositPrice
+        type="text" placeholder="{{fieldsInfo['TitleDepositPrice']?.FieldTitle}}" minlength="1" maxlength="100"
+        required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleDepositPrice" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleDepositPrice = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleDepositPrice.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleDepositPrice.errors?.required">
+        TitleDepositPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
     <!-- UnitDepositPrice Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.HasDepositPrice">
       <mat-label>{{fieldsInfo['UnitDepositPrice']?.FieldTitle}}</mat-label>
