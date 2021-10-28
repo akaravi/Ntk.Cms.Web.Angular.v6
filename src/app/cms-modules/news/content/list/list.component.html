@@ -1,13 +1,26 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/Code/Question-circle.svg'">
+  <h1> مدیریت محتوای اخبار</h1>
+  
+  در این بخش میتوانید اخبار مربوط به املاک را وارد کنید.
+  <br>
+  برای اضافه کردن محتوای جدید بر روی گزینه "اضافه" کلیک نمایید.
+  <br>
+
+
+</app-cms-html-notice>
+<br>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-news-category-tree [loading]="loading" (optionSelect)="onActionSelectorSelect($event)"></app-news-category-tree>
+    <app-news-category-tree [loading]="loading" (optionSelect)="onActionSelectorSelect($event)">
+    </app-news-category-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->

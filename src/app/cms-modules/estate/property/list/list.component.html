@@ -1,3 +1,12 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/Code/Question-circle.svg'">
+  <h1>مدیریت محتوای املاک </h1>
+  <br>
+  برای اضافه کردن ملک جدید بر روی گزینه "اضافه" کلیک نمایید.
+  <br>
+
+
+</app-cms-html-notice>
+
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -37,7 +46,8 @@
       </mat-slide-toggle>
     </a>
     <a class="btn btn-secondary btn-sm BTN">
-      <mat-slide-toggle (click)="onActionbuttonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">{{'ACTION.INCHECKING' | translate}}
+      <mat-slide-toggle (click)="onActionbuttonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">
+        {{'ACTION.INCHECKING' | translate}}
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-info BTN">

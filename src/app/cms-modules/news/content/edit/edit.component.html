@@ -1,3 +1,9 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
+  ایجاد اولین سامانه شما.
+  <br>
+  لطفا تمام دقت لازم را در انتخاب نوع سامانه و دامنه داشته باشید.
+</app-cms-html-notice>
+
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -26,7 +32,9 @@
           </mat-error>
         </mat-form-field>
         <app-news-category-selector (optionSelect)="onActionSelectorSelect($event)"
+        
           [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'دسته بندی'">
+          <p>test</p>
         </app-news-category-selector>
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
