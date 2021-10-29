@@ -23,8 +23,8 @@ import {
 } from 'ntk-cms-api';
 
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { BankPaymentConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { BankPaymentConfigSiteComponent } from './config/site/configSite.component';
+import { BankPaymentConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { BankPaymentConfigSiteComponent } from './config/site/config-site.component';
 
 import { BankPaymentPublicConfigAddComponent } from './public-config/add/add.component';
 import { BankPaymentPublicConfigEditComponent } from './public-config/edit/edit.component';

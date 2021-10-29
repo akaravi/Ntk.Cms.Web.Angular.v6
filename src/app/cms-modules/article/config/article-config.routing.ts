@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { ArticleConfigCheckSiteComponent } from './check-site/check-site.component';
 import { ArticleConfigCheckUserComponent } from './check-user/check-user.component';
-import { ArticleConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { ArticleConfigSiteComponent } from './site/configSite.component';
+import { ArticleConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { ArticleConfigSiteComponent } from './site/config-site.component';
 
 const routes: Routes = [
   {

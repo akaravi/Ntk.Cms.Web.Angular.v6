@@ -42,8 +42,8 @@ import { BlogContentSelectorComponent } from './content/selector/selector.compon
 import { BlogContentDeleteComponent } from './content/delete/delete.component';
 import { BlogCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { BlogConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { BlogConfigSiteComponent } from './config/site/configSite.component';
+import { BlogConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { BlogConfigSiteComponent } from './config/site/config-site.component';
 import { BlogCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
 
 @NgModule({

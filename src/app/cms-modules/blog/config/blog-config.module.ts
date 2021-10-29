@@ -9,8 +9,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { BlogConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { BlogConfigSiteComponent } from './site/configSite.component';
+import { BlogConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { BlogConfigSiteComponent } from './site/config-site.component';
 import { BlogConfigCheckUserComponent } from './check-user/check-user.component';
 import { BlogConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BlogConfigRouting } from './blog-config.routing';

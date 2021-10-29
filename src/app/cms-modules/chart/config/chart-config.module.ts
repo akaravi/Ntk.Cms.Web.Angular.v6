@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { ChartConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { ChartConfigSiteComponent } from './site/configSite.component';
+import { ChartConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { ChartConfigSiteComponent } from './site/config-site.component';
 import { ChartConfigCheckUserComponent } from './check-user/check-user.component';
 import { ChartConfigCheckSiteComponent } from './check-site/check-site.component';
 import { ChartConfigRouting } from './chart-config.routing';

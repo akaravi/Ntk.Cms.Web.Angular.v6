@@ -7,8 +7,8 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { ArticleConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { ArticleConfigSiteComponent } from './site/configSite.component';
+import { ArticleConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { ArticleConfigSiteComponent } from './site/config-site.component';
 import { ArticleConfigCheckUserComponent } from './check-user/check-user.component';
 import { ArticleConfigCheckSiteComponent } from './check-site/check-site.component';
 import { ArticleConfigRouting } from './article-config.routing';

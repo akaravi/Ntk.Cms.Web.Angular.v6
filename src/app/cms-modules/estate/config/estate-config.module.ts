@@ -10,8 +10,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { EstateConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { EstateConfigSiteComponent } from './site/configSite.component';
+import { EstateConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { EstateConfigSiteComponent } from './site/config-site.component';
 import { EstateConfigCheckUserComponent } from './check-user/check-user.component';
 import { EstateConfigCheckSiteComponent } from './check-site/check-site.component';
 import { EstateConfigRouting } from './estate-config.routing';

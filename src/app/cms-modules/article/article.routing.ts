@@ -7,8 +7,8 @@ import { ArticleCommentListComponent } from './comment/list/list.component';
 import { ArticleCommentEditComponent } from './comment/edit/edit.component';
 import { ArticleContentEditComponent } from './content/edit/edit.component';
 import { ArticleContentAddComponent } from './content/add/add.component';
-import { ArticleConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { ArticleConfigSiteComponent } from './config/site/configSite.component';
+import { ArticleConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { ArticleConfigSiteComponent } from './config/site/config-site.component';
 
 
 const routes: Routes = [

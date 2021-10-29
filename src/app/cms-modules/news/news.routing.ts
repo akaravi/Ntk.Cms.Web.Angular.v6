@@ -5,8 +5,7 @@ import { NewsContentListComponent } from './content/list/list.component';
 import { NewsCommentListComponent } from './comment/list/list.component';
 import { NewsContentEditComponent } from './content/edit/edit.component';
 import { NewsContentAddComponent } from './content/add/add.component';
-import { NewsConfigSiteComponent } from './config/site/configSite.component';
-import { NewsConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
+
 
 
 

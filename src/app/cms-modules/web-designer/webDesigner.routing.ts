@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WebDesignerConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { WebDesignerConfigSiteComponent } from './config/site/configSite.component';
+import { WebDesignerConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { WebDesignerConfigSiteComponent } from './config/site/config-site.component';
 import { WebDesignerMainIntroAddComponent } from './intro/add/add.component';
 import { WebDesignerMainIntroEditComponent } from './intro/edit/edit.component';
 import { WebDesignerMainIntroListComponent } from './intro/list/list.component';

@@ -40,8 +40,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { EstateConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { EstateConfigSiteComponent } from './config/site/configSite.component';
+import { EstateConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { EstateConfigSiteComponent } from './config/site/config-site.component';
 
 import { EstatePropertyAddComponent } from './property/add/add.component';
 import { EstatePropertyEditComponent } from './property/edit/edit.component';

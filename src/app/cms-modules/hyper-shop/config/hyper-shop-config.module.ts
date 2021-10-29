@@ -10,8 +10,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { HyperShopConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { HyperShopConfigSiteComponent } from './site/configSite.component';
+import { HyperShopConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { HyperShopConfigSiteComponent } from './site/config-site.component';
 import { HyperShopConfigCheckUserComponent } from './check-user/check-user.component';
 import { HyperShopConfigCheckSiteComponent } from './check-site/check-site.component';
 import { HyperShopConfigRouting } from './hyper-shop-config.routing';

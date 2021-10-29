@@ -21,8 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { LinkManagementConfigSiteComponent } from './config/site/configSite.component';
-import { LinkManagementConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
+import { LinkManagementConfigSiteComponent } from './config/site/config-site.component';
+import { LinkManagementConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
 
 @NgModule({
   declarations: [

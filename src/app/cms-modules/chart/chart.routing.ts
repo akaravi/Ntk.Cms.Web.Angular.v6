@@ -5,8 +5,8 @@ import { ChartContentListComponent } from './content/list/list.component';
 import { ChartCommentListComponent } from './comment/list/list.component';
 import { ChartContentEditComponent } from './content/edit/edit.component';
 import { ChartContentAddComponent } from './content/add/add.component';
-import { ChartConfigSiteComponent } from './config/site/configSite.component';
-import { ChartConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
+import { ChartConfigSiteComponent } from './config/site/config-site.component';
+import { ChartConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
 
 
 

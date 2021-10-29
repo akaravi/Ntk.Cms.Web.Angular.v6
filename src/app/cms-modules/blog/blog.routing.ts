@@ -5,8 +5,8 @@ import { BlogContentListComponent } from './content/list/list.component';
 import { BlogCommentListComponent } from './comment/list/list.component';
 import { BlogContentEditComponent } from './content/edit/edit.component';
 import { BlogContentAddComponent } from './content/add/add.component';
-import { BlogConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { BlogConfigSiteComponent } from './config/site/configSite.component';
+import { BlogConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { BlogConfigSiteComponent } from './config/site/config-site.component';
 
 
 const routes: Routes = [

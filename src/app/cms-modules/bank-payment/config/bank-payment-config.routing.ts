@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { BankPaymentConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BankPaymentConfigCheckUserComponent } from './check-user/check-user.component';
-import { BankPaymentConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { BankPaymentConfigSiteComponent } from './site/configSite.component';
+import { BankPaymentConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { BankPaymentConfigSiteComponent } from './site/config-site.component';
 
 const routes: Routes = [
   {

@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { EstateConfigCheckSiteComponent } from './check-site/check-site.component';
 import { EstateConfigCheckUserComponent } from './check-user/check-user.component';
-import { EstateConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { EstateConfigSiteComponent } from './site/configSite.component';
+import { EstateConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { EstateConfigSiteComponent } from './site/config-site.component';
 
 const routes: Routes = [
   {

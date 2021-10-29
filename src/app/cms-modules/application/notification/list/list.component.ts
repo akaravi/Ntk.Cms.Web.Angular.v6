@@ -107,7 +107,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       filter.PropertyName = 'LinkApplicationMemberId';
       filter.Value = this.requestLinkApplicationMemberId;
       this.filteModelContent.Filters.push(filter);
-
     }
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {

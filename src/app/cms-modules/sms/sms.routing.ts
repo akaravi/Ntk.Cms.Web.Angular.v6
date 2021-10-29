@@ -8,19 +8,24 @@ const routes: Routes = [
     component: SmsComponent,
     children: [
       {
+        path: 'main',
+        loadChildren: () =>
+          import('./main/sms-main.module').then(m => m.SmsMainModule)
+      },
+      {
         path: 'action',
         loadChildren: () =>
-          import('./action/smsAction.module').then(m => m.SmsActionModule)
+          import('./action/sms-action.module').then(m => m.SmsActionModule)
       },
       {
         path: 'log',
         loadChildren: () =>
-          import('./log/smsLog.module').then(m => m.SmsLogModule)
+          import('./log/sms-log.module').then(m => m.SmsLogModule)
       },
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/smsConfig.module').then(m => m.SmsConfigModule)
+          import('./config/sms-config.module').then(m => m.SmsConfigModule)
       },
     ]
   },

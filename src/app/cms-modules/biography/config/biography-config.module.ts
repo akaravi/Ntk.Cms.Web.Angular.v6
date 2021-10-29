@@ -7,8 +7,8 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { BiographyConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { BiographyConfigSiteComponent } from './site/configSite.component';
+import { BiographyConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { BiographyConfigSiteComponent } from './site/config-site.component';
 import { BiographyConfigCheckUserComponent } from './check-user/check-user.component';
 import { BiographyConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BiographyConfigRouting } from './biography-config.routing';

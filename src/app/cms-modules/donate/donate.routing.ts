@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DonateConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { DonateConfigSiteComponent } from './config/site/configSite.component';
+import { DonateConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { DonateConfigSiteComponent } from './config/site/config-site.component';
 import { DonateComponent } from './donate.component';
 import { DonateTargetListComponent } from './target/list/list.component';
 

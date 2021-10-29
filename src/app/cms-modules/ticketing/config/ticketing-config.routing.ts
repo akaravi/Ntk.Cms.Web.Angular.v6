@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { TicketingConfigCheckSiteComponent } from './check-site/check-site.component';
 import { TicketingConfigCheckUserComponent } from './check-user/check-user.component';
-import { TicketingConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { TicketingConfigSiteComponent } from './site/configSite.component';
+import { TicketingConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { TicketingConfigSiteComponent } from './site/config-site.component';
 
 const routes: Routes = [
   {

@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { PollingConfigCheckSiteComponent } from './check-site/check-site.component';
 import { PollingConfigCheckUserComponent } from './check-user/check-user.component';
-import { PollingConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { PollingConfigSiteComponent } from './site/configSite.component';
+import { PollingConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { PollingConfigSiteComponent } from './site/config-site.component';
 
 const routes: Routes = [
   {

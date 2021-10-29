@@ -42,8 +42,8 @@ import { ChartContentSelectorComponent } from './content/selector/selector.compo
 import { ChartContentDeleteComponent } from './content/delete/delete.component';
 import { ChartCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { ChartConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { ChartConfigSiteComponent } from './config/site/configSite.component';
+import { ChartConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { ChartConfigSiteComponent } from './config/site/config-site.component';
 import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
 
 

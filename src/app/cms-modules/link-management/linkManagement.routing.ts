@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LinkManagementConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { LinkManagementConfigSiteComponent } from './config/site/configSite.component';
+import { LinkManagementConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { LinkManagementConfigSiteComponent } from './config/site/config-site.component';
 import { LinkManagementComponent } from './linkManagement.component';
 
 const routes: Routes = [

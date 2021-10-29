@@ -10,8 +10,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { WebDesignerConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { WebDesignerConfigSiteComponent } from './site/configSite.component';
+import { WebDesignerConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { WebDesignerConfigSiteComponent } from './site/config-site.component';
 import { WebDesignerConfigCheckUserComponent } from './check-user/check-user.component';
 import { WebDesignerConfigCheckSiteComponent } from './check-site/check-site.component';
 import { WebDesignerConfigRouting } from './web-designer-config.routing';

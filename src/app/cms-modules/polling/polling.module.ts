@@ -33,8 +33,8 @@ import { PollingVoteEditComponent } from './vote/edit/edit.component';
 import { PollingVoteListComponent } from './vote/list/list.component';
 import { PollingCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { PollingConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { PollingConfigSiteComponent } from './config/site/configSite.component';
+import { PollingConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { PollingConfigSiteComponent } from './config/site/config-site.component';
 
 
 @NgModule({

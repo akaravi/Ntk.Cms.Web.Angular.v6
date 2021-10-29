@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HyperShopContentModel } from 'ntk-cms-api';
 import { HyperShopCategoryListComponent } from './category/list/list.component';
-import { HyperShopConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
-import { HyperShopConfigSiteComponent } from './config/site/configSite.component';
+import { HyperShopConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { HyperShopConfigSiteComponent } from './config/site/config-site.component';
 import { HyperShopContentListComponent } from './content/list/list.component';
 import { HyperShopComponent } from './hyperShop.component';
 

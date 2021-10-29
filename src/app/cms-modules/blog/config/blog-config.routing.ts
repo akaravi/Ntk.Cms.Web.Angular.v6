@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { BlogConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BlogConfigCheckUserComponent } from './check-user/check-user.component';
-import { BlogConfigMainAdminComponent } from './mainAdmin/configMainAdmin.component';
-import { BlogConfigSiteComponent } from './site/configSite.component';
+import { BlogConfigMainAdminComponent } from './main-admin/config-main-admin.component';
+import { BlogConfigSiteComponent } from './site/config-site.component';
 
 const routes: Routes = [
   {

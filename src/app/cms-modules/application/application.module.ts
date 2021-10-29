@@ -47,8 +47,8 @@ import { ApplicationAppDownloadComponent } from './content/download/download.com
 import { ApplicationAppUploadAppComponent } from './content/uploadApp/uploadApp.component';
 import { ApplicationAppUploadUpdateComponent } from './content/uploadUpdate/uploadUpdate.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { ApplicationConfigSiteComponent } from './config/site/configSite.component';
-import { ApplicationConfigMainAdminComponent } from './config/mainAdmin/configMainAdmin.component';
+import { ApplicationConfigSiteComponent } from './config/site/config-site.component';
+import { ApplicationConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
 import { ApplicationThemeConfigEditComponent } from './themeConfig/edit/edit.component';
 import { ApplicationThemeConfigAddComponent } from './themeConfig/add/add.component';
 import { ApplicationMemberInfoViewComponent } from './memberInfo/view/view.component';
