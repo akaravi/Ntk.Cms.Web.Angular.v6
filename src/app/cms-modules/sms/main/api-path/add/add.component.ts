@@ -7,6 +7,7 @@ import {
   SmsMainApiPathModel,
   DataFieldInfoModel,
   CoreCurrencyModel,
+  SmsMainApiPathCompanyModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -29,6 +30,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss'],
 })
 export class SmsMainApiPathAddComponent implements OnInit {
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<SmsMainApiPathAddComponent>,
@@ -40,7 +42,9 @@ export class SmsMainApiPathAddComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-
+    if (data && data.LinkApiPathCompanyId) {
+     this. dataModel.LinkApiPathCompanyId = data.LinkApiPathCompanyId + '';
+    }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -106,10 +110,22 @@ export class SmsMainApiPathAddComponent implements OnInit {
       }
     );
   }
-
+  onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
+    if (!model || model.Id.length <= 0) {
+      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.LinkApiPathCompanyId = model.Id;
+  }
 
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
+      return;
+    }
+    if (!this.dataModel.LinkApiPathCompanyId || this.dataModel.LinkApiPathCompanyId.length == 0) {
+      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.formInfo.FormSubmitAllow = false;

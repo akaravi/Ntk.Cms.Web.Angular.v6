@@ -52,7 +52,7 @@ export class CoreSiteCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreSiteCategoryModel = new CoreSiteCategoryModel();
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreSiteCategoryModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreSiteCategoryModel>();
   @Output() optionSelect = new EventEmitter<CoreSiteCategoryModel>();

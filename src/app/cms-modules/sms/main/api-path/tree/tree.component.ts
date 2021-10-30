@@ -51,7 +51,8 @@ export class SmsMainApiPathTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<SmsMainApiPathModel>(node => null);
   dataSource = new MatTreeNestedDataSource<SmsMainApiPathModel>();
   @Output() optionSelect = new EventEmitter<SmsMainApiPathModel>();
@@ -98,7 +99,7 @@ export class SmsMainApiPathTreeComponent implements OnInit, OnDestroy {
     this.optionSelect.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.Id.length > 0) {
+    if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
@@ -125,7 +126,7 @@ export class SmsMainApiPathTreeComponent implements OnInit, OnDestroy {
 
   onActionEdit(): void {
     let id = '';
-    if (this.dataModelSelect && this.dataModelSelect.Id.length > 0) {
+    if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
       id = this.dataModelSelect.Id;
     }
     if (id.length === 0) {

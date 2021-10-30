@@ -51,7 +51,7 @@ export class CoreUserClaimGroupDetailTreeComponent implements OnInit, OnDestroy 
   dataModelSelect: CoreUserClaimGroupDetailModel = new CoreUserClaimGroupDetailModel();
   dataModelResult: ErrorExceptionResult<CoreUserClaimGroupDetailModel> = new ErrorExceptionResult<CoreUserClaimGroupDetailModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreUserClaimGroupDetailModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreUserClaimGroupDetailModel>();
   @Output() optionSelect = new EventEmitter<CoreUserClaimGroupDetailModel>();

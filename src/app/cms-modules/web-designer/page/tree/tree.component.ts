@@ -51,7 +51,7 @@ export class WebDesignerMainPageTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: WebDesignerMainPageModel = new WebDesignerMainPageModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageModel> = new ErrorExceptionResult<WebDesignerMainPageModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<WebDesignerMainPageModel>(node => null);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainPageModel>();
   @Output() optionSelect = new EventEmitter<WebDesignerMainPageModel>();

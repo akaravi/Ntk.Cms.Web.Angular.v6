@@ -54,7 +54,7 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreGuideModel = new CoreGuideModel();
   dataModelResult: ErrorExceptionResult<CoreGuideModel> = new ErrorExceptionResult<CoreGuideModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreGuideModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<CoreGuideModel>();
   @Output() optionSelect = new EventEmitter<CoreGuideModel>();

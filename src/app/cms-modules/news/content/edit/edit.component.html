@@ -32,9 +32,7 @@
           </mat-error>
         </mat-form-field>
         <app-news-category-selector (optionSelect)="onActionSelectorSelect($event)"
-        
           [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'دسته بندی'">
-          <p>test</p>
         </app-news-category-selector>
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>

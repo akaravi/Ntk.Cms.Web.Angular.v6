@@ -1,0 +1,119 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
+              let item of dataModelEnumRecordStatusResult.ListItems;
+              index as i
+            " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- LinkCmsUserId Field -->
+    <app-cms-user-selector (optionSelect)="onActionSelectorCmsUser($event)"
+      [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCmsUserId"
+      [optionPlaceholder]="'کاربر'">
+    </app-cms-user-selector>
+
+    <!-- LinkApiPathId Field -->
+    <app-sms-apipath-selector (optionSelect)="onActionSelectorSelectLinkApiPathId($event)"
+      [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="'مسیر'">
+    </app-sms-apipath-selector>
+
+    <!-- HasInherits Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.HasInherits" *ngIf="fieldsInfo['HasInherits']?.AccessWatchField"
+        [disabled]="!fieldsInfo['HasInherits']?.AccessEditField" name="dataModel.HasInherits">
+        {{fieldsInfo['HasInherits']?.FieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- AccessStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="نوع وضعیت" [(ngModel)]="dataModel.AccessStatus" name="dataModel.AccessStatus"
+        #AccessStatus="ngModel" panelClass="recordStatus-{{ dataModel.AccessStatus }}" required>
+        <mat-option *ngFor="
+                        let item of dataModelEnumApiPathPermissionAccessStatusResult.ListItems;
+                        index as i
+                      " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+      <mat-error *ngIf="AccessStatus.errors?.required">
+        AccessStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+        <!-- Action Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="نوع فعالیت" [(ngModel)]="dataModel.Action" name="dataModel.Action"
+            #Action="ngModel" panelClass="recordStatus-{{ dataModel.Action }}" required>
+            <mat-option *ngFor="
+                            let item of dataModelEnumApiPathPermissionActionResult.ListItems;
+                            index as i
+                          " [value]="item.Value">{{ item.Description }}</mat-option>
+          </mat-select>
+          <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+          <mat-error *ngIf="Action.errors?.required">
+            Action is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+     <!-- FromDate Field -->
+     <mat-form-field class="ntk-full-width">
+      <mat-label>تاریخ شروع</mat-label>
+      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
+      <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #FromDate></mat-datepicker>
+    </mat-form-field>
+
+    <!-- ExpireDate Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+      <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
+      <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #ExpireDate></mat-datepicker>
+    </mat-form-field>
+    <hr class="pb-5" />
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

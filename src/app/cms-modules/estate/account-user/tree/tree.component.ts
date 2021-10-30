@@ -52,7 +52,7 @@ export class EstateAccountUserTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstateAccountUserModel = new EstateAccountUserModel();
   dataModelResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateAccountUserModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateAccountUserModel>();
   @Output() optionSelect = new EventEmitter<EstateAccountUserModel>();

@@ -49,7 +49,7 @@ export class CoreModuleTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreModuleModel = new CoreModuleModel();
   dataModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreModuleModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreModuleModel>();
   @Output() optionSelect = new EventEmitter<CoreModuleModel>();

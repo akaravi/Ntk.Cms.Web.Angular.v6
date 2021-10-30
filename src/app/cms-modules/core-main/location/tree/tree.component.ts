@@ -51,7 +51,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreLocationModel = new CoreLocationModel();
   dataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreLocationModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<CoreLocationModel>();
   @Output() optionSelect = new EventEmitter<CoreLocationModel>();

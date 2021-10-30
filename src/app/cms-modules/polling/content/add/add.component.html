@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -101,6 +101,7 @@
           </mat-slide-toggle>
         </div>
 
+        <!-- FromDate Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>تاریخ شروع</mat-label>
           <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
@@ -207,8 +208,12 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionOptionEditFromList(i)"><mat-icon aria-hidden="false" style="color: blue;" >edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
-                <small (click)="onActionOptionRemoveFromList(i)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionOptionEditFromList(i)">
+                  <mat-icon aria-hidden="false" style="color: blue;">edit</mat-icon>{{'ACTION.EDIT' | translate}}
+                </small>|
+                <small (click)="onActionOptionRemoveFromList(i)">
+                  <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}
+                </small>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>

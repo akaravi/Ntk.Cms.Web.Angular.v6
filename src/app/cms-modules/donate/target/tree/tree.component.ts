@@ -51,7 +51,7 @@ export class DonateTargetTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: DonateTargetModel = new DonateTargetModel();
   dataModelResult: ErrorExceptionResult<DonateTargetModel> = new ErrorExceptionResult<DonateTargetModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<DonateTargetModel>(node => null);
   dataSource = new MatTreeNestedDataSource<DonateTargetModel>();
   @Output() optionSelect = new EventEmitter<DonateTargetModel>();

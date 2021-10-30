@@ -7,6 +7,7 @@ import {
   SmsMainApiPathModel,
   DataFieldInfoModel,
   CoreCurrencyModel,
+  SmsMainApiPathCompanyModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -22,6 +23,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-sms-apipath-edit',
@@ -31,18 +35,18 @@ import { TranslateService } from '@ngx-translate/core';
 export class SmsMainApiPathEditComponent implements OnInit {
   requestId = '';
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<SmsMainApiPathEditComponent>,
     public coreEnumService: CoreEnumService,
     public smsMainApiPathService: SmsMainApiPathService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    private router: Router,
     private cdr: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (data && data.id) {
-      this.requestId = data.id ;
+    if (this.activatedRoute.snapshot.paramMap.get('Id')) {
+      this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -70,7 +74,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
-      this.dialogRef.close({ dialogChangedDate: false });
+      this.router.navigate(['/sms/main/api-path/list']);
       return;
     }
 
@@ -129,8 +133,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
-          this.dialogRef.close({ dialogChangedDate: true });
-
+          setTimeout(() => this.router.navigate(['/sms/main/api-path/list']), 1000);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -148,15 +151,42 @@ export class SmsMainApiPathEditComponent implements OnInit {
     );
   }
 
-
+  onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
+    if (!model || model.Id.length <= 0) {
+      const message = 'کمپانی اطلاعات مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.LinkApiPathCompanyId = model.Id;
+  }
+  
+  onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
+    if (event.previouslySelectedIndex < event.selectedIndex) {
+      if (!this.formGroup.valid) {
+        this.cmsToastrService.typeErrorFormInvalid();
+        setTimeout(() => {
+          stepper.selectedIndex = event.previouslySelectedIndex;
+          // stepper.previous();
+        }, 10);
+      }
+    }
+  }
+  onActionBackToParent(): void {
+    this.router.navigate(['/sms/main/api-path/list']);
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
+      return;
+    }
+    if (!this.dataModel.LinkApiPathCompanyId || this.dataModel.LinkApiPathCompanyId.length == 0) {
+      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.formInfo.FormSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {
-    this.dialogRef.close({ dialogChangedDate: false });
+    this.router.navigate(['/sms/main/api-path/list']);
   }
 }

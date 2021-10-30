@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthUserSignInModel, CaptchaModel, CoreAuthService,  FormInfoModel } from 'ntk-cms-api';
+import { AuthUserSignInModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -46,12 +46,12 @@ export class AuthSingInComponent implements OnInit {
     }
   }
   onActionSubmit(): void {
-    debugger
+
     this.formInfo.ButtonSubmittedEnabled = false;
     this.hasError = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.dataModel.lang = this.translationService.getSelectedLanguage();
-    
+
     const pName = this.constructor.name + '.ServiceSigninUser';
     this.loading.Start(pName, 'ورود به حساب کاربری');
     const siteId = + localStorage.getItem('siteId');
@@ -61,7 +61,7 @@ export class AuthSingInComponent implements OnInit {
 
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
       (res) => {
-        debugger
+
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessLogin();
           if (res.Item.SiteId > 0) {

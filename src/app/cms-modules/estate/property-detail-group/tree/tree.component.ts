@@ -54,7 +54,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   dataModelSelect: EstatePropertyDetailGroupModel = new EstatePropertyDetailGroupModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailGroupModel> = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstatePropertyDetailGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertyDetailGroupModel>();
   @Output() optionSelect = new EventEmitter<EstatePropertyDetailGroupModel>();

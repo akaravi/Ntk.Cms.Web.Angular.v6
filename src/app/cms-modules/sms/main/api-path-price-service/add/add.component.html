@@ -1,0 +1,139 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
+              let item of dataModelEnumRecordStatusResult.ListItems;
+              index as i
+            " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+    <!-- LinkApiPathId Field -->
+    <app-sms-apipath-selector (optionSelect)="onActionSelectorSelectLinkApiPathId($event)"
+      [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="'مسیر'">
+    </app-sms-apipath-selector>
+
+
+    <!-- RegulatorNumber Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RegulatorNumber']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['RegulatorNumber']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.RegulatorNumber"
+        [disabled]="!fieldsInfo['RegulatorNumber']?.AccessAddField" name="dataModel.RegulatorNumber" #RegulatorNumber
+        type="text" placeholder="123" />
+      <mat-icon matSuffix *ngIf="dataModel.RegulatorNumber && fieldsInfo['RegulatorNumber']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.RegulatorNumber = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['RegulatorNumber']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-hint align="start">{{ RegulatorNumber.value.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <!-- ServiceUnicodeMessagePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceUnicodeMessagePrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['ServiceUnicodeMessagePrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.ServiceUnicodeMessagePrice"
+        [disabled]="!fieldsInfo['ServiceUnicodeMessagePrice']?.AccessAddField"
+        name="dataModel.ServiceUnicodeMessagePrice" #ServiceUnicodeMessagePrice type="number" placeholder="0" />
+      <mat-icon matSuffix
+        *ngIf="dataModel.ServiceUnicodeMessagePrice && fieldsInfo['ServiceUnicodeMessagePrice']?.AccessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ServiceUnicodeMessagePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ServiceUnicodeMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- ServiceNormalMessagePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceNormalMessagePrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['ServiceNormalMessagePrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.ServiceNormalMessagePrice"
+        [disabled]="!fieldsInfo['ServiceNormalMessagePrice']?.AccessAddField" name="dataModel.ServiceNormalMessagePrice"
+        #ServiceNormalMessagePrice type="number" placeholder="0" />
+      <mat-icon matSuffix
+        *ngIf="dataModel.ServiceNormalMessagePrice && fieldsInfo['ServiceNormalMessagePrice']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.ServiceNormalMessagePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ServiceNormalMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- ServiceVoicePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceVoicePrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['ServiceVoicePrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.ServiceVoicePrice"
+        [disabled]="!fieldsInfo['ServiceVoicePrice']?.AccessAddField" name="dataModel.ServiceVoicePrice"
+        #ServiceVoicePrice type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.ServiceVoicePrice && fieldsInfo['ServiceVoicePrice']?.AccessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ServiceVoicePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ServiceVoicePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- UserUnicodeMessagePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserUnicodeMessagePrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['UserUnicodeMessagePrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.UserUnicodeMessagePrice"
+        [disabled]="!fieldsInfo['UserUnicodeMessagePrice']?.AccessAddField" name="dataModel.UserUnicodeMessagePrice"
+        #UserUnicodeMessagePrice type="number" placeholder="0" />
+      <mat-icon matSuffix
+        *ngIf="dataModel.UserUnicodeMessagePrice && fieldsInfo['UserUnicodeMessagePrice']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.UserUnicodeMessagePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['UserUnicodeMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+
+    <!-- UserNormalMessagePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserNormalMessagePrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['UserNormalMessagePrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.UserNormalMessagePrice"
+        [disabled]="!fieldsInfo['UserNormalMessagePrice']?.AccessAddField" name="dataModel.UserNormalMessagePrice"
+        #UserNormalMessagePrice type="number" placeholder="0" />
+      <mat-icon matSuffix
+        *ngIf="dataModel.UserNormalMessagePrice && fieldsInfo['UserNormalMessagePrice']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.UserNormalMessagePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['UserNormalMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+
+    <!-- UserVoicePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserVoicePrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['UserVoicePrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.UserVoicePrice" [disabled]="!fieldsInfo['UserVoicePrice']?.AccessAddField"
+        name="dataModel.UserVoicePrice" #UserVoicePrice type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.UserVoicePrice && fieldsInfo['UserVoicePrice']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.UserVoicePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['UserVoicePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

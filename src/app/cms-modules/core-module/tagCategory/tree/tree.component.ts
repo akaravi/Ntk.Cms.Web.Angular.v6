@@ -52,7 +52,7 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreModuleTagCategoryModel = new CoreModuleTagCategoryModel();
   dataModelResult: ErrorExceptionResult<CoreModuleTagCategoryModel> = new ErrorExceptionResult<CoreModuleTagCategoryModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreModuleTagCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<CoreModuleTagCategoryModel>();
   @Output() optionSelect = new EventEmitter<CoreModuleTagCategoryModel>();

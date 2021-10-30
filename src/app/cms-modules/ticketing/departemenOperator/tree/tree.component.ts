@@ -49,7 +49,7 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit, OnDestr
   dataModelSelect: TicketingDepartemenOperatorModel = new TicketingDepartemenOperatorModel();
   dataModelResult: ErrorExceptionResult<TicketingDepartemenOperatorModel> = new ErrorExceptionResult<TicketingDepartemenOperatorModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<TicketingDepartemenOperatorModel>(node => null);
   dataSource = new MatTreeNestedDataSource<TicketingDepartemenOperatorModel>();
   @Output() optionSelect = new EventEmitter<TicketingDepartemenOperatorModel>();
