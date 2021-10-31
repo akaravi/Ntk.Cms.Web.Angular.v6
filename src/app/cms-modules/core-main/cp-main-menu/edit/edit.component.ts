@@ -87,7 +87,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
 
     this.getEnumRecordStatus();
     this.getEnumMenuPlaceType();
-    this.DataGetAllMenuCoreUserGroup();
+    // this.DataGetAllMenuCoreUserGroup();
   }
   getEnumMenuPlaceType(): void {
     this.coreEnumService.ServiceEnumMenuPlaceType().subscribe((next) => {
@@ -117,7 +117,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         this.dataModel = next.Item;
         if (next.IsSuccess) {
-
+          this.DataGetAllMenuCoreUserGroup();
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
           this.formInfo.FormAlert = '';
         } else {
@@ -142,7 +142,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormAlert = 'در دریافت دسته بندی دسترسی های از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

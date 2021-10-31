@@ -77,9 +77,9 @@
       </ng-container>
       <!-- LinkApplicationId Column -->
       <ng-container matColumnDef="LinkPublicConfigId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPublicConfigId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPublicConfigId']?.FieldTitle }}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkPublicConfigId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.LinkPublicConfigId| cmstitle: dataModelPublicResult.ListItems}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
@@ -93,23 +93,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
-      <!-- MinTransactionAmount Column -->
-      <ng-container matColumnDef="MinTransactionAmount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> min </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.MinTransactionAmount}} </mat-cell>
-      </ng-container>
-      <!-- MaxTransactionAmount Column -->
-      <ng-container matColumnDef="MaxTransactionAmount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['MaxTransactionAmount']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.MaxTransactionAmount}} </mat-cell>
-      </ng-container>
-      <!-- CreatedDate Column -->
-      <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
-      </ng-container>
+    
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}}

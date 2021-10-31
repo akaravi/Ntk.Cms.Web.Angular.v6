@@ -8,6 +8,7 @@ import {
   DataFieldInfoModel,
   CoreCurrencyModel,
   SmsMainApiPathCompanyModel,
+  SmsMainApiPathPublicConfigModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -72,12 +73,30 @@ export class SmsMainApiPathAddComponent implements OnInit {
 
     this.formInfo.FormTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
+    this.DataGetAccess();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
 
+  DataGetAccess(): void {
+    this.smsMainApiPathService
+      .ServiceViewModel()
+      .subscribe(
+        async (next) => {
+          if (next.IsSuccess) {
+            // this.dataAccessModel = next.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+          }
+        },
+        (error) => {
+          this.cmsToastrService.typeErrorGetAccess(error);
+        }
+      );
+  }
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
@@ -118,13 +137,23 @@ export class SmsMainApiPathAddComponent implements OnInit {
     }
     this.dataModel.LinkApiPathCompanyId = model.Id;
   }
-
+  onActionSelectSource(model: SmsMainApiPathPublicConfigModel): void {
+    this.dataModel.LinkPublicConfigId = null;
+    if (model && model.Id.length > 0) {
+      this.dataModel.LinkPublicConfigId = model.Id;
+    }
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     if (!this.dataModel.LinkApiPathCompanyId || this.dataModel.LinkApiPathCompanyId.length == 0) {
       const message = 'کمپانی سرویس دهنده مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    if (!this.dataModel.LinkPublicConfigId || this.dataModel.LinkPublicConfigId.length == 0) {
+      const message = 'نوع سرویس دهنده مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

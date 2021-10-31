@@ -17,7 +17,9 @@ import {
   CoreCurrencyService,
   CoreCurrencyModel,
   SmsMainApiPathCompanyModel,
-  SmsMainApiPathCompanyService
+  SmsMainApiPathCompanyService,
+  SmsMainApiPathPublicConfigService,
+  SmsMainApiPathPublicConfigModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -40,10 +42,13 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   styleUrls: ['./list.component.scss']
 })
 export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
+  requestLinkSiteId = 0;
   requestLinkCompanyId = '';
+  requestLinkPublicConfigId = '';
   constructor(
     private smsMainApiPathService: SmsMainApiPathService,
     private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
+    private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
@@ -74,6 +79,8 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
   dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
   dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
+  dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
+
   categoryModelSelected: SmsMainApiPathCompanyModel;
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -88,10 +95,12 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
+    'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
     'Title',
     'LinkApiPathCompanyId',
+    'LinkPublicConfigId',
     'UpdatedDate',
     'Action'
   ];
@@ -105,11 +114,28 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     if (this.activatedRoute.snapshot.paramMap.get('LinkCompanyId')) {
       this.requestLinkCompanyId = this.activatedRoute.snapshot.paramMap.get('LinkCompanyId');
     }
-
+    if (this.activatedRoute.snapshot.paramMap.get('LinkSiteId')) {
+      this.requestLinkSiteId = +this.activatedRoute.snapshot.paramMap.get('LinkSiteId') || 0;
+    }
+    if (this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId')) {
+      this.requestLinkPublicConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId');
+    }
+    const filter = new FilterDataModel();
+    if (this.requestLinkPublicConfigId?.length > 0) {
+      filter.PropertyName = 'LinkPublicConfigId';
+      filter.Value = this.requestLinkPublicConfigId;
+      this.filteModelContent.Filters.push(filter);
+    }
     if (this.requestLinkCompanyId.length > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkApiPathCompanyId';
       filter.Value = this.requestLinkCompanyId;
+      this.filteModelContent.Filters.push(filter);
+    }
+    if (this.requestLinkSiteId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkSiteId';
+      filter.Value = this.requestLinkSiteId;
       this.filteModelContent.Filters.push(filter);
     }
     this.filteModelContent.SortColumn = 'Title';
@@ -124,6 +150,14 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     });
     // this.getCurrency();
     this.getApiCopmanyList();
+    this.getPublicConfig();
+  }
+  getPublicConfig(): void {
+    const filter = new FilterModel();
+    filter.RowPerPage = 100;
+    this.smsMainApiPathPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
+      this.dataModelPublicResult = next;
+    });
   }
   getApiCopmanyList(): void {
     const filter = new FilterModel();

@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  BankPaymentPublicConfigModel,
-  BankPaymentPublicConfigService,
+  SmsMainApiPathPublicConfigModel,
+  SmsMainApiPathPublicConfigService,
   CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
@@ -27,19 +27,19 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { BankPaymentPublicConfigEditComponent } from '../edit/edit.component';
-import { BankPaymentPublicConfigAddComponent } from '../add/add.component';
+import { SmsMainApiPathPublicConfigEditComponent } from '../edit/edit.component';
+import { SmsMainApiPathPublicConfigAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-bankpayment-publicconfig-list',
+  selector: 'app-sms-publicconfig-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
+export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestroy {
   constructor(
-    private bankPaymentPublicConfigService: BankPaymentPublicConfigService,
+    private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -66,7 +66,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
+  dataModelResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
   dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -74,26 +74,25 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<BankPaymentPublicConfigModel> = [];
-  tableRowSelected: BankPaymentPublicConfigModel = new BankPaymentPublicConfigModel();
-  tableSource: MatTableDataSource<BankPaymentPublicConfigModel> = new MatTableDataSource<BankPaymentPublicConfigModel>();
+  tableRowsSelected: Array<SmsMainApiPathPublicConfigModel> = [];
+  tableRowSelected: SmsMainApiPathPublicConfigModel = new SmsMainApiPathPublicConfigModel();
+  tableSource: MatTableDataSource<SmsMainApiPathPublicConfigModel> = new MatTableDataSource<SmsMainApiPathPublicConfigModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
   tabledisplayedColumns: string[] = [
-    'LinkModuleFileLogoIdSrc',
+    'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
     'Title',
     'ClassName',
-    'LinkCurrencyId',
     'UpdatedDate',
     'Action'
   ];
 
 
 
-  expandedElement: BankPaymentPublicConfigModel | null;
+  expandedElement: SmsMainApiPathPublicConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -121,7 +120,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BankPaymentPublicConfigModel();
+    this.tableRowSelected = new SmsMainApiPathPublicConfigModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -131,7 +130,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.bankPaymentPublicConfigService.ServiceGetAllEditor(filterModel).subscribe(
+    this.smsMainApiPathPublicConfigService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -193,7 +192,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    const dialogRef = this.dialog.open(BankPaymentPublicConfigAddComponent, {
+    const dialogRef = this.dialog.open(SmsMainApiPathPublicConfigAddComponent, {
       height: '90%',
       data: {}
     });
@@ -204,9 +203,9 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onActionbuttonEditRow(model: BankPaymentPublicConfigModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: SmsMainApiPathPublicConfigModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -219,7 +218,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(BankPaymentPublicConfigEditComponent, {
+    const dialogRef = this.dialog.open(SmsMainApiPathPublicConfigEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
@@ -229,8 +228,8 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: BankPaymentPublicConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+  onActionbuttonDeleteRow(model: SmsMainApiPathPublicConfigModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -255,7 +254,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.bankPaymentPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.smsMainApiPathPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -282,12 +281,10 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
 
   }
 
-
-  
   onActionbuttonNewRowAuto(): any {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.bankPaymentPublicConfigService.ServiceAutoAdd().subscribe(
+    this.smsMainApiPathPublicConfigService.ServiceAutoAdd().subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAdd();
@@ -304,6 +301,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
         this.loading.Stop(pName);
       }
     );
+
   }
  
   onActionbuttonStatist(): void {
@@ -314,7 +312,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.bankPaymentPublicConfigService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.smsMainApiPathPublicConfigService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -331,7 +329,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.bankPaymentPublicConfigService.ServiceGetCount(filterStatist1).subscribe(
+    this.smsMainApiPathPublicConfigService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -345,8 +343,8 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     );
 
   }
-  onActionbuttonPrivateList(model: BankPaymentPublicConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+  onActionbuttonPrivateList(model: SmsMainApiPathPublicConfigModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
 
       const message = 'ردیفی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
@@ -362,7 +360,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+    this.router.navigate(['/sms/main/list/api-path/LinkPublicConfigId', this.tableRowSelected.Id]);
   }
 
   onActionbuttonExport(): void {
@@ -372,7 +370,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.bankPaymentPublicConfigService.ServiceExportFile(model).subscribe(
+    this.smsMainApiPathPublicConfigService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -392,7 +390,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: BankPaymentPublicConfigModel): void {
+  onActionTableRowSelect(row: SmsMainApiPathPublicConfigModel): void {
     this.tableRowSelected = row;
   }
 

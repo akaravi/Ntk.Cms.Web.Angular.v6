@@ -3,12 +3,11 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  SmsMainApiPathService,
-  SmsMainApiPathModel,
+  SmsMainApiPathPublicConfigService,
+  SmsMainApiPathPublicConfigModel,
+  SmsMainApiPathPublicConfigAliasJsonModel,
   DataFieldInfoModel,
   CoreCurrencyModel,
-  SmsMainApiPathCompanyModel,
-  SmsMainApiPathPublicConfigModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -24,30 +23,27 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper } from '@angular/material/stepper';
 
 @Component({
-  selector: 'app-sms-apipath-edit',
+  selector: 'app-sms-publicconfig-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class SmsMainApiPathEditComponent implements OnInit {
+export class SmsMainApiPathPublicConfigEditComponent implements OnInit {
   requestId = '';
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<SmsMainApiPathPublicConfigEditComponent>,
     public coreEnumService: CoreEnumService,
-    public smsMainApiPathService: SmsMainApiPathService,
+    public smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
-    private router: Router,
     private cdr: ChangeDetectorRef,
-    private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (this.activatedRoute.snapshot.paramMap.get('Id')) {
-      this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
+    if (data && data.id) {
+      this.requestId = data.id ;
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -61,8 +57,9 @@ export class SmsMainApiPathEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
-  dataModel:SmsMainApiPathModel=new SmsMainApiPathModel();
+  dataModelResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
+  dataModel: SmsMainApiPathPublicConfigAliasJsonModel = new SmsMainApiPathPublicConfigAliasJsonModel();
+
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
@@ -75,7 +72,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
-      this.router.navigate(['/sms/main/api-path/list']);
+      this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
 
@@ -84,7 +81,6 @@ export class SmsMainApiPathEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
- 
   DataGetOneContent(): void {
     if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
@@ -96,8 +92,8 @@ export class SmsMainApiPathEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainApiPathService.setAccessLoad();
-    this.smsMainApiPathService.ServiceGetOneById(this.requestId).subscribe(
+    this.smsMainApiPathPublicConfigService.setAccessLoad();
+    this.smsMainApiPathPublicConfigService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -127,14 +123,15 @@ export class SmsMainApiPathEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainApiPathService.ServiceEdit(this.dataModel).subscribe(
+    this.smsMainApiPathPublicConfigService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
-          setTimeout(() => this.router.navigate(['/sms/main/api-path/list']), 1000);
+          this.dialogRef.close({ dialogChangedDate: true });
+
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -151,54 +148,19 @@ export class SmsMainApiPathEditComponent implements OnInit {
       }
     );
   }
+  onActionFileSelected(model: NodeInterface): void {
+    this.dataModel.LinkMainImageId = model.id;
+    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+  }
 
-  onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
-    if (!model || model.Id.length <= 0) {
-      const message = 'کمپانی اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.LinkApiPathCompanyId = model.Id;
-  }
-  
-  onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
-    if (event.previouslySelectedIndex < event.selectedIndex) {
-      if (!this.formGroup.valid) {
-        this.cmsToastrService.typeErrorFormInvalid();
-        setTimeout(() => {
-          stepper.selectedIndex = event.previouslySelectedIndex;
-          // stepper.previous();
-        }, 10);
-      }
-    }
-  }
-  onActionBackToParent(): void {
-    this.router.navigate(['/sms/main/api-path/list']);
-  }
-  onActionSelectSource(model: SmsMainApiPathPublicConfigModel): void {
-    this.dataModel.LinkPublicConfigId = null;
-    if (model && model.Id.length > 0) {
-      this.dataModel.LinkPublicConfigId = model.Id;
-    }
-  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
-      return;
-    }
-    if (!this.dataModel.LinkApiPathCompanyId || this.dataModel.LinkApiPathCompanyId.length == 0) {
-      const message = 'کمپانی سرویس دهنده مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    if (!this.dataModel.LinkPublicConfigId || this.dataModel.LinkPublicConfigId.length == 0) {
-      const message = 'نوع سرویس دهنده مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.formInfo.FormSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {
-    this.router.navigate(['/sms/main/api-path/list']);
+    this.dialogRef.close({ dialogChangedDate: false });
   }
 }

@@ -77,11 +77,11 @@ import { BankPaymentPublicConfigHeaderComponent } from './public-config/header/h
     CommonModule,
     BankPaymentRoutes,
     FormsModule,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),   
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    
+
     DynamicFormBuilderModule
   ],
   providers: [

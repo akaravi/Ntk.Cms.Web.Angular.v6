@@ -48,6 +48,7 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
 
+    // tslint:disable-next-line: no-trailing-whitespace
     
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

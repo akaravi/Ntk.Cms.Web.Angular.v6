@@ -256,24 +256,42 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   }
   onActionbuttonNewRowAutoDependency(): any {
 
-    return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
-      headers: this.webDesignerMainPageDependencyService.getHeaders(),
-    })
-      .pipe(
-        map((ret: any) => {
-          // tslint:disable-next-line: max-line-length
-          const retOut = this.webDesignerMainPageDependencyService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
-          if (retOut.IsSuccess) {
-            this.cmsToastrService.typeSuccessAdd();
-            this.DataGetAll();
-          }
-          else {
-            this.cmsToastrService.typeErrorAccessAdd();
-          }
-          return retOut;
-        }),
-      ).toPromise();
-
+    // return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
+    //   headers: this.webDesignerMainPageDependencyService.getHeaders(),
+    // })
+    //   .pipe(
+    //     map((ret: any) => {
+    //       // tslint:disable-next-line: max-line-length
+    //       const retOut = this.webDesignerMainPageDependencyService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
+    //       if (retOut.IsSuccess) {
+    //         this.cmsToastrService.typeSuccessAdd();
+    //         this.DataGetAll();
+    //       }
+    //       else {
+    //         this.cmsToastrService.typeErrorAccessAdd();
+    //       }
+    //       return retOut;
+    //     }),
+    //   ).toPromise();
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    this.webDesignerMainPageDependencyService.ServiceAutoAdd().subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+          this.DataGetAll();
+        }
+        else
+        {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+      }
+    );
   }
 
   onActionbuttonEditRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {

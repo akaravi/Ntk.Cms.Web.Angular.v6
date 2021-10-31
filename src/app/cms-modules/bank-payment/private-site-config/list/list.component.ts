@@ -12,7 +12,9 @@ import {
   TokenInfoModel,
   NtkCmsApiStoreService,
   EnumRecordStatus,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  BankPaymentPublicConfigModel,
+  BankPaymentPublicConfigService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -39,6 +41,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   requestLinkPublicConfigId = 0;
   constructor(
     private bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
+    private bankPaymentPublicConfigService: BankPaymentPublicConfigService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -65,6 +68,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   tableContentSelected = [];
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
+  dataModelPublicResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -73,7 +77,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   tableRowsSelected: Array<BankPaymentPrivateSiteConfigModel> = [];
   tableRowSelected: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
   tableSource: MatTableDataSource<BankPaymentPrivateSiteConfigModel> = new MatTableDataSource<BankPaymentPrivateSiteConfigModel>();
-  categoryModelSelected: ApplicationSourceModel;
+  categoryModelSelected: BankPaymentPublicConfigModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   expandedElement: BankPaymentPrivateSiteConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
@@ -83,9 +87,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     'RecordStatus',
     'Title',
     'LinkPublicConfigId',
-    'MinTransactionAmount',
-    'MaxTransactionAmount',
-    'CreatedDate',
+   
     'UpdatedDate',
     'Action'
   ];
@@ -106,6 +108,14 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
+    });
+    this.getPublicConfig();
+  }
+  getPublicConfig(): void {
+    const filter = new FilterModel();
+    filter.RowPerPage = 100;
+    this.bankPaymentPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
+      this.dataModelPublicResult = next;
     });
   }
 
@@ -234,7 +244,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     });
   }
 
-  onActionSelectorSelect(model: ApplicationSourceModel | null): void {
+  onActionSelectorSelect(model: BankPaymentPublicConfigModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 
