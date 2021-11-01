@@ -10,6 +10,7 @@ import { CoreSiteAddComponent } from './add/add.component';
 import { CoreSiteEditComponent } from './edit/edit.component';
 import { CoreSiteUserListComponent } from './userList/userList.component';
 import { CoreInfoComponent } from './info/core-info.component';
+import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.component';
 
 const routes: Routes = [
   {
@@ -93,7 +94,17 @@ const routes: Routes = [
       /** userlist */
       {
         path: 'info',
-        component:CoreInfoComponent
+        component: CoreInfoComponent
+      },
+      {
+        path: 'reseller-chart',
+        component: CoreSiteResellerChartComponent
+
+      },
+      {
+        path: 'reseller-chart/LinkSiteId/:LinkSiteId',
+        component: CoreSiteResellerChartComponent
+
       }
     ]
   },

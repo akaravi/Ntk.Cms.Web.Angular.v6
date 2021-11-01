@@ -504,6 +504,15 @@
 
       <mat-step label="حسابداری" state="seo">
         <p>وضعیت مالی و تراکنش حسابداری</p>
+         <!-- LinkResellerUserId Field -->
+         <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerUserId"
+         (optionSelect)="onActionSelectorLinkResellerUserIdSelect($event)"
+           [optionPlaceholder]="'کاربر معرف'"></app-cms-user-selector>
+           <!-- LinkResellerSiteId Field -->
+         <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerSiteId"
+         (optionSelect)="onActionSelectorLinkResellerSiteIdSelect($event)"
+           [optionPlaceholder]="'سایت معرف'"></app-cms-site-selector>
+           
         <!-- HasAccountingForm Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.HasAccountingForm"

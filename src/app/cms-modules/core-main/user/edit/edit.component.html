@@ -32,7 +32,7 @@
           <mat-label> {{fieldsInfo['Username']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Username" name="dataModel.Username" #Username type="text"
             [disabled]="!fieldsInfo['Username']?.AccessEditField" placeholder="{{fieldsInfo['Username']?.FieldTitle}}"
-            minlength="3" maxlength="100" required />
+            minlength="3" maxlength="100"  />
           <mat-icon matSuffix *ngIf="dataModel.Username" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Username = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -45,7 +45,7 @@
           <mat-label> {{fieldsInfo['Email']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email type="text"
             [disabled]="!fieldsInfo['Email']?.AccessEditField" placeholder="{{fieldsInfo['Email']?.FieldTitle}}"
-            minlength="3" maxlength="100" required />
+            minlength="3" maxlength="100"  />
           <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Email = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -66,7 +66,7 @@
           <mat-label> {{fieldsInfo['Mobile']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text"
             [disabled]="!fieldsInfo['Mobile']?.AccessEditField" placeholder="{{fieldsInfo['Mobile']?.FieldTitle}}"
-            minlength="3" maxlength="100" required />
+            minlength="3" maxlength="100"  />
           <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Mobile = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

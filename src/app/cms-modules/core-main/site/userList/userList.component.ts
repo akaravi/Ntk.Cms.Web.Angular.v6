@@ -339,7 +339,26 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/core/user/edit', model.LinkUserId]);
 
   }
+  onActionbuttonResllerUser(model: CoreSiteUserModel = this.tableRowSelected): void {
 
+    if (!model || !model.LinkUserId || model.LinkUserId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
+      this.cmsToastrService.typeErrorSelected('ردیفی برای ویرایش انتخاب نشده است');
+      return;
+    }
+    this.tableRowSelected = model;
+    this.router.navigate(['/core/User/reseller-chart/LinkUserId', model.LinkUserId]);
+
+  }
+  onActionbuttonResllerSite(model: CoreSiteUserModel = this.tableRowSelected): void {
+
+    if (!model || !model.LinkUserId || model.LinkUserId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
+      this.cmsToastrService.typeErrorSelected('ردیفی برای ویرایش انتخاب نشده است');
+      return;
+    }
+    this.tableRowSelected = model;
+    this.router.navigate(['/core/site/reseller-chart/LinkSiteId', model.LinkSiteId]);
+
+  }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
