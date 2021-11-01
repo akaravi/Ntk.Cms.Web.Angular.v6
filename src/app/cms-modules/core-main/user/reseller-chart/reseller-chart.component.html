@@ -10,8 +10,9 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
 </div>
 <div class="ntk-cms-html-tree-body">
-
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+
     <mat-tree class="category-tree cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
             [ngStyle]="{'background': dataModelSelect.LinkUserId>0 && dataModelSelect.LinkUserId === node.LinkUserId ? '#d3d3da' : '' }">
