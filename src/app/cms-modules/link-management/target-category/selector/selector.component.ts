@@ -17,7 +17,7 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-linkmanagement-targetcategory-selector',
+  selector: 'app-linkmanagement-target-category-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })

@@ -23,7 +23,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-linkmanagement-targetcategory-edit',
+  selector: 'app-linkmanagement-target-category-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

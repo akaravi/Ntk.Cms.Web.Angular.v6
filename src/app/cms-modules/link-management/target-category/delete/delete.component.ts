@@ -16,7 +16,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 
 @Component({
-  selector: 'app-linkmanagement-targetcategory-delete',
+  selector: 'app-linkmanagement-target-category-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss']
 })

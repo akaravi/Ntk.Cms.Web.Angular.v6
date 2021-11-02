@@ -31,7 +31,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
-  selector: 'app-linkmanagement-targetcategory-tree',
+  selector: 'app-linkmanagement-target-category-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })

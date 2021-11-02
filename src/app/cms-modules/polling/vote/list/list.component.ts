@@ -43,6 +43,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   ],
 })
 export class PollingVoteListComponent implements OnInit, OnDestroy {
+  requestContentId = 0;
   constructor(
     private pollingVoteService: PollingVoteService,
     private activatedRoute: ActivatedRoute,
@@ -69,7 +70,6 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-  requestContentId = 0;
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<PollingVoteModel> = new ErrorExceptionResult<PollingVoteModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();

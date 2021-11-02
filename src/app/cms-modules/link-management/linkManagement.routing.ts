@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LinkManagementBillboardListComponent } from './billboard/list/list.component';
 import { LinkManagementComponent } from './linkManagement.component';
+import { LinkManagementTargetBillboardLogListComponent } from './target-billboard-log/list/list.component';
 import { LinkManagementTargetAddComponent } from './target/add/add.component';
 import { LinkManagementTargetEditComponent } from './target/edit/edit.component';
 import { LinkManagementTargetListComponent } from './target/list/list.component';
@@ -28,7 +30,23 @@ const routes: Routes = [
       {
         path: 'target/edit/:Id',
         component: LinkManagementTargetEditComponent
-      }
+      },
+      {
+        path: 'target-billboard',
+        component: LinkManagementBillboardListComponent
+      },
+      {
+        path: 'target-billboard-log',
+        component: LinkManagementTargetBillboardLogListComponent
+      },
+      {
+        path: 'target-billboard-log/LinkManagementBillboardId/:requestLinkManagementBillboardId',
+        component: LinkManagementTargetBillboardLogListComponent
+      },
+      {
+        path: 'target-billboard-log/LinkManagementTargetId/:LinkManagementTargetId',
+        component: LinkManagementTargetBillboardLogListComponent
+      },
 
     ]
   },

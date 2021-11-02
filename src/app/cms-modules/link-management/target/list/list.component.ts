@@ -23,7 +23,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LinkManagementTargetDeleteComponent } from '../delete/delete.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
@@ -108,7 +108,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkTargetCategoryId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -317,6 +317,6 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.router.navigate(['/linkmanagement/target-log/', model.Id]);
+    this.router.navigate(['/linkmanagement/target-billboard-log/LinkManagementTargetId', model.Id]);
   }
 }

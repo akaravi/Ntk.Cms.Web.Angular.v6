@@ -37,7 +37,7 @@
       </mat-form-field>
       <!-- ClassName Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>ClassName</mat-label>
+        <mat-label>{{fieldsInfo['ClassName']?.FieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.ClassName" name="dataModel.ClassName" #ClassName type="text"
           placeholder="ClassName" minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.ClassName" matSuffix mat-icon-button aria-label="Clear"

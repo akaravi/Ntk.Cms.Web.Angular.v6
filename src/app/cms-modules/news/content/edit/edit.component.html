@@ -61,7 +61,7 @@
         </mat-form-field>
 
         <mat-form-field class="ntk-full-width">
-          <mat-label>تاریخ شروع</mat-label>
+          <mat-label>{{fieldsInfo['FromDate']?.FieldTitle}}</mat-label>
           <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
           <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>

@@ -30,7 +30,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
-  selector: 'app-donate-targetcategory-tree',
+  selector: 'app-donate-target-category-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })

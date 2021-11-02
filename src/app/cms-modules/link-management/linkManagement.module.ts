@@ -13,7 +13,14 @@ import {
   CoreModuleService,
   LinkManagementEnumService,
   LinkManagementTargetCategoryService,
-  LinkManagementTargetService
+  LinkManagementTargetService,
+  LinkManagementBillboardPatternService,
+  LinkManagementBillboardService,
+  LinkManagementAccountingService,
+  LinkManagementAccountingDetailService,
+  LinkManagementBillboardTargetCategoryService,
+  LinkManagementMemberService,
+  LinkManagementTargetBillboardLogService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +36,34 @@ import { LinkManagementTargetAddComponent } from './target/add/add.component';
 import { LinkManagementTargetDeleteComponent } from './target/delete/delete.component';
 import { LinkManagementTargetEditComponent } from './target/edit/edit.component';
 import { LinkManagementTargetListComponent } from './target/list/list.component';
+import { LinkManagementBillboardPatternAddComponent } from './billboard-pattern/add/add.component';
+import { LinkManagementBillboardPatternDeleteComponent } from './billboard-pattern/delete/delete.component';
+import { LinkManagementBillboardPatternEditComponent } from './billboard-pattern/edit/edit.component';
+import { LinkManagementBillboardPatternSelectorComponent } from './billboard-pattern/selector/selector.component';
+import { LinkManagementBillboardPatternTreeSelectorComponent } from './billboard-pattern/tree-selector/tree-selector.component';
+import { LinkManagementBillboardPatternTreeComponent } from './billboard-pattern/tree/tree.component';
+import { LinkManagementBillboardAddComponent } from './billboard/add/add.component';
+import { LinkManagementBillboardDeleteComponent } from './billboard/delete/delete.component';
+import { LinkManagementBillboardEditComponent } from './billboard/edit/edit.component';
+import { LinkManagementBillboardListComponent } from './billboard/list/list.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { LinkManagementMemberAddComponent } from './member/add/add.component';
+import { LinkManagementMemberDeleteComponent } from './member/delete/delete.component';
+import { LinkManagementMemberEditComponent } from './member/edit/edit.component';
+import { LinkManagementMemberListComponent } from './member/list/list.component';
+import { LinkManagementMemberSelectorComponent } from './member/selector/selector.component';
+import { LinkManagementAccountingDetailAddComponent } from './accounting-detail/add/add.component';
+import { LinkManagementAccountingDetailDeleteComponent } from './accounting-detail/delete/delete.component';
+import { LinkManagementAccountingDetailEditComponent } from './accounting-detail/edit/edit.component';
+import { LinkManagementAccountingDetailListComponent } from './accounting-detail/list/list.component';
+import { LinkManagementAccountingAddComponent } from './accounting/add/add.component';
+import { LinkManagementAccountingDeleteComponent } from './accounting/delete/delete.component';
+import { LinkManagementAccountingEditComponent } from './accounting/edit/edit.component';
+import { LinkManagementAccountingListComponent } from './accounting/list/list.component';
+import { LinkManagementAccountingSelectorComponent } from './accounting/selector/selector.component';
+import { LinkManagementTargetBillboardLogDeleteComponent } from './target-billboard-log/delete/delete.component';
+import { LinkManagementTargetBillboardLogEditComponent } from './target-billboard-log/edit/edit.component';
+import { LinkManagementTargetBillboardLogListComponent } from './target-billboard-log/list/list.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +81,39 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
     LinkManagementTargetDeleteComponent,
     LinkManagementTargetListComponent,
     /** */
+    LinkManagementBillboardPatternTreeComponent,
+    LinkManagementBillboardPatternSelectorComponent,
+    LinkManagementBillboardPatternAddComponent,
+    LinkManagementBillboardPatternEditComponent,
+    LinkManagementBillboardPatternDeleteComponent,
+    LinkManagementBillboardPatternTreeSelectorComponent,
+    /** */
+    LinkManagementBillboardAddComponent,
+    LinkManagementBillboardEditComponent,
+    LinkManagementBillboardDeleteComponent,
+    LinkManagementBillboardListComponent,
+    /** */
+    LinkManagementTargetBillboardLogEditComponent,
+    LinkManagementTargetBillboardLogDeleteComponent,
+    LinkManagementTargetBillboardLogListComponent,
+    /** */
+    LinkManagementMemberAddComponent,
+    LinkManagementMemberDeleteComponent,
+    LinkManagementMemberEditComponent,
+    LinkManagementMemberListComponent,
+    LinkManagementMemberSelectorComponent,
+    /** */
+    LinkManagementAccountingAddComponent,
+    LinkManagementAccountingDeleteComponent,
+    LinkManagementAccountingEditComponent,
+    LinkManagementAccountingListComponent,
+    LinkManagementAccountingSelectorComponent,
+    /** */
+    LinkManagementAccountingDetailAddComponent,
+    LinkManagementAccountingDetailDeleteComponent,
+    LinkManagementAccountingDetailEditComponent,
+    LinkManagementAccountingDetailListComponent,
+    /** */
   ],
   exports: [
     /** */
@@ -61,6 +129,39 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
     LinkManagementTargetDeleteComponent,
     LinkManagementTargetListComponent,
     /** */
+    LinkManagementBillboardPatternTreeComponent,
+    LinkManagementBillboardPatternSelectorComponent,
+    LinkManagementBillboardPatternAddComponent,
+    LinkManagementBillboardPatternEditComponent,
+    LinkManagementBillboardPatternDeleteComponent,
+    LinkManagementBillboardPatternTreeSelectorComponent,
+    /** */
+    LinkManagementBillboardAddComponent,
+    LinkManagementBillboardEditComponent,
+    LinkManagementBillboardDeleteComponent,
+    LinkManagementBillboardListComponent,
+    /** */
+    LinkManagementTargetBillboardLogEditComponent,
+    LinkManagementTargetBillboardLogDeleteComponent,
+    LinkManagementTargetBillboardLogListComponent,
+    /** */
+    LinkManagementMemberAddComponent,
+    LinkManagementMemberDeleteComponent,
+    LinkManagementMemberEditComponent,
+    LinkManagementMemberListComponent,
+    LinkManagementMemberSelectorComponent,
+    /** */
+    LinkManagementAccountingAddComponent,
+    LinkManagementAccountingDeleteComponent,
+    LinkManagementAccountingEditComponent,
+    LinkManagementAccountingListComponent,
+    LinkManagementAccountingSelectorComponent,
+    /** */
+    LinkManagementAccountingDetailAddComponent,
+    LinkManagementAccountingDetailDeleteComponent,
+    LinkManagementAccountingDetailEditComponent,
+    LinkManagementAccountingDetailListComponent,
+    /** */
   ],
   imports: [
     CommonModule,
@@ -75,6 +176,8 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
+    ColorPickerModule,
+
   ],
   providers: [
     CoreModuleService,
@@ -85,8 +188,15 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
     /*Config*/
     CmsConfirmationDialogService,
     LinkManagementEnumService,
-    LinkManagementTargetCategoryService,
+    LinkManagementAccountingService,
+    LinkManagementAccountingDetailService,
+    LinkManagementBillboardService,
+    LinkManagementBillboardPatternService,
+    LinkManagementBillboardTargetCategoryService,
+    LinkManagementMemberService,
     LinkManagementTargetService,
+    LinkManagementTargetBillboardLogService,
+    LinkManagementTargetCategoryService,
   ]
 })
 export class LinkManagementModule { }

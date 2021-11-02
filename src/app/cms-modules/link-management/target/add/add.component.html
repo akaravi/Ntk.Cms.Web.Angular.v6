@@ -13,7 +13,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
             name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
-            required>
+            >
             <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -25,22 +25,22 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
-        <app-linkmanagement-targetcategory-selector (optionSelect)="onActionSelectorSelect($event)"
+        <app-linkmanagement-target-category-selector (optionSelect)="onActionSelectorSelect($event)"
           [optionSelectForce]="dataModel.LinkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
-        </app-linkmanagement-targetcategory-selector>
+        </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
-        <app-linkmanagement-targetcategory-selector
+        <app-linkmanagement-billboard-pattern-selector
           (optionSelect)="onActionSelectorSelectLinkBillboardPatternId($event)"
           [optionSelectForce]="dataModel.LinkBillboardPatternId" [optionPlaceholder]="'دسته بندی'">
-        </app-linkmanagement-targetcategory-selector>
+        </app-linkmanagement-billboard-pattern-selector>
 
 
         <!-- ContentSettingType Field -->
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="نوع محتوا" [(ngModel)]="dataModel.ContentSettingType"
             name="dataModel.ContentSettingType" #ContentSettingType="ngModel"
-            panelClass="recordStatus-{{ dataModel.ContentSettingType }}" required>
+            panelClass="recordStatus-{{ dataModel.ContentSettingType }}" >
             <mat-option *ngFor="
                           let item of dataModelEnumManagementContentSettingTypeResult.ListItems;
                           index as i
@@ -56,7 +56,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="نوع اشتراک گزاری" [(ngModel)]="dataModel.SharingLinkType"
             name="dataModel.SharingLinkType" #SharingLinkType="ngModel"
-            panelClass="recordStatus-{{ dataModel.SharingLinkType }}" required>
+            panelClass="recordStatus-{{ dataModel.SharingLinkType }}" >
             <mat-option *ngFor="
                           let item of dataModelEnumSharingPriceTypeResult.ListItems;
                           index as i
@@ -72,7 +72,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-            placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+            placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100"  />
           <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -91,8 +91,8 @@
         <!-- ToWebAddress Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['ToWebAddress']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.ToWebAddress" #ToWebAddress type="text"
-            placeholder="{{fieldsInfo['ToWebAddress']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <input matInput [(ngModel)]="dataModel.ToWebAddress" name="dataModel.ToWebAddress" #ToWebAddress type="text"
+            placeholder="{{fieldsInfo['ToWebAddress']?.FieldTitle}}" minlength="3" maxlength="100"  />
           <mat-icon matSuffix *ngIf="dataModel.ToWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.ToWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -104,8 +104,8 @@
         <!-- WebAddress Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['WebAddress']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.WebAddress" #WebAddress type="text"
-            placeholder="{{fieldsInfo['WebAddress']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <input matInput [(ngModel)]="dataModel.WebAddress" name="dataModel.WebAddress" #WebAddress type="text"
+            placeholder="{{fieldsInfo['WebAddress']?.FieldTitle}}" minlength="3" maxlength="100"  />
           <mat-icon matSuffix *ngIf="dataModel.WebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.WebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -117,8 +117,8 @@
         <!-- SmallPreview Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['SmallPreview']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.SmallPreview" #SmallPreview type="text"
-            placeholder="{{fieldsInfo['SmallPreview']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <input matInput [(ngModel)]="dataModel.SmallPreview" name="dataModel.SmallPreview" #SmallPreview type="text"
+            placeholder="{{fieldsInfo['SmallPreview']?.FieldTitle}}" minlength="3" maxlength="100"  />
           <mat-icon matSuffix *ngIf="dataModel.SmallPreview" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.SmallPreview = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -130,7 +130,7 @@
 
         <!-- ClickPrice Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>مبلغ هر کلیک</mat-label>
+          <mat-label>{{fieldsInfo['ClickPrice']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.ClickPrice" name="dataModel.ClickPrice" #ClickPrice type="number"
             placeholder="مبلغ هر کلیک" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.ClickPrice" matSuffix mat-icon-button aria-label="Clear"
@@ -142,7 +142,7 @@
         </mat-form-field>
         <!-- ViewPrice Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>مبلغ هر نمایش</mat-label>
+          <mat-label>{{fieldsInfo['ViewPrice']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.ViewPrice" name="dataModel.ViewPrice" #ViewPrice type="number"
             placeholder="مبلغ هر نمایش" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.ViewPrice" matSuffix mat-icon-button aria-label="Clear"
@@ -156,7 +156,7 @@
 
         <!-- CurrentClickCount Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>تعداد کلیک دریافتی</mat-label>
+          <mat-label>{{fieldsInfo['CurrentClickCount']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.CurrentClickCount" name="dataModel.CurrentClickCount"
             #CurrentClickCount type="number" placeholder="تعداد کلیک تا کنون" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.CurrentClickCount" matSuffix mat-icon-button aria-label="Clear"
@@ -168,7 +168,7 @@
         </mat-form-field>
         <!-- CurrentViewCount Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>تعداد مشاهده</mat-label>
+          <mat-label>{{fieldsInfo['CurrentViewCount']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.CurrentViewCount" name="dataModel.CurrentViewCount" #CurrentViewCount
             type="number" placeholder="تعداد بازدید تا کنون" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.CurrentViewCount" matSuffix mat-icon-button aria-label="Clear"
@@ -181,7 +181,7 @@
 
         <!-- MaxPriceOfSharePerDay Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>حداکثر مبلغ در روز</mat-label>
+          <mat-label>{{fieldsInfo['MaxPriceOfSharePerDay']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.MaxPriceOfSharePerDay" name="dataModel.MaxPriceOfSharePerDay"
             #MaxPriceOfSharePerDay type="number" placeholder="تعداد بازدید تا کنون" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.MaxPriceOfSharePerDay" matSuffix mat-icon-button aria-label="Clear"
@@ -193,7 +193,7 @@
         </mat-form-field>
         <!-- MaxPriceOfShareTotal Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>حداکثر مبلغ کل</mat-label>
+          <mat-label>{{fieldsInfo['MaxPriceOfShareTotal']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.MaxPriceOfShareTotal" name="dataModel.MaxPriceOfShareTotal"
             #MaxPriceOfShareTotal type="number" placeholder="تعداد کلیک تا کنون" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.MaxPriceOfShareTotal" matSuffix mat-icon-button aria-label="Clear"
@@ -206,7 +206,7 @@
 
         <!-- FormulaPercent Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>ضریب فرمول</mat-label>
+          <mat-label>{{fieldsInfo['FormulaPercent']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.FormulaPercent" name="dataModel.FormulaPercent" #FormulaPercent
             type="number" placeholder="تعداد بازدید تا کنون" min="1" required />
           <mat-icon matSuffix *ngIf="dataModel.FormulaPercent" matSuffix mat-icon-button aria-label="Clear"
