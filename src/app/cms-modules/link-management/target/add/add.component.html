@@ -1,0 +1,297 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <!-- RecordStatus Field -->
+      <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+            name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+            required>
+            <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+          </mat-select>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-error *ngIf="RecordStatus.errors?.required">
+            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- LinkTargetCategoryId Field -->
+        <app-linkmanagement-targetcategory-selector (optionSelect)="onActionSelectorSelect($event)"
+          [optionSelectForce]="dataModel.LinkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
+        </app-linkmanagement-targetcategory-selector>
+
+        <!-- LinkBillboardPatternId Field -->
+        <app-linkmanagement-targetcategory-selector
+          (optionSelect)="onActionSelectorSelectLinkBillboardPatternId($event)"
+          [optionSelectForce]="dataModel.LinkBillboardPatternId" [optionPlaceholder]="'دسته بندی'">
+        </app-linkmanagement-targetcategory-selector>
+
+
+        <!-- ContentSettingType Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="نوع محتوا" [(ngModel)]="dataModel.ContentSettingType"
+            name="dataModel.ContentSettingType" #ContentSettingType="ngModel"
+            panelClass="recordStatus-{{ dataModel.ContentSettingType }}" required>
+            <mat-option *ngFor="
+                          let item of dataModelEnumManagementContentSettingTypeResult.ListItems;
+                          index as i
+                        " [value]="item.Value">{{ item.Description }}</mat-option>
+          </mat-select>
+          <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+          <mat-error *ngIf="ContentSettingType.errors?.required">
+            ContentSettingType is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- SharingLinkType Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="نوع اشتراک گزاری" [(ngModel)]="dataModel.SharingLinkType"
+            name="dataModel.SharingLinkType" #SharingLinkType="ngModel"
+            panelClass="recordStatus-{{ dataModel.SharingLinkType }}" required>
+            <mat-option *ngFor="
+                          let item of dataModelEnumSharingPriceTypeResult.ListItems;
+                          index as i
+                        " [value]="item.Value">{{ item.Description }}</mat-option>
+          </mat-select>
+          <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+          <mat-error *ngIf="SharingLinkType.errors?.required">
+            SharingLinkType is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+            placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Title = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- isPublic Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.isPublic" *ngIf="fieldsInfo['isPublic']?.AccessWatchField"
+            [disabled]="!fieldsInfo['isPublic']?.AccessEditField" name="dataModel.isPublic">
+            {{fieldsInfo['isPublic']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- ToWebAddress Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['ToWebAddress']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.ToWebAddress" #ToWebAddress type="text"
+            placeholder="{{fieldsInfo['ToWebAddress']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.ToWebAddress" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ToWebAddress = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ ToWebAddress.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="ToWebAddress.errors?.required">
+            ToWebAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- WebAddress Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['WebAddress']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.WebAddress" #WebAddress type="text"
+            placeholder="{{fieldsInfo['WebAddress']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.WebAddress" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.WebAddress = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ WebAddress.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="WebAddress.errors?.required">
+            WebAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- SmallPreview Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['SmallPreview']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.SmallPreview" #SmallPreview type="text"
+            placeholder="{{fieldsInfo['SmallPreview']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.SmallPreview" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SmallPreview = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ SmallPreview.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="SmallPreview.errors?.required">
+            SmallPreview is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- ClickPrice Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>مبلغ هر کلیک</mat-label>
+          <input matInput [(ngModel)]="dataModel.ClickPrice" name="dataModel.ClickPrice" #ClickPrice type="number"
+            placeholder="مبلغ هر کلیک" min="0" required />
+          <mat-icon matSuffix *ngIf="dataModel.ClickPrice" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ClickPrice = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="ClickPrice.errors?.required">
+            ClickPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- ViewPrice Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>مبلغ هر نمایش</mat-label>
+          <input matInput [(ngModel)]="dataModel.ViewPrice" name="dataModel.ViewPrice" #ViewPrice type="number"
+            placeholder="مبلغ هر نمایش" min="0" required />
+          <mat-icon matSuffix *ngIf="dataModel.ViewPrice" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ViewPrice = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="ViewPrice.errors?.required">
+            ViewPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+        <!-- CurrentClickCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>تعداد کلیک دریافتی</mat-label>
+          <input matInput [(ngModel)]="dataModel.CurrentClickCount" name="dataModel.CurrentClickCount"
+            #CurrentClickCount type="number" placeholder="تعداد کلیک تا کنون" min="0" required />
+          <mat-icon matSuffix *ngIf="dataModel.CurrentClickCount" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.CurrentClickCount = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="CurrentClickCount.errors?.required">
+            CurrentClickCount is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- CurrentViewCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>تعداد مشاهده</mat-label>
+          <input matInput [(ngModel)]="dataModel.CurrentViewCount" name="dataModel.CurrentViewCount" #CurrentViewCount
+            type="number" placeholder="تعداد بازدید تا کنون" min="0" required />
+          <mat-icon matSuffix *ngIf="dataModel.CurrentViewCount" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.CurrentViewCount = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="CurrentViewCount.errors?.required">
+            CurrentViewCount is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- MaxPriceOfSharePerDay Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>حداکثر مبلغ در روز</mat-label>
+          <input matInput [(ngModel)]="dataModel.MaxPriceOfSharePerDay" name="dataModel.MaxPriceOfSharePerDay"
+            #MaxPriceOfSharePerDay type="number" placeholder="تعداد بازدید تا کنون" min="0" required />
+          <mat-icon matSuffix *ngIf="dataModel.MaxPriceOfSharePerDay" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.MaxPriceOfSharePerDay = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="MaxPriceOfSharePerDay.errors?.required">
+            MaxPriceOfSharePerDay is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- MaxPriceOfShareTotal Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>حداکثر مبلغ کل</mat-label>
+          <input matInput [(ngModel)]="dataModel.MaxPriceOfShareTotal" name="dataModel.MaxPriceOfShareTotal"
+            #MaxPriceOfShareTotal type="number" placeholder="تعداد کلیک تا کنون" min="0" required />
+          <mat-icon matSuffix *ngIf="dataModel.MaxPriceOfShareTotal" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.MaxPriceOfShareTotal = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="MaxPriceOfShareTotal.errors?.required">
+            MaxPriceOfShareTotal is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- FormulaPercent Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ضریب فرمول</mat-label>
+          <input matInput [(ngModel)]="dataModel.FormulaPercent" name="dataModel.FormulaPercent" #FormulaPercent
+            type="number" placeholder="تعداد بازدید تا کنون" min="1" required />
+          <mat-icon matSuffix *ngIf="dataModel.FormulaPercent" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.FormulaPercent = 1">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="FormulaPercent.errors?.required">
+            FormulaPercent is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+
+
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+
+      <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
+        <p>فایل های پیوست محتوا.</p>
+        <div class="mb-3">
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+        </div>
+        <div class="mb-9">
+          <mat-form-field class="ntk-full-width">
+
+            <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
+            <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+              type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
+            <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+            <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+          </mat-form-field>
+
+          <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
+            [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
+            [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+            [openFilemanagerButtonView]="false"></cms-file-manager>
+        </div>
+
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+
+
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="main">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="seo">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="file">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="loaction">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+
+    </mat-horizontal-stepper>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

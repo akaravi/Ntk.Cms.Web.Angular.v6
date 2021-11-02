@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LinkManagementConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { LinkManagementConfigSiteComponent } from './config/site/config-site.component';
 import { LinkManagementComponent } from './linkManagement.component';
+import { LinkManagementTargetAddComponent } from './target/add/add.component';
+import { LinkManagementTargetEditComponent } from './target/edit/edit.component';
+import { LinkManagementTargetListComponent } from './target/list/list.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,18 @@ const routes: Routes = [
           import('./config/link-management-config.module').then((m) => m.LinkManagementConfigModule),
       },
       /* Config */
-
+      {
+        path: 'target',
+        component: LinkManagementTargetListComponent
+      },
+      {
+        path: 'target/add',
+        component: LinkManagementTargetAddComponent
+      },
+      {
+        path: 'target/edit/:Id',
+        component: LinkManagementTargetEditComponent
+      }
 
     ]
   },

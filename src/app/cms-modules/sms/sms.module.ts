@@ -14,7 +14,8 @@ import {
   ApplicationEnumService,
   CoreModuleTagService,
   CoreModuleService,
-  SmsMainApiPathPriceServiceService
+  SmsMainApiPathPriceServiceService,
+  SmsEnumService
 } from 'ntk-cms-api';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -43,8 +44,11 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     CoreModuleService,
     CoreEnumService,
     CoreAuthService,
+    /*Config*/
     CmsConfirmationDialogService ,
-    ApplicationEnumService,
+    /*Config*/
+    CmsConfirmationDialogService,
+    SmsEnumService,
     CoreModuleTagService,
     SmsMainApiPathPriceServiceService,
   ]
