@@ -142,9 +142,9 @@
 
 
         <!-- AboutAgentTel Field -->
-        <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
+        <mat-form-field *ngIf="fieldsInfo['AboutAgentTel']?.AccessWatchField && dataProfessional" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutAgentTel']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.AboutAgentTel" name="dataModel.AboutAgentTel" #AboutAgentTel
+          <input matInput [(ngModel)]="dataModel.AboutAgentTel" name="dataModel.AboutAgentTel" #AboutAgentTel  disabled="!fieldsInfo['AboutAgentTel']?.AccessAddField"
             type="text" placeholder="{{fieldsInfo['AboutAgentTel']?.FieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.AboutAgentTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.AboutAgentTel = ''">close</mat-icon>
@@ -152,9 +152,9 @@
           <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutAgentMobile Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field  *ngIf="fieldsInfo['AboutAgentMobile']?.AccessWatchField" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.AboutAgentMobile" name="dataModel.AboutAgentMobile" #AboutAgentMobile
+          <input matInput [(ngModel)]="dataModel.AboutAgentMobile" name="dataModel.AboutAgentMobile" #AboutAgentMobile  disabled="!fieldsInfo['AboutAgentMobile']?.AccessAddField"
             type="text" placeholder="{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.AboutAgentMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.AboutAgentMobile = ''">close</mat-icon>
@@ -164,9 +164,9 @@
 
 
         <!-- AboutCustomerTel Field -->
-        <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
+        <mat-form-field *ngIf="dataProfessional && fieldsInfo['AboutCustomerTel']?.AccessWatchField" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.AboutCustomerTel" name="dataModel.AboutCustomerTel" #AboutCustomerTel
+          <input matInput [(ngModel)]="dataModel.AboutCustomerTel" name="dataModel.AboutCustomerTel" #AboutCustomerTel disabled="!fieldsInfo['AboutCustomerTel']?.AccessAddField"
             type="text" placeholder="{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.AboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.AboutCustomerTel = ''">close</mat-icon>
@@ -174,9 +174,9 @@
           <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutCustomerMobile Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field  *ngIf="fieldsInfo['AboutCustomerMobile']?.AccessWatchField" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.AboutCustomerMobile" name="dataModel.AboutCustomerMobile"
+          <input matInput [(ngModel)]="dataModel.AboutCustomerMobile" name="dataModel.AboutCustomerMobile" disabled="!fieldsInfo['AboutCustomerTel']?.AccessAddField"
             #AboutCustomerMobile type="text" placeholder="{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}"
             minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.AboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
