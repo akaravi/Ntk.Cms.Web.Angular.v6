@@ -187,7 +187,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
 
 
   onActionbuttonEditRow(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -213,7 +213,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     });
   }
   onActionbuttonDeleteRow(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.Id || model.Id.length === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }

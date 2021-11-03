@@ -188,10 +188,10 @@
         </mat-form-field>
 
         <!-- Description Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="!IsAdminSite">
+        <mat-form-field class="ntk-full-width" >
           <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=5></textarea>
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=10></textarea>
           <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -200,10 +200,7 @@
             Description is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <!-- Description Field -->
-        <angular-editor *ngIf="IsAdminSite" [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig"
-          id="main" [(ngModel)]="dataModel.Description" name="dataModel.Description"></angular-editor>
-
+      
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
