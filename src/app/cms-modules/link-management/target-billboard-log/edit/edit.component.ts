@@ -32,7 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./edit.component.scss'],
 })
 export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
-  requestId = 0;
+  requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<LinkManagementTargetBillboardLogEditComponent>,
@@ -44,8 +44,8 @@ export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (data) {
-      this.requestId = +data.id || 0;
+    if (data && data.id) {
+      this.requestId = data.id +'';
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -69,7 +69,7 @@ export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.requestId > 0) {
+    if (this.requestId.length > 0) {
       this.formInfo.FormTitle = 'ویرایش  دسته بندی';
       this.DataGetOneContent();
     } else {
@@ -84,7 +84,7 @@ export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    if (this.requestId <= 0) {
+    if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }

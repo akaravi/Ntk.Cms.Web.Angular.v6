@@ -24,7 +24,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
   styleUrls: ['./delete.component.scss']
 })
 export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
-  requestId = 0;
+  requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<LinkManagementTargetBillboardLogDeleteComponent>,
@@ -34,8 +34,8 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
     private cmsToastrService: CmsToastrService
   ) {
     this.loading.cdr = this.cdr;
-    if (data) {
-      this.requestId = +data.id || 0;
+    if (data && data.id) {
+      this.requestId = data.id;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -45,7 +45,7 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
   dataModelResultContent: ErrorExceptionResult<LinkManagementTargetBillboardLogModel> = new ErrorExceptionResult<LinkManagementTargetBillboardLogModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   ngOnInit(): void {
-    if (this.requestId <= 0) {
+    if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
@@ -54,7 +54,7 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
   }
 
   DataGetOne(): void {
-    if (this.requestId === 0) {
+    if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
@@ -95,7 +95,7 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
 
 
   onFormDelete(): void {
-    if (this.requestId === 0) {
+    if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
