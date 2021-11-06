@@ -110,12 +110,12 @@
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonViewRowLinkTargetId(row)" *ngIf="row.LinkManagementTargetId>0">
-              <mat-icon>delete_forever</mat-icon>
-              <span>بنر</span>
+              <mat-icon>dehaze</mat-icon>
+              <span>{{'ACTION.BANNER' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonViewRowLinkBillbordId(row)" *ngIf="row.LinkManagementBillboardId>0">
-              <mat-icon>delete_forever</mat-icon>
-              <span>بیلبرد</span>
+              <mat-icon>add_to_queue</mat-icon>
+              <span>{{'ACTION.BILLBOARD' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

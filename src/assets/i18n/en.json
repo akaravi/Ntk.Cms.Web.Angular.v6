@@ -15,6 +15,8 @@
 	"ACTION.RELOAD": "Reload",
 	"ACTION.SAVE": "Save",
 	"ACTION.COMMENT": "comment",
+	"ACTION.BANNER": "banner",
+	"ACTION.BILLBOARD": "billboard",
 	"ACTION.SEARCH": "Search",
 	"ACTION.SELECT": "Select",
 	"ACTION.STATIST": "Statist",

@@ -126,7 +126,7 @@
           </button>
           <mat-menu #actionMenu="matMenu">
             <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
-              <mat-icon>view</mat-icon>
+              <mat-icon>visibility</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
@@ -139,7 +139,7 @@
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonGotoBank(row)">
-              <mat-icon>sms</mat-icon>
+              <mat-icon>account_balance</mat-icon>
               <span>انتقال به درگاه</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonLog(row)">

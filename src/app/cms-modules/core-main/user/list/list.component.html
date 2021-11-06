@@ -138,7 +138,7 @@
           </button>
           <mat-menu #actionMenu="matMenu">
             <button mat-menu-item (click)="onActionbuttonViewRow(row)">
-              <mat-icon>view</mat-icon>
+              <mat-icon>visibility</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
             <button mat-menu-item *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData || row.Id==tokenInfo.UserId"
