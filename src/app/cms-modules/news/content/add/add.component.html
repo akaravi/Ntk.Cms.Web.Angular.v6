@@ -71,17 +71,11 @@
           </mat-error>
         </mat-form-field>
         <!-- FromDate Field -->
-<<<<<<< HEAD
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FromDate']?.AccessWatchField">
           <mat-label>{{fieldsInfo['FromDate']?.FieldTitle}}</mat-label>
           <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" 
           disabled="{{!fieldsInfo['FromDate']?.AccessAddField}}"
             placeholder="{{fieldsInfo['FromDate']?.FieldTitle}}" />
-=======
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['FromDate']?.FieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
->>>>>>> main
           <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>

@@ -155,14 +155,9 @@
         <!-- AboutAgentTel Field -->
         <mat-form-field *ngIf="fieldsInfo['AboutAgentTel']?.AccessWatchField && dataProfessional" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutAgentTel']?.FieldTitle}}</mat-label>
-<<<<<<< HEAD
           <input matInput [(ngModel)]="dataModel.AboutAgentTel" name="dataModel.AboutAgentTel" #AboutAgentTel type="text" 
             disabled="{{!fieldsInfo['AboutAgentTel']?.AccessAddField}}"
             placeholder="{{fieldsInfo['AboutAgentTel']?.FieldTitle}}" minlength="0" maxlength="100" />
-=======
-          <input matInput [(ngModel)]="dataModel.AboutAgentTel" name="dataModel.AboutAgentTel" #AboutAgentTel  disabled="!fieldsInfo['AboutAgentTel']?.AccessAddField"
-            type="text" placeholder="{{fieldsInfo['AboutAgentTel']?.FieldTitle}}" minlength="0" maxlength="100" />
->>>>>>> main
           <mat-icon matSuffix *ngIf="dataModel.AboutAgentTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.AboutAgentTel = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -171,18 +166,11 @@
           <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutAgentMobile Field -->
-<<<<<<< HEAD
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutAgentMobile']?.AccessWatchField">
           <mat-label>{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.AboutAgentMobile" name="dataModel.AboutAgentMobile" #AboutAgentMobile type="text" 
             disabled="{{!fieldsInfo['AboutAgentMobile']?.AccessAddField}}"
             placeholder="{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}" minlength="0" maxlength="100" />
-=======
-        <mat-form-field  *ngIf="fieldsInfo['AboutAgentMobile']?.AccessWatchField" class="ntk-full-width">
-          <mat-label>{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.AboutAgentMobile" name="dataModel.AboutAgentMobile" #AboutAgentMobile  disabled="!fieldsInfo['AboutAgentMobile']?.AccessAddField"
-            type="text" placeholder="{{fieldsInfo['AboutAgentMobile']?.FieldTitle}}" minlength="0" maxlength="100" />
->>>>>>> main
           <mat-icon matSuffix *ngIf="dataModel.AboutAgentMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.AboutAgentMobile = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -195,14 +183,9 @@
         <!-- AboutCustomerTel Field -->
         <mat-form-field *ngIf="dataProfessional && fieldsInfo['AboutCustomerTel']?.AccessWatchField" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}</mat-label>
-<<<<<<< HEAD
           <input matInput [(ngModel)]="dataModel.AboutCustomerTel" name="dataModel.AboutCustomerTel" #AboutCustomerTel type="text"
             disabled="{{!fieldsInfo['AboutCustomerTel']?.AccessAddField}}"
             placeholder="{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}" minlength="0" maxlength="100" />
-=======
-          <input matInput [(ngModel)]="dataModel.AboutCustomerTel" name="dataModel.AboutCustomerTel" #AboutCustomerTel disabled="!fieldsInfo['AboutCustomerTel']?.AccessAddField"
-            type="text" placeholder="{{fieldsInfo['AboutCustomerTel']?.FieldTitle}}" minlength="0" maxlength="100" />
->>>>>>> main
           <mat-icon matSuffix *ngIf="dataModel.AboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.AboutCustomerTel = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -211,19 +194,12 @@
           <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutCustomerMobile Field -->
-<<<<<<< HEAD
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutCustomerMobile']?.AccessWatchField">
           <mat-label>{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.AboutCustomerMobile" name="dataModel.AboutCustomerMobile"
             #AboutCustomerMobile type="text"
             disabled="{{!fieldsInfo['AboutCustomerMobile']?.AccessAddField}}"
             placeholder="{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}"
-=======
-        <mat-form-field  *ngIf="fieldsInfo['AboutCustomerMobile']?.AccessWatchField" class="ntk-full-width">
-          <mat-label>{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.AboutCustomerMobile" name="dataModel.AboutCustomerMobile" disabled="!fieldsInfo['AboutCustomerTel']?.AccessAddField"
-            #AboutCustomerMobile type="text" placeholder="{{fieldsInfo['AboutCustomerMobile']?.FieldTitle}}"
->>>>>>> main
             minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.AboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.AboutCustomerMobile = ''">close</mat-icon>
@@ -235,18 +211,11 @@
 
 
         <!-- Description Field -->
-<<<<<<< HEAD
         <mat-form-field class="ntk-full-width" *ngIf="!IsAdminSite" >
           <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
           disabled="{{!fieldsInfo['Description']?.AccessAddField}}"
             placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=5></textarea>
-=======
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=10></textarea>
->>>>>>> main
           <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

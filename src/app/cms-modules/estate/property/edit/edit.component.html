@@ -267,12 +267,8 @@
         <mat-form-field class="ntk-full-width" >
           <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-<<<<<<< HEAD
           disabled="{{!fieldsInfo['Description']?.AccessEditField}}"
             placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=5></textarea>
-=======
-            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="2000" rows=10></textarea>
->>>>>>> main
           <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
