@@ -68,7 +68,7 @@ export class LinkManagementMemberListComponent implements OnInit, OnDestroy {
   tableRowSelected: LinkManagementMemberModel = new LinkManagementMemberModel();
   tableSource: MatTableDataSource<LinkManagementMemberModel> = new MatTableDataSource<LinkManagementMemberModel>();
   tabledisplayedColumns: string[] = [
-    'LinkMainImageIdSrc',
+   
     'Id',
     'RecordStatus',
     'Title',

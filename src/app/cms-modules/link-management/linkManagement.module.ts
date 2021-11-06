@@ -64,6 +64,7 @@ import { LinkManagementAccountingSelectorComponent } from './accounting/selector
 import { LinkManagementTargetBillboardLogDeleteComponent } from './target-billboard-log/delete/delete.component';
 import { LinkManagementTargetBillboardLogEditComponent } from './target-billboard-log/edit/edit.component';
 import { LinkManagementTargetBillboardLogListComponent } from './target-billboard-log/list/list.component';
+import { LinkManagementBillboardPatternListComponent } from './billboard-pattern/list/list.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { LinkManagementTargetBillboardLogListComponent } from './target-billboar
     LinkManagementBillboardPatternAddComponent,
     LinkManagementBillboardPatternEditComponent,
     LinkManagementBillboardPatternDeleteComponent,
+    LinkManagementBillboardPatternListComponent,
     LinkManagementBillboardPatternTreeSelectorComponent,
     /** */
     LinkManagementBillboardAddComponent,
@@ -134,6 +136,7 @@ import { LinkManagementTargetBillboardLogListComponent } from './target-billboar
     LinkManagementBillboardPatternAddComponent,
     LinkManagementBillboardPatternEditComponent,
     LinkManagementBillboardPatternDeleteComponent,
+    LinkManagementBillboardPatternListComponent,
     LinkManagementBillboardPatternTreeSelectorComponent,
     /** */
     LinkManagementBillboardAddComponent,

@@ -190,7 +190,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
 
-            setTimeout(() => this.router.navigate(['/linkmanagement/Billboard']), 1000);
+            setTimeout(() => this.router.navigate(['/linkmanagement/billboard']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
@@ -333,7 +333,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
     }
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/linkmanagement/Billboard/']);
+    this.router.navigate(['/linkmanagement/billboard/']);
   }
 
 }

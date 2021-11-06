@@ -19,8 +19,8 @@
       translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
-    <button *ngIf=" tableRowSelected.Id>0" (click)="onActionbuttonComment()" type="button"
-      class="btn btn-warning BTN">نتایج</button>
+    <button *ngIf=" tableRowSelected.Id>0" (click)="onActionbuttonLog()" type="button"
+      class="btn btn-warning BTN">گزارشات</button>
     <a class="btn btn-secondary btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -108,9 +108,9 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonComment(row)">
+            <button mat-menu-item (click)="onActionbuttonLog(row)">
               <mat-icon>list</mat-icon>
-              <span>{{'ACTION.STATIST' | translate}}</span>
+              <span>{{'ACTION.LOG' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

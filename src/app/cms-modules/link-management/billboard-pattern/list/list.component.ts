@@ -5,15 +5,15 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  LinkManagementAccountingModel,
-  LinkManagementAccountingService,
+  LinkManagementBillboardPatternModel,
+  LinkManagementBillboardPatternService,
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
@@ -21,22 +21,20 @@ import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { LinkManagementAccountingDeleteComponent } from '../delete/delete.component';
+import { LinkManagementBillboardPatternDeleteComponent } from '../delete/delete.component';
 import { Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { LinkManagementAccountingAddComponent } from '../add/add.component';
-import { LinkManagementAccountingEditComponent } from '../edit/edit.component';
 
 @Component({
-  selector: 'app-linkmanagement-accounting-list',
+  selector: 'app-linkmanagement-billboard-pattern-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class LinkManagementAccountingListComponent implements OnInit, OnDestroy {
+export class LinkManagementBillboardPatternListComponent implements OnInit, OnDestroy {
 
   constructor(
     public publicHelper: PublicHelper,
-    private linkManagementAccountingService: LinkManagementAccountingService,
+    private linkManagementBillboardPatternService: LinkManagementBillboardPatternService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -57,20 +55,22 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
 
   }
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<LinkManagementAccountingModel> = new ErrorExceptionResult<LinkManagementAccountingModel>();
+  categoryModelSelected: LinkManagementBillboardPatternModel;
+  dataModelResult: ErrorExceptionResult<LinkManagementBillboardPatternModel> = new ErrorExceptionResult<LinkManagementBillboardPatternModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<LinkManagementAccountingModel> = [];
-  tableRowSelected: LinkManagementAccountingModel = new LinkManagementAccountingModel();
-  tableSource: MatTableDataSource<LinkManagementAccountingModel> = new MatTableDataSource<LinkManagementAccountingModel>();
+  tableRowsSelected: Array<LinkManagementBillboardPatternModel> = [];
+  tableRowSelected: LinkManagementBillboardPatternModel = new LinkManagementBillboardPatternModel();
+  tableSource: MatTableDataSource<LinkManagementBillboardPatternModel> = new MatTableDataSource<LinkManagementBillboardPatternModel>();
   tabledisplayedColumns: string[] = [
+    'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
-    'LinkManagementMemberId',
+    'Title',
     'CreatedDate',
     'UpdatedDate',
     'Action'
@@ -95,7 +95,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new LinkManagementAccountingModel();
+    this.tableRowSelected = new LinkManagementBillboardPatternModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -105,9 +105,14 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-
-    this.linkManagementAccountingService.setAccessLoad();
-    this.linkManagementAccountingService.ServiceGetAllEditor(filterModel).subscribe(
+    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkCategoryId';
+      filter.Value = this.categoryModelSelected.Id;
+      filterModel.Filters.push(filter);
+    }
+    this.linkManagementBillboardPatternService.setAccessLoad();
+    this.linkManagementBillboardPatternService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -168,27 +173,34 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     this.DataGetAll();
   }
 
- 
- 
-  onActionbuttonNewRow(): void {
-   
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = {  };
+  onActionSelectorSelect(model: LinkManagementBillboardPatternModel | null): void {
+    this.filteModelContent = new FilterModel();
+    this.categoryModelSelected = model;
 
-
-    const dialogRef = this.dialog.open(LinkManagementAccountingAddComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
-    
+    this.DataGetAll();
   }
 
-  onActionbuttonEditRow(model: LinkManagementAccountingModel = this.tableRowSelected): void {
+  onActionbuttonNewRow(): void {
+    if (
+      this.categoryModelSelected == null ||
+      this.categoryModelSelected.Id === 0
+    ) {
+      const message = 'دسته بندی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    this.router.navigate(['/linkmanagement/billboard-pattern/add', this.categoryModelSelected.Id]);
+  }
+
+  onActionbuttonEditRow(model: LinkManagementBillboardPatternModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -202,19 +214,9 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
-    const dialogRef = this.dialog.open(LinkManagementAccountingEditComponent, {
-      height: '90%',
-      data: {id: this.tableRowSelected.Id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
+    this.router.navigate(['/linkmanagement/billboard-pattern/edit', this.tableRowSelected.Id]);
   }
-  onActionbuttonDeleteRow(model: LinkManagementAccountingModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: LinkManagementBillboardPatternModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage); return;
@@ -229,7 +231,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(LinkManagementAccountingDeleteComponent, {height: '90%', data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(LinkManagementBillboardPatternDeleteComponent, {height: '90%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -245,7 +247,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.linkManagementAccountingService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.linkManagementBillboardPatternService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -262,7 +264,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.linkManagementAccountingService.ServiceGetCount(filterStatist1).subscribe(
+    this.linkManagementBillboardPatternService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -283,7 +285,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.linkManagementAccountingService.ServiceExportFile(model).subscribe(
+    this.linkManagementBillboardPatternService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -303,17 +305,17 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: LinkManagementAccountingModel): void {
+  onActionTableRowSelect(row: LinkManagementBillboardPatternModel): void {
     this.tableRowSelected = row;
   }
 
 
-  onActionbuttonComment(model: LinkManagementAccountingModel = this.tableRowSelected): void {
+  onActionbuttonComment(model: LinkManagementBillboardPatternModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const message = 'ردیفی   انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.router.navigate(['/linkmanagement/Accounting-log/', model.Id]);
+    this.router.navigate(['/linkmanagement/billboard-log/', model.Id]);
   }
 }

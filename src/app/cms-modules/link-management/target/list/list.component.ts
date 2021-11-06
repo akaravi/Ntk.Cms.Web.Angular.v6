@@ -311,7 +311,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonComment(model: LinkManagementTargetModel = this.tableRowSelected): void {
+  onActionbuttonLog(model: LinkManagementTargetModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const message = 'ردیفی   انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);

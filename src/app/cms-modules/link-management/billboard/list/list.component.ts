@@ -198,7 +198,7 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/linkmanagement/Billboard/add', this.categoryModelSelected.Id]);
+    this.router.navigate(['/linkmanagement/billboard/add', this.categoryModelSelected.Id]);
   }
 
   onActionbuttonEditRow(model: LinkManagementBillboardModel = this.tableRowSelected): void {
@@ -215,7 +215,7 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/linkmanagement/Billboard/edit', this.tableRowSelected.Id]);
+    this.router.navigate(['/linkmanagement/billboard/edit', this.tableRowSelected.Id]);
   }
   onActionbuttonDeleteRow(model: LinkManagementBillboardModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
@@ -311,12 +311,12 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonComment(model: LinkManagementBillboardModel = this.tableRowSelected): void {
+  onActionbuttonLog(model: LinkManagementBillboardModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const message = 'ردیفی   انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.router.navigate(['/linkmanagement/Billboard-log/', model.Id]);
+    this.router.navigate(['/linkmanagement/target-billboard-log/LinkManagementBillboardId', model.Id]);
   }
 }

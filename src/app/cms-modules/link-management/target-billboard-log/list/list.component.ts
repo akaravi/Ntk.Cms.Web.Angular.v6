@@ -235,6 +235,24 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       }
     });
   }
+  onActionbuttonViewRowLinkBillbordId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/linkmanagement/billboard/edit', this.tableRowSelected.LinkManagementBillboardId]);
+  }
+  onActionbuttonViewRowLinkTargetId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const emessage = 'ردیفی  انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/linkmanagement/target/edit', this.tableRowSelected.LinkManagementTargetId]);
+  }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -307,7 +325,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   onActionBackToParent(): void {
     if(this.requestLinkManagementBillboardId>0 )
     {
-    this.router.navigate(['/linkmanagement/target-billboard/']);
+    this.router.navigate(['/linkmanagement/billboard/']);
     }
     if(this.requestLinkManagementTargetId>0)
     {
