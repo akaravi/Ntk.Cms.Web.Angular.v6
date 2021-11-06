@@ -155,7 +155,12 @@ mat-paginator {
 ::ng-deep .mat-slide-toggle-content {
   font-family: "IRANSansWeb" !important;
 }
-
+.info-field-icon{
+  color: rgb(56, 184, 56) !important;
+}
+.info-field-text{
+  color: rgb(19, 68, 19) !important;
+}
 .btn-bg-info {
   color: white;
 }

@@ -21,6 +21,7 @@
 	"ACTION.STATIST": "آمار",
 	"ACTION.VIEW": "مشاهده",
 	"ACTION.ADS": "تبلیغات",
+	"ACTION.COMMENT": "کامنت",
 	"ACTION.MY_LOCATION": "مکان من",
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "تکرار کلمه عبور جدید",
 	"AUTH.FORGOT.DESC": "ایمیل تان را وارد کنید تا پسوردتان ریست شود",

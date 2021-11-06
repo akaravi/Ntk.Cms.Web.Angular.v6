@@ -177,6 +177,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+        
           this.loading.Stop(pName);
 
           this.dataModelResult = next;

@@ -14,6 +14,7 @@
 	"ACTION.PAYMENT": "Peyment",
 	"ACTION.RELOAD": "Reload",
 	"ACTION.SAVE": "Save",
+	"ACTION.COMMENT": "comment",
 	"ACTION.SEARCH": "Search",
 	"ACTION.SELECT": "Select",
 	"ACTION.STATIST": "Statist",
