@@ -15,6 +15,7 @@ import {
   FormInfoModel,
   CoreSiteCategoryModel,
   TokenInfoModel,
+  CoreUserModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -289,5 +290,18 @@ export class CoreSiteEditComponent implements OnInit {
     this.dataModel.LinkSiteCategoryId = model.Id;
 
   }
-
+  onActionSelectorLinkResellerSiteIdSelect(model: CoreSiteModel | null): void {
+    this.dataModel.LinkResellerSiteId = null;
+    if (!model || model.Id <= 0) {
+      return;
+    }
+    this.dataModel.LinkResellerSiteId = model.Id;
+  }
+  onActionSelectorLinkResellerUserIdSelect(model: CoreUserModel | null): void {
+    this.dataModel.LinkResellerUserId = null;
+    if (!model || model.Id <= 0) {
+      return;
+    }
+    this.dataModel.LinkResellerUserId = model.Id;
+  }
 }

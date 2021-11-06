@@ -52,7 +52,7 @@ export class CoreDeviceTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreDeviceModel = new CoreDeviceModel();
   dataModelResult: ErrorExceptionResult<CoreDeviceModel> = new ErrorExceptionResult<CoreDeviceModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreDeviceModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreDeviceModel>();
   @Output() optionSelect = new EventEmitter<CoreDeviceModel>();

@@ -51,7 +51,7 @@ export class CoreSiteTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreSiteModel = new CoreSiteModel();
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreSiteModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreSiteModel>();
   @Output() optionSelect = new EventEmitter<CoreSiteModel>();

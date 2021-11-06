@@ -178,6 +178,17 @@
               <mat-icon>mode_edit</mat-icon>
               <span>ویرایش کاربر</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonResllerUser(row)"
+            *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
+            <mat-icon>devices</mat-icon>
+            <span> زیرمجموع بازاریابی کاربر</span>
+          </button>
+          
+          <button mat-menu-item (click)="onActionbuttonResllerSite(row)"
+          *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
+          <mat-icon>devices</mat-icon>
+          <span> زیرمجموع بازاریابی سایت</span>
+        </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

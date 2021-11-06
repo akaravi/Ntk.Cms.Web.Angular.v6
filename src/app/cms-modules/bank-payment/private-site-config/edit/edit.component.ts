@@ -9,6 +9,7 @@ import {
   DataFieldInfoModel,
   CoreSiteCategoryModel,
   BankPaymentPrivateSiteConfigAliasJsonModel,
+  BankPaymentPublicConfigModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -148,7 +149,7 @@ export class BankPaymentPrivateSiteConfigEditComponent implements OnInit {
       }
     );
   }
-  onActionSelectSource(model: CoreSiteCategoryModel): void {
+  onActionSelectSource(model: BankPaymentPublicConfigModel): void {
     this.dataModel.LinkPublicConfigId = null;
     if (model && model.Id > 0) {
       this.dataModel.LinkPublicConfigId = model.Id;

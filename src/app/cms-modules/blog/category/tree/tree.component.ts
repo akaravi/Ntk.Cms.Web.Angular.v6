@@ -52,7 +52,7 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: BlogCategoryModel = new BlogCategoryModel();
   dataModelResult: ErrorExceptionResult<BlogCategoryModel> = new ErrorExceptionResult<BlogCategoryModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<BlogCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<BlogCategoryModel>();
   @Output() optionSelect = new EventEmitter<BlogCategoryModel>();

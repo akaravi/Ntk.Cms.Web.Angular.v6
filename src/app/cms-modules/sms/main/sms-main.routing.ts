@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';
+import { SmsMainApiPathPermissionListComponent } from './api-path-permission/list/list.component';
+import { SmsMainApiPathPriceServiceListComponent } from './api-path-price-service/list/list.component';
+import { SmsMainApiPathEditComponent } from './api-path/edit/edit.component';
 import { SmsMainApiPathListComponent } from './api-path/list/list.component';
+import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/list.component';
 import { SmsMainComponent } from './sms-main.component';
 
 
@@ -15,6 +19,13 @@ const routes: Routes = [
         component: SmsMainApiPathCompanyListComponent
       },
       {
+        path: 'publicconfig',
+        component: SmsMainApiPathPublicConfigListComponent
+      },
+
+
+
+      {
         path: 'api-path',
         component: SmsMainApiPathListComponent
       },
@@ -26,7 +37,34 @@ const routes: Routes = [
         path: 'api-path/list/LinkCompanyId/:LinkCompanyId',
         component: SmsMainApiPathListComponent
       },
-
+      {
+        path: 'api-path/list/LinkPublicConfigId/:LinkPublicConfigId',
+        component: SmsMainApiPathListComponent
+      },
+      {
+        path: 'api-path/list/LinkSiteId/:LinkSiteId',
+        component: SmsMainApiPathListComponent
+      },
+      {
+        path: 'api-path/edit/:Id',
+        component: SmsMainApiPathEditComponent
+      },
+      {
+        path: 'api-path-permission',
+        component: SmsMainApiPathPermissionListComponent
+      },
+      {
+        path: 'api-path-permission/LinkApiPathId/:LinkApiPathId',
+        component: SmsMainApiPathPermissionListComponent
+      },
+      {
+        path: 'api-path-price-service',
+        component: SmsMainApiPathPriceServiceListComponent
+      },
+      {
+        path: 'api-path-price-service/LinkApiPathId/:LinkApiPathId',
+        component: SmsMainApiPathPriceServiceListComponent
+      },
     //   {
     //     path: 'source/add',
     //     component: ApplicationSourceAddComponent

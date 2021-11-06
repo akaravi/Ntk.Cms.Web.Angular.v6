@@ -169,7 +169,11 @@
               <mat-icon>supervisor_account</mat-icon>
               <span>دسترسی سایت های عضو</span>
             </button>
-
+            <button mat-menu-item (click)="onActionbuttonResller(row)"
+              *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
+              <mat-icon>devices</mat-icon>
+              <span> زیرمجموع بازاریابی</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

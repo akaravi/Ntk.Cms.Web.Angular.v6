@@ -51,7 +51,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: BankPaymentPublicConfigModel = new BankPaymentPublicConfigModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input()loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<BankPaymentPublicConfigModel>(node => null);
   dataSource = new MatTreeNestedDataSource<BankPaymentPublicConfigModel>();
   @Output() optionSelect = new EventEmitter<BankPaymentPublicConfigModel>();

@@ -283,16 +283,29 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonGoToSiteCategoryList(model: BankPaymentPublicConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    this.router.navigate(['/core/siteSiteCategory/', this.tableRowSelected.Id]);
+  
+  onActionbuttonNewRowAuto(): any {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    this.bankPaymentPublicConfigService.ServiceAutoAdd().subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+          this.DataGetAll();
+        }
+        else
+        {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+      }
+    );
   }
+ 
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {

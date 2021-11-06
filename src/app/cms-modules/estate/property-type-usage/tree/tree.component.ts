@@ -52,7 +52,7 @@ export class EstatePropertyTypeUsageTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstatePropertyTypeUsageModel = new EstatePropertyTypeUsageModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input()   loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstatePropertyTypeUsageModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertyTypeUsageModel>();
   @Output() optionSelect = new EventEmitter<EstatePropertyTypeUsageModel>();

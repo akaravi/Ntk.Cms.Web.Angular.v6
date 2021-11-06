@@ -14,20 +14,13 @@ const routes: Routes = [
     path: '',
     component: BlogComponent,
     children: [
-      /*Config*/
-      {
-        path: 'config/mainadmin',
-        component: BlogConfigMainAdminComponent
-      },
-      {
-        path: 'config/site',
-        component: BlogConfigSiteComponent
-      },
-      {
-        path: 'config/site/:LinkSiteId',
-        component: BlogConfigSiteComponent
-      },
-      /*Config*/
+         /* Config */
+         {
+          path: 'config',
+          loadChildren: () =>
+            import('./config/blog-config.module').then((m) => m.BlogConfigModule),
+        },
+        /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},

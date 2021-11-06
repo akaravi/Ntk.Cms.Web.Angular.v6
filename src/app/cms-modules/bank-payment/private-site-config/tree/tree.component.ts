@@ -50,7 +50,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
   dataModelSelect: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<BankPaymentPrivateSiteConfigModel>(node => null);
   dataSource = new MatTreeNestedDataSource<BankPaymentPrivateSiteConfigModel>();
   @Output() optionSelect = new EventEmitter<BankPaymentPrivateSiteConfigModel>();

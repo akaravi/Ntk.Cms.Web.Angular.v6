@@ -29,6 +29,7 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
     public categoryService: SmsMainApiPathService) {
     this.loading.cdr = this.cdr;
   }
+
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
   dataModelSelect: SmsMainApiPathModel = new SmsMainApiPathModel();
   loading = new ProgressSpinnerModel();
@@ -39,7 +40,7 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
   @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<SmsMainApiPathModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: number | SmsMainApiPathModel) {
+  @Input() set optionSelectForce(x: string | SmsMainApiPathModel) {
     this.onActionSelectForce(x);
   }
 
@@ -72,7 +73,6 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
-    // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
     filter.PropertyName = 'Title';
     filter.Value = text;
@@ -87,10 +87,7 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
+    this.loading.Start('DataGetAll');
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -104,8 +101,7 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
             this.onActionSelect(this.dataModelResult.ListItems[0]);
           }
           /*select First Item */
-          this.loading.Stop(pName);
-
+          this.loading.Stop('DataGetAll');
           return response.ListItems;
         })
       ).toPromise();
@@ -135,8 +131,8 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: number | SmsMainApiPathModel): void {
-    if (typeof id === 'string' && id > 0) {
+  onActionSelectForce(id: string | SmsMainApiPathModel): void {
+    if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
       }
@@ -166,11 +162,7 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-    //   this.onActionSelect(null);
-    // }
     this.dataModelSelect = new SmsMainApiPathModel();
-    // this.optionsData.Select = new SmsMainApiPathModel();
     this.DataGetAll(null);
   }
 }

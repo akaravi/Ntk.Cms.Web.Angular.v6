@@ -54,7 +54,7 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: PollingCategoryModel = new PollingCategoryModel();
   dataModelResult: ErrorExceptionResult<PollingCategoryModel> = new ErrorExceptionResult<PollingCategoryModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<PollingCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<PollingCategoryModel>();
   @Output() optionSelect = new EventEmitter<PollingCategoryModel>();

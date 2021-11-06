@@ -51,7 +51,7 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: TicketingDepartemenModel = new TicketingDepartemenModel();
   dataModelResult: ErrorExceptionResult<TicketingDepartemenModel> = new ErrorExceptionResult<TicketingDepartemenModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<TicketingDepartemenModel>(node => null);
   dataSource = new MatTreeNestedDataSource<TicketingDepartemenModel>();
   @Output() optionSelect = new EventEmitter<TicketingDepartemenModel>();

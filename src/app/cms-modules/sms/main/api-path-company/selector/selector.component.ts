@@ -40,7 +40,7 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
   @Input() optionPlaceholder = '';
   @Output() optionSelect = new EventEmitter<SmsMainApiPathCompanyModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: number | SmsMainApiPathCompanyModel) {
+  @Input() set optionSelectForce(x: string | SmsMainApiPathCompanyModel) {
     this.onActionSelectForce(x);
   }
 
@@ -131,8 +131,8 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: number | SmsMainApiPathCompanyModel): void {
-    if (typeof id === 'string' && id > 0) {
+  onActionSelectForce(id: string | SmsMainApiPathCompanyModel): void {
+    if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
       }

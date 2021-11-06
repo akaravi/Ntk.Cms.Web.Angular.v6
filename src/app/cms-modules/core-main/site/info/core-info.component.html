@@ -46,6 +46,14 @@
 
       <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerSiteShortLinkUrl"
         (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
+        <br>
+      
+      
+      <button mat-menu-item (click)="onActionbuttonResllerSite()"
+      >
+      <mat-icon>devices</mat-icon>
+      <span> مشاهده چارت</span>
+    </button>
     </p>
     <img [src]="dataModelResult.Item.UrlResellerSiteShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
       *ngIf="dataModelResult?.Item?.UrlResellerSiteShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
@@ -58,6 +66,12 @@
 
       <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerUserShortLinkUrl"
         (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
+        <br>
+        <button mat-menu-item (click)="onActionbuttonResllerUser()"
+       >
+        <mat-icon>devices</mat-icon>
+        <span> مشاهده چارت</span>
+      </button>
     </p>
     <img [src]="dataModelResult.Item.UrlResellerUserShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
       *ngIf="dataModelResult?.Item?.UrlResellerUserShortLinkQRCodeBase64?.length>0" height="300px" width="300px">

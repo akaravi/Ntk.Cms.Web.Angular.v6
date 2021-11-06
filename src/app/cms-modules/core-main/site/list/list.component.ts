@@ -324,6 +324,16 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/core/device', this.tableRowSelected.Id]);
   }
+  onActionbuttonResller  (model: CoreSiteModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/core/site/reseller-chart/LinkSiteId', this.tableRowSelected.Id]);
+  }
 
 
   onActionbuttonStatist(): void {

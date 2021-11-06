@@ -16,7 +16,10 @@ import {
   DataFieldInfoModel,
   CoreCurrencyService,
   CoreCurrencyModel,
-  SmsMainApiPathCompanyModel
+  SmsMainApiPathCompanyModel,
+  SmsMainApiPathCompanyService,
+  SmsMainApiPathPublicConfigService,
+  SmsMainApiPathPublicConfigModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -39,14 +42,18 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   styleUrls: ['./list.component.scss']
 })
 export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
+  requestLinkSiteId = 0;
   requestLinkCompanyId = '';
+  requestLinkPublicConfigId = '';
   constructor(
     private smsMainApiPathService: SmsMainApiPathService,
+    private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
+    private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private coreCurrencyService: CoreCurrencyService,
+    // private coreCurrencyService: CoreCurrencyService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -71,6 +78,9 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
   dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
+  dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
+  dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
+
   categoryModelSelected: SmsMainApiPathCompanyModel;
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -85,12 +95,12 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
-    'LinkModuleFileLogoIdSrc',
+    'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
     'Title',
-    'ClassName',
-    'LinkCurrencyId',
+    'LinkApiPathCompanyId',
+    'LinkPublicConfigId',
     'UpdatedDate',
     'Action'
   ];
@@ -104,11 +114,28 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     if (this.activatedRoute.snapshot.paramMap.get('LinkCompanyId')) {
       this.requestLinkCompanyId = this.activatedRoute.snapshot.paramMap.get('LinkCompanyId');
     }
-
+    if (this.activatedRoute.snapshot.paramMap.get('LinkSiteId')) {
+      this.requestLinkSiteId = +this.activatedRoute.snapshot.paramMap.get('LinkSiteId') || 0;
+    }
+    if (this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId')) {
+      this.requestLinkPublicConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId');
+    }
+    const filter = new FilterDataModel();
+    if (this.requestLinkPublicConfigId?.length > 0) {
+      filter.PropertyName = 'LinkPublicConfigId';
+      filter.Value = this.requestLinkPublicConfigId;
+      this.filteModelContent.Filters.push(filter);
+    }
     if (this.requestLinkCompanyId.length > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkApiPathCompanyId';
       filter.Value = this.requestLinkCompanyId;
+      this.filteModelContent.Filters.push(filter);
+    }
+    if (this.requestLinkSiteId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkSiteId';
+      filter.Value = this.requestLinkSiteId;
       this.filteModelContent.Filters.push(filter);
     }
     this.filteModelContent.SortColumn = 'Title';
@@ -121,15 +148,31 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       this.DataGetAll();
       this.tokenInfo = next;
     });
-    this.getCurrency();
+    // this.getCurrency();
+    this.getApiCopmanyList();
+    this.getPublicConfig();
   }
-  getCurrency(): void {
+  getPublicConfig(): void {
     const filter = new FilterModel();
     filter.RowPerPage = 100;
-    this.coreCurrencyService.ServiceGetAll(filter).subscribe((next) => {
-      this.dataModelCoreCurrencyResult = next;
+    this.smsMainApiPathPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
+      this.dataModelPublicResult = next;
     });
   }
+  getApiCopmanyList(): void {
+    const filter = new FilterModel();
+    filter.RowPerPage = 100;
+    this.smsMainApiPathCompanyService.ServiceGetAll(filter).subscribe((next) => {
+      this.dataModelCompanyResult = next;
+    });
+  }
+  // getCurrency(): void {
+  //   const filter = new FilterModel();
+  //   filter.RowPerPage = 100;
+  //   this.coreCurrencyService.ServiceGetAll(filter).subscribe((next) => {
+  //     this.dataModelCoreCurrencyResult = next;
+  //   });
+  // }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
@@ -145,6 +188,14 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
+    /** filter Category */
+    if (this.categoryModelSelected && this.categoryModelSelected.Id.length > 0) {
+      let fastfilter = new FilterDataModel();
+      fastfilter.PropertyName = 'LinkApiPathCompanyId';
+      fastfilter.Value = this.categoryModelSelected.Id;
+      filterModel.Filters.push(fastfilter);
+    }
+    /** filter Category */
     this.smsMainApiPathService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -216,7 +267,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(SmsMainApiPathAddComponent, {
       height: '90%',
-      data: {}
+      data: { LinkApiPathCompanyId: this.categoryModelSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -240,15 +291,17 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(SmsMainApiPathEditComponent, {
-      height: '90%',
-      data: { id: this.tableRowSelected.Id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
+    // const dialogRef = this.dialog.open(SmsMainApiPathEditComponent, {
+    //   height: '90%',
+    //   data: { id: this.tableRowSelected.Id }
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result && result.dialogChangedDate) {
+    //     this.DataGetAll();
+    //   }
+    // });
+    this.router.navigate(['/sms/main/api-path/edit', this.tableRowSelected.Id]);
+
   }
   onActionbuttonDeleteRow(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -309,7 +362,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
 
     this.DataGetAll();
   }
-  
+
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -349,7 +402,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     );
 
   }
-  onActionbuttonPrivateList(model: SmsMainApiPathModel = this.tableRowSelected): void {
+  onActionbuttonSuperSedersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
       const message = 'ردیفی انتخاب نشده است';
@@ -367,6 +420,82 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+  }
+  onActionbuttonMustSuperSedersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+  }
+  onActionbuttonNumbersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+  }
+  onActionbuttonPermitionList(model: SmsMainApiPathModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    this.router.navigate(['/sms/main/api-path-permission/LinkApiPathId', this.tableRowSelected.Id]);
+  }
+  onActionbuttonPriceServicesList(model: SmsMainApiPathModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    this.router.navigate(['/sms/main/api-path-price-service/LinkApiPathId', this.tableRowSelected.Id]);
   }
 
   onActionbuttonExport(): void {
@@ -399,5 +528,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: SmsMainApiPathModel): void {
     this.tableRowSelected = row;
   }
-
+  onActionBackToParent(): void {
+    this.router.navigate(['/sms/main/api-path-company']);
+  }
 }

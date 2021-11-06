@@ -19,7 +19,9 @@
       translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
-
+      <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionbuttonNewRowAuto()" type="button"
+      class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.AUTOADD'|
+      translate}} Dependency</button>
     <a class="btn btn-secondary btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -62,12 +64,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
       </ng-container>
-      <!-- linkCreatedBySiteId Column -->
-      <ng-container matColumnDef="linkCreatedBySiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCreatedBySiteId']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkCreatedBySiteId}} </mat-cell>
-      </ng-container>
+
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
@@ -96,13 +93,6 @@
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
-      </ng-container>
-      <!-- ExpireDate Column -->
-      <ng-container matColumnDef="ExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleExpireDate(row.ExpireDate) }">
-          {{ publicHelper.LocaleDate(row.ExpireDate) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">

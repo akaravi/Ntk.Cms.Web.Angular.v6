@@ -50,7 +50,7 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreModuleSaleSerialModel = new CoreModuleSaleSerialModel();
   dataModelResult: ErrorExceptionResult<CoreModuleSaleSerialModel> = new ErrorExceptionResult<CoreModuleSaleSerialModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreModuleSaleSerialModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreModuleSaleSerialModel>();
   @Output() optionSelect = new EventEmitter<CoreModuleSaleSerialModel>();

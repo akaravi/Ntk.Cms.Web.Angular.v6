@@ -39,6 +39,7 @@ import { CoreSiteUserAddComponent } from './userAdd/userAdd.component';
 import { CoreSiteUserEditComponent } from './userEdit/userEdit.component';
 import { CoreUserModule } from '../user/coreUser.module';
 import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
+import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.component';
 
 
 
@@ -59,6 +60,7 @@ import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
     CoreSiteUserListComponent,
     CoreSiteUserAddComponent,
     CoreSiteUserEditComponent,
+    CoreSiteResellerChartComponent,
   ],
   exports: [
     CoreSiteComponent,
@@ -76,6 +78,7 @@ import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
     CoreSiteUserListComponent,
     CoreSiteUserAddComponent,
     CoreSiteUserEditComponent,
+    CoreSiteResellerChartComponent
   ],
   imports: [
     CommonModule,

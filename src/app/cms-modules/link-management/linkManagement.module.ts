@@ -2,46 +2,185 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LinkManagementComponent } from './linkManagement.component';
 import { LinkManagementRoutes } from './linkManagement.routing';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
-import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
   CoreAuthService,
   CoreEnumService,
-  ApplicationEnumService,
-  CoreModuleTagService,
   LinkManagementConfigurationService,
-  CoreModuleService
+  CoreModuleService,
+  LinkManagementEnumService,
+  LinkManagementTargetCategoryService,
+  LinkManagementTargetService,
+  LinkManagementBillboardPatternService,
+  LinkManagementBillboardService,
+  LinkManagementAccountingService,
+  LinkManagementAccountingDetailService,
+  LinkManagementBillboardTargetCategoryService,
+  LinkManagementMemberService,
+  LinkManagementTargetBillboardLogService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { LinkManagementConfigSiteComponent } from './config/site/config-site.component';
-import { LinkManagementConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { LinkManagementTargetCategoryAddComponent } from './target-category/add/add.component';
+import { LinkManagementTargetCategoryDeleteComponent } from './target-category/delete/delete.component';
+import { LinkManagementTargetCategoryEditComponent } from './target-category/edit/edit.component';
+import { LinkManagementTargetCategorySelectorComponent } from './target-category/selector/selector.component';
+import { LinkManagementTargetCategoryTreeSelectorComponent } from './target-category/tree-selector/tree-selector.component';
+import { LinkManagementTargetCategoryTreeComponent } from './target-category/tree/tree.component';
+import { LinkManagementTargetAddComponent } from './target/add/add.component';
+import { LinkManagementTargetDeleteComponent } from './target/delete/delete.component';
+import { LinkManagementTargetEditComponent } from './target/edit/edit.component';
+import { LinkManagementTargetListComponent } from './target/list/list.component';
+import { LinkManagementBillboardPatternAddComponent } from './billboard-pattern/add/add.component';
+import { LinkManagementBillboardPatternDeleteComponent } from './billboard-pattern/delete/delete.component';
+import { LinkManagementBillboardPatternEditComponent } from './billboard-pattern/edit/edit.component';
+import { LinkManagementBillboardPatternSelectorComponent } from './billboard-pattern/selector/selector.component';
+import { LinkManagementBillboardPatternTreeSelectorComponent } from './billboard-pattern/tree-selector/tree-selector.component';
+import { LinkManagementBillboardPatternTreeComponent } from './billboard-pattern/tree/tree.component';
+import { LinkManagementBillboardAddComponent } from './billboard/add/add.component';
+import { LinkManagementBillboardDeleteComponent } from './billboard/delete/delete.component';
+import { LinkManagementBillboardEditComponent } from './billboard/edit/edit.component';
+import { LinkManagementBillboardListComponent } from './billboard/list/list.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { LinkManagementMemberAddComponent } from './member/add/add.component';
+import { LinkManagementMemberDeleteComponent } from './member/delete/delete.component';
+import { LinkManagementMemberEditComponent } from './member/edit/edit.component';
+import { LinkManagementMemberListComponent } from './member/list/list.component';
+import { LinkManagementMemberSelectorComponent } from './member/selector/selector.component';
+import { LinkManagementAccountingDetailAddComponent } from './accounting-detail/add/add.component';
+import { LinkManagementAccountingDetailDeleteComponent } from './accounting-detail/delete/delete.component';
+import { LinkManagementAccountingDetailEditComponent } from './accounting-detail/edit/edit.component';
+import { LinkManagementAccountingDetailListComponent } from './accounting-detail/list/list.component';
+import { LinkManagementAccountingAddComponent } from './accounting/add/add.component';
+import { LinkManagementAccountingDeleteComponent } from './accounting/delete/delete.component';
+import { LinkManagementAccountingEditComponent } from './accounting/edit/edit.component';
+import { LinkManagementAccountingListComponent } from './accounting/list/list.component';
+import { LinkManagementAccountingSelectorComponent } from './accounting/selector/selector.component';
+import { LinkManagementTargetBillboardLogDeleteComponent } from './target-billboard-log/delete/delete.component';
+import { LinkManagementTargetBillboardLogEditComponent } from './target-billboard-log/edit/edit.component';
+import { LinkManagementTargetBillboardLogListComponent } from './target-billboard-log/list/list.component';
+import { LinkManagementBillboardPatternListComponent } from './billboard-pattern/list/list.component';
 
 @NgModule({
   declarations: [
     LinkManagementComponent,
-
+    /** */
+    LinkManagementTargetCategoryTreeComponent,
+    LinkManagementTargetCategorySelectorComponent,
+    LinkManagementTargetCategoryAddComponent,
+    LinkManagementTargetCategoryEditComponent,
+    LinkManagementTargetCategoryDeleteComponent,
+    LinkManagementTargetCategoryTreeSelectorComponent,
+    /** */
+    LinkManagementTargetAddComponent,
+    LinkManagementTargetEditComponent,
+    LinkManagementTargetDeleteComponent,
+    LinkManagementTargetListComponent,
+    /** */
+    LinkManagementBillboardPatternTreeComponent,
+    LinkManagementBillboardPatternSelectorComponent,
+    LinkManagementBillboardPatternAddComponent,
+    LinkManagementBillboardPatternEditComponent,
+    LinkManagementBillboardPatternDeleteComponent,
+    LinkManagementBillboardPatternListComponent,
+    LinkManagementBillboardPatternTreeSelectorComponent,
+    /** */
+    LinkManagementBillboardAddComponent,
+    LinkManagementBillboardEditComponent,
+    LinkManagementBillboardDeleteComponent,
+    LinkManagementBillboardListComponent,
+    /** */
+    LinkManagementTargetBillboardLogEditComponent,
+    LinkManagementTargetBillboardLogDeleteComponent,
+    LinkManagementTargetBillboardLogListComponent,
+    /** */
+    LinkManagementMemberAddComponent,
+    LinkManagementMemberDeleteComponent,
+    LinkManagementMemberEditComponent,
+    LinkManagementMemberListComponent,
+    LinkManagementMemberSelectorComponent,
+    /** */
+    LinkManagementAccountingAddComponent,
+    LinkManagementAccountingDeleteComponent,
+    LinkManagementAccountingEditComponent,
+    LinkManagementAccountingListComponent,
+    LinkManagementAccountingSelectorComponent,
+    /** */
+    LinkManagementAccountingDetailAddComponent,
+    LinkManagementAccountingDetailDeleteComponent,
+    LinkManagementAccountingDetailEditComponent,
+    LinkManagementAccountingDetailListComponent,
+    /** */
+  ],
+  exports: [
+    /** */
+    LinkManagementTargetCategoryTreeComponent,
+    LinkManagementTargetCategorySelectorComponent,
+    LinkManagementTargetCategoryAddComponent,
+    LinkManagementTargetCategoryEditComponent,
+    LinkManagementTargetCategoryDeleteComponent,
+    LinkManagementTargetCategoryTreeSelectorComponent,
+    /** */
+    LinkManagementTargetAddComponent,
+    LinkManagementTargetEditComponent,
+    LinkManagementTargetDeleteComponent,
+    LinkManagementTargetListComponent,
+    /** */
+    LinkManagementBillboardPatternTreeComponent,
+    LinkManagementBillboardPatternSelectorComponent,
+    LinkManagementBillboardPatternAddComponent,
+    LinkManagementBillboardPatternEditComponent,
+    LinkManagementBillboardPatternDeleteComponent,
+    LinkManagementBillboardPatternListComponent,
+    LinkManagementBillboardPatternTreeSelectorComponent,
+    /** */
+    LinkManagementBillboardAddComponent,
+    LinkManagementBillboardEditComponent,
+    LinkManagementBillboardDeleteComponent,
+    LinkManagementBillboardListComponent,
+    /** */
+    LinkManagementTargetBillboardLogEditComponent,
+    LinkManagementTargetBillboardLogDeleteComponent,
+    LinkManagementTargetBillboardLogListComponent,
+    /** */
+    LinkManagementMemberAddComponent,
+    LinkManagementMemberDeleteComponent,
+    LinkManagementMemberEditComponent,
+    LinkManagementMemberListComponent,
+    LinkManagementMemberSelectorComponent,
+    /** */
+    LinkManagementAccountingAddComponent,
+    LinkManagementAccountingDeleteComponent,
+    LinkManagementAccountingEditComponent,
+    LinkManagementAccountingListComponent,
+    LinkManagementAccountingSelectorComponent,
+    /** */
+    LinkManagementAccountingDetailAddComponent,
+    LinkManagementAccountingDetailDeleteComponent,
+    LinkManagementAccountingDetailEditComponent,
+    LinkManagementAccountingDetailListComponent,
+    /** */
   ],
   imports: [
     CommonModule,
     LinkManagementRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    
+
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
+    ColorPickerModule,
+
   ],
   providers: [
     CoreModuleService,
@@ -51,8 +190,16 @@ import { LinkManagementConfigMainAdminComponent } from './config/main-admin/conf
     LinkManagementConfigurationService,
     /*Config*/
     CmsConfirmationDialogService,
-    ApplicationEnumService,
-    CoreModuleTagService,
+    LinkManagementEnumService,
+    LinkManagementAccountingService,
+    LinkManagementAccountingDetailService,
+    LinkManagementBillboardService,
+    LinkManagementBillboardPatternService,
+    LinkManagementBillboardTargetCategoryService,
+    LinkManagementMemberService,
+    LinkManagementTargetService,
+    LinkManagementTargetBillboardLogService,
+    LinkManagementTargetCategoryService,
   ]
 })
 export class LinkManagementModule { }

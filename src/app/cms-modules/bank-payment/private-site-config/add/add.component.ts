@@ -8,6 +8,7 @@ import {
   AccessModel,
   DataFieldInfoModel,
   CoreSiteCategoryModel,
+  BankPaymentPublicConfigModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -138,7 +139,7 @@ export class BankPaymentPrivateSiteConfigAddComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.DataAddContent();
   }
-  onActionSelectSource(model: CoreSiteCategoryModel): void {
+  onActionSelectSource(model: BankPaymentPublicConfigModel): void {
     this.dataModel.LinkPublicConfigId = null;
     if (model && model.Id > 0) {
       this.dataModel.LinkPublicConfigId = model.Id;

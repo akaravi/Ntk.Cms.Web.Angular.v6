@@ -1,0 +1,115 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
+                  let item of dataModelEnumRecordStatusResult.ListItems;
+                  index as i
+                " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LinkManagementMemberId Field -->
+    <app-linkmanagement-member-selector (optionSelect)="onActionSelectorSelectLinkManagementMemberId($event)"
+      [optionSelectForce]="dataModel.LinkManagementMemberId" [optionPlaceholder]="'حساب کاربر'">
+    </app-linkmanagement-member-selector>
+    <!-- IsCertainDocument Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.IsCertainDocument" *ngIf="fieldsInfo['IsCertainDocument']?.AccessWatchField"
+        [disabled]="!fieldsInfo['IsCertainDocument']?.AccessEditField" name="dataModel.IsCertainDocument">
+        {{fieldsInfo['IsCertainDocument']?.FieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- Description Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+      <mat-error *ngIf="Description.errors?.required">
+        Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+     <!-- Debtor Field -->
+     <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Debtor']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Debtor" name="dataModel.Debtor" #Debtor type="number"
+        placeholder="اعتبار  بدهکار" min="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.Debtor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Debtor = 0">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="Debtor.errors?.required">
+        Debtor is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- Creditor Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Creditor']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Creditor" name="dataModel.Creditor" #Creditor
+        type="number" placeholder="اعتبار  بستانکار" min="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.Creditor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Creditor = 0">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="Creditor.errors?.required">
+        Creditor is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- BeginDate Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['BeginDate']?.FieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="BeginDate" [(ngModel)]="dataModel.BeginDate" name="dataModel.BeginDate" />
+      <mat-icon matSuffix *ngIf="dataModel.BeginDate && fieldsInfo['BeginDate']?.AccessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.BeginDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="BeginDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #BeginDate></mat-datepicker>
+    </mat-form-field>
+
+    <!-- EndDate Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['EndDate']?.AccessWatchField">
+      <mat-label>{{fieldsInfo['EndDate']?.FieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="EndDate" [(ngModel)]="dataModel.EndDate" name="dataModel.EndDate" />
+      <mat-icon matSuffix *ngIf="dataModel.EndDate && fieldsInfo['EndDate']?.AccessAddField" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.EndDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="EndDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #EndDate></mat-datepicker>
+    </mat-form-field>
+    <hr class="pb-5" />
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-raised btn-primary" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

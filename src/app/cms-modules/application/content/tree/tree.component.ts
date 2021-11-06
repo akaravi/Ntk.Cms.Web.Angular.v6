@@ -48,7 +48,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: ApplicationAppModel = new ApplicationAppModel();
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<ApplicationAppModel>(node => null);
   dataSource = new MatTreeNestedDataSource<ApplicationAppModel>();
   @Output() optionSelect = new EventEmitter<ApplicationAppModel>();

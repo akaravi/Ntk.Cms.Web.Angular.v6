@@ -16,6 +16,7 @@ import { CoreUserEditComponent } from './edit/edit.component';
 import { CoreUserSelectorComponent } from './selector/selector.component';
 import { CoreUserChangePasswordComponent } from './changePassword/changePassword.component';
 import { CoreUserViewComponent } from './view/view.component';
+import { CoreUserResellerChartComponent } from './reseller-chart/reseller-chart.component';
 
 
 
@@ -28,6 +29,7 @@ import { CoreUserViewComponent } from './view/view.component';
     CoreUserChangePasswordComponent,
     CoreUserSelectorComponent,
     CoreUserViewComponent,
+    CoreUserResellerChartComponent
   ],
   exports: [
     CoreUserComponent,
@@ -36,7 +38,8 @@ import { CoreUserViewComponent } from './view/view.component';
     CoreUserEditComponent,
     CoreUserChangePasswordComponent,
     CoreUserSelectorComponent,
-    CoreUserViewComponent
+    CoreUserViewComponent,
+    CoreUserResellerChartComponent
   ],
   imports: [
     CommonModule,

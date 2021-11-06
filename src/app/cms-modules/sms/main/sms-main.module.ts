@@ -7,20 +7,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
-  CoreAuthService,
   CoreEnumService,
   CoreModuleService,
-  CoreModuleTagService,
   SmsConfigurationService,
+  SmsEnumService,
   SmsMainApiPathCompanyService,
+  SmsMainApiPathPermissionService,
+  SmsMainApiPathPublicConfigService,
   SmsMainApiPathService
 } from 'ntk-cms-api';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatStepperModule } from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';
 import { SmsMainApiPathCompanyAddComponent } from './api-path-company/add/add.component';
@@ -32,10 +29,33 @@ import { SmsMainApiPathAddComponent } from './api-path/add/add.component';
 import { SmsMainApiPathEditComponent } from './api-path/edit/edit.component';
 import { SmsMainApiPathSelectorComponent } from './api-path/selector/selector.component';
 import { SmsMainApiPathTreeComponent } from './api-path/tree/tree.component';
+import { SmsMainApiPathPermissionListComponent } from './api-path-permission/list/list.component';
+import { SmsMainApiPathPermissionAddComponent } from './api-path-permission/add/add.component';
+import { SmsMainApiPathPermissionEditComponent } from './api-path-permission/edit/edit.component';
+import { SmsMainApiPathPriceServiceListComponent } from './api-path-price-service/list/list.component';
+import { SmsMainApiPathPriceServiceAddComponent } from './api-path-price-service/add/add.component';
+import { SmsMainApiPathPriceServiceEditComponent } from './api-path-price-service/edit/edit.component';
+
+import { SmsMainApiPathPublicConfigAddComponent } from './public-config/add/add.component';
+import { SmsMainApiPathPublicConfigEditComponent } from './public-config/edit/edit.component';
+import { SmsMainApiPathPublicConfigHeaderComponent } from './public-config/header/header.component';
+import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/list.component';
+import { SmsMainApiPathPublicConfigSelectorComponent } from './public-config/selector/selector.component';
+import { SmsMainApiPathPublicConfigTreeComponent } from './public-config/tree/tree.component';
+import { DynamicFormBuilderModule } from 'src/app/core/dynamic-form-builder/dynamic-form-builder.module';
+import { SmsMainApiPathSendTestComponent } from './api-path/sendTest/sendTest.component';
 
 @NgModule({
   declarations: [
     SmsMainComponent,
+    SmsMainApiPathPublicConfigAddComponent,
+    SmsMainApiPathPublicConfigEditComponent,
+    SmsMainApiPathPublicConfigListComponent,
+    SmsMainApiPathPublicConfigSelectorComponent,
+    SmsMainApiPathPublicConfigTreeComponent,
+    SmsMainApiPathPublicConfigHeaderComponent,
+    /* */
+
     /*company*/
     SmsMainApiPathCompanyListComponent,
     SmsMainApiPathCompanyAddComponent,
@@ -48,8 +68,25 @@ import { SmsMainApiPathTreeComponent } from './api-path/tree/tree.component';
     SmsMainApiPathEditComponent,
     SmsMainApiPathSelectorComponent,
     SmsMainApiPathTreeComponent,
+    SmsMainApiPathSendTestComponent,
+    /*Permission*/
+    SmsMainApiPathPermissionListComponent,
+    SmsMainApiPathPermissionAddComponent,
+    SmsMainApiPathPermissionEditComponent,
+    /*PriceService*/
+    SmsMainApiPathPriceServiceListComponent,
+    SmsMainApiPathPriceServiceAddComponent,
+    SmsMainApiPathPriceServiceEditComponent,
   ],
   exports: [
+    SmsMainApiPathPublicConfigAddComponent,
+    SmsMainApiPathPublicConfigEditComponent,
+    SmsMainApiPathPublicConfigListComponent,
+    SmsMainApiPathPublicConfigSelectorComponent,
+    SmsMainApiPathPublicConfigTreeComponent,
+    SmsMainApiPathPublicConfigHeaderComponent,
+    /* */
+
     /*company*/
     SmsMainApiPathCompanyListComponent,
     SmsMainApiPathCompanyAddComponent,
@@ -62,6 +99,15 @@ import { SmsMainApiPathTreeComponent } from './api-path/tree/tree.component';
     SmsMainApiPathEditComponent,
     SmsMainApiPathSelectorComponent,
     SmsMainApiPathTreeComponent,
+    SmsMainApiPathSendTestComponent,
+    /*Permission*/
+    SmsMainApiPathPermissionListComponent,
+    SmsMainApiPathPermissionAddComponent,
+    SmsMainApiPathPermissionEditComponent,
+    /*PriceService*/
+    SmsMainApiPathPriceServiceListComponent,
+    SmsMainApiPathPriceServiceAddComponent,
+    SmsMainApiPathPriceServiceEditComponent,
   ],
   imports: [
     CommonModule,
@@ -71,17 +117,21 @@ import { SmsMainApiPathTreeComponent } from './api-path/tree/tree.component';
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    CmsFileManagerModule
+    CmsFileManagerModule,
+    DynamicFormBuilderModule
   ],
   providers: [
     CoreModuleService,
     CoreEnumService,
+    SmsEnumService,
     CmsConfirmationDialogService,
     /*Config*/
     SmsConfigurationService,
     /*Config*/
     SmsMainApiPathService,
-    SmsMainApiPathCompanyService
+    SmsMainApiPathCompanyService,
+    SmsMainApiPathPermissionService,
+    SmsMainApiPathPublicConfigService,
   ]
 })
 export class SmsMainModule { }

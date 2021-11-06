@@ -30,7 +30,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
-  selector: 'app-donate-targetcategory-tree',
+  selector: 'app-donate-target-category-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
@@ -51,7 +51,7 @@ export class DonateTargetCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: DonateTargetCategoryModel = new DonateTargetCategoryModel();
   dataModelResult: ErrorExceptionResult<DonateTargetCategoryModel> = new ErrorExceptionResult<DonateTargetCategoryModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<DonateTargetCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<DonateTargetCategoryModel>();
   @Output() optionSelect = new EventEmitter<DonateTargetCategoryModel>();

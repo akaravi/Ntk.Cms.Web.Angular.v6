@@ -52,7 +52,7 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstateAccountAgencyModel = new EstateAccountAgencyModel();
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateAccountAgencyModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateAccountAgencyModel>();
   @Output() optionSelect = new EventEmitter<EstateAccountAgencyModel>();

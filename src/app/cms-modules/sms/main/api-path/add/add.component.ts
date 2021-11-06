@@ -7,6 +7,8 @@ import {
   SmsMainApiPathModel,
   DataFieldInfoModel,
   CoreCurrencyModel,
+  SmsMainApiPathCompanyModel,
+  SmsMainApiPathPublicConfigModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -29,6 +31,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss'],
 })
 export class SmsMainApiPathAddComponent implements OnInit {
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<SmsMainApiPathAddComponent>,
@@ -40,7 +43,9 @@ export class SmsMainApiPathAddComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-
+    if (data && data.LinkApiPathCompanyId) {
+     this. dataModel.LinkApiPathCompanyId = data.LinkApiPathCompanyId + '';
+    }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -68,12 +73,30 @@ export class SmsMainApiPathAddComponent implements OnInit {
 
     this.formInfo.FormTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
+    this.DataGetAccess();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
 
+  DataGetAccess(): void {
+    this.smsMainApiPathService
+      .ServiceViewModel()
+      .subscribe(
+        async (next) => {
+          if (next.IsSuccess) {
+            // this.dataAccessModel = next.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+          }
+        },
+        (error) => {
+          this.cmsToastrService.typeErrorGetAccess(error);
+        }
+      );
+  }
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
@@ -106,10 +129,32 @@ export class SmsMainApiPathAddComponent implements OnInit {
       }
     );
   }
-
-
+  onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
+    if (!model || model.Id.length <= 0) {
+      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.LinkApiPathCompanyId = model.Id;
+  }
+  onActionSelectSource(model: SmsMainApiPathPublicConfigModel): void {
+    this.dataModel.LinkPublicConfigId = null;
+    if (model && model.Id.length > 0) {
+      this.dataModel.LinkPublicConfigId = model.Id;
+    }
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
+      return;
+    }
+    if (!this.dataModel.LinkApiPathCompanyId || this.dataModel.LinkApiPathCompanyId.length == 0) {
+      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    if (!this.dataModel.LinkPublicConfigId || this.dataModel.LinkPublicConfigId.length == 0) {
+      const message = 'نوع سرویس دهنده مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.formInfo.FormSubmitAllow = false;

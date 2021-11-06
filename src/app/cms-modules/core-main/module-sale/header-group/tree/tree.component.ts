@@ -51,7 +51,7 @@ export class CoreModuleSaleHeaderGroupTreeComponent implements OnInit, OnDestroy
   dataModelSelect: CoreModuleSaleHeaderGroupModel = new CoreModuleSaleHeaderGroupModel();
   dataModelResult: ErrorExceptionResult<CoreModuleSaleHeaderGroupModel> = new ErrorExceptionResult<CoreModuleSaleHeaderGroupModel>();
   filteModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreModuleSaleHeaderGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreModuleSaleHeaderGroupModel>();
   @Output() optionSelect = new EventEmitter<CoreModuleSaleHeaderGroupModel>();

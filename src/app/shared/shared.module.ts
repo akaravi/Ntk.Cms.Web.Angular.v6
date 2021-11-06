@@ -46,7 +46,7 @@ import { CmsFormBuilderPropertiesComponent } from './cms-form-builder-properties
 import { CmsModuleSelectorComponent } from './cms-module-selector/cms-module-selector.component';
 import { CmsSiteCategorySelectorComponent } from './cms-site-category-selector/cmsSiteCategorySelector.component';
 import { CmsUserGroupSelectorComponent } from './cms-user-group-selector/cmsUserGroupSelector.component';
-import { CmsTitlePipe } from '../core/pipe/title.pipe';
+import { CmsTitlePipe } from '../core/pipe/cms-title.pipe';
 import { CmsApplicationSelectorComponent } from './cms-application-selector/cms-application-selector.component';
 import { CmsBankpaymentGridComponent } from './cms-bankpayment-grid/cms-bankpayment-grid.component';
 import { CmsCurrencySelectorComponent } from './cms-currency-selector/cms-currency-selector.component';

@@ -1,4 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { CoreSiteService, ErrorExceptionResult, ShareInfoModel, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -16,6 +17,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy  {
     private tokenHelper: TokenHelper,
     private cmsToastrService: CmsToastrService,
     private coreSiteService: CoreSiteService,
+    private router: Router,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
@@ -72,5 +74,16 @@ export class CoreInfoComponent implements OnInit, OnDestroy  {
   }
   onActionCopied(): void {
     this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
+  onActionbuttonResllerUser(): void {
+
+    this.router.navigate(['/core/user/reseller-chart']);
+
+  }
+  onActionbuttonResllerSite(): void {
+
+    
+    this.router.navigate(['/core/site/reseller-chart']);
+
   }
 }
