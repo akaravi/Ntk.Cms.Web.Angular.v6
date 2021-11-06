@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
 
-
+     <!-- Username Field -->
 
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Username']?.AccessWatchField">
       <mat-label> {{fieldsInfo['Username']?.FieldTitle}}</mat-label>
@@ -38,6 +38,7 @@
         Username is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- Email Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
       <mat-label> {{fieldsInfo['Email']?.FieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email type="text"

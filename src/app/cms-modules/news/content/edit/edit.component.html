@@ -16,9 +16,11 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
-
-        <mat-form-field class="ntk-full-width">
+         <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField"ر
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+          [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField"
             name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
             required>
             <mat-option *ngFor="
@@ -26,6 +28,8 @@
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
           </mat-select>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>

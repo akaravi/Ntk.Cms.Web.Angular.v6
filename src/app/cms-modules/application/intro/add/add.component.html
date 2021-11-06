@@ -1,3 +1,8 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+  <h4> اضافه کردن راهنما</h4>
+  در این بخش شما میتوانید راهنمای جدید ایجاد نمایید.
+</app-cms-html-notice>
+<br>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -12,6 +17,7 @@
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['RecordStatus']?.FieldTitle}}</mat-label>
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
             [disabled]="!fieldsInfo['RecordStatus']?.AccessAddField" name="dataModel.RecordStatus"
             #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
@@ -20,6 +26,8 @@
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
           </mat-select>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -38,6 +46,8 @@
           <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -53,6 +63,8 @@
           <mat-icon matSuffix *ngIf="dataModel.Description && fieldsInfo['Description']?.AccessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Description']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ 'Application.Source.Description_hint' | translate }}</mat-hint>
           <mat-hint align="start">{{ Description.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Description.errors?.required">

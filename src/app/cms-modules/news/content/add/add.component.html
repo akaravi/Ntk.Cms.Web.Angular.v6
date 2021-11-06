@@ -1,7 +1,7 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
   <h4> اضافه کردن اخبار</h4>
-  <br>
-  
+  در این بخش شما میتوانید اخبار جدید ایجاد نمایید.
+
 </app-cms-html-notice>
 <br>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -16,8 +16,10 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- RecordStatus Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['RecordStatus']?.FieldTitle}}</mat-label>
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+          [disabled]="!fieldsInfo['RecordStatus']?.AccessAddField"
             name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
             required>
             <mat-option *ngFor="
@@ -25,6 +27,8 @@
                 index as i
               " [value]="item.Value">{{ item.Description }}</mat-option>
           </mat-select>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
