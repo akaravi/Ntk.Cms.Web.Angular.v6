@@ -9,6 +9,7 @@ import {
   CoreCurrencyModel,
   SmsMainApiPathCompanyModel,
   SmsMainApiPathPublicConfigModel,
+  SmsMainApiPathAliasJsonModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -62,12 +63,11 @@ export class SmsMainApiPathEditComponent implements OnInit {
 
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
-  dataModel:SmsMainApiPathModel=new SmsMainApiPathModel();
+  dataModel:SmsMainApiPathAliasJsonModel=new SmsMainApiPathAliasJsonModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
-
 
   ngOnInit(): void {
     if (this.requestId.length > 0) {
@@ -97,7 +97,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiPathService.setAccessLoad();
-    this.smsMainApiPathService.ServiceGetOneById(this.requestId).subscribe(
+    this.smsMainApiPathService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 

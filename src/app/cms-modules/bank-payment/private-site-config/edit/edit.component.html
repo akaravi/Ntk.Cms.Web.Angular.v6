@@ -116,8 +116,8 @@
         </mat-error>
       </mat-form-field>
       <p>تنظیمات درگاه</p>
-      <dynamic-form-builder-cms [formGroup]="vform.form" [propertiesInfos]="dataModel?.PrivateConfigJsonFormatter"
-        [(jsonValue)]="dataModel.PrivateConfigJsonValues"></dynamic-form-builder-cms>
+      <dynamic-form-builder-cms [formGroup]="vform.form" [(jsonValue)]="dataModel.PrivateConfigJsonValues" [propertiesInfos]="dataModel.PrivateConfigJsonFormatter"
+        ></dynamic-form-builder-cms>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
     <div class="ntk-cms-html-card-message">
