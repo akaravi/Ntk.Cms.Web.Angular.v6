@@ -17,6 +17,7 @@
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['RecordStatus']?.FieldTitle}}</mat-label>
           [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField"
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
             name="dataModel.RecordStatus"  [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField"
@@ -31,7 +32,7 @@
             <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['RecordStatus']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -49,7 +50,7 @@
             <strong class="info-field-text">{{fieldsInfo['Username']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Username.errors?.required">
-            Username is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['Username']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -67,7 +68,7 @@
             <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
-            Email is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['Email']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -92,7 +93,7 @@
             <strong class="info-field-text">{{fieldsInfo['Mobile']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
-            Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['Mobile']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- MobileConfirmed Field -->
@@ -133,7 +134,7 @@
       </mat-step>
 
       <mat-step label="مشخصات شخصی" state="seo">
-        <p>اطلاهات صاحب حساب را وارد کنید</p>
+        <p>اطلاعات صاحب حساب را وارد کنید</p>
 
 
         <!-- Name Field -->
@@ -146,9 +147,11 @@
           <mat-icon matSuffix *ngIf="dataModel.Name" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Name = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Name']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
-            Name is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['Name']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -162,18 +165,23 @@
           <mat-icon matSuffix *ngIf="dataModel.LastName" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.LastName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['LastName']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ LastName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LastName.errors?.required">
-            LastName is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['LastName']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
         <!-- BirthDay Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BirthDay']?.AccessWatchField">
           <mat-label>{{fieldsInfo['BirthDay']?.FieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="BirthDay" [(ngModel)]="dataModel.BirthDay" name="dataModel.BirthDay" />
+          <input matInput [matDatepicker]="BirthDay" [(ngModel)]="dataModel.BirthDay" name="dataModel.BirthDay" 
+          [disabled]="!fieldsInfo['BirthDay']?.AccessEditField" placeholder="{{fieldsInfo['BirthDay']?.FieldTitle}}"/>
           <mat-icon matSuffix *ngIf="dataModel.BirthDay && fieldsInfo['BirthDay']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.BirthDay = null">close</mat-icon>
+            <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">{{fieldsInfo['BirthDay']?.FieldDescription}}</strong> </mat-hint>
           <mat-datepicker-toggle matSuffix [for]="BirthDay"></mat-datepicker-toggle>
           <mat-datepicker touchUi #BirthDay></mat-datepicker>
         </mat-form-field>
@@ -186,9 +194,11 @@
           <mat-icon matSuffix *ngIf="dataModel.CompanyName" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.CompanyName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['CompanyName']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ CompanyName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CompanyName.errors?.required">
-            CompanyName is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['CompanyName']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -201,9 +211,11 @@
           <mat-icon matSuffix *ngIf="dataModel.Tell" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Tell = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Tell']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Tell.errors?.required">
-            Tell is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['Tell']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- PostalCode Field -->
@@ -215,9 +227,11 @@
           <mat-icon matSuffix *ngIf="dataModel.PostalCode" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.PostalCode = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['PostalCode']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ PostalCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PostalCode.errors?.required">
-            PostalCode is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['PostalCode']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- Address Field -->
@@ -229,6 +243,8 @@
           <mat-icon matSuffix *ngIf="dataModel.Address" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Address = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Address.value.length }} / 1000</mat-hint>
         </mat-form-field>
 

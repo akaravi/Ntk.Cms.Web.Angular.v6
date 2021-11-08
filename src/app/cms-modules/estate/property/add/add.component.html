@@ -18,7 +18,9 @@
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+          <mat-label>{{fieldsInfo['RecordStatus']?.FieldTitle}}</mat-label>
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" 
+          [disabled]="!fieldsInfo['RecordStatus']?.AccessAddField" [(ngModel)]="dataModel.RecordStatus"
             name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
             required>
             <mat-option *ngFor="
@@ -26,9 +28,11 @@
                   index as i
                 " [value]="item.Value">{{ item.Description }}</mat-option>
           </mat-select>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['RecordStatus']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- Title Field -->
@@ -223,7 +227,7 @@
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
-            Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['Description']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 

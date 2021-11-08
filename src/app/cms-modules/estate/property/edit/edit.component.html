@@ -16,8 +16,9 @@
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- RecordStatus Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}"
+          [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField" [(ngModel)]="dataModel.RecordStatus"
             name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
             required>
             <mat-option *ngFor="
@@ -25,24 +26,30 @@
                   index as i
                 " [value]="item.Value">{{ item.Description }}</mat-option>
           </mat-select>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['RecordStatus']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
          <!-- MainAdminRecordStatus Field -->
-         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['MainAdminRecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.MainAdminRecordStatus"
-            name="dataModel.MainAdminRecordStatus" #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.MainAdminRecordStatus }}"
-            required>
+         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+
+          <mat-select placeholder="{{fieldsInfo['MainAdminRecordStatus']?.FieldTitle}}"
+          [disabled]="!fieldsInfo['MainAdminRecordStatus']?.AccessEditField" [(ngModel)]="dataModel.MainAdminRecordStatus"
+            name="dataModel.MainAdminRecordStatus" #MainAdminRecordStatus="ngModel"
+             panelClass="MainAdminRecordStatus-{{ dataModel.MainAdminRecordStatus }}" required>
             <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.ListItems;
                   index as i
                 " [value]="item.Value">{{ item.Description }}</mat-option>
           </mat-select>
+          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['MainAdminRecordStatus']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
-            MainAdminRecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['MainAdminRecordStatus']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- Title Field -->
@@ -58,7 +65,7 @@
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['Title']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- CaseCode Field -->
@@ -74,7 +81,7 @@
             <strong class="info-field-text">{{fieldsInfo['CaseCode']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ CaseCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CaseCode.errors?.required">
-            CaseCode is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['CaseCode']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- LinkPropertyTypeUsageId Field -->
