@@ -29,7 +29,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sendTest.component.scss'],
 })
 export class SmsMainApiPathSendTestComponent implements OnInit {
-  requestLinkConfigId = '';
+  requestLinkApiPathId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) private document: any,
@@ -41,27 +41,28 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (data && data.LinkConfigId) {
-      this.requestLinkConfigId = data.LinkConfigId ;
+    debugger
+    if (data && data.LinkApiPathId) {
+      this.requestLinkApiPathId = data.LinkApiPathId;
     }
     // this.dataModel.LastUrlAddressInUse = this.document.location.href;
   }
-  
+
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataModel: SmsApiSendTestDtoModel = new SmsApiSendTestDtoModel();
-  dataModelResult: ErrorExceptionResult<SmsApiSendResultModel>    = new ErrorExceptionResult<SmsApiSendResultModel>();
+  dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelResultGotoBank = false;
 
   ngOnInit(): void {
-    if (this.requestLinkConfigId.length <= 0) {
+    if (this.requestLinkApiPathId.length <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    // this.dataModel.SmsMainApiPathPrivateId = this.requestLinkConfigId;
+    this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
   }
 
 
@@ -84,9 +85,9 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    // if (!this.dataModel.SmsMainApiPathPrivateId || this.dataModel.SmsMainApiPathPrivateId <= 0) {
-    //   this.cmsToastrService.typeErrorFormInvalid();
-    // }
+    if (!this.dataModel.LinkApiPathId || this.dataModel.LinkApiPathId.length <= 0) {
+      this.cmsToastrService.typeErrorFormInvalid();
+    }
     // if (!this.dataModel.Amount || this.dataModel.Amount <= 0) {
     //   this.cmsToastrService.typeErrorFormInvalid();
     // }
@@ -99,13 +100,11 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'درخواست پرداخت با موفقیت ثبت شد';
+          this.formInfo.FormAlert = 'درخواست ارسال با موفقیت ثبت شد';
 
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
 
           this.dataModelResultGotoBank = true;
-
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;

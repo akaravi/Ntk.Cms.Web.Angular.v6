@@ -53,7 +53,7 @@ export class SmsMainApiPathPublicConfigSelectorComponent implements OnInit {
         debounceTime(1000),
         distinctUntilChanged(),
         switchMap(val => {
-          if (typeof val === 'string' || typeof val === 'number') {
+          if (typeof val === 'string') {
             return this.DataGetAll(val || '');
           }
           return [];
@@ -63,12 +63,12 @@ export class SmsMainApiPathPublicConfigSelectorComponent implements OnInit {
   }
 
   displayFn(model?: SmsMainApiPathPublicConfigModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.Title + ' | ' + model.Id) : undefined;
   }
   displayOption(model?: SmsMainApiPathPublicConfigModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.Title + ' | ' + model.Id) : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<SmsMainApiPathPublicConfigModel[]> {
+  async DataGetAll(text: string | any): Promise<SmsMainApiPathPublicConfigModel[]> {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;

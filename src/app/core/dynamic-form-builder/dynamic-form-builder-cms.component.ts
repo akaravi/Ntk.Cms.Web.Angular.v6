@@ -18,30 +18,16 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
   @Output() jsonValueChange: EventEmitter<string> = new EventEmitter<string>();
   @Input() set jsonValue(model: string) {
     if (model && model.length > 0) {
-      const values = JSON.parse(model);
-      if (values && this.privatePropertiesInfos && this.privatePropertiesInfos.length > 0) {
-        this.privatePropertiesInfos.forEach(x => {
-          if (!this.formValues) {
-            this.formValues = {};
-          }
-          if (values[x.FieldName]) {
-            this.formValues[x.FieldName] = values[x.FieldName];
-          } else {
-            this.formValues[x.FieldName] = '';
-          }
-          if (this.formValues[x.FieldName] && this.fields.findIndex(y => y.name === x.FieldName) >= 0) {
-            const val = this.formValues[x.FieldName];
-            this.fields.find(y => y.name === x.FieldName).value = val;
-            this.formGroup.get(x.FieldName).setValue(val, { emitEvent: false });
-          }
-        });
-      }
+      this.privateJsonValue = JSON.parse(model);
+      this.actionSetValue();
     }
   }
   privatePropertiesInfos: GetPropertiesInfoModel[] = [];
+  privateJsonValue: any;
   @Input() set propertiesInfos(model: GetPropertiesInfoModel[]) {
     this.privatePropertiesInfos = model;
     this.actionFormMake();
+    this.actionSetValue();
   }
   formValues = {};
 
@@ -57,25 +43,25 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.unsubcribe = this.formGroup.valueChanges
-    .pipe(debounceTime(this.DEBOUNCE_TIME_FORM_INPUT)) // Debounce time optional
-    .subscribe((update) => {
-      if (!this.formValues) {
-        this.formValues = {};
-      }
-      if (this.privatePropertiesInfos && this.privatePropertiesInfos.length > 0) {
-        this.privatePropertiesInfos.forEach(x => {
-          if ((update[x.FieldName] || update[x.FieldName] === '')) {
-            // if (this.formValues && (this.formValues[x.FieldName] || this.formValues[x.FieldName] == '')) {
-            //   this.formValues[x.FieldName] = update[x.FieldName];
-            //   this.jsonValueChange.emit(JSON.stringify(this.formValues));
-            // }
-            this.formValues[x.FieldName] = update[x.FieldName];
-          }
-          this.jsonValueChange.emit(JSON.stringify(this.formValues));
-        });
-      }
+      .pipe(debounceTime(this.DEBOUNCE_TIME_FORM_INPUT)) // Debounce time optional
+      .subscribe((update) => {
+        if (!this.formValues) {
+          this.formValues = {};
+        }
+        if (this.privatePropertiesInfos && this.privatePropertiesInfos.length > 0) {
+          this.privatePropertiesInfos.forEach(x => {
+            if ((update[x.FieldName] || update[x.FieldName] === '')) {
+              // if (this.formValues && (this.formValues[x.FieldName] || this.formValues[x.FieldName] == '')) {
+              //   this.formValues[x.FieldName] = update[x.FieldName];
+              //   this.jsonValueChange.emit(JSON.stringify(this.formValues));
+              // }
+              this.formValues[x.FieldName] = update[x.FieldName];
+            }
+            this.jsonValueChange.emit(JSON.stringify(this.formValues));
+          });
+        }
 
-    });
+      });
   }
   actionFormMake() {
     if (this.privatePropertiesInfos) {
@@ -140,6 +126,25 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
           new FormControl(x.value || '', x.required ? Validators.required : null));
       }
     });
+  }
+  actionSetValue(): void {
+    if (this.privateJsonValue && this.privatePropertiesInfos && this.privatePropertiesInfos.length > 0) {
+      this.privatePropertiesInfos.forEach(x => {
+        if (!this.formValues) {
+          this.formValues = {};
+        }
+        if (this.privateJsonValue[x.FieldName]) {
+          this.formValues[x.FieldName] = this.privateJsonValue[x.FieldName];
+        } else {
+          this.formValues[x.FieldName] = '';
+        }
+        if (this.formValues[x.FieldName] && this.fields.findIndex(y => y.name === x.FieldName) >= 0) {
+          const val = this.formValues[x.FieldName];
+          this.fields.find(y => y.name === x.FieldName).value = val;
+          this.formGroup.get(x.FieldName).setValue(val, { emitEvent: false });
+        }
+      });
+    }
   }
   ngDistroy(): void {
     this.unsubcribe();

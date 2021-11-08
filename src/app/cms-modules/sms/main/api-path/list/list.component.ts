@@ -35,6 +35,7 @@ import { SmsMainApiPathEditComponent } from '../edit/edit.component';
 import { SmsMainApiPathAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { SmsMainApiPathSendTestComponent } from '../sendTest/sendTest.component';
 
 @Component({
   selector: 'app-sms-apipath-list',
@@ -517,7 +518,34 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       }
     );
   }
+  onActionbuttonSendTest(model: SmsMainApiPathModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
 
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    const dialogRef = this.dialog.open(SmsMainApiPathSendTestComponent, {
+      height: '90%',
+      data: { LinkApiPathId: this.tableRowSelected.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
