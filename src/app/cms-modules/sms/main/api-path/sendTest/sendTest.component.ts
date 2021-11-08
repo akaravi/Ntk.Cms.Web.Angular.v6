@@ -41,7 +41,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    debugger
+    
     if (data && data.LinkApiPathId) {
       this.requestLinkApiPathId = data.LinkApiPathId;
     }
@@ -54,7 +54,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
   dataModel: SmsApiSendTestDtoModel = new SmsApiSendTestDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelResultGotoBank = false;
+  
 
   ngOnInit(): void {
     if (this.requestLinkApiPathId.length <= 0) {
@@ -67,20 +67,14 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
 
 
 
-  onActionSelectConfig(model: SmsMainApiPathModel): void {
-    // this.dataModel.SmsMainApiPathPrivateId = null;
+  onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
+    this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
     this.dataModelParentSelected = model;
     if (model && model.Id.length > 0) {
-      // this.dataModel.SmsMainApiPathPrivateId = model.Id;
+      this.dataModel.LinkApiPathId = model.Id;
     }
   }
-  onGotoBank(): void {
-    if (this.dataModelResultGotoBank && this.dataModelResult.IsSuccess) {
-      this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_send_gateway'));
 
-      // this.document.location.href = this.dataModelResult.Item.UrlToPay;
-    }
-  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
@@ -104,7 +98,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
 
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
 
-          this.dataModelResultGotoBank = true;
+          
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
