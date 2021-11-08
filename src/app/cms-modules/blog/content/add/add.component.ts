@@ -69,7 +69,7 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypePodcast = ['mp3'];
-  selectFileTypeMovie = ['mp4'];
+  selectFileTypeMovie = ['mp4', 'webm'];
   mapMarker: any;
   fileManagerOpenForm = false;
   fileManagerOpenFormPodcast = false;
