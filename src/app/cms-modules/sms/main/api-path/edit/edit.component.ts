@@ -52,6 +52,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -63,7 +64,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
 
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
-  dataModel:SmsMainApiPathAliasJsonModel=new SmsMainApiPathAliasJsonModel();
+  dataModel: SmsMainApiPathAliasJsonModel = new SmsMainApiPathAliasJsonModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
@@ -84,7 +85,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
- 
+
   DataGetOneContent(): void {
     if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
@@ -100,11 +101,23 @@ export class SmsMainApiPathEditComponent implements OnInit {
     this.smsMainApiPathService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
+        if (!next.Item.PerriodStartWorkTime) {
+          next.Item.PerriodStartWorkTime = '';
+        }
+        else {
+          next.Item.PerriodStartWorkTime = next.Item.PerriodStartWorkTime.substring(0, next.Item.PerriodStartWorkTime.indexOf(':', next.Item.PerriodStartWorkTime.indexOf(':') + 1))
+        }
+        if (!next.Item.PerriodEndWorkTime) {
+          next.Item.PerriodEndWorkTime = '';
+        }
+        else {
+          next.Item.PerriodEndWorkTime = next.Item.PerriodEndWorkTime.substring(0, next.Item.PerriodEndWorkTime.indexOf(':', next.Item.PerriodEndWorkTime.indexOf(':') + 1))
+        }
         this.dataModel = next.Item;
         if (next.IsSuccess) {
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
           this.formInfo.FormAlert = '';
+
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -160,7 +173,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
     }
     this.dataModel.LinkApiPathCompanyId = model.Id;
   }
-  
+
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {

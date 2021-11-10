@@ -53,12 +53,18 @@
           متن پیام <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-      <!-- SendByQeue Field -->
+      <!-- IsFlash Field -->
       <div class="ntk-full-width">
-        <mat-slide-toggle [(ngModel)]="dataModel.SendByQeue"    name="dataModel.SendByQeue">
-          ارسال در صف
+        <mat-slide-toggle [(ngModel)]="dataModel.IsFlash"    name="dataModel.IsFlash">
+          ارسال به صورت فلش
         </mat-slide-toggle>
       </div>
+           <!-- SendByQeue Field -->
+           <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataModel.SendByQeue"    name="dataModel.SendByQeue">
+              ارسال در صف
+            </mat-slide-toggle>
+          </div>
     </div>
    
   <app-cms-json-list [dataModel]="dataModelResult.Item" [optionMethod]="1" *ngIf="dataModelResult?.Item">

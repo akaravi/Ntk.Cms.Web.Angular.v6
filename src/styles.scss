@@ -86,6 +86,9 @@ text-left {
   text-align: left;
   direction: rtl;
 }
+.timepicker {
+  direction: ltr !important;
+}
 // category-tree-invisible {
 //   display: none;
 // }

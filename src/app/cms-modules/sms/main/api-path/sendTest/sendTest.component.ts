@@ -21,6 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { DOCUMENT } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 
 @Component({
@@ -38,10 +39,11 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     public smsMainApiPathService: SmsMainApiPathService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
+    public publicHelper: PublicHelper,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    
+
     if (data && data.LinkApiPathId) {
       this.requestLinkApiPathId = data.LinkApiPathId;
     }
@@ -54,7 +56,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
   dataModel: SmsApiSendTestDtoModel = new SmsApiSendTestDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
-  
+
 
   ngOnInit(): void {
     if (this.requestLinkApiPathId.length <= 0) {
@@ -72,6 +74,10 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     this.dataModelParentSelected = model;
     if (model && model.Id.length > 0) {
       this.dataModel.LinkApiPathId = model.Id;
+      const nums = this.publicHelper.SplitAllChar(model.ApiDefaultNumber);
+      if (nums && nums.length > 0) {
+        this.dataModel.FromNumber = nums[0];
+      }
     }
   }
 
@@ -98,7 +104,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
 
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
 
-          
+
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;

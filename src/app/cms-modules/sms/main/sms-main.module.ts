@@ -44,6 +44,7 @@ import { SmsMainApiPathPublicConfigSelectorComponent } from './public-config/sel
 import { SmsMainApiPathPublicConfigTreeComponent } from './public-config/tree/tree.component';
 import { DynamicFormBuilderModule } from 'src/app/core/dynamic-form-builder/dynamic-form-builder.module';
 import { SmsMainApiPathSendTestComponent } from './api-path/sendTest/sendTest.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import { SmsMainApiPathSendTestComponent } from './api-path/sendTest/sendTest.co
     SharedModule.forRoot(),
     AngularEditorModule,
     CmsFileManagerModule,
-    DynamicFormBuilderModule
+    DynamicFormBuilderModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [
     CoreModuleService,
