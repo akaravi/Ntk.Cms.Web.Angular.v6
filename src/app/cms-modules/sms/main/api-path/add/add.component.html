@@ -22,7 +22,7 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    <!-- RecordStatus Field -->
+    <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
@@ -35,94 +35,92 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+
     <!-- LinkApiPathCompanyId Field -->
     <app-sms-apipathcompany-selector (optionSelect)="onActionSelectorSelectLinkApiPathCompanyId($event)"
       [optionSelectForce]="dataModel.LinkApiPathCompanyId" [optionPlaceholder]="'کمپانی سرویس دهنده'">
     </app-sms-apipathcompany-selector>
     <!-- LinkPublicConfigId Field -->
     <app-sms-publicconfig-selector (optionSelect)="onActionSelectSource($event)"
-    [optionDisabled]="!fieldsInfo['LinkPublicConfigId']?.AccessAddField"
-    [optionSelectForce]="dataModel.LinkPublicConfigId" [optionPlaceholder]="'نوع حساب'">
-  </app-sms-publicconfig-selector>
-  <!-- Title Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
-    <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessAddField"
-      name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
-      maxlength="100" required />
-    <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessAddField" matSuffix mat-icon-button
-      aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-    <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
-    <mat-error *ngIf="Title.errors?.required">
-      {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-    </mat-error>
-  </mat-form-field>
-  <!-- MaxProcessFlowAmount Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MaxProcessFlowAmount']?.AccessWatchField">
-    <mat-label>{{ fieldsInfo['MaxProcessFlowAmount']?.FieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.MaxProcessFlowAmount"
-      [disabled]="!fieldsInfo['MaxProcessFlowAmount']?.AccessAddField" name="dataModel.MaxProcessFlowAmount"
-      #MaxProcessFlowAmount type="number" placeholder="Currency Unit Ratio By Shop" />
-    <mat-icon matSuffix
-      *ngIf="dataModel.MaxProcessFlowAmount && fieldsInfo['MaxProcessFlowAmount']?.AccessAddField" matSuffix
-      mat-icon-button aria-label="Clear" (click)="dataModel.MaxProcessFlowAmount = 1">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['MaxProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
+      [optionDisabled]="!fieldsInfo['LinkPublicConfigId']?.AccessAddField"
+      [optionSelectForce]="dataModel.LinkPublicConfigId" [optionPlaceholder]="'نوع حساب'">
+    </app-sms-publicconfig-selector>
+    <!-- Description Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows="5"></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+      <mat-error *ngIf="Description.errors?.required">
+        Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- MaxProcessFlowAmount Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MaxProcessFlowAmount']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['MaxProcessFlowAmount']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.MaxProcessFlowAmount"
+        [disabled]="!fieldsInfo['MaxProcessFlowAmount']?.AccessAddField" name="dataModel.MaxProcessFlowAmount"
+        #MaxProcessFlowAmount type="number" placeholder="Currency Unit Ratio By Shop" />
+      <mat-icon matSuffix *ngIf="dataModel.MaxProcessFlowAmount && fieldsInfo['MaxProcessFlowAmount']?.AccessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.MaxProcessFlowAmount = 1">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['MaxProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
 
-  <!-- MinProcessFlowAmount Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MinProcessFlowAmount']?.AccessWatchField">
-    <mat-label>{{ fieldsInfo['MinProcessFlowAmount']?.FieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.MinProcessFlowAmount"
-      [disabled]="!fieldsInfo['MinProcessFlowAmount']?.AccessAddField" name="dataModel.MinProcessFlowAmount"
-      #MinProcessFlowAmount type="number" placeholder="Min Transaction Amount" />
-    <mat-icon matSuffix
-      *ngIf="dataModel.MinProcessFlowAmount && fieldsInfo['MinProcessFlowAmount']?.AccessAddField" matSuffix
-      mat-icon-button aria-label="Clear" (click)="dataModel.MinProcessFlowAmount = 0">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['MinProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
+    <!-- MinProcessFlowAmount Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MinProcessFlowAmount']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['MinProcessFlowAmount']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.MinProcessFlowAmount"
+        [disabled]="!fieldsInfo['MinProcessFlowAmount']?.AccessAddField" name="dataModel.MinProcessFlowAmount"
+        #MinProcessFlowAmount type="number" placeholder="Min Transaction Amount" />
+      <mat-icon matSuffix *ngIf="dataModel.MinProcessFlowAmount && fieldsInfo['MinProcessFlowAmount']?.AccessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.MinProcessFlowAmount = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['MinProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
 
-  <!-- FixFeeProcessFlowAmount Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.AccessWatchField">
-    <mat-label>{{ fieldsInfo['FixFeeProcessFlowAmount']?.FieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.FixFeeProcessFlowAmount"
-      [disabled]="!fieldsInfo['FixFeeProcessFlowAmount']?.AccessAddField" name="dataModel.FixFeeProcessFlowAmount"
-      #FixFeeProcessFlowAmount type="number" placeholder="Max Transaction Amount" />
-    <mat-icon matSuffix
-      *ngIf="dataModel.FixFeeProcessFlowAmount && fieldsInfo['FixFeeProcessFlowAmount']?.AccessAddField" matSuffix
-      mat-icon-button aria-label="Clear" (click)="dataModel.FixFeeProcessFlowAmount = 100000">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
+    <!-- FixFeeProcessFlowAmount Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['FixFeeProcessFlowAmount']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.FixFeeProcessFlowAmount"
+        [disabled]="!fieldsInfo['FixFeeProcessFlowAmount']?.AccessAddField" name="dataModel.FixFeeProcessFlowAmount"
+        #FixFeeProcessFlowAmount type="number" placeholder="Max Transaction Amount" />
+      <mat-icon matSuffix
+        *ngIf="dataModel.FixFeeProcessFlowAmount && fieldsInfo['FixFeeProcessFlowAmount']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.FixFeeProcessFlowAmount = 100000">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
 
 
 
-  <!-- PercentFeeProcessFlowAmount Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.AccessWatchField">
-    <mat-label>{{ fieldsInfo['PercentFeeProcessFlowAmount']?.FieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.PercentFeeProcessFlowAmount"
-      [disabled]="!fieldsInfo['PercentFeeProcessFlowAmount']?.AccessAddField"
-      name="dataModel.PercentFeeProcessFlowAmount" #PercentFeeProcessFlowAmount type="number"
-      placeholder="Percent Fee Transaction Amount" />
-    <mat-icon matSuffix
-      *ngIf="dataModel.PercentFeeProcessFlowAmount && fieldsInfo['PercentFeeProcessFlowAmount']?.AccessAddField"
-      matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PercentFeeProcessFlowAmount = 100000">close
-    </mat-icon>
-    <mat-icon *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
-  <!-- Memo Field -->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-    <textarea matInput [(ngModel)]="dataModel.Memo" name="dataModel.Memo" #Memo type="text"
-      placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" required
-      rows=5></textarea>
-    <mat-icon matSuffix *ngIf="dataModel.Memo" matSuffix mat-icon-button aria-label="Clear"
-      (click)="dataModel.Memo = ''">close</mat-icon>
-    <mat-icon matSuffix>mode_edit</mat-icon>
-    <mat-hint align="end">{{ Memo.value.length }} / 500</mat-hint>
-    <mat-error *ngIf="Memo.errors?.required">
-      Memo is <strong>{{'MESSAGE.required' | translate}}</strong>
-    </mat-error>
-  </mat-form-field>
+    <!-- PercentFeeProcessFlowAmount Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['PercentFeeProcessFlowAmount']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.PercentFeeProcessFlowAmount"
+        [disabled]="!fieldsInfo['PercentFeeProcessFlowAmount']?.AccessAddField"
+        name="dataModel.PercentFeeProcessFlowAmount" #PercentFeeProcessFlowAmount type="number"
+        placeholder="Percent Fee Transaction Amount" />
+      <mat-icon matSuffix
+        *ngIf="dataModel.PercentFeeProcessFlowAmount && fieldsInfo['PercentFeeProcessFlowAmount']?.AccessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PercentFeeProcessFlowAmount = 100000">close
+      </mat-icon>
+      <mat-icon *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- Memo Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.Memo" name="dataModel.Memo" #Memo type="text"
+        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" required
+        rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.Memo" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Memo = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Memo.value.length }} / 500</mat-hint>
+      <mat-error *ngIf="Memo.errors?.required">
+        Memo is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>

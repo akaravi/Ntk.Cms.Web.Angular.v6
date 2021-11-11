@@ -360,7 +360,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/sms/main/list/api-path/LinkPublicConfigId', this.tableRowSelected.Id]);
+    this.router.navigate(['/sms/main/api-path/list/LinkPublicConfigId', this.tableRowSelected.Id]);
   }
 
   onActionbuttonExport(): void {

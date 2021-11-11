@@ -21,6 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { DOCUMENT } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 
 @Component({
@@ -29,7 +30,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sendTest.component.scss'],
 })
 export class SmsMainApiPathSendTestComponent implements OnInit {
-  requestLinkConfigId = '';
+  requestLinkApiPathId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) private document: any,
@@ -38,55 +39,55 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     public smsMainApiPathService: SmsMainApiPathService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
+    public publicHelper: PublicHelper,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (data && data.LinkConfigId) {
-      this.requestLinkConfigId = data.LinkConfigId ;
+
+    if (data && data.LinkApiPathId) {
+      this.requestLinkApiPathId = data.LinkApiPathId;
     }
     // this.dataModel.LastUrlAddressInUse = this.document.location.href;
   }
-  
+
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataModel: SmsApiSendTestDtoModel = new SmsApiSendTestDtoModel();
-  dataModelResult: ErrorExceptionResult<SmsApiSendResultModel>    = new ErrorExceptionResult<SmsApiSendResultModel>();
+  dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelResultGotoBank = false;
+
 
   ngOnInit(): void {
-    if (this.requestLinkConfigId.length <= 0) {
+    if (this.requestLinkApiPathId.length <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    // this.dataModel.SmsMainApiPathPrivateId = this.requestLinkConfigId;
+    this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
   }
 
 
 
-  onActionSelectConfig(model: SmsMainApiPathModel): void {
-    // this.dataModel.SmsMainApiPathPrivateId = null;
+  onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
+    this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
     this.dataModelParentSelected = model;
     if (model && model.Id.length > 0) {
-      // this.dataModel.SmsMainApiPathPrivateId = model.Id;
+      this.dataModel.LinkApiPathId = model.Id;
+      const nums = this.publicHelper.SplitAllChar(model.ApiDefaultNumber);
+      if (nums && nums.length > 0) {
+        this.dataModel.FromNumber = nums[0];
+      }
     }
   }
-  onGotoBank(): void {
-    if (this.dataModelResultGotoBank && this.dataModelResult.IsSuccess) {
-      this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_send_gateway'));
 
-      // this.document.location.href = this.dataModelResult.Item.UrlToPay;
-    }
-  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    // if (!this.dataModel.SmsMainApiPathPrivateId || this.dataModel.SmsMainApiPathPrivateId <= 0) {
-    //   this.cmsToastrService.typeErrorFormInvalid();
-    // }
+    if (!this.dataModel.LinkApiPathId || this.dataModel.LinkApiPathId.length <= 0) {
+      this.cmsToastrService.typeErrorFormInvalid();
+    }
     // if (!this.dataModel.Amount || this.dataModel.Amount <= 0) {
     //   this.cmsToastrService.typeErrorFormInvalid();
     // }
@@ -99,11 +100,9 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'درخواست پرداخت با موفقیت ثبت شد';
+          this.formInfo.FormAlert = 'درخواست ارسال با موفقیت ثبت شد';
 
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
-
-          this.dataModelResultGotoBank = true;
 
 
         } else {

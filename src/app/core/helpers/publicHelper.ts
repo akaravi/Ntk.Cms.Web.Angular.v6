@@ -139,7 +139,13 @@ export class PublicHelper {
     }
     return 'Error';
   }
-
+  SplitAllChar(str: string): string[] {
+    if (str && str.length > 0) {
+      const ret = str.replace(/\n/g, ",").split(",");
+      return ret;
+    }
+    return [];
+  }
   LocaleDate(model): string {
     if (model) {
       const d = new Date(model);

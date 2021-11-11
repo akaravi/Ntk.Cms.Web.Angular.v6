@@ -53,7 +53,7 @@
             Description is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
+        <!-- FromDate Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['FromDate']?.FieldTitle}}</mat-label>
           <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
@@ -177,7 +177,7 @@
         </div>
         <div class="mb-3">
           <video *ngIf="dataModel?.LinkFileMovieIdSrc?.length>0" controls>
-            <source src="{{dataModel.LinkFileMovieIdSrc | cmsthumbnail}}" type="video/mp4">
+            <source src="{{dataModel.LinkFileMovieIdSrc }}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>

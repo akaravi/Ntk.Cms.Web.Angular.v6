@@ -38,6 +38,9 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
+    <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected?.Id?.length>0" (click)="onActionbuttonSendTest()"
+      type="button" class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">تست
+      ارسال</button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkCompanyId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
@@ -113,6 +116,10 @@
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonSendTest(row)">
+              <mat-icon>payment</mat-icon>
+              <span>تست ارسال</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSuperSedersList(row)">
               <mat-icon>view_module</mat-icon>

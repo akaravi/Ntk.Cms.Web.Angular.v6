@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   GetPropertiesInfoModel,
-  FormBuilderFieldModel
 } from 'ntk-cms-api';
+import { debounceTime } from 'rxjs/operators';
 // https://stackblitz.com/edit/angular-dynamic-form-builder-9nybhu?file=app%2Fapp.component.html
 @Component({
   selector: 'dynamic-form-builder-cms',
@@ -13,51 +13,65 @@ import {
       </div>
   `,
 })
-export class DynamicFormBuilderCmsComponent implements OnInit {
-  @Output() onSubmit = new EventEmitter();
-  @Input() propertiesInfos: GetPropertiesInfoModel[] = [];
+export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
+
   @Output() jsonValueChange: EventEmitter<string> = new EventEmitter<string>();
   @Input() set jsonValue(model: string) {
     if (model && model.length > 0) {
-      this.fieldValue = JSON.parse(model);
+      this.privateJsonValue = JSON.parse(model);
+      this.actionSetValue();
     }
   }
-  fieldValue: Array<FormBuilderFieldModel>;
+  privatePropertiesInfos: GetPropertiesInfoModel[] = [];
+  privateJsonValue: any;
+  @Input() set propertiesInfos(model: GetPropertiesInfoModel[]) {
+    this.privatePropertiesInfos = model;
+    this.actionFormMake();
+    this.actionSetValue();
+  }
+  formValues = {};
+
+
   @Input() formGroup: FormGroup;
   fields: any[] = [];
   unsubcribe: any;
   constructor() {
 
   }
-
+  private DEBOUNCE_TIME_FORM_INPUT = 250;
   ngOnInit(): void {
-    this.unsubcribe = this.formGroup.valueChanges.subscribe((update) => {
-      const modelValue = {};
-      if (this.propertiesInfos) {
-        this.propertiesInfos.forEach(x => {
-          if (update[x.FieldName]) {
-            // modelValue.push({
-            //   fieldName: x.FieldName,
-            //   value: update[x.FieldName]
-            // });
-            modelValue[x.FieldName] = update[x.FieldName];
-          }
-        });
-      }
-      this.jsonValueChange.emit(JSON.stringify(modelValue));
-    });
-    if (this.propertiesInfos) {
-      this.propertiesInfos.forEach(x => {
-        let fValue = '';
-        if (this.fieldValue) {
-          if (this.fieldValue[x.FieldName]) {
-            fValue = this.fieldValue[x.FieldName];
-          } else if (this.fieldValue.findIndex(y => y.fieldName === x.FieldName) >= 0) {
-            fValue = this.fieldValue.find(y => y.fieldName === x.FieldName).value;
-          } else if (this.fieldValue.findIndex(y => y['fieldname'] === x.FieldName) >= 0) {
-            fValue = this.fieldValue.find(y => y['fieldname'] === x.FieldName).value;
-          }
+  }
+  ngAfterViewInit(): void {
+    this.unsubcribe = this.formGroup.valueChanges
+      .pipe(debounceTime(this.DEBOUNCE_TIME_FORM_INPUT)) // Debounce time optional
+      .subscribe((update) => {
+        if (!this.formValues) {
+          this.formValues = {};
         }
+        if (this.privatePropertiesInfos && this.privatePropertiesInfos.length > 0) {
+          this.privatePropertiesInfos.forEach(x => {
+            if ((update[x.FieldName] || update[x.FieldName] === '')) {
+              // if (this.formValues && (this.formValues[x.FieldName] || this.formValues[x.FieldName] == '')) {
+              //   this.formValues[x.FieldName] = update[x.FieldName];
+              //   this.jsonValueChange.emit(JSON.stringify(this.formValues));
+              // }
+              this.formValues[x.FieldName] = update[x.FieldName];
+            }
+            this.jsonValueChange.emit(JSON.stringify(this.formValues));
+          });
+        }
+
+      });
+  }
+  actionFormMake() {
+    if (this.privatePropertiesInfos) {
+      this.fields = [];
+      this.privatePropertiesInfos.forEach(x => {
+        let fValue = '';
+        if (this.formValues && this.formValues[x.FieldName]) {
+          fValue = this.formValues[x.FieldName];
+        }
+
 
 
         switch (x.FieldType) {
@@ -112,6 +126,25 @@ export class DynamicFormBuilderCmsComponent implements OnInit {
           new FormControl(x.value || '', x.required ? Validators.required : null));
       }
     });
+  }
+  actionSetValue(): void {
+    if (this.privateJsonValue && this.privatePropertiesInfos && this.privatePropertiesInfos.length > 0) {
+      this.privatePropertiesInfos.forEach(x => {
+        if (!this.formValues) {
+          this.formValues = {};
+        }
+        if (this.privateJsonValue[x.FieldName]) {
+          this.formValues[x.FieldName] = this.privateJsonValue[x.FieldName];
+        } else {
+          this.formValues[x.FieldName] = '';
+        }
+        if (this.formValues[x.FieldName] && this.fields.findIndex(y => y.name === x.FieldName) >= 0) {
+          const val = this.formValues[x.FieldName];
+          this.fields.find(y => y.name === x.FieldName).value = val;
+          this.formGroup.get(x.FieldName).setValue(val, { emitEvent: false });
+        }
+      });
+    }
   }
   ngDistroy(): void {
     this.unsubcribe();
