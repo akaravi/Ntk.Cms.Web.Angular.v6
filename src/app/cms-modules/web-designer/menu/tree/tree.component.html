@@ -4,11 +4,11 @@
 
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
   <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
-    class="btn btn-primary">{{'ACTION.ADD' | translate}}</button>
+    class="btn btn-outline-primary">{{'ACTION.ADD' | translate}}</button>
   <button *ngIf="dataModelResult.Access.AccessEditRow && dataModelSelect?.Id?.length >0" (click)="onActionEdit()"
-    type="button" class="btn btn-warning">{{'ACTION.EDIT' | translate}}</button>
+    type="button" class="btn btn-outline-warning">{{'ACTION.EDIT' | translate}}</button>
   <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button"
-    class="btn btn-info">...</button>
+    class="btn btn-outline-secondary BTN">...</button>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
 </div>
 <div class="ntk-cms-html-tree-body">

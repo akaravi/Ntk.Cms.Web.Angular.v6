@@ -17,26 +17,26 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected?.Id>0" (click)="onActionbuttonViewRow()"
-      type="button" class="btn btn-info" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
+      type="button" class="btn btn-outline-secondary BTN" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
       translate}}</button>
 
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
-      type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
+      type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
 
-    <a class="btn btn-secondary btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
 
-    <a class="btn btn-success btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-info BTN">
-      <mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->

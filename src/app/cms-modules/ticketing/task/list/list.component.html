@@ -19,34 +19,34 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
-      type="button" class="btn btn-danger">{{'ACTION.DELETE' | translate}}</button>
-    <a class="btn btn-secondary btn-sm BTN">
+      type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+    <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
 
-    <a class="btn btn-success btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-info BTN">
-      <mat-icon style="font-size: 20px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestDepartemenId>0" type="button"
-      class="btn btn-warning BTN">{{'ACTION.BACK' | translate}}</button>
+      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
 
 
     <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected.Id>0" (click)="onActionbuttonAnswerList()"
-      type="button" class="btn btn-info">پاسخ ها</button>
+      type="button" class="btn btn-outline-secondary BTN">پاسخ ها</button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
