@@ -1,21 +1,19 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  WebDesignerMainPageDependencyModel,
-  WebDesignerMainPageDependencyService,
+  EstateBillboardModel,
+  EstateBillboardService,
   CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
   NtkCmsApiStoreService,
   TokenInfoModel,
-  FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel,
-  CoreModuleModel,
-  CoreModuleService
+  FilterDataModel,
+  DataFieldInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -27,38 +25,27 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { WebDesignerMainPageDependencyEditComponent } from '../edit/edit.component';
-import { WebDesignerMainPageDependencyAddComponent } from '../add/add.component';
+import { EstateBillboardEditComponent } from '../edit/edit.component';
+import { EstateBillboardAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { WebDesignerMainPageDependencyAutoAddPageComponent } from '../auto-add-page/auto-add-page.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-webdesigner-pagedependency-list',
+  selector: 'app-estate-billboard-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDestroy {
-  requestLinkModuleId = 0;
+export class EstateBillboardListComponent implements OnInit, OnDestroy {
   constructor(
-    private webDesignerMainPageDependencyService: WebDesignerMainPageDependencyService,
+    private estateBillboardService: EstateBillboardService,
+    private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private coreModuleService: CoreModuleService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private tokenHelper: TokenHelper,
-    public http: HttpClient,
-    private coreAuthService: CoreAuthService,
+    private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
-    this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
-
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -66,11 +53,9 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'LinkModuleId';
-    this.filteModelContent.SortType = EnumSortType.Ascending;
+    this.filteModelContent.SortColumn = 'Id';
+    this.filteModelContent.SortType = EnumSortType.Descending;
   }
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   comment: string;
   author: string;
   dataSource: any;
@@ -78,33 +63,29 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<WebDesignerMainPageDependencyModel>
-    = new ErrorExceptionResult<WebDesignerMainPageDependencyModel>();
+  dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<WebDesignerMainPageDependencyModel> = [];
-  tableRowSelected: WebDesignerMainPageDependencyModel = new WebDesignerMainPageDependencyModel();
-  tableSource: MatTableDataSource<WebDesignerMainPageDependencyModel> = new MatTableDataSource<WebDesignerMainPageDependencyModel>();
-  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
+  tableRowsSelected: Array<EstateBillboardModel> = [];
+  tableRowSelected: EstateBillboardModel = new EstateBillboardModel();
+  tableSource: MatTableDataSource<EstateBillboardModel> = new MatTableDataSource<EstateBillboardModel>();
 
-  categoryModelSelected = new CoreModuleModel();
+
   tabledisplayedColumns: string[] = [
-    'Id',
-    'RecordStatus',
     'Title',
-    'TitleML',
-    'LinkModuleId',
-    'CmsModuleClassName',
-    'ClassActionName',
+    'SpeedView',
+    'ReloadViewPerMin',
     'Action'
   ];
 
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
-  expandedElement: WebDesignerMainPageDependencyModel | null;
+
+  expandedElement: EstateBillboardModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -118,59 +99,31 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.DataGetAll();
       this.tokenInfo = next;
     });
-    this.getModuleList();
-  }
-  getModuleList(): void {
-    const filter = new FilterModel();
-    filter.RowPerPage = 100;
-    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
-      this.dataModelCoreModuleResult = next;
-    });
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new WebDesignerMainPageDependencyModel();
+    this.tableRowSelected = new EstateBillboardModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
 
     this.filteModelContent.AccessLoad = true;
-    const filter = new FilterDataModel();
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
-      filter.PropertyName = 'LinkModuleId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
-    }
-    this.webDesignerMainPageDependencyService.ServiceGetAllEditor(filterModel).subscribe(
+    this.estateBillboardService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
 
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
-          }
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Id', 0);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'RecordStatus', 1);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Title', 2);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'CmsModuleClassName', 4);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'ClassActionName', 5);
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'Id');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'RecordStatus');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'Title');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'CmsModuleClassName');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'ClassActionName');
           }
         }
         this.loading.Stop(pName);
@@ -214,6 +167,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
 
 
   onActionbuttonNewRow(): void {
+
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -222,9 +176,9 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
+    const dialogRef = this.dialog.open(EstateBillboardAddComponent, {
       height: '90%',
-      data: { LinkModuleId: this.categoryModelSelected.Id }
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -232,51 +186,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       }
     });
   }
-  onActionbuttonNewRowAutoPage(): void {
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
-    ) {
-      this.cmsToastrService.typeErrorAccessAdd();
-      return;
-    }
 
-    const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
-      height: '90%',
-      data: {
-        LinkModuleId: this.categoryModelSelected.Id
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
-  }
-  onActionbuttonNewRowAutoDependency(): any {
-
-    return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
-      headers: this.webDesignerMainPageDependencyService.getHeaders(),
-    })
-      .pipe(
-        map((ret: any) => {
-          // tslint:disable-next-line: max-line-length
-          const retOut = this.webDesignerMainPageDependencyService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
-          if (retOut.IsSuccess) {
-            this.cmsToastrService.typeSuccessAdd();
-            this.DataGetAll();
-          }
-          else {
-            this.cmsToastrService.typeErrorAccessAdd();
-          }
-          return retOut;
-        }),
-      ).toPromise();
-    
-  }
-
-  onActionbuttonEditRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: EstateBillboardModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -291,7 +202,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(WebDesignerMainPageDependencyEditComponent, {
+    const dialogRef = this.dialog.open(EstateBillboardEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
@@ -301,7 +212,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       }
     });
   }
-  onActionbuttonDeleteRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: EstateBillboardModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -318,16 +229,15 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
 
-
     const title = 'لطفا تایید کنید...';
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'webDesignerMainPageDependencyService.ServiceDelete';
-          this.loading.Start(pName);
+          const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
-          this.webDesignerMainPageDependencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.estateBillboardService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -353,9 +263,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       );
 
   }
-
-
-  onActionbuttonPageList(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
+  onActionbuttonContentList(model: EstateBillboardModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       const message = 'ردیفی برای نمایش انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
@@ -363,8 +271,9 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/webdesigner/page/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    this.router.navigate(['/estate/property/LinkBillboardId/', this.tableRowSelected.Id]);
   }
+
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -373,7 +282,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.webDesignerMainPageDependencyService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.estateBillboardService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -390,7 +299,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.webDesignerMainPageDependencyService.ServiceGetCount(filterStatist1).subscribe(
+    this.estateBillboardService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -404,8 +313,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     );
 
   }
-
-
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -413,7 +320,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.webDesignerMainPageDependencyService.ServiceExportFile(model).subscribe(
+    this.estateBillboardService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -426,12 +333,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     );
   }
 
-  onActionSelectorSelect(model: CoreModuleModel | null): void {
-    this.filteModelContent = new FilterModel();
-    this.categoryModelSelected = model;
-
-    this.DataGetAll();
-  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -439,7 +340,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: WebDesignerMainPageDependencyModel): void {
+  onActionTableRowSelect(row: EstateBillboardModel): void {
     this.tableRowSelected = row;
   }
 

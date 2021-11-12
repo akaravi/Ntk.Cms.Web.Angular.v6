@@ -6,6 +6,7 @@ import {
 import { debounceTime } from 'rxjs/operators';
 // https://stackblitz.com/edit/angular-dynamic-form-builder-9nybhu?file=app%2Fapp.component.html
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'dynamic-form-builder-cms',
   template: `
       <div *ngFor="let field of fields">
@@ -115,11 +116,11 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
       });
     }
     this.fields.forEach(x => {
-      if (x.type == 'checkbox') {
+      if (x.type === 'checkbox') {
         this.formGroup.addControl(x.name, new FormGroup({}));
         x.options.forEach(o => {
           (this.formGroup.get(x.name) as FormGroup).addControl(o.key, new FormControl(false));
-        })
+        });
       }
       else {
         this.formGroup.addControl(x.name,

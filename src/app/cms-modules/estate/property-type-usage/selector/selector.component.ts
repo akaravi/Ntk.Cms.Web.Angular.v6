@@ -89,7 +89,7 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -138,6 +138,9 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
 
   }
   onActionSelectForce(id: string | EstatePropertyTypeUsageModel): void {
+    if (!id || (id === 'string' && id.length === 0)) {
+      this.dataModelSelect = new EstatePropertyTypeUsageModel();
+    }
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;

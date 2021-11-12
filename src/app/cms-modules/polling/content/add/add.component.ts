@@ -175,7 +175,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
             const lat = this.dataModel.Geolocationlatitude;
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
-                 this.mapMarkerPoints=[];
+              this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
@@ -301,30 +301,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
         }
       );
   }
-  // async DataActionAfterAddContentSuccessfullOption(model: PollingContentModel): Promise<any> {
-  //   const dataListAdd = new Array<PollingOptionModel>();
-  //   const dataListDelete = new Array<PollingOptionModel>();
-  //   if (this.optionDataModel) {
-  //     this.optionDataModel.forEach(item => {
-  //       const row = new PollingOptionModel();
-  //       row.LinkPollingContentId = model.Id;
-  //       if (!this.dataOptionModelResult.ListItems || !item.Id || !this.dataOptionModelResult.ListItems.find(x => x.Id === item.Id)) {
-  //         dataListAdd.push(row);
-  //       }
-  //     });
-  //   }
-  //   if (this.dataOptionModelResult.ListItems) {
-  //     this.dataOptionModelResult.ListItems.forEach(item => {
-  //       if (!this.optionDataModel || !this.optionDataModel.find(x => x.Id === item.Id)) {
-  //         dataListDelete.push(item);
-  //       }
-  //     });
-  //   }
-  //   if (dataListAdd && dataListAdd.length > 0) {
-  //   }
-  //   if (dataListDelete && dataListDelete.length > 0) {
-  //   }
-  // }
+
   onActionSelectorSelect(model: PollingCategoryModel | null): void {
     if (!model || model.Id <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';

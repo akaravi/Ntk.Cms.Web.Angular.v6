@@ -15,7 +15,8 @@ import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/
 import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list/list.component';
 import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
 import { EstateAdsTypeListComponent } from './ads-type/list/list.component';
-import {  EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
+import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
+import { EstateBillboardListComponent } from './billbord/list/list.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       },
       {
         path: 'property/LinkContractTypeId/:LinkContractTypeId',
+        component: EstatePropertyListComponent
+      },
+      {
+        path: 'property/LinkBillboardId/:LinkBillboardId',
         component: EstatePropertyListComponent
       },
       {
@@ -97,6 +102,11 @@ const routes: Routes = [
       {
         path: 'contract-type',
         component: EstateContractTypeListComponent
+      },
+      /**/
+      {
+        path: 'billboard',
+        component: EstateBillboardListComponent
       },
       /**/
       {

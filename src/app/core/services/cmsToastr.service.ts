@@ -475,4 +475,13 @@ export class CmsToastrService {
     }
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorForNotComplete'));
   }
+  typeWarningSelected(str: string = ''): void {
+    // let message = 'برروز خطا در انتخاب';
+    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelected');
+
+    if (str && str.length > 0) {
+      message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Error') + ': ' + str;
+    }
+    this.toastr.warning(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorSelected'));
+  }
 }

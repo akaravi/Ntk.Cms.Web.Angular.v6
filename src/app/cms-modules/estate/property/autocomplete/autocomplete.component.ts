@@ -1,8 +1,8 @@
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import {
-  CoreModuleTagModel,
-  CoreModuleTagService,
+  EstatePropertyModel,
+  EstatePropertyService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
   ErrorExceptionResult,
@@ -17,24 +17,24 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-cms-tag-autocomplete',
-  templateUrl: './cms-tag-autocomplete.component.html',
-  styleUrls: ['./cms-tag-autocomplete.component.scss']
+  selector: 'app-estate-property-autocomplete',
+  templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.scss']
 })
-export class CmsTagAutocompleteComponent implements OnInit {
+export class EstatePropertyCompleteComponent implements OnInit {
   constructor(
-    public coreModuleTagService: CoreModuleTagService,
+    public estatePropertyService: EstatePropertyService,
     private cmsToastrService: CmsToastrService) {
   }
-  @Input() set optionSelectForce(x: number[]) {
+  @Input() set optionSelectForce(x: string[]) {
     this.onActionSelectForce(x);
   }
-  datatagDataModelResult: ErrorExceptionResult<CoreModuleTagModel> = new ErrorExceptionResult<CoreModuleTagModel>();
+  datatagDataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   tagDataModel = [];
 
 
-  @Input() optionPlaceholder = '+ Tag';
-  @Output() optionChange = new EventEmitter<number[]>();
+  @Input() optionPlaceholder = '';
+  @Output() optionChange = new EventEmitter<string[]>();
 
   selectForceStatus = true;
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
     filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
     filter.ClauseType = EnumClauseType.Or;
     filteModel.Filters.push(filter);
-    if (text && typeof +text === 'number' && +text > 0) {
+    if (text && text.length > 0) {
       filter = new FilterDataModel();
       filter.PropertyName = 'Id';
       filter.Value = text;
@@ -58,31 +58,32 @@ export class CmsTagAutocompleteComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    return this.coreModuleTagService.ServiceGetAll(filteModel).pipe(
-      map((data) => data.ListItems.map(val => ({
-        value: val.Id,
-        display: val.Title
-      })))
+    return this.estatePropertyService.ServiceGetAll(filteModel).pipe(
+      map((data) =>
+        data.ListItems.map(val => ({
+          value: val.Id,
+          display: val.Title
+        })))
     );
   }
   onActionChange(): void {
     const retIds = [];
-    this.tagDataModel.forEach(x => { retIds.push(x.value); });
+    this.tagDataModel.forEach(x => {
+      retIds.push(x.value);
+    });
     this.selectForceStatus = false;
     this.optionChange.emit(retIds);
   }
-
-  onActionSelectForce(ids: number[]): void {
+  onActionSelectForce(ids: string[]): void {
     if (!this.selectForceStatus) {
       return;
     }
     if (!ids || ids.length === 0) {
       return;
     }
-
     const filteModel = new FilterModel();
     ids.forEach(item => {
-      if (item > 0) {
+      if (item && item.length > 0) {
         const filter = new FilterDataModel();
         filter.PropertyName = 'Id';
         filter.Value = item;
@@ -91,7 +92,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
       }
     });
 
-    this.coreModuleTagService.ServiceGetAll(filteModel).pipe(
+    this.estatePropertyService.ServiceGetAll(filteModel).pipe(
       map((next) => {
         if (next.IsSuccess) {
           next.ListItems.forEach(val => {
@@ -109,7 +110,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
       },
         (error) => {
 
-          const title = 'برروی خطا در دریافت طلاعات تگ';
+          const title = 'برروی خطا در دریافت اطلاعات ';
           this.cmsToastrService.typeErrorGetAll(error);
         })).toPromise();
   }

@@ -6,8 +6,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  EstatePropertyTypeLanduseModel,
-  EstatePropertyTypeLanduseService
+  EstateBillboardModel,
+  EstateBillboardService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -17,38 +17,32 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-estate-propertytypelanduse-selector',
+  selector: 'app-estate-billboard-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
+export class EstateBillboardSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    public categoryService: EstatePropertyTypeLanduseService) {
-    this.loading.cdr = this.cdr;
+    public categoryService: EstateBillboardService) {
+      this.loading.cdr = this.cdr;
   }
-  @Input() set optionSelectForce(x: string | EstatePropertyTypeLanduseModel) {
-    this.onActionSelectForce(x);
-  }
-  @Input() set optionTypeUsageId(x: string) {
-    this.typeUsageId = x;
-    this.loadOptions();
-  }
-  dataModelResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
-  dataModelSelect: EstatePropertyTypeLanduseModel = new EstatePropertyTypeLanduseModel();
+  dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
+  dataModelSelect: EstateBillboardModel = new EstateBillboardModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<EstatePropertyTypeLanduseModel[]>;
+  filteredOptions: Observable<EstateBillboardModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<EstatePropertyTypeLanduseModel>();
-  @Input() optionTypeView = 1;
-
-  typeUsageId = '';
+  @Output() optionSelect = new EventEmitter<EstateBillboardModel>();
   @Input() optionReload = () => this.onActionReload();
+  @Input() set optionSelectForce(x: string | EstateBillboardModel) {
+    this.onActionSelectForce(x);
+  }
+
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -67,47 +61,33 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-  displayFn(model?: EstatePropertyTypeLanduseModel): string | undefined {
+
+  displayFn(model?: EstateBillboardModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  displayOption(model?: EstatePropertyTypeLanduseModel): string | undefined {
+  displayOption(model?: EstateBillboardModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<EstatePropertyTypeLanduseModel[]> {
+  async DataGetAll(text: string | any): Promise<EstateBillboardModel[]> {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
+    // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
-    const filterChild = new FilterDataModel();
     if (text && text.length > 0) {
       filter.PropertyName = 'Title';
       filter.Value = text;
       filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.ClauseType = EnumClauseType.Or;
-      filterChild.Filters.push(filter);
-
+      filteModel.Filters.push(filter);
+      /* */
       filter = new FilterDataModel();
       filter.PropertyName = 'Id';
       filter.Value = text;
       filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
       filter.ClauseType = EnumClauseType.Or;
-      filterChild.Filters.push(filter);
-      filteModel.Filters.push(filterChild);
-    }
-
-    if (this.typeUsageId && this.typeUsageId.length > 0) {
-      filter = new FilterDataModel();
-      filter.PropertyName = 'PropertyTypes';
-      filter.PropertyAnyName = 'LinkPropertyTypeUsageId';
-      filter.Value = this.typeUsageId;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.ClauseType = EnumClauseType.And;
       filteModel.Filters.push(filter);
     }
-
-
-
-
+    
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -130,7 +110,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: EstatePropertyTypeLanduseModel): void {
+  onActionSelect(model: EstateBillboardModel): void {
     if (this.optionDisabled) {
       return;
     }
@@ -145,7 +125,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
     this.optionSelect.emit(null);
   }
 
-  push(newvalue: EstatePropertyTypeLanduseModel): Observable<EstatePropertyTypeLanduseModel[]> {
+  push(newvalue: EstateBillboardModel): Observable<EstateBillboardModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
         return items;
@@ -155,10 +135,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | EstatePropertyTypeLanduseModel): void {
-    if (!id || (id === 'string' && id.length === 0)) {
-      this.dataModelSelect = new EstatePropertyTypeLanduseModel();
-    }
+  onActionSelectForce(id: string | EstateBillboardModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
@@ -179,9 +156,9 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof EstatePropertyTypeLanduseModel) {
-      this.filteredOptions = this.push((id as EstatePropertyTypeLanduseModel));
-      this.dataModelSelect = (id as EstatePropertyTypeLanduseModel);
+    if (typeof id === typeof EstateBillboardModel) {
+      this.filteredOptions = this.push((id as EstateBillboardModel));
+      this.dataModelSelect = (id as EstateBillboardModel);
       this.formControl.setValue(id);
       return;
     }
@@ -192,8 +169,8 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);
     // }
-    this.dataModelSelect = new EstatePropertyTypeLanduseModel();
-    // this.optionsData.Select = new EstatePropertyTypeLanduseModel();
+    this.dataModelSelect = new EstateBillboardModel();
+    // this.optionsData.Select = new EstateBillboardModel();
     this.DataGetAll(null);
   }
 }

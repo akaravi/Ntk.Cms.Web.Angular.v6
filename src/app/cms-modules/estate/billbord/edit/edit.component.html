@@ -1,0 +1,170 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+            placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Title = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Description = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+          <mat-error *ngIf="Description.errors?.required">
+            Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- SpeedView Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SpeedView']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['SpeedView']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.SpeedView" name="dataModel.SpeedView" #SpeedView type="number"
+            [disabled]="!fieldsInfo['SpeedView']?.AccessAddField"
+            placeholder="{{fieldsInfo['SpeedView']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.SpeedView" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SpeedView = 1">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- ReloadViewPerMin Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReloadViewPerMin']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['ReloadViewPerMin']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.ReloadViewPerMin" name="dataModel.ReloadViewPerMin" #ReloadViewPerMin
+            type="number" [disabled]="!fieldsInfo['ReloadViewPerMin']?.AccessAddField"
+            placeholder="{{fieldsInfo['ReloadViewPerMin']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.ReloadViewPerMin" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ReloadViewPerMin = 1">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <!-- LinkMainImageId Field -->
+        <div class="mb-3">
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+        </div>
+        <div class="mb-9">
+          <mat-form-field class="ntk-full-width">
+            <mat-label (click)="fileManagerOpenForm = true">فایل عکس
+            </mat-label>
+            <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+              type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
+            <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+            <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+          </mat-form-field>
+          <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
+            [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+            [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage"
+            [openFilemanagerButtonView]="false">
+          </cms-file-manager>
+        </div>
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onFormCancel()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step label="محتوای نمایش" state="seo">
+        <p>محتوای انتخابی شما برای نمایش در این بیلبورد</p>
+        <P>با انتخاب هر کدام از موارد زیر محدود نتایج جستجو کوچکتر می شود</P>
+
+        <!-- LinkPropertyTypeUsageId Field -->
+        <app-estate-propertytypeusage-selector (optionSelect)="onActionSelectorSelectUsage($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
+          [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
+  
+        </app-estate-propertytypeusage-selector>
+        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.LinkPropertyTypeUsageId = null">close</mat-icon>
+        <br>
+
+        <!-- LinkPropertyTypeLanduseId Field -->
+        <app-estate-propertytypelanduse-selector (optionSelect)="onActionSelectorSelectLanduse($event)"
+          *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
+          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
+          [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
+
+        </app-estate-propertytypelanduse-selector>
+        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeLanduseId && dataModel.LinkPropertyTypeLanduseId?.length>0" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.LinkPropertyTypeLanduseId = null">close</mat-icon>
+        <br>
+
+        <!-- LinkLocationId Field -->
+        <app-cms-location-selector (optionSelect)="onActionSelectorLocation($event)"
+          [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessEditField"
+          [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه'">
+        </app-cms-location-selector>
+
+        <!-- Tag Field -->
+        <app-estate-property-autocomplete (optionChange)="onActionTagChange($event)" [optionPlaceholder]="' + ملک '"
+        [optionSelectForce]="this.dataModel.LinkPropertyIds"
+        >
+        </app-estate-property-autocomplete>
+
+
+
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="main">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="seo">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="file">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="loaction">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+
+    </mat-horizontal-stepper>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

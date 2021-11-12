@@ -34,7 +34,8 @@ import {
   EstatePropertyAdsService,
   EstateAdsTypeService,
   CoreModuleService,
-  FileCategoryService
+  FileCategoryService,
+  EstateBillboardService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -102,6 +103,12 @@ import { EstateAdsTypeAddComponent } from './ads-type/add/add.component';
 import { EstateAdsTypeSelectorComponent } from './ads-type/selector/selector.component';
 import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
 import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payment/sale-payment.component';
+import { EstateBillboardAddComponent } from './billbord/add/add.component';
+import { EstateBillboardEditComponent } from './billbord/edit/edit.component';
+import { EstateBillboardListComponent } from './billbord/list/list.component';
+import { EstateBillboardSelectorComponent } from './billbord/selector/selector.component';
+import { EstateBillboardTreeComponent } from './billbord/tree/tree.component';
+import { EstatePropertyCompleteComponent } from './property/autocomplete/autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -124,6 +131,7 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstatePropertyEditComponent,
     EstatePropertyListComponent,
     EstatePropertySelectorComponent,
+    EstatePropertyCompleteComponent,
     /* */
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,
@@ -145,6 +153,12 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstateContractTypeListComponent,
     EstateContractTypeSelectorComponent,
     EstateContractTypeTreeComponent,
+    /* */
+    EstateBillboardAddComponent,
+    EstateBillboardEditComponent,
+    EstateBillboardListComponent,
+    EstateBillboardSelectorComponent,
+    EstateBillboardTreeComponent,
     /* */
     EstatePropertyDetailGroupAddComponent,
     EstatePropertyDetailGroupEditComponent,
@@ -184,7 +198,7 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    
+
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -208,6 +222,7 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstateContractService,
     EstateContractTypeService,
     EstateEnumService,
+    EstateBillboardService,
     EstatePropertyService,
     EstatePropertyAccountTypeUserService,
     EstatePropertyDetailGroupService,
