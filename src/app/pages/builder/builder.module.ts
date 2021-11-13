@@ -5,6 +5,7 @@ import { GeneralModule } from '../../_metronic/partials/content/general/general.
 import { BuilderComponent } from './builder.component';
 import { FormsModule } from '@angular/forms';
 import { NgbNavModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslationModule } from 'src/app/core/i18n/translation.module';
 
 @NgModule({
   declarations: [BuilderComponent],
@@ -14,6 +15,7 @@ import { NgbNavModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     GeneralModule,
     NgbNavModule,
     NgbTooltipModule,
+    TranslationModule,
     RouterModule.forChild([
       {
         path: '',

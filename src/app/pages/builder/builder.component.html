@@ -19,7 +19,7 @@
           [ngClass]="getActiveTabCSSClass(1)"
           role="tab"
         >
-          Header
+        {{'ACTION.HEADER' | translate}}
         </a>
       </li>
       <li class="nav-item">
@@ -29,7 +29,7 @@
           [ngClass]="getActiveTabCSSClass(2)"
           role="tab"
         >
-          Subheader
+        {{'ACTION.SUBHEADER' | translate}}
         </a>
       </li>
       <li class="nav-item">
@@ -39,7 +39,7 @@
           [ngClass]="getActiveTabCSSClass(3)"
           role="tab"
         >
-          Content
+        {{'ACTION.CONTENT' | translate}}
         </a>
       </li>
       <li class="nav-item">
@@ -59,7 +59,7 @@
           [ngClass]="getActiveTabCSSClass(5)"
           role="tab"
         >
-          Footer
+        {{'ACTION.FOOTER' | translate}}
         </a>
       </li>
     </ul>
@@ -172,7 +172,7 @@
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(2)">
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right"
-              >Display Subheader:</label
+              >{{'ACTION.DISPLAYSUBHEADER' | translate}}:</label
             >
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
@@ -186,11 +186,11 @@
                   <span></span>
                 </label>
               </span>
-              <div class="form-text text-muted">Display subheader</div>
+              <div class="form-text text-muted">{{'ACTION.DISPLAYSUBHEADER' | translate}}</div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right">Width:</label>
+            <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.WIDTH' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
               <select
                 class="form-control form-control-solid"
@@ -318,7 +318,7 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-8">
           <button type="submit" name="builder_submit" class="btn btn-primary">
-            Preview
+            {{'ACTION.PREVIEW' | translate}}
           </button>
           &nbsp;
           <button
@@ -327,7 +327,7 @@
             name="builder_reset"
             class="btn btn-secondary"
           >
-            Reset
+          {{'ACTION.RESET' | translate}}
           </button>
         </div>
       </div>
