@@ -9,6 +9,7 @@ import {
   EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel,
   CoreLocationModel,
+  EstateContractTypeModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -133,6 +134,15 @@ export class EstateBillboardAddComponent implements OnInit {
       return;
     }
     this.dataModel.LinkPropertyTypeUsageId = model.Id;
+  }
+  onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
+    if (!model || !model.Id || model.Id.length <= 0) {
+      const message = 'نوع معامله مشخص نیست';
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.LinkContractTypeId = null;
+      return;
+    }
+    this.dataModel.LinkContractTypeId = model.Id;
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {

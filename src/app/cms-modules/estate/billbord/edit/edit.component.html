@@ -95,10 +95,11 @@
         <app-estate-propertytypeusage-selector (optionSelect)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
-  
+
         </app-estate-propertytypeusage-selector>
-        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.LinkPropertyTypeUsageId = null">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
+          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkPropertyTypeUsageId = null">close
+        </mat-icon>
         <br>
 
         <!-- LinkPropertyTypeLanduseId Field -->
@@ -109,10 +110,15 @@
           [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
 
         </app-estate-propertytypelanduse-selector>
-        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeLanduseId && dataModel.LinkPropertyTypeLanduseId?.length>0" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.LinkPropertyTypeLanduseId = null">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeLanduseId && dataModel.LinkPropertyTypeLanduseId?.length>0"
+          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkPropertyTypeLanduseId = null">close
+        </mat-icon>
         <br>
-
+        <!-- LinkContractTypeId Field -->
+        <app-estate-contracttype-selector (optionSelect)="onActionSelectorContarctType($event)"
+          [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkContractTypeId" [optionPlaceholder]="'نوع معامله'">
+        </app-estate-contracttype-selector>
         <!-- LinkLocationId Field -->
         <app-cms-location-selector (optionSelect)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessEditField"
@@ -121,12 +127,16 @@
 
         <!-- Tag Field -->
         <app-estate-property-autocomplete (optionChange)="onActionTagChange($event)" [optionPlaceholder]="' + ملک '"
-        [optionSelectForce]="this.dataModel.LinkPropertyIds"
-        >
+          [optionSelectForce]="this.dataModel.LinkPropertyIds">
         </app-estate-property-autocomplete>
 
 
-
+        <br>
+        <div *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
+          <a href="{{dataModel.UrlViewContent}}" target="_blank">
+          <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
+        </a>
+        </div>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
