@@ -34,10 +34,10 @@
       <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
 
         <button type="button" (click)="onFormDelete()" [disabled]="!formInfo.ButtonSubmittedEnabled"
-          class="btn btn-raised btn-warning mr-1">
+          class="btn btn-danger">
           <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
         </button>
-        <button type="button" (click)="onFormCancel()" class="btn btn-raised btn-warning mr-1">
+        <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>
       </div>
