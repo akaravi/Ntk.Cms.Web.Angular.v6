@@ -1,8 +1,8 @@
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import {
-  EstatePropertyModel,
-  EstatePropertyService,
+  EstateContractTypeModel,
+  EstateContractTypeService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
   ErrorExceptionResult,
@@ -17,19 +17,19 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-estate-property-autocomplete',
+  selector: 'app-estate-contract-type-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss']
 })
-export class EstatePropertyCompleteComponent implements OnInit {
+export class EstateContractTypeCompleteComponent implements OnInit {
   constructor(
-    public estatePropertyService: EstatePropertyService,
+    public estateContractTypeService: EstateContractTypeService,
     private cmsToastrService: CmsToastrService) {
   }
   @Input() set optionSelectForce(x: string[]) {
     this.onActionSelectForce(x);
   }
-  datatagDataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
+  datatagDataModelResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
   tagDataModel = [];
 
 
@@ -59,7 +59,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    return this.estatePropertyService.ServiceGetAll(filteModel).pipe(
+    return this.estateContractTypeService.ServiceGetAll(filteModel).pipe(
       map((data) =>
         data.ListItems.map(val => ({
           value: val.Id,
@@ -93,7 +93,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
       }
     });
 
-    this.estatePropertyService.ServiceGetAll(filteModel).pipe(
+    this.estateContractTypeService.ServiceGetAll(filteModel).pipe(
       map((next) => {
         if (next.IsSuccess) {
           next.ListItems.forEach(val => {

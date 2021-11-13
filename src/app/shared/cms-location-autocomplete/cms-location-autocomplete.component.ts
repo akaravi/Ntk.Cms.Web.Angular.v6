@@ -1,8 +1,8 @@
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import {
-  EstatePropertyModel,
-  EstatePropertyService,
+  CoreLocationModel,
+  CoreLocationService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
   ErrorExceptionResult,
@@ -17,25 +17,25 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-estate-property-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss']
+  selector: 'app-cms-location-autocomplete',
+  templateUrl: './cms-location-autocomplete.component.html',
+  styleUrls: ['./cms-location-autocomplete.component.scss']
 })
-export class EstatePropertyCompleteComponent implements OnInit {
+export class CmsLocationCompleteComponent implements OnInit {
   constructor(
-    public estatePropertyService: EstatePropertyService,
+    public coreLocationService: CoreLocationService,
     private cmsToastrService: CmsToastrService) {
   }
-  @Input() set optionSelectForce(x: string[]) {
+  @Input() set optionSelectForce(x: number[]) {
     this.onActionSelectForce(x);
   }
-  datatagDataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
+  datatagDataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
   tagDataModel = [];
 
 
   @Input() optionPlaceholder = '';
   @Input() optionDisabled = false;
-  @Output() optionChange = new EventEmitter<string[]>();
+  @Output() optionChange = new EventEmitter<number[]>();
 
   selectForceStatus = true;
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
     filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
     filter.ClauseType = EnumClauseType.Or;
     filteModel.Filters.push(filter);
-    if (text && text.length > 0) {
+    if (text && typeof text === 'number' && text > 0) {
       filter = new FilterDataModel();
       filter.PropertyName = 'Id';
       filter.Value = text;
@@ -59,7 +59,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    return this.estatePropertyService.ServiceGetAll(filteModel).pipe(
+    return this.coreLocationService.ServiceGetAll(filteModel).pipe(
       map((data) =>
         data.ListItems.map(val => ({
           value: val.Id,
@@ -75,7 +75,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
     this.selectForceStatus = false;
     this.optionChange.emit(retIds);
   }
-  onActionSelectForce(ids: string[]): void {
+  onActionSelectForce(ids: number[]): void {
     if (!this.selectForceStatus) {
       return;
     }
@@ -84,7 +84,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
     }
     const filteModel = new FilterModel();
     ids.forEach(item => {
-      if (item && item.length > 0) {
+      if (item && item > 0) {
         const filter = new FilterDataModel();
         filter.PropertyName = 'Id';
         filter.Value = item;
@@ -93,7 +93,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
       }
     });
 
-    this.estatePropertyService.ServiceGetAll(filteModel).pipe(
+    this.coreLocationService.ServiceGetAll(filteModel).pipe(
       map((next) => {
         if (next.IsSuccess) {
           next.ListItems.forEach(val => {

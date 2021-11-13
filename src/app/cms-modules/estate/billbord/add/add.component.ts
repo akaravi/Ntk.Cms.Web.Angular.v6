@@ -126,41 +126,24 @@ export class EstateBillboardAddComponent implements OnInit {
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
 
   }
-  onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
-      this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkPropertyTypeUsageId = null;
-      return;
-    }
-    this.dataModel.LinkPropertyTypeUsageId = model.Id;
+  onActionSelectorSelectUsage(model: string[] | null): void {
+
+    this.dataModel.LinkPropertyTypeUsageIds = model;
   }
-  onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'نوع معامله مشخص نیست';
-      this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkContractTypeId = null;
-      return;
-    }
-    this.dataModel.LinkContractTypeId = model.Id;
+  onActionSelectorContarctType(model: string[] | null): void {
+
+    this.dataModel.LinkContractTypeIds = model;
   }
-  onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
-      this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkPropertyTypeLanduseId = null;
-      return;
-    }
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
+  onActionSelectorSelectLanduse(model: string[] | null): void {
+
+    this.dataModel.LinkPropertyTypeLanduseIds = model;
   }
-  onActionSelectorLocation(model: CoreLocationModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      const message = 'منطقه اطلاعات مشخص نیست';
-      this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkLocationId = null;
-      return;
-    }
-    this.dataModel.LinkLocationId = model.Id;
+  onActionSelectorLocation(model: number[] | null): void {
+
+    this.dataModel.LinkLocationIds = model;
+  }
+  onActionSelectorProperty(model: string[] | null): void {
+    this.dataModel.LinkPropertyIds = model;
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
@@ -175,9 +158,7 @@ export class EstateBillboardAddComponent implements OnInit {
 
   }
 
-  onActionTagChange(model: any): void {
-    this.dataModel.LinkPropertyIds = model;
-  }
+
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

@@ -91,42 +91,34 @@
         <p>محتوای انتخابی شما برای نمایش در این بیلبورد</p>
         <P>با انتخاب هر کدام از موارد زیر محدود نتایج جستجو کوچکتر می شود</P>
 
-        <!-- LinkPropertyTypeUsageId Field -->
-        <app-estate-propertytypeusage-selector (optionSelect)="onActionSelectorSelectUsage($event)"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
+        <!-- LinkPropertyTypeUsageIds Field -->
+        <app-estate-property-type-usage-autocomplete (optionChange)="onActionSelectorSelectUsage($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkPropertyTypeUsageIds" [optionPlaceholder]="'نوع کاربری'">
+        </app-estate-property-type-usage-autocomplete>
 
-        </app-estate-propertytypeusage-selector>
-        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
-          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkPropertyTypeUsageId = null">close
-        </mat-icon>
+        <!-- LinkPropertyTypeLanduseIds Field -->
+        <app-estate-property-type-landuse-autocomplete (optionChange)="onActionSelectorSelectLanduse($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseIds" [optionPlaceholder]="'نوع ملک'">
+
+        </app-estate-property-type-landuse-autocomplete>
+
         <br>
+        <!-- LinkContractTypeIds Field -->
+        <app-estate-contract-type-autocomplete (optionChange)="onActionSelectorContarctType($event)"
+          [optionDisabled]="!fieldsInfo['LinkContractTypeIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkContractTypeIds" [optionPlaceholder]="'نوع معامله'">
+        </app-estate-contract-type-autocomplete>
+        <!-- LinkLocationIds Field -->
+        <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
+          [optionDisabled]="!fieldsInfo['LinkLocationIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkLocationIds" [optionPlaceholder]="'منطقه'">
+        </app-cms-location-autocomplete>
 
-        <!-- LinkPropertyTypeLanduseId Field -->
-        <app-estate-propertytypelanduse-selector (optionSelect)="onActionSelectorSelectLanduse($event)"
-          *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
-          [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
-
-        </app-estate-propertytypelanduse-selector>
-        <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeLanduseId && dataModel.LinkPropertyTypeLanduseId?.length>0"
-          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkPropertyTypeLanduseId = null">close
-        </mat-icon>
-        <br>
-        <!-- LinkContractTypeId Field -->
-        <app-estate-contracttype-selector (optionSelect)="onActionSelectorContarctType($event)"
-          [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.AccessAddField"
-          [optionSelectForce]="dataModel.LinkContractTypeId" [optionPlaceholder]="'نوع معامله'">
-        </app-estate-contracttype-selector>
-        <!-- LinkLocationId Field -->
-        <app-cms-location-selector (optionSelect)="onActionSelectorLocation($event)"
-          [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessEditField"
-          [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه'">
-        </app-cms-location-selector>
-
-        <!-- Tag Field -->
-        <app-estate-property-autocomplete (optionChange)="onActionTagChange($event)" [optionPlaceholder]="' + ملک '"
+        <!-- LinkPropertyIds Field -->
+        <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.AccessAddField" [optionPlaceholder]="' + ملک '"
           [optionSelectForce]="this.dataModel.LinkPropertyIds">
         </app-estate-property-autocomplete>
 
@@ -134,8 +126,8 @@
         <br>
         <div *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
           <a href="{{dataModel.UrlViewContent}}" target="_blank">
-          <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
-        </a>
+            <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
+          </a>
         </div>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>

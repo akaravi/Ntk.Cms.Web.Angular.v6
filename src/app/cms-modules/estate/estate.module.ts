@@ -109,6 +109,9 @@ import { EstateBillboardListComponent } from './billbord/list/list.component';
 import { EstateBillboardSelectorComponent } from './billbord/selector/selector.component';
 import { EstateBillboardTreeComponent } from './billbord/tree/tree.component';
 import { EstatePropertyCompleteComponent } from './property/autocomplete/autocomplete.component';
+import { EstateContractTypeCompleteComponent } from './contract-type/autocomplete/autocomplete.component';
+import { EstatePropertyTypeUsageCompleteComponent } from './property-type-usage/autocomplete/autocomplete.component';
+import { EstatePropertyTypeLanduseCompleteComponent } from './property-type-landuse/autocomplete/autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +122,7 @@ import { EstatePropertyCompleteComponent } from './property/autocomplete/autocom
     EstatePropertyTypeLanduseListComponent,
     EstatePropertyTypeLanduseSelectorComponent,
     EstatePropertyTypeLanduseTreeComponent,
+    EstatePropertyTypeLanduseCompleteComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,
@@ -126,6 +130,7 @@ import { EstatePropertyCompleteComponent } from './property/autocomplete/autocom
     EstatePropertyTypeUsageSelectorComponent,
     EstatePropertyTypeUsageTreeComponent,
     EstatePropertyTypeUsageSelectionlistComponent,
+    EstatePropertyTypeUsageCompleteComponent,
     /* */
     EstatePropertyAddComponent,
     EstatePropertyEditComponent,
@@ -153,6 +158,7 @@ import { EstatePropertyCompleteComponent } from './property/autocomplete/autocom
     EstateContractTypeListComponent,
     EstateContractTypeSelectorComponent,
     EstateContractTypeTreeComponent,
+    EstateContractTypeCompleteComponent,
     /* */
     EstateBillboardAddComponent,
     EstateBillboardEditComponent,

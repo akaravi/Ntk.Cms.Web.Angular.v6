@@ -79,6 +79,7 @@ import { SafePipe } from '../core/pipe/safe.pipe';
 import { MatInputCommifiedDirective } from '../core/directive/mat-input-commified.directive';
 import { PhoneDirective } from '../core/directive/phone.directive';
 import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
+import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-location-autocomplete.component';
 
 @NgModule({
   imports: [
@@ -124,6 +125,7 @@ import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
     CmsSiteSelectorComponent,
     CmsCurrencySelectorComponent,
     CmsLocationSelectorComponent,
+    CmsLocationCompleteComponent,
     CmsApplicationSelectorComponent,
     CmsSiteCategorySelectorComponent,
     CmsSiteCategorySelectionListComponent,
@@ -195,6 +197,7 @@ import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
     CmsSiteSelectorComponent,
     CmsCurrencySelectorComponent,
     CmsLocationSelectorComponent,
+    CmsLocationCompleteComponent,
     CmsApplicationSelectorComponent,
     CmsSiteCategorySelectorComponent,
     CmsSiteCategorySelectionListComponent,
