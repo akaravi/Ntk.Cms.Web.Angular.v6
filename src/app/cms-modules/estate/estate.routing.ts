@@ -17,6 +17,9 @@ import { EstatePropertyAdsListComponent } from './property-ads/list/list.compone
 import { EstateAdsTypeListComponent } from './ads-type/list/list.component';
 import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
 import { EstateBillboardListComponent } from './billbord/list/list.component';
+import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
+import { EstateCustomerOrderAddComponent } from './customer-order/add/add.component';
+import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -44,6 +47,10 @@ const routes: Routes = [
       },
       {
         path: 'property/LinkBillboardId/:LinkBillboardId',
+        component: EstatePropertyListComponent
+      },
+      {
+        path: 'property/LinkCustomerOrderId/:LinkCustomerOrderId',
         component: EstatePropertyListComponent
       },
       {
@@ -108,6 +115,19 @@ const routes: Routes = [
         path: 'billboard',
         component: EstateBillboardListComponent
       },
+        /**/
+        {
+          path: 'customer-order',
+          component: EstateCustomerOrderListComponent
+        },
+        {
+          path: 'customer-order/add',
+          component: EstateCustomerOrderAddComponent
+        },
+        {
+          path: 'customer-order/edit/:id',
+          component: EstateCustomerOrderEditComponent
+        },
       /**/
       {
         path: 'property-detail-group',

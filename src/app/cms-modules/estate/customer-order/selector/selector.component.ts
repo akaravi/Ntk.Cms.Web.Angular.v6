@@ -6,8 +6,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  EstateContractTypeModel,
-  EstateContractTypeService
+  EstateCustomerOrderModel,
+  EstateCustomerOrderService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -17,29 +17,29 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-estate-contract-type-selector',
+  selector: 'app-estate-customer-order-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstateContractTypeSelectorComponent implements OnInit {
+export class EstateCustomerOrderSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    public categoryService: EstateContractTypeService) {
+    public categoryService: EstateCustomerOrderService) {
       this.loading.cdr = this.cdr;
   }
-  dataModelResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
-  dataModelSelect: EstateContractTypeModel = new EstateContractTypeModel();
+  dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
+  dataModelSelect: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<EstateContractTypeModel[]>;
+  filteredOptions: Observable<EstateCustomerOrderModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<EstateContractTypeModel>();
+  @Output() optionSelect = new EventEmitter<EstateCustomerOrderModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | EstateContractTypeModel) {
+  @Input() set optionSelectForce(x: string | EstateCustomerOrderModel) {
     this.onActionSelectForce(x);
   }
 
@@ -62,13 +62,13 @@ export class EstateContractTypeSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: EstateContractTypeModel): string | undefined {
+  displayFn(model?: EstateCustomerOrderModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  displayOption(model?: EstateContractTypeModel): string | undefined {
+  displayOption(model?: EstateCustomerOrderModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  async DataGetAll(text: string | any): Promise<EstateContractTypeModel[]> {
+  async DataGetAll(text: string | any): Promise<EstateCustomerOrderModel[]> {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
@@ -110,7 +110,7 @@ export class EstateContractTypeSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: EstateContractTypeModel): void {
+  onActionSelect(model: EstateCustomerOrderModel): void {
     if (this.optionDisabled) {
       return;
     }
@@ -125,7 +125,7 @@ export class EstateContractTypeSelectorComponent implements OnInit {
     this.optionSelect.emit(null);
   }
 
-  push(newvalue: EstateContractTypeModel): Observable<EstateContractTypeModel[]> {
+  push(newvalue: EstateCustomerOrderModel): Observable<EstateCustomerOrderModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
         return items;
@@ -135,7 +135,7 @@ export class EstateContractTypeSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | EstateContractTypeModel): void {
+  onActionSelectForce(id: string | EstateCustomerOrderModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
@@ -156,9 +156,9 @@ export class EstateContractTypeSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof EstateContractTypeModel) {
-      this.filteredOptions = this.push((id as EstateContractTypeModel));
-      this.dataModelSelect = (id as EstateContractTypeModel);
+    if (typeof id === typeof EstateCustomerOrderModel) {
+      this.filteredOptions = this.push((id as EstateCustomerOrderModel));
+      this.dataModelSelect = (id as EstateCustomerOrderModel);
       this.formControl.setValue(id);
       return;
     }
@@ -169,8 +169,8 @@ export class EstateContractTypeSelectorComponent implements OnInit {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);
     // }
-    this.dataModelSelect = new EstateContractTypeModel();
-    // this.optionsData.Select = new EstateContractTypeModel();
+    this.dataModelSelect = new EstateCustomerOrderModel();
+    // this.optionsData.Select = new EstateCustomerOrderModel();
     this.DataGetAll(null);
   }
 }

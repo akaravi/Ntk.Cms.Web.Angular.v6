@@ -35,7 +35,8 @@ import {
   EstateAdsTypeService,
   CoreModuleService,
   FileCategoryService,
-  EstateBillboardService
+  EstateBillboardService,
+  EstateCustomerOrderService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -112,6 +113,11 @@ import { EstatePropertyCompleteComponent } from './property/autocomplete/autocom
 import { EstateContractTypeCompleteComponent } from './contract-type/autocomplete/autocomplete.component';
 import { EstatePropertyTypeUsageCompleteComponent } from './property-type-usage/autocomplete/autocomplete.component';
 import { EstatePropertyTypeLanduseCompleteComponent } from './property-type-landuse/autocomplete/autocomplete.component';
+import { EstateCustomerOrderAddComponent } from './customer-order/add/add.component';
+import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
+import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
+import { EstateCustomerOrderSelectorComponent } from './customer-order/selector/selector.component';
+import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -165,6 +171,12 @@ import { EstatePropertyTypeLanduseCompleteComponent } from './property-type-land
     EstateBillboardListComponent,
     EstateBillboardSelectorComponent,
     EstateBillboardTreeComponent,
+    /* */
+    EstateCustomerOrderAddComponent,
+    EstateCustomerOrderEditComponent,
+    EstateCustomerOrderListComponent,
+    EstateCustomerOrderSelectorComponent,
+    EstateCustomerOrderTreeComponent,
     /* */
     EstatePropertyDetailGroupAddComponent,
     EstatePropertyDetailGroupEditComponent,
@@ -229,6 +241,7 @@ import { EstatePropertyTypeLanduseCompleteComponent } from './property-type-land
     EstateContractTypeService,
     EstateEnumService,
     EstateBillboardService,
+    EstateCustomerOrderService,
     EstatePropertyService,
     EstatePropertyAccountTypeUserService,
     EstatePropertyDetailGroupService,

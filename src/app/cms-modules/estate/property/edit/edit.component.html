@@ -37,7 +37,6 @@
         </mat-form-field>
         <!-- MainAdminRecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
-
           <mat-select placeholder="{{fieldsInfo['MainAdminRecordStatus']?.FieldTitle}}"
             [disabled]="!fieldsInfo['MainAdminRecordStatus']?.AccessEditField"
             [(ngModel)]="dataModel.MainAdminRecordStatus" name="dataModel.MainAdminRecordStatus"
@@ -55,6 +54,21 @@
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
             {{fieldsInfo['MainAdminRecordStatus']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- LinkSiteId Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkSiteId']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['LinkSiteId']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.LinkSiteId" name="dataModel.LinkSiteId" #LinkSiteId type="text"
+            disabled="{{!fieldsInfo['LinkSiteId']?.AccessEditField}}" placeholder="{{fieldsInfo['LinkSiteId']?.FieldTitle}}"
+            minlength="3" maxlength="100" required />
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['LinkSiteId']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ LinkSiteId.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="LinkSiteId.errors?.required">
+            {{fieldsInfo['LinkSiteId']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- Title Field -->
@@ -367,9 +381,9 @@
       </mat-step>
       <mat-step label="معامله" state="seo">
         <p>نوع معامله این ملک را مشخص کنید</p>
-        <app-estate-contracttype-selector (optionSelect)="onActionSelectorContractType($event)" [optionDisabled]="false"
+        <app-estate-contract-type-selector (optionSelect)="onActionSelectorContractType($event)" [optionDisabled]="false"
           [optionPlaceholder]="'نوع معامله'" [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
-        </app-estate-contracttype-selector>
+        </app-estate-contract-type-selector>
         <div *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
 
           <!-- SalePrice Field -->
