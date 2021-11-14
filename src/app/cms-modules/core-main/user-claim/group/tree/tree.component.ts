@@ -53,7 +53,7 @@ export class CoreUserClaimGroupTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreUserClaimGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreUserClaimGroupModel>();
-  @Output() optionSelect = new EventEmitter<CoreUserClaimGroupModel>();
+  @Output() optionChange = new EventEmitter<CoreUserClaimGroupModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -94,7 +94,7 @@ export class CoreUserClaimGroupTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: CoreUserClaimGroupModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

@@ -23,14 +23,14 @@
         </mat-error>
       </mat-form-field>
       <!-- LinkCmsSiteId Field -->
-      <app-core-site-selector (optionSelect)="onActionSelectorSiteSelect($event)" [optionDisabled]="false"
+      <app-core-site-selector (optionChange)="onActionSelectorSiteSelect($event)" [optionDisabled]="false"
         [optionSelectForce]="dataModel.LinkSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
       <!-- LinkuserId Field -->
-      <app-core-user-selector (optionSelect)="onActionSelectorUserSelect($event)" [optionDisabled]="false"
+      <app-core-user-selector (optionChange)="onActionSelectorUserSelect($event)" [optionDisabled]="false"
         [optionSelectForce]="dataModel.LinkUserId" [optionPlaceholder]="'کاربر'">
       </app-core-user-selector>
       <!-- LinkUserGroupId Field -->
-      <app-core-usercategory-selector (optionSelect)="onActionSelectorUserGroupSelect($event)" [optionDisabled]="false"
+      <app-core-usercategory-selector (optionChange)="onActionSelectorUserGroupSelect($event)" [optionDisabled]="false"
         [optionSelectForce]="dataModel.LinkUserGroupId" [optionPlaceholder]="'نوع حساب'">
       </app-core-usercategory-selector>
 

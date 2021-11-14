@@ -55,7 +55,7 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<LinkManagementBillboardPatternModel>(node => null);
   dataSource = new MatTreeNestedDataSource<LinkManagementBillboardPatternModel>();
-  @Output() optionSelect = new EventEmitter<LinkManagementBillboardPatternModel>();
+  @Output() optionChange = new EventEmitter<LinkManagementBillboardPatternModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -96,7 +96,7 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
   }
   onActionSelect(model: LinkManagementBillboardPatternModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
     // if (this.optionsData) {
     //   this.optionsData.data.Select = this.dataModelSelect;
     //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {

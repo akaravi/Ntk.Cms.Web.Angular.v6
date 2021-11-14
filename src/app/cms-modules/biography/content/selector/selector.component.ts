@@ -38,7 +38,7 @@ export class BiographyContentSelectorComponent implements OnInit {
   filteredOptions: Observable<BiographyContentModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<BiographyContentModel>();
+  @Output() optionChange = new EventEmitter<BiographyContentModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | BiographyContentModel) {
     this.onActionSelectForce(x);
@@ -111,12 +111,12 @@ export class BiographyContentSelectorComponent implements OnInit {
   }
   onActionSelect(model: BiographyContentModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: BiographyContentModel): Observable<BiographyContentModel[]> {
     return this.filteredOptions.pipe(map(items => {

@@ -62,18 +62,7 @@
         <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
 
-      <!-- SpeedView Column -->
-      <ng-container matColumnDef="SpeedView">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SpeedView']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.SpeedView }}</mat-cell>
-      </ng-container>
-      <!-- ReloadViewPerMin Column -->
-      <ng-container matColumnDef="ReloadViewPerMin">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReloadViewPerMin']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ReloadViewPerMin }}</mat-cell>
-      </ng-container>
+
      
 
       <!-- Action Column -->

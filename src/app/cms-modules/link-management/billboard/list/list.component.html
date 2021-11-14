@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-linkmanagement-billboard-pattern-tree (optionSelect)="onActionSelectorSelect($event)"></app-linkmanagement-billboard-pattern-tree>
+    <app-linkmanagement-billboard-pattern-tree (optionChange)="onActionSelectorSelect($event)"></app-linkmanagement-billboard-pattern-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

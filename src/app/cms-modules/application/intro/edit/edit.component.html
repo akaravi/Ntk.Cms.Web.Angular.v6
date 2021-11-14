@@ -34,7 +34,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkApplicationId Field -->
-        <app-application-app-selector (optionSelect)="onActionSelectApplication($event)"
+        <app-application-app-selector (optionChange)="onActionSelectApplication($event)"
           [optionSelectForce]="this.dataModel.LinkApplicationId" [optionPlaceholder]="' اپلیکیشن'"
           [optionDisabled]="!fieldsInfo['LinkApplicationId']?.AccessEditField"></app-application-app-selector>
 

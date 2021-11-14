@@ -23,12 +23,12 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCmsSiteId Field -->
-    <app-core-sitecategory-selector (optionSelect)="onActionSiteCategorySelect($event)"
+    <app-core-sitecategory-selector (optionChange)="onActionSiteCategorySelect($event)"
       [optionDisabled]="!fieldsInfo['LinkCmsSiteCategoryId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkCmsSiteCategoryId" [optionPlaceholder]="'دسته بندی سایت'">
     </app-core-sitecategory-selector>
     <!-- LinkModuleId Field -->
-    <app-core-module-selector (optionSelect)="onActionSelectorModuleSelect($event)"
+    <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)"
       [optionDisabled]="!fieldsInfo['LinkCmsModuleId']?.AccessEditField" [optionSelectForce]="dataModel.LinkCmsModuleId"
       [optionPlaceholder]="'ماژول'">
     </app-core-module-selector>

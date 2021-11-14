@@ -176,15 +176,8 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    const dialogRef = this.dialog.open(EstateBillboardAddComponent, {
-      height: '90%',
-      data: {}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
+    this.router.navigate(['/estate/billboard/add']);
+
   }
 
   onActionbuttonEditRow(model: EstateBillboardModel = this.tableRowSelected): void {
@@ -202,15 +195,8 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(EstateBillboardEditComponent, {
-      height: '90%',
-      data: { id: this.tableRowSelected.Id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
+    this.router.navigate(['/estate/billboard/edit', this.tableRowSelected.Id]);
+
   }
   onActionbuttonDeleteRow(model: EstateBillboardModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {

@@ -59,7 +59,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkModuleId Field -->
-    <app-cms-module-selector (optionSelect)="onActionSelectModule($event)"
+    <app-cms-module-selector (optionChange)="onActionSelectModule($event)"
       [optionSelectForce]="this.dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'"
       [optionDisabled]="!fieldsInfo['LinkModuleId']?.AccessEditField">
     </app-cms-module-selector>

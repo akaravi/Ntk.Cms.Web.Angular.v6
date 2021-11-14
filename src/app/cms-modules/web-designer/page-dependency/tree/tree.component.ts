@@ -55,7 +55,7 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<WebDesignerMainPageDependencyModel>(node => null);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainPageDependencyModel>();
-  @Output() optionSelect = new EventEmitter<WebDesignerMainPageDependencyModel>();
+  @Output() optionChange = new EventEmitter<WebDesignerMainPageDependencyModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -95,7 +95,7 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
   }
   onActionSelect(model: WebDesignerMainPageDependencyModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id?.length > 0) {

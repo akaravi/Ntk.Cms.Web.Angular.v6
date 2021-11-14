@@ -37,7 +37,7 @@ export class CmsCurrencySelectorComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<CoreCurrencyModel>();
+  @Output() optionChange = new EventEmitter<CoreCurrencyModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreCurrencyModel) {
     this.onActionSelectForce(x);
@@ -126,14 +126,14 @@ export class CmsCurrencySelectorComponent implements OnInit {
       return;
     }
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
     if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: CoreCurrencyModel): Observable<CoreCurrencyModel[]> {
     return this.filteredOptions.pipe(map(items => {
@@ -161,7 +161,7 @@ export class CmsCurrencySelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;

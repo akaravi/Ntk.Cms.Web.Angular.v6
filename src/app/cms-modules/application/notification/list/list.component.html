@@ -8,7 +8,7 @@
   [optionTreeDisplay]="requestLinkApplicationId===0  && requestLinkApplicationMemberId.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-application-app-tree (optionSelect)="onActionSelectorSelect($event)"></app-application-app-tree>
+    <app-application-app-tree (optionChange)="onActionSelectorSelect($event)"></app-application-app-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

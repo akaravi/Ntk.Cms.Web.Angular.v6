@@ -10,7 +10,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-estate-propertytypelanduse-tree (optionSelect)="onActionSelectorSelect($event)">
+    <app-estate-propertytypelanduse-tree (optionChange)="onActionSelectorSelect($event)">
     </app-estate-propertytypelanduse-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

@@ -52,7 +52,7 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit, OnDestr
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<TicketingDepartemenOperatorModel>(node => null);
   dataSource = new MatTreeNestedDataSource<TicketingDepartemenOperatorModel>();
-  @Output() optionSelect = new EventEmitter<TicketingDepartemenOperatorModel>();
+  @Output() optionChange = new EventEmitter<TicketingDepartemenOperatorModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -93,7 +93,7 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit, OnDestr
   }
   onActionSelect(model: TicketingDepartemenOperatorModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

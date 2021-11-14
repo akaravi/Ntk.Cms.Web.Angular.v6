@@ -30,7 +30,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkCategoryId Field -->
-        <app-polling-category-selector (optionSelect)="onActionSelectorSelect($event)"
+        <app-polling-category-selector (optionChange)="onActionSelectorSelect($event)"
           [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'دسته بندی'">
         </app-polling-category-selector>
         <!-- Title Field -->

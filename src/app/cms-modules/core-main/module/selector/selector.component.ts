@@ -37,7 +37,7 @@ export class CoreModuleSelectorComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem= false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<CoreModuleModel>();
+  @Output() optionChange = new EventEmitter<CoreModuleModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreModuleModel) {
     this.onActionSelectForce(x);
@@ -115,19 +115,19 @@ export class CoreModuleSelectorComponent implements OnInit {
       return;
     }
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
     if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   onActionEmpty(): void {
     this.formControl.setValue(0);
     this.dataModelSelect = new CoreModuleModel();
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   push(newvalue: CoreModuleModel): Observable<CoreModuleModel[]> {
     return this.filteredOptions.pipe(map(items => {
@@ -155,7 +155,7 @@ export class CoreModuleSelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;

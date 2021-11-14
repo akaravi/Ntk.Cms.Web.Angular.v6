@@ -37,7 +37,7 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<WebDesignerMainMenuModel>();
+  @Output() optionChange = new EventEmitter<WebDesignerMainMenuModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | WebDesignerMainMenuModel) {
     this.onActionSelectForce(x);
@@ -112,11 +112,11 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
   }
   onActionSelect(model: WebDesignerMainMenuModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
 
   push(newvalue: WebDesignerMainMenuModel): Observable<WebDesignerMainMenuModel[]> {
@@ -145,7 +145,7 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;

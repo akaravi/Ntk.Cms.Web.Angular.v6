@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-hypershop-category-tree (optionSelect)="onActionSelectorSelect($event)"></app-hypershop-category-tree>
+    <app-hypershop-category-tree (optionChange)="onActionSelectorSelect($event)"></app-hypershop-category-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

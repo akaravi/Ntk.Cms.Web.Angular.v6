@@ -55,7 +55,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<NewsCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<NewsCategoryModel>();
-  @Output() optionSelect = new EventEmitter<NewsCategoryModel>();
+  @Output() optionChange = new EventEmitter<NewsCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -98,7 +98,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: NewsCategoryModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
     // if (this.optionsData) {
     //   this.optionsData.data.Select = this.dataModelSelect;
     //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {

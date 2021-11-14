@@ -55,7 +55,7 @@ export class EstateCustomerOrderTreeComponent implements OnInit, OnDestroy {
   @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateCustomerOrderModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateCustomerOrderModel>();
-  @Output() optionSelect = new EventEmitter<EstateCustomerOrderModel>();
+  @Output() optionChange = new EventEmitter<EstateCustomerOrderModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -96,7 +96,7 @@ export class EstateCustomerOrderTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: EstateCustomerOrderModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id && this.dataModelSelect.Id.length > 0) {

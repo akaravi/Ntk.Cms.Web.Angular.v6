@@ -55,7 +55,7 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
   @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateBillboardModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateBillboardModel>();
-  @Output() optionSelect = new EventEmitter<EstateBillboardModel>();
+  @Output() optionChange = new EventEmitter<EstateBillboardModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -96,7 +96,7 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: EstateBillboardModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id && this.dataModelSelect.Id.length > 0) {

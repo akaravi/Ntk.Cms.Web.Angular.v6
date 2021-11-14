@@ -37,7 +37,7 @@ export class BlogContentSelectorComponent implements OnInit {
   filteredOptions: Observable<BlogContentModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<BlogContentModel>();
+  @Output() optionChange = new EventEmitter<BlogContentModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | BlogContentModel) {
     this.onActionSelectForce(x);
@@ -110,12 +110,12 @@ export class BlogContentSelectorComponent implements OnInit {
   }
   onActionSelect(model: BlogContentModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: BlogContentModel): Observable<BlogContentModel[]> {
     return this.filteredOptions.pipe(map(items => {

@@ -52,7 +52,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSourceId Field -->
-    <app-application-source-selector (optionSelect)="onActionSelectSource($event)"
+    <app-application-source-selector (optionChange)="onActionSelectSource($event)"
       [optionDisabled]="!fieldsInfo['LinkSourceId']?.AccessEditField" [optionSelectForce]="dataModel.LinkSourceId"
       [optionPlaceholder]="'سورس اپلیکیشن'">
     </app-application-source-selector>

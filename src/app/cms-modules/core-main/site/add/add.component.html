@@ -55,11 +55,11 @@
           </mat-select>
         </mat-form-field>
         <!-- LinkSiteCategoryId Field -->
-        <app-core-sitecategory-selector (optionSelect)="onActionSelectCategory($event)"
+        <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)"
           [optionSelectForce]="this.dataModel.LinkSiteCategoryId" [optionPlaceholder]="'نوع وب سایت'"
           [optionDisabled]="!fieldsInfo['LinkSiteCategoryId']?.AccessAddField"></app-core-sitecategory-selector>
         <!-- linkCreatedBySiteId Field -->
-        <app-core-site-selector (optionSelect)="onActionSelectCategory($event)"
+        <app-core-site-selector (optionChange)="onActionSelectCategory($event)"
           [optionSelectForce]="this.dataModel.linkCreatedBySiteId" [optionPlaceholder]="'سایت والد'"
           [optionDisabled]="!fieldsInfo['linkCreatedBySiteId']?.AccessAddField"></app-core-site-selector>
         <!-- Title Field -->

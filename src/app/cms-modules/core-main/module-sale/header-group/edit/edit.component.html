@@ -23,13 +23,13 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkUserGroupId Field -->
-    <app-cms-usergroup-selector (optionSelect)="onActionSelectUserGroup($event)"
+    <app-cms-usergroup-selector (optionChange)="onActionSelectUserGroup($event)"
       [optionSelectForce]="this.dataModel.LinkUserGroupId" [optionPlaceholder]="'دسته بندی کاربر'"
       [optionDisabled]="!fieldsInfo['LinkUserGroupId']?.AccessEditField">
     </app-cms-usergroup-selector>
 
     <!-- LinkCmsSiteCategoryId Field -->
-    <app-cms-sitecategory-selector (optionSelect)="onActionSelectSiteCategory($event)"
+    <app-cms-sitecategory-selector (optionChange)="onActionSelectSiteCategory($event)"
       [optionSelectForce]="this.dataModel.LinkCmsSiteCategoryId" [optionPlaceholder]="'دسته بندی سایت'"
       [optionDisabled]="!fieldsInfo['LinkCmsSiteCategoryId']?.AccessEditField">
     </app-cms-sitecategory-selector>

@@ -6,28 +6,21 @@ import {
   EstateBillboardService,
   EstateBillboardModel,
   DataFieldInfoModel,
-  EstatePropertyTypeLanduseModel,
-  EstatePropertyTypeUsageModel,
-  CoreLocationModel,
-  EstateContractTypeModel,
 } from 'ntk-cms-api';
 import {
   Component,
   OnInit,
   ViewChild,
-  Inject,
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
+import { EstatePropertyListComponent } from '../../property/list/list.component';
 
 @Component({
   selector: 'app-estate-billboard-add',
@@ -36,14 +29,12 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class EstateBillboardAddComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstateBillboardAddComponent>,
+    private router: Router,
     public coreEnumService: CoreEnumService,
     public estateBillboardService: EstateBillboardService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
-    private tokenHelper: TokenHelper,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
@@ -52,7 +43,10 @@ export class EstateBillboardAddComponent implements OnInit {
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
+  @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
+
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  optionloadComponent = false;
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
@@ -101,9 +95,40 @@ export class EstateBillboardAddComponent implements OnInit {
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
+          this.dataModel = this.dataModelResult.Item;
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.dialogRef.close({ dialogChangedDate: true });
+          this.optionReload();
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+        this.formInfo.FormSubmitAllow = true;
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  DataEditContent(): void {
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    this.estateBillboardService.ServiceEdit(this.dataModel).subscribe(
+      (next) => {
+        this.dataModelResult = next;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.cmsToastrService.typeSuccessEdit();
+          this.optionReload();
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -145,18 +170,6 @@ export class EstateBillboardAddComponent implements OnInit {
   onActionSelectorProperty(model: string[] | null): void {
     this.dataModel.LinkPropertyIds = model;
   }
-  onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
-    if (event.previouslySelectedIndex < event.selectedIndex) {
-      if (!this.formGroup.valid) {
-        this.cmsToastrService.typeErrorFormInvalid();
-        setTimeout(() => {
-          stepper.selectedIndex = event.previouslySelectedIndex;
-          // stepper.previous();
-        }, 10);
-      }
-    }
-
-  }
 
 
   onFormSubmit(): void {
@@ -165,9 +178,18 @@ export class EstateBillboardAddComponent implements OnInit {
     }
     this.formInfo.FormSubmitAllow = false;
 
-    this.DataAddContent();
+    if (this.dataModel.Id && this.dataModel.Id.length > 0) {
+      this.DataEditContent();
+    }
+    else {
+      this.DataAddContent();
+    }
   }
   onFormCancel(): void {
-    this.dialogRef.close({ dialogChangedDate: false });
+    this.router.navigate(['/estate/customer-order/']);
+  }
+  optionReload = (): void => {
+    this.estatePropertyList.optionloadComponent = true;
+    this.estatePropertyList.DataGetAll();
   }
 }

@@ -54,7 +54,7 @@ export class SmsMainApiPathPublicConfigTreeComponent implements OnInit, OnDestro
   @Input()loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<SmsMainApiPathPublicConfigModel>(node => null);
   dataSource = new MatTreeNestedDataSource<SmsMainApiPathPublicConfigModel>();
-  @Output() optionSelect = new EventEmitter<SmsMainApiPathPublicConfigModel>();
+  @Output() optionChange = new EventEmitter<SmsMainApiPathPublicConfigModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -95,7 +95,7 @@ export class SmsMainApiPathPublicConfigTreeComponent implements OnInit, OnDestro
   }
   onActionSelect(model: SmsMainApiPathPublicConfigModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id.length > 0) {

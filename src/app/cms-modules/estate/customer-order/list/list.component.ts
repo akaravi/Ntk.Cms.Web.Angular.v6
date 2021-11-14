@@ -72,8 +72,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
 
   tabledisplayedColumns: string[] = [
     'Title',
-    'SpeedView',
-    'ReloadViewPerMin',
     'Action'
   ];
 

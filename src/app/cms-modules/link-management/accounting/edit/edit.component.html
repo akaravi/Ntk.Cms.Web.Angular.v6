@@ -22,7 +22,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkManagementMemberId Field -->
-    <app-linkmanagement-member-selector (optionSelect)="onActionSelectorSelectLinkManagementMemberId($event)"
+    <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
       [optionSelectForce]="dataModel.LinkManagementMemberId" [optionPlaceholder]="'حساب کاربر'">
     </app-linkmanagement-member-selector>
     <!-- IsCertainDocument Field -->

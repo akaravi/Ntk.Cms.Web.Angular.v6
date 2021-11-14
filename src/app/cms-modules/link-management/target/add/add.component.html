@@ -25,13 +25,13 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
-        <app-linkmanagement-target-category-selector (optionSelect)="onActionSelectorSelect($event)"
+        <app-linkmanagement-target-category-selector (optionChange)="onActionSelectorSelect($event)"
           [optionSelectForce]="dataModel.LinkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
         </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
-          (optionSelect)="onActionSelectorSelectLinkBillboardPatternId($event)"
+          (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
           [optionSelectForce]="dataModel.LinkBillboardPatternId" [optionPlaceholder]="'دسته بندی'">
         </app-linkmanagement-billboard-pattern-selector>
 

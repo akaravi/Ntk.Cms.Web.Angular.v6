@@ -36,7 +36,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkParentId Field -->
-    <app-tag-category-selector (optionSelect)="onActionSelectorSelect($event)"
+    <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)"
       [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'دسته بندی'">
     </app-tag-category-selector>
     <!-- Description Field -->

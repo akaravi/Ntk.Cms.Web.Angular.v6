@@ -57,13 +57,13 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkSourceId Field -->
-        <app-application-source-selector (optionSelect)="onActionSelectSource($event)" [optionSelectFirstItem]="true"
+        <app-application-source-selector (optionChange)="onActionSelectSource($event)" [optionSelectFirstItem]="true"
           [optionSelectForce]="this.dataModel.LinkSourceId" [optionPlaceholder]="fieldsInfo['LinkSourceId']?.FieldTitle"
           [optionDisabled]="!fieldsInfo['LinkSourceId']?.AccessAddField"></app-application-source-selector>
           
 
         <!-- LinkThemeConfigId Field -->
-        <app-application-themeconfig-selector (optionSelect)="onActionSelectTheme($event)"
+        <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
           *ngIf="this.dataModel?.LinkSourceId>0" [optionSelectForce]="this.dataModel.LinkThemeConfigId"
           [optionSelectParentForce]="this.dataModel.LinkSourceId"
           [optionPlaceholder]="fieldsInfo['LinkThemeConfigId']?.FieldTitle" [optionSelectFirstItem]="true"

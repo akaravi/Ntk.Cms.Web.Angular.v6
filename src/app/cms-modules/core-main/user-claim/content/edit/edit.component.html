@@ -36,17 +36,17 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkUserId Field -->
-    <app-cms-user-selector (optionSelect)="onActionSelectUser($event)" [optionSelectForce]="this.dataModel.LinkUserId"
+    <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [optionSelectForce]="this.dataModel.LinkUserId"
       [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkUserId']?.AccessEditField">
     </app-cms-user-selector>
 
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector (optionSelect)="onActionSelectSite($event)" [optionSelectForce]="this.dataModel.LinkSiteId"
+    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionSelectForce]="this.dataModel.LinkSiteId"
       [optionPlaceholder]="'سایت'" [optionDisabled]="!fieldsInfo['LinkSiteId']?.AccessEditField">
     </app-cms-site-selector>
 
     <!-- LinkUserClaimTypeId Field -->
-    <app-core-userclaimtype-selector (optionSelect)="onActionSelectClaimType($event)"
+    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)"
       [optionSelectForce]="this.dataModel.LinkUserClaimTypeId" [optionPlaceholder]="'دسته مدارک'"
       [optionDisabled]="!fieldsInfo['LinkUserClaimTypeId']?.AccessEditField">
     </app-core-userclaimtype-selector>

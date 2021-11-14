@@ -206,7 +206,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.DataGetPropertyDetailGroup(model.Id);
   }
   onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
-    debugger
     this.contractTypeSelected = null;
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'نوع معامله ملک مشخص نیست';

@@ -57,7 +57,7 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<PollingCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<PollingCategoryModel>();
-  @Output() optionSelect = new EventEmitter<PollingCategoryModel>();
+  @Output() optionChange = new EventEmitter<PollingCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -98,7 +98,7 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: PollingCategoryModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
     // if (this.optionsData) {
     //   this.optionsData.data.Select = this.dataModelSelect;
     //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {

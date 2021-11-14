@@ -54,7 +54,7 @@
         <mat-hint align="end">{{ DeviceIPsAllow.value.length }} / 500</mat-hint>
       </mat-form-field>
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector (optionSelect)="onActionSelectSite($event)" [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkSiteId"
+    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkSiteId"
       [optionPlaceholder]="'سایت'"></app-cms-site-selector>
 
       <!-- LinkApplicationId Field -->

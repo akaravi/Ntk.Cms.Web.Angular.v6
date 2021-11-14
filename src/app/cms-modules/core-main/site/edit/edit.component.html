@@ -54,11 +54,11 @@
           </mat-select>
         </mat-form-field>
         <!-- LinkSiteCategoryId Field -->
-        <app-core-sitecategory-selector (optionSelect)="onActionSelectCategory($event)"
+        <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)"
           [optionSelectForce]="this.dataModel.LinkSiteCategoryId" [optionPlaceholder]="'نوع وب سایت'"
           [optionDisabled]="!fieldsInfo['LinkSiteCategoryId']?.AccessEditField"></app-core-sitecategory-selector>
         <!-- linkCreatedBySiteId Field -->
-        <app-core-site-selector (optionSelect)="onActionSelectCategory($event)"
+        <app-core-site-selector (optionChange)="onActionSelectCategory($event)"
           [optionSelectForce]="this.dataModel.linkCreatedBySiteId" [optionPlaceholder]="'سایت والد'"
           [optionDisabled]="!fieldsInfo['linkCreatedBySiteId']?.AccessEditField"></app-core-site-selector>
         <!-- Title Field -->
@@ -572,11 +572,11 @@
         <p>وضعیت مالی و تراکنش حسابداری</p>
          <!-- LinkResellerUserId Field -->
          <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerUserId"
-         (optionSelect)="onActionSelectorLinkResellerUserIdSelect($event)"
+         (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
            [optionPlaceholder]="'کاربر معرف'"></app-cms-user-selector>
            <!-- LinkResellerSiteId Field -->
          <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerSiteId"
-         (optionSelect)="onActionSelectorLinkResellerSiteIdSelect($event)"
+         (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
            [optionPlaceholder]="'سایت معرف'"></app-cms-site-selector>
            
         <!-- HasAccountingForm Field -->

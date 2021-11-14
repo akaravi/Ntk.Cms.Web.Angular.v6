@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <div *ngIf="!this.loading.display">
       <!-- LinkPrivateSiteConfigId Field -->
-      <app-sms-apipath-selector (optionSelect)="onActionSelectPrivateSiteConfig($event)"
+      <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
         [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="' مسیر'">
       </app-sms-apipath-selector>
       <!-- FromNumber Field -->

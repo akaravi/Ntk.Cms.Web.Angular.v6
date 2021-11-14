@@ -55,7 +55,7 @@ export class SmsMainApiPathCompanyTreeComponent implements OnInit, OnDestroy {
   @Input()   loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<SmsMainApiPathCompanyModel>(node => null);
   dataSource = new MatTreeNestedDataSource<SmsMainApiPathCompanyModel>();
-  @Output() optionSelect = new EventEmitter<SmsMainApiPathCompanyModel>();
+  @Output() optionChange = new EventEmitter<SmsMainApiPathCompanyModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -96,7 +96,7 @@ export class SmsMainApiPathCompanyTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: SmsMainApiPathCompanyModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {

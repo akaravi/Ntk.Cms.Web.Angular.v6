@@ -9,7 +9,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-biography-category-tree (optionSelect)="onActionSelectorSelect($event)"></app-biography-category-tree>
+    <app-biography-category-tree (optionChange)="onActionSelectorSelect($event)"></app-biography-category-tree>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

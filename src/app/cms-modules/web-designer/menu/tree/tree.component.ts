@@ -57,7 +57,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<WebDesignerMainMenuModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainMenuModel>();
-  @Output() optionSelect = new EventEmitter<WebDesignerMainMenuModel>();
+  @Output() optionChange = new EventEmitter<WebDesignerMainMenuModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -100,7 +100,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: WebDesignerMainMenuModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {

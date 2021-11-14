@@ -38,7 +38,7 @@ export class ChartContentSelectorComponent implements OnInit {
   filteredOptions: Observable<ChartContentModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<ChartContentModel>();
+  @Output() optionChange = new EventEmitter<ChartContentModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | ChartContentModel) {
     this.onActionSelectForce(x);
@@ -111,12 +111,12 @@ export class ChartContentSelectorComponent implements OnInit {
   }
   onActionSelect(model: ChartContentModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: ChartContentModel): Observable<ChartContentModel[]> {
     return this.filteredOptions.pipe(map(items => {

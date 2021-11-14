@@ -74,7 +74,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkPropertyTypeUsageId Field -->
-        <app-estate-propertytypeusage-selector (optionSelect)="onActionSelectorSelectUsage($event)"
+        <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessAddField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
         </app-estate-propertytypeusage-selector>
@@ -92,7 +92,7 @@
         </div>
 
         <!-- LinkPropertyTypeLanduseId Field -->
-        <app-estate-propertytypelanduse-selector (optionSelect)="onActionSelectorSelectLanduse($event)"
+        <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
           *ngIf="(!listTypeLanduse || listTypeLanduse.length===0) && dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessAddField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
@@ -135,17 +135,17 @@
           </mat-hint>
         </mat-form-field>
         <!-- LinkEstateUserId Field -->
-        <app-estate-accountuser-selector *ngIf="dataProfessional" (optionSelect)="onActionSelectorEstateUser($event)"
+        <app-estate-accountuser-selector *ngIf="dataProfessional" (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.AccessAddField"
           [optionSelectForce]="dataModel.LinkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
         </app-estate-accountuser-selector>
         <!-- LinkCmsUserId Field -->
-        <app-cms-user-selector *ngIf="dataProfessional" (optionSelect)="onActionSelectorCmsUser($event)"
+        <app-cms-user-selector *ngIf="dataProfessional" (optionChange)="onActionSelectorCmsUser($event)"
           [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCmsUserId"
           [optionPlaceholder]="'مالک ملک'">
         </app-cms-user-selector>
         <!-- LinkLocationId Field -->
-        <app-cms-location-selector (optionSelect)="onActionSelectorLocation($event)"
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessAddField"
           [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه'">
         </app-cms-location-selector>
@@ -345,7 +345,7 @@
       </mat-step>
       <mat-step label="معامله" state="seo">
         <p>نوع معامله این ملک را مشخص کنید</p>
-        <app-estate-contract-type-selector (optionSelect)="onActionSelectorContractType($event)"
+        <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)"
           [optionDisabled]="false" [optionPlaceholder]="'نوع معامله'"
           [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
         </app-estate-contract-type-selector>

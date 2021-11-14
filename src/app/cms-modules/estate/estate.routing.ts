@@ -20,6 +20,8 @@ import { EstateBillboardListComponent } from './billbord/list/list.component';
 import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
 import { EstateCustomerOrderAddComponent } from './customer-order/add/add.component';
 import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
+import { EstateBillboardAddComponent } from './billbord/add/add.component';
+import { EstateBillboardEditComponent } from './billbord/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -115,19 +117,27 @@ const routes: Routes = [
         path: 'billboard',
         component: EstateBillboardListComponent
       },
-        /**/
-        {
-          path: 'customer-order',
-          component: EstateCustomerOrderListComponent
-        },
-        {
-          path: 'customer-order/add',
-          component: EstateCustomerOrderAddComponent
-        },
-        {
-          path: 'customer-order/edit/:id',
-          component: EstateCustomerOrderEditComponent
-        },
+      {
+        path: 'billboard/add',
+        component: EstateBillboardAddComponent
+      },
+      {
+        path: 'billboard/edit/:id',
+        component: EstateBillboardEditComponent
+      },
+      /**/
+      {
+        path: 'customer-order',
+        component: EstateCustomerOrderListComponent
+      },
+      {
+        path: 'customer-order/add',
+        component: EstateCustomerOrderAddComponent
+      },
+      {
+        path: 'customer-order/edit/:id',
+        component: EstateCustomerOrderEditComponent
+      },
       /**/
       {
         path: 'property-detail-group',

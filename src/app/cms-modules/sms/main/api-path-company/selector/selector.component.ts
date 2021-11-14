@@ -38,7 +38,7 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<SmsMainApiPathCompanyModel>();
+  @Output() optionChange = new EventEmitter<SmsMainApiPathCompanyModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | SmsMainApiPathCompanyModel) {
     this.onActionSelectForce(x);
@@ -111,14 +111,14 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
       return;
     }
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
     if (this.optionDisabled) {
       return;
     }
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
 
   push(newvalue: SmsMainApiPathCompanyModel): Observable<SmsMainApiPathCompanyModel[]> {
@@ -147,7 +147,7 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;

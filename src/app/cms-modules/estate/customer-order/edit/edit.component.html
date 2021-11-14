@@ -58,7 +58,7 @@
       [optionPlaceholder]="'منطقه'">
     </app-cms-location-autocomplete>
     <!-- LinkPropertyTypeUsageId Field -->
-    <app-estate-propertytypeusage-selector (optionSelect)="onActionSelectorSelectUsage($event)"
+    <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
     </app-estate-propertytypeusage-selector>
@@ -67,7 +67,7 @@
     <br>
 
     <!-- LinkPropertyTypeLanduseId Field -->
-    <app-estate-propertytypelanduse-selector (optionSelect)="onActionSelectorSelectLanduse($event)"
+    <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
       *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
@@ -89,7 +89,6 @@
       [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkContractTypeId" [optionPlaceholder]="'نوع معامله'">
     </app-estate-contract-type-selector>
-    {{contractTypeSelected|json}}
     <!-- SalePriceMin Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SalePriceMin']?.AccessWatchField && contractTypeSelected?.HasSalePrice">
       <mat-label> {{fieldsInfo['SalePriceMin']?.FieldTitle}}</mat-label>

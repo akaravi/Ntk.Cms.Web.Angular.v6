@@ -37,11 +37,11 @@
     </mat-form-field>
 
     <!-- LinkApiPathCompanyId Field -->
-    <app-sms-apipathcompany-selector (optionSelect)="onActionSelectorSelectLinkApiPathCompanyId($event)"
+    <app-sms-apipathcompany-selector (optionChange)="onActionSelectorSelectLinkApiPathCompanyId($event)"
       [optionSelectForce]="dataModel.LinkApiPathCompanyId" [optionPlaceholder]="'کمپانی سرویس دهنده'">
     </app-sms-apipathcompany-selector>
     <!-- LinkPublicConfigId Field -->
-    <app-sms-publicconfig-selector (optionSelect)="onActionSelectSource($event)"
+    <app-sms-publicconfig-selector (optionChange)="onActionSelectSource($event)"
       [optionDisabled]="!fieldsInfo['LinkPublicConfigId']?.AccessAddField"
       [optionSelectForce]="dataModel.LinkPublicConfigId" [optionPlaceholder]="'نوع حساب'">
     </app-sms-publicconfig-selector>

@@ -9,7 +9,7 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <div *ngIf="!dataModelResultGotoBank">
         <!-- LinkPrivateSiteConfigId Field -->
-        <app-bankpayment-privatesiteconfig-selector (optionSelect)="onActionSelectPrivateSiteConfig($event)"
+        <app-bankpayment-privatesiteconfig-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
           [optionSelectForce]="dataModel.BankPaymentPrivateId" [optionPlaceholder]="' حساب'">
         </app-bankpayment-privatesiteconfig-selector>
 

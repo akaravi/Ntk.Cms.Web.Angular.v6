@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkExternalCmsUserId Field -->
-    <app-cms-user-selector (optionSelect)="onActionSelectorCmsUser($event)"
+    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
       [optionDisabled]="!fieldsInfo['LinkExternalCmsUserId']?.AccessAddField"
       [optionSelectForce]="dataModel.LinkExternalCmsUserId" [optionPlaceholder]="'حساب کاربری'">
     </app-cms-user-selector>

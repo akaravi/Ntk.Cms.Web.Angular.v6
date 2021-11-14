@@ -7,7 +7,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPublicConfigId===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-bankpayment-publicconfig-tree (optionSelect)="onActionSelectorSelect($event)">
+    <app-bankpayment-publicconfig-tree (optionChange)="onActionSelectorSelect($event)">
     </app-bankpayment-publicconfig-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

@@ -42,11 +42,11 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCmsUserId Field -->
-    <app-cms-user-selector (optionSelect)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.LinkCmsUserId"
+    <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.LinkCmsUserId"
       [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField">
     </app-cms-user-selector>
     <!-- LinkLocationId Field -->
-    <app-cms-location-selector (optionSelect)="onActionSelectorLocation($event)"
+    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
       [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="'منطقه جغرافیایی'"
       [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessAddField"></app-cms-location-selector>
     <!-- JoinId Field -->

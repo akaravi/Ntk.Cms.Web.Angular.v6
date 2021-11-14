@@ -1,14 +1,17 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    <h3 class="card-label">
+      {{formInfo.FormTitle}}
+    </h3>
+
+
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-      <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -77,17 +80,7 @@
             [openFilemanagerButtonView]="false">
           </cms-file-manager>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-          <button type="button" mat-raised-button (click)="onFormCancel()">
-            {{'ACTION.BACK' | translate}}
-          </button>
-          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-            {{'ACTION.NEXT' | translate}}
-          </button>
-        </div>
-      </mat-step>
 
-      <mat-step label="محتوای نمایش" state="seo">
         <p>محتوای انتخابی شما برای نمایش در این بیلبورد</p>
         <P>با انتخاب هر کدام از موارد زیر محدود نتایج جستجو کوچکتر می شود</P>
 
@@ -129,44 +122,30 @@
             <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
           </a>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-          <button type="button" mat-raised-button color="accent" matStepperPrevious>
-            {{'ACTION.BEFOR' | translate}}
+    
+
+        <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+          <button type="button" (click)="onFormCancel()" class="btn btn-light">
+            <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
           </button>
-          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-            {{'ACTION.SAVE' | translate}}
+          <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
           </button>
         </div>
-      </mat-step>
-      <!-- Icon overrides. -->
-      <ng-template matStepperIcon="main">
-        <mat-icon>call_end</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="seo">
-        <mat-icon>call_end</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="file">
-        <mat-icon>forum</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="loaction">
-        <mat-icon>forum</mat-icon>
-      </ng-template>
-
-    </mat-horizontal-stepper>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </div>
-  <div class="ntk-cms-html-card-message">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
-      </small>
-    </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  </div>
-  <div class="ntk-cms-html-card-footer">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </div>
-</form>
+    
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      </div>
+      <div class="ntk-cms-html-card-message">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      </div>
+      <div class="ntk-cms-html-card-footer">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      </div>
+    </form>
+    
+    <app-estate-property-list [optionLinkCustomerOrderId]="dataModelResult?.Item?.Id" [optionloadComponent]="optionloadComponent"  #optionReloadList></app-estate-property-list>
+    

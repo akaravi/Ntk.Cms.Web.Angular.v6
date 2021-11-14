@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCategoryId Field -->
-    <app-ticketing-departemen-selector (optionSelect)="onActionSelectorSelect($event)"
+    <app-ticketing-departemen-selector (optionChange)="onActionSelectorSelect($event)"
       [optionSelectForce]="dataModel.LinkTicketingDepartemenId" [optionPlaceholder]="'دپارتمان'">
     </app-ticketing-departemen-selector>
     <!-- Question Field -->

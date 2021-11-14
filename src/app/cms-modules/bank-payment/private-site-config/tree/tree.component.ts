@@ -53,7 +53,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<BankPaymentPrivateSiteConfigModel>(node => null);
   dataSource = new MatTreeNestedDataSource<BankPaymentPrivateSiteConfigModel>();
-  @Output() optionSelect = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
+  @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -94,7 +94,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
   }
   onActionSelect(model: BankPaymentPrivateSiteConfigModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

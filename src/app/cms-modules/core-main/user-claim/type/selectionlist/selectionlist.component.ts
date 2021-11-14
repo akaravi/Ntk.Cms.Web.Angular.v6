@@ -32,7 +32,7 @@ export class CoreUserClaimTypeSelectionlistComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<CoreUserClaimTypeModel[]>();
+  @Output() optionChange = new EventEmitter<CoreUserClaimTypeModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();
   @Input() optionReload = () => this.onActionReload();
@@ -91,7 +91,7 @@ export class CoreUserClaimTypeSelectionlistComponent implements OnInit {
       this.optionSelectAdded.emit(value);
       this.dataModelSelect.push(value);
     }
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
 
 

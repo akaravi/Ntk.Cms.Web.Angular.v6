@@ -9,7 +9,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPrivateSiteConfigId===0  && requestLinkUserId===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-bankpayment-privatesiteconfig-tree (optionSelect)="onActionSelectorSelect($event)">
+    <app-bankpayment-privatesiteconfig-tree (optionChange)="onActionSelectorSelect($event)">
     </app-bankpayment-privatesiteconfig-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

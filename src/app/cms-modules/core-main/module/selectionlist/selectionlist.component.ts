@@ -32,7 +32,7 @@ export class CoreModuleSelectionlistComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<CoreModuleModel[]>();
+  @Output() optionChange = new EventEmitter<CoreModuleModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();
   @Input() optionReload = () => this.onActionReload();
@@ -91,7 +91,7 @@ export class CoreModuleSelectionlistComponent implements OnInit {
       this.optionSelectAdded.emit(value);
       this.dataModelSelect.push(value);
     }
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
 
 
