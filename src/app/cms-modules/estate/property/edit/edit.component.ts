@@ -371,7 +371,7 @@ export class EstatePropertyEditComponent implements OnInit {
     if (!model || !model.Id || model.Id.length <= 0) {
       return;
     }
-    this.dataModel.LinkEstateUserId = 0;
+    this.dataModel.LinkEstateUserId = model.Id;
   }
 
 

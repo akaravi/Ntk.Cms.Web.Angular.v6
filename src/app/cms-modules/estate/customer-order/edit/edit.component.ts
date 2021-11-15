@@ -13,6 +13,7 @@ import {
   FilterDataModel,
   FilterModel,
   EstatePropertyDetailGroupService,
+  EstateAccountUserModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -188,7 +189,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.dataModel.LinkPropertyTypeUsageId = model.Id;
@@ -196,7 +197,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.LinkPropertyTypeLanduseId = '';
       this.PropertyTypeSelected = null;
       return;
@@ -209,21 +210,21 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.contractTypeSelected = null;
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'نوع معامله ملک مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.contractTypeSelected = model;
     this.dataModel.LinkPropertyTypeLanduseId = model.Id;
     this.DataGetPropertyDetailGroup(model.Id);
   }
-  onActionSelectorCmsUser(model: CoreUserModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      const message = 'کاربر اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+  onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
+    this.dataModel.LinkEstateUserId = null;
+    if (!model || !model.Id || model.Id.length <= 0) {
       return;
     }
-    this.dataModel.LinkCmsUserId = model.Id;
+    this.dataModel.LinkEstateUserId = model.Id;
   }
+
 
   onActionSelectorLocation(model: number[] | null): void {
 
