@@ -72,7 +72,7 @@
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
     </app-estate-propertytypeusage-selector>
-    <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
+    <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId?.length>0"
       matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkPropertyTypeUsageId = null;">close</mat-icon>
     <br>
 
@@ -81,7 +81,7 @@
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'">
     </app-estate-propertytypelanduse-selector>
-    <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeLanduseId && dataModel.LinkPropertyTypeLanduseId.length>0"
+    <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeLanduseId && dataModel.LinkPropertyTypeLanduseId?.length>0"
       matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkPropertyTypeLanduseId = null;">close
     </mat-icon>
     <br>
@@ -89,7 +89,7 @@
     <hr>
     <!-- CreatedYaer Field -->
     <mat-form-field class="ntk-full-width"
-    *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected.TitleCreatedYaer.length>1">
+    *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected?.TitleCreatedYaer?.length>1">
     <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
     <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="number"
       placeholder="{{fieldsInfo['CreatedYaer']?.FieldTitle}}" />
@@ -100,7 +100,7 @@
   </mat-form-field>
   <!-- Partition Field -->
   <mat-form-field class="ntk-full-width"
-    *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected.TitlePartition.length>1">
+    *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected?.TitlePartition?.length>1">
     <mat-label>{{PropertyTypeSelected.TitlePartition}}</mat-label>
     <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="number"
       placeholder="{{PropertyTypeSelected.TitlePartition}}" />

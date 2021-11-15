@@ -186,7 +186,7 @@ export class EstateBillboardAddComponent implements OnInit {
     }
   }
   onFormCancel(): void {
-    this.router.navigate(['/estate/customer-order/']);
+    this.router.navigate(['/estate/billboard/']);
   }
   optionReload = (): void => {
     this.estatePropertyList.optionloadComponent = true;
