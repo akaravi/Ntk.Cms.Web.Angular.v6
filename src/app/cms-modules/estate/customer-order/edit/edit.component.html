@@ -84,55 +84,55 @@
       [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'">
     </app-estate-propertytypelanduse-selector>
     <mat-icon matSuffix *ngIf="dataModel.LinkPropertyTypeLanduseId && dataModel.LinkPropertyTypeLanduseId?.length>0"
-      matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkPropertyTypeLanduseId = null;">close
+      matSuffix mat-icon-button aria-label="Clear" (click)="onActionSelectorSelectLanduse(null)">close
     </mat-icon>
     <br>
     <br>
     <hr>
- <!-- CreatedYaer Field -->
- <mat-form-field class="ntk-full-width"
- *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected?.TitleCreatedYaer?.length>1">
- <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
- <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="number"
-   placeholder="{{fieldsInfo['CreatedYaer']?.FieldTitle}}" />
- <mat-icon matSuffix *ngIf="dataModel.CreatedYaer" matSuffix mat-icon-button aria-label="Clear"
-   (click)="dataModel.CreatedYaer = null">close</mat-icon>
- <mat-icon matSuffix>mode_edit</mat-icon>
+    <!-- CreatedYaer Field -->
+    <mat-form-field class="ntk-full-width"
+      *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected?.TitleCreatedYaer?.length>1">
+      <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.CreatedYaer" name="dataModel.CreatedYaer" #CreatedYaer type="number"
+        placeholder="{{fieldsInfo['CreatedYaer']?.FieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.CreatedYaer" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.CreatedYaer = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
 
-</mat-form-field>
-<!-- Partition Field -->
-<mat-form-field class="ntk-full-width"
- *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected?.TitlePartition?.length>1">
- <mat-label>{{PropertyTypeSelected.TitlePartition}}</mat-label>
- <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="number"
-   placeholder="{{PropertyTypeSelected.TitlePartition}}" />
- <mat-icon matSuffix *ngIf="dataModel.Partition" matSuffix mat-icon-button aria-label="Clear"
-   (click)="dataModel.Partition = 0">close</mat-icon>
- <mat-icon matSuffix>mode_edit</mat-icon>
-</mat-form-field>
-<!-- Area Field -->
-<mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Area']?.AccessWatchField">
- <mat-label>{{fieldsInfo['Area']?.FieldTitle}}</mat-label>
- <input matInput [(ngModel)]="dataModel.Area" name="dataModel.Area" #Area type="number"
-   disabled="{{!fieldsInfo['Area']?.AccessEditField}}" placeholder="{{fieldsInfo['Area']?.FieldTitle}}" />
- <mat-icon matSuffix *ngIf="dataModel.Area" matSuffix mat-icon-button aria-label="Clear"
-   (click)="dataModel.Area = 0">close</mat-icon>
- <mat-icon matSuffix>mode_edit</mat-icon>
- <mat-hint align="start">
-   <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-   <strong class="info-field-text">{{fieldsInfo['Area']?.FieldDescription}}</strong>
- </mat-hint>
-</mat-form-field>
-    <!-- LinkPropertyIds Field -->
-    <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.AccessEditField" [optionPlaceholder]="' + ملک '"
-      [optionSelectForce]="this.dataModel.LinkPropertyIds">
-    </app-estate-property-autocomplete>
+    </mat-form-field>
+    <!-- Partition Field -->
+    <mat-form-field class="ntk-full-width"
+      *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected?.TitlePartition?.length>1">
+      <mat-label>{{PropertyTypeSelected.TitlePartition}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Partition" name="dataModel.Partition" #Partition type="number"
+        placeholder="{{PropertyTypeSelected.TitlePartition}}" />
+      <mat-icon matSuffix *ngIf="dataModel.Partition" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Partition = 0">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- Area Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Area']?.AccessWatchField">
+      <mat-label>{{fieldsInfo['Area']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Area" name="dataModel.Area" #Area type="number"
+        disabled="{{!fieldsInfo['Area']?.AccessEditField}}" placeholder="{{fieldsInfo['Area']?.FieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.Area" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Area = 0">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="start">
+        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+        <strong class="info-field-text">{{fieldsInfo['Area']?.FieldDescription}}</strong>
+      </mat-hint>
+    </mat-form-field>
+
     <!-- LinkContractTypeIds Field -->
-    <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)"
+    <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
       [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkContractTypeId" [optionPlaceholder]="'نوع معامله'">
     </app-estate-contract-type-selector>
+    <mat-icon matSuffix *ngIf="dataModel.LinkContractTypeId && dataModel.LinkContractTypeId?.length>0" matSuffix
+      mat-icon-button aria-label="Clear" (click)="onActionSelectorContarctType(null)">close
+    </mat-icon>
+    <br>
     <!-- SalePriceMin Field -->
     <mat-form-field class="ntk-full-width"
       *ngIf="fieldsInfo['SalePriceMin']?.AccessWatchField && contractTypeSelected?.HasSalePrice">
@@ -200,7 +200,15 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-
+    <hr>
+    <p>
+      لیست املاک خاص
+    </p>
+    <!-- LinkPropertyIds Field -->
+    <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
+      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.AccessEditField" [optionPlaceholder]="' + ملک '"
+      [optionSelectForce]="this.dataModel.LinkPropertyIds">
+    </app-estate-property-autocomplete>
     <br>
     <div *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
       <a href="{{dataModel.UrlViewContent}}" target="_blank">
@@ -208,11 +216,14 @@
       </a>
     </div>
     <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light BTN">
         <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
       </button>
-      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success BTN" [disabled]="!vform.form.valid">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+      <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN" *ngIf="dataModel?.Id?.length >0 ">
+        <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
       </button>
     </div>
 
@@ -229,5 +240,5 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>
-<app-estate-property-list [optionLinkCustomerOrderId]="dataModelResult?.Item?.Id"
-  [optionloadComponent]="optionloadComponent" #optionReloadList></app-estate-property-list>
+<app-estate-property-list [optionLinkCustomerOrderId]="dataModel.Id" [optionloadComponent]="optionloadComponent"
+  [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>

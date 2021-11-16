@@ -223,4 +223,8 @@ export class EstateBillboardAddComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
+  onFormLoadResult(): void {
+    this.estatePropertyList.optionloadComponent = true;
+    this.estatePropertyList.DataGetAll();
+  }
 }

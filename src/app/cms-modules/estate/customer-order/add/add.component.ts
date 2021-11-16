@@ -238,6 +238,8 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.dataModel.LinkPropertyTypeUsageId = model.Id;
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
+    this.PropertyTypeSelected = null;
+    this.dataModel.LinkPropertyTypeLanduseId = null;
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
       this.cmsToastrService.typeWarningSelected(message);
@@ -257,15 +259,20 @@ export class EstateCustomerOrderAddComponent implements OnInit {
 
   onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
+    this.dataModel.LinkContractTypeId = null;
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'نوع معامله ملک مشخص نیست';
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.contractTypeSelected = model;
-
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
-    this.DataGetPropertyDetailGroup(model.Id);
+    this.dataModel.LinkContractTypeId = model.Id;
+    this.dataModel.RentPriceMin = 0;
+    this.dataModel.RentPriceMax = 0;
+    this.dataModel.SalePriceMin = 0;
+    this.dataModel.SalePriceMax = 0;
+    this.dataModel.DepositPriceMin = 0;
+    this.dataModel.DepositPriceMax = 0;
   }
   onActionSelectorLocation(model: number[] | null): void {
 
@@ -292,6 +299,10 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.router.navigate(['/estate/customer-order/']);
   }
   optionReload = (): void => {
+    this.estatePropertyList.optionloadComponent = true;
+    this.estatePropertyList.DataGetAll();
+  }
+  onFormLoadResult(): void {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
