@@ -18,6 +18,7 @@ import { TagInputModule } from 'ngx-chips';
 import { CoreGuideListComponent } from './list/list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CoreInfoComponent } from '../site/info/core-info.component';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 
 @NgModule({
@@ -47,6 +48,8 @@ import { CoreInfoComponent } from '../site/info/core-info.component';
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
+    InlineSVGModule,
+
     // CmsFileManagerModule
     DragDropModule
   ],

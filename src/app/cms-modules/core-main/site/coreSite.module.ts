@@ -40,6 +40,7 @@ import { CoreSiteUserEditComponent } from './userEdit/userEdit.component';
 import { CoreUserModule } from '../user/coreUser.module';
 import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
 import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.component';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 
 
@@ -90,7 +91,6 @@ import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.
     TagInputModule,
     CoreSiteCategoryCmsModule,
     CoreSiteCategoryCmsModuleModule,
-    
     CoreModuleModule,
     CoreUserModule,
     CoreUserGroupCmsModule,

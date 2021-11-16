@@ -1,93 +1,286 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
+<!-- <app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
   مشخصات و لینک های اشتراک گزاری برای شما و وب سایت شما
 </app-cms-html-notice>
-<div class="ntk-cms-html-card-body">
-  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <app-progress-spinner [options]="loading"> </app-progress-spinner> -->
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  <p *ngIf="dataModelResult.Item?.UserTitle?.length>0">
-    نام شما:
+  <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+    <div class="col-1 alert-icon alert-icon-top">
+      <span class="svg-icon svg-icon-3x svg-icon-primary"
+        [inlineSVG]="'assets/media/svg/icons/Tools/Compass.svg'"></span>
+      </div>
+      <div class="col-11">
+        <h5>
+        مشخصات و لینک های اشتراک گزاری برای شما و وب سایت شما
+      </h5>
+      </div>
+    <div class="row">
+    <div class="col-12 alert-text">
+      <br>
+      <p *ngIf="dataModelResult.Item?.UserTitle?.length>0">
+        
+           نام شما: 
     <br>
     {{dataModelResult.Item.UserTitle}}
-  </p>
-  <p *ngIf="dataModelResult.Item?.SiteTitle?.length>0">
-    عنوان سامانه
+    </p>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-12">
+      <p *ngIf="dataModelResult.Item?.SiteTitle?.length>0">
+
+             عنوان سامانه:         
     <br>
     {{dataModelResult.Item.SiteTitle}}
-  </p>
-  <div *ngIf="dataModelResult.Item?.UrlResellerSite?.length>0">
-    <p>
+   </p>
+    </div>
+    </div>
+   
+  </div>
+
+  <!-- آدرس وب سایت -->
+
+  <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+
+    <div class="col-1 alert-icon alert-icon-top">
+      <span class="svg-icon svg-icon-3x svg-icon-primary"
+        [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
+    </div>
+    <div class="col-11 alert-text">
+      <h5>
       آدرس وب سایت
-      <br>
-      {{dataModelResult.Item.UrlSiteHome}}
+      </h5>
+    </div>
+<div class="row">
+    <div class="col-5">
+     
+        <img [src]="dataModelResult.Item.UrlSiteHomeShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
+        *ngIf="dataModelResult?.Item?.UrlSiteHomeShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
 
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteHome"
-        (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
-    </p>
-    <img [src]="dataModelResult.Item.UrlSiteHomeShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
-      *ngIf="dataModelResult?.Item?.UrlSiteHomeShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
+        <br>
+        <h5>
+        آدرس وب سایت
+        </h5>
+        <a href="{{dataModelResult.Item.UrlSiteHome}}">
+          {{dataModelResult.Item.UrlSiteHome}}
+        </a> 
+        <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteHome" (click)="onActionCopied()"><i
+          class="flaticon2-copy"></i></span>
+    
+    </div>
+    <div class="col-7 alert-text">
+      <h4>توضیحات:</h4>
+      <p>
+       در این بخش میتوانید آدرس وب سایت خود را از طریق لینک یا بارکد مشاهده نمایید.
+      </p>
+    </div>
   </div>
-  <div *ngIf="dataModelResult.Item?.UrlSiteCPanel?.length>0">
-    <p>
+  </div>
+  
+
+
+  <!-- <app-cms-html-notice>
+    <div class="container">
+      <div class="row">
+        <div class="col-1">
+          <mat-icon>turned_in</mat-icon>
+        </div>
+        <div class="col-11">
+          مشخصات و لینک های اشتراک گزاری برای شما و وب سایت شما
+        </div>
+      </div>
+    </div>
+  </app-cms-html-notice> -->
+
+
+
+  <!-- <div class="row" *ngIf="dataModelResult.Item?.UrlResellerSite?.length>0">
+    <div class="col-4">
+      </div>
+    <div class="col-8">
+      
+    </div>
+  </div> -->
+
+
+  <!-- <app-cms-html-notice [svg]="'assets/media/svg/icons/General/Bookmark.svg'">
+    مشخصات و لینک های اشتراک گزاری برای شما و وب سایت شما
+  </app-cms-html-notice> -->
+
+  <!-- آدرس سامانه مدیریت محتوا -->
+
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+
+  <div class="col-1 alert-icon alert-icon-top">
+    <span class="svg-icon svg-icon-3x svg-icon-primary"
+      [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
+  </div>
+
+    <div class="col-11 alert-text" *ngIf="dataModelResult.Item?.UrlSiteCPanel?.length>0">
+        <h5>
       آدرس سامانه مدیریت محتوا
-      <br>
-      {{dataModelResult.Item.UrlSiteCPanel}}
+       </h5>
+      </div>
+      <div class="row">
+        <div class="col-5">
 
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteCPanel"
-        (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
-    </p>
-    <img [src]="dataModelResult.Item.UrlSiteCPanelShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
+          <img [src]="dataModelResult.Item.UrlSiteCPanelShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
       *ngIf="dataModelResult?.Item?.UrlSiteCPanelShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
-  </div>
-  <div *ngIf="dataModelResult.Item?.UrlResellerSite?.length>0">
-    <p>
-      آدرس اشتراک گزاری وب سایت
-      <br>
-      {{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}
 
+        <h5>
+        آدرس سامانه مدیریت محتوا
+         </h5>
+      <a href="{{dataModelResult.Item.UrlSiteCPanel}}">
+        {{dataModelResult.Item.UrlSiteCPanel}}
+      </a>
+      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteCPanel" (click)="onActionCopied()"><i
+          class="flaticon2-copy"></i></span>
+   
+     </div>
+
+     <div class="col-7 alert-text">
+      <h4>توضیحات:</h4>
+      <p>
+        در این بخش میتوانید آدرس سامانه مدیریت محتوا خود را از طریق لینک یا بارکد مشاهده نمایید.
+      </p>
+    </div>
+    </div>
+  </div>
+
+  <!-- آدرس اشتراک گزاری وب سایت -->
+  
+  <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+
+    <div class="col-1 alert-icon alert-icon-top">
+      <span class="svg-icon svg-icon-3x svg-icon-primary"
+        [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
+    </div>
+
+  <div class="col-11 alert-text" *ngIf="dataModelResult.Item?.UrlResellerSite?.length>0">
+      <h5>
+      آدرس اشتراک گزاری وب سایت
+      </h5>
+      </div>
+
+      <div class="row">
+        <div class="col-5">
+
+          <img [src]="dataModelResult.Item.UrlResellerSiteShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
+      *ngIf="dataModelResult?.Item?.UrlResellerSiteShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
+
+      <h5>
+        آدرس اشتراک گزاری وب سایت
+        </h5>
+
+      <a href="{{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}">
+        {{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}
+      </a>
       <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerSiteShortLinkUrl"
         (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
-        <br>
-      
-      
-      <button mat-menu-item (click)="onActionbuttonResllerSite()"
-      >
-      <mat-icon>devices</mat-icon>
-      <span> مشاهده چارت</span>
-    </button>
-    </p>
-    <img [src]="dataModelResult.Item.UrlResellerSiteShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
-      *ngIf="dataModelResult?.Item?.UrlResellerSiteShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
-  </div>
-  <div *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
-    <p>
-      آدرس اشتراک گزاری با حساب کاربری شما
       <br>
-      {{dataModelResult.Item.UrlResellerUserShortLinkUrl}}
 
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerUserShortLinkUrl"
-        (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
-        <br>
-        <button mat-menu-item (click)="onActionbuttonResllerUser()"
-       >
-        <mat-icon>devices</mat-icon>
+      <button mat-menu-item (click)="onActionbuttonResllerSite()" class="btn btn-outline-secondary">
+        <mat-icon>bar_chart</mat-icon>
         <span> مشاهده چارت</span>
       </button>
-    </p>
-    <img [src]="dataModelResult.Item.UrlResellerUserShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
-      *ngIf="dataModelResult?.Item?.UrlResellerUserShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
-  </div>
-  <div>
-    <p *ngIf="dataModelResult.Item?.UrlResellerSiteCategoryShortLinkUrl?.length>0">
-      آدرس اشتراک گزاری با دسته بندی سامانه موجود
-      <br>
-      {{dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl}}
 
+    </div>
+
+      <div class="col-7 alert-text">
+       <h4>توضیحات:</h4>
+         <p>
+          در این بخش میتوانید آدرس اشتراک گزاری وب سایت خود را از طریق لینک یا بارکد مشاهده نمایید.
+       </p>
+      </div> 
+    </div>
+  </div>
+
+  <!-- آدرس اشتراک گزاری با حساب کاربری شما -->
+
+  <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+
+    <div class="col-1 alert-icon alert-icon-top">
+      <span class="svg-icon svg-icon-3x svg-icon-primary"
+        [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
+    </div>
+
+  <div class="col-11 alert-text" *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
+        <h5>
+      آدرس اشتراک گزاری با حساب کاربری شما
+        </h5>
+    </div>
+
+      <div class="row">
+        <div class="col-5">
+
+          <img [src]="dataModelResult.Item.UrlResellerUserShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
+          *ngIf="dataModelResult?.Item?.UrlResellerUserShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
+
+          <h5>
+            آدرس اشتراک گزاری با حساب کاربری شما
+          </h5>
+
+      <a href="{{dataModelResult.Item.UrlResellerUserShortLinkUrl}}">
+        {{dataModelResult.Item.UrlResellerUserShortLinkUrl}}
+      </a>
+      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerUserShortLinkUrl"
+        (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
+      <br>
+      <button mat-menu-item (click)="onActionbuttonResllerUser()" class="btn btn-outline-secondary" >
+        <mat-icon>bar_chart</mat-icon>
+        <span> مشاهده چارت</span>
+      </button>
+    
+     </div>
+
+    <div class="col-7 alert-text">
+      <h4>توضیحات:</h4>
+        <p>
+          در این بخش میتوانید آدرس اشتراک گزاری با حساب کاربری شما خود را از طریق لینک یا بارکد مشاهده نمایید.
+      </p>
+     </div> 
+    </div>
+  </div>
+
+  <!-- آدرس اشتراک گزاری با دسته بندی سامانه موجود -->
+
+  <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+
+    <div class="col-1 alert-icon alert-icon-top">
+      <span class="svg-icon svg-icon-3x svg-icon-primary"
+        [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
+    </div>
+
+    <div class="col-11 alert-text" *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
+      <h5>
+        آدرس اشتراک گزاری با دسته بندی سامانه موجود
+      </h5>
+  </div>
+
+
+    
+
+      <div class="row">
+        <div class="col-5" *ngIf="dataModelResult.Item?.UrlResellerSiteCategoryShortLinkUrl?.length>0">
+
+          <img [src]="dataModelResult.Item.UrlResellerSiteCategoryShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
+      *ngIf="dataModelResult?.Item?.UrlResellerSiteCategoryShortLinkQRCodeBase64?.length>0" height="300px" width="300px">
+         <h5>
+               آدرس اشتراک گزاری با دسته بندی سامانه موجود
+         </h5>
+      <a href="{{dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl}}">
+        {{dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl}}
+      </a>
       <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl"
         (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
-    </p>
-    <img [src]="dataModelResult.Item.UrlResellerSiteCategoryShortLinkQRCodeBase64" alt="بارکد را اسکن کنید"
-      *ngIf="dataModelResult?.Item?.UrlResellerSiteCategoryShortLinkQRCodeBase64?.length>0" height="300px"
-      width="300px">
+      
+      </div>
+
+      <div class="col-7 alert-text">
+        <h4>توضیحات:</h4>
+          <p>
+            در این بخش میتوانید آدرس اشتراک گزاری با دسته بندی سامانه موجود خود را از طریق لینک یا بارکد مشاهده نمایید.
+        </p>
+       </div> 
+    </div>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-</div>
