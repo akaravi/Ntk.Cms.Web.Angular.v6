@@ -104,7 +104,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.dataModel = this.dataModelResult.Item;
+          this.DataGetOneContent();
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           // setTimeout(() => this.router.navigate(['/estate/customer-order']), 1000);
@@ -127,6 +127,38 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       }
     );
 
+  }
+  
+  DataGetOneContent(): void {
+
+    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    this.estateCustomerOrderService.setAccessLoad();
+    this.estateCustomerOrderService.ServiceGetOneById(this.dataModelResult.Item.Id).subscribe(
+      (next) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+
+        this.dataModel = next.Item;
+        if (next.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
   }
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');

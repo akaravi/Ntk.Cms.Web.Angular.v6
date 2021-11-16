@@ -29,6 +29,13 @@ export class EstateContractTypeSelectorComponent implements OnInit {
     public categoryService: EstateContractTypeService) {
       this.loading.cdr = this.cdr;
   }
+  @Input() set optionSelectForce(x: string | EstateContractTypeModel) {
+    this.onActionSelectForce(x);
+  }
+  @Input() set optionTypeUsageId(x: string) {
+    this.typeUsageId = x;
+    this.loadOptions();
+  }
   dataModelResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
   dataModelSelect: EstateContractTypeModel = new EstateContractTypeModel();
   loading = new ProgressSpinnerModel();
@@ -38,11 +45,10 @@ export class EstateContractTypeSelectorComponent implements OnInit {
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
   @Output() optionChange = new EventEmitter<EstateContractTypeModel>();
-  @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | EstateContractTypeModel) {
-    this.onActionSelectForce(x);
-  }
+  @Input() optionTypeView = 1;
 
+  typeUsageId = '';
+  @Input() optionReload = () => this.onActionReload();
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -61,33 +67,47 @@ export class EstateContractTypeSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: EstateContractTypeModel): string | undefined {
     return model ? model.Title : undefined;
   }
   displayOption(model?: EstateContractTypeModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  async DataGetAll(text: string | any): Promise<EstateContractTypeModel[]> {
+  async DataGetAll(text: string | number | any): Promise<EstateContractTypeModel[]> {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
-    // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
+    const filterChild = new FilterDataModel();
     if (text && text.length > 0) {
       filter.PropertyName = 'Title';
       filter.Value = text;
       filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-      filteModel.Filters.push(filter);
-      /* */
+      filter.ClauseType = EnumClauseType.Or;
+      filterChild.Filters.push(filter);
+
       filter = new FilterDataModel();
       filter.PropertyName = 'Id';
       filter.Value = text;
       filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
       filter.ClauseType = EnumClauseType.Or;
+      filterChild.Filters.push(filter);
+      filteModel.Filters.push(filterChild);
+    }
+
+    if (this.typeUsageId && this.typeUsageId.length > 0) {
+      filter = new FilterDataModel();
+      filter.PropertyName = 'PropertyTypes';
+      filter.PropertyAnyName = 'LinkPropertyTypeUsageId';
+      filter.Value = this.typeUsageId;
+      filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.ClauseType = EnumClauseType.And;
       filteModel.Filters.push(filter);
     }
-    
+
+
+
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -136,6 +156,9 @@ export class EstateContractTypeSelectorComponent implements OnInit {
 
   }
   onActionSelectForce(id: string | EstateContractTypeModel): void {
+    if (!id || (id === 'string' && id.length === 0)) {
+      this.dataModelSelect = new EstateContractTypeModel();
+    }
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
