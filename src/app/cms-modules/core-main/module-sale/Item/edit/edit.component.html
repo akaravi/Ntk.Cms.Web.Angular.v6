@@ -38,12 +38,12 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkModuleId Field -->
-    <app-cms-module-selector (optionSelect)="onActionSelectModule($event)"
+    <app-cms-module-selector (optionChange)="onActionSelectModule($event)"
       [optionSelectForce]="this.dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'"
       [optionDisabled]="!fieldsInfo['LinkModuleId']?.AccessEditField">
     </app-cms-module-selector>
     <!-- LinkModuleSaleHeader Field -->
-    <app-core-modulesaleheader-selector (optionSelect)="onActionSelectHeader($event)"
+    <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)"
       [optionSelectForce]="this.dataModel.LinkModuleSaleHeader" [optionPlaceholder]="'دسته بندی'"
       [optionDisabled]="!fieldsInfo['LinkModuleSaleHeader']?.AccessEditField">
     </app-core-modulesaleheader-selector>

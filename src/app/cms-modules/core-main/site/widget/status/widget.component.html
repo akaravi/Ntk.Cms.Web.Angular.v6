@@ -19,7 +19,7 @@
   <!-- Body -->
   <div class="card-body pt-8">
     <!-- LinkCmsSiteId Field -->
-    <app-cms-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
+    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
       [optionSelectForce]=" this.tokenInfoModel.SiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
 
     <!--begin::Item-->

@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
     <!-- LinkCategoryId Field -->
-    <app-hypershop-category-selector (optionSelect)="onActionSelectorSelect($event)"
+    <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)"
       [optionSelectForce]="dataModel.CategoryCode" [optionPlaceholder]="'دسته بندی'">
     </app-hypershop-category-selector>
     <!-- Name Field -->

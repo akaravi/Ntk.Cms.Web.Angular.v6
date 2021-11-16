@@ -24,13 +24,13 @@
     </mat-form-field>
 
     <!-- LinkUserClaimGroupId Field -->
-    <app-core-userclaimgroup-selector (optionSelect)="onActionSelectClaimGroup($event)"
+    <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)"
       [optionSelectForce]="this.dataModel.LinkUserClaimGroupId" [optionPlaceholder]="'گروه مدارک'"
       [optionDisabled]="!fieldsInfo['LinkUserClaimGroupId']?.AccessEditField">
     </app-core-userclaimgroup-selector>
 
     <!-- LinkUserClaimTypeId Field -->
-    <app-core-userclaimtype-selector (optionSelect)="onActionSelectClaimType($event)"
+    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)"
       [optionSelectForce]="this.dataModel.LinkUserClaimTypeId" [optionPlaceholder]="'دسته مدارک'"
       [optionDisabled]="!fieldsInfo['LinkUserClaimTypeId']?.AccessEditField">
     </app-core-userclaimtype-selector>

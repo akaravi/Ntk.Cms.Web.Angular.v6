@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   EstatePropertyModel,
@@ -8,12 +8,10 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EstatePropertyTypeLanduseModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  EnumClauseType,
   EnumFilterDataModelSearchTypes
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -30,13 +28,15 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-application-app-list',
+  selector: 'app-estate-property-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
 export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = '';
   requestLinkContractTypeId = '';
+  requestLinkBillboardId = '';
+  requestLinkCustomerOrderId = '';
   requestInChecking = false;
   constructor(
     private estatePropertyService: EstatePropertyService,
@@ -51,6 +51,9 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
     this.requestLinkContractTypeId = this.activatedRoute.snapshot.paramMap.get('LinkContractTypeId');
+    this.requestLinkBillboardId = this.activatedRoute.snapshot.paramMap.get('LinkBillboardId');
+    this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get('LinkCustomerOrderId');
+
     if (this.activatedRoute.snapshot.paramMap.get('InChecking')) {
       this.searchInChecking = (this.activatedRoute.snapshot.paramMap.get('InChecking') === 'true');
     }
@@ -77,6 +80,19 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       this.filteModelProperty.Filters.push(filter);
     }
   }
+  @Input() optionloadComponent = true;
+  @Input() set optionLinkCustomerOrderId(id: string) {
+    if (id && id.length > 0) {
+      this.requestLinkCustomerOrderId = id;
+    }
+  }
+  @Input() set optionLinkBillboardId(id: string) {
+    if (id && id.length > 0) {
+      this.requestLinkBillboardId = id;
+    }
+  }
+
+
   comment: string;
   author: string;
   dataSource: any;
@@ -133,6 +149,9 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
   }
 
   DataGetAll(): void {
+    if (!this.optionloadComponent) {
+      return;
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyModel();
 
@@ -157,53 +176,112 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.Filters.push(filter);
     }
-    this.estatePropertyService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'Id',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'Id'
-            );
+    if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId',
+        0
+      );
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        'Id',
+        0
+      );
+    } else {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId'
+      );
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'Id'
+      );
+    }
+    if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
+      // ** */
+      this.estatePropertyService.ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel).subscribe(
+        (next) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.IsSuccess) {
+            this.dataModelResult = next;
+            this.tableSource.data = next.ListItems;
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(next.Access);
+            }
           }
-          if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+          else {
+            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+
           }
-        }
-        else {
-          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+          this.loading.Stop(pName);
+
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+
+          this.loading.Stop(pName);
 
         }
-        this.loading.Stop(pName);
+      );
+      // ** */
+    }
+    else if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
+      // ** */
+      this.estatePropertyService.ServiceGetAllWithCustomerOrderId(this.requestLinkCustomerOrderId, filterModel).subscribe(
+        (next) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.IsSuccess) {
+            this.dataModelResult = next;
+            this.tableSource.data = next.ListItems;
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(next.Access);
+            }
+          }
+          else {
+            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
 
-      },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+          }
+          this.loading.Stop(pName);
 
-        this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
 
-      }
-    );
+          this.loading.Stop(pName);
+
+        }
+      );
+      // ** */
+    }
+    else {
+      // ** */
+      this.estatePropertyService.ServiceGetAllEditor(filterModel).subscribe(
+        (next) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.IsSuccess) {
+            this.dataModelResult = next;
+            this.tableSource.data = next.ListItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(next.Access);
+            }
+          }
+          else {
+            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+
+          }
+          this.loading.Stop(pName);
+
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+
+          this.loading.Stop(pName);
+
+        }
+      );
+      //** */
+    }
   }
 
 
@@ -286,8 +364,6 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       return;
     }
     this.router.navigate(['/estate/property/edit', this.tableRowSelected.Id]);
-
-  
   }
   onActionbuttonAdsRow(mode: EstatePropertyModel = this.tableRowSelected): void {
     if (!mode || !mode.Id || mode.Id.length === 0) {

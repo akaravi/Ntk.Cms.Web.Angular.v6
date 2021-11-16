@@ -52,7 +52,7 @@
           </mat-error>
         </mat-form-field> -->
         <!-- sitecategory Field -->
-        <app-core-sitecategory-selector (optionSelect)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
+        <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
           [optionSelectForce]="this.dataModel.LinkSiteCategoryId" [optionPlaceholder]="'نوع سامانه'"
           [optionDisabled]="siteTypeId>0"></app-core-sitecategory-selector>
 

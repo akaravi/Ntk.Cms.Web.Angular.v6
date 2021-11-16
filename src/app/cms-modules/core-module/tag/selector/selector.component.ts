@@ -38,7 +38,7 @@ export class CoreModuleTagSelectorComponent implements OnInit {
   filteredOptions: Observable<CoreModuleTagModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<CoreModuleTagModel>();
+  @Output() optionChange = new EventEmitter<CoreModuleTagModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreModuleTagModel) {
     this.onActionSelectForce(x);
@@ -111,12 +111,12 @@ export class CoreModuleTagSelectorComponent implements OnInit {
   }
   onActionSelect(model: CoreModuleTagModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: CoreModuleTagModel): Observable<CoreModuleTagModel[]> {
     return this.filteredOptions.pipe(map(items => {

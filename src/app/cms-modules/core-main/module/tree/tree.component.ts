@@ -52,7 +52,7 @@ export class CoreModuleTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreModuleModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreModuleModel>();
-  @Output() optionSelect = new EventEmitter<CoreModuleModel>();
+  @Output() optionChange = new EventEmitter<CoreModuleModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -93,7 +93,7 @@ export class CoreModuleTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: CoreModuleModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

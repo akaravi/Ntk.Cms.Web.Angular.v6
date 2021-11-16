@@ -42,7 +42,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCmsUserId Field -->
-    <app-cms-user-selector (optionSelect)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.LinkCmsUserId"
+    <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.LinkCmsUserId"
       [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessEditField">
     </app-cms-user-selector>
 

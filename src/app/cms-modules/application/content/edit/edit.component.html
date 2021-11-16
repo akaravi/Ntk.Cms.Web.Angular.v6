@@ -54,12 +54,12 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkSourceId Field -->
-        <app-application-source-selector (optionSelect)="onActionSelectSource($event)"
+        <app-application-source-selector (optionChange)="onActionSelectSource($event)"
           [optionSelectForce]="this.dataModel.LinkSourceId" [optionPlaceholder]="'سورس اپلیکیشن'"
           [optionDisabled]="!fieldsInfo['LinkSourceId']?.AccessEditField"></app-application-source-selector>
 
         <!-- LinkThemeConfigId Field -->
-        <app-application-themeconfig-selector (optionSelect)="onActionSelectTheme($event)"
+        <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
           [optionSelectForce]="this.dataModel.LinkThemeConfigId" [optionSelectParentForce]="this.dataModel.LinkSourceId"
           [optionPlaceholder]="'قالب اپلیکیشن'" [optionDisabled]="!fieldsInfo['LinkThemeConfigId']?.AccessEditField">
         </app-application-themeconfig-selector>

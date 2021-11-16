@@ -26,7 +26,7 @@
           </mat-error>
         </mat-form-field>
 
-        <app-ticketing-departemen-selector (optionSelect)="onActionSelectSource($event)"
+        <app-ticketing-departemen-selector (optionChange)="onActionSelectSource($event)"
           [optionSelectForce]="this.dataModel.LinkTicketingDepartemenId" [optionPlaceholder]="'دپارتمان'"
           [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.AccessAddField">
         </app-ticketing-departemen-selector>

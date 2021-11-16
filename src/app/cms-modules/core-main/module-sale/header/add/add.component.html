@@ -23,7 +23,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkModuleSaleHeaderGroupId Field -->
-        <app-core-modulesaleheadergroup-selector (optionSelect)="onActionSelectHeaderGroup($event)"
+        <app-core-modulesaleheadergroup-selector (optionChange)="onActionSelectHeaderGroup($event)"
           [optionSelectForce]="this.dataModel.LinkModuleSaleHeaderGroupId" [optionPlaceholder]="'دسته بندی'"
           [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderGroupId']?.AccessAddField">
         </app-core-modulesaleheadergroup-selector>

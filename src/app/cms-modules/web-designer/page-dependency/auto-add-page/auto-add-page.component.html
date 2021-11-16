@@ -8,12 +8,12 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkPageTemplateGuId Field -->
-    <app-webdesigner-pagetemplate-selector (optionSelect)="onActionSelectModule($event)"
+    <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectModule($event)"
       [optionSelectForce]="this.dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'قالب را انتحاب کنید'"
       [optionDisabled]="false">
     </app-webdesigner-pagetemplate-selector>
     <!-- LinkPageParentGuId Field -->
-    <app-webdesigner-page-selector (optionSelect)="onActionSelectParent($event)"
+    <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
       *ngIf="dataModel.LinkPageTemplateGuId && dataModel.LinkPageTemplateGuId.length>0" [optionMasterPage]="true"
       [optionMasterTemplateId]="dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'"
       [optionDisabled]="false">

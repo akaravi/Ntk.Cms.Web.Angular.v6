@@ -37,7 +37,7 @@ export class ArticleCategorySelectorComponent implements OnInit {
   filteredOptions: Observable<ArticleCategoryModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<ArticleCategoryModel>();
+  @Output() optionChange = new EventEmitter<ArticleCategoryModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | ArticleCategoryModel) {
     this.onActionSelectForce(x);
@@ -112,12 +112,12 @@ export class ArticleCategorySelectorComponent implements OnInit {
   }
   onActionSelect(model: ArticleCategoryModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: ArticleCategoryModel): Observable<ArticleCategoryModel[]> {
     return this.filteredOptions.pipe(map(items => {
@@ -145,7 +145,7 @@ export class ArticleCategorySelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;

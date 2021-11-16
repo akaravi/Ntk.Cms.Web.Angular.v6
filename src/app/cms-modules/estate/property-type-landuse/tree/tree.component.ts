@@ -57,7 +57,7 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
   @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstatePropertyTypeLanduseModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertyTypeLanduseModel>();
-  @Output() optionSelect = new EventEmitter<EstatePropertyTypeLanduseModel>();
+  @Output() optionChange = new EventEmitter<EstatePropertyTypeLanduseModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -98,7 +98,7 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
   }
   onActionSelect(model: EstatePropertyTypeLanduseModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id && this.dataModelSelect.Id.length > 0) {

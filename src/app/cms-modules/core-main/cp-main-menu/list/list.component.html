@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-core-cpmainmenu-tree (optionSelect)="onActionSelectorSelect($event)"></app-core-cpmainmenu-tree>
+    <app-core-cpmainmenu-tree (optionChange)="onActionSelectorSelect($event)"></app-core-cpmainmenu-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

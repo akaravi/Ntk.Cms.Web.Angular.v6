@@ -57,7 +57,7 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreGuideModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<CoreGuideModel>();
-  @Output() optionSelect = new EventEmitter<CoreGuideModel>();
+  @Output() optionChange = new EventEmitter<CoreGuideModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -98,7 +98,7 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: CoreGuideModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

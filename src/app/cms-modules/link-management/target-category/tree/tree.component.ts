@@ -55,7 +55,7 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<LinkManagementTargetCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<LinkManagementTargetCategoryModel>();
-  @Output() optionSelect = new EventEmitter<LinkManagementTargetCategoryModel>();
+  @Output() optionChange = new EventEmitter<LinkManagementTargetCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -96,7 +96,7 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
   }
   onActionSelect(model: LinkManagementTargetCategoryModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
     // if (this.optionsData) {
     //   this.optionsData.data.Select = this.dataModelSelect;
     //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {

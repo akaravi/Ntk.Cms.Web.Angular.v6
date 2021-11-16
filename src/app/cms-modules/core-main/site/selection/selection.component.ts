@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 import {
@@ -9,6 +8,8 @@ import {
   CoreAuthService,
   CoreSiteModel,
   CoreSiteService,
+  CoreSiteUserModel,
+  CoreSiteUserService,
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel
@@ -28,7 +29,7 @@ export class CoreSiteSelectionComponent implements OnInit {
   constructor(
     private coreAuthService: CoreAuthService,
     private translationService: TranslationService,
-    private coreSiteService: CoreSiteService,
+    private coreSiteUserService: CoreSiteUserService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private router: Router,
@@ -40,7 +41,7 @@ export class CoreSiteSelectionComponent implements OnInit {
 
   today = new Date();
   filterModel = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreSiteModel>;
+  dataModelResult: ErrorExceptionResult<CoreSiteUserModel>;
   formInfo: FormInfoModel = new FormInfoModel();
   statusCheckExistWebSite = true;
   selectSiteId = 0;
@@ -52,7 +53,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     const pName = this.constructor.name + 'ServiceGetAll';
     this.loading.Start(pName);
 
-    this.coreSiteService.ServiceGetAll(null).subscribe(
+    this.coreSiteUserService.ServiceGetAll(null).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelResult = next;

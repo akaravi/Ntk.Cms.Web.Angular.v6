@@ -35,7 +35,7 @@ export class FileContentSelectorComponent implements OnInit {
   filteredOptions: Observable<FileContentModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<FileContentModel>();
+  @Output() optionChange = new EventEmitter<FileContentModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | FileContentModel) {
     this.onActionSelectForce(x);
@@ -108,12 +108,12 @@ export class FileContentSelectorComponent implements OnInit {
   }
   onActionSelect(model: FileContentModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: FileContentModel): Observable<FileContentModel[]> {
     return this.filteredOptions.pipe(map(items => {

@@ -55,7 +55,7 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<BiographyCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<BiographyCategoryModel>();
-  @Output() optionSelect = new EventEmitter<BiographyCategoryModel>();
+  @Output() optionChange = new EventEmitter<BiographyCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -96,7 +96,7 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: BiographyCategoryModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
     // if (this.optionsData) {
     //   this.optionsData.data.Select = this.dataModelSelect;
     //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {

@@ -33,7 +33,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = new EventEmitter<number>();
-  @Output() optionSelect = new EventEmitter<CoreSiteCategoryModel[]>();
+  @Output() optionChange = new EventEmitter<CoreSiteCategoryModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();
   @Input() optionReload = () => this.onActionReload();
@@ -92,7 +92,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
       this.optionSelectAdded.emit(value);
       this.dataModelSelect.push(value);
     }
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
 
 

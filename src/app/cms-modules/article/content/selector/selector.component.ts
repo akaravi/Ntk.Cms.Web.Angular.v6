@@ -38,7 +38,7 @@ export class ArticleContentSelectorComponent implements OnInit {
   filteredOptions: Observable<ArticleContentModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<ArticleContentModel>();
+  @Output() optionChange = new EventEmitter<ArticleContentModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | ArticleContentModel) {
     this.onActionSelectForce(x);
@@ -111,12 +111,12 @@ export class ArticleContentSelectorComponent implements OnInit {
   }
   onActionSelect(model: ArticleContentModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: ArticleContentModel): Observable<ArticleContentModel[]> {
     return this.filteredOptions.pipe(map(items => {

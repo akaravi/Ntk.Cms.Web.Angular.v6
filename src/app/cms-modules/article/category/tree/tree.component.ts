@@ -54,7 +54,7 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<ArticleCategoryModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<ArticleCategoryModel>();
-  @Output() optionSelect = new EventEmitter<ArticleCategoryModel>();
+  @Output() optionChange = new EventEmitter<ArticleCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -95,7 +95,7 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: ArticleCategoryModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
     // if (this.optionsData) {
     //   this.optionsData.data.Select = this.dataModelSelect;
     //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {

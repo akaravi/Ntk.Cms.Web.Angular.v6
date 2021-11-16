@@ -15,7 +15,13 @@ import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/
 import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list/list.component';
 import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
 import { EstateAdsTypeListComponent } from './ads-type/list/list.component';
-import {  EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
+import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
+import { EstateBillboardListComponent } from './billbord/list/list.component';
+import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
+import { EstateCustomerOrderAddComponent } from './customer-order/add/add.component';
+import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
+import { EstateBillboardAddComponent } from './billbord/add/add.component';
+import { EstateBillboardEditComponent } from './billbord/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -39,6 +45,14 @@ const routes: Routes = [
       },
       {
         path: 'property/LinkContractTypeId/:LinkContractTypeId',
+        component: EstatePropertyListComponent
+      },
+      {
+        path: 'property/LinkBillboardId/:LinkBillboardId',
+        component: EstatePropertyListComponent
+      },
+      {
+        path: 'property/LinkCustomerOrderId/:LinkCustomerOrderId',
         component: EstatePropertyListComponent
       },
       {
@@ -97,6 +111,32 @@ const routes: Routes = [
       {
         path: 'contract-type',
         component: EstateContractTypeListComponent
+      },
+      /**/
+      {
+        path: 'billboard',
+        component: EstateBillboardListComponent
+      },
+      {
+        path: 'billboard/add',
+        component: EstateBillboardAddComponent
+      },
+      {
+        path: 'billboard/edit/:id',
+        component: EstateBillboardEditComponent
+      },
+      /**/
+      {
+        path: 'customer-order',
+        component: EstateCustomerOrderListComponent
+      },
+      {
+        path: 'customer-order/add',
+        component: EstateCustomerOrderAddComponent
+      },
+      {
+        path: 'customer-order/edit/:id',
+        component: EstateCustomerOrderEditComponent
       },
       /**/
       {

@@ -24,7 +24,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-ticketing-departemen-add',
+  selector: 'app-estate-contracttype-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })

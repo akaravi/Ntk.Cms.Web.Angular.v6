@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 // https://stackblitz.com/edit/angular-dynamic-form-builder-9nybhu?file=app%2Fapp.component.html
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'dynamic-form-builder',
   template: `
     <!-- <form [formGroup]="formGroup" class="form-horizontal"> -->
@@ -20,7 +21,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   `,
 })
 export class DynamicFormBuilderComponent implements OnInit {
-  @Output() onSubmit = new EventEmitter();
+  // @Output() onSubmit = new EventEmitter();
   @Input() fields: any[] = [];
   @Input() formGroup: FormGroup;
   constructor() { }
@@ -31,7 +32,7 @@ export class DynamicFormBuilderComponent implements OnInit {
         this.formGroup.addControl(x.name, new FormGroup({}));
         x.options.forEach(o => {
           (this.formGroup.get(x.name) as FormGroup).addControl(o.key, new FormControl(false));
-        })
+        });
       }
       else {
         this.formGroup.addControl(x.name,

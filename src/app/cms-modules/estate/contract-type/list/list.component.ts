@@ -31,7 +31,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-hypershop-category-list',
+  selector: 'app-estate-contracttype-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })

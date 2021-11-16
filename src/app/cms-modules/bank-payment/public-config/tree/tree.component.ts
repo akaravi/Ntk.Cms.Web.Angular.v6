@@ -54,7 +54,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   @Input()loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<BankPaymentPublicConfigModel>(node => null);
   dataSource = new MatTreeNestedDataSource<BankPaymentPublicConfigModel>();
-  @Output() optionSelect = new EventEmitter<BankPaymentPublicConfigModel>();
+  @Output() optionChange = new EventEmitter<BankPaymentPublicConfigModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -95,7 +95,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: BankPaymentPublicConfigModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

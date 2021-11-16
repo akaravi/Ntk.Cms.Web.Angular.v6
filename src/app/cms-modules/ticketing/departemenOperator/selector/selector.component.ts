@@ -38,7 +38,7 @@ export class TicketingDepartemenOperatorSelectorComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<TicketingDepartemenOperatorModel>();
+  @Output() optionChange = new EventEmitter<TicketingDepartemenOperatorModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | TicketingDepartemenOperatorModel) {
     this.onActionSelectForce(x);
@@ -113,11 +113,11 @@ export class TicketingDepartemenOperatorSelectorComponent implements OnInit {
   }
   onActionSelect(model: TicketingDepartemenOperatorModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
 
   push(newvalue: TicketingDepartemenOperatorModel): Observable<TicketingDepartemenOperatorModel[]> {
@@ -146,7 +146,7 @@ export class TicketingDepartemenOperatorSelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;

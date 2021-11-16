@@ -23,13 +23,13 @@
     </mat-form-field>
 
     <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionSelect)="onActionSelectorSelectLinkPropertyId($event)"
+    <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyId']?.AccessAddField" [optionSelectForce]="dataModel.LinkPropertyId"
       [optionPlaceholder]="'شناسه ملک'">
     </app-estate-property-selector>
 
     <!-- LinkAdsTypeId Field -->
-    <app-estate-adstype-selector (optionSelect)="onActionSelectorSelectLinkAdsTypeId($event)"
+    <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
       [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.AccessAddField"
       [optionSelectForce]="dataModel.LinkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
     </app-estate-adstype-selector>

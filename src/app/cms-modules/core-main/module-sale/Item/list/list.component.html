@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkModuleSaleHeader===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-core-modulesaleheader-tree (optionSelect)="onActionSelectorSelect($event)"></app-core-modulesaleheader-tree>
+    <app-core-modulesaleheader-tree (optionChange)="onActionSelectorSelect($event)"></app-core-modulesaleheader-tree>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

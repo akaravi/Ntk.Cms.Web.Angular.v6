@@ -34,7 +34,7 @@
           </mat-error>
         </mat-form-field>
          <!-- LinkCategoryId Field -->
-        <app-blog-category-selector (optionSelect)="onActionSelectorSelect($event)"
+        <app-blog-category-selector (optionChange)="onActionSelectorSelect($event)"
           [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'دسته بندی'">
         </app-blog-category-selector>
          <!-- Title Field -->
@@ -320,7 +320,7 @@
       </mat-step>
       <mat-step label="مطالب مشابه" state="info">
         <p>مطالب مرتبط را مشخص کنید</p>
-        <app-blog-content-selector (optionSelect)="onActionContentSimilarSelect($event)"
+        <app-blog-content-selector (optionChange)="onActionContentSimilarSelect($event)"
           [optionPlaceholder]="'محتوای مشابه'">
 
 

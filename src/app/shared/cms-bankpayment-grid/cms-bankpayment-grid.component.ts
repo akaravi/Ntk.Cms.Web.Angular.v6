@@ -34,7 +34,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
   }
   @Input() optionMasterItem = false;
 
-  @Output() optionSelect = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
+  @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   dataModelSelect: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
 
   @Input() loading = new ProgressSpinnerModel();
@@ -100,7 +100,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
 
   onActionSelect(model: BankPaymentPrivateSiteConfigModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
 
 }

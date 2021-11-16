@@ -34,7 +34,9 @@ import {
   EstatePropertyAdsService,
   EstateAdsTypeService,
   CoreModuleService,
-  FileCategoryService
+  FileCategoryService,
+  EstateBillboardService,
+  EstateCustomerOrderService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -102,6 +104,20 @@ import { EstateAdsTypeAddComponent } from './ads-type/add/add.component';
 import { EstateAdsTypeSelectorComponent } from './ads-type/selector/selector.component';
 import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
 import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payment/sale-payment.component';
+import { EstateBillboardAddComponent } from './billbord/add/add.component';
+import { EstateBillboardEditComponent } from './billbord/edit/edit.component';
+import { EstateBillboardListComponent } from './billbord/list/list.component';
+import { EstateBillboardSelectorComponent } from './billbord/selector/selector.component';
+import { EstateBillboardTreeComponent } from './billbord/tree/tree.component';
+import { EstatePropertyCompleteComponent } from './property/autocomplete/autocomplete.component';
+import { EstateContractTypeCompleteComponent } from './contract-type/autocomplete/autocomplete.component';
+import { EstatePropertyTypeUsageCompleteComponent } from './property-type-usage/autocomplete/autocomplete.component';
+import { EstatePropertyTypeLanduseCompleteComponent } from './property-type-landuse/autocomplete/autocomplete.component';
+import { EstateCustomerOrderAddComponent } from './customer-order/add/add.component';
+import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
+import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
+import { EstateCustomerOrderSelectorComponent } from './customer-order/selector/selector.component';
+import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +128,7 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstatePropertyTypeLanduseListComponent,
     EstatePropertyTypeLanduseSelectorComponent,
     EstatePropertyTypeLanduseTreeComponent,
+    EstatePropertyTypeLanduseCompleteComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,
@@ -119,11 +136,13 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstatePropertyTypeUsageSelectorComponent,
     EstatePropertyTypeUsageTreeComponent,
     EstatePropertyTypeUsageSelectionlistComponent,
+    EstatePropertyTypeUsageCompleteComponent,
     /* */
     EstatePropertyAddComponent,
     EstatePropertyEditComponent,
     EstatePropertyListComponent,
     EstatePropertySelectorComponent,
+    EstatePropertyCompleteComponent,
     /* */
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,
@@ -145,6 +164,19 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstateContractTypeListComponent,
     EstateContractTypeSelectorComponent,
     EstateContractTypeTreeComponent,
+    EstateContractTypeCompleteComponent,
+    /* */
+    EstateBillboardAddComponent,
+    EstateBillboardEditComponent,
+    EstateBillboardListComponent,
+    EstateBillboardSelectorComponent,
+    EstateBillboardTreeComponent,
+    /* */
+    EstateCustomerOrderAddComponent,
+    EstateCustomerOrderEditComponent,
+    EstateCustomerOrderListComponent,
+    EstateCustomerOrderSelectorComponent,
+    EstateCustomerOrderTreeComponent,
     /* */
     EstatePropertyDetailGroupAddComponent,
     EstatePropertyDetailGroupEditComponent,
@@ -184,7 +216,7 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    
+
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -208,6 +240,8 @@ import { EstatePropertyAdsSalePaymentComponent } from './property-ads/sale-payme
     EstateContractService,
     EstateContractTypeService,
     EstateEnumService,
+    EstateBillboardService,
+    EstateCustomerOrderService,
     EstatePropertyService,
     EstatePropertyAccountTypeUserService,
     EstatePropertyDetailGroupService,

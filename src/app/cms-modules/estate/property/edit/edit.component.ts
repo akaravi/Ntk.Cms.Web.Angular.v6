@@ -360,7 +360,8 @@ export class EstatePropertyEditComponent implements OnInit {
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
       const message = 'منطقه اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.LinkLocationId = null;
       return;
     }
     this.dataModel.LinkLocationId = model.Id;
@@ -370,7 +371,7 @@ export class EstatePropertyEditComponent implements OnInit {
     if (!model || !model.Id || model.Id.length <= 0) {
       return;
     }
-    this.dataModel.LinkEstateUserId = 0;
+    this.dataModel.LinkEstateUserId = model.Id;
   }
 
 

@@ -57,7 +57,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
   @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreCpMainMenuModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<CoreCpMainMenuModel>();
-  @Output() optionSelect = new EventEmitter<CoreCpMainMenuModel>();
+  @Output() optionChange = new EventEmitter<CoreCpMainMenuModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -98,7 +98,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: CoreCpMainMenuModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

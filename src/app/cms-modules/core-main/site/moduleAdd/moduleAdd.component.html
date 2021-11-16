@@ -22,10 +22,10 @@
       </mat-form-field>
 
       <!-- LinkCmsSiteId Field -->
-      <app-core-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
+      <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
         [optionSelectForce]="dataModel.LinkSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
       <!-- LinkModuleId Field -->
-      <app-core-module-selector (optionSelect)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
+      <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
         [optionSelectForce]="dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'">
       </app-core-module-selector>
        <!-- ExpireDate Field -->

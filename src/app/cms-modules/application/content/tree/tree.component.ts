@@ -51,7 +51,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<ApplicationAppModel>(node => null);
   dataSource = new MatTreeNestedDataSource<ApplicationAppModel>();
-  @Output() optionSelect = new EventEmitter<ApplicationAppModel>();
+  @Output() optionChange = new EventEmitter<ApplicationAppModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -93,7 +93,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: ApplicationAppModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

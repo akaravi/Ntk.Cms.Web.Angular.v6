@@ -30,7 +30,7 @@
   </div>
   <!-- LinkCmsSiteId Field -->
   <div style="margin: 4px;">
-    <app-cms-site-selector (optionSelect)="onActionSiteSelect($event)" [optionDisabled]="false"
+    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
       [optionSelectForce]="this.tokenInfo.SiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
   </div>
 </div>

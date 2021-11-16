@@ -51,17 +51,17 @@
       </mat-error>
     </mat-form-field>
 
-    <app-webdesigner-pagedependency-selector (optionSelect)="onActionSelectDependency($event)"
+    <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)"
       [optionDisabled]="!fieldsInfo['LinkPageDependencyGuId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkPageDependencyGuId" [optionPlaceholder]="'محل نمایش '">
     </app-webdesigner-pagedependency-selector>
 
-    <app-webdesigner-pagetemplate-selector (optionSelect)="onActionSelectTemplate($event)"
+    <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)"
       [optionDisabled]="!fieldsInfo['LinkPageTemplateGuId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'قالب صفحه '">
     </app-webdesigner-pagetemplate-selector>
 
-    <app-webdesigner-page-selector (optionSelect)="onActionSelectParent($event)"
+    <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
       *ngIf="dataModel.LinkPageTemplateGuId && dataModel.LinkPageTemplateGuId.length>0"
       [optionDisabled]="!fieldsInfo['LinkPageParentGuId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkPageParentGuId" [optionMasterPage]="true"
@@ -79,7 +79,7 @@
     </div>
     <!-- LinkSiteCategoryId Field -->
     <app-cms-sitecategory-selector *ngIf="dataModel.PageDependencyIsDefaultPage && fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.AccessWatchField"
-      (optionSelect)="onActionSelectCategory($event)"
+      (optionChange)="onActionSelectCategory($event)"
       [optionSelectForce]="this.dataModel.PageDependencyIsDefaultPageLinkSiteCategoryId"
       [optionPlaceholder]="'نوع وب سایت'"
       [optionDisabled]="!fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.AccessEditField">

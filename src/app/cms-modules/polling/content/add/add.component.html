@@ -13,9 +13,8 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
-
+        <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
             name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
@@ -30,9 +29,11 @@
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <app-polling-category-selector (optionSelect)="onActionSelectorSelect($event)"
+        <!-- LinkCategoryId Field -->
+        <app-polling-category-selector (optionChange)="onActionSelectorSelect($event)"
           [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'دسته بندی'">
         </app-polling-category-selector>
+        <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
@@ -45,7 +46,7 @@
             Title is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
+        <!-- Question Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>سوال</mat-label>
           <textarea matInput [(ngModel)]="dataModel.Question" name="dataModel.Question" #Question type="text"
@@ -58,7 +59,7 @@
             Question is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
+        <!-- MaxVoteForThisContent Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>حداکثر مجموع امتیاز</mat-label>
           <input matInput [(ngModel)]="dataModel.MaxVoteForThisContent" name="dataModel.MaxVoteForThisContent"
@@ -71,7 +72,7 @@
             MaxVoteForThisContent is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
+        <!-- MaxVoteForEachOption Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>حداکثر امتیاز به هر گزینه</mat-label>
           <input matInput [(ngModel)]="dataModel.MaxVoteForEachOption" name="dataModel.MaxVoteForEachOption"
@@ -84,9 +85,7 @@
             MaxVoteForEachOption is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
-
-
+        <!-- ViewStatisticsAfterVote Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.ViewStatisticsAfterVote"
             *ngIf="fieldsInfo['ViewStatisticsAfterVote']?.AccessWatchField"
@@ -96,7 +95,7 @@
           </mat-slide-toggle>
         </div>
 
-
+        <!-- ViewStatisticsBeforeVote Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.ViewStatisticsBeforeVote"
             *ngIf="fieldsInfo['ViewStatisticsBeforeVote']?.AccessWatchField"
@@ -304,6 +303,7 @@
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMovie" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
+        
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}

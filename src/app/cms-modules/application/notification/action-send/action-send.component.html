@@ -8,10 +8,10 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- AppId Field -->
-    <app-application-app-selector (optionSelect)="onActionSelectApp($event)" *ngIf="LinkMemberId.length===0"
+    <app-application-app-selector (optionChange)="onActionSelectApp($event)" *ngIf="LinkMemberId.length===0"
       [optionSelectForce]="this.dataModel.AppId" [optionPlaceholder]="'اپلیکیشن'"></app-application-app-selector>
     <!-- AppId Field -->
-    <app-application-memberinfo-selector (optionSelect)="onActionSelectMemberInfo($event)"
+    <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)"
       [optionSelectForce]="LinkMemberId" [optionPlaceholder]="'عضو'"></app-application-memberinfo-selector>
 
 

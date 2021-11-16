@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkSourceId===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-application-source-tree (optionSelect)="onActionSelectorSelect($event)"></app-application-source-tree>
+    <app-application-source-tree (optionChange)="onActionSelectorSelect($event)"></app-application-source-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

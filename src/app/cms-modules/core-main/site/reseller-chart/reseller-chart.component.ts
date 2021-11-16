@@ -54,7 +54,7 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
   treeControl = new NestedTreeControl<RessellerChartModel>(node =>  node.SiteChilds );
   
   dataSource = new MatTreeNestedDataSource<RessellerChartModel>();
-  @Output() optionSelect = new EventEmitter<RessellerChartModel>();
+  @Output() optionChange = new EventEmitter<RessellerChartModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -103,7 +103,7 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: RessellerChartModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect) {

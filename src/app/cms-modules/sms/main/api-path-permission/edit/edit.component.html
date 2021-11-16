@@ -24,13 +24,13 @@
     </mat-form-field>
 
     <!-- LinkCmsUserId Field -->
-    <app-cms-user-selector (optionSelect)="onActionSelectorCmsUser($event)"
+    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
       [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCmsUserId"
       [optionPlaceholder]="'کاربر'">
     </app-cms-user-selector>
 
     <!-- LinkApiPathId Field -->
-    <app-sms-apipath-selector (optionSelect)="onActionSelectorSelectLinkApiPathId($event)"
+    <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
       [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="'مسیر'">
     </app-sms-apipath-selector>
     <!-- HasInherits Field -->

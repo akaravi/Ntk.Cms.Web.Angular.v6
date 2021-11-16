@@ -255,7 +255,7 @@
         در سایت ها با دسته بندی زیر قالب بکار گیری باشد:
         <br>
         <app-cms-sitecategory-selectionlist [optionSelectForce]="dataCoreSiteCategoryIds" [optionDisabled]="false"
-          (optionSelect)="onActionSelectorUserCategorySelect($event)"
+          (optionChange)="onActionSelectorUserCategorySelect($event)"
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
           (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
         </app-cms-sitecategory-selectionlist>

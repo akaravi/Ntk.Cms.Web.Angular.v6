@@ -57,7 +57,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstatePropertyDetailGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertyDetailGroupModel>();
-  @Output() optionSelect = new EventEmitter<EstatePropertyDetailGroupModel>();
+  @Output() optionChange = new EventEmitter<EstatePropertyDetailGroupModel>();
   cmsApiStoreSubscribe: Subscription;
 
   @Input() set optionLinkPropertyTypeLanduseId(id: string) {
@@ -108,7 +108,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   }
   onActionSelect(model: EstatePropertyDetailGroupModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id && this.dataModelSelect.Id.length > 0) {

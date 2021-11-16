@@ -29,11 +29,11 @@
             <div class="flex-grow-1 pb-5">
               <div class="d-flex align-items-center pr-2 mb-6 ">
                 <span class="text-muted font-weight-bold font-size-lg flex-grow-1" style="width: 100px;">
-                  {{item.Title}}
+                  {{item.virtual_CmsSite.Title}}
                 </span>
                 <div class="symbol symbol-50">
                   <span class="symbol-label bg-light-light">
-                    <img src="{{item.MainImageSrc | cmsthumbnail}}" class="h-90px align-self-center custom" width="40px" height="40px"
+                    <img src="{{item.virtual_CmsSite.MainImageSrc | cmsthumbnail}}" class="h-90px align-self-center custom" width="40px" height="40px"
                       alt="">
                   </span>
                 </div>
@@ -42,15 +42,15 @@
                 دامنه
               </p>
               <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
-                {{item.CurrentSiteDomainUrl}}
+                {{item.virtual_CmsSite.CurrentSiteDomainUrl}}
               </p>
             </div>
             <div>
               <p class="text-dark font-weight-bolder text-hover-primary font-size-h4 ">
-                تاریخ ثبت
+                دسترسی
               </p>
               <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
-                {{item.CreatedDate|persianDate}}
+                {{item.virtual_CmsUserGroup.Title}}
               </p>
             </div>
             <div *ngIf="item.ExpireDate" [style.backgroundColor]="item.ExpireDate < today ? 'red':''">
@@ -64,7 +64,7 @@
 
             <br>
             <button *ngIf="this.formInfo.ButtonSubmittedEnabled || selectSiteId==item.Id"
-              (click)="onActionClickSelectSite(item.Id)" type="button"
+              (click)="onActionClickSelectSite(item.virtual_CmsSite.Id)" type="button"
               [disabled]="!this.formInfo.ButtonSubmittedEnabled" class="btn btn-outline-success BTN">ورود</button>
 
           </div>

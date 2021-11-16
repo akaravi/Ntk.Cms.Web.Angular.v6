@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestDepartemenId===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-ticketing-departemen-tree (optionSelect)="onActionSelectorSelect($event)"></app-ticketing-departemen-tree>
+    <app-ticketing-departemen-tree (optionChange)="onActionSelectorSelect($event)"></app-ticketing-departemen-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

@@ -37,7 +37,7 @@ export class CoreGuideSelectorComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionSelect = new EventEmitter<CoreGuideModel>();
+  @Output() optionChange = new EventEmitter<CoreGuideModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreGuideModel) {
     this.onActionSelectForce(x);
@@ -112,11 +112,11 @@ export class CoreGuideSelectorComponent implements OnInit {
   }
   onActionSelect(model: CoreGuideModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
 
   push(newvalue: CoreGuideModel): Observable<CoreGuideModel[]> {
@@ -145,7 +145,7 @@ export class CoreGuideSelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;

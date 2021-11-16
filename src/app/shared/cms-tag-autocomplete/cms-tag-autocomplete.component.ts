@@ -26,15 +26,17 @@ export class CmsTagAutocompleteComponent implements OnInit {
     public coreModuleTagService: CoreModuleTagService,
     private cmsToastrService: CmsToastrService) {
   }
+  @Input() set optionSelectForce(x: number[]) {
+    this.onActionSelectForce(x);
+  }
   datatagDataModelResult: ErrorExceptionResult<CoreModuleTagModel> = new ErrorExceptionResult<CoreModuleTagModel>();
   tagDataModel = [];
 
 
-  @Input() optionPlaceholder = '';
+  @Input() optionPlaceholder = '+ Tag';
   @Output() optionChange = new EventEmitter<number[]>();
-  @Input() set optionSelectForce(x: number[]) {
-    this.onActionSelectForce(x);
-  }
+
+  selectForceStatus = true;
   ngOnInit(): void {
   }
 
@@ -63,17 +65,17 @@ export class CmsTagAutocompleteComponent implements OnInit {
       })))
     );
   }
-
-
   onActionChange(): void {
     const retIds = [];
-    this.tagDataModel.forEach(x => { retIds.push(x.id); });
+    this.tagDataModel.forEach(x => { retIds.push(x.value); });
+    this.selectForceStatus = false;
     this.optionChange.emit(retIds);
-
   }
 
   onActionSelectForce(ids: number[]): void {
-
+    if (!this.selectForceStatus) {
+      return;
+    }
     if (!ids || ids.length === 0) {
       return;
     }

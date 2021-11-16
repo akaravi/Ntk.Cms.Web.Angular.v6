@@ -2,7 +2,7 @@
   [optionTreeDisplay]="!requestLinkCompanyId || requestLinkCompanyId.length==0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-sms-apipathcompany-tree (optionSelect)="onActionSelectorSelect($event)"></app-sms-apipathcompany-tree>
+    <app-sms-apipathcompany-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipathcompany-tree>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

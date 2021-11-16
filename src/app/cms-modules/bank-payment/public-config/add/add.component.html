@@ -49,7 +49,7 @@
         </mat-error>
       </mat-form-field>
       <!-- LinkCurrencyId Field -->
-      <app-cms-currency-selector (optionSelect)="onActionSelectCurrency($event)"
+      <app-cms-currency-selector (optionChange)="onActionSelectCurrency($event)"
         [optionDisabled]="!fieldsInfo['LinkCurrencyId']?.AccessEditField" [optionSelectForce]="dataModel.LinkCurrencyId"
         [optionPlaceholder]="'واحد مالی'">
       </app-cms-currency-selector>

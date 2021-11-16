@@ -25,7 +25,7 @@
             </mat-error>
           </mat-form-field>
           <!-- Title Field -->
-          <app-core-cpmainmenu-selector (optionSelect)="onActionSelectorSelect($event)" [optionDisabled]="false"
+          <app-core-cpmainmenu-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
             [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منوی والد'">
           </app-core-cpmainmenu-selector>
           <!-- Title Field -->
@@ -180,12 +180,12 @@
             </mat-slide-toggle>
           </div>
           <!-- LinkModuleId Field -->
-          <app-core-module-selector (optionSelect)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
+          <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
             [optionSelectForce]="dataModel.LinkModuleId" [optionPlaceholder]="'ماژول'">
           </app-core-module-selector>
   
           <app-core-usercategory-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"
-            (optionSelect)="onActionSelectorUserCategorySelect($event)"
+            (optionChange)="onActionSelectorUserCategorySelect($event)"
             (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
             (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
           </app-core-usercategory-selectionlist>

@@ -112,7 +112,7 @@
         [openFilemanagerButtonView]="false"></cms-file-manager>
     </div>
     <app-estate-propertytypeusage-selectionlist [optionSelectForce]="dataEstatePropertyTypeUsageIds"
-      [optionDisabled]="false" (optionSelect)="onActionSelectorUserCategorySelect($event)"
+      [optionDisabled]="false" (optionChange)="onActionSelectorUserCategorySelect($event)"
       (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
       (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
     </app-estate-propertytypeusage-selectionlist>

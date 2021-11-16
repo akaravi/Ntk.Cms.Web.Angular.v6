@@ -1,0 +1,157 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <h3 class="card-label">
+      {{formInfo.FormTitle}}
+    </h3>
+
+
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+            placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Title = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.Description = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+          <mat-error *ngIf="Description.errors?.required">
+            Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- SpeedView Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SpeedView']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['SpeedView']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.SpeedView" name="dataModel.SpeedView" #SpeedView type="number"
+            [disabled]="!fieldsInfo['SpeedView']?.AccessAddField"
+            placeholder="{{fieldsInfo['SpeedView']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.SpeedView" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SpeedView = 1">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- ReloadViewPerMin Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReloadViewPerMin']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['ReloadViewPerMin']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.ReloadViewPerMin" name="dataModel.ReloadViewPerMin" #ReloadViewPerMin
+            type="number" [disabled]="!fieldsInfo['ReloadViewPerMin']?.AccessAddField"
+            placeholder="{{fieldsInfo['ReloadViewPerMin']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.ReloadViewPerMin" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ReloadViewPerMin = 1">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <!-- LinkMainImageId Field -->
+        <div class="mb-3">
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+        </div>
+        <div class="mb-9">
+          <mat-form-field class="ntk-full-width">
+            <mat-label (click)="fileManagerOpenForm = true">فایل عکس
+            </mat-label>
+            <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+              type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
+            <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+            <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+          </mat-form-field>
+          <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
+            [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+            [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage"
+            [openFilemanagerButtonView]="false">
+          </cms-file-manager>
+        </div>
+        <div class="ntk-full-width">
+          <!-- IncludeAllSite Field -->
+          <mat-slide-toggle [(ngModel)]="dataModel.IncludeAllSite" *ngIf="fieldsInfo['IncludeAllSite']?.AccessWatchField"
+            [disabled]="!fieldsInfo['IncludeAllSite']?.AccessAddField" name="dataModel.IncludeAllSite">
+            {{fieldsInfo['IncludeAllSite']?.FieldTitle}}
+          </mat-slide-toggle> 
+        </div>
+        <p>محتوای انتخابی شما برای نمایش در این بیلبورد</p>
+        <P>با انتخاب هر کدام از موارد زیر محدود نتایج جستجو کوچکتر می شود</P>
+
+        <!-- LinkPropertyTypeUsageIds Field -->
+        <app-estate-property-type-usage-autocomplete (optionChange)="onActionSelectorSelectUsage($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkPropertyTypeUsageIds" [optionPlaceholder]="'نوع کاربری'">
+        </app-estate-property-type-usage-autocomplete>
+
+        <!-- LinkPropertyTypeLanduseIds Field -->
+        <app-estate-property-type-landuse-autocomplete (optionChange)="onActionSelectorSelectLanduse($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseIds" [optionPlaceholder]="'نوع ملک'">
+
+        </app-estate-property-type-landuse-autocomplete>
+
+        <br>
+        <!-- LinkContractTypeIds Field -->
+        <app-estate-contract-type-autocomplete (optionChange)="onActionSelectorContarctType($event)"
+          [optionDisabled]="!fieldsInfo['LinkContractTypeIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkContractTypeIds" [optionPlaceholder]="'نوع معامله'">
+        </app-estate-contract-type-autocomplete>
+        <!-- LinkLocationIds Field -->
+        <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
+          [optionDisabled]="!fieldsInfo['LinkLocationIds']?.AccessAddField"
+          [optionSelectForce]="dataModel.LinkLocationIds" [optionPlaceholder]="'منطقه'">
+        </app-cms-location-autocomplete>
+
+        <!-- LinkPropertyIds Field -->
+        <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.AccessAddField" [optionPlaceholder]="' + ملک '"
+          [optionSelectForce]="this.dataModel.LinkPropertyIds">
+        </app-estate-property-autocomplete>
+
+
+        <br>
+        <div *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
+          <a href="{{dataModel.UrlViewContent}}" target="_blank">
+            <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
+          </a>
+        </div>
+    
+
+        <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+          <button type="button" (click)="onFormCancel()" class="btn btn-light">
+            <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+          </button>
+          <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+    
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      </div>
+      <div class="ntk-cms-html-card-message">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      </div>
+      <div class="ntk-cms-html-card-footer">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      </div>
+    </form>
+    
+    <app-estate-property-list [optionLinkCustomerOrderId]="dataModelResult?.Item?.Id" [optionloadComponent]="optionloadComponent"  #optionReloadList></app-estate-property-list>
+    

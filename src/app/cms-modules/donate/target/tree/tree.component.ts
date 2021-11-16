@@ -54,7 +54,7 @@ export class DonateTargetTreeComponent implements OnInit, OnDestroy {
   @Input()  loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<DonateTargetModel>(node => null);
   dataSource = new MatTreeNestedDataSource<DonateTargetModel>();
-  @Output() optionSelect = new EventEmitter<DonateTargetModel>();
+  @Output() optionChange = new EventEmitter<DonateTargetModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -95,7 +95,7 @@ export class DonateTargetTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: DonateTargetModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
     // if (this.optionsData) {
     //   this.optionsData.data.Select = this.dataModelSelect;
     //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {

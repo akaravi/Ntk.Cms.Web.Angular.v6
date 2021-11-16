@@ -54,7 +54,7 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<TicketingDepartemenModel>(node => null);
   dataSource = new MatTreeNestedDataSource<TicketingDepartemenModel>();
-  @Output() optionSelect = new EventEmitter<TicketingDepartemenModel>();
+  @Output() optionChange = new EventEmitter<TicketingDepartemenModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
@@ -95,7 +95,7 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
   }
   onActionSelect(model: TicketingDepartemenModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

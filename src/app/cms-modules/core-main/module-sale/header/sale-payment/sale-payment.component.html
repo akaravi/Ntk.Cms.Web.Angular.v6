@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
 <mat-dialog-content>
 
-  <app-cms-bankpayment-grid [optionMasterItem]="true" (optionSelect)="onActionSelectCalculate($event)">
+  <app-cms-bankpayment-grid [optionMasterItem]="true" (optionChange)="onActionSelectCalculate($event)">
   </app-cms-bankpayment-grid>
   <div *ngIf="viewCalculate">
     {{ 'FeeTax' }}:

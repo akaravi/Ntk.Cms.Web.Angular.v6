@@ -36,7 +36,7 @@ export class LinkManagementMemberSelectorComponent implements OnInit {
   filteredOptions: Observable<LinkManagementMemberModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionSelect = new EventEmitter<LinkManagementMemberModel>();
+  @Output() optionChange = new EventEmitter<LinkManagementMemberModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | LinkManagementMemberModel) {
     this.onActionSelectForce(x);
@@ -111,12 +111,12 @@ export class LinkManagementMemberSelectorComponent implements OnInit {
   }
   onActionSelect(model: LinkManagementMemberModel): void {
     this.dataModelSelect = model;
-    this.optionSelect.emit(this.dataModelSelect);
+    this.optionChange.emit(this.dataModelSelect);
 
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
-    this.optionSelect.emit(null);
+    this.optionChange.emit(null);
   }
   push(newvalue: LinkManagementMemberModel): Observable<LinkManagementMemberModel[]> {
     return this.filteredOptions.pipe(map(items => {
@@ -144,7 +144,7 @@ export class LinkManagementMemberSelectorComponent implements OnInit {
           this.filteredOptions = this.push(next.Item);
           this.dataModelSelect = next.Item;
           this.formControl.setValue(next.Item);
-          this.optionSelect.emit(next.Item);
+          this.optionChange.emit(next.Item);
         }
       });
       return;
