@@ -128,9 +128,8 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     );
 
   }
-  
-  DataGetOneContent(): void {
 
+  DataGetOneContent(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';

@@ -56,6 +56,10 @@ const routes: Routes = [
         component: LinkManagementTargetBillboardLogListComponent
       },
       {
+        path: 'target-billboard-log/Key/:Key',
+        component: LinkManagementTargetBillboardLogListComponent
+      },
+      {
         path: 'billboard-pattern',
         component: LinkManagementBillboardPatternListComponent
       },

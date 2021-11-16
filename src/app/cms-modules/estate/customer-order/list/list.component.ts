@@ -71,6 +71,9 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
+    'Id',
+    'LinkSiteId',
+    'RecordStatus',
     'Title',
     'Action'
   ];
@@ -98,6 +101,27 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId',
+        0
+      );
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        'Id',
+        0
+      );
+    } else {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId'
+      );
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'Id'
+      );
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();
 
@@ -170,7 +194,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
- 
+
     this.router.navigate(['/estate/customer-order/add']);
   }
   onActionbuttonEditRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
@@ -214,7 +238,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.estateCustomerOrderService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -241,6 +265,18 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       }
       );
 
+  }
+  onActionbuttonOpenCustomerOrder(model: EstateCustomerOrderModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree([this.tableRowSelected.UrlViewContent])
+    // );
+    window.open(this.tableRowSelected.UrlViewContent, '_blank');
   }
   onActionbuttonContentList(model: EstateCustomerOrderModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {

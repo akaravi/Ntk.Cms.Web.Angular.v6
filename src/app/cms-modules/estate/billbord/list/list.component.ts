@@ -75,6 +75,10 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
+    'LinkMainImageIdSrc',
+    'Id',
+    'LinkSiteId',
+    'RecordStatus',
     'Title',
     'SpeedView',
     'ReloadViewPerMin',
@@ -104,6 +108,27 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId',
+        0
+      );
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        'Id',
+        0
+      );
+    } else {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId'
+      );
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'Id'
+      );
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateBillboardModel();
 
@@ -221,7 +246,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.estateBillboardService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -298,6 +323,19 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       }
     );
 
+  }
+  onActionbuttonOpenBillboard(model: EstateBillboardModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree([this.tableRowSelected.UrlViewContent])
+    // );
+    // window.open(url, '_blank');
+    window.open(this.tableRowSelected.UrlViewContent, '_blank');
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
