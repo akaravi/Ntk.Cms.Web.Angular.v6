@@ -104,7 +104,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       (next) => {
         this.dataModelResult = next;
         if (next.IsSuccess) {
-          this.dataModel = this.dataModelResult.Item;
+          this.DataGetOneContent();
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           // setTimeout(() => this.router.navigate(['/estate/customer-order']), 1000);
@@ -127,6 +127,37 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       }
     );
 
+  }
+
+  DataGetOneContent(): void {
+    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    this.estateCustomerOrderService.setAccessLoad();
+    this.estateCustomerOrderService.ServiceGetOneById(this.dataModelResult.Item.Id).subscribe(
+      (next) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+
+        this.dataModel = next.Item;
+        if (next.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
   }
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
@@ -207,6 +238,8 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.dataModel.LinkPropertyTypeUsageId = model.Id;
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
+    this.PropertyTypeSelected = null;
+    this.dataModel.LinkPropertyTypeLanduseId = null;
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
       this.cmsToastrService.typeWarningSelected(message);
@@ -226,15 +259,20 @@ export class EstateCustomerOrderAddComponent implements OnInit {
 
   onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
+    this.dataModel.LinkContractTypeId = null;
     if (!model || !model.Id || model.Id.length <= 0) {
       const message = 'نوع معامله ملک مشخص نیست';
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.contractTypeSelected = model;
-
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
-    this.DataGetPropertyDetailGroup(model.Id);
+    this.dataModel.LinkContractTypeId = model.Id;
+    this.dataModel.RentPriceMin = 0;
+    this.dataModel.RentPriceMax = 0;
+    this.dataModel.SalePriceMin = 0;
+    this.dataModel.SalePriceMax = 0;
+    this.dataModel.DepositPriceMin = 0;
+    this.dataModel.DepositPriceMax = 0;
   }
   onActionSelectorLocation(model: number[] | null): void {
 
@@ -261,6 +299,10 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.router.navigate(['/estate/customer-order/']);
   }
   optionReload = (): void => {
+    this.estatePropertyList.optionloadComponent = true;
+    this.estatePropertyList.DataGetAll();
+  }
+  onFormLoadResult(): void {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }

@@ -175,4 +175,8 @@ export class EstateBillboardEditComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
+  onFormLoadResult(): void {
+    this.estatePropertyList.optionloadComponent = true;
+    this.estatePropertyList.DataGetAll();
+  }
 }

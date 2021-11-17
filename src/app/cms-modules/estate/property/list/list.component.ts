@@ -81,6 +81,8 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     }
   }
   @Input() optionloadComponent = true;
+  @Input() optionloadByRoute = true;
+  
   @Input() set optionLinkCustomerOrderId(id: string) {
     if (id && id.length > 0) {
       this.requestLinkCustomerOrderId = id;

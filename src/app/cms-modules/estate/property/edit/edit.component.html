@@ -381,11 +381,12 @@
       </mat-step>
       <mat-step label="معامله" state="seo">
         <p>نوع معامله این ملک را مشخص کنید</p>
-        <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionDisabled]="false"
+        <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionDisabled]="false" [optionTypeView]="2"
           [optionPlaceholder]="'نوع معامله'" [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
         </app-estate-contract-type-selector>
         <div *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
-
+          <br>
+          <br>
           <!-- SalePrice Field -->
           <div class="mb-9">
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">

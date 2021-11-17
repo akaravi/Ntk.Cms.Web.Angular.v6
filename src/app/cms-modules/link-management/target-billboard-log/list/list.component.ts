@@ -13,7 +13,7 @@ import {
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
@@ -22,7 +22,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LinkManagementTargetBillboardLogDeleteComponent } from '../delete/delete.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LinkManagementTargetBillboardLogEditComponent } from '../edit/edit.component';
 
@@ -34,6 +34,7 @@ import { LinkManagementTargetBillboardLogEditComponent } from '../edit/edit.comp
 export class LinkManagementTargetBillboardLogListComponent implements OnInit, OnDestroy {
   requestLinkManagementBillboardId = 0;
   requestLinkManagementTargetId = 0;
+  requestKey = '';
   constructor(
     public publicHelper: PublicHelper,
     private linkManagementTargetBillboardLogService: LinkManagementTargetBillboardLogService,
@@ -47,6 +48,9 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     this.loading.cdr = this.cdr;
     this.requestLinkManagementBillboardId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementBillboardId'));
     this.requestLinkManagementTargetId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementTargetId'));
+    if (this.activatedRoute.snapshot.paramMap.get('Key')) {
+      this.requestKey = this.activatedRoute.snapshot.paramMap.get('Key');
+    }
     if (this.requestLinkManagementBillboardId > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkManagementBillboardId';
@@ -109,6 +113,18 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId',
+        0
+      );
+    } else {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'LinkSiteId'
+      );
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementTargetBillboardLogModel();
 
@@ -122,39 +138,47 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     /*filter CLone*/
 
     this.linkManagementTargetBillboardLogService.setAccessLoad();
-    this.linkManagementTargetBillboardLogService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    if (this.requestKey && this.requestKey.length > 0) {
+      this.linkManagementTargetBillboardLogService.ServiceGetAllByKey(this.requestKey, filterModel).subscribe(
+        (next) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
+          if (next.IsSuccess) {
+            this.dataModelResult = next;
+            this.tableSource.data = next.ListItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(next.Access);
+            }
           }
-          if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
-          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
         }
-        this.loading.Stop(pName);
+      );
+    } else {
+      this.linkManagementTargetBillboardLogService.ServiceGetAllEditor(filterModel).subscribe(
+        (next) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
-      },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+          if (next.IsSuccess) {
+            this.dataModelResult = next;
+            this.tableSource.data = next.ListItems;
 
-        this.loading.Stop(pName);
-
-      }
-    );
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(next.Access);
+            }
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
+    }
   }
 
   onTableSortData(sort: MatSort): void {
@@ -323,13 +347,11 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    if(this.requestLinkManagementBillboardId>0 )
-    {
-    this.router.navigate(['/linkmanagement/billboard/']);
+    if (this.requestLinkManagementBillboardId > 0) {
+      this.router.navigate(['/linkmanagement/billboard/']);
     }
-    if(this.requestLinkManagementTargetId>0)
-    {
-    this.router.navigate(['/linkmanagement/target/']);
+    if (this.requestLinkManagementTargetId > 0) {
+      this.router.navigate(['/linkmanagement/target/']);
     }
   }
 
