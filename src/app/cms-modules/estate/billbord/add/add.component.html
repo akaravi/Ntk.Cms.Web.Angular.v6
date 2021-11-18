@@ -1,14 +1,15 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+  <h4> اضافه کردن بیلبورد</h4>
+  در این بخش شما میتوانید بیلبورد جدید ایجاد نمایید.
+</app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    <h3 class="card-label">
-      {{formInfo.FormTitle}}
-    </h3>
+  
 
 
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
+
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -155,5 +156,5 @@
   </div>
 </form>
 
-<app-estate-property-list [optionLinkCustomerOrderId]="dataModel.Id"
+<app-estate-property-list [optionLinkBillboardId]="dataModel.Id"
   [optionloadComponent]="optionloadComponent"  [optionloadByRoute]="false"#optionReloadList></app-estate-property-list>

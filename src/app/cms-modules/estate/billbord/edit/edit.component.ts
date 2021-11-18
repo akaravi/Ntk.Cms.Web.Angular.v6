@@ -134,6 +134,10 @@ export class EstateBillboardEditComponent implements OnInit {
       }
     );
   }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
+
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
