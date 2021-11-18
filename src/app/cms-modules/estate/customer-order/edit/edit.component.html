@@ -61,7 +61,7 @@
         </mat-slide-toggle>
       </div>
       <p>محتوای انتخابی شما برای نمایش در این بیلبورد</p>
-      <P>با انتخاب هر کدام از موارد زیر محدود نتایج جستجو کوچکتر می شود</P>
+      <P>با انتخاب هر کدام از موارد زیر محدوده نتایج جستجو کوچکتر می شود</P>
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
         [optionDisabled]="!fieldsInfo['LinkLocationIds']?.AccessEditField"
@@ -198,7 +198,7 @@
           (click)="dataModel.DepositPriceMax = 0">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
-
+      <br>
       <p>
         لیست املاک خاص
       </p>
@@ -219,9 +219,17 @@
         <i class="flaticon2-copy"></i></span>
 
       <h5 align="right">توضیحات:</h5>
-      <p dir="rtl" align="right">
-        شما میتوانید با اسکن کردن بارکد بالا و یا کپی کردن لینک آن خروجی بیلبورد خود را مشاهده نمایید.
-      </p>
+      <p dir="rtl" align="right" style="font-size: 17px;">
+        میتوانید با اسکن کردن بارکد بالا و یا کپی کردن لینک آن خروجی بیلبورد خود را مشاهده نمایید.
+     </p>
+      <p dir="rtl" align="right" style="font-size: 17px;">
+        در بخش 'عنوان' میتوانید عنوان صفحه نمایش خود را ویرایش نمایید و برای آن پرسنل،آدرس و توضیحات بنویسید.
+         <br>
+         در بخش بعدی میتوانید محتوای نمایشی خود برای بیلبورد را مشاهده نمایید.
+         <br>
+         با پر کردن هر کدام از فیلد ها میتوانید محدوده جستجو خود را کوچکتر کنید.
+         <br>
+         در نهایت با کلیک بر روی گزینه 'مشاهده' میتوانید آگهی های مورد نظر خود را مشاهده و با کلیک بر روی گزینه 'ذخیره' بیلبورد خود را بسازید. 
     </div>
 
     <div class="row">
