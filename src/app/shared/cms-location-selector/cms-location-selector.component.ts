@@ -60,9 +60,15 @@ export class CmsLocationSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreLocationModel): string | undefined {
+    if (model && model.virtual_Parent && model.virtual_Parent.Title.length > 0) {
+      return model.virtual_Parent.Title + ' > ' + model.Title;
+    }
     return model ? (model.Title) : undefined;
   }
   displayOption(model?: CoreLocationModel): string | undefined {
+    if (model && model.virtual_Parent && model.virtual_Parent.Title.length > 0) {
+      return model.virtual_Parent.Title + ' > ' + model.Title;
+    }
     return model ? (model.Title) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreLocationModel[]> {
