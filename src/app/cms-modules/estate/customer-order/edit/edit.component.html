@@ -4,10 +4,10 @@
   </h3>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
 
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->  
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <div class="row alert alert-custom alert-white alert-shadow gutter-b">
@@ -209,7 +209,8 @@
       </app-estate-property-autocomplete>
       <br>
     </div>
-    <div class="col-6" *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
+    <div class="col-6" align="center"
+      *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
 
       <a href="{{dataModel.UrlViewContent}}" target="_blank">
         <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
@@ -237,7 +238,6 @@
             <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
           </button>
         </div>
-
       </div>
     </div>
   </div>
@@ -245,18 +245,18 @@
 
 
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
- 
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 </form>
 <div class="row alert alert-custom alert-white alert-shadow gutter-b">
   <div class="col-12">
-      <app-estate-property-list [optionLinkCustomerOrderId]="dataModel.Id" [optionloadComponent]="optionloadComponent"
+    <app-estate-property-list [optionLinkCustomerOrderId]="dataModel.Id" [optionloadComponent]="optionloadComponent"
       [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
   </div>
 </div>
