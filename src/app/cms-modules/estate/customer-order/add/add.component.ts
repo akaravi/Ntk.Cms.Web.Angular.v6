@@ -29,6 +29,9 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-estate-customer-order-add',
@@ -44,6 +47,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    public http: HttpClient,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
@@ -305,5 +309,24 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   onFormLoadResult(): void {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
+  }
+  QDocModel: any = {};
+  onActionSendUrlToQDoc(): void {
+    debugger
+    this.QDocModel.message = this.dataModel.UrlViewContent;
+    if (!this.QDocModel.username && this.QDocModel.username.length <= 0) {
+      const message = 'کد شناسه را از وبسایت https://Qdoc.ir دریافت نمایید';
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.http.post(environment.cmsServerConfig.configQDocServerPath, this.QDocModel)
+      .pipe(
+        map((ret: any) => {
+          this.cmsToastrService.typeSuccessMessage('دستور به وب سایت ارسال شد');
+        })
+        // 
+        //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');
+        // 
+      ).toPromise();
   }
 }

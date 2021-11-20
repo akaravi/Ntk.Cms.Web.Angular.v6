@@ -217,7 +217,19 @@
       </a>
       <span class="navi-icon" [cdkCopyToClipboard]="dataModel.UrlViewContent" (click)="onActionCopied()">
         <i class="flaticon2-copy"></i></span>
-
+ <!-- username Field -->
+ <mat-form-field class="ntk-full-width">
+  <mat-label> کد شناسه</mat-label>
+  <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="number"
+    placeholder="12345" />
+  <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
+    (click)="QDocModel.username = 0">close</mat-icon>
+  <mat-icon matSuffix>mode_edit</mat-icon>
+</mat-form-field>
+<button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"
+  [disabled]="!vform.form.valid">
+  <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+</button>
       <h5 align="right">توضیحات:</h5>
       <p dir="rtl" align="right" style="font-size: 17px;">
         میتوانید با اسکن کردن بارکد بالا و یا کپی کردن لینک آن خروجی بیلبورد خود را مشاهده نمایید.

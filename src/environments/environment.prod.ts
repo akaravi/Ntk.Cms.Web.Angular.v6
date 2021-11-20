@@ -17,6 +17,7 @@ export const environment = {
     configMvcServerPath: 'https://ntkcms.ir/',
     configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
     configFileServerPath: 'https://apifile.ir/api/v1/',
+    configQDocServerPath: 'https://qdoc.ir/api/chat',
   },
   cmsUiConfig: {
     Pathlogin: '/auth/singin',
