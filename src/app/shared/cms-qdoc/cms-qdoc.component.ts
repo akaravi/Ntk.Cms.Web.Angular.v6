@@ -16,10 +16,10 @@ export class CmsQDocComponent implements OnInit {
 
   ) { }
   @Input() optionUrl = '';
+  QDocModel: any = {};
 
   ngOnInit(): void {
   }
-  QDocModel: any = {};
   onActionSendUrlToQDoc(): void {
     this.QDocModel.message = this.optionUrl;
     if (!this.QDocModel.username && this.QDocModel.username.length <= 0) {

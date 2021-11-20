@@ -128,6 +128,7 @@
       <a href="{{dataModel.UrlViewContent}}" target="_blank">
         <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
       </a>
+      <app-cms-qdoc [optionUrl]="dataModel.UrlViewContent"></app-cms-qdoc>
     </div>
 
     <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">

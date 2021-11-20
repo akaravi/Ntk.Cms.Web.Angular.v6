@@ -188,24 +188,5 @@ export class EstateBillboardEditComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
-  QDocModel: any = {};
-  onActionSendUrlToQDoc(): void {
-    this.QDocModel.message = this.dataModel.UrlViewContent;
-    if (!this.QDocModel.username && this.QDocModel.username.length <= 0) {
-      const message = 'کد شناسه را از وبسایت https://Qdoc.ir دریافت نمایید';
-      this.cmsToastrService.typeWarningSelected(message);
-      return;
-    }
-    this.http.post(environment.cmsServerConfig.configQDocServerPath, this.QDocModel, {
-      headers: this.estatePropertyDetailGroupService.getHeaders(),
-    })
-      .pipe(
-        map((ret: any) => {
-          this.cmsToastrService.typeSuccessMessage('دستور به وب سایت ارسال شد');
-        })
-        // 
-        //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');
-        // 
-      ).toPromise();
-  }
+  
 }

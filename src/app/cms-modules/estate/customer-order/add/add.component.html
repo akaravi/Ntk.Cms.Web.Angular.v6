@@ -211,19 +211,7 @@
       <a href="{{dataModel.UrlViewContent}}" target="_blank">
         <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
       </a>
-      <!-- username Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label> کد شناسه</mat-label>
-        <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="text"
-          placeholder="12345" />
-        <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
-          (click)="QDocModel.username = 0">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-      </mat-form-field>
-      <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"
-        [disabled]="!vform.form.valid">
-        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-      </button>
+      <app-cms-qdoc [optionUrl]="dataModel.UrlViewContent"></app-cms-qdoc>
     </div>
     <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
       <button type="button" (click)="onFormCancel()" class="btn btn-light BTN">

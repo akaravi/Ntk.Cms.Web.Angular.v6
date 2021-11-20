@@ -147,24 +147,7 @@
           در نهایت با کلیک بر روی گزینه 'مشاهده' میتوانید آگهی های مورد نظر خود را مشاهده و با کلیک بر روی گزینه 'ذخیره' بیلبورد خود را بسازید. 
       </p>
       <hr>
-        <!-- username Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label> کد شناسه</mat-label>
-          <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="text"
-            placeholder="12345" />
-          <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
-            (click)="QDocModel.username = 0">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-        <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"
-          [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> {{'ACTION.VIEW' | translate}}
-        </button>
-        <h5 align="right">توضیحات:</h5>
-        <p dir="rtl" align="right" style="font-size: 17px;">
-          شما میتوانید برای مشاهده هر کدام از بیلبوردهای خود بر روی یک دستگاه دیگر از این بخش استفاده نمایید.
-          برای این انجام این کار کافیست از طریق دستگاهی که میخواهید بیلبوردهایتان بر روی آن نمایش داده شود وارد سایت https://qdoc.ir شوید و کد نمایش داده شده را در این بخش وارد کنید تا بیلبوردهای  شما بر روی مانیتور دستگاه مورد نظر نمایش داده شود.
-        </p>
+      <app-cms-qdoc [optionUrl]="dataModel.UrlViewContent"></app-cms-qdoc>
       </div>
 
     <br>
