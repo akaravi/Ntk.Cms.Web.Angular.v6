@@ -80,6 +80,7 @@ import { MatInputCommifiedDirective } from '../core/directive/mat-input-commifie
 import { PhoneDirective } from '../core/directive/phone.directive';
 import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
 import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-location-autocomplete.component';
+import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
 
 @NgModule({
   imports: [
@@ -133,6 +134,7 @@ import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-lo
     CmsUserGroupSelectorComponent,
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
+    CmsQDocComponent,
     CmsMapComponent,
     CmsTagAutocompleteComponent,
     ProgressSpinnerComponent,
@@ -206,6 +208,7 @@ import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-lo
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
     CmsMapComponent,
+    CmsQDocComponent,
     CmsTagAutocompleteComponent,
     ProgressSpinnerComponent,
     PasswordStrengthComponent,

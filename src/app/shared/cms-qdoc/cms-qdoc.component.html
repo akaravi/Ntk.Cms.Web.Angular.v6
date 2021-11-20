@@ -1,0 +1,12 @@
+<!-- username Field -->
+<mat-form-field class="ntk-full-width" *ngIf="optionUrl && optionUrl.length>0" >
+    <mat-label> کد شناسه</mat-label>
+    <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="text"
+        placeholder="12345" />
+    <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
+        (click)="QDocModel.username = 0">close</mat-icon>
+    <mat-icon matSuffix>mode_edit</mat-icon>
+</mat-form-field>
+<button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"  *ngIf="optionUrl && optionUrl.length>0 && QDocModel.username">
+    <i class="fa fa-check-square-o"></i> {{'ACTION.VIEW' | translate}}
+</button>
