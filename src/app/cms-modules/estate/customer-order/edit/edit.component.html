@@ -217,21 +217,40 @@
       </a>
       <span class="navi-icon" [cdkCopyToClipboard]="dataModel.UrlViewContent" (click)="onActionCopied()">
         <i class="flaticon2-copy"></i></span>
- 
       <h5 align="right">توضیحات:</h5>
       <p dir="rtl" align="right" style="font-size: 17px;">
         میتوانید با اسکن کردن بارکد بالا و یا کپی کردن لینک آن خروجی بیلبورد خود را مشاهده نمایید.
-     </p>
+      </p>
       <p dir="rtl" align="right" style="font-size: 17px;">
         در بخش 'عنوان' میتوانید عنوان صفحه نمایش خود را ویرایش نمایید و برای آن پرسنل،آدرس و توضیحات بنویسید.
-         <br>
-         در بخش بعدی میتوانید محتوای نمایشی خود برای بیلبورد را مشاهده نمایید.
-         <br>
-         با پر کردن هر کدام از فیلد ها میتوانید محدوده جستجو خود را کوچکتر کنید.
-         <br>
-         در نهایت با کلیک بر روی گزینه 'مشاهده' میتوانید آگهی های مورد نظر خود را مشاهده و با کلیک بر روی گزینه 'ذخیره' بیلبورد خود را بسازید. 
+        <br>
+        در بخش بعدی میتوانید محتوای نمایشی خود برای بیلبورد را مشاهده نمایید.
+        <br>
+        با پر کردن هر کدام از فیلد ها میتوانید محدوده جستجو خود را کوچکتر کنید.
+        <br>
+        در نهایت با کلیک بر روی گزینه 'مشاهده' میتوانید آگهی های مورد نظر خود را مشاهده و با کلیک بر روی گزینه 'ذخیره'
+        بیلبورد خود را بسازید.
+      </p>
+      <hr>
+      <!-- username Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label> کد شناسه</mat-label>
+        <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="text"
+          placeholder="12345" />
+        <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
+          (click)="QDocModel.username = 0">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"
+        [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.VIEW' | translate}}
+      </button>
+      <h5 align="right">توضیحات:</h5>
+      <p dir="rtl" align="right" style="font-size: 17px;">
+        شما میتوانید برای مشاهده هر کدام از محتواهای خود بر روی یک دستگاه دیگر از این بخش استفاده نمایید.
+        برای این انجام این کار کافیست از طریق دستگاهی که میخواهید محتوایتان بر روی آن نمایش داده شود وارد سایت https://qdoc.ir شوید و کد نمایش داده شده را در این بخش وارد کنید تا محتوای شما بر روی مانیتور دستگاه مورد نظر نمایش داده شود.
+      </p>
     </div>
-
     <div class="row">
       <div class="col-12">
 
