@@ -214,7 +214,7 @@
       <!-- username Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label> کد شناسه</mat-label>
-        <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="number"
+        <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="text"
           placeholder="12345" />
         <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
           (click)="QDocModel.username = 0">close</mat-icon>

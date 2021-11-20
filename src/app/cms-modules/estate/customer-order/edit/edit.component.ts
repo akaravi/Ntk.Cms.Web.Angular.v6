@@ -268,14 +268,15 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
   QDocModel: any = {};
   onActionSendUrlToQDoc(): void {
-    debugger
     this.QDocModel.message = this.dataModel.UrlViewContent;
     if (!this.QDocModel.username && this.QDocModel.username.length <= 0) {
       const message = 'کد شناسه را از وبسایت https://Qdoc.ir دریافت نمایید';
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
-    this.http.post(environment.cmsServerConfig.configQDocServerPath, this.QDocModel)
+    this.http.post(environment.cmsServerConfig.configQDocServerPath, this.QDocModel, {
+      headers: this.estatePropertyDetailGroupService.getHeaders(),
+    })
       .pipe(
         map((ret: any) => {
           this.cmsToastrService.typeSuccessMessage('دستور به وب سایت ارسال شد');

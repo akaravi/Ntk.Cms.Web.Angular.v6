@@ -312,7 +312,6 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   }
   QDocModel: any = {};
   onActionSendUrlToQDoc(): void {
-    debugger
     this.QDocModel.message = this.dataModel.UrlViewContent;
     if (!this.QDocModel.username && this.QDocModel.username.length <= 0) {
       const message = 'کد شناسه را از وبسایت https://Qdoc.ir دریافت نمایید';
