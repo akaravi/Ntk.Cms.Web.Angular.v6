@@ -245,13 +245,13 @@
           <mat-label>{{ fieldsInfo['SeoGoogleHTMLtag']?.FieldTitle }}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.SeoGoogleHTMLtag"
             [disabled]="!fieldsInfo['SeoGoogleHTMLtag']?.AccessEditField" name="dataModel.SeoGoogleHTMLtag"
-            #SeoGoogleHTMLtag type="text" placeholder="<meta  ...." minlength="0" maxlength="1000"></textarea>
+            #SeoGoogleHTMLtag type="text" placeholder="<meta  ...." minlength="0" ></textarea>
           <mat-icon matSuffix *ngIf="dataModel.SeoGoogleHTMLtag && fieldsInfo['SeoGoogleHTMLtag']?.AccessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.SeoGoogleHTMLtag = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['SeoGoogleHTMLtag']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['SeoGoogleHTMLtag']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ SeoGoogleHTMLtag.value.length }} / 1000</mat-hint>
+          <mat-hint align="start">{{ SeoGoogleHTMLtag.value.length }} </mat-hint>
         </mat-form-field>
 
 
@@ -260,13 +260,13 @@
           <mat-label>{{ fieldsInfo['SeoGoogleAnalytics']?.FieldTitle }}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.SeoGoogleAnalytics"
             [disabled]="!fieldsInfo['SeoGoogleAnalytics']?.AccessEditField" name="dataModel.SeoGoogleAnalytics"
-            #SeoGoogleAnalytics type="text" placeholder="" minlength="" maxlength="1000"></textarea>
+            #SeoGoogleAnalytics type="text" placeholder="" minlength="" ></textarea>
           <mat-icon matSuffix *ngIf="dataModel.SeoGoogleAnalytics && fieldsInfo['SeoGoogleAnalytics']?.AccessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.SeoGoogleAnalytics = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['SeoGoogleAnalytics']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['SeoGoogleAnalytics']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ SeoGoogleAnalytics.value.length }} / 1000</mat-hint>
+          <mat-hint align="start">{{ SeoGoogleAnalytics.value.length }} </mat-hint>
         </mat-form-field>
 
 

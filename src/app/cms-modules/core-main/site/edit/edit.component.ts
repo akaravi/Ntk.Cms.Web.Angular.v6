@@ -26,6 +26,7 @@ import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -47,12 +48,21 @@ export class CoreSiteEditComponent implements OnInit {
     private tokenHelper: TokenHelper
   ) {
     this.loading.cdr = this.cdr;
+    this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    if (this.requestId === 0) {
+      this.requestId = this.tokenInfo.SiteId;
+    }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.requestId === 0) {
-        this.requestId = this.tokenInfo.SiteId;
-        this.DataGetOne(this.requestId);
+      if (!this.requestId || this.requestId === 0) {
+        this.DataGetOne(this.tokenInfo.SiteId);
+      }
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+      if ((!this.requestId || this.requestId === 0) && this.tokenInfo.SiteId != this.dataModel.Id) {
+        this.DataGetOne(this.tokenInfo.SiteId);
       }
     });
   }
@@ -73,7 +83,7 @@ export class CoreSiteEditComponent implements OnInit {
   fileManagerOpenFormLinkImageLogoId = false;
   appLanguage = 'fa';
   tokenInfo = new TokenInfoModel();
-
+  cmsApiStoreSubscribe: Subscription;
   fileManagerTree: TreeModel;
   mapMarker: any;
   private mapModel: leafletMap;
@@ -83,19 +93,17 @@ export class CoreSiteEditComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.requestId === 0) {
-      this.requestId = this.tokenInfo.SiteId;
-    }
+
     this.getEnumRecordStatus();
     this.getEnumSiteStatus();
     this.getEnumLanguage();
-    if (this.requestId === 0) {
-      this.cmsToastrService.typeErrorAddRowParentIsNull();
-      return;
-    }
-    this.DataGetOne(this.requestId);
 
+    if (this.requestId > 0) {
+      this.DataGetOne(this.requestId);
+    }
+  }
+  ngOnDestroy() {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   getEnumSiteStatus(): void {
     this.coreEnumService.ServiceEnumSiteStatus().subscribe((next) => {
@@ -138,7 +146,7 @@ export class CoreSiteEditComponent implements OnInit {
     this.DataEditContent();
   }
 
-  DataGetOne(requestId: number): void {
+  DataGetOne(id: number): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
@@ -149,7 +157,7 @@ export class CoreSiteEditComponent implements OnInit {
     this.coreSiteService.setAccessLoad();
 
     this.coreSiteService
-      .ServiceGetOneById(requestId)
+      .ServiceGetOneById(id)
       .subscribe(
         async (next) => {
           /*َAccess Field*/
@@ -165,7 +173,7 @@ export class CoreSiteEditComponent implements OnInit {
             const lat = this.dataModel.AboutUsGeolocationlatitude;
             const lon = this.dataModel.AboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
-                 this.mapMarkerPoints=[];
+              this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
