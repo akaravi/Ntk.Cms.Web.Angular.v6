@@ -14,6 +14,8 @@ import {
   FilterDataModel,
   EstatePropertyDetailGroupService,
   EstateAccountUserModel,
+  EnumInputDataType,
+  EstatePropertyDetailValueModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -59,6 +61,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
+  enumInputDataType = EnumInputDataType;
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
@@ -71,6 +74,9 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   propertyDetails: Map<string, string> = new Map<string, string>();
   contractTypeSelected: EstateContractTypeModel;
   optionloadComponent = false;
+  // ** Accardon */
+  step = 0;
+  hidden = true;
 
   ngOnInit(): void {
     this.formInfo.FormTitle = 'اضافه کردن  ';
@@ -285,13 +291,34 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   onActionSelectorProperty(model: string[] | null): void {
     this.dataModel.LinkPropertyIds = model;
   }
+  setStep(index: number): void {
+    this.step = index;
+  }
 
+  nextStep(): void {
+    this.step++;
+  }
+
+  prevStep(): void {
+    this.step--;
+  }
+  // ** Accardon */
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
-
+    // ** Save Value */
+    this.dataModel.PropertyDetailValues = [];
+    this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
+      itemGroup.PropertyDetails.forEach(element => {
+        const value = new EstatePropertyDetailValueModel();
+        value.LinkPropertyDetailId = element.Id;
+        value.Value = this.propertyDetails[element.Id];
+        this.dataModel.PropertyDetailValues.push(value);
+      });
+    });
+    // ** Save Value */
     if (this.dataModel.Id && this.dataModel.Id.length > 0) {
       this.DataEditContent();
     }
@@ -299,6 +326,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       this.DataAddContent();
     }
   }
+
   onFormCancel(): void {
     this.router.navigate(['/estate/customer-order/']);
   }
@@ -310,5 +338,5 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
- 
+
 }

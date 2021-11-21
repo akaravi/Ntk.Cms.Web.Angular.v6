@@ -9,11 +9,12 @@ import {
   EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel,
   EstateContractTypeModel,
-  CoreUserModel,
   FilterDataModel,
   FilterModel,
   EstatePropertyDetailGroupService,
   EstateAccountUserModel,
+  EnumInputDataType,
+  EstatePropertyDetailValueModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -30,8 +31,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-estate-customer-order-edit',
@@ -62,6 +61,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
+  enumInputDataType = EnumInputDataType;
+
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
@@ -74,6 +75,9 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   propertyDetails: Map<string, string> = new Map<string, string>();
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   optionloadComponent = false;
+  // ** Accardon */
+  step = 0;
+  hidden = true;
   ngOnInit(): void {
     this.formInfo.FormTitle = 'ویرایش  ';
     if (!this.requestId || this.requestId.length === 0) {
@@ -104,6 +108,20 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
           this.formInfo.FormAlert = '';
+          /** load Value */
+          this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
+            itemGroup.PropertyDetails.forEach(element => {
+              this.propertyDetails[element.Id] = 0;
+
+              if (this.dataModel.PropertyDetailValues) {
+                const value = this.dataModel.PropertyDetailValues.find(x => x.LinkPropertyDetailId === element.Id);
+                if (value) {
+                  this.propertyDetails[element.Id] = value.Value;
+                }
+              }
+            });
+          });
+          /** load Value */
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -247,12 +265,34 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.dataModel.LinkPropertyIds = model;
   }
 
+  setStep(index: number): void {
+    this.step = index;
+  }
 
+  nextStep(): void {
+    this.step++;
+  }
+
+  prevStep(): void {
+    this.step--;
+  }
+  // ** Accardon */
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
+    // ** Save Value */
+    this.dataModel.PropertyDetailValues = [];
+    this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
+      itemGroup.PropertyDetails.forEach(element => {
+        const value = new EstatePropertyDetailValueModel();
+        value.LinkPropertyDetailId = element.Id;
+        value.Value = this.propertyDetails[element.Id];
+        this.dataModel.PropertyDetailValues.push(value);
+      });
+    });
+    // ** Save Value */
     this.DataEditContent();
   }
   onFormCancel(): void {
@@ -266,5 +306,5 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
- 
+
 }

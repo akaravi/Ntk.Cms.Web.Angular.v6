@@ -8,10 +8,10 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
-    <mat-form-field class="ntk-full-width">
+    <mat-form-field class="ntk-full-width" *ngIf="ProfessionalData">
       <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
         name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
-        required>
+        >
         <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.ListItems;
                 index as i
@@ -23,10 +23,10 @@
       </mat-error>
     </mat-form-field>
     <!-- Title Field -->
-    <mat-form-field class="ntk-full-width">
+    <mat-form-field class="ntk-full-width" *ngIf="ProfessionalData">
       <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="0" maxlength="100"  />
       <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.Title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -36,12 +36,12 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [optionSelectForce]="this.dataModel.LinkUserId"
+    <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [optionSelectForce]="this.dataModel.LinkUserId" *ngIf="ProfessionalData"
       [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkUserId']?.AccessEditField">
     </app-cms-user-selector>
 
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionSelectForce]="this.dataModel.LinkSiteId"
+    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionSelectForce]="this.dataModel.LinkSiteId" *ngIf="ProfessionalData"
       [optionPlaceholder]="'سایت'" [optionDisabled]="!fieldsInfo['LinkSiteId']?.AccessEditField">
     </app-cms-site-selector>
 
@@ -74,7 +74,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.Description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -98,7 +98,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['ApprovedResult']?.FieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.ApprovedResult" name="dataModel.ApprovedResult" #ApprovedResult
-        type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500"
+        type="text" placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="0" maxlength="500"
         rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.ApprovedResult" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.ApprovedResult = ''">close</mat-icon>

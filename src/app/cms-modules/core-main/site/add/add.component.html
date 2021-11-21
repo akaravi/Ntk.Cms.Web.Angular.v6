@@ -443,6 +443,19 @@
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutUsLinkInstagram']?.FieldDescription}}</strong> </mat-hint>
         </mat-form-field>
+          <!-- AboutUsLinkWhatsapp Field -->
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsLinkWhatsapp']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['AboutUsLinkWhatsapp']?.FieldTitle }}</mat-label>
+            <input matInput [(ngModel)]="dataModel.AboutUsLinkWhatsapp"
+              [disabled]="!fieldsInfo['AboutUsLinkWhatsapp']?.AccessAddField" name="dataModel.AboutUsLinkWhatsapp"
+              #AboutUsLinkWhatsapp type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
+            <mat-icon matSuffix
+              *ngIf="dataModel.AboutUsLinkWhatsapp && fieldsInfo['AboutUsLinkWhatsapp']?.AccessAddField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsLinkWhatsapp = ''">close</mat-icon>
+            <mat-icon *ngIf="fieldsInfo['AboutUsLinkWhatsapp']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">{{fieldsInfo['AboutUsLinkWhatsapp']?.FieldDescription}}</strong> </mat-hint>
+          </mat-form-field>
         <!-- AboutUsLinklinkedin Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsLinklinkedin']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['AboutUsLinklinkedin']?.FieldTitle }}</mat-label>

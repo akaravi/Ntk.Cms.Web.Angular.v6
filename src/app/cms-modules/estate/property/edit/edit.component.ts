@@ -322,13 +322,7 @@ export class EstatePropertyEditComponent implements OnInit {
     });
 
   }
-  setValueToggle(i, e) {
-    if (e.checked) {
-      this.propertyDetails[i] = 'true';
-    } else {
-      this.propertyDetails[i] = 'false';
-    }
-  }
+
   receiveZoom(zoom: number): void {
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {

@@ -9,6 +9,7 @@ import {
   CoreUserClaimTypeModel,
   CoreUserModel,
   CoreSiteModel,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -16,6 +17,7 @@ import {
   ViewChild,
   Inject,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -24,13 +26,15 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-userclaimcontent-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class CoreUserClaimContentAddComponent implements OnInit {
+export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
   requestLinkUserClaimTypeId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,6 +45,7 @@ export class CoreUserClaimContentAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -50,6 +55,26 @@ export class CoreUserClaimContentAddComponent implements OnInit {
       this.dataModel.LinkUserClaimTypeId = this.requestLinkUserClaimTypeId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+      if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
+        this.dataModel.LinkUserId = this.tokenInfo.UserId;
+        this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
+        this.ProfessionalData = false;
+      } else {
+        this.ProfessionalData = true;
+      }
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+      if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
+        this.dataModel.LinkUserId = this.tokenInfo.UserId;
+        this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
+        this.ProfessionalData = false;
+      } else {
+        this.ProfessionalData = true;
+      }
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -62,8 +87,9 @@ export class CoreUserClaimContentAddComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<CoreUserClaimContentModel> = new ErrorExceptionResult<CoreUserClaimContentModel>();
   dataModel: CoreUserClaimContentModel = new CoreUserClaimContentModel();
-
-
+  tokenInfo = new TokenInfoModel();
+  ProfessionalData = false;
+  cmsApiStoreSubscribe: Subscription;
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
@@ -78,7 +104,9 @@ export class CoreUserClaimContentAddComponent implements OnInit {
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
-
+  ngOnDestroy() {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
   DataGetAccess(): void {
     this.coreUserClaimContentService
       .ServiceViewModel()

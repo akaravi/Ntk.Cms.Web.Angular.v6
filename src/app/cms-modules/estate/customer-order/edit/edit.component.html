@@ -208,6 +208,83 @@
         [optionSelectForce]="this.dataModel.LinkPropertyIds">
       </app-estate-property-autocomplete>
       <br>
+      
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel *ngFor="let itemGroup of dataModel.PropertyDetailGroups ; index as i"
+          [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{itemGroup.Title}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{itemGroup.Description}}
+              <mat-icon>{{itemGroup.IconFont}}</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <!-- value-->
+          <ng-container *ngFor="let itemDetail of itemGroup.PropertyDetails">
+            <ng-container [ngSwitch]="itemDetail.InputDataType">
+              <!-- ngSwitchCase-->
+              <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
+                <app-input-string [(model)]="propertyDetails[itemDetail.Id]"
+                  [optionForceUseDefaultValue]="itemDetail.ConfigValueForceUseDefaultValue"
+                  [optionMultipleChoice]="itemDetail.ConfigValueMultipleChoice"
+                  [optionDefaultValue]="itemDetail.ConfigValueDefaultValue" [optionRequired]="itemDetail.Required"
+                  [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';">
+                </app-input-string>
+              </div>
+              <!-- ngSwitchCase-->
+              <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
+                <app-input-int [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required"
+                  [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';">
+                </app-input-int>
+              </div>
+              <!-- ngSwitchCase-->
+              <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
+                <app-input-boolean [(model)]="propertyDetails[itemDetail.Id]">{{itemDetail.Title}}
+                </app-input-boolean>
+              </div>
+              <!-- ngSwitchCase-->
+              <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
+                <app-input-float [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required"
+                  [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';">
+                </app-input-float>
+              </div>
+              <!-- ngSwitchCase-->
+              <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
+                <label style="color:'{{itemDetail.IconColor}}';">{{itemDetail.Title}}</label>
+                <app-input-date [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required">
+                </app-input-date>
+              </div>
+              <!-- ngSwitchCase-->
+              <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
+                <app-input-textarea [(model)]="propertyDetails[itemDetail.Id]" [optionRequired]="itemDetail.Required"
+                  [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';">
+                </app-input-textarea>
+              </div>
+              <!-- ngSwitchCase-->
+              <div *ngSwitchDefault class="ntk-full-width">
+                <app-input-string [(model)]="propertyDetails[itemDetail.Id]"
+                  [optionForceUseDefaultValue]="itemDetail.ConfigValueForceUseDefaultValue"
+                  [optionMultipleChoice]="itemDetail.ConfigValueMultipleChoice"
+                  [optionDefaultValue]="itemDetail.ConfigValueDefaultValue" [optionRequired]="itemDetail.Required"
+                  [optionTitle]="itemDetail.Title" style="color:'{{itemDetail.IconColor}}';">
+                </app-input-string>
+              </div>
+            </ng-container>
+          </ng-container>
+          <mat-action-row>
+            <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">Previous</button>
+            <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.PropertyDetailGroups.length"
+              (click)="nextStep()">Next</button>
+            <button mat-button type="button" color="primary" *ngIf="(i+1)==dataModel.PropertyDetailGroups.length"
+              (click)="nextStep()">End</button>
+
+          </mat-action-row>
+        </mat-expansion-panel>
+        <br>
+
+      </mat-accordion>
     </div>
     <div class="col-6" align="center"
       *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">

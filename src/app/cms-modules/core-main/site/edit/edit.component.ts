@@ -1,6 +1,6 @@
 
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -34,7 +34,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class CoreSiteEditComponent implements OnInit {
+export class CoreSiteEditComponent implements OnInit , OnDestroy {
   requestId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -61,7 +61,7 @@ export class CoreSiteEditComponent implements OnInit {
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      if ((!this.requestId || this.requestId === 0) && this.tokenInfo.SiteId != this.dataModel.Id) {
+      if ((!this.requestId || this.requestId === 0) && this.tokenInfo.SiteId !== this.dataModel.Id) {
         this.DataGetOne(this.tokenInfo.SiteId);
       }
     });

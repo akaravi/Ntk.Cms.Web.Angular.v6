@@ -9,6 +9,7 @@ import {
   CoreUserClaimTypeModel,
   CoreSiteModel,
   CoreUserModel,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -16,6 +17,7 @@ import {
   ViewChild,
   Inject,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -24,13 +26,15 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-core-userclaim-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class CoreUserClaimContentEditComponent implements OnInit {
+export class CoreUserClaimContentEditComponent implements OnInit ,OnDestroy {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,6 +45,7 @@ export class CoreUserClaimContentEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -48,12 +53,34 @@ export class CoreUserClaimContentEditComponent implements OnInit {
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+      if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
+        this.dataModel.LinkUserId = this.tokenInfo.UserId;
+        this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
+        this.ProfessionalData = false;
+      } else {
+        this.ProfessionalData = true;
+      }
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+      if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
+        this.dataModel.LinkUserId = this.tokenInfo.UserId;
+        this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
+        this.ProfessionalData = false;
+      } else {
+        this.ProfessionalData = true;
+      }
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
-
+  cmsApiStoreSubscribe: Subscription;
+  tokenInfo = new TokenInfoModel();
+  ProfessionalData=false;
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
 
@@ -78,6 +105,9 @@ export class CoreUserClaimContentEditComponent implements OnInit {
     }
 
     this.getEnumRecordStatus();
+  }
+  ngOnDestroy() {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();

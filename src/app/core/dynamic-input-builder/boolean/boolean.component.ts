@@ -8,12 +8,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class BooleanComponent implements OnInit {
 
   constructor() { }
-  @Input() model: boolean;
+
+  @Input() set model(val: any) {
+    if (val && (val === true || val === 'true' || val === 1 || val === '1')) {
+      this.checkedValue = true;
+    }
+  }
   @Output() modelChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  checkedValue = false;
   ngOnInit(): void {
   }
   setValueToggle(e): void {
-    if (e.checked) {
+    if (e && e.checked) {
       this.modelChange.emit(true);
     } else {
       this.modelChange.emit(false);
