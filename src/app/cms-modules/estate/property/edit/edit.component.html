@@ -287,6 +287,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="button" mat-raised-button color="success" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.SAVE' | translate}}
+          </button>
         </div>
       </mat-step>
 
@@ -622,8 +625,11 @@
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
-        <button type="button" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>
+        <button type="button" class="btn btn-secondary" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
