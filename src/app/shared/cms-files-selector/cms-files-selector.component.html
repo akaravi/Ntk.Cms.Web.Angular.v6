@@ -39,12 +39,14 @@
       </video>
     </td>
     <td>
-      <button type="button"  [cdkCopyToClipboard]="item.value"
+      <button class="btn btn-secondary btn-sm" type="button"  [cdkCopyToClipboard]="item.value"
         (click)="onActionCopied()">
+        <mat-icon style="font-size: 20px;margin: -1px;">content_copy</mat-icon>
         Copy
       </button>
-    </td>
-    <td><button (click)="onActionFileSelectedRemove(item.key)" type="button" class="btn btn-danger"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</button>
+    
+    <button (click)="onActionFileSelectedRemove(item.key)" type="button" 
+      class="btn btn-danger btn-sm"><mat-icon style="font-size: 20px;margin: -1px;" aria-hidden="false"  >delete</mat-icon>{{'ACTION.DELETE' | translate}}</button>
     </td>
   </tr>
 
