@@ -11,7 +11,7 @@
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <div class="row alert alert-custom alert-white alert-shadow gutter-b">
-    <div class="col-6">
+    <div class="col-md-6 col-sm-6 col-xs-9">
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -122,7 +122,7 @@
       <br>
     </div>
 
-    <div class="col-6" align="center"
+    <div class="col-md-6 col-sm-6 col-xs-9" align="center"
       *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
 
       <a href="{{dataModel.UrlViewContent}}" target="_blank">
@@ -152,7 +152,7 @@
 
     <br>
     <div class="row">
-      <div class="col-12">
+      <div class="col-md-12 col-sm-12 col-xs-18" >
 
         <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
           <button type="button" (click)="onFormCancel()" class="btn btn-light BTN">
@@ -181,7 +181,7 @@
 </form>
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b">
-  <div class="col-12">
+  <div class="col-md-12 col-sm-12 col-xs-18">
     <app-estate-property-list [optionLinkBillboardId]="dataModel.Id" [optionloadComponent]="optionloadComponent"
       [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
   </div>

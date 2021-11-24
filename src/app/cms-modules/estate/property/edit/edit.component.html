@@ -2,13 +2,14 @@
   <h4> ویرایش</h4>
   در این بخش شما میتوانید آگهی خود را ویرایش نمایید.
   <br>
+  {{ formInfo.FormTitle }}
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
+  <!-- <div class="ntk-cms-html-card-header"> -->
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <!-- </div> -->
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -60,8 +61,8 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkSiteId']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LinkSiteId']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.LinkSiteId" name="dataModel.LinkSiteId" #LinkSiteId type="text"
-            disabled="{{!fieldsInfo['LinkSiteId']?.AccessEditField}}" placeholder="{{fieldsInfo['LinkSiteId']?.FieldTitle}}"
-            minlength="3" maxlength="100" required />
+            disabled="{{!fieldsInfo['LinkSiteId']?.AccessEditField}}"
+            placeholder="{{fieldsInfo['LinkSiteId']?.FieldTitle}}" minlength="3" maxlength="100" required />
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['LinkSiteId']?.FieldDescription}}</strong>
@@ -286,6 +287,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="button" mat-raised-button color="success" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.SAVE' | translate}}
+          </button>
         </div>
       </mat-step>
 
@@ -381,8 +385,9 @@
       </mat-step>
       <mat-step label="معامله" state="seo">
         <p>نوع معامله این ملک را مشخص کنید</p>
-        <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionDisabled]="false" [optionTypeView]="2"
-          [optionPlaceholder]="'نوع معامله'" [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
+        <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)"
+          [optionDisabled]="false" [optionTypeView]="2" [optionPlaceholder]="'نوع معامله'"
+          [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
         </app-estate-contract-type-selector>
         <div *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
           <br>
@@ -544,62 +549,87 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-        <p>فایل های پیوست محتوا.</p>
-        <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
-        </div>
-        <div class="mb-9">
-          <mat-form-field class="ntk-full-width">
 
-            <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
-            <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
-              type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
-            <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.LinkMainImageId = null">close</mat-icon>
-            <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
-          </mat-form-field>
 
-          <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
-            [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
-            [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
-            [openFilemanagerButtonView]="false"></cms-file-manager>
-        </div>
-        <hr>
-        <p>لیست عکس های پیوست</p>
-        <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [openDirectUploadView]="true"
-          [optionFileType]="selectFileTypeMainImage">
-        </app-cms-files-selector>
-        <div *ngIf="!hidden">
-          <p>لیست فایل های پیوست</p>
-          <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
-          </app-cms-files-selector>
-        </div>
-        <br>
-        <div *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
-          <a href="{{dataModel.UrlViewContent}}" target="_blank">
-            <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
-          </a>
-          <app-cms-qdoc [optionUrl]="dataModel.UrlViewContent"></app-cms-qdoc>
-        </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
-          <button type="button" mat-raised-button color="accent" matStepperPrevious>
-            {{'ACTION.BEFOR' | translate}}
-          </button>
-          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-            {{'ACTION.NEXT' | translate}}
-          </button>
-        </div>
-      </mat-step>
+
+      <div class="row alert alert-custom alert-white alert-shadow gutter-b">
+        <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
+
+          <div class="col-md-6 col-sm-6 col-xs-9" style="float: right;">
+
+            <p>فایل های پیوست محتوا</p>
+            <div class="mb-3">
+              <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+                src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+            </div>
+            <div class="mb-9">
+              <mat-form-field class="ntk-full-width">
+
+                <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
+                <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId"
+                  #LinkMainImageId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+                  (click)="fileManagerOpenForm = true" />
+                <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+                <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+              </mat-form-field>
+
+              <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
+                [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
+                [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+                [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+            </div>
+            <hr>
+            <p>لیست عکس های پیوست</p>
+            <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [openDirectUploadView]="true"
+              [optionFileType]="selectFileTypeMainImage">
+            </app-cms-files-selector>
+            <div *ngIf="!hidden">
+              <p>لیست فایل های پیوست</p>
+              <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
+              </app-cms-files-selector>
+            </div>
+              <br>
+              <br>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-9" height="300px" width="300px" style="float: left; text-align: center;">
+            <div *ngIf="dataModel?.UrlViewContentQRCodeBase64?.length>0 && dataModel?.UrlViewContent?.length>0">
+              <a href="{{dataModel.UrlViewContent}}" target="_blank">
+                <img [src]="dataModel.UrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px" width="200px">
+              </a>
+              <span class="navi-icon" [cdkCopyToClipboard]="dataModel.UrlViewContent" (click)="onActionCopied()">
+                <i class="flaticon2-copy"></i></span>
+                <br>
+              <app-cms-qdoc [optionUrl]="dataModel.UrlViewContent"></app-cms-qdoc>
+            </div>
+          </div>
+          <div>
+            <div class="col-md-12 col-sm-12 col-xs-18" style="float: right;">
+              <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+                <button type="button" mat-raised-button color="accent" matStepperPrevious>
+                  {{'ACTION.BEFOR' | translate}}
+                </button>
+                <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+                  {{'ACTION.NEXT' | translate}}
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </mat-step>
+      </div>
 
       <mat-step label="موقعیت مکانی" state="loaction">
 
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
-        <button type="button" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>
+        <button type="button" class="btn btn-secondary" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
