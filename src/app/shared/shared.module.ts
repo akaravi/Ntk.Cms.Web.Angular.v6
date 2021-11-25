@@ -81,6 +81,7 @@ import { PhoneDirective } from '../core/directive/phone.directive';
 import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
 import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-location-autocomplete.component';
 import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
+import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
 
 @NgModule({
   imports: [
@@ -135,6 +136,7 @@ import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
     CmsQDocComponent,
+    CmsLinkToComponent,
     CmsMapComponent,
     CmsTagAutocompleteComponent,
     ProgressSpinnerComponent,
@@ -209,6 +211,7 @@ import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
     CmsModuleSelectorComponent,
     CmsMapComponent,
     CmsQDocComponent,
+    CmsLinkToComponent,
     CmsTagAutocompleteComponent,
     ProgressSpinnerComponent,
     PasswordStrengthComponent,

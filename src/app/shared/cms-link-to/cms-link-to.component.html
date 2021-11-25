@@ -1,0 +1,36 @@
+<div *ngIf="optionUrlViewContent && optionUrlViewContent.length>0">
+    <div *ngIf="optionUrlViewContentQRCodeBase64?.length>0 && optionUrlViewContent?.length>0">
+        <a href="{{optionUrlViewContent}}" target="_blank">
+            <img [src]="optionUrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px" width="200px">
+        </a>
+        <span class="navi-icon" [cdkCopyToClipboard]="optionUrlViewContentQRCodeBase64" (click)="onActionCopied()">
+            <i class="flaticon2-copy"></i></span>
+    </div>
+    <a href="{{optionUrlViewContent}}" target="_blank">{{optionUrlViewContent}}</a>
+    <button type="button" (click)="onActionOpenLink()" >مشاهده صفحه</button>
+    <!-- username Field -->
+    <div class="col-m-8 col-sm-12">
+        <mat-form-field class="ntk-full-width">
+            <mat-label> کد شناسه</mat-label>
+            <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="text"
+                placeholder="12345" />
+            <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
+                (click)="QDocModel.username = 0">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="col-m-4 col-sm-12">
+        <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"
+            *ngIf="optionUrlViewContent && optionUrlViewContent.length>0 && QDocModel.username">
+            <i class="fa fa-check-square-o"></i> {{'ACTION.VIEW' | translate}}
+        </button>
+    </div>
+    <h5 align="right">توضیحات:</h5>
+    <p dir="rtl" align="right" style="font-size: 15px;">
+        شما میتوانید برای مشاهده هر کدام از محتواهای خود بر روی یک دستگاه دیگر از این بخش استفاده نمایید.
+        برای این انجام این کار کافیست از طریق دستگاهی که میخواهید محتوایتان بر روی آن نمایش داده شود وارد سایت
+        <a href="https://qdoc.ir" target="_blank"> https://qdoc.ir </a>
+        شوید و کد نمایش داده شده را در این بخش وارد کنید تا محتوای شما بر روی مانیتور دستگاه مورد نظر
+        نمایش داده شود.
+    </p>
+</div>

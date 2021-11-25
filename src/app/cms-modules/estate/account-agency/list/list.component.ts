@@ -78,7 +78,8 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     'LinkMainImageIdSrc',
     'Title',
     'Description',
-    'Action'
+    'Action',
+
   ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
