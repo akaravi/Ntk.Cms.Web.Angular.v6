@@ -1,7 +1,7 @@
 npm install --save --legacy-peer-deps
 npm i --legacy-peer-deps
 
-========================
+========================*
 
 git init
 git add README.md
