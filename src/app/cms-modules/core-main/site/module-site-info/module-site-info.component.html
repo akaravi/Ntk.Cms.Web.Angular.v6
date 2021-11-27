@@ -6,8 +6,11 @@
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-   {{dataModelResult|json}}
-
+   
+   <app-cms-json-list [dataModel]="dataModelResult.ListItems" [optionMethod]="2"></app-cms-json-list>
+   <br>
+   مجموع ردیف اطلاعات:
+   {{dataModelResult.TotalRowCount}}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
