@@ -113,6 +113,7 @@
           </mat-menu>
         </mat-cell>
       </ng-container>
+     
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">

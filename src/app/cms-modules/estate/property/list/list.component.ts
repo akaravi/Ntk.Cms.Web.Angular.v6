@@ -1,6 +1,13 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit, Input } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from "@angular/router";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  AfterViewInit,
+  Input,
+} from "@angular/core";
+import { MatTableDataSource } from "@angular/material/table";
 import {
   EstatePropertyModel,
   EstatePropertyService,
@@ -12,31 +19,34 @@ import {
   EstatePropertyTypeLanduseModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  EnumFilterDataModelSearchTypes
-} from 'ntk-cms-api';
-import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+  EnumFilterDataModelSearchTypes,
+} from "ntk-cms-api";
+import { ComponentOptionSearchModel } from "src/app/core/cmsComponentModels/base/componentOptionSearchModel";
+import { PublicHelper } from "src/app/core/helpers/publicHelper";
+import { ProgressSpinnerModel } from "src/app/core/models/progressSpinnerModel";
+import { CmsToastrService } from "src/app/core/services/cmsToastr.service";
+import { MatDialog } from "@angular/material/dialog";
+import { ComponentOptionExportModel } from "src/app/core/cmsComponentModels/base/componentOptionExportModel";
+import { ComponentOptionStatistModel } from "src/app/core/cmsComponentModels/base/componentOptionStatistModel";
+import { MatSort } from "@angular/material/sort";
+import { PageEvent } from "@angular/material/paginator";
+import { Subscription } from "rxjs";
+import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service";
+import { TokenHelper } from "src/app/core/helpers/tokenHelper";
+import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
 
 @Component({
-  selector: 'app-estate-property-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: "app-estate-property-list",
+  templateUrl: "./list.component.html",
+  styleUrls: ["./list.component.scss"],
 })
-export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterViewInit {
-  requestLinkPropertyTypeLanduseId = '';
-  requestLinkContractTypeId = '';
-  requestLinkBillboardId = '';
-  requestLinkCustomerOrderId = '';
+export class EstatePropertyListComponent
+  implements OnInit, OnDestroy, AfterViewInit
+{
+  requestLinkPropertyTypeLanduseId = "";
+  requestLinkContractTypeId = "";
+  requestLinkBillboardId = "";
+  requestLinkCustomerOrderId = "";
   requestInChecking = false;
   constructor(
     private estatePropertyService: EstatePropertyService,
@@ -47,15 +57,22 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog) {
+    public dialog: MatDialog
+  ) {
     this.loading.cdr = this.cdr;
-    this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
-    this.requestLinkContractTypeId = this.activatedRoute.snapshot.paramMap.get('LinkContractTypeId');
-    this.requestLinkBillboardId = this.activatedRoute.snapshot.paramMap.get('LinkBillboardId');
-    this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get('LinkCustomerOrderId');
+    this.requestLinkPropertyTypeLanduseId =
+      this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeLanduseId");
+    this.requestLinkContractTypeId =
+      this.activatedRoute.snapshot.paramMap.get("LinkContractTypeId");
+    this.requestLinkBillboardId =
+      this.activatedRoute.snapshot.paramMap.get("LinkBillboardId");
+    this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get(
+      "LinkCustomerOrderId"
+    );
 
-    if (this.activatedRoute.snapshot.paramMap.get('InChecking')) {
-      this.searchInChecking = (this.activatedRoute.snapshot.paramMap.get('InChecking') === 'true');
+    if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
+      this.searchInChecking =
+        this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
     }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -64,25 +81,31 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelProperty.SortColumn = 'CreatedDate';
+    this.filteModelProperty.SortColumn = "CreatedDate";
     this.filteModelProperty.SortType = EnumSortType.Descending;
-    if (this.requestLinkPropertyTypeLanduseId && this.requestLinkPropertyTypeLanduseId.length > 0) {
+    if (
+      this.requestLinkPropertyTypeLanduseId &&
+      this.requestLinkPropertyTypeLanduseId.length > 0
+    ) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkPropertyTypeLanduseId';
+      filter.PropertyName = "LinkPropertyTypeLanduseId";
       filter.Value = this.requestLinkPropertyTypeLanduseId;
       this.filteModelProperty.Filters.push(filter);
     }
-    if (this.requestLinkContractTypeId && this.requestLinkContractTypeId.length > 0) {
+    if (
+      this.requestLinkContractTypeId &&
+      this.requestLinkContractTypeId.length > 0
+    ) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'Contracts';
-      filter.PropertyAnyName = 'LinkEstateContractTypeId';
+      filter.PropertyName = "Contracts";
+      filter.PropertyAnyName = "LinkEstateContractTypeId";
       filter.Value = this.requestLinkContractTypeId;
       this.filteModelProperty.Filters.push(filter);
     }
   }
   @Input() optionloadComponent = true;
   @Input() optionloadByRoute = true;
-  
+
   @Input() set optionLinkCustomerOrderId(id: string) {
     if (id && id.length > 0) {
       this.requestLinkCustomerOrderId = id;
@@ -94,7 +117,6 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     }
   }
 
-
   comment: string;
   author: string;
   dataSource: any;
@@ -103,43 +125,48 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
   searchInChecking = false;
   searchInCheckingChecked = false;
   filteModelProperty = new FilterModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
+  dataModelResult: ErrorExceptionResult<EstatePropertyModel> =
+    new ErrorExceptionResult<EstatePropertyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
-  optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
+  optionsStatist: ComponentOptionStatistModel =
+    new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyModel> = [];
   tableRowSelected: EstatePropertyModel = new EstatePropertyModel();
-  tableSource: MatTableDataSource<EstatePropertyModel> = new MatTableDataSource<EstatePropertyModel>();
+  tableSource: MatTableDataSource<EstatePropertyModel> =
+    new MatTableDataSource<EstatePropertyModel>();
   categoryModelSelected: EstatePropertyTypeLanduseModel;
   tabledisplayedColumns: string[] = [
-    'LinkMainImageIdSrc',
-    'Id',
-    'RecordStatus',
-    'LinkSiteId',
-    'Title',
-    'ViewCount',
-    'CreatedDate',
-    'UpdatedDate',
-    'Action'
+    "LinkMainImageIdSrc",
+    "Id",
+    "RecordStatus",
+    "LinkSiteId",
+    "Title",
+    "ViewCount",
+    "CreatedDate",
+    "UpdatedDate",
+    "Action",
+    "LinkTo",
   ];
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<
+    string,
+    DataFieldInfoModel
+  >();
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-
-
-
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
 
-    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.DataGetAll();
-      this.tokenInfo = next;
-    });
-
+    this.cmsApiStoreSubscribe = this.tokenHelper
+      .getCurrentTokenOnChange()
+      .subscribe((next) => {
+        this.DataGetAll();
+        this.tokenInfo = next;
+      });
   }
   ngAfterViewInit(): void {
     if (this.searchInChecking) {
@@ -157,105 +184,111 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyModel();
 
-    const pName = this.constructor.name + 'main';
+    const pName = this.constructor.name + "main";
     this.loading.Start(pName);
-
 
     this.filteModelProperty.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelProperty));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.Id && this.categoryModelSelected.Id.length > 0) {
+    if (
+      this.categoryModelSelected &&
+      this.categoryModelSelected.Id &&
+      this.categoryModelSelected.Id.length > 0
+    ) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkPropertyTypeLanduseId';
+      filter.PropertyName = "LinkPropertyTypeLanduseId";
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
     if (this.searchInChecking) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'RecordStatus';
+      filter.PropertyName = "RecordStatus";
       filter.Value = EnumRecordStatus.Available;
       filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.Filters.push(filter);
     }
-    if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (
+      this.tokenInfo.UserAccessAdminAllowToAllData ||
+      this.tokenInfo.UserAccessAdminAllowToProfessionalData
+    ) {
       this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
         this.tabledisplayedColumns,
-        'LinkSiteId',
+        "LinkSiteId",
         0
       );
       this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
         this.tabledisplayedColumns,
-        'Id',
+        "Id",
         0
       );
     } else {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,
-        'LinkSiteId'
+        "LinkSiteId"
       );
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,
-        'Id'
+        "Id"
       );
     }
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
-      this.estatePropertyService.ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel).subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          if (next.IsSuccess) {
-            this.dataModelResult = next;
-            this.tableSource.data = next.ListItems;
-            if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(next.Access);
+      this.estatePropertyService
+        .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
+        .subscribe(
+          (next) => {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+            if (next.IsSuccess) {
+              this.dataModelResult = next;
+              this.tableSource.data = next.ListItems;
+              if (this.optionsSearch.childMethods) {
+                this.optionsSearch.childMethods.setAccess(next.Access);
+              }
+            } else {
+              this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
             }
+            this.loading.Stop(pName);
+          },
+          (error) => {
+            this.cmsToastrService.typeError(error);
+
+            this.loading.Stop(pName);
           }
-          else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
-
-          }
-          this.loading.Stop(pName);
-
-        },
-        (error) => {
-          this.cmsToastrService.typeError(error);
-
-          this.loading.Stop(pName);
-
-        }
-      );
+        );
       // ** */
-    }
-    else if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
+    } else if (
+      this.requestLinkCustomerOrderId &&
+      this.requestLinkCustomerOrderId.length > 0
+    ) {
       // ** */
-      this.estatePropertyService.ServiceGetAllWithCustomerOrderId(this.requestLinkCustomerOrderId, filterModel).subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          if (next.IsSuccess) {
-            this.dataModelResult = next;
-            this.tableSource.data = next.ListItems;
-            if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(next.Access);
+      this.estatePropertyService
+        .ServiceGetAllWithCustomerOrderId(
+          this.requestLinkCustomerOrderId,
+          filterModel
+        )
+        .subscribe(
+          (next) => {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+            if (next.IsSuccess) {
+              this.dataModelResult = next;
+              this.tableSource.data = next.ListItems;
+              if (this.optionsSearch.childMethods) {
+                this.optionsSearch.childMethods.setAccess(next.Access);
+              }
+            } else {
+              this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
             }
+            this.loading.Stop(pName);
+          },
+          (error) => {
+            this.cmsToastrService.typeError(error);
+
+            this.loading.Stop(pName);
           }
-          else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
-
-          }
-          this.loading.Stop(pName);
-
-        },
-        (error) => {
-          this.cmsToastrService.typeError(error);
-
-          this.loading.Stop(pName);
-
-        }
-      );
+        );
       // ** */
-    }
-    else {
+    } else {
       // ** */
       this.estatePropertyService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
@@ -267,37 +300,36 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(next.Access);
             }
-          }
-          else {
+          } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
-
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop(pName);
-
         }
       );
       //** */
     }
   }
 
-
   onTableSortData(sort: MatSort): void {
-    if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
-      if (this.tableSource.sort.start === 'asc') {
-        sort.start = 'desc';
+    if (
+      this.tableSource &&
+      this.tableSource.sort &&
+      this.tableSource.sort.active === sort.active
+    ) {
+      if (this.tableSource.sort.start === "asc") {
+        sort.start = "desc";
         this.filteModelProperty.SortColumn = sort.active;
         this.filteModelProperty.SortType = EnumSortType.Descending;
-      } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelProperty.SortColumn = '';
+      } else if (this.tableSource.sort.start === "desc") {
+        this.filteModelProperty.SortColumn = "";
         this.filteModelProperty.SortType = EnumSortType.Ascending;
       } else {
-        sort.start = 'desc';
+        sort.start = "desc";
       }
     } else {
       this.filteModelProperty.SortColumn = sort.active;
@@ -313,14 +345,16 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     this.DataGetAll();
   }
 
-
   onActionbuttonNewRow(): void {
-    if (this.categoryModelSelected == null &&
-      (this.categoryModelSelected && this.categoryModelSelected.Id && this.categoryModelSelected.Id.length === 0) && (
-        this.requestLinkPropertyTypeLanduseId == null ||
+    if (
+      this.categoryModelSelected == null &&
+      this.categoryModelSelected &&
+      this.categoryModelSelected.Id &&
+      this.categoryModelSelected.Id.length === 0 &&
+      (this.requestLinkPropertyTypeLanduseId == null ||
         this.requestLinkPropertyTypeLanduseId.length === 0)
     ) {
-      const message = 'محتوا انتخاب نشده است';
+      const message = "محتوا انتخاب نشده است";
       this.cmsToastrService.typeErrorSelected(message);
 
       return;
@@ -334,13 +368,19 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       return;
     }
     let parentId: string = this.requestLinkPropertyTypeLanduseId;
-    if (this.categoryModelSelected && this.categoryModelSelected.Id.length > 0) {
+    if (
+      this.categoryModelSelected &&
+      this.categoryModelSelected.Id.length > 0
+    ) {
       parentId = this.categoryModelSelected.Id;
     }
     if (parentId && parentId.length > 0) {
-      this.router.navigate(['/estate/property/add/LinkPropertyTypeLanduseId', parentId]);
+      this.router.navigate([
+        "/estate/property/add/LinkPropertyTypeLanduseId",
+        parentId,
+      ]);
     } else {
-      this.router.navigate(['/estate/property/add']);
+      this.router.navigate(["/estate/property/add"]);
     }
   }
 
@@ -351,7 +391,9 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     this.DataGetAll();
   }
 
-  onActionbuttonEditRow(mode: EstatePropertyModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(
+    mode: EstatePropertyModel = this.tableRowSelected
+  ): void {
     if (!mode || !mode.Id || mode.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -365,9 +407,11 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/estate/property/edit', this.tableRowSelected.Id]);
+    this.router.navigate(["/estate/property/edit", this.tableRowSelected.Id]);
   }
-  onActionbuttonAdsRow(mode: EstatePropertyModel = this.tableRowSelected): void {
+  onActionbuttonAdsRow(
+    mode: EstatePropertyModel = this.tableRowSelected
+  ): void {
     if (!mode || !mode.Id || mode.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -381,10 +425,15 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/estate/property-ads/LinkPropertyId', this.tableRowSelected.Id]);
+    this.router.navigate([
+      "/estate/property-ads/LinkPropertyId",
+      this.tableRowSelected.Id,
+    ]);
   }
 
-  onActionbuttonDeleteRow(mode: EstatePropertyModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(
+    mode: EstatePropertyModel = this.tableRowSelected
+  ): void {
     if (mode == null || !mode.Id || mode.Id.length === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
@@ -398,38 +447,42 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
-    this.cmsConfirmationDialogService.confirm(title, message)
+    const title = "لطفا تایید کنید...";
+    const message =
+      "آیا مایل به حدف این محتوا می باشید " +
+      "?" +
+      "<br> ( " +
+      this.tableRowSelected.Title +
+      " ) ";
+    this.cmsConfirmationDialogService
+      .confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'main';
+          const pName = this.constructor.name + "main";
           this.loading.Start(pName);
 
-          this.estatePropertyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
-                this.cmsToastrService.typeSuccessRemove();
-                this.DataGetAll();
-              } else {
-                this.cmsToastrService.typeErrorRemove();
+          this.estatePropertyService
+            .ServiceDelete(this.tableRowSelected.Id)
+            .subscribe(
+              (next) => {
+                if (next.IsSuccess) {
+                  this.cmsToastrService.typeSuccessRemove();
+                  this.DataGetAll();
+                } else {
+                  this.cmsToastrService.typeErrorRemove();
+                }
+                this.loading.Stop(pName);
+              },
+              (error) => {
+                this.cmsToastrService.typeError(error);
+                this.loading.Stop(pName);
               }
-              this.loading.Stop(pName);
-
-            },
-            (error) => {
-              this.cmsToastrService.typeError(error);
-              this.loading.Stop(pName);
-
-            }
-          );
+            );
         }
-      }
-      )
+      })
       .catch(() => {
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
-      }
-      );
+      });
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -437,12 +490,31 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
       return;
     }
     const statist = new Map<string, number>();
-    statist.set('Active', 0);
-    statist.set('All', 0);
-    this.estatePropertyService.ServiceGetCount(this.filteModelProperty).subscribe(
+    statist.set("Active", 0);
+    statist.set("All", 0);
+    this.estatePropertyService
+      .ServiceGetCount(this.filteModelProperty)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            statist.set("All", next.TotalRowCount);
+            this.optionsStatist.childMethods.setStatistValue(statist);
+          }
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+        }
+      );
+
+    const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelProperty));
+    const fastfilter = new FilterDataModel();
+    fastfilter.PropertyName = "RecordStatus";
+    fastfilter.Value = EnumRecordStatus.Available;
+    filterStatist1.Filters.push(fastfilter);
+    this.estatePropertyService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+          statist.set("Active", next.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
       },
@@ -450,29 +522,12 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
         this.cmsToastrService.typeError(error);
       }
     );
-
-    const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelProperty));
-    const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
-    this.estatePropertyService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
-          this.optionsStatist.childMethods.setStatistValue(statist);
-        }
-      }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
-    );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
-    this.optionsExport.childMethods.setExportFilterModel(this.filteModelProperty);
+    this.optionsExport.childMethods.setExportFilterModel(
+      this.filteModelProperty
+    );
   }
 
   onActionbuttonInChecking(model: boolean): void {
@@ -481,11 +536,11 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
   }
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
-    exportlist.set('Download', 'loading ... ');
+    exportlist.set("Download", "loading ... ");
     this.estatePropertyService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+          exportlist.set("Download", next.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
       },
@@ -506,7 +561,35 @@ export class EstatePropertyListComponent implements OnInit, OnDestroy, AfterView
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/ticketing/departemen/']);
+    this.router.navigate(["/ticketing/departemen/"]);
   }
-
+  onActionbuttonLinkTo(
+    model: EstatePropertyModel = this.tableRowSelected
+  ): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    const dialogRef = this.dialog.open(CmsLinkToComponent, {
+      height: "90%",
+      data: {
+        UrlViewContentQRCodeBase64:this.tableRowSelected.UrlViewContentQRCodeBase64,
+        UrlViewContent: this.tableRowSelected.UrlViewContent,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
 }
