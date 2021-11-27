@@ -12,10 +12,11 @@
   <ng-content></ng-content>
 </mat-form-field>
 
-<div *ngIf="optionTypeView===2" style="clear:both;">
+<div *ngIf="optionTypeView===2" style="display: inline;">
   <div class="ntk-pull-right" *ngFor="let state of filteredOptions | async">
     <button type="button" [attr.disabled]="optionDisabled? true : null" mat-raised-button
       color="{{state.Id===dataModelSelect.Id ? 'primary' : 'info'}}" (click)="onActionSelect(state)">{{
       displayOption(state) }}</button>
   </div>
+  <ng-content></ng-content>
 </div>
