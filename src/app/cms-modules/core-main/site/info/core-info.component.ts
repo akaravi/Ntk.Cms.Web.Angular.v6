@@ -86,7 +86,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       if (indexLast > 0) {
         const key = this.dataModelResult.Item.UrlResellerUserShortLinkUrl.substr(indexLast + 1);
         const url = this.router.serializeUrl(
-          this.router.createUrlTree(['#/linkmanagement/target-billboard-log/Key/' + key])
+          this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
         );
         window.open(url, '_blank');
       }
