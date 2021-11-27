@@ -90,7 +90,7 @@
           <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
           <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate"
           disabled="{{!fieldsInfo['ExpireDate']?.AccessEditField}}" 
-            placeholder="{{fieldsInfo['ExpireDate']?.FieldTitle}}"/> />
+            placeholder="{{fieldsInfo['ExpireDate']?.FieldTitle}}"/>
           <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
