@@ -25,7 +25,12 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     {
       lang: 'fa',
       name: 'فارسی',
-      flag: './assets/media/svg/flags/iran.svg',
+      flag: './assets/media/svg/flags/136-iran.svg',
+    },
+    {
+      lang: 'ar',
+      name: 'عربی',
+      flag: './assets/media/svg/flags/008-saudi-arabia.svg',
     },
     {
       lang: 'en',
