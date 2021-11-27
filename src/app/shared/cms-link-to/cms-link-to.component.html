@@ -1,4 +1,4 @@
-<div *ngIf="optionUrlViewContent && optionUrlViewContent.length>0">
+<div *ngIf="optionUrlViewContent && optionUrlViewContent.length>0" height="90%">
     <div *ngIf="optionUrlViewContentQRCodeBase64?.length>0 && optionUrlViewContent?.length>0">
         <a href="{{optionUrlViewContent}}" target="_blank">
             <img [src]="optionUrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px" width="200px">

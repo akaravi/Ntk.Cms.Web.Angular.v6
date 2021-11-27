@@ -41,6 +41,7 @@ import { CoreUserModule } from '../user/coreUser.module';
 import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
 import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.component';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { CoreSiteModuleSiteInfoComponent } from './module-site-info/module-site-info.component';
 
 
 
@@ -62,6 +63,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
     CoreSiteUserAddComponent,
     CoreSiteUserEditComponent,
     CoreSiteResellerChartComponent,
+    CoreSiteModuleSiteInfoComponent,
   ],
   exports: [
     CoreSiteComponent,
@@ -79,7 +81,8 @@ import { InlineSVGModule } from 'ng-inline-svg';
     CoreSiteUserListComponent,
     CoreSiteUserAddComponent,
     CoreSiteUserEditComponent,
-    CoreSiteResellerChartComponent
+    CoreSiteResellerChartComponent,
+    CoreSiteModuleSiteInfoComponent,
   ],
   imports: [
     CommonModule,

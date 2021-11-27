@@ -162,6 +162,11 @@
               <mat-icon>devices</mat-icon>
               <span> زیرمجموع بازاریابی</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonModuleSiteInfo(row)"
+              *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
+              <mat-icon>bar_chart</mat-icon>
+              <span> آمار سایت</span>
+            </button>
           </mat-menu>
 
 
