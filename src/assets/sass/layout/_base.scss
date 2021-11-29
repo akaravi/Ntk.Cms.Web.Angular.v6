@@ -7,7 +7,7 @@
 // 3. Set 100% height for document body
 
 html {
-  font-family: IRANSans; // 1
+  font-family: IRANSans!important; // 1
   text-size-adjust: 100%; // 2
   -ms-text-size-adjust: 100%; // 2
   -webkit-text-size-adjust: 100%; // 2
@@ -21,7 +21,7 @@ body {
     padding: 0px;
     font-size: $root-font-size !important;
     font-weight: $font-weight-base;
-    font-family: $font-family-base;
+    font-family: $font-family-base !important;
 
     // Tablet mode
     @include media-breakpoint-down(lg) {

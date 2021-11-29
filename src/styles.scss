@@ -78,13 +78,13 @@
 /*
 karavi
 */
-html {
+* {
   font-family: IRANSans;
   // font-weight: 300;
 }
 
 mat-tree {
-  font-family: IRANSans;
+  font-family: IRANSans !important;
 }
 text-left {
   text-align: left;
@@ -140,7 +140,7 @@ text-left {
 table {
   width: 100%;
   margin-top: 20px;
-  font-family: IRANSans;
+  font-family: IRANSans !important;
 }
 mat-paginator {
   display: flex;
