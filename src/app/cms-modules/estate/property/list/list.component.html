@@ -104,17 +104,18 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.MainAdminRecordStatus|statusClass"></i> </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
-      </ng-container>
       <!-- IsSoldIt Column -->
       <ng-container matColumnDef="IsSoldIt">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsSoldIt']?.FieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.IsSoldIt | boolclass"></i></mat-cell>
       </ng-container>
+      <!-- Title Column -->
+      <ng-container matColumnDef="Title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+      </ng-container>
+
       <!-- ViewCount Column -->
       <ng-container matColumnDef="ViewCount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewCount']?.FieldTitle}}
