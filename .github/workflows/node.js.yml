@@ -45,7 +45,7 @@ jobs:
       with:
         source-directory: 'dist/ntk-cms-web'
         destination-github-username: 'akaravi'
-        destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
+        destination-repository-name: 'Ntk.Cms.Web.Angular.Publish2'
         user-email: karavi.alireza@gmail.com
         #destination-repository-username : 
         commit-message: See $GITHUB_REF
