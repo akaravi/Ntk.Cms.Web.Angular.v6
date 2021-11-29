@@ -21,7 +21,19 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
+    <!-- SoldItTitle Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['SoldItTitle']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.SoldItTitle" name="dataModel.SoldItTitle" #SoldItTitle type="text"
+        placeholder="{{fieldsInfo['SoldItTitle']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.SoldItTitle" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.SoldItTitle = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ SoldItTitle.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="SoldItTitle.errors?.required">
+        SoldItTitle is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
     <div class="ntk-full-width">
       <!-- HasSalePrice Field -->
