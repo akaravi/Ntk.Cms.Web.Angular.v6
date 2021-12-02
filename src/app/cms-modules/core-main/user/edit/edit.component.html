@@ -1,73 +1,82 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
-  <h4>  ویرایش</h4>
+  <h4> ویرایش</h4>
   در این بخش شما میتوانید مشخصات کاربر را ویرایش نمایید.
   <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    ویرایش : {{dataModel.Name}} {{dataModel.LastName}}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
+  <!-- <div class="ntk-cms-html-card-header"> -->
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <!-- ویرایش : {{dataModel.Name}} {{dataModel.LastName}} -->
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <!-- </div> -->
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
-       <!-- RecordStatus Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
-        required>
-        <mat-option *ngFor="
+        <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['RecordStatus']?.FieldTitle}}</mat-label>
+          <mat-select [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField" placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+            name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+            required>
+            <mat-option *ngFor="
           let item of dataModelEnumRecordStatusResult.ListItems;
           index as i
         " [value]="item.Value">{{ item.Description }}</mat-option>
-      </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-      <mat-error *ngIf="RecordStatus.errors?.required">
-        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
+          </mat-select>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-error *ngIf="RecordStatus.errors?.required">
+            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
 
         <!-- Username Field -->
-        
+
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Username']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Username']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Username" name="dataModel.Username" #Username type="text"
             [disabled]="!fieldsInfo['Username']?.AccessEditField" placeholder="{{fieldsInfo['Username']?.FieldTitle}}"
-            minlength="3" maxlength="100"  />
+            minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.Username" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Username = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Username']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Username']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Username.errors?.required">
             {{fieldsInfo['Username']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
-          <!-- Email Field -->
+        <!-- Email Field -->
 
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Email']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email type="text"
             [disabled]="!fieldsInfo['Email']?.AccessEditField" placeholder="{{fieldsInfo['Email']?.FieldTitle}}"
-            minlength="3" maxlength="100"  />
+            minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.Email" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Email = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
             {{fieldsInfo['Email']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
-         <!-- EmailConfirmed Field -->
+        <!-- EmailConfirmed Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.EmailConfirmed"
             *ngIf="fieldsInfo['EmailConfirmed']?.AccessWatchField"
@@ -80,12 +89,14 @@
           <mat-label> {{fieldsInfo['Mobile']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text"
             [disabled]="!fieldsInfo['Mobile']?.AccessEditField" placeholder="{{fieldsInfo['Mobile']?.FieldTitle}}"
-            minlength="3" maxlength="100"  />
+            minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Mobile = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Mobile']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Mobile']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
             {{fieldsInfo['Mobile']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -103,12 +114,14 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
           <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
           <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate"
-          disabled="{{!fieldsInfo['ExpireDate']?.AccessEditField}}" 
+            disabled="{{!fieldsInfo['ExpireDate']?.AccessEditField}}"
             placeholder="{{fieldsInfo['ExpireDate']?.FieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
-            <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-              <strong class="info-field-text">{{fieldsInfo['ExpireDate']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['ExpireDate']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>
@@ -142,8 +155,10 @@
           <mat-icon matSuffix *ngIf="dataModel.Name" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Name = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Name']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Name']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
             {{fieldsInfo['Name']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -160,8 +175,10 @@
           <mat-icon matSuffix *ngIf="dataModel.LastName" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.LastName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['LastName']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['LastName']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ LastName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LastName.errors?.required">
             {{fieldsInfo['LastName']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -171,12 +188,15 @@
         <!-- BirthDay Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BirthDay']?.AccessWatchField">
           <mat-label>{{fieldsInfo['BirthDay']?.FieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="BirthDay" [(ngModel)]="dataModel.BirthDay" name="dataModel.BirthDay" 
-          [disabled]="!fieldsInfo['BirthDay']?.AccessEditField" placeholder="{{fieldsInfo['BirthDay']?.FieldTitle}}"/>
+          <input matInput [matDatepicker]="BirthDay" [(ngModel)]="dataModel.BirthDay" name="dataModel.BirthDay"
+            [disabled]="!fieldsInfo['BirthDay']?.AccessEditField"
+            placeholder="{{fieldsInfo['BirthDay']?.FieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.BirthDay && fieldsInfo['BirthDay']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.BirthDay = null">close</mat-icon>
-            <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-              <strong class="info-field-text">{{fieldsInfo['BirthDay']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['BirthDay']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-datepicker-toggle matSuffix [for]="BirthDay"></mat-datepicker-toggle>
           <mat-datepicker touchUi #BirthDay></mat-datepicker>
         </mat-form-field>
@@ -189,8 +209,10 @@
           <mat-icon matSuffix *ngIf="dataModel.CompanyName" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.CompanyName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['CompanyName']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['CompanyName']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ CompanyName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CompanyName.errors?.required">
             {{fieldsInfo['CompanyName']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -206,8 +228,10 @@
           <mat-icon matSuffix *ngIf="dataModel.Tell" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Tell = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Tell']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Tell']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Tell.errors?.required">
             {{fieldsInfo['Tell']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -222,8 +246,10 @@
           <mat-icon matSuffix *ngIf="dataModel.PostalCode" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.PostalCode = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['PostalCode']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['PostalCode']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ PostalCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PostalCode.errors?.required">
             {{fieldsInfo['PostalCode']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -238,8 +264,10 @@
           <mat-icon matSuffix *ngIf="dataModel.Address" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.Address = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint align="end">{{ Address.value.length }} / 1000</mat-hint>
         </mat-form-field>
 
@@ -256,13 +284,15 @@
         <p>تنظیمات لازیم برای امنیت این حساب کاربری</p>
 
         <!-- LinkResellerUserId Field -->
-        <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerUserId"
-        (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
-          [optionPlaceholder]="'کاربر معرف'"></app-cms-user-selector>
-          <!-- LinkResellerSiteId Field -->
-        <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.AccessEditField" [optionSelectForce]="dataModel.LinkResellerSiteId"
-        (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
-          [optionPlaceholder]="'سایت معرف'"></app-cms-site-selector>
+        <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.AccessEditField"
+          [optionSelectForce]="dataModel.LinkResellerUserId"
+          (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)" [optionPlaceholder]="'کاربر معرف'">
+        </app-cms-user-selector>
+        <!-- LinkResellerSiteId Field -->
+        <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.AccessEditField"
+          [optionSelectForce]="dataModel.LinkResellerSiteId"
+          (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)" [optionPlaceholder]="'سایت معرف'">
+        </app-cms-site-selector>
         <!-- ExpireLockAccount Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireLockAccount']?.AccessWatchField">
           <mat-label>{{fieldsInfo['ExpireLockAccount']?.FieldTitle}}</mat-label>

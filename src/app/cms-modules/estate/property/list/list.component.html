@@ -136,7 +136,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class='Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
@@ -155,13 +155,12 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-
           </mat-menu>
         </mat-cell>
       </ng-container>
       <!-- LinkTo Column -->
       <ng-container matColumnDef="LinkTo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ...
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <mat-icon (click)="onActionbuttonLinkTo(row)">more_vert</mat-icon>

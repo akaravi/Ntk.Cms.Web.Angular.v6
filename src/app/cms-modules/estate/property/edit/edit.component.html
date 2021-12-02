@@ -114,6 +114,9 @@
           [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
         </app-estate-propertytypeusage-selector>
         <br>
+        <br>
+        <br>
+        <br>
 
         <!-- LinkPropertyTypeLanduseId Field -->
         <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
@@ -123,6 +126,7 @@
           [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
         </app-estate-propertytypelanduse-selector>
         <br>
+        
         <!-- CreatedYaer Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.LinkPropertyTypeLanduseId">
           <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
