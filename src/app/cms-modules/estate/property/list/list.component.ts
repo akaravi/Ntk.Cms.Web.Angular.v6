@@ -142,7 +142,7 @@ export class EstatePropertyListComponent
     "LinkMainImageIdSrc",
     "Id",
     "RecordStatus",
-    'MainAdminRecordStatus',
+    "MainAdminRecordStatus",
     "IsSoldIt",
     "LinkSiteId",
     "Title",
@@ -581,17 +581,38 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CmsLinkToComponent, {
-      height: "90%",
-      data: {
-        UrlViewContentQRCodeBase64:this.tableRowSelected.UrlViewContentQRCodeBase64,
-        UrlViewContent: this.tableRowSelected.UrlViewContent,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات ملک");
+    this.estatePropertyService
+      .ServiceGetOneById(this.tableRowSelected.Id)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open poup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64:                  next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open poup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
   }
 }
