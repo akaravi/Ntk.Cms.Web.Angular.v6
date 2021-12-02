@@ -10,6 +10,8 @@
 	"ACTION.BUY": "Buy",
 	"ACTION.CANCEL": "Cancel",
 	"ACTION.COMMENT": "Comment",
+	"ACTION.ANSWERS": "Answers",
+	"ACTION.ORDERING": "Ordering",
 	"ACTION.CONTACT": "Contact",
 	"ACTION.CONTENT": "Content",
 	"ACTION.CUSTOMPAGES": "Custom Pages",

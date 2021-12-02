@@ -46,7 +46,7 @@
 
 
     <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected.Id>0" (click)="onActionbuttonAnswerList()"
-      type="button" class="btn btn-outline-secondary BTN">پاسخ ها</button>
+      type="button" class="btn btn-outline-secondary BTN">{{'ACTION.ANSWERS' | translate}}</button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -113,7 +113,7 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonAnswerList(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
               <mat-icon>question_answer</mat-icon>
-              <span>پاسخ ها</span>
+              <span>{{'ACTION.ANSWERS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>
