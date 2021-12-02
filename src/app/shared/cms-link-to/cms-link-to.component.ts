@@ -60,6 +60,6 @@ export class CmsLinkToComponent implements OnInit {
     const url = this.router.serializeUrl(
       this.router.createUrlTree([this.optionUrlViewContent])
     );
-    window.open(url, '_blank');
+    window.open(this.optionUrlViewContent, '_blank');
   }
 }
