@@ -1,3 +1,4 @@
+<app-progress-spinner [options]="loading"> </app-progress-spinner>
 <!-- compact -->
 <ng-container *ngIf="footerLayout === 'compact'">
   <!--begin::Container-->
@@ -9,7 +10,7 @@
       <a href="https://ntk.ir" target="_blank" class="text-dark-75 text-hover-primary">NTK co</a>
     </div>
     <div class="text-dark order-2 order-md-1">
-    ver: {{publicHelper.appVersion}}
+    ver: {{this.publicHelper.appClientVersion}} /{{this.publicHelper.appServerVersion}}
   </div>
     <!--end::Copyright-->
 
@@ -94,7 +95,7 @@
         <a href="https://ntk.ir" target="_blank" class="text-primary text-hover-primary">NTK co</a>
       </div>
       <div class="text-dark order-2 order-md-1">
-        ver: {{publicHelper.appVersion}}
+        ver: {{this.publicHelper.appClientVersion}} /{{this.publicHelper.appServerVersion}}
       </div>
       <!--end::Copyright-->
 
