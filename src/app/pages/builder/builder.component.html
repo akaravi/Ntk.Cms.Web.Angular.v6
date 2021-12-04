@@ -1,10 +1,6 @@
 <app-notice [svg]="'./assets/media/svg/icons/Tools/Tools.svg'">
   <p>
-    The layout builder is to assist your set and configure your preferred
-    project layout specifications and preview it in real time. The configured
-    layout options will be saved until you change or reset them. To use the
-    layout builder, choose the layout options and click the
-    <code>Preview</code> button to preview the changes.
+    {{'ACTION.DESCRIPTION_OF_BUILDER' | translate}}
   </p>
 </app-notice>
 <!--begin::Card-->
@@ -13,53 +9,28 @@
   <div class="card-header card-header-tabs-line">
     <ul class="nav nav-dark nav-bold nav-tabs nav-tabs-line" role="tablist">
       <li class="nav-item">
-        <a
-          (click)="setActiveTab(1)"
-          class="nav-link cursor-pointer"
-          [ngClass]="getActiveTabCSSClass(1)"
-          role="tab"
-        >
-        {{'ACTION.HEADER' | translate}}
+        <a (click)="setActiveTab(1)" class="nav-link cursor-pointer" [ngClass]="getActiveTabCSSClass(1)" role="tab">
+          {{'ACTION.HEADER' | translate}}
         </a>
       </li>
       <li class="nav-item">
-        <a
-          (click)="setActiveTab(2)"
-          class="nav-link cursor-pointer"
-          [ngClass]="getActiveTabCSSClass(2)"
-          role="tab"
-        >
-        {{'ACTION.SUBHEADER' | translate}}
+        <a (click)="setActiveTab(2)" class="nav-link cursor-pointer" [ngClass]="getActiveTabCSSClass(2)" role="tab">
+          {{'ACTION.SUBHEADER' | translate}}
         </a>
       </li>
       <li class="nav-item">
-        <a
-          (click)="setActiveTab(3)"
-          class="nav-link cursor-pointer"
-          [ngClass]="getActiveTabCSSClass(3)"
-          role="tab"
-        >
-        {{'ACTION.CONTENT' | translate}}
+        <a (click)="setActiveTab(3)" class="nav-link cursor-pointer" [ngClass]="getActiveTabCSSClass(3)" role="tab">
+          {{'ACTION.CONTENT' | translate}}
         </a>
       </li>
       <li class="nav-item">
-        <a
-          (click)="setActiveTab(4)"
-          class="nav-link cursor-pointer"
-          [ngClass]="getActiveTabCSSClass(4)"
-          role="tab"
-        >
-          Aside
+        <a (click)="setActiveTab(4)" class="nav-link cursor-pointer" [ngClass]="getActiveTabCSSClass(4)" role="tab">
+          {{'ACTION.ASIDE' | translate}}
         </a>
       </li>
       <li class="nav-item">
-        <a
-          (click)="setActiveTab(5)"
-          class="nav-link cursor-pointer"
-          [ngClass]="getActiveTabCSSClass(5)"
-          role="tab"
-        >
-        {{'ACTION.FOOTER' | translate}}
+        <a (click)="setActiveTab(5)" class="nav-link cursor-pointer" [ngClass]="getActiveTabCSSClass(5)" role="tab">
+          {{'ACTION.FOOTER' | translate}}
         </a>
       </li>
     </ul>
@@ -73,95 +44,68 @@
         <!-- begin::Header -->
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(1)">
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Desktop Fixed Header:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.DESKTOP_FIXED_HEADER' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
                 <label>
-                  <input
-                    type="checkbox"
-                    name="builder[header][self][fixed][desktop]"
-                    [(ngModel)]="model.header.self.fixed.desktop"
-                    value="true"
-                  />
+                  <input type="checkbox" name="builder[header][self][fixed][desktop]"
+                    [(ngModel)]="model.header.self.fixed.desktop" value="true" />
                   <span></span>
                 </label>
               </span>
               <div class="form-text text-muted">
-                Enable fixed header for desktop mode
+                {{'ACTION.ENABLE_FIXED_HEADER_FOR_DESKTOP_MODE' | translate}}
               </div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Header Width:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.HEADER_WIDTH' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[header][self][width]"
-                [(ngModel)]="model.header.self.width"
-              >
-                <option value="fluid">Fluid</option>
-                <option value="fixed">Fixed</option>
+              <select class="form-control form-control-solid" name="builder[header][self][width]"
+                [(ngModel)]="model.header.self.width">
+                <option value="fluid">{{'ACTION.FLUID' | translate}}</option>
+                <option value="fixed">{{'ACTION.FIXED' | translate}}</option>
               </select>
-              <div class="form-text text-muted">Select header width type.</div>
+              <div class="form-text text-muted">{{'ACTION.SELECT_HEADER_WIDTH_TYPE' | translate}}</div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Display Header Menu:</label>
+            <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.DISPLAY_HEADER_MENU' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
                 <label>
-                  <input
-                    type="checkbox"
-                    name="builder[header][menu][self][display]"
-                    [(ngModel)]="model.header.menu.self.display"
-                    value="true"
-                  />
+                  <input type="checkbox" name="builder[header][menu][self][display]"
+                    [(ngModel)]="model.header.menu.self.display" value="true" />
                   <span></span>
                 </label>
               </span>
-              <div class="form-text text-muted">Display header menu</div>
+              <div class="form-text text-muted">{{'ACTION.DISPLAY_HEADER_MENU' | translate}}</div>
             </div>
           </div>
-        
+
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Header Menu Layout:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.HEADER_MENU_LAYOUT' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[header][menu][self][layout]"
-                [(ngModel)]="model.header.menu.self.layout"
-              >
-                <option value="default">Default</option>
-                <option value="tab">Tab</option>
+              <select class="form-control form-control-solid" name="builder[header][menu][self][layout]"
+                [(ngModel)]="model.header.menu.self.layout">
+                <option value="default">{{'ACTION.DEFAULT' | translate}}</option>
+                <option value="tab">{{'ACTION.TAB' | translate}}</option>
               </select>
-              <div class="form-text text-muted">Select header width type.</div>
+              <div class="form-text text-muted">{{'ACTION.SELECT_HEADER_WIDTH_TYPE' | translate}}</div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Header Menu Arrows:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.HEADER_MENU_ARROWS' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
                 <label>
-                  <input
-                    type="checkbox"
-                    name="builder[header][menu][self][rootArrow]"
-                    [(ngModel)]="model.header.menu.self.rootArrow"
-                    value="true"
-                  />
+                  <input type="checkbox" name="builder[header][menu][self][rootArrow]"
+                    [(ngModel)]="model.header.menu.self.rootArrow" value="true" />
                   <span></span>
                 </label>
               </span>
               <div class="form-text text-muted">
-                Enable header menu root link arrows
+                {{'ACTION.ENABLE_HEADER_MENU_ROOT_LINK_ARROWS' | translate}}
               </div>
             </div>
           </div>
@@ -171,18 +115,12 @@
         <!-- begin::Subheader -->
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(2)">
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >{{'ACTION.DISPLAYSUBHEADER' | translate}}:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.DISPLAYSUBHEADER' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
                 <label>
-                  <input
-                    type="checkbox"
-                    name="builder[subheader][display]"
-                    [(ngModel)]="model.subheader.display"
-                    value="true"
-                  />
+                  <input type="checkbox" name="builder[subheader][display]" [(ngModel)]="model.subheader.display"
+                    value="true" />
                   <span></span>
                 </label>
               </span>
@@ -192,13 +130,10 @@
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right">{{'ACTION.WIDTH' | translate}}:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[subheader][width]"
-                [(ngModel)]="model.subheader.width"
-              >
-                <option value="fluid">Fluid</option>
-                <option value="fixed">Fixed</option>
+              <select class="form-control form-control-solid" name="builder[subheader][width]"
+                [(ngModel)]="model.subheader.width">
+                <option value="fluid">{{'ACTION.FLUID' | translate}}</option>
+                <option value="fixed">{{'ACTION.FIXED' | translate}}</option>
               </select>
               <div class="form-text text-muted">Select layout width type.</div>
             </div>
@@ -211,13 +146,10 @@
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right">Width:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[content][width]"
-                [(ngModel)]="model.content.width"
-              >
-                <option value="fluid">Fluid</option>
-                <option value="fixed">Fixed</option>
+              <select class="form-control form-control-solid" name="builder[content][width]"
+                [(ngModel)]="model.content.width">
+                <option value="fluid">{{'ACTION.FLUID' | translate}}</option>
+                <option value="fixed">{{'ACTION.FIXED' | translate}}</option>
               </select>
               <div class="form-text text-muted">Select layout width type.</div>
             </div>
@@ -228,18 +160,12 @@
         <!-- begin::Aside -->
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(4)">
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Display:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">Display:</label>
             <div class="col-lg-9 col-xl-6">
               <span class="switch switch-icon">
                 <label>
-                  <input
-                    type="checkbox"
-                    name="builder[aside][self][display]"
-                    [(ngModel)]="model.aside.self.display"
-                    value="true"
-                  />
+                  <input type="checkbox" name="builder[aside][self][display]" [(ngModel)]="model.aside.self.display"
+                    value="true" />
                   <span></span>
                 </label>
               </span>
@@ -247,21 +173,15 @@
             </div>
           </div>
 
-         
+
 
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Submenu toggle dropdown:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">Submenu toggle dropdown:</label>
             <div class="col-lg-9 col-xl-4">
               <span class="switch switch-icon">
                 <label>
-                  <input
-                    type="checkbox"
-                    name="builder[aside][menu][dropdown]"
-                    [(ngModel)]="model.aside.menu.dropdown"
-                    value="true"
-                  />
+                  <input type="checkbox" name="builder[aside][menu][dropdown]" [(ngModel)]="model.aside.menu.dropdown"
+                    value="true" />
                   <span></span>
                 </label>
               </span>
@@ -278,15 +198,10 @@
         <!-- begin::Footer -->
         <div class="tab-pane" [ngClass]="getActiveTabCSSClass(5)">
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label text-lg-right"
-              >Footer Layout:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-right">Footer Layout:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[footer][layout]"
-                [(ngModel)]="model.footer.layout"
-              >
+              <select class="form-control form-control-solid" name="builder[footer][layout]"
+                [(ngModel)]="model.footer.layout">
                 <option value="compact">Compact</option>
                 <option value="extended">Extended</option>
               </select>
@@ -296,13 +211,10 @@
           <div class="form-group row">
             <label class="col-lg-3 col-form-label text-lg-right">Width:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-control form-control-solid"
-                name="builder[footer][width]"
-                [(ngModel)]="model.footer.width"
-              >
-                <option value="fluid">Fluid</option>
-                <option value="fixed">Fixed</option>
+              <select class="form-control form-control-solid" name="builder[footer][width]"
+                [(ngModel)]="model.footer.width">
+                <option value="fluid">{{'ACTION.FLUID' | translate}}</option>
+                <option value="fixed">{{'ACTION.FIXED' | translate}}</option>
               </select>
               <div class="form-text text-muted">Select layout width type.</div>
             </div>
@@ -321,13 +233,8 @@
             {{'ACTION.PREVIEW' | translate}}
           </button>
           &nbsp;
-          <button
-            type="submit"
-            (click)="resetPreview()"
-            name="builder_reset"
-            class="btn btn-secondary"
-          >
-          {{'ACTION.RESET' | translate}}
+          <button type="submit" (click)="resetPreview()" name="builder_reset" class="btn btn-secondary">
+            {{'ACTION.RESET' | translate}}
           </button>
         </div>
       </div>
@@ -352,14 +259,10 @@
       </p>
       <div class="example-code">
         <div class="example-code">
-          <span
-            class="example-copy"
-            data-placement="left"
-            ngbTooltip="Copy code"
-          ></span>
+          <span class="example-copy" data-placement="left" ngbTooltip="Copy code"></span>
           <div class="example-highlight">
             <!-- <pre><code [highlight]="model|json"></code></pre> -->
-             <pre><code >{{model|json}}</code></pre> 
+            <pre><code >{{model|json}}</code></pre>
           </div>
         </div>
       </div>
