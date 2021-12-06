@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -31,8 +31,8 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="1000" cols="20" required >
-      
+        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="1000" cols="20" required>
+
       </textarea>
       <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.Title = ''">close</mat-icon>
@@ -42,9 +42,12 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-
-    با زدن اینتر کلملت را جدا کنید
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-18">
+      <div style="float: right;"><mat-icon matSuffix>info</mat-icon></div>
+      <div> <p>با زدن اینتر کلمات را جدا کنید </p></div>
+      </div>
+    </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
