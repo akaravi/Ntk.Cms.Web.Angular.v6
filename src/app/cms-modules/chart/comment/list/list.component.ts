@@ -9,7 +9,8 @@ import {
   ChartCommentService,
   ChartContentModel,
   NtkCmsApiStoreService,
-  TokenInfoModel
+  TokenInfoModel,
+  EnumFilterDataModelSearchTypes
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterModel, FilterDataModel } from 'ntk-cms-api';
@@ -54,6 +55,10 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
+      this.searchInChecking =
+        this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
+    }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -69,6 +74,8 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
+  searchInChecking = false;
+  searchInCheckingChecked = false;
   requestContentId = 0;
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<ChartCommentModel> = new ErrorExceptionResult<ChartCommentModel>();
@@ -106,6 +113,11 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
     });
   }
+  ngAfterViewInit(): void {
+    if (this.searchInChecking) {
+      this.searchInCheckingChecked = true;
+    }
+  }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
@@ -125,6 +137,13 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
       const filter = new FilterDataModel();
       filter.PropertyName = 'linkContentId';
       filter.Value = this.requestContentId;
+      filterModel.Filters.push(filter);
+    }
+    if (this.searchInChecking) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = "RecordStatus";
+      filter.Value = EnumRecordStatus.Available;
+      filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.Filters.push(filter);
     }
     this.commentService.ServiceGetAllEditor(filterModel).subscribe(
@@ -366,6 +385,10 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
       }
     );
 
+  }
+  onActionbuttonInChecking(model: boolean): void {
+    this.searchInChecking = model;
+    this.DataGetAll();
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;

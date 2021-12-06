@@ -9,7 +9,8 @@ import {
   NewsCommentService,
   BiographyContentModel,
   NtkCmsApiStoreService,
-  TokenInfoModel
+  TokenInfoModel,
+  EnumFilterDataModelSearchTypes
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterModel, FilterDataModel } from 'ntk-cms-api';
@@ -54,6 +55,11 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+
+    if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
+      this.searchInChecking =
+        this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
+    }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -69,6 +75,8 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
+  searchInChecking = false;
+  searchInCheckingChecked = false;
   requestContentId = 0;
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<NewsCommentModel> = new ErrorExceptionResult<NewsCommentModel>();
@@ -94,6 +102,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   expandedElement: NewsCommentModel | null;
   cmsApiStoreSubscribe: Subscription;
 
+  
   ngOnInit(): void {
     this.requestContentId = + Number(this.activatedRoute.snapshot.paramMap.get('ContentId'));
     this.DataGetAll();
@@ -105,6 +114,11 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       this.DataGetAll();
       this.tokenInfo = next;
     });
+  }
+  ngAfterViewInit(): void {
+    if (this.searchInChecking) {
+      this.searchInCheckingChecked = true;
+    }
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -127,11 +141,16 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       filter.Value = this.requestContentId;
       filterModel.Filters.push(filter);
     }
+    if (this.searchInChecking) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = "RecordStatus";
+      filter.Value = EnumRecordStatus.Available;
+      filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filterModel.Filters.push(filter);
+    }
     this.commentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
@@ -367,6 +386,10 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       }
     );
 
+  }
+  onActionbuttonInChecking(model: boolean): void {
+    this.searchInChecking = model;
+    this.DataGetAll();
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
