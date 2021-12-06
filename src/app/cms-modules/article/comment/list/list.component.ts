@@ -77,8 +77,8 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<ArticleContentModel> = [];
-  tableRowSelected: ArticleContentModel = new ArticleContentModel();
+  tableRowsSelected: Array<ArticleCommentModel> = [];
+  tableRowSelected: ArticleCommentModel = new ArticleCommentModel();
   tableSource: MatTableDataSource<ArticleCommentModel> = new MatTableDataSource<ArticleCommentModel>();
   tabledisplayedColumns: string[] = [
     'Id',
@@ -95,7 +95,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  expandedElement: ArticleContentModel | null;
+  expandedElement: ArticleCommentModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -115,7 +115,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ArticleContentModel();
+    this.tableRowSelected = new ArticleCommentModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -254,7 +254,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonEditRow(model: ArticleContentModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: ArticleCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -280,7 +280,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: ArticleContentModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: ArticleCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -297,7 +297,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = 'لطفا تایید کنید...';
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Writer + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
@@ -395,7 +395,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: ArticleContentModel): void {
+  onActionTableRowSelect(row: ArticleCommentModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {

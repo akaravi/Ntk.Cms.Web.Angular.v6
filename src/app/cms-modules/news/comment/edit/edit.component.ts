@@ -79,6 +79,7 @@ export class NewsCommentEditComponent implements OnInit {
     } else if (this.requestContentId > 0) {
       this.ComponentAction = ComponentActionEnum.add;
       this.formInfo.FormTitle = 'ثبت کامت جدید';
+      this.DataGetAccess();
     }
     if (this.ComponentAction === ComponentActionEnum.none) {
       this.cmsToastrService.typeErrorComponentAction();
@@ -90,6 +91,23 @@ export class NewsCommentEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
+  DataGetAccess(): void {
+    this.commentService
+      .ServiceViewModel()
+      .subscribe(
+        async (next) => {
+          if (next.IsSuccess) {
+            // this.dataAccessModel = next.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+          }
+        },
+        (error) => {
+          this.cmsToastrService.typeErrorGetAccess(error);
+        }
+      );
+  }
   DataGetOneContent(): void {
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
@@ -100,7 +118,7 @@ export class NewsCommentEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
+    this.commentService.setAccessLoad();
     this.commentService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

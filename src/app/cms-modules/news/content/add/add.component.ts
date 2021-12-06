@@ -74,7 +74,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   fileManagerOpenForm = false;
   fileManagerOpenFormPodcast = false;
   fileManagerOpenFormMovie = false;
-  dataAccessModel: AccessModel;
 
 
   fileManagerTree: TreeModel;
@@ -123,7 +122,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);

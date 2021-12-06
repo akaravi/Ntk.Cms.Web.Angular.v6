@@ -77,8 +77,8 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<BiographyContentModel> = [];
-  tableRowSelected: BiographyContentModel = new BiographyContentModel();
+  tableRowsSelected: Array<BiographyCommentModel> = [];
+  tableRowSelected: BiographyCommentModel = new BiographyCommentModel();
   tableSource: MatTableDataSource<BiographyCommentModel> = new MatTableDataSource<BiographyCommentModel>();
   tabledisplayedColumns: string[] = [
     'Id',
@@ -95,7 +95,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  expandedElement: BiographyContentModel | null;
+  expandedElement: BiographyCommentModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -116,7 +116,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BiographyContentModel();
+    this.tableRowSelected = new BiographyCommentModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -254,7 +254,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonEditRow(model: BiographyContentModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: BiographyCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -280,7 +280,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: BiographyContentModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: BiographyCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -301,8 +301,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
 
 
     const title = 'لطفا تایید کنید...';
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
-    this.cmsConfirmationDialogService.confirm(title, message)
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) '+ ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) ';    this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
@@ -399,7 +398,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: BiographyContentModel): void {
+  onActionTableRowSelect(row: BiographyCommentModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {

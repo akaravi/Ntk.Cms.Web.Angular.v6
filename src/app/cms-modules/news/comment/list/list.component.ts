@@ -7,7 +7,7 @@ import {
   ErrorExceptionResult,
   NewsCommentModel,
   NewsCommentService,
-  NewsContentModel,
+  BiographyContentModel,
   NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -77,8 +77,8 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<NewsContentModel> = [];
-  tableRowSelected: NewsContentModel = new NewsContentModel();
+  tableRowsSelected: Array<NewsCommentModel> = [];
+  tableRowSelected: NewsCommentModel = new NewsCommentModel();
   tableSource: MatTableDataSource<NewsCommentModel> = new MatTableDataSource<NewsCommentModel>();
   tabledisplayedColumns: string[] = [
     'Id',
@@ -91,7 +91,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
 
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  expandedElement: NewsContentModel | null;
+  expandedElement: NewsCommentModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -111,7 +111,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new NewsContentModel();
+    this.tableRowSelected = new NewsCommentModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -251,7 +251,8 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonEditRow(model: NewsContentModel = this.tableRowSelected): void {
+   onActionbuttonEditRow(model: NewsCommentModel = this.tableRowSelected): void {
+    
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -277,7 +278,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: NewsContentModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: NewsCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -294,9 +295,9 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       return;
     }
 
-
+    
     const title = 'لطفا تایید کنید...';
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) '+ ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
@@ -394,7 +395,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: NewsContentModel): void {
+  onActionTableRowSelect(row: NewsCommentModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
