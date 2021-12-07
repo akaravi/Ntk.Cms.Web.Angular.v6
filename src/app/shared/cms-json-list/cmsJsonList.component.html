@@ -1,5 +1,5 @@
 <!--optionMethod 1-->
-<div class="table" *ngIf="optionMethod===1">
+<div class="table" *ngIf="optionMethod===1 && dataModel">
   <div class="th" *ngIf="optionViewHead">
     <div class="td">پارامتر</div>
     <div class="td">مقادیر</div>
@@ -12,7 +12,7 @@
   </div>
 </div>
 <!--optionMethod 2-->
-<div class="table" *ngIf="optionMethod===2">
+<div class="table" *ngIf="optionMethod===2 && dataModel">
   <div class="th" *ngIf="optionViewHead">
     <div class="td" *ngFor="let head of dataModel[0] | keys : optionFields" >{{(optionFields && optionFields.size>0)?
       optionFields.get(head): head}}</div>
@@ -26,7 +26,7 @@
 
 
 <!--optionMethod 3-->
-<div class="table" *ngIf="optionMethod===3">
+<div class="table" *ngIf="optionMethod===3 && dataModel">
   <div class="th" *ngIf="optionViewHead">
     <div class="td" *ngFor="let head of dataModel[0] | keys : optionFields" >{{(optionFields && optionFields.size>0)?
       optionFields.get(head): head}}</div>
