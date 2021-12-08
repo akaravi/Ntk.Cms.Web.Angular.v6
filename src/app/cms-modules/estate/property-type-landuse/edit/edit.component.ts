@@ -118,6 +118,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     );
   }
   DataGetAllEstateProprtyUsage(): void {
+
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';

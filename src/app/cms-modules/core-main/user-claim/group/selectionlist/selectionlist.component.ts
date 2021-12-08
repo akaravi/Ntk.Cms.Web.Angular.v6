@@ -1,46 +1,42 @@
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  EstatePropertyTypeUsageModel,
-  EstatePropertyTypeUsageService
-} from 'ntk-cms-api';
+import { CoreEnumService, ErrorExceptionResult, FilterDataModel, FilterModel, CoreUserClaimGroupModel, CoreUserClaimGroupService } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
-  selector: 'app-estate-propertytypeusage-selectionlist',
+  selector: 'app-core-userclaimgroup-selectionlist',
   templateUrl: './selectionlist.component.html',
   styleUrls: ['./selectionlist.component.scss']
 })
-export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
+export class CoreUserClaimGroupSelectionlistComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
-    public categoryService: EstatePropertyTypeUsageService,
+    public categoryService: CoreUserClaimGroupService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
     this.loading.cdr = this.cdr;
   }
-  dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
-  dataModelSelect: EstatePropertyTypeUsageModel[] = [];
-  dataIdsSelect: string[] = [];
+  dataModelResult: ErrorExceptionResult<CoreUserClaimGroupModel> = new ErrorExceptionResult<CoreUserClaimGroupModel>();
+  dataModelSelect: CoreUserClaimGroupModel[] = [];
+  dataIdsSelect: number[] = [];
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  fieldsStatus: Map<string, boolean> = new Map<string, boolean>();
+  fieldsStatus: Map<number, boolean> = new Map<number, boolean>();
 
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionChange = new EventEmitter<EstatePropertyTypeUsageModel[]>();
+  @Output() optionChange = new EventEmitter<CoreUserClaimGroupModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string[] | EstatePropertyTypeUsageModel[]) {
+  @Input() set optionSelectForce(x: number[] | CoreUserClaimGroupModel[]) {
     this.onActionSelectForce(x);
   }
 
@@ -54,12 +50,13 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
 
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
+        // this.fieldsStatus = new Map<number, boolean>();
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
@@ -81,7 +78,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
       }
     );
   }
-  onActionSelect(value: EstatePropertyTypeUsageModel): void {
+  onActionSelect(value: CoreUserClaimGroupModel): void {
     const item = this.dataModelSelect.filter((obj) => {
       return obj.Id === value.Id;
     }).shift();
@@ -98,12 +95,12 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
   }
 
 
-  onActionSelectForce(ids: string[] | EstatePropertyTypeUsageModel[]): void {
-    if (typeof ids === typeof Array(String)) {
+  onActionSelectForce(ids: number[] | CoreUserClaimGroupModel[]): void {
+    if (typeof ids === typeof Array(Number)) {
       ids.forEach(element => {
         this.dataIdsSelect.push(element);
       });
-    } else if (typeof ids === typeof Array(EstatePropertyTypeUsageModel)) {
+    } else if (typeof ids === typeof Array(CoreUserClaimGroupModel)) {
       ids.forEach(element => {
         this.dataIdsSelect.push(element.Id);
       });
@@ -112,7 +109,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // this.dataModelSelect = new EstatePropertyTypeUsageModel();
+    // this.dataModelSelect = new CoreUserClaimGroupModel();
     this.DataGetAll();
   }
 }

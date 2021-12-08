@@ -39,6 +39,7 @@ import { CoreUserClaimContentEditComponent } from './content/edit/edit.component
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { CoreUserClaimContentCheckListComponent } from './content/check-list/check-list.component';
 import { CoreUserClaimTypeSelectionlistComponent } from './type/selectionlist/selectionlist.component';
+import { CoreUserClaimGroupSelectionlistComponent } from './group/selectionlist/selectionlist.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CoreUserClaimTypeSelectionlistComponent } from './type/selectionlist/se
     CoreUserClaimGroupDetailEditComponent,
     CoreUserClaimGroupDetailSelectorComponent,
     CoreUserClaimGroupDetailTreeComponent,
+    CoreUserClaimGroupSelectionlistComponent,
     /** */
     /** */
     CoreUserClaimContentListComponent,

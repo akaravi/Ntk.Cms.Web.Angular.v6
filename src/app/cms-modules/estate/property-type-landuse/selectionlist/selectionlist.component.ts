@@ -3,8 +3,8 @@ import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
-  EstatePropertyTypeUsageModel,
-  EstatePropertyTypeUsageService
+  EstatePropertyTypeLanduseModel,
+  EstatePropertyTypeLanduseService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -13,21 +13,21 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
-  selector: 'app-estate-propertytypeusage-selectionlist',
+  selector: 'app-estate-propertytypelanduse-selectionlist',
   templateUrl: './selectionlist.component.html',
   styleUrls: ['./selectionlist.component.scss']
 })
-export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
+export class EstatePropertyTypeLanduseSelectionlistComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
-    public categoryService: EstatePropertyTypeUsageService,
+    public categoryService: EstatePropertyTypeLanduseService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService) {
     this.loading.cdr = this.cdr;
   }
-  dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
-  dataModelSelect: EstatePropertyTypeUsageModel[] = [];
+  dataModelResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
+  dataModelSelect: EstatePropertyTypeLanduseModel[] = [];
   dataIdsSelect: string[] = [];
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
@@ -36,11 +36,11 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionChange = new EventEmitter<EstatePropertyTypeUsageModel[]>();
+  @Output() optionChange = new EventEmitter<EstatePropertyTypeLanduseModel[]>();
   @Output() optionSelectAdded = new EventEmitter();
   @Output() optionSelectRemoved = new EventEmitter();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string[] | EstatePropertyTypeUsageModel[]) {
+  @Input() set optionSelectForce(x: string[] | EstatePropertyTypeLanduseModel[]) {
     this.onActionSelectForce(x);
   }
 
@@ -60,6 +60,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
 
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
+        // this.fieldsStatus = new Map<string, boolean>();
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
@@ -81,7 +82,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
       }
     );
   }
-  onActionSelect(value: EstatePropertyTypeUsageModel): void {
+  onActionSelect(value: EstatePropertyTypeLanduseModel): void {
     const item = this.dataModelSelect.filter((obj) => {
       return obj.Id === value.Id;
     }).shift();
@@ -98,12 +99,12 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
   }
 
 
-  onActionSelectForce(ids: string[] | EstatePropertyTypeUsageModel[]): void {
+  onActionSelectForce(ids: string[] | EstatePropertyTypeLanduseModel[]): void {
     if (typeof ids === typeof Array(String)) {
       ids.forEach(element => {
         this.dataIdsSelect.push(element);
       });
-    } else if (typeof ids === typeof Array(EstatePropertyTypeUsageModel)) {
+    } else if (typeof ids === typeof Array(EstatePropertyTypeLanduseModel)) {
       ids.forEach(element => {
         this.dataIdsSelect.push(element.Id);
       });
@@ -112,7 +113,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // this.dataModelSelect = new EstatePropertyTypeUsageModel();
+    // this.dataModelSelect = new EstatePropertyTypeLanduseModel();
     this.DataGetAll();
   }
 }

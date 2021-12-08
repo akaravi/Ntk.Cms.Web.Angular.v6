@@ -7,6 +7,8 @@
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="مشخصات ادعا" state="main">
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
@@ -92,6 +94,16 @@
         {{fieldsInfo['Description']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+  </mat-step>
+  <mat-step label="بکارگیری شده" state="main">
+    <app-core-userclaimgroup-selectionlist [optionSelectForce]="dataCoreClaimGroupIds" [optionDisabled]="false"
+      (optionChange)="onActionSelectorUserCategorySelect($event)"
+      (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
+      (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
+    </app-core-userclaimgroup-selectionlist>
+  </mat-step>
+
+</mat-horizontal-stepper>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
