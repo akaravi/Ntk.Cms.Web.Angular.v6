@@ -60,7 +60,6 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
 
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
-        this.fieldsStatus = new Map<string, boolean>();
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));

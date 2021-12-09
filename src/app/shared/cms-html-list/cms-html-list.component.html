@@ -1,10 +1,10 @@
 <div class="row">
-  <div *ngIf="optionTreeDisplay" class="col-xl-3">
+  <div *ngIf="optionTreeDisplay" [ngClass]="optionClassTree">
     <!--begin::tree-->
     <ng-content select="[cms-tree]"></ng-content>
     <!--end::tree-->
   </div>
-  <div [ngClass]="optionTreeDisplay?'col-xl-9':'col-xl-12'">
+  <div [ngClass]="optionTreeDisplay?optionClassList:'col-xl-12'">
     <!--begin::Header-->
     <div *ngIf="optionHeaderDisplay ||optionActionDisplay" class="ntk-cms-html-list-header">
       <ng-content *ngIf="optionHeaderDisplay" select="[cms-header]"></ng-content>

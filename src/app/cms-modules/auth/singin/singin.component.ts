@@ -4,6 +4,7 @@ import { AuthUserSignInModel, CaptchaModel, CoreAuthService, FormInfoModel } fro
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth-singin',
@@ -18,6 +19,7 @@ export class AuthSingInComponent implements OnInit {
     private router: Router,
     private coreAuthService: CoreAuthService,
     private translationService: TranslationService,
+    private translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
@@ -51,9 +53,9 @@ export class AuthSingInComponent implements OnInit {
     this.hasError = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.dataModel.lang = this.translationService.getSelectedLanguage();
-
+    
     const pName = this.constructor.name + '.ServiceSigninUser';
-    this.loading.Start(pName, 'ورود به حساب کاربری');
+    this.loading.Start(pName,this.translate.instant('MESSAGE.login_to_user_account'));
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
       this.dataModel.SiteId = siteId;

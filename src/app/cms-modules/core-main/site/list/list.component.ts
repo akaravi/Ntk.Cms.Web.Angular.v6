@@ -29,6 +29,7 @@ import { Subscription } from 'rxjs';
 import { CoreSiteDeleteComponent } from '../delete/delete.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CoreSiteModuleSiteInfoComponent } from '../module-site-info/module-site-info.component';
+import { CoreSiteModuleSiteOptimazeComponent } from '../module-site-optimaze/module-site-optimaze.component';
 
 @Component({
   selector: 'app-core-site-list',
@@ -353,6 +354,35 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreSiteModuleSiteInfoComponent, {
+      height: '90%',
+      data: {
+        LinkSiteId: model.Id,
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
+  onActionbuttonModuleSiteOptimaze(model: CoreSiteModel = this.tableRowSelected): void {
+
+    if (!model || !model.Id || model.Id === 0) {
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    const dialogRef = this.dialog.open(CoreSiteModuleSiteOptimazeComponent, {
       height: '90%',
       data: {
         LinkSiteId: model.Id,

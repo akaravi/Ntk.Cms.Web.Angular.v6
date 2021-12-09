@@ -34,7 +34,8 @@ import { CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
   ],
   providers: [
     CoreModuleService,
-    CoreConfigurationService
+    CoreConfigurationService,
+    
   ]
 })
 export class AuthModule { }

@@ -85,7 +85,7 @@
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
 
           <!-- Action Menu -->
@@ -103,11 +103,11 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonContentList(row)">
               <mat-icon>list</mat-icon>
-              <span>املاک شامل نمایش</span>
+              <span>{{'ACTION.THEPROPERTY_INCLUDESVIEWS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonOpenCustomerOrder(row)">
               <mat-icon>list</mat-icon>
-              <span>نمایش صفحه مشتری</span>
+              <span>{{'ACTION.DISPLAYCLIENTPAGE' | translate}}</span>
             </button>
 
           </mat-menu>

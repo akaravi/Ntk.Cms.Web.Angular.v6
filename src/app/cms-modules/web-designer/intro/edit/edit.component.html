@@ -38,7 +38,7 @@
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.FieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -53,7 +53,7 @@
           <mat-icon *ngIf="fieldsInfo['LinkPageId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['LinkPageId']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ LinkPageId.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ LinkPageId.value.length }} / 100</mat-hint>
 
         </mat-form-field>
         <!-- Priority Field -->
@@ -80,10 +80,9 @@
           <mat-icon matSuffix *ngIf="dataModel.Description && fieldsInfo['Description']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Description']?.AccessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ 'Application.Source.Description_hint' | translate }}</mat-hint>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ Description.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Description.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             {{ fieldsInfo['Description']?.FieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

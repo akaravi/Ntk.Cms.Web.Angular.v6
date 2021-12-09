@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
+// @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
 // Global vendors
 @import "~bootstrap/dist/css/bootstrap.css";
 // => Material
@@ -16,6 +16,9 @@
 @import "./assets/plugins/flaticon2/flaticon.css";
 @import "./assets/plugins/keenthemes-icons/font/ki.css";
 
+
+@import url("./assets/fonts/fontiran.css");
+ 
 // Metronic styles (replace these path when using RTL css below)
 // @import "./assets/sass/style.angular.scss";
 // For RTL,
@@ -75,12 +78,13 @@
 /*
 karavi
 */
-html {
-  font-family: IRANSansWeb;
+* {
+  font-family: IRANSans;
+  // font-weight: 300;
 }
 
 mat-tree {
-  font-family: IRANSansWeb;
+  font-family: IRANSans !important;
 }
 text-left {
   text-align: left;
@@ -136,7 +140,7 @@ text-left {
 table {
   width: 100%;
   margin-top: 20px;
-  font-family: IRANSansWeb;
+  font-family: IRANSans !important;
 }
 mat-paginator {
   display: flex;
@@ -156,7 +160,7 @@ mat-paginator {
   margin-right: 5px;
 }
 ::ng-deep .mat-slide-toggle-content {
-  font-family: "IRANSansWeb" !important;
+  font-family: "IRANSans" !important;
 }
 .info-field-icon{
   color: rgb(56, 184, 56) !important;

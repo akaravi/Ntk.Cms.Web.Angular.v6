@@ -57,7 +57,7 @@ export const DefaultLayoutConfig = {
         'gray-900': '#212121',
       },
     },
-    fontFamily: 'Poppins',
+    fontFamily: 'IRANSans',
   },
 
   // Base Settins

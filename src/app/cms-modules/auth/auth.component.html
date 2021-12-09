@@ -26,7 +26,7 @@
       <div *ngIf="showSplashModel" class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
         style="background-image: url('./assets/media/svg/illustrations/login-visual-1.svg')"></div>
       <!--end::Aside Bottom-->
-      ver: {{publicHelper.appVersion}}
+      ver: {{this.publicHelper.appClientVersion}} /{{this.publicHelper.appServerVersion}}
     </div>
     <!--begin::Aside-->
     <app-language-selector style="margin-top: 10px;"></app-language-selector>

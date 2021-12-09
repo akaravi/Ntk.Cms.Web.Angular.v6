@@ -1,14 +1,18 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+  <h4> اضافه کردن مشتری</h4>
+  در این بخش شما میتوانید مشتری دید ایجاد نمایید.
+</app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    <h3 class="card-label">
+  <!-- <div class="ntk-cms-html-card-header"> -->
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <!-- <h3 class="card-label">
       {{formInfo.FormTitle}}
-    </h3>
+    </h3> -->
 
 
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <!-- </div> -->
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -80,7 +84,8 @@
     </app-estate-propertytypeusage-selector>
 
     <br>
-    <hr>
+    <br>
+    <br>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
@@ -92,7 +97,8 @@
     </app-estate-propertytypelanduse-selector>
 
     <br>
-    <hr>
+    <br>
+    <br>
     <!-- LinkContractTypeIds Field -->
     <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
       [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.AccessAddField"
@@ -103,7 +109,8 @@
     </app-estate-contract-type-selector>
 
     <br>
-    <hr>
+    <br>
+    <br>
     <!-- CreatedYaer Field -->
     <mat-form-field class="ntk-full-width"
       *ngIf="this.dataModel.LinkPropertyTypeLanduseId && PropertyTypeSelected?.TitleCreatedYaer?.length>1">
@@ -210,6 +217,11 @@
     <hr>
     <p>
       لیست املاک خاص
+    </p>
+    <p>
+      توضیحات:
+      <br>
+      بخش املاک خاص به شما این امکان را میدهد که اگر بخواهید یک ملک ثبت شده را جستجو کنید،تنها کافیست عنوان آن ملک را در بخش زیر وارد کنید تا ملک مورد نظر برای شما نمایش داده شود.
     </p>
     <!-- LinkPropertyIds Field -->
     <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
@@ -328,3 +340,4 @@
 
 <app-estate-property-list [optionLinkCustomerOrderId]="dataModel.Id" [optionloadComponent]="optionloadComponent"
   [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
+  

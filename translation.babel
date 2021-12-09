@@ -28,7 +28,7 @@
                         <translations>
                             <translation>
                                 <language>de-DE</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>en-US</language>
@@ -36,7 +36,7 @@
                             </translation>
                             <translation>
                                 <language>es-ES</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>fa-IR</language>
@@ -56,7 +56,7 @@
                             </translation>
                             <translation>
                                 <language>ar-AE</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                         </translations>
                     </concept_node>
@@ -73,7 +73,7 @@
                             </translation>
                             <translation>
                                 <language>en-US</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>de-DE</language>
@@ -2875,35 +2875,35 @@
                                 <translations>
                                     <translation>
                                         <language>fa-IR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>en-US</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>de-DE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>es-ES</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>fr-FR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ja-JP</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>zh-TW</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ar-AE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                 </translations>
                             </concept_node>
@@ -3039,35 +3039,35 @@
                                 <translations>
                                     <translation>
                                         <language>fa-IR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>en-US</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>de-DE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>es-ES</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>fr-FR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ja-JP</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>zh-TW</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ar-AE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                 </translations>
                             </concept_node>
@@ -3167,35 +3167,35 @@
                                 <translations>
                                     <translation>
                                         <language>fa-IR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>en-US</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>de-DE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>es-ES</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>fr-FR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ja-JP</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>zh-TW</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ar-AE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                 </translations>
                             </concept_node>
@@ -3208,35 +3208,35 @@
                                 <translations>
                                     <translation>
                                         <language>fa-IR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>en-US</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>de-DE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>es-ES</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>fr-FR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ja-JP</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>zh-TW</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ar-AE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                 </translations>
                             </concept_node>
@@ -3249,35 +3249,35 @@
                                 <translations>
                                     <translation>
                                         <language>fa-IR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>en-US</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>de-DE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>es-ES</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>fr-FR</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ja-JP</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>zh-TW</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                     <translation>
                                         <language>ar-AE</language>
-                                        <approved>false</approved>
+                                        <approved>true</approved>
                                     </translation>
                                 </translations>
                             </concept_node>
@@ -11404,6 +11404,108 @@
                             </translation>
                         </translations>
                     </concept_node>
+                    <folder_node>
+                        <name>Reminder</name>
+                        <children>
+                            <folder_node>
+                                <name>by</name>
+                                <children>
+                                    <concept_node>
+                                        <name>SMS</name>
+                                        <definition_loaded>false</definition_loaded>
+                                        <description/>
+                                        <comment/>
+                                        <default_text/>
+                                        <translations>
+                                            <translation>
+                                                <language>ar-AE</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>de-DE</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>en-US</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>es-ES</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>fa-IR</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>fr-FR</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>ja-JP</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>zh-TW</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                        </translations>
+                                    </concept_node>
+                                </children>
+                            </folder_node>
+                        </children>
+                    </folder_node>
+                    <folder_node>
+                        <name>Reminders</name>
+                        <children>
+                            <folder_node>
+                                <name>by</name>
+                                <children>
+                                    <concept_node>
+                                        <name>email</name>
+                                        <definition_loaded>false</definition_loaded>
+                                        <description/>
+                                        <comment/>
+                                        <default_text/>
+                                        <translations>
+                                            <translation>
+                                                <language>ar-AE</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>de-DE</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>en-US</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>es-ES</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>fa-IR</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>fr-FR</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>ja-JP</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                            <translation>
+                                                <language>zh-TW</language>
+                                                <approved>false</approved>
+                                            </translation>
+                                        </translations>
+                                    </concept_node>
+                                </children>
+                            </folder_node>
+                        </children>
+                    </folder_node>
                     <concept_node>
                         <name>Specify_the_application_format</name>
                         <definition_loaded>false</definition_loaded>
@@ -12102,6 +12204,47 @@
                         </translations>
                     </concept_node>
                     <concept_node>
+                        <name>login_to_user_account</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description/>
+                        <comment/>
+                        <default_text/>
+                        <translations>
+                            <translation>
+                                <language>ar-AE</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>de-DE</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-ES</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>fa-IR</language>
+                                <approved>true</approved>
+                            </translation>
+                            <translation>
+                                <language>fr-FR</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ja-JP</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>zh-TW</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
                         <name>mahyar</name>
                         <definition_loaded>false</definition_loaded>
                         <description/>
@@ -12192,35 +12335,35 @@
                         <translations>
                             <translation>
                                 <language>de-DE</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>en-US</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>es-ES</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>fa-IR</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>fr-FR</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>ja-JP</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>zh-TW</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                             <translation>
                                 <language>ar-AE</language>
-                                <approved>false</approved>
+                                <approved>true</approved>
                             </translation>
                         </translations>
                     </concept_node>

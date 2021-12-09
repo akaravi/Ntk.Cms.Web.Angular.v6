@@ -49,7 +49,7 @@ jobs:
         user-email: karavi.alireza@gmail.com
         #destination-repository-username : 
         commit-message: See $GITHUB_REF
-        target-branch: master
+        target-branch: main
     
     - name: Webhook Sms
       uses: joelwmale/webhook-action@master

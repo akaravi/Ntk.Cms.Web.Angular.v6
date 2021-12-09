@@ -9,6 +9,8 @@ export class CmsHtmlListComponent implements OnInit {
   @Input() optionHeaderDisplay = true;
   @Input() optionActionDisplay = true;
   @Input() optionFooterDisplay = true;
+  @Input() optionClassTree = 'col-xl-3';
+  @Input() optionClassList = 'col-xl-9';
 
   @Input() optionTreeDisplay = true;
   @Input()

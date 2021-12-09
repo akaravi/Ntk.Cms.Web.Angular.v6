@@ -42,7 +42,7 @@
           <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -84,7 +84,7 @@
           <mat-icon matSuffix *ngIf="dataModel.ClassName && fieldsInfo['ClassName']?.AccessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.ClassName = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ClassName']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">{{ ClassName.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ ClassName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="ClassName.errors?.required">
             ClassName is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

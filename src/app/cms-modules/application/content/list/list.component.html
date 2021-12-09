@@ -51,10 +51,10 @@
       *ngIf="tableRowSelected.Id>0 && this.tokenInfo.UserAccessAdminAllowToProfessionalData" type="button"
       class="btn btn-outline-success BTN">بارگزاری فایل برروزرسانی</button>
     <button (click)="onActionbuttonBuildApp()" *ngIf="tableRowSelected.Id>0" type="button"
-      class="btn btn-outline-success BTN">ساخت اپ</button>
+      class="btn btn-outline-success BTN">{{'ACTION.BUILDANAPP' | translate}}</button>
     <button (click)="onActionbuttonDownloadApp()"
       *ngIf="tableRowSelected.Id>0 && tableRowSelected.LastSuccessfullyBuildDate" type="button"
-      class="btn btn-outline-success BTN">دانلود اپ</button>
+      class="btn btn-outline-success BTN">{{'ACTION.DOWNLOADTHEAPP' | translate}}</button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkSourceId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <button (click)="onActionBackToParentTheme()" *ngIf="requestLinkThemeConfigId>0" type="button"
@@ -122,7 +122,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">

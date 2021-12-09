@@ -35,8 +35,10 @@ export class PublicHelper {
     private cmsStoreService: CmsStoreService
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
+
   }
-  appVersion = environment.appVersion;
+  appClientVersion = environment.appVersion;
+  appServerVersion = '';
 
   editorConfig: AngularEditorConfig = {
     editable: true,

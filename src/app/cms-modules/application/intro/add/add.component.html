@@ -48,7 +48,7 @@
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -65,8 +65,7 @@
           <mat-icon *ngIf="fieldsInfo['Description']?.AccessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="end">{{ 'Application.Source.Description_hint' | translate }}</mat-hint>
-          <mat-hint align="start">{{ Description.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Description.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             {{ fieldsInfo['Description']?.FieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

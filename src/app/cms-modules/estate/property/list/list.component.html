@@ -1,4 +1,5 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'" *ngIf="dataModelResult.Access.AccessAddRow && optionloadByRoute ">
+<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'"
+  *ngIf="dataModelResult.Access.AccessAddRow && optionloadByRoute ">
   <h4>مدیریت محتوای املاک </h4>
   <br>
   در این بخش میتوانید آگهی ملک ایجاد کنید.
@@ -21,8 +22,9 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.Access.AccessAddRow && optionloadByRoute " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+    <button *ngIf="dataModelResult.Access.AccessAddRow && optionloadByRoute " (click)="onActionbuttonNewRow()"
+      type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button
       *ngIf="dataModelResult.Access.AccessEditRow && (tableRowSelected?.Id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
@@ -96,11 +98,24 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
       </ng-container>
+      <!-- MainAdminRecordStatus Column -->
+      <ng-container matColumnDef="MainAdminRecordStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['MainAdminRecordStatus']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.MainAdminRecordStatus|statusClass"></i> </mat-cell>
+      </ng-container>
+      <!-- IsSoldIt Column -->
+      <ng-container matColumnDef="IsSoldIt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsSoldIt']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.IsSoldIt | boolclass"></i></mat-cell>
+      </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
+
       <!-- ViewCount Column -->
       <ng-container matColumnDef="ViewCount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewCount']?.FieldTitle}}
@@ -121,7 +136,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class='Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
@@ -140,16 +155,17 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-
           </mat-menu>
         </mat-cell>
       </ng-container>
-         <!-- LinkTo Column -->
-         <ng-container matColumnDef="LinkTo">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> ...
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row"> <mat-icon (click)="onActionbuttonLinkTo(row)" >more_vert</mat-icon> </mat-cell>
-        </ng-container>
+      <!-- LinkTo Column -->
+      <ng-container matColumnDef="LinkTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon (click)="onActionbuttonLinkTo(row)">more_vert</mat-icon>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">

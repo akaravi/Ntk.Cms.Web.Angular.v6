@@ -31,6 +31,7 @@ import { CoreLocationEditComponent } from '../edit/edit.component';
 import { CoreLocationAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CoreLocationAddBulkComponent } from '../add-bulk/add-bulk.component';
 
 @Component({
   selector: 'app-core-location-list',
@@ -80,13 +81,10 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
 
   tabledisplayedColumns: string[] = [
     'LinkImageIdSrc',
-
     'Id',
     'RecordStatus',
     'Title',
     'LocationType',
-    'GeoLocationLatitude',
-    'GeoLocationLongitude',
     'Action'
   ];
 
@@ -215,7 +213,27 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonNewRowBulk(): void {
 
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+
+    const dialogRef = this.dialog.open(CoreLocationAddBulkComponent, {
+      height: '90%',
+      data: { id: this.categoryModelSelected?.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
   onActionbuttonEditRow(model: CoreLocationModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id === 0) {

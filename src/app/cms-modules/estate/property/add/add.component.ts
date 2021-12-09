@@ -389,6 +389,9 @@ export class EstatePropertyAddComponent implements OnInit {
     });
     // ** Save Value */
     if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+      this.onActionOptionAddToList(false);
+    }
+    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
       const message = 'نوع معامله ملک مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       this.formInfo.FormSubmitAllow = true;
@@ -403,10 +406,12 @@ export class EstatePropertyAddComponent implements OnInit {
 
   }
 
-  onActionOptionAddToList(): void {
+  onActionOptionAddToList(viewAlert: boolean = true): void {
     if (!this.contractTypeSelected || this.contractTypeSelected.Id.length === 0) {
       const message = 'نوع معامله ملک مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      if (viewAlert) {
+        this.cmsToastrService.typeErrorSelected(message);
+      }
       return;
     }
     if (!this.dataModel.Contracts) {
