@@ -17,6 +17,7 @@ import { CoreLocationListComponent } from './list/list.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { CoreLocationAddBulkComponent } from './add-bulk/add-bulk.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     CoreLocationComponent,
     CoreLocationListComponent,
     CoreLocationAddComponent,
+    CoreLocationAddBulkComponent,
     CoreLocationEditComponent,
     CoreLocationSelectorComponent,
     CoreLocationTreeComponent,
@@ -32,6 +34,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     CoreLocationComponent,
     CoreLocationListComponent,
     CoreLocationAddComponent,
+    CoreLocationAddBulkComponent,
     CoreLocationEditComponent,
     CoreLocationSelectorComponent,
     CoreLocationTreeComponent,

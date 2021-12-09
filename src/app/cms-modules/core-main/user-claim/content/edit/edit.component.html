@@ -46,7 +46,7 @@
     </app-cms-site-selector>
 
     <!-- LinkUserClaimTypeId Field -->
-    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)"
+    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" *ngIf="ProfessionalData"
       [optionSelectForce]="this.dataModel.LinkUserClaimTypeId" [optionPlaceholder]="'دسته مدارک'"
       [optionDisabled]="!fieldsInfo['LinkUserClaimTypeId']?.AccessEditField">
     </app-core-userclaimtype-selector>
