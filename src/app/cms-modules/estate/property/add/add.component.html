@@ -349,73 +349,87 @@
           [optionDisabled]="false" [optionPlaceholder]="'نوع معامله'"
           [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
         </app-estate-contract-type-selector>
-        <div *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
-          <br>
-          <br>
 
+        <div class="container" *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
+
+
+      
           <!-- SalePrice Field -->
-          <div class="mb-9">
-            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
-              <mat-label> {{'TITLE.SalePrice' | translate}}</mat-label>
-              <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
-                matInputCommified [disabled]="contractDataModel.SalePriceByAgreement" #CurrentClickCount type="text"
-                placeholder="0" />
-              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
-                (click)="contractDataModel.SalePrice = 0">
-                close</mat-icon>
-              <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-label> ( {{contractTypeSelected.UnitSalePrice}} ) </mat-label>
-            </mat-form-field>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
+                <mat-label> {{'TITLE.SalePrice' | translate}}</mat-label>
+                <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
+                  matInputCommified [disabled]="contractDataModel.SalePriceByAgreement" #CurrentClickCount type="text"
+                  placeholder="0" />
+                <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                  (click)="contractDataModel.SalePrice = 0">
+                  close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-label> ( {{contractTypeSelected.UnitSalePrice}} ) </mat-label>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-slide-toggle
+                *ngIf="contractTypeSelected.HasSalePrice && contractTypeSelected.SalePriceAllowAgreement"
+                [(ngModel)]="contractDataModel.SalePriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
+                name="contractDataModel.SalePriceAllowAgreement">
+                توافق در مبلغ فروش
+              </mat-slide-toggle>
+            </div>
           </div>
-          <div class="mb-3">
-            <mat-slide-toggle *ngIf="contractTypeSelected.HasSalePrice && contractTypeSelected.SalePriceAllowAgreement"
-              [(ngModel)]="contractDataModel.SalePriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
-              name="contractDataModel.SalePriceAllowAgreement">
-              توافق در مبلغ فروش
-            </mat-slide-toggle>
+          <p>3</p>
+          <div class="row">
+            <div class="col-6">
+              <!-- RentPrice Field -->
+              <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
+                <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
+                <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
+                  matInputCommified [disabled]="contractDataModel.RentPriceByAgreement" #CurrentClickCount type="text"
+                  placeholder="0" />
+                <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                  (click)="contractDataModel.RentPrice = 0">
+                  close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-label> ( {{contractTypeSelected.UnitRentPrice}} ) </mat-label>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-6">
+              <mat-slide-toggle
+                *ngIf="contractTypeSelected.HasRentPrice && contractTypeSelected.RentPriceAllowAgreement"
+                [(ngModel)]="contractDataModel.RentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()"
+                name="contractDataModel.RentPriceByAgreement">
+                توافق در اجاره
+              </mat-slide-toggle>
+            </div>
           </div>
-          <div class="mb-9">
-            <!-- RentPrice Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
-              <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
-              <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
-                matInputCommified [disabled]="contractDataModel.RentPriceByAgreement" #CurrentClickCount type="text"
-                placeholder="0" />
-              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
-                (click)="contractDataModel.RentPrice = 0">
-                close</mat-icon>
-              <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-label> ( {{contractTypeSelected.UnitRentPrice}} ) </mat-label>
-            </mat-form-field>
-          </div>
-          <div class="mb-3">
-            <mat-slide-toggle *ngIf="contractTypeSelected.HasRentPrice && contractTypeSelected.RentPriceAllowAgreement"
-              [(ngModel)]="contractDataModel.RentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()"
-              name="contractDataModel.RentPriceByAgreement">
-              توافق در اجاره
-            </mat-slide-toggle>
-          </div>
-          <div class="mb-9">
-            <!-- DepositPrice Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
-              <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
-              <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
-                matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="text"
-                placeholder="0" />
-              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
-                (click)="contractDataModel.DepositPrice = 0">
-                close</mat-icon>
-              <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-label> ( {{contractTypeSelected.UnitDepositPrice}} ) </mat-label>
-            </mat-form-field>
-          </div>
-          <div class="mb-3">
-            <mat-slide-toggle
-              *ngIf="contractTypeSelected.HasDepositPrice && contractTypeSelected.DepositPriceAllowAgreement"
-              [(ngModel)]="contractDataModel.DepositPriceByAgreement" (change)="onActionClickDepositPriceByAgreement()"
-              name="contractDataModel.DepositPriceByAgreement">
-              توافق در رهن
-            </mat-slide-toggle>
+          <div class="row">
+
+            <div class="col-6">
+              <!-- DepositPrice Field -->
+              <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
+                <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
+                <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
+                  matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount
+                  type="text" placeholder="0" />
+                <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                  (click)="contractDataModel.DepositPrice = 0">
+                  close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-label> ( {{contractTypeSelected.UnitDepositPrice}} ) </mat-label>
+              </mat-form-field>
+            </div>
+
+            <div class="col-6">
+              <mat-slide-toggle
+                *ngIf="contractTypeSelected.HasDepositPrice && contractTypeSelected.DepositPriceAllowAgreement"
+                [(ngModel)]="contractDataModel.DepositPriceByAgreement"
+                (change)="onActionClickDepositPriceByAgreement()" name="contractDataModel.DepositPriceByAgreement">
+                توافق در رهن
+              </mat-slide-toggle>
+            </div>
           </div>
           <hr>
           <!-- contractDataModel.Description Field -->

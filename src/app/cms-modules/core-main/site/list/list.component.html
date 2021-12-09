@@ -163,10 +163,15 @@
               <span> زیرمجموع بازاریابی</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonModuleSiteInfo(row)"
-              *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
+              *ngIf="tokenInfo.UserAccessAdminAllowToAllData ||tokenInfo.UserAccessAdminAllowToProfessionalData || tokenInfo.SiteId==row.Id">
               <mat-icon>bar_chart</mat-icon>
               <span> آمار سایت</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonModuleSiteOptimaze(row)"
+            *ngIf="tokenInfo.UserAccessAdminAllowToAllData ||tokenInfo.UserAccessAdminAllowToProfessionalData || tokenInfo.SiteId==row.Id">
+            <mat-icon>bar_chart</mat-icon>
+            <span>بهنه سازی </span>
+          </button>
           </mat-menu>
 
 

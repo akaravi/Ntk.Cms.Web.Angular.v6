@@ -6,6 +6,11 @@ import {
   EstatePropertyTypeUsageService,
   EstatePropertyTypeUsageModel,
   DataFieldInfoModel,
+  FilterModel,
+  FilterDataModel,
+  EstatePropertyTypeService,
+  EstatePropertyTypeModel,
+  EstatePropertyTypeLanduseModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -34,6 +39,7 @@ export class EstatePropertyTypeUsageEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EstatePropertyTypeUsageEditComponent>,
     public coreEnumService: CoreEnumService,
     public estatePropertyTypeUsageService: EstatePropertyTypeUsageService,
+    public estatePropertyTypeService: EstatePropertyTypeService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -57,6 +63,9 @@ export class EstatePropertyTypeUsageEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
+  dataEstatePropertyTypeLandUseIds: string[] = [];
+  dataEstatePropertyTypeModel: EstatePropertyTypeModel[];
+  dataEstatePropertyTypeLanduseModel: EstatePropertyTypeLanduseModel[];
 
   ngOnInit(): void {
     this.formInfo.FormTitle = 'ویرایش  ';
@@ -66,6 +75,7 @@ export class EstatePropertyTypeUsageEditComponent implements OnInit {
       return;
     }
     this.DataGetOneContent();
+    this.DataGetAllEstateProprtyUsage();
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -133,6 +143,95 @@ export class EstatePropertyTypeUsageEditComponent implements OnInit {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
 
+      }
+    );
+  }
+  DataGetAllEstateProprtyUsage(): void {
+
+    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    const filteModelContent = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'LinkPropertyTypeUsageId';
+    filter.Value = this.requestId;
+    filteModelContent.Filters.push(filter);
+
+    this.estatePropertyTypeService.ServiceGetAll(filteModelContent).subscribe(
+      (next) => {
+        this.dataEstatePropertyTypeModel = next.ListItems;
+        const listG: string[] = [];
+        this.dataEstatePropertyTypeModel.forEach(element => {
+          listG.push(element.LinkPropertyTypeLanduseId);
+        });
+        this.dataEstatePropertyTypeLandUseIds = listG;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionSelectorUserCategorySelect(model: EstatePropertyTypeLanduseModel[]): void {
+    this.dataEstatePropertyTypeLanduseModel = model;
+  }
+  onActionSelectorUserCategorySelectAdded(model: EstatePropertyTypeUsageModel): void {
+    const entity = new EstatePropertyTypeModel();
+    entity.LinkPropertyTypeUsageId = this.dataModel.Id;
+    entity.LinkPropertyTypeLanduseId = model.Id;
+
+    this.estatePropertyTypeService.ServiceAdd(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+
+      }
+    );
+  }
+  onActionSelectorUserCategorySelectRemoved(model: EstatePropertyTypeUsageModel): void {
+    const entity = new EstatePropertyTypeModel();
+    entity.LinkPropertyTypeUsageId =this.dataModel.Id;
+    entity.LinkPropertyTypeLanduseId = model.Id ;
+
+    this.estatePropertyTypeService.ServiceDeleteEntity(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
       }
     );
   }

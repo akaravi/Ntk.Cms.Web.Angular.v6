@@ -118,6 +118,7 @@ import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.com
 import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
 import { EstateCustomerOrderSelectorComponent } from './customer-order/selector/selector.component';
 import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.component';
+import { EstatePropertyTypeLanduseSelectionlistComponent } from './property-type-landuse/selectionlist/selectionlist.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.com
     EstatePropertyTypeLanduseSelectorComponent,
     EstatePropertyTypeLanduseTreeComponent,
     EstatePropertyTypeLanduseCompleteComponent,
+    EstatePropertyTypeLanduseSelectionlistComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,

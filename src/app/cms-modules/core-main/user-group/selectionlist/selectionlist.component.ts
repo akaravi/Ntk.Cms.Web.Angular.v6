@@ -55,7 +55,7 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
 
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
-        this.fieldsStatus = new Map<number, boolean>();
+        // this.fieldsStatus = new Map<number, boolean>();
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
