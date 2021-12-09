@@ -81,8 +81,6 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
     'Id',
     'RecordStatus',
     'Title',
-    'CreatedDate',
-    'UpdatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();

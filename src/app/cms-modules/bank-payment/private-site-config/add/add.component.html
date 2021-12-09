@@ -36,7 +36,7 @@
         <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessEditField" matSuffix mat-icon-button
           aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['Title']?.AccessEditField" matSuffix>mode_edit</mat-icon>
-        <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
+        <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Title.errors?.required">
           {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>

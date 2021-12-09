@@ -69,7 +69,6 @@ export class EstatePropertyListComponent
     this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get(
       "LinkCustomerOrderId"
     );
-
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
       this.searchInChecking =
         this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
@@ -170,6 +169,7 @@ export class EstatePropertyListComponent
         this.tokenInfo = next;
       });
   }
+  
   ngAfterViewInit(): void {
     if (this.searchInChecking) {
       this.searchInCheckingChecked = true;
