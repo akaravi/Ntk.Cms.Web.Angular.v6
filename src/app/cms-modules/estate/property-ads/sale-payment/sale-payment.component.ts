@@ -30,6 +30,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class EstatePropertyAdsSalePaymentComponent implements OnInit {
   requestLinkPropertyId = '';
   requestLinkAdsTypeId = '';
+  requestBankPrivateMaster=false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) private document: any,
@@ -48,6 +49,9 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
       }
       if (data.LinkAdsTypeId && data.LinkAdsTypeId.length > 0) {
         this.requestLinkAdsTypeId = data.LinkAdsTypeId;
+      }
+      if (data.BankPrivateMaster && data.BankPrivateMaster===true) {
+        this.requestBankPrivateMaster =true;
       }
     }
     if (this.requestLinkPropertyId.length === 0) {
