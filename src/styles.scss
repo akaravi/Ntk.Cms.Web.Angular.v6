@@ -357,7 +357,7 @@ mat-paginator {
   margin: 3px;
 }
 .ntk-hover-zoom:hover {
-  zoom: 3;
+  transform: scale(2); 
 }
 /* karavi popup image */
 .ntk-popup {
