@@ -14,6 +14,7 @@ import {
   CoreEnumService,
   CoreModuleService,
   CoreModuleTagService,
+  CoreSiteCategoryService,
   WebDesignerEnumService,
   WebDesignerLogPageSafeService,
   WebDesignerMainIntroService,
@@ -58,6 +59,7 @@ import { WebDesignerMainPageTemplateTreeComponent } from './page-template/tree/t
 import { WebDesignerMainPageTemplateHeaderComponent } from './page-template/header/header.component';
 import { CoreModuleModule } from '../core-main/module/coreModule.module';
 import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-dependency/auto-add-page/auto-add-page.component';
+import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     WebDesignerMainPageAddComponent,
     WebDesignerMainPageEditComponent,
     WebDesignerMainPageListComponent,
+    WebDesignerMainPageListGridComponent,
     WebDesignerMainPageSelectorComponent,
     WebDesignerMainPageTreeComponent,
     WebDesignerMainPageHeaderComponent,
@@ -124,6 +127,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     CoreAuthService,
     CmsConfirmationDialogService,
     CoreModuleTagService,
+    CoreSiteCategoryService,
     WebDesignerLogPageSafeService,
     WebDesignerMainIntroService,
     WebDesignerMainMenuService,

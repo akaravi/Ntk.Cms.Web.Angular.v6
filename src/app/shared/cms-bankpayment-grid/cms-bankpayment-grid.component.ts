@@ -59,6 +59,9 @@ export class CmsBankpaymentGridComponent implements OnInit {
         (next) => {
           if (next.IsSuccess) {
             this.dataModelResult = next;
+            if (this.dataModelResult.ListItems && this.dataModelResult.ListItems.length == 1) {
+              this.onActionSelect(this.dataModelResult.ListItems[0]);
+            }
           }
           else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);

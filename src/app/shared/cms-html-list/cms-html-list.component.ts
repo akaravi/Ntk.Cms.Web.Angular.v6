@@ -11,6 +11,7 @@ export class CmsHtmlListComponent implements OnInit {
   @Input() optionFooterDisplay = true;
   @Input() optionClassTree = 'col-xl-3';
   @Input() optionClassList = 'col-xl-9';
+  @Input() optionClassBody = 'ntk-cms-html-tree-body';
 
   @Input() optionTreeDisplay = true;
   @Input()

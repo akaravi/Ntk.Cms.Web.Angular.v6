@@ -13,7 +13,7 @@
     <!--end::Header-->
     <ng-content select="[cms-action-area]"></ng-content>
     <!--begin::Body-->
-    <div class="ntk-cms-html-tree-body">
+    <div [ngClass]="optionClassBody" >
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <ng-content  select="[cms-body]"></ng-content>
     </div>

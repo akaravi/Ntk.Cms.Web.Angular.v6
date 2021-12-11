@@ -8,6 +8,7 @@ import { WebDesignerMainIntroListComponent } from './intro/list/list.component';
 import { WebDesignerMainMenuListComponent } from './menu/list/list.component';
 import { WebDesignerMainPageDependencyListComponent } from './page-dependency/list/list.component';
 import { WebDesignerMainPageTemplateListComponent } from './page-template/list/list.component';
+import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid.component';
 import { WebDesignerMainPageListComponent } from './page/list/list.component';
 import { WebDesignerComponent } from './webDesigner.component';
 
@@ -77,6 +78,23 @@ const routes: Routes = [
       {
         path: 'page/LinkPageDependencyGuId/:LinkPageDependencyGuId',
         component: WebDesignerMainPageListComponent
+      },
+      /** */
+      {
+        path: 'page/list-grid',
+        component: WebDesignerMainPageListGridComponent
+      },
+      {
+        path: 'page/list-grid/LinkPageTemplateGuId/:LinkPageTemplateGuId',
+        component: WebDesignerMainPageListGridComponent
+      },
+      {
+        path: 'page/list-grid/LinkPageParentGuId/:LinkPageParentGuId',
+        component: WebDesignerMainPageListGridComponent
+      },
+      {
+        path: 'page/list-grid/LinkPageDependencyGuId/:LinkPageDependencyGuId',
+        component: WebDesignerMainPageListGridComponent
       },
       /** */
     ]

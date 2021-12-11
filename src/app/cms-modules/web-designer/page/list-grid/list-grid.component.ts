@@ -34,11 +34,11 @@ import { environment } from 'src/environments/environment';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-webdesigner-page-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-webdesigner-page-list-grid',
+  templateUrl: './list-grid.component.html',
+  styleUrls: ['./list-grid.component.scss']
 })
-export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
+export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
   requestLinkPageParentGuId = '';
   requestLinkPageTemplateGuId = '';
   requestLinkPageDependencyGuId = '';
@@ -111,11 +111,12 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<WebDesignerMainPageModel> = [];
   tableRowSelected: WebDesignerMainPageModel = new WebDesignerMainPageModel();
   tableSource: MatTableDataSource<WebDesignerMainPageModel> = new MatTableDataSource<WebDesignerMainPageModel>();
-  dataModelWebDesignerMainPageTemplateResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel>
-    = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
-    dataModelCoreSiteCategoryResult: ErrorExceptionResult<CoreSiteCategoryModel>    = new ErrorExceptionResult<CoreSiteCategoryModel>();
+  dataModelWebDesignerMainPageTemplateResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel>    = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
+  dataModelCoreSiteCategoryResult: ErrorExceptionResult<CoreSiteCategoryModel>    = new ErrorExceptionResult<CoreSiteCategoryModel>();
+
 
   tabledisplayedColumns: string[] = [
+    'ThumbnailImageSrc',
     'Id',
     'RecordStatus',
     'Title',
@@ -123,7 +124,7 @@ export class WebDesignerMainPageListComponent implements OnInit, OnDestroy {
     // 'LinkPageDependencyGuId',
     'LinkPageTemplateGuId',
     'PageDependencyIsDefaultPage',
-    'ContentPageFindInDefaultSiteCategory',
+    'PageDependencyIsDefaultPageLinkSiteCategoryId',
     'Action'
   ];
 
