@@ -16,6 +16,21 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+        
+        <!-- LinkPropertyTypeUsageId Field -->
+        <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
+          [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
+        </app-estate-propertytypeusage-selector>
+        <br>
+        <!-- LinkPropertyTypeLanduseId Field -->
+        <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
+          *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
+          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
+          [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
+        </app-estate-propertytypelanduse-selector>
+        <br>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}"
@@ -108,25 +123,7 @@
             {{fieldsInfo['CaseCode']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <!-- LinkPropertyTypeUsageId Field -->
-        <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
-        </app-estate-propertytypeusage-selector>
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <!-- LinkPropertyTypeLanduseId Field -->
-        <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-          *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
-          [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
-        </app-estate-propertytypelanduse-selector>
-        <br>
-
+        
         <!-- CreatedYaer Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.LinkPropertyTypeLanduseId">
           <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>

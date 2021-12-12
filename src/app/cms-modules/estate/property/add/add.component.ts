@@ -144,6 +144,7 @@ export class EstatePropertyAddComponent implements OnInit {
     this.getEstateContractType();
     this.getEstatePropertyType();
     this.getEstatePropertyTypeLanduse();
+    this.dataModel.CaseCode=this.publicHelper.StringRandomGenerator(5,true);
   }
   getEstateContractType(): void {
     const pName = this.constructor.name + 'getEstateContractType';

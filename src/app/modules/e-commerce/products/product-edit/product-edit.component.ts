@@ -49,34 +49,34 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading$ = this.productsService.isLoading$;
-    this.loadProduct();
+    // this.loadProduct();
   }
 
-  loadProduct() {
-    const sb = this.route.paramMap.pipe(
-      switchMap(params => {
-        // get id from URL
-        this.id = Number(params.get('id'));
-        if (this.id || this.id > 0) {
-          return this.productsService.getItemById(this.id);
-        }
-        return of(EMPTY_PRODUCT);
-      }),
-      catchError((errorMessage) => {
-        this.errorMessage = errorMessage;
-        return of(undefined);
-      }),
-    ).subscribe((res: Product) => {
-      if (!res) {
-        this.router.navigate(['/products'], { relativeTo: this.route });
-      }
+  // loadProduct() {
+  //   const sb = this.route.paramMap.pipe(
+  //     switchMap(params => {
+  //       // get id from URL
+  //       this.id = Number(params.get('id'));
+  //       if (this.id || this.id > 0) {
+  //         return this.productsService.getItemById(this.id);
+  //       }
+  //       return of(EMPTY_PRODUCT);
+  //     }),
+  //     catchError((errorMessage) => {
+  //       this.errorMessage = errorMessage;
+  //       return of(undefined);
+  //     }),
+  //   ).subscribe((res: Product) => {
+  //     if (!res) {
+  //       this.router.navigate(['/products'], { relativeTo: this.route });
+  //     }
 
-      this.product = res;
-      this.previous = Object.assign({}, res);
-      this.loadForm();
-    });
-    this.subscriptions.push(sb);
-  }
+  //     this.product = res;
+  //     this.previous = Object.assign({}, res);
+  //     this.loadForm();
+  //   });
+  //   this.subscriptions.push(sb);
+  // }
 
   loadForm() {
     if (!this.product) {

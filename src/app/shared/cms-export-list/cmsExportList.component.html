@@ -70,9 +70,8 @@
   <mat-list>
     <div mat-subheader>لیست دانلود</div>
     <mat-list-item *ngFor="let folder of modelData| keyvalue">
-      <mat-icon mat-list-icon>download</mat-icon>
+      <a href="{{folder.value}}" target="_blank"><mat-icon mat-list-icon>download</mat-icon></a>
       <div mat-line><a href="{{folder.value}}" target="_blank"> {{folder.key}}</a></div>
-      <div mat-line><a href="{{folder.value}}" target="_blank"> {{folder.value}}</a> </div>
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>

@@ -46,7 +46,9 @@
         (click)="dataModel.StationLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
-
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let item of dataModel.StationLevelDescription">{{item}}</mat-list-item>
+    </mat-list>
 
     <!-- ViewLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ViewLevel']?.AccessWatchField">
@@ -57,7 +59,9 @@
         (click)="dataModel.ViewLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
-
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let item of dataModel.ViewLevelDescription">{{item}}</mat-list-item>
+    </mat-list>
     <!-- DayOfActivity Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DayOfActivity']?.AccessWatchField">
       <mat-label> {{fieldsInfo['DayOfActivity']?.FieldTitle}}</mat-label>
@@ -78,13 +82,20 @@
         (click)="dataModel.SalePrice = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
+    <!-- PaymentForMainSite Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.PaymentForMainSite" name="dataModel.PaymentForMainSite">
+        {{fieldsInfo['PaymentForMainSite']?.FieldTitle}}
+      </mat-slide-toggle>
+      با فعال شدن این تنظیم در آمد این تبلیغ به حساب وب سایت مرجع واریز می شود
+    </div>
     <!-- LinkMainImageId Field -->
     <mat-form-field class="ntk-full-width">
       <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
         src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
       <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
-      <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId type="text"
-        placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
+      <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+        type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
       <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.LinkMainImageId = null">close</mat-icon>
       <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

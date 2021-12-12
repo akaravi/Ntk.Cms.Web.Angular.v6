@@ -1,5 +1,5 @@
 
-import {  ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   EstateAdsTypeService,
@@ -125,18 +125,16 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.showBuy = true;
           this.dataModelResult = next;
+         
         }
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -148,7 +146,8 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
       height: '90%',
       data: {
         LinkPropertyId: this.requestLinkPropertyId,
-        LinkAdsTypeId: model.Id
+        LinkAdsTypeId: model.Id,
+        BankPrivateMaster: model.PaymentForMainSite
       }
     });
     dialogRef.afterClosed().subscribe(result => {

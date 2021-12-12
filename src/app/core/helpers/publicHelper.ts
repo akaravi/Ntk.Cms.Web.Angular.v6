@@ -19,7 +19,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
-import { ProviderAst } from '@angular/compiler';
+// import { ProviderAst } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -263,6 +263,33 @@ export class PublicHelper {
         return response;
       })).toPromise();
   }
+  StringRandomGenerator(passwordLength = 10 , onlynumber=false): string {
+    // const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+    if(onlynumber===true){
+    chars='0123456789';
+  }
+  
+    let password = '';
 
+    for (let i = 0; i <= passwordLength; i++) {
+      const randomNumber = Math.floor(Math.random() * chars.length);
+      password += chars.substring(randomNumber, randomNumber + 1);
+    }
+    if(onlynumber===true&& password.indexOf('0')==0){
+      password='1'+password.substring(1);
+    }
+    return password;
+  }
+  StringPasswordGenerator(passwordLength = 10): string {
+    // const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+    let password = '';
 
+    for (let i = 0; i <= passwordLength; i++) {
+      const randomNumber = Math.floor(Math.random() * chars.length);
+      password += chars.substring(randomNumber, randomNumber + 1);
+    }
+    return password;
+  }
 }
