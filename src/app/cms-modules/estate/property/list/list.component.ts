@@ -41,8 +41,7 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
   styleUrls: ["./list.component.scss"],
 })
 export class EstatePropertyListComponent
-  implements OnInit, OnDestroy, AfterViewInit
-{
+  implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = "";
   requestLinkContractTypeId = "";
   requestLinkBillboardId = "";
@@ -169,7 +168,7 @@ export class EstatePropertyListComponent
         this.tokenInfo = next;
       });
   }
-  
+
   ngAfterViewInit(): void {
     if (this.searchInChecking) {
       this.searchInCheckingChecked = true;
@@ -594,7 +593,7 @@ export class EstatePropertyListComponent
               // height: "90%",
               data: {
                 Title: next.Item.Title,
-                UrlViewContentQRCodeBase64:                  next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
                 UrlViewContent: next.Item.UrlViewContent,
               },
             });

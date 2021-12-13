@@ -10,7 +10,8 @@ import {
   NtkCmsApiStoreService,
   TokenInfoModel,
   DataFieldInfoModel,
-  EnumFilterDataModelSearchTypes
+  EnumFilterDataModelSearchTypes,
+  BlogContentService
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterModel, FilterDataModel } from 'ntk-cms-api';
@@ -29,6 +30,7 @@ import { BlogCommentEditComponent } from '../edit/edit.component';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 
 
 @Component({
@@ -46,6 +48,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class BlogCommentListComponent implements OnInit, OnDestroy {
   constructor(
     private commentService: BlogCommentService,
+    private contentService: BlogContentService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -430,5 +433,53 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
   }
   onActionBackToParent(): void {
     this.router.navigate(['/blog/content/']);
+  }
+  onActionbuttonViewContent(model: BlogCommentModel): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات دست نوشته");
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.LinkContentId)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open poup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64 ,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open poup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
   }
 }
