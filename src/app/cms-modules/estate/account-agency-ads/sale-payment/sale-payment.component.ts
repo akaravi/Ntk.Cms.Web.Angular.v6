@@ -7,6 +7,8 @@ import {
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
   EstateAdsTypeService,
   EstateAccountAgencyAdsService,
+  BankPaymentTransactionService,
+  BankPaymentTransactionModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -36,6 +38,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     private dialogRef: MatDialogRef<EstateAccountAgencyAdsSalePaymentComponent>,
     public estateAdsTypeService: EstateAdsTypeService,
     public estateAccountAgencyAdsService: EstateAccountAgencyAdsService,
+    
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -68,22 +71,24 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
+
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModelCalculateResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>();
   dataModelPaymentResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>();
+    
   dataModelCalculate: EstateModuleSaleAccountAgencyAdsCalculateDtoModel = new EstateModuleSaleAccountAgencyAdsCalculateDtoModel();
   dataModelPayment: EstateModuleSaleAccountAgencyAdsPaymentDtoModel = new EstateModuleSaleAccountAgencyAdsPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
 
   ngOnInit(): void {
-
     this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
-
+   
   }
+  
   DataCalculate(): void {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
@@ -116,6 +121,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
+          localStorage.setItem('TransactionId', next.Item.TransactionId.toString());
           this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
         }
         else {

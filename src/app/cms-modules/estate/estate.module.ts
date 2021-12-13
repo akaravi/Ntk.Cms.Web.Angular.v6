@@ -36,7 +36,8 @@ import {
   CoreModuleService,
   FileCategoryService,
   EstateBillboardService,
-  EstateCustomerOrderService
+  EstateCustomerOrderService,
+  BankPaymentTransactionService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -260,6 +261,7 @@ import { EstatePropertyTypeLanduseSelectionlistComponent } from './property-type
     /** */
     CmsConfirmationDialogService,
     CoreModuleTagService,
+    BankPaymentTransactionService,
 
   ]
 })

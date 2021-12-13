@@ -8,6 +8,7 @@ import {
   CoreModuleSaleInvoiceDetailService,
   CoreModuleSaleInvoiceService,
   CoreModuleService,
+  BankPaymentTransactionService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -159,6 +160,7 @@ import { CoreModuleSaleHeaderSalePaymentComponent } from './header/sale-payment/
     CoreModuleSaleInvoiceService,
     CoreModuleSaleHeaderGroupService,
     CoreModuleSaleHeaderService,
+    BankPaymentTransactionService,
   ]
 })
 export class CoreModuleSaleModule {

@@ -16,6 +16,8 @@ import {
   CoreModuleSaleInvoiceModel,
   CoreModuleSaleItemModel,
   CoreSiteService,
+  BankPaymentTransactionModel,
+  BankPaymentTransactionService,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -24,6 +26,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { CoreModuleSaleHeaderSalePaymentComponent } from '../sale-payment/sale-payment.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 
 @Component({
   selector: 'app-core-modulesaleheader-sale-list',
@@ -63,6 +66,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
   dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
 
+
   tabledisplayedColumns: string[] = [
     'LinkModuleId',
     'EnumCmsModuleSaleItemType',
@@ -90,7 +94,22 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
 
     this.DataGetAll();
     this.DataGetCurrency();
+    const transactionId = + localStorage.getItem('TransactionId');
+    if (transactionId > 0) {
+      const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
+        // height: "90%",
+        data: {
+          Id: transactionId,
+        },
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result && result.dialogChangedDate) {
+          // localStorage.removeItem('TransactionId');
+        }
+      });
+    }
   }
+  
   DataGetCurrency(): void {
     this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
       (next) => {

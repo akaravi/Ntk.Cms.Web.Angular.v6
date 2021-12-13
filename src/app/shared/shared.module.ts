@@ -28,6 +28,7 @@ import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelec
 import {
   ApplicationAppService,
   BankPaymentPrivateSiteConfigService,
+  BankPaymentTransactionService,
   CoreCurrencyService,
   CoreGuideService,
   CoreLocationService,
@@ -82,6 +83,7 @@ import { CmsImageThumbnailPipe } from '../core/pipe/cms-image-thumbnail.pipe';
 import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-location-autocomplete.component';
 import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
 import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
+import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 
 @NgModule({
   imports: [
@@ -145,6 +147,7 @@ import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
     CmsGuideComponent,
     CmsFormBuilderPropertiesComponent,
     CmsBankpaymentGridComponent,
+    CmsBankpaymentTransactionInfoComponent,
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
     CmsHtmlNoticeComponent,
@@ -219,6 +222,7 @@ import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
     CmsGuideComponent,
     CmsFormBuilderPropertiesComponent,
     CmsBankpaymentGridComponent,
+    CmsBankpaymentTransactionInfoComponent,
     CmsFilesSelectorComponent,
     CmsTokenAccessComponent,
     CmsHtmlNoticeComponent,
@@ -256,6 +260,7 @@ import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
     CoreLocationService,
     ApplicationAppService,
     BankPaymentPrivateSiteConfigService,
+    BankPaymentTransactionService,
   ]
   /* No providers here! Since they’ll be already provided in AppModule. */
 })
