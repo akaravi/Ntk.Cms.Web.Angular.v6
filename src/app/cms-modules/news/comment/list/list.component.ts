@@ -10,7 +10,8 @@ import {
   BiographyContentModel,
   NtkCmsApiStoreService,
   TokenInfoModel,
-  EnumFilterDataModelSearchTypes
+  EnumFilterDataModelSearchTypes,
+  NewsContentService
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterModel, FilterDataModel } from 'ntk-cms-api';
@@ -48,6 +49,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   [x: string]: any;
   constructor(
     private commentService: NewsCommentService,
+    private contentService: NewsContentService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -444,7 +446,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات ملک");
-    this.conetntService
+    this.contentService
       .ServiceGetOneById(this.tableRowSelected.LinkContentId)
       .subscribe(
         (next) => {
