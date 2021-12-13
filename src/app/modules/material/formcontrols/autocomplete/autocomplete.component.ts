@@ -229,7 +229,7 @@ const autocompleteOverview = {
     <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-        <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+        <img style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{state.flag}}" height="25" />
         <span>{{ state.name }}</span> |
         <small>Population: {{state.population}}</small>
       </mat-option>

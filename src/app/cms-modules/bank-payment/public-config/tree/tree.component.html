@@ -19,7 +19,7 @@
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
             [ngStyle]="{'background': dataModelSelect.Id>0 && dataModelSelect.Id === node.Id ? '#d3d3da' : '' }">
             <button mat-icon-button disabled></button>
-            <img style="vertical-align:middle;" aria-hidden src="{{node.LinkModuleFileLogoIdSrc }}"
+            <img style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{node.LinkModuleFileLogoIdSrc }}"
                 height="40" width="40" />&nbsp;
             {{node.Title}}
         </mat-tree-node>
@@ -33,7 +33,7 @@
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-                    <img style="vertical-align:middle;" aria-hidden
+                    <img style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
                         src="{{node.LinkModuleFileLogoIdSrc }}" height="40" width="40" />&nbsp;
                     {{node.Title}}
                 </div>
