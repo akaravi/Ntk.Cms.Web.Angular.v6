@@ -54,7 +54,7 @@
        <ng-container matColumnDef="LinkImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="row?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{row.LinkImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>

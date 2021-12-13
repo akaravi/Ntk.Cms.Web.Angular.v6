@@ -63,7 +63,7 @@ export class CmsLocationCompleteComponent implements OnInit {
       map((data) =>
         data.ListItems.map(val => ({
           value: val.Id,
-          display: val.Title
+          display: val
         })))
     );
   }
@@ -99,7 +99,7 @@ export class CmsLocationCompleteComponent implements OnInit {
           next.ListItems.forEach(val => {
             this.tagDataModel.push({
               value: val.Id,
-              display: val.Title
+              display: val
             });
           });
         } else {

@@ -335,7 +335,7 @@
         </mat-form-field>
         <!-- AboutUsLinkImageIdSrc Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.AboutUsLinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="dataModel?.AboutUsLinkImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.AboutUsLinkImageIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
@@ -467,7 +467,7 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>عکسها و فایل های اپلیکیشن</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkFileIdIconSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="dataModel?.LinkFileIdIconSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.LinkFileIdIconSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
@@ -495,7 +495,7 @@
 
 
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkFileIdLogoSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="dataModel?.LinkFileIdLogoSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.LinkFileIdLogoSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
@@ -523,7 +523,7 @@
 
 
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkFileIdSplashScreenSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="dataModel?.LinkFileIdSplashScreenSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.LinkFileIdSplashScreenSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
@@ -553,8 +553,8 @@
 
 
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">

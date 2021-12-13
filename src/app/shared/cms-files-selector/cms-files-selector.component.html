@@ -25,7 +25,7 @@
     <td>{{item.key}}</td>
     <td>
       <img *ngIf="item['value']?.toLowerCase().indexOf('.png')>0 || item['value']?.toLowerCase().indexOf('.jpg')>0 || item['value']?.toLowerCase().indexOf('.jpeg')>0|| item['value']?.toLowerCase().indexOf('.gif')>0"
-        style="vertical-align:middle;" aria-hidden src="{{item.value | cmsthumbnail}}" height="50" width="50" />
+        style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{item.value | cmsthumbnail}}" height="50" width="50" />
 
       <audio *ngIf="item['value']?.toLowerCase().indexOf('.mp3')>0 || item['value']?.toLowerCase().indexOf('.wave')>0 || item['value']?.toLowerCase().indexOf('.acc')>0"
         controls>

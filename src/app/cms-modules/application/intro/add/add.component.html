@@ -86,8 +86,8 @@
         <p>عکسها و فایل های اپلیکیشن</p>
         <!-- LinkMainImageId Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">
@@ -110,7 +110,7 @@
         </div>
         <!-- LinkMainVideoId Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainVideoIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="dataModel?.LinkMainVideoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.LinkMainVideoIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
