@@ -273,7 +273,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           return retOut;
         }),
       ).toPromise();
-    
+
   }
 
   onActionbuttonEditRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
@@ -362,8 +362,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
     this.tableRowSelected = model;
-
-    this.router.navigate(['/webdesigner/page/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    if (this.tokenInfo.UserAccessAdminAllowToAllData) {
+      this.router.navigate(['/webdesigner/page/list-grid/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    }
+    else {
+      this.router.navigate(['/webdesigner/page/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
