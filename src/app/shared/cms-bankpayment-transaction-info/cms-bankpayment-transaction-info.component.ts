@@ -5,6 +5,8 @@ import {
   BankPaymentPrivateSiteConfigModel,
   BankPaymentTransactionService,
   BankPaymentTransactionModel,
+  EnumInfoModel,
+  BankPaymentEnumService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -33,7 +35,7 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public bankPaymentTransactionService: BankPaymentTransactionService,
     private dialogRef: MatDialogRef<CmsBankpaymentTransactionInfoComponent>,
-
+    private bankPaymentEnumService: BankPaymentEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
@@ -46,6 +48,8 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
   }
   @Input() loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentTransactionModel> = new ErrorExceptionResult<BankPaymentTransactionModel>();
+  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+
   ngOnInit(): void {
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
@@ -53,6 +57,12 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
       return;
     }
     this.DataGeOne();
+    this.getEnumTransactionRecordStatus();
+  }
+  getEnumTransactionRecordStatus(): void {
+    this.bankPaymentEnumService.ServiceEnumTransactionRecordStatus().subscribe((next) => {
+      this.dataModelEnumTransactionRecordStatusResult = next;
+    });
   }
   DataGeOne(): void {
       const pName = this.constructor.name + 'main';
