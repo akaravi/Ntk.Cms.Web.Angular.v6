@@ -170,6 +170,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/estate/property']);
+    this.router.navigate(['/estate/property-ads/LinkPropertyId/'+this.requestLinkPropertyId]);
   }
 }

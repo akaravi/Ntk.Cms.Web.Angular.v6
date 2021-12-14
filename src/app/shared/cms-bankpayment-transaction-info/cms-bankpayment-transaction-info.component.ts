@@ -72,6 +72,8 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
           this.loading.Stop(pName);
         }
       );
-    
+  }
+  onFormCancel(): void {
+    this.dialogRef.close({ dialogChangedDate: false });
   }
 }

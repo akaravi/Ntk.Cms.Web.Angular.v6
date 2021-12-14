@@ -172,6 +172,8 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/estate/account-agency']);
+    
+    this.router.navigate(['/estate/account-agency-ads/LinkPropertyId/'+this.requestLinkAccountAgencyId]);
+
   }
 }
