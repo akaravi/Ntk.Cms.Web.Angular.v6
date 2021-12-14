@@ -104,7 +104,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result && result.dialogChangedDate) {
-          // localStorage.removeItem('TransactionId');
+           localStorage.removeItem('TransactionId');
         }
       });
     }

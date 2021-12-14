@@ -74,6 +74,6 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
       );
   }
   onFormCancel(): void {
-    this.dialogRef.close({ dialogChangedDate: false });
+    this.dialogRef.close({ dialogChangedDate: true });
   }
 }
