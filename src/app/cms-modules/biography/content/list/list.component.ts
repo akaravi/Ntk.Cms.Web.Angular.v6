@@ -27,6 +27,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BiographyContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+
 
 @Component({
   selector: 'app-biography-content-list',
@@ -79,7 +81,8 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     'Title',
     'CreatedDate',
     'UpdatedDate',
-    'Action'
+    'Action',
+    "LinkTo",
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   cmsApiStoreSubscribe: Subscription;
@@ -378,5 +381,55 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate(['/biography/comment/', model.Id]);
+  }
+  onActionbuttonLinkTo(
+    model: BiographyContentModel = this.tableRowSelected
+  ): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات زندگی نامه");
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.Id)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
   }
 }

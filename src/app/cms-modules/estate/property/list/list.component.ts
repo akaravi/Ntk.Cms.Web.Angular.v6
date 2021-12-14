@@ -588,7 +588,7 @@ export class EstatePropertyListComponent
       .subscribe(
         (next) => {
           if (next.IsSuccess) {
-            //open poup
+            //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
@@ -602,7 +602,7 @@ export class EstatePropertyListComponent
                 this.DataGetAll();
               }
             });
-            //open poup
+            //open popup
           } else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }

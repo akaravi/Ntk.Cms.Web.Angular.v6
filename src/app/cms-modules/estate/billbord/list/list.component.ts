@@ -29,6 +29,8 @@ import { EstateBillboardEditComponent } from '../edit/edit.component';
 import { EstateBillboardAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+
 
 @Component({
   selector: 'app-estate-billboard-list',
@@ -82,7 +84,8 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
     'Title',
     'SpeedView',
     'ReloadViewPerMin',
-    'Action'
+    'Action',
+    "LinkTo",
   ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -367,5 +370,54 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: EstateBillboardModel): void {
     this.tableRowSelected = row;
   }
+  onActionbuttonLinkTo(
+    model: EstateBillboardModel = this.tableRowSelected
+  ): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
 
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات بیلبورد ها");
+    this.estateBillboardService
+      .ServiceGetOneById(this.tableRowSelected.Id)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
+  }
 }

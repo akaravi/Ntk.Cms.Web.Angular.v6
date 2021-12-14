@@ -25,6 +25,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+
 
 @Component({
   selector: 'app-estate-customer-order-list',
@@ -75,7 +77,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     'LinkSiteId',
     'RecordStatus',
     'Title',
-    'Action'
+    'Action',
+    "LinkTo",
   ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -358,5 +361,54 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: EstateCustomerOrderModel): void {
     this.tableRowSelected = row;
   }
+  onActionbuttonLinkTo(
+    model: EstateCustomerOrderModel = this.tableRowSelected
+  ): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
 
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات مشتری ها");
+    this.estateCustomerOrderService
+      .ServiceGetOneById(this.tableRowSelected.Id)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open poup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open poup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
+  }
 }

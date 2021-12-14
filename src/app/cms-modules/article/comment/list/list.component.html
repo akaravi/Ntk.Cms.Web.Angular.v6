@@ -114,13 +114,23 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonViewContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonViewContent(row)"
+              *ngIf="dataModelResult.Access.AccessDeleteRow">
               <mat-icon>visibility</mat-icon>
               <span>مشاهده مقاله </span>
             </button>
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!-- LinkTo Column -->
+      <ng-container matColumnDef="LinkTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">

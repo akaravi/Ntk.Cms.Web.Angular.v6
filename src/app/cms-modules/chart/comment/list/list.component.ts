@@ -96,7 +96,8 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
     'Writer',
     'CreatedDate',
     'UpdatedDate',
-    'Action'
+    'Action',
+    "LinkTo",
   ];
 
 
@@ -463,6 +464,56 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
               }
             });
             //open poup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
+  }
+  onActionbuttonLinkTo(
+    model: ChartCommentModel = this.tableRowSelected
+  ): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات چارت");
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.LinkContentId)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
           } else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
           }
