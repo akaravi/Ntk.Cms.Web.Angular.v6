@@ -8,7 +8,7 @@ import { ProductRemark } from '../_models/product-remark.model';
   providedIn: 'root'
 })
 export class RemarksService extends TableService<ProductRemark> {
-  API_URL = `${environment.apiUrl}/productRemarks`;
+  API_URL = `/productRemarks`;
   constructor(@Inject(HttpClient) http) {
     super(http);
   }
