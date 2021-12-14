@@ -82,13 +82,15 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
   }
   onActionbuttonResllerUserShortLinkStatus(): void {
     if (this.dataModelResult?.Item?.UrlResellerUserShortLinkUrl?.length > 0) {
+      
       const indexLast = this.dataModelResult.Item.UrlResellerUserShortLinkUrl.lastIndexOf('/');
       if (indexLast > 0) {
         const key = this.dataModelResult.Item.UrlResellerUserShortLinkUrl.substr(indexLast + 1);
-        const url = this.router.serializeUrl(
-          this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
-        );
-        window.open(url, '_blank');
+        // const url = this.router.serializeUrl(
+        //   this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
+        // );
+        // window.open(url, '_blank');
+        this.router.navigate(['/linkmanagement/target-billboard-log/Key/' + key]);
       }
     }
   }
@@ -97,10 +99,11 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       const indexLast = this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl.lastIndexOf('/');
       if (indexLast > 0) {
         const key = this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl.substr(indexLast + 1);
-        const url = this.router.serializeUrl(
-          this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
-        );
-        window.open(url, '_blank');
+        // const url = this.router.serializeUrl(
+        //   this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
+        // );
+        // window.open(url, '_blank');
+        this.router.navigate(['/linkmanagement/target-billboard-log/Key/' + key]);
       }
     }
   }
@@ -116,10 +119,11 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       if (indexLast > 0) {
         const key = this.dataModelResult.Item.UrlResellerSiteShortLinkUrl.substr(indexLast + 1);
 
-        const url = this.router.serializeUrl(
-          this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
-        );
-        window.open(url, '_blank');
+        // const url = this.router.serializeUrl(
+        //   this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
+        // );
+        // window.open(url, '_blank');
+        this.router.navigate(['/linkmanagement/target-billboard-log/Key/' + key]);
       }
     }
 
