@@ -18,5 +18,8 @@
         "titleBar.inactiveBackground": "#42b88099",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#42b880"
+    "peacock.color": "#42b880",
+    "cSpell.words": [
+        "Toastr"
+    ]
 }

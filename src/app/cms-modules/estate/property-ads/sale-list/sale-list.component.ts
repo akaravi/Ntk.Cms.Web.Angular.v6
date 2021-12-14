@@ -10,6 +10,8 @@ import {
   CoreEnumService,
   EnumInfoModel,
   CoreSiteService,
+  BankPaymentTransactionService,
+  BankPaymentTransactionModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -18,6 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { EstatePropertyAdsSalePaymentComponent } from '../sale-payment/sale-payment.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 
 @Component({
   selector: 'app-estate-propertyads-salelist',
@@ -46,18 +49,13 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-  // dataModel: CoreModuleSaleInvoiceDetailModel = new CoreModuleSaleInvoiceDetailModel();
   dataModelResult: ErrorExceptionResult<EstateAdsTypeModel> = new ErrorExceptionResult<EstateAdsTypeModel>();
-  // dataModelItemResult: ErrorExceptionResult<CoreModuleSaleItemModel> = new ErrorExceptionResult<CoreModuleSaleItemModel>();
-  // dataModelRegResult: ErrorExceptionResult<CoreModuleSaleInvoiceModel> = new ErrorExceptionResult<CoreModuleSaleInvoiceModel>();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-
   tableRowSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
   categoryModelSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
   dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  // dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
-
+ 
   tabledisplayedColumns: string[] = [
     'LinkModuleId',
     'EnumCmsModuleSaleItemType',
@@ -85,11 +83,25 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
 
       this.tokenInfo = next;
     });
-    // this.getEnumCmsModuleSaleItemType();
 
     this.DataGetAll();
     this.DataGetCurrency();
+    const transactionId = + localStorage.getItem('TransactionId');
+    if (transactionId > 0) {
+      const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
+        // height: "90%",
+        data: {
+          Id: transactionId,
+        },
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result && result.dialogChangedDate) {
+           localStorage.removeItem('TransactionId');
+        }
+      });
+    }
   }
+ 
   DataGetCurrency(): void {
     this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
       (next) => {
@@ -158,6 +170,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/estate/property']);
+    this.router.navigate(['/estate/property-ads/LinkPropertyId/'+this.requestLinkPropertyId]);
   }
 }

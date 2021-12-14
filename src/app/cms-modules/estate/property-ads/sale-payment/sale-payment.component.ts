@@ -7,6 +7,8 @@ import {
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
   EstateAdsTypeService,
   EstatePropertyAdsService,
+  BankPaymentTransactionService,
+  BankPaymentTransactionModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -30,13 +32,14 @@ import { TranslateService } from '@ngx-translate/core';
 export class EstatePropertyAdsSalePaymentComponent implements OnInit {
   requestLinkPropertyId = '';
   requestLinkAdsTypeId = '';
-  requestBankPrivateMaster=false;
+  requestBankPrivateMaster = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) private document: any,
     private dialogRef: MatDialogRef<EstatePropertyAdsSalePaymentComponent>,
     public estateAdsTypeService: EstateAdsTypeService,
     public estatePropertyAdsService: EstatePropertyAdsService,
+    
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -50,8 +53,8 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
       if (data.LinkAdsTypeId && data.LinkAdsTypeId.length > 0) {
         this.requestLinkAdsTypeId = data.LinkAdsTypeId;
       }
-      if (data.BankPrivateMaster && data.BankPrivateMaster===true) {
-        this.requestBankPrivateMaster =true;
+      if (data.BankPrivateMaster && data.BankPrivateMaster === true) {
+        this.requestBankPrivateMaster = true;
       }
     }
     if (this.requestLinkPropertyId.length === 0) {
@@ -72,22 +75,24 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
+
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModelCalculateResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>();
   dataModelPaymentResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>();
+    
   dataModelCalculate: EstateModuleSalePropertyAdsCalculateDtoModel = new EstateModuleSalePropertyAdsCalculateDtoModel();
   dataModelPayment: EstateModuleSalePropertyAdsPaymentDtoModel = new EstateModuleSalePropertyAdsPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
 
   ngOnInit(): void {
-
     this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
 
   }
+ 
   DataCalculate(): void {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
@@ -120,6 +125,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
+          localStorage.setItem('TransactionId', next.Item.TransactionId.toString());
           this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
         }
         else {

@@ -16,10 +16,8 @@ export class CmsLinkToComponent implements OnInit {
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsLinkToComponent>,
-
     public http: HttpClient,
     private router: Router,
-
   ) {
     if (data) {
       this.optionTitle = data.Title;

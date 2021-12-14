@@ -33,6 +33,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     @Inject(DOCUMENT) private document: any,
     private dialogRef: MatDialogRef<CoreModuleSaleHeaderSalePaymentComponent>,
     public coreModuleSaleHeaderService: CoreModuleSaleHeaderService,
+
     private cmsToastrService: CmsToastrService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -53,6 +54,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
+
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModelCalculateResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>
@@ -65,10 +67,10 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
 
   }
+
   DataCalculate(): void {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
@@ -101,6 +103,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
+          localStorage.setItem('TransactionId', next.Item.TransactionId.toString());
           this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
         }
         else {
