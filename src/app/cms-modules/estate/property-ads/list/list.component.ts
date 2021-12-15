@@ -359,5 +359,7 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: EstatePropertyAdsModel): void {
     this.tableRowSelected = row;
   }
-
+  onActionBackToParent(): void {
+    this.router.navigate(['/estate/property/']);
+  }
 }

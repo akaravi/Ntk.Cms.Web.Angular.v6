@@ -14,7 +14,16 @@
         </div>
         <div class="tr">
             <div class="td">وضعیت تراکنش</div>
-            <div class="td">{{dataModelResult.Item.TransactionStatus | enums : dataModelEnumTransactionRecordStatusResult.ListItems}}</div>
+            <div class="td">
+                <div *ngIf="this.dataModelResult.Item.TransactionStatus==TransactionSuccessful">
+                    <span
+                    class="svg-icon svg-icon-3x svg-icon-primary"
+                    [inlineSVG]="'assets/media/svg/icons/General/Shield-check.svg'"
+                  ></span>
+                  <br>
+                </div>
+                {{dataModelResult.Item.TransactionStatus | enums : dataModelEnumTransactionRecordStatusResult.ListItems}}
+            </div>
             <div style="clear: both;"></div>
         </div>
 

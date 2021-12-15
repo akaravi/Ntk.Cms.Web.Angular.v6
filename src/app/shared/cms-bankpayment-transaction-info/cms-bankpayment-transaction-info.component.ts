@@ -1,27 +1,21 @@
 import {
   ErrorExceptionResult,
-  BlogCategoryModel,
-  BankPaymentPrivateSiteConfigService,
-  BankPaymentPrivateSiteConfigModel,
   BankPaymentTransactionService,
   BankPaymentTransactionModel,
   EnumInfoModel,
   BankPaymentEnumService,
+  EnumTransactionRecordStatus,
 } from 'ntk-cms-api';
 import {
   Component,
   OnInit,
   Input,
-  Output,
-  EventEmitter,
   ChangeDetectorRef,
   Inject,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { NodeInterface } from 'src/filemanager-api';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -64,6 +58,7 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
       this.dataModelEnumTransactionRecordStatusResult = next;
     });
   }
+  TransactionSuccessful=EnumTransactionRecordStatus.TransactionSuccessful;
   DataGeOne(): void {
       const pName = this.constructor.name + 'main';
       this.loading.Start(pName);
@@ -71,6 +66,7 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
         (next) => {
           if (next.IsSuccess) {
             this.dataModelResult = next;
+            
           }
           else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
