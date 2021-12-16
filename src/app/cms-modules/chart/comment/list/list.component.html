@@ -113,6 +113,10 @@
               <mat-icon>visibility</mat-icon>
               <span>مشاهده چارت </span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonEditContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>visibility</mat-icon>
+              <span>ویرایش چارت </span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

@@ -120,6 +120,10 @@
               <mat-icon>visibility</mat-icon>
               <span>مشاهده خبر </span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonEditContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>mode_edit</mat-icon>
+              <span>ویرایش خبر </span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

@@ -483,6 +483,22 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
         }
       );
   }
+  onActionbuttonEditContent(model: BlogCommentModel ): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    this.router.navigate(['/blog/content/edit', this.tableRowSelected.LinkContentId]);
+  }
   onActionbuttonLinkTo(
     model: BlogCommentModel = this.tableRowSelected
   ): void {
