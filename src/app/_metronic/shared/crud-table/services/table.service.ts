@@ -62,7 +62,7 @@ export abstract class TableService<T> {
 
   protected http: HttpClient;
   // API URL has to be overrided
-  API_URL = `${environment.apiUrl}/endpoint`;
+  API_URL = `/endpoint`;
   constructor(http: HttpClient) {
     this.http = http;
   }

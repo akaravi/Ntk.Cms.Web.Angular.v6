@@ -27,6 +27,7 @@ import { CmsUserSelectorComponent } from './cms-user-selector/cmsUserSelector.co
 import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelector.component';
 import {
   ApplicationAppService,
+  BankPaymentEnumService,
   BankPaymentPrivateSiteConfigService,
   BankPaymentTransactionService,
   CoreCurrencyService,
@@ -261,6 +262,7 @@ import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transa
     ApplicationAppService,
     BankPaymentPrivateSiteConfigService,
     BankPaymentTransactionService,
+    BankPaymentEnumService,
   ]
   /* No providers here! Since they’ll be already provided in AppModule. */
 })

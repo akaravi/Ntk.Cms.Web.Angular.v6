@@ -61,12 +61,6 @@ export function CreateTranslateLoader(http: HttpClient): any {
     }),
     HttpClientModule,
     ClipboardModule,
-    // environment.isMockEnabled
-    //   ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
-    //     passThruUnknownUrl: true,
-    //     dataEncapsulation: false,
-    //   })
-    //   : [],
     AppRouting,
     InlineSVGModule.forRoot(),
     CmsStoreModule.forRoot(),

@@ -7,17 +7,19 @@ export const environment = {
   production: false,
   appVersion: '1.00.000',
   USERDATA_KEY: 'authf649fc9a5f55',
-  isMockEnabled: true,
-  apiUrl: 'https://your-domain.com/api',
-  developing: false,
   loadDemoMenu: true,
   loadDemoDashboard: true,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
+<<<<<<< HEAD
       configApiServerPath: 'https://apicms.ir/api/v1/',
    // configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+=======
+     configApiServerPath: 'https://apicms.ir/api/v1/',
+  //  configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+>>>>>>> main
     // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
 
     // configMvcServerPath: 'https://ntkcms.ir/',

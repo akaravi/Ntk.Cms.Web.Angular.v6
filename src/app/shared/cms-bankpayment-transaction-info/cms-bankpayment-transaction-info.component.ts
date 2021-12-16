@@ -1,25 +1,21 @@
 import {
   ErrorExceptionResult,
-  BlogCategoryModel,
-  BankPaymentPrivateSiteConfigService,
-  BankPaymentPrivateSiteConfigModel,
   BankPaymentTransactionService,
   BankPaymentTransactionModel,
+  EnumInfoModel,
+  BankPaymentEnumService,
+  EnumTransactionRecordStatus,
 } from 'ntk-cms-api';
 import {
   Component,
   OnInit,
   Input,
-  Output,
-  EventEmitter,
   ChangeDetectorRef,
   Inject,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { NodeInterface } from 'src/filemanager-api';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -33,7 +29,7 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public bankPaymentTransactionService: BankPaymentTransactionService,
     private dialogRef: MatDialogRef<CmsBankpaymentTransactionInfoComponent>,
-
+    private bankPaymentEnumService: BankPaymentEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
@@ -46,6 +42,8 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
   }
   @Input() loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentTransactionModel> = new ErrorExceptionResult<BankPaymentTransactionModel>();
+  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+
   ngOnInit(): void {
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
@@ -53,7 +51,14 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
       return;
     }
     this.DataGeOne();
+    this.getEnumTransactionRecordStatus();
   }
+  getEnumTransactionRecordStatus(): void {
+    this.bankPaymentEnumService.ServiceEnumTransactionRecordStatus().subscribe((next) => {
+      this.dataModelEnumTransactionRecordStatusResult = next;
+    });
+  }
+  TransactionSuccessful=EnumTransactionRecordStatus.TransactionSuccessful;
   DataGeOne(): void {
       const pName = this.constructor.name + 'main';
       this.loading.Start(pName);
@@ -61,6 +66,7 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
         (next) => {
           if (next.IsSuccess) {
             this.dataModelResult = next;
+            
           }
           else {
             this.cmsToastrService.typeErrorMessage(next.ErrorMessage);

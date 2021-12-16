@@ -11,7 +11,7 @@ import { ProductSpecification } from '../../_models/product-specification.model'
   providedIn: 'root'
 })
 export class SpecificationsService extends TableService<ProductSpecification> implements OnDestroy {
-  API_URL = `${environment.apiUrl}/productSpecs`;
+  API_URL = `/productSpecs`;
   constructor(@Inject(HttpClient) http) {
     super(http);
   }
