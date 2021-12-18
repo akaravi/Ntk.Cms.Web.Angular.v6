@@ -35,42 +35,46 @@
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <img src="/assets/media/stock-900x600/27.jpg" height="100%" width="100%">
+    <div class="row">
+      <div class="col-1 alert-icon alert-icon-top">
+        <span class="svg-icon svg-icon-3x svg-icon-primary"
+          [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
+      </div>
+      <div class="col-11">
+        <h5>
+          آدرس وب سایت
+        </h5>
+      </div>
+    </div>
+    <br>
+    <h4>توضیحات:</h4>
+    <p>
+      در این بخش شما میتوانید لینک وبسایت خود را مشاهده نمایید و آن را کپی کنید و با دیگران به اشتراک بگذارید.
+      <br>
+      همچنین میتوانید با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+    </p>
+    <br>
+    <h5>
+      آدرس وب سایت
+    </h5>
+    <a href="{{dataModelResult.Item.UrlSiteHome}}">
+      {{dataModelResult.Item.UrlSiteHome}}
+    </a>
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteHome" (click)="onActionCopied()"><i
+        class="flaticon2-copy"></i></span>
+    <br>
+    <br>
+    <br>
+    <button mat-button (click)="onActionbuttonlinkToSiteHome()" class="border">
+      <mat-icon>qr_code_2</mat-icon>
+      <span> {{'ACTION.QRCODE' | translate}}</span>
+    </button>
+    <br>
+    <br>
   </div>
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <!-- <div class="col-md-1 col-sm-1 col-xs-1 alert-icon alert-icon-top"> -->
-      <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
-    <!-- </div> -->
-    <!-- <div class="col-md-11 col-sm-11 col-xs-11 alert-text"> -->
-      <h5>
-        آدرس وب سایت
-      </h5>
-    <!-- </div> -->
-    <!-- <div class="col-md-7 col-sm-7 col-xs-7 alert-text"> -->
-      <br>
-      <h4>توضیحات:</h4>
-      <p>
-        در این بخش میتوانید آدرس وب سایت خود را از طریق لینک یا بارکد مشاهده نمایید.
-      </p>
-    <!-- </div> -->
-    <!-- <div class="col-md-5 col-sm-5 col-xs-7"> -->
-      <br>
-      <h5>
-        آدرس وب سایت
-      </h5>
-      <a href="{{dataModelResult.Item.UrlSiteHome}}">
-        {{dataModelResult.Item.UrlSiteHome}}
-      </a>
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteHome" (click)="onActionCopied()"><i
-          class="flaticon2-copy"></i></span>
-      <br>
-      <br>
-      <br>
-      <button mat-button (click)="onActionbuttonlinkToSiteHome()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> آدرس</span>
-      </button>
-    <!-- </div> -->
+    <img src="/assets/media/stock-900x600/27.jpg" height="100%" width="100%">
+    <br>
   </div>
 </div>
 
@@ -78,43 +82,51 @@
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <img src="\assets\media\stcok-900x600/5.jpg" height="100%" width="100%">
+    <div class="row">
+      <div class="col-1 alert-icon alert-icon-top">
+        <span class="svg-icon svg-icon-3x svg-icon-primary"
+          [inlineSVG]="'assets/media/svg/icons/General/User.svg'"></span>
+      </div>
+      <div class="col-11" *ngIf="dataModelResult.Item?.UrlSiteCPanel?.length>0">
+        <h5>
+          آدرس سامانه مدیریت محتوا
+        </h5>
+      </div>
+    </div>
+    <br>
+    <h4>توضیحات:</h4>
+    <p>
+      در این بخش شما میتوانید لینک سامانه مدیریت محتوا خود را مشاهده نمایید و آن را کپی کنید و با دیگران به اشتراک
+      بگذارید.
+      <br>
+      سامانه مدیریت محتوا به شما این امکان را میدهد که به سایت خود محتوا اضافه ،ویرایش و حذف کنید و تمام قسمت های سایت
+      خود را مدیریت کنید.
+      <br>
+      همچنین میتوانید با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+
+    </p>
+    <br>
+    <h5>
+      آدرس سامانه مدیریت محتوا
+    </h5>
+    <a href="{{dataModelResult.Item.UrlSiteCPanel}}">
+      {{dataModelResult.Item.UrlSiteCPanel}}
+    </a>
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteCPanel" (click)="onActionCopied()"><i
+        class="flaticon2-copy"></i></span>
+    <br>
+    <br>
+    <br>
+    <button mat-button (click)="onActionbuttonlinkToSiteCPanel()" class="border">
+      <mat-icon>qr_code_2</mat-icon>
+      <span> {{'ACTION.QRCODE' | translate}}</span>
+    </button>
+    <br>
+    <br>
   </div>
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <!-- <div class="col-md-1 col-sm-1 col-xs-1 alert-icon alert-icon-top"> -->
-      <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
-    <!-- </div> -->
-
-    <div  *ngIf="dataModelResult.Item?.UrlSiteCPanel?.length>0">
-      <h5>
-        آدرس سامانه مدیریت محتوا
-      </h5>
-    </div>
-    <!-- <div class="col-md-7 col-sm-7 col-xs-11 alert-text"> -->
-      <br>
-      <h4>توضیحات:</h4>
-      <p>
-        در این بخش میتوانید آدرس سامانه مدیریت محتوا خود را از طریق لینک یا بارکد مشاهده نمایید.
-      </p>
-    <!-- </div> -->
-    <!-- <div class="col-md-5 col-sm-5 col-xs-7"> -->
-      <br>
-      <h5>
-        آدرس سامانه مدیریت محتوا
-      </h5>
-      <a href="{{dataModelResult.Item.UrlSiteCPanel}}">
-        {{dataModelResult.Item.UrlSiteCPanel}}
-      </a>
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteCPanel" (click)="onActionCopied()"><i
-          class="flaticon2-copy"></i></span>
-      <br>
-      <br>
-      <br>
-      <button mat-button (click)="onActionbuttonlinkToSiteCPanel()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> آدرس</span>
-      </button>
-    <!-- </div> -->
+    <img src="\assets\media\stcok-900x600/5.jpg" height="100%" width="100%">
+    <br>
   </div>
 </div>
 
@@ -122,53 +134,59 @@
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <img src="\assets\media\stock-600x400/img-52.jpg" height="100%" width="100%">
+    <div class="row">
+      <div class="col-1 alert-icon alert-icon-top">
+        <span class="svg-icon svg-icon-3x svg-icon-primary"
+          [inlineSVG]="'assets/media/svg/icons/Map/Location-arrow.svg'"></span>
+      </div>
+      <div class="col-11" *ngIf="dataModelResult.Item?.UrlResellerSite?.length>0">
+        <h5>
+          آدرس اشتراک گزاری وب سایت
+        </h5>
+      </div>
+    </div>
+    <br>
+    <h4>توضیحات:</h4>
+    <p>
+      در این بخش شما میتوانید لینک آدرس اشتراک گزاری وب سایت خود را مشاهده نمایید و آن را کپی کنید و با دیگران به اشتراک
+      بگذارید.
+      <br>
+      میتوانید با کلیک بر روی گزینه "مشاهده چارت" لیست سایت های زیر مجموعه خود را مشاهده نمایید.
+      <br>
+      همچنین میتوانید با کلیک بر روی گزینه "مشاهده آمار بازدید" تعداد بازدید سایت خود را مشاهده نمایید.
+      <br>
+      علاوه بر آن با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+    </p>
+    <br>
+    <h5>
+      آدرس اشتراک گزاری وب سایت
+    </h5>
+
+    <a href="{{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}">
+      {{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}
+    </a>
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerSiteShortLinkUrl"
+      (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
+    <br>
+    <br>
+    <br>
+    <button mat-button (click)="onActionbuttonResllerSite()" class="border">
+      <mat-icon>visibility</mat-icon>
+      <span> {{'ACTION.VIEW_CHART' | translate}}</span>
+    </button>
+    <button mat-button (click)="onActionbuttonResllerSiteShortLinkStatus()" class="border">
+      <mat-icon>visibility</mat-icon>
+      <span> {{'ACTION.VIEW_VISIT_STATISTICS' | translate}}</span>
+    </button>
+    <button mat-button (click)="onActionbuttonlinkToSiteShare()" class="border">
+      <mat-icon>qr_code_2</mat-icon>
+      <span> {{'ACTION.QRCODE' | translate}}</span>
+    </button>
+    <br>
+    <br>
   </div>
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <!-- <div class="col-md-1 col-sm-1 col-xs-1 alert-icon alert-icon-top"> -->
-      <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
-    <!-- </div> -->
-
-    <div  *ngIf="dataModelResult.Item?.UrlResellerSite?.length>0">
-      <h5>
-        آدرس اشتراک گزاری وب سایت
-      </h5>
-    </div>
-
-    <!-- <div class="col-md-7 col-sm-7 col-xs-11 alert-text"> -->
-      <br>
-      <h4>توضیحات:</h4>
-      <p>
-        در این بخش میتوانید آدرس اشتراک گزاری وب سایت خود را از طریق لینک یا بارکد مشاهده نمایید.
-      </p>
-    <!-- </div> -->
-    <!-- <div class="col-md-5 col-sm-5 col-xs-7"> -->
-      <br>
-      <h5>
-        آدرس اشتراک گزاری وب سایت
-      </h5>
-
-      <a href="{{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}">
-        {{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}
-      </a>
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerSiteShortLinkUrl"
-        (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
-      <br>
-      <br>
-      <br>
-      <button mat-button (click)="onActionbuttonResllerSite()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> مشاهده چارت</span>
-      </button>
-      <button mat-button (click)="onActionbuttonResllerSiteShortLinkStatus()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> مشاهده آمار بازدید</span>
-      </button>
-      <button mat-button (click)="onActionbuttonlinkToSiteShare()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> آدرس</span>
-      </button>
-    <!-- </div> -->
+    <img src="\assets\media\stock-600x400/img-52.jpg" height="100%" width="100%">
   </div>
 </div>
 
@@ -176,54 +194,60 @@
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <img src="\assets\media\stock-600x400/img-61.jpg" height="100%" width="100%">
+    <div class="row">
+      <div class="col-1 alert-icon alert-icon-top">
+        <span class="svg-icon svg-icon-3x svg-icon-primary"
+          [inlineSVG]="'assets/media/svg/icons/Map/Location-arrow.svg'"></span>
+      </div>
+      <div class="col-11" *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
+        <h5>
+          آدرس اشتراک گزاری با حساب کاربری شما
+        </h5>
+      </div>
+    </div>
+    <br>
+    <h4>توضیحات:</h4>
+    <p>
+      در این بخش شما میتوانید لینک آدرس اشتراک گزاری با حساب کاربری خودتان را مشاهده نمایید و آن را کپی کنید و با دیگران
+      به اشتراک
+      بگذارید.
+      <br>
+      میتوانید با کلیک بر روی گزینه "مشاهده چارت" لیست سایت های زیر مجموعه خود را مشاهده نمایید.
+      <br>
+      همچنین میتوانید با کلیک بر روی گزینه "مشاهده آمار بازدید" تعداد بازدید سایت خود را مشاهده نمایید.
+      <br>
+      علاوه بر آن با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+    </p>
+    <br>
+    <h5>
+      آدرس اشتراک گزاری با حساب کاربری شما
+    </h5>
+
+    <a href="{{dataModelResult.Item.UrlResellerUserShortLinkUrl}}">
+      {{dataModelResult.Item.UrlResellerUserShortLinkUrl}}
+    </a>
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerUserShortLinkUrl"
+      (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
+    <br>
+    <br>
+    <br>
+    <button mat-button (click)="onActionbuttonResllerUser()" class="border">
+      <mat-icon>visibility</mat-icon>
+      <span> {{'ACTION.VIEW_CHART' | translate}}</span>
+    </button>
+    <button mat-button (click)="onActionbuttonResllerUserShortLinkStatus()" class="border">
+      <mat-icon>visibility</mat-icon>
+      <span> {{'ACTION.VIEW_VISIT_STATISTICS' | translate}}</span>
+    </button>
+    <button mat-button (click)="onActionbuttonlinkToUserShare()" class="border">
+      <mat-icon>qr_code_2</mat-icon>
+      <span> {{'ACTION.QRCODE' | translate}}</span>
+    </button>
+    <br>
+    <br>
   </div>
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <!-- <div class="col-md-1 col-sm-1 col-xs-1 alert-icon alert-icon-top"> -->
-      <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
-    <!-- </div> -->
-
-    <div *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
-      <h5>
-        آدرس اشتراک گزاری با حساب کاربری شما
-      </h5>
-    </div>
-
-    <!-- <div class="col-md-7 col-sm-7 col-xs-11 alert-text"> -->
-      <br>
-      <h4>توضیحات:</h4>
-      <p>
-        در این بخش میتوانید آدرس اشتراک گزاری با حساب کاربری شما خود را از طریق لینک یا بارکد مشاهده نمایید.
-      </p>
-    <!-- </div> -->
-    <!-- <div class="col-md-5 col-sm-5 col-xs-7"> -->
-      <br>
-
-      <h5>
-        آدرس اشتراک گزاری با حساب کاربری شما
-      </h5>
-
-      <a href="{{dataModelResult.Item.UrlResellerUserShortLinkUrl}}">
-        {{dataModelResult.Item.UrlResellerUserShortLinkUrl}}
-      </a>
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerUserShortLinkUrl"
-        (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
-      <br>
-      <br>
-      <br>
-      <button mat-button (click)="onActionbuttonResllerUser()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> مشاهده چارت</span>
-      </button>
-      <button mat-button (click)="onActionbuttonResllerUserShortLinkStatus()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> مشاهده آمار بازدید</span>
-      </button>
-      <button mat-button (click)="onActionbuttonlinkToUserShare()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> آدرس</span>
-      </button>
-    <!-- </div> -->
+    <img src="\assets\media\stock-600x400/img-61.jpg" height="100%" width="100%">
   </div>
 </div>
 
@@ -231,28 +255,32 @@
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
   <div class="col-md-6 col-sm-6 col-xs-9">
-    <img src="\assets\media\stock-600x400/img-63.jpg" height="100%" width="100%">
-  </div>
-  <div class="col-md-6 col-sm-6 col-xs-9">
-  <!-- <div class="col-md-1 col-sm-1 col-xs-1 alert-icon alert-icon-top"> -->
-    <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'assets/media/svg/icons/Home/Earth.svg'"></span>
-  <!-- </div> -->
-
-  <!-- <div class="col-md-11 col-sm-11 col-xs-17 alert-text" *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0"> -->
-    <h5>
-      آدرس اشتراک گزاری با دسته بندی سامانه موجود
-    </h5>
-  <!-- </div> -->
-  <!-- <div class="col-md-7 col-sm-7 col-xs-11 alert-text"> -->
+    <div class="row">
+      <div class="col-1 alert-icon alert-icon-top">
+        <span class="svg-icon svg-icon-3x svg-icon-primary"
+          [inlineSVG]="'assets/media/svg/icons/Map/Location-arrow.svg'"></span>
+      </div>
+      <div class="col-11" *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
+        <h5>
+          آدرس اشتراک گزاری با دسته بندی سامانه موجود
+        </h5>
+      </div>
+    </div>
     <br>
     <h4>توضیحات:</h4>
     <p>
-      در این بخش میتوانید آدرس اشتراک گزاری با دسته بندی سامانه موجود خود را از طریق لینک یا بارکد مشاهده نمایید.
+      در این بخش شما میتوانید لینک آدرس اشتراک گزاری با دسته بندی سامانه موجود خود را مشاهده نمایید و آن را کپی کنید و
+      با دیگران به اشتراک
+      بگذارید.
+      <br>
+      میتوانید با کلیک بر روی گزینه "مشاهده چارت" لیست سایت های زیر مجموعه خود را مشاهده نمایید.
+      <br>
+      همچنین میتوانید با کلیک بر روی گزینه "مشاهده آمار بازدید" تعداد بازدید سایت خود را مشاهده نمایید.
+      <br>
+      علاوه بر آن با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
     </p>
-  <!-- </div> -->
     <div *ngIf="dataModelResult.Item?.UrlResellerSiteCategoryShortLinkUrl?.length>0">
       <br>
-
       <h5>
         آدرس اشتراک گزاری با دسته بندی سامانه موجود
       </h5>
@@ -265,18 +293,23 @@
       <br>
       <br>
       <button mat-button (click)="onActionbuttonResllerUser()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> مشاهده چارت</span>
+        <mat-icon>visibility</mat-icon>
+        <span> {{'ACTION.VIEW_CHART' | translate}}</span>
       </button>
       <button mat-button (click)="onActionbuttonResllerUserCategoryShortLinkStatus()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> مشاهده آمار بازدید</span>
+        <mat-icon>visibility</mat-icon>
+        <span> {{'ACTION.VIEW_VISIT_STATISTICS' | translate}}</span>
       </button>
       <button mat-button (click)="onActionbuttonlinkToSystemShare()" class="border">
-        <mat-icon>bar_chart</mat-icon>
-        <span> آدرس</span>
+        <mat-icon>qr_code_2</mat-icon>
+      <span> {{'ACTION.QRCODE' | translate}}</span>
       </button>
+      <br>
+      <br>
     </div>
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-9">
+    <img src="\assets\media\stock-600x400/img-63.jpg" height="100%" width="100%">
   </div>
 </div>
 <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

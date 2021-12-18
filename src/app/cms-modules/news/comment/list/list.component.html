@@ -118,11 +118,11 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonViewContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
               <mat-icon>visibility</mat-icon>
-              <span>مشاهده خبر </span>
+              <span>{{'ACTION.VIEW_NEWS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
               <mat-icon>mode_edit</mat-icon>
-              <span>ویرایش خبر </span>
+              <span>{{'ACTION.NEWS_EDITING' | translate}} </span>
             </button>
           </mat-menu>
         </mat-cell>
