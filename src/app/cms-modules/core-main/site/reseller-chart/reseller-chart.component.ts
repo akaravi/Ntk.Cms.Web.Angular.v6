@@ -28,7 +28,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-core-reseller-chart',
+  selector: 'app-core-site-reseller-chart',
   templateUrl: './reseller-chart.component.html',
   styleUrls: ['./reseller-chart.component.scss'],
 })
