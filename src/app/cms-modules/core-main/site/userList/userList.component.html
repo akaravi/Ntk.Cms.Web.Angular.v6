@@ -168,15 +168,15 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteList(row)">
               <mat-icon>web</mat-icon>
-              <span>سایت های عضو</span>
+              <span>{{'ACTION.MEMBER_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditSiteRow(row)">
               <mat-icon>language</mat-icon>
-              <span>ویرایش سایت</span>
+              <span> {{'ACTION.EDIT_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditUserRow(row)">
               <mat-icon>person_search</mat-icon>
-              <span>ویرایش کاربر</span>
+              <span>{{'ACTION.USER_EDITING' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonResllerUser(row)"
             *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
