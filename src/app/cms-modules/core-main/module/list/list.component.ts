@@ -12,7 +12,9 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EditStepDtoModel,
+  EnumActionGoStep
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -28,6 +30,7 @@ import { CoreModuleEditComponent } from '../edit/edit.component';
 import { CoreModuleAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-core-module-list',
@@ -80,12 +83,12 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'Title',
     'ClassName',
+    'ShowInOrder',
     'CreatedDate',
     'UpdatedDate',
     'ExpireDate',
     'Action'
   ];
-
 
 
   expandedElement: CoreModuleModel | null;
@@ -317,6 +320,30 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       }
     );
 
+  }
+  
+  onTableDropRow(event: CdkDragDrop<CoreModuleModel[]>): void {
+    const previousIndex = this.tableSource.data.findIndex(row => row === event.item.data);
+    const model = new EditStepDtoModel<number>();
+    model.Id = this.tableSource.data[previousIndex].Id;
+    model.CenterId = this.tableSource.data[event.currentIndex].Id;
+    if (previousIndex > event.currentIndex) {
+      model.ActionGo = EnumActionGoStep.GoUp;
+    }
+    else {
+      model.ActionGo = EnumActionGoStep.GoDown;
+    }
+    this.coreModuleService.ServiceEditStep(model).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          moveItemInArray(this.tableSource.data, previousIndex, event.currentIndex);
+          this.tableSource.data = this.tableSource.data.slice();
+        }
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+      }
+    );
   }
   onActionbuttonConfigMainAdminRow(model: CoreModuleModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {

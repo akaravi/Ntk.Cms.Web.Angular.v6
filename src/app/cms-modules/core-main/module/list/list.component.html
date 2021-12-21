@@ -79,7 +79,12 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ClassName']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.ClassName}} </mat-cell>
       </ng-container>
-
+      <!-- ShowInOrder Column -->
+      <ng-container matColumnDef="ShowInOrder">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInOrder']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.ShowInOrder}} </mat-cell>
+      </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
@@ -135,6 +140,14 @@
           </mat-menu>
         </mat-cell>
       </ng-container>
+         <!-- position Column -->
+         <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'ACTION.ORDERING' | translate}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-icon style="pointer-events: all;" cdkDragHandle>reorder</mat-icon>
+          </mat-cell>
+        </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
