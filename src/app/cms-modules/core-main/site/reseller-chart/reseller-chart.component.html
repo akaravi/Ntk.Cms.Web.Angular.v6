@@ -48,6 +48,7 @@
                     <div class="td">نام</div>
                     <div class="td">نام خانوادگی</div>
                     <div class="td">نام شرکت</div>
+                    <div class="td">تاریخ ساخت</div>
                     <div class="clear"></div>
                 </div>
                 <div class="tr" *ngFor="let item of dataModelSelect.UserChilds">
@@ -55,6 +56,7 @@
                     <div class="td">{{item.User?.Name}}</div>
                     <div class="td">{{item.User?.LastName}}</div>
                     <div class="td">{{item.User?.CompanyName}}</div>
+                    <div class="td">{{item.User?.CreatedDate |persianDate}}</div>
                     <div style="clear: both;"></div>
                 </div>
             </div>

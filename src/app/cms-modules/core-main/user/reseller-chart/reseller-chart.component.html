@@ -49,6 +49,7 @@
                     <div class="td">عنوان</div>
                     <div class="td">دامنه</div>
                     <div class="td">زیر دامنه</div>
+                    <div class="td">تاریخ ساخت</div>
                     <div class="clear"></div>
                 </div>
                 <div class="tr" *ngFor="let item of dataModelSelect.SiteChilds">
@@ -56,6 +57,7 @@
                     <div class="td">{{item.Site?.Title}}</div>
                     <div class="td">{{item.Site?.Domain}}</div>
                     <div class="td">{{item.Site?.SubDomain}}</div>
+                    <div class="td">{{item.Site?.CreatedDate |persianDate}}</div>
                     <div style="clear: both;"></div>
                 </div>
             </div>
