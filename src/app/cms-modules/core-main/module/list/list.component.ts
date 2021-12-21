@@ -87,6 +87,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     'CreatedDate',
     'UpdatedDate',
     'ExpireDate',
+    'position',
     'Action'
   ];
 

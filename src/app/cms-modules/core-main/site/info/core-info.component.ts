@@ -165,7 +165,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     });
     //open popup
   }
-  onActionbuttonlinkToSiteShare():void
+  onActionbuttonResllerSiteShortLinkTo():void
   {
      //open popup
      const dialogRef = this.dialog.open(CmsLinkToComponent, {
@@ -182,15 +182,15 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     });
     //open popup
   }
-  onActionbuttonlinkToUserShare():void
+  onActionbuttonResllerUserShortLinkTo():void
   {
      //open popup
      const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
         Title: 'آدرس اشتراک گزاری با حساب کاربری شما',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlSiteCPanelShortLinkQRCodeBase64,
-        UrlViewContent:this. dataModelResult.Item.UrlSiteCPanel,
+        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlResellerUserShortLinkQRCodeBase64,
+        UrlViewContent:this. dataModelResult.Item.UrlResellerUserShortLinkUrl,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -199,15 +199,15 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     });
     //open popup
   }
-  onActionbuttonlinkToSystemShare():void
+  onActionbuttonResllerUserCategoryShortLinklinkTo():void
   {
      //open popup
      const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
         Title: 'آدرس اشتراک گزاری با حساب کاربری شما',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlSiteCPanelShortLinkQRCodeBase64,
-        UrlViewContent:this. dataModelResult.Item.UrlSiteCPanel,
+        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl,
+        UrlViewContent:this. dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
