@@ -33,7 +33,7 @@
 
 <!-- آدرس وب سایت -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.Item?.UrlSiteHome?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -57,7 +57,7 @@
     <h5>
       آدرس وب سایت
     </h5>
-    <a href="{{dataModelResult.Item.UrlSiteHome}}">
+    <a href="{{dataModelResult.Item?.UrlSiteHome}}">
       {{dataModelResult.Item.UrlSiteHome}}
     </a>
     <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteHome" (click)="onActionCopied()"><i
@@ -80,7 +80,7 @@
 
 <!-- آدرس سامانه مدیریت محتوا -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.Item?.UrlSiteCPanel?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -132,7 +132,7 @@
 
 <!-- آدرس اشتراک گزاری وب سایت -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.Item?.UrlResellerSiteShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -192,7 +192,7 @@
 
 <!-- آدرس اشتراک گزاری با حساب کاربری شما -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.Item?.UrlResellerUserShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -253,7 +253,7 @@
 
 <!-- آدرس اشتراک گزاری با دسته بندی سامانه موجود -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.Item?.UrlResellerSiteCategoryShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -279,7 +279,7 @@
       <br>
       علاوه بر آن با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
     </p>
-    <div *ngIf="dataModelResult.Item?.UrlResellerSiteCategoryShortLinkUrl?.length>0">
+    <div >
       <br>
       <h5>
         آدرس اشتراک گزاری با دسته بندی سامانه موجود

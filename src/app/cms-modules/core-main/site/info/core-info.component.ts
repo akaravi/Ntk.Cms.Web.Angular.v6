@@ -201,12 +201,12 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
   }
   onActionbuttonResllerUserCategoryShortLinklinkTo():void
   {
-     //open popup
+     //open popup 
      const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
         Title: 'آدرس اشتراک گزاری با حساب کاربری شما',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl,
+        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkQRCodeBase64,
         UrlViewContent:this. dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl,
       },
     });
