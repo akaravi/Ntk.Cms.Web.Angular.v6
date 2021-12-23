@@ -205,11 +205,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
      const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-<<<<<<< HEAD
         Title: 'آدرس اشتراک گزاری با حساب کاربری شما',
-=======
-        Title: 'آدرس اشتراک گزاری با دسته بندی سامانه موجود',
->>>>>>> indomahvash
         UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkQRCodeBase64,
         UrlViewContent:this. dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl,
       },
