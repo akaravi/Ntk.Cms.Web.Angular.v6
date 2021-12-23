@@ -163,11 +163,11 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteList(row)">
               <mat-icon>supervised_user_circle</mat-icon>
-              <span>سایت های عضو</span>
+              <span>{{'ACTION.MEMBER_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteByGroupList(row)">
               <mat-icon>supervisor_account</mat-icon>
-              <span>دسترسی سایت های عضو</span>
+              <span>{{'ACTION.ACCESS_MEMBER_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonResller(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">

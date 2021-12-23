@@ -42,7 +42,7 @@
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <button (click)="onActionBackToParentModuleList()" *ngIf="this.requestLinkModuleId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="onActionbuttonReNewModule()" type="button" class="btn btn-outline-success BTN">تمدید ماژول ها</button>
+    <button (click)="onActionbuttonReNewModule()" type="button" class="btn btn-outline-success BTN">{{'ACTION.EXTEND_MODULES' | translate}}</button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -138,7 +138,7 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonConfigSiteRow(row)">
               <mat-icon>extension</mat-icon>
-              <span>تظیمات ماژول</span>
+              <span>{{'ACTION.MODULE_SETTINGS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonConfigMainAdminRow(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
