@@ -17,7 +17,11 @@ enum ErrorStates {
   HasError,
   NoError,
 }
-
+export class processModel {
+  progressBarValue: number;
+  progressBarMaxValue: number;
+  message: string;
+}
 @Component({
   selector: 'app-auth-singin-bysms',
   templateUrl: './singin-bysms.component.html',
@@ -34,6 +38,8 @@ export class AuthSingInBySmsComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.RePasswordModel = '';
+
+
   }
   errorState: ErrorStates = ErrorStates.NotSubmitted;
   errorStates = ErrorStates;
@@ -49,11 +55,20 @@ export class AuthSingInBySmsComponent implements OnInit {
   onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
+
   }
+  prorocess: processModel;
 
-
+  buttonnResendSmsDisable = true;
 
   onActionSubmitOrderCodeBySms(): void {
+    if (this.forgetState == 'entrycode') {
+      if (!this.dataModelAuthUserSignInBySms.CaptchaText || this.dataModelAuthUserSignInBySms.CaptchaText.length == 0) {
+        this.cmsToastrService.typeErrorMessage("محتوای عکس امنیتی را وارد کنید");
+        return;
+      }
+
+    }
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
@@ -67,6 +82,26 @@ export class AuthSingInBySmsComponent implements OnInit {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_login_code_was_texted_with_you'));
           this.forgetState = 'entrycode';
+          //TimeDown 
+          this.prorocess = new processModel();
+          this.prorocess.progressBarValue = 0;
+          this.prorocess.progressBarMaxValue = 60;
+          this.prorocess.message = '';
+          this.buttonnResendSmsDisable = true;
+          var timeleft = this.prorocess.progressBarMaxValue;
+          let downloadTimer = setInterval(() => {  
+            this.prorocess.progressBarValue = this.prorocess.progressBarMaxValue - timeleft;
+            this.prorocess.message = '(' + timeleft + ' ' + 'ثانیه' + ')';
+            timeleft -= 1;
+            if (timeleft <= 0) {
+              this.buttonnResendSmsDisable = false;
+              this.prorocess.message = '';
+              clearInterval(downloadTimer);
+            }
+            this.cdr.detectChanges();
+
+          }, 1000)
+          //TimeDown 
         }
         else {
           this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
@@ -110,6 +145,7 @@ export class AuthSingInBySmsComponent implements OnInit {
       .subscribe((res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessLogin();
+          this.formInfo.ButtonSubmittedEnabled=false;
           if (res.Item.SiteId > 0) {
             setTimeout(() => this.router.navigate(['/dashboard']), 1000);
           }
