@@ -31,7 +31,7 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'اخبارهای ثبت شده';
+    this.widgetInfoModel.title = 'چارت های ثبت شده';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/chart/content';
 
