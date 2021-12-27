@@ -18,7 +18,7 @@ import {
   ArticleContentSimilarService,
   ArticleContentTagService,
   ArticleShareMainAdminSettingService,
-  ArticleShareReciverCategoryService,
+  ArticleShareReceiverCategoryService,
   ArticleShareServerCategoryService,
   ArticleContentCategoryService,
   CoreModuleService
@@ -91,7 +91,7 @@ import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/t
     ArticleContentSimilarService,
     ArticleContentTagService,
     ArticleShareMainAdminSettingService,
-    ArticleShareReciverCategoryService,
+    ArticleShareReceiverCategoryService,
     ArticleShareServerCategoryService,
 
   ]

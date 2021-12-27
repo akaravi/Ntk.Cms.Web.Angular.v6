@@ -70,6 +70,15 @@
             mat-icon-button aria-label="Clear" (click)="dataModel.ApiIdentity = 1">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ApiIdentity']?.AccessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
+        <!-- ApiReceiveKey Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiReceiveKey']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['ApiReceiveKey']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.ApiReceiveKey" [disabled]="!fieldsInfo['ApiReceiveKey']?.AccessEditField"
+            name="dataModel.ApiReceiveKey" #ApiReceiveKey type="number" placeholder="Currency Unit Ratio By Shop" />
+          <mat-icon matSuffix *ngIf="dataModel.ApiReceiveKey && fieldsInfo['ApiReceiveKey']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.ApiReceiveKey = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ApiReceiveKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
         <!-- Priority Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['Priority']?.FieldTitle }}</mat-label>

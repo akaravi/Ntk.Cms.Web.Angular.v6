@@ -20,7 +20,7 @@ import {
   NewsContentSimilarService,
   NewsContentTagService,
   NewsShareMainAdminSettingService,
-  NewsShareReciverCategoryService,
+  NewsShareReceiverCategoryService,
   NewsShareServerCategoryService
 } from 'ntk-cms-api';
 import { NewsCategoryEditComponent } from './category/edit/edit.component';
@@ -92,7 +92,7 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
     NewsContentSimilarService,
     NewsContentTagService,
     NewsShareMainAdminSettingService,
-    NewsShareReciverCategoryService,
+    NewsShareReceiverCategoryService,
     NewsShareServerCategoryService,
     NewsContentCategoryService,
   ]

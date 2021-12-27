@@ -18,7 +18,7 @@ import {
   BlogContentSimilarService,
   BlogContentTagService,
   BlogShareMainAdminSettingService,
-  BlogShareReciverCategoryService,
+  BlogShareReceiverCategoryService,
   BlogShareServerCategoryService,
   BlogContentCategoryService,
   CoreModuleService
@@ -92,7 +92,7 @@ import { BlogCategoryTreeSelectorComponent } from './category/tree-selector/tree
     BlogContentSimilarService,
     BlogContentTagService,
     BlogShareMainAdminSettingService,
-    BlogShareReciverCategoryService,
+    BlogShareReceiverCategoryService,
     BlogShareServerCategoryService,
 
   ]

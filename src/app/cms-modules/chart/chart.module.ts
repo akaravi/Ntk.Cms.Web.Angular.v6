@@ -19,7 +19,7 @@ import {
   ChartContentSimilarService,
   ChartContentTagService,
   ChartShareMainAdminSettingService,
-  ChartShareReciverCategoryService,
+  ChartShareReceiverCategoryService,
   ChartShareServerCategoryService,
   CoreModuleService
 } from 'ntk-cms-api';
@@ -92,7 +92,7 @@ import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tre
     ChartContentSimilarService,
     ChartContentTagService,
     ChartShareMainAdminSettingService,
-    ChartShareReciverCategoryService,
+    ChartShareReceiverCategoryService,
     ChartShareServerCategoryService,
     ChartContentCategoryService,
   ]

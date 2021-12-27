@@ -18,7 +18,7 @@ import {
   BiographyContentSimilarService,
   BiographyContentTagService,
   BiographyShareMainAdminSettingService,
-  BiographyShareReciverCategoryService,
+  BiographyShareReceiverCategoryService,
   BiographyShareServerCategoryService,
   BiographyContentCategoryService,
   CoreModuleService
@@ -91,7 +91,7 @@ import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector
     BiographyContentSimilarService,
     BiographyContentTagService,
     BiographyShareMainAdminSettingService,
-    BiographyShareReciverCategoryService,
+    BiographyShareReceiverCategoryService,
     BiographyShareServerCategoryService,
 
   ]
