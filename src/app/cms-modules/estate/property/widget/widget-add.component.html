@@ -1,6 +1,6 @@
 <!--begin::Mixed Widget 14-->
 <div class="card card-custom bgi-no-repeat bgi-size-cover" [ngClass]="cssClass"
-  style="background-image: url('./assets/media/stock-600x600/img-6.jpg')">
+  style="background-image: url('./assets/media/stock-600x600/img-2.jpg')">
   <!--begin::Body-->
   <div class="card-body d-flex flex-column align-items-start justify-content-start">
 
@@ -8,18 +8,18 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <div class="p-1 flex-grow-1">
         <a routerLink="/estate/property/add" routerLinkActive="active">
-          <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+          <h3 class="text-black font-weight-bolder line-height-lg mb-5">
             {{widgetInfoModel.title}}
           </h3>
         </a>
         <a routerLink="/estate/property" routerLinkActive="active" *ngIf="rowExist">
-          <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+          <h3 class="text-black font-weight-bolder line-height-lg mb-5">
             {{widgetInfoModel.description}}
           </h3>
         </a>
         <a routerLink="/estate/property/InChecking/true" routerLinkActive="active"
           *ngIf="this.modelData.get('InChecking') && this.modelData.get('InChecking')>0">
-          <h3 class="text-white font-weight-bolder line-height-lg mb-5">
+          <h3 class="text-black font-weight-bolder line-height-lg mb-5">
             تعداد ردیف در صف تایید : {{this.modelData.get('InChecking')}}
           </h3>
         </a>
@@ -30,10 +30,10 @@
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <a routerLink="/estate/property/add" routerLinkActive="active"
-        class="btn btn-link btn-link-warning font-weight-bold">
+        class="btn btn-link btn-link-light font-weight-bold">
         {{widgetInfoModel.title}}
         <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Arrow-right.svg'"
-          class="svg-icon ssvg-icon-lg svg-icon-warning"></span>
+          class="svg-icon ssvg-icon-lg svg-icon-secondary"></span>
       </a>
 
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

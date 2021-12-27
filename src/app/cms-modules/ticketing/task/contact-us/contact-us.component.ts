@@ -126,8 +126,9 @@ export class TicketingTaskContactUsComponent implements OnInit {
             this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Error;
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
-          this.cdr.markForCheck();
           this.loading.Stop(pName);
+          this.cdr.markForCheck();
+          
 
         },
         (error) => {
