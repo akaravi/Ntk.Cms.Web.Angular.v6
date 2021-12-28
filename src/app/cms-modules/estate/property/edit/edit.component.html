@@ -16,7 +16,7 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
-        
+
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
@@ -123,7 +123,31 @@
             {{fieldsInfo['CaseCode']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        
+        <!-- SharingKey Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SharingKey']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['SharingKey']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.SharingKey" name="dataModel.SharingKey" #SharingKey type="text"
+            disabled="{{!fieldsInfo['SharingKey']?.AccessEditField}}"
+            placeholder="{{fieldsInfo['SharingKey']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.SharingKey" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SharingKey = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['SharingKey']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-error *ngIf="SharingKey.errors?.required">
+            {{fieldsInfo['SharingKey']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- ViewConfigHiddenInList Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.ViewConfigHiddenInList"
+            *ngIf="fieldsInfo['ViewConfigHiddenInList']?.AccessWatchField"
+            [disabled]="!fieldsInfo['ViewConfigHiddenInList']?.AccessEditField" name="dataModel.ViewConfigHiddenInList">
+            {{fieldsInfo['ViewConfigHiddenInList']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
         <!-- CreatedYaer Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.LinkPropertyTypeLanduseId">
           <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
@@ -411,7 +435,7 @@
           [optionDisabled]="false" [optionTypeView]="2" [optionPlaceholder]="'نوع معامله'"
           [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
         </app-estate-contract-type-selector>
-        <div class ="container" *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
+        <div class="container" *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
           <br>
           <br>
           <!-- SalePrice Field -->
@@ -589,8 +613,8 @@
 
             <p>فایل های پیوست محتوا</p>
             <div class="mb-3">
-              <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-                src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+              <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+                aria-hidden src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
             </div>
             <div class="mb-9">
               <mat-form-field class="ntk-full-width">

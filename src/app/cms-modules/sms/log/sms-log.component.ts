@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sms-log',
-  templateUrl: './sms-log.component.html',
-  styleUrls: ['./sms-log.component.scss']
+  template: '<router-outlet></router-outlet>'
 })
 export class SmsLogComponent implements OnInit {
 
