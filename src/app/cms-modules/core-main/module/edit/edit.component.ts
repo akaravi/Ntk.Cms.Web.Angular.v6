@@ -89,7 +89,7 @@ export class CoreModuleEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
+    this.coreModuleService.setAccessLoad();
     this.coreModuleService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.dataModel = next.Item;

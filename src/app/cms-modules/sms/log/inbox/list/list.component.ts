@@ -36,6 +36,7 @@ import { Subscription } from 'rxjs';
 import { SmsMainApiLogInBoxEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsViewComponent } from 'src/app/shared/cms-view/cms-view.component';
 
 
 @Component({
@@ -69,8 +70,8 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    // this.filteModelContent.SortColumn = 'Id';
+    // this.filteModelContent.SortType = EnumSortType.Descending;
   }
   comment: string;
   author: string;
@@ -143,7 +144,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       filter.Value = this.requestLinkSiteId;
       this.filteModelContent.Filters.push(filter);
     }
-    this.filteModelContent.SortColumn = 'Title';
+    // this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -156,6 +157,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     // this.getCurrency();
     this.getApiCopmanyList();
     this.getPublicConfig();
+    this. getPrivateConfig();
   }
   getPublicConfig(): void {
     const filter = new FilterModel();
@@ -340,6 +342,36 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
 
   }
 
+  onActionbuttonViewRow(model: SmsLogInBoxModel = this.tableRowSelected): void {
+
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(CmsViewComponent, {
+      height: '90%',
+      data: {
+        optionMethod: 1,
+        optionListItems: [],
+        optionItem: model,
+        optionTitle: "نمایش",
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        // this.DataGetAll();
+      }
+    });
+  }
   onActionSelectorSelect(model: SmsMainApiPathCompanyModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;

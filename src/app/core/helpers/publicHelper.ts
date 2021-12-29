@@ -155,6 +155,13 @@ export class PublicHelper {
     }
     return '';
   }
+  getTime(model): string {
+    if (model) {
+      const d = new Date(model);
+      return d.getHours() + ":" + d.getMinutes();
+    }
+    return '';
+  }
 
   Truncate(value: string, limit: number = 20, trail: string = '...'): string {
     return value.length > limit ? value.substring(0, limit) + trail : value;
@@ -263,21 +270,21 @@ export class PublicHelper {
         return response;
       })).toPromise();
   }
-  StringRandomGenerator(passwordLength = 10 , onlynumber=false): string {
+  StringRandomGenerator(passwordLength = 10, onlynumber = false): string {
     // const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-    if(onlynumber===true){
-    chars='0123456789';
-  }
-  
+    if (onlynumber === true) {
+      chars = '0123456789';
+    }
+
     let password = '';
 
     for (let i = 0; i <= passwordLength; i++) {
       const randomNumber = Math.floor(Math.random() * chars.length);
       password += chars.substring(randomNumber, randomNumber + 1);
     }
-    if(onlynumber===true&& password.indexOf('0')==0){
-      password='1'+password.substring(1);
+    if (onlynumber === true && password.indexOf('0') == 0) {
+      password = '1' + password.substring(1);
     }
     return password;
   }

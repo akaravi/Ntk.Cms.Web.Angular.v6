@@ -142,6 +142,7 @@ export class EstatePropertyListComponent
     "RecordStatus",
     "MainAdminRecordStatus",
     "IsSoldIt",
+    "ViewConfigHiddenInList",
     "LinkSiteId",
     "Title",
     "ViewCount",

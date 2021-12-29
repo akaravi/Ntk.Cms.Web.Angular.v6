@@ -4,8 +4,8 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AccessModel,
-  TicketingAnswerModel,
-  TicketingAnswerService,
+  TicketingTaskModel,
+  TicketingTaskService,
   CoreEnumService,
   DataFieldInfoModel,
   EnumInfoModel,
@@ -23,19 +23,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-ticketing-answer-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  selector: 'app-ticketing-task-edit',
+  templateUrl: './view.component.html',
+  styleUrls: ['./view.component.scss']
 })
-export class TicketingAnswerEditComponent implements OnInit {
+export class TicketingTaskViewComponent implements OnInit {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<TicketingAnswerEditComponent>,
     private activatedRoute: ActivatedRoute,
+    private dialogRef: MatDialogRef<TicketingTaskViewComponent>,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
-    private ticketingAnswerService: TicketingAnswerService,
+    private ticketingTaskService: TicketingTaskService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -44,17 +44,20 @@ export class TicketingAnswerEditComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
-      this.requestId = +data.id || 0;
+      this.requestId = + data.Id | 0;
     }
-
+    if (this.requestId == 0) {
+      this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
-  dataModel = new TicketingAnswerModel();
-  dataModelResult: ErrorExceptionResult<TicketingAnswerModel> = new ErrorExceptionResult<TicketingAnswerModel>();
+  dataModel = new TicketingTaskModel();
+  dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumOsTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
@@ -66,9 +69,10 @@ export class TicketingAnswerEditComponent implements OnInit {
   mapOptonCenter = new PoinModel();
 
   ngOnInit(): void {
-    this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
+      this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
     this.DataGetOne(this.requestId);
@@ -83,8 +87,9 @@ export class TicketingAnswerEditComponent implements OnInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
+    this.dialogRef.close({ dialogChangedDate: false });
 
-    this.DataEditContent();
+    // this.DataEditContent();
   }
 
   DataGetOne(requestId: number): void {
@@ -95,8 +100,8 @@ export class TicketingAnswerEditComponent implements OnInit {
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.ticketingAnswerService.setAccessLoad();
-    this.ticketingAnswerService
+    this.ticketingTaskService.setAccessLoad();
+    this.ticketingTaskService
       .ServiceGetOneById(requestId)
       .subscribe(
         async (next) => {
@@ -124,39 +129,39 @@ export class TicketingAnswerEditComponent implements OnInit {
         }
       );
   }
-  DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+  // DataEditContent(): void {
+  //   this.formInfo.FormSubmitAllow = false;
+  //   this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  //   this.formInfo.FormError = '';
+  //   const pName = this.constructor.name + 'main';
+  //   this.loading.Start(pName);
 
 
-    this.ticketingAnswerService
-      .ServiceEdit(this.dataModel)
-      .subscribe(
-        async (next) => {
+  //   this.ticketingTaskService
+  //     .ServiceEdit(this.dataModel)
+  //     .subscribe(
+  //       async (next) => {
 
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-            this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => {this.dialogRef.close({ dialogChangedDate: false });}, 1000);
-          } else {
-            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
-          }
-          this.loading.Stop(pName);
+  //         this.formInfo.FormSubmitAllow = !next.IsSuccess;
+  //         this.dataModelResult = next;
+  //         if (next.IsSuccess) {
+  //           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+  //           this.cmsToastrService.typeSuccessEdit();
+  //           setTimeout(() => this.router.navigate(['/application/app/']), 1000);
+  //         } else {
+  //           this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+  //         }
+  //         this.loading.Stop(pName);
 
-        },
-        (error) => {
-          this.loading.Stop(pName);
+  //       },
+  //       (error) => {
+  //         this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(error);
-        }
-      );
-  }
+  //         this.formInfo.FormSubmitAllow = true;
+  //         this.cmsToastrService.typeErrorEdit(error);
+  //       }
+  //     );
+  // }
 
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {

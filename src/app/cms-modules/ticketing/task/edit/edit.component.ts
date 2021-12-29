@@ -146,7 +146,11 @@ export class TicketingTaskEditComponent implements OnInit {
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/application/app/']), 1000);
+            setTimeout(() =>
+            {
+              this.dialogRef.close({ dialogChangedDate: true });
+            }
+            , 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
@@ -175,7 +179,7 @@ export class TicketingTaskEditComponent implements OnInit {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/application/app/']);
+    this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionFileSelectedLinkMainImageId(): void {
     // this.dataModel.LinkMainImageId = model.id;

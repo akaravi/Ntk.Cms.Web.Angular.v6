@@ -82,10 +82,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
     );
   }
   onActionSelect(value: EstatePropertyTypeUsageModel): void {
-    const item = this.dataModelSelect.filter((obj) => {
-      return obj.Id === value.Id;
-    }).shift();
-    if (item) {
+    if (this.fieldsStatus.get(value.Id)) {
       this.fieldsStatus.set(value.Id, false);
       this.optionSelectRemoved.emit(value);
       this.dataModelSelect.splice(this.dataModelSelect.indexOf(value), 1);
@@ -108,7 +105,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
         this.dataIdsSelect.push(element.Id);
       });
     }
-    this.dataIdsSelect.forEach((el) => this.fieldsStatus[el] = true);
+    this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
   }
 
   onActionReload(): void {

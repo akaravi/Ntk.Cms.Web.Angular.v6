@@ -85,6 +85,7 @@ import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-lo
 import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
 import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
 import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
+import { CmsViewComponent } from './cms-view/cms-view.component';
 
 @NgModule({
   imports: [
@@ -139,6 +140,7 @@ import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transa
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
     CmsQDocComponent,
+    CmsViewComponent,
     CmsLinkToComponent,
     CmsMapComponent,
     CmsTagAutocompleteComponent,
@@ -215,6 +217,7 @@ import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transa
     CmsModuleSelectorComponent,
     CmsMapComponent,
     CmsQDocComponent,
+    CmsViewComponent,
     CmsLinkToComponent,
     CmsTagAutocompleteComponent,
     ProgressSpinnerComponent,

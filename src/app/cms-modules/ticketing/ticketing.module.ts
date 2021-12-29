@@ -51,8 +51,10 @@ import { TicketingConfigMainAdminComponent } from './config/main-admin/config-ma
 import { TicketingAnswerListComponent } from './answer/list/list.component';
 import { TicketingAnswerAddComponent } from './answer/add/add.component';
 import { TicketingAnswerEditComponent } from './answer/edit/edit.component';
-import { TicketingTaskContactUsComponent } from './task/contact-us/contact-us.component';
+import { TicketingTaskContactUsAddComponent } from './task/contact-us-add/contact-us-add.component';
 import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.component';
+import { TicketingTaskContactUsListComponent } from './task/contact-us-list/contact-us-list.component';
+import { TicketingTaskViewComponent } from './task/view/view.component';
 
 
 
@@ -78,7 +80,9 @@ import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.c
     TicketingTaskListComponent,
     TicketingTaskEditComponent,
     TicketingTaskAddComponent,
-    TicketingTaskContactUsComponent,
+    TicketingTaskViewComponent,
+    TicketingTaskContactUsAddComponent,
+    TicketingTaskContactUsListComponent,
     /* */
     TicketingDepartemenOperatorListComponent,
     TicketingDepartemenLogEditComponent,

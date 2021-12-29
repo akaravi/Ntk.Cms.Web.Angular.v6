@@ -132,7 +132,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.ticketingTaskService.ServiceGetAllEditor(filterModel).subscribe(
+    this.ticketingTaskService.ServiceGetAll(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -277,7 +277,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.router.navigate(['/ticketing/answer/LinkTicketId/', this.tableRowSelected.Id]);
+    this.router.navigate(['/ticketing/answer/LinkTaskId/', this.tableRowSelected.Id]);
 
 
   }

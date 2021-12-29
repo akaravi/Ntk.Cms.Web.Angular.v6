@@ -16,6 +16,7 @@ import {
   CoreAuthService,
   CaptchaModel,
   EnumFormSubmitedStatus,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -23,14 +24,18 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'src/filemanager-api';
 import { TranslateService } from '@ngx-translate/core';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ticketing-task-contactus',
-  templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.scss']
+  templateUrl: './contact-us-add.component.html',
+  styleUrls: ['./contact-us-add.component.scss']
 })
-export class TicketingTaskContactUsComponent implements OnInit {
+export class TicketingTaskContactUsAddComponent implements OnInit {
+  requestLinkDepartemenId = 0;
   constructor(
+    private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     private coreAuthService: CoreAuthService,
     public publicHelper: PublicHelper,
@@ -42,8 +47,23 @@ export class TicketingTaskContactUsComponent implements OnInit {
     private cdr: ChangeDetectorRef) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+      this.dataModel.FullName = this.tokenInfo.FullName;
+      this.dataModel.Email = this.tokenInfo.Email;
+      this.dataModel.PhoneNo = this.tokenInfo.Mobile;
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+      this.dataModel.FullName = this.tokenInfo.FullName;
+      this.dataModel.Email = this.tokenInfo.Email;
+      this.dataModel.PhoneNo = this.tokenInfo.Mobile;
+    });
   }
-  requestLinkDepartemenId = 0;
+  cmsApiStoreSubscribe: Subscription;
+  tokenInfo: TokenInfoModel;
+
+
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   loading = new ProgressSpinnerModel();
@@ -128,7 +148,7 @@ export class TicketingTaskContactUsComponent implements OnInit {
           }
           this.loading.Stop(pName);
           this.cdr.markForCheck();
-          
+
 
         },
         (error) => {

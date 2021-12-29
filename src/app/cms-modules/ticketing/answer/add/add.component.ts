@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -19,6 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'src/filemanager-api';
 import { TranslateService } from '@ngx-translate/core';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ticketing-answer-add',
@@ -26,8 +27,10 @@ import { PoinModel } from 'src/app/core/models/pointModel';
   styleUrls: ['./add.component.scss']
 })
 export class TicketingAnswerAddComponent implements OnInit {
-
+  requestLinkTaskId = 0;
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<TicketingAnswerAddComponent>,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
@@ -36,11 +39,16 @@ export class TicketingAnswerAddComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    if (data) {
+      this.requestLinkTaskId = +data.LinkTaskId || 0;
+    }
+
   }
-  requestLinkTicketId = 0;
+
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
@@ -60,12 +68,12 @@ export class TicketingAnswerAddComponent implements OnInit {
   mapOptonCenter = new PoinModel();
 
   ngOnInit(): void {
-    this.requestLinkTicketId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTicketId'));
-    if (this.requestLinkTicketId === 0) {
+    // this.requestLinkTaskId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTaskId'));
+    if (this.requestLinkTaskId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
-    this.dataModel.LinkTicketId = this.requestLinkTicketId;
+    this.dataModel.LinkTaskId = this.requestLinkTaskId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
   }
@@ -107,30 +115,26 @@ export class TicketingAnswerAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.ticketingAnswerService
-      .ServiceAdd(this.dataModel)
-      .subscribe(
-        async (next) => {
+    this.ticketingAnswerService.ServiceAdd(this.dataModel).subscribe(async (next) => {
+      this.formInfo.FormSubmitAllow = !next.IsSuccess;
+      this.dataModelResult = next;
+      if (next.IsSuccess) {
+        this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        this.cmsToastrService.typeSuccessAdd();
+        setTimeout(() => { this.dialogRef.close({ dialogChangedDate: true }); }, 1000);
+      } else {
+        this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+      }
+      this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-            this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/application/app/']), 1000);
-          } else {
-            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
-          }
-          this.loading.Stop(pName);
+    },
+      (error) => {
+        this.loading.Stop(pName);
 
-        },
-        (error) => {
-          this.loading.Stop(pName);
-
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(error);
-        }
-      );
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeErrorAdd(error);
+      }
+    );
   }
 
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
@@ -146,7 +150,7 @@ export class TicketingAnswerAddComponent implements OnInit {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/application/app/']);
+    this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionFileSelectedLinkMainImageId(): void {
     // this.dataModel.LinkMainImageId = model.id;

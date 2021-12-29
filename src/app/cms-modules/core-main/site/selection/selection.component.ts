@@ -60,7 +60,7 @@ export class CoreSiteSelectionComponent implements OnInit {
           this.statusCheckExistWebSite = false;
           if (this.dataModelResult.ListItems?.length === 1) {
             setTimeout(() => {
-              this.onActionClickSelectSite(this.dataModelResult.ListItems[0].Id);
+              this.onActionClickSelectSite(this.dataModelResult.ListItems[0].LinkSiteId);
             }, 1000);
           }
         }
@@ -77,7 +77,6 @@ export class CoreSiteSelectionComponent implements OnInit {
     );
   }
   onActionClickSelectSite(id: number): void {
-
     if (!this.formInfo.ButtonSubmittedEnabled) {
       return;
     }
@@ -94,7 +93,7 @@ export class CoreSiteSelectionComponent implements OnInit {
 
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (res) => {
-        if (res.IsSuccess) {
+        if (res.IsSuccess && res.Item.SiteId > 0) {
           this.cmsToastrService.typeSuccessSelected();
           this.loading.Stop(pName);
           this.router.navigate(['/']);
