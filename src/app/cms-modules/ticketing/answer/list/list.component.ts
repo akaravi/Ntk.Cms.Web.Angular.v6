@@ -28,6 +28,7 @@ import { TicketingAnswerEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TicketingAnswerAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TicketingAnswerViewComponent } from '../view/view.component';
 
 @Component({
   selector: 'app-ticketing-answer-list',
@@ -215,7 +216,23 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonViewRow(mode: TicketingAnswerModel = this.tableRowSelected): void {
+    if (!mode || !mode.Id || mode.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
 
+
+    const dialogRef = this.dialog.open(TicketingAnswerViewComponent, {
+      height: '90%',
+      data: { Id: this.tableRowSelected.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {        
+      }
+    });
+  }
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
@@ -239,7 +256,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(TicketingAnswerEditComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { Id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

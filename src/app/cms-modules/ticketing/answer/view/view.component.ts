@@ -23,15 +23,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-ticketing-answer-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  selector: 'app-ticketing-answer-view',
+  templateUrl: './view.component.html',
+  styleUrls: ['./view.component.scss']
 })
-export class TicketingAnswerEditComponent implements OnInit {
+export class TicketingAnswerViewComponent implements OnInit {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<TicketingAnswerEditComponent>,
+    private dialogRef: MatDialogRef<TicketingAnswerViewComponent>,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
@@ -69,6 +69,7 @@ export class TicketingAnswerEditComponent implements OnInit {
     // this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
+      this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
     this.DataGetOne(this.requestId);
@@ -83,8 +84,9 @@ export class TicketingAnswerEditComponent implements OnInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
+    this.dialogRef.close({ dialogChangedDate: false });
 
-    this.DataEditContent();
+    // this.DataEditContent();
   }
 
   DataGetOne(requestId: number): void {

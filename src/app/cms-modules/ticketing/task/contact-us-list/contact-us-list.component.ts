@@ -243,26 +243,16 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = mode;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||!     this.dataModelResult.Access.AccessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
-      return;
-    }
+
 
     const dialogRef = this.dialog.open(TicketingTaskViewComponent, {
       height: '90%',
       data: { Id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
+      if (result && result.dialogChangedDate) {        
       }
     });
-
-
   }
   onActionbuttonAnswerList(mode: TicketingTaskModel = this.tableRowSelected): void {
     if (!mode || !mode.Id || mode.Id === 0) {
