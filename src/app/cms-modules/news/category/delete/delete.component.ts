@@ -11,7 +11,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-news-category-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class NewsCategoryDeleteComponent implements OnInit {
   requestId = 0;
@@ -25,12 +24,11 @@ export class NewsCategoryDeleteComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      this.requestId = +data.id || 0;
+      this.requestId = +data.Id || 0;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   loading = new ProgressSpinnerModel();
   dataModelResultCategory: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
   dataModelResultCategoryAllData: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
@@ -46,7 +44,6 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.DataGetOne();
     this.DataGetAll();
   }
-
   DataGetOne(): void {
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
@@ -55,7 +52,6 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe(
@@ -71,17 +67,14 @@ export class NewsCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-
         }
       );
-
   }
   DataGetAll(): void {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
@@ -223,6 +216,6 @@ export class NewsCategoryDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-   
+
   }
 }

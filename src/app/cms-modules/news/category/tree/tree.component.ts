@@ -180,7 +180,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(NewsCategoryDeleteComponent, {
       height: '90%',
-      data: { id }
+      data: { Id:id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
