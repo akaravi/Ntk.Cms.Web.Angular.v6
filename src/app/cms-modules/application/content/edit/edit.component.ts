@@ -17,7 +17,6 @@ import {
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
 import { ApplicationThemeConfigModel } from 'ntk-cms-api';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { Map as leafletMap } from 'leaflet';
@@ -25,12 +24,9 @@ import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
-
-
 @Component({
   selector: 'app-aplication-app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
 })
 export class ApplicationAppEditComponent implements OnInit {
   requestId = 0;
@@ -47,11 +43,8 @@ export class ApplicationAppEditComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
-
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-
   @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
-
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
@@ -67,14 +60,11 @@ export class ApplicationAppEditComponent implements OnInit {
   fileManagerOpenFormLinkFileIdSplashScreen = false;
   fileManagerOpenFormLinkMainImageId = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
-
-
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (!this.requestId || this.requestId === 0) {
@@ -93,7 +83,6 @@ export class ApplicationAppEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       this.cmsToastrService.typeErrorFormInvalid();
@@ -101,7 +90,6 @@ export class ApplicationAppEditComponent implements OnInit {
     }
     if (this.dataModel.LinkSourceId <= 0) {
       this.cmsToastrService.typeErrorAdd(this.translate.instant('MESSAGE.Specify_the_source_code_of_the_program'));
-
       return;
     }
     if (this.dataModel.LinkThemeConfigId <= 0) {
@@ -110,14 +98,12 @@ export class ApplicationAppEditComponent implements OnInit {
     }
     this.DataEditContent();
   }
-
   DataGetOne(requestId: number): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'ServiceGetOneById';
     this.loading.Start(pName);
-
     /*َAccess Field*/
     this.applicationAppService.setAccessLoad();
     this.applicationAppService
@@ -127,10 +113,8 @@ export class ApplicationAppEditComponent implements OnInit {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
-
           if (next.IsSuccess) {
             this.dataModel = next.Item;
             const lat = this.dataModel.AboutUsGeolocationlatitude;
@@ -146,7 +130,6 @@ export class ApplicationAppEditComponent implements OnInit {
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
@@ -159,33 +142,28 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.applicationAppService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/app/']), 1000);
-
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
           this.loading.Stop(pName);
         }
       );
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -210,7 +188,6 @@ export class ApplicationAppEditComponent implements OnInit {
       this.mapOptonCenter = this.mapMarkerPoints[0];
       this.mapMarkerPoints = [];
     }
-
     this.mapModel.on('click', (e) => {
       // @ts-ignore
       const lat = e.latlng.lat;
@@ -228,7 +205,6 @@ export class ApplicationAppEditComponent implements OnInit {
       this.dataModel.AboutUsGeolocationlatitude = lat;
       this.dataModel.AboutUsGeolocationlongitude = lon;
     });
-
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);
@@ -267,7 +243,6 @@ export class ApplicationAppEditComponent implements OnInit {
         'سورس اپلیکیشن در حالت ویرایش قابل تغییر نمی باشد'
       );
     }
-
   }
   onActionSelectTheme(model: ApplicationThemeConfigModel | null): void {
     if (!model || model.Id <= 0) {

@@ -24,12 +24,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-application-app-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -54,13 +51,9 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   @Output() optionChange = new EventEmitter<ApplicationAppModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: ApplicationAppModel) => false;
-
-
   ngOnInit(): void {
     this.DataGetAll();
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.DataGetAll();
     });
@@ -71,10 +64,8 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'categoryService.ServiceGetAll';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -82,12 +73,10 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -106,41 +95,32 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectForce(id: number | ApplicationAppModel): void {
-
   }
-
   onActionAdd(): void {
     this.router.navigate(['/application/app/add']);
-
   }
-
   onActionEdit(): void {
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-
       const message = 'دسته بندی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.router.navigate(['/application/app/edit/', id]);
   }
-
   onActionDelete(): void {
-
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-
       const message = 'دسته بندی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.router.navigate(['/application/app/delete/', id]);
-
   }
 }

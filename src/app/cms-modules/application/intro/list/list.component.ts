@@ -26,11 +26,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
 @Component({
   selector: 'app-application-intro-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class ApplicationIntroListComponent implements OnInit, OnDestroy {
   requestLinkApplicationId = 0;
@@ -81,14 +79,9 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
     'UpdatedDate',
     'Action'
   ];
-
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   expandedElement: ApplicationIntroModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.requestLinkApplicationId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkApplicationId'));
     const filter = new FilterDataModel();
@@ -101,7 +94,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -113,11 +105,8 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationIntroModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -128,11 +117,9 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-
     this.applicationIntroService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
@@ -159,18 +146,13 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -196,8 +178,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonNewRow(): void {
     let ApplicationId = 0;
     if (this.requestLinkApplicationId > 0) {
@@ -222,8 +202,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/application/intro/add/', ApplicationId]);
 
   }
-
-
   onActionbuttonEditRow(model: ApplicationIntroModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -262,7 +240,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-
           this.applicationIntroService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -272,12 +249,10 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -291,7 +266,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
   onActionSelectorSelect(model: ApplicationAppModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
   onActionbuttonStatist(): void {
@@ -313,7 +287,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -331,7 +304,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -352,7 +324,6 @@ export class ApplicationIntroListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

@@ -4,11 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApplicationAppModel, ApplicationAppService, FormInfoModel } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
 @Component({
   selector: 'app-download',
   templateUrl: './download.component.html',
-  styleUrls: ['./download.component.scss']
 })
 export class ApplicationAppDownloadComponent implements OnInit {
   constructor(
@@ -24,7 +22,6 @@ export class ApplicationAppDownloadComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   loading = new ProgressSpinnerModel();
   // dataModel = new ApplicationAppModel();
-
   ngOnInit(): void {
     this.DataGetOne(this.dataModel.Id);
   }
@@ -34,24 +31,19 @@ export class ApplicationAppDownloadComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'ServiceGetOneById';
     this.loading.Start(pName);
-
-
     this.applicationAppService
       .ServiceGetOneById(requestId)
       .subscribe(
         async (next) => {
-
           this.formInfo.FormSubmitAllow = true;
           if (next.IsSuccess) {
             this.dataModel = next.Item;
-
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
@@ -63,10 +55,8 @@ export class ApplicationAppDownloadComponent implements OnInit {
   }
   onActionDownloadApp(): void {
     window.open(this.dataModel.DownloadLinkSrc);
-
   }
   onActionDownloadUpdate(): void {
     window.open(this.dataModel.DownloadLinkUpdateSrc);
-
   }
 }

@@ -50,8 +50,8 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active');
-    this.loading.Start(this.constructor.name + 'All');
+    this.loading.Start(this.constructor.name + 'Active','دریافت سایت های عضو فعال');
+    this.loading.Start(this.constructor.name + 'All','دریافت همه ی سایت های عضو');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(

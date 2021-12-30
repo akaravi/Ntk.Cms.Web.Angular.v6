@@ -14,7 +14,6 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
- 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -27,11 +26,9 @@
       translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
@@ -43,7 +40,6 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-
     <button (click)="onActionbuttonUploadApp()"
       *ngIf="tableRowSelected.Id>0 && this.tokenInfo.UserAccessAdminAllowToProfessionalData" type="button"
       class="btn btn-outline-success BTN">بارگزاری فایل نصب</button>
@@ -86,7 +82,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSourceId']?.FieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.LinkSourceId}} </mat-cell>
       </ng-container>
-
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
@@ -158,7 +153,6 @@
               <span>ارسال نوتیفیکیشن</span>
             </button>
           </mat-menu>
-
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>

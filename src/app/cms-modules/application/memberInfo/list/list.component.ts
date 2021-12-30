@@ -32,7 +32,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-application-memberinfo-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
   requestLinkApplicationId = 0;

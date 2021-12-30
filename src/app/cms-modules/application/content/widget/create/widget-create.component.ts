@@ -4,16 +4,12 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-
 @Component({
   selector: 'app-application-app-widget-create',
   templateUrl: './widget-create.component.html',
-  styleUrls: ['./widget-create.component.scss']
 })
-
 export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
   @Input() cssClass = '';
-
   constructor(
     private service: ApplicationAppService,
     private cdr: ChangeDetectorRef,
@@ -30,19 +26,16 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.title = 'بررسی اپلیکیشن ها';
     this.widgetInfoModel.description = 'نرم افزاری برای معرفی شما';
     this.widgetInfoModel.link = '/application/app';
-
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
-
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'All');
+    this.loading.Start(this.constructor.name + 'All','دریافت اطلاعات مدیریت اپلیکیشن');
     this.service.ServiceGetExist(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -55,7 +48,6 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
           this.widgetInfoModel.link = '/application/app/add';
         }
         this.loading.Stop(this.constructor.name + 'All');
-
       },
       (error) => {
         this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
@@ -63,7 +55,6 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
         this.loading.Stop(this.constructor.name + 'All');
       }
     );
-
   }
   translateHelp(t: string, v: string): string {
     return t + v;

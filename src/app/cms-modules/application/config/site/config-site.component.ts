@@ -24,16 +24,12 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
-
-
 @Component({
   selector: 'app-application-config-site',
   templateUrl: './config-site.component.html',
-  styleUrls: ['./config-site.component.scss']
 })
 export class ApplicationConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
-
   constructor(
     private configService: ApplicationConfigurationService,
     private tokenHelper: TokenHelper,
@@ -51,36 +47,27 @@ export class ApplicationConfigSiteComponent implements OnInit {
   dataConfigSiteValuesModel = new ApplicationModuleConfigSiteValuesModel();
   dataConfigSiteAccessValuesModel = new ApplicationModuleConfigSiteAccessValuesModel();
   tokenInfo = new TokenInfoModel();
-
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter =new PoinModel();
-
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
-
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
-
     this.onLoadDate();
     this.getEnumRecordStatus();
   }
@@ -91,7 +78,6 @@ export class ApplicationConfigSiteComponent implements OnInit {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
     }
-
     if (this.requestLinkSiteId > 0) {
       this.GetServiceSiteStorage(this.requestLinkSiteId);
       this.GetServiceSiteConfig(this.requestLinkSiteId);
@@ -103,7 +89,6 @@ export class ApplicationConfigSiteComponent implements OnInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-
     if (this.requestLinkSiteId > 0) {
       this.SetServiceSiteConfigSave(this.requestLinkSiteId);
       if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
@@ -112,9 +97,6 @@ export class ApplicationConfigSiteComponent implements OnInit {
       }
     }
   }
-
-
-
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -126,18 +108,15 @@ export class ApplicationConfigSiteComponent implements OnInit {
       // }
     }
   }
-
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);
   }
-
   GetServiceSiteStorage(SiteId: number): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'ServiceSiteStorage';
     this.loading.Start(pName, 'دریافت مقادیر ذخیره شده ماژول');
-
     this.configService
       .ServiceSiteStorage(SiteId)
       .subscribe(
@@ -162,7 +141,6 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceSiteStorageSave';
     this.loading.Start(pName, 'ذخیره مقادیر ذخیره شده ماژول');
     this.configService
@@ -189,7 +167,6 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceSiteConfig';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
     this.configService
@@ -217,7 +194,6 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigSave';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
-
     this.configService
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
       .subscribe(
@@ -241,10 +217,8 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceSiteAccess';
     this.loading.Start(pName, 'دریافت دسترسی های ماژول');
-
     this.configService
       .ServiceSiteAccess(SiteId)
       .subscribe(
@@ -268,12 +242,8 @@ export class ApplicationConfigSiteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-
-
-
     const pName = this.constructor.name + 'ServiceSiteAccessSave';
     this.loading.Start(pName, 'ذخیره دسترسی های ماژول');
-
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
       .subscribe(
@@ -293,6 +263,4 @@ export class ApplicationConfigSiteComponent implements OnInit {
         }
       );
   }
-
-
 }

@@ -14,7 +14,6 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -28,11 +27,9 @@
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.LinkApplicationId>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
@@ -53,7 +50,6 @@
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
   <ng-container cms-body>
@@ -138,7 +134,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
       </ng-container>
-
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
@@ -186,7 +181,6 @@
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
       [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-list>

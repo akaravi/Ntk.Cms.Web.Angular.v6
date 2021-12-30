@@ -8,7 +8,6 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-
       <mat-step label="{{'TITLE.Default_module_settings'|translate}}" state="main"
         *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
         <p>{{'TITLE.Settings_that_are_used_in_the_first_assignment_of_the_module_to_the_site' |translate}}</p>
@@ -44,7 +43,6 @@
       <mat-step label="{{'TITLE.Default_access'|translate}}" state="main"
         *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
         <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
-
         <!-- MainDataContentRowCount Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>MainDataContentRowCount</mat-label>
@@ -82,7 +80,6 @@
             MaxAppCreation is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteAccessValuesDefaultModel | prettyjson"></div>
         </div>
@@ -98,10 +95,8 @@
           </button>
         </div>
       </mat-step>
-
       <mat-step label="{{'TITLE.System_management_settings'|translate}}" state="main">
         <p>{{'TITLE.The_whole_system_management_settings_for_this_module'|translate}}</p>
-
         <!-- AccessBuy Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy" name="dataConfigAdminMainModel.AccessBuy">
@@ -134,9 +129,6 @@
             ImageMainSizeHeight is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
-
-
         <!-- ImageThumbnailSizeWidth Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ImageThumbnailSizeWidth</mat-label>
@@ -163,7 +155,6 @@
             ImageThumbnailSizeHeight is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
             name="dataConfigAdminMainModel.AccessFree">
@@ -183,7 +174,6 @@
             AccessFreeDay is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
         </div>
@@ -204,12 +194,10 @@
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

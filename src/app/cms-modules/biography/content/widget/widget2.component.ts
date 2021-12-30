@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-biography-content-widget2',
@@ -22,6 +24,8 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
     private service: BiographyContentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
+
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -31,7 +35,7 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'زندگینامه ثبت شده';
+    this.widgetInfoModel.title = 'زندگی نامه ثبت شده';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/biography/content';
 
@@ -50,8 +54,8 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active');
-    this.loading.Start(this.constructor.name + 'All');
+    this.loading.Start(this.constructor.name + 'Active','دریافت آمار زندگینامه های فعال');
+    this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی زندگینامه ها');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(

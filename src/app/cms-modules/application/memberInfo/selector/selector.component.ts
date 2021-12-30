@@ -14,15 +14,11 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-application-memberinfo-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class ApplicationMemberInfoSelectorComponent implements OnInit {
-
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
@@ -42,7 +38,6 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | ApplicationMemberInfoModel) {
     this.onActionSelectForce(x);
   }
-
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -61,7 +56,6 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: ApplicationMemberInfoModel): string | undefined {
     return model ? model.DeviceId + ' # APP:' + model.LinkApplicationId : undefined;
   }
@@ -104,7 +98,6 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
     }
     if (text && typeof +text === 'number' && +text > 0) {
       let filter = new FilterDataModel();
-
       filter = new FilterDataModel();
       filter.PropertyName = 'LinkUserId';
       filter.Value = text;
@@ -125,12 +118,9 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
       filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
-
     }
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -145,7 +135,6 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -164,7 +153,6 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-
   push(newvalue: ApplicationMemberInfoModel): Observable<ApplicationMemberInfoModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
@@ -204,7 +192,6 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

@@ -14,21 +14,16 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-application-app-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class ApplicationAppSelectorComponent implements OnInit {
-
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: ApplicationAppService) {
     this.loading.cdr = this.cdr;
-
   }
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
   dataModelSelect: ApplicationAppModel = new ApplicationAppModel();
@@ -43,7 +38,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | ApplicationAppModel) {
     this.onActionSelectForce(x);
   }
-
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -62,7 +56,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: ApplicationAppModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -87,10 +80,8 @@ export class ApplicationAppSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'categoryService.ServiceGetAll';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -109,7 +100,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
           return response.ListItems;
         }, () => {
           this.loading.Stop(pName);
-
         }
 
         )
@@ -129,7 +119,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-
   push(newvalue: ApplicationAppModel): Observable<ApplicationAppModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
@@ -138,7 +127,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: number | ApplicationAppModel): void {
     if (typeof id === 'number' && id > 0) {
@@ -169,7 +157,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     this.dataModelSelect = new ApplicationAppModel();
     this.DataGetAll(null);

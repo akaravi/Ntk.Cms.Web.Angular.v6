@@ -6,14 +6,12 @@
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-
   <!-- LinkUserId Field -->
   <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkSiteId"
     [optionPlaceholder]="'سایت'"></app-cms-site-selector>
   <!-- LinkUserId Field -->
   <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkUserId"
     [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
-
   <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
@@ -28,7 +26,6 @@
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
   <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
     <button type="button" (click)="onFormCancel()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
