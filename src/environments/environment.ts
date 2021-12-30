@@ -9,7 +9,7 @@ export const environment = {
   USERDATA_KEY: 'authf649fc9a5f55',
   loadDemoMenu: true,
   loadDemoDashboard: true,
-  ProgressConsoleLog: true,
+  ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
