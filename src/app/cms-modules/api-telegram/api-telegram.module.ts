@@ -12,16 +12,22 @@ import { TagInputModule } from 'ngx-chips';
 import {
   CoreAuthService,
   CoreEnumService,
-  ApplicationEnumService,
-  CoreModuleTagService,
-  CoreModuleService
+  CoreModuleService,
+  ApiTelegramBotConfigService,
+  ApiTelegramConfigurationService,
+  ApiTelegramEnumService,
+  ApiTelegramLogInputService,
+  ApiTelegramLogOutputService,
+  ApiTelegramMemberInfoService,
+  ApiTelegramReceivedFileService,
+  ApiTelegramUploadedFileService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileUploaderModule } from 'src/app/shared/cms-file-uploader/cms-file-uploader.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,7 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
     ApiTelegramRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-
+    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
@@ -40,14 +46,22 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
+    CmsFileUploaderModule,
   ],
   providers: [
+    CoreModuleService,
     CoreEnumService,
     CoreAuthService,
     CmsConfirmationDialogService,
-    ApplicationEnumService,
-    CoreModuleTagService,
-    CoreModuleService,
+    ApiTelegramConfigurationService,
+    ApiTelegramBotConfigService,
+    ApiTelegramEnumService,
+    ApiTelegramLogInputService,
+    ApiTelegramLogOutputService,
+    ApiTelegramMemberInfoService,
+    ApiTelegramReceivedFileService,
+    ApiTelegramUploadedFileService,
+
   ]
 })
 export class ApiTelegramModule { }

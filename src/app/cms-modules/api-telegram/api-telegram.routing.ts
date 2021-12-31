@@ -1,66 +1,70 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ApiTelegramComponent } from './api-telegram.component';
+import { ApiTelegramBotConfigListComponent } from './bot-config/list/list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ApiTelegramComponent,
-    // children: [
-    //   {
-    //     path: 'source',
-    //     component: ApplicationSourceListComponent
-    //   },
-    //   {
-    //     path: 'source/add',
-    //     component: ApplicationSourceAddComponent
-    //   },
+     children: [
+      /*Config*/
+      {
+        path: 'config',
+        loadChildren: () =>
+          import('./config/api-telegram-config.module').then((m) => m.ApiTelegramConfigModule),
+      },
+      /*Config*/
+      {
+        path: 'bot-config',
+        component: ApiTelegramBotConfigListComponent
+      },
     //   {
     //     path: 'source/edit/:Id',
-    //     component: ApplicationSourceEditComponent
+    //     component: ApiTelegramSourceEditComponent
     //   },
     //   {
     //     path: 'app',
-    //     component: ApplicationAppListComponent
+    //     component: ApiTelegramAppListComponent
     //   },
     //   {
     //     path: 'app/:SourceId',
-    //     component: ApplicationAppListComponent
+    //     component: ApiTelegramAppListComponent
     //   },
     //   {
     //     path: 'app/add/:SourceId',
-    //     component: ApplicationAppAddComponent
+    //     component: ApiTelegramAppAddComponent
     //   },
     //   {
     //     path: 'app/edit/:Id',
-    //     component: ApplicationAppEditComponent
+    //     component: ApiTelegramAppEditComponent
     //   },
     //   {
     //     path: 'intro',
-    //     component: ApplicationIntroListComponent
+    //     component: ApiTelegramIntroListComponent
     //   },
     //   {
-    //     path: 'intro/add/:ApplicationId',
-    //     component: ApplicationIntroListComponent
+    //     path: 'intro/add/:ApiTelegramId',
+    //     component: ApiTelegramIntroListComponent
     //   },
     //   {
     //     path: 'intro/edit/:Id',
-    //     component: ApplicationIntroListComponent
+    //     component: ApiTelegramIntroListComponent
     //   },
     //   {
     //     path: 'memberinfo',
-    //     component: ApplicationMemberInfoListComponent
+    //     component: ApiTelegramMemberInfoListComponent
     //   },
     //   {
     //     path: 'notification',
-    //     component: ApplicationNotificationListComponent
+    //     component: ApiTelegramNotificationListComponent
     //   },
 
     //   {
     //     path: 'themeconfig',
-    //     component: ApplicationThemeConfigListComponent
+    //     component: ApiTelegramThemeConfigListComponent
     //   },
-    // ]
+     ]
   },
 ];
 

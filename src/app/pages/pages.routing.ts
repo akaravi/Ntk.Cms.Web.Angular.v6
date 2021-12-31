@@ -177,6 +177,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('../cms-modules/donate/donate.module').then(m => m.DonateModule)
       },
+      {
+        path: 'api-telegram',
+        loadChildren: () =>
+          import('../cms-modules/api-telegram/api-telegram.module').then(m => m.ApiTelegramModule)
+      },
       // ** cms */
       {
         path: '',
