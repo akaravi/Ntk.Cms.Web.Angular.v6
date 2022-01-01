@@ -22,9 +22,6 @@ import { ApiTelegramBotConfigListComponent } from '../bot-config/list/list.compo
     ApiTelegramConfigCheckUserComponent,
     ApiTelegramConfigCheckSiteComponent,
     /*Config*/
-    ApiTelegramBotConfigListComponent,
-    ApiTelegramBotConfigAddComponent,
-    ApiTelegramBotConfigEditComponent,
   ],
   exports: [
     /*Config*/
