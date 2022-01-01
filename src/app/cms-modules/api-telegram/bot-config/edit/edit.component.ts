@@ -13,6 +13,7 @@ import {
   ViewChild,
   Inject,
   ChangeDetectorRef,
+  Input,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -53,7 +54,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
-
+  @Input()
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<ApiTelegramBotConfigModel> = new ErrorExceptionResult<ApiTelegramBotConfigModel>();
   dataModel: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();

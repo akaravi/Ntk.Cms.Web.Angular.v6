@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   AuthRenewTokenModel,
   CoreAuthService,
@@ -10,6 +10,7 @@ import {
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { PersianCalendarService } from 'src/app/core/pipe/PersianDatePipe/persian-date.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -26,6 +27,8 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info'];
+  @Input()
+  loading = new ProgressSpinnerModel();
   constructor(
     private service: CoreSiteService,
     private persianCalendarService: PersianCalendarService,

@@ -2,7 +2,6 @@ import { ChangeDetectorRef } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { environment } from 'src/environments/environment';
-import { CmsStoreService } from '../reducers/cmsStore.service';
 
 export class ProcessInfoModel {
   inRun = false;

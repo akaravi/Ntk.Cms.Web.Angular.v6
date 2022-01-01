@@ -33,9 +33,10 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'زندگی نامه ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Biography');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/biography/content';
 

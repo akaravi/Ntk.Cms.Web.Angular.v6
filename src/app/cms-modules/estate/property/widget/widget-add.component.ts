@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-property-widget-add',
@@ -18,6 +19,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
     private service: EstatePropertyService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -26,6 +28,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   rowExist = false;
   ngOnInit() {
@@ -50,8 +53,8 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
       (next) => {
         if (next.IsSuccess) {
           this.rowExist = true;
-          this.widgetInfoModel.title = 'ملک جدید اضافه کنید';
-          this.widgetInfoModel.description = 'تعداد املاک ثبت شده : ' + next.TotalRowCount;
+          this.widgetInfoModel.title = this.translate.instant('TITLE.Add_Property');
+          this.widgetInfoModel.description =  this.translate.instant('TITLE.Number_Registered_Property') + ' : ' + next.TotalRowCount;
           this.widgetInfoModel.link = '/estate/property/add';
         }
         else {

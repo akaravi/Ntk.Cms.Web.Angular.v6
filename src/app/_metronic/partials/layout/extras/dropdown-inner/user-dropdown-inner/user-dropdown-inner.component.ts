@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { LayoutService } from '../../../../../core';
 import { AuthService } from '../../../../../../modules/auth/_services/auth.service';
@@ -32,6 +32,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
   }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   IsAdminSite = false;
   env = environment;
