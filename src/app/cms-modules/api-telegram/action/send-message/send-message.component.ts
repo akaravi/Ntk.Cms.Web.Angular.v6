@@ -6,8 +6,8 @@ import {
   ApiTelegramBotConfigService,
   ApiTelegramBotConfigModel,
   DataFieldInfoModel,
-  ApplicationSendMessageModel,
   ErrorExceptionResultBase,
+  ApiTelegramSendMessageTodoModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -53,7 +53,7 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
 
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
-  dataModel: ApplicationSendMessageModel = new ApplicationSendMessageModel();
+  dataModel: ApiTelegramSendMessageTodoModel = new ApiTelegramSendMessageTodoModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -110,5 +110,12 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
-
+  onActionSelectorSelect(model: ApiTelegramBotConfigModel | null): void {
+    if (!model || model.Id <= 0) {
+      const message = 'ربات تلگرام را انتخاب کنید';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.BotId = model.Id;
+  }
 }
