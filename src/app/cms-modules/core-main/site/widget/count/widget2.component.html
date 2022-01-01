@@ -11,7 +11,7 @@
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <div *ngFor="let item of modelData| keyvalue ; index as i" [ngClass]="textInverseCSSClass"
-        class="font-weight-bolder font-size-h2 mt-3">
+        class="font-weight-bolder font-size-h3 mt-3">
         {{translateHelp('TITLE.',item.key)|translate}} : {{item.value}}
       </div>
       <!--end::cms-body-->

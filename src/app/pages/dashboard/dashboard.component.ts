@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CoreModuleModel, ErrorExceptionResult } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,11 +11,16 @@ import { environment } from 'src/environments/environment';
 })
 export class DashboardComponent implements OnInit {
   constructor(
-    public publicHelper: PublicHelper
+    public publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
   ) {
+    
+    this.loading.cdr = this.cdr;
+
   }
   env = environment;
   dataCoreModuleModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
+  loading = new ProgressSpinnerModel();
 
   ngOnInit(): void {
     this.getCurrentSiteModule();

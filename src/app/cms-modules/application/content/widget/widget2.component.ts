@@ -29,6 +29,7 @@ export class ApplicationAppWidget2Component implements OnInit, OnDestroy {
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Application');

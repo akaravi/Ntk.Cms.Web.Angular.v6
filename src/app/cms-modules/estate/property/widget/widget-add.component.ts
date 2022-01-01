@@ -28,6 +28,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   rowExist = false;
   ngOnInit() {

@@ -45,6 +45,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Evidence_Identity');
