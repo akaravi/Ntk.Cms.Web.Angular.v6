@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ApplicationAppService, ApplicationMemberInfoService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { ApplicationMemberInfoService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-application-memberinfo-widget2',
@@ -22,6 +23,7 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
     private service: ApplicationMemberInfoService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -31,7 +33,7 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'عضو ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Member');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/application/content';
 

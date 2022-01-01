@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-blog-content-widget2',
@@ -22,6 +23,7 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
     private service: BlogContentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -31,7 +33,7 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'دست نوشته ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Blog');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/blog/content';
 

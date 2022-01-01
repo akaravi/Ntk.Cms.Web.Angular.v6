@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-app-widget2',
   templateUrl: './widget2.component.html',
@@ -20,6 +21,7 @@ export class ApplicationAppWidget2Component implements OnInit, OnDestroy {
     private service: ApplicationAppService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -29,7 +31,7 @@ export class ApplicationAppWidget2Component implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'اپلیکیشن ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Application');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/application/content';
     this.onActionStatist();
