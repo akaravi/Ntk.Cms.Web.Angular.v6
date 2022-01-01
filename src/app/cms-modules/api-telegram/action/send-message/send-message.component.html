@@ -8,18 +8,18 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <app-api-telegram-bot-config-selector (optionChange)="onActionSelectorSelect($event)"
-    [optionSelectForce]="dataModel.LinkCategoryId" [optionPlaceholder]="'ربات تلگرام'">
+    [optionSelectForce]="dataModel.BotId" [optionPlaceholder]="'ربات تلگرام'">
     </app-api-telegram-bot-config-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['title']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text"
+        placeholder="{{fieldsInfo['title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="Title.errors?.required">
+      <mat-hint align="end">{{ title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="title.errors?.required">
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
