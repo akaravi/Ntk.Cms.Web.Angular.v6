@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-chart-content-widget2',
   templateUrl: './widget2.component.html',
@@ -20,6 +21,7 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
     private service: ChartContentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -27,9 +29,10 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'چارت های ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Biography');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/chart/content';
     this.onActionStatist();

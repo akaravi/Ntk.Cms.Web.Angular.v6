@@ -1,10 +1,8 @@
-<app-progress-spinner [options]="loading" ></app-progress-spinner>
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
     این بخش شما را در تکمیل و اصلاح اطلاعات راهنمایی می کند
 </app-cms-html-notice>
 <div class="example-container mat-elevation-z8">
-    <app-progress-spinner [options]="loading">
-    </app-progress-spinner>
+    <app-progress-spinner [options]="loading"></app-progress-spinner>
     <mat-table [dataSource]="tableSource" >
           <!-- Warrning Column -->
           <ng-container matColumnDef="Accepted">

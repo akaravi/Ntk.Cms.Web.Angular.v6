@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LayoutService } from '../../../../../core';
 import { Observable, Subscription } from 'rxjs';
 import { UserModel } from '../../../../../../modules/auth/_models/user.model';
@@ -33,6 +33,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   IsAdminSite = false;
   env = environment;

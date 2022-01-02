@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ApiTelegramComponent } from './api-telegram.component';
 import { ApiTelegramBotConfigListComponent } from './bot-config/list/list.component';
+import { ApiTelegramLogInputListComponent } from './log-input/list/list.component';
+import { ApiTelegramLogOutputListComponent } from './log-output/list/list.component';
+import { ApiTelegramMemberInfoListComponent } from './member-info/list/list.component';
+import { ApiTelegramReceivedFileListComponent } from './received-file/list/list.component';
+import { ApiTelegramUploadedFileListComponent } from './uploaded-file/list/list.component';
 
 const routes: Routes = [
   {
@@ -19,10 +24,34 @@ const routes: Routes = [
         path: 'bot-config',
         component: ApiTelegramBotConfigListComponent
       },
-    //   {
-    //     path: 'source/edit/:Id',
-    //     component: ApiTelegramSourceEditComponent
-    //   },
+      {
+        path: 'log-input',
+        component: ApiTelegramLogInputListComponent
+      },
+      {
+        path: 'log-input/LinkBotConfigId/:LinkBotConfigId',
+        component: ApiTelegramLogInputListComponent
+      },
+      {
+        path: 'log-output',
+        component: ApiTelegramLogOutputListComponent
+      },
+      {
+        path: 'log-output/LinkBotConfigId/:LinkBotConfigId',
+        component: ApiTelegramLogOutputListComponent
+      },
+      {
+        path: 'member-info',
+        component: ApiTelegramMemberInfoListComponent
+      },
+      {
+        path: 'received-file',
+        component: ApiTelegramReceivedFileListComponent
+      },
+      {
+        path: 'uploaded-file',
+        component: ApiTelegramUploadedFileListComponent
+      },
     //   {
     //     path: 'app',
     //     component: ApiTelegramAppListComponent
