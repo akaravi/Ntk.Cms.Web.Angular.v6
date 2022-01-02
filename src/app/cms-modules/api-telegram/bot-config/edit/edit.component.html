@@ -117,6 +117,12 @@
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
+      <button  (click)="onActionbuttonGetMeAsync()"
+      type="button" class="btn btn-outline-primary">{{'ACTION.GetMeAsync' | translate}}</button>
+      <button  (click)="onActionbuttonSetWebhookAsync()"
+      type="button" class="btn btn-outline-primary">{{'ACTION.SetWebhookAsync' | translate}}</button>
+      <button  (click)="onActionbuttonSetWebhookAsyncEmpty()"
+      type="button" class="btn btn-outline-primary">{{'ACTION.SetWebhookAsyncEmpty' | translate}}</button>
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
       </button>

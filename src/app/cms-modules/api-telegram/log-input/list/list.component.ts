@@ -1,5 +1,5 @@
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -11,7 +11,8 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel} from 'ntk-cms-api';
+  DataFieldInfoModel
+} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -27,6 +28,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { ApiTelegramActionSendMessageComponent } from '../../action/send-message/send-message.component';
 
 @Component({
   selector: 'app-apitelegram-log-input-list',
@@ -34,11 +36,12 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
   styleUrls: ['./list.component.scss']
 })
 export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
+  requestLinkBotConfigId = 0;
   constructor(
     private apiTelegramLogInputService: ApiTelegramLogInputService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -49,6 +52,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
     };
     this.optionsExport.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionExport(model),
+
     };
     /*filter Sort*/
     this.filteModelContent.SortColumn = 'Id';
@@ -76,8 +80,9 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
-    'Title',
+    'LinkBotConfigId',
     'Username',
+    'ChatId',
     'StatusWebhook',
     'CreatedDate',
     'UpdatedDate',
@@ -89,7 +94,13 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'ShowInMenuOrder';
+    this.requestLinkBotConfigId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkBotConfigId'));
+    const filter = new FilterDataModel();
+    if (this.requestLinkBotConfigId > 0) {
+      filter.PropertyName = 'LinkBotConfigId';
+      filter.Value = this.requestLinkBotConfigId;
+      this.filteModelContent.Filters.push(filter);
+    }
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -280,16 +291,16 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonGoToModuleList(model: ApiTelegramLogInputModel = this.tableRowSelected): void {
-  //   if (!model || !model.Id || model.Id === 0) {
-  //     const message = 'ردیفی برای نمایش انتخاب نشده است';
-  //     this.cmsToastrService.typeErrorSelected(message);
-  //     return;
-  //   }
-  //   this.tableRowSelected = model;
+    //   if (!model || !model.Id || model.Id === 0) {
+    //     const message = 'ردیفی برای نمایش انتخاب نشده است';
+    //     this.cmsToastrService.typeErrorSelected(message);
+    //     return;
+    //   }
+    //   this.tableRowSelected = model;
 
-  //   this.router.navigate(['/core/siteModule/', this.tableRowSelected.Id]);
-   }
-   onActionbuttonStatist(): void {
+    //   this.router.navigate(['/core/siteModule/', this.tableRowSelected.Id]);
+  }
+  onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
       return;
@@ -325,27 +336,30 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
       }
-     );
+    );
 
   }
-
-  onActionbuttonSiteList(model: ApiTelegramLogInputModel = this.tableRowSelected): void {
-    // if (!model || !model.Id || model.Id === 0) {
-    //   const emessage = 'ردیفی انتخاب نشده است';
-    //   this.cmsToastrService.typeErrorSelected(emessage);
-    //   return;
-    // }
-    // this.tableRowSelected = model;
-    // this.router.navigate(['core/site/modulelist/LinkModuleId/', model.Id]);
-  }
-  onActionbuttonSiteCategoryList(model: ApiTelegramLogInputModel = this.tableRowSelected): void {
-    // if (!model || !model.Id || model.Id === 0) {
-    //   const emessage = 'ردیفی انتخاب نشده است';
-    //   this.cmsToastrService.typeErrorSelected(emessage);
-    //   return;
-    // }
-    // this.tableRowSelected = model;
-    // this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.Id]);
+  onActionbuttonSendMessage(model: ApiTelegramLogInputModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    //open popup
+    const dialogRef = this.dialog.open(ApiTelegramActionSendMessageComponent, {
+      // height: "90%",
+      data: {
+        LinkBotConfigId: model.LinkBotConfigId,
+        ChatId: model.ChatId
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        
+      }
+    });
+    //open popup
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -377,5 +391,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: ApiTelegramLogInputModel): void {
     this.tableRowSelected = row;
   }
- 
+  onActionBackToParent(): void {
+    this.router.navigate(['api-telegram/bot-config']);
+  }
 }

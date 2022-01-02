@@ -1,5 +1,5 @@
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -11,7 +11,8 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel} from 'ntk-cms-api';
+  DataFieldInfoModel
+} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -27,6 +28,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { ApiTelegramActionSendMessageComponent } from '../../action/send-message/send-message.component';
 
 @Component({
   selector: 'app-apitelegram-bot-config-list',
@@ -34,11 +36,12 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
   styleUrls: ['./list.component.scss']
 })
 export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
+  requestLinkBotConfigId = 0;
   constructor(
     private apiTelegramLogOutputService: ApiTelegramLogOutputService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -76,8 +79,9 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
-    'Title',
+    'LinkBotConfigId',
     'Username',
+    'ChatId',
     'StatusWebhook',
     'CreatedDate',
     'UpdatedDate',
@@ -89,7 +93,13 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'ShowInMenuOrder';
+    this.requestLinkBotConfigId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkBotConfigId'));
+    const filter = new FilterDataModel();
+    if (this.requestLinkBotConfigId > 0) {
+      filter.PropertyName = 'LinkBotConfigId';
+      filter.Value = this.requestLinkBotConfigId;
+      this.filteModelContent.Filters.push(filter);
+    }
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -328,24 +338,26 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     );
 
   }
-
-  onActionbuttonSiteList(model: ApiTelegramLogOutputModel = this.tableRowSelected): void {
-    // if (!model || !model.Id || model.Id === 0) {
-    //   const emessage = 'ردیفی انتخاب نشده است';
-    //   this.cmsToastrService.typeErrorSelected(emessage);
-    //   return;
-    // }
-    // this.tableRowSelected = model;
-    // this.router.navigate(['core/site/modulelist/LinkModuleId/', model.Id]);
-  }
-  onActionbuttonSiteCategoryList(model: ApiTelegramLogOutputModel = this.tableRowSelected): void {
-    // if (!model || !model.Id || model.Id === 0) {
-    //   const emessage = 'ردیفی انتخاب نشده است';
-    //   this.cmsToastrService.typeErrorSelected(emessage);
-    //   return;
-    // }
-    // this.tableRowSelected = model;
-    // this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.Id]);
+  onActionbuttonSendMessage(model: ApiTelegramLogOutputModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    //open popup
+    const dialogRef = this.dialog.open(ApiTelegramActionSendMessageComponent, {
+      // height: "90%",
+      data: {
+        LinkBotConfigId: model.LinkBotConfigId,
+        ChatId: model.ChatId
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+              this.DataGetAll();
+      
+    });
+    //open popup
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -423,5 +435,8 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     //       this.loading.Stop(pName);
     //     }
     //   );
+  }
+  onActionBackToParent(): void {
+    this.router.navigate(['api-telegram/bot-config']);
   }
 }
