@@ -15,9 +15,7 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
@@ -42,14 +40,12 @@
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonWithHierarchy()">{{'ACTION.BATCHVIEW' | translate}}</mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -57,7 +53,6 @@
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
   <ng-container cms-body>
@@ -69,7 +64,6 @@
         <mat-cell *matCellDef="let row">
           <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
-
         </mat-cell>
       </ng-container>
       <!-- ID Column -->
@@ -140,13 +134,11 @@
           <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
         </mat-cell>
       </ng-container>
-
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>
   <ng-container cms-footer>
@@ -154,7 +146,6 @@
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
       [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-list>

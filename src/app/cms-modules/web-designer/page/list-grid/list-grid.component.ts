@@ -32,11 +32,9 @@ import { WebDesignerMainPageAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { environment } from 'src/environments/environment';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
 @Component({
   selector: 'app-webdesigner-page-list-grid',
   templateUrl: './list-grid.component.html',
-  styleUrls: ['./list-grid.component.scss']
 })
 export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
   requestLinkPageParentGuId = '';
@@ -64,7 +62,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     if (this.activatedRoute.snapshot.paramMap.get('LinkPageParentGuId')) {
       this.requestLinkPageParentGuId = this.activatedRoute.snapshot.paramMap.get('LinkPageParentGuId');
     }
-
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -94,13 +91,11 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     }
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   comment: string;
   author: string;
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageModel> = new ErrorExceptionResult<WebDesignerMainPageModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -113,8 +108,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<WebDesignerMainPageModel> = new MatTableDataSource<WebDesignerMainPageModel>();
   dataModelWebDesignerMainPageTemplateResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel>    = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
   dataModelCoreSiteCategoryResult: ErrorExceptionResult<CoreSiteCategoryModel>    = new ErrorExceptionResult<CoreSiteCategoryModel>();
-
-
   tabledisplayedColumns: string[] = [
     'ThumbnailImageSrc',
     'Id',
@@ -127,19 +120,14 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     'PageDependencyIsDefaultPageLinkSiteCategoryId',
     'Action'
   ];
-
-
-
   expandedElement: WebDesignerMainPageModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -167,11 +155,8 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -180,27 +165,20 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -226,10 +204,7 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonNewRow(): void {
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -248,9 +223,7 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionbuttonEditRow(model: WebDesignerMainPageModel = this.tableRowSelected): void {
-
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -290,8 +263,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-
-
     const title = 'لطفا تایید کنید...';
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
@@ -299,7 +270,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-
           this.bankPaymentPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -309,12 +279,10 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -324,10 +292,7 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
       }
       );
-
   }
-
-
   onActionbuttonGoToSiteCategoryList(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       const message = 'ردیفی برای نمایش انتخاب نشده است';
@@ -335,7 +300,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     this.router.navigate(['/core/siteSiteCategory/', this.tableRowSelected.Id]);
   }
   onActionbuttonStatist(): void {
@@ -357,7 +321,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -384,7 +347,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -405,7 +367,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -414,7 +375,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-
     const urlTemplate = environment.cmsServerConfig.configMvcServerPath + 'page/' + model.Id + '?RenderViewPageByMaster=true&preview=true';
     // this.document.location.href = urlTemplate;
     window.open(urlTemplate, '_blank');
@@ -426,7 +386,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -439,7 +398,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     // this.document.location.href = urlTemplate;
     window.open(urlTemplate, '_blank');
   }
-
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -459,7 +417,6 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

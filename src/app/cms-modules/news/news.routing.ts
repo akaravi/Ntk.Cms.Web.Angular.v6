@@ -5,10 +5,6 @@ import { NewsContentListComponent } from './content/list/list.component';
 import { NewsCommentListComponent } from './comment/list/list.component';
 import { NewsContentEditComponent } from './content/edit/edit.component';
 import { NewsContentAddComponent } from './content/add/add.component';
-
-
-
-
 const routes: Routes = [
   {
     path: '',
@@ -43,11 +39,9 @@ const routes: Routes = [
         path: 'comment/:ContentId',
         component: NewsCommentListComponent
       },
-
     ]
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

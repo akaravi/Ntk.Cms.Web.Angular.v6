@@ -25,11 +25,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
 @Component({
   selector: 'app-webdesigner-intro-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
   requestLinkPageId = 0;
@@ -82,7 +80,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
   ];
   expandedElement: WebDesignerMainIntroModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.requestLinkPageId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPageId'));
     const filter = new FilterDataModel();
@@ -107,20 +104,15 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainIntroModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-
     this.webDesignerMainIntroService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
@@ -147,18 +139,14 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -184,8 +172,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonNewRow(): void {
     if (
       this.dataModelResult == null ||
@@ -202,8 +188,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
       this.router.navigate(['/webdesigner/intro/add/']);
     }
   }
-
-
   onActionbuttonEditRow(model: WebDesignerMainIntroModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -257,7 +241,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -268,7 +251,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
       }
       );
   }
-
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -288,7 +270,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -306,7 +287,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -327,7 +307,6 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

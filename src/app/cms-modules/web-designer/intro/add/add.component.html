@@ -54,7 +54,6 @@
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['LinkPageId']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ LinkPageId.value.length }} / 100</mat-hint>
-
         </mat-form-field>
         <!-- Priority Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.AccessWatchField">
@@ -87,7 +86,6 @@
             {{ fieldsInfo['Description']?.FieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
@@ -97,8 +95,6 @@
           </button>
         </div>
       </mat-step>
-
-
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>عکسها و فایل های اپلیکیشن</p>
         <!-- LinkMainImageId Field -->
@@ -108,7 +104,6 @@
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">
-
             <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainImageId"
               [disabled]="!fieldsInfo['LinkMainImageId']?.AccessAddField" name="dataModel.LinkMainImageId"
@@ -119,7 +114,6 @@
             <mat-icon *ngIf="fieldsInfo['LinkMainImageId']?.AccessAddField" matSuffix
               (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
             [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
@@ -132,7 +126,6 @@
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainVideoId']?.AccessWatchField">
-
             <mat-label (click)="fileManagerOpenFormVideo = true">{{fieldsInfo['LinkMainVideoId']?.FieldTitle}}
             </mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainVideoId"
@@ -144,13 +137,11 @@
             <mat-icon *ngIf="fieldsInfo['LinkMainVideoId']?.AccessAddField" matSuffix
               (click)="fileManagerOpenFormVideo = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainVideoId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenFormVideo" [tree]="fileManagerTree"
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMainVideo" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -160,22 +151,15 @@
           </button>
         </div>
       </mat-step>
-
-
-
-
     </mat-horizontal-stepper>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

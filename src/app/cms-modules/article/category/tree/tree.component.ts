@@ -32,7 +32,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-article-category-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(

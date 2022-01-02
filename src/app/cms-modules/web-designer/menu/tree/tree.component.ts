@@ -28,12 +28,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { WebDesignerMainMenuAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-webdesigner-menu-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -60,10 +57,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   @Output() optionChange = new EventEmitter<WebDesignerMainMenuModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: WebDesignerMainMenuModel) => !!node.Children && node.Children.length > 0;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -76,10 +70,8 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAllTree(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -87,14 +79,10 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
-
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
-
       }
     );
   }
@@ -114,21 +102,16 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectForce(id: number | WebDesignerMainMenuModel): void {
-
   }
-
   onActionAdd(): void {
     let parentId = '';
     if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
       parentId = this.dataModelSelect.Id;
     }
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { parentId };
-
-
     const dialogRef = this.dialog.open(WebDesignerMainMenuAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -137,7 +120,6 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionEdit(): void {
     let id = '';
     if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
@@ -159,7 +141,6 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionDelete(): void {
     let id = '';
     if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
@@ -170,7 +151,5 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-
   }
-
 }

@@ -22,8 +22,6 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -52,7 +50,6 @@
         TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <!-- Folder Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Folder']?.FieldTitle}}</mat-label>
@@ -66,7 +63,6 @@
         {{fieldsInfo['Folder']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <!-- IndexFile Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['IndexFile']?.FieldTitle}}</mat-label>
@@ -108,7 +104,6 @@
       (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
       (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
     </app-cms-sitecategory-selectionlist>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

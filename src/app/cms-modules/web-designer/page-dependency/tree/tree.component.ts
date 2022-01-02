@@ -27,12 +27,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { WebDesignerMainPageDependencyEditComponent } from '../edit/edit.component';
 import { WebDesignerMainPageDependencyAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-webdesigner-pagedependency-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -58,10 +55,7 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
   @Output() optionChange = new EventEmitter<WebDesignerMainPageDependencyModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: WebDesignerMainPageDependencyModel) => false;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -76,7 +70,6 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
     this.filteModel.AccessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -84,12 +77,10 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -108,9 +99,7 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
     this.DataGetAll();
   }
   onActionSelectForce(id: number | WebDesignerMainPageDependencyModel): void {
-
   }
-
   onActionAdd(): void {
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
       height: '90%',
@@ -122,7 +111,6 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
       }
     });
   }
-
   onActionEdit(): void {
     let id = '';
     if (this.dataModelSelect && this.dataModelSelect.Id?.length > 0) {

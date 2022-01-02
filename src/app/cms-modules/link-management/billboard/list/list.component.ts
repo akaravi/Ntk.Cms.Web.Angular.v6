@@ -29,7 +29,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-linkmanagement-Billboard-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
 

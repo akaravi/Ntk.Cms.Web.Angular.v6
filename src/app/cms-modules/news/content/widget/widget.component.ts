@@ -4,11 +4,9 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-
 @Component({
   selector: 'app-news-content-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
 })
 export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
@@ -17,7 +15,6 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info'];
   loading = new ProgressSpinnerModel();
-
   constructor(
     private service: NewsContentService,
     private serviceComment: NewsCommentService,
@@ -30,7 +27,6 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.title = 'اخبار های ثبت شده';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/news/content';
-
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
@@ -38,9 +34,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
-
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active');
     this.loading.Start(this.constructor.name + 'All');
@@ -55,7 +49,6 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
       (error) => {
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -73,16 +66,12 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
         this.loading.Stop(this.constructor.name + 'Active');
       }
     );
-
-
     /**Comment */
-    
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter2 = new FilterDataModel();
     fastfilter2.PropertyName = 'RecordStatus';
     fastfilter2.Value = EnumRecordStatus.Pending;
     filterStatist2.Filters.push(fastfilter2);
-
     this.loading.Start(this.constructor.name + 'Pending_Comment');
     this.modelData.set('Pending_Comment', 0);
     this.serviceComment.ServiceGetCount(filterStatist2).subscribe(
@@ -91,13 +80,10 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('Pending_Comment', next.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Pending_Comment');
-
       },
       (error) => {
         this.loading.Stop(this.constructor.name + 'Pending_Comment');
-
       }
     );
-
   }
 }

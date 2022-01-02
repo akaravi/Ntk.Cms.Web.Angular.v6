@@ -4,13 +4,11 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-
 @Component({
   selector: 'app-application-memberinfo-widget2',
   templateUrl: './widget2.component.html',
   styleUrls: ['./widget2.component.scss']
 })
-
 export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy {
   @Input() cssClass = '';
   @Input() widgetHeight = '200px';
@@ -34,21 +32,17 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
     this.widgetInfoModel.title = 'عضو ثبت شده';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/application/content';
-
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
-
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
     this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
     this.svgCSSClass = `svg-icon--${this.iconColor}`;
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
-
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active','دریافت اعضای ثبت شده فعال');
     this.loading.Start(this.constructor.name + 'All','دریافت همه ی اعضای ثبت شده');
@@ -65,7 +59,6 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
         this.loading.Stop(this.constructor.name + 'All');
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';

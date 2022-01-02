@@ -23,7 +23,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-webdesigner-menu-edit',
   templateUrl: './edit.component.html',
@@ -45,28 +44,20 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     if (data) {
       this.requestId = data.id + '';
     }
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   appLanguage = 'fa';
-
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   dataModel: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
-
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataAccessModel: AccessModel;
-
   fileManagerOpenForm = false;
-
   dataWebDesignerMainMenuModel: CoreUserGroupModel[];
   dataWebDesignerMainMenuIds: number[] = [];
-
   ngOnInit(): void {
     if (this.requestId.length > 0) {
       this.formInfo.FormTitle = 'ویرایش  ';
@@ -76,7 +67,6 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-
     this.getEnumRecordStatus();
     this.getEnumMenuPlaceType();
   }
@@ -89,12 +79,10 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     /*َAccess Field*/
     this.webDesignerMainMenuService.setAccessLoad();
     this.webDesignerMainMenuService.ServiceGetOneById(this.requestId).subscribe(
@@ -112,23 +100,18 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.webDesignerMainMenuService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -143,13 +126,11 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -174,7 +155,6 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
       }
     }
   }
-
   onActionSelectorSelect(model: WebDesignerMainMenuModel): void {
     this.dataModel.LinkParentId = null;
     if (model && model.Id.length > 0) {
@@ -187,5 +167,4 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
   onIconPickerSelect(model: any): void {
     this.dataModel.Icon = model;
   }
-
 }

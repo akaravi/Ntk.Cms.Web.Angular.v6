@@ -20,7 +20,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-article-content-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class ArticleContentDeleteComponent implements OnInit {
   requestId = 0;

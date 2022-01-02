@@ -19,7 +19,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-linkmanagement-billboard-pattern-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class LinkManagementBillboardPatternSelectorComponent implements OnInit {
   constructor(

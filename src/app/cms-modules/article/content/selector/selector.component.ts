@@ -15,13 +15,9 @@ import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'r
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 
-
-
-
 @Component({
   selector: 'app-article-content-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class ArticleContentSelectorComponent implements OnInit {
   constructor(

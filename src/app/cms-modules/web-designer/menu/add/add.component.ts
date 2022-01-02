@@ -22,7 +22,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-webdesigner-menu-add',
   templateUrl: './add.component.html',
@@ -47,11 +46,9 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
     if (this.requestParentId.length > 0) {
       this.dataModel.LinkParentId = this.requestParentId;
     }
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   dataModel: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
@@ -59,9 +56,7 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-
   ngOnInit(): void {
-
     this.formInfo.FormTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.getEnumMenuPlaceType();
@@ -75,7 +70,6 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   DataGetAccess(): void {
     this.webDesignerMainMenuService
       .ServiceViewModel()
@@ -98,7 +92,6 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.webDesignerMainMenuService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -107,20 +100,17 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }

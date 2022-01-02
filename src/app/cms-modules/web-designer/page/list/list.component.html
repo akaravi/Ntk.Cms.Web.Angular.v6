@@ -6,7 +6,6 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -19,11 +18,9 @@
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
@@ -39,7 +36,6 @@
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <button (click)="onActionBackToParentDependency()" *ngIf="this.requestLinkPageDependencyGuId?.length>0"
       type="button" class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -47,12 +43,10 @@
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-
     <div class="row">
       <div Class="col-xl-12">
         <!-- <div class="button-row">
@@ -83,9 +77,7 @@
                   {{row.Description }}
                 </p>
               </mat-card-content>
-              <mat-card-actions>
-    
-                 
+              <mat-card-actions>    
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
             <mat-icon>more_vert</mat-icon>
@@ -113,24 +105,19 @@
               <span>نمایش صفحه بدون والد</span>
             </button>
           </mat-menu>
-
               </mat-card-actions>
             </mat-card>
           </div>
-    
         </div>
       </div>
     </div>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
       [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-list>

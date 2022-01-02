@@ -35,7 +35,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-webdesigner-menu-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   constructor(
@@ -59,12 +58,10 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     this.filteModelContent.SortType = EnumSortType.Ascending;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   comment: string;
   author: string;
   flag = false;
   tableContentSelected = [];
-
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -75,8 +72,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<WebDesignerMainMenuModel> = [];
   tableRowSelected: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
   tableSource: MatTableDataSource<WebDesignerMainMenuModel> = new MatTableDataSource<WebDesignerMainMenuModel>();
-
-
   tabledisplayedColumns: string[] = [
     'Icon',
     'Id',
@@ -90,20 +85,15 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     'Action',
     'position'
   ];
-
   dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
-
   expandedElement: WebDesignerMainMenuModel | null;
   cmsApiStoreSubscribe: Subscription;
   categoryModelSelected: WebDesignerMainMenuModel;
   ngOnInit(): void {
-
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -118,16 +108,11 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
-
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainMenuModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -142,28 +127,20 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-
-
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -189,7 +166,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
   onTableDropRow(event: CdkDragDrop<WebDesignerMainMenuModel[]>): void {
     const previousIndex = this.tableSource.data.findIndex(row => row === event.item.data);
     const model = new EditStepDtoModel<string>();
@@ -219,7 +195,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionbuttonNewRow(): void {
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -238,9 +213,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionbuttonEditRow(model: WebDesignerMainMenuModel = this.tableRowSelected): void {
-
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -264,7 +237,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionbuttonDeleteRow(mode: WebDesignerMainMenuModel = this.tableRowSelected): void {
     if (mode == null || !mode.Id || mode.Id.length === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
@@ -286,7 +258,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'webDesignerMainMenuService.ServiceDelete';
           this.loading.Start(pName);
-
           this.webDesignerMainMenuService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -296,12 +267,10 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -312,8 +281,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       }
       );
   }
-
-
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -333,7 +300,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -372,7 +338,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.filteModelContent.SortColumn = 'ShowInMenuOrder';
     this.filteModelContent.SortType = EnumSortType.Ascending;
@@ -385,5 +350,4 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: WebDesignerMainMenuModel): void {
     this.tableRowSelected = row;
   }
-
 }

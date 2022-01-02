@@ -18,7 +18,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-article-category-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class ArticleCategoryDeleteComponent implements OnInit {
   requestId = 0;

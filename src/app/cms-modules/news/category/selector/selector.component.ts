@@ -14,12 +14,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-news-category-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class NewsCategorySelectorComponent implements OnInit {
   constructor(
@@ -40,7 +37,6 @@ export class NewsCategorySelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | NewsCategoryModel) {
     this.onActionSelectForce(x);
   }
-
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -59,7 +55,6 @@ export class NewsCategorySelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: NewsCategoryModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -85,10 +80,8 @@ export class NewsCategorySelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -103,7 +96,6 @@ export class NewsCategorySelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -111,7 +103,6 @@ export class NewsCategorySelectorComponent implements OnInit {
   onActionSelect(model: NewsCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
@@ -156,7 +147,6 @@ export class NewsCategorySelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

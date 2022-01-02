@@ -1,9 +1,7 @@
-
 <app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
   <h4>نظرات</h4>
   <br>
   در این بخش میتوانید نظرات کاربران را مشاهده نمایید. 
-  
 </app-cms-html-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
@@ -13,7 +11,6 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -26,11 +23,9 @@
       translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
@@ -49,7 +44,6 @@
     </button>
     <button (click)="onActionBackToParent()" type="button" class="btn btn-outline-success BTN">{{'ACTION.BACK' |
       translate}}</button>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -57,7 +51,6 @@
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
   <ng-container cms-body>
@@ -141,7 +134,6 @@
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>
   <ng-container cms-footer>
@@ -149,7 +141,6 @@
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
       [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-list>

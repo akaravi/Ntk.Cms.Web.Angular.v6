@@ -11,7 +11,6 @@ import { WebDesignerMainPageTemplateListComponent } from './page-template/list/l
 import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid.component';
 import { WebDesignerMainPageListComponent } from './page/list/list.component';
 import { WebDesignerComponent } from './webDesigner.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -100,7 +99,6 @@ const routes: Routes = [
     ]
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

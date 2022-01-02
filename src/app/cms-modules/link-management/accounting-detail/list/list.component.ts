@@ -30,7 +30,6 @@ import { LinkManagementAccountingDetailEditComponent } from '../edit/edit.compon
 @Component({
   selector: 'app-linkmanagement-AccountingDetail-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class LinkManagementAccountingDetailListComponent implements OnInit, OnDestroy {
 

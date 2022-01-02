@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebDesignerComponent } from './webDesigner.component';
 import { WebDesignerRoutes } from './webDesigner.routing';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -60,7 +58,6 @@ import { WebDesignerMainPageTemplateHeaderComponent } from './page-template/head
 import { CoreModuleModule } from '../core-main/module/coreModule.module';
 import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-dependency/auto-add-page/auto-add-page.component';
 import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid.component';
-
 @NgModule({
   declarations: [
     WebDesignerComponent,
@@ -108,11 +105,9 @@ import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid
     WebDesignerRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,

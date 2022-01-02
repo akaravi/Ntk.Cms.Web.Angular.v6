@@ -44,7 +44,6 @@
       <mat-step label="{{'TITLE.Default_access'|translate}}" state="main"
         *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
         <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
-
         <!-- MainDataContentRowCount Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>MainDataContentRowCount</mat-label>
@@ -87,7 +86,6 @@
       </mat-step>
       <mat-step label="{{'TITLE.System_management_settings'|translate}}" state="main">
         <p>{{'TITLE.The_whole_system_management_settings_for_this_module'|translate}}</p>
-
         <!-- AccessBuy Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy" name="dataConfigAdminMainModel.AccessBuy">
@@ -120,9 +118,6 @@
             ImageMainSizeHeight is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
-
-
         <!-- ImageThumbnailSizeWidth Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ImageThumbnailSizeWidth</mat-label>
@@ -149,7 +144,6 @@
             ImageThumbnailSizeHeight is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
             name="dataConfigAdminMainModel.AccessFree">
@@ -169,7 +163,6 @@
             AccessFreeDay is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
         </div>
@@ -186,17 +179,14 @@
         </div>
       </mat-step>
     </mat-horizontal-stepper>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

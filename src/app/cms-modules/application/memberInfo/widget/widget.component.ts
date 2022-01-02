@@ -4,11 +4,9 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-
 @Component({
   selector: 'app-application-memberinfo-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
 })
 export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
@@ -17,7 +15,6 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info'];
   loading = new ProgressSpinnerModel();
-
   constructor(
     private service: ApplicationMemberInfoService,
     private cdr: ChangeDetectorRef,
@@ -29,7 +26,6 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.title = 'کاربران شما';
     this.widgetInfoModel.description = 'کاربرانی که در اپلیکیشن های شما وارد شده اند';
     this.widgetInfoModel.link = '/application/memberinfo';
-
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
@@ -37,9 +33,7 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
-
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active');
     this.loading.Start(this.constructor.name + 'All');
@@ -51,13 +45,11 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'All');
-
       },
       (error) => {
         this.loading.Stop(this.constructor.name + 'All');
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';

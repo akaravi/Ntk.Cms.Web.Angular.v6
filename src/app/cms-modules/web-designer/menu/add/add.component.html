@@ -61,7 +61,6 @@
             {{fieldsInfo['TitleEn']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <!-- RouteAddressLink Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.AccessWatchField">
           <mat-label> {{fieldsInfo['RouteAddressLink']?.FieldTitle}}</mat-label>
@@ -82,7 +81,6 @@
             {{fieldsInfo['RouteAddressBlankPage']?.FieldTitle}}
           </mat-slide-toggle>
         </div>
-
         <!-- Color Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Color']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Color']?.FieldTitle}}</mat-label>
@@ -93,7 +91,6 @@
             (click)="dataModel.Color = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
         <!-- Icon Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Icon']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Icon']?.FieldTitle}}</mat-label>
@@ -106,7 +103,6 @@
             (click)="dataModel.Icon = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
         <!-- Icon Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInMenuOrder']?.AccessWatchField">
           <mat-label> {{fieldsInfo['ShowInMenuOrder']?.FieldTitle}}</mat-label>
@@ -130,8 +126,6 @@
             {{fieldsInfo['Description']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
           <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
@@ -139,10 +133,6 @@
           </button>
         </div>
       </mat-step>
-
-
-
-
       <!-- Icon overrides. -->
       <ng-template matStepperIcon="main">
         <mat-icon>call_end</mat-icon>
@@ -156,19 +146,15 @@
       <ng-template matStepperIcon="loaction">
         <mat-icon>forum</mat-icon>
       </ng-template>
-
     </mat-horizontal-stepper>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

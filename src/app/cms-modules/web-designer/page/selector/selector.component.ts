@@ -15,15 +15,11 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-webdesigner-page-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class WebDesignerMainPageSelectorComponent implements OnInit {
-
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
@@ -67,7 +63,6 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: WebDesignerMainPageModel): string | undefined {
     return model ? (model.Title) : undefined;
   }
@@ -113,10 +108,8 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.And;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -131,7 +124,6 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -150,7 +142,6 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-
   push(newvalue: WebDesignerMainPageModel): Observable<WebDesignerMainPageModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
@@ -159,7 +150,6 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: string | WebDesignerMainPageModel): void {
     if (typeof id === 'string' && id.length > 0) {
@@ -190,7 +180,6 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

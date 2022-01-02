@@ -95,7 +95,6 @@
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['ExpireDate']?.FieldDescription}}</strong> </mat-hint>
         </mat-form-field>
-        
         <hr class="pb-5" />
         <!-- editorConfig Field -->
         <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
@@ -110,7 +109,6 @@
           </button>
         </div>
       </mat-step>
-
       <mat-step label="موتور های سرچ" state="seo">
         <p>این بخش کمک می کند موتورهای سرچ بهتر مطالب را ایندکس کنند</p>
         <!-- Source Field -->
@@ -151,7 +149,6 @@
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
-
             <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
               type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
@@ -159,7 +156,6 @@
               (click)="dataModel.LinkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
             [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
@@ -181,7 +177,6 @@
               (click)="dataModel.LinkFilePodcastId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkFilePodcastId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
@@ -202,7 +197,6 @@
               (click)="dataModel.LinkFileMovieId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileMovieId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree"
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
@@ -217,8 +211,6 @@
           </button>
         </div>
       </mat-step>
-
-
       <mat-step label="{{'TITLE.OTHER_INFO' | translate}}" state="otherinfo">
         <p>سایر اطلاعات در رابطه با این محتوا در این قسمت اضافه کنید</p>
         <!-- Title Field -->
@@ -255,7 +247,6 @@
         <!-- editorConfig Field -->
         <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="OtherInfo"
           [(ngModel)]="contentOtherInfoSelected.HtmlBody" name="contentOtherInfoSelected.HtmlBody"></angular-editor>
-
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
           class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
           اضافه به لیست ...
@@ -289,7 +280,6 @@
           </mat-table>
         </div>
         <!-- TABLE  -->
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -310,8 +300,6 @@
             اضافه به لیست ...
           </button>
         </app-news-content-selector>
-
-
         <!-- TABLE  -->
         <div class="example-container mat-elevation-z8">
           <mat-table [dataSource]="similarTabledataSource">
@@ -343,7 +331,6 @@
               <mat-header-cell *matHeaderCellDef> عنوان </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
             </ng-container>
-
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
@@ -358,7 +345,6 @@
           </mat-table>
         </div>
         <!-- TABLE  -->
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -381,7 +367,6 @@
           </button>
         </div>
       </mat-step>
-
       <!-- Icon overrides. -->
       <ng-template matStepperIcon="main">
         <mat-icon>call_end</mat-icon>
@@ -395,19 +380,15 @@
       <ng-template matStepperIcon="loaction">
         <mat-icon>forum</mat-icon>
       </ng-template>
-
     </mat-horizontal-stepper>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

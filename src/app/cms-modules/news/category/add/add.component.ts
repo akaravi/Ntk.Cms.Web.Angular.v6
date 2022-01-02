@@ -21,7 +21,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-news-category-add',
   templateUrl: './add.component.html',
@@ -50,29 +49,19 @@ export class NewsCategoryAddComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
-
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
-
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
   dataModel: NewsCategoryModel = new NewsCategoryModel();
-
-
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
   fileManagerOpenForm = false;
-
-
   onActionFileSelected(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
-
   }
-
   ngOnInit(): void {
     this.formInfo.FormTitle = 'ثبت دسته بندی جدید';
     this.getEnumRecordStatus();
@@ -81,8 +70,6 @@ export class NewsCategoryAddComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
-
   DataGetAccess(): void {
     this.categoryService
       .ServiceViewModel()
@@ -100,14 +87,11 @@ export class NewsCategoryAddComponent implements OnInit {
         }
       );
   }
-
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.categoryService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -122,13 +106,11 @@ export class NewsCategoryAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -137,9 +119,7 @@ export class NewsCategoryAddComponent implements OnInit {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
-
     this.DataAddContent();
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

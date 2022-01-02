@@ -4,13 +4,11 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-
 @Component({
   selector: 'app-news-content-widget2',
   templateUrl: './widget2.component.html',
   styleUrls: ['./widget2.component.scss']
 })
-
 export class NewsContentWidget2Component implements OnInit, OnDestroy {
   @Input() cssClass = '';
   @Input() widgetHeight = '200px';
@@ -34,19 +32,16 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     this.widgetInfoModel.title = 'اخبارهای ثبت شده';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/news/content';
-
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
-
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
     this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
     this.svgCSSClass = `svg-icon--${this.iconColor}`;
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active','دریافت آمار خبرهای فعال');
@@ -59,14 +54,11 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
           this.modelData.set('All', next.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'All');
-
       },
       (error) => {
         this.loading.Stop(this.constructor.name + 'All');
-
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';

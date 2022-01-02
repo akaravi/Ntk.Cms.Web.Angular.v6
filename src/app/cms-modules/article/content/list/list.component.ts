@@ -32,7 +32,6 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 @Component({
   selector: 'app-article-content-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class ArticleContentListComponent implements OnInit, OnDestroy {
 

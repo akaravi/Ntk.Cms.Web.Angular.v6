@@ -32,7 +32,6 @@
             {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
@@ -140,7 +139,6 @@
           </button>
         </div>
       </mat-step>
-
       <mat-step label="تنطیمات ساخت" state="seo">
         <p>تنظیمات ساخت اپلیکیشن و برروز رسانی را انتخاب کنید</p>
         <!-- DefaultAppId Field -->
@@ -193,7 +191,6 @@
           <mat-icon *ngIf="fieldsInfo['SourceNameGit']?.AccessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ SourceNameGit.value.length }} / 100</mat-hint>
         </mat-form-field>
-
         <!-- FireBaseServerKey Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FireBaseServerKey']?.AccessWatchField">
           <mat-label>{{fieldsInfo['FireBaseServerKey']?.FieldTitle}}</mat-label>
@@ -204,7 +201,6 @@
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FireBaseServerKey = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FireBaseServerKey']?.AccessAddField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -223,7 +219,6 @@
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">
-
             <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainImageId"
               [disabled]="!fieldsInfo['LinkMainImageId']?.AccessAddField" name="dataModel.LinkMainImageId"
@@ -234,13 +229,11 @@
             <mat-icon *ngIf="fieldsInfo['LinkMainImageId']?.AccessAddField" matSuffix
               (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
             [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
             [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -250,7 +243,6 @@
           </button>
         </div>
       </mat-step>
-
       <mat-step label="تنظیمات قالب و ساخت" state="otherinfo">
         <p>تنظیمات پیش فرض مدیریت کل در ساخت</p>
         <!-- DefaultConfigBuilderAdminJsonValues Field -->
@@ -301,10 +293,7 @@
             aria-label="Clear" (click)="dataModel.DefaultConfigRuntimeSiteJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
-
         <table class="ntk-full-width" cellspacing="0">
-
           <tr>
             <td>
               <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey1String']?.AccessWatchField">
@@ -325,8 +314,6 @@
               </mat-form-field>
             </td>
           </tr>
-
-
           <tr>
             <td>
               <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey2String']?.AccessWatchField">
@@ -347,9 +334,6 @@
               </mat-form-field>
             </td>
           </tr>
-
-
-
           <tr>
             <td>
               <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey3String']?.AccessWatchField">
@@ -370,8 +354,6 @@
               </mat-form-field>
             </td>
           </tr>
-
-
           <tr>
             <td>
               <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey4String']?.AccessWatchField">
@@ -392,9 +374,6 @@
               </mat-form-field>
             </td>
           </tr>
-
-
-
           <tr>
             <td>
               <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey5String']?.AccessWatchField">
@@ -415,12 +394,7 @@
               </mat-form-field>
             </td>
           </tr>
-
-
-
         </table>
-
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -430,10 +404,8 @@
           </button>
         </div>
       </mat-step>
-
       <mat-step label="گزارش" state="loaction">
         <p>گزارش آخرین وضعیت ها</p>
-
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastSuccessfullyBuildDate']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LastSuccessfullyBuildDate']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.LastSuccessfullyBuildDate"
@@ -444,8 +416,6 @@
             (click)="dataModel.LastSuccessfullyBuildDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
-
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandDate']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LastBuildCommandDate']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.LastBuildCommandDate"
@@ -455,7 +425,6 @@
             (click)="dataModel.LastBuildCommandDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandBy']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LastBuildCommandBy']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.LastBuildCommandBy"
@@ -465,9 +434,6 @@
             (click)="dataModel.LastBuildCommandBy = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
-
-
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandDate']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LastBuildCommandDate']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.LastBuildCommandDate"
@@ -477,8 +443,6 @@
             (click)="dataModel.LastBuildCommandDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
-
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildCommandBy']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LastBuildCommandBy']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.LastBuildCommandBy"
@@ -488,8 +452,6 @@
             (click)="dataModel.LastBuildCommandBy = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
-
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastUnsuccessfullyBuildErrorDate']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LastUnsuccessfullyBuildErrorDate']?.FieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.LastUnsuccessfullyBuildErrorDate"
@@ -500,7 +462,6 @@
             aria-label="Clear" (click)="dataModel.LastUnsuccessfullyBuildErrorDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
         <mat-form-field class="ntk-full-width"
           *ngIf="fieldsInfo['LastUnsuccessfullyBuildErrorMessage']?.AccessWatchField">
           <mat-label>{{fieldsInfo['LastUnsuccessfullyBuildErrorMessage']?.FieldTitle}}</mat-label>
@@ -512,8 +473,6 @@
             aria-label="Clear" (click)="dataModel.LastUnsuccessfullyBuildErrorMessage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -523,21 +482,15 @@
           </button>
         </div>
       </mat-step>
-
-
-
     </mat-horizontal-stepper>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

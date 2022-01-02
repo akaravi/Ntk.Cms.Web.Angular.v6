@@ -33,7 +33,6 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
@@ -46,7 +45,6 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
       <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden

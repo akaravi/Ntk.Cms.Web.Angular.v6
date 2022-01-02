@@ -21,7 +21,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-webdesigner-pagetemplate-add',
   templateUrl: './add.component.html',
@@ -43,32 +42,20 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
-
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
-
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel> = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
   dataModel: WebDesignerMainPageTemplateModel = new WebDesignerMainPageTemplateModel();
-
-
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
   fileManagerOpenForm = false;
-
-
-
-
   ngOnInit(): void {
-
     this.formInfo.FormTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
-
   DataGetAccess(): void {
     this.webDesignerMainPageTemplateService
       .ServiceViewModel()
@@ -89,14 +76,11 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
-
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.webDesignerMainPageTemplateService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -105,24 +89,20 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
@@ -130,8 +110,6 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
 
     this.DataAddContent();
-
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

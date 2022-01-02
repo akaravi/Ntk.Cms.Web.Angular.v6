@@ -12,7 +12,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./cms-link-to.component.scss']
 })
 export class CmsLinkToComponent implements OnInit {
-
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsLinkToComponent>,
@@ -29,7 +28,6 @@ export class CmsLinkToComponent implements OnInit {
   @Input() optionUrlViewContentQRCodeBase64 = '';
   @Input() optionUrlViewContent = '';
   QDocModel: any = {};
-
   ngOnInit(): void {
   }
   onActionSendUrlToQDoc(): void {

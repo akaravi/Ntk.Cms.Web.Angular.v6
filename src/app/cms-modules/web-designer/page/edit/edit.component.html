@@ -50,24 +50,20 @@
         {{fieldsInfo['Title']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)"
       [optionDisabled]="!fieldsInfo['LinkPageDependencyGuId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkPageDependencyGuId" [optionPlaceholder]="'محل نمایش '">
     </app-webdesigner-pagedependency-selector>
-
     <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)"
       [optionDisabled]="!fieldsInfo['LinkPageTemplateGuId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'قالب صفحه '">
     </app-webdesigner-pagetemplate-selector>
-
     <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
       *ngIf="dataModel.LinkPageTemplateGuId && dataModel.LinkPageTemplateGuId.length>0"
       [optionDisabled]="!fieldsInfo['LinkPageParentGuId']?.AccessEditField"
       [optionSelectForce]="dataModel.LinkPageParentGuId" [optionMasterPage]="true"
       [optionMasterTemplateId]="dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'">
     </app-webdesigner-page-selector>
-
     <!-- PageDependencyIsDefaultPage Field -->
     <div class="ntk-full-width" *ngIf="fieldsInfo['PageDependencyIsDefaultPage']?.AccessWatchField">
       <mat-slide-toggle [(ngModel)]="dataModel.PageDependencyIsDefaultPage"
@@ -84,8 +80,6 @@
       [optionPlaceholder]="'نوع وب سایت'"
       [optionDisabled]="!fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.AccessEditField">
     </app-cms-sitecategory-selector>
-
-
     <!-- KeywordModel Field -->
     <tag-input [(ngModel)]="keywordDataModel" name="keywordDataModel" [placeholder]="'+ کلمه کلیدی'"
       [disabled]="!fieldsInfo['Title']?.AccessEditField" [secondaryPlaceholder]="'انتخاب کلمات کلیدی نسبت به مطلب'"
@@ -113,7 +107,6 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ SpecialUrlParameter.value.length }} / 500</mat-hint>
     </mat-form-field>
-
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>

@@ -34,7 +34,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-news-content-edit',
   templateUrl: './edit.component.html',
@@ -59,7 +58,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   dataModel = new NewsContentModel();
@@ -79,7 +77,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   otherInfoTabledataSource = new MatTableDataSource<NewsContentOtherInfoModel>();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   loading = new ProgressSpinnerModel();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypePodcast = ['mp3'];
@@ -91,17 +88,12 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   fileManagerTree: TreeModel;
   keywordDataModel = [];
   tagIdsData: number[];
-
-
   appLanguage = 'fa';
-
   viewMap = false;
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
-
-
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId === 0) {
@@ -113,9 +105,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.getEnumRecordStatus();
   }
   ngAfterViewInit(): void {
-
   }
-
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
     this.dataModel.LinkMainImageId = model.id;
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
@@ -131,8 +121,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
-
   onFormSubmit(): void {
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
@@ -158,29 +146,24 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     }
     this.DataEditContent();
   }
-
   DataGetOne(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     /*َAccess Field*/
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe(
         async (next) => {
-
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           this.loading.Stop(pName);
-
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
-
           if (next.IsSuccess) {
             this.dataModel = next.Item;
             const lat = this.dataModel.Geolocationlatitude;
@@ -196,14 +179,12 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
             this.loading.Stop(pName);
-
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
         },
         (error) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
@@ -215,72 +196,55 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
-
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
     filter.Value = this.requestId;
     filter.ClauseType = EnumClauseType.And;
     filteModel.Filters.push(filter);
-
-
     this.tagIdsData = [];
     this.contentTagService
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-
           this.dataContentTagModelResult = next;
           this.formInfo.FormSubmitAllow = true;
-
           if (next.IsSuccess) {
             const list = [];
             this.dataContentTagModelResult.ListItems.forEach(x => {
               list.push(x.LinkTagId);
             });
             this.tagIdsData = list;
-
-
             this.loading.Stop(pName);
-
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
         },
         (error) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
       );
   }
-
   DataOtherInfoGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
-
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
     filter.Value = this.requestId;
     filter.ClauseType = EnumClauseType.And;
     filteModel.Filters.push(filter);
-
     this.contentOtherInfoService
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.dataContentOtherInfoModelResult = next;
           if (next.IsSuccess) {
@@ -292,7 +256,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -304,28 +267,21 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
-
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkSourceId';
     filter.Value = this.requestId;
     filter.ClauseType = EnumClauseType.Or;
     filteModel.Filters.push(filter);
-
     filter.PropertyName = 'LinkDestinationId';
     filter.Value = this.requestId;
     filter.ClauseType = EnumClauseType.Or;
     filteModel.Filters.push(filter);
-
-
     this.contentSimilarService
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.dataContentSimilarModelResult = next;
           if (next.IsSuccess) {
@@ -338,14 +294,12 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
               }
             });
             this.DataSimilarGetAll(listIds);
-
           } else {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
         },
         (error) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
         }
@@ -355,14 +309,11 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     if (!ids || ids.length === 0) {
       return;
     }
-
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     const filteModel = new FilterModel();
     ids.forEach(item => {
       if (item > 0) {
@@ -378,7 +329,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.formInfo.FormSubmitAllow = true;
-
           if (next.IsSuccess) {
             this.similarDataModel = next.ListItems;
             this.similarTabledataSource.data = next.ListItems;
@@ -386,13 +336,11 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
           this.loading.Stop(pName);
-
         }
       );
   }
@@ -402,17 +350,13 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.contentService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.dataModelResult = next;
           if (next.IsSuccess) {
-
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
@@ -423,18 +367,15 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.loading.Stop(pName);
-
         }
       );
   }
   async DataActionAfterAddContentSuccessfulTag(model: NewsContentModel): Promise<any> {
-
     const dataListAdd = new Array<NewsContentTagModel>();
     const dataListDelete = new Array<NewsContentTagModel>();
     if (this.tagIdsData) {
@@ -454,8 +395,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         }
       });
     }
-
-
     if (dataListAdd && dataListAdd.length > 0) {
     }
     if (dataListDelete && dataListDelete.length > 0) {
@@ -482,10 +421,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         }
       });
     }
-
-
-
-
     if (dataListAdd && dataListAdd.length > 0) {
     }
     if (dataListDelete && dataListDelete.length > 0) {
@@ -512,17 +447,10 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
         }
       });
     }
-
-
-
-
     if (dataListAdd && dataListAdd.length > 0) {
     }
     if (dataListDelete && dataListDelete.length > 0) {
     }
-
-
-
   }
   onActionSelectorSelect(model: NewsCategoryModel | null): void {
     if (!model || model.Id <= 0) {
@@ -538,21 +466,17 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
     filter.Value = this.requestId;
     filter.ClauseType = EnumClauseType.And;
     filteModel.Filters.push(filter);
-
-
     this.tagIdsData = [];
     this.contentCategoryService
       .ServiceGetAll(filteModel)
       .subscribe(
         async (next) => {
-
           const itemList = [];
           next.ListItems.forEach(element => {
             itemList.push(element.LinkCategoryId);
@@ -560,18 +484,15 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           this.dataContentCategoryModel = itemList;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(error);
           this.loading.Stop(pName);
-
         }
       );
   }
   onActionCategorySelectChecked(model: number): void {
-
     if (!model || model <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
@@ -595,14 +516,10 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-
       }
     );
-
-
   }
   onActionCategorySelectDisChecked(model: number): void {
-
     if (!model || model <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
@@ -626,7 +543,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
-
       }
     );
   }
@@ -666,8 +582,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.similarDataModel = retOut;
     this.similarTabledataSource.data = this.similarDataModel;
   }
-
-
   onActionContentOtherInfoAddToLIst(): void {
     if (!this.contentOtherInfoSelected) {
       return;
@@ -690,10 +604,8 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     }
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
   onActionContentOtherInfoEditFromLIst(index: number): void {
-
     if (index < 0) {
       return;
     }
@@ -703,9 +615,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.contentOtherInfoSelected = this.otherInfoDataModel[index];
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {
@@ -725,7 +635,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       return;
     }
     this.mapModel = model;
-
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {
       this.mapMarkerPoints.forEach(item => {
         this.mapMarker = Leaflet.marker([item.lat, item.lon]).addTo(this.mapModel);
@@ -733,7 +642,6 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       this.mapOptonCenter = this.mapMarkerPoints[0];
       this.mapMarkerPoints = [];
     }
-
     this.mapModel.on('click', (e) => {
       // @ts-ignore
       const lat = e.latlng.lat;
@@ -751,9 +659,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       this.dataModel.Geolocationlatitude = lat;
       this.dataModel.Geolocationlongitude = lon;
     });
-
   }
-
   receiveZoom(mode: leafletMap): void {
   }
 }

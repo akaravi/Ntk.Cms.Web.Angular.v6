@@ -28,14 +28,11 @@ import { NewsContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
-
 @Component({
   selector: 'app-news-content-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class NewsContentListComponent implements OnInit, OnDestroy {
-
   constructor(
     public publicHelper: PublicHelper,
     private contentService: NewsContentService,
@@ -59,7 +56,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   categoryModelSelected: NewsCategoryModel;
   dataModelResult: ErrorExceptionResult<NewsContentModel> = new ErrorExceptionResult<NewsContentModel>();
-
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -82,12 +78,10 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   GetAllWithHierarchyCategoryId = false;
   ngOnInit(): void {
-
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -99,8 +93,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new NewsContentModel();
-
-
     if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
       this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
         this.tabledisplayedColumns,
@@ -113,12 +105,10 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
         'LinkSiteId'
       );
     }
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
       const pName = this.constructor.name + '.ServiceGetAllWithHierarchyCategoryId';
@@ -178,8 +168,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.contentService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
           if (next.IsSuccess) {
             this.dataModelResult = next;
             this.tableSource.data = next.ListItems;
@@ -200,19 +188,16 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop(pName);
-
         }
       );
       /** Normal */
     }
   }
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -238,14 +223,11 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
   onActionSelectorSelect(model: NewsCategoryModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
-
   onActionbuttonNewRow(): void {
     if (
       this.categoryModelSelected == null ||
@@ -265,7 +247,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     }
     this.router.navigate(['/news/content/add', this.categoryModelSelected.Id]);
   }
-
   onActionbuttonEditRow(model: NewsContentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -288,7 +269,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -324,7 +304,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -346,7 +325,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
         this.loading.Stop(pName);
       }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -359,7 +337,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-
     const pName = this.constructor.name + '.ServiceExportFile';
     this.loading.Start(pName, 'دریافت فایل خروجی');
     this.contentService.ServiceExportFile(model).subscribe(
@@ -407,7 +384,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات ملک");
     this.contentService

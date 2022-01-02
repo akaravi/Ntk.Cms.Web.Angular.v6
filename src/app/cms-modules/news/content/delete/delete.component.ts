@@ -13,11 +13,9 @@ import { CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FormInfoMode
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-
 @Component({
   selector: 'app-news-content-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class NewsContentDeleteComponent implements OnInit {
   requestId = 0;
@@ -36,7 +34,6 @@ export class NewsContentDeleteComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   loading = new ProgressSpinnerModel();
   dataModelResultContent: ErrorExceptionResult<NewsContentModel> = new ErrorExceptionResult<NewsContentModel>();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -48,7 +45,6 @@ export class NewsContentDeleteComponent implements OnInit {
     }
     this.DataGetOne();
   }
-
   DataGetOne(): void {
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
@@ -57,14 +53,12 @@ export class NewsContentDeleteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResultContent = next;
           if (!next.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
@@ -75,17 +69,14 @@ export class NewsContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-
         }
       );
-
   }
 
 

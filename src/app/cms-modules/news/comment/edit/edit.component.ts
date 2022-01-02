@@ -21,8 +21,6 @@ import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'app-news-comment-edit',
   templateUrl: './edit.component.html',
@@ -51,26 +49,17 @@ export class NewsCommentEditComponent implements OnInit {
     if (this.requestParentId > 0) {
       this.dataModel.LinkParentId = this.requestParentId;
     }
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<NewsCommentModel> = new ErrorExceptionResult<NewsCommentModel>();
   dataModel: NewsCommentModel = new NewsCommentModel();
-
   ComponentAction = ComponentActionEnum.none;
-
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
   selected: any;
   openFormFileManager = false;
-
-
-
   ngOnInit(): void {
     if (this.requestId > 0) {
       this.ComponentAction = ComponentActionEnum.edit;
@@ -90,7 +79,6 @@ export class NewsCommentEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   DataGetAccess(): void {
     this.commentService
       .ServiceViewModel()
@@ -113,7 +101,6 @@ export class NewsCommentEditComponent implements OnInit {
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }
-
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
@@ -122,7 +109,6 @@ export class NewsCommentEditComponent implements OnInit {
     this.commentService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         this.dataModel = next.Item;
         if (next.IsSuccess) {
           this.formInfo.FormAlert = '';
@@ -132,12 +118,10 @@ export class NewsCommentEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -146,8 +130,6 @@ export class NewsCommentEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.dataModel.LinkContentId = this.requestContentId;
     this.commentService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
@@ -163,13 +145,11 @@ export class NewsCommentEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -178,7 +158,6 @@ export class NewsCommentEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.commentService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -187,20 +166,17 @@ export class NewsCommentEditComponent implements OnInit {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -215,7 +191,6 @@ export class NewsCommentEditComponent implements OnInit {
     if (this.ComponentAction === ComponentActionEnum.edit) {
       this.DataEditContent();
     }
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

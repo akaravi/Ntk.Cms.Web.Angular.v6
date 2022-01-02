@@ -14,14 +14,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
-
-
 @Component({
   selector: 'app-news-content-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class NewsContentSelectorComponent implements OnInit {
   constructor(
@@ -29,7 +24,6 @@ export class NewsContentSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public contentService: NewsContentService) {
     this.loading.cdr = this.cdr;
-
   }
   dataModelResult: ErrorExceptionResult<NewsContentModel> = new ErrorExceptionResult<NewsContentModel>();
   dataModelSelect: NewsContentModel = new NewsContentModel();
@@ -61,7 +55,6 @@ export class NewsContentSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: NewsContentModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -87,10 +80,8 @@ export class NewsContentSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'ServiceGetAll';
     this.loading.Start(pName);
-
     return this.contentService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -105,14 +96,12 @@ export class NewsContentSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })).toPromise();
   }
   onActionSelect(model: NewsContentModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
@@ -126,7 +115,6 @@ export class NewsContentSelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: number | NewsContentModel): void {
     if (typeof id === 'number' && id > 0) {
@@ -147,7 +135,6 @@ export class NewsContentSelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

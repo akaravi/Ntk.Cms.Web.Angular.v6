@@ -22,8 +22,6 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -43,7 +41,6 @@
       <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
     </mat-form-field>
-
     <!-- TitleResourceLanguage Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>

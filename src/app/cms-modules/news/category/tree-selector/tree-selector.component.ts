@@ -25,12 +25,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-news-category-treeselector',
   templateUrl: './tree-selector.component.html',
-  styleUrls: ['./tree-selector.component.scss'],
 })
 export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   constructor(
@@ -68,7 +65,6 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     this.dataModelSelect = model;
     this.loadCheked();
   }
-
   dataModelSelect: number[] = [];
   dataModelResult: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
   filteModel = new FilterModel();
@@ -80,14 +76,9 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   @Output() optionSelectDisChecked = new EventEmitter<number>();
   @Output() optionModelChange = new EventEmitter<number[]>();
   cmsApiStoreSubscribe: Subscription;
-
   checklistSelection = new SelectionModel<NewsCategoryModel>(true /* multiple */);
-
-
   hasChild = (_: number, node: NewsCategoryModel) => !!node.Children && node.Children.length > 0;
   hasNoContent = (_: number, nodeData: NewsCategoryModel) => nodeData.Children;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -119,10 +110,8 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -132,16 +121,13 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.loadCheked();
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.loading.Stop(pName);
-
         this.cmsToastrService.typeError(error);
       }
     );
   }
-
   /** Whether all the descendants of the node are selected */
   descendantsAllSelected(node: NewsCategoryModel): boolean {
     const descendants = this.treeControl.getDescendants(node);
@@ -160,8 +146,5 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     this.checklistSelection.isSelected(node)
       ? this.checklistSelection.select(...descendants)
       : this.checklistSelection.deselect(...descendants);
-
   }
-
-
 }

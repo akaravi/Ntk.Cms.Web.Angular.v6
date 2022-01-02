@@ -30,7 +30,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-linkmanagement-billboard-pattern-treeselector',
   templateUrl: './tree-selector.component.html',
-  styleUrls: ['./tree-selector.component.scss'],
 })
 export class LinkManagementBillboardPatternTreeSelectorComponent implements OnInit, OnDestroy {
   constructor(

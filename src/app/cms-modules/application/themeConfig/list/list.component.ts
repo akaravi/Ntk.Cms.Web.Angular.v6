@@ -31,7 +31,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-application-app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
   requestLinkSourceId = 0;

@@ -5,7 +5,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-auth-singout',
   templateUrl: './singout.component.html',
-  styleUrls: ['./singout.component.scss'],
 })
 export class AuthSingoutComponent implements OnInit {
   constructor(private authService: CoreAuthService,

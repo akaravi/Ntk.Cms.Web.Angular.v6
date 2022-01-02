@@ -4,7 +4,6 @@ import { WebDesignerConfigCheckSiteComponent } from './check-site/check-site.com
 import { WebDesignerConfigCheckUserComponent } from './check-user/check-user.component';
 import { WebDesignerConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { WebDesignerConfigSiteComponent } from './site/config-site.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -42,7 +41,6 @@ const routes: Routes = [
     ]
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
