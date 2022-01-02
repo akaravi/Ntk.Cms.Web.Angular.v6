@@ -11,7 +11,8 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel} from 'ntk-cms-api';
+  DataFieldInfoModel
+} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -27,6 +28,8 @@ import { ApiTelegramBotConfigAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { ApiTelegramActionSendMessageComponent } from '../../action/send-message/send-message.component';
+import { CmsViewComponent } from 'src/app/shared/cms-view/cms-view.component';
 
 @Component({
   selector: 'app-apitelegram-bot-config-list',
@@ -330,23 +333,150 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
 
   }
 
-  onActionbuttonSiteList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
+  onActionbuttonInboxList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['core/site/modulelist/LinkModuleId/', model.Id]);
+    this.router.navigate(['api-telegram/log-input/LinkBotConfigId/', model.Id]);
   }
-  onActionbuttonSiteCategoryList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
+  onActionbuttonOutboxList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.Id]);
+    this.router.navigate(['api-telegram/log-output/LinkBotConfigId/', model.Id]);
+  }
+  onActionbuttonSendMessage(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    //open popup
+    const dialogRef = this.dialog.open(ApiTelegramActionSendMessageComponent, {
+      // height: "90%",
+      data: {
+        LinkBotConfigId: model.Id,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        // this.DataGetAll();
+      }
+    });
+    //open popup
+  }
+  onActionbuttonReceiveMessageAll(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    const pName = this.constructor.name + 'ServiceGetUpdatesAsync';
+
+    this.apiTelegramBotConfigService.ServiceGetUpdatesAsync(model.Id).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+        } else {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionbuttonGetMeAsync(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    const pName = this.constructor.name + 'ServiceGetMeAsync';
+
+    this.apiTelegramBotConfigService.ServiceGetMeAsync(model.Id).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          //open popup
+          const dialogRef = this.dialog.open(CmsViewComponent, {
+            // height: "90%",
+            data: {
+              optionItem: next.Item,
+            },
+          });
+          dialogRef.afterClosed().subscribe((result) => {
+            if (result && result.dialogChangedDate) {
+
+            }
+          });
+          //open popup
+        } else {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionbuttonReceiveMessageLast(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    const pName = this.constructor.name + 'ServiceGetUpdatesAsyncLast';
+
+    this.apiTelegramBotConfigService.ServiceGetUpdatesAsyncLast(model.Id).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+        } else {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionbuttonSetAllWebhookUpdate(): void {
+    const pName = this.constructor.name + 'ServiceSetAllWebhookUpdate';
+
+    this.apiTelegramBotConfigService.ServiceSetAllWebhookUpdate().subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+        } else {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -395,7 +525,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات ملک");
-    this.apiTelegramBotConfigService      .ServiceGetOneById(this.tableRowSelected.Id)
+    this.apiTelegramBotConfigService.ServiceGetOneById(this.tableRowSelected.Id)
       .subscribe(
         (next) => {
           if (next.IsSuccess) {
@@ -404,8 +534,8 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
               // height: "90%",
               data: {
                 Title: next.Item.Title,
-                // UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
-                /// UrlViewContent: next.Item.UrlViewContent,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
               },
             });
             dialogRef.afterClosed().subscribe((result) => {

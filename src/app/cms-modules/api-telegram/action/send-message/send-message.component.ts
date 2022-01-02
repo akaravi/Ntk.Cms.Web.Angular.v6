@@ -23,13 +23,16 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
+export class CompModel {
+  ChatIds: string;
+}
 @Component({
   selector: 'app-apitelegram-action-send-message',
   templateUrl: './send-message.component.html',
   styleUrls: ['./send-message.component.scss'],
 })
 export class ApiTelegramActionSendMessageComponent implements OnInit {
+  requestLinkBotConfigId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ApiTelegramActionSendMessageComponent>,
@@ -42,11 +45,18 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
 
+    // if (this.requestLinkBotConfigId <= 0) {
+    //   this.cmsToastrService.typeErrorComponentAction();
+    //   this.dialogRef.close({ dialogChangedDate: false });
+    //   return;
+    // }
+
+
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  compModel: CompModel = new CompModel();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
@@ -60,6 +70,13 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.data) {
+      this.requestLinkBotConfigId = +this.data.LinkBotConfigId || 0;
+      this.compModel.ChatIds = this.data.ChatId + '';
+    }
+    if (this.requestLinkBotConfigId > 0) {
+      this.dataModel.BotId = this.requestLinkBotConfigId;
+    }
     this.formInfo.FormTitle = 'ارسال پیام  ';
     this.getEnumRecordStatus();
   }
@@ -104,9 +121,24 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
+    this.dataModel.chatId = [];
+    if (this.compModel.ChatIds && this.compModel.ChatIds.length > 0) {
+      let listChatId = this.publicHelper.SplitAllChar(this.compModel.ChatIds);
+      listChatId.forEach(element => {
+        let id = +element || 0;
+        if (id > 0) {
+          this.dataModel.chatId.push(id);
+        }
+      });
+    }
+    if (this.dataModel.chatId.length == 0) {
+      this.cmsToastrService.typeWarning('لیست گیرنده  معتبر نمی باشد');
+      return;
+    }
     this.formInfo.FormSubmitAllow = false;
     this.ActionSendMessage();
   }
+
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }

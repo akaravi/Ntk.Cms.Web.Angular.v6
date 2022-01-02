@@ -31,7 +31,10 @@
     </mat-slide-toggle>
   </a>
   <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN"><mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
-
+  <button (click)="onActionBackToParent()" *ngIf="requestLinkBotConfigId>0" type="button"
+    class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+    <button *ngIf="tableRowSelected?.Id?.length>0" (click)="onActionbuttonSendMessage()" type="button"
+      type="button" class="btn btn-outline-primary">{{'ACTION.SEND_MESSAGE' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -61,15 +64,20 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+      <!-- LinkBotConfigId Column -->
+      <ng-container matColumnDef="LinkBotConfigId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkBotConfigId']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.LinkBotConfigId}} </mat-cell>
       </ng-container>
       <!-- Username Column -->
       <ng-container matColumnDef="Username">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Username']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Username}} </mat-cell>
+      </ng-container>
+      <!-- ChatId Column -->
+      <ng-container matColumnDef="ChatId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ChatId']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.ChatId}} </mat-cell>
       </ng-container>
       <!-- StatusWebhook Column -->
       <ng-container matColumnDef="StatusWebhook">
@@ -81,7 +89,7 @@
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"  [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.CreatedDate) }} {{ publicHelper.getTime(row.CreatedDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
@@ -107,17 +115,11 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-      
-            <button mat-menu-item (click)="onActionbuttonSiteList(row)"
-              *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+            <button mat-menu-item (click)="onActionbuttonSendMessage(row)">
               <mat-icon>extension</mat-icon>
-              <span>لیست سایتهایی</span>
+              <span>ارسال پیام</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonSiteCategoryList(row)"
-              *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
-              <mat-icon>extension</mat-icon>
-              <span>لیست دسته بندی سایتهایی</span>
-            </button>
+          
           </mat-menu>
         </mat-cell>
       </ng-container>

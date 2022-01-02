@@ -29,7 +29,15 @@ const routes: Routes = [
         component: ApiTelegramLogInputListComponent
       },
       {
+        path: 'log-input/LinkBotConfigId/:LinkBotConfigId',
+        component: ApiTelegramLogInputListComponent
+      },
+      {
         path: 'log-output',
+        component: ApiTelegramLogOutputListComponent
+      },
+      {
+        path: 'log-output/LinkBotConfigId/:LinkBotConfigId',
         component: ApiTelegramLogOutputListComponent
       },
       {

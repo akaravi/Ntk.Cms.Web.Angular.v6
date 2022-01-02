@@ -16,12 +16,13 @@ import {
   Input,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CmsViewComponent } from 'src/app/shared/cms-view/cms-view.component';
 
 @Component({
   selector: 'app-core-module-edit',
@@ -39,6 +40,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -140,6 +142,77 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionbuttonGetMeAsync(): void {
+    const pName = this.constructor.name + 'ServiceGetMeAsync';
+
+    this.apiTelegramBotConfigService.ServiceGetMeAsync(this.requestId).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          //open popup
+          const dialogRef = this.dialog.open(CmsViewComponent, {
+            // height: "90%",
+            data: {
+              optionItem: next.Item,
+              // UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+              /// UrlViewContent: next.Item.UrlViewContent,
+            },
+          });
+          dialogRef.afterClosed().subscribe((result) => {
+            if (result && result.dialogChangedDate) {
+
+            }
+          });
+          //open popup
+        } else {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionbuttonSetWebhookAsync(): void {
+    const pName = this.constructor.name + 'ServiceSetWebhookAsync';
+
+    this.apiTelegramBotConfigService.ServiceSetWebhookAsync(this.requestId).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+        } else {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  onActionbuttonSetWebhookAsyncEmpty(): void {
+    const pName = this.constructor.name + 'ServiceSetWebhookAsyncEmpty';
+
+    this.apiTelegramBotConfigService.ServiceSetWebhookAsyncEmpty(this.requestId).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+        } else {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
 

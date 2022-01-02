@@ -38,6 +38,7 @@ import { ApiTelegramReceivedFileListComponent } from './received-file/list/list.
 import { ApiTelegramUploadedFileListComponent } from './uploaded-file/list/list.component';
 import { ApiTelegramActionSendMessageComponent } from './action/send-message/send-message.component';
 import { ApiTelegramBotConfigSelectorComponent } from './bot-config/selector/selector.component';
+import { ApiTelegramActionSendMessageSimpleComponent } from './action/send-message-simple/send-message-simple.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ApiTelegramBotConfigSelectorComponent } from './bot-config/selector/sel
     ApiTelegramUploadedFileListComponent,
     //
     ApiTelegramActionSendMessageComponent,
+    ApiTelegramActionSendMessageSimpleComponent,
   ],
   imports: [
     CommonModule,
