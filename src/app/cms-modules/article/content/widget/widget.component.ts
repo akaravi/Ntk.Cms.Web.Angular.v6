@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-
 @Component({
   selector: 'app-article-content-widget',
   templateUrl: './widget.component.html',
@@ -17,7 +16,6 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info'];
   @Input()
   loading = new ProgressSpinnerModel();
-
   constructor(
     private service: ArticleContentService,
     private cdr: ChangeDetectorRef,
@@ -37,9 +35,7 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
-
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active');
     this.loading.Start(this.constructor.name + 'All');
@@ -56,7 +52,6 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
         this.loading.Stop(this.constructor.name + 'All');
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';

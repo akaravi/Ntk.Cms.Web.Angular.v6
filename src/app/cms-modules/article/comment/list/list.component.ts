@@ -31,8 +31,6 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
-
-
 @Component({
   selector: 'app-article-comment-list',
   templateUrl: './list.component.html',
@@ -57,7 +55,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
-
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
       this.searchInChecking =
         this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
@@ -99,23 +96,15 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
     'Action',
     "LinkTo",
   ];
-
-
-
-
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   expandedElement: ArticleCommentModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.requestContentId = + Number(this.activatedRoute.snapshot.paramMap.get('ContentId'));
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -132,11 +121,8 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ArticleCommentModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -157,7 +143,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
     this.commentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
@@ -190,12 +175,9 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -221,7 +203,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
   // onClickAddComment(): void {
   //   const model = {
   //     id: +this.activatedRoute.snapshot.params.id,
@@ -229,14 +210,11 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
   //     author: this.author
   //   };
   //   this.commentService.ServiceAdd(model).subscribe((res) => {
-
   //   });
   // }
-
   // onActionTableSelect(row: any): void {
   //   this.tableContentSelected = [row];
   // }
-
   // onClickEditComment(element): void {
   //   const model = {
   //     id: element.Id,
@@ -245,7 +223,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
   //   };
   //   this.commentService.ServiceEdit(model).subscribe();
   // }
-
   onActionbuttonNewRow(): void {
     if (
       this.requestContentId == null ||
@@ -253,7 +230,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
     ) {
       const message = 'محتوا انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
-
       return;
     }
     if (
@@ -275,8 +251,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-
   onActionbuttonEditRow(model: ArticleCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -291,7 +265,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const dialogRef = this.dialog.open(ArticleCommentEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
@@ -310,7 +283,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -326,7 +298,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-
           this.commentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -341,7 +312,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -371,7 +341,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -389,7 +358,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
   onActionbuttonInChecking(model: boolean): void {
     this.searchInChecking = model;
@@ -414,7 +382,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -442,7 +409,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات مقاله");
     this.contentService
@@ -508,7 +474,6 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات مقاله");
     this.contentService

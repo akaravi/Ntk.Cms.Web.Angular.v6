@@ -5,14 +5,12 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-auth-singin',
   templateUrl: './singin.component.html',
   styleUrls: ['./singin.component.scss'],
 })
 export class AuthSingInComponent implements OnInit {
-
   constructor(
     private cmsToastrService: CmsToastrService,
     private route: ActivatedRoute,
@@ -32,7 +30,6 @@ export class AuthSingInComponent implements OnInit {
   captchaModel: CaptchaModel = new CaptchaModel();
   expireDate: string;
   aoutoCaptchaOrder = 1;
-
   // KeenThemes mock, change it to:
   hasError: boolean;
   returnUrl: string;
@@ -48,22 +45,18 @@ export class AuthSingInComponent implements OnInit {
     }
   }
   onActionSubmit(): void {
-
     this.formInfo.ButtonSubmittedEnabled = false;
     this.hasError = false;
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.dataModel.lang = this.translationService.getSelectedLanguage();
-    
     const pName = this.constructor.name + '.ServiceSigninUser';
     this.loading.Start(pName,this.translate.instant('MESSAGE.login_to_user_account'));
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
       this.dataModel.SiteId = siteId;
     }
-
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
       (res) => {
-
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessLogin();
           if (res.Item.SiteId > 0) {
@@ -101,7 +94,6 @@ export class AuthSingInComponent implements OnInit {
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
-
         this.captchaModel = next.Item;
         this.expireDate = next.Item.Expire.split('+')[1];
         const startDate = new Date();
@@ -123,5 +115,4 @@ export class AuthSingInComponent implements OnInit {
       }
     );
   }
-
 }

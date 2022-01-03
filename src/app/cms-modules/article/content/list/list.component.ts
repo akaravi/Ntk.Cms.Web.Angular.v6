@@ -28,13 +28,11 @@ import { ArticleContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
-
 @Component({
   selector: 'app-article-content-list',
   templateUrl: './list.component.html',
 })
 export class ArticleContentListComponent implements OnInit, OnDestroy {
-
   constructor(
     public publicHelper: PublicHelper,
     private contentService: ArticleContentService,
@@ -54,7 +52,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     /*filter Sort*/
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
-
   }
   filteModelContent = new FilterModel();
   categoryModelSelected: ArticleCategoryModel;
@@ -79,8 +76,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     "LinkTo",
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   cmsApiStoreSubscribe: Subscription;
   GetAllWithHierarchyCategoryId = false;
   ngOnInit(): void {
@@ -88,7 +83,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -100,17 +94,12 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ArticleContentModel();
-
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
       this.contentService.ServiceGetAllWithHierarchyCategoryId(this.categoryModelSelected.Id, filterModel).subscribe(
@@ -142,7 +131,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop(pName);
-
         }
       );
       /** GetAllWithHierarchyCategoryId */
@@ -169,8 +157,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
       this.contentService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
           if (next.IsSuccess) {
             this.dataModelResult = next;
             this.tableSource.data = next.ListItems;
@@ -191,19 +177,16 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
             }
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.cmsToastrService.typeError(error);
 
           this.loading.Stop(pName);
-
         }
       );
       /** Normal */
     }
   }
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -229,14 +212,11 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
   onActionSelectorSelect(model: ArticleCategoryModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
-
   onActionbuttonNewRow(): void {
     if (
       this.categoryModelSelected == null ||
@@ -256,7 +236,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     }
     this.router.navigate(['/article/content/add', this.categoryModelSelected.Id]);
   }
-
   onActionbuttonEditRow(model: ArticleContentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -316,7 +295,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -359,7 +337,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -370,7 +347,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: ArticleContentModel): void {
     this.tableRowSelected = row;
   }
-
   onActionbuttonComment(model: ArticleContentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelected('ردیفی برای ویرایش انتخاب نشده است');
@@ -394,7 +370,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات مقاله");
     this.contentService

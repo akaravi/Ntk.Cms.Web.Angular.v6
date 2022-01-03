@@ -11,7 +11,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-
 enum ErrorStates {
   NotSubmitted,
   HasError,
@@ -38,8 +37,6 @@ export class AuthSingInBySmsComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.RePasswordModel = '';
-
-
   }
   errorState: ErrorStates = ErrorStates.NotSubmitted;
   errorStates = ErrorStates;
@@ -55,25 +52,20 @@ export class AuthSingInBySmsComponent implements OnInit {
   onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.onCaptchaOrder();
-
   }
   prorocess: processModel;
-
   buttonnResendSmsDisable = true;
-
   onActionSubmitOrderCodeBySms(): void {
     if (this.forgetState == 'entrycode') {
       if (!this.dataModelAuthUserSignInBySms.CaptchaText || this.dataModelAuthUserSignInBySms.CaptchaText.length == 0) {
         this.cmsToastrService.typeErrorMessage("محتوای عکس امنیتی را وارد کنید");
         return;
       }
-
     }
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
-
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
     this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
     this.coreAuthService
@@ -117,7 +109,6 @@ export class AuthSingInBySmsComponent implements OnInit {
           this.loading.Stop(pName);
         });
   }
-
   onActionSubmitEntryPinCode(): void {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
@@ -139,7 +130,6 @@ export class AuthSingInBySmsComponent implements OnInit {
       this.dataModelAuthUserSignInBySms.ResellerUserId = ResellerUserId;
     }
     /** read storage */
-
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
       .subscribe((res) => {
@@ -171,7 +161,6 @@ export class AuthSingInBySmsComponent implements OnInit {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {
       return;

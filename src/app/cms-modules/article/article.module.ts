@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ArticleRouting } from './article.routing';
 import { ArticleComponent } from './article.component';
 import { TagInputModule } from 'ngx-chips';
-
 import {
   CoreEnumService,
   CoreModuleTagService,
@@ -28,9 +27,7 @@ import { ArticleCategoryDeleteComponent } from './category/delete/delete.compone
 import { ArticleContentEditComponent } from './content/edit/edit.component';
 import { ArticleContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared/shared.module';
-
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { ArticleCategorySelectorComponent } from './category/selector/selector.component';
 import { ArticleContentListComponent } from './content/list/list.component';
@@ -43,7 +40,6 @@ import { ArticleContentDeleteComponent } from './content/delete/delete.component
 import { ArticleCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
-
 @NgModule({
   declarations: [
     ArticleComponent,
@@ -93,7 +89,6 @@ import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/t
     ArticleShareMainAdminSettingService,
     ArticleShareReceiverCategoryService,
     ArticleShareServerCategoryService,
-
   ]
 })
 export class ArticleModule { }

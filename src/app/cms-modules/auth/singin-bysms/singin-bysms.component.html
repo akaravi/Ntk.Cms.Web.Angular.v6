@@ -1,5 +1,4 @@
 <app-progress-spinner [options]="loading"> </app-progress-spinner>
-
 <div class="login-form login-forgot">
   <!--begin::Form-->
   <form *ngIf="forgetState=='sms'" class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate"
@@ -13,11 +12,9 @@
       </h3>
       <p class="text-muted font-weight-bold font-size-h4">
         {{'AUTH.SINGINBYSMS.DESCSMS' | translate}}
-
       </p>
     </div>
     <!--end::Title-->
-
     <!--Mobile Field-->
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.SINGINBYSMS.MOBILE' | translate}}</mat-label>
@@ -34,7 +31,6 @@
         Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <!--CaptchaText Field-->
     <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
     <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
@@ -70,11 +66,8 @@
     </div>
     <!--end::Form group-->
     <br>
-
   </form>
   <!--end::Form-->
-
-
   <!--begin::Form-->
   <form *ngIf="forgetState=='entrycode'" class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate"
     #vformEntryCode="ngForm" (ngSubmit)="onActionSubmitEntryPinCode()" id="kt_login_forgot_form" [ngStyle]="{
@@ -104,7 +97,6 @@
         PIN Code is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <!--CaptchaText Field-->
     <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
     <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
@@ -139,7 +131,6 @@
         </button>
         <progress *ngIf="prorocess?.progressBarValue>0 && buttonnResendSmsDisable" [value]="prorocess.progressBarValue"
           max="{{prorocess.progressBarMaxValue}}" style="width: inherit;"></progress>
-
       </div>
       <div class="col-12 col-lg-12">
         <a routerLink="/auth/singin" id="kt_login_forgot_cancel"
@@ -152,7 +143,6 @@
       </ng-container>
     </div>
     <!--end::Form group-->
-
     <div></div>
   </form>
   <!--end::Form-->
@@ -181,13 +171,6 @@
     </div>
   </ng-container>
 </div>
-
-
-
-
-
-
-
 <ng-template #formError let-control="control" let-message="message" let-validation="validation">
   <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
     <div class="fv-plugins-message-container">
