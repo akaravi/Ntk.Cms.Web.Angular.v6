@@ -1,4 +1,4 @@
-import { AccessModel, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { FilterModel } from 'ntk-cms-api';
 import { ComponentOptionModel } from './componentOptionModel';
 
 export class ComponentOptionExportModel

@@ -4,11 +4,8 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-<<<<<<< HEAD
-=======
 import { TranslateService } from '@ngx-translate/core';
 
->>>>>>> 102d652ffb120ba97e0e8af00c42aa1902f6cd15
 @Component({
   selector: 'app-application-memberinfo-widget2',
   templateUrl: './widget2.component.html',

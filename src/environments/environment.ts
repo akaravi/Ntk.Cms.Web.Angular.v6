@@ -14,7 +14,11 @@ export const environment = {
   cmsServerConfig: {
     configApiRetry: 1,
      configApiServerPath: 'https://apicms.ir/api/v1/',
+<<<<<<< HEAD
     //  configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+=======
+    // configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+>>>>>>> 0ce96f9b7c514cc4676464a48452ba345ec255c4
     // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
 
     // configMvcServerPath: 'https://ntkcms.ir/',

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-=======
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
->>>>>>> 102d652ffb120ba97e0e8af00c42aa1902f6cd15
+import { Subscription } from 'rxjs';
 import { LayoutService } from '../../../../../core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CoreAuthService, EnumManageUserAccessUserTypes, TokenInfoModel } from 'ntk-cms-api';

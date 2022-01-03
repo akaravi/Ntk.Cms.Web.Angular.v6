@@ -7,6 +7,7 @@ import {Map} from 'leaflet';
 })
 export class ArticleComponent implements OnInit {
 
+  
   constructor() {
   }
 
