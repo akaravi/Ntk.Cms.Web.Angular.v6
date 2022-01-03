@@ -1,5 +1,4 @@
 import { AbstractControl } from '@angular/forms';
-
 export class ConfirmPasswordValidator {
   /**
    * Check matching password with confirm password
@@ -7,9 +6,7 @@ export class ConfirmPasswordValidator {
    */
   static MatchPassword(control: AbstractControl): any {
     const password = control.get('password').value;
-
     const confirmPassword = control.get('cPassword').value;
-
     if (password !== confirmPassword) {
       control.get('cPassword').setErrors({ ConfirmPassword: true });
     } else {
