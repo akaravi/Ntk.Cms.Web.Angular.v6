@@ -93,7 +93,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
   listItemAdd(item: CoreCpMainMenuModel, rootStatus = false): any {
     let retOut: any;
     retOut = {
-      title: item.Title,
+      title: item.TitleML,
       root: rootStatus,
       page: item.RouteAddressLink,
       Color: item.Color,
