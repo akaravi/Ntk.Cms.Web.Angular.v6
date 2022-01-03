@@ -21,7 +21,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-chart-content-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class ChartContentSelectorComponent implements OnInit {
   constructor(

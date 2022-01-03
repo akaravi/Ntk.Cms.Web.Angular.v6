@@ -30,7 +30,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-sitecategorycmsmodule-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy {
   constructor(

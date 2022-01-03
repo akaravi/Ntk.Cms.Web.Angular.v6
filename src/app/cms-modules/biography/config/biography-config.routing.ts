@@ -4,7 +4,6 @@ import { BiographyConfigCheckSiteComponent } from './check-site/check-site.compo
 import { BiographyConfigCheckUserComponent } from './check-user/check-user.component';
 import { BiographyConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { BiographyConfigSiteComponent } from './site/config-site.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -42,7 +41,6 @@ const routes: Routes = [
     ]
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

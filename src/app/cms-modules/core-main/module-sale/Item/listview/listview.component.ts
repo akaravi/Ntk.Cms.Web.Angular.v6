@@ -26,7 +26,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-modulesaleitem-listview',
   templateUrl: './listview.component.html',
-  styleUrls: ['./listview.component.scss']
 })
 export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   @Input() set optionHeaderId(x: number) {

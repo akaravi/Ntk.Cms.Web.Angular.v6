@@ -53,7 +53,6 @@
         [optionDisabled]="!fieldsInfo['LinkCurrencyId']?.AccessEditField" [optionSelectForce]="dataModel.LinkCurrencyId"
         [optionPlaceholder]="'واحد مالی'">
       </app-cms-currency-selector>
-
       <!-- Memo Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
@@ -67,7 +66,6 @@
           Memo is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-
       <!-- LinkModuleFileLogoId Field -->
       <div class="mb-3">
         <img *ngIf="dataModel?.LinkModuleFileLogoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
@@ -102,7 +100,6 @@
     </div>
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
       <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}

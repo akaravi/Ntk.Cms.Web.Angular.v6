@@ -30,7 +30,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-modulesaleserial-check-list',
   templateUrl: './check-list.component.html',
-  styleUrls: ['./check-list.component.scss']
 })
 export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy {
   requestSerial = '';

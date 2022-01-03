@@ -28,12 +28,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { BiographyCategoryAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-biography-category-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -58,10 +55,7 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
   @Output() optionChange = new EventEmitter<BiographyCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: BiographyCategoryModel) => !!node.Children && node.Children.length > 0;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -74,10 +68,8 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -85,12 +77,10 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -116,21 +106,16 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectForce(id: number | BiographyCategoryModel): void {
-
   }
-
   onActionAdd(): void {
     let parentId = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       parentId = this.dataModelSelect.Id;
     }
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { parentId };
-
-
     const dialogRef = this.dialog.open(BiographyCategoryAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -139,7 +124,6 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionEdit(): void {
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -161,7 +145,6 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionDelete(): void {
     // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
     //   if (res.IsSuccess) {
@@ -187,5 +170,4 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 }

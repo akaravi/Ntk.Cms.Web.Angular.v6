@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import {
   BiographyConfigurationService, CoreModuleService,
 } from 'ntk-cms-api';
@@ -12,8 +11,6 @@ import { BiographyConfigSiteComponent } from './site/config-site.component';
 import { BiographyConfigCheckUserComponent } from './check-user/check-user.component';
 import { BiographyConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BiographyConfigRouting } from './biography-config.routing';
-
-
 @NgModule({
   declarations: [
     /*Config*/

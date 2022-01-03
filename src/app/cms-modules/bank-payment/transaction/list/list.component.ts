@@ -33,12 +33,9 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-bankpayment-transaction-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
   requestLinkPrivateSiteConfigId = 0;
@@ -94,18 +91,12 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     'UpdatedDate',
     'Action'
   ];
-
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumTransactionBankStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
   expandedElement: BankPaymentTransactionModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
-
     this.requestLinkPrivateSiteConfigId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPrivateSiteConfigId'));
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     if (this.requestLinkPrivateSiteConfigId > 0) {
@@ -119,13 +110,11 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       filter.PropertyName = 'LinkUserId';
       filter.Value = this.requestLinkUserId;
       this.filteModelContent.Filters.push(filter);
-
     }
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -146,21 +135,16 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentTransactionModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     const filter = new FilterDataModel();
-
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       filter.PropertyName = 'LinkPrivateSiteConfigId';
       filter.Value = this.categoryModelSelected.Id;
@@ -169,28 +153,21 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     this.bankPaymentTransactionService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -216,8 +193,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonViewRow(model: BankPaymentTransactionModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id <= 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -241,7 +216,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionbuttonEditRow(model: BankPaymentTransactionModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id <= 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -256,7 +230,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const dialogRef = this.dialog.open(BankPaymentTransactionEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
@@ -275,7 +248,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -291,7 +263,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-
           this.bankPaymentTransactionService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -301,12 +272,10 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -324,9 +293,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     this.router.navigate(['/bankpayment/transactionlog/LinkTransactionId/', this.tableRowSelected.Id]);
-
   }
   onActionbuttonGotoBank(model: BankPaymentTransactionModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id <= 0) {
@@ -351,12 +318,10 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-   
   }
   onActionSelectorSelect(model: ApplicationAppModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
   onActionbuttonStatist(): void {
@@ -378,7 +343,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -396,7 +360,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -417,7 +380,6 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

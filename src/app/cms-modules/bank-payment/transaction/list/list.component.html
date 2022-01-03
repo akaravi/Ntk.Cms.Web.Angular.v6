@@ -4,7 +4,6 @@
   برای اضافه کردن حساب جدید در سمت راست بر روی گزینه "اضافه" کلیک نمایید.
   <br>
   برای مشاهده تراکنش های مربوط به هر حساب،ابتدا بانک مورد نظر خود را انتخاب کنید.
-
 </app-cms-html-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPrivateSiteConfigId===0  && requestLinkUserId===0">
   <ng-container cms-tree>
@@ -15,7 +14,6 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -28,11 +26,9 @@
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessDeleteRow &&tableRowSelected.Id && tableRowSelected.Id"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
@@ -50,11 +46,9 @@
   </ng-container>
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
-       
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
   <ng-container cms-body>
@@ -84,7 +78,6 @@
         <mat-cell *matCellDef="let row"> {{row.TransactionStatus | enums :
           dataModelEnumTransactionRecordStatusResult.ListItems}} </mat-cell>
       </ng-container>
-
       <!-- BankStatus Column -->
       <ng-container matColumnDef="BankStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['BankStatus']?.FieldTitle}}
@@ -92,7 +85,6 @@
         <mat-cell *matCellDef="let row"> {{row.BankStatus | enums :
           dataModelEnumTransactionBankStatusResult.ListItems}} </mat-cell>
       </ng-container>
-
       <!-- Amount Column -->
       <ng-container matColumnDef="Amount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Amount']?.FieldTitle}} </mat-header-cell>
@@ -109,7 +101,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrencyUnit']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.CurrencyUnit}} </mat-cell>
       </ng-container>
-
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}}
@@ -154,17 +145,13 @@
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>
   <ng-container cms-footer>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->  
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
     [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
     [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
-
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-list>

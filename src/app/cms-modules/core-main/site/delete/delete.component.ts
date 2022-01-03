@@ -17,7 +17,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-core-site-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class CoreSiteDeleteComponent implements OnInit {
   requestId = 0;

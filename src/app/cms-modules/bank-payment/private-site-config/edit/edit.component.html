@@ -51,7 +51,6 @@
           mat-icon-button aria-label="Clear" (click)="dataModel.CurrencyUnitRatioByShop = 1">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['CurrencyUnitRatioByShop']?.AccessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
-
       <!-- MinTransactionAmount Field -->
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MinTransactionAmount']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['MinTransactionAmount']?.FieldTitle }}</mat-label>
@@ -63,7 +62,6 @@
           mat-icon-button aria-label="Clear" (click)="dataModel.MinTransactionAmount = 0">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['MinTransactionAmount']?.AccessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
-
       <!-- MaxTransactionAmount Field -->
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MaxTransactionAmount']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['MaxTransactionAmount']?.FieldTitle }}</mat-label>
@@ -75,9 +73,6 @@
           mat-icon-button aria-label="Clear" (click)="dataModel.MaxTransactionAmount = 100000">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['MaxTransactionAmount']?.AccessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
-
-
-
       <!-- FixFeeTransactionAmount Field -->
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FixFeeTransactionAmount']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['FixFeeTransactionAmount']?.FieldTitle }}</mat-label>
@@ -131,7 +126,6 @@
     </div>
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
       <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}

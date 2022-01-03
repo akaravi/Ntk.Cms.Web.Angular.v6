@@ -27,12 +27,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPublicConfigEditComponent } from '../edit/edit.component';
 import { BankPaymentPublicConfigAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-bankpayment-publicconfig-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -57,10 +54,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   @Output() optionChange = new EventEmitter<BankPaymentPublicConfigModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: BankPaymentPublicConfigModel) => false;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -73,10 +67,8 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -84,12 +76,10 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -108,9 +98,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectForce(id: number | BankPaymentPublicConfigModel): void {
-
   }
-
   onActionAdd(): void {
     const dialogRef = this.dialog.open(BankPaymentPublicConfigAddComponent, {
       height: '90%',
@@ -122,7 +110,6 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionEdit(): void {
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

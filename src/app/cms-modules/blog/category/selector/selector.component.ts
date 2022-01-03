@@ -19,7 +19,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-blog-category-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class BlogCategorySelectorComponent implements OnInit {
   constructor(

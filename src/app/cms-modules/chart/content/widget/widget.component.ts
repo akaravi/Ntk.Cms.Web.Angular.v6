@@ -8,7 +8,6 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 @Component({
   selector: 'app-chart-content-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
 })
 export class ChartContentWidgetComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();

@@ -33,7 +33,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-sitecategory-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreSiteCategoryListComponent implements OnInit, OnDestroy {
   constructor(

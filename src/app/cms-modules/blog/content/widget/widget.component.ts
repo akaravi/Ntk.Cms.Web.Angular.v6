@@ -8,7 +8,6 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 @Component({
   selector: 'app-blog-content-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
 })
 export class BlogContentWidgetComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();

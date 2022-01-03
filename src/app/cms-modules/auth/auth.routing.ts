@@ -6,7 +6,6 @@ import {AuthForgotPasswordComponent} from './forgot-password/forgot-password.com
 import { AuthSingoutComponent } from './singout/singout.component';
 import { AuthSingInComponent } from './singin/singin.component';
 import { AuthSingInBySmsComponent } from './singin-bysms/singin-bysms.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -36,7 +35,6 @@ const routes: Routes = [
     ]
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

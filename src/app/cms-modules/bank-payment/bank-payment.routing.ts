@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BankPaymentComponent } from './bank-payment.component';
-import { BankPaymentConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { BankPaymentConfigSiteComponent } from './config/site/config-site.component';
 import { BankPaymentPrivateSiteConfigListComponent } from './private-site-config/list/list.component';
 import { BankPaymentPublicConfigListComponent } from './public-config/list/list.component';
 import { BankPaymentTransactionLogListComponent } from './transaction-log/list/list.component';
 import { BankPaymentTransactionListComponent } from './transaction/list/list.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -59,7 +56,6 @@ const routes: Routes = [
     ]
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

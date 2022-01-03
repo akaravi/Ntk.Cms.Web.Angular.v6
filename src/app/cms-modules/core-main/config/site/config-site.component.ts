@@ -29,7 +29,6 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 @Component({
   selector: 'app-core-config-site',
   templateUrl: './config-site.component.html',
-  styleUrls: ['./config-site.component.scss']
 })
 export class CoreConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;

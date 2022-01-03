@@ -27,7 +27,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-bankpayment-transactionlog-view',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
 })
 export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {
   requestId = '';

@@ -19,7 +19,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-core-sitecategorycmsmodule-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class CoreSiteCategoryCmsModuleSelectorComponent implements OnInit {
 

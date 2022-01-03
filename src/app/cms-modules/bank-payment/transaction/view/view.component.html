@@ -6,8 +6,6 @@
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-
-
   <!-- LinkPrivateSiteConfigId Field -->
   <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true"
     [optionSelectForce]=" this.dataModel.LinkPrivateSiteConfigId" [optionPlaceholder]="'حساب'">
@@ -16,10 +14,7 @@
   <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkUserId"
     [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
   <!-- LinkUserId Field -->
-
-
   <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
-
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">

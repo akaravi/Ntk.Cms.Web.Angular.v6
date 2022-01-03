@@ -34,7 +34,6 @@ import { CoreSiteModuleSiteOptimazeComponent } from '../module-site-optimaze/mod
 @Component({
   selector: 'app-core-site-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreSiteListComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;

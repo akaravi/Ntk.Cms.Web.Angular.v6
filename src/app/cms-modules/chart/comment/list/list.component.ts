@@ -36,7 +36,6 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 @Component({
   selector: 'app-chart-comment-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),

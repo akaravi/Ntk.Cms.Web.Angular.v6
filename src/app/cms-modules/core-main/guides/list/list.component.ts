@@ -1,13 +1,11 @@
-import { Router } from '@angular/router';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreGuideModel,
   CoreGuideService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -30,12 +28,11 @@ import { Subscription } from 'rxjs';
 import { CoreGuideEditComponent } from '../edit/edit.component';
 import { CoreGuideAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-guide-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreGuideListComponent implements OnInit, OnDestroy {
   constructor(

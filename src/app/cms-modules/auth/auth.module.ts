@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthRoutingModule } from './auth.routing';
 import { AuthSingInComponent } from './singin/singin.component';
-
 import { AuthForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthSingoutComponent } from './singout/singout.component';
 import { AuthComponent } from './auth.component';
@@ -13,7 +12,6 @@ import { AuthSingUpComponent } from './singup/singup.component';
 import { SingupRuleComponent } from './singupRule/singupRule.Component';
 import { AuthSingInBySmsComponent } from './singin-bysms/singin-bysms.component';
 import { CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
-
 @NgModule({
   declarations: [
     AuthSingInComponent,
@@ -35,7 +33,6 @@ import { CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
   providers: [
     CoreModuleService,
     CoreConfigurationService,
-    
   ]
 })
 export class AuthModule { }

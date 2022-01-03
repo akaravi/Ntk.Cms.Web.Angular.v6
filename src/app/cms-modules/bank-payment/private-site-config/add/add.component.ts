@@ -24,7 +24,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-bankpayment-privateconfig-add',
   templateUrl: './add.component.html',
@@ -47,34 +46,23 @@ export class BankPaymentPrivateSiteConfigAddComponent implements OnInit {
     if (data) {
       this.requestLinkPublicConfigId = +data.LinkPublicConfigId || 0;
     }
-
     if (this.requestLinkPublicConfigId > 0) {
       this.dataModel.LinkPublicConfigId = this.requestLinkPublicConfigId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
-
   dataAccessModel: AccessModel;
-
-
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModel: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
-
-
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
   fileManagerOpenForm = false;
-
-
   ngOnInit(): void {
     this.getEnumRecordStatus();
     this.DataGetAccess();
@@ -100,13 +88,11 @@ export class BankPaymentPrivateSiteConfigAddComponent implements OnInit {
         }
       );
   }
-
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.bankPaymentPrivateSiteConfigService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -121,17 +107,14 @@ export class BankPaymentPrivateSiteConfigAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
@@ -145,7 +128,6 @@ export class BankPaymentPrivateSiteConfigAddComponent implements OnInit {
       this.dataModel.LinkPublicConfigId = model.Id;
     }
   }
-
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }

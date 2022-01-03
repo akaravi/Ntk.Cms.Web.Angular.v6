@@ -15,21 +15,16 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-bankpayment-privatesiteconfig-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
-
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: BankPaymentPrivateSiteConfigService) {
     this.loading.cdr = this.cdr;
-
   }
   @Input() set optionSelectForce(x: number | BankPaymentPrivateSiteConfigModel) {
     this.onActionSelectForce(x);
@@ -47,7 +42,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
   @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
-
   @Input() optionReload = () => this.onActionReload();
   ngOnInit(): void {
     this.loadOptions();
@@ -67,7 +61,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: BankPaymentPrivateSiteConfigModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -114,7 +107,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -129,7 +121,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -148,7 +139,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-
   push(newvalue: BankPaymentPrivateSiteConfigModel): Observable<BankPaymentPrivateSiteConfigModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
@@ -157,7 +147,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: number | BankPaymentPrivateSiteConfigModel): void {
     if (typeof id === 'number' && id > 0) {
@@ -199,7 +188,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
     }
     this.DataGetAll(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

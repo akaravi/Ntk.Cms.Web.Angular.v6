@@ -35,7 +35,6 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-core-module-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreModuleListComponent implements OnInit, OnDestroy {
   constructor(

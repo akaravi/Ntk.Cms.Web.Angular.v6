@@ -35,7 +35,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-sitecategory-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+
 })
 export class CoreDeviceListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;

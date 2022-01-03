@@ -33,7 +33,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-cpmainmenu-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
   constructor(

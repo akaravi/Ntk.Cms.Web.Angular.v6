@@ -34,7 +34,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-modulesaleheader-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
   requestHeaderGroupId = 0;

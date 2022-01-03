@@ -11,7 +11,6 @@ import {
   ChartModuleConfigAdminMainValuesModel,
   ChartModuleConfigSiteAccessValuesModel,
   ChartModuleConfigSiteValuesModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -27,7 +26,6 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 @Component({
   selector: 'app-chart-config-mainadmin',
   templateUrl: './config-main-admin.component.html',
-  styleUrls: ['./config-main-admin.component.scss']
 })
 export class ChartConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;

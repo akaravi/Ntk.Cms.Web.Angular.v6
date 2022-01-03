@@ -17,11 +17,9 @@ import {
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-
 @Component({
   selector: 'app-biography-content-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class BiographyContentDeleteComponent implements OnInit {
   requestId = 0;
@@ -52,7 +50,6 @@ export class BiographyContentDeleteComponent implements OnInit {
     }
     this.DataGetOne();
   }
-
   DataGetOne(): void {
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
@@ -68,7 +65,6 @@ export class BiographyContentDeleteComponent implements OnInit {
       .subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResultContent = next;
           if (!next.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
@@ -79,32 +75,24 @@ export class BiographyContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-
         }
       );
-
   }
-
-
-
   onFormDelete(): void {
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.biographyContentService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -114,7 +102,6 @@ export class BiographyContentDeleteComponent implements OnInit {
             this.formInfo.FormAlert = 'برروز خطا';
             this.formInfo.FormError = next.ErrorMessage;
             this.cmsToastrService.typeErrorRemove();
-
           } else {
             this.formInfo.FormAlert = 'حذف با موفقیت انجام شد';
             this.cmsToastrService.typeSuccessRemove();
@@ -122,7 +109,6 @@ export class BiographyContentDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -130,13 +116,10 @@ export class BiographyContentDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         }
       );
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-
   }
 }

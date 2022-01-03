@@ -34,7 +34,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-sitecategorycmsmodule-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy {
   requestLinkCmsModuleId = 0;

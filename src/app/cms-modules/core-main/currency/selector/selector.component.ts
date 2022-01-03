@@ -19,7 +19,7 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-core-currency-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
+
 })
 export class CoreCurrencySelectorComponent implements OnInit {
 
