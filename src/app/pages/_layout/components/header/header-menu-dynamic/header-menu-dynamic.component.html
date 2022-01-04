@@ -18,9 +18,8 @@
       <a class="menu-link" [routerLink]="item.page" routerLinkActive="active">
         <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-        <span class="menu-text" [translate]="item.translate">{{
-          item.title
-          }}</span>
+        <span class="menu-text" [translate]="item.translate">
+          {{item.title}}</span>
         <ng-container *ngIf="rootArrowEnabled">
           <i class="menu-arrow"></i>
         </ng-container>
@@ -91,8 +90,7 @@
       <a class="menu-link" [attr.href]="item.page" routerLinkActive="active">
         <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-          <span class="menu-text"
-          [translate]="item.translate">{{
+        <span class="menu-text" [translate]="item.translate">{{
           item.title
           }}</span></a>
     </li>
