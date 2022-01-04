@@ -135,42 +135,42 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonLoginToRow(row)">
               <mat-icon>login</mat-icon>
-              <span>ورود به این سایت</span>
+              <span>{{'ACTION.LOGIN_TO_THIS_SITE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonModuleListRow(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
               <mat-icon>view_module</mat-icon>
-              <span>ماژول ها</span>
+              <span>{{'ACTION.MODULES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonDomainAliasListRow(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
               <mat-icon>domain</mat-icon>
-              <span>دامنه ها</span>
+              <span>{{'ACTION.DOMAINS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonUserListRow(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
               <mat-icon>switch_account</mat-icon>
-              <span>کاربران ها</span>
+              <span>{{'ACTION.USERS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonDeviceListRow(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
               <mat-icon>devices</mat-icon>
-              <span>دستگاه ها</span>
+              <span>{{'ACTION.DEVICES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonResller(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
               <mat-icon>devices</mat-icon>
-              <span> زیرمجموع بازاریابی</span>
+              <span> {{'ACTION.MARKETING_SUBSET' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonModuleSiteInfo(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData ||tokenInfo.UserAccessAdminAllowToProfessionalData || tokenInfo.SiteId==row.Id">
               <mat-icon>bar_chart</mat-icon>
-              <span> آمار سایت</span>
+              <span>{{'ACTION.SITE_STATISTICS' | translate}} </span>
             </button>
             <button mat-menu-item (click)="onActionbuttonModuleSiteOptimaze(row)"
             *ngIf="tokenInfo.UserAccessAdminAllowToAllData ||tokenInfo.UserAccessAdminAllowToProfessionalData || tokenInfo.SiteId==row.Id">
             <mat-icon>bar_chart</mat-icon>
-            <span>بهنه سازی </span>
+            <span>{{'ACTION.OPTIMIZATION' | translate}} </span>
           </button>
           </mat-menu>
 

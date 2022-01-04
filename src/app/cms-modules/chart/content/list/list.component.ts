@@ -32,7 +32,6 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 @Component({
   selector: 'app-chart-content-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class ChartContentListComponent implements OnInit, OnDestroy {
 

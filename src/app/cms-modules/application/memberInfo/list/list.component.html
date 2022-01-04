@@ -157,12 +157,12 @@
             <button mat-menu-item (click)="onActionbuttonNotifictionList(row)"
               *ngIf="row.NotificationId && row.NotificationId.length>0">
               <mat-icon>sms</mat-icon>
-              <span>گزارش نوتیفیکیشن</span>
+              <span>{{'ACTION.NOTIFICATION_REPORT' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonNotifictionActionSend(row)"
               *ngIf="row.NotificationId && row.NotificationId.length>0">
               <mat-icon>send</mat-icon>
-              <span>ارسال نوتیفیکیشن</span>
+              <span>{{'ACTION.SEND_NOTIFICATIONS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

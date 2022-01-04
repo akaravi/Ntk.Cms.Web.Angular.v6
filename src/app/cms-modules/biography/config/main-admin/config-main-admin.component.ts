@@ -22,12 +22,9 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
-
-
 @Component({
   selector: 'app-biography-config-mainadmin',
   templateUrl: './config-main-admin.component.html',
-  styleUrls: ['./config-main-admin.component.scss']
 })
 export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
   requestLinkSiteId = 0;
@@ -48,43 +45,33 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
   dataConfigSiteValuesDefaultModel = new BiographyModuleConfigSiteValuesModel();
   dataConfigSiteAccessValuesDefaultModel = new BiographyModuleConfigSiteAccessValuesModel();
   dataConfigAdminMainModel = new BiographyModuleConfigAdminMainValuesModel();
-
   tokenInfo = new TokenInfoModel();
-
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = new PoinModel();
-
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
-
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
-
     this.onLoadDate();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
@@ -94,7 +81,6 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
       this.GetServiceSiteAccessDefault();
       this.GetServiceAdminMain();
     }
-
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
@@ -106,11 +92,7 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
       this.SetServiceSiteAccessDefaultSave();
       this.SetServiceAdminMainSave();
     }
-
   }
-
-
-
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -122,16 +104,13 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
       // }
     }
   }
-
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);
   }
-
   GetServiceSiteConfigDefault(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
     this.configService
@@ -157,9 +136,6 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-
-
-
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService
@@ -181,12 +157,10 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
         }
       );
   }
-
   GetServiceSiteAccessDefault(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceSiteAccessDefault';
     this.loading.Start(pName, 'دریافت دسترسی پیش فرض ماژول');
     this.configService
@@ -212,7 +186,6 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceSiteAccessDefaultSave';
     this.loading.Start(pName, 'ذخیره دسترسی پیش فرض ماژول');
     this.configService
@@ -238,7 +211,6 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
     this.configService
@@ -264,7 +236,6 @@ export class BiographyConfigMainAdminComponent implements OnInit , OnDestroy{
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
     this.formInfo.FormError = '';
-
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
     this.configService

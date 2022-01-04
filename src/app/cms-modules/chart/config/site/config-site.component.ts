@@ -1,7 +1,7 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   AccessModel,
   CoreEnumService,
@@ -11,7 +11,6 @@ import {
   ChartModuleConfigSiteAccessValuesModel,
   ChartModuleConfigSiteValuesModel,
   ChartModuleSiteStorageValuesModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   ErrorExceptionResult,
   EnumInfoModel,
@@ -29,7 +28,6 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 @Component({
   selector: 'app-chart-config-site',
   templateUrl: './config-site.component.html',
-  styleUrls: ['./config-site.component.scss']
 })
 export class ChartConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;

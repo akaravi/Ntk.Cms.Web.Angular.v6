@@ -5,14 +5,11 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'app-biography-content-widget2',
   templateUrl: './widget2.component.html',
   styleUrls: ['./widget2.component.scss']
 })
-
 export class BiographyContentWidget2Component implements OnInit, OnDestroy {
   @Input() cssClass = '';
   @Input() widgetHeight = '200px';
@@ -25,7 +22,6 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     private translate: TranslateService,
-
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -39,21 +35,17 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Biography');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/biography/content';
-
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
     });
-
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
     this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
     this.svgCSSClass = `svg-icon--${this.iconColor}`;
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
-
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active','دریافت آمار زندگینامه های فعال');
     this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی زندگینامه ها');
@@ -69,10 +61,8 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
       },
       (error) => {
         this.loading.Stop(this.constructor.name + 'All');
-
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -84,12 +74,10 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
           this.modelData.set('Active', next.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Active');
-
       }
       ,
       (error) => {
         this.loading.Stop(this.constructor.name + 'Active');
-
       }
     );
   }

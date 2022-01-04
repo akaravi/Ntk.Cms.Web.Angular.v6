@@ -19,7 +19,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-core-sitecategory-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class CoreDeviceSelectorComponent implements OnInit {
 

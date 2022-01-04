@@ -12,7 +12,6 @@
         <app-bankpayment-privatesiteconfig-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
           [optionSelectForce]="dataModel.BankPaymentPrivateId" [optionPlaceholder]="' حساب'">
         </app-bankpayment-privatesiteconfig-selector>
-
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>مبلغ</mat-label>
@@ -80,7 +79,6 @@
       </div>
       <app-cms-json-list [dataModel]="dataModelResult.Item" [optionMethod]="1" *ngIf="dataModelResultGotoBank">
       </app-cms-json-list>
-
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
     <div class="ntk-cms-html-card-message">
@@ -94,7 +92,6 @@
     </div>
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
       <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}

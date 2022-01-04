@@ -36,7 +36,6 @@ import { CoreLocationAddBulkComponent } from '../add-bulk/add-bulk.component';
 @Component({
   selector: 'app-core-location-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreLocationListComponent implements OnInit, OnDestroy {
   constructor(

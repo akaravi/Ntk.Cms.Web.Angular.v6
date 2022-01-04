@@ -14,14 +14,12 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
 @Component({
   selector: 'app-core-config-checkuser',
   templateUrl: './check-user.component.html',
 })
 export class BankPaymentConfigCheckUserComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;
-
   constructor(
     private configService: BankPaymentConfigurationService,
     private activatedRoute: ActivatedRoute,
@@ -30,19 +28,16 @@ export class BankPaymentConfigCheckUserComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-
   ) {
     this.loading.cdr = this.cdr;
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
-
     this.onLoadDate();
   }
   cmsApiStoreSubscribe: Subscription;
@@ -52,15 +47,12 @@ export class BankPaymentConfigCheckUserComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<BaseModuleSiteCheckUserModel> = [];
   tableRowSelected: BaseModuleSiteCheckUserModel = new BaseModuleSiteCheckUserModel();
   tableSource: MatTableDataSource<BaseModuleSiteCheckUserModel> = new MatTableDataSource<BaseModuleSiteCheckUserModel>();
-
-
   tabledisplayedColumns: string[] = [
     'Accepted',
     'Title',
     'Description'
   ];
   ngOnInit(): void {
-
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();

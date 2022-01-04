@@ -3,7 +3,6 @@ import { CoreConfigurationService } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',

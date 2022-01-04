@@ -75,7 +75,7 @@
 	"AUTH.INPUT.MOBILE": "電話番号",
 	"AUTH.INPUT.PASSWORD": "パスワード",
 	"AUTH.INPUT.USERNAME": "ユーザー名",
-	"AUTH.LOGIN.BUTTON": "Sign In",
+	"AUTH.LOGIN.BUTTON": "ログイン",
 	"AUTH.LOGIN.SMS": "使い捨てパスワード",
 	"AUTH.LOGIN.TITLE": "Create Account",
 	"AUTH.REGISTER.AGREE_TERMS": "利用規約に同意しますか？",

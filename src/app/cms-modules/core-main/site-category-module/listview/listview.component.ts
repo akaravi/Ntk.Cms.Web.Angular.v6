@@ -22,7 +22,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 @Component({
   selector: 'app-core-sitecategorycmsmodule-listview',
   templateUrl: './listview.component.html',
-  styleUrls: ['./listview.component.scss']
 })
 export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDestroy {
   @Input() set optionSiteCategoryId(x: number) {

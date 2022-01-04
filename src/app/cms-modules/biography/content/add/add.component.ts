@@ -31,8 +31,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { PoinModel } from 'src/app/core/models/pointModel';
-
-
 @Component({
   selector: 'app-biography-content-add',
   templateUrl: './add.component.html',
@@ -56,12 +54,10 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   mapOptonCenter = new PoinModel();
-
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel = new BiographyContentModel();
@@ -75,8 +71,6 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
   fileManagerOpenFormPodcast = false;
   fileManagerOpenFormMovie = false;
   dataAccessModel: AccessModel;
-
-
   fileManagerTree: TreeModel;
   keywordDataModel = [];
   tagDataModel = [];
@@ -88,14 +82,9 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
   similarTabledisplayedColumns = ['LinkMainImageIdSrc', 'Id', 'RecordStatus', 'Title', 'Action'];
   similarTabledataSource = new MatTableDataSource<BiographyContentModel>();
   otherInfoTabledataSource = new MatTableDataSource<BiographyContentOtherInfoModel>();
-
   appLanguage = 'fa';
-
   viewMap = false;
   private mapModel: leafletMap;
-
-
-
   ngOnInit(): void {
     this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
     if (this.requestCategoryId === 0) {
@@ -150,7 +139,6 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   receiveMap(model: leafletMap = this.mapModel): void {
     if (!model) {
       return;
@@ -173,9 +161,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       this.dataModel.Geolocationlatitude = lat;
       this.dataModel.Geolocationlongitude = lon;
     });
-
   }
-
   receiveZoom(mode: leafletMap): void {
   }
   onFormSubmit(): void {
@@ -203,32 +189,26 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     }
     this.DataAddContent();
   }
-
   DataAddContent(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.biographyContentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
-
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
             this.loading.Stop(pName);
-
             setTimeout(() => this.router.navigate(['/biography/content/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -362,8 +342,6 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     this.similarDataModel = retOut;
     this.similarTabledataSource.data = this.similarDataModel;
   }
-
-
   onActionContentOtherInfoAddToLIst(): void {
     if (!this.contentOtherInfoSelected) {
       return;
@@ -385,7 +363,6 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     }
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
   onActionContentOtherInfoEditFromLIst(index: number): void {
     if (index < 0) {
@@ -397,9 +374,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     this.contentOtherInfoSelected = this.otherInfoDataModel[index];
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {

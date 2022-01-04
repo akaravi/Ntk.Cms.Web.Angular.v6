@@ -1,7 +1,6 @@
 <div class="ntk-cms-html-tree-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
         class="btn btn-outline-primary">{{'ACTION.ADD' | translate}}</button>
@@ -13,7 +12,6 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
 </div>
 <div class="ntk-cms-html-tree-body">
-
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-tree class="category-tree cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"

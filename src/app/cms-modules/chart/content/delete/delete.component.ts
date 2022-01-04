@@ -15,7 +15,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-news-content-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class ChartContentDeleteComponent implements OnInit {
   requestId = 0;

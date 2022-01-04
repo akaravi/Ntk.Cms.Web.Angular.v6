@@ -29,7 +29,6 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 @Component({
   selector: 'app-core-config-mainadmin',
   templateUrl: './config-main-admin.component.html',
-  styleUrls: ['./config-main-admin.component.scss']
 })
 export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;

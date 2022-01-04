@@ -5,11 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreModuleSaleSerialModel,
   CoreModuleSaleSerialService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -34,7 +32,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-modulesaleserial-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
   requestHeaderId = 0;

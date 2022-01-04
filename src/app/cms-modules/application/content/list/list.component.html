@@ -134,23 +134,23 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonBuildApp(row)">
               <mat-icon>devices_other</mat-icon>
-              <span>ساخت اپ</span>
+              <span>{{'ACTION.BUILD_AN_APP' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonDownloadApp(row)" *ngIf="row.LastSuccessfullyBuildDate">
               <mat-icon>devices_other</mat-icon>
-              <span>دانلود اپ</span>
+              <span>{{'ACTION.DOWNLOAD_THE_APP' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonMemberList(row)" *ngIf="row.LastSuccessfullyBuildDate">
               <mat-icon>user</mat-icon>
-              <span>کاربران</span>
+              <span>{{'ACTION.USERS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonIntroList(row)" *ngIf="row.LastSuccessfullyBuildDate">
               <mat-icon>help</mat-icon>
-              <span>راهنما</span>
+              <span>{{'ACTION.GUIDE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonNotifictionActionSend(row)">
               <mat-icon>sms</mat-icon>
-              <span>ارسال نوتیفیکیشن</span>
+              <span>{{'ACTION.SEND_NOTIFICATIONS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

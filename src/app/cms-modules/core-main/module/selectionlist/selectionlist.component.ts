@@ -11,7 +11,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-core-module-selectionlist',
   templateUrl: './selectionlist.component.html',
-  styleUrls: ['./selectionlist.component.scss']
 })
 export class CoreModuleSelectionlistComponent implements OnInit {
 

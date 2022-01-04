@@ -21,8 +21,8 @@
       (click)="onActionbuttonViewRow()" type="button" class="btn btn-outline-secondary BTN" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
-      translate}}</button>
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">
+      {{'ACTION.ADD' |translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id && tableRowSelected?.Id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
@@ -132,7 +132,7 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonNotifictionActionSend(row)">
               <mat-icon>send</mat-icon>
-              <span>ارسال نوتیفیکیشن</span>
+              <span>{{'ACTION.SEND_NOTIFICATIONS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

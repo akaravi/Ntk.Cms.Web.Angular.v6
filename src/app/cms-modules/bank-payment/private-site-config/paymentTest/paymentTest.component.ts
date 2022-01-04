@@ -21,7 +21,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { DOCUMENT } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-bankpayment-privateconfig-paymenttest',
   templateUrl: './paymentTest.component.html',
@@ -53,7 +52,6 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelResultGotoBank = false;
-
   ngOnInit(): void {
     if (this.requestLinkPrivateSiteConfigId <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
@@ -62,9 +60,6 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
     }
     this.dataModel.BankPaymentPrivateId = this.requestLinkPrivateSiteConfigId;
   }
-
-
-
   onActionSelectPrivateSiteConfig(model: BankPaymentPrivateSiteConfigModel): void {
     this.dataModel.BankPaymentPrivateId = null;
     this.dataModelParentSelected = model;
@@ -99,12 +94,8 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
         this.dataModelResult = next;
         if (next.IsSuccess) {
           this.formInfo.FormAlert = 'درخواست پرداخت با موفقیت ثبت شد';
-
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Payment_request_was_successfully_registered'));
-
           this.dataModelResultGotoBank = true;
-
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -117,7 +108,6 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-
         }
       )).toPromise();
   }

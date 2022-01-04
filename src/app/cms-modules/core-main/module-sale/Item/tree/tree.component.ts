@@ -31,7 +31,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-modulesaleitem-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class CoreModuleSaleItemTreeComponent implements OnInit, OnDestroy {
   constructor(

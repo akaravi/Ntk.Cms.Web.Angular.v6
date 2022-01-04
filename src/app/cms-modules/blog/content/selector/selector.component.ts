@@ -21,7 +21,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-blog-content-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class BlogContentSelectorComponent implements OnInit {
   constructor(

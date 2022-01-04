@@ -34,7 +34,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-core-modulesaleinvoicedetail-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestroy {
   requestLinkInvoiceId = 0;
