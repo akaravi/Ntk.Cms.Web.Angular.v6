@@ -86,6 +86,7 @@ import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
 import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
 import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 import { CmsViewComponent } from './cms-view/cms-view.component';
+import { DirDirective } from '../core/directive/dir.drection';
 
 @NgModule({
   imports: [
@@ -168,6 +169,7 @@ import { CmsViewComponent } from './cms-view/cms-view.component';
     /** Directive */
     TooltipGuideDirective,
     TooltipDirective,
+    DirDirective,
     PhoneDirective,
     CmsHtmlTreeHeaderDirective,
     CmsHtmlTreeActionDirective,
@@ -244,6 +246,7 @@ import { CmsViewComponent } from './cms-view/cms-view.component';
     /** Directive */
     TooltipGuideDirective,
     TooltipDirective,
+    DirDirective,
     PhoneDirective,
     CmsHtmlTreeHeaderDirective,
     CmsHtmlTreeActionDirective,
