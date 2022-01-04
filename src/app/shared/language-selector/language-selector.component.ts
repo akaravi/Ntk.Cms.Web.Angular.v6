@@ -38,6 +38,11 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       flag: './assets/media/svg/flags/226-united-states.svg',
     },
     {
+      lang: 'tr',
+      name: 'Turkish',
+      flag: './assets/media/svg/flags/006-turkey.svg',
+    },
+    {
       lang: 'zd',
       name: 'China',
       flag: './assets/media/svg/flags/015-china.svg',
