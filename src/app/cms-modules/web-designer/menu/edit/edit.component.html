@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -42,25 +42,26 @@
             {{fieldsInfo['Title']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <!-- TitleML Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
-          <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
-        </mat-form-field>
-        <!-- TitleEn Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleEn']?.AccessWatchField">
-          <mat-label> {{fieldsInfo['TitleEn']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.TitleEn" name="dataModel.TitleEn" #TitleEn type="text"
-            [disabled]="!fieldsInfo['TitleEn']?.AccessEditField" placeholder="{{fieldsInfo['TitleEn']?.FieldTitle}}"
-            minlength="3" maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.TitleEn" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.TitleEn = ''">close</mat-icon>
+            <!-- TitleML Field -->
+            <mat-form-field class="ntk-full-width" >
+              <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
+              <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
+            </mat-form-field>
+        <!-- TitleResourceLanguage Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
+            #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessEditField"
+            placeholder="{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ TitleEn.value.length }} / 100</mat-hint>
-          <mat-error *ngIf="TitleEn.errors?.required">
-            {{fieldsInfo['TitleEn']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="TitleResourceLanguage.errors?.required">
+            TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+
         <!-- RouteAddressLink Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.AccessWatchField">
           <mat-label> {{fieldsInfo['RouteAddressLink']?.FieldTitle}}</mat-label>

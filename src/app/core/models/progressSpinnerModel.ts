@@ -75,7 +75,7 @@ export class ProgressSpinnerModel {
 
     /** Display */
     if (this.consoleLog) {
-      console.log(this.guid, 'Start:', name, 'Display:', this.display, 'processRunList:', this.processRunList);
+      console.log(this.guid, 'Start:', name, 'Display:', this.display,'key:',key,'title:',model.title, 'processRunList:', this.processRunList);
     }
     if (this.cdr && !this.display) {
       this.cdr.detectChanges();
@@ -107,7 +107,7 @@ export class ProgressSpinnerModel {
 
     /** Display */
     if (this.consoleLog) {
-      console.log(this.guid, 'Stop:', name, 'Display:', this.display, 'processRunList:', this.processRunList);
+      console.log(this.guid, 'Stop:', name, 'Display:', this.display,'key:',key,'title:',model.title,  'processRunList:', this.processRunList);
     }
 
     if (this.cdr && !this.display) {

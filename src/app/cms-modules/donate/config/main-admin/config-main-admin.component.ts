@@ -26,8 +26,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 
 @Component({
   selector: 'app-hypershop-config-mainadmin',
-  templateUrl: './config-main-admin.component.html',
-  styleUrls: ['./config-main-admin.component.scss']
+  templateUrl: './config-main-admin.component.html'
 })
 export class DonateConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;

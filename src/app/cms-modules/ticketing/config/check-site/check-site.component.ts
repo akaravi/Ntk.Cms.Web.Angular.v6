@@ -17,8 +17,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-ticketing-config-checksite',
-  templateUrl: './check-site.component.html',
-  styleUrls: ['./check-site.component.scss']
+  templateUrl: './check-site.component.html'
 })
 export class TicketingConfigCheckSiteComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;

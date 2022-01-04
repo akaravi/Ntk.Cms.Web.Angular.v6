@@ -7,42 +7,41 @@
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    
-      <!-- Title Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Title = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="Title.errors?.required">
-          Title is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
 
-      <!-- TitleResourceLanguage Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
-          #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}"
-          minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="TitleResourceLanguage.errors?.required">
-          TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
-      
-      <!-- TitleML Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" #TitleML type="text" readonly
-          placeholder="{{fieldsInfo['TitleML']?.FieldTitle}}" />
-      </mat-form-field>
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+         <!-- TitleML Field -->
+         <mat-form-field class="ntk-full-width" >
+          <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
+        </mat-form-field>
+    <!-- TitleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}"
+        minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleResourceLanguage.errors?.required">
+        TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+
     <hr>
     <!-- TitleSoldIt Field -->
     <mat-form-field class="ntk-full-width">
