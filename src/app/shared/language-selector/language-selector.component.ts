@@ -39,7 +39,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     },
     {
       lang: 'zd',
-      name: 'Mandarin',
+      name: 'China',
       flag: './assets/media/svg/flags/015-china.svg',
     },
     {
