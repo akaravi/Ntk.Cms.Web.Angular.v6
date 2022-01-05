@@ -105,7 +105,12 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
-      this.contentService.ServiceGetAllWithHierarchyCategoryId(this.categoryModelSelected.Id, filterModel).subscribe(
+      let selectId=0;
+      if(this.categoryModelSelected?.Id>0)
+      {
+        selectId=this.categoryModelSelected.Id;
+      }
+      this.contentService.ServiceGetAllWithHierarchyCategoryId(selectId, filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           if (next.IsSuccess) {

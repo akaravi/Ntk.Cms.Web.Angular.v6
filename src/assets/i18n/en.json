@@ -144,6 +144,7 @@
 	"AUTH.INPUT.CAPTCHACODE": "Security photo content",
 	"AUTH.INPUT.CONFIRM_PASSWORD": "Confirm Password",
 	"AUTH.INPUT.EMAIL": "Email",
+	"AUTH.INPUT.YOURMEESAGE": "your message",
 	"AUTH.INPUT.FIRSTNAME": "Name",
 	"AUTH.INPUT.FULLNAME": "Fullname",
 	"AUTH.INPUT.LASTNAME": "Full Name",

@@ -111,9 +111,14 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
+      let selectId=0;
+      if(this.categoryModelSelected?.Id>0)
+      {
+        selectId=this.categoryModelSelected.Id;
+      }
       const pName = this.constructor.name + '.ServiceGetAllWithHierarchyCategoryId';
       this.loading.Start(pName, 'دریافت  لیست اطلاعات');
-      this.contentService.ServiceGetAllWithHierarchyCategoryId(this.categoryModelSelected.Id, filterModel).subscribe(
+      this.contentService.ServiceGetAllWithHierarchyCategoryId(selectId, filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           if (next.IsSuccess) {
@@ -331,6 +336,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
   }
   onActionbuttonWithHierarchy(): void {
+    debugger
     this.GetAllWithHierarchyCategoryId = !this.GetAllWithHierarchyCategoryId;
     this.DataGetAll();
   }

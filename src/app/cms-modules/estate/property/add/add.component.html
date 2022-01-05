@@ -66,6 +66,7 @@
         </mat-form-field>
 
         <!-- Title Field -->
+        
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
           <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
@@ -75,7 +76,7 @@
             (click)="dataModel.Title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <mat-icon  matSuffix class=" info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
