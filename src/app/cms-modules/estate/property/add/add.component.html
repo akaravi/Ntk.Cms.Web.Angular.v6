@@ -271,7 +271,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="جزئیات" state="seo"
+      <mat-step label="{{'TITLE.Details' | translate}}" state="seo"
         *ngIf="dataProfessional &&  dataModel.PropertyDetailGroups && dataModel.PropertyDetailGroups.length>0">
         <p>جزئیات ملک نسبت به نوع ملک</p>
 
@@ -352,7 +352,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="معامله" state="seo">
+      <mat-step label="{{'TITLE.Transaction' | translate}}" state="seo">
         <p>نوع معامله این ملک را مشخص کنید</p>
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionTypeView]="2"
           [optionDisabled]="false" [optionPlaceholder]="'نوع معامله'"
@@ -587,7 +587,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="موقعیت مکانی" state="loaction">
+      <mat-step label="{{'TITLE.Location' | translate}}" state="loaction">
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
