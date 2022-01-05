@@ -38,8 +38,8 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       flag: './assets/media/svg/flags/226-united-states.svg',
     },
     {
-      lang: 'ch',
-      name: 'Mandarin',
+      lang: 'zd',
+      name: 'China',
       flag: './assets/media/svg/flags/015-china.svg',
     },
     {
@@ -48,7 +48,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       flag: './assets/media/svg/flags/128-spain.svg',
     },
     {
-      lang: 'jp',
+      lang: 'ja',
       name: 'Japanese',
       flag: './assets/media/svg/flags/063-japan.svg',
     },

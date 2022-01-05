@@ -17,11 +17,9 @@ import {
   FilterModel,
   WebDesignerMainPageTemplateModel,
   WebDesignerMainPageTemplateService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { WebDesignerMainPageTemplateEditComponent } from '../edit/edit.component';
@@ -30,7 +28,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-webdesigner-pagetemplate-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestroy {
   constructor(
