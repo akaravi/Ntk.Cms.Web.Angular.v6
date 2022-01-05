@@ -16480,12 +16480,12 @@
         <language>
             <code>ja-JP</code>
             <source_id/>
-            <source_file>src/assets/i18n/jp.json</source_file>
+            <source_file>src/assets/i18n/ja.json</source_file>
         </language>
         <language>
             <code>zh-TW</code>
             <source_id/>
-            <source_file>src/assets/i18n/ch.json</source_file>
+            <source_file>src/assets/i18n/zh.json</source_file>
         </language>
     </languages>
     <translation_files>
@@ -16505,10 +16505,10 @@
             <file>src/assets/i18n/fr.json</file>
         </translation_file>
         <translation_file>
-            <file>src/assets/i18n/ch.json</file>
+            <file>src/assets/i18n/zh.json</file>
         </translation_file>
         <translation_file>
-            <file>src/assets/i18n/jp.json</file>
+            <file>src/assets/i18n/ja.json</file>
         </translation_file>
         <translation_file>
             <file>src/assets/i18n/ar.json</file>

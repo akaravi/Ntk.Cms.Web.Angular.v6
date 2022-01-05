@@ -17,8 +17,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-donate-config-checkuser',
-  templateUrl: './check-user.component.html',
-  styleUrls: ['./check-user.component.scss']
+  templateUrl: './check-user.component.html'
 })
 export class DonateConfigCheckUserComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;
