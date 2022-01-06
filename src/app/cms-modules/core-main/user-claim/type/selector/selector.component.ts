@@ -63,10 +63,10 @@ export class CoreUserClaimTypeSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreUserClaimTypeModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   displayOption(model?: CoreUserClaimTypeModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserClaimTypeModel[]> {
     const filteModel = new FilterModel();

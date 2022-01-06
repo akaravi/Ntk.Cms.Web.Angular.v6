@@ -63,10 +63,10 @@ export class CoreUserClaimGroupSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreUserClaimGroupModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   displayOption(model?: CoreUserClaimGroupModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserClaimGroupModel[]> {
     const filteModel = new FilterModel();
