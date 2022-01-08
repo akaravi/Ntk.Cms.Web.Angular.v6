@@ -3,6 +3,10 @@
  در این بخش میتوانید فاکتورهای خرید خود را مشاهده نمایید.
   <br>
 </app-cms-html-notice>
+
+<app-article-content-header *ngIf="this.requestLinkPropertyId?.length>0" [optionId]="this.requestLinkPropertyId">
+      
+</app-article-content-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -106,7 +110,7 @@
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
 
           <!-- Action Menu -->

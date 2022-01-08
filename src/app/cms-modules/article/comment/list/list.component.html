@@ -3,6 +3,11 @@
   <br>
   در این بخش میتوانید نظرات کاربران را مشاهده نمایید.
 </app-cms-html-notice>
+
+<app-article-content-header *ngIf="this.requestContentId>0" [optionId]="this.requestContentId">
+
+</app-article-content-header>
+
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->

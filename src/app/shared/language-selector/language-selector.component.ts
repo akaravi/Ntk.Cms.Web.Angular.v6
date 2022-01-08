@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { AuthRenewTokenModel, CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -76,6 +76,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -121,6 +122,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
         (next) => {
           // this.loadingStatus = false;
           if (next.IsSuccess) {
+            this.cdr.detectChanges();
             if (next.Item.Language === lang) {
               this.cmsToastrService.toastr.success('دسترسی به زبان جدید تایید شد', title);
               // if (lang == 'fa' || lang == 'ar') {

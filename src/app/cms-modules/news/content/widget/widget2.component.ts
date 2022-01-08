@@ -37,6 +37,7 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/news/content';
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_News');
       this.onActionStatist();
     });
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
