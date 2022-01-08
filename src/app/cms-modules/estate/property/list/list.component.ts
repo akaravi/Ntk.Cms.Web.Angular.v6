@@ -43,6 +43,7 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
 export class EstatePropertyListComponent
   implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = "";
+  requestLinkPropertyTypeUsageId = "";
   requestLinkContractTypeId = "";
   requestLinkBillboardId = "";
   requestLinkCustomerOrderId = "";
@@ -61,6 +62,8 @@ export class EstatePropertyListComponent
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyTypeLanduseId =
       this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeLanduseId");
+    this.requestLinkPropertyTypeUsageId =
+      this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeUsageId");
     this.requestLinkContractTypeId =
       this.activatedRoute.snapshot.paramMap.get("LinkContractTypeId");
     this.requestLinkBillboardId =
@@ -88,6 +91,15 @@ export class EstatePropertyListComponent
       const filter = new FilterDataModel();
       filter.PropertyName = "LinkPropertyTypeLanduseId";
       filter.Value = this.requestLinkPropertyTypeLanduseId;
+      this.filteModelProperty.Filters.push(filter);
+    }
+    if (
+      this.requestLinkPropertyTypeUsageId &&
+      this.requestLinkPropertyTypeUsageId.length > 0
+    ) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = "LinkPropertyTypeUsageId";
+      filter.Value = this.requestLinkPropertyTypeUsageId;
       this.filteModelProperty.Filters.push(filter);
     }
     if (

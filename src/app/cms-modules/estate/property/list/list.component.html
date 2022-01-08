@@ -7,7 +7,21 @@
   برای اضافه کردن ملک جدید بر روی گزینه "اضافه" کلیک نمایید.
 
 </app-cms-html-notice>
-
+<app-estate-billboard-header *ngIf="this.requestLinkBillboardId?.length>0" [optionId]="this.requestLinkBillboardId">
+      
+</app-estate-billboard-header>
+<app-estate-contract-type-header *ngIf="this.requestLinkContractTypeId?.length>0" [optionId]="this.requestLinkContractTypeId">
+      
+</app-estate-contract-type-header>
+<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0" [optionId]="this.requestLinkCustomerOrderId">
+      
+</app-estate-customer-order-header>
+<app-estate-property-type-landuse-header *ngIf="this.requestLinkPropertyTypeLanduseId?.length>0" [optionId]="this.requestLinkPropertyTypeLanduseId">
+      
+</app-estate-property-type-landuse-header>
+<app-estate-property-type-usage-header *ngIf="this.requestLinkPropertyTypeUsageId?.length>0" [optionId]="this.requestLinkPropertyTypeUsageId">
+      
+</app-estate-property-type-usage-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->

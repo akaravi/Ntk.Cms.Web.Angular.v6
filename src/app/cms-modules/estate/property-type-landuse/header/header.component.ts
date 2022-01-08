@@ -1,8 +1,8 @@
 import {
   EnumInfoModel,
   ErrorExceptionResult,
-  EstatePropertyModel,
-  EstatePropertyService,
+  EstatePropertyTypeLanduseModel,
+  EstatePropertyTypeLanduseService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -19,13 +19,13 @@ import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-article-content-header',
+  selector: 'app-estate-property-type-landuse-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class EstatePropertyAdsHeaderComponent implements OnInit {
+export class EstatePropertyTypeLanduseHeaderComponent implements OnInit {
   constructor(
-    private headerService: EstatePropertyService,
+    private headerService: EstatePropertyTypeLanduseService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
@@ -35,7 +35,7 @@ export class EstatePropertyAdsHeaderComponent implements OnInit {
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
+  dataModelResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -73,24 +73,5 @@ export class EstatePropertyAdsHeaderComponent implements OnInit {
       }
     );
   }
-  onActionbuttonLinkTo(model: EstatePropertyModel=this.dataModelResult.Item): void {
-    if (!model || !model.Id || model.Id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    //open popup
-    const dialogRef = this.dialog.open(CmsLinkToComponent, {
-      // height: "90%",
-      data: {
-        Title: model.Title,
-        UrlViewContentQRCodeBase64:model.UrlViewContentQRCodeBase64,
-        UrlViewContent: model.UrlViewContent,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.dialogChangedDate) {
-      }
-    });
-    //open popup
-  }
+  
 }

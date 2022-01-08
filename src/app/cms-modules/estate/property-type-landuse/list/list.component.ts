@@ -272,7 +272,7 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/estate/property-detail/LinkPropertyTypeLanduseId/', this.tableRowSelected.Id]);
+    this.router.navigate(['/estate/property/LinkPropertyTypeLanduseId/', this.tableRowSelected.Id]);
   }
 
   onActionbuttonStatist(): void {
