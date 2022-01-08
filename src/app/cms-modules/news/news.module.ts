@@ -40,6 +40,7 @@ import { NewsContentDeleteComponent } from './content/delete/delete.component';
 import { NewsCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { NewsContentHeaderComponent } from './content/header/header.component';
 @NgModule({
   declarations: [
     NewsComponent,
@@ -48,6 +49,7 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
     NewsContentDeleteComponent,
     NewsContentListComponent,
     NewsContentSelectorComponent,
+    NewsContentHeaderComponent,
     NewsCategoryTreeComponent,
     NewsCategoryTreeSelectorComponent,
     NewsCategorySelectorComponent,

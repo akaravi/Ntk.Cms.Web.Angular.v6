@@ -43,8 +43,8 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
   ],
 })
 export class NewsCommentListComponent implements OnInit, OnDestroy {
-  [x: string]: any;
-  constructor(
+  requestContentId = 0;
+    constructor(
     private commentService: NewsCommentService,
     private contentService: NewsContentService,
     private activatedRoute: ActivatedRoute,
@@ -77,7 +77,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
   searchInChecking = false;
   searchInCheckingChecked = false;
-  requestContentId = 0;
+
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<NewsCommentModel> = new ErrorExceptionResult<NewsCommentModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -458,51 +458,51 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
     }
     this.router.navigate(['/news/content/edit', this.tableRowSelected.LinkContentId]);
   }
-  // onActionbuttonLinkTo( model: NewsCommentModel = this.tableRowSelected): void {
-  //   if (!model || !model.Id || model.Id === 0) {
-  //     this.cmsToastrService.typeErrorSelectedRow();
-  //     return;
-  //   }
-  //   this.tableRowSelected = model;
-  //   if (
-  //     this.dataModelResult == null ||
-  //     this.dataModelResult.Access == null ||
-  //     !this.dataModelResult.Access.AccessEditRow
-  //   ) {
-  //     this.cmsToastrService.typeErrorAccessEdit();
-  //     return;
-  //   }
-  //   const pName = this.constructor.name + "ServiceGetOneById";
-  //   this.loading.Start(pName, "دریافت اطلاعات خبر");
-  //   this.contentService
-  //     .ServiceGetOneById(this.tableRowSelected.LinkContentId)
-  //     .subscribe(
-  //       (next) => {
-  //         if (next.IsSuccess) {
-  //           //open popup
-  //           const dialogRef = this.dialog.open(CmsLinkToComponent, {
-  //             // height: "90%",
-  //             data: {
-  //               Title: next.Item.Title,
-  //               UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
-  //               UrlViewContent: next.Item.UrlViewContent,
-  //             },
-  //           });
-  //           dialogRef.afterClosed().subscribe((result) => {
-  //             if (result && result.dialogChangedDate) {
-  //               this.DataGetAll();
-  //             }
-  //           });
-  //           //open popup
-  //         } else {
-  //           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
-  //         }
-  //         this.loading.Stop(pName);
-  //       },
-  //       (error) => {
-  //         this.cmsToastrService.typeError(error);
-  //         this.loading.Stop(pName);
-  //       }
-  //     );
-  // }
+  onActionbuttonLinkTo( model: NewsCommentModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات خبر");
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.LinkContentId)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
+  }
 }
