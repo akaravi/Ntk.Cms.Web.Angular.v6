@@ -5,15 +5,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   EstatePropertyAdsModel,
   EstatePropertyAdsService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EnumRecordStatus,
   FilterDataModel,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EstatePropertyModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -29,6 +28,7 @@ import { EstatePropertyAdsEditComponent } from '../edit/edit.component';
 import { EstatePropertyAdsAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 
 @Component({
   selector: 'app-estate-propertyads-list',
@@ -362,4 +362,5 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   onActionBackToParent(): void {
     this.router.navigate(['/estate/property/']);
   }
+ 
 }

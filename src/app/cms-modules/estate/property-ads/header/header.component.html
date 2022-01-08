@@ -1,12 +1,20 @@
-<div class="table" >
+<div class="table">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
     <div class="td">{{fieldsInfo['Id']?.FieldTitle}} : </div>
     <div class="td">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td"></div>
+
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
     <div class="td">{{fieldsInfo['Title']?.FieldTitle}} : </div>
     <div class="td">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td"  *ngIf="dataModelResult?.Item?.Id">
+      link to
+      <br>
+      <mat-icon (click)="onActionbuttonLinkTo()" *ngIf="dataModelResult?.Item?.Id">&#8599;</mat-icon>
+    </div>
     <div style="clear: both;"></div>
   </div>
 </div>
