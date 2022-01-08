@@ -21,13 +21,13 @@
       <button mat-icon-button disabled></button>
       <i [ngClass]="node.Icon" aria-hidden="true"></i>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      {{node.Title}}
+      {{node.TitleML}}
     </mat-tree-node>
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
       <li>
         <div class="mat-tree-node" (click)="onActionSelect(node)"
           [ngStyle]="{'background': dataModelSelect.Id>0 && dataModelSelect.Id === node.Id ? '#d3d3da' : '' }">
-          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.Title"
+          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.TitleML"
             (click)="onActionSelect(node)">
             <mat-icon class="mat-icon-rtl-mirror">
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
@@ -35,7 +35,7 @@
           </button>
           <i [ngClass]="node.Icon" [style.color]="node.Color" aria-hidden="true"></i>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          {{node.Title}}
+          {{node.TitleML}}
         </div>
         <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">
           <ng-container matTreeNodeOutlet></ng-container>

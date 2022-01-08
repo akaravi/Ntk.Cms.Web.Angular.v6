@@ -1,5 +1,5 @@
 <div *ngIf="optionsData.data.show" class="alert alert-info" style="direction: ltr">
         <ngx-ntk-query-builder [(ngModel)]="query" [fieldMap]="fieldMap" [language]="lang">
         </ngx-ntk-query-builder>
-        <a href="javascript:void(0)" (click)="onSubmit()" class="btn btn-raised mr-1 shadow-z-3 btn-success">جستجو</a>
+        <a href="javascript:void(0)" (click)="onSubmit()" class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
 </div>
