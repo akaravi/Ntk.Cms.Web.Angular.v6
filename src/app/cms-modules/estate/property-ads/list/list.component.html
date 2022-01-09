@@ -3,9 +3,7 @@
  در این بخش میتوانید فاکتورهای خرید خود را مشاهده نمایید.
   <br>
 </app-cms-html-notice>
-
 <app-estate-property-header *ngIf="this.requestLinkPropertyId?.length>0" [optionId]="this.requestLinkPropertyId">
-      
 </app-estate-property-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
@@ -15,7 +13,6 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -29,16 +26,13 @@
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id &&  tableRowSelected?.Id?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
@@ -59,7 +53,6 @@
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
   <ng-container cms-body>
@@ -82,7 +75,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
-
       <!-- StationLevel Column -->
       <ng-container matColumnDef="StationLevel">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StationLevel']?.FieldTitle}}
@@ -107,12 +99,10 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.ExpireDate|persianDate}} </mat-cell>
       </ng-container>
-
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
-
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
             <mat-icon>more_vert</mat-icon>
@@ -130,7 +120,6 @@
               <mat-icon>list</mat-icon>
               <span>املاک مورد معامله</span>
             </button>
-
           </mat-menu>
         </mat-cell>
       </ng-container>
@@ -139,16 +128,13 @@
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
       [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-list>

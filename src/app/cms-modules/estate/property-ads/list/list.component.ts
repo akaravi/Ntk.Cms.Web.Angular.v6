@@ -11,9 +11,7 @@ import {
   TokenInfoModel,
   EnumRecordStatus,
   FilterDataModel,
-  DataFieldInfoModel,
-  EstatePropertyModel
-} from 'ntk-cms-api';
+  DataFieldInfoModel} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -28,8 +26,6 @@ import { EstatePropertyAdsEditComponent } from '../edit/edit.component';
 import { EstatePropertyAdsAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
-
 @Component({
   selector: 'app-estate-propertyads-list',
   templateUrl: './list.component.html',
@@ -49,7 +45,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
-
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -71,7 +66,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyAdsModel> = new ErrorExceptionResult<EstatePropertyAdsModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -82,8 +76,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstatePropertyAdsModel> = [];
   tableRowSelected: EstatePropertyAdsModel = new EstatePropertyAdsModel();
   tableSource: MatTableDataSource<EstatePropertyAdsModel> = new MatTableDataSource<EstatePropertyAdsModel>();
-
-
   tabledisplayedColumns: string[] = [
     'Title',
     'StationLevel',
@@ -93,21 +85,15 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
     'ExpireDate',
     'Action'
   ];
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
-
   expandedElement: EstatePropertyAdsModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -119,11 +105,8 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyAdsModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -134,24 +117,18 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -177,10 +154,7 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonNewRow(): void {
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -199,9 +173,7 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionbuttonEditRow(model: EstatePropertyAdsModel = this.tableRowSelected): void {
-
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -232,7 +204,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -241,7 +212,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-
     const title = 'لطفا تایید کنید...';
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
@@ -249,7 +219,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-
           this.estatePropertyAdsService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -259,12 +228,10 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -274,7 +241,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
       }
       );
-
   }
   onActionbuttonContentList(model: EstatePropertyAdsModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -288,7 +254,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonBuy(): void {
     this.router.navigate(['/estate/property-ads/sale/', this.requestLinkPropertyId]);
-
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -309,7 +274,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -327,7 +291,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -348,7 +311,6 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -362,5 +324,4 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   onActionBackToParent(): void {
     this.router.navigate(['/estate/property/']);
   }
- 
 }
