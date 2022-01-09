@@ -370,6 +370,7 @@
 	"MESSAGE.Your_password_was_changed_successfully": "کلمه عبور شما با موفقیت تغییر داده شد.",
 	"MESSAGE.get_information_from_the_server": "در حال دریافت اطلاعات از سرور",
 	"MESSAGE.login_to_user_account": "ورود به حساب کاربری",
+	"MESSAGE.Please_Confirm":"لطفا تایید کنید",
 	"MESSAGE.mahyar": "من مهیار نیک نداف هستم",
 	"MESSAGE.registration_completed_successfully": "ثبت با موفقیت انجام شد",
 	"MESSAGE.required": "مورد نیاز است",

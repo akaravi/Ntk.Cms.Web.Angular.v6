@@ -318,7 +318,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="جزئیات" state="seo"
+      <mat-step label="{{'TITLE.Details' | translate}}"  state="seo"
         *ngIf="dataModel.PropertyDetailGroups && dataModel.PropertyDetailGroups.length>0">
         <p>جزئیات ملک نسبت به نوع ملک</p>
 
@@ -408,7 +408,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="معامله" state="seo">
+      <mat-step label="{{'TITLE.Contract' | translate}}" state="seo">
 
         <!-- IsSoldIt Field -->
         <div class="ntk-full-width">
@@ -674,7 +674,7 @@
         </mat-step>
       </div>
 
-      <mat-step label="موقعیت مکانی" state="loaction">
+      <mat-step label="{{'TITLE.Location' | translate}}" state="loaction">
 
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
