@@ -1,12 +1,30 @@
-<div class="table" >
+<div class="table">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <div class="tr">
+    <div class="td"></div>
+    <div class="td align"><h5>مقاله انتخاب شده</h5></div>
+    <div class="td" style="text-align: left;">
+      <!-- *ngIf="dataModelResult?.Item?.Id" -->
+
+    </div>
+  </div>
   <div class="tr">
     <div class="td">{{fieldsInfo['Id']?.FieldTitle}} : </div>
-    <div class="td">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td align">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td"></div>
+
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
     <div class="td">{{fieldsInfo['Title']?.FieldTitle}} : </div>
-    <div class="td">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td align">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td" style="text-align: left;">
+      <button type="button" class="btn btn-secondary">
+        link to
+      <br>
+      <mat-icon (click)="onActionbuttonLinkTo()">&#8599;</mat-icon>
+      </button>
+    </div>
     <div style="clear: both;"></div>
   </div>
 </div>

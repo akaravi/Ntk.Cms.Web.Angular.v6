@@ -14,6 +14,8 @@ import {
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class NewsContentHeaderComponent implements OnInit {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
+    public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -70,5 +73,25 @@ export class NewsContentHeaderComponent implements OnInit {
 
       }
     );
+  }
+  onActionbuttonLinkTo(model: NewsContentModel=this.dataModelResult.Item): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    //open popup
+    const dialogRef = this.dialog.open(CmsLinkToComponent, {
+      // height: "90%",
+      data: {
+        Title: model.Title,
+        UrlViewContentQRCodeBase64:model.UrlViewContentQRCodeBase64,
+        UrlViewContent: model.UrlViewContent,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+    //open popup
   }
 }
