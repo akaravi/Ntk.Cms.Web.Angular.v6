@@ -31,6 +31,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.link = '/application/app';
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.description = this.translate.instant('TITLE.Software_Introduce');
       this.onActionStatist();
     });
   }

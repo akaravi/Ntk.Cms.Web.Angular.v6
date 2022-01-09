@@ -54,6 +54,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Evidence_Identity');
       this.onActionStatist();
     });
 

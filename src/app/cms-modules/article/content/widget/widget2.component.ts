@@ -38,6 +38,8 @@ export class ArticleContentWidget2Component implements OnInit, OnDestroy {
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Biography');
+
       this.onActionStatist();
     });
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;

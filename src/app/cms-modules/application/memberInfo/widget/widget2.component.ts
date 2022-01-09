@@ -38,6 +38,7 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
     this.widgetInfoModel.link = '/application/content';
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Member');
       this.onActionStatist();
     });
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
