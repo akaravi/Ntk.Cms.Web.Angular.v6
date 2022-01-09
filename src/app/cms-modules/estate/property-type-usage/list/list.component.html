@@ -97,6 +97,10 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonContentDetailList(row)">
+              <mat-icon>list</mat-icon>
+              <span>{{'ACTION.DETAIL' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

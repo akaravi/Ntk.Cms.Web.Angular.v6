@@ -117,11 +117,15 @@ import { EstateCustomerOrderListComponent } from './customer-order/list/list.com
 import { EstateCustomerOrderSelectorComponent } from './customer-order/selector/selector.component';
 import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.component';
 import { EstatePropertyTypeLanduseSelectionlistComponent } from './property-type-landuse/selectionlist/selectionlist.component';
-import { EstatePropertyAdsHeaderComponent } from './property-ads/header/header.component';
+import { EstatePropertyHeaderComponent } from './property/header/header.component';
+import { EstateBillboardHeaderComponent } from './billbord/header/header.component';
+import { EstatePropertyTypeLanduseHeaderComponent } from './property-type-landuse/header/header.component';
+import { EstateContractTypeHeaderComponent } from './contract-type/header/header.component';
+import { EstateCustomerOrderHeaderComponent } from './customer-order/header/header.component';
+import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
 
 @NgModule({
   declarations: [
-    EstatePropertyAdsHeaderComponent,
     EstateComponent,
     /* */
     EstatePropertyTypeLanduseAddComponent,
@@ -131,6 +135,7 @@ import { EstatePropertyAdsHeaderComponent } from './property-ads/header/header.c
     EstatePropertyTypeLanduseTreeComponent,
     EstatePropertyTypeLanduseCompleteComponent,
     EstatePropertyTypeLanduseSelectionlistComponent,
+    EstatePropertyTypeLanduseHeaderComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,
@@ -139,12 +144,14 @@ import { EstatePropertyAdsHeaderComponent } from './property-ads/header/header.c
     EstatePropertyTypeUsageTreeComponent,
     EstatePropertyTypeUsageSelectionlistComponent,
     EstatePropertyTypeUsageCompleteComponent,
+    EstatePropertyTypeUsageHeaderComponent,
     /* */
     EstatePropertyAddComponent,
     EstatePropertyEditComponent,
     EstatePropertyListComponent,
     EstatePropertySelectorComponent,
     EstatePropertyCompleteComponent,
+    EstatePropertyHeaderComponent,
     /* */
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,
@@ -167,18 +174,21 @@ import { EstatePropertyAdsHeaderComponent } from './property-ads/header/header.c
     EstateContractTypeSelectorComponent,
     EstateContractTypeTreeComponent,
     EstateContractTypeCompleteComponent,
+    EstateContractTypeHeaderComponent,
     /* */
     EstateBillboardAddComponent,
     EstateBillboardEditComponent,
     EstateBillboardListComponent,
     EstateBillboardSelectorComponent,
     EstateBillboardTreeComponent,
+    EstateBillboardHeaderComponent,
     /* */
     EstateCustomerOrderAddComponent,
     EstateCustomerOrderEditComponent,
     EstateCustomerOrderListComponent,
     EstateCustomerOrderSelectorComponent,
     EstateCustomerOrderTreeComponent,
+    EstateCustomerOrderHeaderComponent,
     /* */
     EstatePropertyDetailGroupAddComponent,
     EstatePropertyDetailGroupEditComponent,

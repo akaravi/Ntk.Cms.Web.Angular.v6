@@ -40,6 +40,7 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
     private estatePropertyTypeUsageService: EstatePropertyTypeUsageService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
+    private router: Router,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -334,5 +335,14 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: EstatePropertyTypeUsageModel): void {
     this.tableRowSelected = row;
   }
+  onActionbuttonContentDetailList(model: EstatePropertyTypeUsageModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
 
+    this.router.navigate(['/estate/property/LinkPropertyTypeUsageId/', this.tableRowSelected.Id]);
+  }
 }
