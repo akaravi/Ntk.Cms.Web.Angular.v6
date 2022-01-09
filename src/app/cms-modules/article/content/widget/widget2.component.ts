@@ -32,12 +32,14 @@ export class ArticleContentWidget2Component implements OnInit, OnDestroy {
   @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Biography');
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Atricle');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/article/content';
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Atricle');
+
       this.onActionStatist();
     });
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;

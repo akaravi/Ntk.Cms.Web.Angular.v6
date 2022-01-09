@@ -40,6 +40,7 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_MemberSite');
       this.onActionStatist();
     });
 
