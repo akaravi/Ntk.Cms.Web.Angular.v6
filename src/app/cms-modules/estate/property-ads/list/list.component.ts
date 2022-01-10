@@ -28,8 +28,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-estate-propertyads-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   requestLinkPropertyId = '';
