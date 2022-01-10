@@ -1,4 +1,3 @@
-
 import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,7 +29,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { ApiTelegramActionSendMessageComponent } from '../../action/send-message/send-message.component';
 import { CmsViewComponent } from 'src/app/shared/cms-view/cms-view.component';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-apitelegram-bot-config-list',
   templateUrl: './list.component.html',
@@ -45,6 +44,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -62,7 +62,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<ApiTelegramBotConfigModel> = new ErrorExceptionResult<ApiTelegramBotConfigModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -74,8 +73,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   tableRowSelected: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();
   tableSource: MatTableDataSource<ApiTelegramBotConfigModel> = new MatTableDataSource<ApiTelegramBotConfigModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
@@ -87,18 +84,14 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     'Action',
     'LinkTo'
   ];
-
-
   expandedElement: ApiTelegramBotConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'ShowInMenuOrder';
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -120,14 +113,10 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
         'LinkSiteId'
       );
     }
-
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramBotConfigModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -136,10 +125,8 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
@@ -151,12 +138,9 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -182,11 +166,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
-
   onActionbuttonNewRow(): void {
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -205,9 +185,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionbuttonEditRow(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -247,9 +225,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-
-
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
@@ -266,12 +242,10 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -282,7 +256,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       }
       );
   }
-
   onActionbuttonGoToModuleList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const message = 'ردیفی برای نمایش انتخاب نشده است';
@@ -312,7 +285,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -330,9 +302,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
-
   onActionbuttonInboxList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی انتخاب نشده است';
@@ -393,7 +363,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -430,7 +399,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -442,7 +410,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     const pName = this.constructor.name + 'ServiceGetUpdatesAsyncLast';
-
     this.apiTelegramBotConfigService.ServiceGetUpdatesAsyncLast(model.Id).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -455,13 +422,11 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
   onActionbuttonSetAllWebhookUpdate(): void {
     const pName = this.constructor.name + 'ServiceSetAllWebhookUpdate';
-
     this.apiTelegramBotConfigService.ServiceSetAllWebhookUpdate().subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -474,7 +439,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -497,7 +461,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -522,7 +485,6 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات ملک");
     this.apiTelegramBotConfigService.ServiceGetOneById(this.tableRowSelected.Id)
