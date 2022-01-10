@@ -2,19 +2,19 @@
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
     <div class="td"></div>
-    <div class="td align"><h5>نوع کاربری انتخاب شده</h5></div>
+    <div class="td align" style="color: darkblue;"> <h5> <b>نوع کاربری انتخاب شده </b> </h5></div>
     <div class="td" *ngIf="dataModelResult?.Item?.Id">
     </div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Id']?.FieldTitle}} : </div>
+    <div class="td"> <b>{{fieldsInfo['Id']?.FieldTitle}} : </b></div>
     <div class="td align">{{dataModelResult?.Item?.Id}}</div>
     <div class="td"></div>
 
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Title']?.FieldTitle}} : </div>
+    <div class="td"> <b>{{fieldsInfo['Title']?.FieldTitle}} : </b> </div>
     <div class="td align">{{dataModelResult?.Item?.Title}}</div>
     <div class="td"></div>
     <div style="clear: both;"></div>

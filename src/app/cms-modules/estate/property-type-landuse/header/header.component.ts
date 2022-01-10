@@ -16,8 +16,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
-
-
 @Component({
   selector: 'app-estate-property-type-landuse-header',
   templateUrl: './header.component.html',
@@ -37,10 +35,7 @@ export class EstatePropertyTypeLanduseHeaderComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
-
   ngOnInit(): void {
     if (this.optionId?.length > 0) {
       this.DataGetOneContent();
@@ -53,7 +48,6 @@ export class EstatePropertyTypeLanduseHeaderComponent implements OnInit {
   DataGetOneContent(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.headerService.setAccessLoad();
     this.headerService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -64,14 +58,11 @@ export class EstatePropertyTypeLanduseHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
-  
 }
