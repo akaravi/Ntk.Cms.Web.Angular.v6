@@ -29,11 +29,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-propertyads-list',
-<<<<<<< HEAD
   templateUrl: './list.component.html'
-=======
-  templateUrl: './list.component.html',
->>>>>>> indosaremi
 })
 export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   requestLinkPropertyId = '';
