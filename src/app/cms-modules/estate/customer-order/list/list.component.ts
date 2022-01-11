@@ -1,4 +1,3 @@
-
 import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,8 +25,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
@@ -42,6 +40,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -59,7 +58,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -70,8 +68,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstateCustomerOrderModel> = [];
   tableRowSelected: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   tableSource: MatTableDataSource<EstateCustomerOrderModel> = new MatTableDataSource<EstateCustomerOrderModel>();
-
-
   tabledisplayedColumns: string[] = [
     'Id',
     'LinkSiteId',
@@ -80,21 +76,15 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     'Action',
     "LinkTo",
   ];
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
-
   expandedElement: EstateCustomerOrderModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -127,11 +117,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     }
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -154,12 +141,9 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -185,10 +169,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonNewRow(): void {
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -201,7 +182,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/estate/customer-order/add']);
   }
   onActionbuttonEditRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
-
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -234,15 +214,13 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-
           this.estateCustomerOrderService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -252,12 +230,10 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -267,7 +243,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
       }
       );
-
   }
   onActionbuttonOpenCustomerOrder(model: EstateCustomerOrderModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -291,7 +266,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/estate/property/LinkCustomerOrderId/', this.tableRowSelected.Id]);
   }
-
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -311,7 +285,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -350,7 +323,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -377,7 +349,6 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات مشتری ها");
     this.estateCustomerOrderService

@@ -28,6 +28,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-biography-comment-list',
   templateUrl: './list.component.html',
@@ -50,6 +51,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
@@ -287,7 +289,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) '+ ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) ';    this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {

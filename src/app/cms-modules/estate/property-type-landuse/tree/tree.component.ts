@@ -12,25 +12,21 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   EstatePropertyTypeLanduseModel,
   EstatePropertyTypeLanduseService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EstatePropertyTypeLanduseEditComponent } from '../edit/edit.component';
 import { EstatePropertyTypeLanduseAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-propertytypelanduse-tree',
   templateUrl: './tree.component.html',
@@ -44,6 +40,7 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
@@ -159,7 +156,7 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
       return;
     }
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.dataModelSelect.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

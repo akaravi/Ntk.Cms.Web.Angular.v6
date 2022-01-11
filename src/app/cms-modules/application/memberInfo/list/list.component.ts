@@ -27,6 +27,7 @@ import { ApplicationMemberInfoViewComponent } from '../view/view.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { ApplicationLogNotificationActionSendComponent } from '../../notification/action-send/action-send.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-memberinfo-list',
   templateUrl: './list.component.html',
@@ -40,6 +41,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -246,7 +248,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' +
       '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)

@@ -63,7 +63,7 @@ export class NewsCategoryAddComponent implements OnInit {
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
   }
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'ثبت دسته بندی جدید';
+    this.formInfo.FormTitle = this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -101,7 +101,7 @@ export class NewsCategoryAddComponent implements OnInit {
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormAlert = 'بروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }

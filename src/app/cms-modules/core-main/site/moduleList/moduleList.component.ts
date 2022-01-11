@@ -33,7 +33,7 @@ import { CoreSiteModuleEditComponent } from '../moduleEdit/moduleEdit.component'
 import { CoreSiteModuleAddComponent } from '../moduleAdd/moduleAdd.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-site-module-list',
   templateUrl: './moduleList.component.html',
@@ -52,6 +52,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
@@ -281,7 +282,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

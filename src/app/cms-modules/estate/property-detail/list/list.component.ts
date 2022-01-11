@@ -35,7 +35,7 @@ import { EstatePropertyDetailAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-hypershop-category-list',
   templateUrl: './list.component.html',
@@ -54,6 +54,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
@@ -307,7 +308,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

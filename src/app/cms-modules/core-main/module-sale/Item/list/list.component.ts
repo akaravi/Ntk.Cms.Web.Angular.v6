@@ -32,7 +32,7 @@ import { CoreModuleSaleItemEditComponent } from '../edit/edit.component';
 import { CoreModuleSaleItemAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-modulesaleitem-list',
   templateUrl: './list.component.html',
@@ -50,6 +50,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkModuleSaleHeader = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleSaleHeader'));
@@ -279,7 +280,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

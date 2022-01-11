@@ -5,16 +5,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   CoreUserClaimContentModel,
   CoreUserClaimContentService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreUserClaimGroupModel,
   CoreUserClaimTypeModel,
   CoreUserClaimTypeService,
 } from 'ntk-cms-api';
@@ -32,7 +29,7 @@ import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-userclaimcontent-list',
   templateUrl: './list.component.html',
@@ -52,6 +49,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkUserClaimTypeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimTypeId'));
@@ -291,7 +289,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

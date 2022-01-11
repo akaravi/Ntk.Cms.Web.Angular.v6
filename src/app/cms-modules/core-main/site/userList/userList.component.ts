@@ -29,7 +29,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CoreSiteUserAddComponent } from '../userAdd/userAdd.component';
 import { CoreSiteUserEditComponent } from '../userEdit/userEdit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-site-user-list',
   templateUrl: './userList.component.html',
@@ -48,6 +48,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
@@ -284,7 +285,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( '
       + this.tableRowSelected.virtual_CmsSite.Title + '<-->' + this.tableRowSelected.virtual_CmsUser.Username + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)

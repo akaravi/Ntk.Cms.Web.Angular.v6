@@ -31,7 +31,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CoreUserChangePasswordComponent } from '../changePassword/changePassword.component';
 import { CoreUserViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-user-list',
   templateUrl: './list.component.html',
@@ -49,6 +49,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     private coreAuthService: CoreAuthService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
@@ -300,7 +301,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Username + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
