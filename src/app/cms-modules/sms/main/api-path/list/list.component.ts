@@ -5,16 +5,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   SmsMainApiPathModel,
   SmsMainApiPathService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreCurrencyService,
   CoreCurrencyModel,
   SmsMainApiPathCompanyModel,
   SmsMainApiPathCompanyService,
@@ -31,12 +28,11 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { SmsMainApiPathEditComponent } from '../edit/edit.component';
 import { SmsMainApiPathAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { SmsMainApiPathSendTestComponent } from '../sendTest/sendTest.component';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-sms-apipath-list',
   templateUrl: './list.component.html',
@@ -58,6 +54,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -322,7 +319,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

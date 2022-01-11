@@ -29,7 +29,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TicketingAnswerAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TicketingAnswerViewComponent } from '../view/view.component';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-ticketing-answer-list',
   templateUrl: './list.component.html',
@@ -46,6 +46,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -282,7 +283,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

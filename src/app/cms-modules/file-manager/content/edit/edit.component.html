@@ -86,7 +86,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="موتور های سرچ" state="seo">
+      <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
         <p>این بخش کمک می کند موتورهای سرچ بهتر مطالب را ایندکس کنند</p>
         <mat-form-field class="ntk-full-width">
           <mat-label>آدرس صفحه منبع مطلب</mat-label>
@@ -119,7 +119,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="موقعیت مکانی" state="loaction">
+      <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>

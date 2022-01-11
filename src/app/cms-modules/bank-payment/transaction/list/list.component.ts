@@ -256,7 +256,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

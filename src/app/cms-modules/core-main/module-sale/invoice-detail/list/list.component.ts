@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreModuleSaleInvoiceDetailViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-modulesaleinvoicedetail-list',
@@ -48,6 +49,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkInvoiceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkInvoiceId'));
@@ -240,7 +242,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

@@ -1,14 +1,11 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  CoreAuthService,
   DataFieldInfoModel,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
   ChartCommentModel,
   ChartCommentService,
-  ChartContentModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EnumFilterDataModelSearchTypes,
   ChartContentService
@@ -31,8 +28,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
-
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-chart-comment-list',
   templateUrl: './list.component.html',
@@ -55,6 +51,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
@@ -98,8 +95,6 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
     'Action',
     "LinkTo",
   ];
-
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   expandedElement: ChartCommentModel | null;
   cmsApiStoreSubscribe: Subscription;
@@ -130,8 +125,6 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -180,7 +173,6 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
@@ -190,8 +182,6 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -317,7 +307,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) '+ ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

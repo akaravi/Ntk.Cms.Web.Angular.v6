@@ -309,7 +309,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="موقعیت مکانی" state="loaction">
+      <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>

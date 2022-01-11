@@ -54,7 +54,7 @@
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
-        <mat-label (click)="fileManagerOpenForm = true">فایل آیکن
+        <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Icon_File' | translate}} 
         </mat-label>
         <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
           type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />

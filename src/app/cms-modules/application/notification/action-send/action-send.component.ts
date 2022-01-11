@@ -77,7 +77,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     this.BigImageIdSrc = model.downloadLinksrc;
   }
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'ثبت دسته بندی جدید';
+    this.formInfo.FormTitle =  this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumContentType();
   }
   getEnumContentType(): void {

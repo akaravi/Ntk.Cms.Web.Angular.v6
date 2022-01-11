@@ -64,7 +64,7 @@ export class ArticleCategoryAddComponent implements OnInit {
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
   }
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'ثبت دسته بندی جدید';
+    this.formInfo.FormTitle =  this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }

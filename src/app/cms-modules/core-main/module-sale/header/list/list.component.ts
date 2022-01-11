@@ -8,14 +8,11 @@ import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreModuleSaleHeaderGroupModel,
-  CoreSiteService
-} from 'ntk-cms-api';
+  CoreModuleSaleHeaderGroupModel} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -30,6 +27,7 @@ import { CoreModuleSaleHeaderEditComponent } from '../edit/edit.component';
 import { CoreModuleSaleHeaderAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-modulesaleheader-list',
@@ -46,6 +44,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestHeaderGroupId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkHeaderGroupId'));
@@ -260,7 +259,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

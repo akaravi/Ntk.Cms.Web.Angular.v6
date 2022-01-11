@@ -61,7 +61,7 @@ export class NewsCategoryEditComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.FormTitle = 'ویرایش  دسته بندی';
+      this.formInfo.FormTitle =  this.translate.instant('TITLE.Register_New_Categories');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();

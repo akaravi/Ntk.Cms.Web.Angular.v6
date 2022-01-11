@@ -65,7 +65,7 @@ export class LinkManagementMemberAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = 'ثبت دسته بندی جدید';
+    this.formInfo.FormTitle = this.translate.instant('TITLE.Register_New_Categories');
 
     this.getEnumRecordStatus();
     this.DataGetAccess();

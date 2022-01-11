@@ -1,4 +1,3 @@
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,7 +29,7 @@ import { CoreTokenActivationEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreTokenActivationViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-coretoken-user-list',
   templateUrl: './list.component.html',
@@ -49,6 +48,7 @@ export class CoreTokenActivationListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
@@ -299,7 +299,7 @@ export class CoreTokenActivationListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' +
       '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
