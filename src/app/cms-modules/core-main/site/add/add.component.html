@@ -248,8 +248,8 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="درباره ما" state="seo">
-        <p>محتوای بخش درباره ما </p>
+      <mat-step label="{{'ACTION.ABOUT' | translate}}" state="seo">
+        <p>{{'TITLE.Content_Of_The_About_Us_App' | translate}}</p>
         <div class="mb-3">
           <img *ngIf="dataModel?.LinkImageLogoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.LinkImageLogoIdSrc | cmsthumbnail}}" height="50" width="50" />

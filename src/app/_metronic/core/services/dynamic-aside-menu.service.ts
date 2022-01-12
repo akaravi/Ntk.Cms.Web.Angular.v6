@@ -1,4 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreAuthService, CoreCpMainMenuModel, CoreCpMainMenuService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -18,7 +19,8 @@ export class DynamicAsideMenuService implements OnDestroy {
   constructor(
     private coreCpMainMenuService: CoreCpMainMenuService,
     public coreAuthService: CoreAuthService,
-    private tokenHelper: TokenHelper
+    private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.menuConfig$ = this.menuConfigSubject.asObservable();
     this.setMenu([]);
@@ -54,12 +56,12 @@ export class DynamicAsideMenuService implements OnDestroy {
   }
   DataGetCpMenu(): void {
     const menuItems: any = [{
-      title: 'داشبورد',
+      title:this.translate.instant( 'MENU.DASHBOARD'),
       root: true,
       icon: 'flaticon2-architecture-and-city',
       svg: './assets/media/svg/icons/Design/Layers.svg',
       page: '/dashboard',
-      translate: 'MENU.DASHBOARD',
+      //translate: 'MENU.DASHBOARD',
       bullet: 'dot',
     }];
     this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(

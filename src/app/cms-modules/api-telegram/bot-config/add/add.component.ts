@@ -59,7 +59,7 @@ export class ApiTelegramBotConfigAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.FormTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }

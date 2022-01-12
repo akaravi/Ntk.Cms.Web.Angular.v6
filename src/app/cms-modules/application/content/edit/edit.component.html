@@ -125,8 +125,8 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="درباره ما" state="seo">
-        <p>محتوای بخش درباره ما اپلیکیشن </p>
+      <mat-step label="{{'ACTION.ABOUT' | translate}}" state="seo">
+        <p>{{'TITLE.Content_Of_The_About_Us_App' | translate}}</p>
         <!-- AboutUsTitle Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsTitle']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['AboutUsTitle']?.FieldTitle }}</mat-label>
@@ -391,7 +391,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.AboutUsLinkImageId"
               [disabled]="!fieldsInfo['AboutUsLinkImageId']?.AccessEditField" name="dataModel.AboutUsLinkImageId"
-              #AboutUsLinkImageId type="text" placeholder="شناسه فایل اصلی"
+              #AboutUsLinkImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
               (click)="fileManagerOpenFormAboutUsLinkImageId = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.AboutUsLinkImageId && fieldsInfo['AboutUsLinkImageId']?.AccessEditField" matSuffix
@@ -424,8 +424,8 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="تنطیمات ساخت" state="seo">
-        <p>تنظیمات ساخت اپلیکیشن و برروز رسانی را انتخاب کنید</p>
+      <mat-step label="{{'TITLE.Build_Settings' | translate}}" state="seo">
+        <p>{{'TITLE.Select_App_Build_And_Update_Settings' | translate}}</p>
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.IsGlobalUser" *ngIf="fieldsInfo['IsGlobalUser']?.AccessWatchField"
             [disabled]="!fieldsInfo['IsGlobalUser']?.AccessEditField" name="dataModel.IsGlobalUser">
@@ -502,7 +502,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.LinkFileIdIcon"
               [disabled]="!fieldsInfo['LinkFileIdIcon']?.AccessEditField" name="dataModel.LinkFileIdIcon"
-              #LinkFileIdIcon type="text" placeholder="شناسه فایل اصلی"
+              #LinkFileIdIcon type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
               (click)="fileManagerOpenFormLinkFileIdIcon = true" />
             <mat-icon matSuffix *ngIf="dataModel.LinkFileIdIcon && fieldsInfo['LinkFileIdIcon']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkFileIdIcon = null">close</mat-icon>
@@ -524,7 +524,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.LinkFileIdLogo"
               [disabled]="!fieldsInfo['LinkFileIdLogo']?.AccessEditField" name="dataModel.LinkFileIdLogo"
-              #LinkFileIdLogo type="text" placeholder="شناسه فایل اصلی"
+              #LinkFileIdLogo type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
               (click)="fileManagerOpenFormLinkFileIdLogo = true" />
             <mat-icon matSuffix *ngIf="dataModel.LinkFileIdLogo && fieldsInfo['LinkFileIdLogo']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkFileIdLogo = null">close</mat-icon>
@@ -548,7 +548,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.LinkFileIdSplashScreen"
               [disabled]="!fieldsInfo['LinkFileIdSplashScreen']?.AccessEditField"
-              name="dataModel.LinkFileIdSplashScreen" #LinkFileIdSplashScreen type="text" placeholder="شناسه فایل اصلی"
+              name="dataModel.LinkFileIdSplashScreen" #LinkFileIdSplashScreen type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
               autocomplete="off" (click)="fileManagerOpenFormLinkFileIdSplashScreen = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.LinkFileIdSplashScreen && fieldsInfo['LinkFileIdSplashScreen']?.AccessEditField"
@@ -572,7 +572,7 @@
               {{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainImageId"
               [disabled]="!fieldsInfo['LinkMainImageId']?.AccessEditField" name="dataModel.LinkMainImageId"
-              #LinkMainImageId type="text" placeholder="شناسه فایل اصلی"
+              #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
               (click)="fileManagerOpenFormLinkMainImageId = true" />
             <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId && fieldsInfo['LinkMainImageId']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainImageId = null">close</mat-icon>

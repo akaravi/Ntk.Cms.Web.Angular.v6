@@ -79,7 +79,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-        <p>عکسها و فایل های اپلیکیشن</p>
+        <p>{{'TITLE.Photos_And_Application_Files' | translate}}</p>
         <!-- LinkMainImageId Field -->
         <div class="mb-3">
           <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
@@ -90,7 +90,7 @@
             <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainImageId"
               [disabled]="!fieldsInfo['LinkMainImageId']?.AccessEditField" name="dataModel.LinkMainImageId"
-              #LinkMainImageId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId && fieldsInfo['LinkMainImageId']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainImageId = null">close</mat-icon>
@@ -113,7 +113,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainVideoId"
               [disabled]="!fieldsInfo['LinkMainVideoId']?.AccessEditField" name="dataModel.LinkMainVideoId"
-              #LinkMainVideoId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              #LinkMainVideoId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenFormVideo = true" />
             <mat-icon matSuffix *ngIf="dataModel.LinkMainVideoId && fieldsInfo['LinkMainVideoId']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainVideoId = null">close</mat-icon>
