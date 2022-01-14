@@ -5,7 +5,7 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 */
-@import "~@angular/material/theming";
+@import "@angular/material/theming";
 
 @include mat-core();
 
