@@ -32,7 +32,7 @@
     "@asymmetrik/ngx-leaflet": "^8.1.0",
     "@circlon/angular-tree-component": "^11.0.4",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@kolkov/angular-editor": "^1.2.0",
+    "@kolkov/angular-editor": "^2.0.0",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
