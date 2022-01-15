@@ -456,7 +456,7 @@
         </div>
 
 
-        <button (click)="onActionOptionAddToList()" type="button" mat-button
+        <button (click)="onActionOptionAddToList()" type="button" mat-button *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0"
           class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
           {{optionActionTitle}} ...
         </button>
@@ -520,9 +520,11 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
+                <button mat-icon-button>
                 <small (click)="onActionOptionRemoveFromList(i)">
                   <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}
                 </small>
+              </button>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>

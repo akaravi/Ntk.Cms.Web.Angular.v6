@@ -20,7 +20,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-estate-contract-type-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
+
 })
 export class EstateContractTypeSelectorComponent implements OnInit,OnDestroy{
 
