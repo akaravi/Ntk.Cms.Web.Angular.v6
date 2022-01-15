@@ -127,7 +127,9 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
+          <button mat-icon-button>
           <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+        </button>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
