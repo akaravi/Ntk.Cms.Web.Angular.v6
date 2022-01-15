@@ -42,6 +42,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-estate-property-add',
@@ -136,6 +137,8 @@ export class EstatePropertyAddComponent implements OnInit {
   listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
   dataProfessional = false;
   hidden = true;
+  cmsApiStoreSubscribe: Subscription;
+
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'ثبت محتوای جدید';
@@ -145,6 +148,17 @@ export class EstatePropertyAddComponent implements OnInit {
     this.getEstatePropertyType();
     this.getEstatePropertyTypeLanduse();
     this.dataModel.CaseCode=this.publicHelper.StringRandomGenerator(5,true);
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.getEnumRecordStatus();
+      this.DataGetAccess();
+      this.getEstateContractType();
+      this.getEstatePropertyType();
+      this.getEstatePropertyTypeLanduse();
+            this.tokenInfo = next;
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   getEstateContractType(): void {
     const pName = this.constructor.name + 'getEstateContractType';

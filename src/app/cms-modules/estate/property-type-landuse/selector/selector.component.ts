@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -10,10 +10,11 @@ import {
   EstatePropertyTypeLanduseService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -21,11 +22,12 @@ import { Output } from '@angular/core';
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
+export class EstatePropertyTypeLanduseSelectorComponent implements OnInit,OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     public categoryService: EstatePropertyTypeLanduseService) {
     this.loading.cdr = this.cdr;
   }
@@ -49,8 +51,15 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
 
   typeUsageId = '';
   @Input() optionReload = () => this.onActionReload();
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.loadOptions();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.loadOptions();
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
@@ -68,10 +77,10 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit {
       );
   }
   displayFn(model?: EstatePropertyTypeLanduseModel): string | undefined {
-    return model ? model.Title : undefined;
+    return model ? model.TitleML : undefined;
   }
   displayOption(model?: EstatePropertyTypeLanduseModel): string | undefined {
-    return model ? model.Title : undefined;
+    return model ? model.TitleML : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstatePropertyTypeLanduseModel[]> {
     const filteModel = new FilterModel();

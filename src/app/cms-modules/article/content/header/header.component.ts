@@ -10,12 +10,15 @@ import {
   OnInit,
   Input,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -23,11 +26,12 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class ArticletHeaderComponent implements OnInit {
+export class ArticletHeaderComponent implements OnInit ,OnDestroy{
   constructor(
     private headerService: ArticleContentService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     private cmsToastrService: CmsToastrService,
     public dialog: MatDialog
 
@@ -41,12 +45,19 @@ export class ArticletHeaderComponent implements OnInit {
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
-
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     if (this.optionId > 0) {
       this.DataGetOneContent();
+      this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+        this.DataGetOneContent();
+      });
     }
+    
     this.getEnumRecordStatus();
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();

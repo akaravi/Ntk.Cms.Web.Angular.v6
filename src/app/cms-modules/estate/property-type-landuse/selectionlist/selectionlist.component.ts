@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -10,6 +10,8 @@ import { FormControl } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -17,12 +19,13 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   templateUrl: './selectionlist.component.html',
   styleUrls: ['./selectionlist.component.scss']
 })
-export class EstatePropertyTypeLanduseSelectionlistComponent implements OnInit {
+export class EstatePropertyTypeLanduseSelectionlistComponent implements OnInit ,OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
     public categoryService: EstatePropertyTypeLanduseService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     private cmsToastrService: CmsToastrService) {
     this.loading.cdr = this.cdr;
   }
@@ -43,11 +46,16 @@ export class EstatePropertyTypeLanduseSelectionlistComponent implements OnInit {
   @Input() set optionSelectForce(x: string[] | EstatePropertyTypeLanduseModel[]) {
     this.onActionSelectForce(x);
   }
-
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.DataGetAll();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.DataGetAll();
+    });
   }
-
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
   DataGetAll(): void {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 50;

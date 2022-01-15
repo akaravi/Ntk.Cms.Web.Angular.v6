@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   EstatePropertyModel,
@@ -39,13 +39,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EstatePropertyEditComponent implements OnInit {
+export class EstatePropertyEditComponent implements OnInit,OnDestroy {
   requestId = '';
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -118,6 +119,7 @@ export class EstatePropertyEditComponent implements OnInit {
   // ** Accardon */
   step = 0;
   hidden = true;
+  cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
     if (this.requestId.length <= 0) {
@@ -126,11 +128,20 @@ export class EstatePropertyEditComponent implements OnInit {
       this.router.navigate(['/estate/property']);
       return;
     }
-    this.formInfo.FormTitle = 'ثبت محتوای جدید';
-    this.getEnumRecordStatus();
-    this.getEstateContractType();
     this.formInfo.FormTitle = 'ویرایش  ';
     this.DataGetOne();
+    this.getEnumRecordStatus();
+    this.getEstateContractType();
+
+   
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.DataGetOne();
+      this.getEnumRecordStatus();
+      this.getEstateContractType();
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   getEstateContractType(): void {
     const pName = this.constructor.name + 'getEstateContractType';
@@ -141,6 +152,7 @@ export class EstatePropertyEditComponent implements OnInit {
     }, () => {
       this.loading.Stop(pName);
     });
+
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();

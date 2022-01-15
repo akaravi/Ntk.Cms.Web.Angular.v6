@@ -10,26 +10,27 @@ import {
   OnInit,
   Input,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
-
-
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-estate-property-type-usage-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class EstatePropertyTypeUsageHeaderComponent implements OnInit {
+export class EstatePropertyTypeUsageHeaderComponent implements OnInit, OnDestroy {
   constructor(
     private headerService: EstatePropertyTypeUsageService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public tokenHelper: TokenHelper
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -40,12 +41,18 @@ export class EstatePropertyTypeUsageHeaderComponent implements OnInit {
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
-
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     if (this.optionId?.length > 0) {
       this.DataGetOneContent();
     }
     this.getEnumRecordStatus();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.DataGetOneContent();
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
