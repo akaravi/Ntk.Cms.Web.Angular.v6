@@ -1,6 +1,6 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
-  <h4> ویرایش</h4>
-  در این بخش شما میتوانید محتوای خود را ویرایش نمایید.
+ <h4> {{'TITLE.Edit' | translate}}</h4>
+ {{'TITLE.In_This_Section_You_Can_Edit_Your_Content' | translate}}
   <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -264,8 +264,8 @@
         <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="OtherInfo"
           [(ngModel)]="contentOtherInfoSelected.HtmlBody" name="contentOtherInfoSelected.HtmlBody"></angular-editor>
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
-          class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-          اضافه به لیست ...
+          class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
+          {{'ACTION.Add_To_List' | translate}}
         </button>
         <p>لیست سایر اطلاعات</p>
         <!-- TABLE  -->
@@ -321,7 +321,7 @@
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.Id"
             (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
             class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-            اضافه به لیست ...
+            {{'ACTION.ACTION.Add_To_List' | translate}} ...
           </button>
         </app-article-content-selector>
         <!-- TABLE  -->
