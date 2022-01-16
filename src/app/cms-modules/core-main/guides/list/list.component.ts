@@ -78,7 +78,7 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
     'Id',
     'RecordStatus',
     'Key',
-    'Title',
+    'TitleFa',
     'ShowInMenuOrder',
     'Action',
     'position'
@@ -275,7 +275,7 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.TitleFa + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {

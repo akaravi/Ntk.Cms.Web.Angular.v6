@@ -1,6 +1,8 @@
-import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, Input, ElementRef, HostListener, Renderer2, OnDestroy } from '@angular/core';
 import { CoreGuideService } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { TokenHelper } from '../helpers/tokenHelper';
 import { CmsToastrService } from '../services/cmsToastr.service';
 
 @Directive({
@@ -18,12 +20,26 @@ export class TooltipGuideDirective {
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
+    private tokenHelper: TokenHelper,
     private coreGuideService: CoreGuideService,
     private cmsToastrService: CmsToastrService,
-  ) { }
+  ) {
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.lang = value.Language;
+
+    });
+
+  }
+
+  lang = '';
 
   @HostListener('mouseenter') onMouseEnter(): void {
-    if (!this.tooltip) { this.show(); }
+    if (!this.tooltip) {
+      this.tokenHelper.getCurrentToken().then((value) => {
+        this.lang = value.Language;
+      });
+      this.show();
+    }
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
@@ -37,7 +53,29 @@ export class TooltipGuideDirective {
           (next) => {
             if (next.IsSuccess) {
               /*run */
-              this.create(next.Item.BodyFa);
+              switch (this.lang) {
+                case 'fa': {
+                  this.create(next.Item.BodyFa);
+                  break;
+                }
+                case 'en': {
+                  this.create(next.Item.BodyEn);
+                  break;
+                }
+                case 'ar': {
+                  this.create(next.Item.BodyAr);
+                  break;
+                }
+                case 'de': {
+                  this.create(next.Item.BodyDe);
+                  break;
+                }
+                default: {
+                  this.create(next.Item.BodyFa);
+                  break;
+                }
+              }
+
               this.setPosition();
               this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
               /*run */
@@ -64,7 +102,28 @@ export class TooltipGuideDirective {
           (next) => {
             if (next.IsSuccess) {
               /*run */
-              this.create(next.Item.BodyFa);
+              switch (this.lang) {
+                case 'fa': {
+                  this.create(next.Item.BodyFa);
+                  break;
+                }
+                case 'en': {
+                  this.create(next.Item.BodyEn);
+                  break;
+                }
+                case 'ar': {
+                  this.create(next.Item.BodyAr);
+                  break;
+                }
+                case 'de': {
+                  this.create(next.Item.BodyDe);
+                  break;
+                }
+                default: {
+                  this.create(next.Item.BodyFa);
+                  break;
+                }
+              }
               this.setPosition();
               this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
               /*run */

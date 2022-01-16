@@ -72,10 +72,10 @@
           <p [tooltipGuide]="row.Key" placement="right" delay="500" *ngIf="row.Key?.length>0">{{row.Key}}</p>
         </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}}</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+      <!-- TitleFa Column -->
+      <ng-container matColumnDef="TitleFa">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TitleFa']?.FieldTitle}}</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.TitleFa}} </mat-cell>
       </ng-container>
       <!-- ShowInMenuOrder Column -->
       <ng-container matColumnDef="ShowInMenuOrder">
