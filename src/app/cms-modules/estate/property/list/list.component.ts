@@ -200,7 +200,7 @@ export class EstatePropertyListComponent
     this.tableRowSelected = new EstatePropertyModel();
 
     const pName = this.constructor.name + "main";
-    this.loading.Start(pName);
+    this.loading.Start(pName,'دریافت  لیست اطلاعات');
 
     this.filteModelProperty.AccessLoad = true;
     /*filter CLone*/
@@ -474,7 +474,7 @@ export class EstatePropertyListComponent
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + "main";
-          this.loading.Start(pName);
+          this.loading.Start(pName,'در حال حذف اطلاعات');
 
           this.estatePropertyService
             .ServiceDelete(this.tableRowSelected.Id)

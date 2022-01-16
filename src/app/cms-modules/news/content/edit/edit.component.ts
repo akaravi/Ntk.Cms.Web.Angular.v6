@@ -151,7 +151,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,'دریافت  لیست اطلاعات');
     /*َAccess Field*/
     this.contentService.setAccessLoad();
     this.contentService
@@ -195,7 +195,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات تگها از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,'در حال دریافت اطلاعات تگها از سرور');
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
@@ -233,7 +233,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName, 'در حال دریافت سایر اطلاعات از سرور');
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
@@ -266,7 +266,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,'در حال دریافت سایر اطلاعات از سرور');
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkSourceId';
@@ -313,7 +313,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,'در حال دریافت سایر اطلاعات از سرور');
     const filteModel = new FilterModel();
     ids.forEach(item => {
       if (item > 0) {
@@ -349,7 +349,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,'در حال ارسال اطلاعات به سرور');
     this.contentService
       .ServiceEdit(this.dataModel)
       .subscribe(
@@ -465,7 +465,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,'در حال دریافت اطلاعات دسته بندی از سرور');
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';

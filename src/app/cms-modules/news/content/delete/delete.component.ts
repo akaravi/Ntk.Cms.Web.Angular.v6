@@ -2,14 +2,12 @@ import {
   ChangeDetectorRef,
   Component,
   Inject,
-  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, ItemState, NewsContentModel, NewsContentService } from 'ntk-cms-api';
+import { DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, NewsContentModel, NewsContentService } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +50,7 @@ export class NewsContentDeleteComponent implements OnInit {
     }
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName, 'دریافت  لیست اطلاعات');
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
@@ -90,7 +88,7 @@ export class NewsContentDeleteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName, 'دریافت  لیست اطلاعات');
 
     this.contentService
       .ServiceDelete(this.requestId)

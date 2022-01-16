@@ -391,7 +391,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات ملک");
+    this.loading.Start(pName, "دریافت اطلاعات خبر");
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.Id)
       .subscribe(
