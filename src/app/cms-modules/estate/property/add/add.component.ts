@@ -43,12 +43,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-estate-property-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
-})
+  })
 export class EstatePropertyAddComponent implements OnInit {
   requestLinkPropertyTypeLanduseId = '';
   requestLinkPropertyTypeUsageId = '';
@@ -122,7 +120,7 @@ export class EstatePropertyAddComponent implements OnInit {
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
-  optionActionTitle = 'اضافه به لیست';
+  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'Action'];
@@ -154,6 +152,7 @@ export class EstatePropertyAddComponent implements OnInit {
       this.getEstateContractType();
       this.getEstatePropertyType();
       this.getEstatePropertyTypeLanduse();
+      this.optionActionTitle =this.translate.instant('ACTION.Add_To_List');
             this.tokenInfo = next;
     });
   }

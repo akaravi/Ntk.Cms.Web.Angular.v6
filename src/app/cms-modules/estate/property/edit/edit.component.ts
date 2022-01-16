@@ -104,7 +104,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
-  optionActionTitle = 'اضافه به لیست';
+  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'Action'];
@@ -183,7 +183,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
             this.mapMarkerPoints.push({ lat, lon });
             this.receiveMap();
           }
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormTitle =next.Item.Title;
           this.formInfo.FormAlert = '';
           /*
           * check file attach list
