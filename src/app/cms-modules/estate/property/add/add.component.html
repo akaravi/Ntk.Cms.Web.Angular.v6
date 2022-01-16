@@ -30,7 +30,7 @@
             <button type="button" mat-raised-button
               [attr.disabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessAddField? true : null"
               color="{{state.Id===dataModel.LinkPropertyTypeLanduseId ? 'primary' : 'info'}}"
-              (click)="onActionSelectorSelectLanduse(state)">{{ state.Title }}</button>
+              (click)="onActionSelectorSelectLanduse(state)">{{ state.TitleML }}</button>
           </div>
         </div>
 
@@ -457,11 +457,11 @@
 
 
         <button (click)="onActionOptionAddToList()" type="button" mat-button *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0"
-          class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-          {{optionActionTitle}} ...
+          class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
+          {{optionActionTitle}}
         </button>
         <hr>
-        <p>لیست مشخصات معامله این ملک</p>
+        <p> {{'TITLE.List_Of_Transaction_Details_Of_This_Property' | translate}} </p>
         <app-progress-spinner [options]="loadingOption">
         </app-progress-spinner>
         <!-- TABLE  -->

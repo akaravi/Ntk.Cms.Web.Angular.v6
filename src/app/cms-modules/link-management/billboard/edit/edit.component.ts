@@ -63,7 +63,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  optionActionTitle = 'اضافه به لیست';
+  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
   dataContentCategoryModel: number[] = [];

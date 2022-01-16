@@ -232,8 +232,8 @@
           [(ngModel)]="contentOtherInfoSelected.HtmlBody" name="contentOtherInfoSelected.HtmlBody"></angular-editor>
 
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
-          class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-          اضافه به لیست ...
+          class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
+          {{'ACTION.Add_To_List' | translate}}
         </button>
         <p>لیست سایر اطلاعات</p>
         <!-- TABLE  -->
@@ -309,7 +309,7 @@
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.Id"
             (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
             class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-            اضافه به لیست ...
+            {{'ACTION.Add_To_List' | translate}}
           </button>
         </app-blog-content-selector>
 
