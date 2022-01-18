@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { InlineSVGModule } from 'ng-inline-svg';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 function appInitializer(authService: AuthService) {
   return () => {
