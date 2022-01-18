@@ -13,9 +13,6 @@
     <!-- AppId Field -->
     <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)"
       [optionSelectForce]="LinkMemberId" [optionPlaceholder]="'عضو'"></app-application-memberinfo-selector>
-
-
-
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>Title</mat-label>
@@ -29,7 +26,6 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <!-- ContentType Field -->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="نوع پیام" [(ngModel)]="dataModel.ContentType" name="dataModel.ContentType"
@@ -70,19 +66,17 @@
         ContentJson is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-
     <!-- SmallImageId Field -->
     <div class="mb-3">
-      <img *ngIf="SmallImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden src="{{SmallImageIdSrc | cmsthumbnail}}"
+      <img *ngIf="SmallImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{SmallImageIdSrc | cmsthumbnail}}"
         height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
-        <mat-label (click)="fileManagerOpenFormSmallFile = true">فایل عکس کوچک
+        <mat-label (click)="fileManagerOpenFormSmallFile = true">{{'TITLE.Small_Photo_File' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.SmallImageId" name="dataModel.SmallImageId" #SmallImageId type="text"
-          placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenFormSmallFile = true" />
+        placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenFormSmallFile = true" />
         <mat-icon matSuffix *ngIf="dataModel.SmallImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.SmallImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenFormSmallFile = true">mode_edit</mat-icon>
@@ -92,18 +86,17 @@
         [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
         [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
     </div>
-
     <!-- BigImageId Field -->
     <div class="mb-3">
-      <img *ngIf="BigImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden src="{{BigImageIdSrc | cmsthumbnail}}"
+      <img *ngIf="BigImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{BigImageIdSrc | cmsthumbnail}}"
         height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
-        <mat-label (click)="fileManagerOpenFormBigFile = true">فایل عکس اصلی
+        <mat-label (click)="fileManagerOpenFormBigFile = true">{{'TITLE.Original_Photo_File' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.BigImageId" name="dataModel.BigImageId" #BigImageId type="text"
-          placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenFormBigFile = true" />
+        placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenFormBigFile = true" />
         <mat-icon matSuffix *ngIf="dataModel.BigImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.BigImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenFormBigFile = true">mode_edit</mat-icon>

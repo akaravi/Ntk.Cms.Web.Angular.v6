@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InlineSVGModule } from 'ng-inline-svg';
+
 import { PagesRoutingModule } from './pages.routing';
 import {
   NgbDropdownModule,
@@ -19,8 +19,9 @@ import { AsideDynamicComponent } from './_layout/components/aside-dynamic/aside-
 import { HeaderMenuDynamicComponent } from './_layout/components/header/header-menu-dynamic/header-menu-dynamic.component';
 import { CoreSiteModule } from '../cms-modules/core-main/site/coreSite.module';
 import { SharedModule } from '../shared/shared.module';
-import { CoreAuthService, CoreCpMainMenuService, CoreModuleService } from 'ntk-cms-api';
+import { CoreAuthService, CoreConfigurationService, CoreCpMainMenuService, CoreModuleService } from 'ntk-cms-api';
 import { TranslationModule } from '../core/i18n/translation.module';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 @NgModule({
   declarations: [
@@ -49,9 +50,11 @@ import { TranslationModule } from '../core/i18n/translation.module';
   providers: [
     CoreModuleService,
     CoreCpMainMenuService,
+    CoreConfigurationService,
     CoreAuthService,
     DynamicHeaderMenuService,
     DynamicAsideMenuService,
+
   ]
 })
 export class PagesModule { }

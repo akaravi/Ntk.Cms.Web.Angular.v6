@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { BiographyRouting } from './biography.routing';
 import { BiographyComponent } from './biography.component';
 import { TagInputModule } from 'ngx-chips';
-
 import {
   CoreEnumService,
   CoreModuleTagService,
@@ -18,7 +17,7 @@ import {
   BiographyContentSimilarService,
   BiographyContentTagService,
   BiographyShareMainAdminSettingService,
-  BiographyShareReciverCategoryService,
+  BiographyShareReceiverCategoryService,
   BiographyShareServerCategoryService,
   BiographyContentCategoryService,
   CoreModuleService
@@ -28,9 +27,7 @@ import { BiographyCategoryDeleteComponent } from './category/delete/delete.compo
 import { BiographyContentEditComponent } from './content/edit/edit.component';
 import { BiographyContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared/shared.module';
-
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { BiographyCategorySelectorComponent } from './category/selector/selector.component';
 import { BiographyContentListComponent } from './content/list/list.component';
@@ -43,7 +40,6 @@ import { BiographyContentDeleteComponent } from './content/delete/delete.compone
 import { BiographyCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
-
 @NgModule({
   declarations: [
     BiographyComponent,
@@ -91,9 +87,8 @@ import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector
     BiographyContentSimilarService,
     BiographyContentTagService,
     BiographyShareMainAdminSettingService,
-    BiographyShareReciverCategoryService,
+    BiographyShareReceiverCategoryService,
     BiographyShareServerCategoryService,
-
   ]
 })
 export class BiographyModule { }

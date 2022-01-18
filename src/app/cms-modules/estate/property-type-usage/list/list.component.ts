@@ -29,7 +29,7 @@ import { EstatePropertyTypeUsageEditComponent } from '../edit/edit.component';
 import { EstatePropertyTypeUsageAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-hstate-propertytypeusage-list',
   templateUrl: './list.component.html',
@@ -40,9 +40,11 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
     private estatePropertyTypeUsageService: EstatePropertyTypeUsageService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
+    private router: Router,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -229,7 +231,7 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
@@ -334,5 +336,14 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: EstatePropertyTypeUsageModel): void {
     this.tableRowSelected = row;
   }
+  onActionbuttonContentDetailList(model: EstatePropertyTypeUsageModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
 
+    this.router.navigate(['/estate/property/LinkPropertyTypeUsageId/', this.tableRowSelected.Id]);
+  }
 }

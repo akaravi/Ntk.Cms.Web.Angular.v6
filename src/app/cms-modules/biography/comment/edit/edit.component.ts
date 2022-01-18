@@ -21,8 +21,6 @@ import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'app-biography-comment-edit',
   templateUrl: './edit.component.html',
@@ -51,34 +49,25 @@ export class BiographyCommentEditComponent implements OnInit {
     if (this.requestParentId > 0) {
       this.dataModel.LinkParentId = this.requestParentId;
     }
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BiographyCommentModel> = new ErrorExceptionResult<BiographyCommentModel>();
   dataModel: BiographyCommentModel = new BiographyCommentModel();
-
   ComponentAction = ComponentActionEnum.none;
-
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
   selected: any;
   openFormFileManager = false;
-
-
-
   ngOnInit(): void {
     if (this.requestId > 0) {
       this.ComponentAction = ComponentActionEnum.edit;
-      this.formInfo.FormTitle = 'ویرایش  کامنت';
+      this.formInfo.FormTitle = this.translate.instant('TITLE.Edit_Comment');
       this.DataGetOneContent();
     } else if (this.requestContentId > 0) {
       this.ComponentAction = ComponentActionEnum.add;
-      this.formInfo.FormTitle = 'ثبت کامت جدید';
+      this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_A_New_Comment');
     }
     if (this.ComponentAction === ComponentActionEnum.none) {
       this.cmsToastrService.typeErrorComponentAction();
@@ -89,23 +78,19 @@ export class BiographyCommentEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   DataGetOneContent(): void {
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }
-
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.biographyCommentService.setAccessLoad();
     this.biographyCommentService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         this.dataModel = next.Item;
         if (next.IsSuccess) {
           this.formInfo.FormAlert = '';
@@ -115,12 +100,10 @@ export class BiographyCommentEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -129,8 +112,6 @@ export class BiographyCommentEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.dataModel.LinkContentId = this.requestContentId;
     this.biographyCommentService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
@@ -146,13 +127,11 @@ export class BiographyCommentEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -161,7 +140,6 @@ export class BiographyCommentEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.biographyCommentService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -170,20 +148,18 @@ export class BiographyCommentEditComponent implements OnInit {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
-
-        } else {
+          } 
+        else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -198,7 +174,6 @@ export class BiographyCommentEditComponent implements OnInit {
     if (this.ComponentAction === ComponentActionEnum.edit) {
       this.DataEditContent();
     }
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

@@ -30,7 +30,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-chart-category-treeselector',
   templateUrl: './tree-selector.component.html',
-  styleUrls: ['./tree-selector.component.scss'],
 })
 export class ChartCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   constructor(

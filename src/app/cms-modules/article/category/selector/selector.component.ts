@@ -14,16 +14,11 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-article-category-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class ArticleCategorySelectorComponent implements OnInit {
-
-
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
@@ -42,7 +37,6 @@ export class ArticleCategorySelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | ArticleCategoryModel) {
     this.onActionSelectForce(x);
   }
-
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -61,7 +55,6 @@ export class ArticleCategorySelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: ArticleCategoryModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -87,10 +80,8 @@ export class ArticleCategorySelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -105,7 +96,6 @@ export class ArticleCategorySelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -113,7 +103,6 @@ export class ArticleCategorySelectorComponent implements OnInit {
   onActionSelect(model: ArticleCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
@@ -158,7 +147,6 @@ export class ArticleCategorySelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

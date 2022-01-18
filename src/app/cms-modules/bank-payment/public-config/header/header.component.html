@@ -1,4 +1,3 @@
-
 <div class="table" >
   <div class="tr">
     <div class="td">{{fieldsInfo['Title']?.FieldTitle}} : </div>
@@ -10,12 +9,11 @@
   <div class="tr">
     <div class="td">{{fieldsInfo['LinkMainImageId']?.FieldTitle}} : </div>
     <div class="td">
-      <img *ngIf="dataModelResult?.Item?.LinkModuleFileLogoIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+      <img *ngIf="dataModelResult?.Item?.LinkModuleFileLogoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
       src="{{dataModelResult?.Item?.LinkModuleFileLogoIdSrc }}" height="40" width="40" id="LinkModuleFileLogoIdSrc" />
     </div>
     <div class="td"></div>
     <div class="td"></div>
     <div style="clear: both;"></div>
   </div>
-
 </div>

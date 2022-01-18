@@ -14,15 +14,11 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-webdesigner-pagedependency-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
-
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
@@ -43,7 +39,6 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | WebDesignerMainPageDependencyModel) {
     this.onActionSelectForce(x);
   }
-
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -62,7 +57,6 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: WebDesignerMainPageDependencyModel): string | undefined {
     return model ? (model.Title) : undefined;
   }
@@ -88,10 +82,8 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'categoryService.ServiceGetAll';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -106,7 +98,6 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -125,7 +116,6 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-
   push(newvalue: WebDesignerMainPageDependencyModel): Observable<WebDesignerMainPageDependencyModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
@@ -134,7 +124,6 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: string | WebDesignerMainPageDependencyModel): void {
     if (typeof id === 'string' && id.length > 0) {
@@ -165,7 +154,6 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

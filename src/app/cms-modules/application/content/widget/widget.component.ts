@@ -1,14 +1,12 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ApplicationAppService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-
 @Component({
   selector: 'app-application-app-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
 })
 export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
@@ -16,13 +14,12 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info'];
+  @Input()
   loading = new ProgressSpinnerModel();
-
   constructor(
     private service: ApplicationAppService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-
   ) {
     this.loading.cdr = this.cdr;
    }
@@ -30,7 +27,6 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
     this.widgetInfoModel.title = 'اپلیکیشن های شما';
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/application/app';
-
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionStatist();
@@ -38,13 +34,10 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
-
   }
-
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active');
     this.loading.Start(this.constructor.name + 'All');
-
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
@@ -58,7 +51,6 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
         this.loading.Stop(this.constructor.name + 'All');
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';

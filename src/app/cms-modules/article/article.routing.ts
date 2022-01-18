@@ -9,8 +9,6 @@ import { ArticleContentEditComponent } from './content/edit/edit.component';
 import { ArticleContentAddComponent } from './content/add/add.component';
 import { ArticleConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
 import { ArticleConfigSiteComponent } from './config/site/config-site.component';
-
-
 const routes: Routes = [
   {
     path: '',
@@ -45,7 +43,6 @@ const routes: Routes = [
         path: 'comment/:ContentId',
         component: ArticleCommentListComponent
       },
-
     ]
   },
 ];

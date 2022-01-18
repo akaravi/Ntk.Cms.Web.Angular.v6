@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-blog-content-widget2',
@@ -22,6 +23,7 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
     private service: BlogContentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -29,14 +31,16 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'دست نوشته ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Blog');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/blog/content';
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Blog');
       this.onActionStatist();
     });
 
@@ -50,8 +54,8 @@ export class BlogContentWidget2Component implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active');
-    this.loading.Start(this.constructor.name + 'All');
+    this.loading.Start(this.constructor.name + 'Active','دریافت آمار دست نوشته های فعال');
+    this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی دست نوشته ها');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(

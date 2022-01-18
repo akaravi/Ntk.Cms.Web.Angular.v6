@@ -64,7 +64,7 @@
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
@@ -130,7 +130,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
@@ -163,11 +163,11 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteList(row)">
               <mat-icon>supervised_user_circle</mat-icon>
-              <span>سایت های عضو</span>
+              <span>{{'ACTION.MEMBER_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteByGroupList(row)">
               <mat-icon>supervisor_account</mat-icon>
-              <span>دسترسی سایت های عضو</span>
+              <span>{{'ACTION.ACCESS_MEMBER_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonResller(row)"
               *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">

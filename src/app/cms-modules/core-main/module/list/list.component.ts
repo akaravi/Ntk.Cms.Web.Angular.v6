@@ -12,7 +12,9 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EditStepDtoModel,
+  EnumActionGoStep
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -28,11 +30,11 @@ import { CoreModuleEditComponent } from '../edit/edit.component';
 import { CoreModuleAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-module-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreModuleListComponent implements OnInit, OnDestroy {
   constructor(
@@ -43,6 +45,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -80,19 +83,20 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'Title',
     'ClassName',
+    'ShowInOrder',
     'CreatedDate',
     'UpdatedDate',
     'ExpireDate',
+    'position',
     'Action'
   ];
-
 
 
   expandedElement: CoreModuleModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Title';
+    this.filteModelContent.SortColumn = 'ShowInMenuOrder';
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -235,7 +239,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
@@ -317,6 +321,30 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       }
     );
 
+  }
+  
+  onTableDropRow(event: CdkDragDrop<CoreModuleModel[]>): void {
+    const previousIndex = this.tableSource.data.findIndex(row => row === event.item.data);
+    const model = new EditStepDtoModel<number>();
+    model.Id = this.tableSource.data[previousIndex].Id;
+    model.CenterId = this.tableSource.data[event.currentIndex].Id;
+    if (previousIndex > event.currentIndex) {
+      model.ActionGo = EnumActionGoStep.GoUp;
+    }
+    else {
+      model.ActionGo = EnumActionGoStep.GoDown;
+    }
+    this.coreModuleService.ServiceEditStep(model).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          moveItemInArray(this.tableSource.data, previousIndex, event.currentIndex);
+          this.tableSource.data = this.tableSource.data.slice();
+        }
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+      }
+    );
   }
   onActionbuttonConfigMainAdminRow(model: CoreModuleModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {

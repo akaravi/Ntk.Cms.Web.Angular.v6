@@ -2,8 +2,6 @@
   <h4> اضافه کردن مقالات</h4>
   <br>
   در این بخش میتوانید مقاله ای جدید ایجاد نمایید.
-
-  
 </app-cms-html-notice>
 <br>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -16,7 +14,6 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
@@ -88,7 +85,6 @@
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['FromDate']?.FieldDescription}}</strong> </mat-hint>
         </mat-form-field>
-
         <!-- ExpireDate Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
           <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
@@ -106,7 +102,6 @@
         <!-- editorConfig Field -->
         <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
           [(ngModel)]="dataModel.Body" name="dataModel.Body"></angular-editor>
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
@@ -116,8 +111,7 @@
           </button>
         </div>
       </mat-step>
-
-      <mat-step label="موتور های سرچ" state="seo">
+      <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
         <p>این بخش کمک می کند موتورهای سرچ بهتر مطالب را ایندکس کنند</p>
         <!-- Source Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Source']?.AccessWatchField">
@@ -131,7 +125,6 @@
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Source']?.FieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Source.value.length }} / 500</mat-hint>
-
         </mat-form-field>
         <!-- Tag Field -->
         <app-cms-tag-autocomplete (optionChange)="onActionTagChange($event)" [optionPlaceholder]="' + Tag '">
@@ -139,7 +132,6 @@
         <!-- KeywordModel Field -->
         <tag-input [(ngModel)]="keywordDataModel" name="keywordDataModel" [placeholder]="'+ کلمه کلیدی'"
           [secondaryPlaceholder]="'انتخاب کلمات کلیدی نسبت به مطلب'" [identifyBy]="'display'">
-
         </tag-input>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
@@ -154,12 +146,11 @@
         <p>فایل های پیوست محتوا.</p>
         <!-- LinkMainImageIdSrc Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
-
             <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
               type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
@@ -167,7 +158,6 @@
               (click)="dataModel.LinkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
             [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
@@ -189,7 +179,6 @@
               (click)="dataModel.LinkFilePodcastId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkFilePodcastId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
@@ -199,7 +188,6 @@
         <div class="mb-3">
           <video *ngIf="dataModel?.LinkFileMovieIdSrc?.length>0" controls>
             <source src="{{dataModel.LinkFileMovieIdSrc }}" type="video/mp4">
-            
             Your browser does not support the video tag.
           </video>
         </div>
@@ -211,14 +199,11 @@
               (click)="dataModel.LinkFileMovieId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileMovieId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree"
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMovie" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
-
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -264,10 +249,9 @@
         <!-- editorConfig Field -->
         <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="OtherInfo"
           [(ngModel)]="contentOtherInfoSelected.HtmlBody" name="contentOtherInfoSelected.HtmlBody"></angular-editor>
-
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
-          class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-          اضافه به لیست ...
+          class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
+          {{'ACTION.Add_To_List' | translate}}
         </button>
         <p>لیست سایر اطلاعات</p>
         <!-- TABLE  -->
@@ -285,7 +269,7 @@
             </ng-container>
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
-              <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <small (click)="onActionContentOtherInfoEditFromLIst(i)"><mat-icon aria-hidden="false" style="color: blue;" >edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
                 <small (click)="onActionContentOtherInfoRemoveFromLIst(i)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
@@ -298,33 +282,6 @@
           </mat-table>
         </div>
         <!-- TABLE  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -334,18 +291,16 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="مطالب مشابه" state="info">
+      <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
         <p>مطالب مرتبط را مشخص کنید</p>
         <app-article-content-selector (optionChange)="onActionContentSimilarSelect($event)"
           [optionPlaceholder]="'محتوای مشابه'">
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.Id"
             (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
             class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-            اضافه به لیست ...
+            {{'ACTION.ACTION.Add_To_List' | translate}} ...
           </button>
         </app-article-content-selector>
-
-
         <!-- TABLE  -->
         <div class="example-container mat-elevation-z8">
           <mat-table [dataSource]="similarTabledataSource">
@@ -353,7 +308,7 @@
             <ng-container matColumnDef="LinkMainImageIdSrc">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+                <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
                   src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
               </mat-cell>
             </ng-container>
@@ -377,10 +332,9 @@
               <mat-header-cell *matHeaderCellDef> عنوان </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
             </ng-container>
-
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
-              <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <small (click)="onActionContentSimilarRemoveFromLIst(row)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
               </mat-cell>
@@ -392,7 +346,6 @@
           </mat-table>
         </div>
         <!-- TABLE  -->
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -402,7 +355,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="موقعیت مکانی" state="loaction">
+      <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"  id='main-map'></app-cms-map>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
@@ -414,7 +367,6 @@
           </button>
         </div>
       </mat-step>
-
       <!-- Icon overrides. -->
       <ng-template matStepperIcon="main">
         <mat-icon>call_end</mat-icon>
@@ -428,19 +380,15 @@
       <ng-template matStepperIcon="loaction">
         <mat-icon>forum</mat-icon>
       </ng-template>
-
     </mat-horizontal-stepper>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
-
 </form>

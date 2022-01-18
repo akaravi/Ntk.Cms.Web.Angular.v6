@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
 })
 export class CmsQDocComponent implements OnInit {
 
-  constructor(private cmsToastrService: CmsToastrService,
+  constructor(
+    private cmsToastrService: CmsToastrService,
     public http: HttpClient,
-
   ) { }
   @Input() optionUrl = '';
   QDocModel: any = {};

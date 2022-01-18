@@ -1,18 +1,11 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import {
-  CoreUserClaimCheckDtoModel,
   CoreUserClaimCheckModel,
   CoreUserClaimContentService,
-  DataFieldInfoModel,
   EnumRecordStatus,
   ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  NewsContentService,
-  NtkCmsApiStoreService
-} from 'ntk-cms-api';
+  FilterModel} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -21,6 +14,7 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-userclaimcontent-widget-status',
@@ -41,6 +35,8 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
+    private translate: TranslateService,
+
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -49,14 +45,16 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'مدارک وهویت';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Evidence_Identity');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/core/userclaim/checklist';
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Evidence_Identity');
       this.onActionStatist();
     });
 

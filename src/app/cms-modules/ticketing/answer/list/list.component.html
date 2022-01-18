@@ -14,6 +14,9 @@
     <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
+      <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected.Id>0" (click)="onActionbuttonViewRow()"
+        type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
+        translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
@@ -35,7 +38,7 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-    <button (click)="onActionBackToParent()" *ngIf="requestLinkTicketId>0" type="button"
+    <button (click)="onActionBackToParent()" *ngIf="requestLinkTaskId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
@@ -57,11 +60,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
       </ng-container>
-      <!-- LinkTicketId Column -->
-      <ng-container matColumnDef="LinkTicketId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkTicketId']?.FieldTitle}}
+      <!-- LinkTaskId Column -->
+      <ng-container matColumnDef="LinkTaskId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkTaskId']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkTicketId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.LinkTaskId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
@@ -93,7 +96,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">

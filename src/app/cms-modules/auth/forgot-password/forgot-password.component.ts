@@ -11,13 +11,11 @@ import { Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-
 enum ErrorStates {
   NotSubmitted,
   HasError,
   NoError,
 }
-
 @Component({
   selector: 'app-auth-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -51,9 +49,6 @@ export class AuthForgotPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
-
-
-
   onActionSubmitOrderCodeBySms(): void {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
@@ -62,7 +57,6 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordEntryPinCode.Mobile = this.dataModelforgetPasswordBySms.Mobile;
     const pName = this.constructor.name + '.ServiceForgetPassword';
     this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
-
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordBySms)
       .subscribe((res) => {
@@ -90,7 +84,6 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordByEmail.CaptchaKey = this.captchaModel.Key;
     this.dataModelforgetPasswordEntryPinCode.Mobile = '';
     this.dataModelforgetPasswordEntryPinCode.Email = this.dataModelforgetPasswordByEmail.Email;
-
     const pName = this.constructor.name + '.ServiceForgetPassword';
     this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
     this.coreAuthService
@@ -98,7 +91,6 @@ export class AuthForgotPasswordComponent implements OnInit {
       .subscribe((res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_activation_code_was_emailed_to_you'));
-
           this.forgetState = 'entrycode';
         }
         else {
@@ -119,7 +111,6 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.formInfo.ButtonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelforgetPasswordEntryPinCode.CaptchaKey = this.captchaModel.Key;
-
     const pName = this.constructor.name + '.ServiceForgetPasswordEntryPinCode';
     this.loading.Start(pName, 'بررسی کد در سرور');
     this.coreAuthService
@@ -147,7 +138,6 @@ export class AuthForgotPasswordComponent implements OnInit {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {
       return;

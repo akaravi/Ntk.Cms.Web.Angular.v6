@@ -30,7 +30,8 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreModuleTagEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { CoreModuleTagAddBulkComponent } from '../add-bulk/add-bulk.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-tag-list',
   templateUrl: './list.component.html',
@@ -45,6 +46,7 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;
@@ -80,8 +82,6 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
     'Id',
     'RecordStatus',
     'Title',
-    'CreatedDate',
-    'UpdatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -207,7 +207,36 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonNewRowBulk(): void {
+    if (
+      this.categoryModelSelected == null ||
+      this.categoryModelSelected.Id === 0
+    ) {
+      const message = 'دسته بندی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
 
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    const dialogRef = this.dialog.open(CoreModuleTagAddBulkComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
   onActionbuttonEditRow(model: CoreModuleTagModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -252,7 +281,7 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

@@ -31,8 +31,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'app-article-content-add',
   templateUrl: './add.component.html',
@@ -71,9 +69,6 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
   fileManagerOpenFormMovie = false;
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
-
   fileManagerTree: TreeModel;
   keywordDataModel = [];
   tagDataModel = [];
@@ -86,15 +81,12 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
   similarTabledataSource = new MatTableDataSource<ArticleContentModel>();
   otherInfoTabledataSource = new MatTableDataSource<ArticleContentOtherInfoModel>();
   appLanguage = 'fa';
-
   /** map */
   viewMap = false;
   private mapModel: leafletMap;
   mapMarker: any;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
-
-
   ngOnInit(): void {
     this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
     if (this.requestCategoryId === 0) {
@@ -172,9 +164,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
       this.dataModel.Geolocationlatitude = lat;
       this.dataModel.Geolocationlongitude = lon;
     });
-
   }
-
   receiveZoom(zoom: number): void {
   }
   onFormSubmit(): void {
@@ -202,31 +192,25 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     }
     this.DataAddContent();
   }
-
   DataAddContent(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.contentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
-
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
-
             setTimeout(() => this.router.navigate(['/article/content/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -234,7 +218,6 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.loading.Stop(pName);
@@ -359,8 +342,6 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     this.similarDataModel = retOut;
     this.similarTabledataSource.data = this.similarDataModel;
   }
-
-
   onActionContentOtherInfoAddToLIst(): void {
     if (!this.contentOtherInfoSelected) {
       return;
@@ -382,7 +363,6 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     }
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
   onActionContentOtherInfoEditFromLIst(index: number): void {
     if (index < 0) {
@@ -394,9 +374,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     this.contentOtherInfoSelected = this.otherInfoDataModel[index];
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {

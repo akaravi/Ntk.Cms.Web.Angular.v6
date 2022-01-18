@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { BlogContentService, CoreSiteService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { CoreSiteService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-site-widget-count2',
@@ -22,6 +23,7 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
     private service: CoreSiteService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -29,14 +31,16 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+  @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'سایت های عضو';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_MemberSite');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/core/site/list';
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_MemberSite');
       this.onActionStatist();
     });
 
@@ -50,8 +54,8 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active');
-    this.loading.Start(this.constructor.name + 'All');
+    this.loading.Start(this.constructor.name + 'Active','دریافت سایت های عضو فعال');
+    this.loading.Start(this.constructor.name + 'All','دریافت همه ی سایت های عضو');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 0);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(

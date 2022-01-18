@@ -1,0 +1,53 @@
+<div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    وضعیت تراکنش :{{requestId}}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+</div>
+<div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <div class="table" *ngIf="dataModelResult.Item&& dataModelResult.Item.Id>0">
+        <div class="tr">
+            <div class="td">شناسه تراکنش</div>
+            <div class="td">{{dataModelResult.Item.Id}}</div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="tr">
+            <div class="td">وضعیت تراکنش</div>
+            <div class="td">
+                <div *ngIf="this.dataModelResult.Item.TransactionStatus==TransactionSuccessful">
+                    <span
+                    class="svg-icon svg-icon-3x svg-icon-primary"
+                    [inlineSVG]="'assets/media/svg/icons/General/Shield-check.svg'"
+                  ></span>
+                  <br>
+                </div>
+                {{dataModelResult.Item.TransactionStatus | enums : dataModelEnumTransactionRecordStatusResult.ListItems}}
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div class="tr">
+            <div class="td">مبلغ</div>
+            <div class="td">{{dataModelResult.Item.Amount}} {{dataModelResult.Item.CurrencyUnit}}</div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="tr">
+            <div class="td">پیام</div>
+            <div class="td">{{dataModelResult.Item.LastStatusMessage}}</div>
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+</div>
+
+<div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions">
+        <button type="button" (click)="onFormCancel()" class="btn btn-light">
+            <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
+        </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>

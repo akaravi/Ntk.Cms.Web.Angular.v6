@@ -19,7 +19,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-core-cpmainmenu-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class CoreCpMainMenuSelectorComponent implements OnInit {
 
@@ -63,10 +62,10 @@ export class CoreCpMainMenuSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreCpMainMenuModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   displayOption(model?: CoreCpMainMenuModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreCpMainMenuModel[]> {
     const filteModel = new FilterModel();

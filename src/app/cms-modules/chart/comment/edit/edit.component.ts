@@ -74,11 +74,11 @@ export class ChartCommentEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.requestId > 0) {
       this.ComponentAction = ComponentActionEnum.edit;
-      this.formInfo.FormTitle = 'ویرایش  کامنت';
+      this.formInfo.FormTitle = this.translate.instant('TITLE.Edit_Comment');
       this.DataGetOneContent();
     } else if (this.requestContentId > 0) {
       this.ComponentAction = ComponentActionEnum.add;
-      this.formInfo.FormTitle = 'ثبت کامت جدید';
+      this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_A_New_Comment');
     }
     if (this.ComponentAction === ComponentActionEnum.none) {
       this.cmsToastrService.typeErrorComponentAction();

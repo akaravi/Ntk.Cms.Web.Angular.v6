@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -10,6 +10,8 @@ import { FormControl } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -17,12 +19,13 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   templateUrl: './selectionlist.component.html',
   styleUrls: ['./selectionlist.component.scss']
 })
-export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
+export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit,OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
     public categoryService: EstatePropertyTypeUsageService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     private cmsToastrService: CmsToastrService) {
     this.loading.cdr = this.cdr;
   }
@@ -43,11 +46,16 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
   @Input() set optionSelectForce(x: string[] | EstatePropertyTypeUsageModel[]) {
     this.onActionSelectForce(x);
   }
-
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.DataGetAll();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.DataGetAll();
+    });
   }
-
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
   DataGetAll(): void {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 50;
@@ -60,7 +68,6 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
 
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
-        this.fieldsStatus = new Map<string, boolean>();
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
@@ -83,10 +90,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
     );
   }
   onActionSelect(value: EstatePropertyTypeUsageModel): void {
-    const item = this.dataModelSelect.filter((obj) => {
-      return obj.Id === value.Id;
-    }).shift();
-    if (item) {
+    if (this.fieldsStatus.get(value.Id)) {
       this.fieldsStatus.set(value.Id, false);
       this.optionSelectRemoved.emit(value);
       this.dataModelSelect.splice(this.dataModelSelect.indexOf(value), 1);
@@ -109,7 +113,7 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit {
         this.dataIdsSelect.push(element.Id);
       });
     }
-    this.dataIdsSelect.forEach((el) => this.fieldsStatus[el] = true);
+    this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
   }
 
   onActionReload(): void {

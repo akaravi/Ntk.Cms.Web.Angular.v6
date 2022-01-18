@@ -26,11 +26,9 @@ import { Subscription } from 'rxjs';
 import { ApplicationLogNotificationViewComponent } from '../view/view.component';
 import { ApplicationLogNotificationActionSendComponent } from '../action-send/action-send.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
 @Component({
   selector: 'app-application-notification-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class ApplicationLogNotificationListComponent implements OnInit, OnDestroy {
   requestLinkApplicationId = 0;
@@ -82,16 +80,10 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     'UpdatedDate',
     'Action'
   ];
-
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   expandedElement: ApplicationLogNotificationModel | null;
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
-
     this.requestLinkApplicationId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkApplicationId'));
     if (this.activatedRoute.snapshot.paramMap.get('LinkApplicationMemberId')) {
       this.requestLinkApplicationMemberId = this.activatedRoute.snapshot.paramMap.get('LinkApplicationMemberId');
@@ -112,7 +104,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -121,21 +112,16 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationLogNotificationModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     const filter = new FilterDataModel();
-
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       filter.PropertyName = 'LinkApplicationId';
       filter.Value = this.categoryModelSelected.Id;
@@ -144,7 +130,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.applicationLogNotificationService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
@@ -177,12 +162,9 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -208,8 +190,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonViewRow(model: ApplicationLogNotificationModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelected();
@@ -238,7 +218,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.requestLinkApplicationId == null ||
       this.requestLinkApplicationId === 0
     ) {
-
       const message = 'محتوا انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -251,10 +230,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    
   }
-
-
   onActionbuttonEditRow(model: ApplicationLogNotificationModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -269,7 +245,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
   }
   onActionbuttonDeleteRow(model: ApplicationLogNotificationModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -278,7 +253,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -287,7 +261,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    
   }
   onActionbuttonNotifictionActionSend(model: ApplicationLogNotificationModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -310,14 +283,12 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
-
       }
     });
   }
   onActionSelectorSelect(model: ApplicationAppModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
   onActionbuttonStatist(): void {
@@ -339,7 +310,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -357,7 +327,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -378,7 +347,6 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

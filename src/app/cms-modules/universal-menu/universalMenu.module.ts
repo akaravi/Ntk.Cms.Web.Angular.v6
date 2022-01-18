@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UniversalMenuComponent } from './universalMenu.component';
 import { UniversalMenuRoutes } from './universalMenu.routing';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -20,7 +18,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-
 @NgModule({
   declarations: [
     UniversalMenuComponent,
@@ -30,11 +27,9 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     UniversalMenuRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-    
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -46,7 +41,6 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     CmsConfirmationDialogService ,
     ApplicationEnumService,
     CoreModuleTagService,
-
   ]
 })
 export class UniversalMenuModule { }

@@ -19,11 +19,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-aplication-source-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
 })
 export class ApplicationSourceAddComponent implements OnInit {
   constructor(
@@ -38,7 +36,6 @@ export class ApplicationSourceAddComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
-
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -51,9 +48,7 @@ export class ApplicationSourceAddComponent implements OnInit {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
-
   ngOnInit(): void {
     this.DataGetAccess();
     this.getEnumRecordStatus();
@@ -97,8 +92,6 @@ export class ApplicationSourceAddComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.applicationSourceService
       .ServiceAdd(this.dataModel)
       .subscribe(
@@ -106,10 +99,8 @@ export class ApplicationSourceAddComponent implements OnInit {
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
-
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-
             setTimeout(() => this.router.navigate(['/application/source/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -117,14 +108,12 @@ export class ApplicationSourceAddComponent implements OnInit {
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.loading.Stop(pName);
         }
       );
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {

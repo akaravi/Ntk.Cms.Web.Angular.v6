@@ -1,7 +1,6 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
   <h4>نظرات</h4>
   در این بخش میتوانید نظرات کاربران را مشاهده نمایید. 
-  
 </app-cms-html-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
@@ -11,7 +10,6 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -28,7 +26,6 @@
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
@@ -37,12 +34,16 @@
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle (click)="onActionbuttonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">
+        {{'ACTION.INCHECKING' | translate}}
+      </mat-slide-toggle>
+    </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" type="button" class="btn btn-outline-success BTN">{{'ACTION.BACK' |
       translate}}</button>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -93,7 +94,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class='Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
@@ -108,7 +109,25 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonViewContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>visibility</mat-icon>
+              <span>مشاهده زندگی نامه </span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonEditContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>visibility</mat-icon>
+              <span>ویرایش زندگی نامه </span>
+            </button>
           </mat-menu>
+        </mat-cell>
+      </ng-container>
+       <!-- LinkTo Column -->
+       <ng-container matColumnDef="LinkTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button>
+          <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+        </button>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
@@ -116,7 +135,6 @@
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>
   <ng-container cms-footer>
@@ -124,7 +142,6 @@
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
       [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
 </app-cms-html-list>

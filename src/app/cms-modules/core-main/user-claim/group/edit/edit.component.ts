@@ -77,7 +77,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
 
   fileManagerOpenForm = false;
   dataCoreUserClaimTypeModels: CoreUserClaimTypeModel[];
-  dataCoreCpMainMenuIds: number[] = [];
+  dataCoreClaimTypeIds: number[] = [];
   dataCoreUserClaimGroupDetailModels: CoreUserClaimGroupDetailModel[];
 
 
@@ -253,7 +253,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
         this.dataCoreUserClaimGroupDetailModels.forEach(element => {
           listG.push(element.LinkUserClaimTypeId);
         });
-        this.dataCoreCpMainMenuIds = listG;
+        this.dataCoreClaimTypeIds = listG;
         if (next.IsSuccess) {
           this.formInfo.FormAlert = '';
         } else {

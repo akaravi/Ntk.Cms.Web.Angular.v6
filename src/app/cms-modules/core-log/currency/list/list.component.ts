@@ -28,11 +28,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreLogCurrencyViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-corelog-user-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
   requestLinkCurrencyId = 0;
@@ -45,6 +45,7 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
@@ -230,7 +231,7 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' +
       '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)

@@ -1,18 +1,15 @@
-<app-progress-spinner [options]="loading" ></app-progress-spinner>
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
     این بخش شما را در تکمیل و اصلاح اطلاعات راهنمایی می کند
 </app-cms-html-notice>
 <div class="example-container mat-elevation-z8">
     <app-progress-spinner [options]="loading">
     </app-progress-spinner>
-   
     <mat-table [dataSource]="tableSource" >
           <!-- Warrning Column -->
           <ng-container matColumnDef="Accepted">
             <mat-header-cell *matHeaderCellDef > {{'TITLE.Accepted' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row">  <i [ngClass]="row.Accepted|boolclass"></i> </mat-cell>
         </ng-container>
-   
         <!-- Title Column -->
         <ng-container matColumnDef="Title">
             <mat-header-cell *matHeaderCellDef > {{'TITLE.Title' | translate}} </mat-header-cell>
@@ -23,11 +20,8 @@
             <mat-header-cell *matHeaderCellDef > {{'TITLE.Description' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
         </ng-container>
-
         <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" >
         </mat-row>
       </mat-table>
-
-
 </div>

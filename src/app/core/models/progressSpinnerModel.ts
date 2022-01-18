@@ -2,7 +2,6 @@ import { ChangeDetectorRef } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { environment } from 'src/environments/environment';
-import { CmsStoreService } from '../reducers/cmsStore.service';
 
 export class ProcessInfoModel {
   inRun = false;
@@ -76,7 +75,7 @@ export class ProgressSpinnerModel {
 
     /** Display */
     if (this.consoleLog) {
-      console.log(this.guid, 'Start:', name, 'Display:', this.display, 'processRunList:', this.processRunList);
+      console.log(this.guid, 'Start:', name, 'Display:', this.display,'key:',key,'title:',model.title, 'processRunList:', this.processRunList);
     }
     if (this.cdr && !this.display) {
       this.cdr.detectChanges();
@@ -108,7 +107,7 @@ export class ProgressSpinnerModel {
 
     /** Display */
     if (this.consoleLog) {
-      console.log(this.guid, 'Stop:', name, 'Display:', this.display, 'processRunList:', this.processRunList);
+      console.log(this.guid, 'Stop:', name, 'Display:', this.display,'key:',key,'title:',model.title,  'processRunList:', this.processRunList);
     }
 
     if (this.cdr && !this.display) {

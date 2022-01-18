@@ -31,8 +31,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { PoinModel } from 'src/app/core/models/pointModel';
-
-
 @Component({
   selector: 'app-news-content-add',
   templateUrl: './add.component.html',
@@ -56,12 +54,10 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   mapOptonCenter = new PoinModel();
-
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel = new NewsContentModel();
@@ -74,9 +70,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   fileManagerOpenForm = false;
   fileManagerOpenFormPodcast = false;
   fileManagerOpenFormMovie = false;
-  dataAccessModel: AccessModel;
-
-
   fileManagerTree: TreeModel;
   keywordDataModel = [];
   tagDataModel = [];
@@ -88,14 +81,9 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   similarTabledisplayedColumns = ['LinkMainImageIdSrc', 'Id', 'RecordStatus', 'Title', 'Action'];
   similarTabledataSource = new MatTableDataSource<NewsContentModel>();
   otherInfoTabledataSource = new MatTableDataSource<NewsContentOtherInfoModel>();
-
   appLanguage = 'fa';
-
   viewMap = false;
   private mapModel: leafletMap;
-
-
-
   ngOnInit(): void {
     this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
     if (this.requestCategoryId === 0) {
@@ -114,16 +102,13 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     // this.optionsContentSelector.parentMethods = {
     //   onActionSelect: (x) => this.onActionContentSimilarSelect(x),
     // };
-
   }
-
   DataGetAccess(): void {
     this.contentService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
           if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
@@ -152,7 +137,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   receiveMap(model: leafletMap = this.mapModel): void {
     if (!model) {
       return;
@@ -175,9 +159,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       this.dataModel.Geolocationlatitude = lat;
       this.dataModel.Geolocationlongitude = lon;
     });
-
   }
-
   receiveZoom(zoom: number): void {
   }
   onFormSubmit(): void {
@@ -205,32 +187,25 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     }
     this.DataAddContent();
   }
-
   DataAddContent(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.contentService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
-
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
-
-
             setTimeout(() => this.router.navigate(['/news/content/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
@@ -239,7 +214,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
         },
         (error) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -306,7 +280,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     });
     const pName = this.constructor.name + 'contentSimilarService.ServiceAddBatch';
     this.loading.Start(pName);
-
     return this.contentSimilarService.ServiceAddBatch(dataList).pipe(
       map(response => {
         if (response.IsSuccess) {
@@ -318,7 +291,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       },
         (error) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
@@ -365,8 +337,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     this.similarDataModel = retOut;
     this.similarTabledataSource.data = this.similarDataModel;
   }
-
-
   onActionContentOtherInfoAddToLIst(): void {
     if (!this.contentOtherInfoSelected) {
       return;
@@ -388,7 +358,6 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     }
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
   onActionContentOtherInfoEditFromLIst(index: number): void {
     if (index < 0) {
@@ -400,9 +369,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     this.contentOtherInfoSelected = this.otherInfoDataModel[index];
     this.otherInfoDataModel.splice(index, 1);
     this.otherInfoTabledataSource.data = this.otherInfoDataModel;
-
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {

@@ -7,8 +7,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { MatDialog } from '@angular/material/dialog';
 import { SingupRuleComponent } from '../singupRule/singupRule.Component';
-
-
 @Component({
   selector: 'app-auth-singup',
   templateUrl: './singup.component.html',
@@ -43,9 +41,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
   }
-  
   onActionSubmit(): void {
-
     if (!this.dataModel.Email || this.dataModel.Email.length === 0) {
       this.formInfo.FormError = 'آدرس ایمیل خود را وارد کنید';
       this.formInfo.FormErrorStatus = true;
@@ -124,7 +120,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
           dataLoginModel.Password = this.dataModel.Password;
           dataLoginModel.SiteId = this.dataModel.SiteId;
           dataLoginModel.Mobile = this.dataModel.Mobile;
-
           const pName2 = this.constructor.name + 'ServiceSigninUser';
           this.loading.Start(pName2, 'ورود به حساب کاربری');
           this.coreAuthService.ServiceSigninUser(dataLoginModel).subscribe(
@@ -167,7 +162,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       this.loading.Stop(pName);
     });
   }
-
   onRoulaccespt(): void {
     const dialogRef = this.dialog.open(SingupRuleComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -178,7 +172,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   passwordValid(event): void {
     this.passwordIsValid = event;
   }
-
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {
       return;
@@ -188,7 +181,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
-
         this.captchaModel = next.Item;
         this.expireDate = next.Item.Expire.split('+')[1];
         const startDate = new Date();
@@ -215,7 +207,6 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
     const passwordLength = 10;
     let password = '';
-
     for (let i = 0; i <= passwordLength; i++) {
       const randomNumber = Math.floor(Math.random() * chars.length);
       password += chars.substring(randomNumber, randomNumber + 1);

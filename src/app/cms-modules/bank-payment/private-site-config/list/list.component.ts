@@ -31,11 +31,10 @@ import { BankPaymentPrivateSiteConfigEditComponent } from '../edit/edit.componen
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { BankPaymentPrivateSiteConfigPaymentTestComponent } from '../paymentTest/paymentTest.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-bankpayment-privateconfig-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDestroy {
   requestLinkPublicConfigId = 0;
@@ -49,6 +48,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -87,11 +87,9 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     'RecordStatus',
     'Title',
     'LinkPublicConfigId',
-   
     'UpdatedDate',
     'Action'
   ];
-
   ngOnInit(): void {
     this.requestLinkPublicConfigId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId'));
     const filter = new FilterDataModel();
@@ -104,7 +102,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -118,24 +115,19 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.dataModelPublicResult = next;
     });
   }
-
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentPrivateSiteConfigModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     const filter = new FilterDataModel();
-
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       filter.PropertyName = 'LinkPublicConfigId';
       filter.Value = this.categoryModelSelected.Id;
@@ -144,8 +136,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.bankPaymentPrivateSiteConfigService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
@@ -178,12 +168,9 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
         this.cmsToastrService.typeError(error);
 
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -209,8 +196,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonNewRow(): void {
     let ApplicationId = 0;
     if (this.requestLinkPublicConfigId > 0) {
@@ -243,7 +228,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       }
     });
   }
-
   onActionSelectorSelect(model: BankPaymentPublicConfigModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
@@ -264,7 +248,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
@@ -292,7 +275,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
@@ -309,12 +292,10 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -401,7 +382,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       }
     });
   }
-
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -421,7 +401,6 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

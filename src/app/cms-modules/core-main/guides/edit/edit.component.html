@@ -26,30 +26,17 @@
     <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
       [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منوی والد'">
     </app-core-guide-selector>
-    <!-- Title Field -->
+    <!-- TitleFa Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleFa']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleFa" name="dataModel.TitleFa" #TitleFa type="text"
+        placeholder="{{fieldsInfo['TitleFa']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleFa" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleFa = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="Title.errors?.required">
-        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
-    <!-- Key Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>Key</mat-label>
-      <input matInput [(ngModel)]="dataModel.Key" name="dataModel.Key" #Key type="text" placeholder="Key" minlength="3"
-        maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Key" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Key = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ Key.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="Key.errors?.required">
-        Key is <strong>{{'MESSAGE.required' | translate}}</strong>
+      <mat-hint align="end">{{ TitleFa.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleFa.errors?.required">
+        TitleFa is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- BodyFa Field -->
@@ -57,15 +44,59 @@
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyFa"
       [(ngModel)]="dataModel.BodyFa" name="dataModel.BodyFa"></angular-editor>
     <br>
+    <!-- TitleEn Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleEn']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleEn" name="dataModel.TitleEn" #TitleEn type="text"
+        placeholder="{{fieldsInfo['TitleEn']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleEn" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleEn = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleEn.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleEn.errors?.required">
+        TitleEn is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
     <!-- BodyEn Field -->
     <p> Body En </p>
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyEn"
       [(ngModel)]="dataModel.BodyEn" name="dataModel.BodyEn"></angular-editor>
     <br>
-    <!-- BodyEn Field -->
+    <!-- TitleAr Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleAr']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleAr" name="dataModel.TitleAr" #TitleAr type="text"
+        placeholder="{{fieldsInfo['TitleAr']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleAr" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleAr = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleAr.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleAr.errors?.required">
+        TitleAr is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- BodyAr Field -->
     <p> Body Ar </p>
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyAr"
       [(ngModel)]="dataModel.BodyAr" name="dataModel.BodyAr"></angular-editor>
+    <br>
+    <!-- TitleDe Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleDe']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleDe" name="dataModel.TitleDe" #TitleDe type="text"
+        placeholder="{{fieldsInfo['TitleDe']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.TitleDe" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleDe = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleDe.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleDe.errors?.required">
+        TitleDe is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- Body De Field -->
+    <p> Body De </p>
+    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyDe"
+      [(ngModel)]="dataModel.BodyDe" name="dataModel.BodyDe"></angular-editor>
     <br>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>

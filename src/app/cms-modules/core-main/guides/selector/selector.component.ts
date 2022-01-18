@@ -19,7 +19,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-core-guide-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class CoreGuideSelectorComponent implements OnInit {
 
@@ -63,10 +62,10 @@ export class CoreGuideSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreGuideModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleFa) : undefined;
   }
   displayOption(model?: CoreGuideModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleFa) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreGuideModel[]> {
     const filteModel = new FilterModel();

@@ -1,5 +1,5 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
-  <h4> ویرایش</h4>
+ <h4> {{'TITLE.Edit' | translate}}</h4>
   در این بخش شما میتوانید محتوای خود را ویرایش نمایید.
   <br>
 </app-cms-html-notice>
@@ -124,7 +124,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="موتور های سرچ" state="seo">
+      <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
         <p>این بخش کمک می کند موتورهای سرچ بهتر مطالب را ایندکس کنند</p>
         <!-- Source Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Source']?.AccessWatchField">
@@ -163,8 +163,8 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>فایل های پیوست محتوا.</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
@@ -270,8 +270,8 @@
           [(ngModel)]="contentOtherInfoSelected.HtmlBody" name="contentOtherInfoSelected.HtmlBody"></angular-editor>
 
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
-          class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-          اضافه به لیست ...
+          class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
+          {{'ACTION.Add_To_List' | translate}}
         </button>
         <p>لیست سایر اطلاعات</p>
         <!-- TABLE  -->
@@ -294,7 +294,7 @@
             </ng-container>
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
-              <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <small (click)="onActionContentOtherInfoEditFromLIst(i)"><mat-icon aria-hidden="false" style="color: blue;" >edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
                 <small (click)="onActionContentOtherInfoRemoveFromLIst(i)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
@@ -318,7 +318,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="مطالب مشابه" state="info">
+      <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
         <p>مطالب مرتبط را مشخص کنید</p>
         <app-blog-content-selector (optionChange)="onActionContentSimilarSelect($event)"
           [optionPlaceholder]="'محتوای مشابه'">
@@ -327,7 +327,7 @@
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.Id"
             (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
             class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
-            اضافه به لیست ...
+            {{'ACTION.Add_To_List' | translate}}
           </button>
         </app-blog-content-selector>
 
@@ -339,7 +339,7 @@
             <ng-container matColumnDef="LinkMainImageIdSrc">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+                <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
                   src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
               </mat-cell>
             </ng-container>
@@ -366,7 +366,7 @@
 
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
-              <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <small (click)="onActionContentSimilarRemoveFromLIst(row)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
               </mat-cell>
@@ -388,7 +388,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="موقعیت مکانی" state="loaction">
+      <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>

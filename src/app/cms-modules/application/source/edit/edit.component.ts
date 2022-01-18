@@ -27,7 +27,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-aplication-source-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
 })
 export class ApplicationSourceEditComponent implements OnInit {
 

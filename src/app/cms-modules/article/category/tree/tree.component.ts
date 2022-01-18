@@ -27,12 +27,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { ArticleCategoryAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-article-category-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -57,10 +54,7 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
   @Output() optionChange = new EventEmitter<ArticleCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: ArticleCategoryModel) => !!node.Children && node.Children.length > 0;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -73,10 +67,8 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -84,12 +76,10 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -115,21 +105,16 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectForce(id: number | ArticleCategoryModel): void {
-
   }
-
   onActionAdd(): void {
     let parentId = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       parentId = this.dataModelSelect.Id;
     }
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { parentId };
-
-
     const dialogRef = this.dialog.open(ArticleCategoryAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -138,7 +123,6 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionEdit(): void {
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -159,7 +143,6 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionDelete(): void {
     // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
     //   if (res.IsSuccess) {

@@ -21,16 +21,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TreeModel } from 'src/filemanager-api';
 import { PoinModel } from 'src/app/core/models/pointModel';
-
-
 @Component({
   selector: 'app-application-config-mainadmin',
   templateUrl: './config-main-admin.component.html',
-  styleUrls: ['./config-main-admin.component.scss']
 })
 export class ApplicationConfigMainAdminComponent implements OnInit , OnDestroy {
   requestLinkSiteId = 0;
-
   constructor(
     private configService: ApplicationConfigurationService,
     private activatedRoute: ActivatedRoute,
@@ -49,41 +45,32 @@ export class ApplicationConfigMainAdminComponent implements OnInit , OnDestroy {
   dataConfigSiteAccessValuesDefaultModel = new ApplicationModuleConfigSiteAccessValuesModel();
   dataConfigAdminMainModel = new ApplicationModuleConfigAdminMainValuesModel();
   tokenInfo = new TokenInfoModel();
-
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
   mapMarker: any;
   mapOptonCenter = new PoinModel();
-
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
-
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
-
     this.onLoadDate();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       this.requestLinkSiteId = this.tokenInfo.SiteId;
@@ -93,7 +80,6 @@ export class ApplicationConfigMainAdminComponent implements OnInit , OnDestroy {
       this.GetServiceSiteAccessDefault();
       this.GetServiceAdminMain();
     }
-
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
@@ -105,7 +91,6 @@ export class ApplicationConfigMainAdminComponent implements OnInit , OnDestroy {
       this.SetServiceSiteAccessDefaultSave();
       this.SetServiceAdminMainSave();
     }
-
   }
 
 

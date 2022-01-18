@@ -5,7 +5,6 @@ import { FilePreviewModel } from 'ngx-awesome-uploader';
 import { ApplicationAppModel, ApplicationAppService, DataFieldInfoModel, FormInfoModel, UploadApplictionDtoModel } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
 @Component({
   selector: 'app-upload-update',
   templateUrl: './uploadUpdate.component.html',
@@ -76,7 +75,6 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeErrorEdit(error);
       });
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
@@ -86,7 +84,6 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
   }
   onUpload(e): void {
     console.log(e);
-
   }
   OnActionUploadSuccess(model: FilePreviewModel): void {
     // console.log(model);

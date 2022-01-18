@@ -1,4 +1,3 @@
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -34,12 +33,11 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { WebDesignerMainPageDependencyAutoAddPageComponent } from '../auto-add-page/auto-add-page.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
-
 @Component({
   selector: 'app-webdesigner-pagedependency-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDestroy {
   requestLinkModuleId = 0;
@@ -55,10 +53,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     public http: HttpClient,
     private coreAuthService: CoreAuthService,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
-
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -70,13 +68,11 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.filteModelContent.SortType = EnumSortType.Ascending;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   comment: string;
   author: string;
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageDependencyModel>
     = new ErrorExceptionResult<WebDesignerMainPageDependencyModel>();
@@ -89,7 +85,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   tableRowSelected: WebDesignerMainPageDependencyModel = new WebDesignerMainPageDependencyModel();
   tableSource: MatTableDataSource<WebDesignerMainPageDependencyModel> = new MatTableDataSource<WebDesignerMainPageDependencyModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
-
   categoryModelSelected = new CoreModuleModel();
   tabledisplayedColumns: string[] = [
     'Id',
@@ -101,9 +96,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     'ClassActionName',
     'Action'
   ];
-
-
-
   expandedElement: WebDesignerMainPageDependencyModel | null;
   cmsApiStoreSubscribe: Subscription;
 
@@ -113,7 +105,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -133,11 +124,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
@@ -152,10 +140,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
@@ -174,18 +160,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -211,8 +192,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
   onActionbuttonNewRow(): void {
     if (
       this.dataModelResult == null ||
@@ -241,7 +220,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
       height: '90%',
       data: {
@@ -255,7 +233,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     });
   }
   onActionbuttonNewRowAutoDependency(): any {
-
     return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
       headers: this.webDesignerMainPageDependencyService.getHeaders(),
     })
@@ -273,11 +250,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           return retOut;
         }),
       ).toPromise();
-    
   }
-
   onActionbuttonEditRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
-
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -317,16 +291,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-
-
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'webDesignerMainPageDependencyService.ServiceDelete';
           this.loading.Start(pName);
-
           this.webDesignerMainPageDependencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
@@ -336,12 +307,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -353,8 +322,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       );
 
   }
-
-
   onActionbuttonPageList(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       const message = 'ردیفی برای نمایش انتخاب نشده است';
@@ -362,8 +329,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
     this.tableRowSelected = model;
-
-    this.router.navigate(['/webdesigner/page/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    if (this.tokenInfo.UserAccessAdminAllowToAllData) {
+      this.router.navigate(['/webdesigner/page/list-grid/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    }
+    else {
+      this.router.navigate(['/webdesigner/page/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -384,7 +355,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -402,10 +372,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
-
-
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -425,11 +392,9 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       }
     );
   }
-
   onActionSelectorSelect(model: CoreModuleModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
   onActionbuttonReload(): void {
@@ -442,5 +407,4 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   onActionTableRowSelect(row: WebDesignerMainPageDependencyModel): void {
     this.tableRowSelected = row;
   }
-
 }

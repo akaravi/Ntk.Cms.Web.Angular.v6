@@ -1,4 +1,3 @@
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,11 +28,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoreLogErrorEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-coretoken-user-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreLogErrorListComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;
@@ -47,13 +45,12 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkDeviceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDeviceId'));
-
-
     if (this.requestLinkUserId > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkUserId';
@@ -92,8 +89,6 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<CoreLogErrorModel> = [];
   tableRowSelected: CoreLogErrorModel = new CoreLogErrorModel();
   tableSource: MatTableDataSource<CoreLogErrorModel> = new MatTableDataSource<CoreLogErrorModel>();
-
-
   tabledisplayedColumns: string[] = [
     'Id',
     'ModuleName',
@@ -107,8 +102,6 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
-
   expandedElement: CoreSiteModel | null;
   cmsApiStoreSubscribe: Subscription;
 
@@ -251,7 +244,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' +
       '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)

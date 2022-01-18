@@ -28,7 +28,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-linkmanagement-billboard-pattern-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class LinkManagementBillboardPatternListComponent implements OnInit, OnDestroy {
 

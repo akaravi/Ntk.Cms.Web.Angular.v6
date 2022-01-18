@@ -23,14 +23,11 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-aplication-intro-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
 })
 export class ApplicationAppAddComponent implements OnInit {
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -45,7 +42,6 @@ export class ApplicationAppAddComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestSourceId = 0;
-
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -61,15 +57,12 @@ export class ApplicationAppAddComponent implements OnInit {
   fileManagerOpenFormLinkFileIdLogo = false;
   fileManagerOpenFormLinkFileIdSplashScreen = false;
   fileManagerOpenFormLinkMainImageId = false;
-
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
-
   ngOnInit(): void {
     this.requestSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));
     // if (this.requestSourceId === 0) {
@@ -89,7 +82,6 @@ export class ApplicationAppAddComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       this.cmsToastrService.typeErrorFormInvalid();
@@ -97,7 +89,6 @@ export class ApplicationAppAddComponent implements OnInit {
     }
     if (this.dataModel.LinkSourceId <= 0) {
       this.cmsToastrService.typeErrorAdd(this.translate.instant('MESSAGE.Specify_the_source_code_of_the_program'));
-
       return;
     }
     if (this.dataModel.LinkThemeConfigId <= 0) {
@@ -106,7 +97,6 @@ export class ApplicationAppAddComponent implements OnInit {
     }
     this.DataAddContent();
   }
-
   DataGetAccess(): void {
     this.applicationAppService
       .ServiceViewModel()
@@ -124,20 +114,17 @@ export class ApplicationAppAddComponent implements OnInit {
         }
       );
   }
-
   DataAddContent(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'setAccessLoad';
     this.loading.Start(pName);
-
     this.applicationAppService.setAccessLoad();
     this.applicationAppService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -150,14 +137,12 @@ export class ApplicationAppAddComponent implements OnInit {
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.loading.Stop(pName);
         }
       );
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -174,7 +159,6 @@ export class ApplicationAppAddComponent implements OnInit {
       return;
     }
     this.mapModel = model;
-
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {
       this.mapMarkerPoints.forEach(item => {
         this.mapMarker = Leaflet.marker([item.lat, item.lon]).addTo(this.mapModel);
@@ -182,7 +166,6 @@ export class ApplicationAppAddComponent implements OnInit {
       this.mapOptonCenter = this.mapMarkerPoints[0];
       this.mapMarkerPoints = [];
     }
-
     this.mapModel.on('click', (e) => {
       // @ts-ignore
       const lat = e.latlng.lat;
@@ -200,7 +183,6 @@ export class ApplicationAppAddComponent implements OnInit {
       this.dataModel.AboutUsGeolocationlatitude = lat;
       this.dataModel.AboutUsGeolocationlongitude = lon;
     });
-
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);
@@ -240,7 +222,6 @@ export class ApplicationAppAddComponent implements OnInit {
       this.cmsToastrService.typeErrorMessage(
         this.translate.instant('MESSAGE.Information_application_format_is_not_clear'),
         this.translate.instant('MESSAGE.Specify_the_template'));
-
       return;
     }
     this.dataModel.LinkThemeConfigId = model.Id;

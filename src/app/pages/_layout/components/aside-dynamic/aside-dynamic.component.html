@@ -32,7 +32,7 @@
           class="svg-icon menu-icon"></span>
         <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-        <span class="menu-text" [translate]="item.translate">{{
+        <span class="menu-text" >{{
           item.title
           }}</span>
       </a>
@@ -50,7 +50,7 @@
           class="svg-icon menu-icon"></span>
         <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-        <span class="menu-text" [translate]="item.translate">{{
+        <span class="menu-text" >{{
           item.title
           }}</span>
         <i class="menu-arrow"></i>
@@ -61,7 +61,7 @@
           <li class="menu-item menu-item-parent" aria-haspopup="true">
             <span class="menu-link">
               <i [ngClass]="item.Icon"  class="menu-bullet"  [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-              <span class="menu-text" [translate]="item.translate">{{
+              <span class="menu-text" >{{
                 item.title
                 }}</span>
             </span>
@@ -86,7 +86,7 @@
           <span></span>
         </i>
         <i [ngClass]="item.Icon" class="menu-bullet" [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-        <span class="menu-text" [translate]="item.translate">{{item.title}}</span>
+        <span class="menu-text" >{{item.title}}</span>
       </a>
     </li>
   </ng-container>
@@ -102,7 +102,7 @@
           <span></span>
         </i>
         <i [ngClass]="item.Icon"  class="menu-bullet" [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-        <span class="menu-text" [translate]="item.translate">
+        <span class="menu-text" >
           {{item.title}}
         </span>
         <i class="menu-arrow"></i>
@@ -131,7 +131,7 @@
       <i [ngClass]="item.Icon"  class="menu-bullet" [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true">
         <span></span>
       </i>&nbsp;&nbsp;
-      <span class="menu-text" [translate]="item.translate">{{
+      <span class="menu-text" >{{
         item.title
         }}</span>
     </a>
@@ -148,7 +148,7 @@
 <!-- begin::Section -->
 <ng-template #menuItemSectionTemplate let-item="item">
   <li class="menu-section">
-    <h4 class="menu-text" [translate]="item.translate">{{ item.section }}</h4>
+    <h4 class="menu-text" >{{ item.section }}</h4>
     <i class="menu-icon flaticon-more-v2"></i>
   </li>
 </ng-template>

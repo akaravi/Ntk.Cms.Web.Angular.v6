@@ -6,20 +6,16 @@
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
     <input matInput [(ngModel)]="dataModelResult.Item.Title" name="dataModelResult.Item.Title" #Title
       type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"  readonly />
   </mat-form-field>
-
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['SeoDescription']?.FieldTitle}}</mat-label>
     <input matInput [(ngModel)]="dataModelResult.Item.SeoDescription" name="dataModelResult.Item.SeoDescription" #SeoDescription
       type="text" placeholder="{{fieldsInfo['SeoDescription']?.FieldTitle}}"   readonly />
   </mat-form-field>
-
-
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">
@@ -34,7 +30,6 @@
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-
     <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.ButtonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}

@@ -1,118 +1,132 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.FormTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-	<app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <!-- RecordStatus Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
-          required>
-          <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.ListItems;
                   index as i
                 " [value]="item.Value">{{ item.Description }}</mat-option>
-        </mat-select>
-        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-        <mat-error *ngIf="RecordStatus.errors?.required">
-          RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
-      <!-- LocationType Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="نوع منطقه" [(ngModel)]="dataModel.LocationType" name="dataModel.LocationType"
-          #LocationType="ngModel" panelClass="LocationType-{{ dataModel.LocationType }}">
-          <mat-option *ngFor="
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LocationType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="نوع منطقه" [(ngModel)]="dataModel.LocationType" name="dataModel.LocationType"
+        #LocationType="ngModel" panelClass="LocationType-{{ dataModel.LocationType }}">
+        <mat-option *ngFor="
                   let item of dataModelEnumLocationTypeResult.ListItems;
                   index as i
                 " [value]="item.Value">{{ item.Description }}</mat-option>
-        </mat-select>
-        <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
-        <mat-error *ngIf="LocationType.errors?.required">
-          LocationType is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
+      </mat-select>
+      <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+      <mat-error *ngIf="LocationType.errors?.required">
+        LocationType is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
-      <!-- LinkParentId Field -->
-      <app-core-location-selector (optionChange)="onActionParentSelect($event)" [optionDisabled]="false"
-        [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منطقه والد'">
-      </app-core-location-selector>
-      <!-- Title Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Title = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="Title.errors?.required">
-          Title is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
-      <!-- GeoLocationLatitude Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>Geo Location Latitude</mat-label>
-        <input matInput [(ngModel)]="dataModel.GeoLocationLatitude" name="dataModel.GeoLocationLatitude"
-          #GeoLocationLatitude type="number" placeholder="Geo Location Latitude" />
-        <mat-icon matSuffix *ngIf="dataModel.GeoLocationLatitude" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.GeoLocationLatitude = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-      </mat-form-field>
-      <!-- GeoLocationLongitude Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>Geo Location Longitude</mat-label>
-        <input matInput [(ngModel)]="dataModel.GeoLocationLongitude" name="dataModel.GeoLocationLongitude"
-          #GeoLocationLongitude type="number" placeholder="Geo Location Latitude" />
-        <mat-icon matSuffix *ngIf="dataModel.GeoLocationLongitude" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.GeoLocationLongitude = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-      </mat-form-field>
-      <!-- LinkImageId Field -->
-      <mat-form-field class="ntk-full-width">
-        <img *ngIf="dataModel?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-          src="{{dataModel.LinkImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
-        <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
-        <input matInput [(ngModel)]="dataModel.LinkImageId" name="dataModel.LinkImageId" #LinkImageId
-          type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
-        <mat-icon matSuffix *ngIf="dataModel.LinkImageId" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.LinkImageId = null">close</mat-icon>
-        <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
-      </mat-form-field>
+    <!-- LinkParentId Field -->
+    <app-core-location-selector (optionChange)="onActionParentSelect($event)" [optionDisabled]="false"
+      [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منطقه والد'">
+    </app-core-location-selector>
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
-      <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
-        [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
-        [openDirectUploadView]="true" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
-        [openFilemanagerButtonView]="false">
-      </cms-file-manager>
-      
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </div>
-    <div class="ntk-cms-html-card-message">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.FormError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </div>
-    <div class="ntk-cms-html-card-footer">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <!-- TitleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+        maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessAddField" />
+      <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleResourceLanguage.errors?.required">
+        {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- GeoLocationLatitude Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>Geo Location Latitude</mat-label>
+      <input matInput [(ngModel)]="dataModel.GeoLocationLatitude" name="dataModel.GeoLocationLatitude"
+        #GeoLocationLatitude type="number" placeholder="Geo Location Latitude" />
+      <mat-icon matSuffix *ngIf="dataModel.GeoLocationLatitude" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.GeoLocationLatitude = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- GeoLocationLongitude Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>Geo Location Longitude</mat-label>
+      <input matInput [(ngModel)]="dataModel.GeoLocationLongitude" name="dataModel.GeoLocationLongitude"
+        #GeoLocationLongitude type="number" placeholder="Geo Location Latitude" />
+      <mat-icon matSuffix *ngIf="dataModel.GeoLocationLongitude" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.GeoLocationLongitude = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- LinkImageId Field -->
+    <mat-form-field class="ntk-full-width">
+      <img *ngIf="dataModel?.LinkImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{dataModel.LinkImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
+      <input matInput [(ngModel)]="dataModel.LinkImageId" name="dataModel.LinkImageId" #LinkImageId type="text"
+        placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
+      <mat-icon matSuffix *ngIf="dataModel.LinkImageId" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.LinkImageId = null">close</mat-icon>
+      <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+    </mat-form-field>
 
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-        <button type="button" (click)="onFormCancel()" class="btn btn-light">
-          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-        <button type="submit" (click)="onFormSubmit()" class="btn btn-success"
-          [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-        </button>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
+      [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
+      [openDirectUploadView]="true" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+      [openFilemanagerButtonView]="false">
+    </cms-file-manager>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
     </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

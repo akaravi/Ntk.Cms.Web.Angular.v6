@@ -42,12 +42,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-estate-property-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
-})
+  })
 export class EstatePropertyAddComponent implements OnInit {
   requestLinkPropertyTypeLanduseId = '';
   requestLinkPropertyTypeUsageId = '';
@@ -121,7 +120,7 @@ export class EstatePropertyAddComponent implements OnInit {
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
-  optionActionTitle = 'اضافه به لیست';
+  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'Action'];
@@ -136,6 +135,8 @@ export class EstatePropertyAddComponent implements OnInit {
   listTypeLanduse: EstatePropertyTypeLanduseModel[] = [];
   dataProfessional = false;
   hidden = true;
+  cmsApiStoreSubscribe: Subscription;
+
   ngOnInit(): void {
 
     this.formInfo.FormTitle = 'ثبت محتوای جدید';
@@ -144,6 +145,19 @@ export class EstatePropertyAddComponent implements OnInit {
     this.getEstateContractType();
     this.getEstatePropertyType();
     this.getEstatePropertyTypeLanduse();
+    this.dataModel.CaseCode=this.publicHelper.StringRandomGenerator(5,true);
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.getEnumRecordStatus();
+      this.DataGetAccess();
+      this.getEstateContractType();
+      this.getEstatePropertyType();
+      this.getEstatePropertyTypeLanduse();
+      this.optionActionTitle =this.translate.instant('ACTION.Add_To_List');
+            this.tokenInfo = next;
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   getEstateContractType(): void {
     const pName = this.constructor.name + 'getEstateContractType';
@@ -389,6 +403,9 @@ export class EstatePropertyAddComponent implements OnInit {
     });
     // ** Save Value */
     if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+      this.onActionOptionAddToList(false);
+    }
+    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
       const message = 'نوع معامله ملک مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       this.formInfo.FormSubmitAllow = true;
@@ -403,10 +420,12 @@ export class EstatePropertyAddComponent implements OnInit {
 
   }
 
-  onActionOptionAddToList(): void {
+  onActionOptionAddToList(viewAlert: boolean = true): void {
     if (!this.contractTypeSelected || this.contractTypeSelected.Id.length === 0) {
       const message = 'نوع معامله ملک مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      if (viewAlert) {
+        this.cmsToastrService.typeErrorSelected(message);
+      }
       return;
     }
     if (!this.dataModel.Contracts) {

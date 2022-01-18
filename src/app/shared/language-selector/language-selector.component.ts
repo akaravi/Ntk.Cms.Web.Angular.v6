@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { AuthRenewTokenModel, CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -38,8 +39,13 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       flag: './assets/media/svg/flags/226-united-states.svg',
     },
     {
-      lang: 'ch',
-      name: 'Mandarin',
+      lang: 'tr',
+      name: 'Turkish',
+      flag: './assets/media/svg/flags/006-turkey.svg',
+    },
+    {
+      lang: 'zh',
+      name: 'China',
       flag: './assets/media/svg/flags/015-china.svg',
     },
     {
@@ -48,7 +54,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       flag: './assets/media/svg/flags/128-spain.svg',
     },
     {
-      lang: 'jp',
+      lang: 'ja',
       name: 'Japanese',
       flag: './assets/media/svg/flags/063-japan.svg',
     },
@@ -64,11 +70,13 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     },
   ];
   constructor(
+    @Inject(DOCUMENT) private document,
     private translationService: TranslationService,
     public coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -114,8 +122,15 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
         (next) => {
           // this.loadingStatus = false;
           if (next.IsSuccess) {
+            this.cdr.detectChanges();
             if (next.Item.Language === lang) {
               this.cmsToastrService.toastr.success('دسترسی به زبان جدید تایید شد', title);
+              // if (lang == 'fa' || lang == 'ar') {
+              //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
+              // }
+              // else {
+              //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
+              // }
               // window.location.reload();
             } else {
               this.cmsToastrService.toastr.warning('دسترسی به زبان جدید تایید نشد', title);

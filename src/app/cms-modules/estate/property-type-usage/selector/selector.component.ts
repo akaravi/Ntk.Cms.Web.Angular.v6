@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -10,10 +10,11 @@ import {
   EstatePropertyTypeUsageService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -21,11 +22,12 @@ import { Output } from '@angular/core';
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
+export class EstatePropertyTypeUsageSelectorComponent implements OnInit,OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     public categoryService: EstatePropertyTypeUsageService) {
     this.loading.cdr = this.cdr;
 
@@ -44,9 +46,15 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | EstatePropertyTypeUsageModel) {
     this.onActionSelectForce(x);
   }
-
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.loadOptions();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.loadOptions();
+    });
+  }
+   ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
@@ -65,10 +73,10 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit {
   }
 
   displayFn(model?: EstatePropertyTypeUsageModel): string | undefined {
-    return model ? model.Title : undefined;
+    return model ? model.TitleML : undefined;
   }
   displayOption(model?: EstatePropertyTypeUsageModel): string | undefined {
-    return model ? model.Title : undefined;
+    return model ? model.TitleML : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstatePropertyTypeUsageModel[]> {
     const filteModel = new FilterModel();

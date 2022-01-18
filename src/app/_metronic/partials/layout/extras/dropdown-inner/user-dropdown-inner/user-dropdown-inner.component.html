@@ -9,7 +9,6 @@
           alt="" />
       </div>
       <!--end::Symbol-->
-
       <!--begin::Text-->
       <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
         {{ tokenInfo.Name}} {{ tokenInfo.LastName }}
@@ -21,7 +20,6 @@
     <div class="separator separator-solid"></div>
     <!--end::Header-->
   </ng-container>
-
   <ng-container *ngIf="extrasUserDropdownStyle === 'dark'">
     <!--begin::Header-->
     <div
@@ -43,7 +41,6 @@
       </div>
       <span class="label label-info label-lg font-weight-bold label-inline">{{ tokenInfo.UserAccessUserTypeTitle }}
       </span>
-      
     </div>
     <!--end::Header-->
   </ng-container>
@@ -62,18 +59,15 @@
           </div>
           <div class="text-muted">
             {{'TITLE.Account_settings_and_more'| translate}}
-
             <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
               translate}}:{{this.tokenInfo.UserId}}</span>
               <span class="label label-light-success label-inline font-weight-bold">{{'TITLE.Site_Id'|
                 translate}}:{{this.tokenInfo.SiteId}}</span>
-
           </div>
         </div>
       </div>
     </a>
     <!--end::Item-->
-
     <!--begin::Item-->
     <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task-me'}}">
       <div class="navi-link">
@@ -87,13 +81,11 @@
           <div class="text-muted">
             {{'TITLE.Inbox_and_tasks'| translate}}
             <span class="label label-light-info label-inline font-weight-bold">3 {{'TITLE.MESSAGES'|translate}}</span>
-            
           </div>
         </div>
       </div>
     </a>
     <!--end::Item-->
-
     <!--begin::Item-->
     <ng-container *ngIf="IsAdminSite">
       <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task'}}">
@@ -104,7 +96,6 @@
           <div class="navi-text">
             <div class="font-weight-bold">
               {{'TITLE.My_Tasks'| translate}}
-
             </div>
             <div class="text-muted">
               {{'TITLE.latest_tasks_and_projects'| translate}}
@@ -114,7 +105,6 @@
       </a>
     </ng-container>
     <!--end::Item-->
-
     <!--begin::Item-->
     <a class="navi-item px-8 cursor-pointer" routerLink="{{'/coretoken/userlog'}}">
       <div class="navi-link">
@@ -132,16 +122,14 @@
       </div>
     </a>
     <!--end::Item-->
-
     <div class="navi-separator mt-3"></div>
     <app-cms-token-access></app-cms-token-access>
-
     <!--begin::Footer-->
     <div class="navi-separator mt-3"></div>
     <div class="navi-footer px-8 py-5">
       <a class="btn btn-light-primary font-weight-bold cursor-pointer" (click)="logout()">{{'TITLE.Sing_Out'|
         translate}}</a>
-      <a class="btn btn-clean font-weight-bold cursor-pointer">ver: {{this.publicHelper.appVersion}}</a>
+      <a class="btn btn-clean font-weight-bold cursor-pointer">ver: {{this.publicHelper.appClientVersion}} </a>
     </div>
     <!--end::Footer-->
   </div>

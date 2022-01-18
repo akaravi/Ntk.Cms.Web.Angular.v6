@@ -101,7 +101,7 @@ export class CoreGuideEditComponent implements OnInit {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         this.dataModel = next.Item;
         if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.TitleFa;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';

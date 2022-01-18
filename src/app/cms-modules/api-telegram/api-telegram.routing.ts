@@ -1,66 +1,99 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ApiTelegramComponent } from './api-telegram.component';
+import { ApiTelegramBotConfigListComponent } from './bot-config/list/list.component';
+import { ApiTelegramLogInputListComponent } from './log-input/list/list.component';
+import { ApiTelegramLogOutputListComponent } from './log-output/list/list.component';
+import { ApiTelegramMemberInfoListComponent } from './member-info/list/list.component';
+import { ApiTelegramReceivedFileListComponent } from './received-file/list/list.component';
+import { ApiTelegramUploadedFileListComponent } from './uploaded-file/list/list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ApiTelegramComponent,
-    // children: [
-    //   {
-    //     path: 'source',
-    //     component: ApplicationSourceListComponent
-    //   },
-    //   {
-    //     path: 'source/add',
-    //     component: ApplicationSourceAddComponent
-    //   },
-    //   {
-    //     path: 'source/edit/:Id',
-    //     component: ApplicationSourceEditComponent
-    //   },
+     children: [
+      /*Config*/
+      {
+        path: 'config',
+        loadChildren: () =>
+          import('./config/api-telegram-config.module').then((m) => m.ApiTelegramConfigModule),
+      },
+      /*Config*/
+      {
+        path: 'bot-config',
+        component: ApiTelegramBotConfigListComponent
+      },
+      {
+        path: 'log-input',
+        component: ApiTelegramLogInputListComponent
+      },
+      {
+        path: 'log-input/LinkBotConfigId/:LinkBotConfigId',
+        component: ApiTelegramLogInputListComponent
+      },
+      {
+        path: 'log-output',
+        component: ApiTelegramLogOutputListComponent
+      },
+      {
+        path: 'log-output/LinkBotConfigId/:LinkBotConfigId',
+        component: ApiTelegramLogOutputListComponent
+      },
+      {
+        path: 'member-info',
+        component: ApiTelegramMemberInfoListComponent
+      },
+      {
+        path: 'received-file',
+        component: ApiTelegramReceivedFileListComponent
+      },
+      {
+        path: 'uploaded-file',
+        component: ApiTelegramUploadedFileListComponent
+      },
     //   {
     //     path: 'app',
-    //     component: ApplicationAppListComponent
+    //     component: ApiTelegramAppListComponent
     //   },
     //   {
     //     path: 'app/:SourceId',
-    //     component: ApplicationAppListComponent
+    //     component: ApiTelegramAppListComponent
     //   },
     //   {
     //     path: 'app/add/:SourceId',
-    //     component: ApplicationAppAddComponent
+    //     component: ApiTelegramAppAddComponent
     //   },
     //   {
     //     path: 'app/edit/:Id',
-    //     component: ApplicationAppEditComponent
+    //     component: ApiTelegramAppEditComponent
     //   },
     //   {
     //     path: 'intro',
-    //     component: ApplicationIntroListComponent
+    //     component: ApiTelegramIntroListComponent
     //   },
     //   {
-    //     path: 'intro/add/:ApplicationId',
-    //     component: ApplicationIntroListComponent
+    //     path: 'intro/add/:ApiTelegramId',
+    //     component: ApiTelegramIntroListComponent
     //   },
     //   {
     //     path: 'intro/edit/:Id',
-    //     component: ApplicationIntroListComponent
+    //     component: ApiTelegramIntroListComponent
     //   },
     //   {
     //     path: 'memberinfo',
-    //     component: ApplicationMemberInfoListComponent
+    //     component: ApiTelegramMemberInfoListComponent
     //   },
     //   {
     //     path: 'notification',
-    //     component: ApplicationNotificationListComponent
+    //     component: ApiTelegramNotificationListComponent
     //   },
 
     //   {
     //     path: 'themeconfig',
-    //     component: ApplicationThemeConfigListComponent
+    //     component: ApiTelegramThemeConfigListComponent
     //   },
-    // ]
+     ]
   },
 ];
 

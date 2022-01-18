@@ -108,7 +108,7 @@ export class CmsSiteSelectorComponent implements OnInit {
     }
 
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,'لیست سایتهای مجاز');
 
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(

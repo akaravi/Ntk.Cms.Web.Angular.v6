@@ -17,12 +17,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'app-aplication-intro-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
 })
 export class WebDesignerMainIntroEditComponent implements OnInit {
   requestId = '';
@@ -41,11 +38,9 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     if (this.activatedRoute.snapshot.paramMap.get('Id')) {
       this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
     }
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
@@ -58,10 +53,7 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
   fileManagerOpenForm = false;
   fileManagerOpenFormVideo = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
-
-
   ngOnInit(): void {
     if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
@@ -73,24 +65,19 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-
     this.DataEditContent();
   }
-
-
   DataGetOne(requestId: string): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     /*َAccess Field*/
     this.webDesignerMainIntroService.setAccessLoad();
     this.webDesignerMainIntroService
@@ -101,10 +88,8 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           this.loading.Stop(pName);
-
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
-
           if (next.IsSuccess) {
             this.dataModel = next.Item;
           } else {
@@ -125,13 +110,10 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.webDesignerMainIntroService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -142,7 +124,6 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.loading.Stop(pName);
@@ -152,7 +133,6 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
         }
       );
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -164,7 +144,6 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
       // }
     }
   }
-
   onActionBackToParent(): void {
     this.router.navigate(['/webdesigner/intro/']);
   }
@@ -176,5 +155,4 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     this.dataModel.LinkMainVideoId = model.id;
     this.dataModel.LinkMainVideoIdSrc = model.downloadLinksrc;
   }
-
 }

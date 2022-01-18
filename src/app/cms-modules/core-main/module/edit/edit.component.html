@@ -34,11 +34,21 @@
       </mat-error>
     </mat-form-field>
 
-    
+    <!-- ShowInOrder Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInOrder']?.AccessWatchField">
+      <mat-label> {{fieldsInfo['ShowInOrder']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.ShowInOrder" name="dataModel.ShowInOrder" #ShowInOrder type="number"
+        [disabled]="!fieldsInfo['ShowInOrder']?.AccessEditField"
+        placeholder="{{fieldsInfo['ShowInOrder']?.FieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.ShowInOrder" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.ShowInOrder = 1">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-        src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+        aria-hidden src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">

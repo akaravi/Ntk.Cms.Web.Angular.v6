@@ -1,0 +1,25 @@
+<div class="table">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <div class="tr">
+    <div class="td"></div>
+    <div class="td align"><h5>مشتری انتخاب شده</h5></div>
+    <div class="td" *ngIf="dataModelResult?.Item?.Id">
+      link to
+      <br>
+      <mat-icon (click)="onActionbuttonLinkTo()" *ngIf="dataModelResult?.Item?.Id">&#8599;</mat-icon>
+    </div>
+  </div>
+  <div class="tr">
+    <div class="td">{{fieldsInfo['Id']?.FieldTitle}} : </div>
+    <div class="td align">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td"></div>
+
+    <div style="clear: both;"></div>
+  </div>
+  <div class="tr">
+    <div class="td">{{fieldsInfo['Title']?.FieldTitle}} : </div>
+    <div class="td align">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td"></div>
+    <div style="clear: both;"></div>
+  </div>
+</div>

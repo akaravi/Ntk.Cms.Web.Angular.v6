@@ -6,7 +6,6 @@ import { ApplicationAppModel, ApplicationAppService, DataFieldInfoModel, FormInf
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { environment } from 'src/environments/environment';
-
 @Component({
   selector: 'app-upload-app',
   templateUrl: './uploadApp.component.html',
@@ -20,7 +19,6 @@ export class ApplicationAppUploadAppComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper
   ) {
-
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   formInfo: FormInfoModel = new FormInfoModel();
@@ -78,7 +76,6 @@ export class ApplicationAppUploadAppComponent implements OnInit {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeErrorEdit(error);
       });
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
@@ -88,7 +85,6 @@ export class ApplicationAppUploadAppComponent implements OnInit {
   }
   onUpload(e): void {
     console.log(e);
-
   }
   OnActionUploadSuccess(model: FilePreviewModel): void {
     // console.log(model);

@@ -4,7 +4,6 @@ import { ArticleConfigCheckSiteComponent } from './check-site/check-site.compone
 import { ArticleConfigCheckUserComponent } from './check-user/check-user.component';
 import { ArticleConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { ArticleConfigSiteComponent } from './site/config-site.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -42,7 +41,6 @@ const routes: Routes = [
     ]
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

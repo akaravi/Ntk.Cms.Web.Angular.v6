@@ -14,15 +14,12 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
 @Component({
   selector: 'app-core-config-checksite',
   templateUrl: './check-site.component.html',
-  styleUrls: ['./check-site.component.scss']
 })
 export class ArticleConfigCheckSiteComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
-
   constructor(
     private configService: ArticleConfigurationService,
     private activatedRoute: ActivatedRoute,
@@ -31,19 +28,16 @@ export class ArticleConfigCheckSiteComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-
   ) {
     this.loading.cdr = this.cdr;
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.onLoadDate();
     });
-
     this.onLoadDate();
   }
   cmsApiStoreSubscribe: Subscription;
@@ -53,8 +47,6 @@ export class ArticleConfigCheckSiteComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<BaseModuleSiteCheckSiteModel> = [];
   tableRowSelected: BaseModuleSiteCheckSiteModel = new BaseModuleSiteCheckSiteModel();
   tableSource: MatTableDataSource<BaseModuleSiteCheckSiteModel> = new MatTableDataSource<BaseModuleSiteCheckSiteModel>();
-
-
   tabledisplayedColumns: string[] = [
     'Accepted',
     'Title',

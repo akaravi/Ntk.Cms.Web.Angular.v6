@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SmsMainApiLogInBoxListComponent } from './inbox/list/list.component';
+import { SmsMainApiLogOutBoxListComponent } from './outbox/list/list.component';
 import { SmsLogComponent } from './sms-log.component';
 
 const routes: Routes = [
   {
     path: '',
     component: SmsLogComponent,
-    // children: [
-    //   {
-    //     path: 'source',
-    //     component: ApplicationSourceListComponent
-    //   },
-    //   {
-    //     path: 'source/add',
-    //     component: ApplicationSourceAddComponent
-    //   },
+     children: [
+      {
+        path: 'inbox',
+        component: SmsMainApiLogInBoxListComponent
+      },
+      {
+        path: 'outbox',
+        component: SmsMainApiLogOutBoxListComponent
+      },
     //   {
     //     path: 'source/edit/:Id',
     //     component: ApplicationSourceEditComponent
@@ -60,7 +62,7 @@ const routes: Routes = [
     //     path: 'themeconfig',
     //     component: ApplicationThemeConfigListComponent
     //   },
-    // ]
+     ]
   },
 ];
 

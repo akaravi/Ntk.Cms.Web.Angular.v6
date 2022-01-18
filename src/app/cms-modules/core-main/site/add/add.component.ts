@@ -1,4 +1,3 @@
-
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -23,15 +22,12 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'app-core-site-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
 export class CoreSiteAddComponent implements OnInit {
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -60,18 +56,17 @@ export class CoreSiteAddComponent implements OnInit {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFavIconId = false;
+  fileManagerOpenFormPwaIconSize190x192Id = false;
+  fileManagerOpenFormPwaIconSize512x512Id = false;
   fileManagerOpenFormLinkFileIdLogo = false;
   fileManagerOpenFormLinkImageLogoId = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
   mapMarker: any;
   private mapModel: leafletMap;
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
   keywordDataModel = [];
-
-
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     if (this.requestId > 0) {
@@ -95,7 +90,6 @@ export class CoreSiteAddComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       this.cmsToastrService.typeErrorFormInvalid();
@@ -103,7 +97,6 @@ export class CoreSiteAddComponent implements OnInit {
     }
     if (this.dataModel.linkCreatedBySiteId <= 0) {
       this.cmsToastrService.typeErrorAdd('سورس کد برنامه مشخص  کنید');
-
       return;
     }
     this.dataModel.SeoKeyword = '';
@@ -122,7 +115,6 @@ export class CoreSiteAddComponent implements OnInit {
     }
     this.DataAddContent();
   }
-
   DataGetAccess(): void {
     this.coreSiteService
       .ServiceViewModel()
@@ -140,20 +132,16 @@ export class CoreSiteAddComponent implements OnInit {
         }
       );
   }
-
   DataAddContent(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.coreSiteService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -164,7 +152,6 @@ export class CoreSiteAddComponent implements OnInit {
             this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.loading.Stop(pName);
@@ -174,7 +161,6 @@ export class CoreSiteAddComponent implements OnInit {
         }
       );
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -191,7 +177,6 @@ export class CoreSiteAddComponent implements OnInit {
       return;
     }
     this.mapModel = model;
-
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {
       this.mapMarkerPoints.forEach(item => {
         this.mapMarker = Leaflet.marker([item.lat, item.lon]).addTo(this.mapModel);
@@ -199,7 +184,6 @@ export class CoreSiteAddComponent implements OnInit {
       this.mapOptonCenter = this.mapMarkerPoints[0];
       this.mapMarkerPoints = [];
     }
-
     this.mapModel.on('click', (e) => {
       // @ts-ignore
       const lat = e.latlng.lat;
@@ -217,12 +201,10 @@ export class CoreSiteAddComponent implements OnInit {
       this.dataModel.AboutUsGeolocationlatitude = lat;
       this.dataModel.AboutUsGeolocationlongitude = lon;
     });
-
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);
   }
-
   onActionFileSelectedAboutUsLinkImageId(model: NodeInterface): void {
     this.dataModel.AboutUsLinkImageId = model.id;
     this.dataModel.AboutUsLinkImageIdSrc = model.downloadLinksrc;
@@ -231,11 +213,18 @@ export class CoreSiteAddComponent implements OnInit {
     this.dataModel.LinkFavIconId = model.id;
     this.dataModel.LinkFavIconIdSrc = model.downloadLinksrc;
   }
+  onActionFileSelectedPwaIconSize190x192Id(model: NodeInterface): void {
+    this.dataModel.PwaIconSize190x192Id = model.id;
+    this.dataModel.PwaIconSize190x192IdSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedPwaIconSize512x512Id(model: NodeInterface): void {
+    this.dataModel.LinkFavIconId = model.id;
+    this.dataModel.PwaIconSize512x512IdSrc = model.downloadLinksrc;
+  }
   onActionFileSelectedLinkImageLogoId(model: NodeInterface): void {
     this.dataModel.LinkImageLogoId = model.id;
     this.dataModel.LinkImageLogoIdSrc = model.downloadLinksrc;
   }
-
   onActionSelectCategory(model: CoreSiteCategoryModel | null): void {
     if (!model || model.Id <= 0) {
       const message = 'دسته بندی سایت مشخص نیست';
@@ -244,5 +233,4 @@ export class CoreSiteAddComponent implements OnInit {
     }
     this.dataModel.LinkSiteCategoryId = model.Id;
   }
-
 }

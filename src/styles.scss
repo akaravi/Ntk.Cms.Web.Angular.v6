@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
+// @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
 // Global vendors
 @import "~bootstrap/dist/css/bootstrap.css";
 // => Material
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 
 @import "~perfect-scrollbar/css/perfect-scrollbar.css";
@@ -16,6 +16,9 @@
 @import "./assets/plugins/flaticon2/flaticon.css";
 @import "./assets/plugins/keenthemes-icons/font/ki.css";
 
+
+@import url("./assets/fonts/fontiran.css");
+
 // Metronic styles (replace these path when using RTL css below)
 // @import "./assets/sass/style.angular.scss";
 // For RTL,
@@ -24,71 +27,82 @@
 /*
  karavi import
 */
- @import "~leaflet/dist/leaflet.css";
- @import "~ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
- @import "~ntk-cms-filemanager/src/assets/file-manager.styles.scss";
- @import "~ngx-toastr/toastr.css";
+@import "~leaflet/dist/leaflet.css";
+@import "~ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
+@import "~ntk-cms-filemanager/src/assets/file-manager.styles.scss";
+@import "~ngx-toastr/toastr.css";
 /*
  karavi import
 */
 
 // hide bootstrap dropdown arrow globally
 .dropdown-toggle::after {
-  display: none !important;
+    display: none !important;
 }
 
 .angular-bootstrap-table {
-  overflow-x: auto;
+    overflow-x: auto;
 }
+
 .angular-bootstrap-table {
-  th {
-    outline: none;
+    th {
+        outline: none;
 
-    &.sortable {
-      .svg-icon-sort {
-        opacity: 0;
-      }
+        &.sortable {
+            .svg-icon-sort {
+                opacity: 0;
+            }
 
-      &:hover {
-        cursor: pointer;
+            &:hover {
+                cursor: pointer;
 
-        .svg-icon-sort {
-          opacity: 1;
+                .svg-icon-sort {
+                    opacity: 1;
+                }
+            }
         }
-      }
     }
-  }
 
-  .table.table-head-custom thead th.sortable-active {
-    color: #6993ff !important;
-  }
+    .table.table-head-custom thead th.sortable-active {
+        color: #6993ff !important;
+    }
 }
 
 .cursor-default {
-  cursor: default !important;
+    cursor: default !important;
 }
 
 .progress-modal {
-  height: 3px;
-  width: 100%;
+    height: 3px;
+    width: 100%;
 }
+
 /*
 karavi
 */
-html {
-  font-family: IRANSansWeb;
+* {
+    font-family: IRANSans;
+    // font-weight: 300;
 }
 
 mat-tree {
-  font-family: IRANSansWeb;
+    font-family: IRANSans !important;
 }
+
 text-left {
-  text-align: left;
-  direction: rtl;
+    text-align: left;
+    direction: rtl;
 }
+
 .timepicker {
-  direction: ltr !important;
+    direction: ltr !important;
 }
+
+.input-ltr {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
 // category-tree-invisible {
 //   display: none;
 // }
@@ -104,21 +118,21 @@ text-left {
 // }
 
 .category-tree-invisible {
-  display: none;
+    display: none;
 }
 
 .category-tree ul,
 .category-tree li {
-  margin-top: 0;
-  margin-bottom: 0;
-  list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
 }
 
 /*
  * This padding sets alignment of the nested nodes.
  */
 .category-tree .mat-nested-tree-node div[role=group] {
-  padding-right: 40px;
+    padding-right: 40px;
 }
 
 /*
@@ -126,306 +140,345 @@ text-left {
  * Leaf nodes need to have padding so as to align with other non-leaf nodes
  * under the same parent.
  */
-.category-tree div[role=group] > .mat-tree-node {
-  padding-right: 40px;
+.category-tree div[role=group]>.mat-tree-node {
+    padding-right: 40px;
 }
 
 .mat-form-field-wrapper {
-  font-size: small;
+    font-size: small;
 }
+
 table {
-  width: 100%;
-  margin-top: 20px;
-  font-family: IRANSansWeb;
+    width: 100%;
+    margin-top: 20px;
+    font-family: IRANSans !important;
 }
+
 mat-paginator {
-  display: flex;
+    display: flex;
 }
+
 .align-Btn {
-  margin-top: 20px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding-block: 22px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding-block: 22px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
 }
+
 .BTN {
-  margin-right: 5px;
+    margin-right: 5px;
 }
+
 ::ng-deep .mat-slide-toggle-content {
-  font-family: "IRANSansWeb" !important;
+    font-family: "IRANSans" !important;
 }
-.info-field-icon{
-  color: rgb(56, 184, 56) !important;
+
+.info-field-icon {
+    color: rgb(56, 184, 56) !important;
 }
-.info-field-text{
-  color: rgb(19, 68, 19) !important;
+
+.info-field-text {
+    color: rgb(19, 68, 19) !important;
 }
+
 .btn-bg-info {
-  color: white;
+    color: white;
 }
+
 .ntk-full-width {
-  width: 100%;
+    width: 100%;
 }
+
 .ntk-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
 }
+
 .ntk-button-row {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin: auto;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 10px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 10px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
+
 .ntk-button-row button {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
+
 .ntk-cms-html-tree-header {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
+
 .ntk-cms-html-tree-header button {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 1px;
-  margin-left: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 1px;
+    margin-left: 1px;
 }
+
 .ntk-cms-html-tree-body {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
+
 .ntk-cms-html-tree-footer {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
+
 .ntk-cms-html-list-header {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
+
 .ntk-cms-html-list-header button {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
+
 .ntk-cms-html-list-body {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
+
 .ntk-cms-html-list-footer {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
-.ntk-cms-html-card-header{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+
+.ntk-cms-html-card-header {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
-.ntk-cms-html-card-body{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);  
+
+.ntk-cms-html-card-body {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
-.ntk-cms-html-card-message{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+
+.ntk-cms-html-card-message {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
-.ntk-cms-html-card-footer{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+
+.ntk-cms-html-card-footer {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
+
 .ntk-pull-right {
-  float: right;
-  margin: 3px;
+    float: right;
+    margin: 3px;
 }
+
 .ntk-hover-zoom:hover {
-  zoom: 3;
+    transform: scale(2);
 }
+
 /* karavi popup image */
 .ntk-popup {
-  zoom: 1;
-  position: relative;
-  text-decoration: none;
+    zoom: 1;
+    position: relative;
+    text-decoration: none;
 }
+
 .ntk-popup span {
-  position: fixed;
-  top: 170px;
-  left: 500px;
-  width: 350px;
-  padding: 10px;
-  border: 10px solid #000;
-  border-radius: 10px;
-  left: -999em;
-  z-index: 990;
+    position: fixed;
+    top: 170px;
+    left: 500px;
+    width: 350px;
+    padding: 10px;
+    border: 10px solid #000;
+    border-radius: 10px;
+    left: -999em;
+    z-index: 990;
 }
+
 .ntk-hover-big:hover {
-  zoom: 5;
+    zoom: 5;
 }
+
 .ntk-popup:hover span {
-  left: 350px;
+    left: 350px;
 }
+
 .ntk-popup span {
-  position: absolute;
+    position: absolute;
 }
+
 .overflow-scroll {
-  height: 80vh;
-  overflow-y: auto;
+    height: 80vh;
+    overflow-y: auto;
 }
+
 /* karavi popup image */
 /*mat-raised-button*/
 .mat-button.mat-success,
 .mat-stroked-button.mat-success {
-  color: #208045;
+    color: #208045;
 }
+
 .mat-button.mat-success:hover,
 .mat-stroked-button.mat-success:hover {
-  background-color: #f0fff3;
+    background-color: #f0fff3;
 }
 
 .mat-raised-button.mat-success,
 .mat-flat-button.mat-success,
 .mat-fab.mat-success,
 .mat-mini-fab.mat-success {
-  color: #f0fff3;
-  background-color: #208045;
+    color: #f0fff3;
+    background-color: #208045;
 }
+
 .mat-icon-button.mat-success {
-  color: #208045;
+    color: #208045;
 }
+
 /*mat-raised-button*/
 .mat-button.mat-submit,
 .mat-stroked-button.mat-submit {
-  color: #3c64bb;
+    color: #3c64bb;
 }
+
 .mat-button.mat-submit:hover,
 .mat-stroked-button.mat-submit:hover {
-  background-color: #f0fff3;
+    background-color: #f0fff3;
 }
 
 .mat-raised-button.mat-submit,
 .mat-flat-button.mat-submit,
 .mat-fab.mat-submit,
 .mat-mini-fab.mat-submit {
-  color: #f0fff3;
-  background-color: #3c64bb;
+    color: #f0fff3;
+    background-color: #3c64bb;
 }
+
 .mat-icon-button.mat-submit {
-  color: #3c64bb;
+    color: #3c64bb;
 }
+
 /*mat-raised-button*/
 /*
 karavi
@@ -435,67 +488,97 @@ karavi tooltip guid
 */
 
 .tooltip-example {
-  text-align: center;
-  padding: 0 50px;
+    text-align: center;
+    padding: 0 50px;
 }
+
 .tooltip-example [tooltip] {
-  display: inline-block;
-  margin: 50px 20px;
-  width: 180px;
-  height: 50px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  line-height: 50px;
-  text-align: center;
+    display: inline-block;
+    margin: 50px 20px;
+    width: 180px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    line-height: 50px;
+    text-align: center;
 }
+
 .ng-tooltip {
-  position: absolute;
-  max-width: 150px;
-  font-size: 14px;
-  text-align: center;
-  color: #f8f8f2;
-  padding: 3px 8px;
-  background: #282a36;
-  border-radius: 4px;
-  z-index: 1000;
-  opacity: 0;
+    position: absolute;
+    max-width: 150px;
+    font-size: 14px;
+    text-align: center;
+    color: #f8f8f2;
+    padding: 3px 8px;
+    background: #282a36;
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 0;
 }
+
 .ng-tooltip:after {
-  content: "";
-  position: absolute;
-  border-style: solid;
+    content: "";
+    position: absolute;
+    border-style: solid;
 }
+
 .ng-tooltip-top:after {
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-color: black transparent transparent transparent;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-color: black transparent transparent transparent;
 }
+
 .ng-tooltip-bottom:after {
-  bottom: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-color: transparent transparent black transparent;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-color: transparent transparent black transparent;
 }
+
 .ng-tooltip-left:after {
-  top: 50%;
-  left: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-color: transparent transparent transparent black;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent transparent transparent black;
 }
+
 .ng-tooltip-right:after {
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-color: transparent black transparent transparent;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent black transparent transparent;
 }
+
 .ng-tooltip-show {
-  opacity: 1;
+    opacity: 1;
 }
+
 /*
 karavi tooltip guid
 */
+//Add this to your css
+// mat-cell  {
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+//     white-space: nowrap;
+//  }
+//  mat-header-cell {
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     word-wrap:break-all ;
+//     color: red;
+//  }
+//  .test {
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     word-wrap:break-all ;
+//     color: red;
+
+//  }

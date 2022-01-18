@@ -21,7 +21,6 @@
           {{ fieldsInfo['AppVersion']?.FieldAppVersion }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildAppKey']?.AccessWatchField">
         <mat-label>{{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }}</mat-label>
         <input matInput [(ngModel)]="dataModel.LastBuildAppKey"

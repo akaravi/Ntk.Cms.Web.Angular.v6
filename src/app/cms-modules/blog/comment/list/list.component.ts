@@ -1,15 +1,14 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  CoreAuthService,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
   BlogCommentModel,
   BlogCommentService,
-  BlogContentModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumFilterDataModelSearchTypes,
+  BlogContentService
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterModel, FilterDataModel } from 'ntk-cms-api';
@@ -28,12 +27,13 @@ import { BlogCommentEditComponent } from '../edit/edit.component';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-blog-comment-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -45,6 +45,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class BlogCommentListComponent implements OnInit, OnDestroy {
   constructor(
     private commentService: BlogCommentService,
+    private contentService: BlogContentService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -52,8 +53,14 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+
+    if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
+      this.searchInChecking =
+        this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
+    }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -69,6 +76,8 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
+  searchInChecking = false;
+  searchInCheckingChecked = false;
   requestContentId = 0;
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<BlogCommentModel> = new ErrorExceptionResult<BlogCommentModel>();
@@ -77,8 +86,8 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<BlogContentModel> = [];
-  tableRowSelected: BlogContentModel = new BlogContentModel();
+  tableRowsSelected: Array<BlogCommentModel> = [];
+  tableRowSelected: BlogCommentModel = new BlogCommentModel();
   tableSource: MatTableDataSource<BlogCommentModel> = new MatTableDataSource<BlogCommentModel>();
   tabledisplayedColumns: string[] = [
     'Id',
@@ -86,7 +95,8 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
     'Writer',
     'CreatedDate',
     'UpdatedDate',
-    'Action'
+    'Action',
+    "LinkTo",
   ];
 
 
@@ -96,7 +106,7 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
 
 
 
-  expandedElement: BlogContentModel | null;
+  expandedElement: BlogCommentModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -113,12 +123,17 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
     });
   }
+  ngAfterViewInit(): void {
+    if (this.searchInChecking) {
+      this.searchInCheckingChecked = true;
+    }
+  }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BlogContentModel();
+    this.tableRowSelected = new BlogCommentModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -132,6 +147,13 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
       const filter = new FilterDataModel();
       filter.PropertyName = 'linkContentId';
       filter.Value = this.requestContentId;
+      filterModel.Filters.push(filter);
+    }
+    if (this.searchInChecking) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = "RecordStatus";
+      filter.Value = EnumRecordStatus.Available;
+      filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.Filters.push(filter);
     }
     this.commentService.ServiceGetAllEditor(filterModel).subscribe(
@@ -258,7 +280,7 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonEditRow(model: BlogContentModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: BlogCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -284,7 +306,7 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: BlogContentModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: BlogCommentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -302,8 +324,8 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) '+ ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
@@ -374,6 +396,10 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
     );
 
   }
+  onActionbuttonInChecking(model: boolean): void {
+    this.searchInChecking = model;
+    this.DataGetAll();
+  }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -401,10 +427,124 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: BlogContentModel): void {
+  onActionTableRowSelect(row: BlogCommentModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
     this.router.navigate(['/blog/content/']);
+  }
+  onActionbuttonViewContent(model: BlogCommentModel): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات دست نوشته");
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.LinkContentId)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open poup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64 ,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open poup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
+  }
+  onActionbuttonEditContent(model: BlogCommentModel ): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    this.router.navigate(['/blog/content/edit', this.tableRowSelected.LinkContentId]);
+  }
+  onActionbuttonLinkTo(
+    model: BlogCommentModel = this.tableRowSelected
+  ): void {
+    if (!model || !model.Id || model.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات دست نوشته");
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.LinkContentId)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
   }
 }

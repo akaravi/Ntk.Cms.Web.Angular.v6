@@ -14,14 +14,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
-
-
 @Component({
   selector: 'app-biography-content-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class BiographyContentSelectorComponent implements OnInit {
   constructor(
@@ -29,7 +24,6 @@ export class BiographyContentSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public contentService: BiographyContentService) {
     this.loading.cdr = this.cdr;
-
   }
   dataModelResult: ErrorExceptionResult<BiographyContentModel> = new ErrorExceptionResult<BiographyContentModel>();
   dataModelSelect: BiographyContentModel = new BiographyContentModel();
@@ -61,7 +55,6 @@ export class BiographyContentSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: BiographyContentModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -87,10 +80,8 @@ export class BiographyContentSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return this.contentService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -112,7 +103,6 @@ export class BiographyContentSelectorComponent implements OnInit {
   onActionSelect(model: BiographyContentModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
@@ -126,7 +116,6 @@ export class BiographyContentSelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: number | BiographyContentModel): void {
     if (typeof id === 'number' && id > 0) {
@@ -147,7 +136,6 @@ export class BiographyContentSelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

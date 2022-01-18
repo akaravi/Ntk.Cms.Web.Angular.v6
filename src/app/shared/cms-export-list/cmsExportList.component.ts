@@ -83,6 +83,7 @@ export class CmsExportListComponent implements OnInit {
 
   onSubmit(): void {
     if (this.optionsData.parentMethods) {
+      this.modelData = new Map<string, string>();
       this.optionsData.parentMethods.onSubmit(this.filterModel);
     }
   }

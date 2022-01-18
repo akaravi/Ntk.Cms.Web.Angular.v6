@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
-import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
   CoreAuthService,
   CoreEnumService,
@@ -36,14 +35,13 @@ import {
   CoreModuleService,
   FileCategoryService,
   EstateBillboardService,
-  EstateCustomerOrderService
+  EstateCustomerOrderService,
+  BankPaymentTransactionService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { EstateConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { EstateConfigSiteComponent } from './config/site/config-site.component';
 
 import { EstatePropertyAddComponent } from './property/add/add.component';
 import { EstatePropertyEditComponent } from './property/edit/edit.component';
@@ -118,6 +116,13 @@ import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.com
 import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
 import { EstateCustomerOrderSelectorComponent } from './customer-order/selector/selector.component';
 import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.component';
+import { EstatePropertyTypeLanduseSelectionlistComponent } from './property-type-landuse/selectionlist/selectionlist.component';
+import { EstatePropertyHeaderComponent } from './property/header/header.component';
+import { EstateBillboardHeaderComponent } from './billbord/header/header.component';
+import { EstatePropertyTypeLanduseHeaderComponent } from './property-type-landuse/header/header.component';
+import { EstateContractTypeHeaderComponent } from './contract-type/header/header.component';
+import { EstateCustomerOrderHeaderComponent } from './customer-order/header/header.component';
+import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +134,8 @@ import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.com
     EstatePropertyTypeLanduseSelectorComponent,
     EstatePropertyTypeLanduseTreeComponent,
     EstatePropertyTypeLanduseCompleteComponent,
+    EstatePropertyTypeLanduseSelectionlistComponent,
+    EstatePropertyTypeLanduseHeaderComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,
@@ -137,12 +144,14 @@ import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.com
     EstatePropertyTypeUsageTreeComponent,
     EstatePropertyTypeUsageSelectionlistComponent,
     EstatePropertyTypeUsageCompleteComponent,
+    EstatePropertyTypeUsageHeaderComponent,
     /* */
     EstatePropertyAddComponent,
     EstatePropertyEditComponent,
     EstatePropertyListComponent,
     EstatePropertySelectorComponent,
     EstatePropertyCompleteComponent,
+    EstatePropertyHeaderComponent,
     /* */
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,
@@ -165,18 +174,21 @@ import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.com
     EstateContractTypeSelectorComponent,
     EstateContractTypeTreeComponent,
     EstateContractTypeCompleteComponent,
+    EstateContractTypeHeaderComponent,
     /* */
     EstateBillboardAddComponent,
     EstateBillboardEditComponent,
     EstateBillboardListComponent,
     EstateBillboardSelectorComponent,
     EstateBillboardTreeComponent,
+    EstateBillboardHeaderComponent,
     /* */
     EstateCustomerOrderAddComponent,
     EstateCustomerOrderEditComponent,
     EstateCustomerOrderListComponent,
     EstateCustomerOrderSelectorComponent,
     EstateCustomerOrderTreeComponent,
+    EstateCustomerOrderHeaderComponent,
     /* */
     EstatePropertyDetailGroupAddComponent,
     EstatePropertyDetailGroupEditComponent,
@@ -258,6 +270,7 @@ import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.com
     /** */
     CmsConfirmationDialogService,
     CoreModuleTagService,
+    BankPaymentTransactionService,
 
   ]
 })

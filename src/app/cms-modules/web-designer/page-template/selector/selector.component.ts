@@ -14,15 +14,11 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-webdesigner-pagetemplate-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
-
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
@@ -42,7 +38,6 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | WebDesignerMainPageTemplateModel) {
     this.onActionSelectForce(x);
   }
-
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -61,7 +56,6 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: WebDesignerMainPageTemplateModel): string | undefined {
     return model ? (model.Title) : undefined;
   }
@@ -87,10 +81,8 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'categoryService.ServiceGetAll';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -105,7 +97,6 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -124,7 +115,6 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-
   push(newvalue: WebDesignerMainPageTemplateModel): Observable<WebDesignerMainPageTemplateModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
@@ -133,7 +123,6 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: string | WebDesignerMainPageTemplateModel): void {
     if (typeof id === 'string' && id.length > 0) {
@@ -164,7 +153,6 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

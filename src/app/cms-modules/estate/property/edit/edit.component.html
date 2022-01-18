@@ -1,8 +1,8 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
-  <h4> ویرایش</h4>
-  در این بخش شما میتوانید آگهی خود را ویرایش نمایید.
+  <h4> {{'TITLE.Edit' | translate}}</h4>
+  {{'TITLE.In_This_Section_You_Can_Edit_Your_Ad' | translate}}
   <br>
-  {{ formInfo.FormTitle }}
+  {{'TITLE.Edit' | translate}} "{{ formInfo.FormTitle }}"
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <!-- <div class="ntk-cms-html-card-header"> -->
@@ -16,6 +16,21 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+
+        <!-- LinkPropertyTypeUsageId Field -->
+        <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
+          [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
+        </app-estate-propertytypeusage-selector>
+        <br>
+        <!-- LinkPropertyTypeLanduseId Field -->
+        <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
+          *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
+          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
+          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
+          [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
+        </app-estate-propertytypelanduse-selector>
+        <br>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}"
@@ -108,21 +123,31 @@
             {{fieldsInfo['CaseCode']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <!-- LinkPropertyTypeUsageId Field -->
-        <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.AccessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.LinkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
-        </app-estate-propertytypeusage-selector>
-        <br>
-
-        <!-- LinkPropertyTypeLanduseId Field -->
-        <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-          *ngIf="dataModel.LinkPropertyTypeUsageId && dataModel.LinkPropertyTypeUsageId.length>0"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.AccessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.LinkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
-          [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
-        </app-estate-propertytypelanduse-selector>
-        <br>
+        <!-- SharingKey Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SharingKey']?.AccessWatchField">
+          <mat-label>{{fieldsInfo['SharingKey']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.SharingKey" name="dataModel.SharingKey" #SharingKey type="text"
+            disabled="{{!fieldsInfo['SharingKey']?.AccessEditField}}"
+            placeholder="{{fieldsInfo['SharingKey']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.SharingKey" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SharingKey = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['SharingKey']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-error *ngIf="SharingKey.errors?.required">
+            {{fieldsInfo['SharingKey']?.FieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- ViewConfigHiddenInList Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.ViewConfigHiddenInList"
+            *ngIf="fieldsInfo['ViewConfigHiddenInList']?.AccessWatchField"
+            [disabled]="!fieldsInfo['ViewConfigHiddenInList']?.AccessEditField" name="dataModel.ViewConfigHiddenInList">
+            {{fieldsInfo['ViewConfigHiddenInList']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
         <!-- CreatedYaer Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.LinkPropertyTypeLanduseId">
           <mat-label>{{PropertyTypeSelected.TitleCreatedYaer}}</mat-label>
@@ -287,13 +312,13 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
-          <button type="button" mat-raised-button color="success" [disabled]="!vform.form.valid" matStepperNext>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}
           </button>
         </div>
       </mat-step>
 
-      <mat-step label="جزئیات" state="seo"
+      <mat-step label="{{'TITLE.Details' | translate}}"  state="seo"
         *ngIf="dataModel.PropertyDetailGroups && dataModel.PropertyDetailGroups.length>0">
         <p>جزئیات ملک نسبت به نوع ملک</p>
 
@@ -383,78 +408,107 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="معامله" state="seo">
+      <mat-step label="{{'TITLE.Contract' | translate}}" state="seo">
+
+        <!-- IsSoldIt Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.IsSoldIt" *ngIf="fieldsInfo['IsSoldIt']?.AccessWatchField"
+            [disabled]="!fieldsInfo['IsSoldIt']?.AccessEditField" name="dataModel.IsSoldIt">
+            {{fieldsInfo['IsSoldIt']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- ReviewDataAfterSoldIt Field -->
+        <mat-form-field class="ntk-full-width"
+          *ngIf="fieldsInfo['ReviewDataAfterSoldIt']?.AccessWatchField && dataModel.IsSoldIt">
+          <mat-label>{{fieldsInfo['ReviewDataAfterSoldIt']?.FieldTitle}}</mat-label>
+          <input matInput [matDatepicker]="ReviewDataAfterSoldIt" [(ngModel)]="dataModel.ReviewDataAfterSoldIt"
+            name="dataModel.ReviewDataAfterSoldIt" />
+          <mat-icon matSuffix
+            *ngIf="dataModel.ReviewDataAfterSoldIt && fieldsInfo['ReviewDataAfterSoldIt']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.ReviewDataAfterSoldIt = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="ReviewDataAfterSoldIt"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #ReviewDataAfterSoldIt></mat-datepicker>
+        </mat-form-field>
+        <hr>
         <p>نوع معامله این ملک را مشخص کنید</p>
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)"
           [optionDisabled]="false" [optionTypeView]="2" [optionPlaceholder]="'نوع معامله'"
           [optionSelectForce]="contractDataModel.LinkEstateContractTypeId">
         </app-estate-contract-type-selector>
-        <div *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
+        <div class="container" *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0">
           <br>
           <br>
           <!-- SalePrice Field -->
-          <div class="mb-9">
-            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
-              <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
-              <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
-                matInputCommified [disabled]="contractDataModel.SalePriceByAgreement" #CurrentClickCount type="text"
-                placeholder="0" />
-              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
-                (click)="contractDataModel.SalePrice = 0">
-                close</mat-icon>
-              <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-label> ( {{contractTypeSelected.UnitSalePrice}} ) </mat-label>
-            </mat-form-field>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasSalePrice">
+                <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
+                <input matInput [(ngModel)]="contractDataModel.SalePrice" name="contractDataModel.SalePrice"
+                  matInputCommified [disabled]="contractDataModel.SalePriceByAgreement" #CurrentClickCount type="text"
+                  placeholder="0" />
+                <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                  (click)="contractDataModel.SalePrice = 0">
+                  close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-label> ( {{contractTypeSelected.UnitSalePrice}} ) </mat-label>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-slide-toggle
+                *ngIf="contractTypeSelected.HasSalePrice && contractTypeSelected.SalePriceAllowAgreement"
+                [(ngModel)]="contractDataModel.SalePriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
+                name="contractDataModel.SalePriceAllowAgreement">
+                توافق در مبلغ فروش
+              </mat-slide-toggle>
+            </div>
           </div>
-          <div class="mb-3">
-            <mat-slide-toggle *ngIf="contractTypeSelected.HasSalePrice && contractTypeSelected.SalePriceAllowAgreement"
-              [(ngModel)]="contractDataModel.SalePriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
-              name="contractDataModel.SalePriceAllowAgreement">
-              توافق در مبلغ فروش
-            </mat-slide-toggle>
+          <div class="row">
+            <div class="col-6">
+              <!-- RentPrice Field -->
+              <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
+                <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
+                <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
+                  matInputCommified [disabled]="contractDataModel.RentPriceByAgreement" #CurrentClickCount type="text"
+                  placeholder="0" />
+                <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                  (click)="contractDataModel.RentPrice = 0">
+                  close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-label> ( {{contractTypeSelected.UnitRentPrice}} ) </mat-label>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-slide-toggle
+                *ngIf="contractTypeSelected.HasRentPrice && contractTypeSelected.RentPriceAllowAgreement"
+                [(ngModel)]="contractDataModel.RentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()"
+                name="contractDataModel.RentPriceByAgreement">
+                توافق در اجاره
+              </mat-slide-toggle>
+            </div>
           </div>
-          <div class="mb-9">
-            <!-- RentPrice Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasRentPrice">
-              <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
-              <input matInput [(ngModel)]="contractDataModel.RentPrice" name="contractDataModel.RentPrice"
-                matInputCommified [disabled]="contractDataModel.RentPriceByAgreement" #CurrentClickCount type="text"
-                placeholder="0" />
-              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
-                (click)="contractDataModel.RentPrice = 0">
-                close</mat-icon>
-              <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-label> ( {{contractTypeSelected.UnitRentPrice}} ) </mat-label>
-            </mat-form-field>
-          </div>
-          <div class="mb-3">
-            <mat-slide-toggle *ngIf="contractTypeSelected.HasRentPrice && contractTypeSelected.RentPriceAllowAgreement"
-              [(ngModel)]="contractDataModel.RentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()"
-              name="contractDataModel.RentPriceByAgreement">
-              توافق در اجاره
-            </mat-slide-toggle>
-          </div>
-          <div class="mb-9">
-            <!-- DepositPrice Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
-              <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
-              <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
-                matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount type="text"
-                placeholder="0" />
-              <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
-                (click)="contractDataModel.DepositPrice = 0">
-                close</mat-icon>
-              <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-label> ( {{contractTypeSelected.UnitDepositPrice}} ) </mat-label>
-            </mat-form-field>
-          </div>
-          <div class="mb-3">
-            <mat-slide-toggle
-              *ngIf="contractTypeSelected.HasDepositPrice && contractTypeSelected.DepositPriceAllowAgreement"
-              [(ngModel)]="contractDataModel.DepositPriceByAgreement" (change)="onActionClickDepositPriceByAgreement()"
-              name="contractDataModel.DepositPriceByAgreement">
-              توافق در رهن
-            </mat-slide-toggle>
+          <div class="row">
+            <div class="col-6">
+              <!-- DepositPrice Field -->
+              <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected.HasDepositPrice">
+                <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
+                <input matInput [(ngModel)]="contractDataModel.DepositPrice" name="contractDataModel.DepositPrice"
+                  matInputCommified [disabled]="contractDataModel.DepositPriceByAgreement" #CurrentClickCount
+                  type="text" placeholder="0" />
+                <mat-icon matSuffix matSuffix mat-icon-button aria-label="Clear"
+                  (click)="contractDataModel.DepositPrice = 0">
+                  close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-label> ( {{contractTypeSelected.UnitDepositPrice}} ) </mat-label>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-slide-toggle
+                *ngIf="contractTypeSelected.HasDepositPrice && contractTypeSelected.DepositPriceAllowAgreement"
+                [(ngModel)]="contractDataModel.DepositPriceByAgreement"
+                (change)="onActionClickDepositPriceByAgreement()" name="contractDataModel.DepositPriceByAgreement">
+                توافق در رهن
+              </mat-slide-toggle>
+            </div>
           </div>
           <hr>
           <!-- contractDataModel.Description Field -->
@@ -470,13 +524,14 @@
 
           </mat-form-field>
         </div>
-
-        <button (click)="onActionOptionAddToList()" type="button" mat-button
-          class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">
+        <br>
+        <br>
+        <button (click)="onActionOptionAddToList()" type="button" mat-button *ngIf="contractTypeSelected && contractTypeSelected.Id.length>0"
+          class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
           {{optionActionTitle}} ...
         </button>
         <hr>
-        <p>لیست مشخصات معامله این ملک</p>
+        <p> {{'TITLE.List_Of_Transaction_Details_Of_This_Property' | translate}} </p>
         <app-progress-spinner [options]="loadingOption">
         </app-progress-spinner>
         <!-- TABLE  -->
@@ -526,11 +581,13 @@
             </ng-container>
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
-              <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionOptionRemoveFromList(i)">
-                  <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}
-                </small>
+                <button mat-icon-button>
+                  <small (click)="onActionOptionRemoveFromList(i)">
+                    <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}
+                  </small>
+                </button>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
@@ -559,8 +616,8 @@
 
             <p>فایل های پیوست محتوا</p>
             <div class="mb-3">
-              <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-                src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+              <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+                aria-hidden src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
             </div>
             <div class="mb-9">
               <mat-form-field class="ntk-full-width">
@@ -589,8 +646,8 @@
               <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
               </app-cms-files-selector>
             </div>
-              <br>
-              <br>
+            <br>
+            <br>
           </div>
 
           <div class="col-md-6 col-sm-6 col-xs-9" height="300px" width="300px" style="float: left; text-align: center;">
@@ -600,7 +657,7 @@
               </a>
               <span class="navi-icon" [cdkCopyToClipboard]="dataModel.UrlViewContent" (click)="onActionCopied()">
                 <i class="flaticon2-copy"></i></span>
-                <br>
+              <br>
               <app-cms-qdoc [optionUrl]="dataModel.UrlViewContent"></app-cms-qdoc>
             </div>
           </div>
@@ -620,12 +677,13 @@
         </mat-step>
       </div>
 
-      <mat-step label="موقعیت مکانی" state="loaction">
+      <mat-step label="{{'TITLE.Location' | translate}}" state="loaction">
 
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
-        <button type="button" class="btn btn-secondary" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>
+        <button type="button" class="btn btn-secondary" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' |
+          translate}}</button>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}

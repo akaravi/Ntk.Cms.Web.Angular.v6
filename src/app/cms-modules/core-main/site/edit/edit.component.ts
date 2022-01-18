@@ -27,8 +27,6 @@ import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
-
-
 @Component({
   selector: 'app-core-site-edit',
   templateUrl: './edit.component.html',
@@ -79,6 +77,8 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFavIconId = false;
+  fileManagerOpenFormPwaIconSize190x192Id = false;
+  fileManagerOpenFormPwaIconSize512x512Id = false;
   fileManagerOpenFormLinkFileIdLogo = false;
   fileManagerOpenFormLinkImageLogoId = false;
   appLanguage = 'fa';
@@ -90,14 +90,10 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
   keywordDataModel = [];
-
-
   ngOnInit(): void {
-
     this.getEnumRecordStatus();
     this.getEnumSiteStatus();
     this.getEnumLanguage();
-
     if (this.requestId > 0) {
       this.DataGetOne(this.requestId);
     }
@@ -145,17 +141,14 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
     }
     this.DataEditContent();
   }
-
   DataGetOne(id: number): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     /*َAccess Field*/
     this.coreSiteService.setAccessLoad();
-
     this.coreSiteService
       .ServiceGetOneById(id)
       .subscribe(
@@ -163,11 +156,8 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
-
           if (next.IsSuccess) {
             this.dataModel = next.Item;
             const lat = this.dataModel.AboutUsGeolocationlatitude;
@@ -181,12 +171,10 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
             if (this.dataModel.SeoKeyword && this.dataModel.SeoKeyword.length > 0) {
               this.keywordDataModel = this.dataModel.SeoKeyword.split(',');
             }
-
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormSubmitAllow = true;
@@ -201,8 +189,6 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.coreSiteService
       .ServiceEdit(this.dataModel)
       .subscribe(
@@ -212,13 +198,11 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-
             this.formInfo.FormSubmitAllow = true;
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.loading.Stop(pName);
@@ -228,7 +212,6 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
         }
       );
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -245,7 +228,6 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
       return;
     }
     this.mapModel = model;
-
     if (this.mapMarkerPoints && this.mapMarkerPoints.length > 0) {
       this.mapMarkerPoints.forEach(item => {
         this.mapMarker = Leaflet.marker([item.lat, item.lon]).addTo(this.mapModel);
@@ -253,7 +235,6 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
       this.mapOptonCenter = this.mapMarkerPoints[0];
       this.mapMarkerPoints = [];
     }
-
     this.mapModel.on('click', (e) => {
       // @ts-ignore
       const lat = e.latlng.lat;
@@ -271,12 +252,10 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
       this.dataModel.AboutUsGeolocationlatitude = lat;
       this.dataModel.AboutUsGeolocationlongitude = lon;
     });
-
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);
   }
-
   onActionFileSelectedAboutUsLinkImageId(model: NodeInterface): void {
     this.dataModel.AboutUsLinkImageId = model.id;
     this.dataModel.AboutUsLinkImageIdSrc = model.downloadLinksrc;
@@ -284,6 +263,14 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
   onActionFileSelectedLinkFavIconId(model: NodeInterface): void {
     this.dataModel.LinkFavIconId = model.id;
     this.dataModel.LinkFavIconIdSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedPwaIconSize190x192Id(model: NodeInterface): void {
+    this.dataModel.PwaIconSize190x192Id = model.id;
+    this.dataModel.PwaIconSize190x192IdSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedPwaIconSize512x512Id(model: NodeInterface): void {
+    this.dataModel.LinkFavIconId = model.id;
+    this.dataModel.PwaIconSize512x512IdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkImageLogoId(model: NodeInterface): void {
     this.dataModel.LinkImageLogoId = model.id;
@@ -296,7 +283,6 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
       return;
     }
     this.dataModel.LinkSiteCategoryId = model.Id;
-
   }
   onActionSelectorLinkResellerSiteIdSelect(model: CoreSiteModel | null): void {
     this.dataModel.LinkResellerSiteId = null;

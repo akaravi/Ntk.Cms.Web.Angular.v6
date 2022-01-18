@@ -22,8 +22,6 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -37,11 +35,6 @@
       <mat-error *ngIf="Title.errors?.required">
         {{fieldsInfo['Title']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
-    </mat-form-field>
-    <!-- TitleML Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
-      <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
     </mat-form-field>
 
     <!-- TitleResourceLanguage Field -->

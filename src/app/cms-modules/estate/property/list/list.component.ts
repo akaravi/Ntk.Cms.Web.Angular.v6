@@ -34,16 +34,16 @@ import { Subscription } from "rxjs";
 import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service";
 import { TokenHelper } from "src/app/core/helpers/tokenHelper";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: "app-estate-property-list",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
 export class EstatePropertyListComponent
-  implements OnInit, OnDestroy, AfterViewInit
-{
+  implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = "";
+  requestLinkPropertyTypeUsageId = "";
   requestLinkContractTypeId = "";
   requestLinkBillboardId = "";
   requestLinkCustomerOrderId = "";
@@ -57,11 +57,14 @@ export class EstatePropertyListComponent
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyTypeLanduseId =
       this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeLanduseId");
+    this.requestLinkPropertyTypeUsageId =
+      this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeUsageId");
     this.requestLinkContractTypeId =
       this.activatedRoute.snapshot.paramMap.get("LinkContractTypeId");
     this.requestLinkBillboardId =
@@ -69,7 +72,6 @@ export class EstatePropertyListComponent
     this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get(
       "LinkCustomerOrderId"
     );
-
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
       this.searchInChecking =
         this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
@@ -90,6 +92,15 @@ export class EstatePropertyListComponent
       const filter = new FilterDataModel();
       filter.PropertyName = "LinkPropertyTypeLanduseId";
       filter.Value = this.requestLinkPropertyTypeLanduseId;
+      this.filteModelProperty.Filters.push(filter);
+    }
+    if (
+      this.requestLinkPropertyTypeUsageId &&
+      this.requestLinkPropertyTypeUsageId.length > 0
+    ) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = "LinkPropertyTypeUsageId";
+      filter.Value = this.requestLinkPropertyTypeUsageId;
       this.filteModelProperty.Filters.push(filter);
     }
     if (
@@ -142,6 +153,9 @@ export class EstatePropertyListComponent
     "LinkMainImageIdSrc",
     "Id",
     "RecordStatus",
+    "MainAdminRecordStatus",
+    "IsSoldIt",
+    "ViewConfigHiddenInList",
     "LinkSiteId",
     "Title",
     "ViewCount",
@@ -168,6 +182,7 @@ export class EstatePropertyListComponent
         this.tokenInfo = next;
       });
   }
+
   ngAfterViewInit(): void {
     if (this.searchInChecking) {
       this.searchInCheckingChecked = true;
@@ -185,7 +200,7 @@ export class EstatePropertyListComponent
     this.tableRowSelected = new EstatePropertyModel();
 
     const pName = this.constructor.name + "main";
-    this.loading.Start(pName);
+    this.loading.Start(pName,'دریافت  لیست اطلاعات');
 
     this.filteModelProperty.AccessLoad = true;
     /*filter CLone*/
@@ -447,7 +462,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = "لطفا تایید کنید...";
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message =
       "آیا مایل به حدف این محتوا می باشید " +
       "?" +
@@ -459,7 +474,7 @@ export class EstatePropertyListComponent
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + "main";
-          this.loading.Start(pName);
+          this.loading.Start(pName,'در حال حذف اطلاعات');
 
           this.estatePropertyService
             .ServiceDelete(this.tableRowSelected.Id)
@@ -579,17 +594,38 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CmsLinkToComponent, {
-      height: "90%",
-      data: {
-        UrlViewContentQRCodeBase64:this.tableRowSelected.UrlViewContentQRCodeBase64,
-        UrlViewContent: this.tableRowSelected.UrlViewContent,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, "دریافت اطلاعات ملک");
+    this.estatePropertyService
+      .ServiceGetOneById(this.tableRowSelected.Id)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              // height: "90%",
+              data: {
+                Title: next.Item.Title,
+                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: next.Item.UrlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        (error) => {
+          this.cmsToastrService.typeError(error);
+          this.loading.Stop(pName);
+        }
+      );
   }
 }

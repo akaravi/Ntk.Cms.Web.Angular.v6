@@ -1,16 +1,15 @@
 <app-progress-spinner [options]="loading"> </app-progress-spinner>
-
-<h2 mat-dialog-title>...</h2>
+<h2 mat-dialog-title> </h2>
 <mat-dialog-content>
   <form (ngSubmit)="onActionSubmit()" #vform="ngForm" class="form form-horizontal">
-
     <div class="form-body">
       <h4 class="form-section mb-8">
         <i class="ft-user"></i>
         {{'AUTH.REGISTER.SIGNUP' | translate}}
       </h4>
-      {{'AUTH.REGISTER.DESC' | translate}}
-
+      <h6>
+        {{'AUTH.REGISTER.DESC' | translate}}
+      </h6>
       <div>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.FIRSTNAME' | translate}}</mat-label>
@@ -42,7 +41,6 @@
             Family is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Email" name="dataModel.Email"
@@ -73,7 +71,6 @@
             Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.Password" name="dataModel.Password"
@@ -90,10 +87,8 @@
           </mat-error>
         </mat-form-field>
         <mat-icon matSuffix (click)="ActionPasswordGenerator()">mode_edit</mat-icon>
-
         <app-password-strength [passwordToCheck]="dataModel.Password" (passwordStrength)="passwordValid($event)">
         </app-password-strength>
-
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}</mat-label>
           <input matInput [(ngModel)]="RePasswordModel" name="RePasswordModel"
@@ -112,8 +107,6 @@
             پسورد و تاییدیه پسورد با هم مغایرت دارد
           </mat-error>
         </mat-form-field>
-
-
         <!--CaptchaText Field-->
         <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
         <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
@@ -131,7 +124,6 @@
             CaptchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <!--begin::Form group-->
         <div class="form-group">
           <label class="checkbox mb-0">
@@ -144,19 +136,18 @@
           </label>
         </div>
         <!--end::Form group-->
-
         <!--begin::Form group-->
         <div class="row">
           <div class="col-12 col-lg-6">
             <button type="submit" id="kt_login_signup_submit"
               [disabled]="!Roulaccespt ||vform.invalid || !formInfo.ButtonSubmittedEnabled"
-              class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+              class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
               {{'AUTH.REGISTER.CREATE_AN_ACCOUNT' | translate}}
             </button>
           </div>
           <div class="col-12 col-lg-6">
             <a routerLink="/auth/singin" type="button" id="kt_login_signup_cancel"
-              class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+              class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
               {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
             </a>
           </div>
@@ -165,11 +156,9 @@
           </ng-container>
         </div>
         <!--end::Form group-->
-
       </div>
     </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-
 </mat-dialog-actions>

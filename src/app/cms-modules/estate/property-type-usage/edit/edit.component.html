@@ -63,8 +63,8 @@
     </mat-form-field>
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-        src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
@@ -81,6 +81,11 @@
         [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false">
       </cms-file-manager>
     </div>
+    <app-estate-propertytypelanduse-selectionlist [optionSelectForce]="dataEstatePropertyTypeLandUseIds"
+    [optionDisabled]="false" (optionChange)="onActionSelectorUserCategorySelect($event)"
+    (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
+    (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
+  </app-estate-propertytypelanduse-selectionlist>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

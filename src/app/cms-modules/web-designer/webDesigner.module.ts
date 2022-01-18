@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WebDesignerComponent } from './webDesigner.component';
 import { WebDesignerRoutes } from './webDesigner.routing';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
@@ -14,6 +12,7 @@ import {
   CoreEnumService,
   CoreModuleService,
   CoreModuleTagService,
+  CoreSiteCategoryService,
   WebDesignerEnumService,
   WebDesignerLogPageSafeService,
   WebDesignerMainIntroService,
@@ -58,7 +57,7 @@ import { WebDesignerMainPageTemplateTreeComponent } from './page-template/tree/t
 import { WebDesignerMainPageTemplateHeaderComponent } from './page-template/header/header.component';
 import { CoreModuleModule } from '../core-main/module/coreModule.module';
 import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-dependency/auto-add-page/auto-add-page.component';
-
+import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid.component';
 @NgModule({
   declarations: [
     WebDesignerComponent,
@@ -95,6 +94,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     WebDesignerMainPageAddComponent,
     WebDesignerMainPageEditComponent,
     WebDesignerMainPageListComponent,
+    WebDesignerMainPageListGridComponent,
     WebDesignerMainPageSelectorComponent,
     WebDesignerMainPageTreeComponent,
     WebDesignerMainPageHeaderComponent,
@@ -105,11 +105,9 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     WebDesignerRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
-    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
@@ -124,6 +122,7 @@ import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-depend
     CoreAuthService,
     CmsConfirmationDialogService,
     CoreModuleTagService,
+    CoreSiteCategoryService,
     WebDesignerLogPageSafeService,
     WebDesignerMainIntroService,
     WebDesignerMainMenuService,

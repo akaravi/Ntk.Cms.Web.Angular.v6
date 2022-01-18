@@ -55,7 +55,7 @@
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
@@ -93,7 +93,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
 
           <!-- Action Menu -->
@@ -111,19 +111,19 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonTaskList(row)">
               <mat-icon>confirmation_number</mat-icon>
-              <span>تیکت ها</span>
+              <span>{{'ACTION.TICKETS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonFaqList(row)">
               <mat-icon>question_answer</mat-icon>
-              <span>سوالات</span>
+              <span>{{'ACTION.QUESTIONS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonTemplateList(row)">
               <mat-icon>dehaze</mat-icon>
-              <span>قالب ها</span>
+              <span> {{'ACTION.TEMPLATES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonLogList(row)">
               <mat-icon>dehaze</mat-icon>
-              <span>لاگ ها</span>
+              <span> {{'ACTION.LOGS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

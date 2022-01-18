@@ -14,12 +14,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
 @Component({
   selector: 'app-biography-category-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class BiographyCategorySelectorComponent implements OnInit {
   constructor(
@@ -27,7 +24,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public categoryService: BiographyCategoryService) {
     this.loading.cdr = this.cdr;
-
   }
   dataModelResult: ErrorExceptionResult<BiographyCategoryModel> = new ErrorExceptionResult<BiographyCategoryModel>();
   dataModelSelect: BiographyCategoryModel = new BiographyCategoryModel();
@@ -41,7 +37,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | BiographyCategoryModel) {
     this.onActionSelectForce(x);
   }
-
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -60,7 +55,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: BiographyCategoryModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -86,10 +80,8 @@ export class BiographyCategorySelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -104,7 +96,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
           }
           /*select First Item */
           this.loading.Stop(pName);
-
           return response.ListItems;
         })
       ).toPromise();
@@ -112,7 +103,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
   onActionSelect(model: BiographyCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
@@ -126,7 +116,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: number | BiographyCategoryModel): void {
     if (typeof id === 'number' && id > 0) {
@@ -157,7 +146,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

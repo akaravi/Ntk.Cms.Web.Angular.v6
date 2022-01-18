@@ -85,7 +85,7 @@ export class CoreModuleTagCategoryEditComponent implements OnInit {
       this.DataGetOneContent();
     } else if (this.requestId === 0) {
       this.ComponentAction = ComponentActionEnum.add;
-      this.formInfo.FormTitle = 'ثبت دسته بندی جدید';
+      this.formInfo.FormTitle =  this.translate.instant('TITLE.Register_New_Categories');
     }
 
     if (this.ComponentAction === ComponentActionEnum.none) {

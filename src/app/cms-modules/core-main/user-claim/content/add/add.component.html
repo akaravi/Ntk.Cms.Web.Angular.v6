@@ -35,6 +35,21 @@
           {{fieldsInfo['Title']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
+      
+    <!-- TitleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+        maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessAddField" />
+      <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleResourceLanguage.errors?.required">
+        {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
       <!-- LinkUserId Field -->
       <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [optionSelectForce]="this.dataModel.LinkUserId" *ngIf="ProfessionalData"
         [optionPlaceholder]="'کاربر'" [optionDisabled]="!fieldsInfo['LinkUserId']?.AccessAddField">
@@ -52,7 +67,7 @@
       </app-core-userclaimtype-selector>
       <!-- LinkFileContentId Field -->
       <div class="mb-3">
-        <img *ngIf="dataModel?.LinkFileContentIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+        <img *ngIf="dataModel?.LinkFileContentIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
           src="{{dataModel.LinkFileContentIdSrc | cmsthumbnail}}" height="50" width="50" />
       </div>
       <div class="mb-9">

@@ -1,94 +1,56 @@
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
-  <ng-container cms-tree>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    --------------------------------------
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-  </ng-container>
-  <ng-container cms-header>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+<div class="row">
+ 
+  <div [ngClass]="'col-xl-12'">
+    <!--begin::Header-->
+    <div  class="ntk-cms-html-list-header">
+      <button *ngIf=" tableRowSelected.LinkTypeId>0" (click)="onActionbuttonEditRow()" type="button"
+        class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+        translate}}</button>
+  
+      <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+        <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      </button>
+      <button (click)="onActionBackToParent()" *ngIf="this.requestLinkUserId>0" type="button"
+        class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+    </div>
+    <!--end::Header-->
     
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </ng-container>
-  <ng-container cms-action>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf=" tableRowSelected.LinkTypeId>0" (click)="onActionbuttonEditRow()" type="button"
-      class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+    <!--begin::Body-->
+    <div>
+      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <div class="row">
+        <div *ngFor="let item of dataModelResult.ListItems" class="col-3">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar
+                style="background-image: url('{{item.TypeLinkMainImageIdSrc}}'); background-size: cover;"></div>
+              <mat-card-title><i [ngClass]="item.IsApproved | boolclass"></i> وضعیت</mat-card-title>
+              <mat-card-subtitle>{{item.TypeTitle}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{item.LinkFileContentIdSrc}}" alt="{{item.TypeTitle}}">
+            <mat-card-content>
+              <p *ngIf="item.IsApproved && item.ApprovedExpireDate">
+                {{item.ApprovedExpireDate}}
+              </p>
+  
+              <p *ngIf="!item.IsApproved">
+                {{item.TypeDescription}}
+              </p>
+              <p *ngIf="item.ApprovedResult && item.ApprovedResult.length>0">
+                {{item.ApprovedResult}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button *ngIf="!item.IsApproved" (click)="onActionbuttonEditRow(item)">ارسال مدراک</button>
+            </mat-card-actions>
+          </mat-card>
+  
+        </div>
+      </div>
+  
+    </div>
+    <!--end::Body-->
 
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN"><mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
-    <button (click)="onActionBackToParent()" *ngIf="this.requestLinkUserId>0" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+  </div>
+</div>
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
-  </ng-container>
-  <ng-container cms-action-area>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
-    <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
-    <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
-  </ng-container>
-  <ng-container cms-body>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort">
-      <!-- TypeTitle Column -->
-      <ng-container matColumnDef="TypeTitle">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TypeTitle']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.TypeTitle}} </mat-cell>
-      </ng-container>
-
-      <!-- IsApproved Column -->
-      <ng-container matColumnDef="IsApproved">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsApproved']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.IsApproved | boolclass"></i></mat-cell>
-      </ng-container>
-      <!-- ApprovedResult Column -->
-      <ng-container matColumnDef="ApprovedResult">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ApprovedResult']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ApprovedResult}} </mat-cell>
-      </ng-container>
-      <!-- ApproveCheckDate Column -->
-      <ng-container matColumnDef="ApproveCheckDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ApproveCheckDate']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.ApproveCheckDate) }} </mat-cell>
-      </ng-container>
-      <!-- ApprovedExpireDate Column -->
-      <ng-container matColumnDef="ApprovedExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ApprovedExpireDate']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.ApprovedExpireDate) }} </mat-cell>
-      </ng-container>
-
-      <!-- Action Column -->
-      <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
-        <mat-cell *matCellDef="let row" class=' Action'>
-          <!-- Action Menu -->
-          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)">
-              <mat-icon>mode_edit</mat-icon>
-              <span>{{'ACTION.EDIT' | translate}}</span>
-            </button>
-          </mat-menu>
-        </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.LinkTypeId === tableRowSelected.LinkTypeId? '#d3d3da' : '' }">
-      </mat-row>
-    </mat-table>
-
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </ng-container>
-  <ng-container cms-footer>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    --------------------------------------
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </ng-container>
-</app-cms-html-list>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MemberComponent } from './member.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -55,7 +54,6 @@ const routes: Routes = [
     //     path: 'notification',
     //     component: ApplicationNotificationListComponent
     //   },
-
     //   {
     //     path: 'themeconfig',
     //     component: ApplicationThemeConfigListComponent
@@ -63,7 +61,6 @@ const routes: Routes = [
     // ]
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

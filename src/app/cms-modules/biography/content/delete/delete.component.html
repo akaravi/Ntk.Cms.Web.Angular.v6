@@ -11,7 +11,6 @@
     <input matInput [(ngModel)]="dataModelResultContent.Item.Title" name="dataModelResultContent.Item.Title" #Writer
       type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" required readonly />
   </mat-form-field>
-
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
     <textarea matInput [(ngModel)]="dataModelResultContent.Item.Description"
@@ -33,7 +32,6 @@
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
-
     <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.ButtonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}

@@ -60,9 +60,9 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
       if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
         this.dataModel.LinkUserId = this.tokenInfo.UserId;
         this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
-        this.ProfessionalData = false;
-      } else {
         this.ProfessionalData = true;
+      } else {
+        this.ProfessionalData = false;
       }
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
@@ -70,9 +70,9 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
       if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
         this.dataModel.LinkUserId = this.tokenInfo.UserId;
         this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
-        this.ProfessionalData = false;
-      } else {
         this.ProfessionalData = true;
+      } else {
+        this.ProfessionalData = false;
       }
     });
   }

@@ -1,0 +1,30 @@
+<div class="table">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <div class="tr">
+    <div class="td"></div>
+    <div class="td align" style="color: darkblue;"><h5><b> {{'TITLE.Selected_News'|translate}} </b> </h5></div>
+    <div class="td" style="text-align: left;">
+      <!-- *ngIf="dataModelResult?.Item?.Id" -->
+    </div>
+  </div>
+  <div class="tr">
+    <div class="td"><b>{{fieldsInfo['Id']?.FieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td"></div>
+
+    <div style="clear: both;"></div>
+  </div>
+  <div class="tr">
+    <div class="td"><b>{{fieldsInfo['Title']?.FieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td" style="text-align: left;">
+      <abbr title="link to">
+      <button class="btn btn-outline-primary">
+        <mat-icon (click)="onActionbuttonLinkTo()" >&#8599; 
+        </mat-icon>  
+      </button>
+    </abbr>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+</div>

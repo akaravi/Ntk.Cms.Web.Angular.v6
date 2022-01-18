@@ -17,22 +17,17 @@ import {
   FilterModel,
   WebDesignerMainPageTemplateModel,
   WebDesignerMainPageTemplateService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { WebDesignerMainPageTemplateEditComponent } from '../edit/edit.component';
 import { WebDesignerMainPageTemplateAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-webdesigner-pagetemplate-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -57,10 +52,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
   @Output() optionChange = new EventEmitter<WebDesignerMainPageTemplateModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: WebDesignerMainPageTemplateModel) => false;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -73,10 +65,8 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -84,12 +74,10 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -108,9 +96,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
     this.DataGetAll();
   }
   onActionSelectForce(id: number | WebDesignerMainPageTemplateModel): void {
-
   }
-
   onActionAdd(): void {
     const dialogRef = this.dialog.open(WebDesignerMainPageTemplateAddComponent, {
       height: '90%',
@@ -122,7 +108,6 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
       }
     });
   }
-
   onActionEdit(): void {
     let id = '';
     if (this.dataModelSelect && this.dataModelSelect.Id?.length > 0) {

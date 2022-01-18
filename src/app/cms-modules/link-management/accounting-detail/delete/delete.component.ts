@@ -21,7 +21,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-linkmanagement-accounting-detail-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class LinkManagementAccountingDetailDeleteComponent implements OnInit {
   requestId = 0;

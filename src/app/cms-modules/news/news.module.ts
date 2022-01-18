@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NewsRouting } from './news.routing';
 import { NewsComponent } from './news.component';
 import { TagInputModule } from 'ngx-chips';
-
 import {
   CoreEnumService,
   CoreModuleService,
@@ -20,7 +19,7 @@ import {
   NewsContentSimilarService,
   NewsContentTagService,
   NewsShareMainAdminSettingService,
-  NewsShareReciverCategoryService,
+  NewsShareReceiverCategoryService,
   NewsShareServerCategoryService
 } from 'ntk-cms-api';
 import { NewsCategoryEditComponent } from './category/edit/edit.component';
@@ -28,9 +27,7 @@ import { NewsCategoryDeleteComponent } from './category/delete/delete.component'
 import { NewsContentEditComponent } from './content/edit/edit.component';
 import { NewsContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared/shared.module';
-
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { NewsCategorySelectorComponent } from './category/selector/selector.component';
 import { NewsContentListComponent } from './content/list/list.component';
@@ -43,17 +40,16 @@ import { NewsContentDeleteComponent } from './content/delete/delete.component';
 import { NewsCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
-
-
+import { NewsContentHeaderComponent } from './content/header/header.component';
 @NgModule({
   declarations: [
     NewsComponent,
-
     NewsContentAddComponent,
     NewsContentEditComponent,
     NewsContentDeleteComponent,
     NewsContentListComponent,
     NewsContentSelectorComponent,
+    NewsContentHeaderComponent,
     NewsCategoryTreeComponent,
     NewsCategoryTreeSelectorComponent,
     NewsCategorySelectorComponent,
@@ -68,7 +64,6 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
     NewsRouting,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
@@ -92,7 +87,7 @@ import { NewsCategoryTreeSelectorComponent } from './category/tree-selector/tree
     NewsContentSimilarService,
     NewsContentTagService,
     NewsShareMainAdminSettingService,
-    NewsShareReciverCategoryService,
+    NewsShareReceiverCategoryService,
     NewsShareServerCategoryService,
     NewsContentCategoryService,
   ]

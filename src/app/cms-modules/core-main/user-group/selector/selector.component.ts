@@ -62,10 +62,10 @@ ngOnInit(): void {
   }
 
   displayFn(model?: CoreUserGroupModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.TitleML ) : undefined;
   }
   displayOption(model?: CoreUserGroupModel): string | undefined {
-    return model ? (model.Title ) : undefined;
+    return model ? (model.TitleML ) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserGroupModel[]> {
     const filteModel = new FilterModel();

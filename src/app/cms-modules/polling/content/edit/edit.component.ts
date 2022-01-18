@@ -64,7 +64,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   optionDataModel = new Array<PollingOptionModel>();
   optionTabledataSource = new MatTableDataSource<PollingOptionModel>();
   dataOptionModelResult: ErrorExceptionResult<PollingOptionModel> = new ErrorExceptionResult<PollingOptionModel>();
-  optionActionTitle = 'اضافه به لیست';
+  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
 
@@ -301,7 +301,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
         (next) => {
           if (next.IsSuccess) {
             this.optionSelected = new PollingOptionModel();
-            this.optionActionTitle = 'اضافه به لیست';
+            this.optionActionTitle =this.translate.instant('ACTION.Add_To_List');
             this.optionSelected = new PollingOptionModel();
             this.DataOptionGetAll();
           }
@@ -321,7 +321,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
         (next) => {
           if (next.IsSuccess) {
             this.optionSelected = new PollingOptionModel();
-            this.optionActionTitle = 'اضافه به لیست';
+            this.optionActionTitle =this.translate.instant('ACTION.Add_To_List');
             this.optionSelected = new PollingOptionModel();
             this.DataOptionGetAll();
           } else {

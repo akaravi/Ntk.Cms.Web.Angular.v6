@@ -8,7 +8,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { TagInputModule } from 'ngx-chips';
-import { CoreModuleTagEditComponent } from './tag/edit/edit.component';
 import { CoreModuleTagListComponent } from './tag/list/list.component';
 import { CoreModuleTagCategoryDeleteComponent } from './tagCategory/delete/delete.component';
 import { CoreModuleTagCategoryEditComponent } from './tagCategory/edit/edit.component';
@@ -16,6 +15,9 @@ import { CoreModuleTagCategoryTreeComponent } from './tagCategory/tree/tree.comp
 import { CoreModuleTagCategorySelectorComponent } from './tagCategory/selector/selector.component';
 import { CoreModuleTagSelectorComponent } from './tag/selector/selector.component';
 import { CoreModuleService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CoreModuleTagEditComponent } from './tag/edit/edit.component';
+import { CoreModuleTagAddBulkComponent } from './tag/add-bulk/add-bulk.component';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { CoreModuleService, CoreModuleTagCategoryService, CoreModuleTagService }
     CoreModuleTagCategoryTreeComponent,
     CoreModuleTagCategorySelectorComponent,
     CoreModuleTagSelectorComponent,
+    CoreModuleTagAddBulkComponent,
   ],
   exports: [
     CoreModuleComponent,
@@ -49,6 +52,7 @@ import { CoreModuleService, CoreModuleTagCategoryService, CoreModuleTagService }
     CoreModuleTagCategoryTreeComponent,
     CoreModuleTagCategorySelectorComponent,
     CoreModuleTagSelectorComponent,
+    CoreModuleTagAddBulkComponent
   ],
   providers: [
     CoreModuleService,

@@ -18,7 +18,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-link-management-config-checksite',
   templateUrl: './check-site.component.html',
-  styleUrls: ['./check-site.component.scss']
 })
 export class LinkManagementConfigCheckSiteComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;

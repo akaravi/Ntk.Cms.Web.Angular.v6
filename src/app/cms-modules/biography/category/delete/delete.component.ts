@@ -13,12 +13,9 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-
-
 @Component({
   selector: 'app-biography-category-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class BiographyCategoryDeleteComponent implements OnInit {
   requestId = 0;
@@ -53,7 +50,6 @@ export class BiographyCategoryDeleteComponent implements OnInit {
     this.DataGetOne();
     this.DataGetAll();
   }
-
   DataGetOne(): void {
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
@@ -62,14 +58,12 @@ export class BiographyCategoryDeleteComponent implements OnInit {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.biographyCategoryService.setAccessLoad();
     this.biographyCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResultCategory = next;
           if (!next.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
@@ -80,17 +74,14 @@ export class BiographyCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-
         }
       );
-
   }
   DataGetAll(): void {
     this.formInfo.FormAlert = 'در حال لود اطلاعات';
@@ -98,7 +89,6 @@ export class BiographyCategoryDeleteComponent implements OnInit {
     filterModel.RowPerPage = 100;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.biographyCategoryService
       .ServiceGetAll(filterModel)
       .subscribe(
@@ -113,17 +103,14 @@ export class BiographyCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-
         }
       );
-
   }
   onFormMove(): void {
     if (this.requestId === 0) {
@@ -140,11 +127,9 @@ export class BiographyCategoryDeleteComponent implements OnInit {
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
       this.formInfo.ButtonSubmittedEnabled = true;
     }
-
     this.formInfo.ButtonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.biographyCategoryService
       .ServiceMove(this.requestId, this.dataModel.NewCatId)
       .subscribe(
@@ -160,7 +145,6 @@ export class BiographyCategoryDeleteComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -168,7 +152,6 @@ export class BiographyCategoryDeleteComponent implements OnInit {
           this.formInfo.ButtonSubmittedEnabled = true;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
-
         }
       );
   }
@@ -177,12 +160,10 @@ export class BiographyCategoryDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.biographyCategoryService
       .ServiceDelete(this.requestId)
       .subscribe(
@@ -192,7 +173,6 @@ export class BiographyCategoryDeleteComponent implements OnInit {
             this.formInfo.FormAlert = 'برروز خطا';
             this.formInfo.FormError = next.ErrorMessage;
             this.cmsToastrService.typeErrorRemove();
-
           } else {
             this.formInfo.FormAlert = 'حذف با موفقیت انجام شد';
             this.cmsToastrService.typeSuccessRemove();
@@ -200,7 +180,6 @@ export class BiographyCategoryDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -208,10 +187,8 @@ export class BiographyCategoryDeleteComponent implements OnInit {
           this.cmsToastrService.typeError(error);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         }
       );
-
   }
   onFormChangeNewCatId(model: BiographyCategoryModel): void {
     this.formInfo.FormAlert = '';
@@ -232,6 +209,5 @@ export class BiographyCategoryDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-
   }
 }

@@ -7,10 +7,8 @@
       <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
         {{'TRANSLATOR.WELCOME' | translate}}
       </h3>
-      
     </div>
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
-
     <!--end::Title-->
     <!--Email Field-->
     <mat-form-field class="ntk-full-width">
@@ -29,9 +27,6 @@
         Email is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-
-
     <!--Password Field-->
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
@@ -48,12 +43,10 @@
         Password is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
     <ng-container *ngIf="!firstRun">
       <!--CaptchaText Field-->
       <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
       <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
-
       <mat-form-field class="ntk-full-width">
         <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
         <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
@@ -68,34 +61,33 @@
           CaptchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-
     </ng-container>
-
     <!--begin::Action-->
-    <div class="pb-lg-0 pb-5">
+    <div class="pb-lg-0 pb-0">
       <button type="submit" [disabled]="vform.invalid || !formInfo.ButtonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h4 px-8 py-4 my-3 col-12" style="margin: 1px;">
+        class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
         {{'AUTH.LOGIN.BUTTON' | translate}}
       </button>
-      <div class="row">
-        <div class="col-12 col-lg-4">
+        <div class="pb-lg-0 pb-0">
+          <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+            class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
+            {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
+            <br>
+          </button>
+        </div>
+        <div class="row">
+        <div class="col-12 col-lg-6">
           <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
-            class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+            class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
             {{'AUTH.LOGIN.SMS' | translate}}
           </button>
         </div>
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-6">
           <button type="button" [routerLink]="['/auth/forgot-password']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
-            class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+            class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
             {{'AUTH.FORGOT.TITLE' | translate}}
           </button>
-        </div>
-        <div class="col-12 col-lg-4">
-          <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.ButtonSubmittedEnabled"
-            class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
-            {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
-          </button>
-        </div>
+        </div>    
       </div>
     </div>
     <!--end::Action-->

@@ -17,7 +17,6 @@ import {
   FilterModel,
   EstateAccountAgencyModel,
   EstateAccountAgencyService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -27,8 +26,7 @@ import { EstateAccountAgencyEditComponent } from '../edit/edit.component';
 import { EstateAccountAgencyAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-accountagency-tree',
   templateUrl: './tree.component.html',
@@ -42,6 +40,7 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
@@ -58,10 +57,7 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
   @Output() optionChange = new EventEmitter<EstateAccountAgencyModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: EstateAccountAgencyModel) => false;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -74,10 +70,8 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -111,7 +105,6 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
   onActionSelectForce(id: number | EstateAccountAgencyModel): void {
 
   }
-
   onActionAdd(): void {
     const dialogRef = this.dialog.open(EstateAccountAgencyAddComponent, {
       height: '90%',
@@ -157,7 +150,7 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.dataModelSelect.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

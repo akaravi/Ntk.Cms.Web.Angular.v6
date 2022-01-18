@@ -57,7 +57,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
 
     this.categoryService.ServiceGetAll(filteModel).subscribe(
       (next) => {
-        this.fieldsStatus = new Map<number, boolean>();
+        // this.fieldsStatus = new Map<number, boolean>();
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
@@ -80,10 +80,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
     );
   }
   onActionSelect(value: CoreSiteCategoryModel): void {
-    const item = this.dataModelSelect.filter((obj) => {
-      return obj.Id === value.Id;
-    }).shift();
-    if (item) {
+    if (this.fieldsStatus.get(value.Id)) {
       this.fieldsStatus.set(value.Id, false);
       this.optionSelectRemoved.emit(value);
       this.dataModelSelect.splice(this.dataModelSelect.indexOf(value), 1);
@@ -106,7 +103,7 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
         this.dataIdsSelect.push(element.Id);
       });
     }
-    this.dataIdsSelect.forEach((el) => this.fieldsStatus[el] = true);
+    this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
   }
 
   onActionReload(): void {

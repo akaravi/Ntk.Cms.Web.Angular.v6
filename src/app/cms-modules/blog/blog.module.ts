@@ -18,7 +18,7 @@ import {
   BlogContentSimilarService,
   BlogContentTagService,
   BlogShareMainAdminSettingService,
-  BlogShareReciverCategoryService,
+  BlogShareReceiverCategoryService,
   BlogShareServerCategoryService,
   BlogContentCategoryService,
   CoreModuleService
@@ -43,6 +43,7 @@ import { BlogContentDeleteComponent } from './content/delete/delete.component';
 import { BlogCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { BlogCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { BlogContentHeaderComponent } from './content/header/header.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { BlogCategoryTreeSelectorComponent } from './category/tree-selector/tree
     BlogContentEditComponent,
     BlogContentDeleteComponent,
     BlogContentListComponent,
+    BlogContentHeaderComponent,
     BlogContentSelectorComponent,
     BlogCategoryTreeComponent,
     BlogCategorySelectorComponent,
@@ -92,7 +94,7 @@ import { BlogCategoryTreeSelectorComponent } from './category/tree-selector/tree
     BlogContentSimilarService,
     BlogContentTagService,
     BlogShareMainAdminSettingService,
-    BlogShareReciverCategoryService,
+    BlogShareReceiverCategoryService,
     BlogShareServerCategoryService,
 
   ]

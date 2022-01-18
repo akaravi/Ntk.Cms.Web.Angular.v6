@@ -12,13 +12,11 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   NewsCategoryModel,
   NewsCategoryService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -33,7 +31,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-news-category-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -58,11 +55,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   @Output() optionChange = new EventEmitter<NewsCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: NewsCategoryModel) => !!node.Children && node.Children.length > 0;
-
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -75,8 +68,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
-
     const pName = this.constructor.name + '.ServiceGetAll';
     this.loading.Start(pName, 'دریافت دسته بندی ها');
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
@@ -86,13 +77,10 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.loading.Stop(pName);
-
         this.cmsToastrService.typeError(error);
-
       }
     );
   }
@@ -118,21 +106,16 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectForce(id: number | NewsCategoryModel): void {
-
   }
-
   onActionAdd(): void {
     let parentId = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       parentId = this.dataModelSelect.Id;
     }
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { parentId };
-
-
     const dialogRef = this.dialog.open(NewsCategoryAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -141,7 +124,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionEdit(): void {
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -163,7 +145,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionDelete(): void {
     // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
     //   if (res.IsSuccess) {
@@ -180,7 +161,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(NewsCategoryDeleteComponent, {
       height: '90%',
-      data: { id }
+      data: { Id:id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

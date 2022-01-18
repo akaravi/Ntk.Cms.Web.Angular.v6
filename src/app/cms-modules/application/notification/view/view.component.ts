@@ -23,11 +23,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
 @Component({
   selector: 'app-application-notification-view',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
 })
 export class ApplicationLogNotificationViewComponent implements OnInit, OnDestroy {
   requestId = '';
@@ -55,7 +53,6 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
   dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.formInfo.FormTitle = 'مشاهده  ';
@@ -68,33 +65,26 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
     });
     this.getEnumSendSmsStatusType();
   }
-
   getEnumSendSmsStatusType(): void {
     this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
       this.dataModelEnumSendSmsStatusTypeResult = next;
     });
   }
-
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
-
   DataGetOneContent(): void {
     this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     /*َAccess Field*/
     this.applicationLogNotificationService.setAccessLoad();
-
     this.applicationLogNotificationService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         /*َAccess Field*/
@@ -110,17 +100,13 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }

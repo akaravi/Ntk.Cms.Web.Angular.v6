@@ -1,14 +1,14 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-      <mat-step label="مشخصات منو" state="main">
+      <mat-step label="{{'TITLE.Menu_Profile' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
@@ -43,22 +43,22 @@
           </mat-error>
         </mat-form-field>
         <!-- TitleML Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleML']?.AccessWatchField">
+        <mat-form-field class="ntk-full-width">
           <mat-label> {{fieldsInfo['TitleML']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.TitleML" name="dataModel.TitleML" type="text" [disabled]="true" />
         </mat-form-field>
-        <!-- TitleEn Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleEn']?.AccessWatchField">
-          <mat-label> {{fieldsInfo['TitleEn']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.TitleEn" name="dataModel.TitleEn" #TitleEn type="text"
-            [disabled]="!fieldsInfo['TitleEn']?.AccessEditField" placeholder="{{fieldsInfo['TitleEn']?.FieldTitle}}"
-            minlength="3" maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.TitleEn" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.TitleEn = ''">close</mat-icon>
+        <!-- TitleResourceLanguage Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
+            #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessEditField"
+            placeholder="{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ TitleEn.value.length }} / 100</mat-hint>
-          <mat-error *ngIf="TitleEn.errors?.required">
-            {{fieldsInfo['TitleEn']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="TitleResourceLanguage.errors?.required">
+            TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -82,7 +82,6 @@
             {{fieldsInfo['RouteAddressBlankPage']?.FieldTitle}}
           </mat-slide-toggle>
         </div>
-
         <!-- Color Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Color']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Color']?.FieldTitle}}</mat-label>
@@ -93,7 +92,6 @@
             (click)="dataModel.Color = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
         <!-- Icon Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Icon']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Icon']?.FieldTitle}}</mat-label>
@@ -106,8 +104,7 @@
             (click)="dataModel.Icon = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-
-        <!-- Icon Field -->
+        <!-- ShowInMenuOrder Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInMenuOrder']?.AccessWatchField">
           <mat-label> {{fieldsInfo['ShowInMenuOrder']?.FieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.ShowInMenuOrder" name="dataModel.ShowInMenuOrder" #ShowInMenuOrder
@@ -130,13 +127,6 @@
             {{fieldsInfo['Description']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
-
-
-
-
-
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
           <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
@@ -144,10 +134,6 @@
           </button>
         </div>
       </mat-step>
-
-
-
-
       <!-- Icon overrides. -->
       <ng-template matStepperIcon="main">
         <mat-icon>call_end</mat-icon>
@@ -161,19 +147,15 @@
       <ng-template matStepperIcon="loaction">
         <mat-icon>forum</mat-icon>
       </ng-template>
-
     </mat-horizontal-stepper>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

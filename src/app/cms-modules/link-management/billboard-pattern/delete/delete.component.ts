@@ -18,7 +18,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-linkmanagement-billboard-pattern-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class LinkManagementBillboardPatternDeleteComponent implements OnInit {
   requestId = 0;

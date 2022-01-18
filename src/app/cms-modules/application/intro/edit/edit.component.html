@@ -1,6 +1,6 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
-  <h4> ویرایش</h4>
-  در این بخش شما میتوانید محتوای راهنمای خود را ویرایش نمایید.
+ <h4> {{'TITLE.Edit' | translate}}</h4>
+ {{'TITLE.In_This_Section_You_Can_Edit_The_Content_Of_Your_Guide' | translate}}
   <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -13,7 +13,6 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
@@ -37,7 +36,6 @@
         <app-application-app-selector (optionChange)="onActionSelectApplication($event)"
           [optionSelectForce]="this.dataModel.LinkApplicationId" [optionPlaceholder]="' اپلیکیشن'"
           [optionDisabled]="!fieldsInfo['LinkApplicationId']?.AccessEditField"></app-application-app-selector>
-
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
@@ -49,7 +47,7 @@
           <mat-icon *ngIf="fieldsInfo['Title']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -64,16 +62,13 @@
           <mat-icon matSuffix *ngIf="dataModel.Description && fieldsInfo['Description']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.Description = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Description']?.AccessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ 'Application.Source.Description_hint' | translate }}</mat-hint>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint align="start">{{ Description.value.length }} / 100</mat-hint>
-
+          <mat-hint align="end">{{ Description.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             {{ fieldsInfo['Description']?.FieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
@@ -83,29 +78,25 @@
           </button>
         </div>
       </mat-step>
-
-
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-        <p>عکسها و فایل های اپلیکیشن</p>
+        <p>{{'TITLE.Photos_And_Application_Files' | translate}}</p>
         <!-- LinkMainImageId Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" class="ntk-hover-zoom" height="50" width="50" />
+          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.AccessWatchField">
-
             <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.FieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainImageId"
               [disabled]="!fieldsInfo['LinkMainImageId']?.AccessEditField" name="dataModel.LinkMainImageId"
-              #LinkMainImageId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId && fieldsInfo['LinkMainImageId']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainImageId = null">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['LinkMainImageId']?.AccessEditField" matSuffix
               (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
             [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
@@ -113,24 +104,22 @@
         </div>
         <!-- LinkMainVideoId Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainVideoIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="dataModel?.LinkMainVideoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.LinkMainVideoIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainVideoId']?.AccessWatchField">
-
             <mat-label (click)="fileManagerOpenFormVideo = true">{{fieldsInfo['LinkMainVideoId']?.FieldTitle}}
             </mat-label>
             <input matInput [(ngModel)]="dataModel.LinkMainVideoId"
               [disabled]="!fieldsInfo['LinkMainVideoId']?.AccessEditField" name="dataModel.LinkMainVideoId"
-              #LinkMainVideoId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              #LinkMainVideoId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenFormVideo = true" />
             <mat-icon matSuffix *ngIf="dataModel.LinkMainVideoId && fieldsInfo['LinkMainVideoId']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkMainVideoId = null">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['LinkMainVideoId']?.AccessEditField" matSuffix
               (click)="fileManagerOpenFormVideo = true">mode_edit</mat-icon>
           </mat-form-field>
-
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainVideoId($event)" [language]="appLanguage"
             [isPopup]="true" [(openForm)]="fileManagerOpenFormVideo" [tree]="fileManagerTree"
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
@@ -145,20 +134,15 @@
           </button>
         </div>
       </mat-step>
-
     </mat-horizontal-stepper>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
-
 </form>

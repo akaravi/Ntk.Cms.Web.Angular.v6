@@ -63,7 +63,7 @@
       <ng-container matColumnDef="LinkFileContentId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkFileContentId?.length>0" style="vertical-align:middle;" aria-hidden
+          <img *ngIf="row?.LinkFileContentId?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{row.LinkFileContentId}}" height="40" width="40" />
         </mat-cell>
       </ng-container>
@@ -130,7 +130,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
@@ -147,11 +147,11 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonModuleList(row)">
               <mat-icon>view_module</mat-icon>
-              <span>ماژول ها</span>
+              <span> {{'ACTION.MODULES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteList(row)">
               <mat-icon>view_module</mat-icon>
-              <span>سایت ها</span>
+              <span>{{'ACTION.SITES' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

@@ -15,7 +15,6 @@ import {
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-
 @Component({
   selector: 'app-bankpayment-publicconfig-header',
   templateUrl: './header.component.html',
@@ -35,11 +34,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
-
-
   ngOnInit(): void {
     if (this.optionId > 0) {
       this.DataGetOneContent();
@@ -52,7 +47,6 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
   DataGetOneContent(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.bankPaymentPublicConfigService.setAccessLoad();
     this.bankPaymentPublicConfigService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
@@ -63,12 +57,10 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }

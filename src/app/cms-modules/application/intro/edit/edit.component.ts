@@ -18,12 +18,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'app-aplication-intro-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
 })
 export class ApplicationIntroEditComponent implements OnInit {
   requestId = 0;
@@ -40,9 +37,7 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-
   }
-
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -57,10 +52,7 @@ export class ApplicationIntroEditComponent implements OnInit {
   fileManagerOpenForm = false;
   fileManagerOpenFormVideo = false;
   appLanguage = 'fa';
-
   fileManagerTree: TreeModel;
-
-
   ngOnInit(): void {
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
@@ -72,7 +64,6 @@ export class ApplicationIntroEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       this.cmsToastrService.typeErrorFormInvalid();
@@ -80,21 +71,16 @@ export class ApplicationIntroEditComponent implements OnInit {
     }
     if (this.dataModel.LinkApplicationId <= 0) {
       this.cmsToastrService.typeErrorEdit('  برنامه مشخص  کنید');
-
       return;
     }
-
     this.DataEditContent();
   }
-
-
   DataGetOne(requestId: number): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     /*َAccess Field*/
     this.applicationIntroService.setAccessLoad();
     this.applicationIntroService
@@ -104,10 +90,8 @@ export class ApplicationIntroEditComponent implements OnInit {
           /*َAccess Field*/
           this.dataAccessModel = next.Access;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
           this.dataModelResult = next;
           this.formInfo.FormSubmitAllow = true;
-
           if (next.IsSuccess) {
             this.dataModel = next.Item;
           } else {
@@ -116,7 +100,6 @@ export class ApplicationIntroEditComponent implements OnInit {
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
@@ -129,13 +112,10 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.applicationIntroService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-
           this.formInfo.FormSubmitAllow = !next.IsSuccess;
           this.dataModelResult = next;
           if (next.IsSuccess) {
@@ -148,14 +128,12 @@ export class ApplicationIntroEditComponent implements OnInit {
           this.loading.Stop(pName);
         },
         (error) => {
-
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
           this.loading.Stop(pName);
         }
       );
   }
-
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       // if (!this.formGroup.valid) {
@@ -167,7 +145,6 @@ export class ApplicationIntroEditComponent implements OnInit {
       // }
     }
   }
-
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);
   }
@@ -189,5 +166,4 @@ export class ApplicationIntroEditComponent implements OnInit {
     }
     this.dataModel.LinkApplicationId = model.Id;
   }
-
 }

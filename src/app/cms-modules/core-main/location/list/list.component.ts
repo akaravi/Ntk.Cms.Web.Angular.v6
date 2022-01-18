@@ -31,11 +31,11 @@ import { CoreLocationEditComponent } from '../edit/edit.component';
 import { CoreLocationAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { CoreLocationAddBulkComponent } from '../add-bulk/add-bulk.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-location-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreLocationListComponent implements OnInit, OnDestroy {
   constructor(
@@ -47,6 +47,7 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -80,13 +81,10 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
 
   tabledisplayedColumns: string[] = [
     'LinkImageIdSrc',
-
     'Id',
     'RecordStatus',
     'Title',
     'LocationType',
-    'GeoLocationLatitude',
-    'GeoLocationLongitude',
     'Action'
   ];
 
@@ -215,7 +213,27 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonNewRowBulk(): void {
 
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+
+    const dialogRef = this.dialog.open(CoreLocationAddBulkComponent, {
+      height: '90%',
+      data: { id: this.categoryModelSelected?.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
   onActionbuttonEditRow(model: CoreLocationModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id === 0) {
@@ -259,7 +277,7 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

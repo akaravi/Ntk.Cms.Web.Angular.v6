@@ -23,11 +23,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-application-notification-action-send',
   templateUrl: './action-send.component.html',
-  styleUrls: ['./action-send.component.scss']
 })
 export class ApplicationLogNotificationActionSendComponent implements OnInit {
   constructor(
@@ -67,23 +65,19 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   fileManagerOpenFormSmallFile = false;
   fileManagerOpenFormBigFile = false;
-
   SmallImageIdSrc = '';
   BigImageIdSrc = '';
   applicationMemberInfoModel = new ApplicationMemberInfoModel();
   onActionFileSelectedSmallImage(model: NodeInterface): void {
     this.dataModel.SmallImageId = model.id;
     this.SmallImageIdSrc = model.downloadLinksrc;
-
   }
   onActionFileSelectedBigImage(model: NodeInterface): void {
     this.dataModel.BigImageId = model.id;
     this.BigImageIdSrc = model.downloadLinksrc;
-
   }
-
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'ثبت دسته بندی جدید';
+    this.formInfo.FormTitle =  this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumContentType();
   }
   getEnumContentType(): void {
@@ -91,14 +85,11 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
       this.dataModelEnumContentTypeResult = next;
     });
   }
-
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.applicationLogNotificationService.ServiceSendNotification(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
@@ -113,13 +104,11 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -153,18 +142,14 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
       this.dataModel.LinkMemberIds.push(this.LinkMemberId);
       this.dataModel.AppId = this.applicationMemberInfoModel.LinkApplicationId;
     }
-
     if ((this.LinkMemberId || this.LinkMemberId.length === 0) && this.dataModel.AppId <= 0) {
       this.cmsToastrService.typeErrorMessage(
         'گیرنده را مشخص کنید',
         'اپلیکیشن و یا کاربری جهت دریافت مشخص نشده است'
       );
     }
-
     this.formInfo.FormSubmitAllow = false;
-
     this.DataAddContent();
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

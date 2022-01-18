@@ -12,24 +12,22 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./cms-link-to.component.scss']
 })
 export class CmsLinkToComponent implements OnInit {
-
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsLinkToComponent>,
-
     public http: HttpClient,
     private router: Router,
-
   ) {
     if (data) {
+      this.optionTitle = data.Title;
       this.optionUrlViewContentQRCodeBase64 = data.UrlViewContentQRCodeBase64;
       this.optionUrlViewContent = data.UrlViewContent;
     }
    }
+  @Input() optionTitle = '';
   @Input() optionUrlViewContentQRCodeBase64 = '';
   @Input() optionUrlViewContent = '';
   QDocModel: any = {};
-
   ngOnInit(): void {
   }
   onActionSendUrlToQDoc(): void {
@@ -58,6 +56,6 @@ export class CmsLinkToComponent implements OnInit {
     const url = this.router.serializeUrl(
       this.router.createUrlTree([this.optionUrlViewContent])
     );
-    window.open(url, '_blank');
+    window.open(this.optionUrlViewContent, '_blank');
   }
 }

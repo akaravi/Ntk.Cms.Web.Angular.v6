@@ -14,14 +14,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
-
-
-
-
 @Component({
   selector: 'app-article-content-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class ArticleContentSelectorComponent implements OnInit {
   constructor(
@@ -29,7 +24,6 @@ export class ArticleContentSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public contentService: ArticleContentService) {
     this.loading.cdr = this.cdr;
-
   }
   dataModelResult: ErrorExceptionResult<ArticleContentModel> = new ErrorExceptionResult<ArticleContentModel>();
   dataModelSelect: ArticleContentModel = new ArticleContentModel();
@@ -61,7 +55,6 @@ export class ArticleContentSelectorComponent implements OnInit {
         // tap(() => this.myControl.setValue(this.options[0]))
       );
   }
-
   displayFn(model?: ArticleContentModel): string | undefined {
     return model ? model.Title : undefined;
   }
@@ -87,10 +80,8 @@ export class ArticleContentSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     return this.contentService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {
@@ -112,7 +103,6 @@ export class ArticleContentSelectorComponent implements OnInit {
   onActionSelect(model: ArticleContentModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-
   }
   onActionSelectClear(): void {
     this.formControl.setValue(null);
@@ -126,7 +116,6 @@ export class ArticleContentSelectorComponent implements OnInit {
       items.push(newvalue);
       return items;
     }));
-
   }
   onActionSelectForce(id: number | ArticleContentModel): void {
     if (typeof id === 'number' && id > 0) {
@@ -147,7 +136,6 @@ export class ArticleContentSelectorComponent implements OnInit {
     }
     this.formControl.setValue(null);
   }
-
   onActionReload(): void {
     // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
     //   this.onActionSelect(null);

@@ -27,12 +27,10 @@ import { ApplicationMemberInfoViewComponent } from '../view/view.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { ApplicationLogNotificationActionSendComponent } from '../../notification/action-send/action-send.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-memberinfo-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
   requestLinkApplicationId = 0;
@@ -43,6 +41,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -111,7 +110,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
@@ -123,11 +121,8 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationMemberInfoModel();
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -167,18 +162,13 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
           }
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
-
-
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
@@ -204,7 +194,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
   onActionbuttonViewRow(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -219,7 +208,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-
     const dialogRef = this.dialog.open(ApplicationMemberInfoViewComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
@@ -230,10 +218,8 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onActionbuttonEditRow(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -246,9 +232,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
   }
-
   onActionbuttonDeleteRow(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
@@ -256,7 +240,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -265,9 +248,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-
-
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' +
       '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
@@ -285,12 +266,10 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
             (error) => {
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName);
-
             }
           );
         }
@@ -300,12 +279,9 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
       }
       );
-
   }
-
   onActionbuttonNotifictionList(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -319,7 +295,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate(['/application/notification/LinkApplicationMemberId', this.tableRowSelected.Id]);
-
   }
   onActionbuttonNotifictionActionSend(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -346,12 +321,9 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
-
       }
     });
-
   }
-
   onActionSelectorSelect(model: ApplicationAppModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
@@ -376,7 +348,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
@@ -394,7 +365,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -415,7 +385,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

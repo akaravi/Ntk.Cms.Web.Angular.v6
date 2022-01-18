@@ -1,7 +1,6 @@
 <div class="ntk-cms-html-tree-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.Access.AccessAddRow" (click)="onActionAdd()" type="button"
         class="btn btn-outline-primary">{{'ACTION.ADD' | translate}}</button>
@@ -11,7 +10,6 @@
      <button *ngIf="dataModelResult.Access.AccessWatchRow" (click)="onActionReload()" type="button" class="btn btn-outline-secondary BTN">
         <mat-icon style="font-size: 20px;margin: -6px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
 </div>
 <div class="ntk-cms-html-tree-body">

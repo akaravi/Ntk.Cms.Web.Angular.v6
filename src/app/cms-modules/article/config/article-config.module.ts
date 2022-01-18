@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import {
   ArticleConfigurationService, CoreModuleService,
 } from 'ntk-cms-api';
@@ -12,7 +11,6 @@ import { ArticleConfigSiteComponent } from './site/config-site.component';
 import { ArticleConfigCheckUserComponent } from './check-user/check-user.component';
 import { ArticleConfigCheckSiteComponent } from './check-site/check-site.component';
 import { ArticleConfigRouting } from './article-config.routing';
-
 @NgModule({
   declarations: [
     /*Config*/

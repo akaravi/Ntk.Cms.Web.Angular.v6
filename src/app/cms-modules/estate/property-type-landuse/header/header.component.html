@@ -1,0 +1,23 @@
+<div class="table">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <div class="tr">
+    <div class="td"></div>
+    <div class="td align" style="color: darkblue;"> <h5><b>{{'TITLE.Property_Type_Selected'|translate}}</b></h5></div>
+    <div class="td" *ngIf="dataModelResult?.Item?.Id">
+    
+    </div>
+  </div>
+  <div class="tr">
+    <div class="td"><b>{{fieldsInfo['Id']?.FieldTitle}} : </b> </div>
+    <div class="td align">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td"></div>
+
+    <div style="clear: both;"></div>
+  </div>
+  <div class="tr">
+    <div class="td"> <b>{{fieldsInfo['Title']?.FieldTitle}} : </b></div>
+    <div class="td align">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td"></div>
+    <div style="clear: both;"></div>
+  </div>
+</div>

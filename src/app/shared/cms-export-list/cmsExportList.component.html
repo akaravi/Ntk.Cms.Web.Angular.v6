@@ -66,13 +66,12 @@
       Skip Row Data is <strong>{{'MESSAGE.required' | translate}}</strong>
     </mat-error>
   </mat-form-field>
-  <button (click)="onSubmit()" type="button" class="btn btn-warning BTN">ساخت فایل</button>
+  <button (click)="onSubmit()" type="button" class="btn btn-warning BTN">{{'ACTION.FILE_CREATION' |translate}}</button>
   <mat-list>
     <div mat-subheader>لیست دانلود</div>
     <mat-list-item *ngFor="let folder of modelData| keyvalue">
-      <mat-icon mat-list-icon>download</mat-icon>
+      <a href="{{folder.value}}" target="_blank"><mat-icon mat-list-icon>download</mat-icon></a>
       <div mat-line><a href="{{folder.value}}" target="_blank"> {{folder.key}}</a></div>
-      <div mat-line><a href="{{folder.value}}" target="_blank"> {{folder.value}}</a> </div>
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>

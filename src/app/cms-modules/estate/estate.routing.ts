@@ -44,6 +44,10 @@ const routes: Routes = [
         component: EstatePropertyListComponent
       },
       {
+        path: 'property/LinkPropertyTypeUsageId/:LinkPropertyTypeUsageId',
+        component: EstatePropertyListComponent
+      },
+      {
         path: 'property/LinkContractTypeId/:LinkContractTypeId',
         component: EstatePropertyListComponent
       },

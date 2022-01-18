@@ -66,12 +66,12 @@
 
       <!-- LinkMainImageId Field -->
       <div class="mb-3">
-        <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" aria-hidden
+        <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
           src="{{dataModel.LinkMainImageIdSrc }}" height="50" width="50" />
       </div>
       <div class="mb-9">
         <mat-form-field class="ntk-full-width">
-          <mat-label (click)="fileManagerOpenForm = true">فایل آیکن
+          <mat-label (click)="fileManagerOpenForm = true"> {{'TITLE.Icon_File' | translate}}
           </mat-label>
           <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId"
             #LinkMainImageId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"

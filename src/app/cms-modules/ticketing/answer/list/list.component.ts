@@ -28,14 +28,15 @@ import { TicketingAnswerEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TicketingAnswerAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TicketingAnswerViewComponent } from '../view/view.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-ticketing-answer-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
 export class TicketingAnswerListComponent implements OnInit, OnDestroy {
-  requestLinkTicketId = 0;
+  requestLinkTaskId = 0;
   constructor(
     private ticketingAnswerService: TicketingAnswerService,
     private activatedRoute: ActivatedRoute,
@@ -45,6 +46,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -80,7 +82,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
-    'LinkTicketId',
+    'LinkTaskId',
     'LinkMemberUserId',
     'HtmlBody',
     'CreatedDate',
@@ -94,7 +96,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.requestLinkTicketId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTicketId'));
+    this.requestLinkTaskId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTaskId'));
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -122,15 +124,15 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     const filter = new FilterDataModel();
-    if (this.requestLinkTicketId > 0) {
+    if (this.requestLinkTaskId > 0) {
 
-      filter.PropertyName = 'LinkTicketId';
-      filter.Value = this.requestLinkTicketId;
+      filter.PropertyName = 'LinkTaskId';
+      filter.Value = this.requestLinkTaskId;
       filterModel.Filters.push(filter);
     }
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
 
-      filter.PropertyName = 'LinkTicketId';
+      filter.PropertyName = 'LinkTaskId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -195,18 +197,18 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   onActionbuttonNewRow(): void {
     if (this.categoryModelSelected == null &&
       (this.categoryModelSelected && this.categoryModelSelected.Id === 0) && (
-        this.requestLinkTicketId == null ||
-        this.requestLinkTicketId === 0)
+        this.requestLinkTaskId == null ||
+        this.requestLinkTaskId === 0)
     ) {
       const message = 'محتوا انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
 
       return;
     }
-
+    
     const dialogRef = this.dialog.open(TicketingAnswerAddComponent, {
       height: '90%',
-      data: { LinkTicketId: this.categoryModelSelected.Id }
+      data: { LinkTaskId: this.requestLinkTaskId>0 ? this.requestLinkTaskId: this.categoryModelSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -215,7 +217,23 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonViewRow(mode: TicketingAnswerModel = this.tableRowSelected): void {
+    if (!mode || !mode.Id || mode.Id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
 
+
+    const dialogRef = this.dialog.open(TicketingAnswerViewComponent, {
+      height: '90%',
+      data: { Id: this.tableRowSelected.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {        
+      }
+    });
+  }
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
@@ -239,7 +257,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(TicketingAnswerEditComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { Id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -265,7 +283,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {

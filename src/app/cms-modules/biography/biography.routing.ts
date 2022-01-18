@@ -5,8 +5,6 @@ import { BiographyContentListComponent } from './content/list/list.component';
 import { BiographyCommentListComponent } from './comment/list/list.component';
 import { BiographyContentEditComponent } from './content/edit/edit.component';
 import { BiographyContentAddComponent } from './content/add/add.component';
-
-
 const routes: Routes = [
   {
     path: '',
@@ -41,7 +39,6 @@ const routes: Routes = [
         path: 'comment/:ContentId',
         component: BiographyCommentListComponent
       },
-
     ]
   },
 ];

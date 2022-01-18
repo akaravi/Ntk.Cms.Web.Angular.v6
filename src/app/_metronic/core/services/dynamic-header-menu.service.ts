@@ -1,4 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreAuthService, CoreCpMainMenuModel, CoreCpMainMenuService, TokenInfoModel } from 'ntk-cms-api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -18,7 +19,8 @@ export class DynamicHeaderMenuService implements OnDestroy {
   constructor(
     private coreCpMainMenuService: CoreCpMainMenuService,
     public coreAuthService: CoreAuthService,
-    private tokenHelper: TokenHelper
+    private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.menuConfig$ = this.menuConfigSubject.asObservable();
     this.setMenu([]);
@@ -58,11 +60,11 @@ export class DynamicHeaderMenuService implements OnDestroy {
   }
   DataGetCpMenu(): void {
     const menuItems: any = [{
-      title: 'داشبورد',
+      title: this.translate.instant('MENU.DASHBOARD'),
       root: true,
       alignment: 'left',
       page: '/dashboard',
-      translate: 'MENU.DASHBOARD',
+      //translate: 'MENU.DASHBOARD',
     }];
     this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
       (next) => {
@@ -72,11 +74,11 @@ export class DynamicHeaderMenuService implements OnDestroy {
         });
 
         menuItems.push({
-          title: 'منو',
+          title: this.translate.instant('MENU.MENU'),
           bullet: 'dot',
           icon: 'flaticon-web',
           page: '',
-          translate: 'MENU.MENU',
+          //translate: 'MENU.MENU',
           mega: false,
           submenu: list
         });
@@ -93,7 +95,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
   listItemAdd(item: CoreCpMainMenuModel, rootStatus = false): any {
     let retOut: any;
     retOut = {
-      title: item.Title,
+      title: item.TitleML,
       root: rootStatus,
       page: item.RouteAddressLink,
       Color: item.Color,

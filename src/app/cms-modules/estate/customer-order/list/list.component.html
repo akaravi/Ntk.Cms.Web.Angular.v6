@@ -85,7 +85,7 @@
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
 
           <!-- Action Menu -->
@@ -103,16 +103,26 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonContentList(row)">
               <mat-icon>list</mat-icon>
-              <span>املاک شامل نمایش</span>
+              <span>{{'ACTION.THEPROPERTY_INCLUDESVIEWS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonOpenCustomerOrder(row)">
               <mat-icon>list</mat-icon>
-              <span>نمایش صفحه مشتری</span>
+              <span>{{'ACTION.DISPLAYCLIENTPAGE' | translate}}</span>
             </button>
-
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!-- LinkTo Column -->
+      <ng-container matColumnDef="LinkTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button>
+          <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+        </button>
+        </mat-cell>
+      </ng-container>
+      
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">

@@ -26,12 +26,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPrivateSiteConfigEditComponent } from '../edit/edit.component';
 import { BankPaymentPrivateSiteConfigAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
-
 @Component({
   selector: 'app-bankpayment-privatesiteconfig-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -56,10 +53,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
   @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-
   hasChild = (_: number, node: BankPaymentPrivateSiteConfigModel) => false;
-
-
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -72,10 +66,8 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
   DataGetAll(): void {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
     this.categoryService.ServiceGetAll(this.filteModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -83,12 +75,10 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -107,9 +97,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
     this.DataGetAll();
   }
   onActionSelectForce(id: number | BankPaymentPrivateSiteConfigModel): void {
-
   }
-
   onActionAdd(): void {
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigAddComponent, {
       height: '90%',
@@ -121,7 +109,6 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
       }
     });
   }
-
   onActionEdit(): void {
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -10,10 +10,11 @@ import {
   EstatePropertyService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 
 @Component({
@@ -21,11 +22,12 @@ import { Output } from '@angular/core';
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstatePropertySelectorComponent implements OnInit {
+export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
+    private tokenHelper: TokenHelper,
     public categoryService: EstatePropertyService) {
     this.loading.cdr = this.cdr;
 
@@ -43,9 +45,15 @@ export class EstatePropertySelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | EstatePropertyModel) {
     this.onActionSelectForce(x);
   }
-
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.loadOptions();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.loadOptions();
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges

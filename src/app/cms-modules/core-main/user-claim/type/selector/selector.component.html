@@ -1,9 +1,9 @@
 <mat-form-field class="ntk-full-width">
-    <span matPrefix><img *ngIf="dataModelSelect && dataModelSelect.LinkMainImageIdSrc" style="vertical-align:middle;" aria-hidden src="{{dataModelSelect.LinkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" /> &nbsp;</span>
+    <span matPrefix><img *ngIf="dataModelSelect && dataModelSelect.LinkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{dataModelSelect.LinkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" /> &nbsp;</span>
     <input type="text" placeholder="{{optionPlaceholder}}" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formControl" [matAutocomplete]="auto17">
     <mat-autocomplete #auto17="matAutocomplete" [displayWith]="displayFn"  (optionSelected)="onActionSelect($event.option.value)">
         <mat-option *ngFor="let state of filteredOptions | async" [value]="state"  [disabled]="optionDisabled">
-            <img *ngIf="state.LinkMainImageIdSrc" style="vertical-align:middle;" aria-hidden src="{{state.LinkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
+            <img *ngIf="state.LinkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{state.LinkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
             <span>{{ displayOption(state) }}</span>
         </mat-option>
     </mat-autocomplete>

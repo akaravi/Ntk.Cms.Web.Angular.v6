@@ -29,12 +29,11 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CoreSiteCategoryCmsModuleEditComponent } from '../edit/edit.component';
 import { CoreSiteCategoryCmsModuleAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-sitecategorycmsmodule-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy {
   requestLinkCmsModuleId = 0;
@@ -48,6 +47,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
     private tokenHelper: TokenHelper,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -252,8 +252,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( '
       + this.tableRowSelected.virtual_CmsModule.Title + '<==>' + this.tableRowSelected.virtual_CmsSiteCategory.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)

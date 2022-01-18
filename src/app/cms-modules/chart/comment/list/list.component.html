@@ -32,6 +32,11 @@
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle (click)="onActionbuttonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">
+        {{'ACTION.INCHECKING' | translate}}
+      </mat-slide-toggle>
+    </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
@@ -89,7 +94,7 @@
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> ... </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class='Action'>
           <!-- Action Menu -->
           <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
@@ -104,9 +109,28 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonViewContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>visibility</mat-icon>
+              <span>مشاهده چارت </span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonEditContent(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>visibility</mat-icon>
+              <span>ویرایش چارت </span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!-- LinkTo Column -->
+      <ng-container matColumnDef="LinkTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button>
+          <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+        </button>
+        </mat-cell>
+      </ng-container>
+      
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">

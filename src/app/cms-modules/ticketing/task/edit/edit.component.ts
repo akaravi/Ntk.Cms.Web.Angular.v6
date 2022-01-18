@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -19,6 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'src/filemanager-api';
 import { TranslateService } from '@ngx-translate/core';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -29,7 +30,9 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 export class TicketingTaskEditComponent implements OnInit {
   requestId = 0;
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private activatedRoute: ActivatedRoute,
+    private dialogRef: MatDialogRef<TicketingTaskEditComponent>,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private ticketingTaskService: TicketingTaskService,
@@ -40,6 +43,12 @@ export class TicketingTaskEditComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    if (data) {
+      this.requestId = + data.Id | 0;
+    }
+    if (this.requestId == 0) {
+      this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -60,9 +69,10 @@ export class TicketingTaskEditComponent implements OnInit {
   mapOptonCenter = new PoinModel();
 
   ngOnInit(): void {
-    this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
+      this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
     this.DataGetOne(this.requestId);
@@ -136,7 +146,11 @@ export class TicketingTaskEditComponent implements OnInit {
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/application/app/']), 1000);
+            setTimeout(() =>
+            {
+              this.dialogRef.close({ dialogChangedDate: true });
+            }
+            , 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
@@ -165,7 +179,7 @@ export class TicketingTaskEditComponent implements OnInit {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/application/app/']);
+    this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionFileSelectedLinkMainImageId(): void {
     // this.dataModel.LinkMainImageId = model.id;
