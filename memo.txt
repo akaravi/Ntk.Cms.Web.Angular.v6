@@ -70,3 +70,8 @@ https://windowsloop.com/windows-sandbox-shared-folder/
 
 BabelEdit
 https://www.codeandweb.com/babeledit/start-download?os=win&bits=64
+
+
+مشکل با بسته های زیر
+npm install ngx-icon-picker --save
+npm install apexcharts ng-apexcharts --save
