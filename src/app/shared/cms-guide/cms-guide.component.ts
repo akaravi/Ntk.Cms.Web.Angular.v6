@@ -89,8 +89,33 @@ export class CmsGuideComponent implements OnInit ,OnDestroy {
         map(
           (next) => {
             if (next.IsSuccess) {
-              // this.title = next.Item.Title;
-              // this.message = next.Item.BodyFa;
+              switch (this.lang) {
+                case 'fa': {
+                  this.title = next.Item.TitleFa;
+                  this.message = next.Item.BodyFa;
+                  break;
+                }
+                case 'en': {
+                  this.title = next.Item.TitleEn;
+                  this.message = next.Item.BodyEn;
+                  break;
+                }
+                case 'ar': {
+                  this.title = next.Item.TitleAr;
+                  this.message = next.Item.BodyAr;
+                  break;
+                }
+                case 'de': {
+                  this.title = next.Item.TitleDe;
+                  this.message = next.Item.BodyDe;
+                  break;
+                }
+                default: {
+                  this.title = next.Item.TitleFa;
+                  this.message = next.Item.BodyFa;
+                  break;
+                }
+              }
               this.open(content);
             } else {
               this.cmsToastrService.typeErrorMessage(next.ErrorMessage);

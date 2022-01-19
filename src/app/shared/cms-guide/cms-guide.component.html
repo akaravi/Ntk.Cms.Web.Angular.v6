@@ -1,6 +1,5 @@
-<span class="material-icons" *ngIf="show" (click)="onActionGuideClick(content)">
-  info
-</span>
+
+<button mat-icon-button color="primary" (click)="onActionGuideClick(content)" title="View Contact"><mat-icon>info</mat-icon></button>
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
