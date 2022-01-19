@@ -41,7 +41,7 @@ import { CoreUserGroupCmsModule } from '../user-group/coreUserGroup.module';
 import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.component';
 import { CoreSiteModuleSiteInfoComponent } from './module-site-info/module-site-info.component';
 import { CoreSiteModuleSiteOptimazeComponent } from './module-site-optimaze/module-site-optimaze.component';
-
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 @NgModule({
@@ -98,6 +98,7 @@ import { CoreSiteModuleSiteOptimazeComponent } from './module-site-optimaze/modu
     CoreModuleModule,
     CoreUserModule,
     CoreUserGroupCmsModule,
+    ColorPickerModule,
   ],
   providers: [
     CoreSiteService,

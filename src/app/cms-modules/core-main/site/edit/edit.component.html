@@ -1,5 +1,5 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
- <h4> {{'TITLE.Edit' | translate}}</h4>
+  <h4> {{'TITLE.Edit' | translate}}</h4>
   در این بخش شما میتوانید محتوای سایت خود را ویرایش نمایید.
   <br>
 </app-cms-html-notice>
@@ -149,12 +149,11 @@
         <!-- PwaName Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaName']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['PwaName']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.PwaName"
-            [disabled]="!fieldsInfo['PwaName']?.AccessEditField" name="dataModel.PwaName"
-            #PwaName type="text" placeholder="Site Application" />
-          <mat-icon matSuffix *ngIf="dataModel.PwaName && fieldsInfo['PwaName']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaName = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['PwaName']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <input matInput [(ngModel)]="dataModel.PwaName" [disabled]="!fieldsInfo['PwaName']?.AccessEditField"
+            name="dataModel.PwaName" #PwaName type="text" placeholder="Site Application" />
+          <mat-icon matSuffix *ngIf="dataModel.PwaName && fieldsInfo['PwaName']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.PwaName = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['PwaName']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['PwaName']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ PwaName.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -162,12 +161,11 @@
         <!-- PwaShortName Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaShortName']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['PwaShortName']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.PwaShortName"
-            [disabled]="!fieldsInfo['PwaShortName']?.AccessEditField" name="dataModel.PwaShortName"
-            #PwaShortName type="text" placeholder="SiteApp" />
-          <mat-icon matSuffix *ngIf="dataModel.PwaShortName && fieldsInfo['PwaShortName']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaShortName = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['PwaShortName']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <input matInput [(ngModel)]="dataModel.PwaShortName" [disabled]="!fieldsInfo['PwaShortName']?.AccessEditField"
+            name="dataModel.PwaShortName" #PwaShortName type="text" placeholder="SiteApp" />
+          <mat-icon matSuffix *ngIf="dataModel.PwaShortName && fieldsInfo['PwaShortName']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.PwaShortName = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['PwaShortName']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['PwaShortName']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ PwaShortName.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -176,11 +174,11 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaDescription']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['PwaDescription']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.PwaDescription"
-            [disabled]="!fieldsInfo['PwaDescription']?.AccessEditField" name="dataModel.PwaDescription"
-            #PwaDescription type="text" placeholder="..." />
+            [disabled]="!fieldsInfo['PwaDescription']?.AccessEditField" name="dataModel.PwaDescription" #PwaDescription
+            type="text" placeholder="..." />
           <mat-icon matSuffix *ngIf="dataModel.PwaDescription && fieldsInfo['PwaDescription']?.AccessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaDescription = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['PwaDescription']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['PwaDescription']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['PwaDescription']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ PwaDescription.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -188,20 +186,20 @@
         <!-- PwaDisplay Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaDisplay']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['PwaDisplay']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.PwaDisplay"
-            [disabled]="!fieldsInfo['PwaDisplay']?.AccessEditField" name="dataModel.PwaDisplay"
-            #PwaDisplay type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.PwaDisplay && fieldsInfo['PwaDisplay']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaDisplay = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['PwaDisplay']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <input matInput [(ngModel)]="dataModel.PwaDisplay" [disabled]="!fieldsInfo['PwaDisplay']?.AccessEditField"
+            name="dataModel.PwaDisplay" #PwaDisplay type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.PwaDisplay && fieldsInfo['PwaDisplay']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.PwaDisplay = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['PwaDisplay']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['PwaDisplay']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ PwaDisplay.value.length }} / 100</mat-hint>
         </mat-form-field>
 
-         <!-- PwaIconSize190x192Id Field -->
+        <!-- PwaIconSize190x192Id Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.PwaIconSize190x192IdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-            aria-hidden src="{{dataModel.PwaIconSize190x192IdSrc | cmsthumbnail}}" height="50" width="50" />
+          <img *ngIf="dataModel?.PwaIconSize190x192IdSrc?.length>0" style="vertical-align:middle;"
+            class="ntk-hover-zoom" aria-hidden src="{{dataModel.PwaIconSize190x192IdSrc | cmsthumbnail}}" height="50"
+            width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaIconSize190x192Id']?.AccessWatchField">
@@ -209,12 +207,13 @@
               {{fieldsInfo['PwaIconSize190x192Id']?.FieldTitle}}
             </mat-label>
             <input matInput [(ngModel)]="dataModel.PwaIconSize190x192Id"
-              [disabled]="!fieldsInfo['PwaIconSize190x192Id']?.AccessEditField" name="dataModel.PwaIconSize190x192Id" #PwaIconSize190x192Id
-              type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              [disabled]="!fieldsInfo['PwaIconSize190x192Id']?.AccessEditField" name="dataModel.PwaIconSize190x192Id"
+              #PwaIconSize190x192Id type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
               (click)="fileManagerOpenFormPwaIconSize190x192Id = true" />
-            <mat-icon matSuffix *ngIf="dataModel.PwaIconSize190x192Id && fieldsInfo['PwaIconSize190x192Id']?.AccessEditField"
-              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaIconSize190x192Id = null">close</mat-icon>
-              <mat-icon matTooltip="{{fieldsInfo['PwaIconSize190x192Id']?.FieldDescription}}" matSuffix>info</mat-icon>
+            <mat-icon matSuffix
+              *ngIf="dataModel.PwaIconSize190x192Id && fieldsInfo['PwaIconSize190x192Id']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.PwaIconSize190x192Id = null">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['PwaIconSize190x192Id']?.FieldDescription}}" matSuffix>info</mat-icon>
             <mat-icon *ngIf="fieldsInfo['PwaIconSize190x192Id']?.AccessEditField" matSuffix
               (click)="fileManagerOpenFormPwaIconSize190x192Id = true">mode_edit</mat-icon>
           </mat-form-field>
@@ -224,10 +223,11 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
 
-  <!-- PwaIconSize512x512Id Field -->
+        <!-- PwaIconSize512x512Id Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.PwaIconSize512x512IdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-            aria-hidden src="{{dataModel.PwaIconSize512x512IdSrc | cmsthumbnail}}" height="50" width="50" />
+          <img *ngIf="dataModel?.PwaIconSize512x512IdSrc?.length>0" style="vertical-align:middle;"
+            class="ntk-hover-zoom" aria-hidden src="{{dataModel.PwaIconSize512x512IdSrc | cmsthumbnail}}" height="50"
+            width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaIconSize512x512Id']?.AccessWatchField">
@@ -235,12 +235,13 @@
               {{fieldsInfo['PwaIconSize512x512Id']?.FieldTitle}}
             </mat-label>
             <input matInput [(ngModel)]="dataModel.PwaIconSize512x512Id"
-              [disabled]="!fieldsInfo['PwaIconSize512x512Id']?.AccessEditField" name="dataModel.PwaIconSize512x512Id" #PwaIconSize512x512Id
-              type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              [disabled]="!fieldsInfo['PwaIconSize512x512Id']?.AccessEditField" name="dataModel.PwaIconSize512x512Id"
+              #PwaIconSize512x512Id type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
               (click)="fileManagerOpenFormPwaIconSize512x512Id = true" />
-            <mat-icon matSuffix *ngIf="dataModel.PwaIconSize512x512Id && fieldsInfo['PwaIconSize512x512Id']?.AccessEditField"
-              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaIconSize512x512Id = null">close</mat-icon>
-              <mat-icon matTooltip="{{fieldsInfo['PwaIconSize512x512Id']?.FieldDescription}}" matSuffix>info</mat-icon>
+            <mat-icon matSuffix
+              *ngIf="dataModel.PwaIconSize512x512Id && fieldsInfo['PwaIconSize512x512Id']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.PwaIconSize512x512Id = null">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['PwaIconSize512x512Id']?.FieldDescription}}" matSuffix>info</mat-icon>
             <mat-icon *ngIf="fieldsInfo['PwaIconSize512x512Id']?.AccessEditField" matSuffix
               (click)="fileManagerOpenFormPwaIconSize512x512Id = true">mode_edit</mat-icon>
           </mat-form-field>
@@ -250,48 +251,74 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
 
-        
+        <!-- PwaThemeColor Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaThemeColor']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['PwaThemeColor']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.PwaThemeColor" name="dataModel.PwaThemeColor" #PwaThemeColor
+            [value]="dataModel.PwaThemeColor" [style.background]="dataModel.PwaThemeColor"
+            [(colorPicker)]="dataModel.PwaThemeColor" type="text"
+            [disabled]="!fieldsInfo['PwaThemeColor']?.AccessEditField"
+            placeholder="{{fieldsInfo['PwaThemeColor']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.PwaThemeColor" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.PwaThemeColor = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- PwaThemeBackgroundColor Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaThemeBackgroundColor']?.AccessWatchField">
+          <mat-label> {{fieldsInfo['PwaThemeBackgroundColor']?.FieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.PwaThemeBackgroundColor" name="dataModel.PwaThemeBackgroundColor"
+            #PwaThemeBackgroundColor [value]="dataModel.PwaThemeBackgroundColor"
+            [style.background]="dataModel.PwaThemeBackgroundColor" [(colorPicker)]="dataModel.PwaThemeBackgroundColor"
+            type="text" [disabled]="!fieldsInfo['PwaThemeBackgroundColor']?.AccessEditField"
+            placeholder="{{fieldsInfo['PwaThemeBackgroundColor']?.FieldTitle}}" />
+          <mat-icon matSuffix *ngIf="dataModel.PwaThemeBackgroundColor" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.PwaThemeBackgroundColor = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
         <fieldset>
-              <legend>Notification</legend>
-        <!-- PwaNotifySubject Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaNotifySubject']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['PwaNotifySubject']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.PwaNotifySubject"
-            [disabled]="!fieldsInfo['PwaNotifySubject']?.AccessEditField" name="dataModel.PwaNotifySubject"
-            #PwaDisplay type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.PwaNotifySubject && fieldsInfo['PwaNotifySubject']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaNotifySubject = ''">close</mat-icon>
+          <legend>Notification</legend>
+          <!-- PwaNotifySubject Field -->
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaNotifySubject']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['PwaNotifySubject']?.FieldTitle }}</mat-label>
+            <input matInput [(ngModel)]="dataModel.PwaNotifySubject"
+              [disabled]="!fieldsInfo['PwaNotifySubject']?.AccessEditField" name="dataModel.PwaNotifySubject"
+              #PwaDisplay type="text" placeholder="" />
+            <mat-icon matSuffix *ngIf="dataModel.PwaNotifySubject && fieldsInfo['PwaNotifySubject']?.AccessEditField"
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaNotifySubject = ''">close</mat-icon>
             <mat-icon matTooltip="{{fieldsInfo['PwaNotifySubject']?.FieldDescription}}" matSuffix>info</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['PwaNotifySubject']?.AccessEditField" matSuffix>mode_edit</mat-icon>
-          <!-- <mat-hint align="start">{{ PwaNotifySubject.value.length }} / 100</mat-hint> -->
-        </mat-form-field>
+            <mat-icon *ngIf="fieldsInfo['PwaNotifySubject']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+            <!-- <mat-hint align="start">{{ PwaNotifySubject.value.length }} / 100</mat-hint> -->
+          </mat-form-field>
 
-        <!-- PwaNotifyPublicKey Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaNotifyPublicKey']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['PwaNotifyPublicKey']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.PwaNotifyPublicKey"
-            [disabled]="!fieldsInfo['PwaNotifyPublicKey']?.AccessEditField" name="dataModel.PwaNotifyPublicKey"
-            #PwaDisplay type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.PwaNotifyPublicKey && fieldsInfo['PwaNotifyPublicKey']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaNotifyPublicKey = ''">close</mat-icon>
+          <!-- PwaNotifyPublicKey Field -->
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaNotifyPublicKey']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['PwaNotifyPublicKey']?.FieldTitle }}</mat-label>
+            <input matInput [(ngModel)]="dataModel.PwaNotifyPublicKey"
+              [disabled]="!fieldsInfo['PwaNotifyPublicKey']?.AccessEditField" name="dataModel.PwaNotifyPublicKey"
+              #PwaDisplay type="text" placeholder="" />
+            <mat-icon matSuffix
+              *ngIf="dataModel.PwaNotifyPublicKey && fieldsInfo['PwaNotifyPublicKey']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.PwaNotifyPublicKey = ''">close</mat-icon>
             <mat-icon matTooltip="{{fieldsInfo['PwaNotifyPublicKey']?.FieldDescription}}" matSuffix>info</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['PwaNotifyPublicKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
-          <!-- <mat-hint align="start">{{ PwaNotifyPublicKey.value.length }} / 100</mat-hint> -->
-        </mat-form-field>
+            <mat-icon *ngIf="fieldsInfo['PwaNotifyPublicKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+            <!-- <mat-hint align="start">{{ PwaNotifyPublicKey.value.length }} / 100</mat-hint> -->
+          </mat-form-field>
 
-        <!-- PwaNotifyPrivateKey Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaNotifyPrivateKey']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['PwaNotifyPrivateKey']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.PwaNotifyPrivateKey"
-            [disabled]="!fieldsInfo['PwaNotifyPrivateKey']?.AccessEditField" name="dataModel.PwaNotifyPrivateKey"
-            #PwaDisplay type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.PwaNotifyPrivateKey && fieldsInfo['PwaNotifyPrivateKey']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PwaNotifyPrivateKey = ''">close</mat-icon>
+          <!-- PwaNotifyPrivateKey Field -->
+          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PwaNotifyPrivateKey']?.AccessWatchField">
+            <mat-label>{{ fieldsInfo['PwaNotifyPrivateKey']?.FieldTitle }}</mat-label>
+            <input matInput [(ngModel)]="dataModel.PwaNotifyPrivateKey"
+              [disabled]="!fieldsInfo['PwaNotifyPrivateKey']?.AccessEditField" name="dataModel.PwaNotifyPrivateKey"
+              #PwaDisplay type="text" placeholder="" />
+            <mat-icon matSuffix
+              *ngIf="dataModel.PwaNotifyPrivateKey && fieldsInfo['PwaNotifyPrivateKey']?.AccessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.PwaNotifyPrivateKey = ''">close</mat-icon>
             <mat-icon matTooltip="{{fieldsInfo['PwaNotifyPrivateKey']?.FieldDescription}}" matSuffix>info</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['PwaNotifyPrivateKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
-          <!-- <mat-hint align="start">{{ PwaNotifyPrivateKey.value.length }} / 100</mat-hint> -->
-        </mat-form-field>
-      </fieldset>
+            <mat-icon *ngIf="fieldsInfo['PwaNotifyPrivateKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+            <!-- <mat-hint align="start">{{ PwaNotifyPrivateKey.value.length }} / 100</mat-hint> -->
+          </mat-form-field>
+        </fieldset>
 
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
@@ -312,7 +339,7 @@
             #FirebaseConfigJson type="text" placeholder="Site Application" />
           <mat-icon matSuffix *ngIf="dataModel.FirebaseConfigJson && fieldsInfo['FirebaseConfigJson']?.AccessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseConfigJson = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseConfigJson']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseConfigJson']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseConfigJson']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseConfigJson.value.length }} / 100</mat-hint> -->
         </mat-form-field>
@@ -321,11 +348,11 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseApiKey']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['FirebaseApiKey']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.FirebaseApiKey"
-            [disabled]="!fieldsInfo['FirebaseApiKey']?.AccessEditField" name="dataModel.FirebaseApiKey"
-            #FirebaseApiKey type="text" placeholder="SiteApp" />
+            [disabled]="!fieldsInfo['FirebaseApiKey']?.AccessEditField" name="dataModel.FirebaseApiKey" #FirebaseApiKey
+            type="text" placeholder="SiteApp" />
           <mat-icon matSuffix *ngIf="dataModel.FirebaseApiKey && fieldsInfo['FirebaseApiKey']?.AccessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseApiKey = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseApiKey']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseApiKey']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseApiKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseApiKey.value.length }} / 100</mat-hint> -->
         </mat-form-field>
@@ -338,7 +365,7 @@
             #FirebaseAuthDomain type="text" placeholder="..." />
           <mat-icon matSuffix *ngIf="dataModel.FirebaseAuthDomain && fieldsInfo['FirebaseAuthDomain']?.AccessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseAuthDomain = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseAuthDomain']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseAuthDomain']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseAuthDomain']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseAuthDomain.value.length }} / 100</mat-hint> -->
         </mat-form-field>
@@ -349,9 +376,10 @@
           <input matInput [(ngModel)]="dataModel.FirebaseDatabaseURL"
             [disabled]="!fieldsInfo['FirebaseDatabaseURL']?.AccessEditField" name="dataModel.FirebaseDatabaseURL"
             #FirebaseDatabaseURL type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.FirebaseDatabaseURL && fieldsInfo['FirebaseDatabaseURL']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseDatabaseURL = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseDatabaseURL']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon matSuffix
+            *ngIf="dataModel.FirebaseDatabaseURL && fieldsInfo['FirebaseDatabaseURL']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseDatabaseURL = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseDatabaseURL']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseDatabaseURL']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseDatabaseURL.value.length }} / 100</mat-hint> -->
         </mat-form-field>
@@ -364,7 +392,7 @@
             #FirebaseProjectId type="text" placeholder="" />
           <mat-icon matSuffix *ngIf="dataModel.FirebaseProjectId && fieldsInfo['FirebaseProjectId']?.AccessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseProjectId = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseProjectId']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseProjectId']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseProjectId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseProjectId.value.length }} / 100</mat-hint> -->
         </mat-form-field>
@@ -375,39 +403,42 @@
           <input matInput [(ngModel)]="dataModel.FirebaseStorageBucket"
             [disabled]="!fieldsInfo['FirebaseStorageBucket']?.AccessEditField" name="dataModel.FirebaseStorageBucket"
             #FirebaseStorageBucket type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.FirebaseStorageBucket && fieldsInfo['FirebaseStorageBucket']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseStorageBucket = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseStorageBucket']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon matSuffix
+            *ngIf="dataModel.FirebaseStorageBucket && fieldsInfo['FirebaseStorageBucket']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseStorageBucket = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseStorageBucket']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseStorageBucket']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseStorageBucket.value.length }} / 100</mat-hint> -->
         </mat-form-field>
-         
+
         <!-- FirebaseMessagingSenderId Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseMessagingSenderId']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['FirebaseMessagingSenderId']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.FirebaseMessagingSenderId"
-            [disabled]="!fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField" name="dataModel.FirebaseMessagingSenderId"
-            #FirebaseMessagingSenderId type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.FirebaseMessagingSenderId && fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseMessagingSenderId = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseMessagingSenderId']?.FieldDescription}}" matSuffix>info</mat-icon>
+            [disabled]="!fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField"
+            name="dataModel.FirebaseMessagingSenderId" #FirebaseMessagingSenderId type="text" placeholder="" />
+          <mat-icon matSuffix
+            *ngIf="dataModel.FirebaseMessagingSenderId && fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseMessagingSenderId = ''">close
+          </mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseMessagingSenderId']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseMessagingSenderId.value.length }} / 100</mat-hint> -->
         </mat-form-field>
-         
+
         <!-- FirebaseAppId Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseAppId']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['FirebaseAppId']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.FirebaseAppId"
-            [disabled]="!fieldsInfo['FirebaseAppId']?.AccessEditField" name="dataModel.FirebaseAppId"
-            #FirebaseAppId type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.FirebaseAppId && fieldsInfo['FirebaseAppId']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseAppId = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['FirebaseAppId']?.FieldDescription}}" matSuffix>info</mat-icon>
+            [disabled]="!fieldsInfo['FirebaseAppId']?.AccessEditField" name="dataModel.FirebaseAppId" #FirebaseAppId
+            type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseAppId && fieldsInfo['FirebaseAppId']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseAppId = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['FirebaseAppId']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FirebaseAppId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
           <!-- <mat-hint align="start">{{ FirebaseAppId.value.length }} / 100</mat-hint> -->
         </mat-form-field>
-         
+
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
