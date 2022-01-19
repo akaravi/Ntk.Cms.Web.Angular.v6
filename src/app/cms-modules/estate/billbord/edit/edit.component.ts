@@ -42,7 +42,7 @@ export class EstateBillboardEditComponent implements OnInit {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public http: HttpClient,
   ) {
     this.loading.cdr = this.cdr;

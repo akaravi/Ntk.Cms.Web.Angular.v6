@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule, APP_INITIALIZER, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
@@ -84,8 +84,21 @@ export function CreateTranslateLoader(http: HttpClient): any {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor() {
+export class AppModule  implements OnInit {
+  constructor(private swUpdate: SwUpdate) {
 
   }
+  ngOnInit() {
+
+    if (this.swUpdate.isEnabled) {
+
+        this.swUpdate.available.subscribe(() => {
+
+            if(confirm("New version available. Load New Version?")) {
+
+                window.location.reload();
+            }
+        });
+    }        
+}
 }

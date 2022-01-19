@@ -49,7 +49,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     public http: HttpClient,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');

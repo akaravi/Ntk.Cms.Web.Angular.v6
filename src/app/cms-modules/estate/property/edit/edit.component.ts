@@ -59,7 +59,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
