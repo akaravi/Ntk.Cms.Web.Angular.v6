@@ -303,6 +303,121 @@
         </div>
       </mat-step>
 
+      <mat-step label="{{'TITLE.FireBase' | translate}}" state="seo">
+        <!-- FirebaseConfigJson Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseConfigJson']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseConfigJson']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseConfigJson"
+            [disabled]="!fieldsInfo['FirebaseConfigJson']?.AccessEditField" name="dataModel.FirebaseConfigJson"
+            #FirebaseConfigJson type="text" placeholder="Site Application" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseConfigJson && fieldsInfo['FirebaseConfigJson']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseConfigJson = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseConfigJson']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseConfigJson']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseConfigJson.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+
+        <!-- FirebaseApiKey Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseApiKey']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseApiKey']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseApiKey"
+            [disabled]="!fieldsInfo['FirebaseApiKey']?.AccessEditField" name="dataModel.FirebaseApiKey"
+            #FirebaseApiKey type="text" placeholder="SiteApp" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseApiKey && fieldsInfo['FirebaseApiKey']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseApiKey = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseApiKey']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseApiKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseApiKey.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+
+        <!-- FirebaseAuthDomain Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseAuthDomain']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseAuthDomain']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseAuthDomain"
+            [disabled]="!fieldsInfo['FirebaseAuthDomain']?.AccessEditField" name="dataModel.FirebaseAuthDomain"
+            #FirebaseAuthDomain type="text" placeholder="..." />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseAuthDomain && fieldsInfo['FirebaseAuthDomain']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseAuthDomain = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseAuthDomain']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseAuthDomain']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseAuthDomain.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+
+        <!-- FirebaseDatabaseURL Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseDatabaseURL']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseDatabaseURL']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseDatabaseURL"
+            [disabled]="!fieldsInfo['FirebaseDatabaseURL']?.AccessEditField" name="dataModel.FirebaseDatabaseURL"
+            #FirebaseDatabaseURL type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseDatabaseURL && fieldsInfo['FirebaseDatabaseURL']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseDatabaseURL = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseDatabaseURL']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseDatabaseURL']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseDatabaseURL.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+
+        <!-- FirebaseProjectId Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseProjectId']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseProjectId']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseProjectId"
+            [disabled]="!fieldsInfo['FirebaseProjectId']?.AccessEditField" name="dataModel.FirebaseProjectId"
+            #FirebaseProjectId type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseProjectId && fieldsInfo['FirebaseProjectId']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseProjectId = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseProjectId']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseProjectId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseProjectId.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+
+        <!-- FirebaseStorageBucket Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseStorageBucket']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseStorageBucket']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseStorageBucket"
+            [disabled]="!fieldsInfo['FirebaseStorageBucket']?.AccessEditField" name="dataModel.FirebaseStorageBucket"
+            #FirebaseStorageBucket type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseStorageBucket && fieldsInfo['FirebaseStorageBucket']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseStorageBucket = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseStorageBucket']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseStorageBucket']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseStorageBucket.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+         
+        <!-- FirebaseMessagingSenderId Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseMessagingSenderId']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseMessagingSenderId']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseMessagingSenderId"
+            [disabled]="!fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField" name="dataModel.FirebaseMessagingSenderId"
+            #FirebaseMessagingSenderId type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseMessagingSenderId && fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseMessagingSenderId = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseMessagingSenderId']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseMessagingSenderId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseMessagingSenderId.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+         
+        <!-- FirebaseAppId Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseAppId']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['FirebaseAppId']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.FirebaseAppId"
+            [disabled]="!fieldsInfo['FirebaseAppId']?.AccessEditField" name="dataModel.FirebaseAppId"
+            #FirebaseAppId type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.FirebaseAppId && fieldsInfo['FirebaseAppId']?.AccessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseAppId = ''">close</mat-icon>
+            <mat-icon matTooltip="{{fieldsInfo['FirebaseAppId']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FirebaseAppId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <!-- <mat-hint align="start">{{ FirebaseAppId.value.length }} / 100</mat-hint> -->
+        </mat-form-field>
+         
+        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
       <mat-step label="سئو" state="seo">
         <p>تنطیمات بهینه سازی سئو</p>
         <div class="mb-3">
