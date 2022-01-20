@@ -54,11 +54,19 @@
         TitleFa is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+
+    <!-- DescriptionEn Field -->
+    <p> Description En </p>
+    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionFa"
+      [(ngModel)]="dataModel.DescriptionFa" name="dataModel.DescriptionFa"></angular-editor>
+    <br>
     <!-- BodyFa Field -->
+    
     <p> Body Fa </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyFa"
+    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyFa"
       [(ngModel)]="dataModel.BodyFa" name="dataModel.BodyFa"></angular-editor>
     <br>
+
     <!-- TitleEn Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleEn']?.FieldTitle}}</mat-label>
@@ -72,9 +80,14 @@
         TitleEn is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- DescriptionEn Field -->
+    <p>Description En</p>
+    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionEn"
+      [(ngModel)]="dataModel.DescriptionEn" name="dataModel.DescriptionEn"></angular-editor>
+    <br>
     <!-- BodyEn Field -->
     <p> Body En </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyEn"
+    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyEn"
       [(ngModel)]="dataModel.BodyEn" name="dataModel.BodyEn"></angular-editor>
     <br>
     <!-- TitleAr Field -->
@@ -90,9 +103,14 @@
         TitleAr is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- DescriptionAr Field -->
+    <p>Description Ar</p>
+    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionAr"
+      [(ngModel)]="dataModel.DescriptionAr" name="dataModel.DescriptionAr"></angular-editor>
+    <br>
     <!-- BodyAr Field -->
     <p> Body Ar </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyAr"
+    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyAr"
       [(ngModel)]="dataModel.BodyAr" name="dataModel.BodyAr"></angular-editor>
     <br>
     <!-- TitleDe Field -->
@@ -108,9 +126,14 @@
         TitleDe is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- DescriptionDe Field -->
+    <p>Description De</p>
+    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionDe"
+      [(ngModel)]="dataModel.DescriptionDe" name="dataModel.DescriptionDe"></angular-editor>
+    <br>
     <!-- Body De Field -->
     <p> Body De </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyDe"
+    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyDe"
       [(ngModel)]="dataModel.BodyDe" name="dataModel.BodyDe"></angular-editor>
     <br>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

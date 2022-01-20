@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CoreGuideService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -7,23 +7,26 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-cms-guide',
-  templateUrl: './cms-guide.component.html',
-  styleUrls: ['./cms-guide.component.scss']
+  selector: 'app-cms-guide-notice',
+  templateUrl: './cms-guide-notice.component.html',
+  styleUrls: ['./cms-guide-notice.component.scss']
 })
-export class CmsGuideComponent implements OnInit ,OnDestroy {
+export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
 
   @Input() Identity: number;
   @Input() Key: string;
   @Input() title: string;
   description: string;
   body: string;
-  @Input() btnOkText: string;
+  @Input() classes: string;
+  @Input() icon: string;
+  @Input() svg: string;
+
   show = true;
   constructor(
     // private activeModal: NgbActiveModal,
     private tokenHelper: TokenHelper,
-    private modalService: NgbModal,
+    private cdr: ChangeDetectorRef,
     private coreGuideService: CoreGuideService,
     private cmsToastrService: CmsToastrService,
   ) { }
@@ -34,21 +37,25 @@ export class CmsGuideComponent implements OnInit ,OnDestroy {
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.lang = value.Language;
-
+      this.onGetOne();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.lang = next.Language;
+      this.onGetOne();
     });
+
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  onActionGuideClick(content): void {
+  bodyShow = false;
+  onGetOne(): void {
     if (this.Identity > 0) {
       this.coreGuideService.ServiceGetOneById(this.Identity).pipe(
         map(
           (next) => {
             if (next.IsSuccess) {
+              
               switch (this.lang) {
                 case 'fa': {
                   this.title = next.Item.TitleFa;
@@ -81,7 +88,7 @@ export class CmsGuideComponent implements OnInit ,OnDestroy {
                   break;
                 }
               }
-              this.open(content);
+
             } else {
               this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
             }
@@ -95,6 +102,7 @@ export class CmsGuideComponent implements OnInit ,OnDestroy {
         map(
           (next) => {
             if (next.IsSuccess) {
+             
               switch (this.lang) {
                 case 'fa': {
                   this.title = next.Item.TitleFa;
@@ -127,7 +135,7 @@ export class CmsGuideComponent implements OnInit ,OnDestroy {
                   break;
                 }
               }
-              this.open(content);
+
             } else {
               this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
             }
@@ -137,25 +145,15 @@ export class CmsGuideComponent implements OnInit ,OnDestroy {
           })
       ).toPromise();
 
-    } else if (this.description && this.description.length > 0) {
-      this.open(content);
-    }
-  }
-  open(content): void {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
     }
   }
 
+  onActionBottunClick() {
+      this.bodyShow = true;
+      this.cdr.detectChanges();
+  }
+  onActionCloseBottunClick() {
+    this.bodyShow = false;
+    this.cdr.detectChanges();
+  }
 }

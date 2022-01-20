@@ -331,19 +331,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.FireBase' | translate}}" state="seo">
-        <!-- FirebaseConfigJson Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseConfigJson']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['FirebaseConfigJson']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.FirebaseConfigJson"
-            [disabled]="!fieldsInfo['FirebaseConfigJson']?.AccessEditField" name="dataModel.FirebaseConfigJson"
-            #FirebaseConfigJson type="text" placeholder="Site Application" />
-          <mat-icon matSuffix *ngIf="dataModel.FirebaseConfigJson && fieldsInfo['FirebaseConfigJson']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseConfigJson = ''">close</mat-icon>
-          <mat-icon matTooltip="{{fieldsInfo['FirebaseConfigJson']?.FieldDescription}}" matSuffix>info</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['FirebaseConfigJson']?.AccessEditField" matSuffix>mode_edit</mat-icon>
-          <!-- <mat-hint align="start">{{ FirebaseConfigJson.value.length }} / 100</mat-hint> -->
-        </mat-form-field>
-
+       
         <!-- FirebaseApiKey Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseApiKey']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['FirebaseApiKey']?.FieldTitle }}</mat-label>
@@ -449,7 +437,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="سئو" state="seo">
+      <mat-step label="{{'TITLE.SEO' | translate}}" state="seo">
         <p>تنطیمات بهینه سازی سئو</p>
         <div class="mb-3">
           <img *ngIf="dataModel?.LinkFavIconIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
@@ -983,7 +971,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="حسابداری" state="seo">
+      <mat-step label="{{'TITLE.Accounting' | translate}}" state="seo">
         <p>وضعیت مالی و تراکنش حسابداری</p>
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.AccessEditField"

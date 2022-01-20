@@ -88,6 +88,7 @@ import { CmsBankpaymentTransactionInfoComponent } from './cms-bankpayment-transa
 import { CmsViewComponent } from './cms-view/cms-view.component';
 import { DirDirective } from '../core/directive/dir.drection';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { CmsGuideNoticeComponent } from './cms-guide-notice/cms-guide-notice.component';
 
 @NgModule({
     imports: [
@@ -147,6 +148,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
         PasswordStrengthComponent,
         CmsJsonListComponent,
         CmsGuideComponent,
+        CmsGuideNoticeComponent,
         CmsFormBuilderPropertiesComponent,
         CmsBankpaymentGridComponent,
         CmsBankpaymentTransactionInfoComponent,
@@ -224,6 +226,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
         PasswordStrengthComponent,
         CmsJsonListComponent,
         CmsGuideComponent,
+        CmsGuideNoticeComponent,
         CmsFormBuilderPropertiesComponent,
         CmsBankpaymentGridComponent,
         CmsBankpaymentTransactionInfoComponent,

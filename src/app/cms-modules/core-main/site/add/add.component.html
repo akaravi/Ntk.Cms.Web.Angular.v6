@@ -321,18 +321,6 @@
 
 
       <mat-step label="{{'TITLE.FireBase' | translate}}" state="seo">
-        <!-- FirebaseConfigJson Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseConfigJson']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['FirebaseConfigJson']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.FirebaseConfigJson"
-            [disabled]="!fieldsInfo['FirebaseConfigJson']?.AccessAddField" name="dataModel.FirebaseConfigJson"
-            #FirebaseConfigJson type="text" placeholder="Site Application" />
-          <mat-icon matSuffix *ngIf="dataModel.FirebaseConfigJson && fieldsInfo['FirebaseConfigJson']?.AccessAddField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FirebaseConfigJson = ''">close</mat-icon>
-          <mat-icon matTooltip="{{fieldsInfo['FirebaseConfigJson']?.FieldDescription}}" matSuffix>info</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['FirebaseConfigJson']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-          <!-- <mat-hint align="start">{{ FirebaseConfigJson.value.length }} / 100</mat-hint> -->
-        </mat-form-field>
 
         <!-- FirebaseApiKey Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseApiKey']?.AccessWatchField">

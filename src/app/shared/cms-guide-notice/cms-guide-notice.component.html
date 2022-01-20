@@ -1,0 +1,34 @@
+<!--begin::Notice-->
+
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-custom alert-white alert-shadow gutter-b" [ngClass]="classes" role="alert">
+      <ng-container *ngIf="icon || svg">
+        <div class="alert-icon alert-icon-top">
+          <ng-container *ngIf="svg">
+            <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="svg"></span>
+          </ng-container>
+          <ng-container *ngIf="icon">
+            <i [ngClass]="icon"></i>
+          </ng-container>
+        </div>
+      </ng-container>
+      <div class="alert-text">
+        <h4> {{ title }}</h4>
+        <div [innerHTML]="description"></div>
+        <div *ngIf="bodyShow" [innerHTML]="body"></div>
+      </div>
+      <div class="align-self">
+        <button type="button" *ngIf="!bodyShow&& body?.length>0" class="btn btn-outline-primary"
+          (click)="onActionBottunClick()">
+          بیشتر...
+        </button>
+        <button type="button" *ngIf="bodyShow" class="btn btn-outline-primary" (click)="onActionCloseBottunClick()">
+          بستن راهنما
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--end::Notice-->
