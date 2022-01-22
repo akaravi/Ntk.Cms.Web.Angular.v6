@@ -299,4 +299,8 @@ export class PublicHelper {
     }
     return password;
   }
+  checkIsHTML(text:string):boolean {
+    const alphaExp = /<(\"[^\"]*\"|'[^']*'|[^'\">])*>/g;
+    return alphaExp.test(text);
+   }
 }

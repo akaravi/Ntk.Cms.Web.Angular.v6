@@ -1,6 +1,7 @@
 import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CoreGuideService } from 'ntk-cms-api';
 import { map } from 'rxjs/operators';
+import { PublicHelper } from '../helpers/publicHelper';
 import { TokenHelper } from '../helpers/tokenHelper';
 import { CmsToastrService } from '../services/cmsToastr.service';
 
@@ -20,6 +21,7 @@ export class TooltipGuideDirective {
     private el: ElementRef,
     private renderer: Renderer2,
     private tokenHelper: TokenHelper,
+    private publicHelper: PublicHelper,
     private coreGuideService: CoreGuideService,
     private cmsToastrService: CmsToastrService,
   ) {
@@ -31,6 +33,7 @@ export class TooltipGuideDirective {
   }
 
   lang = '';
+  statusIsRun = false;
 
   @HostListener('mouseenter') onMouseEnter(): void {
     if (!this.tooltip) {
@@ -42,35 +45,42 @@ export class TooltipGuideDirective {
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
+    this.statusIsRun=false;
+    
     if (this.tooltip) { this.hide(); }
   }
 
   show(): void {
     if (this.Identity && this.Identity > 0) {
+      this.statusIsRun = true;
       this.coreGuideService.ServiceGetOneById(this.Identity).pipe(
         map(
           (next) => {
+            if(this.statusIsRun==false){
+              if (this.tooltip) { this.hide(); }
+              return;
+            }
             if (next.IsSuccess) {
               /*run */
               switch (this.lang) {
                 case 'fa': {
-                  this.create(next.Item.BodyFa);
+                  this.create(next.Item.DescriptionFa);
                   break;
                 }
                 case 'en': {
-                  this.create(next.Item.BodyEn);
+                  this.create(next.Item.DescriptionEn);
                   break;
                 }
                 case 'ar': {
-                  this.create(next.Item.BodyAr);
+                  this.create(next.Item.DescriptionAr);
                   break;
                 }
                 case 'de': {
-                  this.create(next.Item.BodyDe);
+                  this.create(next.Item.DescriptionDe);
                   break;
                 }
                 default: {
-                  this.create(next.Item.BodyFa);
+                  this.create(next.Item.DescriptionFa);
                   break;
                 }
               }
@@ -96,30 +106,35 @@ export class TooltipGuideDirective {
           })
       ).toPromise();
     } else if (this.tooltipGuide && this.tooltipGuide.length > 0) {
+      this.statusIsRun = true;
       this.coreGuideService.ServiceGetOneByKey(this.tooltipGuide).pipe(
         map(
           (next) => {
+            if(this.statusIsRun==false){
+              if (this.tooltip) { this.hide(); }
+              return;
+            }
             if (next.IsSuccess) {
               /*run */
               switch (this.lang) {
                 case 'fa': {
-                  this.create(next.Item.BodyFa);
+                  this.create(next.Item.DescriptionFa);
                   break;
                 }
                 case 'en': {
-                  this.create(next.Item.BodyEn);
+                  this.create(next.Item.DescriptionEn);
                   break;
                 }
                 case 'ar': {
-                  this.create(next.Item.BodyAr);
+                  this.create(next.Item.DescriptionAr);
                   break;
                 }
                 case 'de': {
-                  this.create(next.Item.BodyDe);
+                  this.create(next.Item.DescriptionDe);
                   break;
                 }
                 default: {
-                  this.create(next.Item.BodyFa);
+                  this.create(next.Item.DescriptionFa);
                   break;
                 }
               }
@@ -154,11 +169,23 @@ export class TooltipGuideDirective {
       this.tooltip = null;
     }, this.delay);
   }
+  
+  // isHTML (str:String) { !(str || '')
+  //   // replace html tag with content
+  //   .replace(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig, '')
+  //   // remove remaining self closing tags
+  //   .replace(/(<([^>]+)>)/ig, '')
+  //   // remove extra space at start and end
+  //   .trim();
+  // }
 
+
+  
   create(text: string): void {
     this.tooltip = this.renderer.createElement('span');
     text = text + '';
-    if (text.indexOf('</') > 0 || text.indexOf('/>') > 0) {
+    debugger
+    if (text.indexOf('</') > 0 || text.indexOf('/>') > 0 || this.publicHelper.checkIsHTML(text)) {
       this.tooltip.insertAdjacentHTML('beforeend', text);
     } else {
       this.renderer.appendChild(
@@ -167,6 +194,7 @@ export class TooltipGuideDirective {
       );
     }
 
+    
 
     this.renderer.appendChild(document.body, this.tooltip);
     // this.renderer.appendChild(this.el.nativeElement, this.tooltip);
