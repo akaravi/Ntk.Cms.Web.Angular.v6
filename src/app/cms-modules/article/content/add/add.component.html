@@ -1,9 +1,5 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
-  <h4> اضافه کردن مقالات</h4>
-  <br>
-  در این بخش میتوانید مقاله ای جدید ایجاد نمایید.
-</app-cms-html-notice>
-<br>
+<app-cms-guide-notice [Key]="'article.content.list.add'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->

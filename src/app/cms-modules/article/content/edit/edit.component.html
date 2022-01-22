@@ -1,8 +1,7 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
- <h4> {{'TITLE.Edit' | translate}}</h4>
- {{'TITLE.In_This_Section_You_Can_Edit_Your_Content' | translate}}
-  <br>
-</app-cms-html-notice>
+
+<app-cms-guide-notice [Key]="'article.content.list.edit'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+
+
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->

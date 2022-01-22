@@ -124,7 +124,7 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { parentId };
-
+    dialogConfig.height= '90%';
 
     const dialogRef = this.dialog.open(CoreGuideAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {

@@ -22,7 +22,6 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
   @Input() icon: string;
   @Input() svg: string;
 
-  show = true;
   constructor(
     // private activeModal: NgbActiveModal,
     private tokenHelper: TokenHelper,

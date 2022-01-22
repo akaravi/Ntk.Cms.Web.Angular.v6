@@ -41,7 +41,7 @@ import {
 } from 'ntk-cms-api';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { CmsJsonListComponent } from './cms-json-list/cmsJsonList.component';
-import { CmsGuideComponent } from './cms-guide/cms-guide.component';
+import { CmsGuideinfoComponent } from './cms-guide-info/cms-guide-info.component';
 import { TooltipGuideDirective } from '../core/directive/tooltip-guide.directive';
 import { TooltipDirective } from '../core/directive/tooltip.directive';
 import { CmsFormBuilderPropertiesComponent } from './cms-form-builder-properties/cms-form-builder-properties.component';
@@ -147,7 +147,7 @@ import { CmsGuideNoticeComponent } from './cms-guide-notice/cms-guide-notice.com
         ProgressSpinnerComponent,
         PasswordStrengthComponent,
         CmsJsonListComponent,
-        CmsGuideComponent,
+        CmsGuideinfoComponent,
         CmsGuideNoticeComponent,
         CmsFormBuilderPropertiesComponent,
         CmsBankpaymentGridComponent,
@@ -225,7 +225,7 @@ import { CmsGuideNoticeComponent } from './cms-guide-notice/cms-guide-notice.com
         ProgressSpinnerComponent,
         PasswordStrengthComponent,
         CmsJsonListComponent,
-        CmsGuideComponent,
+        CmsGuideinfoComponent,
         CmsGuideNoticeComponent,
         CmsFormBuilderPropertiesComponent,
         CmsBankpaymentGridComponent,

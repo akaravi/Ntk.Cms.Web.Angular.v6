@@ -7,11 +7,11 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-cms-guide',
-  templateUrl: './cms-guide.component.html',
-  styleUrls: ['./cms-guide.component.scss']
+  selector: 'app-cms-guide-info',
+  templateUrl: './cms-guide-info.component.html',
+  styleUrls: ['./cms-guide-info.component.scss']
 })
-export class CmsGuideComponent implements OnInit ,OnDestroy {
+export class CmsGuideinfoComponent implements OnInit ,OnDestroy {
 
   @Input() Identity: number;
   @Input() Key: string;
