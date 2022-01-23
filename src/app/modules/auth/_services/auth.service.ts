@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject, of, Subscription } from 'rxjs';
 import { map, catchError, switchMap, finalize } from 'rxjs/operators';
 import { UserModel } from '../_models/user.model';
 import { AuthModel } from '../_models/auth.model';
-import { AuthHTTPService } from './auth-http';
+// import { AuthHTTPService } from './auth-http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -31,7 +31,7 @@ export class AuthService implements OnDestroy {
   }
 
   constructor(
-    private authHttpService: AuthHTTPService,
+    // private authHttpService: AuthHTTPService,
     private router: Router
   ) {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
@@ -43,21 +43,21 @@ export class AuthService implements OnDestroy {
   }
 
   // public methods
-  login(email: string, password: string): Observable<UserModel> {
-    this.isLoadingSubject.next(true);
-    return this.authHttpService.login(email, password).pipe(
-      map((auth: AuthModel) => {
-        const result = this.setAuthFromLocalStorage(auth);
-        return result;
-      }),
-      switchMap(() => this.getUserByToken()),
-      catchError((err) => {
-        console.error('err', err);
-        return of(undefined);
-      }),
-      finalize(() => this.isLoadingSubject.next(false))
-    );
-  }
+  // login(email: string, password: string): Observable<UserModel> {
+  //   this.isLoadingSubject.next(true);
+  //   return this.authHttpService.login(email, password).pipe(
+  //     map((auth: AuthModel) => {
+  //       const result = this.setAuthFromLocalStorage(auth);
+  //       return result;
+  //     }),
+  //     switchMap(() => this.getUserByToken()),
+  //     catchError((err) => {
+  //       console.error('err', err);
+  //       return of(undefined);
+  //     }),
+  //     finalize(() => this.isLoadingSubject.next(false))
+  //   );
+  // }
 
   logout() {
     localStorage.removeItem(this.authLocalStorageToken);
@@ -73,41 +73,41 @@ export class AuthService implements OnDestroy {
     }
 
     this.isLoadingSubject.next(true);
-    return this.authHttpService.getUserByToken(auth.authToken).pipe(
-      map((user: UserModel) => {
-        if (user) {
-          this.currentUserSubject = new BehaviorSubject<UserModel>(user);
-        } else {
-          this.logout();
-        }
-        return user;
-      }),
-      finalize(() => this.isLoadingSubject.next(false))
-    );
+    // return this.authHttpService.getUserByToken(auth.authToken).pipe(
+    //   map((user: UserModel) => {
+    //     if (user) {
+    //       this.currentUserSubject = new BehaviorSubject<UserModel>(user);
+    //     } else {
+    //       this.logout();
+    //     }
+    //     return user;
+    //   }),
+    //   finalize(() => this.isLoadingSubject.next(false))
+    // );
   }
 
   // need create new user then login
-  registration(user: UserModel): Observable<any> {
-    this.isLoadingSubject.next(true);
-    return this.authHttpService.createUser(user).pipe(
-      map(() => {
-        this.isLoadingSubject.next(false);
-      }),
-      switchMap(() => this.login(user.email, user.password)),
-      catchError((err) => {
-        console.error('err', err);
-        return of(undefined);
-      }),
-      finalize(() => this.isLoadingSubject.next(false))
-    );
-  }
+  // registration(user: UserModel): Observable<any> {
+  //   this.isLoadingSubject.next(true);
+  //   return this.authHttpService.createUser(user).pipe(
+  //     map(() => {
+  //       this.isLoadingSubject.next(false);
+  //     }),
+  //     switchMap(() => this.login(user.email, user.password)),
+  //     catchError((err) => {
+  //       console.error('err', err);
+  //       return of(undefined);
+  //     }),
+  //     finalize(() => this.isLoadingSubject.next(false))
+  //   );
+  // }
 
-  forgotPassword(email: string): Observable<boolean> {
-    this.isLoadingSubject.next(true);
-    return this.authHttpService
-      .forgotPassword(email)
-      .pipe(finalize(() => this.isLoadingSubject.next(false)));
-  }
+  // forgotPassword(email: string): Observable<boolean> {
+  //   this.isLoadingSubject.next(true);
+  //   return this.authHttpService
+  //     .forgotPassword(email)
+  //     .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  // }
 
   // private methods
   private setAuthFromLocalStorage(auth: AuthModel): boolean {

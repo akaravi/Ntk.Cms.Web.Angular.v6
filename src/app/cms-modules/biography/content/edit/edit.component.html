@@ -1,8 +1,6 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
- <h4> {{'TITLE.Edit' | translate}}</h4>
-  در این بخش شما میتوانید محتوای خود را ویرایش نمایید.
-  <br>
-</app-cms-html-notice>
+
+<app-cms-guide-notice [Key]="'biography.content.list.edit'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->

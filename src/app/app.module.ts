@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';

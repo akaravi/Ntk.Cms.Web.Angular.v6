@@ -1,11 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LayoutService } from '../../../../../core';
-import { Observable, Subscription } from 'rxjs';
-import { UserModel } from '../../../../../../modules/auth/_models/user.model';
-import { AuthService } from '../../../../../../modules/auth/_services/auth.service';
+import { Subscription } from 'rxjs';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { CoreAuthService, EnumManageUserAccessAreaTypes, EnumManageUserAccessUserTypes, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
-import { Router } from '@angular/router';
+import { CoreAuthService, EnumManageUserAccessUserTypes, TokenInfoModel } from 'ntk-cms-api';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
