@@ -5,9 +5,9 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SmsMainApiPathSelectorComponent } from './main/api-path/selector/selector.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CoreEnumService, SmsMainApiPathService, SmsMainCustomerNumberService } from 'ntk-cms-api';
+import { CoreEnumService, SmsMainApiPathService, SmsMainApiNumberService } from 'ntk-cms-api';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { SmsMainCustomerNumberSelectorComponent } from './main/customer-number/selector/selector.component';
+import { SmsMainApiNumberSelectorComponent } from './main/api-number/selector/selector.component';
 
 @NgModule({
   imports: [
@@ -19,16 +19,16 @@ import { SmsMainCustomerNumberSelectorComponent } from './main/customer-number/s
   ],
   declarations: [
     SmsMainApiPathSelectorComponent,
-    SmsMainCustomerNumberSelectorComponent,
+    SmsMainApiNumberSelectorComponent,
   ],
   exports: [
     SmsMainApiPathSelectorComponent,
-    SmsMainCustomerNumberSelectorComponent,
+    SmsMainApiNumberSelectorComponent,
   ],
   providers: [
     CoreEnumService,
     SmsMainApiPathService,
-    SmsMainCustomerNumberService,
+    SmsMainApiNumberService,
 
   
   ]

@@ -4,8 +4,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  SmsMainCustomerNumberModel,
-  SmsMainCustomerNumberService,
+  SmsMainApiNumberModel,
+  SmsMainApiNumberService,
   EnumFilterDataModelSearchTypes,
   EnumClauseType
 } from 'ntk-cms-api';
@@ -17,30 +17,30 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-sms-customer-number-selector',
+  selector: 'app-sms-api-number-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class SmsMainCustomerNumberSelectorComponent implements OnInit {
+export class SmsMainApiNumberSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    public categoryService: SmsMainCustomerNumberService) {
+    public categoryService: SmsMainApiNumberService) {
     this.loading.cdr = this.cdr;
   }
 
-  dataModelResult: ErrorExceptionResult<SmsMainCustomerNumberModel> = new ErrorExceptionResult<SmsMainCustomerNumberModel>();
-  dataModelSelect: SmsMainCustomerNumberModel = new SmsMainCustomerNumberModel();
+  dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
+  dataModelSelect: SmsMainApiNumberModel = new SmsMainApiNumberModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<SmsMainCustomerNumberModel[]>;
+  filteredOptions: Observable<SmsMainApiNumberModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionChange = new EventEmitter<SmsMainCustomerNumberModel>();
+  @Output() optionChange = new EventEmitter<SmsMainApiNumberModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | SmsMainCustomerNumberModel) {
+  @Input() set optionSelectForce(x: string | SmsMainApiNumberModel) {
     this.onActionSelectForce(x);
   }
 @Input() optionLinkApiPathId='';
@@ -63,13 +63,13 @@ export class SmsMainCustomerNumberSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: SmsMainCustomerNumberModel): string | undefined {
+  displayFn(model?: SmsMainApiNumberModel): string | undefined {
     return model ? (model.NumberChar) : undefined;
   }
-  displayOption(model?: SmsMainCustomerNumberModel): string | undefined {
+  displayOption(model?: SmsMainApiNumberModel): string | undefined {
     return model ? (model.NumberChar) : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<SmsMainCustomerNumberModel[]> {
+  async DataGetAll(text: string | number | any): Promise<SmsMainApiNumberModel[]> {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
@@ -81,7 +81,7 @@ export class SmsMainCustomerNumberSelectorComponent implements OnInit {
     filteModel.Filters.push(filter);
     if (this.optionLinkApiPathId && this.optionLinkApiPathId.length > 0) {
       filter = new FilterDataModel();
-      filter.PropertyName = 'ApiPathAndCustomerNumbers';
+      filter.PropertyName = 'ApiPathAndApiNumbers';
       filter.PropertyAnyName = 'LinkApiPathId';
       filter.Value = this.optionLinkApiPathId;
       filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
@@ -106,7 +106,7 @@ export class SmsMainCustomerNumberSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: SmsMainCustomerNumberModel): void {
+  onActionSelect(model: SmsMainApiNumberModel): void {
     if (this.optionDisabled) {
       return;
     }
@@ -121,7 +121,7 @@ export class SmsMainCustomerNumberSelectorComponent implements OnInit {
     this.optionChange.emit(null);
   }
 
-  push(newvalue: SmsMainCustomerNumberModel): Observable<SmsMainCustomerNumberModel[]> {
+  push(newvalue: SmsMainApiNumberModel): Observable<SmsMainApiNumberModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
         return items;
@@ -131,7 +131,7 @@ export class SmsMainCustomerNumberSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | SmsMainCustomerNumberModel): void {
+  onActionSelectForce(id: string | SmsMainApiNumberModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
@@ -158,9 +158,9 @@ export class SmsMainCustomerNumberSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof SmsMainCustomerNumberModel) {
-      this.filteredOptions = this.push((id as SmsMainCustomerNumberModel));
-      this.dataModelSelect = (id as SmsMainCustomerNumberModel);
+    if (typeof id === typeof SmsMainApiNumberModel) {
+      this.filteredOptions = this.push((id as SmsMainApiNumberModel));
+      this.dataModelSelect = (id as SmsMainApiNumberModel);
       this.formControl.setValue(id);
       return;
     }
@@ -168,7 +168,7 @@ export class SmsMainCustomerNumberSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    this.dataModelSelect = new SmsMainCustomerNumberModel();
+    this.dataModelSelect = new SmsMainApiNumberModel();
     this.DataGetAll(null);
   }
 }

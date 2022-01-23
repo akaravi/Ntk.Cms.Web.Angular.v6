@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  SmsMainCustomerNumberModel,
-  SmsMainCustomerNumberService,
+  SmsMainApiNumberModel,
+  SmsMainApiNumberService,
   CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
@@ -26,19 +26,19 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { SmsMainCustomerNumberEditComponent } from '../edit/edit.component';
-import { SmsMainCustomerNumberAddComponent } from '../add/add.component';
+import { SmsMainApiNumberEditComponent } from '../edit/edit.component';
+import { SmsMainApiNumberAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-sms-customer-number-list',
+  selector: 'app-sms-api-number-list',
   templateUrl: './list.component.html',
 })
-export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
+export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
   requestLinkApiPathId = '';
   constructor(
-    private smsMainCustomerNumberService: SmsMainCustomerNumberService,
+    private smsMainApiNumberService: SmsMainApiNumberService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
@@ -65,15 +65,15 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<SmsMainCustomerNumberModel> = new ErrorExceptionResult<SmsMainCustomerNumberModel>();
+  dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<SmsMainCustomerNumberModel> = [];
-  tableRowSelected: SmsMainCustomerNumberModel = new SmsMainCustomerNumberModel();
-  tableSource: MatTableDataSource<SmsMainCustomerNumberModel> = new MatTableDataSource<SmsMainCustomerNumberModel>();
+  tableRowsSelected: Array<SmsMainApiNumberModel> = [];
+  tableRowSelected: SmsMainApiNumberModel = new SmsMainApiNumberModel();
+  tableSource: MatTableDataSource<SmsMainApiNumberModel> = new MatTableDataSource<SmsMainApiNumberModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   categoryModelSelected: SmsMainApiPathModel;
 
@@ -91,7 +91,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
 
 
 
-  expandedElement: SmsMainCustomerNumberModel | null;
+  expandedElement: SmsMainApiNumberModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -101,7 +101,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
     }
     if (this.requestLinkApiPathId.length > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'ApiPathAndCustomerNumbers';
+      filter.PropertyName = 'ApiPathAndApiNumbers';
       filter.PropertyAnyName = 'LinkApiPathId';
       filter.Value = this.requestLinkApiPathId;
       this.filteModelContent.Filters.push(filter);
@@ -121,7 +121,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new SmsMainCustomerNumberModel();
+    this.tableRowSelected = new SmsMainApiNumberModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -134,13 +134,13 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
     /** filter Category */
     if (this.categoryModelSelected && this.categoryModelSelected.Id.length > 0) {
       let fastfilter = new FilterDataModel();
-      fastfilter.PropertyName = 'ApiPathAndCustomerNumbers';
+      fastfilter.PropertyName = 'ApiPathAndApiNumbers';
       fastfilter.PropertyAnyName = 'LinkApiPathId';
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
     /** filter Category */
-    this.smsMainCustomerNumberService.ServiceGetAllEditor(filterModel).subscribe(
+    this.smsMainApiNumberService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -208,7 +208,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    const dialogRef = this.dialog.open(SmsMainCustomerNumberAddComponent, {
+    const dialogRef = this.dialog.open(SmsMainApiNumberAddComponent, {
       height: '90%',
       data: {}
     });
@@ -220,7 +220,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onActionbuttonEditRow(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: SmsMainApiNumberModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id.length == 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -235,7 +235,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(SmsMainCustomerNumberEditComponent, {
+    const dialogRef = this.dialog.open(SmsMainApiNumberEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
@@ -245,7 +245,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: SmsMainApiNumberModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length == 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -271,7 +271,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsMainCustomerNumberService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.smsMainApiNumberService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -306,7 +306,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsMainCustomerNumberService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.smsMainApiNumberService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -323,7 +323,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.smsMainCustomerNumberService.ServiceGetCount(filterStatist1).subscribe(
+    this.smsMainApiNumberService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -338,7 +338,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
 
   }
 
-  onActionbuttonReceiveList(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+  onActionbuttonReceiveList(model: SmsMainApiNumberModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length == 0) {
 
       const message = 'ردیفی انتخاب نشده است';
@@ -359,7 +359,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
 
 
   }
-  onActionbuttonSendList(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+  onActionbuttonSendList(model: SmsMainApiNumberModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length == 0) {
 
       const message = 'ردیفی انتخاب نشده است';
@@ -387,7 +387,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsMainCustomerNumberService.ServiceExportFile(model).subscribe(
+    this.smsMainApiNumberService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -407,7 +407,7 @@ export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: SmsMainCustomerNumberModel): void {
+  onActionTableRowSelect(row: SmsMainApiNumberModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {

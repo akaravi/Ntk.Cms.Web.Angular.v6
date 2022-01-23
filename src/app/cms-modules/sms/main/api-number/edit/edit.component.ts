@@ -5,14 +5,14 @@ import {
   FormInfoModel,
   DataFieldInfoModel,
   CoreModuleModel,
-  SmsMainCustomerNumberService,
-  SmsMainCustomerNumberModel,
+  SmsMainApiNumberService,
+  SmsMainApiNumberModel,
   FilterModel,
   FilterDataModel,
   CoreUserModel,
   SmsMainApiPathModel,
-  SmsMainApiPathAndCustomerNumberModel,
-  SmsMainApiPathAndCustomerNumberService,
+  SmsMainApiPathAndApiNumberModel,
+  SmsMainApiPathAndApiNumberService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -30,18 +30,18 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-sms-customer-number-edit',
+  selector: 'app-sms-api-number-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class SmsMainCustomerNumberEditComponent implements OnInit {
+export class SmsMainApiNumberEditComponent implements OnInit {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<SmsMainCustomerNumberEditComponent>,
+    private dialogRef: MatDialogRef<SmsMainApiNumberEditComponent>,
     public smsEnumService: SmsEnumService,
-    public smsMainCustomerNumberService: SmsMainCustomerNumberService,
-    public smsMainApiPathAndCustomerNumberService: SmsMainApiPathAndCustomerNumberService,
+    public smsMainApiNumberService: SmsMainApiNumberService,
+    public smsMainApiPathAndApiNumberService: SmsMainApiPathAndApiNumberService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -63,16 +63,16 @@ export class SmsMainCustomerNumberEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<SmsMainCustomerNumberModel> = new ErrorExceptionResult<SmsMainCustomerNumberModel>();
-  dataModel: SmsMainCustomerNumberModel = new SmsMainCustomerNumberModel();
+  dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
+  dataModel: SmsMainApiNumberModel = new SmsMainApiNumberModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumCustomerNumberAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumCustomerNumberActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumApiNumberAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumApiNumberActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
-  dataSmsMainCustomerNumberModel: SmsMainCustomerNumberModel[];
+  dataSmsMainApiNumberModel: SmsMainApiNumberModel[];
   ngOnInit(): void {
     if (this.requestId.length > 0) {
       this.formInfo.FormTitle = 'ویرایش  ';
@@ -100,8 +100,8 @@ export class SmsMainCustomerNumberEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainCustomerNumberService.setAccessLoad();
-    this.smsMainCustomerNumberService.ServiceGetOneById(this.requestId).subscribe(
+    this.smsMainApiNumberService.setAccessLoad();
+    this.smsMainApiNumberService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -139,11 +139,11 @@ export class SmsMainCustomerNumberEditComponent implements OnInit {
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkCustomerNumberId';
+    filter.PropertyName = 'LinkApiNumberId';
     filter.Value = this.requestId;
     filteModelContent.Filters.push(filter);
 
-    this.smsMainApiPathAndCustomerNumberService.ServiceGetAll(filteModelContent).subscribe(
+    this.smsMainApiPathAndApiNumberService.ServiceGetAll(filteModelContent).subscribe(
       (next) => {
         this.dataCoreCpMainMenuCmsUserGroupModel = next.ListItems;
         const listG: string[] = [];
@@ -174,7 +174,7 @@ export class SmsMainCustomerNumberEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainCustomerNumberService.ServiceEdit(this.dataModel).subscribe(
+    this.smsMainApiNumberService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
@@ -215,17 +215,17 @@ export class SmsMainCustomerNumberEditComponent implements OnInit {
 
   dataCoreCpMainMenuModel: SmsMainApiPathModel[];
   dataCoreCpMainMenuIds: string[] = [];
-  dataCoreCpMainMenuCmsUserGroupModel: SmsMainApiPathAndCustomerNumberModel[];
+  dataCoreCpMainMenuCmsUserGroupModel: SmsMainApiPathAndApiNumberModel[];
 
   onActionSelectorUserCategorySelect(model: SmsMainApiPathModel[]): void {
     this.dataCoreCpMainMenuModel = model;
   }
   onActionSelectorUserCategorySelectAdded(model: SmsMainApiPathModel): void {
-    const entity = new SmsMainApiPathAndCustomerNumberModel();
+    const entity = new SmsMainApiPathAndApiNumberModel();
     entity.LinkApiPathId = model.Id;
-    entity.LinkCustomerNumberId = this.dataModel.Id;
+    entity.LinkApiNumberId = this.dataModel.Id;
 
-    this.smsMainApiPathAndCustomerNumberService.ServiceAdd(entity).subscribe(
+    this.smsMainApiPathAndApiNumberService.ServiceAdd(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
@@ -246,11 +246,11 @@ export class SmsMainCustomerNumberEditComponent implements OnInit {
     );
   }
   onActionSelectorUserCategorySelectRemoved(model: SmsMainApiPathModel): void {
-    const entity = new SmsMainApiPathAndCustomerNumberModel();
+    const entity = new SmsMainApiPathAndApiNumberModel();
     entity.LinkApiPathId = model.Id;
-    entity.LinkCustomerNumberId = this.dataModel.Id;
+    entity.LinkApiNumberId = this.dataModel.Id;
 
-    this.smsMainApiPathAndCustomerNumberService.ServiceDeleteEntity(entity).subscribe(
+    this.smsMainApiPathAndApiNumberService.ServiceDeleteEntity(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';

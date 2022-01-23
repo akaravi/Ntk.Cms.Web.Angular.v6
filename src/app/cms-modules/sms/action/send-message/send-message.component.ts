@@ -6,7 +6,7 @@ import {
   SmsApiSendResultModel,
   SmsMainApiPathService,
   SmsMainApiPathModel,
-  SmsMainCustomerNumberModel,
+  SmsMainApiNumberModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -76,7 +76,7 @@ export class SmsActionSendMessageComponent implements OnInit {
   }
 
 
-  onActionSelectCustomerNumber(model: SmsMainCustomerNumberModel): void {
+  onActionSelectApiNumber(model: SmsMainApiNumberModel): void {
     if (model && model.Id.length > 0) {
       this.dataModel.FromNumber = model.NumberChar;
     }

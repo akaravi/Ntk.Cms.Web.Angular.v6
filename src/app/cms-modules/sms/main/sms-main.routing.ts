@@ -5,7 +5,7 @@ import { SmsMainApiPathPermissionListComponent } from './api-path-permission/lis
 import { SmsMainApiPathPriceServiceListComponent } from './api-path-price-service/list/list.component';
 import { SmsMainApiPathEditComponent } from './api-path/edit/edit.component';
 import { SmsMainApiPathListComponent } from './api-path/list/list.component';
-import { SmsMainCustomerNumberListComponent } from './customer-number/list/list.component';
+import { SmsMainApiNumberListComponent } from './api-number/list/list.component';
 import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/list.component';
 import { SmsMainComponent } from './sms-main.component';
 
@@ -64,59 +64,10 @@ const routes: Routes = [
         component: SmsMainApiPathPriceServiceListComponent
       },
       {
-        path: 'customer-number',
-        component: SmsMainCustomerNumberListComponent
+        path: 'api-number',
+        component: SmsMainApiNumberListComponent
       },
 
-    //   {
-    //     path: 'source/add',
-    //     component: ApplicationSourceAddComponent
-    //   },
-    //   {
-    //     path: 'source/edit/:Id',
-    //     component: ApplicationSourceEditComponent
-    //   },
-    //   {
-    //     path: 'app',
-    //     component: ApplicationAppListComponent
-    //   },
-    //   {
-    //     path: 'app/:SourceId',
-    //     component: ApplicationAppListComponent
-    //   },
-    //   {
-    //     path: 'app/add/:SourceId',
-    //     component: ApplicationAppAddComponent
-    //   },
-    //   {
-    //     path: 'app/edit/:Id',
-    //     component: ApplicationAppEditComponent
-    //   },
-    //   {
-    //     path: 'intro',
-    //     component: ApplicationIntroListComponent
-    //   },
-    //   {
-    //     path: 'intro/add/:ApplicationId',
-    //     component: ApplicationIntroListComponent
-    //   },
-    //   {
-    //     path: 'intro/edit/:Id',
-    //     component: ApplicationIntroListComponent
-    //   },
-    //   {
-    //     path: 'memberinfo',
-    //     component: ApplicationMemberInfoListComponent
-    //   },
-    //   {
-    //     path: 'notification',
-    //     component: ApplicationNotificationListComponent
-    //   },
-
-    //   {
-    //     path: 'themeconfig',
-    //     component: ApplicationThemeActionListComponent
-    //   },
      ]
   },
 ];

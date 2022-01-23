@@ -3,8 +3,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  SmsMainCustomerNumberService,
-  SmsMainCustomerNumberModel,
+  SmsMainApiNumberService,
+  SmsMainApiNumberModel,
   DataFieldInfoModel,
   CoreUserModel,
   SmsMainApiPathModel,
@@ -25,16 +25,16 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-sms-customer-number-add',
+  selector: 'app-sms-api-number-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class SmsMainCustomerNumberAddComponent implements OnInit {
+export class SmsMainApiNumberAddComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<SmsMainCustomerNumberAddComponent>,
+    private dialogRef: MatDialogRef<SmsMainApiNumberAddComponent>,
     public smsEnumService: SmsEnumService,
-    public smsMainCustomerNumberService: SmsMainCustomerNumberService,
+    public smsMainApiNumberService: SmsMainApiNumberService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -52,14 +52,14 @@ export class SmsMainCustomerNumberAddComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<SmsMainCustomerNumberModel> = new ErrorExceptionResult<SmsMainCustomerNumberModel>();
-  dataModel: SmsMainCustomerNumberModel = new SmsMainCustomerNumberModel();
+  dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
+  dataModel: SmsMainApiNumberModel = new SmsMainApiNumberModel();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumCustomerNumberAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumCustomerNumberActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumApiNumberAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumApiNumberActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
 
@@ -78,7 +78,7 @@ export class SmsMainCustomerNumberAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
-    this.smsMainCustomerNumberService
+    this.smsMainApiNumberService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -100,7 +100,7 @@ export class SmsMainCustomerNumberAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainCustomerNumberService.ServiceAdd(this.dataModel).subscribe(
+    this.smsMainApiNumberService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

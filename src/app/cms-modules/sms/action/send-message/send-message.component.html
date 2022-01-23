@@ -12,10 +12,10 @@
       <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
         [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="' مسیر'">
       </app-sms-apipath-selector>
-      <app-sms-customer-number-selector *ngIf="dataModel.LinkApiPathId?.length>0"
-        (optionChange)="onActionSelectCustomerNumber($event)" [optionSelectForce]="dataModel.FromNumber"
+      <app-sms-api-number-selector *ngIf="dataModel.LinkApiPathId?.length>0"
+        (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]="dataModel.FromNumber"
         [optionLinkApiPathId]="dataModel.LinkApiPathId" [optionPlaceholder]="' شماره فرستنده'">
-      </app-sms-customer-number-selector>
+      </app-sms-api-number-selector>
 
       <!-- FromNumber Field -->
       <mat-form-field class="ntk-full-width">
