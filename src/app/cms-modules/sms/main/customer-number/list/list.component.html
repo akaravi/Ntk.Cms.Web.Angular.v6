@@ -1,9 +1,8 @@
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false"
-  [optionTreeDisplay]="!requestLinkCompanyId || requestLinkCompanyId.length==0">
+<app-cms-html-list [optionLoading]="loading"
+  [optionTreeDisplay]="!requestLinkApiPathId || requestLinkApiPathId.length==0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <!-- <app-sms-apipathcompany-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipathcompany-tree> -->
-
+    <app-sms-apipath-tree [loading]="loading" (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
@@ -13,12 +12,15 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-
-    <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected?.Id?.length>0"
+    <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
+      translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected?.Id?.length>0"
+    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
 
@@ -37,10 +39,7 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-    <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected?.Id?.length>0"
-      (click)="onActionbuttonSendMessage()" type="button" class="btn btn-primary" id="openModalButton"
-      data-toggle="modal" data-target="#categoryModal">ارسال پاسخ</button>
-    <button (click)="onActionBackToParent()" *ngIf="requestLinkCompanyId?.length>0" type="button"
+    <button (click)="onActionBackToParent()" *ngIf="requestLinkApiPathId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -49,56 +48,62 @@
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
-
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
       </ng-container>
 
-      <!-- DefaultApiNumber Column -->
-      <ng-container matColumnDef="DefaultApiNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['DefaultApiNumber']?.FieldTitle}}
+      <!-- RecordStatus Column -->
+      <ng-container matColumnDef="RecordStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.DefaultApiNumber | cmstitle : dataModelCompanyResult.ListItems}}
-        </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
+      </ng-container>
+      <!-- NumberChar Column -->
+      <ng-container matColumnDef="NumberChar">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['NumberChar']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.NumberChar}} </mat-cell>
       </ng-container>
 
-
-      <!-- IsAccepted Column -->
-      <ng-container matColumnDef="IsAccepted">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsAccepted']?.FieldTitle}}
+      <!-- SaleStatus Column -->
+      <ng-container matColumnDef="SaleStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SaleStatus']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.IsAccepted|statusClass"></i> </mat-cell>
-      </ng-container>
-      <!-- Message Column -->
-      <ng-container matColumnDef="Message">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Message']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Message}} </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.SaleStatus|statusClass"></i> </mat-cell>
       </ng-container>
 
-      <!-- SendDate Column -->
-      <ng-container matColumnDef="SendDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SendDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.SendDate) }} </mat-cell>
+      <!-- FirstSubmit Column -->
+      <ng-container matColumnDef="FirstSubmit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['FirstSubmit']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.FirstSubmit) }} </mat-cell>
+      </ng-container>
+      <!-- UsanceDate Column -->
+      <ng-container matColumnDef="UsanceDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UsanceDate']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UsanceDate) }} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.CreatedDate) }}
-          {{ publicHelper.getTime(row.CreatedDate) }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.UpdatedDate) }}
-          {{ publicHelper.getTime(row.UpdatedDate) }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
       </ng-container>
+
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -117,30 +122,15 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonSendMessage(row)">
-              <mat-icon>payment</mat-icon>
-              <span>ارسال پیام</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonSuperSedersList(row)">
+            <button mat-menu-item (click)="onActionbuttonReceiveList(row)">
               <mat-icon>view_module</mat-icon>
-              <span>مسیرهای پشتیبان</span>
+              <span>دریافت ها</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonMustSuperSedersList(row)">
+            <button mat-menu-item (click)="onActionbuttonSendList(row)">
               <mat-icon>view_module</mat-icon>
-              <span>مسیرهای تحت پشتیبانی</span>
+              <span>ارسال ها</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonNumbersList(row)">
-              <mat-icon>view_module</mat-icon>
-              <span>شماره اختصاصی ها</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonPriceServicesList(row)">
-              <mat-icon>view_module</mat-icon>
-              <span>لیست قیمت</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonPermitionList(row)">
-              <mat-icon>view_module</mat-icon>
-              <span>دسترسی ها</span>
-            </button>
+
           </mat-menu>
         </mat-cell>
       </ng-container>
@@ -154,7 +144,6 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
     <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
       [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>

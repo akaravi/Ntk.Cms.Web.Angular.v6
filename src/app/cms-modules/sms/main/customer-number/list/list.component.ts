@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  SmsLogOutBoxModel,
-  SmsLogOutBoxService,
+  SmsMainCustomerNumberModel,
+  SmsMainCustomerNumberService,
   CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
@@ -14,12 +14,7 @@ import {
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreCurrencyService,
-  CoreCurrencyModel,
-  SmsMainApiPathCompanyModel,
-  SmsMainApiPathCompanyService,
-  SmsMainApiPathPublicConfigService,
-  SmsMainApiPathPublicConfigModel
+  SmsMainApiPathModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -31,32 +26,26 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { SmsMainApiLogOutBoxEditComponent } from '../edit/edit.component';
+import { SmsMainCustomerNumberEditComponent } from '../edit/edit.component';
+import { SmsMainCustomerNumberAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+
 @Component({
-  selector: 'app-sms-log-inbox-list',
+  selector: 'app-sms-customer-number-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
-export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
-  requestLinkSiteId = 0;
-  requestLinkCompanyId = '';
-  requestLinkPublicConfigId = '';
+export class SmsMainCustomerNumberListComponent implements OnInit, OnDestroy {
+  requestLinkApiPathId = '';
   constructor(
-    private smsLogOutBoxService: SmsLogOutBoxService,
-    private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
-    private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
+    private smsMainCustomerNumberService: SmsMainCustomerNumberService,
     public publicHelper: PublicHelper,
-    private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
+    private activatedRoute: ActivatedRoute,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    // private coreCurrencyService: CoreCurrencyService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -76,68 +65,47 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<SmsLogOutBoxModel> = new ErrorExceptionResult<SmsLogOutBoxModel>();
-  dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
-  dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
-  dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
-
-  categoryModelSelected: SmsMainApiPathCompanyModel;
-
+  dataModelResult: ErrorExceptionResult<SmsMainCustomerNumberModel> = new ErrorExceptionResult<SmsMainCustomerNumberModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<SmsLogOutBoxModel> = [];
-  tableRowSelected: SmsLogOutBoxModel = new SmsLogOutBoxModel();
-  tableSource: MatTableDataSource<SmsLogOutBoxModel> = new MatTableDataSource<SmsLogOutBoxModel>();
+  tableRowsSelected: Array<SmsMainCustomerNumberModel> = [];
+  tableRowSelected: SmsMainCustomerNumberModel = new SmsMainCustomerNumberModel();
+  tableSource: MatTableDataSource<SmsMainCustomerNumberModel> = new MatTableDataSource<SmsMainCustomerNumberModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  categoryModelSelected: SmsMainApiPathModel;
 
   tabledisplayedColumns: string[] = [
     'Id',
-    'SendDate',
-    'IsAccepted',
-    'DefaultApiNumber',
-    'Message',
+    'RecordStatus',
+    'NumberChar',
+    'FirstSubmit',
+    'UsanceDate',
+    'SaleStatus',
+    'CreatedDate',
     'UpdatedDate',
     'Action'
   ];
 
 
 
-  expandedElement: SmsLogOutBoxModel | null;
+  expandedElement: SmsMainCustomerNumberModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    if (this.activatedRoute.snapshot.paramMap.get('LinkCompanyId')) {
-      this.requestLinkCompanyId = this.activatedRoute.snapshot.paramMap.get('LinkCompanyId');
-    }
-    if (this.activatedRoute.snapshot.paramMap.get('LinkSiteId')) {
-      this.requestLinkSiteId = +this.activatedRoute.snapshot.paramMap.get('LinkSiteId') || 0;
-    }
-    if (this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId')) {
-      this.requestLinkPublicConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId');
-    }
-    const filter = new FilterDataModel();
-    if (this.requestLinkPublicConfigId?.length > 0) {
-      filter.PropertyName = 'LinkPublicConfigId';
-      filter.Value = this.requestLinkPublicConfigId;
-      this.filteModelContent.Filters.push(filter);
-    }
-    if (this.requestLinkCompanyId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkApiPathCompanyId';
-      filter.Value = this.requestLinkCompanyId;
-      this.filteModelContent.Filters.push(filter);
-    }
-    if (this.requestLinkSiteId > 0) {
-      const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkSiteId';
-      filter.Value = this.requestLinkSiteId;
-      this.filteModelContent.Filters.push(filter);
-    }
     this.filteModelContent.SortColumn = 'Title';
+    if (this.activatedRoute.snapshot.paramMap.get('LinkApiPathId')) {
+      this.requestLinkApiPathId = this.activatedRoute.snapshot.paramMap.get('LinkApiPathId');
+    }
+    if (this.requestLinkApiPathId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'ApiPathAndCustomerNumbers';
+      filter.PropertyAnyName = 'LinkApiPathId';
+      filter.Value = this.requestLinkApiPathId;
+      this.filteModelContent.Filters.push(filter);
+    }
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -147,37 +115,13 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       this.DataGetAll();
       this.tokenInfo = next;
     });
-    // this.getCurrency();
-    this.getApiCopmanyList();
-    this.getPublicConfig();
   }
-  getPublicConfig(): void {
-    const filter = new FilterModel();
-    filter.RowPerPage = 100;
-    this.smsMainApiPathPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
-      this.dataModelPublicResult = next;
-    });
-  }
-  getApiCopmanyList(): void {
-    const filter = new FilterModel();
-    filter.RowPerPage = 100;
-    this.smsMainApiPathCompanyService.ServiceGetAll(filter).subscribe((next) => {
-      this.dataModelCompanyResult = next;
-    });
-  }
-  // getCurrency(): void {
-  //   const filter = new FilterModel();
-  //   filter.RowPerPage = 100;
-  //   this.coreCurrencyService.ServiceGetAll(filter).subscribe((next) => {
-  //     this.dataModelCoreCurrencyResult = next;
-  //   });
-  // }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new SmsLogOutBoxModel();
+    this.tableRowSelected = new SmsMainCustomerNumberModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -190,12 +134,13 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     /** filter Category */
     if (this.categoryModelSelected && this.categoryModelSelected.Id.length > 0) {
       let fastfilter = new FilterDataModel();
-      fastfilter.PropertyName = 'LinkApiPathCompanyId';
+      fastfilter.PropertyName = 'ApiPathAndCustomerNumbers';
+      fastfilter.PropertyAnyName = 'LinkApiPathId';
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
     /** filter Category */
-    this.smsLogOutBoxService.ServiceGetAllEditor(filterModel).subscribe(
+    this.smsMainCustomerNumberService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -245,11 +190,39 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
+  onActionSelectorSelect(model: SmsMainApiPathModel | null): void {
+    this.filteModelContent = new FilterModel();
+    this.categoryModelSelected = model;
+
+    this.DataGetAll();
+  }
 
 
-  onActionbuttonEditRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
+  onActionbuttonNewRow(): void {
 
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    const dialogRef = this.dialog.open(SmsMainCustomerNumberAddComponent, {
+      height: '90%',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.onActionbuttonEditRow(result.model);
+        this.DataGetAll();
+      }
+    });
+  }
+
+  onActionbuttonEditRow(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+
+    if (!model || !model.Id || model.Id.length == 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -262,7 +235,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(SmsMainApiLogOutBoxEditComponent, {
+    const dialogRef = this.dialog.open(SmsMainCustomerNumberEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
@@ -271,11 +244,9 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
         this.DataGetAll();
       }
     });
-    // this.router.navigate(['/sms/main/api-path/edit', this.tableRowSelected.Id]);
-
   }
-  onActionbuttonDeleteRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+  onActionbuttonDeleteRow(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length == 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -292,15 +263,15 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
+    const title = 'لطفا تایید کنید...';
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsLogOutBoxService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.smsMainCustomerNumberService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -327,13 +298,6 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
 
   }
 
-  onActionSelectorSelect(model: SmsMainApiPathCompanyModel | null): void {
-    this.filteModelContent = new FilterModel();
-    this.categoryModelSelected = model;
-
-    this.DataGetAll();
-  }
-
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -342,7 +306,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsLogOutBoxService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.smsMainCustomerNumberService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -359,7 +323,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.smsLogOutBoxService.ServiceGetCount(filterStatist1).subscribe(
+    this.smsMainCustomerNumberService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -373,8 +337,9 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     );
 
   }
-  onActionbuttonSuperSedersList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+
+  onActionbuttonReceiveList(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length == 0) {
 
       const message = 'ردیفی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
@@ -385,15 +350,17 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
+      !this.dataModelResult.Access.AccessDeleteRow
     ) {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+    this.router.navigate(['/sms/log/inbox/list/ReceiverNumber', this.tableRowSelected.NumberChar]);
+
+
   }
-  onActionbuttonMustSuperSedersList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+  onActionbuttonSendList(model: SmsMainCustomerNumberModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length == 0) {
 
       const message = 'ردیفی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
@@ -404,71 +371,15 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
+      !this.dataModelResult.Access.AccessDeleteRow
     ) {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+    this.router.navigate(['/sms/log/outbox/list/SenderNumber', this.tableRowSelected.NumberChar]);
+
+
   }
-  onActionbuttonNumbersList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
-
-      const message = 'ردیفی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
-  }
-  onActionbuttonPermitionList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
-
-      const message = 'ردیفی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/sms/main/api-path-permission/LinkApiPathId', this.tableRowSelected.Id]);
-  }
-  onActionbuttonPriceServicesList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
-
-      const message = 'ردیفی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/sms/main/api-path-price-service/LinkApiPathId', this.tableRowSelected.Id]);
-  }
-
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -476,7 +387,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsLogOutBoxService.ServiceExportFile(model).subscribe(
+    this.smsMainCustomerNumberService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -488,34 +399,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       }
     );
   }
-  onActionbuttonSendMessage(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    // const dialogRef = this.dialog.open(SmsLogOutBoxSendTestComponent, {
-    //   height: '90%',
-    //   data: { LinkApiPathId: this.tableRowSelected.Id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
-  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -523,10 +407,10 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: SmsLogOutBoxModel): void {
+  onActionTableRowSelect(row: SmsMainCustomerNumberModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/sms/main/api-path-company']);
+    this.router.navigate(['/sms/main/api-path']);
   }
 }

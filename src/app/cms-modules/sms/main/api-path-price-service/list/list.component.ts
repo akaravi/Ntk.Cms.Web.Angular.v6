@@ -34,7 +34,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-sms-apipathpriceservice-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestroy {
   requestLinkApiPathId = '';

@@ -5,6 +5,7 @@ import { SmsMainApiPathPermissionListComponent } from './api-path-permission/lis
 import { SmsMainApiPathPriceServiceListComponent } from './api-path-price-service/list/list.component';
 import { SmsMainApiPathEditComponent } from './api-path/edit/edit.component';
 import { SmsMainApiPathListComponent } from './api-path/list/list.component';
+import { SmsMainCustomerNumberListComponent } from './customer-number/list/list.component';
 import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/list.component';
 import { SmsMainComponent } from './sms-main.component';
 
@@ -22,9 +23,6 @@ const routes: Routes = [
         path: 'publicconfig',
         component: SmsMainApiPathPublicConfigListComponent
       },
-
-
-
       {
         path: 'api-path',
         component: SmsMainApiPathListComponent
@@ -65,6 +63,11 @@ const routes: Routes = [
         path: 'api-path-price-service/LinkApiPathId/:LinkApiPathId',
         component: SmsMainApiPathPriceServiceListComponent
       },
+      {
+        path: 'customer-number',
+        component: SmsMainCustomerNumberListComponent
+      },
+
     //   {
     //     path: 'source/add',
     //     component: ApplicationSourceAddComponent

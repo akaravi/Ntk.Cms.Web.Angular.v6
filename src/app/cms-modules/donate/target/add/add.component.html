@@ -82,15 +82,15 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ HashMd5.value.length }} / 100</mat-hint>
       </mat-form-field>
-      <!-- Key Field -->
+      <!-- KeyCode Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Key']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Key" name="dataModel.Key" #Key type="text" placeholder="...."
+        <mat-label>{{fieldsInfo['KeyCode']?.FieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.KeyCode" name="dataModel.KeyCode" #KeyCode type="text" placeholder="...."
           minlength="0" maxlength="100" />
-        <mat-icon matSuffix *ngIf="dataModel.Key" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Key = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.KeyCode" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.KeyCode = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Key.value.length }} / 100</mat-hint>
+        <mat-hint align="end">{{ KeyCode.value.length }} / 100</mat-hint>
       </mat-form-field>
 
       <!-- CurrentClickCount Field -->

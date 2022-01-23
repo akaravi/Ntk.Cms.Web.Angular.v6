@@ -13,10 +13,12 @@ import {
   CoreModuleService,
   SmsConfigurationService,
   SmsEnumService,
+  SmsMainApiPathAndCustomerNumberService,
   SmsMainApiPathCompanyService,
   SmsMainApiPathPermissionService,
   SmsMainApiPathPublicConfigService,
-  SmsMainApiPathService
+  SmsMainApiPathService,
+  SmsMainCustomerNumberService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';
@@ -45,6 +47,10 @@ import { SmsMainApiPathPublicConfigTreeComponent } from './public-config/tree/tr
 import { DynamicFormBuilderModule } from 'src/app/core/dynamic-form-builder/dynamic-form-builder.module';
 import { SmsMainApiPathSendTestComponent } from './api-path/sendTest/sendTest.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { SmsMainCustomerNumberListComponent } from './customer-number/list/list.component';
+import { SmsMainCustomerNumberAddComponent } from './customer-number/add/add.component';
+import { SmsMainCustomerNumberEditComponent } from './customer-number/edit/edit.component';
+import { SmsMainApiPathSelectionlistComponent } from './api-path/selectionlist/selectionlist.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +76,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     SmsMainApiPathSelectorComponent,
     SmsMainApiPathTreeComponent,
     SmsMainApiPathSendTestComponent,
+    SmsMainApiPathSelectionlistComponent,
     /*Permission*/
     SmsMainApiPathPermissionListComponent,
     SmsMainApiPathPermissionAddComponent,
@@ -78,6 +85,10 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     SmsMainApiPathPriceServiceListComponent,
     SmsMainApiPathPriceServiceAddComponent,
     SmsMainApiPathPriceServiceEditComponent,
+    /*CustomerNumber*/
+    SmsMainCustomerNumberListComponent,
+    SmsMainCustomerNumberAddComponent,
+    SmsMainCustomerNumberEditComponent,
   ],
   exports: [
     SmsMainApiPathPublicConfigAddComponent,
@@ -101,6 +112,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     SmsMainApiPathSelectorComponent,
     SmsMainApiPathTreeComponent,
     SmsMainApiPathSendTestComponent,
+    SmsMainApiPathSelectionlistComponent,
     /*Permission*/
     SmsMainApiPathPermissionListComponent,
     SmsMainApiPathPermissionAddComponent,
@@ -109,6 +121,10 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     SmsMainApiPathPriceServiceListComponent,
     SmsMainApiPathPriceServiceAddComponent,
     SmsMainApiPathPriceServiceEditComponent,
+    /*CustomerNumber*/
+    SmsMainCustomerNumberListComponent,
+    SmsMainCustomerNumberAddComponent,
+    SmsMainCustomerNumberEditComponent,
   ],
   imports: [
     CommonModule,
@@ -134,6 +150,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     SmsMainApiPathCompanyService,
     SmsMainApiPathPermissionService,
     SmsMainApiPathPublicConfigService,
+    SmsMainCustomerNumberService, 
+    SmsMainApiPathAndCustomerNumberService,
   ]
 })
 export class SmsMainModule { }
