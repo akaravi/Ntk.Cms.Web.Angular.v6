@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SmsSharedModule } from './sms.shared.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
+    SmsSharedModule,
   ],
   providers: [
     CoreModuleService,

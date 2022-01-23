@@ -51,6 +51,7 @@ import { SmsMainCustomerNumberListComponent } from './customer-number/list/list.
 import { SmsMainCustomerNumberAddComponent } from './customer-number/add/add.component';
 import { SmsMainCustomerNumberEditComponent } from './customer-number/edit/edit.component';
 import { SmsMainApiPathSelectionlistComponent } from './api-path/selectionlist/selectionlist.component';
+import { SmsSharedModule } from '../sms.shared.module';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { SmsMainApiPathSelectionlistComponent } from './api-path/selectionlist/s
     SmsMainApiPathListComponent,
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
-    SmsMainApiPathSelectorComponent,
+    
     SmsMainApiPathTreeComponent,
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
@@ -109,7 +110,7 @@ import { SmsMainApiPathSelectionlistComponent } from './api-path/selectionlist/s
     SmsMainApiPathListComponent,
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
-    SmsMainApiPathSelectorComponent,
+    
     SmsMainApiPathTreeComponent,
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
@@ -136,7 +137,8 @@ import { SmsMainApiPathSelectionlistComponent } from './api-path/selectionlist/s
     AngularEditorModule,
     CmsFileManagerModule,
     DynamicFormBuilderModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    SmsSharedModule,
   ],
   providers: [
     CoreModuleService,

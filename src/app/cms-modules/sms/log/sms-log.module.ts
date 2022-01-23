@@ -32,6 +32,7 @@ import { DynamicFormBuilderModule } from 'src/app/core/dynamic-form-builder/dyna
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { SmsMainApiLogOutBoxListComponent } from './outbox/list/list.component';
 import { SmsMainApiLogOutBoxEditComponent } from './outbox/edit/edit.component';
+import { SmsSharedModule } from '../sms.shared.module';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SmsMainApiLogOutBoxEditComponent } from './outbox/edit/edit.component';
     MatStepperModule,
     DynamicFormBuilderModule,
     NgxMaterialTimepickerModule,
+    SmsSharedModule,
   ],
   providers: [
     CoreModuleService,

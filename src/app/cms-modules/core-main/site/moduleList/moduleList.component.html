@@ -3,6 +3,8 @@
   در این بخش میتوانید ماژول های خود را مدیریت کنید.
   <br>
 </app-cms-html-notice>
+<app-core-site-header [optionId]="requestLinkSiteId" *ngIf="requestLinkSiteId>0"></app-core-site-header>
+<app-core-module-header [optionId]="requestLinkModuleId" *ngIf="requestLinkModuleId>0"></app-core-module-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -53,6 +55,7 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">

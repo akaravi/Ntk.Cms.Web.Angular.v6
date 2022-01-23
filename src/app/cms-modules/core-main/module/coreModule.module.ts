@@ -16,6 +16,8 @@ import { CoreModuleListComponent } from './list/list.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.component';
+import { CoreModuleHeaderComponent } from './header/header.component';
+import { CoreSharedModule } from '../core.shared.module';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.
     SharedModule.forRoot(),
     AngularEditorModule,
     TagInputModule,
+    CoreSharedModule,
   ],
   providers: [
     CoreModuleService,

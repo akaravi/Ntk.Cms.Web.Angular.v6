@@ -42,6 +42,9 @@ import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.
 import { CoreSiteModuleSiteInfoComponent } from './module-site-info/module-site-info.component';
 import { CoreSiteModuleSiteOptimazeComponent } from './module-site-optimaze/module-site-optimaze.component';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { CoreSiteHeaderComponent } from './header/header.component';
+import { CoreModuleHeaderComponent } from '../module/header/header.component';
+import { CoreSharedModule } from '../core.shared.module';
 
 
 @NgModule({
@@ -64,6 +67,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CoreSiteResellerChartComponent,
     CoreSiteModuleSiteInfoComponent,
     CoreSiteModuleSiteOptimazeComponent,
+
   ],
   exports: [
     CoreSiteComponent,
@@ -83,7 +87,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CoreSiteUserEditComponent,
     CoreSiteResellerChartComponent,
     CoreSiteModuleSiteInfoComponent,
-    CoreSiteModuleSiteOptimazeComponent
+    CoreSiteModuleSiteOptimazeComponent,
+
   ],
   imports: [
     CommonModule,
@@ -99,6 +104,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CoreUserModule,
     CoreUserGroupCmsModule,
     ColorPickerModule,
+    CoreSharedModule,
   ],
   providers: [
     CoreSiteService,

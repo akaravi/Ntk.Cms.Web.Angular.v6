@@ -13,16 +13,20 @@ import {
   CoreAuthService,
   CoreEnumService,
   CoreModuleService,
-  CoreModuleTagService
+  CoreModuleTagService,
+  SmsMainApiPathService
 } from 'ntk-cms-api';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SmsActionSendMessageComponent } from './send-message/send-message.component';
+import { SmsSharedModule } from '../sms.shared.module';
 
 @NgModule({
   declarations: [
     SmsActionComponent,
+    SmsActionSendMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +41,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
+    SmsSharedModule,
   ],
   providers: [
     CoreModuleService,
@@ -44,6 +49,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     CoreAuthService,
     CmsConfirmationDialogService ,
     CoreModuleTagService,
+    SmsMainApiPathService,
 
   ]
 })
