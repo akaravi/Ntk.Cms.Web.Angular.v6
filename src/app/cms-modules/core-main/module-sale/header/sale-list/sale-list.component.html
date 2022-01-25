@@ -14,25 +14,29 @@
     </app-progress-spinner>
 
     <div class="row">
-      <div class="col" *ngFor="let item of dataModelResult.ListItems">
+      <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4" *ngFor="let item of dataModelResult.ListItems">
         <mat-card class="example-card">
           <mat-card-header>
             <mat-card-title>{{item.Title}}</mat-card-title>
             <mat-card-subtitle>{{item.SalePrice | currency:' '+currency+' '}}</mat-card-subtitle>
           </mat-card-header>
+          <!-- <button> -->
+            <a class="pointer" (click)="onActionbuttonDetail(item)">
           <img mat-card-image src="{{item.LinkMainImageIdSrc | cmsthumbnail}}">
+            </a>
+          <!-- </button> -->
           <mat-card-content>
             <p>
               {{item.Description }}
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button (click)="onActionbuttonDetail(item)">{{'ACTION.DETAIL' | translate}}</button>
-            <button mat-button (click)="onActionbuttonBuy(item)">{{'ACTION.BUY' | translate}}</button>
+            <button mat-button type="button" class="btn btn-secondary" (click)="onActionbuttonDetail(item)">{{'ACTION.DETAIL' | translate}}</button>
+            <button mat-button type="button" class="btn btn-success" (click)="onActionbuttonBuy(item)">{{'ACTION.BUY' | translate}}</button>
           </mat-card-actions>
         </mat-card>
       </div>
-      <div *ngIf="this.tableRowSelected && this.tableRowSelected.Id>0">
+      <div class="mt-4" *ngIf="this.tableRowSelected && this.tableRowSelected.Id>0">
         <app-core-modulesaleitem-listview [optionHeaderId]="this.tableRowSelected.Id">
         </app-core-modulesaleitem-listview>
       </div>
