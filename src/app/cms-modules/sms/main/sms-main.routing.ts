@@ -8,6 +8,7 @@ import { SmsMainApiPathListComponent } from './api-path/list/list.component';
 import { SmsMainApiNumberListComponent } from './api-number/list/list.component';
 import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/list.component';
 import { SmsMainComponent } from './sms-main.component';
+import { SmsMainApiNumberPermissionListComponent } from './api-number-permission/list/list.component';
 
 
 const routes: Routes = [
@@ -67,7 +68,14 @@ const routes: Routes = [
         path: 'api-number',
         component: SmsMainApiNumberListComponent
       },
-
+      {
+        path: 'api-number-permission',
+        component: SmsMainApiNumberPermissionListComponent
+      },
+      {
+        path: 'api-number-permission/LinkApiNumberId/:LinkApiNumberId',
+        component: SmsMainApiNumberPermissionListComponent
+      },
      ]
   },
 ];

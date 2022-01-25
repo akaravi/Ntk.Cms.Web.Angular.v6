@@ -2,7 +2,7 @@ import {
   CoreEnumService,
   FormInfoModel,
   ErrorExceptionResult,
-  SmsApiSendTestDtoModel,
+  SmsApiSendMessageDtoModel,
   SmsApiSendResultModel,
   SmsMainApiPathService,
   SmsMainApiPathModel,
@@ -50,7 +50,7 @@ export class SmsActionSendMessageComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
-  dataModel: SmsApiSendTestDtoModel = new SmsApiSendTestDtoModel();
+  dataModel: SmsApiSendMessageDtoModel = new SmsApiSendMessageDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
 
@@ -68,17 +68,14 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.dataModelParentSelected = model;
     if (model && model.Id.length > 0) {
       this.dataModel.LinkApiPathId = model.Id;
-      const nums = this.publicHelper.SplitAllChar(model.ApiDefaultNumber);
-      if (nums && nums.length > 0) {
-        this.dataModel.FromNumber = nums[0];
-      }
+      
     }
   }
 
 
   onActionSelectApiNumber(model: SmsMainApiNumberModel): void {
     if (model && model.Id.length > 0) {
-      this.dataModel.FromNumber = model.NumberChar;
+      this.dataModel.LinkFromNumber = model.Id;
     }
   }
 
@@ -96,7 +93,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainApiPathService.ServiceTestSend(this.dataModel).pipe(
+    this.smsMainApiPathService.ServiceSendMessage(this.dataModel).pipe(
       map((next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

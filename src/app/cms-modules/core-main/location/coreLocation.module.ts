@@ -7,7 +7,7 @@ import {
   CoreLocationService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreLocationTreeComponent } from './tree/tree.component';
 import { CoreLocationSelectorComponent } from './selector/selector.component';
 import { CoreLocationEditComponent } from './edit/edit.component';

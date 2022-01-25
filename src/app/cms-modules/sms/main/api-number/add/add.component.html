@@ -38,6 +38,14 @@
       <mat-hint align="start">{{ NumberChar.value.length }} / 100</mat-hint>
     </mat-form-field>
 
+    <!-- IsPublic Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.IsPublic" *ngIf="fieldsInfo['IsPublic']?.AccessWatchField"
+        [disabled]="!fieldsInfo['IsPublic']?.AccessAddField" name="dataModel.IsPublic">
+        {{fieldsInfo['IsPublic']?.FieldTitle}}
+      </mat-slide-toggle>
+    </div>
+
     <!-- SaleStatus Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.SaleStatus" *ngIf="fieldsInfo['SaleStatus']?.AccessWatchField"
@@ -45,7 +53,15 @@
         {{fieldsInfo['SaleStatus']?.FieldTitle}}
       </mat-slide-toggle>
     </div>
-
+  <!-- Priority Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.AccessWatchField">
+    <mat-label>{{ fieldsInfo['Priority']?.FieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.Priority" [disabled]="!fieldsInfo['Priority']?.AccessEditField"
+      name="dataModel.Priority" #Priority type="number" placeholder="1" />
+    <mat-icon matSuffix *ngIf="dataModel.Priority && fieldsInfo['Priority']?.AccessAddField" matSuffix
+      mat-icon-button aria-label="Clear" (click)="dataModel.Priority = 1">close</mat-icon>
+    <mat-icon *ngIf="fieldsInfo['Priority']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
 
     <!-- FirstSubmit Field -->
     <mat-form-field class="ntk-full-width">

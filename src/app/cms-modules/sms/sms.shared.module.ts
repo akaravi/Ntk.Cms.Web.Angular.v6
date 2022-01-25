@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { SmsMainApiPathSelectorComponent } from './main/api-path/selector/selector.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreEnumService, SmsMainApiPathService, SmsMainApiNumberService } from 'ntk-cms-api';

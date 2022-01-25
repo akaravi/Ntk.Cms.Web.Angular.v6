@@ -7,7 +7,7 @@ import { AuthSingInComponent } from './singin/singin.component';
 import { AuthForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthSingoutComponent } from './singout/singout.component';
 import { AuthComponent } from './auth.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { AuthSingUpComponent } from './singup/singup.component';
 import { SingupRuleComponent } from './singupRule/singupRule.Component';
 import { AuthSingInBySmsComponent } from './singin-bysms/singin-bysms.component';

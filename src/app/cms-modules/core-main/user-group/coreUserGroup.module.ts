@@ -7,7 +7,7 @@ import {
   CoreUserGroupService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreUserGroupTreeComponent } from './tree/tree.component';
 import { CoreUserGroupSelectorComponent } from './selector/selector.component';
 import { CoreUserGroupEditComponent } from './edit/edit.component';

@@ -13,12 +13,12 @@ import { FooterComponent } from './_layout/components/footer/footer.component';
 import { HeaderComponent } from './_layout/components/header/header.component';
 import { TopbarComponent } from './_layout/components/topbar/topbar.component';
 import { ExtrasModule } from '../_metronic/partials/layout/extras/extras.module';
-import { CoreModule, DynamicAsideMenuService, DynamicHeaderMenuService } from '../_metronic/core';
+import {  DynamicAsideMenuService, DynamicHeaderMenuService } from '../_metronic/core';
 import { SubheaderModule } from '../_metronic/partials/layout/subheader/subheader.module';
 import { AsideDynamicComponent } from './_layout/components/aside-dynamic/aside-dynamic.component';
 import { HeaderMenuDynamicComponent } from './_layout/components/header/header-menu-dynamic/header-menu-dynamic.component';
 import { CoreSiteModule } from '../cms-modules/core-main/site/coreSite.module';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared.module';
 import { CoreAuthService, CoreConfigurationService, CoreCpMainMenuService, CoreModuleService } from 'ntk-cms-api';
 import { TranslationModule } from '../core/i18n/translation.module';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -42,7 +42,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     ExtrasModule,
     NgbDropdownModule,
     NgbProgressbarModule,
-    CoreModule,
+    // CoreModule,
     SubheaderModule,
     CoreSiteModule,
     SharedModule.forRoot(),

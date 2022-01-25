@@ -2,7 +2,7 @@ import {
   CoreEnumService,
   FormInfoModel,
   ErrorExceptionResult,
-  SmsApiSendTestDtoModel,
+  SmsApiSendMessageTestDtoModel,
   SmsApiSendResultModel,
   SmsMainApiPathService,
   SmsMainApiPathModel,
@@ -53,7 +53,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
-  dataModel: SmsApiSendTestDtoModel = new SmsApiSendTestDtoModel();
+  dataModel: SmsApiSendMessageTestDtoModel = new SmsApiSendMessageTestDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
 
@@ -95,7 +95,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainApiPathService.ServiceTestSend(this.dataModel).pipe(
+    this.smsMainApiPathService.ServiceSendMessageTest(this.dataModel).pipe(
       map((next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

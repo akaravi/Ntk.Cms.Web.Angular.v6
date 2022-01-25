@@ -19,7 +19,7 @@ import { PollingCategoryEditComponent } from './category/edit/edit.component';
 import { PollingCategoryDeleteComponent } from './category/delete/delete.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { PollingCategorySelectorComponent } from './category/selector/selector.component';

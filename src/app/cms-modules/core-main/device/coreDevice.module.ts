@@ -7,7 +7,7 @@ import {
   CoreDeviceService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreDeviceTreeComponent } from './tree/tree.component';
 import { CoreDeviceSelectorComponent } from './selector/selector.component';
 import { CoreDeviceEditComponent } from './edit/edit.component';

@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreSiteSelectionComponent } from './selection/selection.component';
 import { CoreSiteAddFirstComponent } from './addFirst/addFirst.component';
 import { CoreSiteResolver } from './coreSite.resolver';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreSiteTreeComponent } from './tree/tree.component';
 import { CoreSiteSelectorComponent } from './selector/selector.component';
 import { CoreSiteDeleteComponent } from './delete/delete.component';

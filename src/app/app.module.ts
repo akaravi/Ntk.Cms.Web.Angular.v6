@@ -11,7 +11,7 @@ import { AuthService } from './modules/auth/_services/auth.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/splash-screen.module';
 import { TeardownLogic } from 'rxjs';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';

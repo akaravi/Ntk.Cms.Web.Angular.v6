@@ -29,7 +29,7 @@ import { ChartContentEditComponent } from './content/edit/edit.component';
 import { ChartContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { ChartCategorySelectorComponent } from './category/selector/selector.component';

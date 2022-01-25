@@ -4,7 +4,7 @@ import { CoreModuleComponent } from './coreModule.component';
 import { CoreModuleRoutes } from './coreModule.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { TagInputModule } from 'ngx-chips';

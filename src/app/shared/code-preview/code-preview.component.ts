@@ -5,7 +5,7 @@ import {
   ElementRef,
   AfterViewInit,
 } from '@angular/core';
-import KTLayoutExamples from '../../../../../../assets/js/layout/extended/examples';
+import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
 
 @Component({
   selector: 'app-code-preview',

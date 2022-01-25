@@ -86,7 +86,10 @@ npm update @angular/cli @angular/cdk rxjs
 npm install -S @angular/material @angular/cdk @angular/animations
 npm uninstall @angular/core
 npm install -S @angular/core
-
+=============================================================================================================================
+Check the unused dependencies
+npm install depcheck -g
+depcheck
 
 ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 مشکل با بسته های زیر

@@ -7,7 +7,7 @@ import {
   CoreSiteDomainAliasService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreSiteDomainAliasSelectorComponent } from './selector/selector.component';
 import { CoreSiteDomainAliasEditComponent } from './edit/edit.component';
 import { CoreSiteDomainAliasAddComponent } from './add/add.component';

@@ -5,7 +5,7 @@ import { SmsMainRoutes } from './sms-main.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
@@ -18,7 +18,8 @@ import {
   SmsMainApiPathPermissionService,
   SmsMainApiPathPublicConfigService,
   SmsMainApiPathService,
-  SmsMainApiNumberService
+  SmsMainApiNumberService,
+  SmsMainApiNumberPermissionService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';
@@ -52,6 +53,9 @@ import { SmsMainApiNumberAddComponent } from './api-number/add/add.component';
 import { SmsMainApiNumberEditComponent } from './api-number/edit/edit.component';
 import { SmsMainApiPathSelectionlistComponent } from './api-path/selectionlist/selectionlist.component';
 import { SmsSharedModule } from '../sms.shared.module';
+import { SmsMainApiNumberPermissionEditComponent } from './api-number-permission/edit/edit.component';
+import { SmsMainApiNumberPermissionAddComponent } from './api-number-permission/add/add.component';
+import { SmsMainApiNumberPermissionListComponent } from './api-number-permission/list/list.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +78,7 @@ import { SmsSharedModule } from '../sms.shared.module';
     SmsMainApiPathListComponent,
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
-    
+
     SmsMainApiPathTreeComponent,
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
@@ -90,6 +94,10 @@ import { SmsSharedModule } from '../sms.shared.module';
     SmsMainApiNumberListComponent,
     SmsMainApiNumberAddComponent,
     SmsMainApiNumberEditComponent,
+    /*Permission*/
+    SmsMainApiNumberPermissionListComponent,
+    SmsMainApiNumberPermissionAddComponent,
+    SmsMainApiNumberPermissionEditComponent,
   ],
   exports: [
     SmsMainApiPathPublicConfigAddComponent,
@@ -110,7 +118,7 @@ import { SmsSharedModule } from '../sms.shared.module';
     SmsMainApiPathListComponent,
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
-    
+
     SmsMainApiPathTreeComponent,
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
@@ -126,6 +134,10 @@ import { SmsSharedModule } from '../sms.shared.module';
     SmsMainApiNumberListComponent,
     SmsMainApiNumberAddComponent,
     SmsMainApiNumberEditComponent,
+    /*Permission*/
+    SmsMainApiNumberPermissionListComponent,
+    SmsMainApiNumberPermissionAddComponent,
+    SmsMainApiNumberPermissionEditComponent,
   ],
   imports: [
     CommonModule,
@@ -151,8 +163,9 @@ import { SmsSharedModule } from '../sms.shared.module';
     SmsMainApiPathService,
     SmsMainApiPathCompanyService,
     SmsMainApiPathPermissionService,
+    SmsMainApiNumberPermissionService,
     SmsMainApiPathPublicConfigService,
-    SmsMainApiNumberService, 
+    SmsMainApiNumberService,
     SmsMainApiPathAndApiNumberService,
   ]
 })

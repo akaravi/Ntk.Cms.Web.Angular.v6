@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MemberComponent } from './member.component';
 import { MemberRoutes } from './member.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CmsFileManagerModule } from 'src/filemanager-api';

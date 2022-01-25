@@ -17,7 +17,7 @@ import {
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreTokenUserLogListComponent } from './userLog/list/list.component';
 import { CoreTokenUserLogEditComponent } from './userLog/edit/edit.component';
 import { CoreTokenUserBadLoginListComponent } from './userBadLogin/list/list.component';

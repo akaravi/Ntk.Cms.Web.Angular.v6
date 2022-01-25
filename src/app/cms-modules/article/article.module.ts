@@ -27,7 +27,7 @@ import { ArticleCategoryDeleteComponent } from './category/delete/delete.compone
 import { ArticleContentEditComponent } from './content/edit/edit.component';
 import { ArticleContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { ArticleCategorySelectorComponent } from './category/selector/selector.component';
 import { ArticleContentListComponent } from './content/list/list.component';

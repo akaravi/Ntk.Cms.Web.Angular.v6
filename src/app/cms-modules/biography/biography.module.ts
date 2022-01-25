@@ -27,7 +27,7 @@ import { BiographyCategoryDeleteComponent } from './category/delete/delete.compo
 import { BiographyContentEditComponent } from './content/edit/edit.component';
 import { BiographyContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { BiographyCategorySelectorComponent } from './category/selector/selector.component';
 import { BiographyContentListComponent } from './content/list/list.component';

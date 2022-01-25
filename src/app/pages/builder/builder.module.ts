@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { GeneralModule } from '../../_metronic/partials/content/general/general.module';
+// import { GeneralModule } from '../../_metronic/partials/content/general/general.module';
 import { BuilderComponent } from './builder.component';
 import { FormsModule } from '@angular/forms';
 import { NgbNavModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslationModule } from 'src/app/core/i18n/translation.module';
+import { SharedModule } from 'src/app/shared.module';
 
 @NgModule({
   declarations: [BuilderComponent],
   imports: [
     CommonModule,
     FormsModule,
-    GeneralModule,
+    // GeneralModule,
     NgbNavModule,
     NgbTooltipModule,
     TranslationModule,
@@ -22,6 +23,7 @@ import { TranslationModule } from 'src/app/core/i18n/translation.module';
         component: BuilderComponent,
       },
     ]),
+    SharedModule.forRoot(),
   ],
 })
 export class BuilderModule {}

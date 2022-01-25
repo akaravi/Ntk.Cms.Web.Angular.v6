@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FirstLetterPipe } from './pipes/first-letter.pipe';
-import { SafePipe } from './pipes/safe.pipe';
+// import { NgModule } from '@angular/core';
+// import { CommonModule } from '@angular/common';
+// import { FirstLetterPipe } from '../../core/pipe/first-letter.pipe';
+// import { SafePipe } from '../../core/pipe/safe.pipe';
 
-@NgModule({
-  declarations: [FirstLetterPipe, SafePipe],
-  imports: [CommonModule],
-  exports: [FirstLetterPipe, SafePipe],
-})
-export class CoreModule { }
+// @NgModule({
+//   declarations: [],
+//   imports: [CommonModule],
+//   exports: [],
+// })
+// export class CoreModule { }

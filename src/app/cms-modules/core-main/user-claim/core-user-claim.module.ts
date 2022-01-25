@@ -14,7 +14,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreUserClaimComponent } from './core-user-claim.component';
 import { CoreUserClaimRouting } from './core-user-claim.routing';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreUserClaimGroupListComponent } from './group/list/list.component';
 import { CoreUserClaimGroupAddComponent } from './group/add/add.component';
 import { CoreUserClaimGroupEditComponent } from './group/edit/edit.component';

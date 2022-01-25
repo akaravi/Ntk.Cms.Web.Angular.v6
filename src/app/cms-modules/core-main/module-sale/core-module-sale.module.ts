@@ -16,7 +16,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TagInputModule } from 'ngx-chips';
 import { CoreModuleSaleComponent } from './core-module-sale.component';
 import { CoreModuleSaleRouting } from './core-module-sale.routing';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreModuleSaleHeaderGroupListComponent } from './header-group/list/list.component';
 import { CoreModuleSaleHeaderGroupAddComponent } from './header-group/add/add.component';
 import { CoreModuleSaleHeaderGroupEditComponent } from './header-group/edit/edit.component';

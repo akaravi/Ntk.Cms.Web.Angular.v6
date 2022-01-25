@@ -13,24 +13,11 @@
         [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="' مسیر'">
       </app-sms-apipath-selector>
       <app-sms-api-number-selector *ngIf="dataModel.LinkApiPathId?.length>0"
-        (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]="dataModel.FromNumber"
+        (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
         [optionLinkApiPathId]="dataModel.LinkApiPathId" [optionPlaceholder]="' شماره فرستنده'">
       </app-sms-api-number-selector>
 
-      <!-- FromNumber Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>شماره فرستنده</mat-label>
-        <input matInput [(ngModel)]="dataModel.FromNumber" name="dataModel.FromNumber" #FromNumber type="text"
-          placeholder="10000118" minlength="0" maxlength="50" />
-        <mat-icon matSuffix *ngIf="dataModel.FromNumber" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.FromNumber = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="start">
-          <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">شماره فرستنده ای که در این مسیر فعال است</strong>
-        </mat-hint>
-        <mat-hint align="end">{{ FromNumber.value.length }} / 50</mat-hint>
-      </mat-form-field>
+
       <!-- ToNumber Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>شماره گیرنده</mat-label>

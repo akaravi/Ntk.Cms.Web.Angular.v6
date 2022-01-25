@@ -17,11 +17,11 @@ import { QuickActionsOffcanvasComponent } from './offcanvas/quick-actions-offcan
 import { CartOffcanvasComponent } from './offcanvas/cart-offcanvas/cart-offcanvas.component';
 import { QuickPanelOffcanvasComponent } from './offcanvas/quick-panel-offcanvas/quick-panel-offcanvas.component';
 import { UserOffcanvasComponent } from './offcanvas/user-offcanvas/user-offcanvas.component';
-import { CoreModule } from '../../../core';
+// import { CoreModule } from '../../../core';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TranslationModule } from 'src/app/core/i18n/translation.module';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -47,8 +47,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     CommonModule,
     InlineSVGModule,
-    PerfectScrollbarModule,
-    CoreModule,
+    // PerfectScrollbarModule,
+    // CoreModule,
     RouterModule,
     TranslationModule,
     SharedModule.forRoot(),

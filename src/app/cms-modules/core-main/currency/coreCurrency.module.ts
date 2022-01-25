@@ -7,7 +7,7 @@ import {
   CoreCurrencyService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreCurrencySelectorComponent } from './selector/selector.component';
 import { CoreCurrencyEditComponent } from './edit/edit.component';
 import { CoreCurrencyAddComponent } from './add/add.component';

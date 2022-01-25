@@ -16,7 +16,7 @@ import { FileCategoryDeleteComponent } from './category/delete/delete.component'
 import { FileContentEditComponent } from './content/edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 
 
 import { CmsFileManagerModule } from 'src/filemanager-api';

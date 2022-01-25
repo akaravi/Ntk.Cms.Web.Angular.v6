@@ -6,7 +6,7 @@ import {
   CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreModuleTreeComponent } from './tree/tree.component';
 import { CoreModuleSelectorComponent } from './selector/selector.component';
 import { CoreModuleEditComponent } from './edit/edit.component';

@@ -20,7 +20,7 @@ import {
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { AngularEditorModule } from '@kolkov/angular-editor';

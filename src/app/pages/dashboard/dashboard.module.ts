@@ -27,7 +27,7 @@ import {
   EstatePropertyService,
   NewsContentService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NewsContentWidget2Component } from 'src/app/cms-modules/news/content/widget/widget2.component';
