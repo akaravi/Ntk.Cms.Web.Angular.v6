@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 // import { locale as deLang } from './modules/i18n/vocabs/de';
 // import { locale as frLang } from './modules/i18n/vocabs/fr';
 import { SplashScreenService } from './_metronic/partials/layout/splash-screen/splash-screen.service';
-import { TableExtendedService } from './_metronic/shared/crud-table';
+// import { TableExtendedService } from './_metronic/shared/crud-table';
 import { CoreAuthService } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
 import { TokenHelper } from './core/helpers/tokenHelper';
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private translationService: TranslationService,
     private splashScreenService: SplashScreenService,
     private router: Router,
-    private tableService: TableExtendedService,
+    // private tableService: TableExtendedService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
   ) {
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit, OnDestroy {
     const routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // clear filtration paginations and others
-        this.tableService.setDefaults();
+        // this.tableService.setDefaults();
         // hide splash screen
         this.splashScreenService.hide();
 
