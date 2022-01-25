@@ -13,6 +13,7 @@ import {
   TicketingDepartemenLogService,
   TicketingDepartemenOperatorService,
   TicketingDepartemenService,
+  TicketingEnumService,
   TicketingFaqService,
   TicketingTaskService,
   TicketingTemplateService,
@@ -56,6 +57,7 @@ import { TicketingFaqOriginListComponent } from './faq/origin-list/origin-list.c
 import { TicketingTaskContactUsListComponent } from './task/contact-us-list/contact-us-list.component';
 import { TicketingTaskViewComponent } from './task/view/view.component';
 import { TicketingAnswerViewComponent } from './answer/view/view.component';
+import { TicketingTaskHeaderComponent } from './task/header/header.component';
 
 
 
@@ -84,6 +86,7 @@ import { TicketingAnswerViewComponent } from './answer/view/view.component';
     TicketingTaskViewComponent,
     TicketingTaskContactUsAddComponent,
     TicketingTaskContactUsListComponent,
+    TicketingTaskHeaderComponent,
     /* */
     TicketingDepartemenOperatorListComponent,
     TicketingDepartemenLogEditComponent,
@@ -118,6 +121,7 @@ import { TicketingAnswerViewComponent } from './answer/view/view.component';
     TicketingConfigurationService,
     /*Config*/
     CoreModuleTagService,
+    TicketingEnumService, 
     TicketingDepartemenService,
     TicketingDepartemenLogService,
     TicketingDepartemenOperatorService,

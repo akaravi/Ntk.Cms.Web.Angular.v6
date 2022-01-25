@@ -115,7 +115,17 @@ export class TicketingTaskEditComponent implements OnInit {
 
           if (next.IsSuccess) {
             this.dataModel = next.Item;
+            /** */
+            this.ticketingTaskService.ServiceTaskReaded(requestId).subscribe(
+              async (next) => {
 
+              },
+              (error) => {
+                this.cmsToastrService.typeErrorGetOne(error);
+              }
+
+            );
+            /** */
           } else {
             this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
           }
@@ -146,11 +156,10 @@ export class TicketingTaskEditComponent implements OnInit {
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() =>
-            {
+            setTimeout(() => {
               this.dialogRef.close({ dialogChangedDate: true });
             }
-            , 1000);
+              , 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }

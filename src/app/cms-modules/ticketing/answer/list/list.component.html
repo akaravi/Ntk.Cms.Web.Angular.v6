@@ -1,3 +1,4 @@
+<app-ticketing-task-header *ngIf="requestLinkTaskId>0" [optionId]="requestLinkTaskId"></app-ticketing-task-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -71,6 +72,13 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass"></i> </mat-cell>
+      </ng-container>
+       <!-- AnswerStatus Column -->
+       <ng-container matColumnDef="AnswerStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AnswerStatus']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.AnswerStatus | cmstitle : dataModelEnumAnswerStatusResult.ListItems}}
+        </mat-cell>
       </ng-container>
       <!-- LinkMemberUserId Column -->
       <ng-container matColumnDef="LinkMemberUserId">

@@ -12,7 +12,9 @@ import {
   TokenInfoModel,
   TicketingDepartemenModel,
   EnumRecordStatus,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  TicketingEnumService,
+  EnumInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -46,6 +48,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    private ticketingEnumService: TicketingEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -77,10 +80,11 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   tableRowSelected: TicketingTaskModel = new TicketingTaskModel();
   tableSource: MatTableDataSource<TicketingTaskModel> = new MatTableDataSource<TicketingTaskModel>();
   categoryModelSelected: TicketingDepartemenModel;
-
+  dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
+    'TicketStatus',
     'Title',
     'CreatedDate',
     'UpdatedDate',
@@ -101,13 +105,19 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
+      this.getEnumTicketStatus();
       this.tokenInfo = next;
     });
+    this.getEnumTicketStatus();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
+  getEnumTicketStatus(): void {
+    this.ticketingEnumService.ServiceEnumTicketStatus().subscribe((next) => {
+      this.dataModelEnumTicketStatusResult = next;
+    });
+  }
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingTaskModel();

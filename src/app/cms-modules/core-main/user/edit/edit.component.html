@@ -138,6 +138,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="button" mat-raised-button color="primary" (click)="onActionbuttonChangePassword()" *ngIf="this.tokenInfo.UserId == this.dataModel.Id || dataModelResult.Access.AccessEditRow" >
+            {{'AUTH.FORGOT.PASSWORD' | translate}}
+          </button>
         </div>
       </mat-step>
 

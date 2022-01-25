@@ -29,6 +29,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { CoreUserChangePasswordComponent } from '../changePassword/changePassword.component';
 
 @Component({
   selector: 'app-core-user-edit',
@@ -45,6 +47,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    public dialog: MatDialog,
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
@@ -113,8 +116,6 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreUserService.setAccessLoad();
-
-
     this.coreUserService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         /*َAccess Field*/
@@ -211,4 +212,27 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     }
     this.dataModel.LinkResellerUserId = model.Id;
   }
+  onActionbuttonChangePassword(): void {
+    if (this.tokenInfo.UserId != this.dataModel.Id &&
+      (
+        this.dataModelResult == null ||
+        this.dataModelResult.Access == null ||
+        !this.dataModelResult.Access.AccessEditRow
+      )) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
+      height: '90%',
+      data: { LinkUserId: this.dataModel.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+
+      }
+    });
+  }
+
 }
+
+

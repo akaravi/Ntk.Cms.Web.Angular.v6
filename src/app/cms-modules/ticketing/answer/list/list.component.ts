@@ -12,7 +12,9 @@ import {
   TokenInfoModel,
   TicketingDepartemenModel,
   EnumRecordStatus,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumInfoModel,
+  TicketingEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,6 +49,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    private ticketingEnumService: TicketingEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -78,10 +81,11 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   tableRowSelected: TicketingAnswerModel = new TicketingAnswerModel();
   tableSource: MatTableDataSource<TicketingAnswerModel> = new MatTableDataSource<TicketingAnswerModel>();
   categoryModelSelected: TicketingDepartemenModel;
-
+  dataModelEnumAnswerStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
+    'AnswerStatus',
     'LinkTaskId',
     'LinkMemberUserId',
     'HtmlBody',
@@ -104,13 +108,19 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
+      this.getEnumAnswerStatus();
       this.tokenInfo = next;
     });
+    this.getEnumAnswerStatus();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
+  getEnumAnswerStatus(): void {
+    this.ticketingEnumService.ServiceEnumTicketStatus().subscribe((next) => {
+      this.dataModelEnumAnswerStatusResult = next;
+    });
+  }
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingAnswerModel();
