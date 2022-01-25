@@ -3,12 +3,10 @@ import {
     ActivatedRouteSnapshot,
     RouterStateSnapshot,
     Router,
-    ActivatedRoute,
 } from '@angular/router';
 import { Injectable, OnDestroy } from '@angular/core';
-import { CoreAuthService, ErrorExceptionResult, NtkCmsApiStoreService, SET_TOKEN_INFO, TokenInfoModel } from 'ntk-cms-api';
-import { first, map, take, takeUntil, takeWhile } from 'rxjs/operators';
-import { Subject, Subscription } from 'rxjs';
+import { CoreAuthService, NtkCmsApiStoreService, SET_TOKEN_INFO, TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'

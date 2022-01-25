@@ -1,6 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, BehaviorSubject, of, Subscription } from 'rxjs';
-import { map, catchError, switchMap, finalize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { TokenInfoModel } from 'ntk-cms-api';
@@ -15,7 +14,7 @@ export class CmsAuthService implements OnDestroy {
   // public fields
   currentUser$: Observable<TokenInfoModel>;
   currentUserSubject: BehaviorSubject<TokenInfoModel>;
-
+  isLoading$: Observable<boolean>;
   get currentUserValue(): TokenInfoModel {
     return this.currentUserSubject.value;
   }
@@ -23,12 +22,46 @@ export class CmsAuthService implements OnDestroy {
   constructor(
     private router: Router
   ) {
+    this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.currentUserSubject = new BehaviorSubject<TokenInfoModel>(undefined);
     this.currentUser$ = this.currentUserSubject.asObservable();
+    this.isLoading$ = this.isLoadingSubject.asObservable();
     // const subscr = this.getUserByToken().subscribe();
     // this.unsubscribe.push(subscr);
   }
+  private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+  isLoadingSubject: BehaviorSubject<boolean>;
+  getUserByToken(): Observable<TokenInfoModel> {
+    const auth = this.getAuthFromLocalStorage();
+    if (!auth || !auth.Token) {
+      return of(undefined);
+    }
 
+    this.isLoadingSubject.next(true);
+    // return this.authHttpService.getUserByToken(auth.authToken).pipe(
+    //   map((user: UserModel) => {
+    //     if (user) {
+    //       this.currentUserSubject = new BehaviorSubject<UserModel>(user);
+    //     } else {
+    //       this.logout();
+    //     }
+    //     return user;
+    //   }),
+    //   finalize(() => this.isLoadingSubject.next(false))
+    // );
+  }
+  
+  private getAuthFromLocalStorage(): TokenInfoModel {
+    try {
+      const authData = JSON.parse(
+        localStorage.getItem(this.authLocalStorageToken)
+      );
+      return authData;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
 
   ngOnDestroy(): void {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());

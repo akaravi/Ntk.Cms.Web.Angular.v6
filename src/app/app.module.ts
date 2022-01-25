@@ -7,7 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
-import { AuthService } from './modules/auth/_services/auth.service';
+// import { AuthService } from './modules/auth/_services/auth.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/splash-screen.module';
 import { TeardownLogic } from 'rxjs';
@@ -19,8 +19,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { CmsAuthService } from './core/services/cmsAuth.service';
 
-function appInitializer(authService: AuthService) {
+function appInitializer(authService: CmsAuthService) {
   return () => {
     return new Promise<TeardownLogic>((resolve) => {
       authService.getUserByToken().subscribe().add(resolve);
@@ -77,7 +78,7 @@ export function CreateTranslateLoader(http: HttpClient): any {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       multi: true,
-      deps: [AuthService],
+      deps: [CmsAuthService],
     },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
