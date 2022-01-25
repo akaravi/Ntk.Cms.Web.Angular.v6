@@ -33,7 +33,8 @@
                     شوید و کد نمایش داده شده را در این بخش وارد کنید تا محتوای شما بر روی مانیتور دستگاه مورد نظر
                     نمایش داده شود.
                 </p>
-                <button class="btn btn-secondary BTN" type="button" (click)="onActionOpenLink()">{{'ACTION.VIEW_PAGE' | translate}}</button>
+                <button class="btn btn-secondary BTN" type="button" (click)="onActionOpenLink()">{{'ACTION.VIEW_PAGE' |
+                    translate}}</button>
             </div>
 
             <div class="col-md-8 col-sm-8 col-xs-12" style="text-align: center;">
@@ -42,13 +43,30 @@
                         <img [src]="optionUrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px"
                             width="200px">
                     </a>
-                    <span class="navi-icon" [cdkCopyToClipboard]="optionUrlViewContent" (click)="onActionCopied()">
-                        <i class="flaticon2-copy"></i></span>
                 </div>
 
-                <!-- <a href="{{optionUrlViewContent}}" target="_blank">{{optionUrlViewContent}}</a>
-                <br> -->
+                <a target="_blank"  href="whatsapp://send?text={{optionTitle}}- {{optionUrlViewContent}}" class="style">
+                            <i class="flaticon-whatsapp text-dark"></i>
+                        </a>
+                   
+                        <a target="_blank"  href="https://telegram.me/share/url?url={{optionUrlViewContent}}&amp;text={{optionTitle}}" class="style">
+                            <i class="flaticon2-telegram-logo text-dark"></i>
+                        </a>
 
+                    <a target="_blank"  href="https://www.linkedin.com/shareArticle?url={{optionUrlViewContent}}&amp;title={{optionTitle}}" class="style">
+                        <i class="flaticon-linkedin-logo text-dark"></i>
+                    </a>
+
+                    <a target="_blank"  href="http://www.facebook.com/share.php?u={{optionUrlViewContent}}" class="style">
+                        <i class="flaticon-facebook-letter-logo text-dark"></i>
+                    </a>
+
+                    <a target="_blank" href="http://twitter.com/share?text={{optionTitle}}&amp;url={{optionUrlViewContent}}" class="style">
+                        <i class="flaticon-twitter-logo text-dark"></i>
+                    </a>
+
+                    <span class="navi-icon style cursor" [cdkCopyToClipboard]="optionUrlViewContent" (click)="onActionCopied()">
+                        <i class="flaticon2-copy text-dark"></i></span>
             </div>
         </div>
     </div>
