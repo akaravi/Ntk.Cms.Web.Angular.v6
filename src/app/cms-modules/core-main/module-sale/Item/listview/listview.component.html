@@ -1,6 +1,5 @@
 <app-progress-spinner [options]="loading">
 </app-progress-spinner>
-
 <div class="example-container mat-elevation-z8">
   <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
   
@@ -20,7 +19,7 @@
     <ng-container matColumnDef="EnumCmsModuleSaleItemType">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['EnumCmsModuleSaleItemType']?.FieldTitle}}
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.EnumCmsModuleSaleItemType | enums :
+      <mat-cell *matCellDef="let row">{{row.EnumCmsModuleSaleItemType | enums :
         dataModelEnumCmsModuleSaleItemTypeResult.ListItems}} </mat-cell>
     </ng-container>
 

@@ -76,9 +76,11 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
+      this.getEnumCmsModuleSaleItemType();
       this.tokenInfo = next;
     });
     this.getModuleList();
+    this.getEnumCmsModuleSaleItemType();
   }
   getModuleList(): void {
     const filter = new FilterModel();
