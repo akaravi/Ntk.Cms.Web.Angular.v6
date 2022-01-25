@@ -22,6 +22,7 @@ import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TranslationModule } from 'src/app/core/i18n/translation.module';
 import { SharedModule } from 'src/app/shared.module';
+import { TicketingTaskService } from 'ntk-cms-api';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -58,6 +59,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
+    TicketingTaskService
   ],
   exports: [
     SearchDropdownInnerComponent,

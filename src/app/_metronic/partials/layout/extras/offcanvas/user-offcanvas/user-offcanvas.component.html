@@ -80,7 +80,7 @@
         <!--end:Item-->
 
         <!--begin::Item-->
-        <a class="navi-item cursor-pointer" routerLink="{{'/ticketing/task-me'}}">
+        <a class="navi-item cursor-pointer" routerLink="{{'/ticketing/task/contactus-list'}}">
           <div class="navi-link">
             <div class="symbol symbol-40 bg-light mr-3">
               <div class="symbol-label">
@@ -95,6 +95,7 @@
               </div>
               <div class="text-muted">
                 {{'TITLE.Inbox_and_tasks'| translate}}
+                <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountEditorModelResult.TotalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
               </div>
               
             </div>
@@ -118,6 +119,7 @@
               </div>
               <div class="text-muted">
                 {{'TITLE.latest_tasks_and_projects'| translate}}
+                <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountViewerModelResult.TotalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
               </div>
             </div>
           </div>

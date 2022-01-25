@@ -8,7 +8,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   TicketingDepartemenModel,
   EnumRecordStatus,
@@ -24,9 +23,6 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { TicketingTaskEditComponent } from '../edit/edit.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { TicketingTaskAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TicketingTaskViewComponent } from '../view/view.component';
 
@@ -42,7 +38,6 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,

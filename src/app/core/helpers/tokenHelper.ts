@@ -14,6 +14,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
+import { CmsStoreService } from '../reducers/cmsStore.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class TokenHelper implements OnDestroy {
     public coreAuthService: CoreAuthService,
     private cmsApiStore: NtkCmsApiStoreService,
     private translationService: TranslationService,
+    private cmsStoreService: CmsStoreService,
     private router: Router,
   ) {
 
@@ -48,7 +50,9 @@ export class TokenHelper implements OnDestroy {
       })).toPromise();
   }
   getCurrentTokenOnChange(): Observable<TokenInfoModel> {
-    return this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo);
+    return this.cmsApiStore.getState((state) => { 
+      this.cmsStoreService.setState({  EnumRecordStatusResultStore: null });
+     return state.ntkCmsAPiState.tokenInfo});
   }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();

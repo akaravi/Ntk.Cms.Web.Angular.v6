@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular
 import { LayoutService } from '../../../../../core';
 import { Subscription } from 'rxjs';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { CoreAuthService, EnumManageUserAccessUserTypes, TokenInfoModel } from 'ntk-cms-api';
+import { CoreAuthService, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumTicketStatus, ErrorExceptionResultBase, FilterDataModel, FilterModel, TicketingTaskService, TokenInfoModel } from 'ntk-cms-api';
 import { map } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -25,6 +25,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
+    private ticketingTaskService: TicketingTaskService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -42,6 +43,8 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     // this.user$ = this.auth.currentUserSubject.asObservable();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataTaskViewerGetCount();
+      this.cdr.detectChanges();
       if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
@@ -49,6 +52,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
         this.IsAdminSite = true;
+        this.DataTaskEditorGetCount();
       }
       else {
         this.IsAdminSite = false;
@@ -56,6 +60,8 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
+      this.DataTaskViewerGetCount();
+      this.cdr.detectChanges();
       if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
@@ -63,6 +69,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
         || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
         this.IsAdminSite = true;
+        this.DataTaskEditorGetCount();
       }
       else {
         this.IsAdminSite = false;
@@ -88,5 +95,78 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
+  }
+  dataTaskGetCountViewerModelResult =new ErrorExceptionResultBase();
+  dataTaskGetCountEditorModelResult =new ErrorExceptionResultBase();
+  DataTaskViewerGetCount(): void {
+
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+
+    /*filter CLone*/
+    const filterModel = new FilterModel();
+    /*filter CLone*/
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'TicketStatus';
+    filter.Value = EnumTicketStatus.Unread;
+    filterModel.Filters.push(filter);
+    this.ticketingTaskService.setAccessDataType(EnumManageUserAccessDataTypes.Viewer)
+    this.ticketingTaskService.ServiceGetCount(filterModel).subscribe(
+      (next) => {
+
+        if (next.IsSuccess) {
+          this.dataTaskGetCountViewerModelResult = next;
+        }
+        else {
+          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+
+  DataTaskEditorGetCount(): void {
+
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+
+    /*filter CLone*/
+    const filterModel = new FilterModel();
+    /*filter CLone*/
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'TicketStatus';
+    filter.Value = EnumTicketStatus.Unread;
+    filterModel.Filters.push(filter);
+    this.ticketingTaskService.setAccessDataType(EnumManageUserAccessDataTypes.Editor)
+    this.ticketingTaskService.ServiceGetCount(filterModel).subscribe(
+      (next) => {
+
+        if (next.IsSuccess) {
+          this.dataTaskGetCountEditorModelResult = next;
+        }
+        else {
+          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+
+        this.loading.Stop(pName);
+
+      }
+    );
   }
 }
