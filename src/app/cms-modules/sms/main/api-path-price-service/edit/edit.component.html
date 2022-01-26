@@ -39,10 +39,10 @@
       [optionSelectForce]="dataModel.LinkCoreUserGroupId" [optionPlaceholder]="'نوع کاربری'">
     </app-cms-usergroup-selector>
     <!-- LinkCoreSiteCategoryId Field -->
-    <app-cms-user-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
+    <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
       [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.AccessAddField"
       [optionSelectForce]="dataModel.LinkCoreSiteCategoryId" [optionPlaceholder]="'نوع سایت'">
-    </app-cms-user-selector>
+    </app-cms-sitecategory-selector>
     <!-- LinkApiPathId Field -->
     <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
       [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="'مسیر'">
