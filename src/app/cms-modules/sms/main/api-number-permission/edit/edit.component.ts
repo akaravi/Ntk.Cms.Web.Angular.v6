@@ -11,6 +11,9 @@ import {
   FilterDataModel,
   CoreUserModel,
   SmsMainApiNumberModel,
+  CoreSiteCategoryModel,
+  CoreSiteModel,
+  CoreUserGroupModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -88,12 +91,12 @@ export class SmsMainApiNumberPermissionEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   getEnumApiNumberPermissionAccessStatus(): void {
-    this.smsEnumService.ServiceEnumApiNumberPermissionAccessStatus().subscribe((res) => {
+    this.smsEnumService.ServiceSmsApiNumberPermissionAccessStatusEnum().subscribe((res) => {
       this.dataModelEnumApiNumberPermissionAccessStatusResult = res;
     });
   }
   getEnumApiNumberPermissionAction(): void {
-    this.smsEnumService.ServiceEnumApiNumberPermissionAction().subscribe((res) => {
+    this.smsEnumService.ServiceSmsApiNumberPermissionActionEnum().subscribe((res) => {
       this.dataModelEnumApiNumberPermissionActionResult = res;
     });
   }
@@ -166,11 +169,31 @@ export class SmsMainApiNumberPermissionEditComponent implements OnInit {
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      const message = 'کاربر اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      this.dataModel.LinkCoreUserId=null;
       return;
     }
-    this.dataModel.LinkCmsUserId = model.Id;
+    this.dataModel.LinkCoreUserId = model.Id;
+  }
+  onActionSelectorCmsSite(model: CoreSiteModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      this.dataModel.LinkCoreSiteId=null;
+      return;
+    }
+    this.dataModel.LinkCoreSiteId = model.Id;
+  }
+  onActionSelectorCoreUserGroup(model: CoreUserGroupModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      this.dataModel.LinkCoreUserGroupId=null;
+      return;
+    }
+    this.dataModel.LinkCoreUserGroupId = model.Id;
+  }
+  onActionSelectorCoreSiteCategory(model: CoreSiteCategoryModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      this.dataModel.LinkCoreSiteCategoryId=null;
+      return;
+    }
+    this.dataModel.LinkCoreSiteCategoryId = model.Id;
   }
   onActionSelectorSelectLinkApiNumberId(model: SmsMainApiNumberModel | null): void {
     if (!model || model.Id.length <= 0) {

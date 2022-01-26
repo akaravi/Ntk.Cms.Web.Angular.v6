@@ -23,11 +23,26 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- LinkCmsUserId Field -->
+    <!-- LinkCoreUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
-      [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCmsUserId"
+      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreUserId"
       [optionPlaceholder]="'کاربر'">
     </app-cms-user-selector>
+ <!-- LinkCoreSiteId Field -->
+ <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
+ [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreSiteId"
+ [optionPlaceholder]="'سایت'">
+</app-cms-site-selector>
+ <!-- LinkCoreUserGroupId Field -->
+ <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
+ [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreUserGroupId"
+ [optionPlaceholder]="'نوع کاربری'">
+</app-cms-usergroup-selector>
+ <!-- LinkCoreSiteCategoryId Field -->
+ <app-cms-user-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
+ [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreSiteCategoryId"
+ [optionPlaceholder]="'نوع سایت'">
+</app-cms-user-selector>
 
     <!-- LinkApiNumberId Field -->
     <app-sms-api-number-selector (optionChange)="onActionSelectorSelectLinkApiNumberId($event)"

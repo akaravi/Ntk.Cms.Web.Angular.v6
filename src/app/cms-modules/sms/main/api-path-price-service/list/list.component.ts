@@ -14,7 +14,9 @@ import {
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  SmsMainApiPathModel
+  SmsMainApiPathModel,
+  EnumInfoModel,
+  SmsEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -46,6 +48,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    public smsEnumService: SmsEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -76,6 +79,8 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
   tableSource: MatTableDataSource<SmsMainApiPathPriceServiceModel> = new MatTableDataSource<SmsMainApiPathPriceServiceModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   categoryModelSelected: SmsMainApiPathModel;
+  dataModelSmsMessageTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelSmsOutBoxTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   tabledisplayedColumns: string[] = [
     'Id',
@@ -112,6 +117,17 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
+  }
+  
+  getSmsMessageTypeEnum(): void {
+    this.smsEnumService.ServiceSmsMessageTypeEnum().subscribe((res) => {
+      this.dataModelSmsMessageTypeEnumResult = res;
+    });
+  }
+  getSmsOutBoxTypeEnum(): void {
+    this.smsEnumService.ServiceSmsOutBoxTypeEnum().subscribe((res) => {
+      this.dataModelSmsOutBoxTypeEnumResult = res;
+    });
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
