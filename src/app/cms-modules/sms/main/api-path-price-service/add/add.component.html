@@ -24,6 +24,27 @@
     </mat-form-field>
 
 
+    <!-- LinkCoreUserId Field -->
+    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
+      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreUserId"
+      [optionPlaceholder]="'کاربر'">
+    </app-cms-user-selector>
+    <!-- LinkCoreSiteId Field -->
+    <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
+      [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreSiteId"
+      [optionPlaceholder]="'سایت'">
+    </app-cms-site-selector>
+    <!-- LinkCoreUserGroupId Field -->
+    <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
+      [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.AccessAddField"
+      [optionSelectForce]="dataModel.LinkCoreUserGroupId" [optionPlaceholder]="'نوع کاربری'">
+    </app-cms-usergroup-selector>
+    <!-- LinkCoreSiteCategoryId Field -->
+    <app-cms-user-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
+      [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.AccessAddField"
+      [optionSelectForce]="dataModel.LinkCoreSiteCategoryId" [optionPlaceholder]="'نوع سایت'">
+    </app-cms-user-selector>
+
     <!-- LinkApiPathId Field -->
     <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
       [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="'مسیر'">
@@ -42,75 +63,63 @@
       <mat-hint align="start">{{ RegulatorNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
-    <!-- ServiceUnicodeMessagePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceUnicodeMessagePrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['ServiceUnicodeMessagePrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ServiceUnicodeMessagePrice"
-        [disabled]="!fieldsInfo['ServiceUnicodeMessagePrice']?.AccessAddField"
-        name="dataModel.ServiceUnicodeMessagePrice" #ServiceUnicodeMessagePrice type="number" placeholder="0" />
-      <mat-icon matSuffix
-        *ngIf="dataModel.ServiceUnicodeMessagePrice && fieldsInfo['ServiceUnicodeMessagePrice']?.AccessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ServiceUnicodeMessagePrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ServiceUnicodeMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    <!-- ServicePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServicePrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['ServicePrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.ServicePrice" [disabled]="!fieldsInfo['ServicePrice']?.AccessAddField"
+        name="dataModel.ServicePrice" #ServicePrice type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.ServicePrice && fieldsInfo['ServicePrice']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.ServicePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ServicePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- ServiceNormalMessagePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceNormalMessagePrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['ServiceNormalMessagePrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ServiceNormalMessagePrice"
-        [disabled]="!fieldsInfo['ServiceNormalMessagePrice']?.AccessAddField" name="dataModel.ServiceNormalMessagePrice"
-        #ServiceNormalMessagePrice type="number" placeholder="0" />
-      <mat-icon matSuffix
-        *ngIf="dataModel.ServiceNormalMessagePrice && fieldsInfo['ServiceNormalMessagePrice']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.ServiceNormalMessagePrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ServiceNormalMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    <!-- EndUserPrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['EndUserPrice']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['EndUserPrice']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.EndUserPrice" [disabled]="!fieldsInfo['EndUserPrice']?.AccessAddField"
+        name="dataModel.EndUserPrice" #EndUserPrice type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.EndUserPrice && fieldsInfo['EndUserPrice']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.EndUserPrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['EndUserPrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- ServiceVoicePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceVoicePrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['ServiceVoicePrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ServiceVoicePrice"
-        [disabled]="!fieldsInfo['ServiceVoicePrice']?.AccessAddField" name="dataModel.ServiceVoicePrice"
-        #ServiceVoicePrice type="number" placeholder="0" />
-      <mat-icon matSuffix *ngIf="dataModel.ServiceVoicePrice && fieldsInfo['ServiceVoicePrice']?.AccessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ServiceVoicePrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ServiceVoicePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    <!-- MessageLength Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MessageLength']?.AccessWatchField">
+      <mat-label>{{ fieldsInfo['MessageLength']?.FieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.MessageLength" [disabled]="!fieldsInfo['MessageLength']?.AccessAddField"
+        name="dataModel.MessageLength" #MessageLength type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.MessageLength && fieldsInfo['MessageLength']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.MessageLength = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['MessageLength']?.AccessAddField" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- UserUnicodeMessagePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserUnicodeMessagePrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['UserUnicodeMessagePrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.UserUnicodeMessagePrice"
-        [disabled]="!fieldsInfo['UserUnicodeMessagePrice']?.AccessAddField" name="dataModel.UserUnicodeMessagePrice"
-        #UserUnicodeMessagePrice type="number" placeholder="0" />
-      <mat-icon matSuffix
-        *ngIf="dataModel.UserUnicodeMessagePrice && fieldsInfo['UserUnicodeMessagePrice']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.UserUnicodeMessagePrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['UserUnicodeMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    <!-- MessageType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="نوع پیام" [(ngModel)]="dataModel.MessageType" name="dataModel.MessageType"
+        #MessageType="ngModel" panelClass="recordStatus-{{ dataModel.MessageType }}" required>
+        <mat-option *ngFor="
+                          let item of dataModelSmsMessageTypeEnumResult.ListItems;
+                          index as i
+                        " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">انتخاب نوع پیام</mat-hint>
+      <mat-error *ngIf="MessageType.errors?.required">
+        MessageType is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
     </mat-form-field>
-
-
-    <!-- UserNormalMessagePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserNormalMessagePrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['UserNormalMessagePrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.UserNormalMessagePrice"
-        [disabled]="!fieldsInfo['UserNormalMessagePrice']?.AccessAddField" name="dataModel.UserNormalMessagePrice"
-        #UserNormalMessagePrice type="number" placeholder="0" />
-      <mat-icon matSuffix
-        *ngIf="dataModel.UserNormalMessagePrice && fieldsInfo['UserNormalMessagePrice']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.UserNormalMessagePrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['UserNormalMessagePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-
-
-    <!-- UserVoicePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserVoicePrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['UserVoicePrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.UserVoicePrice" [disabled]="!fieldsInfo['UserVoicePrice']?.AccessAddField"
-        name="dataModel.UserVoicePrice" #UserVoicePrice type="number" placeholder="0" />
-      <mat-icon matSuffix *ngIf="dataModel.UserVoicePrice && fieldsInfo['UserVoicePrice']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.UserVoicePrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['UserVoicePrice']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    <!-- OutBoxType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="نوع ارسال" [(ngModel)]="dataModel.OutBoxType" name="dataModel.OutBoxType"
+        #OutBoxType="ngModel" panelClass="recordStatus-{{ dataModel.OutBoxType }}" required>
+        <mat-option *ngFor="
+                    let item of dataModelSmsOutBoxTypeEnumResult.ListItems;
+                    index as i
+                  " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">انتخاب نوع ارسال</mat-hint>
+      <mat-error *ngIf="OutBoxType.errors?.required">
+        OutBoxType is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
     </mat-form-field>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

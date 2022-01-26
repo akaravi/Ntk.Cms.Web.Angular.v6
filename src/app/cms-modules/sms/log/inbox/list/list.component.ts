@@ -45,12 +45,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
-  requestLinkCompanyId = '';
-  requestLinkPublicConfigId = '';
+  requestLinkPrivateConfigId = '';
+  requestLinkApiNumberId='';
   constructor(
     private smsLogInBoxService: SmsLogInBoxService,
-    private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
-    private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
+    //private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
+    //private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     private smsMainApiPathService: SmsMainApiPathService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
@@ -82,11 +82,11 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<SmsLogInBoxModel> = new ErrorExceptionResult<SmsLogInBoxModel>();
   dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
-  dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
-  dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
+  // dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
+  // dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
   dataModelPrivateResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
 
-  categoryModelSelected: SmsMainApiPathCompanyModel;
+  categoryModelSelected: SmsMainApiPathModel;
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
@@ -104,7 +104,6 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     'Message',
     'SenderNumber',
     'ReceiverNumber',
-    'LinkPublicConfigId',
     'LinkPrivateConfigId',
     'CreatedDate',
     'UpdatedDate',
@@ -117,27 +116,28 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    if (this.activatedRoute.snapshot.paramMap.get('LinkCompanyId')) {
-      this.requestLinkCompanyId = this.activatedRoute.snapshot.paramMap.get('LinkCompanyId');
-    }
+
     if (this.activatedRoute.snapshot.paramMap.get('LinkSiteId')) {
       this.requestLinkSiteId = +this.activatedRoute.snapshot.paramMap.get('LinkSiteId') || 0;
     }
-    if (this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId')) {
-      this.requestLinkPublicConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId');
+    if (this.activatedRoute.snapshot.paramMap.get('LinkPrivateConfigId')) {
+      this.requestLinkPrivateConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPrivateConfigId');
+    }
+    if (this.activatedRoute.snapshot.paramMap.get('LinkApiNumberId')) {
+      this.requestLinkApiNumberId = this.activatedRoute.snapshot.paramMap.get('LinkApiNumberId');
     }
     const filter = new FilterDataModel();
-    if (this.requestLinkPublicConfigId?.length > 0) {
-      filter.PropertyName = 'LinkPublicConfigId';
-      filter.Value = this.requestLinkPublicConfigId;
+    if (this.requestLinkPrivateConfigId?.length > 0) {
+      filter.PropertyName = 'LinkPrivateConfigId';
+      filter.Value = this.requestLinkPrivateConfigId;
       this.filteModelContent.Filters.push(filter);
     }
-    if (this.requestLinkCompanyId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkApiPathCompanyId';
-      filter.Value = this.requestLinkCompanyId;
+    if (this.requestLinkApiNumberId?.length > 0) {
+      filter.PropertyName = 'LinkApiNumberId';
+      filter.Value = this.requestLinkApiNumberId;
       this.filteModelContent.Filters.push(filter);
     }
+   
     if (this.requestLinkSiteId > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkSiteId';
@@ -155,17 +155,17 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
     });
     // this.getCurrency();
-    this.getApiCopmanyList();
-    this.getPublicConfig();
+    // this.getApiCopmanyList();
+    //  this.getPublicConfig();
     this. getPrivateConfig();
   }
-  getPublicConfig(): void {
-    const filter = new FilterModel();
-    filter.RowPerPage = 100;
-    this.smsMainApiPathPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
-      this.dataModelPublicResult = next;
-    });
-  }
+  // getPublicConfig(): void {
+  //   const filter = new FilterModel();
+  //   filter.RowPerPage = 100;
+  //   this.smsMainApiPathPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
+  //     this.dataModelPublicResult = next;
+  //   });
+  // }
   getPrivateConfig(): void {
     const filter = new FilterModel();
     filter.RowPerPage = 100;
@@ -173,13 +173,13 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       this.dataModelPrivateResult = next;
     });
   }
-  getApiCopmanyList(): void {
-    const filter = new FilterModel();
-    filter.RowPerPage = 100;
-    this.smsMainApiPathCompanyService.ServiceGetAll(filter).subscribe((next) => {
-      this.dataModelCompanyResult = next;
-    });
-  }
+  // getApiCopmanyList(): void {
+  //   const filter = new FilterModel();
+  //   filter.RowPerPage = 100;
+  //   this.smsMainApiPathCompanyService.ServiceGetAll(filter).subscribe((next) => {
+  //     this.dataModelCompanyResult = next;
+  //   });
+  // }
   // getCurrency(): void {
   //   const filter = new FilterModel();
   //   filter.RowPerPage = 100;
@@ -205,7 +205,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     /** filter Category */
     if (this.categoryModelSelected && this.categoryModelSelected.Id.length > 0) {
       let fastfilter = new FilterDataModel();
-      fastfilter.PropertyName = 'LinkApiPathCompanyId';
+      fastfilter.PropertyName = 'LinkPrivateConfigId';
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
@@ -372,7 +372,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionSelectorSelect(model: SmsMainApiPathCompanyModel | null): void {
+  onActionSelectorSelect(model: SmsMainApiPathModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 
@@ -435,7 +435,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPrivateConfigId', this.tableRowSelected.Id]);
   }
   onActionbuttonMustSuperSedersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -454,7 +454,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPrivateConfigId', this.tableRowSelected.Id]);
   }
   onActionbuttonNumbersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
@@ -473,7 +473,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.Id]);
+    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPrivateConfigId', this.tableRowSelected.Id]);
   }
   onActionbuttonPermitionList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {

@@ -8,6 +8,9 @@ import {
   DataFieldInfoModel,
   CoreUserModel,
   SmsMainApiPathModel,
+  CoreSiteCategoryModel,
+  CoreSiteModel,
+  CoreUserGroupModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -58,8 +61,8 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiPathPriceServiceAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiPathPriceServiceActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelSmsMessageTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelSmsOutBoxTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   fileManagerOpenForm = false;
 
@@ -71,12 +74,23 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
     this.getEnumRecordStatus();
 
     this.DataGetAccess();
+    this.getSmsMessageTypeEnum();
+    this.getSmsOutBoxTypeEnum();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-
+  getSmsMessageTypeEnum(): void {
+    this.smsEnumService.ServiceSmsMessageTypeEnum().subscribe((res) => {
+      this.dataModelSmsMessageTypeEnumResult = res;
+    });
+  }
+  getSmsOutBoxTypeEnum(): void {
+    this.smsEnumService.ServiceSmsOutBoxTypeEnum().subscribe((res) => {
+      this.dataModelSmsOutBoxTypeEnumResult = res;
+    });
+  }
   DataGetAccess(): void {
     this.smsMainApiPathPriceServiceService
       .ServiceViewModel()
@@ -125,7 +139,34 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
       }
     );
   }
-
+  onActionSelectorCmsUser(model: CoreUserModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      this.dataModel.LinkCoreUserId=null;
+      return;
+    }
+    this.dataModel.LinkCoreUserId = model.Id;
+  }
+  onActionSelectorCmsSite(model: CoreSiteModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      this.dataModel.LinkCoreSiteId=null;
+      return;
+    }
+    this.dataModel.LinkCoreSiteId = model.Id;
+  }
+  onActionSelectorCoreUserGroup(model: CoreUserGroupModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      this.dataModel.LinkCoreUserGroupId=null;
+      return;
+    }
+    this.dataModel.LinkCoreUserGroupId = model.Id;
+  }
+  onActionSelectorCoreSiteCategory(model: CoreSiteCategoryModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      this.dataModel.LinkCoreSiteCategoryId=null;
+      return;
+    }
+    this.dataModel.LinkCoreSiteCategoryId = model.Id;
+  }
   onActionSelectorSelectLinkApiPathId(model: SmsMainApiPathModel | null): void {
     if (!model || model.Id.length <= 0) {
       const message = 'مسیر سرویس دهنده مشخص نیست';

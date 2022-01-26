@@ -1,8 +1,8 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false"
-  [optionTreeDisplay]="!requestLinkCompanyId || requestLinkCompanyId.length==0">
+  [optionTreeDisplay]="!requestLinkPrivateConfigId || requestLinkPrivateConfigId.length==0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <!-- <app-sms-apipathcompany-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipathcompany-tree> -->
+     <app-sms-apipath-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree> 
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
@@ -40,7 +40,7 @@
     <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected?.Id?.length>0"
       (click)="onActionbuttonSendMessage()" type="button" class="btn btn-primary" id="openModalButton"
       data-toggle="modal" data-target="#categoryModal">ارسال پاسخ</button>
-    <button (click)="onActionBackToParent()" *ngIf="requestLinkCompanyId?.length>0" type="button"
+    <button (click)="onActionBackToParent()" *ngIf="requestLinkPrivateConfigId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -61,14 +61,13 @@
         <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
       </ng-container>
 
-      <!-- DefaultApiNumber Column -->
-      <ng-container matColumnDef="DefaultApiNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['DefaultApiNumber']?.FieldTitle}}
+       <!-- LinkPrivateConfigId Column -->
+       <ng-container matColumnDef="LinkPrivateConfigId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPrivateConfigId']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.DefaultApiNumber | cmstitle : dataModelCompanyResult.ListItems}}
+        <mat-cell *matCellDef="let row"> {{row.LinkPrivateConfigId | cmstitle: dataModelPrivateResult.ListItems}}
         </mat-cell>
       </ng-container>
-
 
       <!-- IsAccepted Column -->
       <ng-container matColumnDef="IsAccepted">

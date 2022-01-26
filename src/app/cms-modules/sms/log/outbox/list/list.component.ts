@@ -19,7 +19,9 @@ import {
   SmsMainApiPathCompanyModel,
   SmsMainApiPathCompanyService,
   SmsMainApiPathPublicConfigService,
-  SmsMainApiPathPublicConfigModel
+  SmsMainApiPathPublicConfigModel,
+  SmsMainApiPathService,
+  SmsMainApiPathModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -42,17 +44,17 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
-  requestLinkCompanyId = '';
-  requestLinkPublicConfigId = '';
+  requestLinkPrivateConfigId = '';
+  requestLinkApiNumberId = '';
   constructor(
     private smsLogOutBoxService: SmsLogOutBoxService,
-    private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
-    private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
+    // private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
+    // private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    // private coreCurrencyService: CoreCurrencyService,
+    private smsMainApiPathService: SmsMainApiPathService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -78,10 +80,10 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<SmsLogOutBoxModel> = new ErrorExceptionResult<SmsLogOutBoxModel>();
   dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
-  dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
-  dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
-
-  categoryModelSelected: SmsMainApiPathCompanyModel;
+  // dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
+  // dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
+  dataModelPrivateResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
+  categoryModelSelected: SmsMainApiPathModel;
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
@@ -98,7 +100,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     'Id',
     'SendDate',
     'IsAccepted',
-    'DefaultApiNumber',
+    'LinkPrivateConfigId',
     'Message',
     'UpdatedDate',
     'Action'
@@ -110,27 +112,28 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    if (this.activatedRoute.snapshot.paramMap.get('LinkCompanyId')) {
-      this.requestLinkCompanyId = this.activatedRoute.snapshot.paramMap.get('LinkCompanyId');
-    }
+   
     if (this.activatedRoute.snapshot.paramMap.get('LinkSiteId')) {
       this.requestLinkSiteId = +this.activatedRoute.snapshot.paramMap.get('LinkSiteId') || 0;
     }
-    if (this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId')) {
-      this.requestLinkPublicConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPublicConfigId');
+    if (this.activatedRoute.snapshot.paramMap.get('LinkPrivateConfigId')) {
+      this.requestLinkPrivateConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPrivateConfigId');
+    }
+    if (this.activatedRoute.snapshot.paramMap.get('LinkApiNumberId')) {
+      this.requestLinkApiNumberId = this.activatedRoute.snapshot.paramMap.get('LinkApiNumberId');
     }
     const filter = new FilterDataModel();
-    if (this.requestLinkPublicConfigId?.length > 0) {
-      filter.PropertyName = 'LinkPublicConfigId';
-      filter.Value = this.requestLinkPublicConfigId;
+    if (this.requestLinkPrivateConfigId?.length > 0) {
+      filter.PropertyName = 'LinkPrivateConfigId';
+      filter.Value = this.requestLinkPrivateConfigId;
       this.filteModelContent.Filters.push(filter);
     }
-    if (this.requestLinkCompanyId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkApiPathCompanyId';
-      filter.Value = this.requestLinkCompanyId;
+    if (this.requestLinkApiNumberId?.length > 0) {
+      filter.PropertyName = 'LinkApiNumberId';
+      filter.Value = this.requestLinkApiNumberId;
       this.filteModelContent.Filters.push(filter);
     }
+   
     if (this.requestLinkSiteId > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkSiteId';
@@ -148,23 +151,31 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
     });
     // this.getCurrency();
-    this.getApiCopmanyList();
-    this.getPublicConfig();
+    // this.getApiCopmanyList();
+    // this.getPublicConfig();
+    this.getPrivateConfig();
   }
-  getPublicConfig(): void {
+  getPrivateConfig(): void {
     const filter = new FilterModel();
     filter.RowPerPage = 100;
-    this.smsMainApiPathPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
-      this.dataModelPublicResult = next;
+    this.smsMainApiPathService.ServiceGetAll(filter).subscribe((next) => {
+      this.dataModelPrivateResult = next;
     });
   }
-  getApiCopmanyList(): void {
-    const filter = new FilterModel();
-    filter.RowPerPage = 100;
-    this.smsMainApiPathCompanyService.ServiceGetAll(filter).subscribe((next) => {
-      this.dataModelCompanyResult = next;
-    });
-  }
+  // getPublicConfig(): void {
+  //   const filter = new FilterModel();
+  //   filter.RowPerPage = 100;
+  //   this.smsMainApiPathPublicConfigService.ServiceGetAll(filter).subscribe((next) => {
+  //     this.dataModelPublicResult = next;
+  //   });
+  // }
+  // getApiCopmanyList(): void {
+  //   const filter = new FilterModel();
+  //   filter.RowPerPage = 100;
+  //   this.smsMainApiPathCompanyService.ServiceGetAll(filter).subscribe((next) => {
+  //     this.dataModelCompanyResult = next;
+  //   });
+  // }
   // getCurrency(): void {
   //   const filter = new FilterModel();
   //   filter.RowPerPage = 100;
@@ -190,7 +201,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     /** filter Category */
     if (this.categoryModelSelected && this.categoryModelSelected.Id.length > 0) {
       let fastfilter = new FilterDataModel();
-      fastfilter.PropertyName = 'LinkApiPathCompanyId';
+      fastfilter.PropertyName = 'LinkPrivateConfigId';
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
@@ -327,7 +338,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
 
   }
 
-  onActionSelectorSelect(model: SmsMainApiPathCompanyModel | null): void {
+  onActionSelectorSelect(model: SmsMainApiPathModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 

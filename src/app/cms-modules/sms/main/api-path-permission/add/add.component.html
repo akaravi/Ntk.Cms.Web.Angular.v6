@@ -23,10 +23,26 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- LinkCmsUserId Field -->
+
+    <!-- LinkCoreUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
-      [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCmsUserId"
+      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreUserId"
       [optionPlaceholder]="'کاربر'">
+    </app-cms-user-selector>
+    <!-- LinkCoreSiteId Field -->
+    <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
+      [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreSiteId"
+      [optionPlaceholder]="'سایت'">
+    </app-cms-site-selector>
+    <!-- LinkCoreUserGroupId Field -->
+    <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
+      [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.AccessAddField"
+      [optionSelectForce]="dataModel.LinkCoreUserGroupId" [optionPlaceholder]="'نوع کاربری'">
+    </app-cms-usergroup-selector>
+    <!-- LinkCoreSiteCategoryId Field -->
+    <app-cms-user-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
+      [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.AccessAddField"
+      [optionSelectForce]="dataModel.LinkCoreSiteCategoryId" [optionPlaceholder]="'نوع سایت'">
     </app-cms-user-selector>
 
     <!-- LinkApiPathId Field -->
@@ -56,24 +72,24 @@
       </mat-error>
     </mat-form-field>
 
-        <!-- Action Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="نوع فعالیت" [(ngModel)]="dataModel.Action" name="dataModel.Action"
-            #Action="ngModel" panelClass="recordStatus-{{ dataModel.Action }}" required>
-            <mat-option *ngFor="
+    <!-- Action Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="نوع فعالیت" [(ngModel)]="dataModel.Action" name="dataModel.Action" #Action="ngModel"
+        panelClass="recordStatus-{{ dataModel.Action }}" required>
+        <mat-option *ngFor="
                             let item of dataModelEnumApiPathPermissionActionResult.ListItems;
                             index as i
                           " [value]="item.Value">{{ item.Description }}</mat-option>
-          </mat-select>
-          <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
-          <mat-error *ngIf="Action.errors?.required">
-            Action is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
+      </mat-select>
+      <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+      <mat-error *ngIf="Action.errors?.required">
+        Action is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
 
-     <!-- FromDate Field -->
-     <mat-form-field class="ntk-full-width">
+    <!-- FromDate Field -->
+    <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['FromDate']?.FieldTitle}}</mat-label>
       <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
       <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
