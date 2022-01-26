@@ -336,7 +336,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
   }
   onActionbuttonWithHierarchy(): void {
-    debugger
     this.GetAllWithHierarchyCategoryId = !this.GetAllWithHierarchyCategoryId;
     this.DataGetAll();
   }

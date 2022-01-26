@@ -169,22 +169,10 @@ export class TooltipGuideDirective {
       this.tooltip = null;
     }, this.delay);
   }
-  
-  // isHTML (str:String) { !(str || '')
-  //   // replace html tag with content
-  //   .replace(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig, '')
-  //   // remove remaining self closing tags
-  //   .replace(/(<([^>]+)>)/ig, '')
-  //   // remove extra space at start and end
-  //   .trim();
-  // }
-
-
-  
+   
   create(text: string): void {
     this.tooltip = this.renderer.createElement('span');
     text = text + '';
-    debugger
     if (text.indexOf('</') > 0 || text.indexOf('/>') > 0 || this.publicHelper.checkIsHTML(text)) {
       this.tooltip.insertAdjacentHTML('beforeend', text);
     } else {
