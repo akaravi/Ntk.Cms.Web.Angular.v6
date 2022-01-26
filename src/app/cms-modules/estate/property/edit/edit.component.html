@@ -1,9 +1,11 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
-  <h4> {{'TITLE.Edit' | translate}}</h4>
-  {{'TITLE.In_This_Section_You_Can_Edit_Your_Ad' | translate}}
-  <br>
+
+
+<app-cms-guide-notice [Key]="'estate.proprty.list.edit'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+
+<app-cms-html-notice>
   {{'TITLE.Edit' | translate}} "{{ formInfo.FormTitle }}"
 </app-cms-html-notice>
+
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <!-- <div class="ntk-cms-html-card-header"> -->
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->

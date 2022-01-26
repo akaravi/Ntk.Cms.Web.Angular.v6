@@ -1,12 +1,5 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'"
-  *ngIf="dataModelResult.Access.AccessAddRow && optionloadByRoute ">
-  <h4>مدیریت محتوای املاک </h4>
-  <br>
-  در این بخش میتوانید آگهی ملک ایجاد کنید.
-  <br>
-  برای اضافه کردن ملک جدید بر روی گزینه "اضافه" کلیک نمایید.
+<app-cms-guide-notice [Key]="'estate.proprty.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 
-</app-cms-html-notice>
 <app-estate-billboard-header *ngIf="this.requestLinkBillboardId?.length>0" [optionId]="this.requestLinkBillboardId">
       
 </app-estate-billboard-header>

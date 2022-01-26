@@ -1,20 +1,21 @@
-<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header p-4">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    <h3 class="card-label">
-      {{formInfo.FormTitle}}
-    </h3>
+<app-cms-guide-notice [Key]="'estate.proprty.list.add'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 
-    <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
-      محتوای تکمیلی
-    </mat-slide-toggle>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <!-- <div class="ntk-cms-html-card-header p-4"> -->
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <!-- <h3 class="card-label">
+      {{formInfo.FormTitle}}
+    </h3> -->
+
+    
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
+  <!-- </div> -->
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
@@ -42,6 +43,13 @@
           [optionTypeUsageId]="dataModel.LinkPropertyTypeUsageId">
 
         </app-estate-propertytypelanduse-selector>
+
+        <br>
+        <br>
+        <br>
+      <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
+        محتوای تکمیلی
+      </mat-slide-toggle>
         <br>
         <!-- RecordStatus Field -->
         <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
