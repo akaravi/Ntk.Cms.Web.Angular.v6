@@ -67,6 +67,7 @@
 	"ACTION.DISPLAY": "نمایش",
 	"ACTION.COMPACT": "فشرده",
 	"ACTION.EXTENDED": "عریض",
+	"ACTION.ID_Code": "کد شناسه",
 	"ACTION.SELECT_SUBMENU_TOGGLE_MODE": "حالت تغییر منوی فرعی را انتخاب کنید (فقط زمانی کار می کند که اسکرول غیرفعال باشد. *به طور پیش فرض - حالت 'accordion' است)",
 	"ACTION.SUBMENU_TOGGLE_DROPDOWN": "تغییر نمایش منوی فرعی",
 	"ACTION.SELECT_FOOTER_LAYOUT": "طرح پاورقی را انتخاب کنید",

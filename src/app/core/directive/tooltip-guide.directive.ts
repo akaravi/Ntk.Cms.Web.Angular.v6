@@ -184,7 +184,6 @@ export class TooltipGuideDirective {
   create(text: string): void {
     this.tooltip = this.renderer.createElement('span');
     text = text + '';
-    debugger
     if (text.indexOf('</') > 0 || text.indexOf('/>') > 0 || this.publicHelper.checkIsHTML(text)) {
       this.tooltip.insertAdjacentHTML('beforeend', text);
     } else {

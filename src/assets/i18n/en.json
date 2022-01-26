@@ -60,6 +60,7 @@
 	"ACTION.FLUID": "Fluid",
 	"ACTION.DEFAULT": "Default",
 	"ACTION.TAB": "Tab",
+	"ACTION.ID_Code": "ID Code",
 	"ACTION.BUILDANAPP": "Build an app",
 	"ACTION.DOWNLOADTHEAPP": "Download the app",
 	"ACTION.THEPROPERTY_INCLUDESVIEWS": "The property includes views",

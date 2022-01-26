@@ -1,6 +1,5 @@
 
 .style {
-    color: black !important;
     padding: 6px;
     margin: 2px;
     font-size: 20px;
@@ -14,6 +13,21 @@
     color: black;
     border-radius: 20%;
 }
+.whatsapp:hover{
+    background-color: greenyellow;
+}
+.facebook:hover {
+    background: #3B5998;
+  }
+  .twitter:hover {
+    background: #55ACEE;
+  }
+  .linkedin:hover {
+    background: #007bb5;
+  }
+  .telegram:hover {
+    background: #125688;
+  }
 .cursor{
     cursor: pointer;
 }
