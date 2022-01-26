@@ -56,6 +56,10 @@ import { SmsSharedModule } from '../sms.shared.module';
 import { SmsMainApiNumberPermissionEditComponent } from './api-number-permission/edit/edit.component';
 import { SmsMainApiNumberPermissionAddComponent } from './api-number-permission/add/add.component';
 import { SmsMainApiNumberPermissionListComponent } from './api-number-permission/list/list.component';
+import { SmsMainCustomerCreditListComponent } from './customer-credit/list/list.component';
+import { SmsMainCustomerCreditEditComponent } from './customer-credit/edit/edit.component';
+import { SmsMainCustomerCreditAddComponent } from './customer-credit/add/add.component';
+
 
 @NgModule({
   declarations: [
@@ -98,6 +102,10 @@ import { SmsMainApiNumberPermissionListComponent } from './api-number-permission
     SmsMainApiNumberPermissionListComponent,
     SmsMainApiNumberPermissionAddComponent,
     SmsMainApiNumberPermissionEditComponent,
+    /*CustomerCredit*/
+    SmsMainCustomerCreditListComponent,
+    SmsMainCustomerCreditEditComponent,
+    SmsMainCustomerCreditAddComponent,
   ],
   exports: [
     SmsMainApiPathPublicConfigAddComponent,
@@ -137,6 +145,10 @@ import { SmsMainApiNumberPermissionListComponent } from './api-number-permission
     SmsMainApiNumberPermissionListComponent,
     SmsMainApiNumberPermissionAddComponent,
     SmsMainApiNumberPermissionEditComponent,
+    /*CustomerCredit*/
+    SmsMainCustomerCreditListComponent,
+    SmsMainCustomerCreditEditComponent,
+    SmsMainCustomerCreditAddComponent,
   ],
   imports: [
     CommonModule,
