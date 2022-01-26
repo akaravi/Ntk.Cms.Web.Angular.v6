@@ -8,61 +8,87 @@ const routes: Routes = [
   {
     path: '',
     component: SmsLogComponent,
-     children: [
+    children: [
+      /**inbox */
       {
         path: 'inbox',
         component: SmsMainApiLogInBoxListComponent
       },
       {
+        path: 'inbox/list/LinkPrivateConfigId/:LinkPrivateConfigId',
+        component: SmsMainApiLogInBoxListComponent
+      },
+      {
+        path: 'inbox/list/LinkApiNumberId/:LinkApiNumberId',
+        component: SmsMainApiLogInBoxListComponent
+      },
+      {
+        path: 'inbox/list/LinkSiteId/:LinkSiteId',
+        component: SmsMainApiLogInBoxListComponent
+      },
+      /**outbox */
+      {
         path: 'outbox',
         component: SmsMainApiLogOutBoxListComponent
       },
-    //   {
-    //     path: 'source/edit/:Id',
-    //     component: ApplicationSourceEditComponent
-    //   },
-    //   {
-    //     path: 'app',
-    //     component: ApplicationAppListComponent
-    //   },
-    //   {
-    //     path: 'app/:SourceId',
-    //     component: ApplicationAppListComponent
-    //   },
-    //   {
-    //     path: 'app/add/:SourceId',
-    //     component: ApplicationAppAddComponent
-    //   },
-    //   {
-    //     path: 'app/edit/:Id',
-    //     component: ApplicationAppEditComponent
-    //   },
-    //   {
-    //     path: 'intro',
-    //     component: ApplicationIntroListComponent
-    //   },
-    //   {
-    //     path: 'intro/add/:ApplicationId',
-    //     component: ApplicationIntroListComponent
-    //   },
-    //   {
-    //     path: 'intro/edit/:Id',
-    //     component: ApplicationIntroListComponent
-    //   },
-    //   {
-    //     path: 'memberinfo',
-    //     component: ApplicationMemberInfoListComponent
-    //   },
-    //   {
-    //     path: 'notification',
-    //     component: ApplicationNotificationListComponent
-    //   },
+      {
+        path: 'outbox/list/LinkPrivateConfigId/:LinkPrivateConfigId',
+        component: SmsMainApiLogOutBoxListComponent
+      },
+      {
+        path: 'outbox/list/LinkApiNumberId/:LinkApiNumberId',
+        component: SmsMainApiLogOutBoxListComponent
+      },
+      {
+        path: 'outbox/list/LinkSiteId/:LinkSiteId',
+        component: SmsMainApiLogOutBoxListComponent
+      },
+      //   {
+      //     path: 'source/edit/:Id',
+      //     component: ApplicationSourceEditComponent
+      //   },
+      //   {
+      //     path: 'app',
+      //     component: ApplicationAppListComponent
+      //   },
+      //   {
+      //     path: 'app/:SourceId',
+      //     component: ApplicationAppListComponent
+      //   },
+      //   {
+      //     path: 'app/add/:SourceId',
+      //     component: ApplicationAppAddComponent
+      //   },
+      //   {
+      //     path: 'app/edit/:Id',
+      //     component: ApplicationAppEditComponent
+      //   },
+      //   {
+      //     path: 'intro',
+      //     component: ApplicationIntroListComponent
+      //   },
+      //   {
+      //     path: 'intro/add/:ApplicationId',
+      //     component: ApplicationIntroListComponent
+      //   },
+      //   {
+      //     path: 'intro/edit/:Id',
+      //     component: ApplicationIntroListComponent
+      //   },
+      //   {
+      //     path: 'memberinfo',
+      //     component: ApplicationMemberInfoListComponent
+      //   },
+      //   {
+      //     path: 'notification',
+      //     component: ApplicationNotificationListComponent
+      //   },
 
-    //   {
-    //     path: 'themeconfig',
-    //     component: ApplicationThemeConfigListComponent
-    //   },
-     ]
+      //   {
+      //     path: 'themeconfig',
+      //     component: ApplicationThemeConfigListComponent
+      //   },
+    ]
   },
 ];
 

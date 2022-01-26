@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreEnumService, SmsMainApiPathService, SmsMainApiNumberService } from 'ntk-cms-api';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { SmsMainApiNumberSelectorComponent } from './main/api-number/selector/selector.component';
+import { SmsMainApiPathTreeComponent } from './main/api-path/tree/tree.component';
 
 @NgModule({
   imports: [
@@ -20,10 +21,12 @@ import { SmsMainApiNumberSelectorComponent } from './main/api-number/selector/se
   declarations: [
     SmsMainApiPathSelectorComponent,
     SmsMainApiNumberSelectorComponent,
+    SmsMainApiPathTreeComponent,
   ],
   exports: [
     SmsMainApiPathSelectorComponent,
     SmsMainApiNumberSelectorComponent,
+    SmsMainApiPathTreeComponent,
   ],
   providers: [
     CoreEnumService,

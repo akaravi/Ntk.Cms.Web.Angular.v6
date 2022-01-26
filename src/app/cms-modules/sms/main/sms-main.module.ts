@@ -79,7 +79,7 @@ import { SmsMainApiNumberPermissionListComponent } from './api-number-permission
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
 
-    SmsMainApiPathTreeComponent,
+ 
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
     /*Permission*/
@@ -119,7 +119,6 @@ import { SmsMainApiNumberPermissionListComponent } from './api-number-permission
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
 
-    SmsMainApiPathTreeComponent,
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
     /*Permission*/
