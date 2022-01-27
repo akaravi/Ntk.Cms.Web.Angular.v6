@@ -331,27 +331,6 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
 
   }
 
-  onActionbuttonApiList(model: SmsMainCustomerCreditModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length == 0) {
-
-      const message = 'ردیفی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/sms/main/api-path/list/LinkPermissionId', this.tableRowSelected.Id]);
-
-
-  }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -383,6 +362,6 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/sms/main/api-path']);
+    this.router.navigate(['/sms/main/customer-credit']);
   }
 }
