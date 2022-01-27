@@ -137,42 +137,7 @@ export class SmsMainCustomerCreditAddComponent implements OnInit {
       }
     );
   }
-  onActionSelectorCmsUser(model: CoreUserModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreUserId=null;
-      return;
-    }
-    this.dataModel.LinkCoreUserId = model.Id;
-  }
-  onActionSelectorCmsSite(model: CoreSiteModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreSiteId=null;
-      return;
-    }
-    this.dataModel.LinkCoreSiteId = model.Id;
-  }
-  onActionSelectorCoreUserGroup(model: CoreUserGroupModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreUserGroupId=null;
-      return;
-    }
-    this.dataModel.LinkCoreUserGroupId = model.Id;
-  }
-  onActionSelectorCoreSiteCategory(model: CoreSiteCategoryModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreSiteCategoryId=null;
-      return;
-    }
-    this.dataModel.LinkCoreSiteCategoryId = model.Id;
-  }
-  onActionSelectorSelectLinkApiPathId(model: SmsMainApiPathModel | null): void {
-    if (!model || model.Id.length <= 0) {
-      const message = 'مسیر سرویس دهنده مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.LinkApiPathId = model.Id;
-  }
+  
 
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

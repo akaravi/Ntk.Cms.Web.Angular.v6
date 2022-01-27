@@ -92,15 +92,6 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Title';
-    if (this.activatedRoute.snapshot.paramMap.get('LinkApiPathId')) {
-      this.requestLinkApiPathId = this.activatedRoute.snapshot.paramMap.get('LinkApiPathId');
-    }
-    if (this.requestLinkApiPathId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkApiPathId';
-      filter.Value = this.requestLinkApiPathId;
-      this.filteModelContent.Filters.push(filter);
-    }
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -133,7 +124,7 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
-    /** filter Category */
+    /*filter CLone*/
     this.SmsMainCustomerCreditService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -360,8 +351,5 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: SmsMainCustomerCreditModel): void {
     this.tableRowSelected = row;
-  }
-  onActionBackToParent(): void {
-    this.router.navigate(['/sms/main/customer-credit']);
   }
 }
