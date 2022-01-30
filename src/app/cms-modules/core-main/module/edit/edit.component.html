@@ -33,7 +33,23 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
+    <!-- NeedSiteCreditAccount Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.NeedSiteCreditAccount"
+        *ngIf="fieldsInfo['NeedSiteCreditAccount']?.AccessWatchField"
+        [disabled]="!fieldsInfo['NeedSiteCreditAccount']?.AccessEditField" name="dataModel.NeedSiteCreditAccount">
+        {{fieldsInfo['NeedSiteCreditAccount']?.FieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- NeedSiteUserCreditAccount Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.NeedSiteUserCreditAccount"
+        *ngIf="fieldsInfo['NeedSiteUserCreditAccount']?.AccessWatchField"
+        [disabled]="!fieldsInfo['NeedSiteUserCreditAccount']?.AccessEditField"
+        name="dataModel.NeedSiteUserCreditAccount">
+        {{fieldsInfo['NeedSiteUserCreditAccount']?.FieldTitle}}
+      </mat-slide-toggle>
+    </div>
     <!-- ShowInOrder Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInOrder']?.AccessWatchField">
       <mat-label> {{fieldsInfo['ShowInOrder']?.FieldTitle}}</mat-label>
