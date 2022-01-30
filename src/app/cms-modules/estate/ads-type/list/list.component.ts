@@ -55,7 +55,7 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
     /*filter Sort*/
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
-   
+
   }
   comment: string;
   author: string;
@@ -183,7 +183,7 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(EstateAdsTypeAddComponent, {
       height: '90%',
-      data: {  }
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -240,7 +240,7 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.estateAdsTypeService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
