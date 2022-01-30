@@ -19,7 +19,7 @@
     <div>
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <div class="row">
-        <div *ngFor="let item of dataModelResult.ListItems" class="col-3">
+        <div *ngFor="let item of dataModelResult.ListItems" class="col-4">
           <mat-card class="example-card">
             <mat-card-header>
               <div mat-card-avatar
@@ -41,7 +41,7 @@
               </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button *ngIf="!item.IsApproved" (click)="onActionbuttonEditRow(item)">ارسال مدراک</button>
+              <button mat-button *ngIf="!item.IsApproved" (click)="onActionbuttonEditRow(item)">ارسال مدارک</button>
             </mat-card-actions>
           </mat-card>
   

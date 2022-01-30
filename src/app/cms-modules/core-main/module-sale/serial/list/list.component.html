@@ -105,11 +105,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.NumberOfRegistered}} </mat-cell>
       </ng-container>
-      <!-- CreatedDate Column -->
-      <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
+      <!-- DatePeriodStart Column -->
+      <ng-container matColumnDef="DatePeriodStart">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DatePeriodStart']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.DatePeriodStart) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
@@ -117,12 +117,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
       </ng-container>
-      <!-- ExpireDate Column -->
-      <ng-container matColumnDef="ExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.FieldTitle}}
+      <!-- DatePeriodEnd Column -->
+      <ng-container matColumnDef="DatePeriodEnd">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DatePeriodEnd']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleExpireDate(row.ExpireDate) }">
-          {{ publicHelper.LocaleDate(row.ExpireDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.DatePeriodEnd) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">

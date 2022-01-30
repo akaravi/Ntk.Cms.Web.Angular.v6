@@ -84,8 +84,9 @@ export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
     'HasDemo',
     'NumberOfMaxUse',
     'NumberOfRegistered',
-    'CreatedDate',
+    'DatePeriodStart',
     'UpdatedDate',
+    'DatePeriodEnd',
     'Action'
   ];
 
@@ -357,7 +358,7 @@ export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/core/sitecategorymodule/LinkCmsModuleSaleSerialId', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/sitecategorymodule/LinkCmsModuleId', this.tableRowSelected.Id]);
 
 
   }
@@ -378,7 +379,7 @@ export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/core/site/list/LinkModuleSaleSerialId', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/site/list/LinkSiteCategoryId', this.tableRowSelected.Id]);
 
 
   }
