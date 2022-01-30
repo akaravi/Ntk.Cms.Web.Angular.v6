@@ -50,9 +50,10 @@ export class TokenHelper implements OnDestroy {
       })).toPromise();
   }
   getCurrentTokenOnChange(): Observable<TokenInfoModel> {
-    return this.cmsApiStore.getState((state) => { 
-      this.cmsStoreService.setState({  EnumRecordStatusResultStore: null });
-     return state.ntkCmsAPiState.tokenInfo});
+    return this.cmsApiStore.getState((state) => {
+      this.cmsStoreService.setState({ EnumRecordStatusResultStore: null });
+      return state.ntkCmsAPiState.tokenInfo;
+    });
   }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();
