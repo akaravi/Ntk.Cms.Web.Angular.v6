@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { EnumFilterDataModelSearchTypes, EnumRecordStatus, EstatePropertyService, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes, EnumRecordStatus, EstatePropertyService, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -49,6 +49,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'All','لیست املاک');
     this.loading.Start(this.constructor.name + 'InChecking','املاک نیاز به تایید');
+    this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -76,6 +77,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
     fastfilter.Value = EnumRecordStatus.Available;
     fastfilter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
     filterStatist2.Filters.push(fastfilter);
+    this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe(
       (next) => {
         if (next.IsSuccess) {

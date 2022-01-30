@@ -123,6 +123,7 @@ import { EstatePropertyTypeLanduseHeaderComponent } from './property-type-landus
 import { EstateContractTypeHeaderComponent } from './contract-type/header/header.component';
 import { EstateCustomerOrderHeaderComponent } from './customer-order/header/header.component';
 import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
+import { EstatePropertyActionComponent } from './property/action/action.component';
 
 @NgModule({
   declarations: [
@@ -152,6 +153,7 @@ import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/he
     EstatePropertySelectorComponent,
     EstatePropertyCompleteComponent,
     EstatePropertyHeaderComponent,
+    EstatePropertyActionComponent,
     /* */
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,
