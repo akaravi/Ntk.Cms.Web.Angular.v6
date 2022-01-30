@@ -7,6 +7,8 @@
 	"ACTION.BANNER": "Banner",
 	"ACTION.BEFOR": "Befor",
 	"ACTION.BILLBOARD": "Billboard",
+	"ACTION.STATUS": "Status",
+	"ACTION.SEND_DOCUMENTS": "Send documents",
 	"ACTION.BUY": "Buy",
 	"ACTION.CANCEL": "Cancel",
 	"ACTION.COMMENT": "Comment",

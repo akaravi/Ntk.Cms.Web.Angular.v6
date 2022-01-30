@@ -24,7 +24,7 @@
             <mat-card-header>
               <div mat-card-avatar
                 style="background-image: url('{{item.TypeLinkMainImageIdSrc}}'); background-size: cover;"></div>
-              <mat-card-title><i [ngClass]="item.IsApproved | boolclass"></i> وضعیت</mat-card-title>
+              <mat-card-title><i [ngClass]="item.IsApproved | boolclass"></i> {{'ACTION.STATUS' | translate}}</mat-card-title>
               <mat-card-subtitle>{{item.TypeTitle}}</mat-card-subtitle>
             </mat-card-header>
             <img mat-card-image src="{{item.LinkFileContentIdSrc}}" alt="{{item.TypeTitle}}">
@@ -41,7 +41,7 @@
               </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button *ngIf="!item.IsApproved" (click)="onActionbuttonEditRow(item)">ارسال مدارک</button>
+              <button mat-button type="button" class="btn btn-secondary width" *ngIf="!item.IsApproved" (click)="onActionbuttonEditRow(item)">{{'ACTION.SEND_DOCUMENTS' | translate}}</button>
             </mat-card-actions>
           </mat-card>
   
