@@ -8,6 +8,8 @@
 	"ACTION.BEFOR": "Befor",
 	"ACTION.BILLBOARD": "Billboard",
 	"ACTION.STATUS": "Status",
+	"ACTION.Components": "Components",
+	"ACTION.USED_ITEMS": "Used Items",
 	"ACTION.SEND_DOCUMENTS": "Send documents",
 	"ACTION.BUY": "Buy",
 	"ACTION.CANCEL": "Cancel",

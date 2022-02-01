@@ -391,7 +391,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/core/sitecategorymodule/LinkCmsUserClaimId', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/sitecategorymodule/LinkCmsModuleId', this.tableRowSelected.Id]);
 
 
   }
@@ -412,7 +412,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/core/site/list/LinkUserClaimId', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/site/list/LinkSiteCategoryId', this.tableRowSelected.Id]);
 
 
   }

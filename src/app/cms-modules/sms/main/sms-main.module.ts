@@ -19,7 +19,8 @@ import {
   SmsMainApiPathPublicConfigService,
   SmsMainApiPathService,
   SmsMainApiNumberService,
-  SmsMainApiNumberPermissionService
+  SmsMainApiNumberPermissionService,
+  SmsMainCustomerCreditService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';
@@ -178,6 +179,7 @@ import { SmsMainCustomerCreditAddComponent } from './customer-credit/add/add.com
     SmsMainApiPathPublicConfigService,
     SmsMainApiNumberService,
     SmsMainApiPathAndApiNumberService,
+    SmsMainCustomerCreditService
   ]
 })
 export class SmsMainModule { }

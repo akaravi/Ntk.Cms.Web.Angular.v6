@@ -58,9 +58,11 @@
           <div class="col-3" *ngFor="let row of dataModelResult.ListItems">
             <mat-card class="example-card" style="border:groove ;">
               <mat-card-header>
-                <mat-card-title>{{row.Title}}</mat-card-title>
+                <mat-card-title>
+                  {{row.Title}}
+                  <i [ngClass]="row.RecordStatus|statusClass"></i>
+                </mat-card-title>
                 <mat-card-subtitle>  شناسه: {{row.Id}}</mat-card-subtitle>
-                <i [ngClass]="row.RecordStatus|statusClass"></i> 
               </mat-card-header>
               <img mat-card-image src="{{row.ThumbnailImageSrc}}">
               <mat-card-content>

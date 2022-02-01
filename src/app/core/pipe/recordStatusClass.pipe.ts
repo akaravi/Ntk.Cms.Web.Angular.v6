@@ -15,22 +15,22 @@ export class RecordStatusClassPipe implements PipeTransform {
         ret = 'fa fa-check';
         break;
       case 2:
-        ret = 'fa fa-times';
+        ret = 'fa fa-eye-slash';
         break;
       case 3:
-        ret = 'fa fa-hourglass-half';
+        ret = 'fa fa-times';
         break;
       case 4:
-        ret = 'fa fa-thumbs-up';
+        ret = 'fa fa-hourglass-half';
         break;
       case 5:
         ret = 'far fa-thumbs-down';
         break;
       case 6:
-        ret = 'far fa-archive';
+        ret = 'fa fa-archive';
         break;
       default:
-        ret = 'far fa-check';
+        ret = 'fa fa-check';
     }
     return ret;
   }

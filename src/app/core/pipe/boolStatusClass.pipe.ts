@@ -13,9 +13,9 @@ export class BoolStatusClassPipe implements PipeTransform {
       return 'fa fa-thumbs-up';
 
     } else if (value === false) {
-      return 'far fa-thumbs-down';
+      return 'fa fa-thumbs-down';
     }
-    return 'far fa-archive';
+    return 'fa fa-archive';
 
   }
 

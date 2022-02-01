@@ -8,6 +8,8 @@
 	"ACTION.BEFOR": "قبلی",
 	"ACTION.BILLBOARD": "بیلبورد",
 	"ACTION.STATUS": "وضعیت",
+	"ACTION.Components": "اجزاء",
+	"ACTION.USED_ITEMS": "موارد استفاده",
 	"ACTION.SEND_DOCUMENTS": "ارسال مدارک",
 	"ACTION.BUY": "خرید",
 	"ACTION.CANCEL": "انصراف",
