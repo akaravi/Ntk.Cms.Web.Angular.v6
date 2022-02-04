@@ -1,17 +1,10 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  CoreEnumService,
-  EnumInfoModel,
   ErrorExceptionResult,
   FilterModel,
-  FormInfoModel,
-  CoreModuleTagModel,
-  CoreModuleTagService,
   FilterDataModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
-  CoreModuleTagCategoryModel,
   EnumSortType,
   EnumRecordStatus,
   DataFieldInfoModel,
@@ -33,7 +26,6 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CoreModuleSiteUserCreditEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { CmsSiteUserCreditViewComponent } from 'src/app/shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
 @Component({
   selector: 'app-coremodule-site-user-credit-list',
   templateUrl: './list.component.html',

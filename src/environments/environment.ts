@@ -1,20 +1,16 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
 import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
-
 export const environment = {
   production: false,
   appVersion: '13.0.0000.0',
   USERDATA_KEY: 'authf649fc9a5f55',
-  loadDemoMenu: true,
-  loadDemoDashboard: true,
-  ProgressConsoleLog: true,
+  loadDemoMenu: false,
+  loadDemoDashboard: false,
+  ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
-     configApiServerPath: 'https://apicms.ir/api/v1/',
-  //  configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+    configApiServerPath: 'https://apicms.ir/api/v1/',
+    //  configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
     // configApiServerPath: 'http://localhost:49155/api/v1/', // Test Api Docer
 
     configMvcServerPath: 'https://ntkcms.ir/',
