@@ -1,0 +1,45 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    سایت:
+    {{tokenInfo?.Title}}
+    <br>
+    ماژول:
+    {{dataModuleModelResult?.Item?.Title}}
+    <br>
+    اعتبار:
+    {{dataModelResult?.Item?.Credit}}
+    <br>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+      <button type="button" (click)="onFormActionCreditCharge()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> شارژ اعتبار
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

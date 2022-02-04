@@ -1,0 +1,43 @@
+<app-cms-html-notice [svg]="'assets/media/svg/icons/Shopping/Sale2.svg'">
+  <h4> تبلیغات</h4>
+  نسبت به نیازمندی های خود و مدت زمان اقدام به خرید نمایید
+  <br>
+  <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
+    <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
+  </button>
+</app-cms-html-notice>
+<div class="row">
+  <div Class="col-xl-12">
+    <div class="row">
+      <div class="col">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>مبلغ شارژ حساب</mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>
+              <!-- Credit Field -->
+              <mat-form-field class="ntk-full-width">
+                <mat-label> مبلغ</mat-label>
+                <input matInput [(ngModel)]="dataModelCalculate.Credit" name="dataModelCalculate.Credit"
+                  #Credit type="number" 
+                  placeholder="0" />
+                <mat-icon matSuffix *ngIf="dataModelCalculate.Credit" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="dataModelCalculate.Credit = 0">close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+              </mat-form-field>
+              {{currency}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+
+            <button mat-button (click)="onActionbuttonBuy()">{{'ACTION.BUY' | translate}}</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+</div>

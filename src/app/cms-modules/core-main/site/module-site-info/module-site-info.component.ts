@@ -4,6 +4,7 @@ import {
   FormInfoModel,
   CoreSiteService,
   CoreSiteModel,
+  ProcessModuleSiteDataInfoOutputModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -18,9 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { ProcessModuleSiteDataInfoOutputModel } from 'ntk-cms-api/lib/models/dto/core/processModuleSiteDataInfoOutputModel';
+
 
 @Component({
   selector: 'app-core-site-module-site-info',

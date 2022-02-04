@@ -142,6 +142,16 @@
               <mat-icon>extension</mat-icon>
               <span>تنظیمات مدیریتی</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonSiteCreditAccountRow(row)"
+              *ngIf="row.virtual_CmsModule.NeedSiteCreditAccount">
+              <mat-icon>extension</mat-icon>
+              <span>اعتبار سایت</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonSiteUserCreditAccountRow(row)"
+              *ngIf="row.virtual_CmsModule.NeedSiteUserCreditAccount">
+              <mat-icon>extension</mat-icon>
+              <span>اعتبار کاربرشما</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

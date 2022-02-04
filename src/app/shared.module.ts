@@ -33,6 +33,8 @@ import {
   CoreCurrencyService,
   CoreGuideService,
   CoreLocationService,
+  CoreModuleSiteCreditService,
+  CoreModuleSiteUserCreditService,
   CoreSiteCategoryService,
   CoreSiteService,
   CoreUserGroupService,
@@ -91,6 +93,8 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CmsGuideNoticeComponent } from './shared/cms-guide-notice/cms-guide-notice.component';
 import { CodePreviewComponent } from './shared/code-preview/code-preview.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-site-credit-view.component';
+import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
 
 @NgModule({
     imports: [
@@ -164,6 +168,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
         CmsHtmlListComponent,
         CmsHtmlTreeComponent,
         CodePreviewComponent,
+        CmsSiteCreditViewComponent,
+        CmsSiteUserCreditViewComponent,
         /** input */
         StringComponent,
         IntComponent,
@@ -244,6 +250,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
         CmsHtmlListComponent,
         CmsHtmlTreeComponent,
         CodePreviewComponent,
+        CmsSiteCreditViewComponent,
+        CmsSiteUserCreditViewComponent,
         /** input */
         StringComponent,
         IntComponent,
@@ -277,6 +285,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
         BankPaymentPrivateSiteConfigService,
         BankPaymentTransactionService,
         BankPaymentEnumService,
+        CoreModuleSiteCreditService,
+        CoreModuleSiteUserCreditService,
+
     ]
     /* No providers here! Since they’ll be already provided in AppModule. */
 })

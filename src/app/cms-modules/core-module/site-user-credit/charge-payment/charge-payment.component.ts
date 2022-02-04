@@ -2,13 +2,12 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   BankPaymentPrivateSiteConfigModel,
-  EstateModuleSalePropertyAdsCalculateDtoModel,
-  EstateModuleSalePropertyAdsPaymentDtoModel,
+  CoreModuleSiteUserCreditCalculateDtoModel,
+  CoreModuleSiteUserCreditPaymentDtoModel,
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
-  EstateAdsTypeService,
-  EstatePropertyAdsService,
   BankPaymentTransactionService,
   BankPaymentTransactionModel,
+  CoreModuleSiteUserCreditService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -25,53 +24,48 @@ import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyads-salepayment',
-  templateUrl: './sale-payment.component.html',
-  styleUrls: ['./sale-payment.component.scss'],
+  selector: 'app-coremodule-site-user-credit-charge-payment',
+  templateUrl: './charge-payment.component.html',
+  styleUrls: ['./charge-payment.component.scss'],
 })
-export class EstatePropertyAdsSalePaymentComponent implements OnInit {
-  requestLinkPropertyId = '';
-  requestLinkAdsTypeId = '';
+export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
+  requestCredit = 0;
+  requestLinkModuleId = 0;
   requestBankPrivateMaster = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(DOCUMENT) private document: any,
-    private dialogRef: MatDialogRef<EstatePropertyAdsSalePaymentComponent>,
-    public estateAdsTypeService: EstateAdsTypeService,
-    public estatePropertyAdsService: EstatePropertyAdsService,
-
+    private dialogRef: MatDialogRef<CoreModuleSiteUserCreditChargePaymentComponent>,
     private cmsToastrService: CmsToastrService,
+    private coreModuleSiteUserCreditService: CoreModuleSiteUserCreditService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      if (data.LinkPropertyId && data.LinkPropertyId.length > 0) {
-        this.requestLinkPropertyId = data.LinkPropertyId;
+      if (data.Credit && data.Credit > 0) {
+        this.requestCredit = data.Credit;
       }
-      if (data.LinkAdsTypeId && data.LinkAdsTypeId.length > 0) {
-        this.requestLinkAdsTypeId = data.LinkAdsTypeId;
-      }
-      if (data.BankPrivateMaster && data.BankPrivateMaster === true) {
-        this.requestBankPrivateMaster = true;
+      if (data.LinkModuleId && data.LinkModuleId > 0) {
+        this.requestLinkModuleId = data.LinkModuleId;
       }
     }
-    if (this.requestLinkPropertyId.length === 0) {
+    if (this.requestCredit === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    if (this.requestLinkAdsTypeId.length === 0) {
+    if (this.requestLinkModuleId === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
 
-    this.dataModelCalculate.LinkAdsTypeId = this.requestLinkAdsTypeId;
-    this.dataModelCalculate.LinkPropertyId = this.requestLinkPropertyId;
-    this.dataModelPayment.LinkAdsTypeId = this.requestLinkAdsTypeId;
-    this.dataModelPayment.LinkPropertyId = this.requestLinkPropertyId;
+    this.dataModelCalculate.Credit = this.requestCredit;
+    this.dataModelCalculate.LinkModuleId = this.requestLinkModuleId;
+    this.dataModelPayment.Credit = this.requestCredit;
+    this.dataModelPayment.LinkModuleId = this.requestLinkModuleId;
     this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
@@ -83,8 +77,8 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
   dataModelPaymentResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>();
 
-  dataModelCalculate: EstateModuleSalePropertyAdsCalculateDtoModel = new EstateModuleSalePropertyAdsCalculateDtoModel();
-  dataModelPayment: EstateModuleSalePropertyAdsPaymentDtoModel = new EstateModuleSalePropertyAdsPaymentDtoModel();
+  dataModelCalculate: CoreModuleSiteUserCreditCalculateDtoModel = new CoreModuleSiteUserCreditCalculateDtoModel();
+  dataModelPayment: CoreModuleSiteUserCreditPaymentDtoModel = new CoreModuleSiteUserCreditPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
 
@@ -97,7 +91,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
-    this.estatePropertyAdsService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
+    this.coreModuleSiteUserCreditService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelCalculateResult = next;
@@ -118,9 +112,10 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     );
   }
   DataPayment(): void {
+    this.formInfo.FormSubmitAllow = false;
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
-    this.estatePropertyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe(
+    this.coreModuleSiteUserCreditService.ServiceOrderPayment(this.dataModelPayment).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;
@@ -130,13 +125,14 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
         }
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormSubmitAllow = true;
         }
         this.loading.Stop(pName);
 
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
+        this.formInfo.FormSubmitAllow = true;
         this.loading.Stop(pName);
 
       }

@@ -34,6 +34,8 @@ import { CoreSiteModuleAddComponent } from '../moduleAdd/moduleAdd.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CmsSiteUserCreditViewComponent } from 'src/app/shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
+import { CmsSiteCreditViewComponent } from 'src/app/shared/cms-site-credit-view/cms-site-credit-view.component';
 @Component({
   selector: 'app-core-site-module-list',
   templateUrl: './moduleList.component.html',
@@ -382,7 +384,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate([model.virtual_CmsModule.ClassName + '/config/site/', model.LinkSiteId]);
+    this.router.navigate([model.virtual_CmsModule.ClassName.toLowerCase() + '/config/site/', model.LinkSiteId]);
   }
   onActionbuttonConfigMainAdminRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
     if (!model || !model.LinkModuleId || model.LinkModuleId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
@@ -391,7 +393,36 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate([model.virtual_CmsModule.ClassName + '/config/mainadmin/']);
+    this.router.navigate([model.virtual_CmsModule.ClassName.toLowerCase() + '/config/mainadmin/']);
+  }
+  onActionbuttonSiteCreditAccountRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
+    if (!model || !model.LinkModuleId || model.LinkModuleId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    const dialogRef = this.dialog.open(CmsSiteCreditViewComponent, {
+      // height: '90%',
+      data: {
+        LinkModuleId: model.LinkModuleId,      }
+    });
+  }
+  onActionbuttonSiteUserCreditAccountRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
+    if (!model || !model.LinkModuleId || model.LinkModuleId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    const dialogRef = this.dialog.open(CmsSiteUserCreditViewComponent, {
+      // height: '90%',
+      data: {
+        LinkModuleId: model.LinkModuleId,
+      }
+    });
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -431,3 +462,5 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   }
 
 }
+
+
