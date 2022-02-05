@@ -68,7 +68,7 @@
       <ng-container matColumnDef="LinkModuleId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleId']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkModuleId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.LinkModuleId | cmstitle : dataModelCoreModuleResult.ListItems}} </mat-cell>
       </ng-container>
       <!-- Credit Column -->
       <ng-container matColumnDef="Credit">

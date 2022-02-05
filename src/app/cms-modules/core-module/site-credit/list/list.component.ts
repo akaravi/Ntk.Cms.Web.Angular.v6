@@ -17,6 +17,8 @@ import {
   DataFieldInfoModel,
   CoreModuleSiteCreditService,
   CoreModuleSiteCreditModel,
+  CoreModuleModel,
+  CoreModuleService,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
@@ -49,6 +51,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
+    private coreModuleService: CoreModuleService,
     public dialog: MatDialog,
     private router: Router,
   ) {
@@ -71,7 +74,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
 
   dataModelResult: ErrorExceptionResult<CoreModuleSiteCreditModel> = new ErrorExceptionResult<CoreModuleSiteCreditModel>();
-
+  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -102,6 +105,14 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetAll();
       this.tokenInfo = next;
+    });
+    this.getModuleList();
+  }
+  getModuleList(): void {
+    const filter = new FilterModel();
+    filter.RowPerPage = 100;
+    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
+      this.dataModelCoreModuleResult = next;
     });
   }
   ngOnDestroy(): void {
