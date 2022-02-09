@@ -9,29 +9,16 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <div *ngIf="!this.loading.display">
       <!-- LinkPrivateSiteConfigId Field -->
-      <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
+      <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
         [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="' مسیر'">
       </app-sms-apipath-selector>
-      <app-sms-api-number-selector *ngIf="dataModel.LinkApiPathId?.length>0"
+      <app-sms-api-number-selector *ngIf="dataModel.LinkApiPathId?.length>0" [loading]="loading"
         (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
         [optionLinkApiPathId]="dataModel.LinkApiPathId" [optionPlaceholder]="' شماره فرستنده'">
       </app-sms-api-number-selector>
 
 
-      <!-- ToNumber Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>شماره گیرنده</mat-label>
-        <input matInput [(ngModel)]="dataModel.ToNumber" name="dataModel.ToNumber" #ToNumber type="text"
-          placeholder="0912" minlength="0" maxlength="50" />
-        <mat-icon matSuffix *ngIf="dataModel.ToNumber" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.ToNumber = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="start">
-          <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">شماره گیرنده پیام را می توانید با کاما از هم جدا کنید</strong>
-        </mat-hint>
-        <mat-hint align="end">{{ ToNumber.value.length }} / 50</mat-hint>
-      </mat-form-field>
+
       <!-- Message Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>متن پیام</mat-label>
@@ -44,6 +31,20 @@
         <mat-error *ngIf="Message.errors?.required">
           متن پیام <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
+      </mat-form-field>
+      <!-- ToNumber Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label>شماره گیرنده</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.ToNumber" name="dataModel.ToNumber" #ToNumber type="text"
+          placeholder="0912" rows="5"></textarea>
+        <mat-icon matSuffix *ngIf="dataModel.ToNumber" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.ToNumber = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="start">
+          <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+          <strong class="info-field-text">شماره گیرنده پیام را می توانید با کاما از هم جدا کنید</strong>
+        </mat-hint>
+        <mat-hint align="end">{{ ToNumber.value.length }} / 50</mat-hint>
       </mat-form-field>
       <!-- IsFlash Field -->
       <div class="ntk-full-width">
@@ -75,7 +76,7 @@
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
+    <app-progress-spinner [options]="loadingAction"> </app-progress-spinner>
     <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}

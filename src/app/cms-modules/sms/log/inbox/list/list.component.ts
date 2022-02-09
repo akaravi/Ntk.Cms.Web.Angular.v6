@@ -5,21 +5,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   SmsLogInBoxModel,
   SmsLogInBoxService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreCurrencyService,
   CoreCurrencyModel,
-  SmsMainApiPathCompanyModel,
-  SmsMainApiPathCompanyService,
-  SmsMainApiPathPublicConfigService,
-  SmsMainApiPathPublicConfigModel,
   SmsMainApiPathModel,
   SmsMainApiPathService
 } from 'ntk-cms-api';
@@ -49,14 +42,11 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   requestLinkApiNumberId='';
   constructor(
     private smsLogInBoxService: SmsLogInBoxService,
-    //private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
-    //private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     private smsMainApiPathService: SmsMainApiPathService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    // private coreCurrencyService: CoreCurrencyService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -82,8 +72,6 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<SmsLogInBoxModel> = new ErrorExceptionResult<SmsLogInBoxModel>();
   dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
-  // dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
-  // dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
   dataModelPrivateResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
 
   categoryModelSelected: SmsMainApiPathModel;
