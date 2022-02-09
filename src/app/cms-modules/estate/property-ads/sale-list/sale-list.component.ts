@@ -55,7 +55,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   tableRowSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
   categoryModelSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
   dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
- 
+
   tabledisplayedColumns: string[] = [
     'LinkModuleId',
     'EnumCmsModuleSaleItemType',
@@ -96,12 +96,12 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result && result.dialogChangedDate) {
-           localStorage.removeItem('TransactionId');
+          localStorage.removeItem('TransactionId');
         }
       });
     }
   }
- 
+
   DataGetCurrency(): void {
     this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
       (next) => {
@@ -127,9 +127,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new EstateAdsTypeModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
-
-
     this.showBuy = false;
     const model = new FilterModel();
     this.estateAdsTypeService.ServiceGetAllSale(model).subscribe(
@@ -137,7 +134,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.showBuy = true;
           this.dataModelResult = next;
-         
         }
         else {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
@@ -170,6 +166,6 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/estate/property-ads/LinkPropertyId/'+this.requestLinkPropertyId]);
+    this.router.navigate(['/estate/property-ads/LinkPropertyId/' + this.requestLinkPropertyId]);
   }
 }

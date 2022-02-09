@@ -1,48 +1,65 @@
-
-import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import {
-  ApplicationSourceModel,
-  ApplicationSourceService,
-  DataFieldInfoModel,
-  EnumRecordStatus,
-  EnumSortType,
+  CoreEnumService,
+  EnumInfoModel,
   ErrorExceptionResult,
-  FilterDataModel,
   FilterModel,
-  TokenInfoModel
+  FormInfoModel,
+  CoreModuleTagModel,
+  CoreModuleTagService,
+  FilterDataModel,
+  NtkCmsApiStoreService,
+  TokenInfoModel,
+  CoreModuleTagCategoryModel,
+  EnumSortType,
+  EnumRecordStatus,
+  DataFieldInfoModel,
+  CoreModuleSiteCreditService,
+  CoreModuleSiteCreditModel,
+  CoreModuleModel,
+  CoreModuleService,
 } from 'ntk-cms-api';
+import { PublicHelper } from '../../../../core/helpers/publicHelper';
+import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
+import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { CoreModuleSiteCreditEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
-
+import { CmsSiteCreditViewComponent } from 'src/app/shared/cms-site-credit-view/cms-site-credit-view.component';
 @Component({
-  selector: 'app-application-source-list',
+  selector: 'app-coremodule-site-user-credit-list',
   templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
 })
-export class ApplicationSourceListComponent implements OnInit, OnDestroy {
+export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
+
   constructor(
-    private applicationSourceService: ApplicationSourceService,
     public publicHelper: PublicHelper,
+    private coreSiteCreditService: CoreModuleSiteCreditService,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
-    private tokenHelper: TokenHelper,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
-    public dialog: MatDialog) {
+    private coreModuleService: CoreModuleService,
+    public dialog: MatDialog,
+    private router: Router,
+  ) {
     this.loading.cdr = this.cdr;
+    // this.optionsCategoryTree.parentMethods = {
+    //   onActionSelect: (x) => this.onActionSelectorSelect(x),
+    // };
+
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -52,45 +69,34 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     /*filter Sort*/
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
-  }
-  comment: string;
-  author: string;
-  dataSource: any;
-  flag = false;
-  tableContentSelected = [];
 
+  }
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<ApplicationSourceModel> = new ErrorExceptionResult<ApplicationSourceModel>();
+
+  dataModelResult: ErrorExceptionResult<CoreModuleSiteCreditModel> = new ErrorExceptionResult<CoreModuleSiteCreditModel>();
+  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<ApplicationSourceModel> = [];
-  tableRowSelected: ApplicationSourceModel = new ApplicationSourceModel();
-  tableSource: MatTableDataSource<ApplicationSourceModel> = new MatTableDataSource<ApplicationSourceModel>();
-
-
+  tableRowsSelected: Array<CoreModuleSiteCreditModel> = [];
+  tableRowSelected: CoreModuleSiteCreditModel = new CoreModuleSiteCreditModel();
+  tableSource: MatTableDataSource<CoreModuleSiteCreditModel> = new MatTableDataSource<CoreModuleSiteCreditModel>();
   tabledisplayedColumns: string[] = [
-    'LinkMainImageIdSrc',
-    'Id',
     'RecordStatus',
-    'TitleML',
-    'PackageName',
-    'OsType',
-    'ForceUpdate',
-    'IsPublish',
+    'LinkSiteId',
+    'LinkUserId',
+    'LinkModuleId',
+    'Credit',
+    'SumCreditBlocked',
     'Action'
   ];
-
-
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  expandedElement: ApplicationSourceModel | null;
-  cmsApiStoreSubscribe: Subscription;
 
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Title';
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -100,13 +106,21 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.DataGetAll();
       this.tokenInfo = next;
     });
+    this.getModuleList();
+  }
+  getModuleList(): void {
+    const filter = new FilterModel();
+    filter.RowPerPage = 100;
+    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
+      this.dataModelCoreModuleResult = next;
+    });
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApplicationSourceModel();
+    this.tableRowSelected = new CoreModuleSiteCreditModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -116,25 +130,14 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.applicationSourceService.ServiceGetAllEditor(filterModel).subscribe(
+
+    this.coreSiteCreditService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'Title',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'Title'
-            );
-          }
 
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
@@ -151,7 +154,6 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       }
     );
   }
-
 
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
@@ -180,22 +182,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonNewRow(): void {
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
-    ) {
-      this.cmsToastrService.typeErrorAccessAdd();
-      return;
-    }
-    this.router.navigate(['/application/source/add/']);
-
-  }
-
-  onActionbuttonEditRow(model: ApplicationSourceModel = this.tableRowSelected): void {
-
+  onActionbuttonEditRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -206,13 +193,23 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.dataModelResult.Access == null ||
       !this.dataModelResult.Access.AccessEditRow
     ) {
-
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/application/source/edit/', this.tableRowSelected.Id]);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = { id: this.tableRowSelected.Id };
+    const dialogRef = this.dialog.open(CoreModuleSiteCreditEditComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
   }
-  onActionbuttonDeleteRow(model: ApplicationSourceModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -228,15 +225,16 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
+
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.LinkSiteId + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'main';
+          const pName = this.constructor.name + 'ServiceDelete';
           this.loading.Start(pName);
 
-          this.applicationSourceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.coreSiteCreditService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -261,24 +259,6 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       }
       );
   }
-  onActionbuttonApplicationList(model: ApplicationSourceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-
-    this.router.navigate(['/application/app/LinkSourceId', this.tableRowSelected.Id]);
-  }
-  onActionbuttonThemeList(model: ApplicationSourceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-
-    this.router.navigate(['/application/themeconfig/LinkSourceId', this.tableRowSelected.Id]);
-  }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -287,7 +267,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.applicationSourceService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.coreSiteCreditService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -304,7 +284,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.applicationSourceService.ServiceGetCount(filterStatist1).subscribe(
+    this.coreSiteCreditService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -325,7 +305,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.applicationSourceService.ServiceExportFile(model).subscribe(
+    this.coreSiteCreditService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -337,37 +317,15 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       }
     );
   }
-  onActionbuttonBuildApps(mode: ApplicationSourceModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
-
-      const message = 'ردیفی  انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
+  onActionbuttonSiteCreditAccountRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
+    if (!model || !model.LinkModuleId || model.LinkModuleId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = mode;
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.tableRowSelected = model;
 
-
-    this.applicationSourceService.ServiceBuildApp(this.tableRowSelected.Id).subscribe(
-      (next) => {
-
-        if (next.IsSuccess) {
-          this.cmsToastrService.typeSuccessAppBuild(next.ErrorMessage);
-        }
-        else {
-          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
-        }
-        this.loading.Stop(pName);
-      },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
-        this.loading.Stop(pName);
-
-      }
-    );
-
+    this.router.navigate(['/coremodule/site-credit-charge/', model.LinkModuleId]);
   }
   onActionbuttonReload(): void {
     this.DataGetAll();
@@ -376,7 +334,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: ApplicationSourceModel): void {
+  onActionTableRowSelect(row: CoreModuleSiteCreditModel): void {
     this.tableRowSelected = row;
   }
 
