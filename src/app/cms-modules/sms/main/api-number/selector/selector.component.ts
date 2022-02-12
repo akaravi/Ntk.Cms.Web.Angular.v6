@@ -32,7 +32,7 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
 
   dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
   dataModelSelect: SmsMainApiNumberModel = new SmsMainApiNumberModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainApiNumberModel[]>;
   @Input() optionDisabled = false;

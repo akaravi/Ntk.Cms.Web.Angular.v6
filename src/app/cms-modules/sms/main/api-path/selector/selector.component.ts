@@ -32,7 +32,7 @@ export class SmsMainApiPathSelectorComponent implements OnInit {
 
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
   dataModelSelect: SmsMainApiPathModel = new SmsMainApiPathModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainApiPathModel[]>;
   @Input() optionDisabled = false;

@@ -44,11 +44,13 @@ export class SmsActionSendMessageComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loadingAction.cdr = this.cdr;
 
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
+  loadingAction = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataModel: SmsApiSendMessageDtoModel = new SmsApiSendMessageDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
@@ -68,7 +70,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.dataModelParentSelected = model;
     if (model && model.Id.length > 0) {
       this.dataModel.LinkApiPathId = model.Id;
-      
+
     }
   }
 
@@ -91,33 +93,34 @@ export class SmsActionSendMessageComponent implements OnInit {
     // }
     this.formInfo.FormSubmitAllow = false;
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loadingAction.Start(pName);
 
-    this.smsMainApiPathService.ServiceSendMessage(this.dataModel).pipe(
-      map((next) => {
+    this.smsMainApiPathService.ServiceSendMessage(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = 'درخواست ارسال با موفقیت ثبت شد';
-
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
-
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
-        this.loading.Stop(pName);
+        this.loadingAction.Stop(pName);
+      },
+      error: (e) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(e);
+        this.loadingAction.Stop(pName);
 
       },
-        (error) => {
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeError(error);
-          this.loading.Stop(pName);
+      complete: () => {
+        console.info;
+      }
+    }
 
-        }
-      )).toPromise();
+    );
   }
   onFormCancel(): void {
     // this.dialogRef.close({ dialogChangedDate: false });
