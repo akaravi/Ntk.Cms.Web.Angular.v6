@@ -433,6 +433,12 @@
           </mat-slide-toggle>
         </div>
         <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.AllowDirectShareApp" *ngIf="fieldsInfo['AllowDirectShareApp']?.AccessWatchField"
+            [disabled]="!fieldsInfo['AllowDirectShareApp']?.AccessEditField" name="dataModel.AllowDirectShareApp">
+            {{fieldsInfo['AllowDirectShareApp']?.FieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.CheckUpdate" *ngIf="fieldsInfo['CheckUpdate']?.AccessWatchField"
             [disabled]="!fieldsInfo['CheckUpdate']?.AccessEditField" name="dataModel.CheckUpdate">
             {{fieldsInfo['CheckUpdate']?.FieldTitle}}
