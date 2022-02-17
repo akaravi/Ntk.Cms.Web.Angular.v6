@@ -60,10 +60,30 @@ export class CmsUserSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreUserModel): string | undefined {
-    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName) : undefined;
+    var retOut = '';
+    if (model) {
+      if (model.Username && model.Username.length > 0)
+        retOut = retOut + " " + model.Username;
+      if (model.Name && model.Name.length > 0)
+        retOut = retOut + " " + model.Name;
+      if (model.LastName && model.LastName.length > 0)
+        retOut = retOut + " " + model.LastName;
+      retOut = retOut + '#:' + model.Id;
+    }
+    return retOut
   }
   displayOption(model?: CoreUserModel): string | undefined {
-    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName) : undefined;
+    var retOut = '';
+    if (model) {
+      if (model.Username && model.Username.length > 0)
+        retOut = retOut + " " + model.Username;
+      if (model.Name && model.Name.length > 0)
+        retOut = retOut + " " + model.Name;
+      if (model.LastName && model.LastName.length > 0)
+        retOut = retOut + " " + model.LastName;
+      retOut = retOut + '#:' + model.Id;
+    }
+    return retOut
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserModel[]> {
     const filteModel = new FilterModel();
@@ -113,7 +133,7 @@ export class CmsUserSelectorComponent implements OnInit {
 
       }
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

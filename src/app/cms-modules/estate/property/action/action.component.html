@@ -7,19 +7,29 @@
   <div class="ntk-cms-html-card-body">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
-    <!-- AboutAgentMobile Field -->
+    <!-- ActionSendSmsToAgent Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.AboutAgentMobile" name="dataModel.AboutAgentMobile">
+      <mat-slide-toggle [(ngModel)]="dataModel.ActionSendSmsToAgent" name="dataModel.ActionSendSmsToAgent">
         پیامک به کارشناس املاک
       </mat-slide-toggle>
+      <br>
       ارسال پیام لینک برای کارشناس املاک
     </div>
-    <!-- AboutCustomerMobile Field -->
+    <!-- ActionSendSmsToCustomer Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.AboutCustomerMobile" name="dataModel.AboutCustomerMobile">
+      <mat-slide-toggle [(ngModel)]="dataModel.ActionSendSmsToCustomer" name="dataModel.ActionSendSmsToCustomer">
         پیامک به مالک ملک
       </mat-slide-toggle>
+      <br>
       ارسال پیام لینک برای مالک ملک
+    </div>
+    <!-- ActionSendSmsToCustomerOrder Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.ActionSendSmsToCustomerOrder" name="dataModel.ActionSendSmsToCustomerOrder">
+        پیامک به لیست متقاضیان این ملک
+      </mat-slide-toggle>
+      <br>
+      ارسال پیام لینک برای متقاضیانی  که این ملک با خواسته آنها مشابهت دارد
     </div>
 
 

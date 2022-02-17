@@ -352,11 +352,12 @@ export class EstatePropertyAddComponent implements OnInit {
     this.DataGetPropertyDetailGroup(model.Id);
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      const message = 'کاربر اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
+     if (!model || !model.Id || model.Id <= 0) {
+      //  const message = 'کاربر اطلاعات مشخص نیست';
+      //  this.cmsToastrService.typeErrorSelected(message);
+       this.dataModel.LinkCmsUserId =null;
+       return;
+     }
     this.dataModel.LinkCmsUserId = model.Id;
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {

@@ -360,8 +360,9 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      const message = 'کاربر اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
+      // const message = 'کاربر اطلاعات مشخص نیست';
+      // this.cmsToastrService.typeErrorSelected(message);
+      this.dataModel.LinkCmsUserId =null;
       return;
     }
     this.dataModel.LinkCmsUserId = model.Id;
