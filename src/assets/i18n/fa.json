@@ -114,6 +114,8 @@
 	"ACTION.DOMAINS":"دامنه ها",
 	"ACTION.USERS":"کاربران",
 	"ACTION.DEVICES":"دستگاه ها",
+	"ACTION.SITE_CHARGE":"شارژ سایت",
+	"ACTION.USER_CHARGE":"شارژ کاربر",
 	"ACTION.MARKETING_SUBSET":"زیرمجموع بازاریابی",
 	"ACTION.SITE_STATISTICS":"آمار سایت",
 	"ACTION.OPTIMIZATION":"بهینه سازی",

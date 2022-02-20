@@ -1,11 +1,4 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
-  <h4> مدیریت راهنماهای اپلیکیشن</h4>
-  <br>
-  در این بخش میتوانید راهنماهای اپلیکیشن های خود را مشاهده نمایید.
-  <br>
-  برای اضافه کردن راهنمای جدید پس از انتخاب عنوان مورد نظر خود بر روی گزینه "اضافه" کلیک نمایید.
-  <br>
-</app-cms-html-notice>
+<app-cms-guide-notice [Key]="'application.intro.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkApplicationId===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->

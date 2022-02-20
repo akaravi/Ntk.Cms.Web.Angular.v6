@@ -80,7 +80,7 @@ export class CoreModuleSiteUserCreditChargeComponent implements OnInit {
     }
 
     onActionBackToParent(): void {
-        this.router.navigate(['/coremodule/site-credit/']);
+        this.router.navigate(['/coremodule/site-user-credit/']);
     }
 }
 

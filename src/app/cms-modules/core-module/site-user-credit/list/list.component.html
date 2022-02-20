@@ -1,3 +1,4 @@
+<app-cms-guide-notice [Key]="'module.coremodule.siteusercredit'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false" [optionClassTree]="'col-6'"
   [optionClassList]="'col-6'">
   <ng-container cms-tree>
@@ -99,8 +100,8 @@
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteUserCreditAccountRow(row)" >
-              <mat-icon>delete_forever</mat-icon>
-              <span>شارژ کاربر</span>
+              <mat-icon>shopping_cart</mat-icon>
+              <span>{{'ACTION.USER_CHARGE' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

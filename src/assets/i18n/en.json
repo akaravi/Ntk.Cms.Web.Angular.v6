@@ -115,6 +115,8 @@
 	"ACTION.DOMAINS":"Domains",
 	"ACTION.USERS":"Users",
 	"ACTION.DEVICES":"Devices",
+	"ACTION.SITE_CHARGE":"Site Charge",
+	"ACTION.USER_CHARGE":"User Charge",
 	"ACTION.MARKETING_SUBSET":"Marketing subset",
 	"ACTION.SITE_STATISTICS":"Site Statistics",
 	"ACTION.OPTIMIZATION":"Optimization",

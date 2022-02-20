@@ -1,8 +1,4 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
-  <h4> لیست ماژول ها </h4>
-  در این بخش میتوانید ماژول های خود را مدیریت کنید.
-  <br>
-</app-cms-html-notice>
+<app-cms-guide-notice [Key]="'module.site.modulelist'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 <app-core-site-header [optionId]="requestLinkSiteId" *ngIf="requestLinkSiteId>0"></app-core-site-header>
 <app-core-module-header [optionId]="requestLinkModuleId" *ngIf="requestLinkModuleId>0"></app-core-module-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">

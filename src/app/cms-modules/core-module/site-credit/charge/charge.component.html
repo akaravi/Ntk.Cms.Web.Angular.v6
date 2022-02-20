@@ -1,11 +1,5 @@
-<app-cms-html-notice [svg]="'assets/media/svg/icons/Shopping/Sale2.svg'">
-  <h4> تبلیغات</h4>
-  نسبت به نیازمندی های خود و مدت زمان اقدام به خرید نمایید
-  <br>
-  <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
-    <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
-  </button>
-</app-cms-html-notice>
+<app-cms-guide-notice [Key]="'module.coremodule.sitecreditcharge'"  [svg]="'assets/media/svg/icons/Shopping/Sale2.svg'"></app-cms-guide-notice>
+
 <div class="row">
   <div Class="col-xl-12">
     <div class="row">
@@ -33,7 +27,10 @@
           </mat-card-content>
           <mat-card-actions>
 
-            <button mat-button (click)="onActionbuttonBuy()">{{'ACTION.BUY' | translate}}</button>
+            <button mat-button class="btn btn-success" (click)="onActionbuttonBuy()">{{'ACTION.BUY' | translate}}</button>
+            <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
+              <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
+            </button>
           </mat-card-actions>
         </mat-card>
       </div>
