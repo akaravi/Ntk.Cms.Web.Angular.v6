@@ -408,6 +408,11 @@
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
+        <div class="mb-12">
+        <angular-editor [placeholder]="'متن حریم خصوصی کاربر را وارد کنید'" [config]="publicHelper.editorConfig" id="main"
+          [(ngModel)]="dataModel.AboutUsPrivacyPolicyHtmlBody" name="dataModel.AboutUsPrivacyPolicyHtmlBody"></angular-editor>
+        </div>
+
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
