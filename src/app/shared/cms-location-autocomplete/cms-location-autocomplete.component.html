@@ -2,8 +2,7 @@
   [secondaryPlaceholder]="optionPlaceholder" [onlyFromAutocomplete]="true" [identifyBy]="'id'" [displayBy]="'display'" >
   <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems" >
     <ng-template let-item="item" let-index="index">
-      <img *ngIf="item.display.LinkImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{item.display.LinkImageIdSrc | cmsthumbnail}}" height="25" width="25" />
-      {{ item.display.TitleML }}
+      {{ item.display }}
     </ng-template>
   </tag-input-dropdown>
 </tag-input>
