@@ -1,3 +1,4 @@
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,10 +11,11 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  CoreLogErrorService,
-  CoreLogErrorModel,
+  CoreModuleLogFavoriteService,
+  CoreModuleLogFavoriteModel,
   DataFieldInfoModel,
-  EnumInfoModel
+  EnumInfoModel,
+  CoreEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -25,42 +27,55 @@ import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { CoreLogErrorEditComponent } from '../edit/edit.component';
+import { CoreModuleLogFavoriteEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { CoreModuleLogFavoriteViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
-  selector: 'app-coretoken-user-list',
+  selector: 'app-coremodulelog-report-abuse-list',
   templateUrl: './list.component.html',
+
 })
-export class CoreLogErrorListComponent implements OnInit, OnDestroy {
+export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
+  requestLinkSiteId = 0;
   requestLinkUserId = 0;
-  requestLinkDeviceId = 0;
+  requestlinkMemberUserId = 0;
   constructor(
-    private coreLogErrorService: CoreLogErrorService,
+    private coreEnumService: CoreEnumService,
+    private coreModuleLogFavoriteService: CoreModuleLogFavoriteService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private activatedRoute: ActivatedRoute,
+    private tokenHelper: TokenHelper,
     public dialog: MatDialog,
-    private router: Router,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
-    private tokenHelper: TokenHelper,
+    private router: Router,
   ) {
     this.loading.cdr = this.cdr;
+    this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
-    this.requestLinkDeviceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDeviceId'));
+    this.requestlinkMemberUserId = + Number(this.activatedRoute.snapshot.paramMap.get('linkMemberUserId'));
+
+    if (this.requestLinkSiteId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkCmsSiteId';
+      filter.Value = this.requestLinkSiteId;
+      this.filteModelContent.Filters.push(filter);
+    }
     if (this.requestLinkUserId > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkUserId';
       filter.Value = this.requestLinkUserId;
       this.filteModelContent.Filters.push(filter);
     }
-    if (this.requestLinkDeviceId > 0) {
+    if (this.requestlinkMemberUserId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkDeviceId';
-      filter.Value = this.requestLinkDeviceId;
+      filter.PropertyName = 'linkMemberUserId';
+      filter.Value = this.requestlinkMemberUserId;
       this.filteModelContent.Filters.push(filter);
     }
     this.optionsSearch.parentMethods = {
@@ -80,28 +95,33 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreLogErrorModel> = new ErrorExceptionResult<CoreLogErrorModel>();
+  dataModelResult: ErrorExceptionResult<CoreModuleLogFavoriteModel> = new ErrorExceptionResult<CoreModuleLogFavoriteModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<CoreLogErrorModel> = [];
-  tableRowSelected: CoreLogErrorModel = new CoreLogErrorModel();
-  tableSource: MatTableDataSource<CoreLogErrorModel> = new MatTableDataSource<CoreLogErrorModel>();
+  tableRowsSelected: Array<CoreModuleLogFavoriteModel> = [];
+  tableRowSelected: CoreModuleLogFavoriteModel = new CoreModuleLogFavoriteModel();
+  tableSource: MatTableDataSource<CoreModuleLogFavoriteModel> = new MatTableDataSource<CoreModuleLogFavoriteModel>();
+
+
   tabledisplayedColumns: string[] = [
     'Id',
+    'LinkUserId',
+    'LinkSiteId',
+    'LinkMemberUserId',
     'ModuleName',
     'ModuleEntityName',
-    'LinkUserId',
-    'LinkMemberUserId',
     'ModuleEntityId',
     'CreatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  
+
+
+
   expandedElement: CoreSiteModel | null;
   cmsApiStoreSubscribe: Subscription;
 
@@ -117,27 +137,14 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
       this.DataGetAll();
       this.tokenInfo = next;
     });
-    this.getEnumManageUserAccessAreaTypes();
-    this.getEnumManageUserAccessUserTypes();
   }
 
-  getEnumManageUserAccessAreaTypes(): void {
-    // this.coreEnumService.ServiceEnumManageUserAccessAreaTypes().subscribe((next) => {
-    //   this.dataModelEnumManageUserAccessAreaTypesResult = next;
-    // });
-  }
-  // {{row.UserAccessAreaType | enums : dataModelEnumManageUserAccessAreaTypesResult.ListItems}}
-  getEnumManageUserAccessUserTypes(): void {
-    // this.coreEnumService.ServiceEnumManageUserAccessUserTypes().subscribe((next) => {
-    //   this.dataModelEnumManageUserAccessUserTypesResult = next;
-    // });
-  }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreLogErrorModel();
+    this.tableRowSelected = new CoreModuleLogFavoriteModel();
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -147,14 +154,25 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreLogErrorService.ServiceGetAllEditor(filterModel).subscribe(
+    this.coreModuleLogFavoriteService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-
+          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+              this.tabledisplayedColumns,
+              'LinkSiteId',
+              0
+            );
+          } else {
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+              this.tabledisplayedColumns,
+              'LinkSiteId'
+            );
+          }
 
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
@@ -201,7 +219,32 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
 
 
 
-  onActionbuttonEditRow(model: CoreLogErrorModel = this.tableRowSelected): void {
+  onActionbuttonViewRow(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
+
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(CoreModuleLogFavoriteViewComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        // this.DataGetAll();
+      }
+    });
+  }
+  onActionbuttonEditRow(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -216,7 +259,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CoreLogErrorEditComponent, {
+    const dialogRef = this.dialog.open(CoreModuleLogFavoriteEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.Id }
     });
@@ -226,7 +269,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: CoreLogErrorModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -251,9 +294,9 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-          this.loading.Start(pName);
+    this.loading.Start(pName);
 
-          this.coreLogErrorService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.coreModuleLogFavoriteService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -291,7 +334,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.coreLogErrorService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.coreModuleLogFavoriteService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -308,7 +351,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.coreLogErrorService.ServiceGetCount(filterStatist1).subscribe(
+    this.coreModuleLogFavoriteService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -323,7 +366,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
 
   }
 
-  onActionbuttonViewUserRow(model: CoreLogErrorModel = this.tableRowSelected): void {
+  onActionbuttonViewUserRow(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -337,7 +380,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/core/user/edit', this.tableRowSelected.LinkUserId]);
   }
 
-  onActionbuttonViewMemberRow(model: CoreLogErrorModel = this.tableRowSelected): void {
+  onActionbuttonViewMemberRow(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -345,10 +388,24 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     if (!this.tableRowSelected.LinkMemberUserId || this.tableRowSelected.LinkMemberUserId === 0) {
-      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات دستگاه نمی باشد');
+      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات عضو نمی باشد');
       return;
     }
     this.router.navigate(['/member/user/edit', this.tableRowSelected.LinkMemberUserId]);
+  }
+
+  onActionbuttonViewSiteRow(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
+
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (!this.tableRowSelected.LinkSiteId || this.tableRowSelected.LinkSiteId === 0) {
+      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات سایت نمی باشد');
+      return;
+    }
+    this.router.navigate(['/core/site/edit', this.tableRowSelected.LinkSiteId]);
   }
 
   onActionbuttonExport(): void {
@@ -358,7 +415,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.coreLogErrorService.ServiceExportFile(model).subscribe(
+    this.coreModuleLogFavoriteService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -378,7 +435,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: CoreLogErrorModel): void {
+  onActionTableRowSelect(row: CoreModuleLogFavoriteModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
