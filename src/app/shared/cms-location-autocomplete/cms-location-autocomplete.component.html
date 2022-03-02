@@ -1,6 +1,7 @@
-<tag-input [(ngModel)]="tagDataModel"  (ngModelChange)="onActionChange()" name="TagModel" [placeholder]="optionPlaceholder" [onTextChangeDebounce]="500"
-  [secondaryPlaceholder]="optionPlaceholder" [onlyFromAutocomplete]="true" [identifyBy]="'id'" [displayBy]="'display'" >
-  <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems" >
+<tag-input [(ngModel)]="tagDataModel" (ngModelChange)="onActionChange()" name="TagModel"
+  [placeholder]="optionPlaceholder" [onTextChangeDebounce]="500" [secondaryPlaceholder]="optionPlaceholder"
+  [onlyFromAutocomplete]="true" [identifyBy]="'id'" [displayBy]="'display'">
+  <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems">
     <ng-template let-item="item" let-index="index">
       {{ item.display }}
     </ng-template>
