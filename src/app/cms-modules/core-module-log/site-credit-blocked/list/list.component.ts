@@ -34,7 +34,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodulelog-report-abuse-list',
+  selector: 'app-coremodulelog-site-credit-blocked-list',
   templateUrl: './list.component.html',
 
 })

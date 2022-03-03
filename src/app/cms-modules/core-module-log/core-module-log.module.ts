@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { TagInputModule } from 'ngx-chips';
-import { CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogReportAbuseEditComponent } from './report-abuse/edit/edit.component';
 import { CoreModuleLogReportAbuseViewComponent } from './report-abuse/view/view.component';
@@ -102,7 +102,12 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
     CoreModuleTagCategoryService,
     CoreModuleSiteCreditService,
     CoreModuleSiteUserCreditService,
-
+    CoreModuleLogFavoriteService,
+    CoreModuleLogLikeService,
+    CoreModuleLogReportAbuseService,
+    CoreModuleLogScoreService,
+    CoreModuleLogSiteCreditBlockedService,
+    CoreModuleLogSiteUserCreditBlockedService,
   ]
 })
 export class CoreModuleLogModule { }

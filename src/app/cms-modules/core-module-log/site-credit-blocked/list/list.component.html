@@ -104,10 +104,8 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonViewSiteRow(row)" *ngIf="row.LinkSiteId > 0">
               <mat-icon>supervisor_account</mat-icon>
-              <span>سایت</span>
+              <span>{{'ACTION.SITE' | translate}}</span>
             </button>
-            
-
           </mat-menu>
 
         </mat-cell>

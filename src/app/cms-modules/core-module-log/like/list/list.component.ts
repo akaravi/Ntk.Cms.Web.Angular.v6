@@ -7,14 +7,12 @@ import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   CoreModuleLogLikeService,
   CoreModuleLogLikeModel,
   DataFieldInfoModel,
-  EnumInfoModel,
   CoreEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -34,7 +32,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodulelog-report-abuse-list',
+  selector: 'app-coremodulelog-like-list',
   templateUrl: './list.component.html',
 
 })
