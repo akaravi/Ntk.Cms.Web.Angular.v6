@@ -32,6 +32,11 @@ const routes: Routes = [
           import('../cms-modules/core-module/coreModule.module').then(m => m.CoreModuleModule)
       },
       {
+        path: 'coremodulelog',
+        loadChildren: () =>
+          import('../cms-modules/core-module-log/core-module-log.module').then(m => m.CoreModuleLogModule)
+      },
+      {
         path: 'coretoken',
         loadChildren: () =>
           import('../cms-modules/core-token/coreToken.module').then(m => m.CoreTokenModule)
