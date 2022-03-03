@@ -1,19 +1,24 @@
-<app-cms-guide-notice [Key]="'estate.proprty.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'estate.proprty.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+</app-cms-guide-notice>
 
 <app-estate-billboard-header *ngIf="this.requestLinkBillboardId?.length>0" [optionId]="this.requestLinkBillboardId">
-      
+
 </app-estate-billboard-header>
-<app-estate-contract-type-header *ngIf="this.requestLinkContractTypeId?.length>0" [optionId]="this.requestLinkContractTypeId">
-      
+<app-estate-contract-type-header *ngIf="this.requestLinkContractTypeId?.length>0"
+  [optionId]="this.requestLinkContractTypeId">
+
 </app-estate-contract-type-header>
-<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0" [optionId]="this.requestLinkCustomerOrderId">
-      
+<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0"
+  [optionId]="this.requestLinkCustomerOrderId">
+
 </app-estate-customer-order-header>
-<app-estate-property-type-landuse-header *ngIf="this.requestLinkPropertyTypeLanduseId?.length>0" [optionId]="this.requestLinkPropertyTypeLanduseId">
-      
+<app-estate-property-type-landuse-header *ngIf="this.requestLinkPropertyTypeLanduseId?.length>0"
+  [optionId]="this.requestLinkPropertyTypeLanduseId">
+
 </app-estate-property-type-landuse-header>
-<app-estate-property-type-usage-header *ngIf="this.requestLinkPropertyTypeUsageId?.length>0" [optionId]="this.requestLinkPropertyTypeUsageId">
-      
+<app-estate-property-type-usage-header *ngIf="this.requestLinkPropertyTypeUsageId?.length>0"
+  [optionId]="this.requestLinkPropertyTypeUsageId">
+
 </app-estate-property-type-usage-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
   <ng-container cms-tree>
@@ -64,7 +69,8 @@
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-
+    <button (click)="manageAllRows(true)" class="btn btn-outline-success BTN">Expand All</button>
+    <button (click)="manageAllRows(false)" class="btn btn-outline-success BTN">Collpase All</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -78,14 +84,14 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+      multiTemplateDataRows>
       <!-- LinkMainImageIdSrc Column -->
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
-
+          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
         </mat-cell>
       </ng-container>
       <!-- ID Column -->
@@ -117,17 +123,14 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.IsSoldIt | boolclass"></i></mat-cell>
       </ng-container>
-         <!-- ViewConfigHiddenInList Column -->
-         <ng-container matColumnDef="ViewConfigHiddenInList">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewConfigHiddenInList']?.FieldTitle}}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row"> <i [ngClass]="row.ViewConfigHiddenInList | boolclass"></i></mat-cell>
-        </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+      <!-- ViewConfigHiddenInList Column -->
+      <ng-container matColumnDef="ViewConfigHiddenInList">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewConfigHiddenInList']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.ViewConfigHiddenInList | boolclass"></i></mat-cell>
       </ng-container>
+      <!-- Title Column -->
+
 
       <!-- ViewCount Column -->
       <ng-container matColumnDef="ViewCount">
@@ -139,13 +142,15 @@
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.CreatedDate) }}
+        </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"  [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.UpdatedDate) }}
+        </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -177,15 +182,49 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <button mat-icon-button>
-          <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
-        </button>
+            <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
-
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{row.Id}}</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.Title}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.LinkLocationIdParentTitle}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.LinkLocationIdTitle}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.Address}} </td>
+              </tr>
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
       </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
+      </mat-row>
+
     </mat-table>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

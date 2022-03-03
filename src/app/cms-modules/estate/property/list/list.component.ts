@@ -35,6 +35,10 @@ import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-di
 import { TokenHelper } from "src/app/core/helpers/tokenHelper";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
 import { TranslateService } from '@ngx-translate/core';
+
+
+
+
 @Component({
   selector: "app-estate-property-list",
   templateUrl: "./list.component.html",
@@ -157,7 +161,9 @@ export class EstatePropertyListComponent
     "IsSoldIt",
     "ViewConfigHiddenInList",
     "LinkSiteId",
-    "Title",
+    // "Title",
+    // "LinkLocationIdParentTitle",
+    // "LinkLocationIdTitle",
     "ViewCount",
     "CreatedDate",
     "UpdatedDate",
@@ -200,7 +206,7 @@ export class EstatePropertyListComponent
     this.tableRowSelected = new EstatePropertyModel();
 
     const pName = this.constructor.name + "main";
-    this.loading.Start(pName,'دریافت  لیست اطلاعات');
+    this.loading.Start(pName, 'دریافت  لیست اطلاعات');
 
     this.filteModelProperty.AccessLoad = true;
     /*filter CLone*/
@@ -474,7 +480,7 @@ export class EstatePropertyListComponent
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + "main";
-          this.loading.Start(pName,'در حال حذف اطلاعات');
+          this.loading.Start(pName, 'در حال حذف اطلاعات');
 
           this.estatePropertyService
             .ServiceDelete(this.tableRowSelected.Id)
@@ -566,6 +572,7 @@ export class EstatePropertyListComponent
   }
 
   onActionbuttonReload(): void {
+    this.optionloadComponent = true;
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
@@ -574,6 +581,10 @@ export class EstatePropertyListComponent
   }
   onActionTableRowSelect(row: EstatePropertyModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
   }
   onActionBackToParent(): void {
     this.router.navigate(["/ticketing/departemen/"]);
@@ -627,5 +638,14 @@ export class EstatePropertyListComponent
           this.loading.Stop(pName);
         }
       );
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

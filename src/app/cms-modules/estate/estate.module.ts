@@ -124,6 +124,7 @@ import { EstateContractTypeHeaderComponent } from './contract-type/header/header
 import { EstateCustomerOrderHeaderComponent } from './customer-order/header/header.component';
 import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
 import { EstatePropertyActionComponent } from './property/action/action.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [

@@ -93,6 +93,8 @@ export class EstateBillboardEditComponent implements OnInit {
         this.dataModel = next.Item;
         if (next.IsSuccess) {
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          if (this.dataModel.LinkPropertyIds && this.dataModel.LinkPropertyIds.length > 0)
+            this.LinkPropertyIdsInUse = true;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
@@ -166,8 +168,18 @@ export class EstateBillboardEditComponent implements OnInit {
   }
   onActionSelectorProperty(model: string[] | null): void {
     this.dataModel.LinkPropertyIds = model;
+    if (this.dataModel.LinkPropertyIds && this.dataModel.LinkPropertyIds.length > 0) {
+      this.LinkPropertyIdsInUse = true;
+      this.dataModel.LinkPropertyTypeUsageIds = null;
+      this.dataModel.LinkContractTypeIds = null;
+      this.dataModel.LinkPropertyTypeLanduseIds = null;
+      this.dataModel.LinkLocationIds = null;
+    }
+    else {
+      this.LinkPropertyIdsInUse = false;
+    }
   }
-
+  LinkPropertyIdsInUse = false;
 
 
   onFormSubmit(): void {
@@ -188,5 +200,5 @@ export class EstateBillboardEditComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
-  
+
 }

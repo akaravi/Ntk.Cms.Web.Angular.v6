@@ -22,6 +22,7 @@ import { SharedModule } from '../shared.module';
 import { CoreAuthService, CoreConfigurationService, CoreCpMainMenuService, CoreModuleService } from 'ntk-cms-api';
 import { TranslationModule } from '../core/i18n/translation.module';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     TopbarComponent,
     AsideDynamicComponent,
     HeaderMenuDynamicComponent,
+    TestComponent,
   ],
   imports: [
     CommonModule,

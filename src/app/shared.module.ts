@@ -96,6 +96,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-site-credit-view.component';
 import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -114,6 +115,7 @@ import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-vi
         InlineSVGModule,
         PerfectScrollbarModule,
         NgbNavModule,
+
     ],
     declarations: [
         // common and shared components/directives/pipes between more than one module and components will be listed here.

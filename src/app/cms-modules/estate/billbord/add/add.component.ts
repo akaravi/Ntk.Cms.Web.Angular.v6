@@ -200,8 +200,18 @@ export class EstateBillboardAddComponent implements OnInit {
   }
   onActionSelectorProperty(model: string[] | null): void {
     this.dataModel.LinkPropertyIds = model;
+    if (this.dataModel.LinkPropertyIds && this.dataModel.LinkPropertyIds.length > 0) {
+      this.LinkPropertyIdsInUse = true;
+      this.dataModel.LinkPropertyTypeUsageIds = null;
+      this.dataModel.LinkContractTypeIds = null;
+      this.dataModel.LinkPropertyTypeLanduseIds = null;
+      this.dataModel.LinkLocationIds = null;
+    }
+    else {
+      this.LinkPropertyIdsInUse = false;
+    }
   }
-
+  LinkPropertyIdsInUse = false;
 
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TestComponent } from './test/test.component';
 import { LayoutComponent } from './_layout/layout.component';
 
 const routes: Routes = [
   {
+    path: 'test',
+    component:TestComponent
+  },
+  {
     path: '',
     component: LayoutComponent,
     children: [
+
       {
         path: 'dashboard',
         loadChildren: () =>
