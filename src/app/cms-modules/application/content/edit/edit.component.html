@@ -379,6 +379,21 @@
             <strong class="info-field-text">{{fieldsInfo['AboutUsLinkRss']?.FieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
+        <!-- AboutUsPrivacyPolicyHtmlBody Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.AboutUsPrivacyPolicyHtmlBody" [disabled]="!fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessEditField"
+            name="dataModel.AboutUsPrivacyPolicyHtmlBody" #AboutUsPrivacyPolicyHtmlBody type="text" placeholder="متن حریم خصوصی" minlength="0"
+            maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.AboutUsPrivacyPolicyHtmlBody && fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.AboutUsPrivacyPolicyHtmlBody = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ AboutUsPrivacyPolicyHtmlBody.value.length }} / 100</mat-hint>
+        </mat-form-field>
         <!-- AboutUsLinkImageIdSrc Field -->
         <div class="mb-3">
           <img *ngIf="dataModel?.AboutUsLinkImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"

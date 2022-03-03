@@ -22,5 +22,6 @@
     "cSpell.words": [
         "coremodule",
         "Toastr"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }

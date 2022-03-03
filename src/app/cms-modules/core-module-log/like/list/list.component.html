@@ -131,13 +131,14 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+
             <button mat-menu-item (click)="onActionbuttonViewUserRow(row)" *ngIf="row.LinkUserId > 0">
               <mat-icon>supervisor_account</mat-icon>
-              <span>کاربر</span>
+              <span>{{'ACTION.USER' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonViewMemberRow(row)" *ngIf="row.LinkMemberUserId > 0">
               <mat-icon>assignment_ind</mat-icon>
-              <span>عضو</span>
+              <span>{{'ACTION.MEMBER' | translate}}</span>
             </button>
 
           </mat-menu>

@@ -26,7 +26,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-coremodulelog-report-abuse-edit',
+  selector: 'app-coremodulelog-site-user-credit-blocked-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

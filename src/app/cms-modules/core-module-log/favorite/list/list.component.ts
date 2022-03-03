@@ -7,14 +7,12 @@ import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   CoreModuleLogFavoriteService,
   CoreModuleLogFavoriteModel,
   DataFieldInfoModel,
-  EnumInfoModel,
   CoreEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -34,7 +32,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodulelog-report-abuse-list',
+  selector: 'app-coremodulelog-favorite-list',
   templateUrl: './list.component.html',
 
 })
@@ -118,7 +116,7 @@ export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  
+
 
 
 
@@ -294,7 +292,7 @@ export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
           this.coreModuleLogFavoriteService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
@@ -323,7 +321,22 @@ export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
 
   }
 
+  onActionbuttonViewContent(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
 
+    if (!model || !model.Id || model.Id.length === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    const url = '/'+ model.ModuleName + '/' + model.ModuleEntityName.substring(model.ModuleName.length) + '/edit/' + model.ModuleEntityId;
+    if (model.ModuleEntityName.indexOf(model.ModuleName) >= 0) {
+      this.router.navigate([url.toLowerCase()]);
+    }
+    else {
+      this.router.navigate([url.toLowerCase()]);
+    }
+  }
 
 
   onActionbuttonStatist(): void {
