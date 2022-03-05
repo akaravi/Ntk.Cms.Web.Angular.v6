@@ -69,8 +69,8 @@
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="manageAllRows(true)" class="btn btn-outline-success BTN">Expand All</button>
-    <button (click)="manageAllRows(false)" class="btn btn-outline-success BTN">Collpase All</button>
+    <button (click)="manageAllRows(true)" class="btn btn-outline-success BTN float-left">{{'ACTION.EXPAND_ALL' | translate}}</button>
+    <button (click)="manageAllRows(false)" class="btn btn-outline-success BTN float-left">{{'ACTION.COLLPASE_ALL' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>

@@ -7,14 +7,12 @@ import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
   CoreModuleLogReportAbuseService,
   CoreModuleLogReportAbuseModel,
   DataFieldInfoModel,
-  EnumInfoModel,
   CoreEnumService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';

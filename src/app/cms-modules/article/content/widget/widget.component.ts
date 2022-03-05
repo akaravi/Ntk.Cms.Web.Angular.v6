@@ -40,7 +40,7 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
     this.loading.Start(this.constructor.name + 'Active');
     this.loading.Start(this.constructor.name + 'All');
     this.modelData.set('Active', 0);
-    this.modelData.set('All', 0);
+    this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {

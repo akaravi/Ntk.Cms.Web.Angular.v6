@@ -96,6 +96,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     );
   }
   onActionSelect(model: CoreCpMainMenuModel): void {
+    
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }

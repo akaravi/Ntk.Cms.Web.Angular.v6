@@ -56,7 +56,7 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
     this.loading.Start(this.constructor.name + 'All');
     this.modelData.set('InChecking', 0);
     this.modelData.set('Active', 0);
-    this.modelData.set('All', 0);
+    this.modelData.set('All', 1);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {

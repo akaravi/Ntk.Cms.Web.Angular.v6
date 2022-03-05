@@ -20,6 +20,7 @@ import {
   BiographyContentService,
   BlogContentService,
   ChartContentService,
+  CoreModuleLogReportAbuseService,
   CoreSiteService,
   CoreUserClaimContentService,
   CoreUserClaimTypeService,
@@ -48,6 +49,7 @@ import { EstatePropertyWidget2Component } from 'src/app/cms-modules/estate/prope
 import { EstatePropertyWidgetAddComponent } from 'src/app/cms-modules/estate/property/widget/widget-add.component';
 import { CoreUserClaimContentWidgetStatusComponent } from 'src/app/cms-modules/core-main/user-claim/content/widget/widget-status.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { CoreModuleLogReportAbuseWidget2Component } from 'src/app/cms-modules/core-module-log/report-abuse/widget/widget2.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     EstatePropertyWidgetComponent,
     EstatePropertyWidget2Component,
     EstatePropertyWidgetAddComponent,
+    CoreModuleLogReportAbuseWidget2Component,
     // ForExport
   ],
   exports: [
@@ -110,7 +113,8 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     CoreSiteService,
     CoreUserService,
     CoreUserClaimContentService,
-    CoreUserClaimTypeService
+    CoreUserClaimTypeService,
+    CoreModuleLogReportAbuseService,
   ]
 })
 export class DashboardModule { }

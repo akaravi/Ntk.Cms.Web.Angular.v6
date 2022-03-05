@@ -53,7 +53,7 @@ export class ArticleContentWidget2Component implements OnInit, OnDestroy {
     this.loading.Start(this.constructor.name + 'Active','دریافت آمار مقاله های فعال');
     this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی مقاله ها');
     this.modelData.set('Active', 0);
-    this.modelData.set('All', 0);
+    this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {

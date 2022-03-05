@@ -215,7 +215,9 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
     );
   }
   onActionSelectorSelect(model: CoreCpMainMenuModel | null): void {
+    
     this.filteModelContent = new FilterModel();
+    this.filteModelContent.SortColumn='ShowInMenuOrder';
     this.categoryModelSelected = model;
     this.DataGetAll();
   }

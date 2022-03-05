@@ -24,6 +24,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-coremodulelog-like-edit',
@@ -41,6 +42,7 @@ export class CoreModuleLogLikeEditComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -127,6 +129,44 @@ export class CoreModuleLogLikeEditComponent implements OnInit, OnDestroy {
     );
   }
 
+  DataEditContent(): void {
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    this.coreModuleLogLikeService.ServiceEdit(this.dataModel).subscribe(
+      (next) => {
+        this.dataModelResult = next;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.cmsToastrService.typeSuccessEdit();
+          this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+        this.formInfo.FormSubmitAllow = true;
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+
+  onFormSubmit(): void {
+    if (!this.formGroup.valid) {
+      return;
+    }
+    this.formInfo.FormSubmitAllow = false;
+    this.DataEditContent();
+  }
 
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

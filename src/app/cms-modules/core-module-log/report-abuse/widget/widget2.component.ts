@@ -1,16 +1,16 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ChartContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { EnumRecordStatus, FilterDataModel, FilterModel, CoreModuleLogReportAbuseService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-chart-content-widget2',
+  selector: 'app-ReportAbuse-widget2',
   templateUrl: './widget2.component.html',
   styleUrls: ['./widget2.component.scss']
 })
-export class ChartContentWidget2Component implements OnInit, OnDestroy {
+export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestroy {
   @Input() cssClass = '';
   @Input() widgetHeight = '200px';
   @Input() baseColor = 'success';
@@ -18,7 +18,7 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
   textInverseCSSClass;
   svgCSSClass;
   constructor(
-    private service: ChartContentService,
+    private service: CoreModuleLogReportAbuseService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     private translate: TranslateService,
@@ -32,12 +32,12 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
   @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Chart');
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Report_Abuse');
     this.widgetInfoModel.description = '';
-    this.widgetInfoModel.link = '/chart/content';
+    this.widgetInfoModel.link = '/coremodulelog/report-abuse';
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Chart');
+      this.widgetInfoModel.title = this.translate.instant('TITLE.Report_Abuse');
       this.onActionStatist();
     });
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
@@ -48,10 +48,11 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active','دریافت آمار چارت های فعال');
-    this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی چارت ها');
-    this.modelData.set('Active', 0);
-    this.modelData.set('All', 1);
+    this.loading.Start(this.constructor.name + 'Pending','دریافت آمار خبرهای فعال');
+    this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی خبر ها');
+    this.modelData.set('Pending', 0);
+    this.modelData.set('All', 0);
+    
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -63,21 +64,23 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
         this.loading.Stop(this.constructor.name + 'All');
       }
     );
+
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
+    fastfilter.Value = EnumRecordStatus.Pending;
     filterStatist1.Filters.push(fastfilter);
-    this.service.ServiceGetCount(filterStatist1).subscribe(
+
+     this.service.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.modelData.set('Active', next.TotalRowCount);
+          this.modelData.set('Pending', next.TotalRowCount);
         }
-        this.loading.Stop(this.constructor.name + 'Active');
+        this.loading.Stop(this.constructor.name + 'Pending');
       }
       ,
       (error) => {
-        this.loading.Stop(this.constructor.name + 'Active');
+        this.loading.Stop(this.constructor.name + 'Pending');
       }
     );
   }
