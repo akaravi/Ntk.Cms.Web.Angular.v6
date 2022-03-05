@@ -42,13 +42,13 @@ export class PublicHelper {
 
   editorConfig: AngularEditorConfig = {
     editable: true,
-    spellcheck: true,
+    spellcheck: false,
     height: 'auto',
-    minHeight: '30',
+    minHeight: '50',
     maxHeight: 'auto',
     width: 'auto',
     minWidth: '0',
-    translate: 'yes',
+    translate: 'no',
     enableToolbar: true,
     showToolbar: true,
     placeholder: 'متن را وارد کنید ...',
@@ -81,6 +81,54 @@ export class PublicHelper {
     toolbarHiddenButtons: [
       ['bold', 'italic'],
       ['fontSize']
+    ]
+
+  };
+  editorConfigFull: AngularEditorConfig = {
+    editable: true,
+    spellcheck: false,
+    height: 'auto',
+    minHeight: '50',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'no',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'متن را وارد کنید ...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' }
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    sanitize: false,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'redo',      
+      ],
+      [
+        'removeFormat',
+      ]
     ]
 
   };
