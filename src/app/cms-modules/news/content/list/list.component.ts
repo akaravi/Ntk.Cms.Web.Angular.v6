@@ -25,7 +25,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NewsContentDeleteComponent } from '../delete/delete.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 @Component({
@@ -35,7 +35,7 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 export class NewsContentListComponent implements OnInit, OnDestroy {
   constructor(
     public publicHelper: PublicHelper,
-    private contentService: NewsContentService,
+    public contentService: NewsContentService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -111,10 +111,9 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
-      let selectId=0;
-      if(this.categoryModelSelected?.Id>0)
-      {
-        selectId=this.categoryModelSelected.Id;
+      let selectId = 0;
+      if (this.categoryModelSelected?.Id > 0) {
+        selectId = this.categoryModelSelected.Id;
       }
       const pName = this.constructor.name + '.ServiceGetAllWithHierarchyCategoryId';
       this.loading.Start(pName, 'دریافت  لیست اطلاعات');
@@ -223,6 +222,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.CurrentPageNumber = 0;
     this.DataGetAll();
   }
+  
   onTablePageingData(event?: PageEvent): void {
     this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
     this.filteModelContent.RowPerPage = event.pageSize;

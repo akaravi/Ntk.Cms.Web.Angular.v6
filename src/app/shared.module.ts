@@ -88,13 +88,15 @@ import { CmsQDocComponent } from './shared/cms-qdoc/cms-qdoc.component';
 import { CmsLinkToComponent } from './shared/cms-link-to/cms-link-to.component';
 import { CmsBankpaymentTransactionInfoComponent } from './shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 import { CmsViewComponent } from './shared/cms-view/cms-view.component';
-import { DirDirective } from './core/directive/dir.drection';
+import { DirDirective } from './core/directive/dir.directive';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CmsGuideNoticeComponent } from './shared/cms-guide-notice/cms-guide-notice.component';
 import { CodePreviewComponent } from './shared/code-preview/code-preview.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-site-credit-view.component';
 import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
+import { SelfSaveDirective } from './core/directive/self-save.directive';
+import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-status-self-save.directive';
 
 
 @NgModule({
@@ -189,6 +191,8 @@ import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-vi
         CmsHtmlTreeBodyDirective,
         CmsHtmlTreeFooterDirective,
         MatInputCommifiedDirective,
+        SelfSaveDirective,
+        CmsRecordStatusSelfSaveDirective,
     
     ],
     exports: [
@@ -271,6 +275,8 @@ import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-vi
         CmsHtmlTreeBodyDirective,
         CmsHtmlTreeFooterDirective,
         MatInputCommifiedDirective,
+        SelfSaveDirective,
+        CmsRecordStatusSelfSaveDirective
     ],
     providers: [
         OverlayService,

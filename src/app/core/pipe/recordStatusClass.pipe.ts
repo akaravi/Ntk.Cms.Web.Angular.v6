@@ -8,7 +8,7 @@ import { EnumRecordStatus } from 'ntk-cms-api';
 export class RecordStatusClassPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) { }
 
-  transform(value: EnumRecordStatus): SafeHtml {
+  transform(value: EnumRecordStatus, editable = false): SafeHtml {
     let ret = '';
     switch (value) {
       case 1:
