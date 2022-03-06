@@ -33,7 +33,6 @@ import { ApiTelegramActionSendMessageComponent } from '../../action/send-message
 @Component({
   selector: 'app-apitelegram-log-input-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
   requestLinkBotConfigId = 0;
