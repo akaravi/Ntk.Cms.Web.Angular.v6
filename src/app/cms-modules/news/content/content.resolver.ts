@@ -5,7 +5,7 @@ import {ErrorExceptionResult, FilterModel, NewsContentModel, NewsContentService}
 @Injectable()
 export class ContentResolver implements Resolve<ErrorExceptionResult<NewsContentModel>>{
   filterModelContent = new FilterModel();
-  constructor(private contentService: NewsContentService) { }
+  constructor(public contentService: NewsContentService) { }
   resolve(): Observable<ErrorExceptionResult<NewsContentModel>> {
     return this.contentService.ServiceGetAll(this.filterModelContent);
   }

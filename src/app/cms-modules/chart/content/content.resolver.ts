@@ -5,7 +5,7 @@ import {ErrorExceptionResult, FilterModel, ChartContentModel, ChartContentServic
 @Injectable()
 export class ContentResolver implements Resolve<ErrorExceptionResult<ChartContentModel>>{
   filterModelContent = new FilterModel();
-  constructor(private contentService: ChartContentService) { }
+  constructor(public contentService: ChartContentService) { }
   resolve(): Observable<ErrorExceptionResult<ChartContentModel>> {
     return this.contentService.ServiceGetAll(this.filterModelContent);
   }

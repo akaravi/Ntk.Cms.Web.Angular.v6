@@ -37,7 +37,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
 
   constructor(
     public publicHelper: PublicHelper,
-    private contentService: BlogContentService,
+    public contentService: BlogContentService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private router: Router,

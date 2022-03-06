@@ -35,7 +35,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
 
   constructor(
     public publicHelper: PublicHelper,
-    private linkManagementAccountingService: LinkManagementAccountingService,
+    public contentService: LinkManagementAccountingService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -105,8 +105,8 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.linkManagementAccountingService.setAccessLoad();
-    this.linkManagementAccountingService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.setAccessLoad();
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -244,7 +244,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.linkManagementAccountingService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -261,7 +261,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.linkManagementAccountingService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -282,7 +282,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.linkManagementAccountingService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

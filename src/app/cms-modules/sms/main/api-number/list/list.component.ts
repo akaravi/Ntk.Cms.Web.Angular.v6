@@ -5,11 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   SmsMainApiNumberModel,
   SmsMainApiNumberService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -38,7 +36,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
   requestLinkApiPathId = '';
   constructor(
-    private smsMainApiNumberService: SmsMainApiNumberService,
+    public contentService: SmsMainApiNumberService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
@@ -140,7 +138,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(fastfilter);
     }
     /** filter Category */
-    this.smsMainApiNumberService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -271,7 +269,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsMainApiNumberService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -306,7 +304,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsMainApiNumberService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -323,7 +321,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.smsMainApiNumberService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -387,7 +385,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsMainApiNumberService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

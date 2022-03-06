@@ -47,7 +47,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   requestContentId = 0;
     constructor(
     private commentService: NewsCommentService,
-    private contentService: NewsContentService,
+    public contentService: NewsContentService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,

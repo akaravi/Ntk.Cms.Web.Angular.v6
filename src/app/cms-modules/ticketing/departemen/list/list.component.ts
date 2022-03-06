@@ -31,12 +31,11 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-ticketing-departemen-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   constructor(
-    private ticketingDepartemenService: TicketingDepartemenService,
+    public contentService: TicketingDepartemenService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -115,8 +114,8 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.ticketingDepartemenService.setAccessLoad();
-    this.ticketingDepartemenService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.setAccessLoad();
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {
@@ -300,7 +299,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.ticketingDepartemenService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -317,7 +316,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.ticketingDepartemenService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -338,7 +337,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.ticketingDepartemenService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

@@ -44,7 +44,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
-    private contentService: ArticleContentService,
+    public contentService: ArticleContentService,
     private contentTagService: ArticleContentTagService,
     private contentSimilarService: ArticleContentSimilarService,
     private contentOtherInfoService: ArticleContentOtherInfoService,

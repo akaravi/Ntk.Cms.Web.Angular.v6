@@ -31,11 +31,11 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 @Component({
   selector: 'app-apitelegram-bot-config-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  
 })
 export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
   constructor(
-    private apiTelegramReceivedFileService: ApiTelegramReceivedFileService,
+    public contentService: ApiTelegramReceivedFileService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -128,7 +128,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.apiTelegramReceivedFileService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -253,7 +253,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     //       const pName = this.constructor.name + 'main';
     //       this.loading.Start(pName);
 
-    //       this.apiTelegramReceivedFileService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+    //       this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
     //         (next) => {
     //           if (next.IsSuccess) {
     //             this.cmsToastrService.typeSuccessRemove();
@@ -297,7 +297,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.apiTelegramReceivedFileService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -314,7 +314,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.apiTelegramReceivedFileService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -354,7 +354,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.apiTelegramReceivedFileService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

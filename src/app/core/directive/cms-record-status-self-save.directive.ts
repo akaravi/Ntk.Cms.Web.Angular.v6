@@ -69,7 +69,7 @@ export class CmsRecordStatusSelfSaveDirective {
       (next) => {
         if (next.IsSuccess) {
           this.handleSuccessCase(element);
-          this.cmsToastrService.typeSuccessSetStatus();
+          this.cmsToastrService.typeSuccessSetStatus(next.ErrorMessage);
           this.row.RecordStatus = recordStatus|0;
           this.cdr.markForCheck();
         }

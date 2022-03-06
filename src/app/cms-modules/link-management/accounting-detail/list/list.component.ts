@@ -35,7 +35,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
 
   constructor(
     public publicHelper: PublicHelper,
-    private linkManagementAccountingDetailService: LinkManagementAccountingDetailService,
+    public contentService: LinkManagementAccountingDetailService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -106,8 +106,8 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.linkManagementAccountingDetailService.setAccessLoad();
-    this.linkManagementAccountingDetailService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.setAccessLoad();
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -245,7 +245,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.linkManagementAccountingDetailService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -262,7 +262,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.linkManagementAccountingDetailService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -283,7 +283,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.linkManagementAccountingDetailService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

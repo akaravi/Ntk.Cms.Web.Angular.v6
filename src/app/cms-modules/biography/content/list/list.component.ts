@@ -35,7 +35,7 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 export class BiographyContentListComponent implements OnInit, OnDestroy {
   constructor(
     public publicHelper: PublicHelper,
-    private contentService: BiographyContentService,
+    public contentService: BiographyContentService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,

@@ -29,13 +29,13 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 @Component({
   selector: 'app-linkmanagement-target-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  
 })
 export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
 
   constructor(
     public publicHelper: PublicHelper,
-    private linkManagementTargetService: LinkManagementTargetService,
+    public contentService: LinkManagementTargetService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -112,8 +112,8 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.linkManagementTargetService.setAccessLoad();
-    this.linkManagementTargetService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.setAccessLoad();
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -248,7 +248,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.linkManagementTargetService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -265,7 +265,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.linkManagementTargetService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -286,7 +286,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.linkManagementTargetService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

@@ -39,7 +39,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   constructor(
-    private webDesignerMainMenuService: WebDesignerMainMenuService,
+    public contentService: WebDesignerMainMenuService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -125,7 +125,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.webDesignerMainMenuService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -179,7 +179,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     else {
       model.ActionGo = EnumActionGoStep.GoDown;
     }
-    this.webDesignerMainMenuService.ServiceEditStep(model).subscribe(
+    this.contentService.ServiceEditStep(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           moveItemInArray(this.tableSource.data, previousIndex, event.currentIndex);
@@ -258,9 +258,9 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'webDesignerMainMenuService.ServiceDelete';
+          const pName = this.constructor.name + 'contentService.ServiceDelete';
           this.loading.Start(pName);
-          this.webDesignerMainMenuService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -291,7 +291,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.webDesignerMainMenuService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -307,7 +307,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.webDesignerMainMenuService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -328,7 +328,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.webDesignerMainMenuService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

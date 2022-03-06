@@ -47,7 +47,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
-    private contentService: BlogContentService,
+    public contentService: BlogContentService,
     private contentCategoryService: BlogContentCategoryService,
     private contentTagService: BlogContentTagService,
     private contentSimilarService: BlogContentSimilarService,

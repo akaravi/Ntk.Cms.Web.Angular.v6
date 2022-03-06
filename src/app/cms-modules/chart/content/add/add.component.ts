@@ -45,7 +45,7 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
-    private contentService: ChartContentService,
+    public contentService: ChartContentService,
     private contentSimilarService: ChartContentSimilarService,
     private contentOtherInfoService: ChartContentOtherInfoService,
     private cmsToastrService: CmsToastrService,

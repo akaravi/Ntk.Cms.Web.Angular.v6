@@ -34,7 +34,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
   requestLinkApplicationId = 0;
   requestLinkApplicationMemberId = '';
   constructor(
-    private applicationLogNotificationService: ApplicationLogNotificationService,
+    private contentService: ApplicationLogNotificationService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -127,7 +127,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.applicationLogNotificationService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {
@@ -299,7 +299,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.applicationLogNotificationService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -315,7 +315,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.applicationLogNotificationService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -335,7 +335,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.applicationLogNotificationService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

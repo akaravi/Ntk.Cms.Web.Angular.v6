@@ -47,7 +47,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
-    private contentService: ChartContentService,
+    public contentService: ChartContentService,
     private contentTagService: ChartContentTagService,
     private contentSimilarService: ChartContentSimilarService,
     private contentOtherInfoService: ChartContentOtherInfoService,

@@ -43,7 +43,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ChartCommentListComponent implements OnInit, OnDestroy {
   constructor(
     private commentService: ChartCommentService,
-    private contentService: ChartContentService,
+    public contentService: ChartContentService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,

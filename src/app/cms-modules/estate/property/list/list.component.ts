@@ -53,7 +53,7 @@ export class EstatePropertyListComponent
   requestLinkCustomerOrderId = "";
   requestInChecking = false;
   constructor(
-    private estatePropertyService: EstatePropertyService,
+    public contentService: EstatePropertyService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -255,7 +255,7 @@ export class EstatePropertyListComponent
     }
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
-      this.estatePropertyService
+      this.contentService
         .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
         .subscribe(
           (next) => {
@@ -283,7 +283,7 @@ export class EstatePropertyListComponent
       this.requestLinkCustomerOrderId.length > 0
     ) {
       // ** */
-      this.estatePropertyService
+      this.contentService
         .ServiceGetAllWithCustomerOrderId(
           this.requestLinkCustomerOrderId,
           filterModel
@@ -311,7 +311,7 @@ export class EstatePropertyListComponent
       // ** */
     } else {
       // ** */
-      this.estatePropertyService.ServiceGetAllEditor(filterModel).subscribe(
+      this.contentService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           if (next.IsSuccess) {
@@ -482,7 +482,7 @@ export class EstatePropertyListComponent
           const pName = this.constructor.name + "main";
           this.loading.Start(pName, 'در حال حذف اطلاعات');
 
-          this.estatePropertyService
+          this.contentService
             .ServiceDelete(this.tableRowSelected.Id)
             .subscribe(
               (next) => {
@@ -513,7 +513,7 @@ export class EstatePropertyListComponent
     const statist = new Map<string, number>();
     statist.set("Active", 0);
     statist.set("All", 0);
-    this.estatePropertyService
+    this.contentService
       .ServiceGetCount(this.filteModelProperty)
       .subscribe(
         (next) => {
@@ -532,7 +532,7 @@ export class EstatePropertyListComponent
     fastfilter.PropertyName = "RecordStatus";
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.estatePropertyService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set("Active", next.TotalRowCount);
@@ -558,7 +558,7 @@ export class EstatePropertyListComponent
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set("Download", "loading ... ");
-    this.estatePropertyService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set("Download", next.LinkFile);
@@ -608,7 +608,7 @@ export class EstatePropertyListComponent
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات ملک");
-    this.estatePropertyService
+    this.contentService
       .ServiceGetOneById(this.tableRowSelected.Id)
       .subscribe(
         (next) => {

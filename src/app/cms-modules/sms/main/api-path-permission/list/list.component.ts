@@ -31,13 +31,12 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-sms-apipathpermission-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy {
   requestLinkApiPathId = '';
   constructor(
-    private smsMainApiPathPermissionService: SmsMainApiPathPermissionService,
+    public contentService: SmsMainApiPathPermissionService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
@@ -133,7 +132,7 @@ export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy 
       filterModel.Filters.push(fastfilter);
     }
     /** filter Category */
-    this.smsMainApiPathPermissionService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -263,7 +262,7 @@ export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy 
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsMainApiPathPermissionService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -298,7 +297,7 @@ export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy 
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsMainApiPathPermissionService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -315,7 +314,7 @@ export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy 
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.smsMainApiPathPermissionService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -358,7 +357,7 @@ export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy 
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsMainApiPathPermissionService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

@@ -32,13 +32,12 @@ import { SmsMainCustomerCreditAddComponent } from '../add/add.component';
 import { SmsMainCustomerCreditEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-sms-customercredit-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
   requestLinkApiPathId = '';
   constructor(
-    private SmsMainCustomerCreditService: SmsMainCustomerCreditService,
+    public contentService: SmsMainCustomerCreditService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
@@ -125,7 +124,7 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(fastfilter);
     }
     /*filter CLone*/
-    this.SmsMainCustomerCreditService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -255,7 +254,7 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.SmsMainCustomerCreditService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -290,7 +289,7 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.SmsMainCustomerCreditService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -307,7 +306,7 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.SmsMainCustomerCreditService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -329,7 +328,7 @@ export class SmsMainCustomerCreditListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.SmsMainCustomerCreditService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

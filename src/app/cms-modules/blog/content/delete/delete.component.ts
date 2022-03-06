@@ -22,7 +22,7 @@ export class BlogContentDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<BlogContentDeleteComponent>,
     private publicHelper: PublicHelper,
-    private contentService: BlogContentService,
+    public contentService: BlogContentService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {

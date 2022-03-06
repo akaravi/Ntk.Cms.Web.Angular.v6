@@ -4,11 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   WebDesignerMainPageDependencyModel,
   WebDesignerMainPageDependencyService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -42,7 +40,7 @@ import { environment } from 'src/environments/environment';
 export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDestroy {
   requestLinkModuleId = 0;
   constructor(
-    private webDesignerMainPageDependencyService: WebDesignerMainPageDependencyService,
+    public contentService: WebDesignerMainPageDependencyService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -51,7 +49,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     private router: Router,
     private tokenHelper: TokenHelper,
     public http: HttpClient,
-    private coreAuthService: CoreAuthService,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
     public dialog: MatDialog) {
@@ -136,7 +133,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.webDesignerMainPageDependencyService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -234,12 +231,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   }
   onActionbuttonNewRowAutoDependency(): any {
     return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
-      headers: this.webDesignerMainPageDependencyService.getHeaders(),
+      headers: this.contentService.getHeaders(),
     })
       .pipe(
         map((ret: any) => {
           // tslint:disable-next-line: max-line-length
-          const retOut = this.webDesignerMainPageDependencyService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
+          const retOut = this.contentService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
           if (retOut.IsSuccess) {
             this.cmsToastrService.typeSuccessAdd();
             this.DataGetAll();
@@ -296,9 +293,9 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'webDesignerMainPageDependencyService.ServiceDelete';
+          const pName = this.constructor.name + 'contentService.ServiceDelete';
           this.loading.Start(pName);
-          this.webDesignerMainPageDependencyService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -344,7 +341,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.webDesignerMainPageDependencyService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -360,7 +357,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.webDesignerMainPageDependencyService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -380,7 +377,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.webDesignerMainPageDependencyService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

@@ -35,13 +35,13 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-user-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  
 })
 export class CoreUserListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private coreUserService: CoreUserService,
-    private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    public contentService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -304,7 +304,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Username + ' ) ';
-    this.cmsConfirmationDialogService.confirm(title, message)
+    this.contentService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';

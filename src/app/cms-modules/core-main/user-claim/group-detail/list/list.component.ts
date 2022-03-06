@@ -35,13 +35,12 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-userclaimgroupdetail-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy {
   requestLinkUserClaimGroupId = 0;
   requestLinkUserClaimTypeId = 0;
   constructor(
-    private coreUserClaimGroupDetailService: CoreUserClaimGroupDetailService,
+    public contentService: CoreUserClaimGroupDetailService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -163,7 +162,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
       fastfilter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(fastfilter);
     }
-    this.coreUserClaimGroupDetailService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -298,7 +297,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
           const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-          this.coreUserClaimGroupDetailService.ServiceDeleteEntity(this.tableRowSelected).subscribe(
+          this.contentService.ServiceDeleteEntity(this.tableRowSelected).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -334,7 +333,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.coreUserClaimGroupDetailService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -351,7 +350,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.coreUserClaimGroupDetailService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -373,7 +372,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.coreUserClaimGroupDetailService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

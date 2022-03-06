@@ -28,8 +28,7 @@ import { LinkManagementTargetBillboardLogEditComponent } from '../edit/edit.comp
 
 @Component({
   selector: 'app-linkmanagement-target-billboard-log-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  templateUrl: './list.component.html'
 })
 export class LinkManagementTargetBillboardLogListComponent implements OnInit, OnDestroy {
   requestLinkManagementBillboardId = 0;
@@ -37,7 +36,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   requestKey = '';
   constructor(
     public publicHelper: PublicHelper,
-    private linkManagementTargetBillboardLogService: LinkManagementTargetBillboardLogService,
+    public contentService: LinkManagementTargetBillboardLogService,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -137,9 +136,9 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.linkManagementTargetBillboardLogService.setAccessLoad();
+    this.contentService.setAccessLoad();
     if (this.requestKey && this.requestKey.length > 0) {
-      this.linkManagementTargetBillboardLogService.ServiceGetAllByKey(this.requestKey, filterModel).subscribe(
+      this.contentService.ServiceGetAllByKey(this.requestKey, filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -159,7 +158,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
         }
       );
     } else {
-      this.linkManagementTargetBillboardLogService.ServiceGetAllEditor(filterModel).subscribe(
+      this.contentService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -285,7 +284,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.linkManagementTargetBillboardLogService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -302,7 +301,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.linkManagementTargetBillboardLogService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -323,7 +322,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.linkManagementTargetBillboardLogService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

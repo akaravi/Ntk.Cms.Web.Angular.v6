@@ -43,7 +43,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
-    private contentService: NewsContentService,
+    public contentService: NewsContentService,
     private contentSimilarService: NewsContentSimilarService,
     private contentOtherInfoService: NewsContentOtherInfoService,
     private cmsToastrService: CmsToastrService,

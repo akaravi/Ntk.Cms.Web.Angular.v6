@@ -39,13 +39,12 @@ import { CmsSiteCreditViewComponent } from 'src/app/shared/cms-site-credit-view/
 @Component({
   selector: 'app-coremodule-site-user-credit-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
 })
 export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
 
   constructor(
     public publicHelper: PublicHelper,
-    private coreSiteCreditService: CoreModuleSiteCreditService,
+    public contentService: CoreModuleSiteCreditService,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
@@ -131,7 +130,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.coreSiteCreditService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -234,7 +233,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'ServiceDelete';
           this.loading.Start(pName);
 
-          this.coreSiteCreditService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -267,7 +266,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.coreSiteCreditService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -284,7 +283,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.coreSiteCreditService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -305,7 +304,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.coreSiteCreditService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

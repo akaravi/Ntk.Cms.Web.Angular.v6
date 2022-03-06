@@ -33,12 +33,12 @@ import { ApiTelegramActionSendMessageComponent } from '../../action/send-message
 @Component({
   selector: 'app-apitelegram-bot-config-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  
 })
 export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
   requestLinkBotConfigId = 0;
   constructor(
-    private apiTelegramLogOutputService: ApiTelegramLogOutputService,
+    private contentService: ApiTelegramLogOutputService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
@@ -138,7 +138,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.apiTelegramLogOutputService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -263,7 +263,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     //       const pName = this.constructor.name + 'main';
     //       this.loading.Start(pName);
 
-    //       this.apiTelegramLogOutputService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+    //       this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
     //         (next) => {
     //           if (next.IsSuccess) {
     //             this.cmsToastrService.typeSuccessRemove();
@@ -307,7 +307,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.apiTelegramLogOutputService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -324,7 +324,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.apiTelegramLogOutputService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -366,7 +366,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.apiTelegramLogOutputService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -406,7 +406,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
 
     // const pName = this.constructor.name + "ServiceGetOneById";
     // this.loading.Start(pName, "دریافت اطلاعات ملک");
-    // this.apiTelegramLogOutputService      .ServiceGetOneById(this.tableRowSelected.Id)
+    // this.contentService      .ServiceGetOneById(this.tableRowSelected.Id)
     //   .subscribe(
     //     (next) => {
     //       if (next.IsSuccess) {

@@ -33,15 +33,14 @@ import { CmsViewComponent } from 'src/app/shared/cms-view/cms-view.component';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-sms-log-inbox-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkPrivateConfigId = '';
   requestLinkApiNumberId='';
   constructor(
-    private smsLogInBoxService: SmsLogInBoxService,
+    public contentService: SmsLogInBoxService,
     private smsMainApiPathService: SmsMainApiPathService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
@@ -198,7 +197,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(fastfilter);
     }
     /** filter Category */
-    this.smsLogInBoxService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -303,7 +302,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsLogInBoxService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -375,7 +374,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsLogInBoxService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -392,7 +391,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.smsLogInBoxService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -509,7 +508,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsLogInBoxService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

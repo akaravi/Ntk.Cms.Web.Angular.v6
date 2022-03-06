@@ -35,22 +35,20 @@ import { SmsMainApiPathSendTestComponent } from '../sendTest/sendTest.component'
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-sms-apipath-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkCompanyId = '';
   requestLinkPublicConfigId = '';
   constructor(
-    private smsMainApiPathService: SmsMainApiPathService,
+    public contentService: SmsMainApiPathService,
     private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
     private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    // private coreCurrencyService: CoreCurrencyService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -194,7 +192,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(fastfilter);
     }
     /** filter Category */
-    this.smsMainApiPathService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -327,7 +325,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsMainApiPathService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -369,7 +367,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsMainApiPathService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -386,7 +384,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.smsMainApiPathService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -503,7 +501,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsMainApiPathService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

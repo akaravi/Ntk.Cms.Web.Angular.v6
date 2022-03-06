@@ -22,7 +22,7 @@ export class ChartContentDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ChartContentDeleteComponent>,
     private publicHelper: PublicHelper,
-    private contentService: ChartContentService,
+    public contentService: ChartContentService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {

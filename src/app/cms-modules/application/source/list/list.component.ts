@@ -33,7 +33,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   constructor(
-    private applicationSourceService: ApplicationSourceService,
+    public contentService: ApplicationSourceService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -116,7 +116,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.applicationSourceService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -236,7 +236,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.applicationSourceService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -287,7 +287,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.applicationSourceService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -304,7 +304,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.applicationSourceService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -325,7 +325,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.applicationSourceService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -349,7 +349,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
 
-    this.applicationSourceService.ServiceBuildApp(this.tableRowSelected.Id).subscribe(
+    this.contentService.ServiceBuildApp(this.tableRowSelected.Id).subscribe(
       (next) => {
 
         if (next.IsSuccess) {

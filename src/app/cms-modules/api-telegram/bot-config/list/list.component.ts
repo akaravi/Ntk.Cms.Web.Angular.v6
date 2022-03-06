@@ -33,11 +33,10 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-apitelegram-bot-config-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   constructor(
-    private apiTelegramBotConfigService: ApiTelegramBotConfigService,
+    public contentService: ApiTelegramBotConfigService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -121,7 +120,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.apiTelegramBotConfigService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -233,7 +232,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.apiTelegramBotConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -274,7 +273,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.apiTelegramBotConfigService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -290,7 +289,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.apiTelegramBotConfigService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -351,7 +350,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
     const pName = this.constructor.name + 'ServiceGetUpdatesAsync';
 
-    this.apiTelegramBotConfigService.ServiceGetUpdatesAsync(model.Id).subscribe(
+    this.contentService.ServiceGetUpdatesAsync(model.Id).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAdd();
@@ -375,7 +374,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
     const pName = this.constructor.name + 'ServiceGetMeAsync';
 
-    this.apiTelegramBotConfigService.ServiceGetMeAsync(model.Id).subscribe(
+    this.contentService.ServiceGetMeAsync(model.Id).subscribe(
       (next) => {
         if (next.IsSuccess) {
           //open popup
@@ -410,7 +409,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     const pName = this.constructor.name + 'ServiceGetUpdatesAsyncLast';
-    this.apiTelegramBotConfigService.ServiceGetUpdatesAsyncLast(model.Id).subscribe(
+    this.contentService.ServiceGetUpdatesAsyncLast(model.Id).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAdd();
@@ -427,7 +426,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonSetAllWebhookUpdate(): void {
     const pName = this.constructor.name + 'ServiceSetAllWebhookUpdate';
-    this.apiTelegramBotConfigService.ServiceSetAllWebhookUpdate().subscribe(
+    this.contentService.ServiceSetAllWebhookUpdate().subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAdd();
@@ -449,7 +448,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.apiTelegramBotConfigService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -487,7 +486,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     }
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات ملک");
-    this.apiTelegramBotConfigService.ServiceGetOneById(this.tableRowSelected.Id)
+    this.contentService.ServiceGetOneById(this.tableRowSelected.Id)
       .subscribe(
         (next) => {
           if (next.IsSuccess) {

@@ -39,7 +39,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
   constructor(
-    private coreCpMainMenuService: CoreCpMainMenuService,
+    public contentService: CoreCpMainMenuService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -138,7 +138,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.coreCpMainMenuService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -201,7 +201,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
     else {
       model.ActionGo = EnumActionGoStep.GoDown;
     }
-    this.coreCpMainMenuService.ServiceEditStep(model).subscribe(
+    this.contentService.ServiceEditStep(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           moveItemInArray(this.tableSource.data, previousIndex, event.currentIndex);
@@ -290,7 +290,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-          this.coreCpMainMenuService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -325,7 +325,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.coreCpMainMenuService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -342,7 +342,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.coreCpMainMenuService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -363,7 +363,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.coreCpMainMenuService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

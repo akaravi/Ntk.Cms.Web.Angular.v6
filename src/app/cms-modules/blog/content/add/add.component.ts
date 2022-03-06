@@ -45,7 +45,7 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
-    private contentService: BlogContentService,
+    public contentService: BlogContentService,
     private contentSimilarService: BlogContentSimilarService,
     private contentOtherInfoService: BlogContentOtherInfoService,
     private cmsToastrService: CmsToastrService,

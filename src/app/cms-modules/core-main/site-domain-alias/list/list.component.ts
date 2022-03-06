@@ -34,12 +34,11 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-site-domainalias-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
 })
 export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
   requestId = 0;
   constructor(
-    private coreSiteDomainAliasService: CoreSiteDomainAliasService,
+    public contentService: CoreSiteDomainAliasService,
     private coreSiteService: CoreSiteService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -133,7 +132,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreSiteDomainAliasService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -268,9 +267,9 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
-          this.coreSiteDomainAliasService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();

@@ -32,13 +32,12 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-sms-api-number-permission-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestroy {
   requestLinkApiNumberId = '';
   constructor(
-    private smsMainApiNumberPermissionService: SmsMainApiNumberPermissionService,
+    public contentService: SmsMainApiNumberPermissionService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
@@ -126,7 +125,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.smsMainApiNumberPermissionService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -249,7 +248,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsMainApiNumberPermissionService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -284,7 +283,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsMainApiNumberPermissionService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -301,7 +300,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.smsMainApiNumberPermissionService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -344,7 +343,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsMainApiNumberPermissionService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

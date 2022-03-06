@@ -37,7 +37,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
 
   constructor(
     public publicHelper: PublicHelper,
-    private contentService: ChartContentService,
+    public contentService: ChartContentService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,

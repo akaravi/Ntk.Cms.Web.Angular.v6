@@ -46,7 +46,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
-    private contentService: NewsContentService,
+    public contentService: NewsContentService,
     private contentTagService: NewsContentTagService,
     private contentSimilarService: NewsContentSimilarService,
     private contentOtherInfoService: NewsContentOtherInfoService,

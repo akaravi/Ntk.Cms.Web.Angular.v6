@@ -38,7 +38,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   requestLinkSourceId = 0;
   requestLinkThemeConfigId = 0;
   constructor(
-    private applicationAppService: ApplicationAppService,
+    public contentService: ApplicationAppService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -119,7 +119,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationAppModel();
-    const pName = this.constructor.name + 'applicationAppService.ServiceGetAll';
+    const pName = this.constructor.name + 'contentService.ServiceGetAll';
     this.loading.Start(pName);
     this.filteModelContent.AccessLoad = true;
     const filter = new FilterDataModel();
@@ -131,7 +131,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.applicationAppService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -265,10 +265,10 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'applicationAppService.ServiceDelete';
+          const pName = this.constructor.name + 'contentService.ServiceDelete';
           this.loading.Start(pName);
 
-          this.applicationAppService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -300,7 +300,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.applicationAppService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -316,7 +316,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.applicationAppService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -337,7 +337,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.applicationAppService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
@@ -406,9 +406,9 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = mode;
-    const pName = this.constructor.name + 'applicationAppService.ServiceBuild';
+    const pName = this.constructor.name + 'contentService.ServiceBuild';
     this.loading.Start(pName);
-    this.applicationAppService.ServiceBuild(this.tableRowSelected.Id).subscribe(
+    this.contentService.ServiceBuild(this.tableRowSelected.Id).subscribe(
       (next) => {
         this.loading.Stop(pName);
         if (next.IsSuccess) {

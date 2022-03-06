@@ -42,7 +42,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class BiographyCommentListComponent implements OnInit, OnDestroy {
   constructor(
-    private biographyCommentService: BiographyCommentService,
+    public contentService: BiographyCommentService,
     private biographyContentService: BiographyContentService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -139,7 +139,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.Filters.push(filter);
     }
-    this.biographyCommentService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {
@@ -207,7 +207,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
   //     comment: this.comment,
   //     author: this.author
   //   };
-  //   this.biographyCommentService.ServiceAdd(model).subscribe((res) => {
+  //   this.contentService.ServiceAdd(model).subscribe((res) => {
   //   });
   // }
   // onActionTableSelect(row: any): void {
@@ -219,7 +219,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
   //     comment: element.Comment,
   //     author: element.Writer
   //   };
-  //   this.biographyCommentService.ServiceEdit(model).subscribe();
+  //   this.contentService.ServiceEdit(model).subscribe();
   // }
   onActionbuttonNewRow(): void {
     if (
@@ -295,7 +295,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-          this.biographyCommentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -326,7 +326,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.biographyCommentService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -342,7 +342,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.biographyCommentService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -366,7 +366,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.biographyCommentService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

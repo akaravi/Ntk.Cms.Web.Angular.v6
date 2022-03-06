@@ -46,7 +46,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
-    private contentService: BiographyContentService,
+    public contentService: BiographyContentService,
     private contentCategoryService: BiographyContentCategoryService,
     private contentTagService: BiographyContentTagService,
     private contentSimilarService: BiographyContentSimilarService,

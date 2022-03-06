@@ -37,7 +37,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   constructor(
-    private bankPaymentPublicConfigService: BankPaymentPublicConfigService,
+    public contentService: BankPaymentPublicConfigService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -118,7 +118,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.bankPaymentPublicConfigService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -227,7 +227,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-          this.bankPaymentPublicConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -253,7 +253,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   onActionbuttonNewRowAuto(): any {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.bankPaymentPublicConfigService.ServiceAutoAdd().subscribe(
+    this.contentService.ServiceAutoAdd().subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.cmsToastrService.typeSuccessAdd();
@@ -279,7 +279,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.bankPaymentPublicConfigService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -295,7 +295,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.bankPaymentPublicConfigService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -332,7 +332,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.bankPaymentPublicConfigService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

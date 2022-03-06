@@ -45,7 +45,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class BlogCommentListComponent implements OnInit, OnDestroy {
   constructor(
     private commentService: BlogCommentService,
-    private contentService: BlogContentService,
+    public contentService: BlogContentService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,

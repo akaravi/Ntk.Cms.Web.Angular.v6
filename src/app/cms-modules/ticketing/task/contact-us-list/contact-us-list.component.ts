@@ -28,13 +28,12 @@ import { TicketingTaskViewComponent } from '../view/view.component';
 
 @Component({
   selector: 'app-ticketing-task-contact-us-list',
-  templateUrl: './contact-us-list.component.html',
-  styleUrls: ['./contact-us-list.component.scss']
+  templateUrl: './contact-us-list.component.html'
 })
 export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
   requestDepartemenId = 0;
   constructor(
-    private ticketingTaskService: TicketingTaskService,
+    public contentService: TicketingTaskService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -128,7 +127,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.ticketingTaskService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -291,7 +290,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
   //         const pName = this.constructor.name + 'main';
   //   this.loading.Start(pName);
 
-  //         this.ticketingTaskService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+  //         this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
   //           (next) => {
   //             if (next.IsSuccess) {
   //               this.cmsToastrService.typeSuccessRemove();
@@ -323,7 +322,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.ticketingTaskService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -340,7 +339,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.ticketingTaskService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -361,7 +360,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.ticketingTaskService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

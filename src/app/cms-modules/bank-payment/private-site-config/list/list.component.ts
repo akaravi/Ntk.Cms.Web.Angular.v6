@@ -39,7 +39,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDestroy {
   requestLinkPublicConfigId = 0;
   constructor(
-    private bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
+    public contentService: BankPaymentPrivateSiteConfigService,
     private bankPaymentPublicConfigService: BankPaymentPublicConfigService,
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -133,7 +133,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.bankPaymentPrivateSiteConfigService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {
@@ -280,10 +280,10 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'bankPaymentPrivateSiteConfigService.ServiceDelete';
+          const pName = this.constructor.name + 'contentService.ServiceDelete';
           this.loading.Start(pName);
 
-          this.bankPaymentPrivateSiteConfigService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -314,7 +314,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.bankPaymentPrivateSiteConfigService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -331,7 +331,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.bankPaymentPrivateSiteConfigService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -389,7 +389,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.bankPaymentPrivateSiteConfigService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

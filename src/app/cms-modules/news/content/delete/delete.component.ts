@@ -21,7 +21,7 @@ export class NewsContentDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<NewsContentDeleteComponent>,
     private publicHelper: PublicHelper,
-    private contentService: NewsContentService,
+    public contentService: NewsContentService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {

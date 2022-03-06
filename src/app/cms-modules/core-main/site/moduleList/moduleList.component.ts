@@ -39,13 +39,12 @@ import { CmsSiteCreditViewComponent } from 'src/app/shared/cms-site-credit-view/
 @Component({
   selector: 'app-core-site-module-list',
   templateUrl: './moduleList.component.html',
-  styleUrls: ['./moduleList.component.scss']
 })
 export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkModuleId = 0;
   constructor(
-    private coreModuleSiteService: CoreModuleSiteService,
+    public contentService: CoreModuleSiteService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
@@ -157,7 +156,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreModuleSiteService.ServiceGetAll(filterModel).subscribe(
+    this.contentService.ServiceGetAll(filterModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -292,7 +291,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.coreModuleSiteService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -330,7 +329,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     statist.set('Active', 0);
     statist.set('Expired Date', 0);
     statist.set('All', 0);
-    this.coreModuleSiteService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -347,7 +346,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.coreModuleSiteService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -365,7 +364,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     fastFilter2.Value = new Date();
     fastFilter2.SearchType = EnumFilterDataModelSearchTypes.GreaterThan;
     filterStatist2.Filters.push(fastFilter2);
-    this.coreModuleSiteService.ServiceGetCount(filterStatist2).subscribe(
+    this.contentService.ServiceGetCount(filterStatist2).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Expired Date', next.TotalRowCount);
@@ -431,7 +430,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.coreModuleSiteService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);

@@ -33,7 +33,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
 
   constructor(
     public publicHelper: PublicHelper,
-    private linkManagementBillboardPatternService: LinkManagementBillboardPatternService,
+    public contentService: LinkManagementBillboardPatternService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -110,8 +110,8 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
-    this.linkManagementBillboardPatternService.setAccessLoad();
-    this.linkManagementBillboardPatternService.ServiceGetAllEditor(filterModel).subscribe(
+    this.contentService.setAccessLoad();
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -246,7 +246,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.linkManagementBillboardPatternService.ServiceGetCount(this.filteModelContent).subscribe(
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('All', next.TotalRowCount);
@@ -263,7 +263,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.linkManagementBillboardPatternService.ServiceGetCount(filterStatist1).subscribe(
+    this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           statist.set('Active', next.TotalRowCount);
@@ -284,7 +284,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.linkManagementBillboardPatternService.ServiceExportFile(model).subscribe(
+    this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
           exportlist.set('Download', next.LinkFile);
