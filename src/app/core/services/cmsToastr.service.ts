@@ -60,13 +60,13 @@ export class CmsToastrService {
     this.toastr.success(this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessRemoveTag'), this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessRemoveTag'));
   }
   typeSuccessSetStatus(str:string): void {
-     // let message = 'خطا در دریافت لیست ';
-     let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessRemoveTag');
+     // let message = 'با موفقیت اضافه شد';
+     let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessSetStatus');
 
      if (str && str.length > 0) {
        message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Success') + ': ' + str;
      }
-    this.toastr.success(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessRemoveTag'));
+    this.toastr.success(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessSetStatus'));
   }
   typeSuccessRemoveOtherInfo(): void {
     // this.toastr.success('با موفقیت سایر اطلاعات حذف شد', this.now() + 'Success!');
@@ -234,13 +234,13 @@ export class CmsToastrService {
   }
 
   typeErrorSetStatus(str: string = ''): void {
-    // let message = 'خطا در دریافت لیست ';
-    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorGetAll');
+    // let message = 'خطا در تغییر وضعیت ';
+    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSetStatus');
 
     if (str && str.length > 0) {
       message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Error') + ': ' + str;
     }
-    this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorGetAll'));
+    this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorSetStatus'));
   }
   typeErrorGetAll(str: string = ''): void {
     // let message = 'خطا در دریافت لیست ';

@@ -15,10 +15,10 @@ export class RecordStatusClassPipe implements PipeTransform {
         ret = 'fa fa-check';
         break;
       case 2:
-        ret = 'fa fa-eye-slash';
+        ret = 'fa fa-times';
         break;
       case 3:
-        ret = 'fa fa-times';
+        ret = 'fa fa-trash';
         break;
       case 4:
         ret = 'fa fa-hourglass-half';

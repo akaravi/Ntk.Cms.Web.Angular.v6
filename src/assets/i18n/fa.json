@@ -253,6 +253,7 @@
 	"ERRORMESSAGE.MESSAGE.typeErrorInternetConnection": "خطا در اتصال به اینترنت.لطفا اتصال به اینترنت را بررسی کنید",
 	"ERRORMESSAGE.MESSAGE.typeErrorLogin": "در ورود به سامانه خطایی رخ داده است مجدد تلاش کنید",
 	"ERRORMESSAGE.MESSAGE.typeErrorLogout": "بروز خطا در خارج شدن از حساب کاربری",
+	"ERRORMESSAGE.MESSAGE.typeErrorSetStatus":"خطا در تغییر وضعیت ",
 	"ERRORMESSAGE.MESSAGE.typeErrorMove": "خطا در جابجا کردن",
 	"ERRORMESSAGE.MESSAGE.typeErrorRegistery": "بروز خطا در ایجاد حساب کاربری",
 	"ERRORMESSAGE.MESSAGE.typeErrorRemove": "خطا در حذف کردن",
@@ -285,7 +286,10 @@
 	"ERRORMESSAGE.MESSAGE.typeSuccessRemoveOtherInfo": "با موفقیت سایر اطلاعات حذف شد",
 	"ERRORMESSAGE.MESSAGE.typeSuccessRemoveSimilar": "با موفقیت سایر اطلاعات مشابه حذف شد",
 	"ERRORMESSAGE.MESSAGE.typeSuccessRemoveTag": "با موفقیت تگ مشابه حذف شد",
+	"ERRORMESSAGE.MESSAGE.typeSuccessSetStatus": "با موفقیت اضافه شد",
 	"ERRORMESSAGE.MESSAGE.typeSuccessSelected": "با موفقیت انتخاب شد",
+	
+	"ERRORMESSAGE.TITLE.Success":"با موفقیت انجام شد",
 	"ERRORMESSAGE.TITLE.Error": "خطا",
 	"ERRORMESSAGE.TITLE.Message": "پیام",
 	"ERRORMESSAGE.TITLE.typeError": "خطا  !",
