@@ -273,9 +273,18 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
     }
     this.tableRowSelected = model;
 
+    this.router.navigate(['/estate/property-detail/LinkPropertyTypeLanduseId/', this.tableRowSelected.Id]);
+  }
+  onActionbuttonContentList(model: EstatePropertyTypeLanduseModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
     this.router.navigate(['/estate/property/LinkPropertyTypeLanduseId/', this.tableRowSelected.Id]);
   }
-
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {

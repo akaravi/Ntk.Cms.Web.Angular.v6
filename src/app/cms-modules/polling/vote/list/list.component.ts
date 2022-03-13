@@ -30,7 +30,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-comment-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),

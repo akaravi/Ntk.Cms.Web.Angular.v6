@@ -19,9 +19,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
-  selector: 'app-polling-content-delete',
+  selector: 'app-donate-target-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class DonateTargetDeleteComponent implements OnInit {
   requestId = 0;

@@ -30,7 +30,7 @@ import { DonateTargetEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-polling-content-list',
+  selector: 'app-donate-target-list',
   templateUrl: './list.component.html',
 })
 export class DonateTargetListComponent implements OnInit, OnDestroy {
@@ -263,7 +263,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DonateTargetDeleteComponent, { height: '90%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DonateTargetDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -348,6 +348,6 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.router.navigate(['/polling/vote/', model.Id]);
+    this.router.navigate(['/donate/log-view/', model.Id]);
   }
 }

@@ -19,7 +19,6 @@ import { Output } from '@angular/core';
 @Component({
   selector: 'app-donate-target-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class DonateTargetSelectorComponent implements OnInit {
   constructor(
