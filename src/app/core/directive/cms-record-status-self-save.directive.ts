@@ -1,19 +1,14 @@
 import { DOCUMENT } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Directive,
   ElementRef,
-  Host,
   HostListener,
   Inject,
   Input,
-  Optional,
   Renderer2
 } from '@angular/core';
-import { NgSelectOption, SelectControlValueAccessor } from '@angular/forms';
 import { EnumRecordStatus } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
 import { PublicHelper } from '../helpers/publicHelper';
 import { CmsToastrService } from '../services/cmsToastr.service';
 
