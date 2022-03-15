@@ -1,6 +1,6 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
- <h4> {{'TITLE.Edit' | translate}}</h4>
- {{'TITLE.In_This_Section_You_Can_Edit_Your_Application' | translate}}
+  <h4> {{'TITLE.Edit' | translate}}</h4>
+  {{'TITLE.In_This_Section_You_Can_Edit_Your_Application' | translate}}
   <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -379,7 +379,7 @@
             <strong class="info-field-text">{{fieldsInfo['AboutUsLinkRss']?.FieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
-     
+
         <!-- AboutUsLinkImageIdSrc Field -->
         <div class="mb-3">
           <img *ngIf="dataModel?.AboutUsLinkImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
@@ -410,8 +410,11 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
-        <angular-editor [placeholder]="'متن حریم خصوصی کاربر را وارد کنید'" [config]="publicHelper.editorConfigFull" id="main"
-          [(ngModel)]="dataModel.AboutUsPrivacyPolicyHtmlBody" name="dataModel.AboutUsPrivacyPolicyHtmlBody"></angular-editor>
+          <angular-editor [placeholder]="'متن حریم خصوصی کاربر را وارد کنید'" [config]="publicHelper.editorConfigFull"
+            id="main" *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessWatchField"
+            [disabled]="!fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessEditField"
+            [(ngModel)]="dataModel.AboutUsPrivacyPolicyHtmlBody" name="dataModel.AboutUsPrivacyPolicyHtmlBody">
+          </angular-editor>
         </div>
 
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
@@ -439,7 +442,8 @@
           </mat-slide-toggle>
         </div>
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataModel.AllowDirectShareApp" *ngIf="fieldsInfo['AllowDirectShareApp']?.AccessWatchField"
+          <mat-slide-toggle [(ngModel)]="dataModel.AllowDirectShareApp"
+            *ngIf="fieldsInfo['AllowDirectShareApp']?.AccessWatchField"
             [disabled]="!fieldsInfo['AllowDirectShareApp']?.AccessEditField" name="dataModel.AllowDirectShareApp">
             {{fieldsInfo['AllowDirectShareApp']?.FieldTitle}}
           </mat-slide-toggle>
@@ -560,8 +564,9 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.LinkFileIdSplashScreen"
               [disabled]="!fieldsInfo['LinkFileIdSplashScreen']?.AccessEditField"
-              name="dataModel.LinkFileIdSplashScreen" #LinkFileIdSplashScreen type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
-              autocomplete="off" (click)="fileManagerOpenFormLinkFileIdSplashScreen = true" />
+              name="dataModel.LinkFileIdSplashScreen" #LinkFileIdSplashScreen type="text"
+              placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+              (click)="fileManagerOpenFormLinkFileIdSplashScreen = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.LinkFileIdSplashScreen && fieldsInfo['LinkFileIdSplashScreen']?.AccessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.LinkFileIdSplashScreen = null">close

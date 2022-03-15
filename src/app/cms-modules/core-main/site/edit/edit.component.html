@@ -331,7 +331,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.FireBase' | translate}}" state="seo">
-       
+
         <!-- FirebaseApiKey Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FirebaseApiKey']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['FirebaseApiKey']?.FieldTitle }}</mat-label>
@@ -959,9 +959,32 @@
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
+        <div class="mb-12">
+          <angular-editor [placeholder]="'متن حریم خصوصی کاربر را وارد کنید'" [config]="publicHelper.editorConfigFull"
+            id="main" *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessWatchField"
+            [disabled]="!fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.AccessEditField"
+            [(ngModel)]="dataModel.AboutUsPrivacyPolicyHtmlBody" name="dataModel.AboutUsPrivacyPolicyHtmlBody">
+          </angular-editor>
+        </div>
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
+
+
+        <div class="mb-12">
+          <angular-editor [placeholder]="'یاداشت مدیریت سایت'" [config]="publicHelper.editorConfigFull" id="main"
+            *ngIf="fieldsInfo['AdminSiteMemo']?.AccessWatchField"
+            [disabled]="!fieldsInfo['AdminSiteMemo']?.AccessEditField" [(ngModel)]="dataModel.AdminSiteMemo"
+            name="dataModel.AdminSiteMemo">
+          </angular-editor>
+        </div>
+        <div class="mb-12">
+          <angular-editor [placeholder]="'یاداشت مدیریت کل سامانه'" [config]="publicHelper.editorConfigFull" id="main"
+            *ngIf="fieldsInfo['AdminMainMemo']?.AccessWatchField"
+            [disabled]="!fieldsInfo['AdminMainMemo']?.AccessEditField" [(ngModel)]="dataModel.AdminMainMemo"
+            name="dataModel.AdminMainMemo">
+          </angular-editor>
+        </div>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -1026,6 +1049,13 @@
           <mat-datepicker-toggle matSuffix [for]="AccountingFormUpdatedDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #AccountingFormUpdatedDate></mat-datepicker>
         </mat-form-field>
+        <div class="mb-12">
+          <angular-editor [placeholder]="'یاداشت حسابدری'" [config]="publicHelper.editorConfigFull" id="main"
+            *ngIf="fieldsInfo['AccountingMemo']?.AccessWatchField"
+            [disabled]="!fieldsInfo['AccountingMemo']?.AccessEditField" [(ngModel)]="dataModel.AccountingMemo"
+            name="dataModel.AccountingMemo">
+          </angular-editor>
+        </div>
         <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
