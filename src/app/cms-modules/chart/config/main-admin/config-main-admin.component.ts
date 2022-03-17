@@ -69,6 +69,7 @@ export class ChartConfigMainAdminComponent implements OnInit, OnDestroy {
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.onLoadDate();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {

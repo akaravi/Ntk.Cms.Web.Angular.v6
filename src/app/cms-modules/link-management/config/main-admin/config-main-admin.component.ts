@@ -70,6 +70,7 @@ export class LinkManagementConfigMainAdminComponent implements OnInit, OnDestroy
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.onLoadDate();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {

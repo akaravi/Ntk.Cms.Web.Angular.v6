@@ -36,6 +36,7 @@ export class LinkManagementConfigCheckUserComponent implements OnInit, OnDestroy
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.onLoadDate();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DonateConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { DonateConfigSiteComponent } from './config/site/config-site.component';
 import { DonateComponent } from './donate.component';
 import { DonateLogViewListComponent } from './log-view/list/list.component';
 import { DonateSponserListComponent } from './sponser/list/list.component';
@@ -43,6 +41,10 @@ const routes: Routes = [
       },
       {
         path: 'log-view',
+        component: DonateLogViewListComponent
+      },
+      {
+        path: 'log-view/:Id',
         component: DonateLogViewListComponent
       },
       {

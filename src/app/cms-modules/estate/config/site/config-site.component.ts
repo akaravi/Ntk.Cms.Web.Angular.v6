@@ -36,6 +36,7 @@ export class EstateConfigSiteComponent implements OnInit {
   constructor(
     private configService: EstateConfigurationService,
     public publicHelper: PublicHelper,
+    private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -69,9 +70,10 @@ export class EstateConfigSiteComponent implements OnInit {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-
+    this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.onLoadDate();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
@@ -79,7 +81,7 @@ export class EstateConfigSiteComponent implements OnInit {
       this.onLoadDate();
     });
 
-    this.onLoadDate();
+   
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   EnumSortType,
   ErrorExceptionResult,
@@ -30,8 +30,9 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   templateUrl: './list.component.html',
 })
 export class DonateLogViewListComponent implements OnInit, OnDestroy {
-
+  requestId = 0;
   constructor(
+    private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     public contentService: DonateLogViewService,
     private cmsToastrService: CmsToastrService,
@@ -41,6 +42,8 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;
+
+
     // this.optionsCategoryTree.parentMethods = {
     //   onActionSelect: (x) => this.onActionSelectorSelect(x),
     // };
@@ -82,7 +85,13 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-
+    this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'DonateTargetId';
+      filter.Value = this.categoryModelSelected.Id;
+      this.filteModelContent.Filters.push(filter);
+    }
     this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -183,7 +192,7 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
-  
+
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
