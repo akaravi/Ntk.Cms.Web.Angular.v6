@@ -43,11 +43,6 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
 
-
-    // this.optionsCategoryTree.parentMethods = {
-    //   onActionSelect: (x) => this.onActionSelectorSelect(x),
-    // };
-
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -60,7 +55,6 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
 
   }
   filteModelContent = new FilterModel();
-  categoryModelSelected: DonateTargetCategoryModel;
   dataModelResult: ErrorExceptionResult<DonateLogViewModel> = new ErrorExceptionResult<DonateLogViewModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -86,20 +80,21 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
+    if (this.requestId && this.requestId > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'DonateTargetId';
-      filter.Value = this.categoryModelSelected.Id;
+      filter.Value = this.requestId;
       this.filteModelContent.Filters.push(filter);
     }
-    this.DataGetAll();
+
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.DataGetAll();
       this.tokenInfo = next;
+      this.DataGetAll();
     });
   }
   ngOnDestroy(): void {
@@ -112,22 +107,15 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
-      const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
-    }
+
     this.contentService.setAccessLoad();
     this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
@@ -152,9 +140,7 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
       },
       (error) => {
         this.cmsToastrService.typeError(error);
-
         this.loading.Stop(pName);
-
       }
     );
   }
@@ -185,12 +171,6 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
-  onActionSelectorSelect(model: DonateTargetCategoryModel | null): void {
-    this.filteModelContent = new FilterModel();
-    this.categoryModelSelected = model;
-
-    this.DataGetAll();
-  }
 
 
   onActionbuttonStatist(): void {

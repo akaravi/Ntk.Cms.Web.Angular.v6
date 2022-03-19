@@ -127,14 +127,14 @@ export class CoreTokenActivationListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Descending;
-    this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.DataGetAll();
       this.tokenInfo = next;
+      this.DataGetAll();
     });
     this.getEnumManageUserAccessAreaTypes();
     this.getEnumManageUserAccessUserTypes();

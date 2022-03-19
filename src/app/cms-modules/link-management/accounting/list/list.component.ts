@@ -79,14 +79,14 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
 
-    this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.DataGetAll();
       this.tokenInfo = next;
+      this.DataGetAll();
     });
   }
   ngOnDestroy(): void {

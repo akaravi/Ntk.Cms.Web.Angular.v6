@@ -77,11 +77,12 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     }
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-
       this.tokenInfo = next;
+      this.DataGetAll();
     });
 
     this.DataGetAll();

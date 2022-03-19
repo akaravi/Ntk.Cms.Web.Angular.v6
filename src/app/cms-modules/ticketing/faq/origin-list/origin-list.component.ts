@@ -71,15 +71,15 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
   DataFaqLinkSelect = 0;
   ngOnInit(): void {
     this.DataDepartemenGetAll();
-    this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataDepartemenGetAll();
-      this.DataGetAll();
       this.tokenInfo = next;
+      this.DataGetAll();
     });
 
   }

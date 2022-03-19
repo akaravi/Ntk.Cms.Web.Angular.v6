@@ -100,13 +100,13 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       filter.Value = this.requestLinkApplicationMemberId;
       this.filteModelContent.Filters.push(filter);
     }
-    this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.DataGetAll();
       this.tokenInfo = next;
+      this.DataGetAll();
     });
   }
   ngOnDestroy(): void {

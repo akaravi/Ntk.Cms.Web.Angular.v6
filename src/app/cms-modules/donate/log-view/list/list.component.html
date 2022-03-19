@@ -1,8 +1,7 @@
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
+<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-donate-target-category-tree (optionChange)="onActionSelectorSelect($event)"></app-donate-target-category-tree>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+   <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -11,9 +10,6 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-
-    <!-- <button *ngIf=" tableRowSelected.Id>0" (click)="             " type="button"
-      class="btn btn-outline-success BTN">مشاهده</button> -->
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>

@@ -101,14 +101,14 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.requestContentId = + Number(this.activatedRoute.snapshot.paramMap.get('ContentId'));
-    this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.DataGetAll();
       this.tokenInfo = next;
+      this.DataGetAll();
     });
   }
   ngAfterViewInit(): void {

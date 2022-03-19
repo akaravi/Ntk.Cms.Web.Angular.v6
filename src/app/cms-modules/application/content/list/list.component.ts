@@ -104,13 +104,13 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       filter.Value = this.requestLinkThemeConfigId;
       this.filteModelContent.Filters.push(filter);
     }
-    this.DataGetAll();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.DataGetAll();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.DataGetAll();
       this.tokenInfo = next;
+      this.DataGetAll();
     });
   }
   ngOnDestroy(): void {
