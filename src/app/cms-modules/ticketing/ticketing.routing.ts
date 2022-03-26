@@ -7,8 +7,6 @@ import { TicketingFaqListComponent } from './faq/list/list.component';
 import { TicketingTaskEditComponent } from './task/edit/edit.component';
 import { TicketingTaskListComponent } from './task/list/list.component';
 import { TicketingTemplateListComponent } from './template/list/list.component';
-import { TicketingConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { TicketingConfigSiteComponent } from './config/site/config-site.component';
 import { TicketingDepartemenLogListComponent } from './departemenLog/list/list.component';
 import { TicketingAnswerListComponent } from './answer/list/list.component';
 import { TicketingTaskContactUsAddComponent } from './task/contact-us-add/contact-us-add.component';

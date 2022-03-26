@@ -207,6 +207,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.height = '90%';
     dialogConfig.data = { parentId: this.categoryModelSelected.Id };
 
 
@@ -237,6 +238,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.height = '90%';
     dialogConfig.data = { id: this.tableRowSelected.Id };
 
 
