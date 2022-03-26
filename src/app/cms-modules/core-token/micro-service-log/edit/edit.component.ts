@@ -26,7 +26,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-core-site-domainalias-edit',
+  selector: 'app-coretoken-microservicelog-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

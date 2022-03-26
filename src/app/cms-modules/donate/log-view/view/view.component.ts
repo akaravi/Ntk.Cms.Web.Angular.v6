@@ -3,8 +3,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  CoreTokenMicroServiceLogService,
-  CoreTokenMicroServiceLogModel,
+  DonateLogViewModel,
+  DonateLogViewService,
   TokenInfoModel,
   NtkCmsApiStoreService,
   DataFieldInfoModel,
@@ -26,16 +26,16 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-core-token-microservicelog-view',
+  selector: 'app-donate-log-view-view',
   templateUrl: './view.component.html'
 })
-export class CoreTokenMicroServiceLogViewComponent implements OnInit, OnDestroy {
+export class DonateLogViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CoreTokenMicroServiceLogViewComponent>,
+    private dialogRef: MatDialogRef<DonateLogViewComponent>,
     public coreEnumService: CoreEnumService,
-    public coreTokenMicroServiceLogService: CoreTokenMicroServiceLogService,
+    public DonateLogViewService: DonateLogViewService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -49,8 +49,8 @@ export class CoreTokenMicroServiceLogViewComponent implements OnInit, OnDestroy 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreTokenMicroServiceLogModel> = new ErrorExceptionResult<CoreTokenMicroServiceLogModel>();
-  dataModel: CoreTokenMicroServiceLogModel = new CoreTokenMicroServiceLogModel();
+  dataModelResult: ErrorExceptionResult<DonateLogViewModel> = new ErrorExceptionResult<DonateLogViewModel>();
+  dataModel: DonateLogViewModel = new DonateLogViewModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -93,9 +93,9 @@ export class CoreTokenMicroServiceLogViewComponent implements OnInit, OnDestroy 
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.coreTokenMicroServiceLogService.setAccessLoad();
+    this.DonateLogViewService.setAccessLoad();
 
-    this.coreTokenMicroServiceLogService.ServiceGetOneById(this.requestId).subscribe(
+    this.DonateLogViewService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;

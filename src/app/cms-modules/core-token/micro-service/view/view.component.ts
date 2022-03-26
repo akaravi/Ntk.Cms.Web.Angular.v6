@@ -26,7 +26,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
-  selector: 'app-bankpayment-transactionlog-view',
+  selector: 'app-coretoken-microservice-view',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss']
 })

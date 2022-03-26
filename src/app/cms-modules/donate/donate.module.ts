@@ -62,6 +62,7 @@ import { DonateTargetPeriodSponserEditComponent } from './target-period-sponsor/
 import { DonateTargetPeriodSponserHeaderComponent } from './target-period-sponsor/header/header.component';
 import { DonateTargetPeriodSponserSelectorComponent } from './target-period-sponsor/selector/selector.component';
 import { DonateTargetPeriodSponserTreeComponent } from './target-period-sponsor/tree/tree.component';
+import { DonateLogViewComponent } from './log-view/view/view.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { DonateTargetPeriodSponserTreeComponent } from './target-period-sponsor/
     DonateTargetPeriodSponserTreeComponent,
     /* */
     DonateLogViewListComponent,
+    DonateLogViewComponent,
 
 
   ],

@@ -32,7 +32,7 @@ import { CoreTokenMicroServiceLogViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-coretoken-user-list',
+  selector: 'app-coretoken-microservicelog-list',
   templateUrl: './list.component.html',
   
 })
