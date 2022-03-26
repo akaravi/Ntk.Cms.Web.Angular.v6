@@ -27,6 +27,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { DonateTargetPeriodAddComponent } from '../add/add.component';
 import { DonateTargetPeriodDeleteComponent } from '../delete/delete.component';
 import { DonateTargetPeriodEditComponent } from '../edit/edit.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-donate-target-period-list',
@@ -41,7 +42,9 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
+
   ) {
     this.loading.cdr = this.cdr;
     // this.optionsCategoryTree.parentMethods = {
@@ -101,11 +104,8 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new DonateTargetPeriodModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

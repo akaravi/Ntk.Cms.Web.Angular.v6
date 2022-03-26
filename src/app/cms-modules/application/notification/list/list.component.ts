@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 import { ApplicationLogNotificationViewComponent } from '../view/view.component';
 import { ApplicationLogNotificationActionSendComponent } from '../action-send/action-send.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-notification-list',
   templateUrl: './list.component.html',
@@ -41,6 +42,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -116,7 +118,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationLogNotificationModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

@@ -25,10 +25,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 // import { ApiTelegramLogOutputEditComponent } from '../edit/edit.component';
 // import { ApiTelegramLogOutputAddComponent } from '../add/add.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { ApiTelegramActionSendMessageComponent } from '../../action/send-message/send-message.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-apitelegram-bot-config-list',
@@ -45,6 +44,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -129,11 +129,8 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
 
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramLogOutputModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

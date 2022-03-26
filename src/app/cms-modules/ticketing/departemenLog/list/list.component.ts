@@ -26,6 +26,7 @@ import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-application-app-list',
@@ -42,6 +43,7 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
@@ -128,11 +130,8 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingDepartemenLogModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

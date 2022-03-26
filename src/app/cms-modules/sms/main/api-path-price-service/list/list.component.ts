@@ -5,11 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   SmsMainApiPathPriceServiceModel,
   SmsMainApiPathPriceServiceService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -32,6 +30,7 @@ import { SmsMainApiPathPriceServiceEditComponent } from '../edit/edit.component'
 import { SmsMainApiPathPriceServiceAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sms-apipathpriceservice-list',
@@ -48,6 +47,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public smsEnumService: SmsEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
@@ -132,11 +132,8 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsMainApiPathPriceServiceModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

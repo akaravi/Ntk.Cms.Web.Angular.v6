@@ -88,7 +88,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormAlert = 'در حال دریافت ارسال اطلاعات از سرور';
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -121,7 +121,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.apiTelegramBotConfigService.ServiceEdit(this.dataModel).subscribe(
       (next) => {

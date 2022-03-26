@@ -48,8 +48,8 @@ export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestr
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Pending','دریافت آمار خبرهای فعال');
-    this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی خبر ها');
+    this.loading.Start(this.constructor.name + 'Pending');
+    this.loading.Start(this.constructor.name + 'All');
     this.modelData.set('Pending', 0);
     this.modelData.set('All', 0);
     

@@ -28,6 +28,7 @@ import { Subscription } from 'rxjs';
 import { DonateTargetAddComponent } from '../add/add.component';
 import { DonateTargetEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-donate-target-list',
@@ -42,7 +43,8 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     // this.optionsCategoryTree.parentMethods = {
@@ -102,11 +104,8 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new DonateTargetModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

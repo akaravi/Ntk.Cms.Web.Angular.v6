@@ -6,7 +6,6 @@ import {
   DonateLogViewModel,
   DonateLogViewService,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {

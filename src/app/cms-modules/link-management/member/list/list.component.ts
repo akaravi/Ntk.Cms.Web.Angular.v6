@@ -26,6 +26,7 @@ import { Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LinkManagementMemberAddComponent } from '../add/add.component';
 import { LinkManagementMemberEditComponent } from '../edit/edit.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-linkmanagement-member-list',
@@ -40,7 +41,8 @@ export class LinkManagementMemberListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
 
@@ -96,11 +98,8 @@ export class LinkManagementMemberListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementMemberModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

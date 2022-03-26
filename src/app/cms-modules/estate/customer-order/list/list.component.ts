@@ -117,7 +117,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

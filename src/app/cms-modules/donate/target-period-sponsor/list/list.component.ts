@@ -27,6 +27,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { DonateTargetPeriodSponserAddComponent } from '../add/add.component';
 import { DonateTargetPeriodSponserDeleteComponent } from '../delete/delete.component';
 import { DonateTargetPeriodSponserEditComponent } from '../edit/edit.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -42,7 +43,8 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     // this.optionsCategoryTree.parentMethods = {
@@ -103,7 +105,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
     this.tableRowSelected = new DonateTargetPeriodSponsorModel();
 
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
 
 
     this.filteModelContent.AccessLoad = true;

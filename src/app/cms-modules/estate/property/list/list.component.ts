@@ -204,10 +204,8 @@ export class EstatePropertyListComponent
     }
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyModel();
-
     const pName = this.constructor.name + "main";
-    this.loading.Start(pName, 'دریافت  لیست اطلاعات');
-
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelProperty.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelProperty));

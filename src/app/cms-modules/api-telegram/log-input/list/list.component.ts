@@ -25,10 +25,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 // import { ApiTelegramLogInputEditComponent } from '../edit/edit.component';
 // import { ApiTelegramLogInputAddComponent } from '../add/add.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { ApiTelegramActionSendMessageComponent } from '../../action/send-message/send-message.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-apitelegram-log-input-list',
@@ -44,6 +43,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -129,11 +129,8 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
 
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramLogInputModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -355,7 +352,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.dialogChangedDate) {
-        
+
       }
     });
     //open popup

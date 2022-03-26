@@ -211,10 +211,10 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   }
   DataTagGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت اطلاعات تگها از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server'));
 
 
 
@@ -401,7 +401,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
 
     this.contentService

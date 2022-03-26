@@ -124,7 +124,7 @@ export class PollingVoteEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     if (this.requestParentId > 0) {
       this.dataModel.LinkPollingContentId = this.requestParentId;
@@ -158,7 +158,7 @@ export class PollingVoteEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.pollingVoteService.ServiceEdit(this.dataModel).subscribe(
       (next) => {

@@ -48,8 +48,8 @@ export class ApplicationAppWidget2Component implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active','دریافت آمار اپلیکیشن های فعال');
-    this.loading.Start(this.constructor.name + 'All','دریافت آمار کلیه ی اپلیکیشن ها');
+    this.loading.Start(this.constructor.name + 'Active',this.translate.instant('MESSAGE.Get_active_application_statistics'));
+    this.loading.Start(this.constructor.name + 'All',this.translate.instant('MESSAGE.Get_statistics_on_all_applications'));
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(

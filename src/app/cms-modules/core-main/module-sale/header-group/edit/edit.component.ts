@@ -122,7 +122,7 @@ export class CoreModuleSaleHeaderGroupEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.coreModuleSaleHeaderGroupService.ServiceEdit(this.dataModel).subscribe(
       (next) => {

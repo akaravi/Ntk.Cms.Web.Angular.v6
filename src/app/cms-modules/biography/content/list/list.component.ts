@@ -9,7 +9,6 @@ import {
   BiographyCategoryModel,
   BiographyContentModel,
   BiographyContentService,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   DataFieldInfoModel,
   EnumClauseType,
@@ -28,6 +27,7 @@ import { BiographyContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-biography-content-list',
   templateUrl: './list.component.html',
@@ -40,7 +40,8 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     // this.optionsCategoryTree.parentMethods = {
@@ -98,7 +99,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new BiographyContentModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

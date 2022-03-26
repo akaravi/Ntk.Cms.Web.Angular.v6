@@ -6,7 +6,6 @@ import {
   BankPaymentEnumService,
   BankPaymentTransactionLogModel,
   BankPaymentTransactionLogService,
-  CoreAuthService,
   DataFieldInfoModel,
   EnumInfoModel,
   EnumRecordStatus,
@@ -14,7 +13,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
@@ -29,6 +27,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { BankPaymentTransactionLogViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-bankpayment-transactionlog-list',
   templateUrl: './list.component.html',
@@ -44,6 +43,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -114,7 +114,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentTransactionLogModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

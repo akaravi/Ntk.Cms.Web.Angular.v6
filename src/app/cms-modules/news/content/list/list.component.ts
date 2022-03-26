@@ -28,6 +28,7 @@ import { NewsContentDeleteComponent } from '../delete/delete.component';
 import { Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-content-list',
   templateUrl: './list.component.html',
@@ -40,7 +41,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     public dialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -116,7 +118,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
         selectId = this.categoryModelSelected.Id;
       }
       const pName = this.constructor.name + '.ServiceGetAllWithHierarchyCategoryId';
-      this.loading.Start(pName, 'دریافت  لیست اطلاعات');
+      this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
       this.contentService.ServiceGetAllWithHierarchyCategoryId(selectId, filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
@@ -168,7 +170,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       }
       /** filter Category */
       const pName = this.constructor.name + '.ServiceGetAll';
-      this.loading.Start(pName, 'دریافت  لیست اطلاعات');
+      this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
       this.contentService.ServiceGetAllEditor(filterModel).subscribe(
         (next) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);

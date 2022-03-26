@@ -22,10 +22,11 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LinkManagementAccountingDetailDeleteComponent } from '../delete/delete.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LinkManagementAccountingDetailAddComponent } from '../add/add.component';
 import { LinkManagementAccountingDetailEditComponent } from '../edit/edit.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-linkmanagement-AccountingDetail-list',
@@ -40,7 +41,8 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
 
@@ -96,11 +98,8 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementAccountingDetailModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

@@ -11,6 +11,7 @@ import { DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, NewsContentMod
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-content-delete',
   templateUrl: './delete.component.html',
@@ -23,7 +24,8 @@ export class NewsContentDeleteComponent implements OnInit {
     private publicHelper: PublicHelper,
     public contentService: NewsContentService,
     private cdr: ChangeDetectorRef,
-    private cmsToastrService: CmsToastrService
+    private cmsToastrService: CmsToastrService,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -48,9 +50,9 @@ export class NewsContentDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.FormAlert = 'در حال لود اطلاعات';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_list');
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, 'دریافت  لیست اطلاعات');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
@@ -88,7 +90,7 @@ export class NewsContentDeleteComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.ButtonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, 'دریافت  لیست اطلاعات');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
     this.contentService
       .ServiceDelete(this.requestId)

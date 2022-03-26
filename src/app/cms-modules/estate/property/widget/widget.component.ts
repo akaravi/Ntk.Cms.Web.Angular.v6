@@ -8,7 +8,6 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 @Component({
   selector: 'app-estate-property-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
 })
 export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();

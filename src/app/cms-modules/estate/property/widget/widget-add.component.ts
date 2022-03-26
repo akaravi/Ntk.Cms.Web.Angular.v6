@@ -9,8 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-property-widget-add',
-  templateUrl: './widget-add.component.html',
-  styleUrls: ['./widget-add.component.scss']
+  templateUrl: './widget-add.component.html'
 })
 
 export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {

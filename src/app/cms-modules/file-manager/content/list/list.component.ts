@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
@@ -10,7 +9,6 @@ import {
   FileContentModel,
   FileContentService,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   EnumRecordStatus,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
@@ -27,6 +25,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FileContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-file-content-list',
@@ -41,7 +40,8 @@ export class FileContentListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
 
@@ -96,11 +96,8 @@ export class FileContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new FileContentModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

@@ -11,7 +11,6 @@ import {
   ChartCategoryModel,
   ChartContentModel,
   ChartContentService,
-  NtkCmsApiStoreService,
   TokenInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
@@ -28,6 +27,7 @@ import { ChartContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chart-content-list',
@@ -42,7 +42,8 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -98,11 +99,8 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ChartContentModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

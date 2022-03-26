@@ -24,6 +24,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LinkManagementBillboardPatternDeleteComponent } from '../delete/delete.component';
 import { Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-linkmanagement-billboard-pattern-list',
@@ -38,7 +39,9 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
+
   ) {
     this.loading.cdr = this.cdr;
 
@@ -95,11 +98,8 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementBillboardPatternModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
 // import { ApiTelegramReceivedFileAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-apitelegram-bot-config-list',
@@ -42,6 +42,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -119,11 +120,8 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
 
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramReceivedFileModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

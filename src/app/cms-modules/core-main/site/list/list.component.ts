@@ -30,6 +30,7 @@ import { CoreSiteDeleteComponent } from '../delete/delete.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CoreSiteModuleSiteInfoComponent } from '../module-site-info/module-site-info.component';
 import { CoreSiteModuleSiteOptimazeComponent } from '../module-site-optimaze/module-site-optimaze.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-site-list',
@@ -47,6 +48,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -130,11 +132,8 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

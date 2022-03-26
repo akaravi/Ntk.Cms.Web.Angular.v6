@@ -9,7 +9,6 @@ import {
   BlogCategoryModel,
   BlogContentModel,
   BlogContentService,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   DataFieldInfoModel,
   EnumClauseType,
@@ -28,6 +27,7 @@ import { BlogContentDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-blog-content-list',
@@ -42,7 +42,8 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     // this.optionsCategoryTree.parentMethods = {
@@ -105,12 +106,8 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new BlogContentModel();
-
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

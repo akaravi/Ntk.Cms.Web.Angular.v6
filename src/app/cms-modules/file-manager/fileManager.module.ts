@@ -15,11 +15,7 @@ import { FileCategoryEditComponent } from './category/edit/edit.component';
 import { FileCategoryDeleteComponent } from './category/delete/delete.component';
 import { FileContentEditComponent } from './content/edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { SharedModule } from 'src/app/shared.module';
-
-
-import { CmsFileManagerModule } from 'src/filemanager-api';
 import { FileCategorySelectorComponent } from './category/selector/selector.component';
 import { FileContentListComponent } from './content/list/list.component';
 import { FileCategoryTreeComponent } from './category/tree/tree.component';

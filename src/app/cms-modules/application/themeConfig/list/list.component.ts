@@ -10,7 +10,6 @@ import {
   FilterDataModel,
   FilterModel,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   EnumRecordStatus,
   DataFieldInfoModel
 } from 'ntk-cms-api';
@@ -27,6 +26,7 @@ import { Subscription } from 'rxjs';
 import { ApplicationThemeConfigAddComponent } from '../add/add.component';
 import { ApplicationThemeConfigEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-application-app-list',
@@ -42,6 +42,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -109,11 +110,8 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationThemeConfigModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

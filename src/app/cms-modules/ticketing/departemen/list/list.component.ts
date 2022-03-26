@@ -8,7 +8,6 @@ import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EnumRecordStatus,
   FilterDataModel,
@@ -28,6 +27,7 @@ import { TicketingDepartemenDeleteComponent } from '../delete/delete.component';
 import { TicketingDepartemenEditComponent } from '../edit/edit.component';
 import { TicketingDepartemenAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ticketing-departemen-list',
@@ -41,6 +41,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -105,11 +106,8 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingDepartemenModel();
-
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
+    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
