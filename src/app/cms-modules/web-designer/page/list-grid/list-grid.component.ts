@@ -108,8 +108,8 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<WebDesignerMainPageModel> = [];
   tableRowSelected: WebDesignerMainPageModel = new WebDesignerMainPageModel();
   tableSource: MatTableDataSource<WebDesignerMainPageModel> = new MatTableDataSource<WebDesignerMainPageModel>();
-  dataModelWebDesignerMainPageTemplateResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel>    = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
-  dataModelCoreSiteCategoryResult: ErrorExceptionResult<CoreSiteCategoryModel>    = new ErrorExceptionResult<CoreSiteCategoryModel>();
+  dataModelWebDesignerMainPageTemplateResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel> = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
+  dataModelCoreSiteCategoryResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   tabledisplayedColumns: string[] = [
     'ThumbnailImageSrc',
     'Id',
@@ -380,6 +380,36 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     const urlTemplate = environment.cmsServerConfig.configMvcServerPath + 'page/' + model.Id + '?RenderViewPageByMaster=true&preview=true';
     // this.document.location.href = urlTemplate;
     window.open(urlTemplate, '_blank');
+  }
+  onActionbuttonSiteRouteView(model: WebDesignerMainPageModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    this.contentService.ServiceWebRoute(model.Id).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          window.open(next.Item, '_blank');
+        }
+        else {
+          this.cmsToastrService.typeError(next.ErrorMessage);
+        }
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+      }
+    );
+
   }
   onActionbuttonHtmlViewWithOutParent(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {

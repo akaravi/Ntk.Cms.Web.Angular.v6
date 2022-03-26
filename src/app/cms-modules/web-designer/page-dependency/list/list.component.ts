@@ -370,6 +370,25 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       }
     );
   }
+  onActionbuttonSiteRouteView(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      const message = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    const urlTemplate = this.tokenInfo.CurrentSiteDomainUrl + '/' + model.CmsModuleClassName + '/' + model.ClassActionName;
+    // this.document.location.href = urlTemplate;
+    window.open(urlTemplate, '_blank');
+  }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);

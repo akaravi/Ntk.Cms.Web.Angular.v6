@@ -49,6 +49,21 @@
           SubDomain is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
+         <!-- ConfigNeshanMapApiKey Field -->
+         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['ConfigNeshanMapApiKey']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.ConfigNeshanMapApiKey" [disabled]="!fieldsInfo['ConfigNeshanMapApiKey']?.AccessEditField"
+            name="dataModel.ConfigNeshanMapApiKey" #ConfigNeshanMapApiKey type="text" placeholder="Api Key ..." minlength="3"
+            maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.ConfigNeshanMapApiKey && fieldsInfo['ConfigNeshanMapApiKey']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.ConfigNeshanMapApiKey = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['ConfigNeshanMapApiKey']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="start">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
+        </mat-form-field>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
      </div>
 	 <div class="ntk-cms-html-card-message">
