@@ -48,11 +48,11 @@ export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestr
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Pending');
-    this.loading.Start(this.constructor.name + 'All');
+    this.loading.Start(this.constructor.name + 'Pending', this.translate.instant('MESSAGE.Get_pending_report_abuse'));
+    this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_all_report_abuse'));
     this.modelData.set('Pending', 0);
     this.modelData.set('All', 0);
-    
+
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {
@@ -71,7 +71,7 @@ export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestr
     fastfilter.Value = EnumRecordStatus.Pending;
     filterStatist1.Filters.push(fastfilter);
 
-     this.service.ServiceGetCount(filterStatist1).subscribe(
+    this.service.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.modelData.set('Pending', next.TotalRowCount);

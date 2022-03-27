@@ -178,6 +178,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
 
     const dialogRef = this.dialog.open(CoreModuleSaleHeaderSalePaymentComponent, {
       height: '90%',
+      width : '40%',
       data: { LinkHeaderId: model.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -47,8 +47,8 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'All','لیست املاک');
-    this.loading.Start(this.constructor.name + 'InChecking','املاک نیاز به تایید');
+    this.loading.Start(this.constructor.name + 'All',this.translate.instant('MESSAGE.property_list'));
+    this.loading.Start(this.constructor.name + 'InChecking',this.translate.instant('MESSAGE.property_needs_approval'));
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {

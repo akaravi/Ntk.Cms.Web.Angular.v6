@@ -39,7 +39,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'All','دریافت اطلاعات مدیریت اپلیکیشن');
+    this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Receiving_application_management_information'));
     this.service.ServiceGetExist(this.filteModelContent).subscribe(
       (next) => {
         if (next.IsSuccess) {

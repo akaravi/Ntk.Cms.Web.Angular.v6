@@ -49,8 +49,8 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active','دریافت اعضای ثبت شده فعال');
-    this.loading.Start(this.constructor.name + 'All','دریافت همه ی اعضای ثبت شده');
+    this.loading.Start(this.constructor.name + 'Active',this.translate.instant('MESSAGE.Get_active_registered_members'));
+    this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_all_registered_members'));
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe(
