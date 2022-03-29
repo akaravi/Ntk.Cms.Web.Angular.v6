@@ -145,7 +145,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
   }
   getEstateContractType(): void {
     const pName = this.constructor.name + 'getEstateContractType';
-    this.loading.Start(pName, 'دریافت انواع معامله');
+    this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_Contract_Type'));
     this.estateContractTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstateContractTypeResult = next;
       this.loading.Stop(pName);

@@ -443,6 +443,11 @@
 	"TITLE.Pending": "Pending",
 	"TITLE.HELP": "Help And Learn",
 	"TITLE.Inbox_and_tasks": "Inbox and tasks",
+	"TITLE.Get_Estate_Contract_Type": "Get Estate Contract Type",
+	"TITLE.Get_Estate_property_Type": "Get Estate property Type",
+	"TITLE.Get_Estate_user_Type": "Get Estate user Type",
+	"TITLE.Get_Estate_access": "Get Estate acces ",
+
 	"TITLE.Key": "Key",
 	"TITLE.Logs_and_notifications": "Logs and notifications",
 	"TITLE.MESSAGE": "message",
