@@ -58,10 +58,10 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
       );
   }
   displayFn(model?: WebDesignerMainPageDependencyModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   displayOption(model?: WebDesignerMainPageDependencyModel): string | undefined {
-    return model ? (model.Title) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<WebDesignerMainPageDependencyModel[]> {
     const filteModel = new FilterModel();

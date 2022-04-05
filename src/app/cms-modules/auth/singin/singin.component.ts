@@ -50,7 +50,7 @@ export class AuthSingInComponent implements OnInit {
     this.dataModel.CaptchaKey = this.captchaModel.Key;
     this.dataModel.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUser';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.login_to_user_account'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.login_to_user_account'));
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
       this.dataModel.SiteId = siteId;
@@ -101,7 +101,10 @@ export class AuthSingInComponent implements OnInit {
         const seconds = (endDate.getTime() - startDate.getTime());
         if (this.aoutoCaptchaOrder < 10) {
           this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
-          setTimeout(() => { this.onCaptchaOrder(); }, seconds);
+          setTimeout(() => {
+            if (!this.firstRun)
+              this.onCaptchaOrder();
+          }, seconds);
         }
         if (!next.IsSuccess) {
           this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
