@@ -47,14 +47,12 @@ import { DonateSponserAddComponent } from './sponser/add/add.component';
 import { DonateSponserDeleteComponent } from './sponser/delete/delete.component';
 import { DonateSponserEditComponent } from './sponser/edit/edit.component';
 import { DonateSponserSelectorComponent } from './sponser/selector/selector.component';
-import { DonateSponserTreeComponent } from './sponser/tree/tree.component';
 import { DonateSponserHeaderComponent } from './sponser/header/header.component';
 import { DonateTargetPeriodAddComponent } from './target-period/add/add.component';
 import { DonateTargetPeriodEditComponent } from './target-period/edit/edit.component';
 import { DonateTargetPeriodDeleteComponent } from './target-period/delete/delete.component';
 import { DonateTargetPeriodHeaderComponent } from './target-period/header/header.component';
 import { DonateTargetPeriodSelectorComponent } from './target-period/selector/selector.component';
-import { DonateTargetPeriodTreeComponent } from './target-period/tree/tree.component';
 import { DonateTargetPeriodSponserListComponent } from './target-period-sponsor/list/list.component';
 import { DonateTargetPeriodSponserAddComponent } from './target-period-sponsor/add/add.component';
 import { DonateTargetPeriodSponserDeleteComponent } from './target-period-sponsor/delete/delete.component';
@@ -63,6 +61,9 @@ import { DonateTargetPeriodSponserHeaderComponent } from './target-period-sponso
 import { DonateTargetPeriodSponserSelectorComponent } from './target-period-sponsor/selector/selector.component';
 import { DonateTargetPeriodSponserTreeComponent } from './target-period-sponsor/tree/tree.component';
 import { DonateLogViewComponent } from './log-view/view/view.component';
+import { DonateTargetPeriodChargeComponent } from './target-period/charge/charge.component';
+import { DonateTargetPeriodChargePaymentComponent } from './target-period/charge-payment/charge-payment.component';
+import { DonateSponserTreeComponent } from './sponser/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { DonateLogViewComponent } from './log-view/view/view.component';
     DonateTargetPeriodDeleteComponent,
     DonateTargetPeriodHeaderComponent,
     DonateTargetPeriodSelectorComponent,
-    DonateTargetPeriodTreeComponent,
+    DonateTargetPeriodChargeComponent,
+    DonateTargetPeriodChargePaymentComponent,
     /* */
     DonateTargetPeriodSponserListComponent,
     DonateTargetPeriodSponserAddComponent,

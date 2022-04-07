@@ -43,7 +43,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="3" maxlength="100"/>
       <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.Description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

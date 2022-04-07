@@ -37,8 +37,6 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
 import { TranslateService } from '@ngx-translate/core';
 
 
-
-
 @Component({
   selector: "app-estate-property-list",
   templateUrl: "./list.component.html",

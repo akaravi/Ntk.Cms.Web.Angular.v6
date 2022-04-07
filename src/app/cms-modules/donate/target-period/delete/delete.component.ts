@@ -91,8 +91,6 @@ export class DonateTargetPeriodDeleteComponent implements OnInit {
 
   }
 
-
-
   onFormDelete(): void {
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();

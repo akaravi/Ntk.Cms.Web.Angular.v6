@@ -44,7 +44,6 @@
         <mat-cell *matCellDef="let row">
           <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
-
         </mat-cell>
       </ng-container>
       <!-- ID Column -->
@@ -96,6 +95,10 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
+            <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+              <mat-icon>visibility</mat-icon>
+              <span>{{'ACTION.VIEW' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

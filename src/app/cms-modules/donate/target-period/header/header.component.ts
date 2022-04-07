@@ -15,7 +15,6 @@ import {
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
@@ -35,7 +34,7 @@ export class DonateTargetPeriodHeaderComponent implements OnInit , OnDestroy{
   ) {
     this.loading.cdr = this.cdr;
   }
-  @Input() optionId = '';
+  @Input() optionId = 0;
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<DonateTargetPeriodModel> = new ErrorExceptionResult<DonateTargetPeriodModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -44,7 +43,7 @@ export class DonateTargetPeriodHeaderComponent implements OnInit , OnDestroy{
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    if (this.optionId?.length > 0) {
+    if (this.optionId > 0) {
       this.DataGetOneContent();
     }
     this.getEnumRecordStatus();
@@ -63,7 +62,7 @@ export class DonateTargetPeriodHeaderComponent implements OnInit , OnDestroy{
     this.loading.Start(pName);
 
     this.headerService.setAccessLoad();
-    this.headerService.ServiceGetOneById(this.optionId.length).subscribe(
+    this.headerService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {
@@ -80,25 +79,5 @@ export class DonateTargetPeriodHeaderComponent implements OnInit , OnDestroy{
 
       }
     );
-  }
-  onActionbuttonLinkTo(model: DonateTargetPeriodModel=this.dataModelResult.Item): void {
-    if (!model || !model.Id || model.Id === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    //open popup
-    const dialogRef = this.dialog.open(CmsLinkToComponent, {
-      // height: "90%",
-      data: {
-        Title: model.Title,
-        UrlViewContentQRCodeBase64:'',
-        UrlViewContent:'',
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.dialogChangedDate) {
-      }
-    });
-    //open popup
   }
 }

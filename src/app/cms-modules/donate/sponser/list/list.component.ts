@@ -341,4 +341,12 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = row;
   }
 
+  onActionbuttonTargetPeriodSponserRow(model: DonateSponsorModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const message = 'ردیفی   انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.router.navigate(['/donate/target-period-sponser/', model.Id]);
+  }
 }

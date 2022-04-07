@@ -4,6 +4,7 @@ import { DonateComponent } from './donate.component';
 import { DonateLogViewListComponent } from './log-view/list/list.component';
 import { DonateSponserListComponent } from './sponser/list/list.component';
 import { DonateTargetPeriodSponserListComponent } from './target-period-sponsor/list/list.component';
+import { DonateTargetPeriodChargeComponent } from './target-period/charge/charge.component';
 // import { DonateTargetPeriodSponsorListComponent } from './target-period-sponsor/list/list.component';
 import { DonateTargetPeriodListComponent } from './target-period/list/list.component';
 import { DonateTargetAddComponent } from './target/add/add.component';
@@ -56,7 +57,15 @@ const routes: Routes = [
         component: DonateTargetPeriodListComponent
       },
       {
+        path: 'target-period-charge/:LinkTargetPeriodId',
+        component: DonateTargetPeriodChargeComponent
+      },
+      {
         path: 'target-period-sponser',
+        component: DonateTargetPeriodSponserListComponent
+      },
+      {
+        path: 'target-period-sponser/:Id',
         component: DonateTargetPeriodSponserListComponent
       },
       

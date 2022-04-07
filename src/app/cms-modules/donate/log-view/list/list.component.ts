@@ -25,6 +25,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { DonateLogViewComponent } from '../view/view.component';
 
 @Component({
   selector: 'app-donate-log-view-list',
@@ -171,6 +172,29 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
+  onActionbuttonViewRow(model: DonateLogViewModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(DonateLogViewComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.Id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
 
 
   onActionbuttonStatist(): void {

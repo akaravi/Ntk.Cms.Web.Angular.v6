@@ -6,7 +6,6 @@ import {
   DonateTargetPeriodModel,
   DonateTargetPeriodService,
   DataFieldInfoModel,
-  DonateTargetCategoryModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -99,8 +98,7 @@ export class DonateTargetPeriodAddComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.DonateTargetPeriodService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
@@ -116,17 +114,15 @@ export class DonateTargetPeriodAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
-
       }
     );
   }
-  onActionSelectorSelect(model: DonateTargetCategoryModel | null): void {
+  onActionSelectorSelect(model: DonateTargetPeriodModel | null): void {
     if (!model || model.Id <= 0) {
       const message = 'دسته بندی اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
@@ -140,9 +136,7 @@ export class DonateTargetPeriodAddComponent implements OnInit {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
-
     this.DataAddContent();
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
