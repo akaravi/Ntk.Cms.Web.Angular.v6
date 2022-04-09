@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EstateConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { EstateConfigSiteComponent } from './config/site/config-site.component';
 import { EstatePropertyListComponent } from './property/list/list.component';
 import { EstateComponent } from './estate.component';
 import { EstateContractTypeListComponent } from './contract-type/list/list.component';

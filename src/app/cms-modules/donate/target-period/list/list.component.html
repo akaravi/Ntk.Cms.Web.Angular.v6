@@ -1,8 +1,8 @@
 
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
+<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-donate-target-category-tree (optionChange)="onActionSelectorSelect($event)"></app-donate-target-category-tree>
+    --------------------------------------
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
@@ -77,21 +77,55 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
+      <!-- Description Column -->
+      <ng-container matColumnDef="Description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
+      </ng-container>
+      <!-- SupportRequiredPayment Column -->
+      <!-- <ng-container matColumnDef="SupportRequiredPayment">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SupportRequiredPayment']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.SupportRequiredPayment) }} </mat-cell>
+      </ng-container> -->
       <!-- LinkTargeId Column -->
       <ng-container matColumnDef="LinkTargeId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkTargeId']?.FieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.LinkTargeId}} </mat-cell>
       </ng-container>
-      <!-- CreatedDate Column -->
-      <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+      <!-- ShareBeginDate Column -->
+      <ng-container matColumnDef="ShareBeginDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShareBeginDate']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.ShareBeginDate) }} </mat-cell>
       </ng-container>
-      <!-- UpdatedDate Column -->
-      <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
+      <!-- ShareExpireDate Column -->
+      <ng-container matColumnDef="ShareExpireDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShareExpireDate']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.ShareExpireDate) }} </mat-cell>
+      </ng-container>
+      <!-- CurrentClickCount Column -->
+      <ng-container matColumnDef="CurrentClickCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentClickCount']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.CurrentClickCount}} </mat-cell>
+      </ng-container>
+      <!-- CurrentViewCount Column -->
+      <ng-container matColumnDef="CurrentViewCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentViewCount']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.CurrentViewCount}} </mat-cell>
+      </ng-container>
+      <!-- CurrentPaymentCount Column -->
+      <ng-container matColumnDef="CurrentPaymentCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentPaymentCount']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.CurrentPaymentCount}} </mat-cell>
+      </ng-container>
+      <!-- CurrentPaymentSum Column -->
+      <ng-container matColumnDef="CurrentPaymentSum">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentPaymentSum']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.CurrentPaymentSum}} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -109,6 +143,10 @@
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonDonateTargetPeriodAccountRow(row)" >
+              <mat-icon>shopping_cart</mat-icon>
+              <span>{{'ACTION.Donate_Money' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

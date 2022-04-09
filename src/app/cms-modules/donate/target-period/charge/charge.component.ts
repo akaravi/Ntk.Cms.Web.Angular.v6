@@ -3,18 +3,18 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleSiteCreditCalculateDtoModel, CoreSiteService } from 'ntk-cms-api';
+import { CoreSiteService, DonateModuleCalculateDtoModel } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
-import { CoreModuleSiteCreditChargePaymentComponent } from '../charge-payment/charge-payment.component';
+import { DonateTargetPeriodChargePaymentComponent } from '../charge-payment/charge-payment.component';
 
 @Component({
-    selector: 'app-coremodule-site-credit-charge',
+    selector: 'app-donate-target-period-charge',
     templateUrl: './charge.component.html',
 })
-export class CoreModuleSiteCreditChargeComponent implements OnInit {
-    requestLinkModuleId = 0;
+export class DonateTargetPeriodChargeComponent implements OnInit {
+    requestLinkTargetPeriodId = 0;
     constructor(
         @Inject(DOCUMENT) private document: any,
         private activatedRoute: ActivatedRoute,
@@ -24,15 +24,13 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
         private router: Router,
         private translate: TranslateService
     ) {
-        this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
-        this.dataModelCalculate.LinkModuleId = this.requestLinkModuleId;
-
+        this.requestLinkTargetPeriodId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTargetPeriodId'));
+        this.dataModelCalculate.LinkTargetPeriodId = this.requestLinkTargetPeriodId;
     }
     currency = '';
     viewCalculate = false;
     loading = new ProgressSpinnerModel();
-    dataModelCalculate: CoreModuleSiteCreditCalculateDtoModel = new CoreModuleSiteCreditCalculateDtoModel();
-
+    dataModelCalculate: DonateModuleCalculateDtoModel = new DonateModuleCalculateDtoModel();
 
     ngOnInit(): void {
         this.DataGetCurrency();
@@ -66,12 +64,13 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
     }
 
     onActionbuttonBuy(): void {
-        const dialogRef = this.dialog.open(CoreModuleSiteCreditChargePaymentComponent, {
+        const dialogRef = this.dialog.open(DonateTargetPeriodChargePaymentComponent, {
             height: '90%',
             data: {
-                Credit: this.dataModelCalculate.Credit,
-                LinkModuleId: this.dataModelCalculate.LinkModuleId,
+                SupportPayment: this.dataModelCalculate.SupportPayment,
+                LinkTargetPeriodId: this.dataModelCalculate.LinkTargetPeriodId,
             }
+
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result && result.dialogChangedDate) {
@@ -81,7 +80,7 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
     }
 
     onActionBackToParent(): void {
-        this.router.navigate(['/coremodule/site-credit/']);
+        this.router.navigate(['/donate/target-period/']);
     }
 }
 

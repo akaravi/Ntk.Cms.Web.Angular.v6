@@ -78,16 +78,21 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
     'Id',
     'RecordStatus',
     'Title',
+    'Description',
+    // 'SupportRequiredPayment',
     'LinkTargeId',
-    'CreatedDate',
-    'UpdatedDate',
+    'ShareBeginDate',
+    'ShareExpireDate',
+    'CurrentClickCount',
+    'CurrentViewCount',
+    'CurrentPaymentCount',
+    'CurrentPaymentSum',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -328,6 +333,17 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeError(error);
       }
     );
+  }
+
+  onActionbuttonDonateTargetPeriodAccountRow(model: DonateTargetPeriodModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/donate/target-period-charge/', model.Id]);
   }
 
   onActionbuttonReload(): void {

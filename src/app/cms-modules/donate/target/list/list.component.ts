@@ -341,9 +341,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: DonateTargetModel): void {
     this.tableRowSelected = row;
   }
-
-
-  onActionbuttonComment(model: DonateTargetModel = this.tableRowSelected): void {
+  onActionbuttonViewRow(model: DonateTargetModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const message = 'ردیفی   انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);

@@ -164,7 +164,7 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   getEstateContractType(): void {
     const pName = this.constructor.name + 'getEstateContractType';
-    this.loading.Start(pName, 'دریافت انواع معامله');
+    this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_Contract_Type'));
     this.estateContractTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstateContractTypeResult = next;
       this.loading.Stop(pName);
@@ -174,7 +174,7 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   getEstatePropertyType(): void {
     const pName = this.constructor.name + 'getEstatePropertyType';
-    this.loading.Start(pName, 'دریافت انواع املاک');
+    this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_property_Type'));
     this.estatePropertyTypeService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstatePropertyTypeResult = next;
       this.loading.Stop(pName);
@@ -184,7 +184,7 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   getEstatePropertyTypeLanduse(): void {
     const pName = this.constructor.name + 'getEstatePropertyType';
-    this.loading.Start(pName, 'دریافت انواع کاربری');
+    this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_user_Type'));
     this.estatePropertyTypeLanduseService.ServiceGetAll(null).subscribe((next) => {
       this.dataModelEstatePropertyTypeLanduseResult = next;
       this.loading.Stop(pName);
@@ -198,7 +198,7 @@ export class EstatePropertyAddComponent implements OnInit {
 
   DataGetAccess(): void {
     const pName = this.constructor.name + 'ServiceViewModel';
-    this.loading.Start(pName, 'دریافت دسترسی های');
+    this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_access'));
     this.estatePropertyService
       .ServiceViewModel()
       .subscribe(

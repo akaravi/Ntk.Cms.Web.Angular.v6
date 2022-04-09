@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   EnumSortType,
   ErrorExceptionResult,
@@ -35,10 +35,11 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html',
 })
 export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy {
-
+  requestLinkSponserId = '';
   constructor(
     public publicHelper: PublicHelper,
     public contentService: DonateTargetPeriodSponsorService,
+    private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -46,10 +47,11 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
     public dialog: MatDialog,
     private translate: TranslateService,
   ) {
+
+
     this.loading.cdr = this.cdr;
-    // this.optionsCategoryTree.parentMethods = {
-    //   onActionSelect: (x) => this.onActionSelectorSelect(x),
-    // };
+    this.requestLinkSponserId =
+    this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeLanduseId");
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -105,7 +107,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
     this.tableRowSelected = new DonateTargetPeriodSponsorModel();
 
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
 
     this.filteModelContent.AccessLoad = true;
@@ -264,7 +266,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DonateTargetPeriodSponserDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DonateTargetPeriodSponserDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {

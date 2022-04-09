@@ -1,9 +1,9 @@
 <app-cms-guide-notice [Key]="'donate.sponser.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
 </app-cms-guide-notice>
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
+<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-donate-target-category-tree (optionChange)="onActionSelectorSelect($event)"></app-donate-target-category-tree>
+    --------------------------------------
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
@@ -116,6 +116,10 @@
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonTargetPeriodSponserRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>list</mat-icon>
+              <span>لیست دوره ها</span>
             </button>
           </mat-menu>
         </mat-cell>
