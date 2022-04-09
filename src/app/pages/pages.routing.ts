@@ -150,6 +150,11 @@ const routes: Routes = [
           import('../cms-modules/donate/donate.module').then(m => m.DonateModule)
       },
       {
+        path: 'data-provider',
+        loadChildren: () =>
+          import('../cms-modules/data-provider/data-provider.module').then(m => m.DataProviderModule)
+      },
+      {
         path: 'api-telegram',
         loadChildren: () =>
           import('../cms-modules/api-telegram/api-telegram.module').then(m => m.ApiTelegramModule)
