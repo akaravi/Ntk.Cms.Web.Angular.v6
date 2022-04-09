@@ -29,7 +29,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class ArticleCommentEditComponent implements OnInit {
   requestId = 0;
   requestParentId = 0;
-  requestContentId = 0; constructor(
+  requestContentId = 0;
+   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ArticleCommentEditComponent>,
     public coreEnumService: CoreEnumService,

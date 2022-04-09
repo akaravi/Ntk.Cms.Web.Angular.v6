@@ -79,20 +79,15 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
         (error) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
-
         }
       );
-
   }
-
-
 
   onFormDelete(): void {
     if (this.requestId.length === 0) {

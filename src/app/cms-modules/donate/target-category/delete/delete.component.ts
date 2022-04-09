@@ -17,8 +17,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
   selector: 'app-donate-target-category-delete',
-  templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
+  templateUrl: './delete.component.html'
 })
 export class DonateTargetCategoryDeleteComponent implements OnInit {
   requestId = 0;

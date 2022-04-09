@@ -29,7 +29,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss'],
 })
 export class DonateSponserAddComponent implements OnInit {
-  requestParentId = 0;
+  requestLinkTargetCategoryId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateSponserAddComponent>,
@@ -42,10 +42,10 @@ export class DonateSponserAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      this.requestParentId = +data.parentId || 0;
+      this.requestLinkTargetCategoryId = +data.parentId || 0;
     }
-    if (this.requestParentId > 0) {
-      this.dataModel.LinkTargetCategoryId = this.requestParentId;
+    if (this.requestLinkTargetCategoryId > 0) {
+      this.dataModel.LinkTargetCategoryId = this.requestLinkTargetCategoryId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }

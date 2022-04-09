@@ -38,6 +38,31 @@ import { DataProviderLogPlanViewComponent } from './log-plan/view/view.component
 import { DataProviderLogSourceViewComponent } from './log-source/view/view.component';
 import { DataProviderTransactionListComponent } from './transaction/list/list.component';
 import { DataProviderTransactionViewComponent } from './transaction/view/view.component';
+import { DataProviderPlanCategoryAddComponent } from './plan-category/add/add.component';
+import { DataProviderPlanCategoryDeleteComponent } from './plan-category/delete/delete.component';
+import { DataProviderPlanCategoryEditComponent } from './plan-category/edit/edit.component';
+import { DataProviderPlanCategorySelectorComponent } from './plan-category/selector/selector.component';
+import { DataProviderPlanCategoryTreeComponent } from './plan-category/tree/tree.component';
+import { DataProviderPlanAddComponent } from './plan/add/add.component';
+import { DataProviderPlanDeleteComponent } from './plan/delete/delete.component';
+import { DataProviderPlanEditComponent } from './plan/edit/edit.component';
+import { DataProviderPlanListComponent } from './plan/list/list.component';
+import { DataProviderPlanSelectorComponent } from './plan/selector/selector.component';
+import { DataProviderPlanTreeComponent } from './plan/tree/tree.component';
+import { DataProviderPlanSourceAddComponent } from './plan-source/add/add.component';
+import { DataProviderPlanSourceDeleteComponent } from './plan-source/delete/delete.component';
+import { DataProviderPlanSourceEditComponent } from './plan-source/edit/edit.component';
+import { DataProviderPlanSourceHeaderComponent } from './plan-source/header/header.component';
+import { DataProviderPlanSourceListComponent } from './plan-source/list/list.component';
+import { DataProviderPlanSourceSelectorComponent } from './plan-source/selector/selector.component';
+import { DataProviderPlanSourceTreeComponent } from './plan-source/tree/tree.component';
+import { DataProviderClientAddComponent } from './client/add/add.component';
+import { DataProviderClientDeleteComponent } from './client/delete/delete.component';
+import { DataProviderClientEditComponent } from './client/edit/edit.component';
+import { DataProviderClientListComponent } from './client/list/list.component';
+import { DataProviderClientTreeComponent } from './client/tree/tree.component';
+import { DataProviderClientSelectorComponent } from './client/selector/selector.component';
+import { DataProviderSourceAddComponent } from './source/add/add.component';
 @NgModule({
   declarations: [
     DataProviderComponent,
@@ -52,13 +77,41 @@ import { DataProviderTransactionViewComponent } from './transaction/view/view.co
     DataProviderLogSourceViewComponent,
     /* */
     DataProviderTransactionListComponent,
-    DataProviderTransactionViewComponent
+    DataProviderTransactionViewComponent,
+    /* */
+    DataProviderPlanCategoryAddComponent,
+    DataProviderPlanCategoryDeleteComponent,
+    DataProviderPlanCategoryEditComponent,
+    DataProviderPlanCategorySelectorComponent,
+    DataProviderPlanCategoryTreeComponent,
+    /* */
+    DataProviderPlanAddComponent,
+    DataProviderPlanDeleteComponent,
+    DataProviderPlanEditComponent,
+    DataProviderPlanListComponent,
+    DataProviderPlanSelectorComponent,
+    DataProviderPlanTreeComponent,
+    /* */
+    DataProviderPlanSourceAddComponent,
+    DataProviderPlanSourceDeleteComponent,
+    DataProviderPlanSourceEditComponent,
+    DataProviderPlanSourceHeaderComponent,
+    DataProviderPlanSourceListComponent,
+    DataProviderPlanSourceSelectorComponent,
+    DataProviderPlanSourceTreeComponent,
+    /* */
+    DataProviderClientAddComponent,
+    DataProviderClientDeleteComponent,
+    DataProviderClientEditComponent,
+    DataProviderClientListComponent,
+    DataProviderClientSelectorComponent,
+    DataProviderClientTreeComponent,
+    /* */
+    DataProviderSourceAddComponent,
+
+
 
     /* */
- 
-    /* */
-   
-
 
   ],
   imports: [

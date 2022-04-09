@@ -17,7 +17,6 @@ import {
   FilterModel,
   DonateTargetCategoryModel,
   DonateTargetCategoryService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -31,8 +30,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-donate-target-category-tree',
-  templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
+  templateUrl: './tree.component.html'
 })
 export class DonateTargetCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
