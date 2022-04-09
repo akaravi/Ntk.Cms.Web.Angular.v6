@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DataProviderComponent } from './data-provider.component';
-import { DataProviderLogViewListComponent } from './log-view/list/list.component';
-import { DataProviderSponserListComponent } from './sponser/list/list.component';
-import { DataProviderTargetPeriodSponserListComponent } from './target-period-sponsor/list/list.component';
-// import { DataProviderTargetPeriodSponsorListComponent } from './target-period-sponsor/list/list.component';
-import { DataProviderTargetPeriodListComponent } from './target-period/list/list.component';
-import { DataProviderTargetAddComponent } from './target/add/add.component';
-import { DataProviderTargetDeleteComponent } from './target/delete/delete.component';
-import { DataProviderTargetEditComponent } from './target/edit/edit.component';
-import { DataProviderTargetListComponent } from './target/list/list.component';
+import { DataProviderLogClientListComponent } from './log-client/list/list.component';
+import { DataProviderLogPlanListComponent } from './log-plan/list/list.component';
+import { DataProviderLogSourceListComponent } from './log-source/list/list.component';
+import { DataProviderTransactionListComponent } from './transaction/list/list.component';
+
 
 const routes: Routes = [
   {
@@ -24,80 +20,60 @@ const routes: Routes = [
       },
       /* Config */
       {
-        path: 'target',
-        component: DataProviderTargetListComponent
+        path: 'log-client',
+        component: DataProviderLogClientListComponent
       },
       {
-        path: 'target/add/:CategoryId',
-        component: DataProviderTargetAddComponent
+        path: 'log-client/LinkClientId/:LinkClientId',
+        component: DataProviderLogClientListComponent
       },
       {
-        path: 'target/edit/:Id',
-        component: DataProviderTargetEditComponent
+        path: 'log-client/LinkPlanId/:LinkPlanId',
+        component: DataProviderLogClientListComponent
+      },
+      /** */
+      {
+        path: 'log-plan',
+        component: DataProviderLogPlanListComponent
       },
       {
-        path: 'target/Delete/:Id',
-        component: DataProviderTargetDeleteComponent
+        path: 'log-plan/LinkSourceId/:LinkSourceId',
+        component: DataProviderLogPlanListComponent
       },
       {
-        path: 'log-view',
-        component: DataProviderLogViewListComponent
+        path: 'log-plan/LinkPlanId/:LinkPlanId',
+        component: DataProviderLogPlanListComponent
+      },
+      /** */
+      {
+        path: 'log-source',
+        component: DataProviderLogSourceListComponent
       },
       {
-        path: 'log-view/:Id',
-        component: DataProviderLogViewListComponent
+        path: 'log-source/LinkSourceId/:LinkSourceId',
+        component: DataProviderLogSourceListComponent
       },
+      /** */
       {
-        path: 'sponser',
-        component: DataProviderSponserListComponent
-      },
+        path: 'transaction',
+        component: DataProviderTransactionListComponent
+      }
+      ,
       {
-        path: 'target-period',
-        component: DataProviderTargetPeriodListComponent
-      },
+        path: 'transaction/LinkCmsUserId/:LinkCmsUserId',
+        component: DataProviderTransactionListComponent
+      }
+      , {
+        path: 'transaction/LinkSponsorId/:LinkSponsorId',
+        component: DataProviderTransactionListComponent
+      }
+      ,
       {
-        path: 'target-period-sponser',
-        component: DataProviderTargetPeriodSponserListComponent
-      },
-      
-      // {
-      //   path: 'property/LinkPropertyTypeLanduseId/:LinkPropertyTypeLanduseId',
-      //   component: DataProviderPropertyListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'property-type',
-      //   component: DataProviderPropertyTypeListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'account-agency',
-      //   component: DataProviderAccountAgencyListComponent
-      // },
-      // /**/    {
-      //   path: 'account-user',
-      //   component: DataProviderAccountUserListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'contract-type',
-      //   component: DataProviderContractTypeListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'property-detail-group',
-      //   component: DataProviderPropertyDetailGroupListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'property-detail',
-      //   component: DataProviderPropertyDetailListComponent
-      // },
-      // {
-      //   path: 'property-detail/LinkPropertyTypeLanduseId/:LinkPropertyTypeLanduseId',
-      //   component: DataProviderPropertyDetailListComponent
-      // },
-      // /** */
+        path: 'transaction/LinkTargetPeriodId/:LinkTargetPeriodId',
+        component: DataProviderTransactionListComponent
+      }
+/** */
+    
 
     ]
   },

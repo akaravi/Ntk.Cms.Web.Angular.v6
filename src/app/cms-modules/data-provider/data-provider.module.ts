@@ -15,12 +15,13 @@ import {
   CoreModuleTagService,
   DataProviderConfigurationService,
   DataProviderEnumService,
-  DataProviderLogViewService,
-  DataProviderSponsorService,
-  DataProviderTargetCategoryService,
-  DataProviderTargetPeriodService,
-  DataProviderTargetPeriodSponsorService,
-  DataProviderTargetService,
+ 
+  DataProviderLogClientService,
+ 
+  DataProviderLogPlanService,
+ 
+  DataProviderLogSourceService,
+ 
   DataProviderTransactionService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,84 +30,34 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { IconPickerModule } from 'ngx-icon-picker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { DataProviderTargetCategoryAddComponent } from './target-category/add/add.component';
-import { DataProviderTargetCategoryEditComponent } from './target-category/edit/edit.component';
-import { DataProviderTargetCategorySelectorComponent } from './target-category/selector/selector.component';
-import { DataProviderTargetAddComponent } from './target/add/add.component';
-import { DataProviderTargetEditComponent } from './target/edit/edit.component';
-import { DataProviderTargetCategoryDeleteComponent } from './target-category/delete/delete.component';
-import { DataProviderTargetDeleteComponent } from './target/delete/delete.component';
-import { DataProviderTargetTreeComponent } from './target/tree/tree.component';
-import { DataProviderTargetSelectorComponent } from './target/selector/selector.component';
-import { DataProviderTargetListComponent } from './target/list/list.component';
-import { DataProviderTargetCategoryTreeComponent } from './target-category/tree/tree.component';
-import { DataProviderLogViewListComponent } from './log-view/list/list.component';
-import { DataProviderSponserListComponent } from './sponser/list/list.component';
-import { DataProviderTargetPeriodListComponent } from './target-period/list/list.component';
-import { DataProviderSponserAddComponent } from './sponser/add/add.component';
-import { DataProviderSponserDeleteComponent } from './sponser/delete/delete.component';
-import { DataProviderSponserEditComponent } from './sponser/edit/edit.component';
-import { DataProviderSponserSelectorComponent } from './sponser/selector/selector.component';
-import { DataProviderSponserTreeComponent } from './sponser/tree/tree.component';
-import { DataProviderSponserHeaderComponent } from './sponser/header/header.component';
-import { DataProviderTargetPeriodAddComponent } from './target-period/add/add.component';
-import { DataProviderTargetPeriodEditComponent } from './target-period/edit/edit.component';
-import { DataProviderTargetPeriodDeleteComponent } from './target-period/delete/delete.component';
-import { DataProviderTargetPeriodHeaderComponent } from './target-period/header/header.component';
-import { DataProviderTargetPeriodSelectorComponent } from './target-period/selector/selector.component';
-import { DataProviderTargetPeriodTreeComponent } from './target-period/tree/tree.component';
-import { DataProviderTargetPeriodSponserListComponent } from './target-period-sponsor/list/list.component';
-import { DataProviderTargetPeriodSponserAddComponent } from './target-period-sponsor/add/add.component';
-import { DataProviderTargetPeriodSponserDeleteComponent } from './target-period-sponsor/delete/delete.component';
-import { DataProviderTargetPeriodSponserEditComponent } from './target-period-sponsor/edit/edit.component';
-import { DataProviderTargetPeriodSponserHeaderComponent } from './target-period-sponsor/header/header.component';
-import { DataProviderTargetPeriodSponserSelectorComponent } from './target-period-sponsor/selector/selector.component';
-import { DataProviderTargetPeriodSponserTreeComponent } from './target-period-sponsor/tree/tree.component';
-import { DataProviderLogViewComponent } from './log-view/view/view.component';
-
+import { DataProviderLogClientListComponent } from './log-client/list/list.component';
+import { DataProviderLogPlanListComponent } from './log-plan/list/list.component';
+import { DataProviderLogSourceListComponent } from './log-source/list/list.component';
+import { DataProviderLogClientViewComponent } from './log-client/view/view.component';
+import { DataProviderLogPlanViewComponent } from './log-plan/view/view.component';
+import { DataProviderLogSourceViewComponent } from './log-source/view/view.component';
+import { DataProviderTransactionListComponent } from './transaction/list/list.component';
+import { DataProviderTransactionViewComponent } from './transaction/view/view.component';
 @NgModule({
   declarations: [
     DataProviderComponent,
     /* */
-    DataProviderTargetCategoryAddComponent,
-    DataProviderTargetCategoryEditComponent,
-    DataProviderTargetCategoryDeleteComponent,
-    DataProviderTargetCategorySelectorComponent,
-    DataProviderTargetCategoryTreeComponent,
+    DataProviderLogClientListComponent,
+    DataProviderLogClientViewComponent,
     /* */
-    DataProviderTargetAddComponent,
-    DataProviderTargetEditComponent,
-    DataProviderTargetDeleteComponent,
-    DataProviderTargetSelectorComponent,
-    DataProviderTargetTreeComponent,
-    DataProviderTargetListComponent,
+    DataProviderLogPlanListComponent,
+    DataProviderLogPlanViewComponent,
     /* */
-    DataProviderSponserListComponent,
-    DataProviderSponserAddComponent,
-    DataProviderSponserDeleteComponent,
-    DataProviderSponserEditComponent,
-    DataProviderSponserSelectorComponent,
-    DataProviderSponserTreeComponent,
-    DataProviderSponserHeaderComponent,
+    DataProviderLogSourceListComponent,
+    DataProviderLogSourceViewComponent,
     /* */
-    DataProviderTargetPeriodListComponent,
-    DataProviderTargetPeriodAddComponent,
-    DataProviderTargetPeriodEditComponent,
-    DataProviderTargetPeriodDeleteComponent,
-    DataProviderTargetPeriodHeaderComponent,
-    DataProviderTargetPeriodSelectorComponent,
-    DataProviderTargetPeriodTreeComponent,
+    DataProviderTransactionListComponent,
+    DataProviderTransactionViewComponent
+
     /* */
-    DataProviderTargetPeriodSponserListComponent,
-    DataProviderTargetPeriodSponserAddComponent,
-    DataProviderTargetPeriodSponserDeleteComponent,
-    DataProviderTargetPeriodSponserEditComponent,
-    DataProviderTargetPeriodSponserHeaderComponent,
-    DataProviderTargetPeriodSponserSelectorComponent,
-    DataProviderTargetPeriodSponserTreeComponent,
+ 
     /* */
-    DataProviderLogViewListComponent,
-    DataProviderLogViewComponent,
+   
 
 
   ],
@@ -135,12 +86,10 @@ import { DataProviderLogViewComponent } from './log-view/view/view.component';
     /*Config*/
     /** */
     DataProviderEnumService,
-    DataProviderLogViewService,
-    DataProviderSponsorService,
-    DataProviderTargetService,
-    DataProviderTargetCategoryService,
-    DataProviderTargetPeriodService,
-    DataProviderTargetPeriodSponsorService,
+    DataProviderLogSourceService,
+    DataProviderLogPlanService,
+    DataProviderLogClientService,
+    
     DataProviderTransactionService,
     /** */
     CmsConfirmationDialogService,

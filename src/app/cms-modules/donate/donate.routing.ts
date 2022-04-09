@@ -11,6 +11,7 @@ import { DonateTargetAddComponent } from './target/add/add.component';
 import { DonateTargetDeleteComponent } from './target/delete/delete.component';
 import { DonateTargetEditComponent } from './target/edit/edit.component';
 import { DonateTargetListComponent } from './target/list/list.component';
+import { DonateTransactionListComponent } from './transaction/list/list.component';
 
 const routes: Routes = [
   {
@@ -68,46 +69,26 @@ const routes: Routes = [
         path: 'target-period-sponser/:Id',
         component: DonateTargetPeriodSponserListComponent
       },
-      
-      // {
-      //   path: 'property/LinkPropertyTypeLanduseId/:LinkPropertyTypeLanduseId',
-      //   component: DonatePropertyListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'property-type',
-      //   component: DonatePropertyTypeListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'account-agency',
-      //   component: DonateAccountAgencyListComponent
-      // },
-      // /**/    {
-      //   path: 'account-user',
-      //   component: DonateAccountUserListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'contract-type',
-      //   component: DonateContractTypeListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'property-detail-group',
-      //   component: DonatePropertyDetailGroupListComponent
-      // },
-      // /**/
-      // {
-      //   path: 'property-detail',
-      //   component: DonatePropertyDetailListComponent
-      // },
-      // {
-      //   path: 'property-detail/LinkPropertyTypeLanduseId/:LinkPropertyTypeLanduseId',
-      //   component: DonatePropertyDetailListComponent
-      // },
-      // /** */
-
+      /** */
+      {
+        path: 'transaction',
+        component: DonateTransactionListComponent
+      }
+      ,
+      {
+        path: 'transaction/LinkCmsUserId/:LinkCmsUserId',
+        component: DonateTransactionListComponent
+      }
+      , {
+        path: 'transaction/LinkSponsorId/:LinkSponsorId',
+        component: DonateTransactionListComponent
+      }
+      ,
+      {
+        path: 'transaction/LinkTargetPeriodId/:LinkTargetPeriodId',
+        component: DonateTransactionListComponent
+      }
+/** */
     ]
   },
 ];

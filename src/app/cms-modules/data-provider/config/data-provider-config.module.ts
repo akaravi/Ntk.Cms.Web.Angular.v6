@@ -14,7 +14,7 @@ import { DataProviderConfigMainAdminComponent } from './main-admin/config-main-a
 import { DataProviderConfigSiteComponent } from './site/config-site.component';
 import { DataProviderConfigCheckUserComponent } from './check-user/check-user.component';
 import { DataProviderConfigCheckSiteComponent } from './check-site/check-site.component';
-import { DataProviderConfigRouting } from './donate-config.routing';
+import { DataProviderConfigRouting } from './data-provider-config.routing';
 
 
 @NgModule({

@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
   selector: 'app-core-config',
   template: '<router-outlet></router-outlet>',
 })
-export class CoreConfigComponent implements OnInit {
+export class BiographyConfigComponent implements OnInit {
   constructor() {
   }
   ngOnInit(): void {

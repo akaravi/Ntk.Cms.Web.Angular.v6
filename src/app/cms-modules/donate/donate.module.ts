@@ -64,6 +64,8 @@ import { DonateLogViewComponent } from './log-view/view/view.component';
 import { DonateTargetPeriodChargeComponent } from './target-period/charge/charge.component';
 import { DonateTargetPeriodChargePaymentComponent } from './target-period/charge-payment/charge-payment.component';
 import { DonateSponserTreeComponent } from './sponser/tree/tree.component';
+import { DonateTransactionListComponent } from './transaction/list/list.component';
+import { DonateTransactionViewComponent } from './transaction/view/view.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +111,10 @@ import { DonateSponserTreeComponent } from './sponser/tree/tree.component';
     /* */
     DonateLogViewListComponent,
     DonateLogViewComponent,
-
+    /* */
+    DonateTransactionListComponent,
+    DonateTransactionViewComponent,
+    
 
   ],
   imports: [
