@@ -71,20 +71,25 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
       </ng-container>
-      <!-- DonateTargetId Column -->
-      <ng-container matColumnDef="DonateTargetId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DonateTargetId']?.FieldTitle}} </mat-header-cell>
+      <!-- Sponsor Column -->
+      <ng-container matColumnDef="Sponsor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Sponsor']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.DonateTargetId) }} </mat-cell>
       </ng-container>
-       <!-- DeviceId Column -->
-       <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
+       <!-- TargetPeriod Column -->
+       <ng-container matColumnDef="TargetPeriod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TargetPeriod']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.TargetPeriod}} </mat-cell>
       </ng-container>
-      <!-- VisitDate Column -->
-      <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+      <!-- Amount Column -->
+      <ng-container matColumnDef="Amount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Amount']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.Amount) }} </mat-cell>
+      </ng-container>
+      <!-- AmountPure Column -->
+      <ng-container matColumnDef="AmountPure">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AmountPure']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.AmountPure) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">

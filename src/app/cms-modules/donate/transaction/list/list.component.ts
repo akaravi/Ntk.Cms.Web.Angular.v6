@@ -10,7 +10,6 @@ import {
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  DonateTargetCategoryModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
