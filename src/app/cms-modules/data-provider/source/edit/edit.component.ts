@@ -3,9 +3,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  DataProviderPlanModel,
-  DataProviderPlanService,
-  DataProviderPlanCategoryModel,
+  DataProviderSourceModel,
+  DataProviderSourceService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -24,17 +23,17 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-data-provider-plan-edit',
+  selector: 'app-data-provider-source-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class DataProviderPlanEditComponent implements OnInit {
+export class DataProviderSourceEditComponent implements OnInit {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<DataProviderPlanEditComponent>,
+    private dialogRef: MatDialogRef<DataProviderSourceEditComponent>,
     public coreEnumService: CoreEnumService,
-    public DataProviderPlanService: DataProviderPlanService,
+    public dataProviderSourceService: DataProviderSourceService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -56,8 +55,8 @@ export class DataProviderPlanEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
-  dataModel: DataProviderPlanModel = new DataProviderPlanModel();
+  dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
+  dataModel: DataProviderSourceModel = new DataProviderSourceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -97,8 +96,8 @@ export class DataProviderPlanEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DataProviderPlanService.setAccessLoad();
-    this.DataProviderPlanService.ServiceGetOneById(this.requestId).subscribe(
+    this.dataProviderSourceService.setAccessLoad();
+    this.dataProviderSourceService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -128,7 +127,7 @@ export class DataProviderPlanEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.DataProviderPlanService.ServiceEdit(this.dataModel).subscribe(
+    this.dataProviderSourceService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
@@ -152,14 +151,6 @@ export class DataProviderPlanEditComponent implements OnInit {
 
       }
     );
-  }
-  onActionSelectorSelect(model: DataProviderPlanCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.LinkPlanCategory = model.Id;
   }
 
   onFormSubmit(): void {

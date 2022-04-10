@@ -63,6 +63,26 @@ import { DataProviderClientListComponent } from './client/list/list.component';
 import { DataProviderClientTreeComponent } from './client/tree/tree.component';
 import { DataProviderClientSelectorComponent } from './client/selector/selector.component';
 import { DataProviderSourceAddComponent } from './source/add/add.component';
+import { DataProviderSourceDeleteComponent } from './source/delete/delete.component';
+import { DataProviderSourceEditComponent } from './source/edit/edit.component';
+import { DataProviderSourceHeaderComponent } from './source/header/header.component';
+import { DataProviderSourceListComponent } from './source/list/list.component';
+import { DataProviderSourceSelectorComponent } from './source/selector/selector.component';
+import { DataProviderSourceTreeComponent } from './source/tree/tree.component';
+import { DataProviderPlanClientAddComponent } from './plan-client/add/add.component';
+import { DataProviderPlanClientDeleteComponent } from './plan-client/delete/delete.component';
+import { DataProviderPlanClientEditComponent } from './plan-client/edit/edit.component';
+import { DataProviderPlanClientHeaderComponent } from './plan-client/header/header.component';
+import { DataProviderPlanClientListComponent } from './plan-client/list/list.component';
+import { DataProviderPlanClientSelectorComponent } from './plan-client/selector/selector.component';
+import { DataProviderPlanClientTreeComponent } from './plan-client/tree/tree.component';
+import { DataProviderPlanPriceAddComponent } from './plan-price/add/add.component';
+import { DataProviderPlanPriceDeleteComponent } from './plan-price/delete/delete.component';
+import { DataProviderPlanPriceEditComponent } from './plan-price/edit/edit.component';
+import { DataProviderPlanPriceHeaderComponent } from './plan-price/header/header.component';
+import { DataProviderPlanPriceListComponent } from './plan-price/list/list.component';
+import { DataProviderPlanPriceSelectorComponent } from './plan-price/selector/selector.component';
+import { DataProviderPlanPriceTreeComponent } from './plan-price/tree/tree.component';
 @NgModule({
   declarations: [
     DataProviderComponent,
@@ -108,9 +128,28 @@ import { DataProviderSourceAddComponent } from './source/add/add.component';
     DataProviderClientTreeComponent,
     /* */
     DataProviderSourceAddComponent,
-
-
-
+    DataProviderSourceDeleteComponent,
+    DataProviderSourceEditComponent,
+    DataProviderSourceHeaderComponent,
+    DataProviderSourceListComponent,
+    DataProviderSourceSelectorComponent,
+    DataProviderSourceTreeComponent,
+    /* */
+    DataProviderPlanClientAddComponent,
+    DataProviderPlanClientDeleteComponent,
+    DataProviderPlanClientEditComponent,
+    DataProviderPlanClientHeaderComponent,
+    DataProviderPlanClientListComponent,
+    DataProviderPlanClientSelectorComponent,
+    DataProviderPlanClientTreeComponent,
+    /* */
+    DataProviderPlanPriceAddComponent,
+    DataProviderPlanPriceDeleteComponent,
+    DataProviderPlanPriceEditComponent,
+    DataProviderPlanPriceHeaderComponent,
+    DataProviderPlanPriceListComponent,
+    DataProviderPlanPriceSelectorComponent,
+    DataProviderPlanPriceTreeComponent,
     /* */
 
   ],

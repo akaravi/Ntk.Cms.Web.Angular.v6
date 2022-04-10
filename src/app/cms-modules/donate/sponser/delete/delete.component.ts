@@ -28,7 +28,7 @@ export class DonateSponserDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateSponserDeleteComponent>,
     private publicHelper: PublicHelper,
-    private DonateSponsorService: DonateSponsorService,
+    private donateSponsorService: DonateSponsorService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
@@ -61,8 +61,8 @@ export class DonateSponserDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DonateSponsorService.setAccessLoad();
-    this.DonateSponsorService
+    this.donateSponsorService.setAccessLoad();
+    this.donateSponsorService
       .ServiceGetOneById(this.requestId)
       .subscribe(
         (next) => {
@@ -104,7 +104,7 @@ export class DonateSponserDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DonateSponsorService
+    this.donateSponsorService
       .ServiceDelete(this.requestId)
       .subscribe(
         (next) => {

@@ -5,7 +5,6 @@ import {
   FormInfoModel,
   DataProviderSourceModel,
   DataProviderSourceService,
-  DataProviderPlanCategoryModel,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -34,7 +33,7 @@ export class DataProviderSourceAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderSourceAddComponent>,
     public coreEnumService: CoreEnumService,
-    public DataProviderSourceService: DataProviderSourceService,
+    public dataProviderSourceService: DataProviderSourceService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -85,7 +84,7 @@ export class DataProviderSourceAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
-    this.DataProviderSourceService
+    this.dataProviderSourceService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -109,7 +108,7 @@ export class DataProviderSourceAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.DataProviderSourceService.ServiceAdd(this.dataModel).subscribe(
+    this.dataProviderSourceService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
@@ -139,9 +138,7 @@ export class DataProviderSourceAddComponent implements OnInit {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
-
     this.DataAddContent();
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

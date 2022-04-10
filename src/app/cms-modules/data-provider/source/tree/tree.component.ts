@@ -15,48 +15,47 @@ import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
-  DataProviderPlanModel,
-  DataProviderPlanService,
+  DataProviderSourceModel,
+  DataProviderSourceService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { DataProviderPlanAddComponent } from '../add/add.component';
-import { DataProviderPlanEditComponent } from '../edit/edit.component';
-import { DataProviderPlanDeleteComponent } from '../delete/delete.component';
-
+import { DataProviderSourceAddComponent } from '../add/add.component';
+import { DataProviderSourceEditComponent } from '../edit/edit.component';
+import { DataProviderSourceDeleteComponent } from '../delete/delete.component';
 
 @Component({
-  selector: 'app-data-provider-plan-tree',
+  selector: 'app-data-provider-source-tree',
   templateUrl: './tree.component.html'
 })
-export class DataProviderPlanTreeComponent implements OnInit, OnDestroy {
+export class DataProviderSourceTreeComponent implements OnInit, OnDestroy {
   constructor(
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
-    public categoryService: DataProviderPlanService,
+    public categoryService: DataProviderSourceService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
   }
-  @Input() set optionSelectForce(x: number | DataProviderPlanModel) {
+  @Input() set optionSelectForce(x: number | DataProviderSourceModel) {
     this.onActionSelectForce(x);
   }
-  dataModelSelect: DataProviderPlanModel = new DataProviderPlanModel();
-  dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
+  dataModelSelect: DataProviderSourceModel = new DataProviderSourceModel();
+  dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
   filteModel = new FilterModel();
   @Input()  loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<DataProviderPlanModel>(node => null);
-  dataSource = new MatTreeNestedDataSource<DataProviderPlanModel>();
-  @Output() optionChange = new EventEmitter<DataProviderPlanModel>();
+  treeControl = new NestedTreeControl<DataProviderSourceModel>(node => null);
+  dataSource = new MatTreeNestedDataSource<DataProviderSourceModel>();
+  @Output() optionChange = new EventEmitter<DataProviderSourceModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
-  hasChild = (_: number, node: DataProviderPlanModel) => null;
+  hasChild = (_: number, node: DataProviderSourceModel) => null;
 
 
   ngOnInit(): void {
@@ -91,7 +90,7 @@ export class DataProviderPlanTreeComponent implements OnInit, OnDestroy {
       }
     );
   }
-  onActionSelect(model: DataProviderPlanModel): void {
+  onActionSelect(model: DataProviderSourceModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
@@ -102,10 +101,10 @@ export class DataProviderPlanTreeComponent implements OnInit, OnDestroy {
     else {
       this.onActionSelect(null);
     }
-    this.dataModelSelect = new DataProviderPlanModel();
+    this.dataModelSelect = new DataProviderSourceModel();
     this.DataGetAll();
   }
-  onActionSelectForce(id: number | DataProviderPlanModel): void {
+  onActionSelectForce(id: number | DataProviderSourceModel): void {
 
   }
 
@@ -122,7 +121,7 @@ export class DataProviderPlanTreeComponent implements OnInit, OnDestroy {
     dialogConfig.data = { parentId };
 
 
-    const dialogRef = this.dialog.open(DataProviderPlanAddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(DataProviderSourceAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
@@ -140,7 +139,7 @@ export class DataProviderPlanTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderPlanEditComponent, {
+    const dialogRef = this.dialog.open(DataProviderSourceEditComponent, {
       height: '90%',
       data: { id }
     });
@@ -166,7 +165,7 @@ export class DataProviderPlanTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderPlanDeleteComponent, {
+    const dialogRef = this.dialog.open(DataProviderSourceDeleteComponent, {
       height: '90%',
       data: { id }
     });

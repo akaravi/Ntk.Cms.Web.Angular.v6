@@ -28,7 +28,7 @@ export class DonateTargetPeriodDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateTargetPeriodDeleteComponent>,
     private publicHelper: PublicHelper,
-    private DonateTargetPeriodService: DonateTargetPeriodService,
+    private donateTargetPeriodService: DonateTargetPeriodService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
@@ -61,8 +61,8 @@ export class DonateTargetPeriodDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DonateTargetPeriodService.setAccessLoad();
-    this.DonateTargetPeriodService
+    this.donateTargetPeriodService.setAccessLoad();
+    this.donateTargetPeriodService
       .ServiceGetOneById(this.requestId)
       .subscribe(
         (next) => {
@@ -102,7 +102,7 @@ export class DonateTargetPeriodDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DonateTargetPeriodService
+    this.donateTargetPeriodService
       .ServiceDelete(this.requestId)
       .subscribe(
         (next) => {

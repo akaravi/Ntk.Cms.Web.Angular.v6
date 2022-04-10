@@ -34,7 +34,7 @@ export class DonateSponserEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateSponserEditComponent>,
     public coreEnumService: CoreEnumService,
-    public DonateSponsorService: DonateSponsorService,
+    public donateSponsorService: DonateSponsorService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -90,8 +90,8 @@ export class DonateSponserEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DonateSponsorService.setAccessLoad();
-    this.DonateSponsorService.ServiceGetOneById(this.requestId).subscribe(
+    this.donateSponsorService.setAccessLoad();
+    this.donateSponsorService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -127,7 +127,7 @@ export class DonateSponserEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.DonateSponsorService.ServiceEdit(this.dataModel).subscribe(
+    this.donateSponsorService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

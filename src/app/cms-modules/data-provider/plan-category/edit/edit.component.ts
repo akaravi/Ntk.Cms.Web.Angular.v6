@@ -33,7 +33,7 @@ export class DataProviderPlanCategoryEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderPlanCategoryEditComponent>,
     public coreEnumService: CoreEnumService,
-    public DataProviderPlanCategoryService: DataProviderPlanCategoryService,
+    public dataProviderPlanCategoryService: DataProviderPlanCategoryService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -96,8 +96,8 @@ export class DataProviderPlanCategoryEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DataProviderPlanCategoryService.setAccessLoad();
-    this.DataProviderPlanCategoryService.ServiceGetOneById(this.requestId).subscribe(
+    this.dataProviderPlanCategoryService.setAccessLoad();
+    this.dataProviderPlanCategoryService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -127,7 +127,7 @@ export class DataProviderPlanCategoryEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.DataProviderPlanCategoryService.ServiceEdit(this.dataModel).subscribe(
+    this.dataProviderPlanCategoryService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

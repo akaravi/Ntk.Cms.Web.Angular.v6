@@ -35,7 +35,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
     @Inject(DOCUMENT) private document: any,
     private dialogRef: MatDialogRef<DonateTargetPeriodChargePaymentComponent>,
     private cmsToastrService: CmsToastrService,
-    private DonateTransactionService: DonateTransactionService,
+    private donateTransactionService: DonateTransactionService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
@@ -89,7 +89,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
-    this.DonateTransactionService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
+    this.donateTransactionService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelCalculateResult = next;
@@ -113,7 +113,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
-    this.DonateTransactionService.ServiceOrderPayment(this.dataModelPayment).subscribe(
+    this.donateTransactionService.ServiceOrderPayment(this.dataModelPayment).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelPaymentResult = next;

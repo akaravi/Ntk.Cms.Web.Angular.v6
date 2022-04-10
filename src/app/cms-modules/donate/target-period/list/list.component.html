@@ -83,10 +83,10 @@
         <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
       </ng-container>
       <!-- SupportRequiredPayment Column -->
-      <!-- <ng-container matColumnDef="SupportRequiredPayment">
+      <ng-container matColumnDef="SupportRequiredPayment">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SupportRequiredPayment']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.SupportRequiredPayment) }} </mat-cell>
-      </ng-container> -->
+      </ng-container>
       <!-- LinkTargeId Column -->
       <ng-container matColumnDef="LinkTargeId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkTargeId']?.FieldTitle}}

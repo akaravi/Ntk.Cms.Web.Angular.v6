@@ -34,7 +34,7 @@ export class DonateTargetPeriodEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateTargetPeriodEditComponent>,
     public coreEnumService: CoreEnumService,
-    public DonateTargetPeriodService: DonateTargetPeriodService,
+    public donateTargetPeriodService: DonateTargetPeriodService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -90,8 +90,8 @@ export class DonateTargetPeriodEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DonateTargetPeriodService.setAccessLoad();
-    this.DonateTargetPeriodService.ServiceGetOneById(this.requestId).subscribe(
+    this.donateTargetPeriodService.setAccessLoad();
+    this.donateTargetPeriodService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -127,7 +127,7 @@ export class DonateTargetPeriodEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.DonateTargetPeriodService.ServiceEdit(this.dataModel).subscribe(
+    this.donateTargetPeriodService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

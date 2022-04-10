@@ -34,7 +34,7 @@ export class DonateLogViewComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateLogViewComponent>,
     public coreEnumService: CoreEnumService,
-    public DonateLogViewService: DonateLogViewService,
+    public donateLogViewService: DonateLogViewService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -92,9 +92,9 @@ export class DonateLogViewComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.DonateLogViewService.setAccessLoad();
+    this.donateLogViewService.setAccessLoad();
 
-    this.DonateLogViewService.ServiceGetOneById(this.requestId).subscribe(
+    this.donateLogViewService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;

@@ -34,7 +34,7 @@ export class DataProviderPlanSourceEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderPlanSourceEditComponent>,
     public coreEnumService: CoreEnumService,
-    public DataProviderPlanSourceService: DataProviderPlanSourceService,
+    public dataProviderPlanSourceService: DataProviderPlanSourceService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -90,8 +90,8 @@ export class DataProviderPlanSourceEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DataProviderPlanSourceService.setAccessLoad();
-    this.DataProviderPlanSourceService.ServiceGetOneById(this.requestId).subscribe(
+    this.dataProviderPlanSourceService.setAccessLoad();
+    this.dataProviderPlanSourceService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -127,7 +127,7 @@ export class DataProviderPlanSourceEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.DataProviderPlanSourceService.ServiceEdit(this.dataModel).subscribe(
+    this.dataProviderPlanSourceService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

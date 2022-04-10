@@ -32,7 +32,7 @@ export class DataProviderClientAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderClientAddComponent>,
     public coreEnumService: CoreEnumService,
-    public DataProviderClientService: DataProviderClientService,
+    public dataProviderClientService: DataProviderClientService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -69,7 +69,7 @@ export class DataProviderClientAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
-    this.DataProviderClientService
+    this.dataProviderClientService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -91,7 +91,7 @@ export class DataProviderClientAddComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.DataProviderClientService.ServiceAdd(this.dataModel).subscribe(
+    this.dataProviderClientService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

@@ -11,8 +11,7 @@ import { CoreModuleSiteUserCreditChargePaymentComponent } from '../charge-paymen
 
 @Component({
     selector: 'app-coremodule-site-credit-charge',
-    templateUrl: './charge.component.html',
-    styleUrls: ['./charge.component.scss'],
+    templateUrl: './charge.component.html'
 })
 export class CoreModuleSiteUserCreditChargeComponent implements OnInit {
     requestLinkModuleId = 0;

@@ -33,7 +33,7 @@ export class DataProviderClientEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderClientEditComponent>,
     public coreEnumService: CoreEnumService,
-    public DataProviderClientService: DataProviderClientService,
+    public dataProviderClientService: DataProviderClientService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -88,8 +88,8 @@ export class DataProviderClientEditComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.DataProviderClientService.setAccessLoad();
-    this.DataProviderClientService.ServiceGetOneById(this.requestId).subscribe(
+    this.dataProviderClientService.setAccessLoad();
+    this.dataProviderClientService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -119,7 +119,7 @@ export class DataProviderClientEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.DataProviderClientService.ServiceEdit(this.dataModel).subscribe(
+    this.dataProviderClientService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

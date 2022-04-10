@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DataProviderClientListComponent } from './client/list/list.component';
 import { DataProviderComponent } from './data-provider.component';
 import { DataProviderLogClientListComponent } from './log-client/list/list.component';
 import { DataProviderLogPlanListComponent } from './log-plan/list/list.component';
 import { DataProviderLogSourceListComponent } from './log-source/list/list.component';
+import { DataProviderPlanClientListComponent } from './plan-client/list/list.component';
+import { DataProviderPlanPriceListComponent } from './plan-price/list/list.component';
+import { DataProviderPlanSourceListComponent } from './plan-source/list/list.component';
+import { DataProviderPlanListComponent } from './plan/list/list.component';
+import { DataProviderSourceListComponent } from './source/list/list.component';
 import { DataProviderTransactionListComponent } from './transaction/list/list.component';
 
 
@@ -54,6 +60,54 @@ const routes: Routes = [
         component: DataProviderLogSourceListComponent
       },
       /** */
+      {
+        path: 'client',
+        component: DataProviderClientListComponent
+      },
+      {
+        path: 'source',
+        component: DataProviderSourceListComponent
+      },
+      {
+        path: 'plan-client',
+        component: DataProviderPlanClientListComponent
+      },
+      {
+        path: 'plan-client/LinkPlanId/:LinkPlanId',
+        component: DataProviderPlanClientListComponent
+      },
+      {
+        path: 'plan-client/LinkClientId/:LinkClientId',
+        component: DataProviderPlanClientListComponent
+      },
+      {
+        path: 'plan',
+        component: DataProviderPlanListComponent
+      },
+      {
+        path: 'plan/LinkPlanCategory/:LinkPlanCategory',
+        component: DataProviderPlanListComponent
+      },
+      {
+        path: 'plan-source',
+        component: DataProviderPlanSourceListComponent
+      },
+      {
+        path: 'plan-source/LinkPlanId/:LinkPlanId',
+        component: DataProviderPlanSourceListComponent
+      },
+      {
+        path: 'plan-source/LinkSourceId/:LinkSourceId',
+        component: DataProviderPlanSourceListComponent
+      },
+      {
+        path: 'plan-price',
+        component: DataProviderPlanPriceListComponent
+      },
+      {
+        path: 'plan-price/LinkPlanId/:LinkPlanId',
+        component: DataProviderPlanPriceListComponent
+      },
       {
         path: 'transaction',
         component: DataProviderTransactionListComponent

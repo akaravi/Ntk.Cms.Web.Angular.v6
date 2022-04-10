@@ -5,8 +5,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  DataProviderPlanModel,
-  DataProviderPlanService,
+  DataProviderSourceModel,
+  DataProviderSourceService,
   DataProviderPlanCategoryModel,
   TokenInfoModel,
   EnumRecordStatus,
@@ -25,19 +25,19 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { DataProviderPlanAddComponent } from '../add/add.component';
-import { DataProviderPlanEditComponent } from '../edit/edit.component';
-import { DataProviderPlanDeleteComponent } from '../delete/delete.component';
+import { DataProviderSourceAddComponent } from '../add/add.component';
+import { DataProviderSourceEditComponent } from '../edit/edit.component';
+import { DataProviderSourceDeleteComponent } from '../delete/delete.component';
 
 @Component({
-  selector: 'app-data-provider-plan-list',
+  selector: 'app-data-provider-source-list',
   templateUrl: './list.component.html',
 })
-export class DataProviderPlanListComponent implements OnInit, OnDestroy {
+export class DataProviderSourceListComponent implements OnInit, OnDestroy {
 
   constructor(
     public publicHelper: PublicHelper,
-    public contentService: DataProviderPlanService,
+    public contentService: DataProviderSourceService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
@@ -60,22 +60,24 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   }
   filteModelContent = new FilterModel();
   categoryModelSelected: DataProviderPlanCategoryModel;
-  dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
+  dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<DataProviderPlanModel> = [];
-  tableRowSelected: DataProviderPlanModel = new DataProviderPlanModel();
-  tableSource: MatTableDataSource<DataProviderPlanModel> = new MatTableDataSource<DataProviderPlanModel>();
+  tableRowsSelected: Array<DataProviderSourceModel> = [];
+  tableRowSelected: DataProviderSourceModel = new DataProviderSourceModel();
+  tableSource: MatTableDataSource<DataProviderSourceModel> = new MatTableDataSource<DataProviderSourceModel>();
   tabledisplayedColumns: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
     'Title',
     'Description',
+    'HashMd5',
+    'KeyCode',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -98,7 +100,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new DataProviderPlanModel();
+    this.tableRowSelected = new DataProviderSourceModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
@@ -205,7 +207,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     dialogConfig.data = { parentId: this.categoryModelSelected.Id };
 
 
-    const dialogRef = this.dialog.open(DataProviderPlanAddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(DataProviderSourceAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -214,7 +216,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onActionbuttonEditRow(model: DataProviderPlanModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: DataProviderSourceModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -236,7 +238,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     dialogConfig.data = { id: this.tableRowSelected.Id };
 
 
-    const dialogRef = this.dialog.open(DataProviderPlanEditComponent, dialogConfig);
+    const dialogRef = this.dialog.open(DataProviderSourceEditComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -244,7 +246,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: DataProviderPlanModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: DataProviderSourceModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(emessage); return;
@@ -259,7 +261,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderPlanDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DataProviderSourceDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -333,7 +335,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     this.filteModelContent.Filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: DataProviderPlanModel): void {
+  onActionTableRowSelect(row: DataProviderSourceModel): void {
     this.tableRowSelected = row;
   }
 }

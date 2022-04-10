@@ -34,7 +34,7 @@ export class DataProviderPlanAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderPlanAddComponent>,
     public coreEnumService: CoreEnumService,
-    public DataProviderPlanService: DataProviderPlanService,
+    public dataProviderPlanService: DataProviderPlanService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -85,7 +85,7 @@ export class DataProviderPlanAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
-    this.DataProviderPlanService
+    this.dataProviderPlanService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -109,7 +109,7 @@ export class DataProviderPlanAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.DataProviderPlanService.ServiceAdd(this.dataModel).subscribe(
+    this.dataProviderPlanService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

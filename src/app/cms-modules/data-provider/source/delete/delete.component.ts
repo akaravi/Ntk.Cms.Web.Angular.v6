@@ -11,24 +11,24 @@ import {
   DataFieldInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  DataProviderPlanModel,
-  DataProviderPlanService,
+  DataProviderSourceModel,
+  DataProviderSourceService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
-  selector: 'app-data-provider-plan-delete',
+  selector: 'app-data-provider-source-delete',
   templateUrl: './delete.component.html',
 })
-export class DataProviderPlanDeleteComponent implements OnInit {
+export class DataProviderSourceDeleteComponent implements OnInit {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<DataProviderPlanDeleteComponent>,
+    private dialogRef: MatDialogRef<DataProviderSourceDeleteComponent>,
     private publicHelper: PublicHelper,
-    private DataProviderPlanService: DataProviderPlanService,
+    private dataProviderSourceService: DataProviderSourceService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
@@ -41,7 +41,7 @@ export class DataProviderPlanDeleteComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   loading = new ProgressSpinnerModel();
-  dataModelResultContent: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
+  dataModelResultContent: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   ngOnInit(): void {
     if (this.requestId <= 0) {
@@ -61,8 +61,8 @@ export class DataProviderPlanDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DataProviderPlanService.setAccessLoad();
-    this.DataProviderPlanService
+    this.dataProviderSourceService.setAccessLoad();
+    this.dataProviderSourceService
       .ServiceGetOneById(this.requestId)
       .subscribe(
         (next) => {
@@ -104,7 +104,7 @@ export class DataProviderPlanDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DataProviderPlanService
+    this.dataProviderSourceService
       .ServiceDelete(this.requestId)
       .subscribe(
         (next) => {

@@ -34,7 +34,7 @@ export class DonateTargetPeriodSponserAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateTargetPeriodSponserAddComponent>,
     public coreEnumService: CoreEnumService,
-    public DonateTargetPeriodSponsorService: DonateTargetPeriodSponsorService,
+    public donateTargetPeriodSponsorService: DonateTargetPeriodSponsorService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -78,7 +78,7 @@ export class DonateTargetPeriodSponserAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
-    this.DonateTargetPeriodSponsorService
+    this.donateTargetPeriodSponsorService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -102,7 +102,7 @@ export class DonateTargetPeriodSponserAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.DonateTargetPeriodSponsorService.ServiceAdd(this.dataModel).subscribe(
+    this.donateTargetPeriodSponsorService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

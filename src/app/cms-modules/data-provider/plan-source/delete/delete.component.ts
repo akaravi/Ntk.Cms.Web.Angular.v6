@@ -28,7 +28,7 @@ export class DataProviderPlanSourceDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderPlanSourceDeleteComponent>,
     private publicHelper: PublicHelper,
-    private DataProviderPlanSourceService: DataProviderPlanSourceService,
+    private dataProviderPlanSourceService: DataProviderPlanSourceService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
@@ -61,8 +61,8 @@ export class DataProviderPlanSourceDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DataProviderPlanSourceService.setAccessLoad();
-    this.DataProviderPlanSourceService
+    this.dataProviderPlanSourceService.setAccessLoad();
+    this.dataProviderPlanSourceService
       .ServiceGetOneById(this.requestId)
       .subscribe(
         (next) => {
@@ -104,7 +104,7 @@ export class DataProviderPlanSourceDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DataProviderPlanSourceService
+    this.dataProviderPlanSourceService
       .ServiceDelete(this.requestId)
       .subscribe(
         (next) => {

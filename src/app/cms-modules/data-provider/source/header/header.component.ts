@@ -1,8 +1,8 @@
 import {
   EnumInfoModel,
   ErrorExceptionResult,
-  DataProviderPlanModel,
-  DataProviderPlanService,
+  DataProviderSourceModel,
+  DataProviderSourceService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -20,13 +20,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
 @Component({
-  selector: 'app-data-provider-plan-header',
+  selector: 'app-data-provider-source-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class DataProviderPlanHeaderComponent implements OnInit , OnDestroy{
+export class DataProviderSourceHeaderComponent implements OnInit , OnDestroy{
   constructor(
-    private headerService: DataProviderPlanService,
+    private headerService: DataProviderSourceService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
@@ -37,7 +37,7 @@ export class DataProviderPlanHeaderComponent implements OnInit , OnDestroy{
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
+  dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -81,14 +81,13 @@ export class DataProviderPlanHeaderComponent implements OnInit , OnDestroy{
       }
     );
   }
-  onActionbuttonLinkTo(model: DataProviderPlanModel=this.dataModelResult.Item): void {
+  onActionbuttonLinkTo(model: DataProviderSourceModel=this.dataModelResult.Item): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     //open popup
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
-      // height: "90%",
       data: {
         // Title: model.Title,
         UrlViewContentQRCodeBase64:'',

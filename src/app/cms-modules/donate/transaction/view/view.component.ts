@@ -34,7 +34,7 @@ export class DonateTransactionViewComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateTransactionViewComponent>,
     public coreEnumService: CoreEnumService,
-    public DonateTransactionService: DonateTransactionService,
+    public donateTransactionService: DonateTransactionService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -92,9 +92,9 @@ export class DonateTransactionViewComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.DonateTransactionService.setAccessLoad();
+    this.donateTransactionService.setAccessLoad();
 
-    this.DonateTransactionService.ServiceGetOneById(this.requestId).subscribe(
+    this.donateTransactionService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;

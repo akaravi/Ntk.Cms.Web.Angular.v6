@@ -86,6 +86,16 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
       </ng-container>
+      <!-- HashMd5 Column -->
+      <ng-container matColumnDef="HashMd5">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HashMd5']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.HashMd5}} </mat-cell>
+      </ng-container>
+      <!-- KeyCode Column -->
+      <ng-container matColumnDef="KeyCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['KeyCode']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.KeyCode}} </mat-cell>
+      </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>

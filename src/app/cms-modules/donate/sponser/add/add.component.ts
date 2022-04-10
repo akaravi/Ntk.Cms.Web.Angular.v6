@@ -34,7 +34,7 @@ export class DonateSponserAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateSponserAddComponent>,
     public coreEnumService: CoreEnumService,
-    public DonateSponsorService: DonateSponsorService,
+    public donateSponsorService: DonateSponsorService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -78,7 +78,7 @@ export class DonateSponserAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
-    this.DonateSponsorService
+    this.donateSponsorService
       .ServiceViewModel()
       .subscribe(
         async (next) => {
@@ -102,7 +102,7 @@ export class DonateSponserAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.DonateSponsorService.ServiceAdd(this.dataModel).subscribe(
+    this.donateSponsorService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

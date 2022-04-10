@@ -34,7 +34,7 @@ export class DonateTargetPeriodSponserEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateTargetPeriodSponserEditComponent>,
     public coreEnumService: CoreEnumService,
-    public DonateTargetPeriodSponsorService: DonateTargetPeriodSponsorService,
+    public donateTargetPeriodSponsorService: DonateTargetPeriodSponsorService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -90,8 +90,8 @@ export class DonateTargetPeriodSponserEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.DonateTargetPeriodSponsorService.setAccessLoad();
-    this.DonateTargetPeriodSponsorService.ServiceGetOneById(this.requestId).subscribe(
+    this.donateTargetPeriodSponsorService.setAccessLoad();
+    this.donateTargetPeriodSponsorService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
 
@@ -127,7 +127,7 @@ export class DonateTargetPeriodSponserEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.DonateTargetPeriodSponsorService.ServiceEdit(this.dataModel).subscribe(
+    this.donateTargetPeriodSponsorService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;

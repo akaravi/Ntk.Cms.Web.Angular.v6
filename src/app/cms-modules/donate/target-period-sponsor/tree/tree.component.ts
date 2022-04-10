@@ -27,8 +27,6 @@ import { DonateTargetPeriodSponserAddComponent } from '../add/add.component';
 import { DonateTargetPeriodSponserDeleteComponent } from '../delete/delete.component';
 import { DonateTargetPeriodSponserEditComponent } from '../edit/edit.component';
 
-
-
 @Component({
   selector: 'app-donate-target-period-sponser-tree',
   templateUrl: './tree.component.html',

@@ -6,8 +6,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  DataProviderPlanModel,
-  DataProviderPlanService,
+  DataProviderSourceModel,
+  DataProviderSourceService,
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -17,27 +17,27 @@ import { Output } from '@angular/core';
 
 
 @Component({
-  selector: 'app-data-provider-plan-selector',
+  selector: 'app-data-provider-source-selector',
   templateUrl: './selector.component.html',
 })
-export class DataProviderPlanSelectorComponent implements OnInit {
+export class DataProviderSourceSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    public categoryService: DataProviderPlanService) {
+    public categoryService: DataProviderSourceService) {
     this.loading.cdr = this.cdr;
 
   }
-  dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
-  dataModelSelect: DataProviderPlanModel = new DataProviderPlanModel();
+  dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
+  dataModelSelect: DataProviderSourceModel = new DataProviderSourceModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<DataProviderPlanModel[]>;
+  filteredOptions: Observable<DataProviderSourceModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionChange = new EventEmitter<DataProviderPlanModel>();
+  @Output() optionChange = new EventEmitter<DataProviderSourceModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: number | DataProviderPlanModel) {
+  @Input() set optionSelectForce(x: number | DataProviderSourceModel) {
     this.onActionSelectForce(x);
   }
 
@@ -60,13 +60,13 @@ export class DataProviderPlanSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: DataProviderPlanModel): string | undefined {
+  displayFn(model?: DataProviderSourceModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  displayOption(model?: DataProviderPlanModel): string | undefined {
+  displayOption(model?: DataProviderSourceModel): string | undefined {
     return model ? model.Title : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<DataProviderPlanModel[]> {
+  async DataGetAll(text: string | number | any): Promise<DataProviderSourceModel[]> {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
@@ -108,7 +108,7 @@ export class DataProviderPlanSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: DataProviderPlanModel): void {
+  onActionSelect(model: DataProviderSourceModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
 
@@ -117,7 +117,7 @@ export class DataProviderPlanSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-  push(newvalue: DataProviderPlanModel): Observable<DataProviderPlanModel[]> {
+  push(newvalue: DataProviderSourceModel): Observable<DataProviderSourceModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.Id === newvalue.Id)) {
         return items;
@@ -127,7 +127,7 @@ export class DataProviderPlanSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: number | DataProviderPlanModel): void {
+  onActionSelectForce(id: number | DataProviderSourceModel): void {
     if (typeof id === 'number' && id > 0) {
       if (this.dataModelSelect && this.dataModelSelect.Id === id) {
         return;
@@ -148,9 +148,9 @@ export class DataProviderPlanSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof DataProviderPlanModel) {
-      this.filteredOptions = this.push((id as DataProviderPlanModel));
-      this.dataModelSelect = (id as DataProviderPlanModel);
+    if (typeof id === typeof DataProviderSourceModel) {
+      this.filteredOptions = this.push((id as DataProviderSourceModel));
+      this.dataModelSelect = (id as DataProviderSourceModel);
       this.formControl.setValue(id);
       return;
     }
@@ -158,7 +158,7 @@ export class DataProviderPlanSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    this.dataModelSelect = new DataProviderPlanModel();
+    this.dataModelSelect = new DataProviderSourceModel();
     this.DataGetAll(null);
   }
 }
