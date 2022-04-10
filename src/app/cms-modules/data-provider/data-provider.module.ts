@@ -83,6 +83,8 @@ import { DataProviderPlanPriceHeaderComponent } from './plan-price/header/header
 import { DataProviderPlanPriceListComponent } from './plan-price/list/list.component';
 import { DataProviderPlanPriceSelectorComponent } from './plan-price/selector/selector.component';
 import { DataProviderPlanPriceTreeComponent } from './plan-price/tree/tree.component';
+import { DataProviderPlanPriceChargePaymentComponent } from './plan-price/charge-payment/charge-payment.component';
+import { DataProviderPlanPriceChargeComponent } from './plan-price/charge/charge.component';
 @NgModule({
   declarations: [
     DataProviderComponent,
@@ -150,6 +152,8 @@ import { DataProviderPlanPriceTreeComponent } from './plan-price/tree/tree.compo
     DataProviderPlanPriceListComponent,
     DataProviderPlanPriceSelectorComponent,
     DataProviderPlanPriceTreeComponent,
+    DataProviderPlanPriceChargeComponent,
+    DataProviderPlanPriceChargePaymentComponent,
     /* */
 
   ],

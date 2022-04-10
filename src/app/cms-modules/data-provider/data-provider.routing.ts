@@ -6,6 +6,7 @@ import { DataProviderLogClientListComponent } from './log-client/list/list.compo
 import { DataProviderLogPlanListComponent } from './log-plan/list/list.component';
 import { DataProviderLogSourceListComponent } from './log-source/list/list.component';
 import { DataProviderPlanClientListComponent } from './plan-client/list/list.component';
+import { DataProviderPlanPriceChargeComponent } from './plan-price/charge/charge.component';
 import { DataProviderPlanPriceListComponent } from './plan-price/list/list.component';
 import { DataProviderPlanSourceListComponent } from './plan-source/list/list.component';
 import { DataProviderPlanListComponent } from './plan/list/list.component';
@@ -107,6 +108,10 @@ const routes: Routes = [
       {
         path: 'plan-price/LinkPlanId/:LinkPlanId',
         component: DataProviderPlanPriceListComponent
+      },
+      {
+        path: 'plan-price-charge/:LinkClientId',
+        component: DataProviderPlanPriceChargeComponent
       },
       {
         path: 'transaction',
