@@ -58,7 +58,7 @@ const routes: Routes = [
         component: DonateTargetPeriodListComponent
       },
       {
-        path: 'target-period-charge/:Id',
+        path: 'target-period-charge/:LinkTargetPeriodId',
         component: DonateTargetPeriodChargeComponent
       },
       {

@@ -42,11 +42,11 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      if (data.requestSupport && data.requestSupport > 0) {
-        this.requestSupportPayment = data.requestSupport;
+      if (data.SupportPayment && data.SupportPayment > 0) {
+        this.requestSupportPayment = data.SupportPayment;
       }
-      if (data.LinkModuleId && data.LinkModuleId > 0) {
-        this.requestLinkTargetPeriodId = data.LinkModuleId;
+      if (data.LinkTargetPeriodId && data.LinkTargetPeriodId > 0) {
+        this.requestLinkTargetPeriodId = data.LinkTargetPeriodId;
       }
     }
     if (this.requestSupportPayment === 0) {
