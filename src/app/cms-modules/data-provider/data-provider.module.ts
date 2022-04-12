@@ -13,6 +13,7 @@ import {
   CoreEnumService,
   CoreModuleService,
   CoreModuleTagService,
+  DataProviderClientService,
   DataProviderConfigurationService,
   DataProviderEnumService,
  
@@ -21,6 +22,18 @@ import {
   DataProviderLogPlanService,
  
   DataProviderLogSourceService,
+ 
+  DataProviderPlanCategoryService,
+ 
+  DataProviderPlanClientService,
+ 
+  DataProviderPlanPriceService,
+ 
+  DataProviderPlanService,
+ 
+  DataProviderPlanSourceService,
+ 
+  DataProviderSourceService,
  
   DataProviderTransactionService
 } from 'ntk-cms-api';
@@ -185,8 +198,14 @@ import { DataProviderPlanPriceChargeComponent } from './plan-price/charge/charge
     DataProviderLogSourceService,
     DataProviderLogPlanService,
     DataProviderLogClientService,
-    
+    DataProviderPlanService, 
+    DataProviderSourceService, 
     DataProviderTransactionService,
+    DataProviderClientService,
+    DataProviderPlanCategoryService,
+    DataProviderPlanClientService,
+    DataProviderPlanPriceService,
+    DataProviderPlanSourceService,
     /** */
     CmsConfirmationDialogService,
     CoreModuleTagService,

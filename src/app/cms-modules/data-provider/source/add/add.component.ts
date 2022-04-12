@@ -28,7 +28,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss'],
 })
 export class DataProviderSourceAddComponent implements OnInit {
-  requestLinkFileIds = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderSourceAddComponent>,
@@ -40,12 +39,7 @@ export class DataProviderSourceAddComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    if (data) {
-      this.requestLinkFileIds = data.LinkFileIds.Id || 0;
-    }
-    if (this.requestLinkFileIds.length > 0) {
-      this.dataModel.LinkFileIds = this.requestLinkFileIds;
-    }
+   
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;

@@ -192,7 +192,27 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
+  onActionbuttonNewRowAuto(): any {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    this.contentService.ServiceAutoAdd().subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+          this.DataGetAll();
+        }
+        else
+        {
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+      }
+    );
+  }
   onActionbuttonEditRow(model: CoreModuleModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id === 0) {

@@ -217,12 +217,16 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-
+    var LinkSiteId = this.requestLinkSiteId;
+    var LinkModuleId = this.requestLinkModuleId;
+    if (LinkSiteId <= 0) {
+      LinkSiteId = this.tokenInfo.SiteId;
+    }
     const dialogRef = this.dialog.open(CoreSiteModuleAddComponent, {
       height: '90%',
       data: {
-        LinkSiteId: this.requestLinkSiteId,
-        LinkModuleId: this.requestLinkModuleId,
+        LinkSiteId: LinkSiteId,
+        LinkModuleId: LinkModuleId,
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -291,7 +295,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDeleteEntity(this.tableRowSelected).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -405,7 +409,8 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsSiteCreditViewComponent, {
       // height: '90%',
       data: {
-        LinkModuleId: model.LinkModuleId,      }
+        LinkModuleId: model.LinkModuleId,
+      }
     });
   }
   onActionbuttonSiteUserCreditAccountRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
