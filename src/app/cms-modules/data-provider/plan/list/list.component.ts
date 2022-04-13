@@ -100,14 +100,14 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderPlanModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkPlanCategory';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -176,7 +176,6 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   onActionSelectorSelect(model: DataProviderPlanCategoryModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
 
@@ -259,13 +258,33 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderPlanDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DataProviderPlanDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
     });
+  }
+  onActionbuttonPriceList(model: DataProviderPlanModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/plan-price/LinkPlanId/' + model.Id]);
+
+  }
+  onActionbuttonTransactionList(model: DataProviderPlanModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/transaction/LinkPlanId/' + model.Id]);
+
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

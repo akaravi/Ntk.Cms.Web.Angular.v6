@@ -103,6 +103,14 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonPriceList(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+              <mat-icon>price</mat-icon>
+              <span>{{'ACTION.PRICE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonTransactionList(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+              <mat-icon>transaction</mat-icon>
+              <span>{{'ACTION.TRANSACTION' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

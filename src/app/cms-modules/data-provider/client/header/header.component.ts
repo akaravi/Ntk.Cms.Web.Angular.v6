@@ -1,8 +1,8 @@
 import {
   EnumInfoModel,
   ErrorExceptionResult,
-  DataProviderPlanClientModel,
-  DataProviderPlanClientService,
+  DataProviderClientModel,
+  DataProviderClientService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -20,13 +20,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
 @Component({
-  selector: 'app-data-provider-plan-client-header',
+  selector: 'app-data-provider-client-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class DataProviderPlanClientHeaderComponent implements OnInit , OnDestroy{
+export class DataProviderClientHeaderComponent implements OnInit , OnDestroy{
   constructor(
-    private headerService: DataProviderPlanClientService,
+    private headerService: DataProviderClientService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
@@ -37,7 +37,7 @@ export class DataProviderPlanClientHeaderComponent implements OnInit , OnDestroy
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<DataProviderPlanClientModel> = new ErrorExceptionResult<DataProviderPlanClientModel>();
+  dataModelResult: ErrorExceptionResult<DataProviderClientModel> = new ErrorExceptionResult<DataProviderClientModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -81,7 +81,7 @@ export class DataProviderPlanClientHeaderComponent implements OnInit , OnDestroy
       }
     );
   }
-  onActionbuttonLinkTo(model: DataProviderPlanClientModel=this.dataModelResult.Item): void {
+  onActionbuttonLinkTo(model: DataProviderClientModel=this.dataModelResult.Item): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;

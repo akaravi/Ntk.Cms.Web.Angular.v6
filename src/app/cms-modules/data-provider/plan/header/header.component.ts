@@ -35,7 +35,7 @@ export class DataProviderPlanHeaderComponent implements OnInit , OnDestroy{
   ) {
     this.loading.cdr = this.cdr;
   }
-  @Input() optionId = '';
+  @Input() optionId = 0;
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -44,7 +44,7 @@ export class DataProviderPlanHeaderComponent implements OnInit , OnDestroy{
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    if (this.optionId?.length > 0) {
+    if (this.optionId > 0) {
       this.DataGetOneContent();
     }
     this.getEnumRecordStatus();
@@ -63,7 +63,7 @@ export class DataProviderPlanHeaderComponent implements OnInit , OnDestroy{
     this.loading.Start(pName);
 
     this.headerService.setAccessLoad();
-    this.headerService.ServiceGetOneById(this.optionId.length).subscribe(
+    this.headerService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
         if (next.IsSuccess) {

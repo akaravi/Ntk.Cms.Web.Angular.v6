@@ -109,12 +109,13 @@ const routes: Routes = [
         path: 'plan-price/LinkPlanId/:LinkPlanId',
         component: DataProviderPlanPriceListComponent
       },
-      {
-        path: 'plan-price-charge/:LinkClientId',
-        component: DataProviderPlanPriceChargeComponent
-      },
+    
       {
         path: 'transaction',
+        component: DataProviderTransactionListComponent
+      }
+      , {
+        path: 'transaction/LinkPlanId/:LinkPlanId',
         component: DataProviderTransactionListComponent
       }
       ,
@@ -128,7 +129,7 @@ const routes: Routes = [
       }
       ,
       {
-        path: 'transaction/LinkTargetPeriodId/:LinkTargetPeriodId',
+        path: 'transaction/LinkPlanPriceId/:LinkPlanPriceId',
         component: DataProviderTransactionListComponent
       }
 /** */

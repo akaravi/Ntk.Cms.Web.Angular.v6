@@ -11,6 +11,7 @@ import {
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,
+  DataProviderPlanModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
@@ -59,7 +60,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
 
   }
   filteModelContent = new FilterModel();
-  categoryModelSelected: DataProviderPlanCategoryModel;
+  categoryModelSelected: DataProviderPlanModel;
   dataModelResult: ErrorExceptionResult<DataProviderClientModel> = new ErrorExceptionResult<DataProviderClientModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -104,9 +105,11 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
+    /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkPlanId';
+      filter.PropertyAnyName = 'PlanClient';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -171,23 +174,14 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-  onActionSelectorSelect(model: DataProviderPlanCategoryModel | null): void {
+  onActionSelectorSelect(model: DataProviderPlanModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 
     this.DataGetAll();
   }
-
+ 
   onActionbuttonNewRow(): void {
-    if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.Id === 0
-    ) {
-      const message = 'دسته بندی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -201,7 +195,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
-    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    dialogConfig.data = { };
 
 
     const dialogRef = this.dialog.open(DataProviderClientAddComponent, dialogConfig);
@@ -333,5 +327,15 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderClientModel): void {
     this.tableRowSelected = row;
+  }
+  onActionbuttonTransactionList(model: DataProviderClientModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/transaction/LinkClientId/' + model.Id]);
+
   }
 }

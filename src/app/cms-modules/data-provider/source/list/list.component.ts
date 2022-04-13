@@ -11,6 +11,7 @@ import {
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,
+  DataProviderPlanModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
@@ -59,7 +60,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
 
   }
   filteModelContent = new FilterModel();
-  categoryModelSelected: DataProviderPlanCategoryModel;
+  categoryModelSelected: DataProviderPlanModel;
   dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -109,7 +110,8 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkPlanId';
+      filter.PropertyAnyName = 'PlanSource';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -175,7 +177,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
-  onActionSelectorSelect(model: DataProviderPlanCategoryModel | null): void {
+  onActionSelectorSelect(model: DataProviderPlanModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 
@@ -183,14 +185,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonNewRow(): void {
-    if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.Id === 0
-    ) {
-      const message = 'دسته بندی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
+  
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||

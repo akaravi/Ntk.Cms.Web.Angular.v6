@@ -2,7 +2,8 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-data-provider-plan-category-tree (optionChange)="onActionSelectorSelect($event)"></app-data-provider-plan-category-tree>
+    <app-data-provider-plan-tree (optionChange)="onActionSelectorSelect($event)"></app-data-provider-plan-tree>
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
@@ -12,7 +13,7 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.Access.AccessAddRow && this.categoryModelSelected?.Id>0"
+    <button *ngIf="dataModelResult.Access.AccessAddRow "
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"
@@ -97,6 +98,10 @@
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonTransactionList(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+              <mat-icon>transaction</mat-icon>
+              <span>{{'ACTION.TRANSACTION' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

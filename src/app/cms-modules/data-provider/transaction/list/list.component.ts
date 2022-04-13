@@ -31,9 +31,10 @@ import { DataProviderTransactionViewComponent } from '../view/view.component';
   templateUrl: './list.component.html',
 })
 export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
-  LinkCmsUserId = 0;
-  LinkSponsorId = 0;
-  LinkTargetPeriodId = 0;
+  requestLinkCmsUserId = 0;
+  requestLinkPlanId = 0;
+  requestLinkPlanPriceId = 0;
+  requestLinkClientId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -70,38 +71,51 @@ export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
   tableRowSelected: DataProviderTransactionModel = new DataProviderTransactionModel();
   tableSource: MatTableDataSource<DataProviderTransactionModel> = new MatTableDataSource<DataProviderTransactionModel>();
   tabledisplayedColumns: string[] = [
-    'LinkMainImageIdSrc',
     'Id',
+    'LinkSiteId',
     'RecordStatus',
-    'Title',
-    'DataProviderTargetId',
-    'DeviceId',
-    'VisitDate',
+    'LinkClientId',
+    'LinkPlanId',
+    'LinkPlanPriceId',
+    'SystemTransactionId',
+    'SystemPaymentIsSuccess',
+    'AmountPure',
+    'FeeTransport',
+    'FeeTax',
+    'Amount',
+    'CreatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.LinkCmsUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCmsUserId'));
-    if (this.LinkCmsUserId && this.LinkCmsUserId > 0) {
+    this.requestLinkCmsUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCmsUserId'));
+    if (this.requestLinkCmsUserId && this.requestLinkCmsUserId > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkCmsUserId';
-      filter.Value = this.LinkCmsUserId;
+      filter.Value = this.requestLinkCmsUserId;
       this.filteModelContent.Filters.push(filter);
     }
-    this.LinkSponsorId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSponsorId'));
-    if (this.LinkSponsorId && this.LinkSponsorId > 0) {
+    this.requestLinkPlanId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPlanId'));
+    if (this.requestLinkPlanId && this.requestLinkPlanId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkSponsorId';
-      filter.Value = this.LinkSponsorId;
+      filter.PropertyName = 'LinkPlanId';
+      filter.Value = this.requestLinkPlanId;
       this.filteModelContent.Filters.push(filter);
     }
-    this.LinkTargetPeriodId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTargetPeriodId'));
-    if (this.LinkTargetPeriodId && this.LinkTargetPeriodId > 0) {
+    this.requestLinkClientId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkClientId'));
+    if (this.requestLinkClientId && this.requestLinkClientId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'DataProviderTargetId';
-      filter.Value = this.LinkTargetPeriodId;
+      filter.PropertyName = 'LinkClientId';
+      filter.Value = this.requestLinkClientId;
+      this.filteModelContent.Filters.push(filter);
+    }
+    this.requestLinkPlanPriceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPlanPriceId'));
+    if (this.requestLinkPlanPriceId && this.requestLinkPlanPriceId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkPlanPriceId';
+      filter.Value = this.requestLinkPlanPriceId;
       this.filteModelContent.Filters.push(filter);
     }
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -118,10 +132,34 @@ export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    if (
+      this.tokenInfo.UserAccessAdminAllowToAllData ||
+      this.tokenInfo.UserAccessAdminAllowToProfessionalData
+    ) {
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        "LinkSiteId",
+        0
+      );
+      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
+        this.tabledisplayedColumns,
+        "Id",
+        0
+      );
+    } else {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        "LinkSiteId"
+      );
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        "Id"
+      );
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderTransactionModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -187,7 +225,7 @@ export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonViewRow(model: DataProviderTransactionModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id> 0) {
+    if (!model || !model.Id || model.Id > 0) {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
@@ -279,5 +317,18 @@ export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderTransactionModel): void {
     this.tableRowSelected = row;
+  }
+  onActionBackToParent(): void {
+
+    if (this.requestLinkCmsUserId > 0) {
+      this.router.navigate(['/data-provider/plan/']);
+    }
+    else if (this.requestLinkPlanId > 0) {
+      this.router.navigate(['/data-provider/plan/']);
+    } else if (this.requestLinkPlanPriceId > 0) {
+      this.router.navigate(['/data-provider/plan-price/']);
+    } else if (this.requestLinkClientId > 0) {
+      this.router.navigate(['/data-provider/client/']);
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   EnumSortType,
   ErrorExceptionResult,
@@ -34,11 +34,12 @@ import { DataProviderPlanPriceDeleteComponent } from '../delete/delete.component
   templateUrl: './list.component.html',
 })
 export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
-
+  requestLinkPlanId = 0;
   constructor(
     public publicHelper: PublicHelper,
     public contentService: DataProviderPlanPriceService,
     private cmsToastrService: CmsToastrService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -59,7 +60,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
 
   }
   filteModelContent = new FilterModel();
-  categoryModelSelected: DataProviderPlanCategoryModel;
+
   dataModelResult: ErrorExceptionResult<DataProviderPlanPriceModel> = new ErrorExceptionResult<DataProviderPlanPriceModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -84,6 +85,13 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
+    this.requestLinkPlanId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPlanId'));
+    if (this.requestLinkPlanId && this.requestLinkPlanId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkPlanId';
+      filter.Value = this.requestLinkPlanId;
+      this.filteModelContent.Filters.push(filter);
+    }
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -102,17 +110,12 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderPlanPriceModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
-      const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkParentId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
-    }
+
     this.contentService.setAccessLoad();
     this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
@@ -175,22 +178,9 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
-  onActionSelectorSelect(model: DataProviderPlanCategoryModel | null): void {
-    this.filteModelContent = new FilterModel();
-    this.categoryModelSelected = model;
-
-    this.DataGetAll();
-  }
 
   onActionbuttonNewRow(): void {
-    if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.Id === 0
-    ) {
-      const message = 'دسته بندی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
+
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -204,7 +194,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
-    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    dialogConfig.data = { LinkPlanId: this.requestLinkPlanId };
 
 
     const dialogRef = this.dialog.open(DataProviderPlanPriceAddComponent, dialogConfig);
@@ -261,13 +251,23 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderPlanPriceDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DataProviderPlanPriceDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
     });
+  }
+  onActionbuttonTransactionList(model: DataProviderPlanPriceModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/transaction/LinkPlanPriceId/' + model.Id]);
+
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -337,5 +337,8 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderPlanPriceModel): void {
     this.tableRowSelected = row;
+  }
+  onActionBackToParent(): void {
+    this.router.navigate(['/data-provider/plan/']);
   }
 }
