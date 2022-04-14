@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   EnumSortType,
   ErrorExceptionResult,
@@ -34,11 +34,12 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html',
 })
 export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
-
+  requestLinkTargeId = 0;
   constructor(
     public publicHelper: PublicHelper,
     public contentService: DonateTargetPeriodService,
     private cmsToastrService: CmsToastrService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -79,7 +80,6 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'Title',
     'Description',
-    // 'SupportRequiredPayment',
     'LinkTargeId',
     'ShareBeginDate',
     'ShareExpireDate',
@@ -93,6 +93,13 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
+    this.requestLinkTargeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTargeId'));
+    if (this.requestLinkTargeId && this.requestLinkTargeId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkTargeId';
+      filter.Value = this.requestLinkTargeId;
+      this.filteModelContent.Filters.push(filter);
+    }
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -139,6 +146,12 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
             this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
               this.tabledisplayedColumns,
               'LinkSiteId'
+            );
+          }
+          if (this.requestLinkTargeId === 0) {
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+              this.tabledisplayedColumns,
+              'LinkTargeId'
             );
           }
           if (this.optionsSearch.childMethods) {
@@ -192,8 +205,8 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
 
   onActionbuttonNewRow(): void {
     if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.Id === 0
+      this.requestLinkTargeId == null ||
+      this.requestLinkTargeId === 0
     ) {
       const message = 'دسته بندی انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
@@ -211,7 +224,8 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    dialogConfig.data = { LinkTargeId: this.requestLinkTargeId , categoryModelSelected:this.categoryModelSelected};
+    
 
 
     const dialogRef = this.dialog.open(DonateTargetPeriodAddComponent, dialogConfig);

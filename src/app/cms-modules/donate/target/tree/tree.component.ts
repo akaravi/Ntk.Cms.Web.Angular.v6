@@ -30,8 +30,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-donate-target-tree',
-  templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
+  templateUrl: './tree.component.html'
 })
 export class DonateTargetTreeComponent implements OnInit, OnDestroy {
   constructor(

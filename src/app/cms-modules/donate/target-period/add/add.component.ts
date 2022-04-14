@@ -28,7 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss'],
 })
 export class DonateTargetPeriodAddComponent implements OnInit {
-  requestParentId = 0;
+  requestLinkTargeId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DonateTargetPeriodAddComponent>,
@@ -41,10 +41,10 @@ export class DonateTargetPeriodAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      this.requestParentId = +data.parentId || 0;
+      this.requestLinkTargeId = +data.LinkTargeId || 0;
     }
-    if (this.requestParentId > 0) {
-      this.dataModel.LinkTargeId = this.requestParentId;
+    if (this.requestLinkTargeId > 0) {
+      this.dataModel.LinkTargeId = this.requestLinkTargeId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }

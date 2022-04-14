@@ -42,7 +42,7 @@ export class DonateSponserAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      this.requestLinkTargetCategoryId = +data.parentId || 0;
+      this.requestLinkTargetCategoryId = +data.LinkTargetCategoryId || 0;
     }
     if (this.requestLinkTargetCategoryId > 0) {
       this.dataModel.LinkTargetCategoryId = this.requestLinkTargetCategoryId;

@@ -274,8 +274,8 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
 
     this.router.navigate(['/data-provider/plan-price/LinkPlanId/' + model.Id]);
-
   }
+  
   onActionbuttonTransactionList(model: DataProviderPlanModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی انتخاب نشده است';
@@ -284,8 +284,8 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
 
     this.router.navigate(['/data-provider/transaction/LinkPlanId/' + model.Id]);
-
   }
+
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {

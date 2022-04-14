@@ -1,14 +1,11 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  CoreAuthService,
   DataFieldInfoModel,
   EnumRecordStatus,
   EnumSortType,
   ErrorExceptionResult,
   NewsCommentModel,
   NewsCommentService,
-  BiographyContentModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EnumFilterDataModelSearchTypes,
   NewsContentService

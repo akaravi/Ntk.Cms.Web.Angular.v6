@@ -111,7 +111,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkTargetCategoryId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -206,7 +206,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
-    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    dialogConfig.data = { categoryModelSelected: this.categoryModelSelected.Id };
 
 
     const dialogRef = this.dialog.open(DonateTargetAddComponent, dialogConfig);
@@ -271,6 +271,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -340,6 +341,18 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: DonateTargetModel): void {
     this.tableRowSelected = row;
   }
+
+  onActionbuttonTargetPeriodList(model: DonateTargetModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+       return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/donate/target-period/LinkTargeId/' + model.Id]);
+  }
+
   onActionbuttonViewRow(model: DonateTargetModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const message = 'ردیفی   انتخاب نشده است';

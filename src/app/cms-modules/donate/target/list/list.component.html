@@ -21,7 +21,7 @@
     <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
     <button *ngIf=" tableRowSelected.Id>0" (click)="onActionbuttonViewRow()" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.RESULTS' | translate}}</button>
+      class="btn btn-outline-success BTN">{{'ACTION.VIEW' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -113,6 +113,10 @@
             <button mat-menu-item (click)="onActionbuttonViewRow(row)">
               <mat-icon>list</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonTargetPeriodList(row)">
+              <mat-icon>adjust</mat-icon>
+              <span>target period</span>
             </button>
           </mat-menu>
         </mat-cell>

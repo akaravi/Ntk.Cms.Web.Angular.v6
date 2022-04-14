@@ -159,7 +159,7 @@ export class DataProviderPlanEditComponent implements OnInit {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPlanCategory = model.Id;
+    this.dataModel.LinkPlanCategoryId = model.Id;
   }
 
   onFormSubmit(): void {

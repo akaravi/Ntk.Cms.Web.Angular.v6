@@ -1,3 +1,7 @@
+<app-cms-guide-notice [Key]="'donate.targetperiod.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+
+<app-donate-target-header *ngIf="this.requestLinkTargeId>0" [optionId]="this.requestLinkTargeId">
+</app-donate-target-header>
 
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
@@ -13,9 +17,7 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
 
-    <!-- <button *ngIf=" tableRowSelected.Id>0" (click)="             " type="button"
-      class="btn btn-outline-success BTN">مشاهده</button> -->
-    <button *ngIf="dataModelResult.Access.AccessAddRow && this.categoryModelSelected?.Id>0"
+    <button *ngIf="dataModelResult.Access.AccessAddRow && this.requestLinkTargeId>0"
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
       data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
     <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"

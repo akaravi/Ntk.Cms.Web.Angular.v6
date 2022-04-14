@@ -29,7 +29,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss'],
 })
 export class DataProviderPlanAddComponent implements OnInit {
-  requestLinkPlanCategory = 0;
+  requestLinkPlanCategoryId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DataProviderPlanAddComponent>,
@@ -42,10 +42,10 @@ export class DataProviderPlanAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
-      this.requestLinkPlanCategory = +data.LinkPlanCategory || 0;
+      this.requestLinkPlanCategoryId = +data.LinkPlanCategoryId || 0;
     }
-    if (this.requestLinkPlanCategory > 0) {
-      this.dataModel.LinkPlanCategory = this.requestLinkPlanCategory;
+    if (this.requestLinkPlanCategoryId > 0) {
+      this.dataModel.LinkPlanCategoryId = this.requestLinkPlanCategoryId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -139,7 +139,7 @@ export class DataProviderPlanAddComponent implements OnInit {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPlanCategory = model.Id;
+    this.dataModel.LinkPlanCategoryId = model.Id;
   }
 
   onFormSubmit(): void {

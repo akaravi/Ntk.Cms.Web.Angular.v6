@@ -66,6 +66,7 @@ import { DonateTargetPeriodChargePaymentComponent } from './target-period/charge
 import { DonateSponserTreeComponent } from './sponser/tree/tree.component';
 import { DonateTransactionListComponent } from './transaction/list/list.component';
 import { DonateTransactionViewComponent } from './transaction/view/view.component';
+import { DonateTargetHeaderComponent } from './target/header/header.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { DonateTransactionViewComponent } from './transaction/view/view.componen
     DonateTargetDeleteComponent,
     DonateTargetSelectorComponent,
     DonateTargetTreeComponent,
+    DonateTargetHeaderComponent,
     DonateTargetListComponent,
     /* */
     DonateSponserListComponent,

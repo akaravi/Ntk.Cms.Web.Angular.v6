@@ -5,11 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   EstateContractTypeModel,
   EstateContractTypeService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EnumRecordStatus,
   FilterDataModel,
