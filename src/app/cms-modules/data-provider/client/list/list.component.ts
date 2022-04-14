@@ -100,7 +100,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderClientModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -180,7 +180,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
 
     this.DataGetAll();
   }
- 
+
   onActionbuttonNewRow(): void {
     if (
       this.dataModelResult == null ||
@@ -195,7 +195,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
-    dialogConfig.data = { };
+    dialogConfig.data = {};
 
 
     const dialogRef = this.dialog.open(DataProviderClientAddComponent, dialogConfig);
@@ -251,7 +251,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderClientDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DataProviderClientDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
