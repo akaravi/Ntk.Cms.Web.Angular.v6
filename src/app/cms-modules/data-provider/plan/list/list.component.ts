@@ -107,7 +107,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkPlanCategory';
+      filter.PropertyName = 'LinkPlanCategoryId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }

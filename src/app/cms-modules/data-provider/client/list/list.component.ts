@@ -109,7 +109,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
       filter.PropertyName = 'LinkPlanId';
-      filter.PropertyAnyName = 'PlanClient';
+      filter.PropertyAnyName = 'PlanClients';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
