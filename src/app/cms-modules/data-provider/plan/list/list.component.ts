@@ -201,7 +201,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
-    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    dialogConfig.data = { LinkPlanCategoryId: this.categoryModelSelected.Id };
 
 
     const dialogRef = this.dialog.open(DataProviderPlanAddComponent, dialogConfig);

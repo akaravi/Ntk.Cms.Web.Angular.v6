@@ -90,6 +90,14 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ KeyCode.value.length }} / 100</mat-hint>
     </mat-form-field>
+
+
+    
+    <app-data-provider-plan-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"
+      (optionChange)="onActionSelectorPlanSelect($event)"
+      (optionSelectAdded)="onActionSelectorPlanSelectAdded($event)"
+      (optionSelectRemoved)="onActionSelectorPlanSelectRemoved($event)">
+    </app-data-provider-plan-selectionlist>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

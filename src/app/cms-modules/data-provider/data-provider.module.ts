@@ -100,6 +100,7 @@ import { DataProviderPlanPriceChargePaymentComponent } from './plan-price/charge
 import { DataProviderPlanPriceChargeComponent } from './plan-price/charge/charge.component';
 import { DataProviderPlanHeaderComponent } from './plan/header/header.component';
 import { DataProviderClientHeaderComponent } from './client/header/header.component';
+import { DataProviderPlanSelectionlistComponent } from './plan/selectionlist/selectionlist.component';
 @NgModule({
   declarations: [
     DataProviderComponent,
@@ -127,6 +128,7 @@ import { DataProviderClientHeaderComponent } from './client/header/header.compon
     DataProviderPlanEditComponent,
     DataProviderPlanListComponent,
     DataProviderPlanSelectorComponent,
+    DataProviderPlanSelectionlistComponent,
     DataProviderPlanTreeComponent,
     DataProviderPlanHeaderComponent,
     /* */
