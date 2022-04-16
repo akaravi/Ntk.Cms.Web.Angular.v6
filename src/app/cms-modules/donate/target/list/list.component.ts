@@ -206,8 +206,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
-    dialogConfig.data = { categoryModelSelected: this.categoryModelSelected.Id };
-
+    dialogConfig.data = { LinkTargetCategoryId: this.categoryModelSelected.Id };
 
     const dialogRef = this.dialog.open(DonateTargetAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {

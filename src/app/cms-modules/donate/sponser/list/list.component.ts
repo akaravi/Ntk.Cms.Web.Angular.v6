@@ -112,7 +112,7 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkTargetCategoryId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }

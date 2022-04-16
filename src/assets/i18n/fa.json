@@ -14,6 +14,8 @@
 	"ACTION.BUY": "خرید",
 	"ACTION.VIEW_STATISTICS": "مشاهده امار",
 	"ACTION.PROPERTYLIST": "لیست املاک",
+	"ACTION.TARGET_PERIOD": "لیست دوره های هدف",
+	"ACTION.TARGET_PERIOD_SPONSER": "لیست اسپانسرهای دوره هدف",
 	"ACTION.RESULTS": "نتایج",
 	"ACTION.CANCEL": "انصراف",
 	"ACTION.COMMENT": "کامنت",

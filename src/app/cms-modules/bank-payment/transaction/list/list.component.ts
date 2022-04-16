@@ -5,7 +5,6 @@ import {
   ApplicationAppModel,
   BankPaymentTransactionModel,
   BankPaymentTransactionService,
-  CoreAuthService,
   DataFieldInfoModel,
   EnumInfoModel,
   EnumRecordStatus,
@@ -13,7 +12,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   BankPaymentEnumService
 } from 'ntk-cms-api';

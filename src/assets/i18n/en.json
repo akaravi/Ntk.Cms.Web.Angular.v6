@@ -14,6 +14,8 @@
 	"ACTION.BUY": "Buy",
 	"ACTION.VIEW_STATISTICS": "View statistics",
 	"ACTION.PROPERTYLIST": "Property list",
+	"ACTION.TARGET_PERIOD": "Target period",
+	"ACTION.TARGET_PERIOD_SPONSER": "Target period sponser",
 	"ACTION.RESULTS": "Results",
 	"ACTION.CANCEL": "Cancel",
 	"ACTION.COMMENT": "Comment",

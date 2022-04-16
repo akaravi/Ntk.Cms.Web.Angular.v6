@@ -152,7 +152,7 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonTargetPeriodSponserList(row)">
               <mat-icon>adjust</mat-icon>
-              <span>targetPeriodSponser</span>
+              <span>{{'ACTION.TARGET_PERIOD_SPONSER' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonTransactionsRow(row)">
               <mat-icon>list</mat-icon>
@@ -166,7 +166,6 @@
         [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
-
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>

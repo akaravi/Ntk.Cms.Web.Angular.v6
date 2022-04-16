@@ -8,8 +8,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-data-provider-plan-selectionlist',
-  templateUrl: './selectionlist.component.html',
-  styleUrls: ['./selectionlist.component.scss']
+  templateUrl: './selectionlist.component.html'
 })
 export class DataProviderPlanSelectionlistComponent implements OnInit {
 

@@ -7,7 +7,6 @@ import {
   FilterModel,
   DataProviderClientModel,
   DataProviderClientService,
-  DataProviderPlanCategoryModel,
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,

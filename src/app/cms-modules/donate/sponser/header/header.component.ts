@@ -81,24 +81,4 @@ export class DonateSponserHeaderComponent implements OnInit , OnDestroy{
       }
     );
   }
-  onActionbuttonLinkTo(model: DonateSponsorModel=this.dataModelResult.Item): void {
-    if (!model || !model.Id || model.Id === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    //open popup
-    const dialogRef = this.dialog.open(CmsLinkToComponent, {
-      // height: "90%",
-      data: {
-        Title: model.Title,
-        UrlViewContentQRCodeBase64:'',
-        UrlViewContent:'',
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.dialogChangedDate) {
-      }
-    });
-    //open popup
-  }
 }
