@@ -1,7 +1,8 @@
 
-<app-donate-sponser-header *ngIf="this.requestLinkSponserId?.length>0" [optionId]="this.requestLinkSponserId">
-
+<app-donate-sponser-header *ngIf="this.requestLinkSponserId>0" [optionId]="this.requestLinkSponserId">
 </app-donate-sponser-header>
+<app-donate-target-period-header *ngIf="this.requestLinkTargetPeriodId>0" [optionId]="this.requestLinkTargetPeriodId">
+</app-donate-target-period-header>
 
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
@@ -17,8 +18,6 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
 
-    <!-- <button *ngIf=" tableRowSelected.Id>0" (click)="             " type="button"
-      class="btn btn-outline-success BTN">مشاهده</button> -->
     <button *ngIf="dataModelResult.Access.AccessAddRow && this.categoryModelSelected?.Id>0"
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
       data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>

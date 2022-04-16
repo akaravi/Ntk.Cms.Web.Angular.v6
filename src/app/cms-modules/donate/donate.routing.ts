@@ -70,6 +70,10 @@ const routes: Routes = [
         component: DonateTargetPeriodSponserListComponent
       },
       {
+        path: 'target-period-sponser/LinkTargetPeriodId/:LinkTargetPeriodId',
+        component: DonateTargetPeriodSponserListComponent
+      },
+      {
         path: 'target-period-sponser/LinkSponserId/:LinkSponserId',
         component: DonateTargetPeriodSponserListComponent
       },

@@ -117,9 +117,13 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonTargetPeriodSponserRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonTargetPeriodSponserRow(row)">
               <mat-icon>list</mat-icon>
               <span>لیست دوره ها</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonTransactionsRow(row)">
+              <mat-icon>list</mat-icon>
+              <span>{{'ACTION.TRANSACTIONS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

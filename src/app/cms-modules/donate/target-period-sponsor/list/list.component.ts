@@ -35,7 +35,9 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html',
 })
 export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy {
-  requestLinkSponserId = '';
+  requestLinkSponserId = 0;
+  requestLinkTargetPeriodId = 0;
+
   constructor(
     public publicHelper: PublicHelper,
     public contentService: DonateTargetPeriodSponsorService,
@@ -50,8 +52,8 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
 
 
     this.loading.cdr = this.cdr;
-    this.requestLinkSponserId =
-    this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeLanduseId");
+    // this.requestLinkSponserId =
+    // Number(this.activatedRoute.snapshot.paramMap.get("LinkSponserId"));
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -88,6 +90,21 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
+    this.requestLinkSponserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSponserId'));
+    if (this.requestLinkSponserId && this.requestLinkSponserId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkSponserId';
+      filter.Value = this.requestLinkSponserId;
+      this.filteModelContent.Filters.push(filter);
+    }
+
+    this.requestLinkTargetPeriodId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTargetPeriodId'));
+    if (this.requestLinkTargetPeriodId && this.requestLinkTargetPeriodId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkTargetPeriodId';
+      filter.Value = this.requestLinkTargetPeriodId;
+      this.filteModelContent.Filters.push(filter);
+    }
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -116,7 +133,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkSponserId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -138,6 +155,12 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
             this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
               this.tabledisplayedColumns,
               'LinkSiteId'
+            );
+          }
+          if (this.requestLinkSponserId === 0) {
+            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+              this.tabledisplayedColumns,
+              'LinkSponserId'
             );
           }
           if (this.optionsSearch.childMethods) {
@@ -210,7 +233,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    dialogConfig.data = { LinkTargetPeriodId: this.categoryModelSelected.Id };
 
 
     const dialogRef = this.dialog.open(DonateTargetPeriodSponserAddComponent, dialogConfig);

@@ -74,9 +74,10 @@ export class DonateTransactionListComponent implements OnInit, OnDestroy {
     'Id',
     'RecordStatus',
     'Title',
-    'DonateTargetId',
-    'DeviceId',
-    'VisitDate',
+    'Sponsor',
+    'TargetPeriod',
+    'Amount',
+    'AmountPure',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -209,7 +210,6 @@ export class DonateTransactionListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

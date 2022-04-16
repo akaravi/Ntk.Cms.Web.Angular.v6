@@ -206,7 +206,7 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.data = { parentId: this.categoryModelSelected.Id };
+    dialogConfig.data = { LinkTargetCategoryId: this.categoryModelSelected.Id };
 
 
     const dialogRef = this.dialog.open(DonateSponserAddComponent, dialogConfig);
@@ -347,6 +347,15 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.router.navigate(['/donate/target-period-sponser/', model.Id]);
+    this.router.navigate(['/donate/target-period-sponser/LinkSponserId/', model.Id]);
+  }
+
+  onActionbuttonTransactionsRow(model: DonateSponsorModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const message = 'ردیفی   انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.router.navigate(['/donate/transaction/LinkSponsorId/', model.Id]);
   }
 }

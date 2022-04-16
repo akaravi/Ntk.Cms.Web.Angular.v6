@@ -124,7 +124,7 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCategoryId';
+      filter.PropertyName = 'LinkTargeId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }
@@ -358,6 +358,26 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
 
     this.router.navigate(['/donate/target-period-charge/', model.Id]);
+  }
+
+  onActionbuttonTargetPeriodSponserList(model: DonateTargetPeriodModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage);
+       return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/donate/target-period-sponser/LinkTargetPeriodId/' + model.Id]);
+  }
+
+  onActionbuttonTransactionsRow(model: DonateTargetPeriodModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const message = 'ردیفی   انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.router.navigate(['/donate/transaction/LinkTargetPeriodId/', model.Id]);
   }
 
   onActionbuttonReload(): void {

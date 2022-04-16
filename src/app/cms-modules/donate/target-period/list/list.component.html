@@ -150,6 +150,14 @@
               <mat-icon>shopping_cart</mat-icon>
               <span>{{'ACTION.Donate_Money' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonTargetPeriodSponserList(row)">
+              <mat-icon>adjust</mat-icon>
+              <span>targetPeriodSponser</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonTransactionsRow(row)">
+              <mat-icon>list</mat-icon>
+              <span>{{'ACTION.TRANSACTIONS' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>
