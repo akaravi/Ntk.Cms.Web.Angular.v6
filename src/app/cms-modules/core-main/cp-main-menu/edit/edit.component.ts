@@ -87,7 +87,6 @@ export class CoreCpMainMenuEditComponent implements OnInit {
 
     this.getEnumRecordStatus();
     this.getEnumMenuPlaceType();
-    // this.DataGetAllMenuCoreUserGroup();
   }
   getEnumMenuPlaceType(): void {
     this.coreEnumService.ServiceEnumMenuPlaceType().subscribe((next) => {

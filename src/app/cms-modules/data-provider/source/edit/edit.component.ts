@@ -6,6 +6,11 @@ import {
   DataProviderSourceModel,
   DataProviderSourceService,
   DataFieldInfoModel,
+  DataProviderPlanSourceService,
+  DataProviderPlanModel,
+  DataProviderPlanSourceModel,
+  FilterModel,
+  FilterDataModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -34,6 +39,7 @@ export class DataProviderSourceEditComponent implements OnInit {
     private dialogRef: MatDialogRef<DataProviderSourceEditComponent>,
     public coreEnumService: CoreEnumService,
     public dataProviderSourceService: DataProviderSourceService,
+    private dataProviderPlanSourceService: DataProviderPlanSourceService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -105,6 +111,7 @@ export class DataProviderSourceEditComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
           this.formInfo.FormAlert = '';
+          this.DataGetAllPlanSource();
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -125,7 +132,7 @@ export class DataProviderSourceEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.dataProviderSourceService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
@@ -164,5 +171,103 @@ export class DataProviderSourceEditComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  DataGetAllPlanSource(): void {
+
+    if (this.requestId <= 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
+
+    this.formInfo.FormAlert = 'در دریافت دسته بندی دسترسی های از سرور';
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    const filteModelContent = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'LinkSourceId';
+    filter.Value = this.requestId;
+    filteModelContent.Filters.push(filter);
+
+    this.dataProviderPlanSourceService.ServiceGetAll(filteModelContent).subscribe(
+      (next) => {
+        this.dataCoreCpMainMenuCmsUserGroupModel = next.ListItems;
+        const listG: number[] = [];
+        this.dataCoreCpMainMenuCmsUserGroupModel.forEach(element => {
+          listG.push(element.LinkPlanId);
+        });
+        this.dataCoreCpMainMenuIds = listG;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  dataCoreCpMainMenuModel: DataProviderPlanModel[];
+  dataCoreCpMainMenuIds: number[] = [];
+  dataCoreCpMainMenuCmsUserGroupModel: DataProviderPlanSourceModel[];
+
+  onActionSelectorPlanSelect(model: DataProviderPlanModel[]): void {
+    this.dataCoreCpMainMenuModel = model;
+  }
+  onActionSelectorPlanSelectAdded(model: DataProviderPlanModel): void {
+    const entity = new DataProviderPlanSourceModel();
+    entity.LinkPlanId = model.Id;
+    entity.LinkSourceId = this.dataModel.Id;
+
+    this.dataProviderPlanSourceService.ServiceAdd(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+
+      }
+    );
+  }
+  onActionSelectorPlanSelectRemoved(model: DataProviderPlanModel): void {
+    const entity = new DataProviderPlanSourceModel();
+    entity.LinkPlanId = model.Id;
+    entity.LinkSourceId = this.dataModel.Id;
+
+    this.dataProviderPlanSourceService.ServiceDeleteEntity(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+      }
+    );
   }
 }

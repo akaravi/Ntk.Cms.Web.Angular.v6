@@ -110,8 +110,8 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkPlanId';
-      filter.PropertyAnyName = 'PlanSources';
+      filter.PropertyName = 'PlanSources';
+      filter.PropertyAnyName = 'LinkPlanId';
       filter.Value = this.categoryModelSelected.Id;
       filterModel.Filters.push(filter);
     }

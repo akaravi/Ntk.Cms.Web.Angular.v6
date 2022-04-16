@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -22,19 +22,29 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-  <!-- Title Field -->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-      placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-    <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-      (click)="dataModel.Title = ''">close</mat-icon>
-    <mat-icon matSuffix>mode_edit</mat-icon>
-    <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-    <mat-error *ngIf="Title.errors?.required">
-      Title is <strong>{{'MESSAGE.required' | translate}}</strong>
-    </mat-error>
-  </mat-form-field>
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+
+    <app-data-provider-plan-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"
+      (optionChange)="onActionSelectorPlanSelect($event)"
+      (optionSelectAdded)="onActionSelectorPlanSelectAdded($event)"
+      (optionSelectRemoved)="onActionSelectorPlanSelectRemoved($event)">
+    </app-data-provider-plan-selectionlist>
+
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

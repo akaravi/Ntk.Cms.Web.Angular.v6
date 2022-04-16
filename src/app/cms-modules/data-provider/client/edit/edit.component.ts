@@ -6,6 +6,12 @@ import {
   DataProviderClientModel,
   DataProviderClientService,
   DataFieldInfoModel,
+  DataProviderPlanModel,
+  DataProviderPlanClientModel,
+  DataProviderPlanClientService,
+  FilterModel,
+  FilterDataModel,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -21,6 +27,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-data-provider-client-edit',
@@ -37,7 +45,9 @@ export class DataProviderClientEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private dataProviderPlanClientService:DataProviderPlanClientService,
     private translate: TranslateService,
+    private tokenHelper: TokenHelper
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -45,11 +55,22 @@ export class DataProviderClientEditComponent implements OnInit {
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+    });
   }
+  cmsApiStoreSubscribe: Subscription;
+
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
+  tokenInfo = new TokenInfoModel();
 
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
@@ -97,6 +118,7 @@ export class DataProviderClientEditComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
           this.formInfo.FormAlert = '';
+          this.DataGetAllPlanClient();
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -117,7 +139,7 @@ export class DataProviderClientEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.dataProviderClientService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
@@ -155,5 +177,110 @@ export class DataProviderClientEditComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  DataGetAllPlanClient(): void {
+
+    if (this.requestId <= 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
+
+    this.formInfo.FormAlert = 'در دریافت دسته بندی دسترسی های از سرور';
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    const filteModelContent = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.PropertyName = 'LinkClientId';
+    filter.Value = this.requestId;
+    filteModelContent.Filters.push(filter);
+
+    this.dataProviderPlanClientService.ServiceGetAll(filteModelContent).subscribe(
+      (next) => {
+        this.dataCoreCpMainMenuCmsUserGroupModel = next.ListItems;
+        const listG: number[] = [];
+        this.dataCoreCpMainMenuCmsUserGroupModel.forEach(element => {
+          listG.push(element.LinkPlanId);
+        });
+        this.dataCoreCpMainMenuIds = listG;
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = '';
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+
+      }
+    );
+  }
+  dataCoreCpMainMenuModel: DataProviderPlanModel[];
+  dataCoreCpMainMenuIds: number[] = [];
+  dataCoreCpMainMenuCmsUserGroupModel: DataProviderPlanClientModel[];
+
+  onActionSelectorPlanSelect(model: DataProviderPlanModel[]): void {
+    this.dataCoreCpMainMenuModel = model;
+  }
+  onActionSelectorPlanSelectAdded(model: DataProviderPlanModel): void {
+    if (! this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      //منظثل شود به صفحه خرید
+    }
+    const entity = new DataProviderPlanClientModel();
+    entity.LinkPlanId = model.Id;
+    entity.LinkClientId = this.dataModel.Id;
+
+    this.dataProviderPlanClientService.ServiceAdd(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+
+      }
+    );
+  }
+  onActionSelectorPlanSelectRemoved(model: DataProviderPlanModel): void {
+    if (! this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      this.cmsToastrService.typeErrorAccessDelete();
+      return;
+    }
+    const entity = new DataProviderPlanClientModel();
+    entity.LinkPlanId = model.Id;
+    entity.LinkClientId = this.dataModel.Id;
+
+    this.dataProviderPlanClientService.ServiceDeleteEntity(entity).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.cmsToastrService.typeSuccessEdit();
+          // this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = next.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+        }
+      },
+      (error) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(error);
+      }
+    );
   }
 }
