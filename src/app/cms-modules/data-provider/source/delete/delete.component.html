@@ -6,9 +6,9 @@
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  <mat-form-field class="ntk-full-width">
+  <mat-form-field class="ntk-full-width" *ngIf="dataModelResultContent.Item">
     <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResultContent.Item.Title" name="dataModelResultContent.Item.Title" #Writer
+    <input matInput [(ngModel)]="dataModelResultContent.Item.Title" name="Title" #Title
       type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" required readonly />
   </mat-form-field>
 

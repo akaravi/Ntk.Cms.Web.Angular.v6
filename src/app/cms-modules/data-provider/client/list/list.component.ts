@@ -132,7 +132,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.ListItems;
-         
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.Access);
           }
@@ -202,7 +202,25 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
-        this.DataGetAll();
+        if (result.Id && result.Id > 0) {
+          const dialogConfig = new MatDialogConfig();
+          dialogConfig.disableClose = true;
+          dialogConfig.autoFocus = true;
+          dialogConfig.height = '90%';
+          dialogConfig.data = { id: result.Id };
+      
+      
+          const dialogRef = this.dialog.open(DataProviderClientEditComponent, dialogConfig);
+          dialogRef.afterClosed().subscribe(result => {
+            if (result && result.dialogChangedDate) {
+              this.categoryModelSelected = new DataProviderPlanModel();
+              this.DataGetAll();
+            }
+          });
+        } else {
+          this.categoryModelSelected = new DataProviderPlanModel();
+          this.DataGetAll();
+        }
       }
     });
   }
@@ -230,8 +248,8 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(DataProviderClientEditComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
+        this.categoryModelSelected = new DataProviderPlanModel();
         this.DataGetAll();
       }
     });

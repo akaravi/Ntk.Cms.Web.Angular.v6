@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'module.coremodule.sitecreditcharge'"  [svg]="'assets/media/svg/icons/Shopping/Sale2.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'module.coremodule.sitecreditcharge'" [svg]="'assets/media/svg/icons/Shopping/Sale2.svg'">
+</app-cms-guide-notice>
 
 <div class="row">
   <div Class="col-xl-12">
@@ -15,19 +16,20 @@
               <!-- Credit Field -->
               <mat-form-field class="ntk-full-width">
                 <mat-label> مبلغ</mat-label>
-                <input matInput [(ngModel)]="dataModelCalculate.Credit" name="dataModelCalculate.Credit"
-                  #Credit type="number" 
-                  placeholder="0" />
+                <input matInput [(ngModel)]="dataModelCalculate.Credit" name="dataModelCalculate.Credit" #Credit
+                  type="number" placeholder="0" />
+                <span matSuffix>{{currency}}</span>
                 <mat-icon matSuffix *ngIf="dataModelCalculate.Credit" matSuffix mat-icon-button aria-label="Clear"
                   (click)="dataModelCalculate.Credit = 0">close</mat-icon>
                 <mat-icon matSuffix>mode_edit</mat-icon>
               </mat-form-field>
-              {{currency}}
+
             </p>
           </mat-card-content>
           <mat-card-actions>
 
-            <button mat-button class="btn btn-success" (click)="onActionbuttonBuy()">{{'ACTION.BUY' | translate}}</button>
+            <button mat-button class="btn btn-success" (click)="onActionbuttonBuy()">{{'ACTION.BUY' |
+              translate}}</button>
             <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
               <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
             </button>

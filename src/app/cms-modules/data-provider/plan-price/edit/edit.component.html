@@ -23,9 +23,9 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkPlanId Field -->
-    <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
-    [optionSelectForce]="dataModel.LinkPlanId" [optionPlaceholder]="'دسته بندی'">
-  </app-data-provider-plan-category-selector>
+    <app-data-provider-plan-selector (optionChange)="onActionSelectorSelect($event)"
+    [optionSelectForce]="dataModel.LinkPlanId" [optionPlaceholder]="'پلن اطلاعات'">
+  </app-data-provider-plan-selector>
   <!-- Title Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
@@ -87,10 +87,12 @@
       <mat-label>{{fieldsInfo['Price']?.FieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.Price" name="dataModel.Price" #Price
         type="number" placeholder="0" />
+        <span matSuffix>{{currency}}</span>
       <mat-icon matSuffix *ngIf="dataModel.Price" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.Price = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
+   
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

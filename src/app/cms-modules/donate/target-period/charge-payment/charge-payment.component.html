@@ -1,14 +1,15 @@
 <h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
 <mat-dialog-content>
 
-  <app-cms-bankpayment-grid [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
+  <app-cms-bankpayment-grid [optionMasterItem]="requestBankPrivateMaster"
+    (optionChange)="onActionSelectCalculate($event)">
   </app-cms-bankpayment-grid>
   <div *ngIf="viewCalculate">
     {{ 'FeeTax' }}:
-     {{dataModelCalculateResult.Item.FeeTax|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    {{dataModelCalculateResult.Item.FeeTax|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
     <br>
     {{ 'AmountPure' }}:
-     {{dataModelCalculateResult.Item.AmountPure|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    {{dataModelCalculateResult.Item.AmountPure|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
     <br>
     {{ 'FeeTransport' }}:
     {{dataModelCalculateResult.Item.FeeTransport|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
