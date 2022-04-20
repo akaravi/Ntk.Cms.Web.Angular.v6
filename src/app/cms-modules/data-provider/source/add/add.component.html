@@ -68,16 +68,7 @@
           [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
           [openDirectUploadView]="true"  [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
       </div>
-      <!-- HashMd5 Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['HashMd5']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.HashMd5" name="dataModel.HashMd5" #HashMd5 type="text" placeholder="...."
-          minlength="0" maxlength="100" />
-        <mat-icon matSuffix *ngIf="dataModel.HashMd5" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.HashMd5 = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ HashMd5.value.length }} / 100</mat-hint>
-      </mat-form-field>
+     
       <!-- KeyCode Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['KeyCode']?.FieldTitle}}</mat-label>
@@ -102,7 +93,7 @@
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>

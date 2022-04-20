@@ -24,7 +24,7 @@
     <small class="form-text text-muted danger">{{ formInfo.FormError }}
     </small>
   </div>
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
     <button type="button" (click)="onFormCancel()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>

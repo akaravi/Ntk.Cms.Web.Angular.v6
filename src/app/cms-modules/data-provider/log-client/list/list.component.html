@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-   <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -24,7 +24,8 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-
+    <button (click)="onActionBackToParent()" *ngIf="requestLinkClientId>0 " type="button"
+      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -38,50 +39,20 @@
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
-      <!-- LinkMainImageIdSrc Column -->
-      <ng-container matColumnDef="LinkMainImageIdSrc">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
-        </mat-cell>
-      </ng-container>
+
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
       </ng-container>
-      <!-- LinkSiteId Column -->
-      <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkSiteId}} </mat-cell>
-      </ng-container>
-      <!-- RecordStatus Column -->
-      <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
+      <!-- LinkClientId Column -->
+      <ng-container matColumnDef="LinkClientId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkClientId']?.FieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <i [ngClass]="row.RecordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.Id === tableRowSelected.Id ? '' : 'none' }">
-          </select>
-        </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.LinkClientId}} </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
-      </ng-container>
-      <!-- DonateTargetId Column -->
-      <ng-container matColumnDef="DonateTargetId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DonateTargetId']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.DonateTargetId) }} </mat-cell>
-      </ng-container>
-       <!-- DeviceId Column -->
-       <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
-      </ng-container>
-      <!-- VisitDate Column -->
+
+      <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>

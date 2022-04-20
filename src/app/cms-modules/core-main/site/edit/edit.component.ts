@@ -32,7 +32,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class CoreSiteEditComponent implements OnInit , OnDestroy {
+export class CoreSiteEditComponent implements OnInit, OnDestroy {
   requestId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,15 +53,11 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (!this.requestId || this.requestId === 0) {
-        this.DataGetOne(this.tokenInfo.SiteId);
-      }
+      this.DataGetOne(this.requestId);
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      if ((!this.requestId || this.requestId === 0) && this.tokenInfo.SiteId !== this.dataModel.Id) {
-        this.DataGetOne(this.tokenInfo.SiteId);
-      }
+      this.DataGetOne(this.requestId);
     });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -94,9 +90,7 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
     this.getEnumRecordStatus();
     this.getEnumSiteStatus();
     this.getEnumLanguage();
-    if (this.requestId > 0) {
-      this.DataGetOne(this.requestId);
-    }
+   
   }
   ngOnDestroy() {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -188,7 +182,7 @@ export class CoreSiteEditComponent implements OnInit , OnDestroy {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.coreSiteService
       .ServiceEdit(this.dataModel)
       .subscribe(

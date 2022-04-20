@@ -150,7 +150,7 @@
           </mat-error>
         </mat-form-field>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
 
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
@@ -188,7 +188,7 @@
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
           (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
         </app-core-usergroup-selectionlist>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

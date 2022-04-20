@@ -211,9 +211,9 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
           dialogConfig.disableClose = true;
           dialogConfig.autoFocus = true;
           dialogConfig.height = '90%';
-          dialogConfig.data = { id:  result.Id  };
-      
-      
+          dialogConfig.data = { id: result.Id };
+
+
           const dialogRef = this.dialog.open(DataProviderSourceEditComponent, dialogConfig);
           dialogRef.afterClosed().subscribe(result => {
             // console.log(`Dialog result: ${result}`);
@@ -283,6 +283,23 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
         this.DataGetAll();
       }
     });
+  }
+  onActionbuttonDataRow(model: DataProviderSourceModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی برای مشاهده انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessDeleteRow
+    ) {
+      this.cmsToastrService.typeErrorAccessDelete();
+      return;
+    }
+    this.router.navigate(['/data-provider/log-source/LinkSourceId/' + model.Id]);
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

@@ -335,7 +335,23 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
       }
     );
   }
+  onActionbuttonDataRow(model: DataProviderClientModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی برای مشاهده انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
 
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessDeleteRow
+    ) {
+      this.cmsToastrService.typeErrorAccessDelete();
+      return;
+    }
+    this.router.navigate(['/data-provider/log-client/LinkClientId/' + model.Id]);
+  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

@@ -307,7 +307,7 @@
         </mat-form-field>
 
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -401,7 +401,7 @@
           <br>
 
         </mat-accordion>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -599,7 +599,7 @@
         </div>
         <br>
         <!-- TABLE  -->
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -665,7 +665,7 @@
           </div>
           <div>
             <div class="col-md-12 col-sm-12 col-xs-18" style="float: right;">
-              <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+              <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
                 <button type="button" mat-raised-button color="accent" matStepperPrevious>
                   {{'ACTION.BEFOR' | translate}}
                 </button>
@@ -686,7 +686,7 @@
           id='main-map'></app-cms-map>
         <button type="button" class="btn btn-secondary" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' |
           translate}}</button>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>

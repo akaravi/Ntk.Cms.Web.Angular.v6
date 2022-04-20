@@ -56,7 +56,7 @@
           [optionSelectForce]="this.dataModel.LinkSiteCategoryId" [optionPlaceholder]="'نوع سامانه'"
           [optionDisabled]="siteTypeId>0"></app-core-sitecategory-selector>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
@@ -68,7 +68,7 @@
         <app-core-sitecategorycmsmodule-listview [optionSiteCategoryId]="modelDateSiteCategory?.Id">
         </app-core-sitecategorycmsmodule-listview>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="primary" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -84,7 +84,7 @@
 
         <div [innerHTML]="this.modelDateSiteCategory.RuleHtmlBody"></div>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="primary" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -137,7 +137,7 @@
           <small class="form-text text-muted danger">{{ formInfo.FormError }}
           </small>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="primary" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

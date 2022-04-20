@@ -38,7 +38,7 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="form-actions">
-        <button type="submit" *ngIf="formInfo.FormSubmitAllow" class="btn btn-raised btn-primary"
+        <button type="submit" *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="btn btn-raised btn-primary"
           [disabled]="!vform.form.valid">
           <i class="fa fa-check-square-o"></i> ثبت
         </button>

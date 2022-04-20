@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FilePreviewModel } from 'ngx-awesome-uploader';
 import { ApplicationAppModel, ApplicationAppService, DataFieldInfoModel, FormInfoModel, UploadApplictionDtoModel } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { environment } from 'src/environments/environment';
 @Component({
@@ -26,6 +27,8 @@ export class ApplicationAppUploadAppComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   isHovering = false;
   fieldvalue = '';
+  loading = new ProgressSpinnerModel();
+
   ngOnInit(): void {
     this.dataModel.AppVersion = this.dataItemModel.AppVersion;
     this.dataModel.LastBuildAppKey = this.dataItemModel.LastBuildAppKey;
@@ -34,6 +37,8 @@ export class ApplicationAppUploadAppComponent implements OnInit {
     this.DataGetAccess();
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
     this.applicationAppService
       .ServiceViewModel()
       .subscribe(
@@ -43,9 +48,11 @@ export class ApplicationAppUploadAppComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
           }
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(pName);
         }
       );
   }
@@ -61,6 +68,8 @@ export class ApplicationAppUploadAppComponent implements OnInit {
       this.cmsToastrService.typeErrorEdit('اپلکیشن مشخص نیست');
       return;
     }
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
     this.formInfo.FormSubmitAllow = false;
     this.applicationAppService.ServiceUpload(this.dataModel).subscribe(
       (next) => {
@@ -71,10 +80,14 @@ export class ApplicationAppUploadAppComponent implements OnInit {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
         }
+        this.loading.Stop(pName);
+
       },
       (error) => {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeErrorEdit(error);
+        this.loading.Stop(pName);
+
       });
   }
   onFormCancel(): void {

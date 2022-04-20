@@ -28,7 +28,7 @@
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
     <button type="button" (click)="onFormMove()" [disabled]=" !formInfo.ButtonSubmittedEnabled"
       class="btn btn-raised btn-primary">
       <i class="ft-x"></i> {{'TITLE.MOVE_DATA' | translate}}

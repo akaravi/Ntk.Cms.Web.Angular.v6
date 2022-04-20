@@ -40,7 +40,7 @@
             <mat-datepicker touchUi #ExpireDate></mat-datepicker>
           </mat-form-field>
 
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
               <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
             <button type="button" [disabled]="!vform.form.valid" mat-button matStepperNext
               class="btn btn-primary font-weight-bold text-uppercase px-9 py-4">
@@ -54,7 +54,7 @@
           <ng-container #viewContainer></ng-container>
 
 
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -68,7 +68,7 @@
 
 
 
-          <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
             <button type="button" mat-raised-button color="accent" matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
@@ -80,7 +80,7 @@
         <mat-step label="تنظیمات" state="seo">
           <p>تنظیمات این ماژول</p>
 
-          <div *ngIf="formInfo.FormSubmitAllow"  class="ntk-button-row">
+          <div *ngIf="formInfo.FormSubmitAllow  && !loading.display"  class="ntk-button-row">
             <button type="button" mat-raised-button color="accent"  matStepperPrevious>
               {{'ACTION.BEFOR' | translate}}
             </button>
