@@ -1,5 +1,6 @@
 <!-- <h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
 <mat-dialog-content>
+<<<<<<< HEAD
   <div class="card">
       <app-cms-bankpayment-grid [optionMasterItem]="requestBankPrivateMaster"
         (optionChange)="onActionSelectCalculate($event)">
@@ -17,6 +18,24 @@
         {{ 'Amount' }}:
         {{dataModelCalculateResult.Item.Amount|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
       </div>
+=======
+
+  <app-cms-bankpayment-grid [optionMasterItem]="requestBankPrivateMaster"
+    (optionChange)="onActionSelectCalculate($event)">
+  </app-cms-bankpayment-grid>
+  <div *ngIf="viewCalculate">
+    {{ 'FeeTax' }}:
+    {{dataModelCalculateResult.Item.FeeTax|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    <br>
+    {{ 'AmountPure' }}:
+    {{dataModelCalculateResult.Item.AmountPure|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    <br>
+    {{ 'FeeTransport' }}:
+    {{dataModelCalculateResult.Item.FeeTransport|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    <hr>
+    {{ 'Amount' }}:
+    {{dataModelCalculateResult.Item.Amount|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+>>>>>>> main
   </div>
 
 </mat-dialog-content>
@@ -26,8 +45,13 @@
     <small class="form-text text-muted danger">{{ formInfo.FormError }}
     </small>
   </div>
+<<<<<<< HEAD
   <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
     <button mat-button mat-dialog-close type="button" (click)="onFormCancel()" class="btn btn-light">
+=======
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+>>>>>>> main
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>
 
@@ -36,6 +60,7 @@
       <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
     </button>
   </div>
+<<<<<<< HEAD
 </mat-dialog-actions>
 
  -->
@@ -109,3 +134,6 @@
     </div>
   </mat-card-actions>
 </mat-card>
+=======
+</mat-dialog-actions>
+>>>>>>> main

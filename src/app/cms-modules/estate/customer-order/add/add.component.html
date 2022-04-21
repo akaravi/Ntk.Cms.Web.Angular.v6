@@ -311,7 +311,7 @@
       </a>
       <app-cms-qdoc [optionUrl]="dataModel.UrlViewContent"></app-cms-qdoc>
     </div>
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light BTN">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

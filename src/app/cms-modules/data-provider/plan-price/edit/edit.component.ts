@@ -5,8 +5,9 @@ import {
   FormInfoModel,
   DataProviderPlanPriceModel,
   DataProviderPlanPriceService,
-  DataProviderPlanCategoryModel,
+  DataProviderPlanModel,
   DataFieldInfoModel,
+  CoreSiteService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -36,6 +37,7 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public dataproviderplanpriceservice: DataProviderPlanPriceService,
     private cmsToastrService: CmsToastrService,
+    private coreSiteService: CoreSiteService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private translate: TranslateService,
@@ -49,7 +51,7 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  currency = '';
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
 
   fileManagerTree: TreeModel;
@@ -81,11 +83,24 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
       return;
     }
     this.getEnumRecordStatus();
+    this.DataGetCurrency();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
+  DataGetCurrency(): void {
+    this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
+        (next) => {
+            if (next.IsSuccess) {
+                this.currency = next.Item;
+            }
+        },
+        (error) => {
+            this.cmsToastrService.typeError(error);
+        }
+    );
+}
   DataGetOneContent(): void {
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
@@ -153,9 +168,9 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
       }
     );
   }
-  onActionSelectorSelect(model: DataProviderPlanCategoryModel | null): void {
+  onActionSelectorSelect(model: DataProviderPlanModel | null): void {
     if (!model || model.Id <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = 'پلن اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

@@ -118,7 +118,7 @@
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -411,7 +411,7 @@
         <p>{{'TITLE.Click_On_The_Map_To_Specify_The_Location' | translate}}</p>
         <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -479,7 +479,7 @@
           <mat-icon *ngIf="fieldsInfo['DownloadLinkUpdateSrc']?.AccessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ DownloadLinkUpdateSrc.value.length }} / 1000</mat-hint>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -586,7 +586,7 @@
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -739,7 +739,7 @@
             </td>
           </tr>
         </table>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -858,7 +858,7 @@
             (click)="dataModel.LastBuildErrorMessage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

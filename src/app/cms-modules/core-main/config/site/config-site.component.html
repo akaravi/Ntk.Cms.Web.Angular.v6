@@ -95,7 +95,7 @@
 
         </div>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -171,7 +171,7 @@
         <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -212,7 +212,7 @@
         <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

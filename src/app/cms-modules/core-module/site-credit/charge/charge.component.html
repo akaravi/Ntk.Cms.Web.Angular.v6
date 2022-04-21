@@ -18,11 +18,11 @@
                 <input matInput [(ngModel)]="dataModelCalculate.Credit" name="dataModelCalculate.Credit"
                   #Credit type="number" 
                   placeholder="0" />
+                  <span matSuffix>{{currency}}</span>
                 <mat-icon matSuffix *ngIf="dataModelCalculate.Credit" matSuffix mat-icon-button aria-label="Clear"
                   (click)="dataModelCalculate.Credit = 0">close</mat-icon>
                 <mat-icon matSuffix>mode_edit</mat-icon>
               </mat-form-field>
-              {{currency}}
             </p>
           </mat-card-content>
           <mat-card-actions>

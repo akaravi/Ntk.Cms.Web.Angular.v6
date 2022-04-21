@@ -190,7 +190,7 @@
         </mat-form-field>
 
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -207,7 +207,7 @@
         <p>تنظیمات درگاه</p>
         <dynamic-form-builder-cms [formGroup]="vform.form" [(jsonValue)]="dataModel.PrivateConfigJsonValues"
           [propertiesInfos]="dataModel.PrivateConfigJsonFormatter"></dynamic-form-builder-cms>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -221,7 +221,7 @@
       </mat-step>
       <mat-step label="متغیرهای دریافت وضعیت" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -235,7 +235,7 @@
       </mat-step>
       <mat-step label="وضعیت برگشت اعتبار" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -249,7 +249,7 @@
       </mat-step>
       <mat-step label=" متغیرهای دریافت " state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -263,7 +263,7 @@
       </mat-step>
       <mat-step label="بررسی اعتبار " state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -277,7 +277,7 @@
       </mat-step>
       <mat-step label="متغیرهای بانک شماره" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -291,7 +291,7 @@
       </mat-step>
       <mat-step label="متغیرهای ارسال پیام صوتی" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -305,7 +305,7 @@
       </mat-step>
       <mat-step label="متغییر های خطا" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

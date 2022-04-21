@@ -136,7 +136,7 @@
             <strong class="info-field-text">{{fieldsInfo['ExpireDate']?.FieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -320,7 +320,7 @@
           </mat-form-field>
         </fieldset>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -427,7 +427,7 @@
           <!-- <mat-hint align="start">{{ FirebaseAppId.value.length }} / 100</mat-hint> -->
         </mat-form-field>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -611,7 +611,7 @@
             <strong class="info-field-text">{{fieldsInfo['SeoTwitterCardCreator']?.FieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -1001,7 +1001,7 @@
             name="dataModel.AdminMainMemo">
           </angular-editor>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -1072,7 +1072,7 @@
             name="dataModel.AccountingMemo">
           </angular-editor>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

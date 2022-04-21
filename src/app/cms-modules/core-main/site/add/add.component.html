@@ -128,7 +128,7 @@
             <strong class="info-field-text">{{fieldsInfo['ExpireDate']?.FieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -309,7 +309,7 @@
           </mat-form-field>
         </fieldset>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -416,7 +416,7 @@
           <!-- <mat-hint align="start">{{ FirebaseAppId.value.length }} / 100</mat-hint> -->
         </mat-form-field>
 
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -553,7 +553,7 @@
           </mat-hint>
           <mat-hint align="start">{{ SeoGoogleAnalytics.value.length }} / 1000</mat-hint>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -880,7 +880,7 @@
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -935,7 +935,7 @@
           <mat-datepicker-toggle matSuffix [for]="AccountingFormUpdatedDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #AccountingFormUpdatedDate></mat-datepicker>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+    {{ formInfo.FormTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -22,38 +22,44 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-  <!-- Title Field -->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-      placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-    <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-      (click)="dataModel.Title = ''">close</mat-icon>
-    <mat-icon matSuffix>mode_edit</mat-icon>
-    <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-    <mat-error *ngIf="Title.errors?.required">
-      Title is <strong>{{'MESSAGE.required' | translate}}</strong>
-    </mat-error>
-  </mat-form-field>
-  <!-- Description Field -->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-    <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-      placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="1000" required
-      rows="5"></textarea>
-    <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-      (click)="dataModel.Description = ''">close</mat-icon>
-    <mat-icon matSuffix>mode_edit</mat-icon>
-    <mat-hint align="end">{{ Description.value.length }} / 1000</mat-hint>
-    <mat-error *ngIf="Description.errors?.required">
-      Description is <strong>{{'MESSAGE.required' | translate}}</strong>
-    </mat-error>
-  </mat-form-field>
+    <!-- Id Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Id']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Id" name="dataModel.Id" #Id type="Id"
+        placeholder="{{fieldsInfo['Id']?.FieldTitle}}" required />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- Description Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="1000" required
+        rows="5"></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Description.value.length }} / 1000</mat-hint>
+      <mat-error *ngIf="Description.errors?.required">
+        Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-        src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+        aria-hidden src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
@@ -70,16 +76,7 @@
         [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false">
       </cms-file-manager>
     </div>
-    <!-- HashMd5 Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['HashMd5']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.HashMd5" name="dataModel.HashMd5" #HashMd5 type="text" placeholder="...."
-        minlength="0" maxlength="100" />
-      <mat-icon matSuffix *ngIf="dataModel.HashMd5" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.HashMd5 = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ HashMd5.value.length }} / 100</mat-hint>
-    </mat-form-field>
+
     <!-- KeyCode Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['KeyCode']?.FieldTitle}}</mat-label>
@@ -92,10 +89,9 @@
     </mat-form-field>
 
 
-    
+
     <app-data-provider-plan-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"
-      (optionChange)="onActionSelectorPlanSelect($event)"
-      (optionSelectAdded)="onActionSelectorPlanSelectAdded($event)"
+      (optionChange)="onActionSelectorPlanSelect($event)" (optionSelectAdded)="onActionSelectorPlanSelectAdded($event)"
       (optionSelectRemoved)="onActionSelectorPlanSelectRemoved($event)">
     </app-data-provider-plan-selectionlist>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -111,7 +107,7 @@
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

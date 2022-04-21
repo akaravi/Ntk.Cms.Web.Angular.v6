@@ -113,6 +113,10 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonDataRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>delete_forever</mat-icon>
+              <span>{{'ACTION.DATA' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

@@ -14,6 +14,7 @@
             <p>
               <!-- Credit Field -->
               <mat-form-field class="ntk-full-width">
+<<<<<<< HEAD
                 <mat-label> {{'TITLE.Amount' | translate}} </mat-label>
                 <input matInput (input)="onInputChange($event)" [(ngModel)]="dataModelCalculate.SupportPayment" name="dataModelCalculate.SupportPayment"
                   #Credit type="number" 
@@ -24,11 +25,22 @@
               </mat-form-field>
               {{price}}
               {{currency}}
+=======
+                <mat-label> مبلغ</mat-label>
+                <input matInput [(ngModel)]="dataModelCalculate.SupportPayment" name="dataModelCalculate.SupportPayment"
+                  #Credit type="number" placeholder="0" />
+                <span matSuffix>{{currency}}</span>
+                <mat-icon matSuffix *ngIf="dataModelCalculate.SupportPayment" matSuffix mat-icon-button
+                  aria-label="Clear" (click)="dataModelCalculate.SupportPayment = 0">close</mat-icon>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+              </mat-form-field>
+>>>>>>> main
             </p>
           </mat-card-content>
           <mat-card-actions>
 
-            <button mat-button class="btn btn-success" (click)="onActionbuttonBuy()">{{'ACTION.BUY' | translate}}</button>
+            <button mat-button class="btn btn-success" (click)="onActionbuttonBuy()">{{'ACTION.BUY' |
+              translate}}</button>
             <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
               <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
             </button>

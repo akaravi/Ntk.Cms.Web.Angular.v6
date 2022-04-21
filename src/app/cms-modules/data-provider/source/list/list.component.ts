@@ -103,7 +103,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderSourceModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -185,7 +185,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonNewRow(): void {
-  
+
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -206,7 +206,26 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
-        this.DataGetAll();
+        if (result.Id && result.Id > 0) {
+          const dialogConfig = new MatDialogConfig();
+          dialogConfig.disableClose = true;
+          dialogConfig.autoFocus = true;
+          dialogConfig.height = '90%';
+          dialogConfig.data = { id: result.Id };
+
+
+          const dialogRef = this.dialog.open(DataProviderSourceEditComponent, dialogConfig);
+          dialogRef.afterClosed().subscribe(result => {
+            // console.log(`Dialog result: ${result}`);
+            if (result && result.dialogChangedDate) {
+              this.categoryModelSelected = new DataProviderPlanModel();
+              this.DataGetAll();
+            }
+          });
+        } else {
+          this.categoryModelSelected = new DataProviderPlanModel();
+          this.DataGetAll();
+        }
       }
     });
   }
@@ -237,6 +256,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
+        this.categoryModelSelected = new DataProviderPlanModel();
         this.DataGetAll();
       }
     });
@@ -256,13 +276,30 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderSourceDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DataProviderSourceDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
     });
+  }
+  onActionbuttonDataRow(model: DataProviderSourceModel = this.tableRowSelected): void {
+    if (!model || !model.Id || model.Id === 0) {
+      const emessage = 'ردیفی برای مشاهده انتخاب نشده است';
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessDeleteRow
+    ) {
+      this.cmsToastrService.typeErrorAccessDelete();
+      return;
+    }
+    this.router.navigate(['/data-provider/log-source/LinkSourceId/' + model.Id]);
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

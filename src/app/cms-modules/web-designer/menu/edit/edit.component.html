@@ -127,7 +127,7 @@
             {{fieldsInfo['Description']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
           <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}

@@ -32,7 +32,8 @@ import { DataProviderLogPlanViewComponent } from '../view/view.component';
   templateUrl: './list.component.html',
 })
 export class DataProviderLogPlanListComponent implements OnInit, OnDestroy {
-  requestId = 0;
+  requestLinkPlanId = 0;
+  requestLinkSourceId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -69,24 +70,28 @@ export class DataProviderLogPlanListComponent implements OnInit, OnDestroy {
   tableRowSelected: DataProviderLogPlanModel = new DataProviderLogPlanModel();
   tableSource: MatTableDataSource<DataProviderLogPlanModel> = new MatTableDataSource<DataProviderLogPlanModel>();
   tabledisplayedColumns: string[] = [
-    'LinkMainImageIdSrc',
     'Id',
-    'RecordStatus',
-    'Title',
-    'DonateTargetId',
-    'DeviceId',
-    'VisitDate',
+    'LinkSourceId',
+    'LinkPlanId',
+    'CreatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.requestId && this.requestId > 0) {
+    this.requestLinkSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSourceId'));
+    if (this.requestLinkSourceId && this.requestLinkSourceId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'DonateTargetId';
-      filter.Value = this.requestId;
+      filter.PropertyName = 'LinkSourceId';
+      filter.Value = this.requestLinkSourceId;
+      this.filteModelContent.Filters.push(filter);
+    }
+    this.requestLinkPlanId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPlanId'));
+    if (this.requestLinkPlanId && this.requestLinkPlanId > 0) {
+      const filter = new FilterDataModel();
+      filter.PropertyName = 'LinkPlanId';
+      filter.Value = this.requestLinkPlanId;
       this.filteModelContent.Filters.push(filter);
     }
 
@@ -265,5 +270,16 @@ export class DataProviderLogPlanListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderLogPlanModel): void {
     this.tableRowSelected = row;
+  }
+  onActionBackToParent(): void {
+
+    if (this.requestLinkPlanId > 0) {
+      this.router.navigate(['/data-provider/plan/']);
+    }
+
+    if (this.requestLinkSourceId > 0) {
+      this.router.navigate(['/data-provider/source/']);
+    }
+    
   }
 }

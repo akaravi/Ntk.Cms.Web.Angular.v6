@@ -31,7 +31,7 @@
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
     <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.ButtonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}

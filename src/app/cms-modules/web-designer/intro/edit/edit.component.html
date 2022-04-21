@@ -96,7 +96,7 @@
             {{ fieldsInfo['Description']?.FieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -152,7 +152,7 @@
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMainVideo" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow" class="ntk-button-row">
+        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

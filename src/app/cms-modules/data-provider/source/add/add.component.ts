@@ -109,7 +109,7 @@ export class DataProviderSourceAddComponent implements OnInit {
         if (next.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.dialogRef.close({ dialogChangedDate: true });
+          this.dialogRef.close({ dialogChangedDate: true , Id: next.Item.Id });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;

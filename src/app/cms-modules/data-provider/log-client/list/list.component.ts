@@ -32,7 +32,7 @@ import { DataProviderLogClientViewComponent } from '../view/view.component';
   templateUrl: './list.component.html',
 })
 export class DataProviderLogClientListComponent implements OnInit, OnDestroy {
-  requestId = 0;
+  requestLinkClientId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
@@ -69,24 +69,20 @@ export class DataProviderLogClientListComponent implements OnInit, OnDestroy {
   tableRowSelected: DataProviderLogClientModel = new DataProviderLogClientModel();
   tableSource: MatTableDataSource<DataProviderLogClientModel> = new MatTableDataSource<DataProviderLogClientModel>();
   tabledisplayedColumns: string[] = [
-    'LinkMainImageIdSrc',
     'Id',
-    'RecordStatus',
-    'Title',
-    'DonateTargetId',
-    'DeviceId',
-    'VisitDate',
+    'LinkClientId',
+    'CreatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.requestId && this.requestId > 0) {
+    this.requestLinkClientId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkClientId'));
+    if (this.requestLinkClientId && this.requestLinkClientId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'DonateTargetId';
-      filter.Value = this.requestId;
+      filter.PropertyName = 'LinkClientId';
+      filter.Value = this.requestLinkClientId;
       this.filteModelContent.Filters.push(filter);
     }
 
@@ -265,5 +261,12 @@ export class DataProviderLogClientListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderLogClientModel): void {
     this.tableRowSelected = row;
+  }
+  onActionBackToParent(): void {
+
+    if (this.requestLinkClientId > 0) {
+      this.router.navigate(['/data-provider/client/']);
+    }
+    
   }
 }
