@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthRenewTokenModel, CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -76,7 +77,8 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -114,8 +116,8 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       authModel.SiteId = this.tokenInfo.SiteId;
       authModel.Lang = lang;
 
-      const title = 'اطلاعات ';
-      const message = 'درخواست تغییر زبان به سرور ارسال شد';
+      const title = this.translate.instant('TITLE.Information');
+      const message = this.translate.instant('MESSAGE.Request_to_change_language_was_sent_to_the_server');
       this.cmsToastrService.toastr.info(message, title);
       // this.loadingStatus = true;
       this.coreAuthService.ServiceRenewToken(authModel).subscribe(
@@ -124,7 +126,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
           if (next.IsSuccess) {
             this.cdr.detectChanges();
             if (next.Item.Language === lang) {
-              this.cmsToastrService.toastr.success('دسترسی به زبان جدید تایید شد', title);
+              this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed') , title);
               // if (lang == 'fa' || lang == 'ar') {
               //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
               // }
@@ -133,7 +135,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
               // }
               // window.location.reload();
             } else {
-              this.cmsToastrService.toastr.warning('دسترسی به زبان جدید تایید نشد', title);
+              this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
             }
           } else {
             this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);

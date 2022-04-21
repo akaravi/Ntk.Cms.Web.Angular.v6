@@ -27,6 +27,7 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
         this.requestLinkTargetPeriodId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTargetPeriodId'));
         this.dataModelCalculate.LinkTargetPeriodId = this.requestLinkTargetPeriodId;
     }
+    price = '';
     currency = '';
     viewCalculate = false;
     loading = new ProgressSpinnerModel();
@@ -81,6 +82,9 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
 
     onActionBackToParent(): void {
         this.router.navigate(['/donate/target-period/']);
+    }
+    onInputChange(e:Event):void {
+        this.price = (<HTMLInputElement>e.target).value;
     }
 }
 

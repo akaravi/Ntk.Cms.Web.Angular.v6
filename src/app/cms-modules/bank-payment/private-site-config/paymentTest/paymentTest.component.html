@@ -14,7 +14,7 @@
         </app-bankpayment-privatesiteconfig-selector>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>مبلغ</mat-label>
+          <mat-label> {{'TITLE.Amount' | translate}} </mat-label>
           <input matInput [(ngModel)]="dataModel.Amount" name="dataModel.Amount" #Amount type="number"
             placeholder="مبلغ" required />
           <mat-icon matSuffix *ngIf="dataModel.Amount" matSuffix mat-icon-button aria-label="Clear"
@@ -28,7 +28,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>کارمزد</mat-label>
           <input matInput [(ngModel)]="dataModel.FeeTransport" name="dataModel.FeeTransport" #FeeTransport type="number"
-            placeholder="مبلغ" required />
+            placeholder="کارمزد" required />
           <mat-icon matSuffix *ngIf="dataModel.FeeTransport" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.FeeTransport = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
