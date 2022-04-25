@@ -144,10 +144,10 @@ export class AuthSingInBySmsComponent implements OnInit {
           }
         }
         else {
+          this.onCaptchaOrder();
           this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
         }
         this.formInfo.ButtonSubmittedEnabled = true;
-        this.onCaptchaOrder();
         this.loading.Stop(pName);
       },
         (error) => {
