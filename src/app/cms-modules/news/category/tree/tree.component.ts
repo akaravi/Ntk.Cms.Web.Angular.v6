@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -70,18 +71,21 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     const pName = this.constructor.name + '.ServiceGetAll';
     this.loading.Start(pName, 'دریافت دسته بندی ها');
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+     next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        }
+        else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
+      error:(er) => {
         this.loading.Stop(pName);
-        this.cmsToastrService.typeError(error);
-      }
+        this.cmsToastrService.typeError(er);
+      }}
     );
   }
   onActionSelect(model: NewsCategoryModel): void {

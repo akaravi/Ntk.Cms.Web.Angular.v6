@@ -49,7 +49,7 @@ export class DataProviderClientEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private dataProviderPlanClientService:DataProviderPlanClientService,
+    private dataProviderPlanClientService: DataProviderPlanClientService,
     private translate: TranslateService,
     private tokenHelper: TokenHelper
   ) {
@@ -59,7 +59,7 @@ export class DataProviderClientEditComponent implements OnInit {
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-    
+
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
@@ -233,21 +233,29 @@ export class DataProviderClientEditComponent implements OnInit {
     this.dataCoreCpMainMenuModel = model;
   }
   onActionSelectorPlanSelectAdded(model: DataProviderPlanModel): void {
-    if (! this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      /** */
+      const listG: number[] = [];
+      this.dataCoreCpMainMenuIds.forEach(element => {
+        if (element != model.Id)
+          listG.push(element);
+      });
+      setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
+      /** */
 
       const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به خرید این محتوا می باشید ' + '؟';
-    this.cmsConfirmationDialogService.confirm(title, message)
-      .then((confirmed) => {
-        if (confirmed) {
-          const pName = this.constructor.name + 'main';
-          //منتقل شود به صفحه خرید
-          this.router.navigate(['/data-provider/client-charge/', model.Id]);
-      this.dialogRef.close({ dialogChangedDate: false });
+      const message = 'آیا مایل به خرید این محتوا می باشید ' + '؟';
+      this.cmsConfirmationDialogService.confirm(title, message)
+        .then((confirmed) => {
+          if (confirmed) {
+            const pName = this.constructor.name + 'main';
+            //منتقل شود به صفحه خرید
+            this.router.navigate(['/data-provider/client-charge/', model.Id]);
+            this.dialogRef.close({ dialogChangedDate: false });
+          }
         }
-      }
-      )
-
+        )
+      return;
 
     }
     const entity = new DataProviderPlanClientModel();
@@ -264,6 +272,15 @@ export class DataProviderClientEditComponent implements OnInit {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          /** */
+          const listG: number[] = [];
+          this.dataCoreCpMainMenuIds.forEach(element => {
+            if (element != model.Id)
+              listG.push(element);
+          });
+          setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
+          /** */
+
         }
 
       },
@@ -275,8 +292,19 @@ export class DataProviderClientEditComponent implements OnInit {
     );
   }
   onActionSelectorPlanSelectRemoved(model: DataProviderPlanModel): void {
-    if (! this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+
+    if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      /** */
+      const listG: number[] = [];
+      this.dataCoreCpMainMenuIds.forEach(element => {
+        listG.push(element);
+      });
+      if (listG.indexOf(model.Id) < 0)
+        listG.push(model.Id);
+      setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
+      /** */
       this.cmsToastrService.typeErrorAccessDelete();
+
       return;
     }
     const entity = new DataProviderPlanClientModel();
@@ -290,9 +318,22 @@ export class DataProviderClientEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
+
+          /** */
+          const listG: number[] = [];
+          this.dataCoreCpMainMenuIds.forEach(element => {
+            listG.push(element);
+          });
+          if (listG.indexOf(model.Id) < 0)
+            listG.push(model.Id);
+
+          setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
+          /** */
+
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
           this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+
         }
       },
       (error) => {

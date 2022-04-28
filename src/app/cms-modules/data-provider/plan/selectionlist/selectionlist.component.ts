@@ -35,6 +35,7 @@ export class DataProviderPlanSelectionlistComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number[] | DataProviderPlanModel[]) {
     this.onActionSelectForce(x);
+    this.onActionReSelect();
   }
 
   ngOnInit(): void {
@@ -77,7 +78,7 @@ export class DataProviderPlanSelectionlistComponent implements OnInit {
     );
   }
   onActionSelect(value: DataProviderPlanModel): void {
-    
+
     if (this.fieldsStatus.get(value.Id)) {
       this.fieldsStatus.set(value.Id, false);
       this.optionSelectRemoved.emit(value);
@@ -107,5 +108,15 @@ export class DataProviderPlanSelectionlistComponent implements OnInit {
   onActionReload(): void {
     // this.dataModelSelect = new DataProviderPlanModel();
     this.DataGetAll();
+  }
+  // It is for AddSelect
+  onActionReSelect(): void {
+    this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
+    this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
+    this.dataModelResult.ListItems.forEach((el) => {
+      if (this.fieldsStatus.get(el.Id)) {
+        this.dataModelSelect.push(el);
+      }
+    });
   }
 }

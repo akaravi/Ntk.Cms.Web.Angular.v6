@@ -45,13 +45,6 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
 
-    // if (this.requestLinkBotConfigId <= 0) {
-    //   this.cmsToastrService.typeErrorComponentAction();
-    //   this.dialogRef.close({ dialogChangedDate: false });
-    //   return;
-    // }
-
-
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
