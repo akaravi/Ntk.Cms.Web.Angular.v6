@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DataProviderClientChargeComponent } from './client/charge/charge.component';
 import { DataProviderClientListComponent } from './client/list/list.component';
 import { DataProviderComponent } from './data-provider.component';
 import { DataProviderLogClientListComponent } from './log-client/list/list.component';
@@ -64,6 +65,10 @@ const routes: Routes = [
       {
         path: 'client',
         component: DataProviderClientListComponent
+      },
+      {
+        path: 'client-charge/:LinkClientId',
+        component: DataProviderClientChargeComponent
       },
       {
         path: 'source',

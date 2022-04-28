@@ -264,7 +264,8 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
   onActionbuttonDeleteRow(model: DataProviderSourceModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = 'ردیفی برای حذف انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.cmsToastrService.typeErrorSelected(emessage);
+       return;
     }
     this.tableRowSelected = model;
 

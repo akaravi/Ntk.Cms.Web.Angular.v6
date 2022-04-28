@@ -29,6 +29,8 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Router } from '@angular/router';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
 @Component({
   selector: 'app-data-provider-client-edit',
@@ -45,6 +47,8 @@ export class DataProviderClientEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private router: Router,
+    private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private dataProviderPlanClientService:DataProviderPlanClientService,
     private translate: TranslateService,
     private tokenHelper: TokenHelper
@@ -230,7 +234,21 @@ export class DataProviderClientEditComponent implements OnInit {
   }
   onActionSelectorPlanSelectAdded(model: DataProviderPlanModel): void {
     if (! this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
-      //منظثل شود به صفحه خرید
+
+      const title = this.translate.instant('MESSAGE.Please_Confirm');
+    const message = 'آیا مایل به خرید این محتوا می باشید ' + '؟';
+    this.cmsConfirmationDialogService.confirm(title, message)
+      .then((confirmed) => {
+        if (confirmed) {
+          const pName = this.constructor.name + 'main';
+          //منتقل شود به صفحه خرید
+          this.router.navigate(['/data-provider/client-charge/', model.Id]);
+      this.dialogRef.close({ dialogChangedDate: false });
+        }
+      }
+      )
+
+
     }
     const entity = new DataProviderPlanClientModel();
     entity.LinkPlanId = model.Id;
