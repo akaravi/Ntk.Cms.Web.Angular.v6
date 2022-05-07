@@ -268,6 +268,11 @@
 	"ERRORMESSAGE.MESSAGE.typeErrorRemoveTag": "خطا در حذف کردن تگها",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelected": "بروز خطا در انتخاب",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelectedRow": "ردیفی انتخاب نشده است",
+	"ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected": "دسته بندی انتخاب نشده است",
+	"ERRORMESSAGE.MESSAGE.The_Delete_Category_ID_Is_The_Same_As_The_Alternate_Category": "شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است",
+
+
+
 	"ERRORMESSAGE.MESSAGE.typeErrorUserToken": "حساب کاربری شما مورد تایید نمی باشد.لطفا مجدد وارد حساب کاربری شوید",
 	"ERRORMESSAGE.MESSAGE.typeError_login": "نیاز به ورود مجدد",
 	"ERRORMESSAGE.MESSAGE.typeError_viewConsoleLog": "لاگ را در کنسول مرورگر مشاهده کنید",
@@ -366,6 +371,11 @@
 	"MENU.NEW": "جدید",
 	"MENU.PAGES": "صفحات",
 
+
+
+	"MESSAGE.Receiving_Information _From_The_Server": "در حال دریافت ارسال اطلاعات از سرور",
+	"MESSAGE.Deletion_Was_Successful": "حذف با موفقیت انجام شد",
+	"MESSAGE.The_Transfer_Was_Successful": "جابجایی با موفقیت انجام شد",
 	"MESSAGE.New_language_acess_confirmed": "دسترسی به زبان جدید تایید شد",
 	"MESSAGE.Request_to_change_language_was_sent_to_the_server": "درخواست تغییر زبان به سرور ارسال شد",
 	"MESSAGE.As_the_system_is_not_selected": "عنوان سامانه انتخاب نشد است",
@@ -402,6 +412,9 @@
 	"MESSAGE.property_needs_approval": "املاک نیاز به تایید",
 	"MESSAGE.property_list": "لیست املاک",
 	"MESSAGE.sending_information_to_the_server": "در حال ارسال اطلاعات به سرور",
+	"MESSAGE.get_categories": "دریافت دسته بندی ها",
+
+
 	"MESSAGE.get_information_list": "دریافت  لیست اطلاعات",
 	"MESSAGE.Receiving_tag_information_from_the_server": "در حال دریافت اطلاعات تگ ها از سرور",
 	"MESSAGE.Receiving_application_management_information": "دریافت اطلاعات مدیریت اپلیکیشن",
@@ -465,6 +478,7 @@
 	"TITLE.MESSAGES": "پیغام ها",
 	"TITLE.MODULE": "ماژول",
 	"TITLE.MOVE_DATA": "جابجایی اطلاعات",
+	"TITLE.Loading_Information": "در حال لود اطلاعات",
 	"TITLE.My_Activities": "فعالیتهای من",
 	"TITLE.My_Messages": "پیام های من",
 	"TITLE.My_Tasks": "وظایف من",
@@ -554,6 +568,7 @@
 	"TITLE.Selected_Billboard":"بیلبورد انتخاب شده",
 	"TITLE.Property_Type_Selected":"نوع ملک انتخاب شده ",
 	"TITLE.Selected_User_Type":"نوع کاربری انتخاب شده",
+	"TITLE.typeErrorRegistration": "بروز خطا",
 	"TITLE.List_Of_Transaction_Details_Of_This_Property":"لیست مشخصات معامله این ملک",
 	"TITLE.In_This_Section_You_Can_Edit_Your_Ad":"در این بخش شما میتوانید آگهی خود را ویرایش نمایید",
 	"TITLE.In_This_Section_You_Can_Edit_Your_Application":"در این بخش شما میتوانید آگهی خود را ویرایش نمایید",

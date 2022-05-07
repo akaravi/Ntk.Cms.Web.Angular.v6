@@ -17,6 +17,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -79,7 +81,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   }
 
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

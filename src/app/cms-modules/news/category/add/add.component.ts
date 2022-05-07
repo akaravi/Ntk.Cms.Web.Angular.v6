@@ -1,3 +1,5 @@
+//**msh */
+
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -76,7 +78,6 @@ export class NewsCategoryAddComponent implements OnInit {
       .subscribe(
         async (next) => {
           if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
@@ -92,26 +93,26 @@ export class NewsCategoryAddComponent implements OnInit {
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.categoryService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'بروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormAlert = this.translate.instant('TITLE.typeErrorRegistration');
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }
+      }}
     );
   }
   onFormSubmit(): void {

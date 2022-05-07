@@ -1,4 +1,5 @@
 //**msh */
+
 import {
   ChangeDetectorRef,
   Component,
@@ -27,6 +28,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { NewsCategoryAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -41,6 +43,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -70,7 +73,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     this.filteModel.RowPerPage = 200;
     this.filteModel.AccessLoad = true;
     const pName = this.constructor.name + '.ServiceGetAll';
-    this.loading.Start(pName, 'دریافت دسته بندی ها');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_categories'));
     this.categoryService.ServiceGetAll(this.filteModel).subscribe({
      next: (ret) => {
         if (ret.IsSuccess) {
@@ -91,12 +94,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   onActionSelect(model: NewsCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-    // if (this.optionsData) {
-    //   this.optionsData.data.Select = this.dataModelSelect;
-    //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {
-    //     this.optionsData.parentMethods.onActionSelect(this.dataModelSelect);
-    //   }
-    // }
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -106,7 +103,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       this.onActionSelect(null);
     }
     this.dataModelSelect = new NewsCategoryModel();
-    // this.optionsData.data.Select = new NewsCategoryModel();
     this.DataGetAll();
   }
   onActionSelectForce(id: number | NewsCategoryModel): void {
@@ -122,7 +118,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     dialogConfig.data = { parentId };
     const dialogRef = this.dialog.open(NewsCategoryAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -134,7 +129,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-      const message = 'دسته بندی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -143,23 +138,18 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
     });
   }
   onActionDelete(): void {
-    // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
-    //   if (res.IsSuccess) {
-    //   }
-    // });
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-      const message = 'دسته بندی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -168,7 +158,6 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       data: { Id:id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }

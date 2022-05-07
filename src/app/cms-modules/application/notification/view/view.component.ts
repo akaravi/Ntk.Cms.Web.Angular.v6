@@ -23,6 +23,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-notification-view',
   templateUrl: './view.component.html',
@@ -38,6 +39,7 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -79,7 +81,7 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

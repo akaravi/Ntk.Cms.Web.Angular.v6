@@ -81,7 +81,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'webDesignerMainPageService.ServiceGetOneById';
     this.loading.Start(pName);

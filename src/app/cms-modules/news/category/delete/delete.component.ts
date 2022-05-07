@@ -1,4 +1,4 @@
-
+//**msh */
 import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DataFieldInfoModel, ErrorExceptionResult, FilterModel, FormInfoModel, NewsCategoryModel, NewsCategoryService } from 'ntk-cms-api';
@@ -6,6 +6,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-category-delete',
   templateUrl: './delete.component.html',
@@ -18,7 +19,8 @@ export class NewsCategoryDeleteComponent implements OnInit {
     private publicHelper: PublicHelper,
     private categoryService: NewsCategoryService,
     private cdr: ChangeDetectorRef,
-    private cmsToastrService: CmsToastrService
+    private cmsToastrService: CmsToastrService,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -46,18 +48,18 @@ export class NewsCategoryDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.FormAlert = 'در حال لود اطلاعات';
+    this.formInfo.FormAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.dataModelResultCategory = next;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next:(ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataModelResultCategory = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
@@ -65,28 +67,28 @@ export class NewsCategoryDeleteComponent implements OnInit {
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
-        }
+        }}
       );
   }
   DataGetAll(): void {
-    this.formInfo.FormAlert = 'در حال لود اطلاعات';
+    this.formInfo.FormAlert = this.translate.instant('TITLE.Loading_Information');
     const filterModel: FilterModel = new FilterModel();
     filterModel.RowPerPage = 100;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService
       .ServiceGetAll(filterModel)
-      .subscribe(
-        (next) => {
-          this.dataModelResultCategoryAllData = next;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next:(ret) => {
+          this.dataModelResultCategoryAllData = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
           } else {
@@ -94,12 +96,12 @@ export class NewsCategoryDeleteComponent implements OnInit {
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
-        }
+        }}
       );
   }
   onFormMove(): void {
@@ -114,7 +116,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     if (this.dataModel.NewCatId === this.requestId) {
       this.formInfo.FormAlert = 'برروز خطا';
       this.formInfo.FormError =
-        'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
+      this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.ButtonSubmittedEnabled = true;
     }
     this.formInfo.ButtonSubmittedEnabled = false;
@@ -122,27 +124,27 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
     this.categoryService
       .ServiceMove(this.requestId, this.dataModel.NewCatId)
-      .subscribe(
-        (next) => {
-          if (!next.IsSuccess) {
+      .subscribe({
+        next:(ret) => {
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.cmsToastrService.typeErrorMove();
           } else {
-            this.formInfo.FormAlert = 'جابجایی با موفقیت انجام شد';
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.The_Transfer_Was_Successful');
             this.cmsToastrService.typeSuccessMove();
           }
           this.formInfo.FormSubmitAllow = true;
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
-        }
+        }}
       );
   }
   onFormDelete(): void {
@@ -156,28 +158,28 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
     this.categoryService
       .ServiceDelete(this.requestId)
-      .subscribe(
-        (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next:(ret) => {
+          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
-            this.formInfo.FormAlert = 'حذف با موفقیت انجام شد';
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
             this.cmsToastrService.typeSuccessRemove();
             this.dialogRef.close({ dialogChangedDate: true });
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-        }
+        }}
       );
   }
   onFormChangeNewCatId(model: NewsCategoryModel): void {
@@ -190,7 +192,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     if (this.dataModel.NewCatId === this.requestId) {
       this.formInfo.FormAlert = 'برروز خطا';
       this.formInfo.FormError =
-        'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
+      this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.ButtonSubmittedEnabled = false;
     } else {
       this.formInfo.ButtonSubmittedEnabled = true;

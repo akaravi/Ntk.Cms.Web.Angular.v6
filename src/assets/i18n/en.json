@@ -268,6 +268,10 @@
 	"ERRORMESSAGE.MESSAGE.typeErrorRemoveTag": "Error deleting tags",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelected": "Error in selection",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelectedRow": "No row selected",
+	"ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected": "Category not selected",
+	"ERRORMESSAGE.MESSAGE.The_Delete_Category_ID_Is_The_Same_As_The_Alternate_Category": "The delete category ID is the same as the alternate category",
+
+	
 	"ERRORMESSAGE.MESSAGE.typeErrorUserToken": "Your account has not been verified. Please log in again",
 	"ERRORMESSAGE.MESSAGE.typeError_login": "Need to re-enter",
 	"ERRORMESSAGE.MESSAGE.typeErrorSetStatus":"Error in set status",
@@ -365,6 +369,11 @@
 	"MENU.NEW": "new",
 	"MENU.PAGES": "Pages",
 
+
+
+	"MESSAGE.Receiving_Information _From_The_Server": "Receiving information from the server",
+	"MESSAGE.Deletion_Was_Successful": "Deletion was successful",
+	"MESSAGE.The_Transfer_Was_Successful": "The transfer was successful",
 	"MESSAGE.New_language_acess_confirmed": "New language acess confirmed",
 	"MESSAGE.Request_to_change_language_was_sent_to_the_server": "Request to change the language was sent to the server",
 	"MESSAGE.As_the_system_is_not_selected": "As the system is not selected",
@@ -401,6 +410,7 @@
 	"MESSAGE.property_needs_approval": "Property needs approval",
 	"MESSAGE.property_list": "Property list",
 	"MESSAGE.sending_information_to_the_server": "Sending information to the server",
+	"MESSAGE.get_categories": "Get Categories",
 	"MESSAGE.get_information_list": "Get Information List",
 	"MESSAGE.Receiving_tag_information_from_the_server": "Receiving tag information from the server",
 	"MESSAGE.Receiving_application_management_information": "Receiving application management information",
@@ -463,6 +473,7 @@
 	"TITLE.MESSAGES": "messages",
 	"TITLE.MODULE": "Module",
 	"TITLE.MOVE_DATA": "Move Data",
+	"TITLE.Loading_Information": "Loading Information",
 	"TITLE.My_Activities": "My Activities",
 	"TITLE.My_Messages": "My Messages",
 	"TITLE.My_Tasks": "My Tasks",
@@ -552,6 +563,7 @@
 	"TITLE.Selected_Billboard":"Selected billboard",
 	"TITLE.Property_Type_Selected":"Property type selected",
 	"TITLE.Selected_User_Type":"Selected user type",
+	"TITLE.typeErrorRegistration": "An error occurred",
 	"TITLE.List_Of_Transaction_Details_Of_This_Property":"List of transaction details of this property",
 	"TITLE.In_This_Section_You_Can_Edit_Your_Ad":"In this section you can edit your ad",
 	"TITLE.In_This_Section_You_Can_Edit_Your_Application":"In this section you can edit your application",

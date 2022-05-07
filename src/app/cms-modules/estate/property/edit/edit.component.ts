@@ -159,7 +159,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
   }
 
   DataGetOne(): void {
-    this.formInfo.FormAlert = 'در دریافت ارسال اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
     this.formInfo.FormError = '';
 
 
