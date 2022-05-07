@@ -249,7 +249,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
       this.categoryModelSelected == null ||
       this.categoryModelSelected.Id === 0
     ) {
-      const message = 'دسته بندی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -282,7 +282,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonDeleteRow(model: BlogContentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const emessage = 'ردیفی برای حذف انتخاب نشده است';
+      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

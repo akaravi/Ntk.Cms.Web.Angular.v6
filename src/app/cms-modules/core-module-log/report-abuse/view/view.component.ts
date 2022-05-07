@@ -121,8 +121,6 @@ export class CoreModuleLogReportAbuseViewComponent implements OnInit, OnDestroy 
       }
     );
   }
-
-
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }

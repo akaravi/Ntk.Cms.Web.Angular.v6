@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -11,7 +12,6 @@ import {
   NewsCategoryModel,
   NewsContentModel,
   NewsContentService,
-  NtkCmsApiStoreService,
   TokenInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
@@ -25,7 +25,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NewsContentDeleteComponent } from '../delete/delete.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -143,8 +143,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           }
           this.loading.Stop(pName);
         },
-        error: (e) => {
-          this.cmsToastrService.typeError(e);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         },
         complete: () => {
@@ -199,8 +199,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           }
           this.loading.Stop(pName);
         },
-        error: (e) => {
-          this.cmsToastrService.typeError(e);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
 
           this.loading.Stop(pName);
         },
@@ -247,7 +247,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.categoryModelSelected == null ||
       this.categoryModelSelected.Id === 0
     ) {
-      const message = 'دسته بندی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -279,7 +279,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonDeleteRow(model: NewsContentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const emessage = 'ردیفی برای حذف انتخاب نشده است';
+      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
@@ -313,9 +313,12 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
+        else{
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+        }
       },
-      error: (e) => {
-        this.cmsToastrService.typeError(e);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
     });
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -324,18 +327,20 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
     const pName = this.constructor.name + '.ServiceGetCount';
-    this.loading.Start(pName, 'دریافت آمار');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_article'));
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.IsSuccess) {
           statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
+        else{
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+        }
         this.loading.Stop(pName);
-      }
-      ,
-      error: (e) => {
-        this.cmsToastrService.typeError(e);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
     });
@@ -359,10 +364,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
+        else{
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+        }
         this.loading.Stop(pName);
       },
-      error: (e) => {
-        this.cmsToastrService.typeError(e);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
     });
@@ -399,7 +407,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات خبر");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_news_information'));
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.Id)
       .subscribe({
@@ -425,8 +433,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           }
           this.loading.Stop(pName);
         },
-        error: (e) => {
-          this.cmsToastrService.typeError(e);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
       });

@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
@@ -95,28 +96,21 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     this.getEnumRecordStatus();
   }
   ngAfterViewInit(): void {
-    // this.optionsCategorySelector.childMethods.ActionSelectForce(this.requestCategoryId);
-    // this.optionsCategorySelector.parentMethods = {
-    //   onActionSelect: (x) => this.onActionSelectorSelect(x),
-    // };
-    // this.optionsContentSelector.parentMethods = {
-    //   onActionSelect: (x) => this.onActionContentSimilarSelect(x),
-    // };
   }
   DataGetAccess(): void {
     this.contentService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
-        }
+        error:(er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+        }}
       );
   }
   onActionTagChange(model: any): void {
@@ -298,7 +292,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   }
   onActionSelectorSelect(model: NewsCategoryModel | null): void {
     if (!model || model.Id <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

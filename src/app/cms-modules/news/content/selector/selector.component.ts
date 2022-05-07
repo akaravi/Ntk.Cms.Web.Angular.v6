@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
@@ -118,12 +119,13 @@ export class NewsContentSelectorComponent implements OnInit {
   }
   onActionSelectForce(id: number | NewsContentModel): void {
     if (typeof id === 'number' && id > 0) {
-      this.contentService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-        }
+      this.contentService.ServiceGetOneById(id).subscribe({
+        next:(ret) => {
+        if (ret.IsSuccess) {
+          this.filteredOptions = this.push(ret.Item);
+          this.dataModelSelect = ret.Item;
+          this.formControl.setValue(ret.Item);
+        }}
       });
       return;
     }
@@ -136,11 +138,7 @@ export class NewsContentSelectorComponent implements OnInit {
     this.formControl.setValue(null);
   }
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-    //   this.onActionSelect(null);
-    // }
     this.dataModelSelect = new NewsContentModel();
-    // this.optionsData.Select = new NewsContentModel();
     this.DataGetAll(null);
   }
 }

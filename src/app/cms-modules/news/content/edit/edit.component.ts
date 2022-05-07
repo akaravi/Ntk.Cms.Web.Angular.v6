@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
@@ -151,7 +152,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     /*َAccess Field*/
     this.contentService.setAccessLoad();
     this.contentService
@@ -169,7 +170,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             const lat = this.dataModel.Geolocationlatitude;
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
-                 this.mapMarkerPoints=[];
+              this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
@@ -195,7 +196,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
@@ -205,12 +206,12 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.tagIdsData = [];
     this.contentTagService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-          this.dataContentTagModelResult = next;
+          this.dataContentTagModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
+          if (ret.IsSuccess) {
             const list = [];
             this.dataContentTagModelResult.ListItems.forEach(x => {
               list.push(x.LinkTagId);
@@ -218,22 +219,24 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.tagIdsData = list;
             this.loading.Stop(pName);
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.loading.Stop(pName);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   DataOtherInfoGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, 'در حال دریافت سایر اطلاعات از سرور');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
@@ -242,31 +245,33 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     filteModel.Filters.push(filter);
     this.contentOtherInfoService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.dataContentOtherInfoModelResult = next;
-          if (next.IsSuccess) {
-            this.otherInfoDataModel = next.ListItems;
-            this.otherInfoTabledataSource.data = next.ListItems;
+          this.dataContentOtherInfoModelResult = ret;
+          if (ret.IsSuccess) {
+            this.otherInfoDataModel = ret.ListItems;
+            this.otherInfoTabledataSource.data = ret.ListItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.loading.Stop(pName);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   DataSimilarGetAllIds(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,'در حال دریافت سایر اطلاعات از سرور');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkSourceId';
@@ -279,14 +284,14 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     filteModel.Filters.push(filter);
     this.contentSimilarService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.dataContentSimilarModelResult = next;
-          if (next.IsSuccess) {
+          this.dataContentSimilarModelResult = ret;
+          if (ret.IsSuccess) {
             const listIds = Array<number>();
-            next.ListItems.forEach(x => {
+            ret.ListItems.forEach(x => {
               if (x.LinkDestinationId === this.requestId) {
                 listIds.push(x.LinkSourceId);
               } else {
@@ -295,14 +300,16 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             });
             this.DataSimilarGetAll(listIds);
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.loading.Stop(pName);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   DataSimilarGetAll(ids: Array<number>): void {
@@ -310,10 +317,10 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       return;
     }
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,'در حال دریافت سایر اطلاعات از سرور');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
     const filteModel = new FilterModel();
     ids.forEach(item => {
       if (item > 0) {
@@ -326,22 +333,23 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     });
     this.contentService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.similarDataModel = next.ListItems;
-            this.similarTabledataSource.data = next.ListItems;
+          if (ret.IsSuccess) {
+            this.similarDataModel = ret.ListItems;
+            this.similarTabledataSource.data = ret.ListItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   DataEditContent(): void {
@@ -349,7 +357,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.contentService
       .ServiceEdit(this.dataModel)
       .subscribe(
@@ -454,7 +462,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   }
   onActionSelectorSelect(model: NewsCategoryModel | null): void {
     if (!model || model.Id <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -462,10 +470,10 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   }
   DataCategoryGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_category_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,'در حال دریافت اطلاعات دسته بندی از سرور');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_category_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.PropertyName = 'LinkContentId';
@@ -494,56 +502,56 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   }
   onActionCategorySelectChecked(model: number): void {
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     const entity = new NewsContentCategoryModel();
     entity.LinkCategoryId = model;
     entity.LinkContentId = this.dataModel.Id;
-    this.contentCategoryService.ServiceAdd(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+    this.contentCategoryService.ServiceAdd(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionCategorySelectDisChecked(model: number): void {
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     const entity = new NewsContentCategoryModel();
     entity.LinkCategoryId = model;
     entity.LinkContentId = this.dataModel.Id;
-    this.contentCategoryService.ServiceDeleteEntity(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+    this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionTagChange(ids: number[]): void {

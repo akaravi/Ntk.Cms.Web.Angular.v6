@@ -213,7 +213,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
@@ -223,7 +223,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.PropertyTypeSelected = null;
     this.dataModel.LinkPropertyTypeLanduseId = null;
     if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }

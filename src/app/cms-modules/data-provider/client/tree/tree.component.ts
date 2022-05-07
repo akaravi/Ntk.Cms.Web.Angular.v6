@@ -135,7 +135,7 @@ export class DataProviderClientTreeComponent implements OnInit, OnDestroy {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-      const message = 'دسته بندی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -156,7 +156,7 @@ export class DataProviderClientTreeComponent implements OnInit, OnDestroy {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-      const message = 'دسته بندی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

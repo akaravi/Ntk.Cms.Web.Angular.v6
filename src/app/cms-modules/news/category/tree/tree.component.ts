@@ -163,5 +163,4 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 }

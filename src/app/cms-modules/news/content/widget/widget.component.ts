@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService, NewsCommentService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -55,17 +56,17 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.service.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('Active', next.TotalRowCount);
+    this.service.ServiceGetCount(filterStatist1).subscribe({
+      next:(ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('Active', ret.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Active');
       }
       ,
-      (error) => {
+      error:(er) => {
         this.loading.Stop(this.constructor.name + 'Active');
-      }
+      }}
     );
     /**Comment */
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -75,16 +76,16 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     filterStatist2.Filters.push(fastfilter2);
     this.loading.Start(this.constructor.name + 'Pending_Comment');
     this.modelData.set('Pending_Comment', 0);
-    this.serviceComment.ServiceGetCount(filterStatist2).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('Pending_Comment', next.TotalRowCount);
+    this.serviceComment.ServiceGetCount(filterStatist2).subscribe({
+      next:(ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('Pending_Comment', ret.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Pending_Comment');
       },
-      (error) => {
+      error:(er) => {
         this.loading.Stop(this.constructor.name + 'Pending_Comment');
-      }
+      }}
     );
   }
 }

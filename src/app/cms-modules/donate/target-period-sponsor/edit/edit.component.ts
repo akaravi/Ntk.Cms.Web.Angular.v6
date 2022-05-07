@@ -154,7 +154,7 @@ export class DonateTargetPeriodSponserEditComponent implements OnInit {
   }
   onActionSelectorSelect(model: DonateTargetCategoryModel | null): void {
     if (!model || model.Id <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

@@ -142,7 +142,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
       id = this.dataModelSelect.Id;
     }
     if (id === '') {
-      const message = 'دسته بندی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -164,7 +164,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
       id = this.dataModelSelect.Id;
     }
     if (id === '') {
-      const message1 = 'دسته بندی انتخاب نشده است';
+      const message1 = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message1);
       return;
     }

@@ -271,7 +271,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
 
   onActionbuttonDeleteRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
     if (!model || !model.LinkModuleId || model.LinkModuleId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
-      const emessage = 'ردیفی برای حذف انتخاب نشده است';
+      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

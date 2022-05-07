@@ -273,7 +273,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
   onActionCategorySelectChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -284,7 +284,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
       this.contentCategoryService.ServiceAdd(entity).subscribe(
         (next) => {
           if (next.IsSuccess) {
-            this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
             this.cmsToastrService.typeSuccessEdit();
             // this.dialogRef.close({ dialogChangedDate: true });
           } else {
@@ -307,7 +307,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
   onActionCategorySelectDisChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -317,7 +317,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
     this.contentCategoryService.ServiceDeleteEntity(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {

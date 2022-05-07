@@ -236,7 +236,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   }
   onActionbuttonDeleteRow(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const emessage = 'ردیفی برای حذف انتخاب نشده است';
+      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;

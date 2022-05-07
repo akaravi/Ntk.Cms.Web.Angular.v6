@@ -1,5 +1,4 @@
 //**msh */
-
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -65,7 +64,7 @@ export class NewsCategoryAddComponent implements OnInit {
     this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
   }
   ngOnInit(): void {
-    this.formInfo.FormTitle = this.translate.instant('TITLE.Register_New_Categories');
+    this.formInfo.FormTitle =  this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -75,18 +74,18 @@ export class NewsCategoryAddComponent implements OnInit {
   DataGetAccess(): void {
     this.categoryService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
-      );
+      });
   }
   DataAddContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
@@ -112,7 +111,8 @@ export class NewsCategoryAddComponent implements OnInit {
         this.formInfo.FormSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
   onFormSubmit(): void {

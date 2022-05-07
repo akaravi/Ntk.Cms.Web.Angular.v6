@@ -224,7 +224,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   }
   DataCategoryGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_category_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -264,7 +264,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   onActionCategorySelectChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -274,7 +274,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
     this.contentCategoryService.ServiceAdd(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
@@ -295,7 +295,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   onActionCategorySelectDisChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -305,7 +305,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
     this.contentCategoryService.ServiceDeleteEntity(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {

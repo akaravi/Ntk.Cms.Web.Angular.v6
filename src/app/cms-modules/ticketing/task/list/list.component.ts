@@ -290,7 +290,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonDeleteRow(mode: TicketingTaskModel = this.tableRowSelected): void {
     if (mode == null || !mode.Id || mode.Id === 0) {
-      const emessage = 'ردیفی برای حذف انتخاب نشده است';
+      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

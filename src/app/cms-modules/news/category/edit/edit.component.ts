@@ -140,7 +140,6 @@ export class NewsCategoryEditComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     this.DataEditContent();
 
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

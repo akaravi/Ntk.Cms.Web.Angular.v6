@@ -259,7 +259,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   }
   DataOtherInfoGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -298,7 +298,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   }
   DataSimilarGetAllIds(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -357,7 +357,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     }
 
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت سایر اطلاعات از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -527,7 +527,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   }
   onActionSelectorSelect(model: BlogCategoryModel | null): void {
     if (!model || model.Id <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -535,7 +535,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   }
   DataCategoryGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت اطلاعات دسته بندی از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_category_information_from_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -575,7 +575,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   onActionCategorySelectChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -585,7 +585,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.contentCategoryService.ServiceAdd(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
@@ -606,7 +606,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   onActionCategorySelectDisChecked(model: number): void {
 
     if (!model || model <= 0) {
-      const message = 'دسته بندی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -616,7 +616,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.contentCategoryService.ServiceDeleteEntity(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {

@@ -209,7 +209,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.applicationSourceSiteCategoryService.ServiceAdd(entity).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'ثبت در این گروه با موفقیت انجام شد';
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
