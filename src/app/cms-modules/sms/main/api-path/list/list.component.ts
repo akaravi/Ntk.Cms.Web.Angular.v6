@@ -176,7 +176,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsMainApiPathModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -243,13 +243,14 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
 
   onActionbuttonNewRow(): void {
     if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.Id.length === 0
-    ) {
-      const message = 'کمپانی انتخاب نشده است';
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
+      (!this.requestLinkCompanyId) || (this.requestLinkCompanyId && this.requestLinkCompanyId.length == 0)) {
+      if (this.categoryModelSelected == null || this.categoryModelSelected.Id.length === 0) {
+        const message = 'کمپانی انتخاب نشده است';
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
     }
+
     if (
       this.dataModelResult == null ||
       this.dataModelResult.Access == null ||
@@ -258,9 +259,14 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var linkCompanyId = '';
+    if (this.categoryModelSelected && this.categoryModelSelected.Id.length > 0)
+      linkCompanyId = this.categoryModelSelected.Id;
+    if (this.requestLinkCompanyId && this.requestLinkCompanyId.length > 0)
+      linkCompanyId = this.requestLinkCompanyId;
     const dialogRef = this.dialog.open(SmsMainApiPathAddComponent, {
       height: '90%',
-      data: { LinkApiPathCompanyId: this.categoryModelSelected.Id }
+      data: { LinkApiPathCompanyId: linkCompanyId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
