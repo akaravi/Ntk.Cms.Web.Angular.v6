@@ -28,6 +28,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { LinkManagementBillboardPatternAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
     public categoryService: LinkManagementBillboardPatternService,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;

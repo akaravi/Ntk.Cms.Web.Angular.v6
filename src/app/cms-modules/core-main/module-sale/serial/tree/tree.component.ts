@@ -26,6 +26,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoreModuleSaleSerialEditComponent } from '../edit/edit.component';
 import { CoreModuleSaleSerialAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

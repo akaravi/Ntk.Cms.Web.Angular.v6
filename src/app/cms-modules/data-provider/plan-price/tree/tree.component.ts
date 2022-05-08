@@ -26,6 +26,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { DataProviderPlanPriceAddComponent } from '../add/add.component';
 import { DataProviderPlanPriceEditComponent } from '../edit/edit.component';
 import { DataProviderPlanPriceDeleteComponent } from '../delete/delete.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-data-provider-plan-price-tree',
@@ -39,6 +40,7 @@ export class DataProviderPlanPriceTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

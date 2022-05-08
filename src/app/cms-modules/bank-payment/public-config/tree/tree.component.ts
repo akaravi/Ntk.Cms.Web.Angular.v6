@@ -27,6 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPublicConfigEditComponent } from '../edit/edit.component';
 import { BankPaymentPublicConfigAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-bankpayment-publicconfig-tree',
   templateUrl: './tree.component.html',
@@ -38,6 +39,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     public categoryService: BankPaymentPublicConfigService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

@@ -28,6 +28,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { ChartCategoryAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class ChartCategoryTreeComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public categoryService: ChartCategoryService,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
   ) {
@@ -171,7 +173,7 @@ export class ChartCategoryTreeComponent implements OnInit, OnDestroy {
       id = this.dataModelSelect.Id;
     }
     if (id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected')ORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

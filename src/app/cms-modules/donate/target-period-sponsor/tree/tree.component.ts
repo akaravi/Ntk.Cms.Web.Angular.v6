@@ -26,6 +26,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { DonateTargetPeriodSponserAddComponent } from '../add/add.component';
 import { DonateTargetPeriodSponserDeleteComponent } from '../delete/delete.component';
 import { DonateTargetPeriodSponserEditComponent } from '../edit/edit.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-donate-target-period-sponser-tree',
@@ -39,6 +40,7 @@ export class DonateTargetPeriodSponserTreeComponent implements OnInit, OnDestroy
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

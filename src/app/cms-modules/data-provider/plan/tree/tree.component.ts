@@ -26,6 +26,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { DataProviderPlanAddComponent } from '../add/add.component';
 import { DataProviderPlanEditComponent } from '../edit/edit.component';
 import { DataProviderPlanDeleteComponent } from '../delete/delete.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class DataProviderPlanTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

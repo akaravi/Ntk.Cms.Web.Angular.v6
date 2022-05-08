@@ -26,6 +26,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { DataProviderSourceAddComponent } from '../add/add.component';
 import { DataProviderSourceEditComponent } from '../edit/edit.component';
 import { DataProviderSourceDeleteComponent } from '../delete/delete.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-data-provider-source-tree',
@@ -39,6 +40,7 @@ export class DataProviderSourceTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

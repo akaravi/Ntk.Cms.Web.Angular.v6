@@ -25,6 +25,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { WebDesignerMainPageTemplateEditComponent } from '../edit/edit.component';
 import { WebDesignerMainPageTemplateAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-webdesigner-pagetemplate-tree',
   templateUrl: './tree.component.html',
@@ -37,6 +38,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    private translate:TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
