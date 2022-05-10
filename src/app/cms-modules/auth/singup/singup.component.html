@@ -58,7 +58,7 @@
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile"
+          <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" class="input-Mobile"
             [disabled]=" !formInfo.ButtonSubmittedEnabled" #Mobile type="text" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" placeholder="009891"
             minlength="0" maxlength="50" />

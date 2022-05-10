@@ -87,7 +87,7 @@
         <!-- Mobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Mobile']?.AccessWatchField">
           <mat-label> {{fieldsInfo['Mobile']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text"
+          <input matInput [(ngModel)]="dataModel.Mobile" name="dataModel.Mobile" #Mobile type="text" class="input-Mobile"
             [disabled]="!fieldsInfo['Mobile']?.AccessEditField" placeholder="{{fieldsInfo['Mobile']?.FieldTitle}}"
             minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.Mobile" matSuffix mat-icon-button aria-label="Clear"
