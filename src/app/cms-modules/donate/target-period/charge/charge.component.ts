@@ -22,7 +22,7 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
         private coreSiteService: CoreSiteService,
         private cmsToastrService: CmsToastrService,
         private router: Router,
-        private translate: TranslateService
+        public translate: TranslateService
     ) {
         this.requestLinkTargetPeriodId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTargetPeriodId'));
         this.dataModelCalculate.LinkTargetPeriodId = this.requestLinkTargetPeriodId;

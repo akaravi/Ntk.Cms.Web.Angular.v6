@@ -17,7 +17,7 @@ export class AuthSingInComponent implements OnInit {
     private router: Router,
     private coreAuthService: CoreAuthService,
     private translationService: TranslationService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;

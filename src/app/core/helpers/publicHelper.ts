@@ -28,7 +28,7 @@ export class PublicHelper {
   constructor(
     private router: Router,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private coreEnumService: CoreEnumService,
     private coreSiteService: CoreSiteService,
     private coreModuleService: CoreModuleService,

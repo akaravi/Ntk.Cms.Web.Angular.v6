@@ -42,7 +42,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {

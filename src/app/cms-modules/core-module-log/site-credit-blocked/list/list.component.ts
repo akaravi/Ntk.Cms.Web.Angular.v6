@@ -52,7 +52,7 @@ export class CoreModuleLogSiteCreditBlockedListComponent implements OnInit, OnDe
     private tokenHelper: TokenHelper,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;

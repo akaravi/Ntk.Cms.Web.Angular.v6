@@ -39,7 +39,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     public categoryService: BankPaymentPublicConfigService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

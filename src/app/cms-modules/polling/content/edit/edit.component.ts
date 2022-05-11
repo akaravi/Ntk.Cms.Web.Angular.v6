@@ -29,6 +29,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CoreLocationModel } from 'ntk-cms-api';
 
 @Component({
   selector: 'app-polling-content-edit',
@@ -46,7 +47,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.loadingOption.cdr = this.cdr;
@@ -404,5 +405,16 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   }
 
   receiveZoom(mode: leafletMap): void {
+  }
+  
+  
+  onActionSelectorLocation(model: CoreLocationModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      const message = 'منطقه اطلاعات حدف شد';
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.LinkLocationId = null;
+      return;
+    }
+    this.dataModel.LinkLocationId = model.Id;
   }
 }

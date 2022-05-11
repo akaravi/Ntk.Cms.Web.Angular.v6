@@ -46,7 +46,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private ticketingEnumService: TicketingEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;

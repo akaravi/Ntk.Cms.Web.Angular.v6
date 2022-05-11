@@ -37,7 +37,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     private coreModuleSaleSerialService: CoreModuleSaleSerialService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public coreEnumService: CoreEnumService,
     private activatedRoute: ActivatedRoute,
     private coreModuleService: CoreModuleService,

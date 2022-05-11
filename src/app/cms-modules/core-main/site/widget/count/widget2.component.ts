@@ -23,7 +23,7 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
     private service: CoreSiteService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

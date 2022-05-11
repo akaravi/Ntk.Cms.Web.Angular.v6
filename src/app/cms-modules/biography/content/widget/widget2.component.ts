@@ -21,7 +21,7 @@ export class BiographyContentWidget2Component implements OnInit, OnDestroy {
     private service: BiographyContentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

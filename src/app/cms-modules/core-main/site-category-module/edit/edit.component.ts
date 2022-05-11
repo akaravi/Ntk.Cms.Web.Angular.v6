@@ -42,7 +42,7 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public coreSiteCategoryCmsModuleService: CoreSiteCategoryCmsModuleService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private publicHelper: PublicHelper,
 

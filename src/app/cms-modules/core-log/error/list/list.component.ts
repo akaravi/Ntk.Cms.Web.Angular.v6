@@ -45,7 +45,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;

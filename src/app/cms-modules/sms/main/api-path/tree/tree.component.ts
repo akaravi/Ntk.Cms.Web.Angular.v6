@@ -42,7 +42,7 @@ export class SmsMainApiPathTreeComponent implements OnInit, OnDestroy {
     public categoryService: SmsMainApiPathService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

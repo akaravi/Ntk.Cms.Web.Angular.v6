@@ -388,6 +388,11 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
+          <!-- LinkLocationId Field -->
+          <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+          [optionDisabled]="!fieldsInfo['LinkLocationId']?.AccessEditField"
+          [optionSelectForce]="dataModel.LinkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+        </app-cms-location-selector>
         <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>

@@ -20,7 +20,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     private categoryService: NewsCategoryService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

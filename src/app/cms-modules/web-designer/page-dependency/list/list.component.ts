@@ -50,7 +50,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     private tokenHelper: TokenHelper,
     public http: HttpClient,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));

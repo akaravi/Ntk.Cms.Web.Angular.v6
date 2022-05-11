@@ -42,7 +42,7 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
     public categoryService: BlogCategoryService,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;

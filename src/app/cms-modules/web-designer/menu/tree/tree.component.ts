@@ -41,7 +41,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.filteModel.SortColumn = 'ShowInMenuOrder';

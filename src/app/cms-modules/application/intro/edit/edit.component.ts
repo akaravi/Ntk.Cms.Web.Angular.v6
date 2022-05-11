@@ -32,7 +32,7 @@ export class ApplicationIntroEditComponent implements OnInit {
     private applicationIntroService: ApplicationIntroService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();

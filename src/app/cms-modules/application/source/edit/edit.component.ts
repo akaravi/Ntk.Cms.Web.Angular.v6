@@ -38,7 +38,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     private applicationSourceService: ApplicationSourceService,
     private applicationSourceSiteCategoryService: ApplicationSourceSiteCategoryService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private router: Router) {
     this.loading.cdr = this.cdr;

@@ -38,7 +38,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
     public categoryService: BankPaymentPrivateSiteConfigService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

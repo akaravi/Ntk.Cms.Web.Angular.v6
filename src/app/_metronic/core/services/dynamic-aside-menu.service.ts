@@ -20,7 +20,7 @@ export class DynamicAsideMenuService implements OnDestroy {
     private coreCpMainMenuService: CoreCpMainMenuService,
     public coreAuthService: CoreAuthService,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.menuConfig$ = this.menuConfigSubject.asObservable();
     this.setMenu([]);

@@ -21,7 +21,7 @@ export class ArticleContentWidget2Component implements OnInit, OnDestroy {
     private service: ArticleContentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

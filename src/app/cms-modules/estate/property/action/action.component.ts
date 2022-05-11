@@ -35,7 +35,7 @@ export class EstatePropertyActionComponent implements OnInit {
     public estateAdsTypeService: EstateAdsTypeService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     if (data) {
       this.dataModel = data.model;

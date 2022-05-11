@@ -42,7 +42,7 @@ export class CoreDeviceTreeComponent implements OnInit, OnDestroy {
     public categoryService: CoreDeviceService,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;

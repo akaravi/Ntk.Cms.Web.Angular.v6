@@ -22,7 +22,7 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
         private coreSiteService: CoreSiteService,
         private cmsToastrService: CmsToastrService,
         private router: Router,
-        private translate: TranslateService
+        public translate: TranslateService
     ) {
         this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
         this.dataModelCalculate.LinkModuleId = this.requestLinkModuleId;

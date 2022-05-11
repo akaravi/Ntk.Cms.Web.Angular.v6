@@ -22,7 +22,7 @@ export class DataProviderPlanPriceChargeComponent implements OnInit {
         private coreSiteService: CoreSiteService,
         private cmsToastrService: CmsToastrService,
         private router: Router,
-        private translate: TranslateService
+        public translate: TranslateService
     ) {
         this.requestLinkClientId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkClientId'));
         this.dataModelCalculate.LinkClientId = this.requestLinkClientId;

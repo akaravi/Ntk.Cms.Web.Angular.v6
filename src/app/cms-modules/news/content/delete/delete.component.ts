@@ -26,7 +26,7 @@ export class NewsContentDeleteComponent implements OnInit {
     public contentService: NewsContentService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

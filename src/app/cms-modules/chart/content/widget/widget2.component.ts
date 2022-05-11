@@ -21,7 +21,7 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
     private service: ChartContentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

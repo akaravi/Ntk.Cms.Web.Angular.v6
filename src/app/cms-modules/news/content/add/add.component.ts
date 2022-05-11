@@ -32,6 +32,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { CoreLocationModel } from 'ntk-cms-api';
 @Component({
   selector: 'app-news-content-add',
   templateUrl: './add.component.html',
@@ -51,7 +52,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     private router: Router,
     private contentTagService: NewsContentTagService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -377,5 +378,16 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   }
   onActionBackToParent(): void {
     this.router.navigate(['/news/content/']);
+  }
+  
+  
+  onActionSelectorLocation(model: CoreLocationModel | null): void {
+    if (!model || !model.Id || model.Id <= 0) {
+      const message = 'منطقه اطلاعات حدف شد';
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.LinkLocationId = null;
+      return;
+    }
+    this.dataModel.LinkLocationId = model.Id;
   }
 }

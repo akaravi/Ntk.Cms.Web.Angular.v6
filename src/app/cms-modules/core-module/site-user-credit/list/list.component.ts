@@ -42,7 +42,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private coreModuleService: CoreModuleService,
     public dialog: MatDialog,
     public router: Router,

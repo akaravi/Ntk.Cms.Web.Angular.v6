@@ -31,7 +31,7 @@ export class ApplicationIntroAddComponent implements OnInit {
     public applicationEnumService: ApplicationEnumService,
     private applicationIntroService: ApplicationIntroService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private router: Router) {
     this.loading.cdr = this.cdr;

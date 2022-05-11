@@ -40,7 +40,7 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
     private coreSiteService: CoreSiteService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

@@ -41,7 +41,7 @@ export class ChartCategoryTreeComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public categoryService: ChartCategoryService,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
   ) {

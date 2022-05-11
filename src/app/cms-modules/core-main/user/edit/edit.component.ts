@@ -48,7 +48,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));

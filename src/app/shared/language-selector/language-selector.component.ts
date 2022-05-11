@@ -78,7 +78,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
