@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -93,27 +94,25 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.apiTelegramBotConfigService.setAccessLoad();
-    this.apiTelegramBotConfigService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
-        this.dataModel = next.Item;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+    this.apiTelegramBotConfigService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.dataModel = ret.Item;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -121,46 +120,41 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.apiTelegramBotConfigService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.apiTelegramBotConfigService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionbuttonGetMeAsync(): void {
     const pName = this.constructor.name + 'ServiceGetMeAsync';
 
-    this.apiTelegramBotConfigService.ServiceGetMeAsync(this.requestId).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.apiTelegramBotConfigService.ServiceGetMeAsync(this.requestId).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           //open popup
           const dialogRef = this.dialog.open(CmsViewComponent, {
-            // height: "90%",
             data: {
-              optionItem: next.Item,
-              // UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
-              /// UrlViewContent: next.Item.UrlViewContent,
+              optionItem: ret.Item,
             },
           });
           dialogRef.afterClosed().subscribe((result) => {
@@ -170,53 +164,53 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
           });
           //open popup
         } else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionbuttonSetWebhookAsync(): void {
     const pName = this.constructor.name + 'ServiceSetWebhookAsync';
 
-    this.apiTelegramBotConfigService.ServiceSetWebhookAsync(this.requestId).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.apiTelegramBotConfigService.ServiceSetWebhookAsync(this.requestId).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.cmsToastrService.typeSuccessAdd();
         } else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionbuttonSetWebhookAsyncEmpty(): void {
     const pName = this.constructor.name + 'ServiceSetWebhookAsyncEmpty';
 
-    this.apiTelegramBotConfigService.ServiceSetWebhookAsyncEmpty(this.requestId).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.apiTelegramBotConfigService.ServiceSetWebhookAsyncEmpty(this.requestId).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.cmsToastrService.typeSuccessAdd();
         } else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onFormSubmit(): void {
@@ -229,5 +223,4 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
-
 }

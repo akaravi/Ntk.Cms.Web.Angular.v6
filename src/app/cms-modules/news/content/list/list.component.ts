@@ -141,6 +141,9 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
               this.optionsSearch.childMethods.setAccess(ret.Access);
             }
           }
+          else{
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          }
           this.loading.Stop(pName);
         },
         error: (er) => {
@@ -196,6 +199,9 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.Access);
             }
+          }
+          else{
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },

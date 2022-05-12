@@ -335,7 +335,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   onActionbuttonLoginToRow(model: CoreUserModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -449,7 +449,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonResller(model: CoreUserModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

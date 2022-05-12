@@ -15,12 +15,14 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-news-content-selector',
   templateUrl: './selector.component.html',
 })
 export class NewsContentSelectorComponent implements OnInit {
   constructor(
+    private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public contentService: NewsContentService) {
@@ -125,7 +127,11 @@ export class NewsContentSelectorComponent implements OnInit {
           this.filteredOptions = this.push(ret.Item);
           this.dataModelSelect = ret.Item;
           this.formControl.setValue(ret.Item);
-        }}
+        }
+        else{
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+        }
+      }
       });
       return;
     }

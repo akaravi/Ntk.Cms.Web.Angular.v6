@@ -321,7 +321,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   }
   onActionbuttonPageList(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -372,7 +372,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   }
   onActionbuttonSiteRouteView(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

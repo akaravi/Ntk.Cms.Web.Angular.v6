@@ -259,7 +259,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   }
   onActionbuttonViewRowLinkBillbordId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;

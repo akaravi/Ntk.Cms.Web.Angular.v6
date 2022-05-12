@@ -405,7 +405,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   onActionbuttonSuperSedersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -424,7 +424,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   onActionbuttonMustSuperSedersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -443,7 +443,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   onActionbuttonNumbersList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -462,7 +462,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   onActionbuttonPermitionList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -481,7 +481,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   onActionbuttonPriceServicesList(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -520,7 +520,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   onActionbuttonSendMessage(model: SmsLogInBoxModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

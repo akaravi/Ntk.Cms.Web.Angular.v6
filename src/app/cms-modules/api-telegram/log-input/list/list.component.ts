@@ -23,8 +23,6 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-// import { ApiTelegramLogInputEditComponent } from '../edit/edit.component';
-// import { ApiTelegramLogInputAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ApiTelegramActionSendMessageComponent } from '../../action/send-message/send-message.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -235,66 +233,11 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
     // });
   }
   onActionbuttonDeleteRow(model: ApiTelegramLogInputModel = this.tableRowSelected): void {
-    // if (!model || !model.Id || model.Id === 0) {
-    //   const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
-    //   this.cmsToastrService.typeErrorSelected(emessage);
-    //   return;
-    // }
-    // this.tableRowSelected = model;
 
-    // if (
-    //   this.dataModelResult == null ||
-    //   this.dataModelResult.Access == null ||
-    //   !this.dataModelResult.Access.AccessDeleteRow
-    // ) {
-    //   this.cmsToastrService.typeErrorAccessDelete();
-    //   return;
-    // }
-
-
-    // const title = 'لطفا تایید کنید...';
-    // const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
-    // this.cmsConfirmationDialogService.confirm(title, message)
-    //   .then((confirmed) => {
-    //     if (confirmed) {
-    //       const pName = this.constructor.name + 'main';
-    //       this.loading.Start(pName);
-
-    //       this.apiTelegramLogInputService.ServiceDelete(this.tableRowSelected.Id).subscribe(
-    //         (next) => {
-    //           if (next.IsSuccess) {
-    //             this.cmsToastrService.typeSuccessRemove();
-    //             this.DataGetAll();
-    //           } else {
-    //             this.cmsToastrService.typeErrorRemove();
-    //           }
-    //           this.loading.Stop(pName);
-
-    //         },
-    //         (error) => {
-    //           this.cmsToastrService.typeError(error);
-    //           this.loading.Stop(pName);
-
-    //         }
-    //       );
-    //     }
-    //   }
-    //   )
-    //   .catch(() => {
-    //     // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
-    //   }
-    //   );
   }
 
   onActionbuttonGoToModuleList(model: ApiTelegramLogInputModel = this.tableRowSelected): void {
-    //   if (!model || !model.Id || model.Id === 0) {
-    //     const message = 'ردیفی برای نمایش انتخاب نشده است';
-    //     this.cmsToastrService.typeErrorSelected(message);
-    //     return;
-    //   }
-    //   this.tableRowSelected = model;
 
-    //   this.router.navigate(['/core/siteModule/', this.tableRowSelected.Id]);
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -337,7 +280,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonSendMessage(model: ApiTelegramLogInputModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

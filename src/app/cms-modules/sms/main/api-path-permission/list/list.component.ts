@@ -329,7 +329,7 @@ export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy 
   onActionbuttonApiList(model: SmsMainApiPathPermissionModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length == 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

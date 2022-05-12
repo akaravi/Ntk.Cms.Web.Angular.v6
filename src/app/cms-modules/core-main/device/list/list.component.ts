@@ -295,7 +295,7 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
 
   onActionbuttonGoToSiteCategoryList(model: CoreDeviceModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

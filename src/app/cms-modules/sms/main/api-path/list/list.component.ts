@@ -404,7 +404,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onActionbuttonSuperSedersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -423,7 +423,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onActionbuttonMustSuperSedersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -442,7 +442,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onActionbuttonNumbersList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -461,7 +461,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onActionbuttonPermitionList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -480,7 +480,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onActionbuttonPriceServicesList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -519,7 +519,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
   onActionbuttonSendTest(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

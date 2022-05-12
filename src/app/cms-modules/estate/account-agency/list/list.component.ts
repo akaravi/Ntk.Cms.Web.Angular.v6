@@ -5,11 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   EstateAccountAgencyModel,
   EstateAccountAgencyService,
-  CoreAuthService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EnumRecordStatus,
   FilterDataModel,
@@ -264,7 +262,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonContentList(model: EstateAccountAgencyModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

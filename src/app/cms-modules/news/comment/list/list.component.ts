@@ -169,6 +169,9 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(ret.Access);
           }
         }
+        else{
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+        }
         this.loading.Stop(pName);
       },
       error: (er) => {

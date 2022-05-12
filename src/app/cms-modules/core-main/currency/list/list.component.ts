@@ -279,7 +279,7 @@ export class CoreCurrencyListComponent implements OnInit, OnDestroy {
 
   onActionbuttonUserList(model: CoreCurrencyModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display')_row_selected_to_display')_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

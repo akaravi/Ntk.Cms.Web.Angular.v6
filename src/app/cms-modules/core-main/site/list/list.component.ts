@@ -261,7 +261,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   onActionbuttonModuleListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -271,7 +271,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   onActionbuttonLoginToRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -298,7 +298,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonDomainAliasListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -307,7 +307,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonUserListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -316,7 +316,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonDeviceListRow(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -326,7 +326,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonResller  (model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -337,7 +337,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   onActionbuttonModuleSiteInfo(model: CoreSiteModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -366,7 +366,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   onActionbuttonModuleSiteOptimaze(model: CoreSiteModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

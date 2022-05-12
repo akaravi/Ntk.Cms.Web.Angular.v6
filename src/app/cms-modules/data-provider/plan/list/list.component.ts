@@ -268,7 +268,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonPriceList(model: DataProviderPlanModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
@@ -278,7 +278,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   
   onActionbuttonTransactionList(model: DataProviderPlanModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;

@@ -415,8 +415,12 @@
 	"MESSAGE.sending_information_to_the_server": "Sending information to the server",
 	"MESSAGE.get_categories": "Get Categories",
 	"MESSAGE.get_news_information": "Get news information",
+	"MESSAGE.get_state_information": "Get state information",
 	"MESSAGE.content_not_selected": "Content not selected",
 	"MESSAGE.no_row_selected_to_delete": "No row selected to delete",
+	"MESSAGE.no_row_selected_to_display": "No row selected for display", 
+
+
 	"MESSAGE.category_of_information_is_not_clear": "category of information is not clear", 
 	"MESSAGE.get_information_list": "Get Information List",
 	"MESSAGE.Receiving_tag_information_from_the_server": "Receiving tag information from the server",

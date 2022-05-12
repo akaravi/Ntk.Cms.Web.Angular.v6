@@ -288,7 +288,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
 
   onActionbuttonGoToModuleList(model: ApiTelegramLogOutputModel = this.tableRowSelected): void {
     // if (!model || !model.Id || model.Id === 0) {
-    //   const message = 'ردیفی برای نمایش انتخاب نشده است';
+    //   const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
     //   this.cmsToastrService.typeErrorSelected(message);
     //   return;
     // }
@@ -337,7 +337,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonSendMessage(model: ApiTelegramLogOutputModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

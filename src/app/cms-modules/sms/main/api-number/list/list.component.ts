@@ -338,7 +338,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
   onActionbuttonReceiveList(model: SmsMainApiNumberModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length == 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -359,7 +359,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
   onActionbuttonSendList(model: SmsMainApiNumberModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length == 0) {
 
-      const message = 'ردیفی انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

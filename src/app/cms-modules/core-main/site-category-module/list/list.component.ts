@@ -288,7 +288,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
   onActionbuttonGoToSiteCategoryCmsModuleList(model: CoreSiteCategoryCmsModuleModel = this.tableRowSelected): void {
     if (!model || !model.LinkCmsModuleId || model.LinkCmsModuleId === 0 ||
       !model.LinkCmsSiteCategoryId || model.LinkCmsSiteCategoryId === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -338,7 +338,7 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
   onActionbuttonConfigMainAdminRow(model: CoreSiteCategoryCmsModuleModel = this.tableRowSelected): void {
     if (!model || !model.LinkCmsModuleId || model.LinkCmsModuleId === 0
       || !model.LinkCmsSiteCategoryId || model.LinkCmsSiteCategoryId === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

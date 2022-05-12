@@ -316,7 +316,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
   }
   onActionbuttonSiteUserCreditAccountRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
     if (!model || !model.LinkModuleId || model.LinkModuleId === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

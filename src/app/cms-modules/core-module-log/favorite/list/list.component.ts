@@ -321,7 +321,7 @@ export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
   onActionbuttonViewContent(model: CoreModuleLogFavoriteModel = this.tableRowSelected): void {
 
     if (!model || !model.Id || model.Id.length === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

@@ -251,7 +251,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonFaqList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -261,7 +261,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonTemplateList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -271,7 +271,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonLogList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -281,7 +281,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonTaskList(model: TicketingDepartemenModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const message = 'ردیفی برای نمایش انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

@@ -351,7 +351,7 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
 
   onActionbuttonDonateTargetPeriodAccountRow(model: DonateTargetPeriodModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0 || !model.LinkSiteId || model.LinkSiteId === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
@@ -362,7 +362,7 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
 
   onActionbuttonTargetPeriodSponserList(model: DonateTargetPeriodModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      const emessage = 'ردیفی انتخاب نشده است';
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
        return;
     }
