@@ -35,7 +35,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     public coreModuleSaleHeaderService: CoreModuleSaleHeaderService,
 
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {

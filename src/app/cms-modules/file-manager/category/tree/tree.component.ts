@@ -27,6 +27,7 @@ import { FileCategoryDeleteComponent } from '../delete/delete.component';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class FileCategoryTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

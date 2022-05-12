@@ -26,6 +26,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPrivateSiteConfigEditComponent } from '../edit/edit.component';
 import { BankPaymentPrivateSiteConfigAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-bankpayment-privatesiteconfig-tree',
   templateUrl: './tree.component.html',
@@ -37,6 +38,7 @@ export class BankPaymentPrivateSiteConfigTreeComponent implements OnInit, OnDest
     public categoryService: BankPaymentPrivateSiteConfigService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

@@ -22,7 +22,7 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
     private service: ApplicationMemberInfoService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

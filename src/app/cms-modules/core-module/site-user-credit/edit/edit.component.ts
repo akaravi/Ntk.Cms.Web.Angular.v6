@@ -38,7 +38,7 @@ export class CoreModuleSiteUserCreditEditComponent implements OnInit {
     public coreModuleSiteUserCreditService: CoreModuleSiteUserCreditService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

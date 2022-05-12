@@ -36,7 +36,7 @@ export class ArticleCategoryAddComponent implements OnInit {
     public categoryService: ArticleCategoryService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

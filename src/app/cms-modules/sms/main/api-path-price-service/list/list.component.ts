@@ -47,7 +47,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public smsEnumService: SmsEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;

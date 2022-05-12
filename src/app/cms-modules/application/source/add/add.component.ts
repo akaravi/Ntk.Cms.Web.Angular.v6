@@ -30,7 +30,7 @@ export class ApplicationSourceAddComponent implements OnInit {
     public applicationEnumService: ApplicationEnumService,
     private applicationSourceService: ApplicationSourceService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private router: Router) {
     this.loading.cdr = this.cdr;

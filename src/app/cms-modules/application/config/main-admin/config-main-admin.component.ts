@@ -34,7 +34,7 @@ export class ApplicationConfigMainAdminComponent implements OnInit , OnDestroy {
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {

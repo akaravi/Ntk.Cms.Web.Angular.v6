@@ -50,7 +50,7 @@ export class DataProviderClientEditComponent implements OnInit {
     private router: Router,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private dataProviderPlanClientService: DataProviderPlanClientService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper
   ) {
     this.loading.cdr = this.cdr;

@@ -28,6 +28,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { LinkManagementTargetCategoryAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
     public categoryService: LinkManagementTargetCategoryService,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;

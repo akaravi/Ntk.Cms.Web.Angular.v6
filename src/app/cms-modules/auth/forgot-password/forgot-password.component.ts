@@ -25,7 +25,7 @@ export class AuthForgotPasswordComponent implements OnInit {
   constructor(
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router,
     private cdr: ChangeDetectorRef,
   ) {

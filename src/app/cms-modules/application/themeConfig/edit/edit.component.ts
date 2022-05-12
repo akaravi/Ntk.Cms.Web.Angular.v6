@@ -39,7 +39,7 @@ export class ApplicationThemeConfigEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

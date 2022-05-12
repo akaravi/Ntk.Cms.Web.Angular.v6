@@ -50,7 +50,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;

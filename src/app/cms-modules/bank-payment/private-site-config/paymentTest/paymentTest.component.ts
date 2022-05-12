@@ -35,7 +35,7 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
     public bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

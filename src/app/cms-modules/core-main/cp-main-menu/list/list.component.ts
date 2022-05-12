@@ -46,7 +46,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {

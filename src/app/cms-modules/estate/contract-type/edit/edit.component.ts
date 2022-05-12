@@ -41,7 +41,7 @@ export class EstateContractTypeEditComponent implements OnInit {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

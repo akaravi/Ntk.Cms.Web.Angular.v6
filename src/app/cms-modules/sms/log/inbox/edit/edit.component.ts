@@ -44,7 +44,7 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (this.activatedRoute.snapshot.paramMap.get('Id')) {

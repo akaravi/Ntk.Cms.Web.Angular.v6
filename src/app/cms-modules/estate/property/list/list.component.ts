@@ -60,7 +60,7 @@ export class EstatePropertyListComponent
     private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.requestLinkPropertyTypeLanduseId =

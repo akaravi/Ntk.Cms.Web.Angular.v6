@@ -41,7 +41,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     private coreSiteService: CoreSiteService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper
   ) {

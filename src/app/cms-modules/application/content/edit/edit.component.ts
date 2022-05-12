@@ -37,7 +37,7 @@ export class ApplicationAppEditComponent implements OnInit {
     public applicationEnumService: ApplicationEnumService,
     private applicationAppService: ApplicationAppService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private router: Router) {
     this.loading.cdr = this.cdr;

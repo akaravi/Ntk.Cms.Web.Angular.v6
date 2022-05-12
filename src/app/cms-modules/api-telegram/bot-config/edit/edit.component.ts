@@ -40,7 +40,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

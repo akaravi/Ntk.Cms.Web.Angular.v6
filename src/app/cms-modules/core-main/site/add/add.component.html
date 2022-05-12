@@ -625,7 +625,7 @@
         <!-- AboutUsTel Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsTel']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['AboutUsTel']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.AboutUsTel" [disabled]="!fieldsInfo['AboutUsTel']?.AccessAddField"
+          <input matInput [(ngModel)]="dataModel.AboutUsTel" [disabled]="!fieldsInfo['AboutUsTel']?.AccessAddField" class="input-Mobile"
             name="dataModel.AboutUsTel" #AboutUsTel type="text" placeholder="021444444444" minlength="0"
             maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.AboutUsTel && fieldsInfo['AboutUsTel']?.AccessAddField" matSuffix

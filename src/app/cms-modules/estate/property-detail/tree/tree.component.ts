@@ -41,7 +41,7 @@ export class EstatePropertyDetailTreeComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;

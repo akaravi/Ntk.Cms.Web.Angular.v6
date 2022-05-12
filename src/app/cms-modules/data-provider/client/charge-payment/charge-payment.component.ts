@@ -36,7 +36,7 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
     private dialogRef: MatDialogRef<DataProviderClientChargePaymentComponent>,
     private cmsToastrService: CmsToastrService,
     private dataProviderTransactionService: DataProviderTransactionService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {

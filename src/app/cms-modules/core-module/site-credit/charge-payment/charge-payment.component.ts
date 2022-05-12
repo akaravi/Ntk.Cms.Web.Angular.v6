@@ -38,7 +38,7 @@ export class CoreModuleSiteCreditChargePaymentComponent implements OnInit {
     private dialogRef: MatDialogRef<CoreModuleSiteCreditChargePaymentComponent>,
     private cmsToastrService: CmsToastrService,
     private coreModuleSiteCreditService: CoreModuleSiteCreditService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {

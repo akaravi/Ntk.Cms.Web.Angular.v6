@@ -9,7 +9,7 @@ import { ErrorExceptionResultBase } from 'ntk-cms-api';
 export class CmsToastrService {
   constructor(
     public toastr: ToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
 
   }

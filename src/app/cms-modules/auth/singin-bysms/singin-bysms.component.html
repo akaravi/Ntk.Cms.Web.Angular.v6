@@ -18,7 +18,7 @@
     <!--Mobile Field-->
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.SINGINBYSMS.MOBILE' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.Mobile" name="dataModelAuthUserSignInBySms.Mobile"
+      <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.Mobile" name="dataModelAuthUserSignInBySms.Mobile"  class="input-Mobile"
         [disabled]=" !formInfo.ButtonSubmittedEnabled" #Mobile type="text" autocomplete="off"
         class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
         placeholder=" {{'AUTH.SINGINBYSMS.MOBILE' | translate}}" minlength="5" maxlength="50" required />

@@ -43,7 +43,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     public coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,

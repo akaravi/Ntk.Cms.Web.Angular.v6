@@ -30,7 +30,7 @@ export class AuthSingInBySmsComponent implements OnInit {
   constructor(
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router,
     private translationService: TranslationService,
     private cdr: ChangeDetectorRef,

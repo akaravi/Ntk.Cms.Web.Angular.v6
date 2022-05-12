@@ -45,7 +45,7 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

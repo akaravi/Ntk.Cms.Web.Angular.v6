@@ -44,7 +44,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private bankPaymentEnumService: BankPaymentEnumService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,

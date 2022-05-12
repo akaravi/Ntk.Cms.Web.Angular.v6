@@ -50,7 +50,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkUserClaimTypeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimTypeId'));

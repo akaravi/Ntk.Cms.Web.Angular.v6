@@ -48,7 +48,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.loadingOption.cdr = this.cdr;

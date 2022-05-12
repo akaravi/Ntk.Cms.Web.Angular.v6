@@ -41,7 +41,7 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public publicHelper: PublicHelper,
   ) {
     this.loading.cdr = this.cdr;

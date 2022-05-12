@@ -47,7 +47,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));

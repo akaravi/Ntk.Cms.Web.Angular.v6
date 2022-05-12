@@ -44,7 +44,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.requestHeaderGroupId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkHeaderGroupId'));

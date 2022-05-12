@@ -46,7 +46,7 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     private router: Router,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
 
     this.loading.cdr = this.cdr;

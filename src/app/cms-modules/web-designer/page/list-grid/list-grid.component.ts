@@ -52,7 +52,7 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     if (this.activatedRoute.snapshot.paramMap.get('LinkPageTemplateGuId')) {

@@ -39,7 +39,7 @@ export class ApplicationLogNotificationViewComponent implements OnInit, OnDestro
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

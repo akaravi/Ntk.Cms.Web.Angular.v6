@@ -18,7 +18,7 @@ export class TranslationService {
   // Private properties
   private langIds: any = [];
 
-  constructor(private translate: TranslateService) {
+  constructor(public translate: TranslateService) {
     // add new langIds to the list
     this.translate.addLangs(['fa']);
 

@@ -28,6 +28,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SmsMainApiPathCompanyEditComponent } from '../edit/edit.component';
 import { SmsMainApiPathCompanyAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -43,6 +44,7 @@ export class SmsMainApiPathCompanyTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

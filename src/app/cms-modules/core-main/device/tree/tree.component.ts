@@ -28,6 +28,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoreDeviceEditComponent } from '../edit/edit.component';
 import { CoreDeviceAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class CoreDeviceTreeComponent implements OnInit, OnDestroy {
     public categoryService: CoreDeviceService,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;

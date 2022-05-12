@@ -15,7 +15,7 @@ export class ApplicationAppDownloadComponent implements OnInit {
     private applicationAppService: ApplicationAppService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

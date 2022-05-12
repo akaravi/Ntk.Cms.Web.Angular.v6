@@ -368,7 +368,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      const message = 'منطقه اطلاعات مشخص نیست';
+      const message = 'منطقه اطلاعات حدف شد';
       this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.LinkLocationId = null;
       return;

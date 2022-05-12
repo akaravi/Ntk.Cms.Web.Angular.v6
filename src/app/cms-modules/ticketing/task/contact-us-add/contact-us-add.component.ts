@@ -43,7 +43,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
     private ticketingTaskService: TicketingTaskService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef) {
     this.loading.cdr = this.cdr;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();

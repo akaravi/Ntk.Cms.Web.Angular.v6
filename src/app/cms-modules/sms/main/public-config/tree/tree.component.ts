@@ -27,6 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SmsMainApiPathPublicConfigEditComponent } from '../edit/edit.component';
 import { SmsMainApiPathPublicConfigAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class SmsMainApiPathPublicConfigTreeComponent implements OnInit, OnDestro
     public categoryService: SmsMainApiPathPublicConfigService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;

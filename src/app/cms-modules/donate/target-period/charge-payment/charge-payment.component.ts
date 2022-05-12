@@ -36,7 +36,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
     private dialogRef: MatDialogRef<DonateTargetPeriodChargePaymentComponent>,
     private cmsToastrService: CmsToastrService,
     private donateTransactionService: DonateTransactionService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {

@@ -32,7 +32,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   constructor(
     private cmsToastrService: CmsToastrService,
     private coreSiteService: CoreSiteService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private publicHelper: PublicHelper,
     private coreAuthService: CoreAuthService,
     private cdr: ChangeDetectorRef,

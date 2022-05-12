@@ -42,7 +42,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router,
     private cdr: ChangeDetectorRef,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,

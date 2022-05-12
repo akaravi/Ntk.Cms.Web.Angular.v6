@@ -24,6 +24,9 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
+
+
 @Component({
   selector: 'app-application-app-tree',
   templateUrl: './tree.component.html',
@@ -36,6 +39,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

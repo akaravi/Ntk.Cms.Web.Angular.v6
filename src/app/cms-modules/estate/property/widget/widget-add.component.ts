@@ -19,7 +19,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
     private service: EstatePropertyService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }

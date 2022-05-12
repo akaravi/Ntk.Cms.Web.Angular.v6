@@ -44,7 +44,7 @@ export class CoreUserClaimContentEditComponent implements OnInit ,OnDestroy {
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;

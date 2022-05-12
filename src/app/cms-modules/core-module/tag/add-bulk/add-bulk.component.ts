@@ -39,7 +39,7 @@ export class CoreModuleTagAddBulkComponent implements OnInit {
     public coreModuleTagService: CoreModuleTagService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     if (data) {

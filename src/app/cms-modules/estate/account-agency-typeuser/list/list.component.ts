@@ -43,7 +43,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.optionsSearch.parentMethods = {
@@ -211,7 +211,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
   }
   onActionbuttonDeleteRow(model: EstateAccountAgencyTypeUserModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
-      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete')no_row_selected_to_delete');
+      const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }

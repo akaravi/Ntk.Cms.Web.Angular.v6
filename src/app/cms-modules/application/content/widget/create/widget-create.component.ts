@@ -15,7 +15,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     private service: ApplicationAppService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
    }

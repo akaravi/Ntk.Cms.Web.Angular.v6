@@ -44,7 +44,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
-    private translate: TranslateService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.requestLinkManagementBillboardId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementBillboardId'));

@@ -37,7 +37,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     public webDesignerEnumService: WebDesignerEnumService,
     public webDesignerMainPageService: WebDesignerMainPageService,
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {

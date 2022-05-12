@@ -40,7 +40,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     public estateAccountAgencyAdsService: EstateAccountAgencyAdsService,
     
     private cmsToastrService: CmsToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
