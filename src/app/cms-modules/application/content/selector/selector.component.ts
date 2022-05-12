@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
@@ -139,13 +140,15 @@ export class ApplicationAppSelectorComponent implements OnInit {
         this.formControl.setValue(item);
         return;
       }
-      this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+      this.categoryService.ServiceGetOneById(id).subscribe({
+        next: (ret) => {
+        if (ret.IsSuccess) {
+          this.filteredOptions = this.push(ret.Item);
+          this.dataModelSelect = ret.Item;
+          this.formControl.setValue(ret.Item);
+          this.optionChange.emit(ret.Item);
         }
+      }
       });
       return;
     }

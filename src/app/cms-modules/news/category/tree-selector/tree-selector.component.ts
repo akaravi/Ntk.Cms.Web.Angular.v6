@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -94,10 +95,6 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
         const fItem = this.dataModelSelect.find(z => z === element.Id);
         if (fItem) {
           this.checklistSelection.select(element);
-          // const descendants = this.treeControl.getDescendants(element);
-          // this.checklistSelection.select(...descendants);
-          // this.todoItemSelectionToggle(element);
-          // this.treeControl.expand(element);
         }
         if (element.Children && element.Children.length > 0) {
           this.loadCheked(element.Children);

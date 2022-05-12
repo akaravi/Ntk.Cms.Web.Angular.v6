@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -33,21 +34,22 @@ export class ApplicationAppDownloadComponent implements OnInit {
     this.loading.Start(pName);
     this.applicationAppService
       .ServiceGetOneById(requestId)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onFormCancel(): void {

@@ -1,3 +1,4 @@
+//**msh */
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -65,10 +66,7 @@ export class ApplicationAppAddComponent implements OnInit {
   mapOptonCenter = new PoinModel();
   ngOnInit(): void {
     this.requestSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));
-    // if (this.requestSourceId === 0) {
-    //   this.cmsToastrService.typeErrorAddRowParentIsNull();
-    //   return;
-    // }
+
     this.dataModel.LinkSourceId = this.requestSourceId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
@@ -100,18 +98,19 @@ export class ApplicationAppAddComponent implements OnInit {
   DataGetAccess(): void {
     this.applicationAppService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataAccessModel = ret.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataAddContent(): void {
@@ -123,35 +122,30 @@ export class ApplicationAppAddComponent implements OnInit {
     this.applicationAppService.setAccessLoad();
     this.applicationAppService
       .ServiceAdd(this.dataModel)
-      .subscribe(
-        async (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             setTimeout(() => this.router.navigate(['/application/app/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorAdd(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
-      // if (!this.formGroup.valid) {
-      //   this.cmsToastrService.typeErrorFormInvalid();
-      //   setTimeout(() => {
-      //     stepper.selectedIndex = event.previouslySelectedIndex;
-      //     // stepper.previous();
-      //   }, 10);
-      // }
+
     }
   }
   receiveMap(model: leafletMap = this.mapModel): void {

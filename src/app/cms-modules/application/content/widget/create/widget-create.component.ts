@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ApplicationAppService, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -40,9 +41,9 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
   }
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Receiving_application_management_information'));
-    this.service.ServiceGetExist(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.service.ServiceGetExist(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.rowExist = true;
           this.widgetInfoModel.title = this.translate.instant('TITLE.Manage_Application');
           this.widgetInfoModel.link = '/application/app';
@@ -53,11 +54,12 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
-      (error) => {
+      error: (er) => {
         this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
         this.widgetInfoModel.link = '/application/app';
         this.loading.Stop(this.constructor.name + 'All');
       }
+    }
     );
   }
   translateHelp(t: string, v: string): string {

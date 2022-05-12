@@ -1,3 +1,4 @@
+//**msh */
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -85,25 +86,26 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.applicationIntroService.setAccessLoad();
     this.applicationIntroService
       .ServiceGetOneById(requestId)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.dataModelResult = next;
+          this.dataAccessModel = ret.Access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   DataEditContent(): void {
@@ -114,35 +116,30 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.applicationIntroService
       .ServiceEdit(this.dataModel)
-      .subscribe(
-        async (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/intro/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(error);
+          this.cmsToastrService.typeErrorEdit(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
-      // if (!this.formGroup.valid) {
-      //   this.cmsToastrService.typeErrorFormInvalid();
-      //   setTimeout(() => {
-      //     stepper.selectedIndex = event.previouslySelectedIndex;
-      //     // stepper.previous();
-      //   }, 10);
-      // }
+
     }
   }
   onActionBackToParent(): void {

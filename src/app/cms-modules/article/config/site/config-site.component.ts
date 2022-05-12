@@ -1,7 +1,8 @@
+//**msh */
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   AccessModel,
   CoreEnumService,
@@ -11,7 +12,6 @@ import {
   ArticleModuleConfigSiteAccessValuesModel,
   ArticleModuleConfigSiteValuesModel,
   ArticleModuleSiteStorageValuesModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   ErrorExceptionResult,
   EnumInfoModel,
@@ -100,13 +100,6 @@ export class ArticleConfigSiteComponent implements OnInit {
   }
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
-      // if (!this.formGroup.valid) {
-      //   this.cmsToastrService.typeErrorFormInvalid();
-      //   setTimeout(() => {
-      //     stepper.selectedIndex = event.previouslySelectedIndex;
-      //     // stepper.previous();
-      //   }, 10);
-      // }
     }
   }
   onActionBackToParent(): void {
@@ -120,22 +113,23 @@ export class ArticleConfigSiteComponent implements OnInit {
     this.loading.Start(pName, 'دریافت مقادیر ذخیره شده ماژول');
     this.configService
       .ServiceSiteStorage(SiteId)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataSiteStorageModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataSiteStorageModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetOne(error);
+        error:(er) => {
+          this.cmsToastrService.typeErrorGetOne(er);
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         }
+      }
       );
   }
   SetServiceSiteStorageSave(SiteId: number): void {
@@ -146,22 +140,23 @@ export class ArticleConfigSiteComponent implements OnInit {
     this.loading.Start(pName, 'ذخیره مقادیر ذخیره شده ماژول');
     this.configService
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataSiteStorageModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataSiteStorageModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   GetServiceSiteConfig(SiteId: number): void {
@@ -172,21 +167,22 @@ export class ArticleConfigSiteComponent implements OnInit {
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
     this.configService
       .ServiceSiteConfig(SiteId)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesModel = next.Item;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataConfigSiteValuesModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   SetServiceSiteConfigSave(SiteId: number): void {
@@ -197,21 +193,22 @@ export class ArticleConfigSiteComponent implements OnInit {
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
     this.configService
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesModel = next.Item;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataConfigSiteValuesModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   GetServiceSiteAccess(SiteId: number): void {
@@ -222,21 +219,22 @@ export class ArticleConfigSiteComponent implements OnInit {
     this.loading.Start(pName, 'دریافت دسترسی های ماژول');
     this.configService
       .ServiceSiteAccess(SiteId)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesModel = next.Item;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataConfigSiteAccessValuesModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error:(er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   SetServiceSiteAccessSave(SiteId: number): void {
@@ -247,21 +245,22 @@ export class ArticleConfigSiteComponent implements OnInit {
     this.loading.Start(pName, 'ذخیره دسترسی های ماژول');
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesModel = next.Item;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataConfigSiteAccessValuesModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetOne(error);
+        error:(er) => {
+          this.cmsToastrService.typeErrorGetOne(er);
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         }
+      }
       );
   }
 }

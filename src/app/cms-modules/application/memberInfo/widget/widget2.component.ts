@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ApplicationMemberInfoService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -5,6 +6,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { TranslateService } from '@ngx-translate/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-application-memberinfo-widget2',
@@ -21,6 +23,7 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
   constructor(
     private service: ApplicationMemberInfoService,
     private cdr: ChangeDetectorRef,
+    private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
@@ -53,33 +56,38 @@ export class ApplicationMemberInfoWidget2Component implements OnInit, OnDestroy 
     this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_all_registered_members'));
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
-    this.service.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('All', next.TotalRowCount);
+    this.service.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('All', ret.TotalRowCount);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
-      (error) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'All');
       }
+    }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.service.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('Active', next.TotalRowCount);
+    this.service.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('Active', ret.TotalRowCount);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(this.constructor.name + 'Active');
-      }
-      ,
-      (error) => {
+      },
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Active');
       }
+    }
     );
   }
   translateHelp(t: string, v: string): string {

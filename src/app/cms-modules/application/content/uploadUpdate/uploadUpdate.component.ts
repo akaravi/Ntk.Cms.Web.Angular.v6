@@ -1,3 +1,4 @@
+//**msh */
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -41,21 +42,20 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
     this.loading.Start(pName);
     this.applicationAppService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
-
         }
+      }
       );
   }
   onFormSubmit(): void {
@@ -73,24 +73,24 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.formInfo.FormSubmitAllow = false;
-    this.applicationAppService.ServiceUploadUpdate(this.dataModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.applicationAppService.ServiceUploadUpdate(this.dataModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormSubmitAllow = false;
           this.cmsToastrService.typeSuccessAppUpload();
         } else {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+          this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeErrorEdit(error);
+        this.cmsToastrService.typeErrorEdit(er);
         this.loading.Stop(pName);
-
-      });
+      }
+    });
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
@@ -102,7 +102,6 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
     console.log(e);
   }
   OnActionUploadSuccess(model: FilePreviewModel): void {
-    // console.log(model);
     if (model.uploadResponse && model.uploadResponse.Item && model.uploadResponse.Item.FileKey) {
       this.dataModel.UploadFileGUID = model.uploadResponse.Item.FileKey;
       this.formInfo.FormSubmitAllow = true;

@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
@@ -99,29 +100,23 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     this.DataGetAccess();
   }
   ngAfterViewInit(): void {
-    // this.optionsCategorySelector.childMethods.ActionSelectForce(this.requestCategoryId);
-    // this.optionsCategorySelector.parentMethods = {
-    //   onActionSelect: (x) => this.onActionSelectorSelect(x),
-    // };
-    // this.optionsContentSelector.parentMethods = {
-    //   onActionSelect: (x) => this.onActionContentSimilarSelect(x),
-    // };
   }
   DataGetAccess(): void {
     this.contentService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataAccessModel = ret.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error:(er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   onActionTagChange(model: any): void {
@@ -223,6 +218,7 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
           this.cmsToastrService.typeErrorAdd(error);
           this.loading.Stop(pName);
         }
+      
       );
   }
   DataActionAfterAddContentSuccessfulTag(model: ArticleContentModel): Promise<any> {

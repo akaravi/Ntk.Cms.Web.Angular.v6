@@ -343,7 +343,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
   onActionbuttonPrivateList(model: SmsMainApiPathPublicConfigModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id.length === 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow')'ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
