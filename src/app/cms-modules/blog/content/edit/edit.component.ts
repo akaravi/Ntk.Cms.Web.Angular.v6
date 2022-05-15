@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
@@ -171,23 +172,20 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
+          this.dataAccessModel = ret.Access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           this.loading.Stop(pName);
-
-          this.dataModelResult = next;
+          this.dataModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
-
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
             const lat = this.dataModel.Geolocationlatitude;
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
-                 this.mapMarkerPoints=[];
+              this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
@@ -197,17 +195,16 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
             this.loading.Stop(pName);
-
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
         }
+      }
       );
   }
   DataTagGetAll(): void {
@@ -229,33 +226,27 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.tagIdsData = [];
     this.contentTagService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-
-          this.dataContentTagModelResult = next;
+          this.dataContentTagModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
-
-          if (next.IsSuccess) {
+          if (ret.IsSuccess) {
             const list = [];
             this.dataContentTagModelResult.ListItems.forEach(x => {
               list.push(x.LinkTagId);
             });
             this.tagIdsData = list;
-
-
-            this.loading.Stop(pName);
-
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   DataOtherInfoGetAll(): void {
@@ -276,25 +267,24 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     filteModel.Filters.push(aaa3 as FilterDataModel);
     this.contentOtherInfoService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.dataContentOtherInfoModelResult = next;
-          if (next.IsSuccess) {
-            this.otherInfoDataModel = next.ListItems;
-            this.otherInfoTabledataSource.data = next.ListItems;
+          this.dataContentOtherInfoModelResult = ret;
+          if (ret.IsSuccess) {
+            this.otherInfoDataModel = ret.ListItems;
+            this.otherInfoTabledataSource.data = ret.ListItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   DataSimilarGetAllIds(): void {
@@ -323,15 +313,14 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
     this.contentSimilarService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.dataContentSimilarModelResult = next;
-          if (next.IsSuccess) {
+          this.dataContentSimilarModelResult = ret;
+          if (ret.IsSuccess) {
             const listIds = Array<number>();
-            next.ListItems.forEach(x => {
+            ret.ListItems.forEach(x => {
               if (x.LinkDestinationId === this.requestId) {
                 listIds.push(x.LinkSourceId);
               } else {
@@ -339,17 +328,16 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
               }
             });
             this.DataSimilarGetAll(listIds);
-
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   DataSimilarGetAll(ids: Array<number>): void {
@@ -376,25 +364,23 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     });
     this.contentService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-
-          if (next.IsSuccess) {
-            this.similarDataModel = next.ListItems;
-            this.similarTabledataSource.data = next.ListItems;
+          if (ret.IsSuccess) {
+            this.similarDataModel = ret.ListItems;
+            this.similarTabledataSource.data = ret.ListItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   DataEditContent(): void {
@@ -402,7 +388,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
 
     this.contentService
@@ -485,9 +471,6 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
       });
     }
 
-
-
-
     if (dataListAdd && dataListAdd.length > 0) {
     }
     if (dataListDelete && dataListDelete.length > 0) {
@@ -515,15 +498,10 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
       });
     }
 
-
-
-
     if (dataListAdd && dataListAdd.length > 0) {
     }
     if (dataListDelete && dataListDelete.length > 0) {
     }
-
-
 
   }
   onActionSelectorSelect(model: BlogCategoryModel | null): void {
@@ -553,24 +531,22 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.tagIdsData = [];
     this.contentCategoryService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-
           const itemList = [];
-          next.ListItems.forEach(element => {
+          ret.ListItems.forEach(element => {
             itemList.push(element.LinkCategoryId);
           });
           this.dataContentCategoryModel = itemList;
           this.formInfo.FormSubmitAllow = true;
-
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
   onActionCategorySelectChecked(model: number): void {
@@ -583,23 +559,22 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     const entity = new BlogContentCategoryModel();
     entity.LinkCategoryId = model;
     entity.LinkContentId = this.dataModel.Id;
-    this.contentCategoryService.ServiceAdd(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.contentCategoryService.ServiceAdd(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
-
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
 
 
@@ -614,23 +589,22 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     const entity = new BlogContentCategoryModel();
     entity.LinkCategoryId = model;
     entity.LinkContentId = this.dataModel.Id;
-    this.contentCategoryService.ServiceDeleteEntity(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
-
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionTagChange(ids: number[]): void {
@@ -759,8 +733,8 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
   receiveZoom(mode: leafletMap): void {
   }
-  
-  
+
+
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
       const message = 'منطقه اطلاعات حدف شد';

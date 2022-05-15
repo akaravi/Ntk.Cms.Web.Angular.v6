@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 
@@ -25,6 +27,7 @@ import { Output } from '@angular/core';
 export class BlogContentSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
+    private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public contentService: BlogContentService) {
     this.loading.cdr = this.cdr;
@@ -128,11 +131,15 @@ export class BlogContentSelectorComponent implements OnInit {
   }
   onActionSelectForce(id: number | BlogContentModel): void {
     if (typeof id === 'number' && id > 0) {
-      this.contentService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
+      this.contentService.ServiceGetOneById(id).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.filteredOptions = this.push(ret.Item);
+            this.dataModelSelect = ret.Item;
+            this.formControl.setValue(ret.Item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          }
         }
       });
       return;
@@ -147,11 +154,7 @@ export class BlogContentSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-    //   this.onActionSelect(null);
-    // }
     this.dataModelSelect = new BlogContentModel();
-    // this.optionsData.Select = new BlogContentModel();
     this.DataGetAll(null);
   }
 }

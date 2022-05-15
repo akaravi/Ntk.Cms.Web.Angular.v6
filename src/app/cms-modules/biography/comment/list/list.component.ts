@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   EnumRecordStatus,
@@ -121,7 +122,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new BiographyCommentModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -139,12 +140,12 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       filter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.Filters.push(filter);
     }
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
           if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
@@ -164,16 +165,19 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
             );
           }
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(ret.Access);
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
 
         this.loading.Stop(pName);
       }
+    }
     );
   }
   onTableSortData(sort: MatSort): void {
@@ -201,26 +205,6 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.RowPerPage = event.pageSize;
     this.DataGetAll();
   }
-  // onClickAddComment(): void {
-  //   const model = {
-  //     id: +this.activatedRoute.snapshot.params.id,
-  //     comment: this.comment,
-  //     author: this.author
-  //   };
-  //   this.contentService.ServiceAdd(model).subscribe((res) => {
-  //   });
-  // }
-  // onActionTableSelect(row: any): void {
-  //   this.tableContentSelected = [row];
-  // }
-  // onClickEditComment(element): void {
-  //   const model = {
-  //     id: element.Id,
-  //     comment: element.Comment,
-  //     author: element.Writer
-  //   };
-  //   this.contentService.ServiceEdit(model).subscribe();
-  // }
   onActionbuttonNewRow(): void {
     if (
       this.requestContentId == null ||
@@ -243,7 +227,6 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       data: { contentId: this.requestContentId }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -268,7 +251,6 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       data: { id: this.tableRowSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -290,14 +272,14 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) '+ ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) ';    this.cmsConfirmationDialogService.confirm(title, message)
+    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) ' + ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) '; this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -305,10 +287,11 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
               }
               this.loading.Stop(pName);
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
             }
+          }
           );
         }
       }
@@ -326,33 +309,38 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
+    }
     );
   }
   onActionbuttonInChecking(model: boolean): void {
@@ -366,16 +354,19 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionbuttonReload(): void {
@@ -409,16 +400,16 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     this.loading.Start(pName, "دریافت اطلاعات زندگی نامه");
     this.biographyContentService
       .ServiceGetOneById(this.tableRowSelected.LinkContentId)
-      .subscribe(
-        (next) => {
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: next.Item.Title,
-                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64 ,
-                UrlViewContent: next.Item.UrlViewContent,
+                Title: ret.Item.Title,
+                UrlViewContentQRCodeBase64: ret.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: ret.Item.UrlViewContent,
               },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -428,17 +419,18 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
             });
             //open poup
           } else {
-            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
-  onActionbuttonEditContent(model: BiographyCommentModel ): void {
+  onActionbuttonEditContent(model: BiographyCommentModel): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -474,16 +466,16 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     this.loading.Start(pName, "دریافت اطلاعات زندگی نامه");
     this.biographyContentService
       .ServiceGetOneById(this.tableRowSelected.LinkContentId)
-      .subscribe(
-        (next) => {
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: next.Item.Title,
-                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
-                UrlViewContent: next.Item.UrlViewContent,
+                Title: ret.Item.Title,
+                UrlViewContentQRCodeBase64: ret.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: ret.Item.UrlViewContent,
               },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -493,14 +485,15 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
             });
             //open popup
           } else {
-            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
 }

@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
@@ -119,18 +120,19 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
   DataGetAccess(): void {
     this.contentService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataAccessModel = ret.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   onActionTagChange(model: any): void {
@@ -414,8 +416,8 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
   onActionBackToParent(): void {
     this.router.navigate(['/blog/content/']);
   }
-  
-  
+
+
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
       const message = 'منطقه اطلاعات حدف شد';

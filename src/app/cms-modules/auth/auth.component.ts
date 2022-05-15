@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CoreConfigurationService } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -34,15 +35,16 @@ export class AuthComponent implements OnInit {
   GetServiceVer(): void {
     const pName = this.constructor.name + 'ServiceIp';
     this.loading.Start(pName, 'دریافت اطلاعات سرور');
-    this.configService.ServiceIp().subscribe(
-      async (next) => {
-          this.publicHelper.appServerVersion = next.AppVersion
+    this.configService.ServiceIp().subscribe({
+      next: (ret) => {
+          this.publicHelper.appServerVersion = ret.AppVersion
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeErrorGetOne(error);
+      error:(er) => {
+        this.cmsToastrService.typeErrorGetOne(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 }

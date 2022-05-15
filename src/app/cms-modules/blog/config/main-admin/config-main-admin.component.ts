@@ -1,3 +1,4 @@
+//**msh */
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -11,7 +12,6 @@ import {
   BlogModuleConfigAdminMainValuesModel,
   BlogModuleConfigSiteAccessValuesModel,
   BlogModuleConfigSiteValuesModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -28,7 +28,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
   selector: 'app-blog-config-mainadmin',
   templateUrl: './config-main-admin.component.html',
 })
-export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
+export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private configService: BlogConfigurationService,
@@ -62,7 +62,7 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
 
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
 
   cmsApiStoreSubscribe: Subscription;
 
@@ -113,13 +113,6 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
 
   onStepClick(event: StepperSelectionEvent, stepper: any): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
-      // if (!this.formGroup.valid) {
-      //   this.cmsToastrService.typeErrorFormInvalid();
-      //   setTimeout(() => {
-      //     stepper.selectedIndex = event.previouslySelectedIndex;
-      //     // stepper.previous();
-      //   }, 10);
-      // }
     }
   }
 
@@ -136,21 +129,22 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
     this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
     this.configService
       .ServiceSiteConfigDefault()
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesDefaultModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataConfigSiteValuesDefaultModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   SetServiceSiteConfigDefaultSave(): void {
@@ -163,21 +157,22 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
     this.loading.Start(pName, 'ذخیره تنظیمات پیش فرض ماژول');
     this.configService
       .ServiceSiteConfigDefaultSave(this.dataConfigSiteValuesDefaultModel)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesDefaultModel = next.Item;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataConfigSiteValuesDefaultModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
 
@@ -190,21 +185,22 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
     this.loading.Start(pName, 'دریافت دسترسی پیش فرض ماژول');
     this.configService
       .ServiceSiteAccessDefault()
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesDefaultModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataConfigSiteAccessValuesDefaultModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   SetServiceSiteAccessDefaultSave(): void {
@@ -216,21 +212,22 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
     this.loading.Start(pName, 'ذخیره دسترسی پیش فرض ماژول');
     this.configService
       .ServiceSiteAccessDefaultSave(this.dataConfigSiteAccessValuesDefaultModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesDefaultModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataConfigSiteAccessValuesDefaultModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   GetServiceAdminMain(): void {
@@ -242,21 +239,22 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
     this.configService
       .ServiceAdminMain()
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigAdminMainModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataConfigAdminMainModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   SetServiceAdminMainSave(): void {
@@ -268,21 +266,22 @@ export class BlogConfigMainAdminComponent implements OnInit , OnDestroy {
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
     this.configService
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigAdminMainModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataConfigAdminMainModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
 }

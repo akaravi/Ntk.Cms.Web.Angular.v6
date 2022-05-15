@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -68,20 +69,20 @@ export class BiographyConfigCheckSiteComponent implements OnInit, OnDestroy {
     this.loading.Start(pName, 'بررسی وب سایت');
     this.configService
       .ServiceCheckSite(this.requestLinkSiteId)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
-          if (!next.IsSuccess) {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
+          if (!ret.IsSuccess) {
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
         }
+      }
       );
   }
 }

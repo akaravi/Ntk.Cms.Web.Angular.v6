@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CoreConfigurationService, ErrorExceptionResult } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -21,19 +22,20 @@ export class SingupRuleComponent implements OnInit {
     this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
     this.coreConfigurationService
       .ServiceUserMembershipRule()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataModelResult = next;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataModelResult = ret;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetOne(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
 }

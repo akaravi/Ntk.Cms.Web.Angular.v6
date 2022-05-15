@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   FormInfoModel,
@@ -89,7 +90,8 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
     this.loading.Start(pName);
 
     this.bankPaymentPrivateSiteConfigService.ServiceTestPay(this.dataModel).pipe(
-      map((next) => {
+      map(
+        (next) => {
         this.formInfo.FormSubmitAllow = true;
         this.dataModelResult = next;
         if (next.IsSuccess) {

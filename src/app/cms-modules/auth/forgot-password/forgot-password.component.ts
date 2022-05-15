@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
@@ -59,24 +60,26 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordBySms)
-      .subscribe((res) => {
-        if (res.IsSuccess) {
-          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_activation_code_was_texted_with_you'));
-          this.forgetState = 'entrycode';
-        }
-        else {
-          this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
-        }
-        this.formInfo.ButtonSubmittedEnabled = true;
-        this.onCaptchaOrder();
-        this.loading.Stop(pName);
-      },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+      .subscribe({
+        next: (res) => {
+          if (res.IsSuccess) {
+            this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_activation_code_was_texted_with_you'));
+            this.forgetState = 'entrycode';
+          }
+          else {
+            this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
+          }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
-        });
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.formInfo.ButtonSubmittedEnabled = true;
+          this.onCaptchaOrder();
+          this.loading.Stop(pName);
+        }
+      });
   }
   onActionSubmitOrderCodeByEmail(): void {
     this.formInfo.ButtonSubmittedEnabled = false;
@@ -88,24 +91,26 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordByEmail)
-      .subscribe((res) => {
-        if (res.IsSuccess) {
-          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_activation_code_was_emailed_to_you'));
-          this.forgetState = 'entrycode';
-        }
-        else {
-          this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
-        }
-        this.formInfo.ButtonSubmittedEnabled = true;
-        this.onCaptchaOrder();
-        this.loading.Stop(pName);
-      },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+      .subscribe({
+        next: (res) => {
+          if (res.IsSuccess) {
+            this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_activation_code_was_emailed_to_you'));
+            this.forgetState = 'entrycode';
+          }
+          else {
+            this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
+          }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
-        });
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.formInfo.ButtonSubmittedEnabled = true;
+          this.onCaptchaOrder();
+          this.loading.Stop(pName);
+        }
+      });
   }
   onActionSubmitEntryPinCode(): void {
     this.formInfo.ButtonSubmittedEnabled = false;
@@ -115,24 +120,26 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.loading.Start(pName, 'بررسی کد در سرور');
     this.coreAuthService
       .ServiceForgetPasswordEntryPinCode(this.dataModelforgetPasswordEntryPinCode)
-      .subscribe((res) => {
-        if (res.IsSuccess) {
-          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Your_password_was_changed_successfully'));
-          setTimeout(() => this.router.navigate(['/']), 1000);
-        }
-        else {
-          this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
-        }
-        this.formInfo.ButtonSubmittedEnabled = true;
-        this.onCaptchaOrder();
-        this.loading.Stop(pName);
-      },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+      .subscribe({
+        next: (res) => {
+          if (res.IsSuccess) {
+            this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Your_password_was_changed_successfully'));
+            setTimeout(() => this.router.navigate(['/']), 1000);
+          }
+          else {
+            this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
+          }
+          this.formInfo.ButtonSubmittedEnabled = true;
+          this.onCaptchaOrder();
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
         }
+      }
       );
   }
   passwordValid(event): void {
@@ -145,16 +152,17 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordBySms.CaptchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
-    this.coreAuthService.ServiceCaptcha().subscribe(
-      (next) => {
-        this.captchaModel = next.Item;
+    this.coreAuthService.ServiceCaptcha().subscribe({
+      next: (ret) => {
+        this.captchaModel = ret.Item;
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);
       }
+    }
     );
   }
   changeforgetState(model: string): void {

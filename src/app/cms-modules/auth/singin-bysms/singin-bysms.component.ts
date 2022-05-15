@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
@@ -70,44 +71,46 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
-      .subscribe((res) => {
-        if (res.IsSuccess) {
-          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_login_code_was_texted_with_you'));
-          this.forgetState = 'entrycode';
-          //TimeDown 
-          this.prorocess = new processModel();
-          this.prorocess.progressBarValue = 0;
-          this.prorocess.progressBarMaxValue = 60;
-          this.prorocess.message = '';
-          this.buttonnResendSmsDisable = true;
-          var timeleft = this.prorocess.progressBarMaxValue;
-          let downloadTimer = setInterval(() => {  
-            this.prorocess.progressBarValue = this.prorocess.progressBarMaxValue - timeleft;
-            this.prorocess.message = '(' + timeleft + ' ' + 'ثانیه' + ')';
-            timeleft -= 1;
-            if (timeleft <= 0) {
-              this.buttonnResendSmsDisable = false;
-              this.prorocess.message = '';
-              clearInterval(downloadTimer);
-            }
-            this.cdr.detectChanges();
+      .subscribe({
+        next: (res) => {
+          if (res.IsSuccess) {
+            this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_login_code_was_texted_with_you'));
+            this.forgetState = 'entrycode';
+            //TimeDown 
+            this.prorocess = new processModel();
+            this.prorocess.progressBarValue = 0;
+            this.prorocess.progressBarMaxValue = 60;
+            this.prorocess.message = '';
+            this.buttonnResendSmsDisable = true;
+            var timeleft = this.prorocess.progressBarMaxValue;
+            let downloadTimer = setInterval(() => {
+              this.prorocess.progressBarValue = this.prorocess.progressBarMaxValue - timeleft;
+              this.prorocess.message = '(' + timeleft + ' ' + 'ثانیه' + ')';
+              timeleft -= 1;
+              if (timeleft <= 0) {
+                this.buttonnResendSmsDisable = false;
+                this.prorocess.message = '';
+                clearInterval(downloadTimer);
+              }
+              this.cdr.detectChanges();
 
-          }, 1000)
-          //TimeDown 
-        }
-        else {
-          this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
-        }
-        this.formInfo.ButtonSubmittedEnabled = true;
-        this.onCaptchaOrder();
-        this.loading.Stop(pName);
-      },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+            }, 1000)
+            //TimeDown 
+          }
+          else {
+            this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
+          }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
-        });
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.formInfo.ButtonSubmittedEnabled = true;
+          this.onCaptchaOrder();
+          this.loading.Stop(pName);
+        }
+      });
   }
   onActionSubmitEntryPinCode(): void {
     this.formInfo.ButtonSubmittedEnabled = false;
@@ -132,30 +135,32 @@ export class AuthSingInBySmsComponent implements OnInit {
     /** read storage */
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
-      .subscribe((res) => {
-        if (res.IsSuccess) {
-          this.cmsToastrService.typeSuccessLogin();
-          this.formInfo.ButtonSubmittedEnabled=false;
-          if (res.Item.SiteId > 0) {
-            setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+      .subscribe({
+        next: (res) => {
+          if (res.IsSuccess) {
+            this.cmsToastrService.typeSuccessLogin();
+            this.formInfo.ButtonSubmittedEnabled = false;
+            if (res.Item.SiteId > 0) {
+              setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+            }
+            else {
+              setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
+            }
           }
           else {
-            setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
+            this.onCaptchaOrder();
+            this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
           }
-        }
-        else {
-          this.onCaptchaOrder();
-          this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
-        }
-        this.formInfo.ButtonSubmittedEnabled = true;
-        this.loading.Stop(pName);
-      },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+          this.formInfo.ButtonSubmittedEnabled = true;
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
         }
+      }
       );
   }
   passwordValid(event): void {
@@ -168,16 +173,17 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.dataModelAuthUserSignInBySms.CaptchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
-    this.coreAuthService.ServiceCaptcha().subscribe(
-      (next) => {
-        this.captchaModel = next.Item;
+    this.coreAuthService.ServiceCaptcha().subscribe({
+      next: (ret) => {
+        this.captchaModel = ret.Item;
+        this.onCaptchaOrderInProcess = false;
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);
       }
-      , (error) => {
-        this.onCaptchaOrderInProcess = false;
-        this.loading.Stop(pName);
-      }
+    }
     );
   }
   changeforgetState(model: string): void {

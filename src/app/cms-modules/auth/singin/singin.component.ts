@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthUserSignInModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
@@ -55,8 +56,8 @@ export class AuthSingInComponent implements OnInit {
     if (siteId > 0) {
       this.dataModel.SiteId = siteId;
     }
-    this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe(
-      (res) => {
+    this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe({
+      next: (res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessLogin();
           if (res.Item.SiteId > 0) {
@@ -73,13 +74,14 @@ export class AuthSingInComponent implements OnInit {
         }
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.firstRun = false;
         this.formInfo.ButtonSubmittedEnabled = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.onCaptchaOrder();
         this.loading.Stop(pName);
       }
+    }
     );
   }
   onloginTypeChange(model: string): void {
@@ -92,12 +94,12 @@ export class AuthSingInComponent implements OnInit {
     this.dataModel.CaptchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
-    this.coreAuthService.ServiceCaptcha().subscribe(
-      (next) => {
-        this.captchaModel = next.Item;
-        this.expireDate = next.Item.Expire.split('+')[1];
+    this.coreAuthService.ServiceCaptcha().subscribe({
+      next: (ret) => {
+        this.captchaModel = ret.Item;
+        this.expireDate = ret.Item.Expire.split('+')[1];
         const startDate = new Date();
-        const endDate = new Date(next.Item.Expire);
+        const endDate = new Date(ret.Item.Expire);
         const seconds = (endDate.getTime() - startDate.getTime());
         if (this.aoutoCaptchaOrder < 10) {
           this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
@@ -106,16 +108,17 @@ export class AuthSingInComponent implements OnInit {
               this.onCaptchaOrder();
           }, seconds);
         }
-        if (!next.IsSuccess) {
-          this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
+        if (!ret.IsSuccess) {
+          this.cmsToastrService.typeErrorGetCpatcha(ret.ErrorMessage);
         }
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);
       }
+    }
     );
   }
 }

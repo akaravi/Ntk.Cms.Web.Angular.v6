@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
@@ -6,7 +7,6 @@ import {
   FilterModel,
   BankPaymentPrivateSiteConfigModel,
   BankPaymentPrivateSiteConfigService,
-  ApplicationSourceModel,
   EnumFilterDataModelSearchTypes,
   EnumClauseType
 } from 'ntk-cms-api';
@@ -15,12 +15,14 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-bankpayment-privatesiteconfig-selector',
   templateUrl: './selector.component.html',
 })
 export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
   constructor(
+    private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     public categoryService: BankPaymentPrivateSiteConfigService) {
@@ -159,12 +161,16 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
         this.formControl.setValue(item);
         return;
       }
-      this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+      this.categoryService.ServiceGetOneById(id).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) { 
+            this.filteredOptions = this.push(ret.Item);
+            this.dataModelSelect = ret.Item;
+            this.formControl.setValue(ret.Item);
+            this.optionChange.emit(ret.Item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          }
         }
       });
       return;
@@ -189,11 +195,7 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
     this.DataGetAll(null);
   }
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-    //   this.onActionSelect(null);
-    // }
     this.dataModelSelect = new BankPaymentPrivateSiteConfigModel();
-    // this.optionsData.Select = new BankPaymentPrivateSiteConfigModel();
     this.DataGetAll(null);
   }
 }

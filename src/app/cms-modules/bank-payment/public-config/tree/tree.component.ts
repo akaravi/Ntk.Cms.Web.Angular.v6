@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -17,11 +18,9 @@ import {
   FilterModel,
   BankPaymentPublicConfigModel,
   BankPaymentPublicConfigService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BankPaymentPublicConfigEditComponent } from '../edit/edit.component';
@@ -50,7 +49,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: BankPaymentPublicConfigModel = new BankPaymentPublicConfigModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   filteModel = new FilterModel();
-  @Input()loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<BankPaymentPublicConfigModel>(node => null);
   dataSource = new MatTreeNestedDataSource<BankPaymentPublicConfigModel>();
   @Output() optionChange = new EventEmitter<BankPaymentPublicConfigModel>();
@@ -71,18 +70,21 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
   onActionSelect(model: BankPaymentPublicConfigModel): void {

@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -12,13 +13,11 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   BlogCategoryModel,
   BlogCategoryService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -79,31 +78,26 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: BlogCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-    // if (this.optionsData) {
-    //   this.optionsData.data.Select = this.dataModelSelect;
-    //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {
-    //     this.optionsData.parentMethods.onActionSelect(this.dataModelSelect);
-    //   }
-    // }
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -113,7 +107,6 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
       this.onActionSelect(null);
     }
     this.dataModelSelect = new BlogCategoryModel();
-    // this.optionsData.data.Select = new BlogCategoryModel();
     this.DataGetAll();
   }
   onActionSelectForce(id: number | BlogCategoryModel): void {
@@ -134,7 +127,6 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(BlogCategoryAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -156,7 +148,6 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -164,10 +155,7 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
   }
 
   onActionDelete(): void {
-    // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
-    //   if (res.IsSuccess) {
-    //   }
-    // });
+
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       id = this.dataModelSelect.Id;
@@ -182,7 +170,6 @@ export class BlogCategoryTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
