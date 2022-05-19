@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -12,13 +13,11 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   CoreModuleTagCategoryModel,
   CoreModuleTagCategoryService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -33,7 +32,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-coremodule-tag-category-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
 
@@ -44,7 +42,7 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate:TranslateService,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -80,31 +78,27 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: CoreModuleTagCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-    // if (this.optionsData) {
-    //   this.optionsData.data.Select = this.dataModelSelect;
-    //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {
-    //     this.optionsData.parentMethods.onActionSelect(this.dataModelSelect);
-    //   }
-    // }
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -114,7 +108,6 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
       this.onActionSelect(null);
     }
     this.dataModelSelect = new CoreModuleTagCategoryModel();
-    // this.optionsData.data.Select = new CoreModuleTagCategoryModel();
     this.DataGetAll();
   }
   onActionSelectForce(id: number | CoreModuleTagCategoryModel): void {
@@ -135,7 +128,6 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(CoreModuleTagCategoryEditComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -157,7 +149,6 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -165,10 +156,6 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
   }
 
   onActionDelete(): void {
-    // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
-    //   if (res.IsSuccess) {
-    //   }
-    // });
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       id = this.dataModelSelect.Id;
@@ -183,7 +170,6 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }

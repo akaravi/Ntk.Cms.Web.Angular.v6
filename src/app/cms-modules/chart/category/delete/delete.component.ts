@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
@@ -57,13 +58,13 @@ export class ChartCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
     this.categoryService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.dataModelResultCategory = next;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataModelResultCategory = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
@@ -71,12 +72,13 @@ export class ChartCategoryDeleteComponent implements OnInit {
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   DataGetAll(): void {
@@ -87,12 +89,12 @@ export class ChartCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
     this.categoryService
       .ServiceGetAll(filterModel)
-      .subscribe(
-        (next) => {
-          this.dataModelResultCategoryAllData = next;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.dataModelResultCategoryAllData = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
           } else {
@@ -100,12 +102,13 @@ export class ChartCategoryDeleteComponent implements OnInit {
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onFormMove(): void {
@@ -128,11 +131,11 @@ export class ChartCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
     this.categoryService
       .ServiceMove(this.requestId, this.dataModel.NewCatId)
-      .subscribe(
-        (next) => {
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.cmsToastrService.typeErrorMove();
           } else {
             this.formInfo.FormAlert = 'جابجایی با موفقیت انجام شد';
@@ -142,13 +145,14 @@ export class ChartCategoryDeleteComponent implements OnInit {
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onFormDelete(): void {
@@ -162,12 +166,12 @@ export class ChartCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
     this.categoryService
       .ServiceDelete(this.requestId)
-      .subscribe(
-        (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
             this.formInfo.FormAlert = 'حذف با موفقیت انجام شد';
@@ -177,13 +181,14 @@ export class ChartCategoryDeleteComponent implements OnInit {
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onFormChangeNewCatId(model: ChartCategoryModel): void {

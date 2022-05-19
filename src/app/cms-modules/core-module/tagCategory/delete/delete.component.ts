@@ -1,4 +1,4 @@
-
+//**msh */
 import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
@@ -18,7 +18,6 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 @Component({
   selector: 'app-tag-category-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
 })
 export class CoreModuleTagCategoryDeleteComponent implements OnInit {
   requestId = 0;
@@ -67,14 +66,14 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
     this.coreModuleTagCategoryService.setAccessLoad();
     this.coreModuleTagCategoryService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-          this.dataModelResultCategory = next;
-          if (!next.IsSuccess) {
+          this.dataModelResultCategory = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
@@ -83,13 +82,13 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
 
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
-
         }
+      }
       );
 
   }
@@ -102,27 +101,26 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
 
     this.coreModuleTagCategoryService
       .ServiceGetAll(filterModel)
-      .subscribe(
-        (next) => {
-          this.dataModelResultCategoryAllData = next;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.dataModelResultCategoryAllData = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
           } else {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
-
         }
+      }
       );
 
   }
@@ -146,32 +144,9 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    // this.coreModuleTagCategoryService
-    //   .ServiceMove(this.requestId, this.dataModel.NewCatId)
-    //   .subscribe(
-    //     (next) => {
-    //       if (!next.IsSuccess) {
-    //         this.formInfo.FormAlert = 'برروز خطا';
-    //         this.formInfo.FormError = next.ErrorMessage;
-    //         this.cmsToastrService.typeErrorMove();
-    //       } else {
-    //         this.formInfo.FormAlert = 'جابجایی با موفقیت انجام شد';
-    //         this.cmsToastrService.typeSuccessMove();
-    //       }
     this.formInfo.FormSubmitAllow = true;
     this.formInfo.ButtonSubmittedEnabled = true;
     this.loading.Stop(pName);
-
-    //     },
-    //     (error) => {
-    //       this.formInfo.FormAlert = 'برروز خطا';
-    //       this.cmsToastrService.typeError(error);
-    //       this.formInfo.ButtonSubmittedEnabled = true;
-    //       this.formInfo.FormSubmitAllow = true;
-    //       this.loading.Stop(pName);
-
-    //     }
-    //   );
   }
   onFormDelete(): void {
     if (this.requestId === 0) {
@@ -186,12 +161,12 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
 
     this.coreModuleTagCategoryService
       .ServiceDelete(this.requestId)
-      .subscribe(
-        (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.cmsToastrService.typeErrorRemove();
 
           } else {
@@ -201,16 +176,15 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         }
+      }
       );
 
   }
@@ -233,6 +207,6 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-   
+
   }
 }

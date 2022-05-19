@@ -1,3 +1,4 @@
+//**msh */
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -53,15 +54,18 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
     }
 
     DataGetCurrency(): void {
-        this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
-            (next) => {
-                if (next.IsSuccess) {
-                    this.currency = next.Item;
+        this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
+            next: (ret) => {
+                if (ret.IsSuccess) {
+                    this.currency = ret.Item;
+                } else {
+                    this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
                 }
             },
-            (error) => {
-                this.cmsToastrService.typeError(error);
+            error: (er) => {
+                this.cmsToastrService.typeError(er);
             }
+        }
         );
     }
 
