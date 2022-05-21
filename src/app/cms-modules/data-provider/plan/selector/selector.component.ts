@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { Output } from '@angular/core';
 export class DataProviderPlanSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
+    private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public categoryService: DataProviderPlanService) {
     this.loading.cdr = this.cdr;
@@ -85,7 +87,7 @@ export class DataProviderPlanSelectorComponent implements OnInit {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -138,12 +140,16 @@ export class DataProviderPlanSelectorComponent implements OnInit {
         this.formControl.setValue(item);
         return;
       }
-      this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+      this.categoryService.ServiceGetOneById(id).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.filteredOptions = this.push(ret.Item);
+            this.dataModelSelect = ret.Item;
+            this.formControl.setValue(ret.Item);
+            this.optionChange.emit(ret.Item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          }
         }
       });
       return;

@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -104,7 +105,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new DonateTargetModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -116,13 +117,13 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
     this.contentService.setAccessLoad();
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
           if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
@@ -136,18 +137,20 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
             );
           }
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(ret.Access);
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
 
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -262,7 +265,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DonateTargetDeleteComponent, { height: '40%',data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DonateTargetDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -279,16 +282,19 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -296,17 +302,19 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
+    }
     );
 
   }
@@ -317,16 +325,19 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 
@@ -345,7 +356,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     if (!model || !model.Id || model.Id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
-       return;
+      return;
     }
     this.tableRowSelected = model;
 

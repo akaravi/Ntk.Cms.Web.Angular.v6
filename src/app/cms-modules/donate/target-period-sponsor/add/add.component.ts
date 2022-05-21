@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -48,7 +49,7 @@ export class DonateTargetPeriodSponserAddComponent implements OnInit {
     if (this.requestLinkTargetPeriodId > 0) {
       this.dataModel.LinkTargetPeriodId = this.requestLinkTargetPeriodId;
     }
-     if (data) {
+    if (data) {
       this.requestLinkSponsorId = +data.LinkSponsorId || 0;
     }
     if (this.requestLinkSponsorId > 0) {
@@ -87,18 +88,18 @@ export class DonateTargetPeriodSponserAddComponent implements OnInit {
   DataGetAccess(): void {
     this.donateTargetPeriodSponsorService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
 
@@ -109,28 +110,27 @@ export class DonateTargetPeriodSponserAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.donateTargetPeriodSponsorService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.donateTargetPeriodSponsorService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelectorSelect(model: DonateTargetCategoryModel | null): void {

@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -114,28 +115,27 @@ export class DataProviderClientEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.dataProviderClientService.setAccessLoad();
-    this.dataProviderClientService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.dataProviderClientService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
           this.formInfo.FormAlert = '';
           this.DataGetAllPlanClient();
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -145,28 +145,28 @@ export class DataProviderClientEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.dataProviderClientService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.dataProviderClientService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 
@@ -200,29 +200,28 @@ export class DataProviderClientEditComponent implements OnInit {
     filter.Value = this.requestId;
     filteModelContent.Filters.push(filter);
 
-    this.dataProviderPlanClientService.ServiceGetAll(filteModelContent).subscribe(
-      (next) => {
-        this.dataCoreCpMainMenuCmsUserGroupModel = next.ListItems;
+    this.dataProviderPlanClientService.ServiceGetAll(filteModelContent).subscribe({
+      next: (ret) => {
+        this.dataCoreCpMainMenuCmsUserGroupModel = ret.ListItems;
         const listG: number[] = [];
         this.dataCoreCpMainMenuCmsUserGroupModel.forEach(element => {
           listG.push(element.LinkPlanId);
         });
         this.dataCoreCpMainMenuIds = listG;
-        if (next.IsSuccess) {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   dataCoreCpMainMenuModel: DataProviderPlanModel[];
@@ -262,16 +261,16 @@ export class DataProviderClientEditComponent implements OnInit {
     entity.LinkPlanId = model.Id;
     entity.LinkClientId = this.dataModel.Id;
 
-    this.dataProviderPlanClientService.ServiceAdd(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.dataProviderPlanClientService.ServiceAdd(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           /** */
           const listG: number[] = [];
           this.dataCoreCpMainMenuIds.forEach(element => {
@@ -280,15 +279,13 @@ export class DataProviderClientEditComponent implements OnInit {
           });
           setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
           /** */
-
         }
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
-
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionSelectorPlanSelectRemoved(model: DataProviderPlanModel): void {
@@ -311,12 +308,11 @@ export class DataProviderClientEditComponent implements OnInit {
     entity.LinkPlanId = model.Id;
     entity.LinkClientId = this.dataModel.Id;
 
-    this.dataProviderPlanClientService.ServiceDeleteEntity(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.dataProviderPlanClientService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
 
           /** */
@@ -331,15 +327,15 @@ export class DataProviderClientEditComponent implements OnInit {
           /** */
 
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
-
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 }

@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -40,7 +41,7 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
-    private translate:TranslateService,
+    private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
   }
@@ -50,7 +51,7 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: DataProviderPlanClientModel = new DataProviderPlanClientModel();
   dataModelResult: ErrorExceptionResult<DataProviderPlanClientModel> = new ErrorExceptionResult<DataProviderPlanClientModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<DataProviderPlanClientModel>(node => null);
   dataSource = new MatTreeNestedDataSource<DataProviderPlanClientModel>();
   @Output() optionChange = new EventEmitter<DataProviderPlanClientModel>();
@@ -76,20 +77,22 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: DataProviderPlanClientModel): void {

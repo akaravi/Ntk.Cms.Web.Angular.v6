@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -125,27 +126,28 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
       filterModel.Filters.push(filter);
     }
     this.contentService.setAccessLoad();
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(ret.Access);
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -200,7 +202,6 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(DataProviderClientAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         if (result.Id && result.Id > 0) {
           const dialogConfig = new MatDialogConfig();
@@ -208,8 +209,8 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
           dialogConfig.autoFocus = true;
           dialogConfig.height = '90%';
           dialogConfig.data = { id: result.Id };
-      
-      
+
+
           const dialogRef = this.dialog.open(DataProviderClientEditComponent, dialogConfig);
           dialogRef.afterClosed().subscribe(result => {
             if (result && result.dialogChangedDate) {
@@ -271,7 +272,6 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(DataProviderClientDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -285,16 +285,19 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -302,17 +305,19 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
+    }
     );
 
   }
@@ -323,16 +328,19 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionbuttonDataRow(model: DataProviderClientModel = this.tableRowSelected): void {

@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EnumRecordStatus, FilterDataModel, FilterModel, CoreModuleLogReportAbuseService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -53,16 +54,17 @@ export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestr
     this.modelData.set('Pending', 0);
     this.modelData.set('All', 0);
 
-    this.service.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('All', next.TotalRowCount);
+    this.service.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('All', ret.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
-      (error) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'All');
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -71,17 +73,17 @@ export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestr
     fastfilter.Value = EnumRecordStatus.Pending;
     filterStatist1.Filters.push(fastfilter);
 
-    this.service.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('Pending', next.TotalRowCount);
+    this.service.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('Pending', ret.TotalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Pending');
-      }
-      ,
-      (error) => {
+      },
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Pending');
       }
+    }
     );
   }
   translateHelp(t: string, v: string): string {

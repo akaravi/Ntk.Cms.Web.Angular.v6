@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { CoreEnumService, ErrorExceptionResult, FilterModel, DataProviderPlanModel, DataProviderPlanService } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
@@ -53,11 +54,11 @@ export class DataProviderPlanSelectionlistComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(filteModel).subscribe(
-      (next) => {
+    this.categoryService.ServiceGetAll(filteModel).subscribe({
+      next: (ret) => {
         // this.fieldsStatus = new Map<number, boolean>();
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
           this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
           this.dataModelResult.ListItems.forEach((el) => {
@@ -66,15 +67,17 @@ export class DataProviderPlanSelectionlistComponent implements OnInit {
             }
           });
 
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(value: DataProviderPlanModel): void {

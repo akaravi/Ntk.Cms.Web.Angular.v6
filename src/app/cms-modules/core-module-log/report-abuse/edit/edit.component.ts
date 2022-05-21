@@ -1,12 +1,11 @@
+//**msh */
 import {
   CoreEnumService,
-  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
   CoreModuleLogReportAbuseService,
   CoreModuleLogReportAbuseModel,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -24,7 +23,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -105,28 +103,28 @@ export class CoreModuleLogReportAbuseEditComponent implements OnInit, OnDestroy 
     /*َAccess Field*/
     this.coreModuleLogReportAbuseService.setAccessLoad();
 
-    this.coreModuleLogReportAbuseService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
+    this.coreModuleLogReportAbuseService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Id;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Id;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -134,30 +132,30 @@ export class CoreModuleLogReportAbuseEditComponent implements OnInit, OnDestroy 
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.coreModuleLogReportAbuseService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+    this.coreModuleLogReportAbuseService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
         this.formInfo.FormSubmitAllow = true;
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 

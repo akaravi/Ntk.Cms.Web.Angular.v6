@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -77,20 +78,21 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: HyperShopCategoryModel): void {
@@ -162,11 +164,11 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
-          this.categoryService.ServiceDelete(this.dataModelSelect.Code).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.categoryService.ServiceDelete(this.dataModelSelect.Code).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -175,11 +177,11 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
               this.loading.Stop(pName);
 
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
-
             }
+          }
           );
         }
       }

@@ -1,3 +1,4 @@
+//**msh */
 import {
   EnumInfoModel,
   ErrorExceptionResult,
@@ -24,7 +25,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class DataProviderSourceHeaderComponent implements OnInit , OnDestroy{
+export class DataProviderSourceHeaderComponent implements OnInit, OnDestroy {
   constructor(
     private headerService: DataProviderSourceService,
     public publicHelper: PublicHelper,
@@ -63,25 +64,25 @@ export class DataProviderSourceHeaderComponent implements OnInit , OnDestroy{
     this.loading.Start(pName);
 
     this.headerService.setAccessLoad();
-    this.headerService.ServiceGetOneById(this.optionId.length).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.headerService.ServiceGetOneById(this.optionId.length).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
         } else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
-  onActionbuttonLinkTo(model: DataProviderSourceModel=this.dataModelResult.Item): void {
+  onActionbuttonLinkTo(model: DataProviderSourceModel = this.dataModelResult.Item): void {
     if (!model || !model.Id || model.Id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -90,8 +91,8 @@ export class DataProviderSourceHeaderComponent implements OnInit , OnDestroy{
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       data: {
         // Title: model.Title,
-        UrlViewContentQRCodeBase64:'',
-        UrlViewContent:'',
+        UrlViewContentQRCodeBase64: '',
+        UrlViewContent: '',
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   ErrorExceptionResult,
@@ -5,7 +6,6 @@ import {
   HyperShopContentService,
   HyperShopContentModel,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -89,31 +89,30 @@ export class HyperShopContentViewComponent implements OnInit, OnDestroy {
     /*َAccess Field*/
     this.hyperShopContentService.setAccessLoad();
 
-    this.hyperShopContentService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
+    this.hyperShopContentService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Code + ' # ' + next.Item.Name;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Code + ' # ' + ret.Item.Name;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
-
 
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -51,7 +52,7 @@ export class DonateSponserTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: DonateSponsorModel = new DonateSponsorModel();
   dataModelResult: ErrorExceptionResult<DonateSponsorModel> = new ErrorExceptionResult<DonateSponsorModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<DonateSponsorModel>(node => null);
   dataSource = new MatTreeNestedDataSource<DonateSponsorModel>();
   @Output() optionChange = new EventEmitter<DonateSponsorModel>();
@@ -77,31 +78,27 @@ export class DonateSponserTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: DonateSponsorModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-    // if (this.optionsData) {
-    //   this.optionsData.data.Select = this.dataModelSelect;
-    //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {
-    //     this.optionsData.parentMethods.onActionSelect(this.dataModelSelect);
-    //   }
-    // }
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -111,7 +108,6 @@ export class DonateSponserTreeComponent implements OnInit, OnDestroy {
       this.onActionSelect(null);
     }
     this.dataModelSelect = new DonateSponsorModel();
-    // this.optionsData.data.Select = new DonateSponsorModel();
     this.DataGetAll();
   }
   onActionSelectForce(id: number | DonateSponsorModel): void {
@@ -132,7 +128,6 @@ export class DonateSponserTreeComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(DonateSponserAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -154,7 +149,6 @@ export class DonateSponserTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -176,7 +170,6 @@ export class DonateSponserTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }

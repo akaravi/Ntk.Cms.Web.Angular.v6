@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
@@ -132,24 +133,24 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
     this.fileContentService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
 
           /*َAccess Field*/
-          this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          this.dataAccessModel = ret.Access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
           this.loading.Stop(pName);
 
-          this.dataModelResult = next;
+          this.dataModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
 
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
             const lat = this.dataModel.Geolocationlatitude;
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
-                 this.mapMarkerPoints=[];
+              this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
@@ -158,15 +159,15 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
             this.loading.Stop(pName);
 
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
         }
+      }
       );
   }
 
@@ -175,35 +176,35 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
 
     this.fileContentService
       .ServiceEdit(this.dataModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
 
             setTimeout(() => this.router.navigate(['/file/content/edit/', this.requestId]), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
 
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorAdd(er);
         }
+      }
       );
   }
   onActionSelectorSelect(model: FileCategoryModel | null): void {

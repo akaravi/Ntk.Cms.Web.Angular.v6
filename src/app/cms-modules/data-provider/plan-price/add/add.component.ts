@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -5,7 +6,7 @@ import {
   FormInfoModel,
   DataProviderPlanPriceModel,
   DataProviderPlanPriceService,
-    DataFieldInfoModel,
+  DataFieldInfoModel,
   DataProviderPlanModel,
   CoreSiteService,
 } from 'ntk-cms-api';
@@ -88,32 +89,36 @@ export class DataProviderPlanPriceAddComponent implements OnInit {
 
 
   DataGetCurrency(): void {
-    this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
-        (next) => {
-            if (next.IsSuccess) {
-                this.currency = next.Item;
-            }
-        },
-        (error) => {
-            this.cmsToastrService.typeError(error);
+    this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.currency = ret.Item;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+      }
+    }
     );
-}
+  }
   DataGetAccess(): void {
     this.dataproviderplanpriceservice
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
 
@@ -124,28 +129,28 @@ export class DataProviderPlanPriceAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.dataproviderplanpriceservice.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.dataproviderplanpriceservice.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelectorSelect(model: DataProviderPlanModel | null): void {

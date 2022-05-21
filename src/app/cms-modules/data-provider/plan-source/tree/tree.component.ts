@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -51,7 +52,7 @@ export class DataProviderPlanSourceTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: DataProviderPlanSourceModel = new DataProviderPlanSourceModel();
   dataModelResult: ErrorExceptionResult<DataProviderPlanSourceModel> = new ErrorExceptionResult<DataProviderPlanSourceModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<DataProviderPlanSourceModel>(node => null);
   dataSource = new MatTreeNestedDataSource<DataProviderPlanSourceModel>();
   @Output() optionChange = new EventEmitter<DataProviderPlanSourceModel>();
@@ -77,20 +78,22 @@ export class DataProviderPlanSourceTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: DataProviderPlanSourceModel): void {

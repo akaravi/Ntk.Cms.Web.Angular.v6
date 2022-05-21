@@ -1,3 +1,4 @@
+//**msh */
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -52,15 +53,18 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
     }
 
     DataGetCurrency(): void {
-        this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
-            (next) => {
-                if (next.IsSuccess) {
-                    this.currency = next.Item;
-                }
+        this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
+            next: (ret) => {
+                if (ret.IsSuccess) {
+                    this.currency = ret.Item;
+                } else {
+                    this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+                  }
             },
-            (error) => {
-                this.cmsToastrService.typeError(error);
+            error: (er) => {
+                this.cmsToastrService.typeError(er);
             }
+        }
         );
     }
 
@@ -83,7 +87,7 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
     onActionBackToParent(): void {
         this.router.navigate(['/donate/target-period/']);
     }
-    onInputChange(e:Event):void {
+    onInputChange(e: Event): void {
         this.price = (<HTMLInputElement>e.target).value;
     }
 }
