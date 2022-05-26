@@ -1,3 +1,4 @@
+//**msh */
 import {
   SmsEnumService,
   EnumInfoModel,
@@ -23,7 +24,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { NodeInterface, TreeModel } from 'src/filemanager-api';
+import { TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -94,18 +95,19 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
   DataGetAccess(): void {
     this.smsMainApiPathPriceServiceService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataAddContent(): void {
@@ -114,55 +116,55 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainApiPathPriceServiceService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.smsMainApiPathPriceServiceService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreUserId=null;
+      this.dataModel.LinkCoreUserId = null;
       return;
     }
     this.dataModel.LinkCoreUserId = model.Id;
   }
   onActionSelectorCmsSite(model: CoreSiteModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreSiteId=null;
+      this.dataModel.LinkCoreSiteId = null;
       return;
     }
     this.dataModel.LinkCoreSiteId = model.Id;
   }
   onActionSelectorCoreUserGroup(model: CoreUserGroupModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreUserGroupId=null;
+      this.dataModel.LinkCoreUserGroupId = null;
       return;
     }
     this.dataModel.LinkCoreUserGroupId = model.Id;
   }
   onActionSelectorCoreSiteCategory(model: CoreSiteCategoryModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreSiteCategoryId=null;
+      this.dataModel.LinkCoreSiteCategoryId = null;
       return;
     }
     this.dataModel.LinkCoreSiteCategoryId = model.Id;

@@ -1,3 +1,4 @@
+//**msh */
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   Component,
@@ -253,25 +254,25 @@ export class EstatePropertyListComponent
       // ** */
       this.contentService
         .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
-        .subscribe(
-          (next) => {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-            if (next.IsSuccess) {
-              this.dataModelResult = next;
-              this.tableSource.data = next.ListItems;
+        .subscribe({
+          next: (ret) => {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+            if (ret.IsSuccess) {
+              this.dataModelResult = ret;
+              this.tableSource.data = ret.ListItems;
               if (this.optionsSearch.childMethods) {
-                this.optionsSearch.childMethods.setAccess(next.Access);
+                this.optionsSearch.childMethods.setAccess(ret.Access);
               }
             } else {
-              this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+              this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
             }
             this.loading.Stop(pName);
           },
-          (error) => {
-            this.cmsToastrService.typeError(error);
-
+          error: (er) => {
+            this.cmsToastrService.typeError(er);
             this.loading.Stop(pName);
           }
+        }
         );
       // ** */
     } else if (
@@ -284,49 +285,49 @@ export class EstatePropertyListComponent
           this.requestLinkCustomerOrderId,
           filterModel
         )
-        .subscribe(
-          (next) => {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-            if (next.IsSuccess) {
-              this.dataModelResult = next;
-              this.tableSource.data = next.ListItems;
+        .subscribe({
+          next: (ret) => {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+            if (ret.IsSuccess) {
+              this.dataModelResult = ret;
+              this.tableSource.data = ret.ListItems;
               if (this.optionsSearch.childMethods) {
-                this.optionsSearch.childMethods.setAccess(next.Access);
+                this.optionsSearch.childMethods.setAccess(ret.Access);
               }
             } else {
-              this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+              this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
             }
             this.loading.Stop(pName);
           },
-          (error) => {
-            this.cmsToastrService.typeError(error);
-
+          error: (er) => {
+            this.cmsToastrService.typeError(er)
             this.loading.Stop(pName);
           }
+        }
         );
       // ** */
     } else {
       // ** */
-      this.contentService.ServiceGetAllEditor(filterModel).subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          if (next.IsSuccess) {
-            this.dataModelResult = next;
-            this.tableSource.data = next.ListItems;
+      this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.IsSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.ListItems;
 
             if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(next.Access);
+              this.optionsSearch.childMethods.setAccess(ret.Access);
             }
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
-
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
+      }
       );
       //** */
     }
@@ -480,9 +481,9 @@ export class EstatePropertyListComponent
 
           this.contentService
             .ServiceDelete(this.tableRowSelected.Id)
-            .subscribe(
-              (next) => {
-                if (next.IsSuccess) {
+            .subscribe({
+              next: (ret) => {
+                if (ret.IsSuccess) {
                   this.cmsToastrService.typeSuccessRemove();
                   this.DataGetAll();
                 } else {
@@ -490,10 +491,11 @@ export class EstatePropertyListComponent
                 }
                 this.loading.Stop(pName);
               },
-              (error) => {
-                this.cmsToastrService.typeError(error);
+              error: (er) => {
+                this.cmsToastrService.typeError(er);
                 this.loading.Stop(pName);
               }
+            }
             );
         }
       })
@@ -511,16 +513,19 @@ export class EstatePropertyListComponent
     statist.set("All", 0);
     this.contentService
       .ServiceGetCount(this.filteModelProperty)
-      .subscribe(
-        (next) => {
-          if (next.IsSuccess) {
-            statist.set("All", next.TotalRowCount);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            statist.set("All", ret.TotalRowCount);
             this.optionsStatist.childMethods.setStatistValue(statist);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
         }
+      }
       );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelProperty));
@@ -528,16 +533,19 @@ export class EstatePropertyListComponent
     fastfilter.PropertyName = "RecordStatus";
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set("Active", next.TotalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set("Active", ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionbuttonExport(): void {
@@ -554,16 +562,19 @@ export class EstatePropertyListComponent
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set("Download", "loading ... ");
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set("Download", next.LinkFile);
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set("Download", ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 
@@ -606,16 +617,16 @@ export class EstatePropertyListComponent
     this.loading.Start(pName, "دریافت اطلاعات ملک");
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.Id)
-      .subscribe(
-        (next) => {
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: next.Item.Title,
-                UrlViewContentQRCodeBase64: next.Item.UrlViewContentQRCodeBase64,
-                UrlViewContent: next.Item.UrlViewContent,
+                Title: ret.Item.Title,
+                UrlViewContentQRCodeBase64: ret.Item.UrlViewContentQRCodeBase64,
+                UrlViewContent: ret.Item.UrlViewContent,
               },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -625,14 +636,15 @@ export class EstatePropertyListComponent
             });
             //open popup
           } else {
-            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   expandedElement: any;

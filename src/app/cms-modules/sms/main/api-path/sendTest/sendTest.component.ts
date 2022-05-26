@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   FormInfoModel,
@@ -88,9 +89,6 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     if (!this.dataModel.LinkApiPathId || this.dataModel.LinkApiPathId.length <= 0) {
       this.cmsToastrService.typeErrorFormInvalid();
     }
-    // if (!this.dataModel.Amount || this.dataModel.Amount <= 0) {
-    //   this.cmsToastrService.typeErrorFormInvalid();
-    // }
     this.formInfo.FormSubmitAllow = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -101,10 +99,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
         this.dataModelResult = next;
         if (next.IsSuccess) {
           this.formInfo.FormAlert = 'درخواست ارسال با موفقیت ثبت شد';
-
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
-
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = next.ErrorMessage;
@@ -113,7 +108,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
         this.loading.Stop(pName);
 
       },
-        (error) => {
+      (error) => {
           this.formInfo.FormSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);

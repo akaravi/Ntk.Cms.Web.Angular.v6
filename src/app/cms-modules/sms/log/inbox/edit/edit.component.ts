@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -6,7 +7,6 @@ import {
   SmsMainApiPathService,
   SmsMainApiPathModel,
   DataFieldInfoModel,
-  CoreCurrencyModel,
   SmsMainApiPathCompanyModel,
   SmsMainApiPathPublicConfigModel,
   SmsMainApiPathAliasJsonModel,
@@ -15,14 +15,12 @@ import {
   Component,
   OnInit,
   ViewChild,
-  Inject,
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { NodeInterface, TreeModel } from 'src/filemanager-api';
+import { TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -98,39 +96,38 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiPathService.setAccessLoad();
-    this.smsMainApiPathService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        if (!next.Item.PerriodStartWorkTime) {
-          next.Item.PerriodStartWorkTime = '';
+    this.smsMainApiPathService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (!ret.Item.PerriodStartWorkTime) {
+          ret.Item.PerriodStartWorkTime = '';
         }
         else {
-          next.Item.PerriodStartWorkTime = next.Item.PerriodStartWorkTime.substring(0, next.Item.PerriodStartWorkTime.indexOf(':', next.Item.PerriodStartWorkTime.indexOf(':') + 1))
+          ret.Item.PerriodStartWorkTime = ret.Item.PerriodStartWorkTime.substring(0, ret.Item.PerriodStartWorkTime.indexOf(':', ret.Item.PerriodStartWorkTime.indexOf(':') + 1))
         }
-        if (!next.Item.PerriodEndWorkTime) {
-          next.Item.PerriodEndWorkTime = '';
+        if (!ret.Item.PerriodEndWorkTime) {
+          ret.Item.PerriodEndWorkTime = '';
         }
         else {
-          next.Item.PerriodEndWorkTime = next.Item.PerriodEndWorkTime.substring(0, next.Item.PerriodEndWorkTime.indexOf(':', next.Item.PerriodEndWorkTime.indexOf(':') + 1))
+          ret.Item.PerriodEndWorkTime = ret.Item.PerriodEndWorkTime.substring(0, ret.Item.PerriodEndWorkTime.indexOf(':', ret.Item.PerriodEndWorkTime.indexOf(':') + 1))
         }
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
           this.formInfo.FormAlert = '';
 
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -138,30 +135,29 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.smsMainApiPathService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.smsMainApiPathService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           setTimeout(() => this.router.navigate(['/sms/main/api-path/list']), 1000);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 

@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -65,14 +66,14 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
     this.linkManagementTargetBillboardLogService.setAccessLoad();
     this.linkManagementTargetBillboardLogService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-          this.dataModelResultContent = next;
-          if (!next.IsSuccess) {
+          this.dataModelResultContent = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
@@ -80,12 +81,13 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
           }
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
 
@@ -102,12 +104,12 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
 
     this.linkManagementTargetBillboardLogService
       .ServiceDelete(this.requestId)
-      .subscribe(
-        (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.cmsToastrService.typeErrorRemove();
 
           } else {
@@ -117,21 +119,20 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         }
+      }
       );
 
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-   
+
   }
 }

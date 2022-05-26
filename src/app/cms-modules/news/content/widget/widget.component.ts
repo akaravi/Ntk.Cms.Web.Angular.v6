@@ -1,10 +1,11 @@
 //**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService, NewsCommentService } from 'ntk-cms-api';
+import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NewsCommentService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-news-content-widget',
   templateUrl: './widget.component.html',
@@ -19,6 +20,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
   loading = new ProgressSpinnerModel();
   constructor(
     private service: NewsContentService,
+    private cmsToastrService: CmsToastrService,
     private serviceComment: NewsCommentService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
@@ -42,14 +44,18 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     this.loading.Start(this.constructor.name + 'All');
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
-    this.service.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('All', next.TotalRowCount);
+    this.service.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('All', ret.TotalRowCount);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      
       },
-      (error) => {
+      error: (er) => {
       }
+    }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();

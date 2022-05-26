@@ -1,3 +1,4 @@
+//**msh */
 import {
   ErrorExceptionResult,
   FormInfoModel,
@@ -7,8 +8,6 @@ import {
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
   EstateAdsTypeService,
   EstateAccountAgencyAdsService,
-  BankPaymentTransactionService,
-  BankPaymentTransactionModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -38,7 +37,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     private dialogRef: MatDialogRef<EstateAccountAgencyAdsSalePaymentComponent>,
     public estateAdsTypeService: EstateAdsTypeService,
     public estateAccountAgencyAdsService: EstateAccountAgencyAdsService,
-    
+
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -78,7 +77,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep1CalculateModel>();
   dataModelPaymentResult: ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>
     = new ErrorExceptionResult<BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel>();
-    
+
   dataModelCalculate: EstateModuleSaleAccountAgencyAdsCalculateDtoModel = new EstateModuleSaleAccountAgencyAdsCalculateDtoModel();
   dataModelPayment: EstateModuleSaleAccountAgencyAdsPaymentDtoModel = new EstateModuleSaleAccountAgencyAdsPaymentDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -86,56 +85,53 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
-   
+
   }
-  
+
   DataCalculate(): void {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
-    this.estateAccountAgencyAdsService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelCalculateResult = next;
+    this.estateAccountAgencyAdsService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
+      next: (ret) => {
+        if (ret) {
+          this.dataModelCalculateResult = ret;
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataPayment(): void {
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
-    this.estateAccountAgencyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelPaymentResult = next;
+    this.estateAccountAgencyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelPaymentResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-          localStorage.setItem('TransactionId', next.Item.TransactionId.toString());
+          localStorage.setItem('TransactionId', ret.Item.TransactionId.toString());
           this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
 
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelectCalculate(model: BankPaymentPrivateSiteConfigModel): void {

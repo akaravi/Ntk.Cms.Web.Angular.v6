@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { CoreEnumService, ErrorExceptionResult, FilterModel, SmsMainApiPathModel, SmsMainApiPathService } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
@@ -53,10 +54,10 @@ export class SmsMainApiPathSelectionlistComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
           this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
           this.dataModelResult.ListItems.forEach((el) => {
@@ -64,20 +65,20 @@ export class SmsMainApiPathSelectionlistComponent implements OnInit {
               this.dataModelSelect.push(el);
             }
           });
-
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(value: SmsMainApiPathModel): void {
-    
+
     if (this.fieldsStatus.get(value.Id)) {
       this.fieldsStatus.set(value.Id, false);
       this.optionSelectRemoved.emit(value);

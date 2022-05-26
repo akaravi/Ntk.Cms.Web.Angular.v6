@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -64,29 +65,28 @@ export class LinkManagementAccountingDetailDeleteComponent implements OnInit {
     this.linkManagementAccountingDetailService.setAccessLoad();
     this.linkManagementAccountingDetailService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        (next) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-          this.dataModelResultContent = next;
-          if (!next.IsSuccess) {
+          this.dataModelResultContent = ret;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.formInfo.FormErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
             this.formInfo.FormAlert = '';
           }
           this.loading.Stop(pName);
-
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormErrorStatus = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
-
         }
+      }
       );
 
   }
@@ -106,12 +106,12 @@ export class LinkManagementAccountingDetailDeleteComponent implements OnInit {
 
     this.linkManagementAccountingDetailService
       .ServiceDelete(this.requestId)
-      .subscribe(
-        (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
-          if (!next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          if (!ret.IsSuccess) {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
+            this.formInfo.FormError = ret.ErrorMessage;
             this.cmsToastrService.typeErrorRemove();
 
           } else {
@@ -121,21 +121,20 @@ export class LinkManagementAccountingDetailDeleteComponent implements OnInit {
           }
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeError(error);
+          this.cmsToastrService.typeError(er);
           this.formInfo.ButtonSubmittedEnabled = true;
           this.loading.Stop(pName);
-
         }
+      }
       );
 
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
-   
+
   }
 }

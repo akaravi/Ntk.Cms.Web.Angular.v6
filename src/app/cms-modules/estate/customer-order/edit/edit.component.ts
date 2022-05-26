@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -100,13 +101,13 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateCustomerOrderService.setAccessLoad();
-    this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
           this.formInfo.FormAlert = '';
           /** load Value */
           this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
@@ -124,48 +125,47 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           /** load Value */
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+    this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.optionReload();
-          // setTimeout(() => this.router.navigate(['/estate/customer-order']), 1000);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
         this.formInfo.FormSubmitAllow = true;
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -179,10 +179,10 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
     this.loading.Start(pName, 'دریافت اطلاعات جزئیات');
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataModel.PropertyDetailGroups = next.ListItems;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataModel.PropertyDetailGroups = ret.ListItems;
             /** load Value */
             this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
               itemGroup.PropertyDetails.forEach(element => {
@@ -198,14 +198,15 @@ export class EstateCustomerOrderEditComponent implements OnInit {
             });
             /** load Value */
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onActionCopied(): void {

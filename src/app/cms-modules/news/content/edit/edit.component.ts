@@ -158,16 +158,16 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          this.dataAccessModel = ret.Access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           this.loading.Stop(pName);
-          this.dataModelResult = next;
+          this.dataModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
             const lat = this.dataModel.Geolocationlatitude;
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
@@ -182,14 +182,15 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
             this.DataSimilarGetAllIds();
             this.loading.Stop(pName);
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
         }
+      }
       );
   }
   DataTagGetAll(): void {
@@ -484,21 +485,22 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.tagIdsData = [];
     this.contentCategoryService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           const itemList = [];
-          next.ListItems.forEach(element => {
+          ret.ListItems.forEach(element => {
             itemList.push(element.LinkCategoryId);
           });
           this.dataContentCategoryModel = itemList;
           this.formInfo.FormSubmitAllow = true;
           this.loading.Stop(pName);
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onActionCategorySelectChecked(model: number): void {
@@ -671,8 +673,8 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   }
   receiveZoom(mode: leafletMap): void {
   }
-  
-  
+
+
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
       const message = 'منطقه اطلاعات حدف شد';

@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -17,11 +18,9 @@ import {
   FilterModel,
   SmsMainApiPathModel,
   SmsMainApiPathService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SmsMainApiPathEditComponent } from '../edit/edit.component';
@@ -53,7 +52,7 @@ export class SmsMainApiPathTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
   filteModel = new FilterModel();
-  
+
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<SmsMainApiPathModel>(node => null);
   dataSource = new MatTreeNestedDataSource<SmsMainApiPathModel>();
@@ -80,20 +79,19 @@ export class SmsMainApiPathTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: SmsMainApiPathModel): void {

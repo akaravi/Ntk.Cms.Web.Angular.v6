@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -51,7 +52,7 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstateAccountAgencyModel = new EstateAccountAgencyModel();
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateAccountAgencyModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateAccountAgencyModel>();
   @Output() optionChange = new EventEmitter<EstateAccountAgencyModel>();
@@ -72,20 +73,19 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
     this.filteModel.AccessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: EstateAccountAgencyModel): void {
@@ -156,24 +156,23 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
-          this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
-
             }
+          }
           );
         }
       }

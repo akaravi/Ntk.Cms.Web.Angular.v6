@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -9,7 +10,6 @@ import {
   EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel,
   EstateContractTypeModel,
-  CoreUserModel,
   FilterModel,
   FilterDataModel,
   EstatePropertyDetailGroupService,
@@ -32,8 +32,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-estate-customer-order-add',
@@ -90,18 +88,18 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   DataGetAccess(): void {
     this.estateCustomerOrderService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataAddContent(): void {
@@ -110,31 +108,30 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+    this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.DataGetOneContent();
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          // setTimeout(() => this.router.navigate(['/estate/customer-order']), 1000);
 
           this.optionReload();
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
         this.formInfo.FormSubmitAllow = true;
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
 
   }
@@ -146,27 +143,27 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateCustomerOrderService.setAccessLoad();
-    this.estateCustomerOrderService.ServiceGetOneById(this.dataModelResult.Item.Id).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.estateCustomerOrderService.ServiceGetOneById(this.dataModelResult.Item.Id).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataEditContent(): void {
@@ -175,29 +172,28 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+    this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.optionReload();
-          // setTimeout(() => this.router.navigate(['/estate/customer-order']), 1000);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
         this.formInfo.FormSubmitAllow = true;
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataGetPropertyDetailGroup(id: string): void {
@@ -210,10 +206,10 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
     this.loading.Start(pName, 'دریافت اطلاعات جزئیات');
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataModel.PropertyDetailGroups = next.ListItems;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataModel.PropertyDetailGroups = ret.ListItems;
             /** load Value */
             this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
               itemGroup.PropertyDetails.forEach(element => {
@@ -229,14 +225,15 @@ export class EstateCustomerOrderAddComponent implements OnInit {
             });
             /** load Value */
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {

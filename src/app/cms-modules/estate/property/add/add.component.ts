@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
@@ -201,20 +202,20 @@ export class EstatePropertyAddComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_access'));
     this.estatePropertyService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
 
@@ -228,19 +229,20 @@ export class EstatePropertyAddComponent implements OnInit {
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
     this.loading.Start(pName, 'دریافت جزئیات');
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataModel.PropertyDetailGroups = next.ListItems;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataModel.PropertyDetailGroups = ret.ListItems;
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   DataAdd(): void {
@@ -261,26 +263,27 @@ export class EstatePropertyAddComponent implements OnInit {
     }
     const pName = this.constructor.name + 'ServiceAdd';
     this.loading.Start(pName, 'ثبت ملک');
-    this.estatePropertyService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.estatePropertyService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           setTimeout(() => this.router.navigate(['/estate/property']), 1000);
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 
@@ -352,12 +355,12 @@ export class EstatePropertyAddComponent implements OnInit {
     this.DataGetPropertyDetailGroup(model.Id);
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
-     if (!model || !model.Id || model.Id <= 0) {
+    if (!model || !model.Id || model.Id <= 0) {
       //  const message = 'کاربر اطلاعات مشخص نیست';
       //  this.cmsToastrService.typeErrorSelected(message);
-       this.dataModel.LinkCmsUserId =null;
-       return;
-     }
+      this.dataModel.LinkCmsUserId = null;
+      return;
+    }
     this.dataModel.LinkCmsUserId = model.Id;
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {

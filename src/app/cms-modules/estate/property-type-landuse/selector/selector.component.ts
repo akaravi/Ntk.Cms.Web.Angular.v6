@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   CoreEnumService,
@@ -15,6 +16,7 @@ import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'r
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -22,10 +24,11 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstatePropertyTypeLanduseSelectorComponent implements OnInit,OnDestroy {
+export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     public categoryService: EstatePropertyTypeLanduseService) {
@@ -178,12 +181,16 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit,OnDest
         this.formControl.setValue(item);
         return;
       }
-      this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+      this.categoryService.ServiceGetOneById(id).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.filteredOptions = this.push(ret.Item);
+            this.dataModelSelect = ret.Item;
+            this.formControl.setValue(ret.Item);
+            this.optionChange.emit(ret.Item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          }
         }
       });
       return;

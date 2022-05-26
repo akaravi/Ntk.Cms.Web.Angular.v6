@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
@@ -46,7 +47,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EstatePropertyEditComponent implements OnInit,OnDestroy {
+export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -104,7 +105,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
-  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
+  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'Action'];
@@ -133,7 +134,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
     this.getEnumRecordStatus();
     this.getEstateContractType();
 
-   
+
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.DataGetOne();
       this.getEnumRecordStatus();
@@ -166,12 +167,12 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
     const pName = this.constructor.name + 'ServiceGetOneById';
     this.loading.Start(pName, 'دریافت اطلاعات ملک');
     this.estatePropertyService.setAccessLoad();
-    this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
           this.optionTabledataSource.data = this.dataModel.Contracts;
           this.DataGetPropertyDetailGroup(this.dataModel.LinkPropertyTypeLanduseId);
 
@@ -183,7 +184,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
             this.mapMarkerPoints.push({ lat, lon });
             this.receiveMap();
           }
-          this.formInfo.FormTitle =next.Item.Title;
+          this.formInfo.FormTitle = ret.Item.Title;
           this.formInfo.FormAlert = '';
           /*
           * check file attach list
@@ -208,16 +209,16 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
           }
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 
@@ -231,10 +232,10 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
     this.loading.Start(pName, 'دریافت اطلاعات جزئیات');
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataModel.PropertyDetailGroups = next.ListItems;
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataModel.PropertyDetailGroups = ret.ListItems;
             /** load Value */
             this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
               itemGroup.PropertyDetails.forEach(element => {
@@ -250,14 +251,15 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
             });
             /** load Value */
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
   DataEdit(): void {
@@ -278,26 +280,27 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
     const pName = this.constructor.name + 'ServiceEdit';
     this.loading.Start(pName, 'ثبت تغیرات اطلاعات ملک');
 
-    this.estatePropertyService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.estatePropertyService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
   receiveMap(model: leafletMap = this.mapModel): void {
@@ -361,7 +364,7 @@ export class EstatePropertyEditComponent implements OnInit,OnDestroy {
     if (!model || !model.Id || model.Id <= 0) {
       // const message = 'کاربر اطلاعات مشخص نیست';
       // this.cmsToastrService.typeErrorSelected(message);
-      this.dataModel.LinkCmsUserId =null;
+      this.dataModel.LinkCmsUserId = null;
       return;
     }
     this.dataModel.LinkCmsUserId = model.Id;

@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -17,7 +18,6 @@ import {
   FilterModel,
   EstateBillboardModel,
   EstateBillboardService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -52,7 +52,7 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstateBillboardModel = new EstateBillboardModel();
   dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateBillboardModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateBillboardModel>();
   @Output() optionChange = new EventEmitter<EstateBillboardModel>();
@@ -78,20 +78,21 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: EstateBillboardModel): void {
@@ -165,9 +166,9 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -175,10 +176,11 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
               }
               this.loading.Stop(pName);
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
             }
+          }
           );
         }
       }

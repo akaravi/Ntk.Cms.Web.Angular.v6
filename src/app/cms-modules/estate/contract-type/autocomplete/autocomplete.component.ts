@@ -1,3 +1,4 @@
+//**msh */
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import {
@@ -12,9 +13,6 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Output } from '@angular/core';
-
-
-
 
 @Component({
   selector: 'app-estate-contract-type-autocomplete',

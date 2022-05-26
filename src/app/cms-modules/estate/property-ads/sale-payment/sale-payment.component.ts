@@ -1,3 +1,4 @@
+//**msh */
 import {
   ErrorExceptionResult,
   FormInfoModel,
@@ -7,8 +8,6 @@ import {
   BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
   EstateAdsTypeService,
   EstatePropertyAdsService,
-  BankPaymentTransactionService,
-  BankPaymentTransactionModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -97,49 +96,46 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
-    this.estatePropertyAdsService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelCalculateResult = next;
+    this.estatePropertyAdsService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelCalculateResult = ret;
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataPayment(): void {
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
-    this.estatePropertyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelPaymentResult = next;
+    this.estatePropertyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelPaymentResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-          localStorage.setItem('TransactionId', next.Item.TransactionId.toString());
+          localStorage.setItem('TransactionId', ret.Item.TransactionId.toString());
           this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelectCalculate(model: BankPaymentPrivateSiteConfigModel): void {

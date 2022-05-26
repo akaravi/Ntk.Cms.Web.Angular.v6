@@ -1,20 +1,16 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
 import {
   CoreEnumService,
   EnumInfoModel,
   ErrorExceptionResult,
-  FilterModel,
   FormInfoModel,
   LinkManagementBillboardService,
-  FilterDataModel,
-
   DataFieldInfoModel,
   AccessModel,
   LinkManagementBillboardModel,
   LinkManagementBillboardPatternModel,
-  LinkManagementEnumService,
   LinkManagementMemberModel,
   LinkManagementBillboardTargetCategoryModel,
   LinkManagementBillboardTargetCategoryService,
@@ -28,7 +24,6 @@ import { Map as leafletMap } from 'leaflet';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
-import { MatTableDataSource } from '@angular/material/table';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
@@ -64,7 +59,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
   dataAccessModel: AccessModel;
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardModel> = new ErrorExceptionResult<LinkManagementBillboardModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
+  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
   dataContentCategoryModel: number[] = [];
@@ -134,18 +129,19 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
   DataGetAccess(): void {
     this.linkManagementBillboardService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataAccessModel = ret.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataGetOne(): void {
@@ -158,28 +154,29 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
 
     this.linkManagementBillboardService
       .ServiceGetOneById(this.dataModelResult.Item.Id)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
 
-          this.dataModelResult = next;
+          this.dataModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
 
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
 
             this.loading.Stop(pName);
 
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
         }
+      }
       );
   }
 
@@ -194,26 +191,26 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
 
     this.linkManagementBillboardService
       .ServiceAdd(this.dataModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
 
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
             this.cmsToastrService.typeSuccessAdd();
-            this.dataModel = next.Item;
+            this.dataModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.formInfo.FormAlert = '';
           this.formInfo.FormSubmitAllow = true;
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorAdd(er);
         }
+      }
       );
   }
 
@@ -227,30 +224,29 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
 
     this.linkManagementBillboardService
       .ServiceEdit(this.dataModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
 
             setTimeout(() => this.router.navigate(['/linkmanagement/billboard']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorAdd(er);
         }
+      }
       );
   }
 
@@ -281,23 +277,22 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
       const entity = new LinkManagementBillboardTargetCategoryModel();
       entity.LinkTargetCategoryId = model;
       entity.LinkManagementBillboardId = this.dataModel.Id;
-      this.contentCategoryService.ServiceAdd(entity).subscribe(
-        (next) => {
-          if (next.IsSuccess) {
+      this.contentCategoryService.ServiceAdd(entity).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
             this.cmsToastrService.typeSuccessEdit();
-            // this.dialogRef.close({ dialogChangedDate: true });
           } else {
             this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = next.ErrorMessage;
-            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+            this.formInfo.FormError = ret.ErrorMessage;
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeError(error);
-
+          this.cmsToastrService.typeError(er);
         }
+      }
       );
     } else {
 
@@ -314,23 +309,22 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
     const entity = new LinkManagementBillboardTargetCategoryModel();
     entity.LinkTargetCategoryId = model;
     entity.LinkManagementBillboardId = this.dataModel.Id;
-    this.contentCategoryService.ServiceDeleteEntity(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
-
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 

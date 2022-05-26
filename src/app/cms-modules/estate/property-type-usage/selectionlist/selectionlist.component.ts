@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   CoreEnumService,
@@ -19,7 +20,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
   templateUrl: './selectionlist.component.html',
   styleUrls: ['./selectionlist.component.scss']
 })
-export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit,OnDestroy {
+export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit, OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
@@ -62,14 +63,14 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit,OnD
     filteModel.AccessLoad = true;
     // this.loading.backdropEnabled = false;
 
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
           this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
           this.dataModelResult.ListItems.forEach((el) => {
@@ -77,16 +78,17 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit,OnD
               this.dataModelSelect.push(el);
             }
           });
-
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(value: EstatePropertyTypeUsageModel): void {

@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-detail-selector',
@@ -23,6 +25,7 @@ import { Output } from '@angular/core';
 export class EstatePropertyDetailSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
+    private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstatePropertyDetailService) {
     this.loading.cdr = this.cdr;
@@ -144,13 +147,17 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
         this.formControl.setValue(item);
         return;
       }
-      this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+      this.categoryService.ServiceGetOneById(id).subscribe({
+        next: (ret) => {
+        if (ret.IsSuccess) {
+          this.filteredOptions = this.push(ret.Item);
+          this.dataModelSelect = ret.Item;
+          this.formControl.setValue(ret.Item);
+          this.optionChange.emit(ret.Item);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      }
       });
       return;
     }

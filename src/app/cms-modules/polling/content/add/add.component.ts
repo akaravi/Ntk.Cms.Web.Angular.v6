@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { FormGroup } from '@angular/forms';
@@ -66,7 +67,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
   optionDataModel = new Array<PollingOptionModel>();
   optionTabledataSource = new MatTableDataSource<PollingOptionModel>();
   dataOptionModelResult: ErrorExceptionResult<PollingOptionModel> = new ErrorExceptionResult<PollingOptionModel>();
-  optionActionTitle =this.translate.instant('ACTION.Add_To_List');
+  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
 
@@ -140,18 +141,19 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
   DataGetAccess(): void {
     this.pollingContentService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataAccessModel = ret.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataGetOne(): void {
@@ -164,15 +166,14 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
 
     this.pollingContentService
       .ServiceGetOneById(this.dataModelResult.Item.Id)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-
-          this.dataModelResult = next;
+          this.dataModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
 
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
             const lat = this.dataModel.Geolocationlatitude;
             const lon = this.dataModel.Geolocationlongitude;
             if (lat > 0 && lon > 0) {
@@ -181,20 +182,18 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
               this.receiveMap();
             }
             this.DataOptionGetAll();
-            // this.DataOtherInfoGetAll();
-            // this.DataSimilarGetAllIds();
             this.loading.Stop(pName);
 
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
         }
+      }
       );
   }
   DataOptionGetAll(): void {
@@ -212,23 +211,24 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
     filteModel.Filters.push(filter);
     this.pollingOptionService
       .ServiceGetAll(filteModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loadingOption.Stop('main');
           this.formInfo.FormSubmitAllow = true;
-          this.dataOptionModelResult = next;
-          if (next.IsSuccess) {
-            this.optionDataModel = next.ListItems;
-            this.optionTabledataSource.data = next.ListItems;
+          this.dataOptionModelResult = ret;
+          if (ret.IsSuccess) {
+            this.optionDataModel = ret.ListItems;
+            this.optionTabledataSource.data = ret.ListItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
           }
         },
-        (error) => {
+        error: (er) => {
           this.loadingOption.Stop('main');
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(error);
+          this.cmsToastrService.typeErrorGetAll(er);
         }
+      }
       );
   }
 
@@ -243,26 +243,25 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
 
     this.pollingContentService
       .ServiceAdd(this.dataModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
-
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
             this.cmsToastrService.typeSuccessAdd();
-            this.dataModel = next.Item;
+            this.dataModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.formInfo.FormAlert = '';
           this.formInfo.FormSubmitAllow = true;
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorAdd(er);
         }
+      }
       );
   }
 
@@ -276,30 +275,30 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
 
     this.pollingContentService
       .ServiceEdit(this.dataModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
 
             setTimeout(() => this.router.navigate(['/polling/content']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
 
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorAdd(er);
         }
+      }
       );
   }
 
@@ -323,42 +322,46 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
 
     this.optionActionButtomEnable = false;
     if (this.optionSelected.Id > 0) {
-      this.pollingOptionService.ServiceEdit(this.optionSelected).subscribe(
-        (next) => {
-          if (next.IsSuccess) {
+      this.pollingOptionService.ServiceEdit(this.optionSelected).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             this.optionSelected = new PollingOptionModel();
-            this.optionActionTitle =this.translate.instant('ACTION.Add_To_List');
+            this.optionActionTitle = this.translate.instant('ACTION.Add_To_List');
             this.optionSelected = new PollingOptionModel();
             this.DataOptionGetAll();
           }
           else {
-            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
           }
           this.optionActionButtomEnable = true;
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.optionActionButtomEnable = true;
-        });
+        }
+      }
+      );
     }
     else {
       this.optionSelected.LinkPollingContentId = this.dataModelResult.Item.Id;
-      this.pollingOptionService.ServiceAdd(this.optionSelected).subscribe(
-        (next) => {
-          if (next.IsSuccess) {
+      this.pollingOptionService.ServiceAdd(this.optionSelected).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             this.optionSelected = new PollingOptionModel();
-            this.optionActionTitle =this.translate.instant('ACTION.Add_To_List');
+            this.optionActionTitle = this.translate.instant('ACTION.Add_To_List');
             this.optionSelected = new PollingOptionModel();
             this.DataOptionGetAll();
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.optionActionButtomEnable = true;
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
           this.optionActionButtomEnable = true;
-        });
+        }
+      }
+      );
 
     }
 
@@ -373,21 +376,20 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
       return;
     }
     this.optionSelected = this.optionDataModel[index];
-
-    // this.optionDataModel.splice(index, 1);
-    // this.optionTabledataSource.data = this.optionDataModel;
-    this.pollingOptionService.ServiceDelete(this.optionSelected.Id).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.pollingOptionService.ServiceDelete(this.optionSelected.Id).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.DataOptionGetAll();
           this.optionSelected = new PollingOptionModel();
         } else {
-          this.cmsToastrService.typeErrorRemove(next.ErrorMessage);
+          this.cmsToastrService.typeErrorRemove(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      });
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+      }
+    }
+    );
   }
   onActionOptionEditFromList(index: number): void {
 
@@ -458,7 +460,7 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
 
   receiveZoom(mode: leafletMap): void {
   }
-  
+
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
       const message = 'منطقه اطلاعات حدف شد';

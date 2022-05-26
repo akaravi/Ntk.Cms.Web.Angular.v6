@@ -1,3 +1,4 @@
+//**msh */
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
@@ -22,7 +23,6 @@ import { Map as leafletMap } from 'leaflet';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
-import { MatTableDataSource } from '@angular/material/table';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
@@ -59,7 +59,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-   optionActionTitle =this.translate.instant('ACTION.Add_To_List');
+  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
 
@@ -146,68 +146,64 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
     this.linkManagementTargetService.setAccessLoad();
     this.linkManagementTargetService
       .ServiceGetOneById(this.requestId)
-      .subscribe(
-        async (next) => {
-
+      .subscribe({
+        next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.dataModelResult = next;
+          this.dataAccessModel = ret.Access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataModelResult = ret;
           this.formInfo.FormSubmitAllow = true;
 
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
-
-
+          if (ret.IsSuccess) {
+            this.dataModel = ret.Item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
 
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+          this.cmsToastrService.typeErrorGetOne(er);
         }
+      }
       );
   }
-  
+
   DataEditContent(): void {
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
 
     this.linkManagementTargetService
       .ServiceEdit(this.dataModel)
-      .subscribe(
-        async (next) => {
+      .subscribe({
+        next: (ret) => {
           this.loading.Stop(pName);
 
           this.formInfo.FormSubmitAllow = true;
-          this.dataModelResult = next;
-          if (next.IsSuccess) {
+          this.dataModelResult = ret;
+          if (ret.IsSuccess) {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-
             setTimeout(() => this.router.navigate(['/linkmanagement/target']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
-
         },
-        (error) => {
+        error: (er) => {
           this.loading.Stop(pName);
-
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorAdd(er);
         }
+      }
       );
   }
 

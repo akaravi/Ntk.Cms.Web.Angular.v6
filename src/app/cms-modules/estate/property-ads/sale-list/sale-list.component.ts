@@ -1,6 +1,6 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   EstateAdsTypeService,
   ErrorExceptionResult,
@@ -10,8 +10,6 @@ import {
   CoreEnumService,
   EnumInfoModel,
   CoreSiteService,
-  BankPaymentTransactionService,
-  BankPaymentTransactionModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -104,15 +102,18 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   }
 
   DataGetCurrency(): void {
-    this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.currency = next.Item;
+    this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.currency = ret.Item;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 
@@ -130,21 +131,22 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
     this.showBuy = false;
     const model = new FilterModel();
-    this.estateAdsTypeService.ServiceGetAllSale(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.estateAdsTypeService.ServiceGetAllSale(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.showBuy = true;
-          this.dataModelResult = next;
+          this.dataModelResult = ret;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 

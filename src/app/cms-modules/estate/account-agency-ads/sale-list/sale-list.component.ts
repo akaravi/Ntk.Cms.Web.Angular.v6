@@ -1,6 +1,6 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   EstateAdsTypeService,
   ErrorExceptionResult,
@@ -10,8 +10,6 @@ import {
   CoreEnumService,
   EnumInfoModel,
   CoreSiteService,
-  BankPaymentTransactionModel,
-  BankPaymentTransactionService,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -97,22 +95,25 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result && result.dialogChangedDate) {
-           localStorage.removeItem('TransactionId');
+          localStorage.removeItem('TransactionId');
         }
       });
     }
   }
- 
+
   DataGetCurrency(): void {
-    this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.currency = next.Item;
+    this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.currency = ret.Item;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 
@@ -133,24 +134,24 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
 
     this.showBuy = false;
     const model = new FilterModel();
-    this.estateAdsTypeService.ServiceGetAllSale(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.estateAdsTypeService.ServiceGetAllSale(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.showBuy = true;
-          this.dataModelResult = next;
+          this.dataModelResult = ret;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
 
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -172,8 +173,8 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
   }
 
   onActionBackToParent(): void {
-    
-    this.router.navigate(['/estate/account-agency-ads/LinkPropertyId/'+this.requestLinkAccountAgencyId]);
+
+    this.router.navigate(['/estate/account-agency-ads/LinkPropertyId/' + this.requestLinkAccountAgencyId]);
 
   }
 }

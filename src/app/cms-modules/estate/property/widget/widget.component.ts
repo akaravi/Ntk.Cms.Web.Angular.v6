@@ -1,9 +1,11 @@
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EstatePropertyService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService, EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-property-widget',
@@ -20,6 +22,7 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: EstatePropertyService,
+    private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
@@ -48,14 +51,17 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.service.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('All', next.TotalRowCount);
+    this.service.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('All', ret.TotalRowCount);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -63,17 +69,19 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.service.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('Active', next.TotalRowCount);
+    this.service.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('Active', ret.TotalRowCount);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(this.constructor.name + 'Active');
-      }
-      ,
-      (error) => {
+      },
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Active');
       }
+    }
     );
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter = new FilterDataModel();
@@ -82,24 +90,26 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
     fastfilter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
     filterStatist2.Filters.push(fastfilter);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.service.ServiceGetCount(filterStatist2).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          if (next.TotalRowCount > 0) {
-            this.modelData.set('InChecking', next.TotalRowCount);
+    this.service.ServiceGetCount(filterStatist2).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          if (ret.TotalRowCount > 0) {
+            this.modelData.set('InChecking', ret.TotalRowCount);
             this.widgetInfoModel.link = '/estate/property/InChecking/true';
           }
           else {
             this.modelData.delete('InChecking');
             this.widgetInfoModel.link = '/estate/property';
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(this.constructor.name + 'InChecking');
-      }
-      ,
-      (error) => {
+      },
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'InChecking');
       }
+    }
     );
   }
 }

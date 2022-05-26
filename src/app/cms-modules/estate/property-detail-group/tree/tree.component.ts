@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -17,7 +18,6 @@ import {
   FilterModel,
   EstatePropertyDetailGroupModel,
   EstatePropertyDetailGroupService,
-  NtkCmsApiStoreService,
   FilterDataModel,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -54,7 +54,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   dataModelSelect: EstatePropertyDetailGroupModel = new EstatePropertyDetailGroupModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailGroupModel> = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstatePropertyDetailGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertyDetailGroupModel>();
   @Output() optionChange = new EventEmitter<EstatePropertyDetailGroupModel>();
@@ -90,20 +90,21 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: EstatePropertyDetailGroupModel): void {
@@ -177,22 +178,21 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
               this.loading.Stop(pName);
-
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
-
             }
+          }
           );
         }
       }
