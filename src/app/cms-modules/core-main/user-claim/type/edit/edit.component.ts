@@ -104,7 +104,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -141,7 +141,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server;
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'DataGetAllCoreUserClaimType'
     this.loading.Start(pName, 'دریافت لیست مدارک');

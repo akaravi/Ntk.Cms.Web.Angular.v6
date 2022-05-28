@@ -90,7 +90,7 @@ export class CoreTokenActivationViewComponent implements OnInit, OnDestroy {
 
 
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server);
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
