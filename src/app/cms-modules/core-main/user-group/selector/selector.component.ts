@@ -1,3 +1,4 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -25,6 +27,7 @@ export class CoreUserGroupSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreUserGroupService) {
   }
@@ -33,7 +36,7 @@ export class CoreUserGroupSelectorComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreUserGroupModel[]>;
-    @Input() optionDisabled = false;
+  @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
   @Output() optionChange = new EventEmitter<CoreUserGroupModel>();
@@ -42,7 +45,7 @@ export class CoreUserGroupSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loadOptions();
   }
   loadOptions(): void {
@@ -62,10 +65,10 @@ ngOnInit(): void {
   }
 
   displayFn(model?: CoreUserGroupModel): string | undefined {
-    return model ? (model.TitleML ) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   displayOption(model?: CoreUserGroupModel): string | undefined {
-    return model ? (model.TitleML ) : undefined;
+    return model ? (model.TitleML) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserGroupModel[]> {
     const filteModel = new FilterModel();
@@ -86,7 +89,7 @@ ngOnInit(): void {
       filter.ClauseType = EnumClauseType.Or;
       filteModel.Filters.push(filter);
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -113,7 +116,7 @@ ngOnInit(): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
-  onActionSelectClear(): void{
+  onActionSelectClear(): void {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
@@ -139,12 +142,16 @@ ngOnInit(): void {
         this.formControl.setValue(item);
         return;
       }
-      this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+      this.categoryService.ServiceGetOneById(id).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.filteredOptions = this.push(ret.Item);
+            this.dataModelSelect = ret.Item;
+            this.formControl.setValue(ret.Item);
+            this.optionChange.emit(ret.Item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          }
         }
       });
       return;
@@ -159,11 +166,7 @@ ngOnInit(): void {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-    //   this.onActionSelect(null);
-    // }
     this.dataModelSelect = new CoreUserGroupModel();
-    // this.optionsData.Select = new CoreUserGroupModel();
     this.DataGetAll(null);
   }
 }

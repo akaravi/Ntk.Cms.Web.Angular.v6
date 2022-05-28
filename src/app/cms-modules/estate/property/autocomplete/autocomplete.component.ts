@@ -12,9 +12,7 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Output } from '@angular/core';
-
-
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-property-autocomplete',
@@ -24,7 +22,9 @@ import { Output } from '@angular/core';
 export class EstatePropertyCompleteComponent implements OnInit {
   constructor(
     public estatePropertyService: EstatePropertyService,
-    private cmsToastrService: CmsToastrService) {
+    private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
+    ) {
   }
   @Input() set optionSelectForce(x: string[]) {
     this.onActionSelectForce(x);
@@ -111,7 +111,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
       },
         (error) => {
 
-          const title = 'برروی خطا در دریافت اطلاعات ';
+          const title = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorReceivingInformation');
           this.cmsToastrService.typeErrorGetAll(error);
         })).toPromise();
   }

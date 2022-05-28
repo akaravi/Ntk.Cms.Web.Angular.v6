@@ -384,7 +384,7 @@ export class EstatePropertyAddComponent implements OnInit {
   onActionSelectorContractType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
     if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'نوع معامله ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -413,7 +413,7 @@ export class EstatePropertyAddComponent implements OnInit {
       this.onActionOptionAddToList(false);
     }
     if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
-      const message = 'نوع معامله ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
       this.formInfo.FormSubmitAllow = true;
       return;
@@ -443,7 +443,7 @@ export class EstatePropertyAddComponent implements OnInit {
 
   onActionOptionAddToList(viewAlert: boolean = true): void {
     if (!this.contractTypeSelected || this.contractTypeSelected.Id.length === 0) {
-      const message = 'نوع معامله ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       if (viewAlert) {
         this.cmsToastrService.typeErrorSelected(message);
       }

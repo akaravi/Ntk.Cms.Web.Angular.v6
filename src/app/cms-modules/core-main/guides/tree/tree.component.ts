@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -12,13 +13,11 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   CoreGuideModel,
   CoreGuideService,
-  NtkCmsApiStoreService,
   EnumSortType,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -81,20 +80,21 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: CoreGuideModel): void {
@@ -109,7 +109,6 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
       this.onActionSelect(null);
     }
     this.dataModelSelect = new CoreGuideModel();
-    // this.optionsData.data.Select = new CoreGuideModel();
     this.DataGetAll();
   }
   onActionSelectForce(id: number | CoreGuideModel): void {
@@ -126,11 +125,10 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { parentId };
-    dialogConfig.height= '90%';
+    dialogConfig.height = '90%';
 
     const dialogRef = this.dialog.open(CoreGuideAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -152,7 +150,6 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -160,10 +157,6 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
   }
 
   onActionDelete(): void {
-    // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
-    //   if (res.IsSuccess) {
-    //   }
-    // });
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
       id = this.dataModelSelect.Id;
@@ -173,7 +166,7 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-   
+
   }
 
 }

@@ -369,7 +369,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonComment(model: ArticleContentModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
-      this.cmsToastrService.typeErrorSelected('ردیفی برای ویرایش انتخاب نشده است');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
     this.router.navigate(['/article/comment/', model.Id]);

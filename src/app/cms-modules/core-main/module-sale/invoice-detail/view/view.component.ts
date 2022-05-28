@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -6,7 +7,6 @@ import {
   CoreModuleSaleInvoiceDetailService,
   CoreModuleSaleInvoiceDetailModel,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -89,7 +89,7 @@ export class CoreModuleSaleInvoiceDetailViewComponent implements OnInit, OnDestr
 
 
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -97,28 +97,28 @@ export class CoreModuleSaleInvoiceDetailViewComponent implements OnInit, OnDestr
     /*َAccess Field*/
     this.coreModuleSaleInvoiceDetailService.setAccessLoad();
 
-    this.coreModuleSaleInvoiceDetailService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
+    this.coreModuleSaleInvoiceDetailService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Id;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Id;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 

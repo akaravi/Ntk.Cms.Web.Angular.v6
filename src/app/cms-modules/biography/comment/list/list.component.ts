@@ -210,7 +210,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.requestContentId == null ||
       this.requestContentId === 0
     ) {
-      const message = 'محتوا انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Content_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -272,7 +272,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) ' + ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) '; this.cmsConfirmationDialogService.confirm(title, message)
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + ' <br> نویسنده:( ' + this.tableRowSelected.Writer + ' ) ' + ' <br> نظر:( ' + this.tableRowSelected.Comment + ' ) '; this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';

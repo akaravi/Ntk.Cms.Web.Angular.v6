@@ -196,31 +196,6 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
 
 
   onActionbuttonNewRow(): void {
-    // if (this.categoryModelSelected == null &&
-    //   (this.categoryModelSelected && this.categoryModelSelected.Id === 0) && (
-    //     this.requestDepartemenId == null ||
-    //     this.requestDepartemenId === 0)
-    // ) {
-    //   const message = 'محتوا انتخاب نشده است';
-    //   this.cmsToastrService.typeErrorSelected(message);
-
-    //   return;
-    // }
-
-    // let parentId: number = this.requestDepartemenId;
-    // if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
-    //   parentId = this.categoryModelSelected.Id;
-    // }
-    // const dialogRef = this.dialog.open(TicketingTaskAddComponent, {
-    //   height: '90%',
-    //   data: { LinkDepartemenId: parentId }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
     this.router.navigate(['/ticketing/contactus/']);
 
   }
@@ -267,53 +242,6 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
 
 
   }
-  // onActionbuttonDeleteRow(mode: TicketingTaskModel = this.tableRowSelected): void {
-  //   if (mode == null || !mode.Id || mode.Id === 0) {
-  //     const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
-  //     this.cmsToastrService.typeErrorSelected(emessage);
-  //     return;
-  //   }
-  //   this.tableRowSelected = mode;
-  //   if (
-  //     this.dataModelResult == null ||
-  //     this.dataModelResult.Access == null ||!this.dataModelResult.Access.AccessDeleteRow
-  //     
-  //   ) {
-  //     this.cmsToastrService.typeErrorAccessDelete();
-  //     return;
-  //   }
-  //   const title = 'لطفا تایید کنید...';
-  //   const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
-  //   this.cmsConfirmationDialogService.confirm(title, message)
-  //     .then((confirmed) => {
-  //       if (confirmed) {
-  //         const pName = this.constructor.name + 'main';
-  //   this.loading.Start(pName);
-
-  //         this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
-  //           (next) => {
-  //             if (next.IsSuccess) {
-  //               this.cmsToastrService.typeSuccessRemove();
-  //             } else {
-  //               this.cmsToastrService.typeErrorRemove();
-  //             }
-  //             this.loading.Stop(pName);
-
-  //           },
-  //           (error) => {
-  //             this.cmsToastrService.typeError(error);
-  //             this.loading.Stop(pName);
-
-  //           }
-  //         );
-  //       }
-  //     }
-  //     )
-  //     .catch(() => {
-  //       // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
-  //     }
-  //     );
-  // }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {

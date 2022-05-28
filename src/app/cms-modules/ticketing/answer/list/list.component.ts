@@ -206,7 +206,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
         this.requestLinkTaskId == null ||
         this.requestLinkTaskId === 0)
     ) {
-      const message = 'محتوا انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Content_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
 
       return;
@@ -217,7 +217,6 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       data: { LinkTaskId: this.requestLinkTaskId>0 ? this.requestLinkTaskId: this.categoryModelSelected.Id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -290,7 +289,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {

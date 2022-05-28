@@ -253,7 +253,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' +
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' +
       '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
@@ -307,7 +307,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       return;
     }
     if (!model.NotificationId || model.NotificationId.length === 0) {
-      this.cmsToastrService.typeErrorSelected('ردیف انتخاب شده داری نوتیفیکیشن آی دی نمی باشد');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Selected_row_does_not_have_ID_notification'));
       return;
     }
     this.tableRowSelected = model;

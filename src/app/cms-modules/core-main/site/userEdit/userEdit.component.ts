@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -85,7 +86,7 @@ export class CoreSiteUserEditComponent implements OnInit {
   DataGetOneContent(): void {
 
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -105,16 +106,16 @@ export class CoreSiteUserEditComponent implements OnInit {
 
     filteModelContent.AccessLoad = true;
 
-    this.coreSiteUserService.ServiceGetAll(filteModelContent).subscribe(
-      (next) => {
+    this.coreSiteUserService.ServiceGetAll(filteModelContent).subscribe({
+      next: (ret) => {
         /*َAccess Field*/
-        this.dataAccessModel = next.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+        this.dataAccessModel = ret.Access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          if (next.ListItems && next.ListItems.length > 0) {
-            this.dataModel = next.ListItems[0];
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
+          if (ret.ListItems && ret.ListItems.length > 0) {
+            this.dataModel = ret.ListItems[0];
             this.formInfo.FormTitle = this.formInfo.FormTitle;
             this.formInfo.FormAlert = '';
           }
@@ -124,17 +125,17 @@ export class CoreSiteUserEditComponent implements OnInit {
           }
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -144,29 +145,29 @@ export class CoreSiteUserEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.coreSiteUserService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.coreSiteUserService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 

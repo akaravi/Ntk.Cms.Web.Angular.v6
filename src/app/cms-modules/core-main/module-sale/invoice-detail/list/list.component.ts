@@ -1,4 +1,4 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -136,33 +136,33 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.coreModuleSaleInvoiceDetailService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.coreModuleSaleInvoiceDetailService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(ret.Access);
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -240,16 +240,16 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
 
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
-          this.coreModuleSaleInvoiceDetailService.ServiceDelete(this.tableRowSelected.Id).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.coreModuleSaleInvoiceDetailService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -258,11 +258,11 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
               this.loading.Stop(pName);
 
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
-
             }
+          }
           );
         }
       }
@@ -293,16 +293,19 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.coreModuleSaleInvoiceDetailService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+    this.coreModuleSaleInvoiceDetailService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -310,17 +313,19 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.coreModuleSaleInvoiceDetailService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+    this.coreModuleSaleInvoiceDetailService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
+    }
     );
 
   }
@@ -373,16 +378,19 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.coreModuleSaleInvoiceDetailService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+    this.coreModuleSaleInvoiceDetailService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 

@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CoreGuideService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';

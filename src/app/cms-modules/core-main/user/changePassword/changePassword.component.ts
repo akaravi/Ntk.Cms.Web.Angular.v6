@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -8,7 +9,6 @@ import {
   AccessModel,
   DataFieldInfoModel,
   AuthUserChangePasswordModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import {
@@ -97,27 +97,27 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     if (this.requestLinkUserId > 0) {
       this.dataModel.LinkUserId = this.requestLinkUserId;
     }
-    this.coreAuthService.ServiceChangePassword(this.dataModel).subscribe(
-      (next) => {
+    this.coreAuthService.ServiceChangePassword(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        if (next.IsSuccess) {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   passwordValid(event): void {

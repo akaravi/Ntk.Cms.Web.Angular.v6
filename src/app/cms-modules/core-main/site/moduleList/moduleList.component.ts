@@ -1,14 +1,11 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  CoreSiteModel,
-  CoreSiteService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -156,25 +153,25 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.contentService.ServiceGetAll(filterModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+    this.contentService.ServiceGetAll(filterModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(ret.Access);
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -288,16 +285,16 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
 
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.contentService.ServiceDeleteEntity(this.tableRowSelected).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.contentService.ServiceDeleteEntity(this.tableRowSelected).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -306,11 +303,11 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
               this.loading.Stop(pName);
 
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
-
             }
+          }
           );
         }
       }
@@ -333,16 +330,19 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     statist.set('Active', 0);
     statist.set('Expired Date', 0);
     statist.set('All', 0);
-    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -350,17 +350,19 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
+    }
     );
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastFilter2 = new FilterDataModel();
@@ -368,16 +370,18 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     fastFilter2.Value = new Date();
     fastFilter2.SearchType = EnumFilterDataModelSearchTypes.GreaterThan;
     filterStatist2.Filters.push(fastFilter2);
-    this.contentService.ServiceGetCount(filterStatist2).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Expired Date', next.TotalRowCount);
+    this.contentService.ServiceGetCount(filterStatist2).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Expired Date', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
       }
-      ,
-      (error) => {
-      }
+    }
     );
   }
   onActionbuttonConfigSiteRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
@@ -435,16 +439,19 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error:(er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 

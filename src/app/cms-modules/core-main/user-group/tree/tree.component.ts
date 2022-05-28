@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -17,7 +18,6 @@ import {
   FilterModel,
   CoreUserGroupModel,
   CoreUserGroupService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -52,7 +52,7 @@ export class CoreUserGroupTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreUserGroupModel = new CoreUserGroupModel();
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreUserGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreUserGroupModel>();
   @Output() optionChange = new EventEmitter<CoreUserGroupModel>();
@@ -78,20 +78,21 @@ export class CoreUserGroupTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: CoreUserGroupModel): void {

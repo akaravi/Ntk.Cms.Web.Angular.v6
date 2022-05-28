@@ -196,7 +196,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
       this.requestContentId == null ||
       this.requestContentId === 0
     ) {
-      const message = 'محتوا انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Content_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
 
       return;
@@ -265,7 +265,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
     }
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {

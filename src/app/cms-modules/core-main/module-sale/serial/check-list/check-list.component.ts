@@ -1,4 +1,4 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,7 +7,6 @@ import {
   CoreModuleSaleSerialService,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   DataFieldInfoModel,
   CoreModuleSaleHeaderModel,
@@ -123,27 +122,25 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     const model = new CoreModuleCheckSerialForSiteDtoModel();
     model.serialNumber = serial;
     this.showBuy = false;
-    this.coreModuleSaleSerialService.ServiceCheckUseSerialForSite(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.coreModuleSaleSerialService.ServiceCheckUseSerialForSite(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.showBuy = true;
-          this.dataModelResult = next;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-          this.tableSource.data = next.ListItems;
-
+          this.dataModelResult = ret;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.tableSource.data = ret.ListItems;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   RegisterUseSerialForSite(model: CoreModuleCheckSerialForSiteDtoModel): void {
@@ -154,25 +151,23 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.loading.Start(pName);
 
 
-    this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelRegResult = next;
+    this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelRegResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_series_was_successfully_registered_for_you'));
-
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -180,7 +175,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
 
   onActionbuttonReload(): void {
     if (!this.dataModel || !this.dataModel.serialNumber || this.dataModel.serialNumber.length === 0) {
-      const message = 'مقدار سریال به درستی  وارد نشده است';
+      const message = this.translate.instant('MESSAGE.Serial_value_is_not_entered_correctly');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -188,12 +183,12 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   }
   onActionbuttonBuy(): void {
     if (!this.dataModel || !this.dataModel.serialNumber || this.dataModel.serialNumber.length === 0) {
-      const message = 'مقدار سریال به درستی  وارد نشده است';
+      const message = this.translate.instant('MESSAGE.Serial_value_is_not_entered_correctly');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     if (!this.dataModel || !this.dataModel.pwdForUse || this.dataModel.pwdForUse.length === 0) {
-      const message = 'مقدار پسورد به درستی  وارد نشده است';
+      const message = this.translate.instant('MESSAGE.Password_value_is_not_entered_correctly');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -12,13 +13,11 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   CoreCpMainMenuModel,
   CoreCpMainMenuService,
-  NtkCmsApiStoreService,
   EnumSortType,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -55,7 +54,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreCpMainMenuModel = new CoreCpMainMenuModel();
   dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
   filteModel = new FilterModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreCpMainMenuModel>(node => node.Children);
   dataSource = new MatTreeNestedDataSource<CoreCpMainMenuModel>();
   @Output() optionChange = new EventEmitter<CoreCpMainMenuModel>();
@@ -81,24 +80,25 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: CoreCpMainMenuModel): void {
-    
+
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
@@ -174,7 +174,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-   
+
   }
 
 }

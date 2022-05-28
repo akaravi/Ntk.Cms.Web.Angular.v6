@@ -193,7 +193,7 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
       (this.categoryModelSelected && this.categoryModelSelected.Id === 0) &&
       (this.requestDepartemenId == null || this.requestDepartemenId === 0)
     ) {
-      const message = 'محتوا انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Content_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
 
       return;
@@ -258,7 +258,7 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonDeleteRow(mode: TicketingTemplateModel = this.tableRowSelected): void {
     if (mode == null || !mode.Id || mode.Id === 0) {
-      const emessage = 'ردیفی برای ویرایش انتخاب نشده است';
+      const emessage = this.translate.instant('MESSAGE.No_row_selected_for_editing');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
@@ -272,7 +272,7 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {

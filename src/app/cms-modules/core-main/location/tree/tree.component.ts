@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -12,13 +13,11 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import {
-  CoreAuthService,
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   CoreLocationModel,
   CoreLocationService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -78,31 +77,26 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: CoreLocationModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
-    // if (this.optionsData) {
-    //   this.optionsData.data.Select = this.dataModelSelect;
-    //   if (this.optionsData.parentMethods && this.optionsData.parentMethods.onActionSelect) {
-    //     this.optionsData.parentMethods.onActionSelect(this.dataModelSelect);
-    //   }
-    // }
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
@@ -112,7 +106,6 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
       this.onActionSelect(null);
     }
     this.dataModelSelect = new CoreLocationModel();
-    // this.optionsData.data.Select = new CoreLocationModel();
     this.DataGetAll();
   }
   onActionSelectForce(id: number | CoreLocationModel): void {
@@ -176,7 +169,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-  
+
   }
 
 }

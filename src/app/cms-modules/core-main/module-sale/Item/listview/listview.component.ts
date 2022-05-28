@@ -1,4 +1,4 @@
-
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -115,22 +115,24 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
       filteModel.Filters.push(fastfilter);
     }
     filteModel.SortColumn = 'Id';
-    this.coreModuleSaleItemService.ServiceGetAll(filteModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.coreModuleSaleItemService.ServiceGetAll(filteModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 

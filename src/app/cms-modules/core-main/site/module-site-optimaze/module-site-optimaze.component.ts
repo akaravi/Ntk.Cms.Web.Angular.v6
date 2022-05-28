@@ -1,9 +1,9 @@
+//**msh */
 import {
   CoreEnumService,
   ErrorExceptionResult,
   FormInfoModel,
   CoreSiteService,
-  CoreSiteModel,
   ProcessModuleSiteDataOptimazeOutputModel,
 } from 'ntk-cms-api';
 import {
@@ -27,7 +27,7 @@ import { MatStepper } from '@angular/material/stepper';
   styleUrls: ['./module-site-optimaze.component.scss'],
 })
 export class CoreSiteModuleSiteOptimazeComponent implements OnInit {
-  requestLinkSiteId=0;
+  requestLinkSiteId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CoreSiteModuleSiteOptimazeComponent>,
@@ -56,21 +56,24 @@ export class CoreSiteModuleSiteOptimazeComponent implements OnInit {
     this.formInfo.FormTitle = 'مشاهده نتیجه  ';
     this.DataGetAll();
   }
-  DataGetAll(): void {  
+  DataGetAll(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.coreSiteService.ServiceModuleDataOptimaze(this.requestLinkSiteId).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;   
+    this.coreSiteService.ServiceModuleDataOptimaze(this.requestLinkSiteId).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 

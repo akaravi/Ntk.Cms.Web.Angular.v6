@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -82,18 +83,19 @@ export class CoreSiteModuleAddComponent implements OnInit {
   DataGetAccess(): void {
     this.coreSiteService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.dataAccessModel = ret.Access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
 
@@ -103,29 +105,29 @@ export class CoreSiteModuleAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.coreSiteService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.coreSiteService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onFormSubmit(): void {

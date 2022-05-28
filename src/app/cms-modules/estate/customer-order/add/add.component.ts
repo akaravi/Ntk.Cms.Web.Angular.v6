@@ -137,7 +137,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -204,7 +204,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     filteModelProperty.Filters.push(filter);
     this.dataModel.PropertyDetailGroups = [];
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
-    this.loading.Start(pName, 'دریافت اطلاعات جزئیات');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_detailed_information'));
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe({
         next: (ret) => {
@@ -268,7 +268,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.contractTypeSelected = null;
     this.dataModel.LinkContractTypeId = null;
     if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'نوع معامله ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }

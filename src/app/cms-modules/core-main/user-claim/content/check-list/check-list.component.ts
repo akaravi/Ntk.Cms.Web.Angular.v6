@@ -1,4 +1,4 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,7 +7,6 @@ import {
   CoreUserClaimContentService,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   DataFieldInfoModel,
   CoreUserClaimTypeModel,
@@ -120,54 +119,58 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
       model.UserId = this.requestLinkUserId;
       model.SiteId = this.requestLinkSiteId;
       this.coreUserClaimContentService.setAccessLoad();
-      this.coreUserClaimContentService.ServiceClaimCheck(model).subscribe(
-        (next) => {
-          if (next.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      this.coreUserClaimContentService.ServiceClaimCheck(model).subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-            this.dataModelResult = next;
-            this.tableSource.data = next.ListItems;
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.ListItems;
 
             if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(next.Access);
+              this.optionsSearch.childMethods.setAccess(ret.Access);
             }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
 
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
 
           this.loading.Stop(pName);
-
         }
+      }
       );
       /** */
     }
     else {
       /** */
       this.coreUserClaimContentService.setAccessLoad();
-      this.coreUserClaimContentService.ServiceClaimCheckCurrent().subscribe(
-        (next) => {
-          if (next.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      this.coreUserClaimContentService.ServiceClaimCheckCurrent().subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-            this.dataModelResult = next;
-            this.tableSource.data = next.ListItems;
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.ListItems;
 
             if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(next.Access);
+              this.optionsSearch.childMethods.setAccess(ret.Access);
             }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
 
         },
-        (error) => {
-          this.cmsToastrService.typeError(error);
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
 
           this.loading.Stop(pName);
-
         }
+      }
       );
       /** */
     }

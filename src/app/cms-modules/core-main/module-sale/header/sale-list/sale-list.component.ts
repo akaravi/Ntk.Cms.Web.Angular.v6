@@ -1,4 +1,4 @@
-
+//**msh */
 import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
@@ -16,8 +16,6 @@ import {
   CoreModuleSaleInvoiceModel,
   CoreModuleSaleItemModel,
   CoreSiteService,
-  BankPaymentTransactionModel,
-  BankPaymentTransactionService,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -104,22 +102,25 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result && result.dialogChangedDate) {
-           localStorage.removeItem('TransactionId');
+          localStorage.removeItem('TransactionId');
         }
       });
     }
   }
-  
+
   DataGetCurrency(): void {
-    this.coreSiteService.ServiceGetCurrencyMaster().subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.currency = next.Item;
+    this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.currency = ret.Item;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   getModuleList(): void {
@@ -147,25 +148,23 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
 
     this.showBuy = false;
     const model = new FilterModel();
-    this.coreModuleSaleHeaderService.ServiceGetAllSale(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.coreModuleSaleHeaderService.ServiceGetAllSale(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.showBuy = true;
-          this.dataModelResult = next;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          this.dataModelResult = ret;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -178,7 +177,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
 
     const dialogRef = this.dialog.open(CoreModuleSaleHeaderSalePaymentComponent, {
       height: '90%',
-      width : '40%',
+      width: '40%',
       data: { LinkHeaderId: model.Id }
     });
     dialogRef.afterClosed().subscribe(result => {

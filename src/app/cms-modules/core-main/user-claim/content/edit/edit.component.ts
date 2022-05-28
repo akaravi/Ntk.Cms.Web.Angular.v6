@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -34,7 +35,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class CoreUserClaimContentEditComponent implements OnInit ,OnDestroy {
+export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -63,14 +64,16 @@ export class CoreUserClaimContentEditComponent implements OnInit ,OnDestroy {
         this.ProfessionalData = false;
       }
     });
-    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.tokenInfo = next;
-      if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
-        this.dataModel.LinkUserId = this.tokenInfo.UserId;
-        this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
-        this.ProfessionalData = true;
-      } else {
-        this.ProfessionalData = false;
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe({
+      next: (ret) => {
+        this.tokenInfo = ret;
+        if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
+          this.dataModel.LinkUserId = this.tokenInfo.UserId;
+          this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
+          this.ProfessionalData = true;
+        } else {
+          this.ProfessionalData = false;
+        }
       }
     });
   }
@@ -80,7 +83,7 @@ export class CoreUserClaimContentEditComponent implements OnInit ,OnDestroy {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   cmsApiStoreSubscribe: Subscription;
   tokenInfo = new TokenInfoModel();
-  ProfessionalData=false;
+  ProfessionalData = false;
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
 
@@ -118,34 +121,34 @@ export class CoreUserClaimContentEditComponent implements OnInit ,OnDestroy {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server;
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreUserClaimContentService.setAccessLoad();
-    this.coreUserClaimContentService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.coreUserClaimContentService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
 
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Id;
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Id;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -153,31 +156,31 @@ export class CoreUserClaimContentEditComponent implements OnInit ,OnDestroy {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.coreUserClaimContentService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.coreUserClaimContentService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionFileSelected(model: NodeInterface): void {

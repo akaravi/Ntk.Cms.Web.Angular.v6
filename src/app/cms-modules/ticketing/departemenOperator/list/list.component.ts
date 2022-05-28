@@ -204,7 +204,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       this.requestDepartemenId == null ||
       this.requestDepartemenId === 0
     ) {
-      const message = 'محتوا انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Content_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
 
       return;

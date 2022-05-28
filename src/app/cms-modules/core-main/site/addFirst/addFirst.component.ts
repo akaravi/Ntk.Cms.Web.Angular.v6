@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {
   AuthRenewTokenModel,
@@ -20,7 +21,6 @@ import { MatStepper } from '@angular/material/stepper';
 import { FormGroup } from '@angular/forms';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
 
 @Component({
   selector: 'app-core-site-add-first',
@@ -45,7 +45,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
     /** read storage */
     this.siteTypeId = + localStorage.getItem('siteTypeId');
     if (this.siteTypeId > 0) {
-       this.dataModel.LinkSiteCategoryId = this.siteTypeId;
+      this.dataModel.LinkSiteCategoryId = this.siteTypeId;
     }
     /** read storage */
   }
@@ -53,7 +53,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   alphaExp = /^[a-zA-Z0-9]+$/;
   siteTypeId = 0;
-  
+
   dataModel = new CoreSiteAddFirstSiteDtoModel();
   filterModel = new FilterModel();
   dataModelResultDomains = new ErrorExceptionResult<string>();
@@ -72,43 +72,47 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.loading.Start(pName, 'دریافت دسترسی ها');
     this.coreSiteService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
             // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
         }
+      }
       );
   }
 
   GetDomainList(): void {
     const pName = this.constructor.name + '.GetDomainList';
     this.loading.Start(pName, 'دریافت لیست دامنه های مجاز');
-    this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResultDomains = next;
-          if (next.ListItems.length > 0) {
-            this.dataModel.Domain = next.ListItems[0];
+    this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResultDomains = ret;
+          if (ret.ListItems.length > 0) {
+            this.dataModel.Domain = ret.ListItems[0];
           }
           if (!this.dataModel.SubDomain || this.dataModel.SubDomain?.length === 0) {
             this.dataModel.SubDomain = 'myname';
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 
@@ -145,22 +149,23 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.formInfo.FormSubmitAllow = false;
     const pName = this.constructor.name + '.onFormSubmit';
     this.loading.Start(pName, 'در حال ثبت اطلاعات اولین سامانه شما');
-    this.coreSiteService.ServiceAddFirstSite(this.dataModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.coreSiteService.ServiceAddFirstSite(this.dataModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.cmsToastrService.typeSuccessAddFirstSite();
-          this.clickSelectSite(next.Item.Id);
+          this.clickSelectSite(ret.Item.Id);
         } else {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+          this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.formInfo.FormSubmitAllow = true;
         this.loading.Stop(pName);
       }
+    }
     );
   }
 
@@ -171,17 +176,18 @@ export class CoreSiteAddFirstComponent implements OnInit {
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
     authModel.SiteId = Id;
-    this.coreAuthService.ServiceRenewToken(authModel).subscribe(
-      (res) => {
+    this.coreAuthService.ServiceRenewToken(authModel).subscribe({
+      next: (res) => {
         this.loading.Stop(pName);
         if (res.IsSuccess) {
           setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 2000);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
   onActionSelectorSelect(model: CoreSiteCategoryModel | null): void {

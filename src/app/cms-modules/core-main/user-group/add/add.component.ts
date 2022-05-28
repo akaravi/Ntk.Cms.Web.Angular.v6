@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -21,7 +22,6 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-core-usercategory-add',
@@ -83,18 +83,18 @@ export class CoreUserGroupAddComponent implements OnInit {
   DataGetAccess(): void {
     this.coreUserGroupService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataAddContent(): void {
@@ -103,28 +103,28 @@ export class CoreUserGroupAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.coreUserGroupService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.coreUserGroupService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
+      }
       }
     );
   }

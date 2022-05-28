@@ -1,4 +1,4 @@
-
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -88,26 +88,29 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     }
     const pName = this.constructor.name + '.ServiceGetAll';
     this.loading.Start(pName, 'در حال دریافت لیست ماژول ها');
-    this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        if (next.IsSuccess) {
+        if (ret.IsSuccess) {
           if (this.linkSiteCategoryId && this.linkSiteCategoryId > 0) {
             this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
               this.tabledisplayedColumns,
               'virtual_CmsSiteCategory.Title'
             );
           }
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 

@@ -1,8 +1,7 @@
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { CoreEnumService, ErrorExceptionResult, FilterDataModel, FilterModel, CoreUserClaimGroupModel, CoreUserClaimGroupService } from 'ntk-cms-api';
+import { CoreEnumService, ErrorExceptionResult, FilterModel, CoreUserClaimGroupModel, CoreUserClaimGroupService } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -54,28 +53,28 @@ export class CoreUserClaimGroupSelectionlistComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(filteModel).subscribe(
-      (next) => {
-        // this.fieldsStatus = new Map<number, boolean>();
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
           this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
           this.dataModelResult.ListItems.forEach((el) => {
             if (this.fieldsStatus.get(el.Id)) {
               this.dataModelSelect.push(el);
             }
-          });
-
+          })
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(value: CoreUserClaimGroupModel): void {
@@ -103,7 +102,7 @@ export class CoreUserClaimGroupSelectionlistComponent implements OnInit {
       });
     }
     this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
-    
+
   }
 
   onActionReload(): void {

@@ -420,7 +420,7 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      const message = 'منطقه اطلاعات حدف شد';
+      const message = this.translate.instant('MESSAGE.Information_area_deleted');
       this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.LinkLocationId = null;
       return;

@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -102,36 +103,35 @@ export class CoreCpMainMenuEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     /*َAccess Field*/
     this.coreCpMainMenuService.setAccessLoad();
-    this.coreCpMainMenuService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
+    this.coreCpMainMenuService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
         /*َAccess Field*/
-        this.dataAccessModel = next.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
+        this.dataAccessModel = ret.Access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
           this.DataGetAllMenuCoreUserGroup();
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataGetAllMenuCoreUserGroup(): void {
@@ -152,29 +152,28 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     filter.Value = this.requestId;
     filteModelContent.Filters.push(filter);
 
-    this.coreCpMainMenuCmsUserGroupService.ServiceGetAll(filteModelContent).subscribe(
-      (next) => {
-        this.dataCoreCpMainMenuCmsUserGroupModel = next.ListItems;
+    this.coreCpMainMenuCmsUserGroupService.ServiceGetAll(filteModelContent).subscribe({
+      next: (ret) => {
+        this.dataCoreCpMainMenuCmsUserGroupModel = ret.ListItems;
         const listG: number[] = [];
         this.dataCoreCpMainMenuCmsUserGroupModel.forEach(element => {
           listG.push(element.CmsUserGroup_Id);
         });
         this.dataCoreCpMainMenuIds = listG;
-        if (next.IsSuccess) {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -182,30 +181,29 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.coreCpMainMenuService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.coreCpMainMenuService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onFormSubmit(): void {
@@ -249,24 +247,22 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     entity.CmsUserGroup_Id = model.Id;
     entity.CmsCpMainMenu_Id = this.dataModel.Id;
 
-    this.coreCpMainMenuCmsUserGroupService.ServiceAdd(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.coreCpMainMenuCmsUserGroupService.ServiceAdd(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
-
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionSelectorUserCategorySelectRemoved(model: CoreUserGroupModel): void {
@@ -274,22 +270,22 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     entity.CmsUserGroup_Id = model.Id;
     entity.CmsCpMainMenu_Id = this.dataModel.Id;
 
-    this.coreCpMainMenuCmsUserGroupService.ServiceDeleteEntity(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.coreCpMainMenuCmsUserGroupService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onIconPickerSelect(model: any): void {

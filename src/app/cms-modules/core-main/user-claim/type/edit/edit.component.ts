@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -74,7 +75,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
   dataCoreClaimGroupIds: number[] = [];
   dataCoreUserClaimGroupDetailModels: CoreUserClaimGroupDetailModel[];
 
-  
+
   ngOnInit(): void {
     if (this.requestId > 0) {
       this.formInfo.FormTitle = 'ویرایش  ';
@@ -103,34 +104,34 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreUserClaimTypeService.setAccessLoad();
-    this.coreUserClaimTypeService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.coreUserClaimTypeService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
+        this.dataModel = ret.Item;
+        if (ret.IsSuccess) {
 
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
+          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataGetAllCoreUserClaimType(): void {
@@ -140,7 +141,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server;
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'DataGetAllCoreUserClaimType'
     this.loading.Start(pName, 'دریافت لیست مدارک');
@@ -151,60 +152,57 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
     filter.Value = this.requestId;
     filteModelContent.Filters.push(filter);
 
-    this.coreUserClaimGroupDetailService.ServiceGetAll(filteModelContent).subscribe(
-      (next) => {
-        this.dataCoreUserClaimGroupDetailModels = next.ListItems;
+    this.coreUserClaimGroupDetailService.ServiceGetAll(filteModelContent).subscribe({
+      next: (ret) => {
+        this.dataCoreUserClaimGroupDetailModels = ret.ListItems;
         const listG: number[] = [];
         this.dataCoreUserClaimGroupDetailModels.forEach(element => {
           listG.push(element.LinkUserClaimGroupId);
         });
         this.dataCoreClaimGroupIds = listG;
-        if (next.IsSuccess) {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = '';
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataEditContent(): void {
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.coreUserClaimTypeService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.coreUserClaimTypeService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.IsSuccess) {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
-
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionFileSelected(model: NodeInterface): void {
@@ -242,24 +240,22 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
     entity.LinkUserClaimGroupId = this.dataModel.Id;
     entity.IsRequired = true;
 
-    this.coreUserClaimGroupDetailService.ServiceAdd(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.coreUserClaimGroupDetailService.ServiceAdd(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
-
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
-
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionSelectorUserCategorySelectRemoved(model: CoreUserClaimTypeModel): void {
@@ -267,22 +263,22 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
     entity.LinkUserClaimTypeId = model.Id;
     entity.LinkUserClaimGroupId = this.dataModel.Id;
 
-    this.coreUserClaimGroupDetailService.ServiceDeleteEntity(entity).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
+    this.coreUserClaimGroupDetailService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
           this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
           this.cmsToastrService.typeSuccessEdit();
-          // this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 }

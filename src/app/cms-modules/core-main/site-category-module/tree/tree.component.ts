@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -17,7 +18,6 @@ import {
   FilterModel,
   CoreSiteCategoryCmsModuleModel,
   CoreSiteCategoryCmsModuleService,
-  NtkCmsApiStoreService,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -76,20 +76,22 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.ListItems;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: CoreSiteCategoryCmsModuleModel): void {
@@ -140,17 +142,17 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
     }
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( '
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( '
       + this.dataModelSelect.virtual_CmsModule.Title + '<==>' + this.dataModelSelect.virtual_CmsSiteCategory.Title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
-          this.categoryService.ServiceDeleteEntity(this.dataModelSelect).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.categoryService.ServiceDeleteEntity(this.dataModelSelect).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -159,11 +161,11 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
               this.loading.Stop(pName);
 
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
-
             }
+          }
           );
         }
       }

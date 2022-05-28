@@ -12,6 +12,7 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -24,7 +25,9 @@ import { Output } from '@angular/core';
 export class EstatePropertyTypeUsageCompleteComponent implements OnInit {
   constructor(
     public estatePropertyTypeUsageService: EstatePropertyTypeUsageService,
-    private cmsToastrService: CmsToastrService) {
+    private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
+    ) {
   }
   @Input() set optionSelectForce(x: string[]) {
     this.onActionSelectForce(x);
@@ -111,7 +114,7 @@ export class EstatePropertyTypeUsageCompleteComponent implements OnInit {
       },
         (error) => {
 
-          const title = 'برروی خطا در دریافت اطلاعات ';
+          const title = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorReceivingInformation');
           this.cmsToastrService.typeErrorGetAll(error);
         })).toPromise();
   }

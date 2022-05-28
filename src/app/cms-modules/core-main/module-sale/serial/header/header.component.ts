@@ -1,3 +1,4 @@
+//**msh */
 import {
   CoreEnumService,
   EnumInfoModel,
@@ -55,22 +56,22 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreModuleSaleSerialService.setAccessLoad();
-    this.coreModuleSaleSerialService.ServiceGetOneById(this.optionId).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.coreModuleSaleSerialService.ServiceGetOneById(this.optionId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
         } else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 }

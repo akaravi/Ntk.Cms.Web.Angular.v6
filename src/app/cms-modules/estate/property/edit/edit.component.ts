@@ -125,7 +125,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
-      // this.dialogRef.close({ dialogChangedDate: false });
       this.router.navigate(['/estate/property']);
       return;
     }
@@ -160,12 +159,12 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
 
   DataGetOne(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
 
 
     const pName = this.constructor.name + 'ServiceGetOneById';
-    this.loading.Start(pName, 'دریافت اطلاعات ملک');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
     this.estatePropertyService.setAccessLoad();
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
@@ -230,7 +229,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     filteModelProperty.Filters.push(filter);
     this.dataModel.PropertyDetailGroups = [];
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
-    this.loading.Start(pName, 'دریافت اطلاعات جزئیات');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_detailed_information'));
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe({
         next: (ret) => {
@@ -362,8 +361,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      // const message = 'کاربر اطلاعات مشخص نیست';
-      // this.cmsToastrService.typeErrorSelected(message);
       this.dataModel.LinkCmsUserId = null;
       return;
     }
@@ -371,7 +368,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      const message = 'منطقه اطلاعات حدف شد';
+      const message = this.translate.instant('MESSAGE.Information_area_deleted');
       this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.LinkLocationId = null;
       return;
@@ -390,7 +387,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   onActionSelectorContractType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
     if (!model || !model.Id || model.Id.length <= 0) {
-      const message = 'نوع معامله ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -420,7 +417,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.onActionOptionAddToList();
     }
     if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
-      const message = 'نوع معامله ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
       this.formInfo.FormSubmitAllow = true;
       return;
@@ -429,13 +426,12 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
 
   }
   onFormCancel(): void {
-    // this.dialogRef.close({ dialogChangedDate: false });
     this.router.navigate(['/estate/property']);
   }
 
   onActionOptionAddToList(viewAlert: boolean = true): void {
     if (!this.contractTypeSelected || this.contractTypeSelected.Id.length === 0) {
-      const message = 'نوع معامله ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       if (viewAlert) {
         this.cmsToastrService.typeErrorSelected(message);
       }

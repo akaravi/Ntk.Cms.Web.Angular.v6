@@ -1,4 +1,4 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,7 +9,6 @@ import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -35,7 +34,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-user-list',
   templateUrl: './list.component.html',
-  
+
 })
 export class CoreUserListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
@@ -43,8 +42,8 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     private coreUserService: CoreUserService,
     public contentService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
-    private cmsToastrService: CmsToastrService,
     private router: Router,
+    private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
     private coreAuthService: CoreAuthService,
     private tokenHelper: TokenHelper,
@@ -125,19 +124,17 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreUserModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreUserService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-
-
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+    this.coreUserService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
           if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
@@ -152,18 +149,19 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
           }
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(ret.Access);
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -300,16 +298,16 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?' + '<br> ( ' + this.tableRowSelected.Username + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Username + ' ) ';
     this.contentService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.coreUserService.ServiceDelete(this.tableRowSelected.Id).subscribe(
-            (next) => {
-              if (next.IsSuccess) {
+          this.coreUserService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+            next: (ret) => {
+              if (ret.IsSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -318,11 +316,11 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
               this.loading.Stop(pName);
 
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
-
             }
+          }
           );
         }
       }
@@ -345,8 +343,8 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
     authModel.UserId = this.tableRowSelected.Id;
-    this.coreAuthService.ServiceRenewToken(authModel).subscribe(
-      (res) => {
+    this.coreAuthService.ServiceRenewToken(authModel).subscribe({
+      next: (res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessSelected();
           this.router.navigate(['/']);
@@ -355,12 +353,12 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorSelected();
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
-
 
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -370,16 +368,19 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.coreUserService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+    this.coreUserService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -387,17 +388,19 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.coreUserService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+    this.coreUserService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
+    }
     );
 
   }
@@ -408,16 +411,19 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.coreUserService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+    this.coreUserService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 

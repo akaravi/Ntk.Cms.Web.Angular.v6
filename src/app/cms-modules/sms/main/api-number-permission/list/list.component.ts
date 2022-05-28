@@ -234,7 +234,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
 
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = 'آیا مایل به حدف این محتوا می باشید ' + '?';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {

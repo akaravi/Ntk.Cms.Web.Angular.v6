@@ -84,7 +84,6 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
     const filteModel = new FilterModel();
     filteModel.RowPerPage = 20;
     filteModel.AccessLoad = true;
-    // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
     filter.PropertyName = 'Name';
     filter.Value = text;
@@ -181,11 +180,7 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-    //   this.onActionSelect(null);
-    // }
     this.dataModelSelect = new EstatePropertyModel();
-    // this.optionsData.Select = new EstatePropertyModel();
     this.DataGetAll(null);
   }
 }

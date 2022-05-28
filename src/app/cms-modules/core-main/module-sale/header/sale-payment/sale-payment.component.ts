@@ -1,3 +1,4 @@
+//**msh */
 import {
   ErrorExceptionResult,
   FormInfoModel,
@@ -75,49 +76,48 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     this.viewCalculate = false;
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
-    this.coreModuleSaleHeaderService.ServiceOrderCalculate(this.dataModelCalculate).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelCalculateResult = next;
+    this.coreModuleSaleHeaderService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelCalculateResult = ret;
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
 
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   DataPayment(): void {
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
-    this.coreModuleSaleHeaderService.ServiceOrderPayment(this.dataModelPayment).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelPaymentResult = next;
+    this.coreModuleSaleHeaderService.ServiceOrderPayment(this.dataModelPayment).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelPaymentResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-          localStorage.setItem('TransactionId', next.Item.TransactionId.toString());
+          localStorage.setItem('TransactionId', ret.Item.TransactionId.toString());
           this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelectCalculate(model: BankPaymentPrivateSiteConfigModel): void {

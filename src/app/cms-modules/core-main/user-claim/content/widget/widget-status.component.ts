@@ -1,3 +1,4 @@
+//**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
@@ -5,7 +6,8 @@ import {
   CoreUserClaimContentService,
   EnumRecordStatus,
   ErrorExceptionResult,
-  FilterModel} from 'ntk-cms-api';
+  FilterModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -98,21 +100,24 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
 
     const pName = this.constructor.name + 'ServiceClaimCheck';
     this.loading.Start(pName, this.translate.instant('TITLE.Verification_of_documents_and_identity'));
-    this.service.ServiceClaimCheckCurrent().subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.service.ServiceClaimCheckCurrent().subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           if (this.dataModelResult.ListItems.find(x => x.RecordStatus !== EnumRecordStatus.Pending && !x.IsApproved)) {
             this.baseColor = 'warnning';
             this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
             this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.loading.Stop(pName);
       }
+    }
     );
   }
   translateHelp(t: string, v: string): string {

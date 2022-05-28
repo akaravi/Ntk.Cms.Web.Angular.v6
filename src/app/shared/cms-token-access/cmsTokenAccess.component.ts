@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   AuthRenewTokenModel,
   CoreAuthService,
@@ -20,6 +21,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
   constructor(
     public coreAuthService: CoreAuthService,
+    public translate: TranslateService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
   ) {
@@ -56,7 +58,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     authModel.UserId = this.tokenInfo.UserId;
     authModel.Lang = this.tokenInfo.Language;
 
-    const title = 'اطلاعات ';
+    const title = this.translate.instant('TITLE.Information');
     let message = '';
     if (authModel.UserAccessAdminAllowToAllData) {
       message = 'درخواست برای دسترسی به کلیه اطلاعات به سرور ارسال شد';
@@ -69,7 +71,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
       (next) => {
         this.loadingStatus = false;
         if (next.IsSuccess) {
-          const etitle = 'اطلاعات ';
+          const etitle = this.translate.instant('TITLE.Information');
           const emessage = '';
           if (next.Item.UserAccessAdminAllowToAllData === NewToall) {
             message = 'دسترسی تایید شد';
@@ -97,7 +99,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     authModel.UserId = this.tokenInfo.UserId;
     authModel.Lang = this.tokenInfo.Language;
 
-    const title = 'اطلاعات ';
+    const title = this.translate.instant('TITLE.Information');
     let message = '';
     if (authModel.UserAccessAdminAllowToProfessionalData) {
       message = 'درخواست برای دسترسی حرفه ایی به سرور ارسال شد';
@@ -110,7 +112,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
       (next) => {
         this.loadingStatus = false;
         if (next.IsSuccess) {
-          const etitle = 'اطلاعات ';
+          const etitle = this.translate.instant('TITLE.Information');
           if (next.Item.UserAccessAdminAllowToProfessionalData === NewToPerf) {
             const emessage = 'دسترسی تایید شد';
             this.cmsToastrService.toastr.success(emessage, etitle);
@@ -142,7 +144,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     authModel.UserId = this.inputUserId;
     authModel.Lang = this.tokenInfo.Language;
 
-    const title = 'اطلاعات ';
+    const title = this.translate.instant('TITLE.Information');
     const message = 'درخواست تغییر کاربر به سرور ارسال شد';
     this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
@@ -182,8 +184,8 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     authModel.SiteId = this.inputSiteId;
     authModel.Lang = this.tokenInfo.Language;
 
-    const title = 'اطلاعات ';
-    const message = 'درخواست تغییر سایت به سرور ارسال شد';
+    const title = this.translate.instant('TITLE.Information');
+    const message = this.translate.instant('MESSAGE.Request_to_change_site_was_sent_to_the_server');
     this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
@@ -191,11 +193,11 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
         this.loadingStatus = false;
         if (next.IsSuccess) {
           if (next.Item.SiteId === +this.inputSiteId) {
-            this.cmsToastrService.toastr.success('دسترسی به سایت جدید تایید شد', title);
+            this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_site_acess_confirmed'), title);
             this.inputSiteId = null;
             this.inputUserId = null;
           } else {
-            this.cmsToastrService.toastr.warning('دسترسی به سایت جدید تایید نشد', title);
+            this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_site_acess_denied'), title);
           }
         } else {
           this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);

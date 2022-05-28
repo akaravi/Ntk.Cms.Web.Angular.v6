@@ -223,7 +223,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.requestLinkApplicationId == null ||
       this.requestLinkApplicationId === 0
     ) {
-      const message = 'محتوا انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Content_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

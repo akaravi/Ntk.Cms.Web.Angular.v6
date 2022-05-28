@@ -1,4 +1,4 @@
-
+//**msh */
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,7 +9,6 @@ import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
@@ -133,18 +132,18 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.AccessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
 
-          this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.ListItems;
           if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
@@ -159,18 +158,19 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
           }
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(ret.Access);
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
-
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
 
@@ -281,8 +281,8 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
     authModel.SiteId = this.tableRowSelected.Id;
-    this.coreAuthService.ServiceRenewToken(authModel).subscribe(
-      (res) => {
+    this.coreAuthService.ServiceRenewToken(authModel).subscribe({
+      next : (res) => {
         if (res.IsSuccess) {
           this.cmsToastrService.typeSuccessSelected();
           this.router.navigate(['/']);
@@ -291,9 +291,10 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorSelected();
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionbuttonDomainAliasListRow(model: CoreSiteModel = this.tableRowSelected): void {
@@ -324,7 +325,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/core/device', this.tableRowSelected.Id]);
   }
-  onActionbuttonResller  (model: CoreSiteModel = this.tableRowSelected): void {
+  onActionbuttonResller(model: CoreSiteModel = this.tableRowSelected): void {
     if (!model || !model.Id || model.Id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
@@ -398,20 +399,23 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     if (!this.optionsStatist.data.show) {
       return;
     }
-  
+
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('All', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -419,17 +423,19 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     fastfilter.PropertyName = 'RecordStatus';
     fastfilter.Value = EnumRecordStatus.Available;
     filterStatist1.Filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          statist.set('Active', ret.TotalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-      ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
-      }
+    }
     );
 
   }
@@ -440,16 +446,19 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          exportlist.set('Download', ret.LinkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
 

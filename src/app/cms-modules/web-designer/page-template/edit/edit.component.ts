@@ -80,7 +80,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -134,7 +134,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     );
   }
   DataGetAllSourceSiteCategory(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information _From_The_Server');
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'webDesignerMainPageTemplateSiteCategoryService';
     this.loading.Start(pName);

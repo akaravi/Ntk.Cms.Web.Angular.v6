@@ -1,11 +1,12 @@
+//**msh */
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import {
   AuthRenewTokenModel,
   CoreAuthService,
   CoreSiteModel,
   CoreSiteService,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -31,6 +32,7 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
   loading = new ProgressSpinnerModel();
   constructor(
     private service: CoreSiteService,
+    public translate: TranslateService,
     private persianCalendarService: PersianCalendarService,
     private cmsToastrService: CmsToastrService,
     private coreAuthService: CoreAuthService,
@@ -67,20 +69,23 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
     this.modelData.set('Sub Domain', '...');
     this.modelData.set('Created Date', '...');
     this.modelData.set('Expire Date', '...');
-    this.service.ServiceGetOneById(this.tokenInfoModel.SiteId).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.modelData.set('Title', next.Item.Title);
-          this.modelData.set('Domain', next.Item.Domain);
-          this.modelData.set('Sub Domain', next.Item.SubDomain);
-          this.modelData.set('Created Date', this.persianCalendarService.PersianCalendar(next.Item.CreatedDate));
-          if (next.Item.ExpireDate) {
-            this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(next.Item.ExpireDate));
+    this.service.ServiceGetOneById(this.tokenInfoModel.SiteId).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.modelData.set('Title', ret.Item.Title);
+          this.modelData.set('Domain', ret.Item.Domain);
+          this.modelData.set('Sub Domain', ret.Item.SubDomain);
+          this.modelData.set('Created Date', this.persianCalendarService.PersianCalendar(ret.Item.CreatedDate));
+          if (ret.Item.ExpireDate) {
+            this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(ret.Item.ExpireDate));
           }
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
       },
-      (error) => {
+      error:(er) => {
       }
+    }
     );
 
   }
@@ -101,26 +106,27 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
         authModel.SiteId = model.Id;
         authModel.Lang = this.tokenInfoModel.Language;
 
-        const title = 'اطلاعات ';
-        const message = 'درخواست تغییر سایت به سرور ارسال شد';
+        const title = this.translate.instant('TITLE.Information');
+        const message = this.translate.instant('MESSAGE.Request_to_change_site_was_sent_to_the_server');
         this.cmsToastrService.toastr.info(message, title);
-        this.coreAuthService.ServiceRenewToken(authModel).subscribe(
-          (next) => {
-            if (next.IsSuccess) {
-              if (next.Item.SiteId === +model.Id) {
-                this.cmsToastrService.toastr.success('دسترسی به سایت جدید تایید شد', title);
+        this.coreAuthService.ServiceRenewToken(authModel).subscribe({
+          next: (ret) => {
+            if (ret.IsSuccess) {
+              if (ret.Item.SiteId === +model.Id) {
+                this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_site_acess_confirmed'), title);
 
               } else {
-                this.cmsToastrService.toastr.warning('دسترسی به سایت جدید تایید نشد', title);
+                this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_site_acess_denied'), title);
               }
             } else {
-              this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);
+              this.cmsToastrService.typeErrorAccessChange(ret.ErrorMessage);
             }
 
           },
-          (error) => {
-            this.cmsToastrService.typeErrorAccessChange(error);
+          error:(er) => {
+            this.cmsToastrService.typeErrorAccessChange(er);
           }
+        }
         );
       }
     }

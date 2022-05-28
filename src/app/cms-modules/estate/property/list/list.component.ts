@@ -160,9 +160,6 @@ export class EstatePropertyListComponent
     "IsSoldIt",
     "ViewConfigHiddenInList",
     "LinkSiteId",
-    // "Title",
-    // "LinkLocationIdParentTitle",
-    // "LinkLocationIdTitle",
     "ViewCount",
     "CreatedDate",
     "UpdatedDate",
@@ -372,7 +369,7 @@ export class EstatePropertyListComponent
       (this.requestLinkPropertyTypeLanduseId == null ||
         this.requestLinkPropertyTypeLanduseId.length === 0)
     ) {
-      const message = "محتوا انتخاب نشده است";
+      const message = this.translate.instant('MESSAGE.Content_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
 
       return;
@@ -467,7 +464,7 @@ export class EstatePropertyListComponent
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message =
-      "آیا مایل به حدف این محتوا می باشید " +
+    this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') +
       "?" +
       "<br> ( " +
       this.tableRowSelected.Title +
@@ -477,7 +474,7 @@ export class EstatePropertyListComponent
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + "main";
-          this.loading.Start(pName, 'در حال حذف اطلاعات');
+          this.loading.Start(pName, this.translate.instant('MESSAGE.Deleting_information'));
 
           this.contentService
             .ServiceDelete(this.tableRowSelected.Id)
@@ -614,7 +611,7 @@ export class EstatePropertyListComponent
     }
 
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات ملک");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.Id)
       .subscribe({

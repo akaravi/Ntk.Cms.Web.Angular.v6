@@ -185,7 +185,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   }
   DataOptionGetAll(): void {
     this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال دریافت گزینه ها از سرور';
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Options_From_The_Server');
     this.formInfo.FormError = '';
     this.loadingOption.Start('main');
 
@@ -354,7 +354,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     this.optionSelected = this.optionDataModel[index];
     this.optionDataModel.splice(index, 1);
     this.optionTabledataSource.data = this.optionDataModel;
-    this.optionActionTitle = 'ویرایش';
+    this.optionActionTitle = this.translate.instant('ACTION.EDIT');
   }
 
 
@@ -413,7 +413,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.Id || model.Id <= 0) {
-      const message = 'منطقه اطلاعات حدف شد';
+      const message = this.translate.instant('MESSAGE.Information_area_deleted');
       this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.LinkLocationId = null;
       return;

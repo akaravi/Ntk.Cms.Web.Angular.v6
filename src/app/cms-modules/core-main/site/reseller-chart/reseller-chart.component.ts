@@ -1,3 +1,4 @@
+//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -51,8 +52,8 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<RessellerChartModel> = new ErrorExceptionResult<RessellerChartModel>();
   filteModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<RessellerChartModel>(node =>  node.SiteChilds );
-  
+  treeControl = new NestedTreeControl<RessellerChartModel>(node => node.SiteChilds);
+
   dataSource = new MatTreeNestedDataSource<RessellerChartModel>();
   @Output() optionChange = new EventEmitter<RessellerChartModel>();
   cmsApiStoreSubscribe: Subscription;
@@ -85,20 +86,21 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetRessellerChart(this.requestLinkSiteId).subscribe(
-      (next) => {
-        if (next.IsSuccess) {
-          this.dataModelResult = next;
+    this.categoryService.ServiceGetRessellerChart(this.requestLinkSiteId).subscribe({
+      next: (ret) => {
+        if (ret.IsSuccess) {
+          this.dataModelResult = ret;
           this.dataSource.data = [this.dataModelResult.Item];
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
-
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-
       }
+    }
     );
   }
   onActionSelect(model: RessellerChartModel): void {
