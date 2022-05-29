@@ -17,6 +17,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -30,9 +31,10 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
     public categoryService: EstatePropertyTypeUsageService) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();

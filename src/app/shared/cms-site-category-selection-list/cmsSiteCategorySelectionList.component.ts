@@ -5,6 +5,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsStoreService } from 'src/app/core/reducers/cmsStore.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -19,8 +20,9 @@ export class CmsSiteCategorySelectionListComponent implements OnInit {
     public categoryService: CoreSiteCategoryService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();

@@ -55,7 +55,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
       this.searchInChecking =
         this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";

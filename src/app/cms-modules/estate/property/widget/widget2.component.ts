@@ -1,5 +1,6 @@
 //**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { EstatePropertyService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService, EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -23,10 +24,11 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
   constructor(
     private service: EstatePropertyService,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   filteModelContent = new FilterModel();
   modelData = new Map<string, number>();

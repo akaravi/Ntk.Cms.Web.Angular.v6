@@ -40,6 +40,7 @@ export class ApplicationAppAddComponent implements OnInit {
     public translate: TranslateService,
     private router: Router) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestSourceId = 0;

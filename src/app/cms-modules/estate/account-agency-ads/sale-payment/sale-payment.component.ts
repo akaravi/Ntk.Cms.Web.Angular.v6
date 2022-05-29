@@ -43,7 +43,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       if (data.LinkAccountAgencyId && data.LinkAccountAgencyId.length > 0) {
         this.requestLinkAccountAgencyId = data.LinkAccountAgencyId;

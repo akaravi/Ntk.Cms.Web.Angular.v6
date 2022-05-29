@@ -1,5 +1,6 @@
 //**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreModuleSiteService,
   EnumFilterDataModelSearchTypes,
@@ -31,8 +32,10 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'ماژول های ثبت شده';

@@ -48,6 +48,7 @@ export class CoreModuleSaleHeaderListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestHeaderGroupId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkHeaderGroupId'));
 
     this.optionsSearch.parentMethods = {

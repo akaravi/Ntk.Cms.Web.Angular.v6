@@ -17,6 +17,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
     private headerService: EstateCustomerOrderService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private cmsToastrService: CmsToastrService,
     public dialog: MatDialog
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();

@@ -42,6 +42,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | ApplicationAppModel) {
     this.onActionSelectForce(x);

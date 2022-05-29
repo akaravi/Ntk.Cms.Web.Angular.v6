@@ -16,6 +16,7 @@ import {
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-userclaimgroup-header',
@@ -29,8 +30,10 @@ export class CoreUserClaimGroupHeaderComponent implements OnInit {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();

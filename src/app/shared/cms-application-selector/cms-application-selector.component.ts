@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -25,9 +26,10 @@ export class CmsApplicationSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: ApplicationAppService) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
   dataModelSelect: ApplicationAppModel = new ApplicationAppModel();

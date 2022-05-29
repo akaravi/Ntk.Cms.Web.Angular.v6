@@ -2,6 +2,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   BaseModuleSiteCheckSiteModel,
   NewsConfigurationService,
@@ -27,9 +28,10 @@ export class NewsConfigCheckSiteComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

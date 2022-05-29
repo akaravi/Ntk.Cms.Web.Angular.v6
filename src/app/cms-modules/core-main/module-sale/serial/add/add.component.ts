@@ -42,6 +42,7 @@ export class CoreModuleSaleSerialAddComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkModuleSaleHeaderId = +data.LinkModuleSaleHeaderId || 0;
     }

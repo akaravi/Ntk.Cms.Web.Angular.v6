@@ -43,7 +43,7 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit, OnDestr
     private tokenHelper: TokenHelper,
     private translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | TicketingDepartemenOperatorModel) {
     this.onActionSelectForce(x);

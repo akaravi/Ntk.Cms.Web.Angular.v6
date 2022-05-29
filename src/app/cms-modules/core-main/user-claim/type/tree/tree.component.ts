@@ -45,6 +45,7 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | CoreUserClaimTypeModel) {
     this.onActionSelectForce(x);

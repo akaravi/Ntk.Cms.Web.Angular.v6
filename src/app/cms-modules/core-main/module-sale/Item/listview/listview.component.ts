@@ -22,6 +22,7 @@ import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-modulesaleitem-listview',
@@ -41,8 +42,10 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     private coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 

@@ -45,7 +45,7 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
     this.requestOperatorId = + Number(this.activatedRoute.snapshot.paramMap.get('OperatorId'));
     this.optionsSearch.parentMethods = {

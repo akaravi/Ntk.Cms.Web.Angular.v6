@@ -46,6 +46,7 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     // this.optionsCategoryTree.parentMethods = {
     //   onActionSelect: (x) => this.onActionSelectorSelect(x),
     // };

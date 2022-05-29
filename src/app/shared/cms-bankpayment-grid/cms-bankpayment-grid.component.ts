@@ -17,6 +17,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { NodeInterface } from 'src/filemanager-api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cms-bankpayment-grid',
@@ -27,10 +28,11 @@ export class CmsBankpaymentGridComponent implements OnInit {
   constructor(
     public bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionMasterItem = false;
 

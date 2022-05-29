@@ -44,6 +44,7 @@ export class CoreUserClaimGroupDetailAddComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkUserClaimGroupId = +data.LinkUserClaimGroupId || 0;
       this.requestLinkUserClaimTypeId = +data.LinkUserClaimTypeId || 0;

@@ -25,6 +25,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-biography-category-treeselector',
   templateUrl: './tree-selector.component.html',
@@ -37,8 +38,10 @@ export class BiographyCategoryTreeSelectorComponent implements OnInit, OnDestroy
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.checklistSelection.changed.subscribe(x => {
       if (!this.runComplate) {
         return;

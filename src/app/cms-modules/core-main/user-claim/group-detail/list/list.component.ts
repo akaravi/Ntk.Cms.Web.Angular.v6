@@ -53,6 +53,7 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserClaimTypeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimTypeId'));
     this.requestLinkUserClaimGroupId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimGroupId'));
 

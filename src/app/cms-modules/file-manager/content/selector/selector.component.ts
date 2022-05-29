@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'r
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -27,9 +28,10 @@ export class FileContentSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public contentService: FileContentService) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<FileContentModel> = new ErrorExceptionResult<FileContentModel>();
   dataModelSelect: FileContentModel = new FileContentModel();

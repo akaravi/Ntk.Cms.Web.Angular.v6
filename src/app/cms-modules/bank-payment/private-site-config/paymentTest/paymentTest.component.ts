@@ -39,6 +39,7 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkPrivateSiteConfigId = +data.LinkPrivateSiteConfigId || 0;
     }

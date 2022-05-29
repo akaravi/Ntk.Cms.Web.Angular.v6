@@ -50,7 +50,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     public translate: TranslateService,
     public smsEnumService: SmsEnumService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };

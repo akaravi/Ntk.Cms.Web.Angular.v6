@@ -42,7 +42,7 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
     private tokenHelper: TokenHelper,
     private translate:TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | WebDesignerMainPageDependencyModel) {
     this.onActionSelectForce(x);

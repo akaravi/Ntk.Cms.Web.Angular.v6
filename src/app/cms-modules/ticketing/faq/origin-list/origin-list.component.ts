@@ -23,6 +23,7 @@ import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ticketing-faq-originlist',
@@ -37,9 +38,10 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     /*filter Sort*/
     this.filteModelContent.SortColumn = 'Id';
     this.filteModelContent.SortType = EnumSortType.Ascending;

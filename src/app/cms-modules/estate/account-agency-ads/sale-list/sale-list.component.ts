@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 import { EstateAccountAgencyAdsSalePaymentComponent } from '../sale-payment/sale-payment.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-accountagencyads-salelist',
@@ -36,9 +37,10 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
     private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkAccountAgencyId = this.activatedRoute.snapshot.paramMap.get('LinkAccountAgencyId');
   }
   showBuy = false;

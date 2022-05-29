@@ -62,7 +62,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {

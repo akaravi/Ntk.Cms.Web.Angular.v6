@@ -46,6 +46,7 @@ export class CoreSiteUserAddComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkUserId = +data.LinkUserId || 0;
       this.requestLinkSiteId = +data.LinkSiteId || 0;

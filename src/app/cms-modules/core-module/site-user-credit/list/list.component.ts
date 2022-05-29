@@ -49,6 +49,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     public router: Router,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),

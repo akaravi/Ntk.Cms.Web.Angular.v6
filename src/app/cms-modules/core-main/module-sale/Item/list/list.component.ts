@@ -53,6 +53,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkModuleSaleHeader = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleSaleHeader'));
 
     this.optionsSearch.parentMethods = {

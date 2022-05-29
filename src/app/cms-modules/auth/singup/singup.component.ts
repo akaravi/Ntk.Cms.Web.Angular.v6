@@ -8,6 +8,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { MatDialog } from '@angular/material/dialog';
 import { SingupRuleComponent } from '../singupRule/singupRule.Component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-auth-singup',
   templateUrl: './singup.component.html',
@@ -20,8 +21,10 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     private coreAuthService: CoreAuthService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();

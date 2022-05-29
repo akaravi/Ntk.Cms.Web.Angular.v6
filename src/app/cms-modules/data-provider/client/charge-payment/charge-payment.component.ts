@@ -41,7 +41,7 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       if (data.LinkPlanPriceId && data.LinkPlanPriceId > 0) {
         this.requestLinkPlanPriceId = data.LinkPlanPriceId;

@@ -49,6 +49,7 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
 
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkCmsSiteCategoryId = +data.LinkCmsSiteCategoryId || 0;
       this.requestLinkCmsModuleId = +data.LinkCmsModuleId || 0;

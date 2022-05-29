@@ -24,7 +24,7 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   filteModelContent = new FilterModel();
   modelData = new Map<string, number>();

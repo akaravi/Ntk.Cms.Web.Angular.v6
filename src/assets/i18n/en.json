@@ -370,6 +370,7 @@
 	"MENU.PAGES": "Pages",
 
 	"MESSAGE.Deleting_information": "Deleting information",
+	"MESSAGE.Receiving_information": "Receiving information",
 	"MESSAGE.Receiving_Information_From_The_Server": "Receiving information from the server",
 	"MESSAGE.Receiving_Options_From_The_Server": "Receiving options from the server",
 	"MESSAGE.Deletion_Was_Successful": "Deletion was successful",

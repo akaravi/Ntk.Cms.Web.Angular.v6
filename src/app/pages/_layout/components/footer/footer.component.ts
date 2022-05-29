@@ -5,6 +5,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CoreConfigurationService } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-footer',
@@ -21,8 +22,9 @@ export class FooterComponent implements OnInit, AfterViewInit {
     private layout: LayoutService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     public publicHelper: PublicHelper) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     const currentDate = new Date();
     this.currentYear = currentDate.getFullYear().toString();
     this.publicHelper.appServerVersion

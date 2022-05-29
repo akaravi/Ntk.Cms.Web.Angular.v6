@@ -50,6 +50,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
 
     if (this.requestId > 0) {

@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'r
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-bankpayment-privatesiteconfig-selector',
   templateUrl: './selector.component.html',
@@ -25,8 +26,10 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     public categoryService: BankPaymentPrivateSiteConfigService) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | BankPaymentPrivateSiteConfigModel) {
     this.onActionSelectForce(x);

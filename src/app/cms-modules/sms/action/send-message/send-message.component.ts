@@ -43,7 +43,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loadingAction.cdr = this.cdr;
 
   }

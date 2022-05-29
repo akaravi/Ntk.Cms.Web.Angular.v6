@@ -63,7 +63,7 @@ export class EstatePropertyListComponent
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyTypeLanduseId =
       this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeLanduseId");
     this.requestLinkPropertyTypeUsageId =

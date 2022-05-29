@@ -45,6 +45,7 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id;
     }

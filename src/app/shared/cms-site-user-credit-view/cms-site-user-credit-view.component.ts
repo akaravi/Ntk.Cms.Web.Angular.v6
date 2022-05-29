@@ -49,7 +49,7 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
     public translate: TranslateService,
   ) {
 
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       // this.requestLinkSiteId = +data.LinkSiteId || 0;
       // this.requestLinkUserId = +data.LinkUserId || 0;

@@ -45,6 +45,7 @@ export class CoreTokenActivationViewComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id + '';
     }

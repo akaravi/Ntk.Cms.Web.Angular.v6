@@ -49,6 +49,7 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
     }

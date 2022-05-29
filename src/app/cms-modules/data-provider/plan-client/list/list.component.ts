@@ -49,7 +49,7 @@ export class DataProviderPlanClientListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
 
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };

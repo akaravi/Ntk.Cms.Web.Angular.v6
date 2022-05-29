@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -17,8 +18,10 @@ export class CoreModuleSelectionlistComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public categoryService: CoreModuleService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private cmsToastrService: CmsToastrService) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   dataModelSelect: CoreModuleModel[] = [];

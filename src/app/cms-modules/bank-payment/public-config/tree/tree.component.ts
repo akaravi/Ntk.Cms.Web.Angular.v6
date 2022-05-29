@@ -42,6 +42,7 @@ export class BankPaymentPublicConfigTreeComponent implements OnInit, OnDestroy {
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | BankPaymentPublicConfigModel) {
     this.onActionSelectForce(x);

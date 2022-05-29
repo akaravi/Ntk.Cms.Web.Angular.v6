@@ -2,6 +2,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   BaseModuleSiteCheckSiteModel,
   ChartConfigurationService,
@@ -30,9 +31,10 @@ export class ChartConfigCheckSiteComponent implements OnInit, OnDestroy {
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

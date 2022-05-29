@@ -19,6 +19,7 @@ export class ApplicationAppDownloadComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   formInfo: FormInfoModel = new FormInfoModel();
   loading = new ProgressSpinnerModel();

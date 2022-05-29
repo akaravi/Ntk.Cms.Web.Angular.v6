@@ -27,6 +27,7 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'کاربران شما';

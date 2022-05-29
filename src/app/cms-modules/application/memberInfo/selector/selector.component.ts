@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-memberinfo-selector',
   templateUrl: './selector.component.html',
@@ -22,9 +23,11 @@ import { Output } from '@angular/core';
 export class ApplicationMemberInfoSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: ApplicationMemberInfoService) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<ApplicationMemberInfoModel> = new ErrorExceptionResult<ApplicationMemberInfoModel>();
   dataModelSelect: ApplicationMemberInfoModel = new ApplicationMemberInfoModel();

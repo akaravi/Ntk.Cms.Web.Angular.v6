@@ -43,6 +43,7 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkModuleSaleHeader = +data.LinkModuleSaleHeader || 0;
     }

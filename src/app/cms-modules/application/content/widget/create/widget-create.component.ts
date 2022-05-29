@@ -19,6 +19,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
    }
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();

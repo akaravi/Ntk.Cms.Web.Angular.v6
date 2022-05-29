@@ -49,6 +49,7 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkUserClaimTypeId = +data.LinkUserClaimTypeId || 0;
     }

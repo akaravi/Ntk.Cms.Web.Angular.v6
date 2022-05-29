@@ -52,6 +52,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserClaimTypeId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserClaimTypeId'));
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));

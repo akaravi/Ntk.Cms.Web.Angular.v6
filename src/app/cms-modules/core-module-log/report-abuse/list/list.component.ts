@@ -54,12 +54,13 @@ export class CoreModuleLogReportAbuseListComponent implements OnInit, OnDestroy 
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestlinkMemberUserId = + Number(this.activatedRoute.snapshot.paramMap.get('linkMemberUserId'));
 
     if (this.requestLinkSiteId > 0) {
-      const filter = new FilterDataModel();
+      const filter = new FilterDataModel(); 
       filter.PropertyName = 'LinkCmsSiteId';
       filter.Value = this.requestLinkSiteId;
       this.filteModelContent.Filters.push(filter);

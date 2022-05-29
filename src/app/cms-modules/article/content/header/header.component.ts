@@ -20,6 +20,7 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 import { MatDialog } from '@angular/material/dialog';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -34,10 +35,11 @@ export class ArticletHeaderComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     private cmsToastrService: CmsToastrService,
-    public dialog: MatDialog
-
+    public dialog: MatDialog,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();

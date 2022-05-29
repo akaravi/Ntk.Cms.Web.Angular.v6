@@ -25,6 +25,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TicketingTaskViewComponent } from '../view/view.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ticketing-task-contact-us-list',
@@ -40,8 +41,9 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };

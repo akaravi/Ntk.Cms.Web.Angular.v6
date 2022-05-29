@@ -42,6 +42,7 @@ export class ArticleCommentEditComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
       this.requestParentId = +data.parentId || 0;

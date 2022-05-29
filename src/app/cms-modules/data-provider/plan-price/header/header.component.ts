@@ -20,6 +20,7 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
 import { MatDialog } from '@angular/material/dialog';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-data-provider-plan-price-header',
   templateUrl: './header.component.html',
@@ -31,10 +32,11 @@ export class DataProviderPlanPriceHeaderComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     public dialog: MatDialog,
     public tokenHelper: TokenHelper
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();

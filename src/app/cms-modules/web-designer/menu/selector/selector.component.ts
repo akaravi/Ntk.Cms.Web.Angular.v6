@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-webdesigner-menu-selector',
   templateUrl: './selector.component.html',
@@ -22,8 +23,9 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     public categoryService: WebDesignerMainMenuService) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   dataModelSelect: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();

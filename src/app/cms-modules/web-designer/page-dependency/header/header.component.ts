@@ -15,6 +15,7 @@ import {
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-webdesigner-pagedependency-header',
   templateUrl: './header.component.html',
@@ -26,9 +27,10 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
     public webDesignerMainPageDependencyService: WebDesignerMainPageDependencyService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private cmsToastrService: CmsToastrService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();

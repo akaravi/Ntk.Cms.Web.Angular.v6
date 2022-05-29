@@ -51,6 +51,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {

@@ -37,6 +37,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.RePasswordModel = '';
   }
   errorState: ErrorStates = ErrorStates.NotSubmitted;

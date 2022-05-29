@@ -13,6 +13,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-article-category-delete',
   templateUrl: './delete.component.html',
@@ -23,11 +24,13 @@ export class ArticleCategoryDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ArticleCategoryDeleteComponent>,
     private publicHelper: PublicHelper,
+    public translate: TranslateService,
     private categoryService: ArticleCategoryService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
     }

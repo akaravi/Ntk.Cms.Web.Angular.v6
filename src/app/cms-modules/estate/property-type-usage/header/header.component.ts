@@ -19,6 +19,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { MatDialog } from '@angular/material/dialog';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-property-type-usage-header',
   templateUrl: './header.component.html',
@@ -31,9 +32,10 @@ export class EstatePropertyTypeUsageHeaderComponent implements OnInit, OnDestroy
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
     public dialog: MatDialog,
+    public translate: TranslateService,
     public tokenHelper: TokenHelper
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();

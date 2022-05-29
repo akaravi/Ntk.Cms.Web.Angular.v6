@@ -54,6 +54,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
     if (this.requestLinkSiteId > 0) {

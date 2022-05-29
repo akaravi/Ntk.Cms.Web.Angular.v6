@@ -1,5 +1,6 @@
 //**msh */
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreConfigurationService } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -14,8 +15,10 @@ export class AuthComponent implements OnInit {
     private configService: CoreConfigurationService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   loading = new ProgressSpinnerModel();
   today: Date = new Date();

@@ -8,6 +8,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { environment } from 'src/environments/environment';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-user-dropdown-inner',
   templateUrl: './user-dropdown-inner.component.html',
@@ -23,8 +24,10 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     private ticketingTaskService: TicketingTaskService,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;

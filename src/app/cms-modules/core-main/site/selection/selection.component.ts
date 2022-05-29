@@ -14,6 +14,7 @@ import {
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -30,8 +31,10 @@ export class CoreSiteSelectionComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private router: Router,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loading.cdr = cdr;
   }
   @Input() loading = new ProgressSpinnerModel();

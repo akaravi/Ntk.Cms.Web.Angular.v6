@@ -40,7 +40,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
     private tokenHelper: TokenHelper,
     private translate:TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | WebDesignerMainPageTemplateModel) {
     this.onActionSelectForce(x);

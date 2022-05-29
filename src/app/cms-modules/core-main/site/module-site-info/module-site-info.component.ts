@@ -19,6 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -35,8 +36,10 @@ export class CoreSiteModuleSiteInfoComponent implements OnInit {
     public coreSiteService: CoreSiteService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkSiteId = +data.LinkSiteId || 0;
     }

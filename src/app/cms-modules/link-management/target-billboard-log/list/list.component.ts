@@ -47,7 +47,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkManagementBillboardId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementBillboardId'));
     this.requestLinkManagementTargetId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementTargetId'));
     if (this.activatedRoute.snapshot.paramMap.get('Key')) {

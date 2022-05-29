@@ -370,6 +370,7 @@
 	"MENU.NEW": "جدید",
 	"MENU.PAGES": "صفحات",
 	"MESSAGE.Deleting_information": "در حال حذف اطلاعات",
+	"MESSAGE.Receiving_information": "در حال دریافت اطلاعات",
 	"MESSAGE.Receiving_Information_From_The_Server": "در حال دریافت اطلاعات از سرور",
 	"MESSAGE.Receiving_Options_From_The_Server": "در حال دریافت گزینه ها از سرور",
 	"MESSAGE.Deletion_Was_Successful": "حذف با موفقیت انجام شد",

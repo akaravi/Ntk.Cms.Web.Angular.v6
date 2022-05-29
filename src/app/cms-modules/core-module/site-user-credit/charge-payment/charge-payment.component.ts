@@ -42,6 +42,7 @@ export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
     public publicHelper: PublicHelper,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       if (data.Credit && data.Credit > 0) {
         this.requestCredit = data.Credit;

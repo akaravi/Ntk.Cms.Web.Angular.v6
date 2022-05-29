@@ -44,7 +44,7 @@ export class EstateCustomerOrderTreeComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | EstateCustomerOrderModel) {
     this.onActionSelectForce(x);

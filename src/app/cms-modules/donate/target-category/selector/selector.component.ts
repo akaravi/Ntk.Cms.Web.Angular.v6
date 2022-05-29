@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'r
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -27,8 +28,9 @@ export class DonateTargetCategorySelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     public categoryService: DonateTargetCategoryService) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<DonateTargetCategoryModel> = new ErrorExceptionResult<DonateTargetCategoryModel>();

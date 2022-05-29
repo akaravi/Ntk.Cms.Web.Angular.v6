@@ -45,7 +45,7 @@ export class SmsMainApiNumberPermissionEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data && data.id) {
       this.requestId = data.id;
     }

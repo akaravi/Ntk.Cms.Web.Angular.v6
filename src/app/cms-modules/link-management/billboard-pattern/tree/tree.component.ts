@@ -44,7 +44,7 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | LinkManagementBillboardPatternModel) {
     this.onActionSelectForce(x);

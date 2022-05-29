@@ -25,6 +25,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -43,8 +44,10 @@ export class CoreUserResellerChartComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
 
   }

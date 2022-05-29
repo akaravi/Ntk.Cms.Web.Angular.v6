@@ -51,6 +51,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 
     this.optionsSearch.parentMethods = {

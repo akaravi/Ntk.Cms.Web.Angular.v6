@@ -35,6 +35,7 @@ export class ApplicationSourceAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private router: Router) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;

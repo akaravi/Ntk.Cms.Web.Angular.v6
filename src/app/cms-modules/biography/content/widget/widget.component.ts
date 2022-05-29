@@ -1,5 +1,6 @@
 //**msh */
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BiographyContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -23,8 +24,10 @@ export class BiographyContentWidgetComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
     this.widgetInfoModel.title = 'اخبار های ثبت شده';

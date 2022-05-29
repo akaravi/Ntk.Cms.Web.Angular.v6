@@ -45,6 +45,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.filteModel.SortColumn = 'ShowInMenuOrder';
     this.filteModel.SortType = EnumSortType.Ascending;
   }

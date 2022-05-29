@@ -49,7 +49,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private ticketingEnumService: TicketingEnumService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };

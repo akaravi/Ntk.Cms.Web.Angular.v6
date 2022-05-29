@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'r
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-biography-content-selector',
   templateUrl: './selector.component.html',
@@ -24,9 +25,11 @@ export class BiographyContentSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public contentService: BiographyContentService) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<BiographyContentModel> = new ErrorExceptionResult<BiographyContentModel>();
   dataModelSelect: BiographyContentModel = new BiographyContentModel();

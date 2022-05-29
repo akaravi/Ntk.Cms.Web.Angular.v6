@@ -13,6 +13,7 @@ import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -26,9 +27,10 @@ export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit, On
     public coreEnumService: CoreEnumService,
     public categoryService: EstatePropertyTypeUsageService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
     private cmsToastrService: CmsToastrService) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   dataModelSelect: EstatePropertyTypeUsageModel[] = [];

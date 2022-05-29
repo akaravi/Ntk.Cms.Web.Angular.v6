@@ -41,6 +41,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
 
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreUserClaimCheckModel> = new ErrorExceptionResult<CoreUserClaimCheckModel>();
 

@@ -1,5 +1,6 @@
 //**msh */
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreConfigurationService, ErrorExceptionResult } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -12,8 +13,10 @@ export class SingupRuleComponent implements OnInit {
     private coreConfigurationService: CoreConfigurationService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<string> = new ErrorExceptionResult<string>();

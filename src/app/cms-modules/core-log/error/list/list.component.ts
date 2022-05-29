@@ -49,6 +49,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkDeviceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDeviceId'));
     if (this.requestLinkUserId > 0) {

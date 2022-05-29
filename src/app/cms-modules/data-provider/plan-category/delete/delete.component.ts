@@ -13,6 +13,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -27,9 +28,10 @@ export class DataProviderPlanCategoryDeleteComponent implements OnInit {
     private publicHelper: PublicHelper,
     private dataProviderPlanCategoryService: DataProviderPlanCategoryService,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private cmsToastrService: CmsToastrService
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
     }

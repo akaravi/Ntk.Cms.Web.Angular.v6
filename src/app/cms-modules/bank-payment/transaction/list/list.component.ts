@@ -53,6 +53,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };

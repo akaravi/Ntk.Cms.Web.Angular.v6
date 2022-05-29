@@ -38,7 +38,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id;
     }

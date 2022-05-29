@@ -44,6 +44,7 @@ export class ApplicationThemeConfigAddComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkSourceId = +data.LinkSourceId || 0;
     }

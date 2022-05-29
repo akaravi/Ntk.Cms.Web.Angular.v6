@@ -52,7 +52,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
   ) {
 
 
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     // this.requestLinkSponserId =
     // Number(this.activatedRoute.snapshot.paramMap.get("LinkSponserId"));
 

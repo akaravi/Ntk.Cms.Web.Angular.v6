@@ -17,6 +17,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cms-bankpayment-transaction-info',
@@ -31,10 +32,11 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
     private dialogRef: MatDialogRef<CmsBankpaymentTransactionInfoComponent>,
     private bankPaymentEnumService: BankPaymentEnumService,
     private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId =+ data.Id || 0;
     }

@@ -44,7 +44,7 @@ export class SmsMainApiPathCompanyTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | SmsMainApiPathCompanyModel) {
     this.onActionSelectForce(x);

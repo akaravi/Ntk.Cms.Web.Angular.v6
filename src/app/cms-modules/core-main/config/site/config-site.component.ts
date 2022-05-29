@@ -44,6 +44,7 @@ export class CoreConfigSiteComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 

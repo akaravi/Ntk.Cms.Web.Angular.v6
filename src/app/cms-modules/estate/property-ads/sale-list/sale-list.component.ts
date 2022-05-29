@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 import { EstatePropertyAdsSalePaymentComponent } from '../sale-payment/sale-payment.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-propertyads-salelist',
@@ -35,10 +36,11 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     private coreSiteService: CoreSiteService,
     private tokenHelper: TokenHelper,
     private router: Router,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
   }
   showBuy = false;

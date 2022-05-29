@@ -43,6 +43,7 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
     private tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | CoreSiteCategoryCmsModuleModel) {
     this.onActionSelectForce(x);

@@ -45,7 +45,7 @@ export class EstatePropertyDetailAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkPropertyTypeLanduseId = data.LinkPropertyTypeLanduseId;
       this.requestLinkPropertyDetailGroupId = data.LinkPropertyDetailGroupId;

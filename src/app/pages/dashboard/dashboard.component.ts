@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreModuleModel, EnumManageUserAccessUserTypes, ErrorExceptionResult, TokenInfoModel } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -14,10 +15,11 @@ export class DashboardComponent implements OnInit {
   constructor(
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
 
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   tokenInfo = new TokenInfoModel();

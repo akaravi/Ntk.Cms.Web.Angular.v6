@@ -52,6 +52,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
     public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkInvoiceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkInvoiceId'));
 
     this.optionsSearch.parentMethods = {

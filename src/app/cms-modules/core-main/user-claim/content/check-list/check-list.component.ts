@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-userclaimcontent-checklist',
@@ -45,9 +46,11 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
     public dialog: MatDialog
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 

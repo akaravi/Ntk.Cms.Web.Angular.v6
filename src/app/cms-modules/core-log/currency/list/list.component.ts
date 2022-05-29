@@ -48,6 +48,7 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
     private router: Router,
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkCurrencyId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCurrencyId'));
     if (this.requestLinkCurrencyId > 0) {
       const filter = new FilterDataModel();

@@ -2,6 +2,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreSiteService, ErrorExceptionResult, ShareInfoModel, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -21,11 +22,13 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private coreSiteService: CoreSiteService,
     private router: Router,
+    public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
 
   ) {
     this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });

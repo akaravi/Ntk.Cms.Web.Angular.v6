@@ -43,7 +43,7 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | DataProviderPlanClientModel) {
     this.onActionSelectForce(x);
