@@ -10,8 +10,6 @@ import { ApplicationSourceAddComponent } from './source/add/add.component';
 import { ApplicationSourceEditComponent } from './source/edit/edit.component';
 import { ApplicationAppEditComponent } from './content/edit/edit.component';
 import { ApplicationAppAddComponent } from './content/add/add.component';
-import { ApplicationConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { ApplicationConfigSiteComponent } from './config/site/config-site.component';
 import { ApplicationLogNotificationListComponent } from './notification/list/list.component';
 import { ApplicationIntroAddComponent } from './intro/add/add.component';
 import { ApplicationIntroEditComponent } from './intro/edit/edit.component';

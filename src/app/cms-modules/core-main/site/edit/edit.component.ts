@@ -48,16 +48,23 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.requestId === 0) {
+    if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.SiteId>0) {
       this.requestId = this.tokenInfo.SiteId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.SiteId>0)  {
+        this.requestId = this.tokenInfo.SiteId;
+      }
       this.DataGetOne(this.requestId);
     });
+    
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
+      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.SiteId>0)  {
+        this.requestId = this.tokenInfo.SiteId;
+      }
       this.DataGetOne(this.requestId);
     });
   }
@@ -137,6 +144,8 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.DataEditContent();
   }
   DataGetOne(id: number): void {
+    if(!id || id<=0)
+    return;
     this.formInfo.FormSubmitAllow = false;
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.FormError = '';
