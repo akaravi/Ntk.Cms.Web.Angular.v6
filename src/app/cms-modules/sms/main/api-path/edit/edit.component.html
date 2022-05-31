@@ -65,7 +65,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiIdentity']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['ApiIdentity']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.ApiIdentity" [disabled]="!fieldsInfo['ApiIdentity']?.AccessEditField"
-            name="dataModel.ApiIdentity" #ApiIdentity type="number" placeholder="Currency Unit Ratio By Shop" />
+            name="dataModel.ApiIdentity" #ApiIdentity type="number" placeholder="" />
           <mat-icon matSuffix *ngIf="dataModel.ApiIdentity && fieldsInfo['ApiIdentity']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.ApiIdentity = 1">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ApiIdentity']?.AccessEditField" matSuffix>mode_edit</mat-icon>
@@ -73,17 +73,26 @@
         <!-- ApiReceiveKey Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiReceiveKey']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['ApiReceiveKey']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.ApiReceiveKey" [disabled]="!fieldsInfo['ApiReceiveKey']?.AccessEditField"
-            name="dataModel.ApiReceiveKey" #ApiReceiveKey type="number" placeholder="Currency Unit Ratio By Shop" />
+          <input matInput [(ngModel)]="dataModel.ApiReceiveKey" [disabled]="!fieldsInfo['ApiReceiveKey']?.AccessEditField" class="input-ltr"
+            name="dataModel.ApiReceiveKey" #ApiReceiveKey type="text" placeholder="" />
           <mat-icon matSuffix *ngIf="dataModel.ApiReceiveKey && fieldsInfo['ApiReceiveKey']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.ApiReceiveKey = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ApiReceiveKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- HookAddressAPIById Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HookAddressAPIById']?.AccessWatchField">
+          <mat-label>{{ fieldsInfo['HookAddressAPIById']?.FieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.HookAddressAPIById" readonly class="input-ltr"
+            name="dataModel.HookAddressAPIById" #HookAddressAPIById type="test" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.HookAddressAPIById && fieldsInfo['HookAddressAPIById']?.AccessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.HookAddressAPIById = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['HookAddressAPIById']?.AccessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Priority Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.AccessWatchField">
           <mat-label>{{ fieldsInfo['Priority']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.Priority" [disabled]="!fieldsInfo['Priority']?.AccessEditField"
-            name="dataModel.Priority" #Priority type="number" placeholder="Currency Unit Ratio By Shop" />
+            name="dataModel.Priority" #Priority type="number" placeholder="" />
           <mat-icon matSuffix *ngIf="dataModel.Priority && fieldsInfo['Priority']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.Priority = 1">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Priority']?.AccessEditField" matSuffix>mode_edit</mat-icon>
@@ -94,7 +103,7 @@
           <mat-label>{{ fieldsInfo['MaxProcessFlowAmount']?.FieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.MaxProcessFlowAmount"
             [disabled]="!fieldsInfo['MaxProcessFlowAmount']?.AccessEditField" name="dataModel.MaxProcessFlowAmount"
-            #MaxProcessFlowAmount type="number" placeholder="Currency Unit Ratio By Shop" />
+            #MaxProcessFlowAmount type="number" placeholder="" />
           <mat-icon matSuffix
             *ngIf="dataModel.MaxProcessFlowAmount && fieldsInfo['MaxProcessFlowAmount']?.AccessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.MaxProcessFlowAmount = 1">close</mat-icon>
