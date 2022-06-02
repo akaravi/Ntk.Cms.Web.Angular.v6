@@ -181,7 +181,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
       next: (res) => {
         this.loading.Stop(pName);
         if (res.IsSuccess) {
-          setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 2000);
+          setTimeout(() => this.router.navigate(['/dashboard/']), 2000);
         }
       },
       error: (er) => {

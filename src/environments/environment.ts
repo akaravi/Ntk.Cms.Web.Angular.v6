@@ -22,14 +22,7 @@ export const environment = {
     configFileServerPath: 'https://apifile.ir/api/v1/',
     // configFileServerPath: 'http://localhost:2392/api/v1/' // Test Api
     configQDocServerPath: 'https://qdoc.ir/api/chat',
-  },
-  cmsUiConfig: {
-    Pathlogin: '/auth/singin',
-    Pathlogout: '/auth/singout',
-    PathRegistery: '/auth/singup',
-    PathSelectSite: '/core/site/select',
-    Pathdashboard: '/dashboard/',
-    ToolbarLinkUrlPath: 'https://ntk.ir',
+    configCompanyWebSite: 'https://ntk.ir'
   },
   cmsTokenConfig: {
     SecurityKey: '123456789',

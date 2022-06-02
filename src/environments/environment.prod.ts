@@ -15,15 +15,9 @@ export const environment = {
     configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
     configFileServerPath: 'https://apifile.ir/api/v1/',
     configQDocServerPath: 'https://qdoc.ir/api/chat',
+    configCompanyWebSite: 'https://ntk.ir'
   },
-  cmsUiConfig: {
-    Pathlogin: '/auth/singin',
-    Pathlogout: '/auth/singout',
-    PathRegistery: '/auth/registery',
-    PathSelectSite: '/core/site/select',
-    Pathdashboard: '/dashboard/',
-    ToolbarLinkUrlPath: 'https://ntk.ir',
-  },
+
   cmsTokenConfig: {
     SecurityKey: '123456789',
     ClientMACAddress: '',

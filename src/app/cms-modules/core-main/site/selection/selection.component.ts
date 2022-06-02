@@ -126,7 +126,7 @@ export class CoreSiteSelectionComponent implements OnInit {
       this.coreAuthService.ServiceRenewToken(authModel).subscribe({
         next: (ret) => {
           if (ret.IsSuccess) {
-            this.router.navigate([environment.cmsUiConfig.Pathdashboard]);
+            this.router.navigate(['/dashboard/']);
           }
           this.loading.Stop(pName);
         },

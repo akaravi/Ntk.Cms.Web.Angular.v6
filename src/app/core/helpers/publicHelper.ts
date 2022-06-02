@@ -177,7 +177,7 @@ export class PublicHelper {
             this.translate.instant('ERRORMESSAGE.MESSAGE.typePleaseLogInAgaint'),
             this.translate.instant('ERRORMESSAGE.TITLE.typePleaseLogInAgaint')
           );
-          this.router.navigate([environment.cmsUiConfig.Pathlogin]);
+          this.router.navigate(['/auth/singin']);
           return;
         }
       }
