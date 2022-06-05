@@ -191,17 +191,17 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
           if (ret.IsSuccess) {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-            this.cmsToastrService.typeSuccessAdd();
+            this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/linkmanagement/target']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(er);
+          this.cmsToastrService.typeError(er);;
         }
       }
       );

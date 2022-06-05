@@ -132,13 +132,13 @@ export class ApplicationThemeConfigEditComponent implements OnInit {
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },
       error:(er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
+        this.cmsToastrService.typeError(er);;
         this.loading.Stop(pName);
       }
     }

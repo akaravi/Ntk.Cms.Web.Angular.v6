@@ -190,7 +190,7 @@ export class ApplicationSourceEditComponent implements OnInit {
         },
         error: (er) => {
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(er);
+          this.cmsToastrService.typeError(er);;
           this.loading.Stop(pName);
         }
       }

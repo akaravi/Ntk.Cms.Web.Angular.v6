@@ -369,20 +369,20 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           this.dataModelResult = next;
           if (next.IsSuccess) {
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-            this.cmsToastrService.typeSuccessAdd();
+            this.cmsToastrService.typeSuccessEdit();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModel);
             setTimeout(() => this.router.navigate(['/article/content']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
 
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.cmsToastrService.typeErrorEdit(error);
           this.loading.Stop(pName);
         }
       );

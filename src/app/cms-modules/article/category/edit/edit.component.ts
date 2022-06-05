@@ -128,7 +128,7 @@ export class ArticleCategoryEditComponent implements OnInit {
       },
       error:(er) => {
         this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
+        this.cmsToastrService.typeError(er);;
         this.loading.Stop(pName);
       }
     }

@@ -212,7 +212,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
         error: (er) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(er);
+          this.cmsToastrService.typeError(er);;
         }
       }
       );

@@ -134,7 +134,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
         } else {
           this.formInfo.FormAlert = 'برروز خطا';
           this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
         }
         this.loading.Stop(pName);
       },

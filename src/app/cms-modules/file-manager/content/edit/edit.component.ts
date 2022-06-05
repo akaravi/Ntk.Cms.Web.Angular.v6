@@ -190,7 +190,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
           if (ret.IsSuccess) {
 
             this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-            this.cmsToastrService.typeSuccessAdd();
+            this.cmsToastrService.typeSuccessEdit();
 
             setTimeout(() => this.router.navigate(['/file/content/edit/', this.requestId]), 1000);
           } else {
@@ -202,7 +202,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
         error: (er) => {
           this.loading.Stop(pName);
           this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(er);
+          this.cmsToastrService.typeError(er);;
         }
       }
       );
