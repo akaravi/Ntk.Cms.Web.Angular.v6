@@ -104,8 +104,8 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
 
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 
 
@@ -129,9 +129,9 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   }
 
   DataGetOne(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -143,22 +143,22 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
         next: (ret) => {
 
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
 
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
 
         },
         error: (er) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
         }
       }
@@ -166,9 +166,9 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   }
 
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
@@ -179,23 +179,23 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
         next: (ret) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
 
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
 
             setTimeout(() => this.router.navigate(['/linkmanagement/billboard']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
 
         },
         error: (er) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);;
         }
       }
@@ -203,35 +203,35 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   }
 
   onActionSelectorSelectLinkManagementMemberId(model: LinkManagementMemberModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'حساب کاربری اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkBillboardPatternId = model.Id;
+    this.dataModel.linkBillboardPatternId = model.id;
   }
   onActionSelectorSelectLinkBillboardPatternId(model: LinkManagementBillboardPatternModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'دسته بندی بیلبرد اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkBillboardPatternId = model.Id;
+    this.dataModel.linkBillboardPatternId = model.id;
   }
   DataCategoryGetAll(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_category_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_category_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
 
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkManagementBillboardId';
-    filter.Value = this.requestId;
-    filter.ClauseType = EnumClauseType.And;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'LinkManagementBillboardId';
+    filter.value = this.requestId;
+    filter.clauseType = EnumClauseType.And;
+    filteModel.filters.push(filter);
 
 
     this.tagIdsData = [];
@@ -241,15 +241,15 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
         next: (ret) => {
 
           const itemList = [];
-          ret.ListItems.forEach(element => {
-            itemList.push(element.LinkTargetCategoryId);
+          ret.listItems.forEach(element => {
+            itemList.push(element.linkTargetCategoryId);
           });
           this.dataContentCategoryModel = itemList;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
@@ -264,21 +264,21 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
       return;
     }
     const entity = new LinkManagementBillboardTargetCategoryModel();
-    entity.LinkTargetCategoryId = model;
-    entity.LinkManagementBillboardId = this.dataModel.Id;
+    entity.linkTargetCategoryId = model;
+    entity.linkManagementBillboardId = this.dataModel.id;
     this.contentCategoryService.ServiceAdd(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -294,21 +294,21 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
       return;
     }
     const entity = new LinkManagementBillboardTargetCategoryModel();
-    entity.LinkTargetCategoryId = model;
-    entity.LinkManagementBillboardId = this.dataModel.Id;
+    entity.linkTargetCategoryId = model;
+    entity.linkManagementBillboardId = this.dataModel.id;
     this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }

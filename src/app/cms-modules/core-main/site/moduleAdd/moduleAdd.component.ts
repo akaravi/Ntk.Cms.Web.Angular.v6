@@ -46,14 +46,14 @@ export class CoreSiteModuleAddComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkModuleId = +data.LinkModuleId || 0;
-      this.requestLinkSiteId = +data.LinkSiteId || 0;
+      this.requestLinkModuleId = +data.linkModuleId || 0;
+      this.requestLinkSiteId = +data.linkSiteId || 0;
     }
     if (this.requestLinkSiteId > 0) {
-      this.dataModel.LinkSiteId = this.requestLinkSiteId;
+      this.dataModel.linkSiteId = this.requestLinkSiteId;
     }
     if (this.requestLinkModuleId > 0) {
-      this.dataModel.LinkModuleId = this.requestLinkModuleId;
+      this.dataModel.linkModuleId = this.requestLinkModuleId;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -86,11 +86,11 @@ export class CoreSiteModuleAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataAccessModel = ret.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.dataAccessModel = ret.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -101,30 +101,30 @@ export class CoreSiteModuleAddComponent implements OnInit {
   }
 
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreSiteService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -135,21 +135,21 @@ export class CoreSiteModuleAddComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataAddContent();
   }
   onActionSiteSelect(model: CoreSiteModel): void {
-    this.dataModel.LinkSiteId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkSiteId = model.Id;
+    this.dataModel.linkSiteId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkSiteId = model.id;
     }
   }
   onActionSelectorModuleSelect(model: CoreModuleModel): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'ماژول مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
     }
-    this.dataModel.LinkModuleId = model.Id;
+    this.dataModel.linkModuleId = model.id;
 
   }
   onFormCancel(): void {

@@ -66,41 +66,41 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
-      this.requestLinkBotConfigId = +this.data.LinkBotConfigId || 0;
+      this.requestLinkBotConfigId = +this.data.linkBotConfigId || 0;
       this.compModel.ChatIds = this.data.ChatId + '';
     }
     if (this.requestLinkBotConfigId > 0) {
-      this.dataModel.BotId = this.requestLinkBotConfigId;
+      this.dataModel.botId = this.requestLinkBotConfigId;
     }
-    this.formInfo.FormTitle = 'ارسال پیام  ';
+    this.formInfo.formTitle = 'ارسال پیام  ';
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   ActionSendMessage(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.apiTelegramBotConfigService.ServiceSendMessage(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }}
@@ -124,7 +124,7 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
       this.cmsToastrService.typeWarning('لیست گیرنده  معتبر نمی باشد');
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.ActionSendMessage();
   }
 
@@ -132,11 +132,11 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
     this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionSelectorSelect(model: ApiTelegramBotConfigModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'ربات تلگرام را انتخاب کنید';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.BotId = model.Id;
+    this.dataModel.botId = model.id;
   }
 }

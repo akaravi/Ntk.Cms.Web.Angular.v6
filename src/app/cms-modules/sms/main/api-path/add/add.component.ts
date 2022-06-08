@@ -43,8 +43,8 @@ export class SmsMainApiPathAddComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    if (data && data.LinkApiPathCompanyId) {
-      this.dataModel.LinkApiPathCompanyId = data.LinkApiPathCompanyId + '';
+    if (data && data.linkApiPathCompanyId) {
+      this.dataModel.linkApiPathCompanyId = data.linkApiPathCompanyId + '';
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -71,7 +71,7 @@ export class SmsMainApiPathAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -85,10 +85,10 @@ export class SmsMainApiPathAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -98,31 +98,31 @@ export class SmsMainApiPathAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.smsMainApiPathService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -130,34 +130,34 @@ export class SmsMainApiPathAddComponent implements OnInit {
     );
   }
   onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
-    if (!model || model.Id.length <= 0) {
+    if (!model || model.id.length <= 0) {
       const message = 'کمپانی سرویس دهنده مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkApiPathCompanyId = model.Id;
+    this.dataModel.linkApiPathCompanyId = model.id;
   }
   onActionSelectSource(model: SmsMainApiPathPublicConfigModel): void {
-    this.dataModel.LinkPublicConfigId = null;
-    if (model && model.Id.length > 0) {
-      this.dataModel.LinkPublicConfigId = model.Id;
+    this.dataModel.linkPublicConfigId = null;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkPublicConfigId = model.id;
     }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    if (!this.dataModel.LinkApiPathCompanyId || this.dataModel.LinkApiPathCompanyId.length == 0) {
+    if (!this.dataModel.linkApiPathCompanyId || this.dataModel.linkApiPathCompanyId.length == 0) {
       const message = 'کمپانی سرویس دهنده مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    if (!this.dataModel.LinkPublicConfigId || this.dataModel.LinkPublicConfigId.length == 0) {
+    if (!this.dataModel.linkPublicConfigId || this.dataModel.linkPublicConfigId.length == 0) {
       const message = 'نوع سرویس دهنده مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
 
     this.DataAddContent();
 

@@ -57,7 +57,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'ویرایش  ';
+    this.formInfo.formTitle = 'ویرایش  ';
     if (!this.requestId || this.requestId <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -81,23 +81,23 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   }
 
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.ticketingDepartemenLogService.setAccessLoad();
     this.ticketingDepartemenLogService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Id;
-          this.formInfo.FormAlert = '';
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+        this.dataModel = next.item;
+        if (next.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.id;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 

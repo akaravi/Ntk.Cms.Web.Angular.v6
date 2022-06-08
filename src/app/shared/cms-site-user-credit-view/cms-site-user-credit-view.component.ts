@@ -51,9 +51,9 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
 
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      // this.requestLinkSiteId = +data.LinkSiteId || 0;
-      // this.requestLinkUserId = +data.LinkUserId || 0;
-      this.requestLinkModuleId = +data.LinkModuleId || 0;
+      // this.requestLinkSiteId = +data.linkSiteId || 0;
+      // this.requestLinkUserId = +data.linkUserId || 0;
+      this.requestLinkModuleId = +data.linkModuleId || 0;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -71,7 +71,7 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'اعتبار  ';
+    this.formInfo.formTitle = 'اعتبار  ';
 
 
     if (this.requestLinkModuleId <= 0) {
@@ -92,24 +92,24 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
 
   DataGetOneContent(): void {
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreModuleSiteUserCreditService.setAccessLoad();
     this.coreModuleSiteUserCreditService.ServiceGetCredit(this.requestLinkModuleId).subscribe(
       (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
 
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.LinkUserId;
-          this.formInfo.FormAlert = '';
+        if (next.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.linkUserId;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -123,24 +123,24 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
   }
 
   DataModuleGetOne(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreModuleService.setAccessLoad();
     this.coreModuleService.ServiceGetOneById(this.requestLinkModuleId).subscribe(
       (next) => {
-        // this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+        // this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
 
         this.dataModuleModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
-          this.formInfo.FormAlert = '';
+        if (next.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.title;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -156,7 +156,7 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    // this.formInfo.FormSubmitAllow = false;
+    // this.formInfo.formSubmitAllow = false;
     // if (this.ComponentAction === ComponentActionEnum.add) {
     //   this.DataAddContent();
     // }

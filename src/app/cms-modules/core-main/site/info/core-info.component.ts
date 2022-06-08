@@ -48,15 +48,15 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     /** read storage */
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
-      //  this.dataModel.SiteId = siteId;
+      //  this.dataModel.siteId = siteId;
     }
     const ResellerSiteId = + localStorage.getItem('ResellerSiteId');
     if (ResellerSiteId > 0) {
-      //  this.dataModel.ResellerSiteId = ResellerSiteId;
+      //  this.dataModel.resellerSiteId = ResellerSiteId;
     }
     const ResellerUserId = + localStorage.getItem('ResellerUserId');
     if (ResellerUserId > 0) {
-      //  this.dataModel.ResellerUserId = ResellerUserId;
+      //  this.dataModel.resellerUserId = ResellerUserId;
     }
     /** read storage */
   }
@@ -66,10 +66,10 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
 
     this.coreSiteService.ServiceGetShareInfo().subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -92,11 +92,11 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonResllerUserShortLinkStatus(): void {
-    if (this.dataModelResult?.Item?.UrlResellerUserShortLinkUrl?.length > 0) {
+    if (this.dataModelResult?.item?.urlResellerUserShortLinkUrl?.length > 0) {
 
-      const indexLast = this.dataModelResult.Item.UrlResellerUserShortLinkUrl.lastIndexOf('/');
+      const indexLast = this.dataModelResult.item.urlResellerUserShortLinkUrl.lastIndexOf('/');
       if (indexLast > 0) {
-        const key = this.dataModelResult.Item.UrlResellerUserShortLinkUrl.substr(indexLast + 1);
+        const key = this.dataModelResult.item.urlResellerUserShortLinkUrl.substr(indexLast + 1);
         // const url = this.router.serializeUrl(
         //   this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
         // );
@@ -106,10 +106,10 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     }
   }
   onActionbuttonResllerUserCategoryShortLinkStatus(): void {
-    if (this.dataModelResult?.Item?.UrlResellerSiteCategoryShortLinkUrl?.length > 0) {
-      const indexLast = this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl.lastIndexOf('/');
+    if (this.dataModelResult?.item?.urlResellerSiteCategoryShortLinkUrl?.length > 0) {
+      const indexLast = this.dataModelResult.item.urlResellerSiteCategoryShortLinkUrl.lastIndexOf('/');
       if (indexLast > 0) {
-        const key = this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl.substr(indexLast + 1);
+        const key = this.dataModelResult.item.urlResellerSiteCategoryShortLinkUrl.substr(indexLast + 1);
         // const url = this.router.serializeUrl(
         //   this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
         // );
@@ -125,10 +125,10 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonResllerSiteShortLinkStatus(): void {
-    if (this.dataModelResult?.Item?.UrlResellerSiteShortLinkUrl?.length > 0) {
-      const indexLast = this.dataModelResult.Item.UrlResellerSiteShortLinkUrl.lastIndexOf('/');
+    if (this.dataModelResult?.item?.urlResellerSiteShortLinkUrl?.length > 0) {
+      const indexLast = this.dataModelResult.item.urlResellerSiteShortLinkUrl.lastIndexOf('/');
       if (indexLast > 0) {
-        const key = this.dataModelResult.Item.UrlResellerSiteShortLinkUrl.substr(indexLast + 1);
+        const key = this.dataModelResult.item.urlResellerSiteShortLinkUrl.substr(indexLast + 1);
 
         // const url = this.router.serializeUrl(
         //   this.router.createUrlTree([encodeURI('#/linkmanagement/target-billboard-log/Key/' + key)])
@@ -144,8 +144,8 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       // height: "90%",
       data: {
         Title: 'آدرس وب سایت',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlSiteHomeShortLinkQRCodeBase64,
-        UrlViewContent: this.dataModelResult.Item.UrlSiteHome,
+        urlViewContentQRCodeBase64: this.dataModelResult.item.urlSiteHomeShortLinkQRCodeBase64,
+        urlViewContent: this.dataModelResult.item.urlSiteHome,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -160,8 +160,8 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       // height: "90%",
       data: {
         Title: 'آدرس سامانه مدیریت محتوا',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlSiteCPanelShortLinkQRCodeBase64,
-        UrlViewContent: this.dataModelResult.Item.UrlSiteCPanel,
+        urlViewContentQRCodeBase64: this.dataModelResult.item.urlSiteCPanelShortLinkQRCodeBase64,
+        urlViewContent: this.dataModelResult.item.urlSiteCPanel,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -176,8 +176,8 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       // height: "90%",
       data: {
         Title: 'آدرس اشتراک گزاری وب سایت',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlSiteCPanelShortLinkQRCodeBase64,
-        UrlViewContent: this.dataModelResult.Item.UrlSiteCPanel,
+        urlViewContentQRCodeBase64: this.dataModelResult.item.urlSiteCPanelShortLinkQRCodeBase64,
+        urlViewContent: this.dataModelResult.item.urlSiteCPanel,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -192,8 +192,8 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       // height: "90%",
       data: {
         Title: 'آدرس اشتراک گزاری با حساب کاربری شما',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlResellerUserShortLinkQRCodeBase64,
-        UrlViewContent: this.dataModelResult.Item.UrlResellerUserShortLinkUrl,
+        urlViewContentQRCodeBase64: this.dataModelResult.item.urlResellerUserShortLinkQRCodeBase64,
+        urlViewContent: this.dataModelResult.item.urlResellerUserShortLinkUrl,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -208,8 +208,8 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
       // height: "90%",
       data: {
         Title: 'آدرس اشتراک گزاری با حساب کاربری شما',
-        UrlViewContentQRCodeBase64: this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkQRCodeBase64,
-        UrlViewContent: this.dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl,
+        urlViewContentQRCodeBase64: this.dataModelResult.item.urlResellerSiteCategoryShortLinkQRCodeBase64,
+        urlViewContent: this.dataModelResult.item.urlResellerSiteCategoryShortLinkUrl,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

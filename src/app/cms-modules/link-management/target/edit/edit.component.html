@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -11,13 +11,13 @@
       <!-- RecordStatus Field -->
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-            name="dataModel.RecordStatus" #RecordStatus="ngModel"
-            panelClass="recordStatus-{{ dataModel.RecordStatus }}">
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+            name="dataModel.recordStatus" #RecordStatus="ngModel"
+            panelClass="recordStatus-{{ dataModel.recordStatus }}">
             <mat-option *ngFor="
-                let item of dataModelEnumRecordStatusResult.ListItems;
+                let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
-              " [value]="item.Value">{{ item.Description }}</mat-option>
+              " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
@@ -26,25 +26,25 @@
         </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
         <app-linkmanagement-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.LinkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
         </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.LinkBillboardPatternId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="'دسته بندی'">
         </app-linkmanagement-billboard-pattern-selector>
 
 
         <!-- ContentSettingType Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="نوع محتوا" [(ngModel)]="dataModel.ContentSettingType"
-            name="dataModel.ContentSettingType" #ContentSettingType="ngModel"
-            panelClass="recordStatus-{{ dataModel.ContentSettingType }}">
+          <mat-select placeholder="نوع محتوا" [(ngModel)]="dataModel.contentSettingType"
+            name="dataModel.contentSettingType" #ContentSettingType="ngModel"
+            panelClass="recordStatus-{{ dataModel.contentSettingType }}">
             <mat-option *ngFor="
-                          let item of dataModelEnumManagementContentSettingTypeResult.ListItems;
+                          let item of dataModelEnumManagementContentSettingTypeResult.listItems;
                           index as i
-                        " [value]="item.Value">{{ item.Description }}</mat-option>
+                        " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
           <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
           <mat-error *ngIf="ContentSettingType.errors?.required">
@@ -54,13 +54,13 @@
 
         <!-- SharingLinkType Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="نوع اشتراک گزاری" [(ngModel)]="dataModel.SharingLinkType"
-            name="dataModel.SharingLinkType" #SharingLinkType="ngModel"
-            panelClass="recordStatus-{{ dataModel.SharingLinkType }}">
+          <mat-select placeholder="نوع اشتراک گزاری" [(ngModel)]="dataModel.sharingLinkType"
+            name="dataModel.sharingLinkType" #SharingLinkType="ngModel"
+            panelClass="recordStatus-{{ dataModel.sharingLinkType }}">
             <mat-option *ngFor="
-                          let item of dataModelEnumSharingPriceTypeResult.ListItems;
+                          let item of dataModelEnumSharingPriceTypeResult.listItems;
                           index as i
-                        " [value]="item.Value">{{ item.Description }}</mat-option>
+                        " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
           <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
           <mat-error *ngIf="SharingLinkType.errors?.required">
@@ -70,11 +70,11 @@
 
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-            placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.Title = ''">close</mat-icon>
+          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
@@ -83,18 +83,18 @@
         </mat-form-field>
         <!-- isPublic Field -->
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataModel.isPublic" *ngIf="fieldsInfo['isPublic']?.AccessWatchField"
-            [disabled]="!fieldsInfo['isPublic']?.AccessEditField" name="dataModel.isPublic">
-            {{fieldsInfo['isPublic']?.FieldTitle}}
+          <mat-slide-toggle [(ngModel)]="dataModel.isPublic" *ngIf="fieldsInfo['isPublic']?.accessWatchField"
+            [disabled]="!fieldsInfo['isPublic']?.accessEditField" name="dataModel.isPublic">
+            {{fieldsInfo['isPublic']?.fieldTitle}}
           </mat-slide-toggle>
         </div>
         <!-- ToWebAddress Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['ToWebAddress']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.ToWebAddress" name="dataModel.ToWebAddress" #ToWebAddress type="text"
-            placeholder="{{fieldsInfo['ToWebAddress']?.FieldTitle}}" minlength="3" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.ToWebAddress" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.ToWebAddress = ''">close</mat-icon>
+          <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
+            placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.toWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ ToWebAddress.value.length }} / 100</mat-hint>
           <mat-error *ngIf="ToWebAddress.errors?.required">
@@ -103,11 +103,11 @@
         </mat-form-field>
         <!-- WebAddress Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['WebAddress']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.WebAddress" name="dataModel.WebAddress" #WebAddress type="text"
-            placeholder="{{fieldsInfo['WebAddress']?.FieldTitle}}" minlength="3" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.WebAddress" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.WebAddress = ''">close</mat-icon>
+          <mat-label>{{fieldsInfo['WebAddress']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.webAddress" name="dataModel.webAddress" #WebAddress type="text"
+            placeholder="{{fieldsInfo['WebAddress']?.fieldTitle}}" minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.webAddress" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.webAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ WebAddress.value.length }} / 100</mat-hint>
           <mat-error *ngIf="WebAddress.errors?.required">
@@ -116,12 +116,12 @@
         </mat-form-field>
         <!-- CarryToWebAddress Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['CarryToWebAddress']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.CarryToWebAddress" name="dataModel.CarryToWebAddress"
-            #CarryToWebAddress type="text" placeholder="{{fieldsInfo['CarryToWebAddress']?.FieldTitle}}" minlength="3"
+          <mat-label>{{fieldsInfo['CarryToWebAddress']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.carryToWebAddress" name="dataModel.carryToWebAddress"
+            #CarryToWebAddress type="text" placeholder="{{fieldsInfo['CarryToWebAddress']?.fieldTitle}}" minlength="3"
             maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.CarryToWebAddress" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.CarryToWebAddress = ''">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.carryToWebAddress" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.carryToWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ CarryToWebAddress.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CarryToWebAddress.errors?.required">
@@ -130,11 +130,11 @@
         </mat-form-field>
         <!-- SmallPreview Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['SmallPreview']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.SmallPreview" name="dataModel.SmallPreview" #SmallPreview type="text"
-            placeholder="{{fieldsInfo['SmallPreview']?.FieldTitle}}" minlength="3" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.SmallPreview" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.SmallPreview = ''">close</mat-icon>
+          <mat-label>{{fieldsInfo['SmallPreview']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.smallPreview" name="dataModel.smallPreview" #SmallPreview type="text"
+            placeholder="{{fieldsInfo['SmallPreview']?.fieldTitle}}" minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.smallPreview" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.smallPreview = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ SmallPreview.value.length }} / 100</mat-hint>
           <mat-error *ngIf="SmallPreview.errors?.required">
@@ -144,11 +144,11 @@
 
         <!-- ClickPrice Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['ClickPrice']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.ClickPrice" name="dataModel.ClickPrice" #ClickPrice type="number"
+          <mat-label>{{fieldsInfo['ClickPrice']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.clickPrice" name="dataModel.clickPrice" #ClickPrice type="number"
             placeholder="مبلغ هر کلیک" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.ClickPrice" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.ClickPrice = 0">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.clickPrice" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.clickPrice = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="ClickPrice.errors?.required">
             ClickPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -156,11 +156,11 @@
         </mat-form-field>
         <!-- ViewPrice Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['ViewPrice']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.ViewPrice" name="dataModel.ViewPrice" #ViewPrice type="number"
+          <mat-label>{{fieldsInfo['ViewPrice']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.viewPrice" name="dataModel.viewPrice" #ViewPrice type="number"
             placeholder="مبلغ هر نمایش" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.ViewPrice" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.ViewPrice = 0">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.viewPrice" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.viewPrice = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="ViewPrice.errors?.required">
             ViewPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -170,11 +170,11 @@
 
         <!-- CurrentClickCount Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['CurrentClickCount']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.CurrentClickCount" name="dataModel.CurrentClickCount"
+          <mat-label>{{fieldsInfo['CurrentClickCount']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount"
             #CurrentClickCount type="number" placeholder="تعداد کلیک تا کنون" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.CurrentClickCount" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.CurrentClickCount = 0">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.currentClickCount = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="CurrentClickCount.errors?.required">
             CurrentClickCount is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -182,11 +182,11 @@
         </mat-form-field>
         <!-- CurrentViewCount Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['CurrentViewCount']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.CurrentViewCount" name="dataModel.CurrentViewCount" #CurrentViewCount
+          <mat-label>{{fieldsInfo['CurrentViewCount']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.currentViewCount" name="dataModel.currentViewCount" #CurrentViewCount
             type="number" placeholder="تعداد بازدید تا کنون" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.CurrentViewCount" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.CurrentViewCount = 0">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.currentViewCount" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.currentViewCount = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="CurrentViewCount.errors?.required">
             CurrentViewCount is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -195,11 +195,11 @@
 
         <!-- MaxPriceOfSharePerDay Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['MaxPriceOfSharePerDay']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.MaxPriceOfSharePerDay" name="dataModel.MaxPriceOfSharePerDay"
+          <mat-label>{{fieldsInfo['MaxPriceOfSharePerDay']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.maxPriceOfSharePerDay" name="dataModel.maxPriceOfSharePerDay"
             #MaxPriceOfSharePerDay type="number" placeholder="تعداد بازدید تا کنون" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.MaxPriceOfSharePerDay" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.MaxPriceOfSharePerDay = 0">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.maxPriceOfSharePerDay" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.maxPriceOfSharePerDay = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="MaxPriceOfSharePerDay.errors?.required">
             MaxPriceOfSharePerDay is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -207,11 +207,11 @@
         </mat-form-field>
         <!-- MaxPriceOfShareTotal Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['MaxPriceOfShareTotal']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.MaxPriceOfShareTotal" name="dataModel.MaxPriceOfShareTotal"
+          <mat-label>{{fieldsInfo['MaxPriceOfShareTotal']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.maxPriceOfShareTotal" name="dataModel.maxPriceOfShareTotal"
             #MaxPriceOfShareTotal type="number" placeholder="تعداد کلیک تا کنون" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.MaxPriceOfShareTotal" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.MaxPriceOfShareTotal = 0">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.maxPriceOfShareTotal" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.maxPriceOfShareTotal = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="MaxPriceOfShareTotal.errors?.required">
             MaxPriceOfShareTotal is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -220,11 +220,11 @@
 
         <!-- FormulaPercent Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['FormulaPercent']?.FieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.FormulaPercent" name="dataModel.FormulaPercent" #FormulaPercent
+          <mat-label>{{fieldsInfo['FormulaPercent']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.formulaPercent" name="dataModel.formulaPercent" #FormulaPercent
             type="number" placeholder="تعداد بازدید تا کنون" min="1" required />
-          <mat-icon matSuffix *ngIf="dataModel.FormulaPercent" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.FormulaPercent = 1">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.formulaPercent" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.formulaPercent = 1">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="FormulaPercent.errors?.required">
             FormulaPercent is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -234,7 +234,7 @@
 
 
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -248,17 +248,17 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>فایل های پیوست محتوا.</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
+          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
 
             <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
-            <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+            <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
               type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
-            <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.linkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
 
@@ -268,7 +268,7 @@
             [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

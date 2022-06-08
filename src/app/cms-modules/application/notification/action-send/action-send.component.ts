@@ -42,14 +42,14 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkApplicationId = +data.LinkApplicationId || 0;
-      this.requestLinkApplicationMemberId = data.LinkApplicationMemberId + '';
+      this.requestLinkApplicationId = +data.linkApplicationId || 0;
+      this.requestLinkApplicationMemberId = data.linkApplicationMemberId + '';
     }
     if (this.requestLinkApplicationMemberId.length > 0) {
       this.LinkMemberId = this.requestLinkApplicationMemberId;
     }
     if (this.requestLinkApplicationId > 0) {
-      this.dataModel.AppId = this.requestLinkApplicationId;
+      this.dataModel.appId = this.requestLinkApplicationId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -71,15 +71,15 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   BigImageIdSrc = '';
   applicationMemberInfoModel = new ApplicationMemberInfoModel();
   onActionFileSelectedSmallImage(model: NodeInterface): void {
-    this.dataModel.SmallImageId = model.id;
+    this.dataModel.smallImageId = model.id;
     this.SmallImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedBigImage(model: NodeInterface): void {
-    this.dataModel.BigImageId = model.id;
+    this.dataModel.bigImageId = model.id;
     this.BigImageIdSrc = model.downloadLinksrc;
   }
   ngOnInit(): void {
-    this.formInfo.FormTitle =  this.translate.instant('TITLE.Register_New_Categories');
+    this.formInfo.formTitle =  this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumContentType();
   }
   getEnumContentType(): void {
@@ -88,27 +88,27 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     });
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.applicationLogNotificationService.ServiceSendNotification(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -116,42 +116,42 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     );
   }
   onActionSelectApp(model: ApplicationAppModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'اپلیکیشن را مشخص کنید',
         'اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.AppId = model.Id;
+    this.dataModel.appId = model.id;
   }
   onActionSelectMemberInfo(model: ApplicationMemberInfoModel | null): void {
-    if (!model || !model.Id || model.Id.length === 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeerrorMessage(
         'عضو اپلیکیشن را مشخص کنید',
         'عضو اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
     this.applicationMemberInfoModel = model;
-    this.LinkMemberId = model.Id;
+    this.LinkMemberId = model.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     if (this.LinkMemberId && this.LinkMemberId.length > 0) {
-      this.dataModel.LinkMemberIds = [];
-      this.dataModel.LinkMemberIds.push(this.LinkMemberId);
-      this.dataModel.AppId = this.applicationMemberInfoModel.LinkApplicationId;
+      this.dataModel.linkMemberIds = [];
+      this.dataModel.linkMemberIds.push(this.LinkMemberId);
+      this.dataModel.appId = this.applicationMemberInfoModel.linkApplicationId;
     }
-    if ((this.LinkMemberId || this.LinkMemberId.length === 0) && this.dataModel.AppId <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if ((this.LinkMemberId || this.LinkMemberId.length === 0) && this.dataModel.appId <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'گیرنده را مشخص کنید',
         'اپلیکیشن و یا کاربری جهت دریافت مشخص نشده است'
       );
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataAddContent();
   }
   onFormCancel(): void {

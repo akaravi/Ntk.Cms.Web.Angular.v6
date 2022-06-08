@@ -38,7 +38,7 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId =+ data.Id || 0;
+      this.requestId =+ data.id || 0;
     }
 
   }
@@ -66,12 +66,12 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
       this.loading.Start(pName);
       this.bankPaymentTransactionService.ServiceGetOneById(this.requestId).subscribe(
         (next) => {
-          if (next.IsSuccess) {
+          if (next.isSuccess) {
             this.dataModelResult = next;
             
           }
           else {
-            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(next.errorMessage);
           }
           this.loading.Stop(pName);
         },

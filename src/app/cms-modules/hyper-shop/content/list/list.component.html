@@ -12,19 +12,19 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button
-      *ngIf="dataModelResult.Access.AccessEditRow && (tableRowSelected?.Code?.length>0 || requestPareintId.length>0)"
+      *ngIf="dataModelResult.access.accessEditRow && (tableRowSelected?.code?.length>0 || requestPareintId.length>0)"
       (click)="onActionbuttonViewRow()" type="button" class="btn btn-outline-secondary BTN" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
 
-    <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
+    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button
-      *ngIf="dataModelResult.Access.AccessEditRow && (tableRowSelected?.Code?.length>0 || requestPareintId.length>0)"
+      *ngIf="dataModelResult.access.accessEditRow && (tableRowSelected?.code?.length>0 || requestPareintId.length>0)"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button
-      *ngIf="dataModelResult.Access.AccessDeleteRow && (tableRowSelected?.Code?.length>0 || requestPareintId.length>0)"
+      *ngIf="dataModelResult.access.accessDeleteRow && (tableRowSelected?.code?.length>0 || requestPareintId.length>0)"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
@@ -62,60 +62,60 @@
       <ng-container matColumnDef="Image">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.Image?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.Image}}" height="40"
+          <img *ngIf="row?.Image?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.image}}" height="40"
             width="40" />
 
         </mat-cell>
       </ng-container>
-      <!-- Code Column -->
-      <ng-container matColumnDef="Code">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Code']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Code}} </mat-cell>
+      <!-- code Column -->
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['code']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.code}} </mat-cell>
       </ng-container>
       <!-- Category Column -->
       <ng-container matColumnDef="Category">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Category']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Category']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Category}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.category}} </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Name']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Name']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
       </ng-container>
 
 
       <!-- Status Column -->
       <ng-container matColumnDef="Status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Status']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.Status | boolclass"></i>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Status']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.status | boolclass"></i>
         </mat-cell>
       </ng-container>
       <!-- Price Column -->
       <ng-container matColumnDef="Price">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Price']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Price}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Price']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
       </ng-container>
       <!-- SalePrice Column -->
       <ng-container matColumnDef="SalePrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SalePrice']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.SalePrice}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SalePrice']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.salePrice}} </mat-cell>
       </ng-container>
       <!-- Count Column -->
       <ng-container matColumnDef="Count">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Count']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Count}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Count']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.count}} </mat-cell>
       </ng-container>
       <!-- Unit Column -->
       <ng-container matColumnDef="Unit">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Unit']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Unit}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Unit']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.unit}} </mat-cell>
       </ng-container>
       <!-- Discount Column -->
       <ng-container matColumnDef="Discount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Discount']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Discount}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Discount']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.discount}} </mat-cell>
       </ng-container>
 
       <!-- Action Column -->
@@ -132,11 +132,11 @@
               <mat-icon>view</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
@@ -145,7 +145,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.Code === tableRowSelected.Code ? '#d3d3da' : '' }">
+        [ngStyle]="{'background': row.code === tableRowSelected.code ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
 
@@ -153,8 +153,8 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

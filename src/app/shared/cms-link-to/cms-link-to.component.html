@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div *ngIf="optionUrlViewContent && optionUrlViewContent.length>0">
+    <div *ngIf="optionurlViewContent && optionurlViewContent.length>0">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-18">
                 <p> {{optionTitle}}</p>
@@ -20,7 +20,7 @@
 
 
                 <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"
-                    *ngIf="optionUrlViewContent && optionUrlViewContent.length>0 && QDocModel.username">
+                    *ngIf="optionurlViewContent && optionurlViewContent.length>0 && QDocModel.username">
                     <i class="fa fa-check-square-o"></i> {{'ACTION.VIEW' | translate}}
                 </button>
                 <br>
@@ -31,38 +31,38 @@
             </div>
 
             <div class="col-md-8 col-sm-8 col-xs-12" style="text-align: center;">
-                <div *ngIf="optionUrlViewContentQRCodeBase64?.length>0 && optionUrlViewContent?.length>0">
-                    <a href="{{optionUrlViewContent}}" target="_blank">
-                        <img [src]="optionUrlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px"
+                <div *ngIf="optionurlViewContentQRCodeBase64?.length>0 && optionurlViewContent?.length>0">
+                    <a href="{{optionurlViewContent}}" target="_blank">
+                        <img [src]="optionurlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px"
                             width="200px">
                     </a>
                 </div>
                     <div class="mt-4">
-                <a target="_blank" href="whatsapp://send?text={{optionTitle}}- {{optionUrlViewContent}}" class="style whatsapp">
+                <a target="_blank" href="whatsapp://send?text={{optionTitle}}- {{optionurlViewContent}}" class="style whatsapp">
                     <i class="flaticon-whatsapp text-dark"></i>
                 </a>
 
                 <a target="_blank"
-                    href="https://telegram.me/share/url?url={{optionUrlViewContent}}&amp;text={{optionTitle}}"
+                    href="https://telegram.me/share/url?url={{optionurlViewContent}}&amp;text={{optionTitle}}"
                     class="style telegram">
                     <i class="flaticon2-telegram-logo text-dark"></i>
                 </a>
 
                 <a target="_blank"
-                    href="https://www.linkedin.com/shareArticle?url={{optionUrlViewContent}}&amp;title={{optionTitle}}"
+                    href="https://www.linkedin.com/shareArticle?url={{optionurlViewContent}}&amp;title={{optionTitle}}"
                     class="style linkedin">
                     <i class="flaticon-linkedin-logo text-dark"></i>
                 </a>
 
-                <a target="_blank" href="http://www.facebook.com/share.php?u={{optionUrlViewContent}}" class="style facebook">
+                <a target="_blank" href="http://www.facebook.com/share.php?u={{optionurlViewContent}}" class="style facebook">
                     <i class="flaticon-facebook-letter-logo text-dark"></i>
                 </a>
 
-                <a target="_blank" href="http://twitter.com/share?text={{optionTitle}}&amp;url={{optionUrlViewContent}}"
+                <a target="_blank" href="http://twitter.com/share?text={{optionTitle}}&amp;url={{optionurlViewContent}}"
                     class="style twitter">
                     <i class="flaticon-twitter-logo text-dark"></i>
                 </a>
-                <span class="navi-icon style cursor" [cdkCopyToClipboard]="optionUrlViewContent"
+                <span class="navi-icon style cursor" [cdkCopyToClipboard]="optionurlViewContent"
                     (click)="onActionCopied()">
                     <i class="flaticon2-copy text-dark"></i></span>
                 </div>

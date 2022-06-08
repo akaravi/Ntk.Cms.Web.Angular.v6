@@ -46,7 +46,7 @@ export class CmsViewComponent implements OnInit, OnDestroy {
   //         this.cmsToastrService.typeSuccessMessage('دستور به وب سایت ارسال شد');
   //       })
   //       // 
-  //       //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');
+  //       //   this.cmsToastrService.typeerrorMessage('برروز خطا در ارسال دستور');
   //       // 
   //     ).toPromise();
   // }

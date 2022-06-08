@@ -1,14 +1,14 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <app-api-telegram-bot-config-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.BotId" [optionPlaceholder]="'ربات تلگرام'">
+      [optionSelectForce]="dataModel.botId" [optionPlaceholder]="'ربات تلگرام'">
     </app-api-telegram-bot-config-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
@@ -48,7 +48,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ChatIds.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="ChatIds.errors?.required">
-        chatIds is <strong>{{'MESSAGE.required' | translate}}</strong>
+        ChatIds is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field> 
 
@@ -59,8 +59,8 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
@@ -68,7 +68,7 @@
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

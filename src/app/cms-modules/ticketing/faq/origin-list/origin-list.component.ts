@@ -43,8 +43,8 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Ascending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Ascending;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -97,26 +97,26 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
 
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
+    if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkTicketingDepartemenId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
+      filter.propertyName = 'LinkTicketingDepartemenId';
+      filter.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filter);
     }
 
     this.ticketingFaqService.ServiceGetAllOrigin(filterModel).subscribe(
       (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        if (next.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+        if (next.isSuccess) {
           this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+          this.tableSource.data = next.listItems;
         }
         else {
-          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+          this.cmsToastrService.typeErrorGetAll(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -131,14 +131,14 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
 
     this.ticketingDepartemenService.ServiceGetAllOrigin(null).subscribe(
       (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
 
 
-        if (next.IsSuccess) {
+        if (next.isSuccess) {
           this.dataDepartemenModelResult = next;
         }
         else {
-          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+          this.cmsToastrService.typeErrorGetAll(next.errorMessage);
 
         }
         this.loadingCat.Stop('main');
@@ -156,25 +156,25 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
@@ -191,7 +191,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: TicketingFaqModel): void {

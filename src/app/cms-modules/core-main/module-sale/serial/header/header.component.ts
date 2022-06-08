@@ -61,11 +61,11 @@ export class CoreModuleSaleSerialHeaderComponent implements OnInit {
     this.coreModuleSaleSerialService.setAccessLoad();
     this.coreModuleSaleSerialService.ServiceGetOneById(this.optionId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        if (ret.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

@@ -44,7 +44,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
     this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Receiving_application_management_information'));
     this.service.ServiceGetExist(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.rowExist = true;
           this.widgetInfoModel.title = this.translate.instant('TITLE.Manage_Application');
           this.widgetInfoModel.link = '/application/app';

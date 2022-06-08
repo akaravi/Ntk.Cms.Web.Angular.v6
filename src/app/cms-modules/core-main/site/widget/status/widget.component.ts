@@ -59,28 +59,28 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    if (!this.tokenInfoModel.SiteId || this.tokenInfoModel.SiteId <= 0) {
+    if (!this.tokenInfoModel.siteId || this.tokenInfoModel.siteId <= 0) {
       return;
     }
-    this.widgetInfoModel.link = '/core/site/edit/' + this.tokenInfoModel.SiteId;
-    this.modelData.set('Id', this.tokenInfoModel.SiteId + '');
+    this.widgetInfoModel.link = '/core/site/edit/' + this.tokenInfoModel.siteId;
+    this.modelData.set('Id', this.tokenInfoModel.siteId + '');
     this.modelData.set('Title', '...');
     this.modelData.set('Domain', '...');
     this.modelData.set('Sub Domain', '...');
     this.modelData.set('Created Date', '...');
     this.modelData.set('Expire Date', '...');
-    this.service.ServiceGetOneById(this.tokenInfoModel.SiteId).subscribe({
+    this.service.ServiceGetOneById(this.tokenInfoModel.siteId).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Title', ret.Item.Title);
-          this.modelData.set('Domain', ret.Item.Domain);
-          this.modelData.set('Sub Domain', ret.Item.SubDomain);
-          this.modelData.set('Created Date', this.persianCalendarService.PersianCalendar(ret.Item.CreatedDate));
-          if (ret.Item.ExpireDate) {
-            this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(ret.Item.ExpireDate));
+        if (ret.isSuccess) {
+          this.modelData.set('Title', ret.item.title);
+          this.modelData.set('Domain', ret.item.domain);
+          this.modelData.set('Sub Domain', ret.item.subDomain);
+          this.modelData.set('Created Date', this.persianCalendarService.PersianCalendar(ret.item.createdDate));
+          if (ret.item.expireDate) {
+            this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(ret.item.expireDate));
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error:(er) => {
@@ -90,36 +90,36 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
 
   }
   onActionSiteSelect(model: CoreSiteModel): void {
-    if (model && model.Id > 0) {
-      // this.inputSiteId = model.Id;
-      if (model.Id !== this.tokenInfoModel.SiteId) {
-        if (model.Id === this.tokenInfoModel.SiteId) {
+    if (model && model.id > 0) {
+      // this.inputSiteId = model.id;
+      if (model.id !== this.tokenInfoModel.siteId) {
+        if (model.id === this.tokenInfoModel.siteId) {
           const etitle = 'هشدار';
           const emessage = 'شناسه این وب سایت با وب سایتی که در آن هستید یکسان است';
           this.cmsToastrService.toastr.warning(emessage, etitle);
           return;
         }
         const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
-        authModel.UserAccessAdminAllowToProfessionalData = this.tokenInfoModel.UserAccessAdminAllowToProfessionalData;
-        authModel.UserAccessAdminAllowToAllData = this.tokenInfoModel.UserAccessAdminAllowToAllData;
-        authModel.UserId = this.tokenInfoModel.UserId;
-        authModel.SiteId = model.Id;
-        authModel.Lang = this.tokenInfoModel.Language;
+        authModel.userAccessAdminAllowToProfessionalData = this.tokenInfoModel.userAccessAdminAllowToProfessionalData;
+        authModel.userAccessAdminAllowToAllData = this.tokenInfoModel.userAccessAdminAllowToAllData;
+        authModel.userId = this.tokenInfoModel.userId;
+        authModel.siteId = model.id;
+        authModel.lang = this.tokenInfoModel.language;
 
         const title = this.translate.instant('TITLE.Information');
         const message = this.translate.instant('MESSAGE.Request_to_change_site_was_sent_to_the_server');
         this.cmsToastrService.toastr.info(message, title);
         this.coreAuthService.ServiceRenewToken(authModel).subscribe({
           next: (ret) => {
-            if (ret.IsSuccess) {
-              if (ret.Item.SiteId === +model.Id) {
+            if (ret.isSuccess) {
+              if (ret.item.siteId === +model.id) {
                 this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_site_acess_confirmed'), title);
 
               } else {
                 this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_site_acess_denied'), title);
               }
             } else {
-              this.cmsToastrService.typeErrorAccessChange(ret.ErrorMessage);
+              this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
             }
 
           },

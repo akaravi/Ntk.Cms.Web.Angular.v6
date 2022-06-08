@@ -73,9 +73,9 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     this.DataEditContent();
   }
   DataGetOne(requestId: string): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     /*َAccess Field*/
@@ -85,50 +85,50 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
       .subscribe(
         async (next) => {
           /*َAccess Field*/
-          this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          this.dataAccessModel = next.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           this.loading.Stop(pName);
           this.dataModelResult = next;
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
         },
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
       );
   }
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.webDesignerMainIntroService
       .ServiceEdit(this.dataModel)
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
+          this.formInfo.formSubmitAllow = !next.isSuccess;
           this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (next.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/webdesigner/intro/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }
       );
@@ -148,11 +148,11 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     this.router.navigate(['/webdesigner/intro/']);
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkMainVideoId(model: NodeInterface): void {
-    this.dataModel.LinkMainVideoId = model.id;
-    this.dataModel.LinkMainVideoIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainVideoId = model.id;
+    this.dataModel.linkMainVideoIdSrc = model.downloadLinksrc;
   }
 }

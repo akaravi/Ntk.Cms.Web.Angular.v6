@@ -25,28 +25,28 @@ export class ApplicationAppDownloadComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   // dataModel = new ApplicationAppModel();
   ngOnInit(): void {
-    this.DataGetOne(this.dataModel.Id);
+    this.DataGetOne(this.dataModel.id);
   }
   DataGetOne(requestId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceGetOneById';
     this.loading.Start(pName);
     this.applicationAppService
       .ServiceGetOneById(requestId)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -57,9 +57,9 @@ export class ApplicationAppDownloadComponent implements OnInit {
     this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionDownloadApp(): void {
-    window.open(this.dataModel.DownloadLinkSrc);
+    window.open(this.dataModel.downloadLinkSrc);
   }
   onActionDownloadUpdate(): void {
-    window.open(this.dataModel.DownloadLinkUpdateSrc);
+    window.open(this.dataModel.downloadLinkUpdateSrc);
   }
 }

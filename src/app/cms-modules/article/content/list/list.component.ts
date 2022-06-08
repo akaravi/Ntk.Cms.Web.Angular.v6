@@ -53,8 +53,8 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
   }
   filteModelContent = new FilterModel();
   categoryModelSelected: ArticleCategoryModel;
@@ -99,23 +99,23 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ArticleContentModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     if (this.GetAllWithHierarchyCategoryId) {
       /** GetAllWithHierarchyCategoryId */
       let selectId = 0;
-      if (this.categoryModelSelected?.Id > 0) {
-        selectId = this.categoryModelSelected.Id;
+      if (this.categoryModelSelected?.id > 0) {
+        selectId = this.categoryModelSelected.id;
       }
       this.contentService.ServiceGetAllWithHierarchyCategoryId(selectId, filterModel).subscribe({
         next: (ret) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-          if (ret.IsSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
             this.dataModelResult = ret;
-            this.tableSource.data = ret.ListItems;
-            if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+            this.tableSource.data = ret.listItems;
+            if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
               this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
                 this.tabledisplayedColumns,
                 'LinkSiteId',
@@ -128,10 +128,10 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
               );
             }
             if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(ret.Access);
+              this.optionsSearch.childMethods.setAccess(ret.access);
             }
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
 
@@ -147,30 +147,30 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     } else {
       /** Normal */
       /** filter Category */
-      if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
+      if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
         const filterChild = new FilterDataModel();
         let fastfilter = new FilterDataModel();
-        fastfilter.PropertyName = 'LinkCategoryId';
-        fastfilter.Value = this.categoryModelSelected.Id;
-        fastfilter.ClauseType = EnumClauseType.Or;
-        filterChild.Filters.push(fastfilter);
+        fastfilter.propertyName = 'LinkCategoryId';
+        fastfilter.value = this.categoryModelSelected.id;
+        fastfilter.clauseType = EnumClauseType.Or;
+        filterChild.filters.push(fastfilter);
         /** N to N */
         fastfilter = new FilterDataModel();
-        fastfilter.PropertyName = 'ContentCategores';
-        fastfilter.PropertyAnyName = 'LinkCategoryId';
-        fastfilter.Value = this.categoryModelSelected.Id;
-        fastfilter.ClauseType = EnumClauseType.Or;
-        filterChild.Filters.push(fastfilter);
-        filterModel.Filters.push(filterChild);
+        fastfilter.propertyName = 'ContentCategores';
+        fastfilter.propertyAnyName = 'LinkCategoryId';
+        fastfilter.value = this.categoryModelSelected.id;
+        fastfilter.clauseType = EnumClauseType.Or;
+        filterChild.filters.push(fastfilter);
+        filterModel.filters.push(filterChild);
       }
       /** filter Category */
       this.contentService.ServiceGetAllEditor(filterModel).subscribe({
         next: (ret) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-          if (ret.IsSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
             this.dataModelResult = ret;
-            this.tableSource.data = ret.ListItems;
-            if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+            this.tableSource.data = ret.listItems;
+            if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
               this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
                 this.tabledisplayedColumns,
                 'LinkSiteId',
@@ -183,10 +183,10 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
               );
             }
             if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(ret.Access);
+              this.optionsSearch.childMethods.setAccess(ret.access);
             }
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -204,25 +204,25 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
   onActionSelectorSelect(model: ArticleCategoryModel | null): void {
@@ -233,7 +233,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   onActionbuttonNewRow(): void {
     if (
       this.categoryModelSelected == null ||
-      this.categoryModelSelected.Id === 0
+      this.categoryModelSelected.id === 0
     ) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
@@ -241,32 +241,32 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     }
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/article/content/add', this.categoryModelSelected.Id]);
+    this.router.navigate(['/article/content/add', this.categoryModelSelected.id]);
   }
   onActionbuttonEditRow(model: ArticleContentModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/article/content/edit', this.tableRowSelected.Id]);
+    this.router.navigate(['/article/content/edit', this.tableRowSelected.id]);
   }
   onActionbuttonDeleteRow(model: ArticleContentModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -275,13 +275,13 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(ArticleContentDeleteComponent, { height: '90%', data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(ArticleContentDeleteComponent, { height: '90%', data: { id: this.tableRowSelected.id } });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
@@ -298,11 +298,11 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -312,16 +312,16 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       }
       ,
@@ -345,11 +345,11 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -362,31 +362,31 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ArticleContentModel): void {
     this.tableRowSelected = row;
   }
   onActionbuttonComment(model: ArticleContentModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
-    this.router.navigate(['/article/comment/', model.Id]);
+    this.router.navigate(['/article/comment/', model.id]);
   }
   onActionbuttonLinkTo(
     model: ArticleContentModel = this.tableRowSelected
   ): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
@@ -394,17 +394,17 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, "دریافت اطلاعات مقاله");
     this.contentService
-      .ServiceGetOneById(this.tableRowSelected.Id)
+      .ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: ret.Item.Title,
-                UrlViewContentQRCodeBase64: ret.Item.UrlViewContentQRCodeBase64,
-                UrlViewContent: ret.Item.UrlViewContent,
+                Title: ret.item.title,
+                urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
+                urlViewContent: ret.item.urlViewContent,
               },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -414,7 +414,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
             });
             //open popup
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },

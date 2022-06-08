@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -10,26 +10,26 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
       <mat-step label="{{'TITLE.Default_module_settings'|translate}}" state="main"
-        *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
         <p>{{'TITLE.Settings_that_are_used_in_the_first_assignment_of_the_module_to_the_site' |translate}}</p>
         <!-- StatusRenderUser Field -->
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.StatusRenderUser"
-            name="dataConfigSiteValuesDefaultModel.StatusRenderUser">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.statusRenderUser"
+            name="dataConfigSiteValuesDefaultModel.statusRenderUser">
             StatusRenderUser
           </mat-slide-toggle>
         </div>
         <!-- UseDataDefaulteSite -->
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite"
-            name="dataConfigSiteValuesDefaultModel.UseDataDefaulteSite">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.useDataDefaulteSite"
+            name="dataConfigSiteValuesDefaultModel.useDataDefaulteSite">
             نمایش اطلاعات سایت پیش فرض در سایت
           </mat-slide-toggle>
         </div>
-        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -42,18 +42,18 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Default_access'|translate}}" state="main"
-        *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
         <p>{{'TITLE.Default_website_access_to_this_module'|translate}}</p>
 
         <!-- MainDataContentRowCount Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>MainDataContentRowCount</mat-label>
-          <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
-            name="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount"
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesDefaultModel.mainDataContentRowCount"
+            name="dataConfigSiteAccessValuesDefaultModel.mainDataContentRowCount"
             #dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount" matSuffix
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesDefaultModel.mainDataContentRowCount" matSuffix
             mat-icon-button aria-label="Clear"
-            (click)="dataConfigSiteAccessValuesDefaultModel.MainDataContentRowCount = null">close</mat-icon>
+            (click)="dataConfigSiteAccessValuesDefaultModel.mainDataContentRowCount = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigSiteAccessValuesDefaultModel_MainDataContentRowCount.errors?.required">
             MainDataContentRowCount is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -62,18 +62,18 @@
         <!-- UseDataDefaulteSiteId Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
-          <input matInput [(ngModel)]="dataConfigAdminMainModel.UseDataDefaulteSiteId"
-            name="dataConfigAdminMainModel.UseDataDefaulteSiteId"
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.useDataDefaulteSiteId"
+            name="dataConfigAdminMainModel.useDataDefaulteSiteId"
             #dataConfigAdminMainModel_UseDataDefaulteSiteId type="number" placeholder="0" />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.UseDataDefaulteSiteId" matSuffix
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.useDataDefaulteSiteId" matSuffix
             mat-icon-button aria-label="Clear"
-            (click)="dataConfigAdminMainModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+            (click)="dataConfigAdminMainModel.useDataDefaulteSiteId = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteAccessValuesDefaultModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -90,18 +90,18 @@
 
         <!-- AccessBuy Field -->
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessBuy" name="dataConfigAdminMainModel.AccessBuy">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.accessBuy" name="dataConfigAdminMainModel.accessBuy">
             AccessBuy
           </mat-slide-toggle>
         </div>
         <!-- ImageMainSizeWidth Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ImageMainSizeWidth</mat-label>
-          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageMainSizeWidth"
-            name="dataConfigAdminMainModel.ImageMainSizeWidth" #dataConfigAdminMainModel_ImageMainSizeWidth
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.imageMainSizeWidth"
+            name="dataConfigAdminMainModel.imageMainSizeWidth" #dataConfigAdminMainModel_ImageMainSizeWidth
             type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageMainSizeWidth" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageMainSizeWidth = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.imageMainSizeWidth" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.imageMainSizeWidth = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigAdminMainModel_ImageMainSizeWidth.errors?.required">
             ImageMainSizeWidth is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -110,11 +110,11 @@
         <!-- ImageMainSizeHeight Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ImageMainSizeHeight</mat-label>
-          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageMainSizeHeight"
-            name="dataConfigAdminMainModel.ImageMainSizeHeight" #dataConfigAdminMainModel_ImageMainSizeHeight
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.imageMainSizeHeight"
+            name="dataConfigAdminMainModel.imageMainSizeHeight" #dataConfigAdminMainModel_ImageMainSizeHeight
             type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageMainSizeHeight" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageMainSizeHeight = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.imageMainSizeHeight" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.imageMainSizeHeight = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigAdminMainModel_ImageMainSizeHeight.errors?.required">
             ImageMainSizeHeight is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -126,11 +126,11 @@
         <!-- ImageThumbnailSizeWidth Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ImageThumbnailSizeWidth</mat-label>
-          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageThumbnailSizeWidth"
-            name="dataConfigAdminMainModel.ImageThumbnailSizeWidth" #dataConfigAdminMainModel_ImageThumbnailSizeWidth
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.imageThumbnailSizeWidth"
+            name="dataConfigAdminMainModel.imageThumbnailSizeWidth" #dataConfigAdminMainModel_ImageThumbnailSizeWidth
             type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageThumbnailSizeWidth" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageThumbnailSizeWidth = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.imageThumbnailSizeWidth" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.imageThumbnailSizeWidth = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigAdminMainModel_ImageThumbnailSizeWidth.errors?.required">
             ImageThumbnailSizeWidth is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -139,11 +139,11 @@
         <!-- ImageThumbnailSizeHeight Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ImageThumbnailSizeHeight</mat-label>
-          <input matInput [(ngModel)]="dataConfigAdminMainModel.ImageThumbnailSizeHeight"
-            name="dataConfigAdminMainModel.ImageThumbnailSizeHeight" #dataConfigAdminMainModel_ImageThumbnailSizeHeight
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.imageThumbnailSizeHeight"
+            name="dataConfigAdminMainModel.imageThumbnailSizeHeight" #dataConfigAdminMainModel_ImageThumbnailSizeHeight
             type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.ImageThumbnailSizeHeight" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigAdminMainModel.ImageThumbnailSizeHeight = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.imageThumbnailSizeHeight" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.imageThumbnailSizeHeight = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigAdminMainModel_ImageThumbnailSizeHeight.errors?.required">
             ImageThumbnailSizeHeight is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -151,29 +151,29 @@
         </mat-form-field>
 
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.AccessFree"
-            name="dataConfigAdminMainModel.AccessFree">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.accessFree"
+            name="dataConfigAdminMainModel.accessFree">
             AccessFree
           </mat-slide-toggle>
         </div>
         <!-- AccessFreeDay Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>AccessFreeDay</mat-label>
-          <input matInput [(ngModel)]="dataConfigAdminMainModel.AccessFreeDay"
-            name="dataConfigAdminMainModel.AccessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.accessFreeDay"
+            name="dataConfigAdminMainModel.accessFreeDay" #dataConfigAdminMainModel_AccessFreeDay type="number"
             placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.AccessFreeDay" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigAdminMainModel.AccessFreeDay = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.accessFreeDay" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.accessFreeDay = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigAdminMainModel_AccessFreeDay.errors?.required">
             AccessFreeDay is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
-        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

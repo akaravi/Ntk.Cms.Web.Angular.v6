@@ -1,36 +1,36 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResult.Item.Title" name="dataModelResult.Item.Title" #Title
-      type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}"  readonly />
+    <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+    <input matInput [(ngModel)]="dataModelResult.item.title" name="dataModelResult.item.title" #Title
+      type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"  readonly />
   </mat-form-field>
   <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['SeoDescription']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResult.Item.SeoDescription" name="dataModelResult.Item.SeoDescription" #SeoDescription
-      type="text" placeholder="{{fieldsInfo['SeoDescription']?.FieldTitle}}"   readonly />
+    <mat-label>{{fieldsInfo['SeoDescription']?.fieldTitle}}</mat-label>
+    <input matInput [(ngModel)]="dataModelResult.item.seoDescription" name="dataModelResult.item.seoDescription" #SeoDescription
+      type="text" placeholder="{{fieldsInfo['SeoDescription']?.fieldTitle}}"   readonly />
   </mat-form-field>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
   <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
     </small>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
-    <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+    <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.buttonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
     </button>

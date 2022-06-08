@@ -24,7 +24,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId = +data.Id || 0;
+      this.requestId = +data.id || 0;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -48,37 +48,37 @@ export class NewsCategoryDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.FormAlert = this.translate.instant('TITLE.Loading_Information');
+    this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({
         next:(ret) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResultCategory = ret;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
-            this.formInfo.FormErrorStatus = true;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
+            this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
-            this.formInfo.FormAlert = '';
+            this.formInfo.formAlert = '';
           }
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormErrorStatus = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }}
       );
   }
   DataGetAll(): void {
-    this.formInfo.FormAlert = this.translate.instant('TITLE.Loading_Information');
+    this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const filterModel: FilterModel = new FilterModel();
-    filterModel.RowPerPage = 100;
+    filterModel.rowPerPage = 100;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService
@@ -86,19 +86,19 @@ export class NewsCategoryDeleteComponent implements OnInit {
       .subscribe({
         next:(ret) => {
           this.dataModelResultCategoryAllData = ret;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
-            this.formInfo.FormErrorStatus = true;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
+            this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
           } else {
-            this.formInfo.FormAlert = '';
+            this.formInfo.formAlert = '';
           }
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormErrorStatus = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }}
@@ -112,37 +112,37 @@ export class NewsCategoryDeleteComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = true;
-    if (this.dataModel.NewCatId === this.requestId) {
-      this.formInfo.FormAlert = 'برروز خطا';
-      this.formInfo.FormError =
+    this.formInfo.formSubmitAllow = true;
+    if (this.dataModel.newCatId === this.requestId) {
+      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formError =
       this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
-      this.formInfo.ButtonSubmittedEnabled = true;
+      this.formInfo.buttonSubmittedEnabled = true;
     }
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService
-      .ServiceMove(this.requestId, this.dataModel.NewCatId)
+      .ServiceMove(this.requestId, this.dataModel.newCatId)
       .subscribe({
         next:(ret) => {
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorMove();
           } else {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.The_Transfer_Was_Successful');
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.The_Transfer_Was_Successful');
             this.cmsToastrService.typeSuccessMove();
           }
-          this.formInfo.FormSubmitAllow = true;
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.formSubmitAllow = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.formAlert = 'برروز خطا';
           this.cmsToastrService.typeError(er);
-          this.formInfo.ButtonSubmittedEnabled = true;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.buttonSubmittedEnabled = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         }}
       );
@@ -152,51 +152,51 @@ export class NewsCategoryDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService
       .ServiceDelete(this.requestId)
       .subscribe({
         next:(ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
             this.cmsToastrService.typeSuccessRemove();
             this.dialogRef.close({ dialogChangedDate: true });
           }
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         }}
       );
   }
   onFormChangeNewCatId(model: NewsCategoryModel): void {
-    this.formInfo.FormAlert = '';
-    if (this.requestId === 0 || !model || model.Id <= 0) {
+    this.formInfo.formAlert = '';
+    if (this.requestId === 0 || !model || model.id <= 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.dataModel.NewCatId = model.Id;
-    if (this.dataModel.NewCatId === this.requestId) {
-      this.formInfo.FormAlert = 'برروز خطا';
-      this.formInfo.FormError =
+    this.dataModel.newCatId = model.id;
+    if (this.dataModel.newCatId === this.requestId) {
+      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formError =
       this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
-      this.formInfo.ButtonSubmittedEnabled = false;
+      this.formInfo.buttonSubmittedEnabled = false;
     } else {
-      this.formInfo.ButtonSubmittedEnabled = true;
-      this.formInfo.FormError = '';
+      this.formInfo.buttonSubmittedEnabled = true;
+      this.formInfo.formError = '';
     }
   }
   onFormCancel(): void {

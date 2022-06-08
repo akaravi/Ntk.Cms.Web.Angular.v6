@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -10,11 +10,11 @@
 
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
@@ -24,65 +24,65 @@
 
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.AccessAddField" [optionSelectForce]="dataModel.LinkPropertyId"
+      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
       [optionPlaceholder]="'شناسه ملک'">
     </app-estate-property-selector>
 
     <!-- LinkAdsTypeId Field -->
     <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
-      [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.AccessAddField"
-      [optionSelectForce]="dataModel.LinkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
+      [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
     </app-estate-adstype-selector>
 
     <!-- StationLevel Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.AccessWatchField">
-      <mat-label> {{fieldsInfo['StationLevel']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.StationLevel" name="dataModel.StationLevel" #StationLevel type="number"
-        [disabled]="!fieldsInfo['StationLevel']?.AccessEditField"
-        placeholder="{{fieldsInfo['StationLevel']?.FieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.StationLevel" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.StationLevel = 1">close</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.accessWatchField">
+      <mat-label> {{fieldsInfo['StationLevel']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.stationLevel" name="dataModel.stationLevel" #StationLevel type="number"
+        [disabled]="!fieldsInfo['StationLevel']?.accessEditField"
+        placeholder="{{fieldsInfo['StationLevel']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.stationLevel" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.stationLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
 
     <!-- ViewLevel Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ViewLevel']?.AccessWatchField">
-      <mat-label> {{fieldsInfo['ViewLevel']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ViewLevel" name="dataModel.ViewLevel" #ViewLevel type="number"
-        [disabled]="!fieldsInfo['ViewLevel']?.AccessEditField" placeholder="{{fieldsInfo['ViewLevel']?.FieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.ViewLevel" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.ViewLevel = 1">close</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ViewLevel']?.accessWatchField">
+      <mat-label> {{fieldsInfo['ViewLevel']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.viewLevel" name="dataModel.viewLevel" #ViewLevel type="number"
+        [disabled]="!fieldsInfo['ViewLevel']?.accessEditField" placeholder="{{fieldsInfo['ViewLevel']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.viewLevel" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.viewLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
     <!-- FromDate Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['FromDate']?.FieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
-      <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
+      <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
+      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #FromDate></mat-datepicker>
     </mat-form-field>
 
     <!-- ExpireDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
-      <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-      <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
+      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #ExpireDate></mat-datepicker>
     </mat-form-field>
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
@@ -94,15 +94,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

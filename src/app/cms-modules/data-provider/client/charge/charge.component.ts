@@ -26,14 +26,14 @@ export class DataProviderClientChargeComponent implements OnInit {
         public translate: TranslateService
     ) {
         this.requestLinkClientId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkClientId'));
-        this.dataModelCalculate.LinkClientId = this.requestLinkClientId;
+        this.dataModelCalculate.linkClientId = this.requestLinkClientId;
     }
     price = '';
     currency = '';
     viewCalculate = false;
     loading = new ProgressSpinnerModel();
     dataModelCalculate: DataProviderModuleCalculateDtoModel = new DataProviderModuleCalculateDtoModel();
-    LinkPlanPriceId = this.dataModelCalculate.LinkPlanPriceId;
+    LinkPlanPriceId = this.dataModelCalculate.linkPlanPriceId;
 
     ngOnInit(): void {
         this.DataGetCurrency();
@@ -56,8 +56,8 @@ export class DataProviderClientChargeComponent implements OnInit {
     DataGetCurrency(): void {
         this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
             next: (ret) => {
-                if (ret.IsSuccess) {
-                    this.currency = ret.Item;
+                if (ret.isSuccess) {
+                    this.currency = ret.item;
                 }
             },
             error: (er) => {
@@ -71,8 +71,8 @@ export class DataProviderClientChargeComponent implements OnInit {
         const dialogRef = this.dialog.open(DataProviderClientChargePaymentComponent, {
             height: '90%',
             data: {
-                LinkPlanPriceId: this.dataModelCalculate.LinkPlanPriceId,
-                LinkClientId: this.dataModelCalculate.LinkClientId,
+                LinkPlanPriceId: this.dataModelCalculate.linkPlanPriceId,
+                LinkClientId: this.dataModelCalculate.linkClientId,
             }
 
         });

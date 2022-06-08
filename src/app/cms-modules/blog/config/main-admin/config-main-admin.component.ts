@@ -88,9 +88,9 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
 
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
-      this.requestLinkSiteId = this.tokenInfo.SiteId;
+      this.requestLinkSiteId = this.tokenInfo.siteId;
     }
-    if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (this.tokenInfo.userAccessAdminAllowToProfessionalData) {
       this.GetServiceSiteConfigDefault();
       this.GetServiceSiteAccessDefault();
       this.GetServiceAdminMain();
@@ -102,7 +102,7 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (this.tokenInfo.userAccessAdminAllowToProfessionalData) {
       this.SetServiceSiteConfigDefaultSave();
       this.SetServiceSiteAccessDefaultSave();
       this.SetServiceAdminMainSave();
@@ -122,9 +122,9 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
   }
 
   GetServiceSiteConfigDefault(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
@@ -132,16 +132,16 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       .ServiceSiteConfigDefault()
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataConfigSiteValuesDefaultModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataConfigSiteValuesDefaultModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -149,9 +149,9 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       );
   }
   SetServiceSiteConfigDefaultSave(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
 
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
@@ -160,16 +160,16 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       .ServiceSiteConfigDefaultSave(this.dataConfigSiteValuesDefaultModel)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataConfigSiteValuesDefaultModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataConfigSiteValuesDefaultModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -178,9 +178,9 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
   }
 
   GetServiceSiteAccessDefault(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccessDefault';
     this.loading.Start(pName, 'دریافت دسترسی پیش فرض ماژول');
@@ -188,16 +188,16 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       .ServiceSiteAccessDefault()
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataConfigSiteAccessValuesDefaultModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataConfigSiteAccessValuesDefaultModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -205,9 +205,9 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       );
   }
   SetServiceSiteAccessDefaultSave(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccessDefaultSave';
     this.loading.Start(pName, 'ذخیره دسترسی پیش فرض ماژول');
@@ -215,16 +215,16 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       .ServiceSiteAccessDefaultSave(this.dataConfigSiteAccessValuesDefaultModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataConfigSiteAccessValuesDefaultModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataConfigSiteAccessValuesDefaultModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -232,9 +232,9 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       );
   }
   GetServiceAdminMain(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
@@ -242,16 +242,16 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       .ServiceAdminMain()
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataConfigAdminMainModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataConfigAdminMainModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -259,9 +259,9 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       );
   }
   SetServiceAdminMainSave(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
@@ -269,16 +269,16 @@ export class BlogConfigMainAdminComponent implements OnInit, OnDestroy {
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataConfigAdminMainModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataConfigAdminMainModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }

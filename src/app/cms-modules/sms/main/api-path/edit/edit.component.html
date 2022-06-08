@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -10,13 +10,13 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-            name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+            name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
             required>
             <mat-option *ngFor="
-                      let item of dataModelEnumRecordStatusResult.ListItems;
+                      let item of dataModelEnumRecordStatusResult.listItems;
                       index as i
-                    " [value]="item.Value">{{ item.Description }}</mat-option>
+                    " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,37 +24,37 @@
           </mat-error>
         </mat-form-field>
         <!-- Title Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessEditField"
-            name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['Title']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.title" [disabled]="!fieldsInfo['Title']?.accessEditField"
+            name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
             maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessEditField" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['Title']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- LinkPublicConfigId Field -->
         <app-sms-publicconfig-selector (optionChange)="onActionSelectSource($event)"
-          [optionDisabled]="!fieldsInfo['LinkPublicConfigId']?.AccessEditField"
-          [optionSelectForce]="dataModel.LinkPublicConfigId" [optionPlaceholder]="'نوع مسیر'">
+          [optionDisabled]="!fieldsInfo['LinkPublicConfigId']?.accessEditField"
+          [optionSelectForce]="dataModel.linkPublicConfigId" [optionPlaceholder]="'نوع مسیر'">
         </app-sms-publicconfig-selector>
         <!-- LinkApiPathCompanyId Field -->
         <app-sms-apipathcompany-selector (optionChange)="onActionSelectorSelectLinkApiPathCompanyId($event)"
-          [optionSelectForce]="dataModel.LinkApiPathCompanyId" [optionPlaceholder]="'کمپانی سرویس دهنده'">
+          [optionSelectForce]="dataModel.linkApiPathCompanyId" [optionPlaceholder]="'کمپانی سرویس دهنده'">
         </app-sms-apipathcompany-selector>
 
         <!-- ApiDefaultNumber Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['ApiDefaultNumber']?.FieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.ApiDefaultNumber" name="dataModel.ApiDefaultNumber"
-            #ApiDefaultNumber type="text" placeholder="{{fieldsInfo['ApiDefaultNumber']?.FieldTitle}}" minlength="1"
+          <mat-label>{{fieldsInfo['ApiDefaultNumber']?.fieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.apiDefaultNumber" name="dataModel.apiDefaultNumber"
+            #ApiDefaultNumber type="text" placeholder="{{fieldsInfo['ApiDefaultNumber']?.fieldTitle}}" minlength="1"
             maxlength="500" rows="5"></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.ApiDefaultNumber" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.ApiDefaultNumber = ''">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.apiDefaultNumber" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.apiDefaultNumber = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ ApiDefaultNumber.value.length }} / 500</mat-hint>
           <mat-error *ngIf="ApiDefaultNumber.errors?.required">
@@ -62,122 +62,122 @@
           </mat-error>
         </mat-form-field>
         <!-- ApiIdentity Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiIdentity']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['ApiIdentity']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.ApiIdentity" [disabled]="!fieldsInfo['ApiIdentity']?.AccessEditField"
-            name="dataModel.ApiIdentity" #ApiIdentity type="number" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.ApiIdentity && fieldsInfo['ApiIdentity']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.ApiIdentity = 1">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['ApiIdentity']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiIdentity']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['ApiIdentity']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.apiIdentity" [disabled]="!fieldsInfo['ApiIdentity']?.accessEditField"
+            name="dataModel.apiIdentity" #ApiIdentity type="number" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.apiIdentity && fieldsInfo['ApiIdentity']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.apiIdentity = 1">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ApiIdentity']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- ApiReceiveKey Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiReceiveKey']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['ApiReceiveKey']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.ApiReceiveKey" [disabled]="!fieldsInfo['ApiReceiveKey']?.AccessEditField" class="input-ltr"
-            name="dataModel.ApiReceiveKey" #ApiReceiveKey type="text" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.ApiReceiveKey && fieldsInfo['ApiReceiveKey']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.ApiReceiveKey = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['ApiReceiveKey']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiReceiveKey']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['ApiReceiveKey']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.apiReceiveKey" [disabled]="!fieldsInfo['ApiReceiveKey']?.accessEditField" class="input-ltr"
+            name="dataModel.apiReceiveKey" #ApiReceiveKey type="text" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.apiReceiveKey && fieldsInfo['ApiReceiveKey']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.apiReceiveKey = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ApiReceiveKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- HookAddressAPIById Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HookAddressAPIById']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['HookAddressAPIById']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.HookAddressAPIById" readonly class="input-ltr"
-            name="dataModel.HookAddressAPIById" #HookAddressAPIById type="test" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.HookAddressAPIById && fieldsInfo['HookAddressAPIById']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.HookAddressAPIById = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['HookAddressAPIById']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HookAddressAPIById']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['HookAddressAPIById']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.hookAddressAPIById" readonly class="input-ltr"
+            name="dataModel.hookAddressAPIById" #HookAddressAPIById type="test" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.hookAddressAPIById && fieldsInfo['HookAddressAPIById']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.hookAddressAPIById = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['HookAddressAPIById']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Priority Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['Priority']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.Priority" [disabled]="!fieldsInfo['Priority']?.AccessEditField"
-            name="dataModel.Priority" #Priority type="number" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.Priority && fieldsInfo['Priority']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.Priority = 1">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['Priority']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['Priority']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.priority" [disabled]="!fieldsInfo['Priority']?.accessEditField"
+            name="dataModel.priority" #Priority type="number" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['Priority']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.priority = 1">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['Priority']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- MaxProcessFlowAmount Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MaxProcessFlowAmount']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['MaxProcessFlowAmount']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.MaxProcessFlowAmount"
-            [disabled]="!fieldsInfo['MaxProcessFlowAmount']?.AccessEditField" name="dataModel.MaxProcessFlowAmount"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MaxProcessFlowAmount']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['MaxProcessFlowAmount']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.maxProcessFlowAmount"
+            [disabled]="!fieldsInfo['MaxProcessFlowAmount']?.accessEditField" name="dataModel.maxProcessFlowAmount"
             #MaxProcessFlowAmount type="number" placeholder="" />
           <mat-icon matSuffix
-            *ngIf="dataModel.MaxProcessFlowAmount && fieldsInfo['MaxProcessFlowAmount']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.MaxProcessFlowAmount = 1">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['MaxProcessFlowAmount']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+            *ngIf="dataModel.maxProcessFlowAmount && fieldsInfo['MaxProcessFlowAmount']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.maxProcessFlowAmount = 1">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['MaxProcessFlowAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- MinProcessFlowAmount Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MinProcessFlowAmount']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['MinProcessFlowAmount']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.MinProcessFlowAmount"
-            [disabled]="!fieldsInfo['MinProcessFlowAmount']?.AccessEditField" name="dataModel.MinProcessFlowAmount"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MinProcessFlowAmount']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['MinProcessFlowAmount']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.minProcessFlowAmount"
+            [disabled]="!fieldsInfo['MinProcessFlowAmount']?.accessEditField" name="dataModel.minProcessFlowAmount"
             #MinProcessFlowAmount type="number" placeholder="Min Transaction Amount" />
           <mat-icon matSuffix
-            *ngIf="dataModel.MinProcessFlowAmount && fieldsInfo['MinProcessFlowAmount']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.MinProcessFlowAmount = 0">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['MinProcessFlowAmount']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+            *ngIf="dataModel.minProcessFlowAmount && fieldsInfo['MinProcessFlowAmount']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.minProcessFlowAmount = 0">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['MinProcessFlowAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- FixFeeProcessFlowAmount Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['FixFeeProcessFlowAmount']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.FixFeeProcessFlowAmount"
-            [disabled]="!fieldsInfo['FixFeeProcessFlowAmount']?.AccessEditField"
-            name="dataModel.FixFeeProcessFlowAmount" #FixFeeProcessFlowAmount type="number"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['FixFeeProcessFlowAmount']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.fixFeeProcessFlowAmount"
+            [disabled]="!fieldsInfo['FixFeeProcessFlowAmount']?.accessEditField"
+            name="dataModel.fixFeeProcessFlowAmount" #FixFeeProcessFlowAmount type="number"
             placeholder="Max Transaction Amount" />
           <mat-icon matSuffix
-            *ngIf="dataModel.FixFeeProcessFlowAmount && fieldsInfo['FixFeeProcessFlowAmount']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.FixFeeProcessFlowAmount = 100000">close
+            *ngIf="dataModel.fixFeeProcessFlowAmount && fieldsInfo['FixFeeProcessFlowAmount']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.fixFeeProcessFlowAmount = 100000">close
           </mat-icon>
-          <mat-icon *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['FixFeeProcessFlowAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- PercentFeeProcessFlowAmount Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['PercentFeeProcessFlowAmount']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.PercentFeeProcessFlowAmount"
-            [disabled]="!fieldsInfo['PercentFeeProcessFlowAmount']?.AccessEditField"
-            name="dataModel.PercentFeeProcessFlowAmount" #PercentFeeProcessFlowAmount type="number"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['PercentFeeProcessFlowAmount']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.percentFeeProcessFlowAmount"
+            [disabled]="!fieldsInfo['PercentFeeProcessFlowAmount']?.accessEditField"
+            name="dataModel.percentFeeProcessFlowAmount" #PercentFeeProcessFlowAmount type="number"
             placeholder="Percent Fee Transaction Amount" />
           <mat-icon matSuffix
-            *ngIf="dataModel.PercentFeeProcessFlowAmount && fieldsInfo['PercentFeeProcessFlowAmount']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PercentFeeProcessFlowAmount = 100000">close
+            *ngIf="dataModel.percentFeeProcessFlowAmount && fieldsInfo['PercentFeeProcessFlowAmount']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.percentFeeProcessFlowAmount = 100000">close
           </mat-icon>
-          <mat-icon *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['PercentFeeProcessFlowAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- PerriodStartWorkTime Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PerriodStartWorkTime']?.AccessWatchField">
-          <mat-label>{{fieldsInfo['PerriodStartWorkTime']?.FieldTitle}}</mat-label>
-          <input matInput [ngxTimepicker]="PerriodStartWorkTime" [(ngModel)]="dataModel.PerriodStartWorkTime" 
-          [format]="24" name="dataModel.PerriodStartWorkTime" />
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PerriodStartWorkTime']?.accessWatchField">
+          <mat-label>{{fieldsInfo['PerriodStartWorkTime']?.fieldTitle}}</mat-label>
+          <input matInput [ngxTimepicker]="PerriodStartWorkTime" [(ngModel)]="dataModel.perriodStartWorkTime" 
+          [format]="24" name="dataModel.perriodStartWorkTime" />
           <mat-icon matSuffix
-            *ngIf="dataModel.PerriodStartWorkTime && fieldsInfo['PerriodStartWorkTime']?.AccessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.PerriodStartWorkTime = null">close</mat-icon>
+            *ngIf="dataModel.perriodStartWorkTime && fieldsInfo['PerriodStartWorkTime']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.perriodStartWorkTime = null">close</mat-icon>
           <ngx-material-timepicker-toggle matSuffix [for]="PerriodStartWorkTime"></ngx-material-timepicker-toggle>
           <ngx-material-timepicker touchUi #PerriodStartWorkTime></ngx-material-timepicker>
         </mat-form-field>
 
 
         <!-- PerriodEndWorkTime Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PerriodEndWorkTime']?.AccessWatchField">
-          <mat-label>{{fieldsInfo['PerriodEndWorkTime']?.FieldTitle}}</mat-label>
-          <input matInput [ngxTimepicker]="PerriodEndWorkTime" [(ngModel)]="dataModel.PerriodEndWorkTime"
-          [format]="24" name="dataModel.PerriodEndWorkTime" />
-          <mat-icon matSuffix *ngIf="dataModel.PerriodEndWorkTime && fieldsInfo['PerriodEndWorkTime']?.AccessEditField"
-            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.PerriodEndWorkTime = null">close</mat-icon>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PerriodEndWorkTime']?.accessWatchField">
+          <mat-label>{{fieldsInfo['PerriodEndWorkTime']?.fieldTitle}}</mat-label>
+          <input matInput [ngxTimepicker]="PerriodEndWorkTime" [(ngModel)]="dataModel.perriodEndWorkTime"
+          [format]="24" name="dataModel.perriodEndWorkTime" />
+          <mat-icon matSuffix *ngIf="dataModel.perriodEndWorkTime && fieldsInfo['PerriodEndWorkTime']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.perriodEndWorkTime = null">close</mat-icon>
           <ngx-material-timepicker-toggle matSuffix [for]="PerriodEndWorkTime"></ngx-material-timepicker-toggle>
           <ngx-material-timepicker touchUi #PerriodEndWorkTime></ngx-material-timepicker>
         </mat-form-field>
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows="5"></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.Description = ''">close</mat-icon>
+          <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+            placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
@@ -186,11 +186,11 @@
         </mat-form-field>
         <!-- Memo Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Memo']?.FieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.Memo" name="dataModel.Memo" #Memo type="text"
-            placeholder="{{fieldsInfo['Memo']?.FieldTitle}}" minlength="1" maxlength="500" required rows=5></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.Memo" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.Memo = ''">close</mat-icon>
+          <mat-label>{{fieldsInfo['Memo']?.fieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.memo" name="dataModel.memo" #Memo type="text"
+            placeholder="{{fieldsInfo['Memo']?.fieldTitle}}" minlength="1" maxlength="500" required rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.memo" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.memo = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Memo.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Memo.errors?.required">
@@ -199,7 +199,7 @@
         </mat-form-field>
 
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -214,9 +214,9 @@
 
       <mat-step label="متغیر های ارسال" state="seo">
         <p>تنظیمات درگاه</p>
-        <dynamic-form-builder-cms [formGroup]="vform.form" [(jsonValue)]="dataModel.PrivateConfigJsonValues"
-          [propertiesInfos]="dataModel.PrivateConfigJsonFormatter"></dynamic-form-builder-cms>
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <dynamic-form-builder-cms [formGroup]="vform.form" [(jsonValue)]="dataModel.privateConfigJsonValues"
+          [propertiesInfos]="dataModel.privateConfigJsonFormatter"></dynamic-form-builder-cms>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -230,7 +230,7 @@
       </mat-step>
       <mat-step label="متغیرهای دریافت وضعیت" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -244,7 +244,7 @@
       </mat-step>
       <mat-step label="وضعیت برگشت اعتبار" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -258,7 +258,7 @@
       </mat-step>
       <mat-step label=" متغیرهای دریافت " state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -272,7 +272,7 @@
       </mat-step>
       <mat-step label="بررسی اعتبار " state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -286,7 +286,7 @@
       </mat-step>
       <mat-step label="متغیرهای بانک شماره" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -300,7 +300,7 @@
       </mat-step>
       <mat-step label="متغیرهای ارسال پیام صوتی" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -314,7 +314,7 @@
       </mat-step>
       <mat-step label="متغییر های خطا" state="seo">
 
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -344,8 +344,8 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->

@@ -34,11 +34,11 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.tokenHelper.getCurrentToken().then((value) => {
-      this.lang = value.Language;
+      this.lang = value.language;
       this.onGetOne();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.lang = next.Language;
+      this.lang = next.language;
       this.onGetOne();
     });
 
@@ -52,43 +52,43 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
       this.coreGuideService.ServiceGetOneById(this.Identity).pipe(
         map(
           (next) => {
-            if (next.IsSuccess) {
+            if (next.isSuccess) {
               
               switch (this.lang) {
                 case 'fa': {
-                  this.title = next.Item.TitleFa;
-                  this.description = next.Item.DescriptionFa;
-                  this.body = next.Item.BodyFa;
+                  this.title = next.item.titleFa;
+                  this.description = next.item.descriptionFa;
+                  this.body = next.item.bodyFa;
                   break;
                 }
                 case 'en': {
-                  this.title = next.Item.TitleEn;
-                  this.description = next.Item.DescriptionEn;
-                  this.body = next.Item.BodyEn;
+                  this.title = next.item.titleEn;
+                  this.description = next.item.descriptionEn;
+                  this.body = next.item.bodyEn;
                   break;
                 }
                 case 'ar': {
-                  this.title = next.Item.TitleAr;
-                  this.description = next.Item.DescriptionAr;
-                  this.body = next.Item.BodyAr;
+                  this.title = next.item.titleAr;
+                  this.description = next.item.descriptionAr;
+                  this.body = next.item.bodyAr;
                   break;
                 }
                 case 'de': {
-                  this.title = next.Item.TitleDe;
-                  this.description = next.Item.DescriptionDe;
-                  this.body = next.Item.BodyDe;
+                  this.title = next.item.titleDe;
+                  this.description = next.item.descriptionDe;
+                  this.body = next.item.bodyDe;
                   break;
                 }
                 default: {
-                  this.title = next.Item.TitleFa;
-                  this.description = next.Item.DescriptionFa;
-                  this.body = next.Item.BodyFa;
+                  this.title = next.item.titleFa;
+                  this.description = next.item.descriptionFa;
+                  this.body = next.item.bodyFa;
                   break;
                 }
               }
 
             } else {
-              this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+              this.cmsToastrService.typeerrorMessage(next.errorMessage);
             }
           },
           (error) => {
@@ -99,43 +99,43 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
       this.coreGuideService.ServiceGetOneByKey(this.Key).pipe(
         map(
           (next) => {
-            if (next.IsSuccess) {
+            if (next.isSuccess) {
              
               switch (this.lang) {
                 case 'fa': {
-                  this.title = next.Item.TitleFa;
-                  this.description = next.Item.DescriptionFa;
-                  this.body = next.Item.BodyFa;
+                  this.title = next.item.titleFa;
+                  this.description = next.item.descriptionFa;
+                  this.body = next.item.bodyFa;
                   break;
                 }
                 case 'en': {
-                  this.title = next.Item.TitleEn;
-                  this.description = next.Item.DescriptionEn;
-                  this.body = next.Item.BodyEn;
+                  this.title = next.item.titleEn;
+                  this.description = next.item.descriptionEn;
+                  this.body = next.item.bodyEn;
                   break;
                 }
                 case 'ar': {
-                  this.title = next.Item.TitleAr;
-                  this.description = next.Item.DescriptionAr;
-                  this.body = next.Item.BodyAr;
+                  this.title = next.item.titleAr;
+                  this.description = next.item.descriptionAr;
+                  this.body = next.item.bodyAr;
                   break;
                 }
                 case 'de': {
-                  this.title = next.Item.TitleDe;
-                  this.description = next.Item.DescriptionDe;
-                  this.body = next.Item.BodyDe;
+                  this.title = next.item.titleDe;
+                  this.description = next.item.descriptionDe;
+                  this.body = next.item.bodyDe;
                   break;
                 }
                 default: {
-                  this.title = next.Item.TitleFa;
-                  this.description = next.Item.DescriptionFa;
-                  this.body = next.Item.BodyFa;
+                  this.title = next.item.titleFa;
+                  this.description = next.item.descriptionFa;
+                  this.body = next.item.bodyFa;
                   break;
                 }
               }
 
             } else {
-              this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+              this.cmsToastrService.typeerrorMessage(next.errorMessage);
             }
           },
           (error) => {

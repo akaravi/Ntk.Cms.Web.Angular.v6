@@ -1,19 +1,19 @@
-<ng-container *ngIf="tokenInfo && tokenInfo.UserId>0">
+<ng-container *ngIf="tokenInfo && tokenInfo.userId>0">
   <ng-container *ngIf="extrasUserDropdownStyle === 'light'">
     <!--begin::Header-->
     <div class="d-flex align-items-center p-8 rounded-top">
       <!--begin::Symbol-->
       <div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
         <img
-          src="{{ (tokenInfo.LinkMainImageIdSrc && tokenInfo.LinkMainImageIdSrc.length>0) ? tokenInfo.LinkMainImageIdSrc : './assets/media/users/300_21.jpg' }}"
+          src="{{ (tokenInfo.linkMainImageIdSrc && tokenInfo.linkMainImageIdSrc.length>0) ? tokenInfo.linkMainImageIdSrc : './assets/media/users/300_21.jpg' }}"
           alt="" />
       </div>
       <!--end::Symbol-->
       <!--begin::Text-->
       <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
-        {{ tokenInfo.Name}} {{ tokenInfo.LastName }}
+        {{ tokenInfo.name}} {{ tokenInfo.lastName }}
       </div>
-      <span class="label label-light-info label-lg font-weight-bold label-inline">{{ tokenInfo.UserAccessUserTypeTitle }}
+      <span class="label label-light-info label-lg font-weight-bold label-inline">{{ tokenInfo.userAccessUserTypeTitle }}
       </span>
       <!--end::Text-->
     </div>
@@ -28,18 +28,18 @@
       <div class="d-flex align-items-center mr-2">
         <!--begin::Symbol-->
         <div class="symbol bg-white-o-15 mr-3">
-          <span class="symbol-label text-success font-weight-bold font-size-h4">{{ tokenInfo.Name | firstLetter
+          <span class="symbol-label text-success font-weight-bold font-size-h4">{{ tokenInfo.name | firstLetter
             }}</span>
         </div>
         <!--end::Symbol-->
 
         <!--begin::Text-->
         <div class="text-white m-0 flex-grow-1 mr-3 font-size-h5">
-          {{ tokenInfo.Name }} {{ tokenInfo.LastName }}
+          {{ tokenInfo.name }} {{ tokenInfo.lastName }}
         </div>
         <!--end::Text-->
       </div>
-      <span class="label label-info label-lg font-weight-bold label-inline">{{ tokenInfo.UserAccessUserTypeTitle }}
+      <span class="label label-info label-lg font-weight-bold label-inline">{{ tokenInfo.userAccessUserTypeTitle }}
       </span>
     </div>
     <!--end::Header-->
@@ -48,7 +48,7 @@
   <!--begin::Nav-->
   <div class="navi navi-spacer-x-0 pt-5">
     <!--begin::Item-->
-    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/core/user/edit/' +this.tokenInfo.UserId}}">
+    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}">
       <div class="navi-link">
         <div class="navi-icon mr-2">
           <i class="flaticon2-calendar-3 text-success"></i>
@@ -60,9 +60,9 @@
           <div class="text-muted">
             {{'TITLE.Account_settings_and_more'| translate}}
             <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
-              translate}}:{{this.tokenInfo.UserId}}</span>
+              translate}}:{{this.tokenInfo.userId}}</span>
               <span class="label label-light-success label-inline font-weight-bold">{{'TITLE.Site_Id'|
-                translate}}:{{this.tokenInfo.SiteId}}</span>
+                translate}}:{{this.tokenInfo.siteId}}</span>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
           </div>
           <div class="text-muted">
             {{'TITLE.Inbox_and_tasks'| translate}}
-            <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountEditorModelResult.TotalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
+            <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountEditorModelResult.totalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@
             </div>
             <div class="text-muted">
               {{'TITLE.latest_tasks_and_projects'| translate}}
-              <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountViewerModelResult.TotalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
+              <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountViewerModelResult.totalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
             </div>
           </div>
         </div>

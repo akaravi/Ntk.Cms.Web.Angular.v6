@@ -48,8 +48,8 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
 
   DataGetAll(): void {
     const filteModel = new FilterModel();
-    filteModel.RowPerPage = 50;
-    filteModel.AccessLoad = true;
+    filteModel.rowPerPage = 50;
+    filteModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
 
     // tslint:disable-next-line: no-trailing-whitespace
@@ -59,17 +59,17 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
 
     this.categoryService.ServiceGetAll(filteModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.dataModelResult.ListItems.forEach((el) => this.fieldsStatus.set(el.Id, false));
+          this.dataModelResult.listItems.forEach((el) => this.fieldsStatus.set(el.id, false));
           this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));
-          this.dataModelResult.ListItems.forEach((el) => {
-            if (this.fieldsStatus.get(el.Id)) {
+          this.dataModelResult.listItems.forEach((el) => {
+            if (this.fieldsStatus.get(el.id)) {
               this.dataModelSelect.push(el);
             }
           });
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -82,12 +82,12 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
   }
   onActionSelect(value: CoreUserGroupModel): void {
 
-    if (this.fieldsStatus.get(value.Id)) {
-      this.fieldsStatus.set(value.Id, false);
+    if (this.fieldsStatus.get(value.id)) {
+      this.fieldsStatus.set(value.id, false);
       this.optionSelectRemoved.emit(value);
       this.dataModelSelect.splice(this.dataModelSelect.indexOf(value), 1);
     } else {
-      this.fieldsStatus.set(value.Id, true);
+      this.fieldsStatus.set(value.id, true);
       this.optionSelectAdded.emit(value);
       this.dataModelSelect.push(value);
     }
@@ -102,7 +102,7 @@ export class CoreUserGroupSelectionlistComponent implements OnInit {
       });
     } else if (typeof ids === typeof Array(CoreUserGroupModel)) {
       ids.forEach(element => {
-        this.dataIdsSelect.push(element.Id);
+        this.dataIdsSelect.push(element.id);
       });
     }
     this.dataIdsSelect.forEach((el) => this.fieldsStatus.set(el, true));

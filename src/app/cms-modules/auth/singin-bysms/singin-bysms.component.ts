@@ -59,14 +59,14 @@ export class AuthSingInBySmsComponent implements OnInit {
   buttonnResendSmsDisable = true;
   onActionSubmitOrderCodeBySms(): void {
     if (this.forgetState == 'entrycode') {
-      if (!this.dataModelAuthUserSignInBySms.CaptchaText || this.dataModelAuthUserSignInBySms.CaptchaText.length == 0) {
-        this.cmsToastrService.typeErrorMessage("محتوای عکس امنیتی را وارد کنید");
+      if (!this.dataModelAuthUserSignInBySms.captchaText || this.dataModelAuthUserSignInBySms.captchaText.length == 0) {
+        this.cmsToastrService.typeerrorMessage("محتوای عکس امنیتی را وارد کنید");
         return;
       }
     }
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
-    this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
+    this.dataModelAuthUserSignInBySms.captchaKey = this.captchaModel.key;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
     this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
@@ -74,7 +74,7 @@ export class AuthSingInBySmsComponent implements OnInit {
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
       .subscribe({
         next: (res) => {
-          if (res.IsSuccess) {
+          if (res.isSuccess) {
             this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_login_code_was_texted_with_you'));
             this.forgetState = 'entrycode';
             //TimeDown 
@@ -99,49 +99,49 @@ export class AuthSingInBySmsComponent implements OnInit {
             //TimeDown 
           }
           else {
-            this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(res.errorMessage);
           }
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeError(er);
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
         }
       });
   }
   onActionSubmitEntryPinCode(): void {
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
-    this.dataModelAuthUserSignInBySms.CaptchaKey = this.captchaModel.Key;
+    this.dataModelAuthUserSignInBySms.captchaKey = this.captchaModel.key;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
     this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
     /** read storage */
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
-      this.dataModelAuthUserSignInBySms.SiteId = siteId;
+      this.dataModelAuthUserSignInBySms.siteId = siteId;
     }
     const ResellerSiteId = + localStorage.getItem('ResellerSiteId');
     if (ResellerSiteId > 0) {
-      this.dataModelAuthUserSignInBySms.ResellerSiteId = ResellerSiteId;
+      this.dataModelAuthUserSignInBySms.resellerSiteId = ResellerSiteId;
     }
     const ResellerUserId = + localStorage.getItem('ResellerUserId');
     if (ResellerUserId > 0) {
-      this.dataModelAuthUserSignInBySms.ResellerUserId = ResellerUserId;
+      this.dataModelAuthUserSignInBySms.resellerUserId = ResellerUserId;
     }
     /** read storage */
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
       .subscribe({
         next: (res) => {
-          if (res.IsSuccess) {
+          if (res.isSuccess) {
             this.cmsToastrService.typeSuccessLogin();
-            this.formInfo.ButtonSubmittedEnabled = false;
-            if (res.Item.SiteId > 0) {
+            this.formInfo.buttonSubmittedEnabled = false;
+            if (res.item.siteId > 0) {
               setTimeout(() => this.router.navigate(['/dashboard']), 1000);
             }
             else {
@@ -150,14 +150,14 @@ export class AuthSingInBySmsComponent implements OnInit {
           }
           else {
             this.onCaptchaOrder();
-            this.cmsToastrService.typeErrorMessage(res.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(res.errorMessage);
           }
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeError(er);
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.onCaptchaOrder();
           this.loading.Stop(pName);
         }
@@ -171,12 +171,12 @@ export class AuthSingInBySmsComponent implements OnInit {
     if (this.onCaptchaOrderInProcess) {
       return;
     }
-    this.dataModelAuthUserSignInBySms.CaptchaText = '';
+    this.dataModelAuthUserSignInBySms.captchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe({
       next: (ret) => {
-        this.captchaModel = ret.Item;
+        this.captchaModel = ret.item;
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);
       },

@@ -10,11 +10,11 @@
     <div class="ntk-cms-html-widget-body">
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <div *ngFor="let row of dataModelResult.ListItems ; index as i" [ngClass]="textInverseCSSClass"
+      <div *ngFor="let row of dataModelResult.listItems ; index as i" [ngClass]="textInverseCSSClass"
         class="row font-weight-bolder font-size-h5 mt-3">
-        <div class="col-8 text-white"> {{row.TypeTitle}} </div>
-        <div class="col-2"><i [ngClass]="row.IsApproved | boolclass"></i></div>
-        <div class="col-2"><i *ngIf="!row.IsApproved" ngClass="fa fa-edit" (click)="onActionbuttonEditRow(row)"></i>
+        <div class="col-8 text-white"> {{row.typeTitle}} </div>
+        <div class="col-2"><i [ngClass]="row.isApproved | boolclass"></i></div>
+        <div class="col-2"><i *ngIf="!row.isApproved" ngClass="fa fa-edit" (click)="onActionbuttonEditRow(row)"></i>
         </div>
       </div>
       <hr>

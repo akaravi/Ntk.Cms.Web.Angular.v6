@@ -69,28 +69,28 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
   }
 
   displayFn(model?: SmsMainApiNumberModel): string | undefined {
-    return model ? (model.NumberChar) : undefined;
+    return model ? (model.numberChar) : undefined;
   }
   displayOption(model?: SmsMainApiNumberModel): string | undefined {
-    return model ? (model.NumberChar) : undefined;
+    return model ? (model.numberChar) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<SmsMainApiNumberModel[]> {
     const filteModel = new FilterModel();
-    filteModel.RowPerPage = 20;
-    filteModel.AccessLoad = true;
+    filteModel.rowPerPage = 20;
+    filteModel.accessLoad = true;
     let filter = new FilterDataModel();
-    filter.PropertyName = 'NumberChar';
-    filter.Value = text;
-    filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-    filter.ClauseType = EnumClauseType.Or;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'NumberChar';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
     if (this.optionLinkApiPathId && this.optionLinkApiPathId.length > 0) {
       filter = new FilterDataModel();
-      filter.PropertyName = 'ApiPathAndApiNumbers';
-      filter.PropertyAnyName = 'LinkApiPathId';
-      filter.Value = this.optionLinkApiPathId;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'ApiPathAndApiNumbers';
+      filter.propertyAnyName = 'LinkApiPathId';
+      filter.value = this.optionLinkApiPathId;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filteModel.filters.push(filter);
     }
     this.loading.Start('DataGetAll');
     return await this.categoryService.ServiceGetAll(filteModel)
@@ -99,15 +99,15 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.Id || this.dataModelSelect.Id.length <= 0) &&
-            this.dataModelResult.ListItems.length > 0) {
+            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length <= 0) &&
+            this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.ListItems[0]);
+            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
+            this.onActionSelect(this.dataModelResult.listItems[0]);
           }
           /*select First Item */
           this.loading.Stop('DataGetAll');
-          return response.ListItems;
+          return response.listItems;
         })
       ).toPromise();
   }
@@ -128,7 +128,7 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
 
   push(newvalue: SmsMainApiNumberModel): Observable<SmsMainApiNumberModel[]> {
     return this.filteredOptions.pipe(map(items => {
-      if (items.find(x => x.Id === newvalue.Id)) {
+      if (items.find(x => x.id === newvalue.id)) {
         return items;
       }
       items.push(newvalue);
@@ -138,30 +138,30 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
   }
   onActionSelectForce(id: string | SmsMainApiNumberModel): void {
     if (typeof id === 'string' && id.length > 0) {
-      if (this.dataModelSelect && this.dataModelSelect.Id === id) {
+      if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
       }
-      if (this.dataModelResult && this.dataModelResult.ListItems && this.dataModelResult.ListItems.find(x => x.Id === id)) {
-        const item = this.dataModelResult.ListItems.find(x => x.Id === id);
+      if (this.dataModelResult && this.dataModelResult.listItems && this.dataModelResult.listItems.find(x => x.id === id)) {
+        const item = this.dataModelResult.listItems.find(x => x.id === id);
         this.dataModelSelect = item;
         this.formControl.setValue(item);
         return;
       }
-      if (this.dataModelResult && this.dataModelResult.ListItems && this.dataModelResult.ListItems.find(x => x.NumberChar === id)) {
-        const item = this.dataModelResult.ListItems.find(x => x.NumberChar === id);
+      if (this.dataModelResult && this.dataModelResult.listItems && this.dataModelResult.listItems.find(x => x.numberChar === id)) {
+        const item = this.dataModelResult.listItems.find(x => x.numberChar === id);
         this.dataModelSelect = item;
         this.formControl.setValue(item);
         return;
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.filteredOptions = this.push(ret.Item);
-            this.dataModelSelect = ret.Item;
-            this.formControl.setValue(ret.Item);
-            this.optionChange.emit(ret.Item);
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+            this.optionChange.emit(ret.item);
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
         }
       });

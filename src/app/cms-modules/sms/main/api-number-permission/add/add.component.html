@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-              let item of dataModelEnumRecordStatusResult.ListItems;
+              let item of dataModelEnumRecordStatusResult.listItems;
               index as i
-            " [value]="item.Value">{{ item.Description }}</mat-option>
+            " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -25,45 +25,45 @@
 
     <!-- LinkCoreUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreUserId"
+      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
       [optionPlaceholder]="'کاربر'">
     </app-cms-user-selector>
  <!-- LinkCoreSiteId Field -->
  <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
- [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreSiteId"
+ [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
  [optionPlaceholder]="'سایت'">
 </app-cms-site-selector>
  <!-- LinkCoreUserGroupId Field -->
  <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
- [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreUserGroupId"
+ [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserGroupId"
  [optionPlaceholder]="'نوع کاربری'">
 </app-cms-usergroup-selector>
  <!-- LinkCoreSiteCategoryId Field -->
  <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
- [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreSiteCategoryId"
+ [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteCategoryId"
  [optionPlaceholder]="'نوع سایت'">
 </app-cms-sitecategory-selector>
 
     <!-- LinkApiNumberId Field -->
     <app-sms-api-number-selector (optionChange)="onActionSelectorSelectLinkApiNumberId($event)"
-      [optionSelectForce]="dataModel.LinkApiNumberId" [optionPlaceholder]="'شماره'">
+      [optionSelectForce]="dataModel.linkApiNumberId" [optionPlaceholder]="'شماره'">
     </app-sms-api-number-selector>
 
     <!-- HasInherits Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.HasInherits" *ngIf="fieldsInfo['HasInherits']?.AccessWatchField"
-        [disabled]="!fieldsInfo['HasInherits']?.AccessEditField" name="dataModel.HasInherits">
-        {{fieldsInfo['HasInherits']?.FieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.hasInherits" *ngIf="fieldsInfo['HasInherits']?.accessWatchField"
+        [disabled]="!fieldsInfo['HasInherits']?.accessEditField" name="dataModel.hasInherits">
+        {{fieldsInfo['HasInherits']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- AccessStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع وضعیت" [(ngModel)]="dataModel.AccessStatus" name="dataModel.AccessStatus"
-        #AccessStatus="ngModel" panelClass="recordStatus-{{ dataModel.AccessStatus }}" required>
+      <mat-select placeholder="نوع وضعیت" [(ngModel)]="dataModel.accessStatus" name="dataModel.accessStatus"
+        #AccessStatus="ngModel" panelClass="recordStatus-{{ dataModel.accessStatus }}" required>
         <mat-option *ngFor="
-                        let item of dataModelEnumApiNumberPermissionAccessStatusResult.ListItems;
+                        let item of dataModelEnumApiNumberPermissionAccessStatusResult.listItems;
                         index as i
-                      " [value]="item.Value">{{ item.Description }}</mat-option>
+                      " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
       <mat-error *ngIf="AccessStatus.errors?.required">
@@ -73,12 +73,12 @@
 
         <!-- Action Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="نوع فعالیت" [(ngModel)]="dataModel.Action" name="dataModel.Action"
-            #Action="ngModel" panelClass="recordStatus-{{ dataModel.Action }}" required>
+          <mat-select placeholder="نوع فعالیت" [(ngModel)]="dataModel.action" name="dataModel.action"
+            #Action="ngModel" panelClass="recordStatus-{{ dataModel.action }}" required>
             <mat-option *ngFor="
-                            let item of dataModelEnumApiNumberPermissionActionResult.ListItems;
+                            let item of dataModelEnumApiNumberPermissionActionResult.listItems;
                             index as i
-                          " [value]="item.Value">{{ item.Description }}</mat-option>
+                          " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
           <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
           <mat-error *ngIf="Action.errors?.required">
@@ -89,20 +89,20 @@
 
      <!-- FromDate Field -->
      <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['FromDate']?.FieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.FromDate" name="dataModel.FromDate" />
-      <mat-icon matSuffix *ngIf="dataModel.FromDate && fieldsInfo['FromDate']?.AccessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.FromDate = null">close</mat-icon>
+      <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
+      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #FromDate></mat-datepicker>
     </mat-form-field>
 
     <!-- ExpireDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
-      <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-      <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
+      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #ExpireDate></mat-datepicker>
     </mat-form-field>
@@ -113,15 +113,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

@@ -106,10 +106,10 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   DataGetCurrency(): void {
     this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.currency = ret.Item;
+        if (ret.isSuccess) {
+          this.currency = ret.item;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -135,12 +135,12 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     const model = new FilterModel();
     this.estateAdsTypeService.ServiceGetAllSale(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.showBuy = true;
           this.dataModelResult = ret;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -159,8 +159,8 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
       height: '90%',
       data: {
         LinkPropertyId: this.requestLinkPropertyId,
-        LinkAdsTypeId: model.Id,
-        BankPrivateMaster: model.PaymentForMainSite
+        LinkAdsTypeId: model.id,
+        BankPrivateMaster: model.paymentForMainSite
       }
     });
     dialogRef.afterClosed().subscribe(result => {

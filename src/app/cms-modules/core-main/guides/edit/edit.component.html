@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-                let item of dataModelEnumRecordStatusResult.ListItems;
+                let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
-              " [value]="item.Value">{{ item.Description }}</mat-option>
+              " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,15 +24,15 @@
     </mat-form-field>
     <!-- Title Field -->
     <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.LinkParentId" [optionPlaceholder]="'منوی والد'">
+      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="'منوی والد'">
     </app-core-guide-selector>
     <!-- TitleFa Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitleFa']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TitleFa" name="dataModel.TitleFa" #TitleFa type="text"
-        placeholder="{{fieldsInfo['TitleFa']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.TitleFa" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.TitleFa = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleFa']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleFa" name="dataModel.titleFa" #TitleFa type="text"
+        placeholder="{{fieldsInfo['TitleFa']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleFa" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleFa = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleFa.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleFa.errors?.required">
@@ -42,20 +42,20 @@
     <!-- DescriptionFa Field -->
     <p> Description Fa </p>
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionFa"
-      [(ngModel)]="dataModel.DescriptionFa" name="dataModel.DescriptionFa"></angular-editor>
+      [(ngModel)]="dataModel.descriptionFa" name="dataModel.descriptionFa"></angular-editor>
     <br>
     <!-- BodyFa Field -->
     <p> Body Fa </p>
     <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyFa"
-      [(ngModel)]="dataModel.BodyFa" name="dataModel.BodyFa"></angular-editor>
+      [(ngModel)]="dataModel.bodyFa" name="dataModel.bodyFa"></angular-editor>
     <br>
     <!-- TitleEn Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitleEn']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TitleEn" name="dataModel.TitleEn" #TitleEn type="text"
-        placeholder="{{fieldsInfo['TitleEn']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.TitleEn" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.TitleEn = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleEn']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleEn" name="dataModel.titleEn" #TitleEn type="text"
+        placeholder="{{fieldsInfo['TitleEn']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleEn" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleEn = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleEn.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleEn.errors?.required">
@@ -65,20 +65,20 @@
     <!-- DescriptionEn Field -->
     <p> Description En </p>
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionEn"
-      [(ngModel)]="dataModel.DescriptionEn" name="dataModel.DescriptionEn"></angular-editor>
+      [(ngModel)]="dataModel.descriptionEn" name="dataModel.descriptionEn"></angular-editor>
     <br>
     <!-- BodyEn Field -->
     <p> Body En </p>
     <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyEn"
-      [(ngModel)]="dataModel.BodyEn" name="dataModel.BodyEn"></angular-editor>
+      [(ngModel)]="dataModel.bodyEn" name="dataModel.bodyEn"></angular-editor>
     <br>
     <!-- TitleAr Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitleAr']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TitleAr" name="dataModel.TitleAr" #TitleAr type="text"
-        placeholder="{{fieldsInfo['TitleAr']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.TitleAr" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.TitleAr = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleAr']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleAr" name="dataModel.titleAr" #TitleAr type="text"
+        placeholder="{{fieldsInfo['TitleAr']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleAr" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleAr = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleAr.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleAr.errors?.required">
@@ -88,20 +88,20 @@
     <!-- DescriptionAr Field -->
     <p> Description Ar </p>
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionAr"
-      [(ngModel)]="dataModel.DescriptionAr" name="dataModel.DescriptionAr"></angular-editor>
+      [(ngModel)]="dataModel.descriptionAr" name="dataModel.descriptionAr"></angular-editor>
     <br>
     <!-- BodyAr Field -->
     <p> Body Ar </p>
     <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyAr"
-      [(ngModel)]="dataModel.BodyAr" name="dataModel.BodyAr"></angular-editor>
+      [(ngModel)]="dataModel.bodyAr" name="dataModel.bodyAr"></angular-editor>
     <br>
     <!-- TitleDe Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitleDe']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TitleDe" name="dataModel.TitleDe" #TitleDe type="text"
-        placeholder="{{fieldsInfo['TitleDe']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.TitleDe" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.TitleDe = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleDe']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleDe" name="dataModel.titleDe" #TitleDe type="text"
+        placeholder="{{fieldsInfo['TitleDe']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleDe" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleDe = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleDe.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleDe.errors?.required">
@@ -111,27 +111,27 @@
     <!-- DescriptionDe Field -->
     <p> Description De</p>
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionDe"
-      [(ngModel)]="dataModel.DescriptionDe" name="dataModel.DescriptionDe"></angular-editor>
+      [(ngModel)]="dataModel.descriptionDe" name="dataModel.descriptionDe"></angular-editor>
     <br>
     <!-- Body De Field -->
     <p> Body De </p>
     <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyDe"
-      [(ngModel)]="dataModel.BodyDe" name="dataModel.BodyDe"></angular-editor>
+      [(ngModel)]="dataModel.bodyDe" name="dataModel.bodyDe"></angular-editor>
     <br>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

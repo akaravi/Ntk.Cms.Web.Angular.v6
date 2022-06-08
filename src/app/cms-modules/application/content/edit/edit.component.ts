@@ -90,20 +90,20 @@ export class ApplicationAppEditComponent implements OnInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    if (this.dataModel.LinkSourceId <= 0) {
+    if (this.dataModel.linkSourceId <= 0) {
       this.cmsToastrService.typeErrorAdd(this.translate.instant('MESSAGE.Specify_the_source_code_of_the_program'));
       return;
     }
-    if (this.dataModel.LinkThemeConfigId <= 0) {
+    if (this.dataModel.linkThemeConfigId <= 0) {
       this.cmsToastrService.typeErrorAdd(this.translate.instant('MESSAGE.Specify_the_application_format'));
       return;
     }
     this.DataEditContent();
   }
   DataGetOne(requestId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceGetOneById';
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_from_the_server'));
     /*َAccess Field*/
@@ -113,26 +113,26 @@ export class ApplicationAppEditComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
-            const lat = this.dataModel.AboutUsGeolocationlatitude;
-            const lon = this.dataModel.AboutUsGeolocationlongitude;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
+            const lat = this.dataModel.aboutUsGeolocationlatitude;
+            const lon = this.dataModel.aboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
               this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -140,28 +140,28 @@ export class ApplicationAppEditComponent implements OnInit {
       );
   }
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.applicationAppService
       .ServiceEdit(this.dataModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (ret.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/app/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
@@ -194,63 +194,63 @@ export class ApplicationAppEditComponent implements OnInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.AboutUsGeolocationlatitude && lon === this.dataModel.AboutUsGeolocationlongitude) {
-        this.dataModel.AboutUsGeolocationlatitude = null;
-        this.dataModel.AboutUsGeolocationlongitude = null;
+      if (lat === this.dataModel.aboutUsGeolocationlatitude && lon === this.dataModel.aboutUsGeolocationlongitude) {
+        this.dataModel.aboutUsGeolocationlatitude = null;
+        this.dataModel.aboutUsGeolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.AboutUsGeolocationlatitude = lat;
-      this.dataModel.AboutUsGeolocationlongitude = lon;
+      this.dataModel.aboutUsGeolocationlatitude = lat;
+      this.dataModel.aboutUsGeolocationlongitude = lon;
     });
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileIdIcon(model: NodeInterface): void {
-    this.dataModel.LinkFileIdIcon = model.id;
-    this.dataModel.LinkFileIdIconSrc = model.downloadLinksrc;
+    this.dataModel.linkFileIdIcon = model.id;
+    this.dataModel.linkFileIdIconSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileIdLogo(model: NodeInterface): void {
-    this.dataModel.LinkFileIdLogo = model.id;
-    this.dataModel.LinkFileIdLogoSrc = model.downloadLinksrc;
+    this.dataModel.linkFileIdLogo = model.id;
+    this.dataModel.linkFileIdLogoSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileIdSplashScreen(model: NodeInterface): void {
-    this.dataModel.LinkFileIdSplashScreen = model.id;
-    this.dataModel.LinkFileIdSplashScreenSrc = model.downloadLinksrc;
+    this.dataModel.linkFileIdSplashScreen = model.id;
+    this.dataModel.linkFileIdSplashScreenSrc = model.downloadLinksrc;
   }
   onActionFileSelectedAboutUsLinkImageId(model: NodeInterface): void {
-    this.dataModel.AboutUsLinkImageId = model.id;
-    this.dataModel.AboutUsLinkImageIdSrc = model.downloadLinksrc;
+    this.dataModel.aboutUsLinkImageId = model.id;
+    this.dataModel.aboutUsLinkImageIdSrc = model.downloadLinksrc;
   }
   onActionSelectSource(model: ApplicationSourceModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'سورس را مشخص کنید',
         'سورس اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    if (this.dataModel.LinkSourceId !== model.Id) {
-      this.cmsToastrService.typeErrorMessage(
+    if (this.dataModel.linkSourceId !== model.id) {
+      this.cmsToastrService.typeerrorMessage(
         'سورس قابل تغییر نمی باشد',
         'سورس اپلیکیشن در حالت ویرایش قابل تغییر نمی باشد'
       );
     }
   }
   onActionSelectTheme(model: ApplicationThemeConfigModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'قالب را مشخص کنید',
         'قالب اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkThemeConfigId = model.Id;
+    this.dataModel.linkThemeConfigId = model.id;
   }
   ActionCurrentPoint(): void {
     this.childMap.getPosition().then(pos => {
@@ -262,8 +262,8 @@ export class ApplicationAppEditComponent implements OnInit {
         }
         this.mapMarkerPoints = [];
         this.mapMarkerPoints.push({ lat, lon });
-        this.dataModel.AboutUsGeolocationlatitude = lat;
-        this.dataModel.AboutUsGeolocationlongitude = lon;
+        this.dataModel.aboutUsGeolocationlatitude = lat;
+        this.dataModel.aboutUsGeolocationlongitude = lon;
         this.receiveMap();
       }
     });

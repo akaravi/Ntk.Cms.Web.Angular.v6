@@ -71,14 +71,14 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
   }
 
   onActionbuttonEditRow(model: CoreUserClaimCheckModel): void {
-    if (!model || !model.LinkTypeId || model.LinkTypeId === 0) {
+    if (!model || !model.linkTypeId || model.linkTypeId === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.LinkContentId && model.LinkContentId > 0) {
+    if (model.linkContentId && model.linkContentId > 0) {
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
         height: '90%',
-        data: { id: model.LinkContentId }
+        data: { id: model.linkContentId }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {
@@ -88,7 +88,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
     } else {
       const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
         height: '90%',
-        data: { LinkUserClaimTypeId: model.LinkTypeId }
+        data: { LinkUserClaimTypeId: model.linkTypeId }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {
@@ -103,15 +103,15 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
     this.loading.Start(pName, this.translate.instant('TITLE.Verification_of_documents_and_identity'));
     this.service.ServiceClaimCheckCurrent().subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          if (this.dataModelResult.ListItems.find(x => x.RecordStatus !== EnumRecordStatus.Pending && !x.IsApproved)) {
+          if (this.dataModelResult.listItems.find(x => x.recordStatus !== EnumRecordStatus.Pending && !x.isApproved)) {
             this.baseColor = 'warnning';
             this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
             this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

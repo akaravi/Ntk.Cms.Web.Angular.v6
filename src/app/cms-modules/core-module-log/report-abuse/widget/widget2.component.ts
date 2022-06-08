@@ -57,8 +57,8 @@ export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestr
 
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('All', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
@@ -70,14 +70,14 @@ export class CoreModuleLogReportAbuseWidget2Component implements OnInit, OnDestr
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Pending;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Pending;
+    filterStatist1.filters.push(fastfilter);
 
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Pending', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('Pending', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Pending');
       },

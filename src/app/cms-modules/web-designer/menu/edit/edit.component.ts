@@ -60,7 +60,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
   dataWebDesignerMainMenuIds: number[] = [];
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.FormTitle = 'ویرایش  ';
+      this.formInfo.formTitle = 'ویرایش  ';
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -79,8 +79,8 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     /*َAccess Field*/
@@ -88,16 +88,16 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     this.webDesignerMainMenuService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         /*َAccess Field*/
-        this.dataAccessModel = next.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
-          this.formInfo.FormAlert = '';
+        this.dataAccessModel = next.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+        this.dataModel = next.item;
+        if (next.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.title;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -108,27 +108,27 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.webDesignerMainMenuService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (next.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
       (error) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
       }
@@ -138,7 +138,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {
@@ -156,15 +156,15 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     }
   }
   onActionSelectorSelect(model: WebDesignerMainMenuModel): void {
-    this.dataModel.LinkParentId = null;
-    if (model && model.Id.length > 0) {
-      this.dataModel.LinkParentId = model.Id;
+    this.dataModel.linkParentId = null;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkParentId = model.id;
     }
   }
   onActionSelectorUserCategorySelect(model: CoreUserGroupModel[]): void {
     this.dataWebDesignerMainMenuModel = model;
   }
   onIconPickerSelect(model: any): void {
-    this.dataModel.Icon = model;
+    this.dataModel.icon = model;
   }
 }

@@ -76,7 +76,7 @@ export class CoreSiteCategoryEditComponent implements OnInit {
   dataCoreSiteCategoryCmsModuleModel: CoreSiteCategoryCmsModuleModel[];
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.FormTitle = 'ویرایش  ';
+      this.formInfo.formTitle = 'ویرایش  ';
 
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -96,24 +96,24 @@ export class CoreSiteCategoryEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreSiteCategoryService.setAccessLoad();
     this.coreSiteCategoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
-          this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -132,31 +132,31 @@ export class CoreSiteCategoryEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkCmsSiteCategoryId';
-    filter.Value = this.requestId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkCmsSiteCategoryId';
+    filter.value = this.requestId;
+    filteModelContent.filters.push(filter);
 
     this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
-        this.dataCoreSiteCategoryCmsModuleModel = ret.ListItems;
+        this.dataCoreSiteCategoryCmsModuleModel = ret.listItems;
         const listG: number[] = [];
         this.dataCoreSiteCategoryCmsModuleModel.forEach(element => {
-          listG.push(element.LinkCmsModuleId);
+          listG.push(element.linkCmsModuleId);
         });
         this.dataCoreCpMainMenuIds = listG;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = '';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -169,30 +169,30 @@ export class CoreSiteCategoryEditComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.coreSiteCategoryService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -204,23 +204,23 @@ export class CoreSiteCategoryEditComponent implements OnInit {
   }
   onActionSelectorUserCategorySelectAdded(model: CoreModuleModel): void {
     const entity = new CoreSiteCategoryCmsModuleModel();
-    entity.LinkCmsModuleId = model.Id;
-    entity.LinkCmsSiteCategoryId = this.dataModel.Id;
+    entity.linkCmsModuleId = model.id;
+    entity.linkCmsSiteCategoryId = this.dataModel.id;
 
     this.coreSiteCategoryCmsModuleService.ServiceAdd(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -228,22 +228,22 @@ export class CoreSiteCategoryEditComponent implements OnInit {
   }
   onActionSelectorUserCategorySelectRemoved(model: CoreModuleModel): void {
     const entity = new CoreSiteCategoryCmsModuleModel();
-    entity.LinkCmsModuleId = model.Id;
-    entity.LinkCmsSiteCategoryId = this.dataModel.Id;
+    entity.linkCmsModuleId = model.id;
+    entity.linkCmsSiteCategoryId = this.dataModel.id;
 
     this.coreSiteCategoryCmsModuleService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -253,7 +253,7 @@ export class CoreSiteCategoryEditComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

@@ -31,14 +31,14 @@ export class CmsAuthGuard implements CanActivate, OnDestroy {
         let tokenInfo: TokenInfoModel = new TokenInfoModel();
         if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
             tokenInfo = storeSnapshot.ntkCmsAPiState.tokenInfo;
-            if (tokenInfo && tokenInfo.UserId > 0) {
+            if (tokenInfo && tokenInfo.userId > 0) {
                 return true;
             }
         }
         this.subscriptions = this.coreAuthService.ServiceCurrentToken().subscribe(
             (next) => {
-                this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: next.Item });
-                tokenInfo = next.Item;
+                this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: next.item });
+                tokenInfo = next.item;
                 this.runSubscribe = true;
                 return;
             },
@@ -49,7 +49,7 @@ export class CmsAuthGuard implements CanActivate, OnDestroy {
         while (!this.runSubscribe) {
             await this.delay(1000);
         }
-        if (tokenInfo && tokenInfo.UserId > 0) {
+        if (tokenInfo && tokenInfo.userId > 0) {
             return true;
         }
         this.router.navigate(['auth'], { queryParams: { returnUrl: state.url } });

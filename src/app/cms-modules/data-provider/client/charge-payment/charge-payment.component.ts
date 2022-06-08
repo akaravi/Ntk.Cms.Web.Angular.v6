@@ -43,11 +43,11 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      if (data.LinkPlanPriceId && data.LinkPlanPriceId > 0) {
-        this.requestLinkPlanPriceId = data.LinkPlanPriceId;
+      if (data.linkPlanPriceId && data.linkPlanPriceId > 0) {
+        this.requestLinkPlanPriceId = data.linkPlanPriceId;
       }
-      if (data.LinkClientId && data.LinkClientId > 0) {
-        this.requestLinkClientId = data.LinkClientId;
+      if (data.linkClientId && data.linkClientId > 0) {
+        this.requestLinkClientId = data.linkClientId;
       }
     }
     if (this.requestLinkPlanPriceId === 0) {
@@ -61,11 +61,11 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
       return;
     }
 
-    this.dataModelCalculate.LinkPlanPriceId = this.requestLinkPlanPriceId;
-    this.dataModelCalculate.LinkClientId = this.requestLinkClientId;
-    this.dataModelPayment.LinkPlanPriceId = this.requestLinkPlanPriceId;
-    this.dataModelPayment.LinkClientId = this.requestLinkClientId;
-    this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
+    this.dataModelCalculate.linkPlanPriceId = this.requestLinkPlanPriceId;
+    this.dataModelCalculate.linkClientId = this.requestLinkClientId;
+    this.dataModelPayment.linkPlanPriceId = this.requestLinkPlanPriceId;
+    this.dataModelPayment.linkClientId = this.requestLinkClientId;
+    this.dataModelPayment.lastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
 
@@ -82,7 +82,7 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
+    this.formInfo.formTitle = 'انتخاب درگاه پرداخت';
 
   }
 
@@ -92,12 +92,12 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
     this.loading.Start(pName);
     this.dataProviderTransactionService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelCalculateResult = ret;
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -111,35 +111,35 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
     );
   }
   DataPayment(): void {
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
     this.dataProviderTransactionService.ServiceOrderPayment(this.dataModelPayment).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelPaymentResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-          localStorage.setItem('TransactionId', ret.Item.TransactionId.toString());
-          this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
+          localStorage.setItem('TransactionId', ret.item.transactionId.toString());
+          this.document.location.href = this.dataModelPaymentResult.item.urlToPay;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
-          this.formInfo.FormSubmitAllow = true;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.formInfo.formSubmitAllow = true;
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.loading.Stop(pName);
       }
     }
     );
   }
   onActionSelectCalculate(model: BankPaymentPrivateSiteConfigModel): void {
-    this.dataModelCalculate.BankPaymentPrivateId = model.Id;
-    this.dataModelPayment.BankPaymentPrivateId = model.Id;
+    this.dataModelCalculate.bankPaymentPrivateId = model.id;
+    this.dataModelPayment.bankPaymentPrivateId = model.id;
     this.DataCalculate();
   }
   onActionSelectBankPayment(): void {

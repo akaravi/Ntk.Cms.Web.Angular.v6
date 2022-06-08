@@ -1,19 +1,19 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
     <div class="ntk-cms-html-card-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.FormTitle }}
+        {{ formInfo.formTitle }}
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-card-body">
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
+          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
           <mat-option *ngFor="
-              let item of dataModelEnumRecordStatusResult.ListItems;
+              let item of dataModelEnumRecordStatusResult.listItems;
               index as i
-            " [value]="item.Value">{{ item.Description }}</mat-option>
+            " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
         <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
@@ -21,13 +21,13 @@
         </mat-error>
       </mat-form-field>
       <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-        [optionSelectForce]="dataModel.LinkCmsSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
+        [optionSelectForce]="dataModel.linkCmsSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
       <mat-form-field class="ntk-full-width">
         <mat-label>Domain</mat-label>
-        <input matInput [(ngModel)]="dataModel.Domain" name="dataModel.Domain" #Domain type="text"
+        <input matInput [(ngModel)]="dataModel.domain" name="dataModel.domain" #Domain type="text"
           placeholder="Domain" minlength="3" maxlength="50" required />
-        <mat-icon matSuffix *ngIf="dataModel.Domain" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Domain = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.domain" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.domain = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Domain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Domain.errors?.required">
@@ -36,10 +36,10 @@
       </mat-form-field>
       <mat-form-field class="ntk-full-width">
         <mat-label>SubDomain</mat-label>
-        <input matInput [(ngModel)]="dataModel.SubDomain" name="dataModel.SubDomain" #SubDomain type="text"
+        <input matInput [(ngModel)]="dataModel.subDomain" name="dataModel.subDomain" #SubDomain type="text"
           placeholder="SubDomain" minlength="0" maxlength="50" required />
-        <mat-icon matSuffix *ngIf="dataModel.SubDomain" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.SubDomain = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.subDomain = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ SubDomain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="SubDomain.errors?.required">
@@ -47,14 +47,14 @@
         </mat-error>
       </mat-form-field>
          <!-- ConfigNeshanMapApiKey Field -->
-         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.AccessWatchField">
-          <mat-label>{{ fieldsInfo['ConfigNeshanMapApiKey']?.FieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.ConfigNeshanMapApiKey" [disabled]="!fieldsInfo['ConfigNeshanMapApiKey']?.AccessAddField"
-            name="dataModel.ConfigNeshanMapApiKey" #ConfigNeshanMapApiKey type="text" placeholder="Key" minlength="3"
+         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['ConfigNeshanMapApiKey']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.configNeshanMapApiKey" [disabled]="!fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField"
+            name="dataModel.configNeshanMapApiKey" #ConfigNeshanMapApiKey type="text" placeholder="Key" minlength="3"
             maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.ConfigNeshanMapApiKey && fieldsInfo['ConfigNeshanMapApiKey']?.AccessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.ConfigNeshanMapApiKey = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.configNeshanMapApiKey && fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.configNeshanMapApiKey = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['ConfigNeshanMapApiKey']?.FieldDescription}}</strong>
@@ -66,15 +66,15 @@
 	 <div class="ntk-cms-html-card-message">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
       <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.formError }}
         </small>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </div>
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>

@@ -12,14 +12,14 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.Access.AccessAddRow && categoryModelSelected?.Id.length>0 "
+    <button *ngIf="dataModelResult.access.accessAddRow && categoryModelSelected?.id.length>0 "
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id &&  tableRowSelected?.Id?.length>0"
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id &&  tableRowSelected?.Id?.length>0"
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
 
@@ -57,49 +57,49 @@
       cdkDropList [cdkDropListData]="tableSource" (cdkDropListDropped)="onTableDropRow($event)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- IconFont Column -->
       <ng-container matColumnDef="IconFont">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IconFont']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IconFont']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"><i [ngClass]="row.IconFont" [style.color]="row.IconColor"
+        <mat-cell *matCellDef="let row"><i [ngClass]="row.iconFont" [style.color]="row.iconColor"
             aria-hidden="true"></i></mat-cell>
       </ng-container>
 
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
       <!-- Unit Column -->
       <ng-container matColumnDef="Unit">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Unit']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Unit']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Unit}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.unit}} </mat-cell>
       </ng-container>
 
       <!-- ShowInFormOrder Column -->
       <ng-container matColumnDef="ShowInFormOrder">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInFormOrder']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInFormOrder']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ShowInFormOrder}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.showInFormOrder}} </mat-cell>
       </ng-container>
       <!-- LinkPropertyTypeLanduseId Column -->
       <ng-container matColumnDef="LinkPropertyTypeLanduseId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeLanduseId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeLanduseId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkPropertyTypeLanduseId| cmstitle:
-          dataModelEstatePropertyTypeLanduseResult.ListItems}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkPropertyTypeLanduseId| cmstitle:
+          dataModelEstatePropertyTypeLanduseResult.listItems}} </mat-cell>
       </ng-container>
       <!-- LinkPropertyDetailGroupId Column -->
       <ng-container matColumnDef="LinkPropertyDetailGroupId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyDetailGroupId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyDetailGroupId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkPropertyDetailGroupId| cmstitle:
-          dataModelEstatePropertyDetailGroupResult.ListItems}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkPropertyDetailGroupId| cmstitle:
+          dataModelEstatePropertyDetailGroupResult.listItems}} </mat-cell>
       </ng-container>
 
 
@@ -114,11 +114,11 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
@@ -140,7 +140,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
 
@@ -149,8 +149,8 @@
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

@@ -44,8 +44,8 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.filteModel.SortColumn = 'ShowInMenuOrder';
-    this.filteModel.SortType = EnumSortType.Ascending;
+    this.filteModel.sortColumn = 'ShowInMenuOrder';
+    this.filteModel.sortType = EnumSortType.Ascending;
   }
   @Input() set optionSelectForce(x: number | WebDesignerMainMenuModel) {
     this.onActionSelectForce(x);
@@ -54,12 +54,12 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   filteModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<WebDesignerMainMenuModel>(node => node.Children);
+  treeControl = new NestedTreeControl<WebDesignerMainMenuModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainMenuModel>();
   @Output() optionChange = new EventEmitter<WebDesignerMainMenuModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
-  hasChild = (_: number, node: WebDesignerMainMenuModel) => !!node.Children && node.Children.length > 0;
+  hasChild = (_: number, node: WebDesignerMainMenuModel) => !!node.children && node.children.length > 0;
   ngOnInit(): void {
     this.DataGetAll();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
@@ -70,15 +70,15 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.RowPerPage = 200;
-    this.filteModel.AccessLoad = true;
+    this.filteModel.rowPerPage = 200;
+    this.filteModel.accessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService.ServiceGetAllTree(this.filteModel).subscribe(
       (next) => {
-        if (next.IsSuccess) {
+        if (next.isSuccess) {
           this.dataModelResult = next;
-          this.dataSource.data = this.dataModelResult.ListItems;
+          this.dataSource.data = this.dataModelResult.listItems;
         }
         this.loading.Stop(pName);
       },
@@ -93,7 +93,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
+    if (this.dataModelSelect && this.dataModelSelect?.id?.length > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
@@ -107,8 +107,8 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   }
   onActionAdd(): void {
     let parentId = '';
-    if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
-      parentId = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect?.id?.length > 0) {
+      parentId = this.dataModelSelect.id;
     }
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -124,8 +124,8 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   }
   onActionEdit(): void {
     let id = '';
-    if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect?.id?.length > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id.length === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
@@ -145,8 +145,8 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   }
   onActionDelete(): void {
     let id = '';
-    if (this.dataModelSelect && this.dataModelSelect?.Id?.length > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect?.id?.length > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id.length === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');

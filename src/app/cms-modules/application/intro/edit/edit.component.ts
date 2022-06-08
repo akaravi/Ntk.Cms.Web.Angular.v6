@@ -71,16 +71,16 @@ export class ApplicationIntroEditComponent implements OnInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    if (this.dataModel.LinkApplicationId <= 0) {
+    if (this.dataModel.linkApplicationId <= 0) {
       this.cmsToastrService.typeErrorEdit('  برنامه مشخص  کنید');
       return;
     }
     this.DataEditContent();
   }
   DataGetOne(requestId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_from_the_server'));
     /*َAccess Field*/
@@ -90,19 +90,19 @@ export class ApplicationIntroEditComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -110,28 +110,28 @@ export class ApplicationIntroEditComponent implements OnInit {
       );
   }
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.applicationIntroService
       .ServiceEdit(this.dataModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (ret.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/intro/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);;
           this.loading.Stop(pName);
         }
@@ -147,21 +147,21 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.router.navigate(['/application/app/']);
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkMainVideoId(model: NodeInterface): void {
-    this.dataModel.LinkMainVideoId = model.id;
-    this.dataModel.LinkMainVideoIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainVideoId = model.id;
+    this.dataModel.linkMainVideoIdSrc = model.downloadLinksrc;
   }
   onActionSelectApplication(model: ApplicationSourceModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'اپلیکیشن را مشخص کنید',
         ' اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkApplicationId = model.Id;
+    this.dataModel.linkApplicationId = model.id;
   }
 }

@@ -26,7 +26,7 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
         public translate: TranslateService
     ) {
         this.requestLinkTargetPeriodId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkTargetPeriodId'));
-        this.dataModelCalculate.LinkTargetPeriodId = this.requestLinkTargetPeriodId;
+        this.dataModelCalculate.linkTargetPeriodId = this.requestLinkTargetPeriodId;
     }
     price = '';
     currency = '';
@@ -55,10 +55,10 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
     DataGetCurrency(): void {
         this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
             next: (ret) => {
-                if (ret.IsSuccess) {
-                    this.currency = ret.Item;
+                if (ret.isSuccess) {
+                    this.currency = ret.item;
                 } else {
-                    this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+                    this.cmsToastrService.typeerrorMessage(ret.errorMessage);
                   }
             },
             error: (er) => {
@@ -72,8 +72,8 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
         const dialogRef = this.dialog.open(DonateTargetPeriodChargePaymentComponent, {
             height: '90%',
             data: {
-                SupportPayment: this.dataModelCalculate.SupportPayment,
-                LinkTargetPeriodId: this.dataModelCalculate.LinkTargetPeriodId,
+                supportPayment: this.dataModelCalculate.supportPayment,
+                LinkTargetPeriodId: this.dataModelCalculate.linkTargetPeriodId,
             }
 
         });

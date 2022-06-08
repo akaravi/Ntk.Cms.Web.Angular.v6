@@ -60,7 +60,7 @@ export class EstateBillboardAddComponent implements OnInit {
   fileManagerOpenForm = false;
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.DataGetAccess();
 
@@ -74,11 +74,11 @@ export class EstateBillboardAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -88,30 +88,30 @@ export class EstateBillboardAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estateBillboardService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.DataGetOneContent();
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.optionReload();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -120,24 +120,24 @@ export class EstateBillboardAddComponent implements OnInit {
   }
   DataGetOneContent(): void {
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estateBillboardService.setAccessLoad();
-    this.estateBillboardService.ServiceGetOneById(this.dataModelResult.Item.Id).subscribe({
+    this.estateBillboardService.ServiceGetOneById(this.dataModelResult.item.id).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
-          this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -150,29 +150,29 @@ export class EstateBillboardAddComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estateBillboardService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.optionReload();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -180,34 +180,34 @@ export class EstateBillboardAddComponent implements OnInit {
     );
   }
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
 
   }
   onActionSelectorSelectUsage(model: string[] | null): void {
 
-    this.dataModel.LinkPropertyTypeUsageIds = model;
+    this.dataModel.linkPropertyTypeUsageIds = model;
   }
   onActionSelectorContarctType(model: string[] | null): void {
 
-    this.dataModel.LinkContractTypeIds = model;
+    this.dataModel.linkContractTypeIds = model;
   }
   onActionSelectorSelectLanduse(model: string[] | null): void {
 
-    this.dataModel.LinkPropertyTypeLanduseIds = model;
+    this.dataModel.linkPropertyTypeLanduseIds = model;
   }
   onActionSelectorLocation(model: number[] | null): void {
 
-    this.dataModel.LinkLocationIds = model;
+    this.dataModel.linkLocationIds = model;
   }
   onActionSelectorProperty(model: string[] | null): void {
-    this.dataModel.LinkPropertyIds = model;
-    if (this.dataModel.LinkPropertyIds && this.dataModel.LinkPropertyIds.length > 0) {
+    this.dataModel.linkPropertyIds = model;
+    if (this.dataModel.linkPropertyIds && this.dataModel.linkPropertyIds.length > 0) {
       this.LinkPropertyIdsInUse = true;
-      this.dataModel.LinkPropertyTypeUsageIds = null;
-      this.dataModel.LinkContractTypeIds = null;
-      this.dataModel.LinkPropertyTypeLanduseIds = null;
-      this.dataModel.LinkLocationIds = null;
+      this.dataModel.linkPropertyTypeUsageIds = null;
+      this.dataModel.linkContractTypeIds = null;
+      this.dataModel.linkPropertyTypeLanduseIds = null;
+      this.dataModel.linkLocationIds = null;
     }
     else {
       this.LinkPropertyIdsInUse = false;
@@ -219,9 +219,9 @@ export class EstateBillboardAddComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
 
-    if (this.dataModel.Id && this.dataModel.Id.length > 0) {
+    if (this.dataModel.id && this.dataModel.id.length > 0) {
       this.DataEditContent();
     }
     else {

@@ -59,25 +59,25 @@ export class SmsActionSendMessageComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestLinkApiPathId?.length > 0) {
-      this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
+      this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     }
   }
 
 
 
   onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
-    this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
+    this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     this.dataModelParentSelected = model;
-    if (model && model.Id.length > 0) {
-      this.dataModel.LinkApiPathId = model.Id;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkApiPathId = model.id;
 
     }
   }
 
 
   onActionSelectApiNumber(model: SmsMainApiNumberModel): void {
-    if (model && model.Id.length > 0) {
-      this.dataModel.LinkFromNumber = model.Id;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkFromNumber = model.id;
     }
   }
 
@@ -85,32 +85,32 @@ export class SmsActionSendMessageComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    if (!this.dataModel.LinkApiPathId || this.dataModel.LinkApiPathId.length <= 0) {
+    if (!this.dataModel.linkApiPathId || this.dataModel.linkApiPathId.length <= 0) {
       this.cmsToastrService.typeErrorFormInvalid();
     }
-    // if (!this.dataModel.Amount || this.dataModel.Amount <= 0) {
+    // if (!this.dataModel.amount || this.dataModel.amount <= 0) {
     //   this.cmsToastrService.typeErrorFormInvalid();
     // }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'main';
     this.loadingAction.Start(pName);
 
     this.smsMainApiPathService.ServiceSendMessage(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = 'درخواست ارسال با موفقیت ثبت شد';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = 'درخواست ارسال با موفقیت ثبت شد';
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loadingAction.Stop(pName);
       },
       error: (e) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(e);
         this.loadingAction.Stop(pName);
 

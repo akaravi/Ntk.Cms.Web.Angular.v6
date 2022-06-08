@@ -75,9 +75,9 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
   }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
-      this.requestLinkSiteId = this.tokenInfo.SiteId;
+      this.requestLinkSiteId = this.tokenInfo.siteId;
     }
-    if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (this.tokenInfo.userAccessAdminAllowToProfessionalData) {
       this.GetServiceSiteConfigDefault();
       this.GetServiceSiteAccessDefault();
       this.GetServiceAdminMain();
@@ -88,7 +88,7 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (this.tokenInfo.userAccessAdminAllowToProfessionalData) {
       this.SetServiceSiteConfigDefaultSave();
       this.SetServiceSiteAccessDefaultSave();
       this.SetServiceAdminMainSave();
@@ -114,9 +114,9 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
   }
 
   GetServiceSiteConfigDefault(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
@@ -124,25 +124,25 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
       .ServiceSiteConfigDefault()
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesDefaultModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataConfigSiteValuesDefaultModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   SetServiceSiteConfigDefaultSave(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
     this.loading.Start(pName, 'ذخیره تنظیمات پیش فرض ماژول');
@@ -150,16 +150,16 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
       .ServiceSiteConfigDefaultSave(this.dataConfigSiteValuesDefaultModel)
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesDefaultModel = next.Item;
+          if (next.isSuccess) {
+            this.dataConfigSiteValuesDefaultModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
@@ -167,9 +167,9 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
   }
 
   GetServiceSiteAccessDefault(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccessDefault';
     this.loading.Start(pName, 'دریافت دسترسی پیش فرض ماژول');
@@ -177,25 +177,25 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
       .ServiceSiteAccessDefault()
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesDefaultModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataConfigSiteAccessValuesDefaultModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   SetServiceSiteAccessDefaultSave(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccessDefaultSave';
     this.loading.Start(pName, 'ذخیره دسترسی پیش فرض ماژول');
@@ -203,25 +203,25 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
       .ServiceSiteAccessDefaultSave(this.dataConfigSiteAccessValuesDefaultModel)
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesDefaultModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataConfigSiteAccessValuesDefaultModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   GetServiceAdminMain(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
@@ -229,25 +229,25 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
       .ServiceAdminMain()
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigAdminMainModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataConfigAdminMainModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   SetServiceAdminMainSave(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceAdminMain';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
@@ -255,16 +255,16 @@ export class ApiTelegramConfigMainAdminComponent implements OnInit , OnDestroy {
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataConfigAdminMainModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataConfigAdminMainModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }

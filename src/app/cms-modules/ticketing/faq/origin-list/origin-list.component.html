@@ -36,12 +36,12 @@
                             <!--begin::Nav Item-->
                             <app-progress-spinner [options]="loadingCat">
                             </app-progress-spinner>
-                            <ng-container *ngFor="let departemenItem of dataDepartemenModelResult.ListItems">
-                                <li class="navi-item mb-{{departemenItem.Id}}">
-                                    <a [class]="DataDepartemanLinkSelect===departemenItem.Id? 'navi-link active':'navi-link'"
-                                        data-toggle="tab" (click)="onActionbuttonDeparteman(departemenItem.Id)">
+                            <ng-container *ngFor="let departemenItem of dataDepartemenModelResult.listItems">
+                                <li class="navi-item mb-{{departemenItem.id}}">
+                                    <a [class]="DataDepartemanLinkSelect===departemenItem.id? 'navi-link active':'navi-link'"
+                                        data-toggle="tab" (click)="onActionbuttonDeparteman(departemenItem.id)">
                                         <span
-                                            class="navi-text text-dark-50 font-size-h5 font-weight-bold">{{departemenItem.Title}}</span>
+                                            class="navi-text text-dark-50 font-size-h5 font-weight-bold">{{departemenItem.title}}</span>
                                     </a>
                                 </li>
                             </ng-container>
@@ -60,15 +60,15 @@
                                 <!--begin::Item-->
                                 <app-progress-spinner [options]="loading">
                                 </app-progress-spinner>
-                                <ng-container *ngFor="let faqItem of dataModelResult.ListItems">
+                                <ng-container *ngFor="let faqItem of dataModelResult.listItems">
                                     <div class="card border-top-0">
                                         <!--begin::Header-->
-                                        <div class="card-header" id="faqHeading{{faqItem.Id}}">
-                                            <a [class]="faqItem.Id===DataFaqLinkSelect? 'card-title collapsed text-dark':'card-title text-dark'"
+                                        <div class="card-header" id="faqHeading{{faqItem.id}}">
+                                            <a [class]="faqItem.id===DataFaqLinkSelect? 'card-title collapsed text-dark':'card-title text-dark'"
                                                 data-toggle="collapse"
-                                                [attr.aria-expanded]="faqItem.Id===DataFaqLinkSelect"
-                                                *ngIf="DataDepartemanLinkSelect==0 || DataDepartemanLinkSelect===faqItem.LinkTicketingDepartemenId"
-                                                data-toggle="collapse" (click)="onActionbuttonFaqTitle(faqItem.Id)"
+                                                [attr.aria-expanded]="faqItem.id===DataFaqLinkSelect"
+                                                *ngIf="DataDepartemanLinkSelect==0 || DataDepartemanLinkSelect===faqItem.linkTicketingDepartemenId"
+                                                data-toggle="collapse" (click)="onActionbuttonFaqTitle(faqItem.id)"
                                                 role="button">
                                                 <span class="svg-icon svg-icon-primary">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -88,16 +88,16 @@
                                                     </svg>
                                                     <!--end::Svg Icon-->
                                                 </span>
-                                                <div class="card-label text-dark pl-4">{{faqItem.Question}}</div>
+                                                <div class="card-label text-dark pl-4">{{faqItem.question}}</div>
                                             </a>
                                         </div>
                                         <!--end::Header-->
 
                                         <!--begin::Body-->
-                                        <div [class]="faqItem.Id===DataFaqLinkSelect? 'collapse show':'collapse'"
-                                            *ngIf="faqItem.Id===DataFaqLinkSelect">
+                                        <div [class]="faqItem.id===DataFaqLinkSelect? 'collapse show':'collapse'"
+                                            *ngIf="faqItem.id===DataFaqLinkSelect">
                                             <div class="card-body text-dark-50 font-size-lg pl-12"
-                                                [innerHTML]="faqItem.Answer">
+                                                [innerHTML]="faqItem.answer">
                                             </div>
                                         </div>
                                         <!--end::Body-->

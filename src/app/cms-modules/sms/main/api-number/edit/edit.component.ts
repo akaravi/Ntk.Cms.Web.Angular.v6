@@ -74,7 +74,7 @@ export class SmsMainApiNumberEditComponent implements OnInit {
   dataSmsMainApiNumberModel: SmsMainApiNumberModel[];
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.FormTitle = 'ویرایش  ';
+      this.formInfo.formTitle = 'ویرایش  ';
 
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -94,25 +94,25 @@ export class SmsMainApiNumberEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.smsMainApiNumberService.setAccessLoad();
     this.smsMainApiNumberService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
           this.DataGetAllMenuCoreUserGroup();
-          this.formInfo.FormTitle = this.formInfo.FormTitle;
-          this.formInfo.FormAlert = '';
+          this.formInfo.formTitle = this.formInfo.formTitle;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -130,31 +130,31 @@ export class SmsMainApiNumberEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = 'در دریافت دسته بندی دسترسی های از سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = 'در دریافت دسته بندی دسترسی های از سرور';
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkApiNumberId';
-    filter.Value = this.requestId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkApiNumberId';
+    filter.value = this.requestId;
+    filteModelContent.filters.push(filter);
 
     this.smsMainApiPathAndApiNumberService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
-        this.dataCoreCpMainMenuCmsUserGroupModel = ret.ListItems;
+        this.dataCoreCpMainMenuCmsUserGroupModel = ret.listItems;
         const listG: string[] = [];
         this.dataCoreCpMainMenuCmsUserGroupModel.forEach(element => {
-          listG.push(element.LinkApiPathId);
+          listG.push(element.linkApiPathId);
         });
         this.dataCoreCpMainMenuIds = listG;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = '';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -166,28 +166,28 @@ export class SmsMainApiNumberEditComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.smsMainApiNumberService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -199,7 +199,7 @@ export class SmsMainApiNumberEditComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {
@@ -216,22 +216,22 @@ export class SmsMainApiNumberEditComponent implements OnInit {
   }
   onActionSelectorUserCategorySelectAdded(model: SmsMainApiPathModel): void {
     const entity = new SmsMainApiPathAndApiNumberModel();
-    entity.LinkApiPathId = model.Id;
-    entity.LinkApiNumberId = this.dataModel.Id;
+    entity.linkApiPathId = model.id;
+    entity.linkApiNumberId = this.dataModel.id;
 
     this.smsMainApiPathAndApiNumberService.ServiceAdd(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -239,22 +239,22 @@ export class SmsMainApiNumberEditComponent implements OnInit {
   }
   onActionSelectorUserCategorySelectRemoved(model: SmsMainApiPathModel): void {
     const entity = new SmsMainApiPathAndApiNumberModel();
-    entity.LinkApiPathId = model.Id;
-    entity.LinkApiNumberId = this.dataModel.Id;
+    entity.linkApiPathId = model.id;
+    entity.linkApiNumberId = this.dataModel.id;
 
     this.smsMainApiPathAndApiNumberService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }

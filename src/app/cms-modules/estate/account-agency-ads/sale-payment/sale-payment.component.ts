@@ -45,11 +45,11 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      if (data.LinkAccountAgencyId && data.LinkAccountAgencyId.length > 0) {
-        this.requestLinkAccountAgencyId = data.LinkAccountAgencyId;
+      if (data.linkAccountAgencyId && data.linkAccountAgencyId.length > 0) {
+        this.requestLinkAccountAgencyId = data.linkAccountAgencyId;
       }
-      if (data.LinkAdsTypeId && data.LinkAdsTypeId.length > 0) {
-        this.requestLinkAdsTypeId = data.LinkAdsTypeId;
+      if (data.linkAdsTypeId && data.linkAdsTypeId.length > 0) {
+        this.requestLinkAdsTypeId = data.linkAdsTypeId;
       }
     }
     if (this.requestLinkAccountAgencyId.length === 0) {
@@ -63,11 +63,11 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
       return;
     }
 
-    this.dataModelCalculate.LinkAdsTypeId = this.requestLinkAdsTypeId;
-    this.dataModelCalculate.LinkAccountAgencyId = this.requestLinkAccountAgencyId;
-    this.dataModelPayment.LinkAdsTypeId = this.requestLinkAdsTypeId;
-    this.dataModelPayment.LinkAccountAgencyId = this.requestLinkAccountAgencyId;
-    this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
+    this.dataModelCalculate.linkAdsTypeId = this.requestLinkAdsTypeId;
+    this.dataModelCalculate.linkAccountAgencyId = this.requestLinkAccountAgencyId;
+    this.dataModelPayment.linkAdsTypeId = this.requestLinkAdsTypeId;
+    this.dataModelPayment.linkAccountAgencyId = this.requestLinkAccountAgencyId;
+    this.dataModelPayment.lastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
 
@@ -84,7 +84,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
+    this.formInfo.formTitle = 'انتخاب درگاه پرداخت';
 
   }
 
@@ -99,7 +99,7 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -115,14 +115,14 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     this.loading.Start(pName);
     this.estateAccountAgencyAdsService.ServiceOrderPayment(this.dataModelPayment).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelPaymentResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-          localStorage.setItem('TransactionId', ret.Item.TransactionId.toString());
-          this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
+          localStorage.setItem('TransactionId', ret.item.transactionId.toString());
+          this.document.location.href = this.dataModelPaymentResult.item.urlToPay;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -135,8 +135,8 @@ export class EstateAccountAgencyAdsSalePaymentComponent implements OnInit {
     );
   }
   onActionSelectCalculate(model: BankPaymentPrivateSiteConfigModel): void {
-    this.dataModelCalculate.BankPaymentPrivateId = model.Id;
-    this.dataModelPayment.BankPaymentPrivateId = model.Id;
+    this.dataModelCalculate.bankPaymentPrivateId = model.id;
+    this.dataModelPayment.bankPaymentPrivateId = model.id;
     this.DataCalculate();
   }
   onActionSelectBankPayment(): void {

@@ -1,13 +1,13 @@
   <div class="row">
-    <div class="col" *ngFor="let item of dataModelResult.ListItems">
+    <div class="col" *ngFor="let item of dataModelResult.listItems">
       <mat-card class="example-card">
         <mat-card-header>
-          <mat-card-title>{{item.Title}}</mat-card-title>
+          <mat-card-title>{{item.title}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image  style="width:95%;height:95%;"  src="{{item.LinkModuleFileLogoIdSrc }}">
+        <img mat-card-image  style="width:95%;height:95%;"  src="{{item.linkModuleFileLogoIdSrc }}">
         <mat-card-content>
           <p>
-            {{item.Title }}
+            {{item.title }}
           </p>
         </mat-card-content>
         <mat-card-actions>

@@ -46,27 +46,27 @@ export class EstatePropertyTypeLanduseCompleteComponent implements OnInit {
 
   public requestAutocompleteItems = (text: string): Observable<any> => {
     const filteModel = new FilterModel();
-    filteModel.RowPerPage = 20;
-    filteModel.AccessLoad = true;
+    filteModel.rowPerPage = 20;
+    filteModel.accessLoad = true;
     let filter = new FilterDataModel();
-    filter.PropertyName = 'Title';
-    filter.Value = text;
-    filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-    filter.ClauseType = EnumClauseType.Or;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'Title';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
     if (text && text.length > 0) {
       filter = new FilterDataModel();
-      filter.PropertyName = 'Id';
-      filter.Value = text;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.ClauseType = EnumClauseType.Or;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'Id';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
     }
     return this.estatePropertyTypeLanduseService.ServiceGetAll(filteModel).pipe(
       map((data) =>
-        data.ListItems.map(val => ({
-          value: val.Id,
-          display: val.Title
+        data.listItems.map(val => ({
+          value: val.id,
+          display: val.title
         })))
     );
   }
@@ -89,24 +89,24 @@ export class EstatePropertyTypeLanduseCompleteComponent implements OnInit {
     ids.forEach(item => {
       if (item && item.length > 0) {
         const filter = new FilterDataModel();
-        filter.PropertyName = 'Id';
-        filter.Value = item;
-        filter.ClauseType = EnumClauseType.Or;
-        filteModel.Filters.push(filter);
+        filter.propertyName = 'Id';
+        filter.value = item;
+        filter.clauseType = EnumClauseType.Or;
+        filteModel.filters.push(filter);
       }
     });
 
     this.estatePropertyTypeLanduseService.ServiceGetAll(filteModel).pipe(
       map((next) => {
-        if (next.IsSuccess) {
-          next.ListItems.forEach(val => {
+        if (next.isSuccess) {
+          next.listItems.forEach(val => {
             this.tagDataModel.push({
-              value: val.Id,
-              display: val.Title
+              value: val.id,
+              display: val.title
             });
           });
         } else {
-          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+          this.cmsToastrService.typeErrorGetAll(next.errorMessage);
 
         }
 

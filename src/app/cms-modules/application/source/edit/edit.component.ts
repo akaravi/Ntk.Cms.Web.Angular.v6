@@ -95,9 +95,9 @@ export class ApplicationSourceEditComponent implements OnInit {
 
 
   DataGetOne(requestId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -108,21 +108,21 @@ export class ApplicationSourceEditComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
 
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -130,31 +130,31 @@ export class ApplicationSourceEditComponent implements OnInit {
       );
   }
   DataGetAllSourceSiteCategory(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkSourceId';
-    filter.Value = this.requestId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkSourceId';
+    filter.value = this.requestId;
+    filteModelContent.filters.push(filter);
 
     this.applicationSourceSiteCategoryService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
-        this.dataApplicationSourceSiteCategoryModel = ret.ListItems;
+        this.dataApplicationSourceSiteCategoryModel = ret.listItems;
         const listG: number[] = [];
         this.dataApplicationSourceSiteCategoryModel.forEach(element => {
-          listG.push(element.LinkSiteCagegoryId);
+          listG.push(element.linkSiteCagegoryId);
         });
         this.dataCoreSiteCategoryIds = listG;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = '';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -166,9 +166,9 @@ export class ApplicationSourceEditComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
@@ -177,19 +177,19 @@ export class ApplicationSourceEditComponent implements OnInit {
       .ServiceEdit(this.dataModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (ret.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/source/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);;
           this.loading.Stop(pName);
         }
@@ -203,23 +203,23 @@ export class ApplicationSourceEditComponent implements OnInit {
   }
   onActionSelectorUserCategorySelectAdded(model: CoreSiteCategoryModel): void {
     const entity = new ApplicationSourceSiteCategoryModel();
-    entity.LinkSiteCagegoryId = model.Id;
-    entity.LinkSourceId = this.dataModel.Id;
+    entity.linkSiteCagegoryId = model.id;
+    entity.linkSourceId = this.dataModel.id;
 
     this.applicationSourceSiteCategoryService.ServiceAdd(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -227,22 +227,22 @@ export class ApplicationSourceEditComponent implements OnInit {
   }
   onActionSelectorUserCategorySelectRemoved(model: CoreSiteCategoryModel): void {
     const entity = new ApplicationSourceSiteCategoryModel();
-    entity.LinkSiteCagegoryId = model.Id;
-    entity.LinkSourceId = this.dataModel.Id;
+    entity.linkSiteCagegoryId = model.id;
+    entity.linkSourceId = this.dataModel.id;
 
     this.applicationSourceSiteCategoryService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -257,7 +257,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.router.navigate(['/application/source/']);
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 }

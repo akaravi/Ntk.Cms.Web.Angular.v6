@@ -61,14 +61,14 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
     if (this.requestLinkSiteId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyAnyName = 'LinkSiteId';
-      filter.PropertyName = 'SiteUsers';
-      filter.Value = this.requestLinkSiteId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyAnyName = 'LinkSiteId';
+      filter.propertyName = 'SiteUsers';
+      filter.value = this.requestLinkSiteId;
+      this.filteModelContent.filters.push(filter);
     }
   }
   comment: string;
@@ -107,7 +107,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -126,17 +126,17 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreUserModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     this.coreUserService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        if (ret.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          this.tableSource.data = ret.listItems;
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'LinkSiteId',
@@ -150,10 +150,10 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
           }
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.Access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -171,25 +171,25 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
@@ -198,8 +198,8 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
@@ -217,22 +217,22 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
 
   onActionbuttonViewRow(model: CoreUserModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
     ) {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
     const dialogRef = this.dialog.open(CoreUserViewComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -242,40 +242,40 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonEditRow(model: CoreUserModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/core/user/edit', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/user/edit', this.tableRowSelected.id]);
 
   }
   onActionbuttonChangePassword(model: CoreUserModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    if (this.tokenInfo.UserId != model.Id &&
+    if (this.tokenInfo.userId != model.id &&
       (
         this.dataModelResult == null ||
-        this.dataModelResult.Access == null ||
-        !this.dataModelResult.Access.AccessEditRow
+        this.dataModelResult.access == null ||
+        !this.dataModelResult.access.accessEditRow
       )) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
       height: '90%',
-      data: { LinkUserId: this.tableRowSelected.Id }
+      data: { LinkUserId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -285,30 +285,30 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonDeleteRow(mode: CoreUserModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
     this.tableRowSelected = mode;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Username + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.username + ' ) ';
     this.contentService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.coreUserService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+          this.coreUserService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
-              if (ret.IsSuccess) {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -332,7 +332,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       );
   }
   onActionbuttonLoginToRow(model: CoreUserModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
 
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
@@ -343,10 +343,10 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
 
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
-    authModel.UserId = this.tableRowSelected.Id;
+    authModel.userId = this.tableRowSelected.id;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next: (res) => {
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.cmsToastrService.typeSuccessSelected();
           this.router.navigate(['/']);
         }
@@ -371,11 +371,11 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.coreUserService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -386,16 +386,16 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.coreUserService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -414,11 +414,11 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.coreUserService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -432,37 +432,37 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: CoreUserModel): void {
     this.tableRowSelected = row;
   }
   onActionbuttonSiteList(model: CoreUserModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/site/list/LinkUserId', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/site/list/LinkUserId', this.tableRowSelected.id]);
   }
   onActionbuttonSiteByGroupList(model: CoreUserModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/site/userlist/LinkUserId/', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/site/userlist/LinkUserId/', this.tableRowSelected.id]);
   }
   onActionbuttonResller(model: CoreUserModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/core/user/reseller-chart/LinkUserId', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/user/reseller-chart/LinkUserId', this.tableRowSelected.id]);
   }
   onActionBackToParentSiteList(): void {
     this.router.navigate(['/core/site/']);

@@ -44,7 +44,7 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
       this.requestParentId = data.parentId + '';
     }
     if (this.requestParentId.length > 0) {
-      this.dataModel.LinkParentId = this.requestParentId;
+      this.dataModel.linkParentId = this.requestParentId;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -57,7 +57,7 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
   dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.getEnumMenuPlaceType();
     this.DataGetAccess();
@@ -75,11 +75,11 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
         },
         (error) => {
@@ -88,43 +88,43 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.webDesignerMainMenuService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (next.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
       (error) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
       }
     );
   }
   onActionSelectorSelect(model: WebDesignerMainMenuModel): void {
-    this.dataModel.LinkParentId = null;
-    if (model && model.Id.length > 0) {
-      this.dataModel.LinkParentId = model.Id;
+    this.dataModel.linkParentId = null;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkParentId = model.id;
     }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataAddContent();
   }
   onFormCancel(): void {
@@ -142,6 +142,6 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
     }
   }
   onIconPickerSelect(model: any): void {
-    this.dataModel.Icon = model;
+    this.dataModel.icon = model;
   }
 }

@@ -63,7 +63,7 @@ export class ApplicationConfigCheckSiteComponent implements OnInit, OnDestroy {
   }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
-      this.requestLinkSiteId = this.tokenInfo.SiteId;
+      this.requestLinkSiteId = this.tokenInfo.siteId;
     }
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       return;
@@ -76,9 +76,9 @@ export class ApplicationConfigCheckSiteComponent implements OnInit, OnDestroy {
         async (next) => {
           this.loading.Stop(pName);
           this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
-          if (!next.IsSuccess) {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+          this.tableSource.data = next.listItems;
+          if (!next.isSuccess) {
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
         },
         (error) => {

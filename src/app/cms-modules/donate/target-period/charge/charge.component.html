@@ -15,11 +15,11 @@
               <!-- Credit Field -->
               <mat-form-field class="ntk-full-width">
                 <mat-label> {{'TITLE.Amount' | translate}} </mat-label>
-                <input matInput (input)="onInputChange($event)" [(ngModel)]="dataModelCalculate.SupportPayment" name="dataModelCalculate.SupportPayment"
+                <input matInput (input)="onInputChange($event)" [(ngModel)]="dataModelCalculate.supportPayment" name="dataModelCalculate.supportPayment"
                   #Credit type="number" 
                   placeholder="0" />
-                <mat-icon matSuffix *ngIf="dataModelCalculate.SupportPayment" matSuffix mat-icon-button aria-label="Clear"
-                  (click)="dataModelCalculate.SupportPayment = 0">close</mat-icon>
+                <mat-icon matSuffix *ngIf="dataModelCalculate.supportPayment" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="dataModelCalculate.supportPayment = 0">close</mat-icon>
                 <mat-icon matSuffix>mode_edit</mat-icon>
               </mat-form-field>
               {{price}}

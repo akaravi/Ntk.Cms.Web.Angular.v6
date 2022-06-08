@@ -94,7 +94,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
-    this.dataModel.LinkCategoryId = this.requestCategoryId;
+    this.dataModel.linkCategoryId = this.requestCategoryId;
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -105,11 +105,11 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataAccessModel = ret.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.dataAccessModel = ret.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -122,16 +122,16 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     this.tagDataModel = model;
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFilePodcastId(model: NodeInterface): void {
-    this.dataModel.LinkFilePodcastId = model.id;
-    this.dataModel.LinkFilePodcastIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFilePodcastId = model.id;
+    this.dataModel.linkFilePodcastIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileMovieId(model: NodeInterface): void {
-    this.dataModel.LinkFileMovieId = model.id;
-    this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFileMovieId = model.id;
+    this.dataModel.linkFileMovieIdSrc = model.downloadLinksrc;
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -149,20 +149,20 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.Geolocationlatitude && lon === this.dataModel.Geolocationlongitude) {
-        this.dataModel.Geolocationlatitude = null;
-        this.dataModel.Geolocationlongitude = null;
+      if (lat === this.dataModel.geolocationlatitude && lon === this.dataModel.geolocationlongitude) {
+        this.dataModel.geolocationlatitude = null;
+        this.dataModel.geolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.Geolocationlatitude = lat;
-      this.dataModel.Geolocationlongitude = lon;
+      this.dataModel.geolocationlatitude = lat;
+      this.dataModel.geolocationlongitude = lon;
     });
   }
   receiveZoom(mode: leafletMap): void {
   }
   onFormSubmit(): void {
-    if (this.dataModel.LinkCategoryId <= 0) {
+    if (this.dataModel.linkCategoryId <= 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
@@ -170,7 +170,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    this.dataModel.Keyword = '';
+    this.dataModel.keyword = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -181,15 +181,15 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.Keyword = listKeyword.join(',');
+        this.dataModel.keyword = listKeyword.join(',');
       }
     }
     this.DataAddContent();
   }
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.biographyContentService
@@ -197,24 +197,24 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
+          this.formInfo.formSubmitAllow = !next.isSuccess;
           this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (next.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.Item);
-            await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.Item);
-            await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.Item);
+            await this.DataActionAfterAddContentSuccessfulTag(this.dataModelResult.item);
+            await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModelResult.item);
+            await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.item);
             this.loading.Stop(pName);
             setTimeout(() => this.router.navigate(['/biography/content/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(next.errorMessage);
           }
         },
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
       );
@@ -226,18 +226,18 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     const dataListAdd = new Array<BiographyContentTagModel>();
     this.tagDataModel.forEach(x => {
       const row = new BiographyContentTagModel();
-      row.LinkContentId = model.Id;
-      row.LinkTagId = x.Id;
+      row.linkContentId = model.id;
+      row.linkTagId = x.id;
       dataListAdd.push(row);
     });
     return this.biographyContentTagService.ServiceAddBatch(dataListAdd).pipe(
       map(response => {
-        if (response.IsSuccess) {
+        if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddTag();
         } else {
           this.cmsToastrService.typeErrorAddTag();
         }
-        console.log(response.ListItems);
+        console.log(response.listItems);
         return of(response);
       })).toPromise();
   }
@@ -246,14 +246,14 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       return;
     }
     this.otherInfoDataModel.forEach(x => {
-      x.LinkContentId = model.Id;
+      x.linkContentId = model.id;
     });
     const pName = this.constructor.name + 'biographyContentOtherInfoService.ServiceAddBatch';
     this.loading.Start(pName);
 
     return this.biographyContentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel).pipe(
       map(response => {
-        if (response.IsSuccess) {
+        if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddOtherInfo();
         } else {
           this.cmsToastrService.typeErrorAddOtherInfo();
@@ -263,7 +263,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
       )).toPromise();
@@ -275,15 +275,15 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     const dataList: BiographyContentSimilarModel[] = [];
     this.similarDataModel.forEach(x => {
       const row = new BiographyContentSimilarModel();
-      row.LinkSourceId = model.Id;
-      row.LinkDestinationId = x.Id;
+      row.linkSourceId = model.id;
+      row.linkDestinationId = x.id;
       dataList.push(row);
     });
     const pName = this.constructor.name + 'biographyContentSimilarService.ServiceAddBatch';
     this.loading.Start(pName);
     return this.biographyContentSimilarService.ServiceAddBatch(dataList).pipe(
       map(response => {
-        if (response.IsSuccess) {
+        if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddSimilar();
         } else {
           this.cmsToastrService.typeErrorAddSimilar();
@@ -293,30 +293,30 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
         }
       )).toPromise();
   }
   onActionSelectorSelect(model: BiographyCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkCategoryId = model.Id;
+    this.dataModel.linkCategoryId = model.id;
   }
   onActionContentSimilarSelect(model: BiographyContentModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       return;
     }
     this.contentSimilarSelected = model;
   }
   onActionContentSimilarAddToLIst(): void {
-    if (!this.contentSimilarSelected || this.contentSimilarSelected.Id <= 0) {
+    if (!this.contentSimilarSelected || this.contentSimilarSelected.id <= 0) {
       return;
     }
-    if (this.similarDataModel.find(x => x.Id === this.contentSimilarSelected.Id)) {
+    if (this.similarDataModel.find(x => x.id === this.contentSimilarSelected.id)) {
       this.cmsToastrService.typeErrorAddDuplicate();
       return;
     }
@@ -324,7 +324,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     this.similarTabledataSource.data = this.similarDataModel;
   }
   onActionContentSimilarRemoveFromLIst(model: BiographyContentModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       return;
     }
     if (!this.similarDataModel || this.similarDataModel.length === 0) {
@@ -332,7 +332,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     }
     const retOut = new Array<BiographyContentModel>();
     this.similarDataModel.forEach(x => {
-      if (x.Id !== model.Id) {
+      if (x.id !== model.id) {
         retOut.push(x);
       }
     });
@@ -343,7 +343,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     if (!this.contentOtherInfoSelected) {
       return;
     }
-    if (this.otherInfoDataModel.find(x => x.Title === this.contentOtherInfoSelected.Title)) {
+    if (this.otherInfoDataModel.find(x => x.title === this.contentOtherInfoSelected.title)) {
       this.cmsToastrService.typeErrorAddDuplicate();
       return;
     }
@@ -388,12 +388,12 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
   }
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
+    if (!model || !model.id || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Information_area_deleted');
       this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkLocationId = null;
+      this.dataModel.linkLocationId = null;
       return;
     }
-    this.dataModel.LinkLocationId = model.Id;
+    this.dataModel.linkLocationId = model.id;
   }
 }

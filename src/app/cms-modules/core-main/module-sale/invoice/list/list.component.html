@@ -12,11 +12,11 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected?.Id>0" (click)="onActionbuttonViewRow()"
+    <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected?.id>0" (click)="onActionbuttonViewRow()"
       type="button" class="btn btn-outline-secondary BTN" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
       translate}}</button>
 
-    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
@@ -52,61 +52,61 @@
       <ng-container matColumnDef="MainImageSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.MainImageSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.MainImageSrc | cmsthumbnail}}"
+          <img *ngIf="row?.mainImageSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.mainImageSrc | cmsthumbnail}}"
             height="40" width="40" />
 
         </mat-cell>
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- linkCreatedBySiteId Column -->
       <ng-container matColumnDef="linkCreatedBySiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCreatedBySiteId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCreatedBySiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkCreatedBySiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.Id === tableRowSelected.Id ? '' : 'none' }">
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
+           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select> </mat-cell>
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
       <!-- SubDomain Column -->
       <ng-container matColumnDef="SubDomain">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SubDomain']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.SubDomain}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SubDomain']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.subDomain}} </mat-cell>
       </ng-container>
       <!-- Domain Column -->
       <ng-container matColumnDef="Domain">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Domain']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Domain}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Domain']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.domain}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
       <!-- ExpireDate Column -->
       <ng-container matColumnDef="ExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleExpireDate(row.ExpireDate) }">
-          {{ publicHelper.LocaleDate(row.ExpireDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleExpireDate(row.expireDate) }">
+          {{ publicHelper.LocaleDate(row.expireDate) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -117,15 +117,15 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+            <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessWatchRow">
               <mat-icon>view_module</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonViewDetail(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+            <button mat-menu-item (click)="onActionbuttonViewDetail(row)" *ngIf="dataModelResult.access.accessWatchRow">
               <mat-icon>view_module</mat-icon>
               <span>{{'ACTION.DETAIL' | translate}}</span>
             </button>
@@ -134,7 +134,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
 
@@ -142,8 +142,8 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

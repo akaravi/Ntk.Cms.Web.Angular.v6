@@ -48,7 +48,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
     this.loading.Start(pName, 'دریافت اطلاعات سرور');
     this.configService.ServiceIp().subscribe(
       async (next) => {
-          this.publicHelper.appServerVersion=next.AppVersion
+          this.publicHelper.appServerVersion=next.appVersion
         this.loading.Stop(pName);
       },
       (error) => {

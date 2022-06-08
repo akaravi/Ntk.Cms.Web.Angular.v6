@@ -1,50 +1,50 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.AccessWatchField">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        [disabled]="!fieldsInfo['RecordStatus']?.AccessEditField" name="dataModel.RecordStatus" #RecordStatus="ngModel"
-        panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        [disabled]="!fieldsInfo['RecordStatus']?.accessEditField" name="dataModel.recordStatus" #RecordStatus="ngModel"
+        panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
-            let item of dataModelEnumRecordStatusResult.ListItems;
+            let item of dataModelEnumRecordStatusResult.listItems;
             index as i
-          " [value]="item.Value">{{ item.Description }}</mat-option>
+          " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint align="end">{{ 'Application.Source.RecordStatus_hint' | translate }}</mat-hint>
+      <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
-        {{ fieldsInfo['RecordStatus']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- Title Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['Title']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Title" [disabled]="!fieldsInfo['Title']?.AccessEditField"
-        name="dataModel.Title" #Title type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['Title']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" [disabled]="!fieldsInfo['Title']?.accessEditField"
+        name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
         maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Title && fieldsInfo['Title']?.AccessEditField" matSuffix mat-icon-button
-        aria-label="Clear" (click)="dataModel.Title = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['Title']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
-        {{ fieldsInfo['Title']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- TitleResourceLanguage Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
-      <mat-label> {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
-        #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessEditField"
-        placeholder="{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
+        #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleResourceLanguage.errors?.required">
@@ -53,87 +53,87 @@
     </mat-form-field>
     <!-- LinkSourceId Field -->
     <app-application-source-selector (optionChange)="onActionSelectSource($event)"
-      [optionDisabled]="!fieldsInfo['LinkSourceId']?.AccessEditField" [optionSelectForce]="dataModel.LinkSourceId"
+      [optionDisabled]="!fieldsInfo['LinkSourceId']?.accessEditField" [optionSelectForce]="dataModel.linkSourceId"
       [optionPlaceholder]="'سورس اپلیکیشن'">
     </app-application-source-selector>
     <!-- TypeId Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TypeId']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['TypeId']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TypeId" [disabled]="!fieldsInfo['TypeId']?.AccessEditField"
-        name="dataModel.TypeId" #TypeId type="text" placeholder="Type Id" minlength="0" maxlength="100" />
-      <mat-icon matSuffix *ngIf="dataModel.TypeId && fieldsInfo['TypeId']?.AccessEditField" matSuffix mat-icon-button
-        aria-label="Clear" (click)="dataModel.TypeId = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['TypeId']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TypeId']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['TypeId']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.typeId" [disabled]="!fieldsInfo['TypeId']?.accessEditField"
+        name="dataModel.typeId" #TypeId type="text" placeholder="Type Id" minlength="0" maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.typeId && fieldsInfo['TypeId']?.accessEditField" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.typeId = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['TypeId']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TypeId.value.length }} / 100</mat-hint>
 
     </mat-form-field>
     <!-- ThemeConfigBuilderJsonValues Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigBuilderJsonValues']?.AccessWatchField">
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigBuilderJsonValues']?.accessWatchField">
       <mat-label>{{ fieldsInfo['ThemeConfigBuilderJsonValues']?.FieldThemeConfigBuilderJsonValues }}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.ThemeConfigBuilderJsonValues"
-        [disabled]="!fieldsInfo['ThemeConfigBuilderJsonValues']?.AccessAddField"
-        name="dataModel.ThemeConfigBuilderJsonValues" #ThemeConfigBuilderJsonValues type="text"
+      <textarea matInput [(ngModel)]="dataModel.themeConfigBuilderJsonValues"
+        [disabled]="!fieldsInfo['ThemeConfigBuilderJsonValues']?.accessAddField"
+        name="dataModel.themeConfigBuilderJsonValues" #ThemeConfigBuilderJsonValues type="text"
         placeholder="ThemeConfigBuilderJsonValues" row="6" minlength="0" maxlength="100000"></textarea>
       <mat-icon matSuffix
-        *ngIf="dataModel.ThemeConfigBuilderJsonValues && fieldsInfo['ThemeConfigBuilderJsonValues']?.AccessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ThemeConfigBuilderJsonValues = ''">close
+        *ngIf="dataModel.themeConfigBuilderJsonValues && fieldsInfo['ThemeConfigBuilderJsonValues']?.accessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigBuilderJsonValues = ''">close
       </mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ThemeConfigBuilderJsonValues']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ThemeConfigBuilderJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ThemeConfigBuilderJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- ThemeConfigRuntimeJsonValues Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigRuntimeJsonValues']?.AccessWatchField">
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigRuntimeJsonValues']?.accessWatchField">
       <mat-label>{{ fieldsInfo['ThemeConfigRuntimeJsonValues']?.FieldThemeConfigRuntimeJsonValues }}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.ThemeConfigRuntimeJsonValues"
-        [disabled]="!fieldsInfo['ThemeConfigRuntimeJsonValues']?.AccessAddField"
-        name="dataModel.ThemeConfigRuntimeJsonValues" #ThemeConfigRuntimeJsonValues type="text"
+      <textarea matInput [(ngModel)]="dataModel.themeConfigRuntimeJsonValues"
+        [disabled]="!fieldsInfo['ThemeConfigRuntimeJsonValues']?.accessAddField"
+        name="dataModel.themeConfigRuntimeJsonValues" #ThemeConfigRuntimeJsonValues type="text"
         placeholder="ThemeConfigRuntimeJsonValues" row="6" minlength="0" maxlength="100000"></textarea>
       <mat-icon matSuffix
-        *ngIf="dataModel.ThemeConfigRuntimeJsonValues && fieldsInfo['ThemeConfigRuntimeJsonValues']?.AccessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ThemeConfigRuntimeJsonValues = ''">close
+        *ngIf="dataModel.themeConfigRuntimeJsonValues && fieldsInfo['ThemeConfigRuntimeJsonValues']?.accessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigRuntimeJsonValues = ''">close
       </mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ThemeConfigRuntimeJsonValues']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ThemeConfigRuntimeJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ThemeConfigRuntimeJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- ThemeConfigLayoutJsonValues Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigLayoutJsonValues']?.AccessWatchField">
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigLayoutJsonValues']?.accessWatchField">
       <mat-label>{{ fieldsInfo['ThemeConfigLayoutJsonValues']?.FieldThemeConfigLayoutJsonValues }}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.ThemeConfigLayoutJsonValues"
-        [disabled]="!fieldsInfo['ThemeConfigLayoutJsonValues']?.AccessAddField"
-        name="dataModel.ThemeConfigLayoutJsonValues" #ThemeConfigLayoutJsonValues type="text"
+      <textarea matInput [(ngModel)]="dataModel.themeConfigLayoutJsonValues"
+        [disabled]="!fieldsInfo['ThemeConfigLayoutJsonValues']?.accessAddField"
+        name="dataModel.themeConfigLayoutJsonValues" #ThemeConfigLayoutJsonValues type="text"
         placeholder="ThemeConfigLayoutJsonValues" row="6" minlength="0" maxlength="100000"></textarea>
       <mat-icon matSuffix
-        *ngIf="dataModel.ThemeConfigLayoutJsonValues && fieldsInfo['ThemeConfigLayoutJsonValues']?.AccessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ThemeConfigLayoutJsonValues = ''">close
+        *ngIf="dataModel.themeConfigLayoutJsonValues && fieldsInfo['ThemeConfigLayoutJsonValues']?.accessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigLayoutJsonValues = ''">close
       </mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ThemeConfigLayoutJsonValues']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ThemeConfigLayoutJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ThemeConfigLayoutJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- ThemeConfigJsonValues Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigJsonValues']?.AccessWatchField">
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigJsonValues']?.accessWatchField">
       <mat-label>{{ fieldsInfo['ThemeConfigJsonValues']?.FieldThemeConfigJsonValues }}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.ThemeConfigJsonValues"
-        [disabled]="!fieldsInfo['ThemeConfigJsonValues']?.AccessAddField" name="dataModel.ThemeConfigJsonValues"
+      <textarea matInput [(ngModel)]="dataModel.themeConfigJsonValues"
+        [disabled]="!fieldsInfo['ThemeConfigJsonValues']?.accessAddField" name="dataModel.themeConfigJsonValues"
         #ThemeConfigJsonValues type="text" placeholder="ThemeConfigJsonValues" row="6" minlength="0"
         maxlength="100000"></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.ThemeConfigJsonValues && fieldsInfo['ThemeConfigJsonValues']?.AccessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ThemeConfigJsonValues = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ThemeConfigJsonValues']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.themeConfigJsonValues && fieldsInfo['ThemeConfigJsonValues']?.accessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigJsonValues = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ThemeConfigJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ThemeConfigJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-        src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
+      <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
         <mat-label (click)="fileManagerOpenForm = true">فایل عکس
         </mat-label>
-        <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+        <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
           type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
-        <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId " matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkMainImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
       </mat-form-field>
       <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
@@ -146,15 +146,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

@@ -67,56 +67,56 @@ export class CoreUserSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreUserModel): string | undefined {
-    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName) : undefined;
+    return model ? (model.username + ' # ' + model.name + ' # ' + model.lastName) : undefined;
   }
   displayOption(model?: CoreUserModel): string | undefined {
-    return model ? (model.Username + ' # ' + model.Name + ' # ' + model.LastName) : undefined;
+    return model ? (model.username + ' # ' + model.name + ' # ' + model.lastName) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserModel[]> {
     const filteModel = new FilterModel();
-    filteModel.RowPerPage = 20;
-    filteModel.AccessLoad = true;
+    filteModel.rowPerPage = 20;
+    filteModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     if (text && text.length > 0) {
       let filter = new FilterDataModel();
       /*Filters */
       filter = new FilterDataModel();
-      filter.PropertyName = 'username';
-      filter.Value = text;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.ClauseType = EnumClauseType.Or;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'username';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
       /*Filters */
       /*Filters */
       filter = new FilterDataModel();
-      filter.PropertyName = 'name';
-      filter.Value = text;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.ClauseType = EnumClauseType.Or;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'name';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
       /*Filters */
       filter = new FilterDataModel();
-      filter.PropertyName = 'email';
-      filter.Value = text;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.ClauseType = EnumClauseType.Or;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'email';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
       /*Filters */
       filter = new FilterDataModel();
-      filter.PropertyName = 'lastname';
-      filter.Value = text;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.ClauseType = EnumClauseType.Or;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'lastname';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
 
       if (text && typeof +text === 'number' && +text > 0) {
         /*Filters */
         filter = new FilterDataModel();
-        filter.PropertyName = 'Id';
-        filter.Value = text;
-        filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
-        filter.ClauseType = EnumClauseType.Or;
-        filteModel.Filters.push(filter);
+        filter.propertyName = 'Id';
+        filter.value = text;
+        filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+        filter.clauseType = EnumClauseType.Or;
+        filteModel.filters.push(filter);
 
       }
     }
@@ -130,16 +130,16 @@ export class CoreUserSelectorComponent implements OnInit {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.Id || this.dataModelSelect.Id <= 0) &&
-            this.dataModelResult.ListItems.length > 0) {
+            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&
+            this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.ListItems[0]);
+            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
+            this.onActionSelect(this.dataModelResult.listItems[0]);
           }
           /*select First Item */
           this.loading.Stop(pName);
 
-          return response.ListItems;
+          return response.listItems;
         })
       ).toPromise();
   }
@@ -160,7 +160,7 @@ export class CoreUserSelectorComponent implements OnInit {
 
   push(newvalue: CoreUserModel): Observable<CoreUserModel[]> {
     return this.filteredOptions.pipe(map(items => {
-      if (items.find(x => x.Id === newvalue.Id)) {
+      if (items.find(x => x.id === newvalue.id)) {
         return items;
       }
       items.push(newvalue);
@@ -170,21 +170,21 @@ export class CoreUserSelectorComponent implements OnInit {
   }
   onActionSelectForce(id: number | CoreUserModel): void {
     if (typeof id === 'number' && id > 0) {
-      if (this.dataModelSelect && this.dataModelSelect.Id === id) {
+      if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
       }
-      if (this.dataModelResult && this.dataModelResult.ListItems && this.dataModelResult.ListItems.find(x => x.Id === id)) {
-        const item = this.dataModelResult.ListItems.find(x => x.Id === id);
+      if (this.dataModelResult && this.dataModelResult.listItems && this.dataModelResult.listItems.find(x => x.id === id)) {
+        const item = this.dataModelResult.listItems.find(x => x.id === id);
         this.dataModelSelect = item;
         this.formControl.setValue(item);
         return;
       }
       this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+        if (next.isSuccess) {
+          this.filteredOptions = this.push(next.item);
+          this.dataModelSelect = next.item;
+          this.formControl.setValue(next.item);
+          this.optionChange.emit(next.item);
         }
       });
       return;
@@ -199,7 +199,7 @@ export class CoreUserSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
+    // if (this.dataModelSelect && this.dataModelSelect.id > 0) {
     //   this.onActionSelect(null);
     // }
     this.dataModelSelect = new CoreUserModel();

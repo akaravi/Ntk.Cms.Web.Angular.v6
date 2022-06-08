@@ -99,7 +99,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   }
   getModuleList(): void {
     const filter = new FilterModel();
-    filter.RowPerPage = 100;
+    filter.rowPerPage = 100;
     this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
       this.dataModelCoreModuleResult = next;
     });
@@ -125,14 +125,14 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.showBuy = false;
     this.coreModuleSaleSerialService.ServiceCheckUseSerialForSite(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.showBuy = true;
           this.dataModelResult = ret;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-          this.tableSource.data = ret.ListItems;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          this.tableSource.data = ret.listItems;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -154,12 +154,12 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
 
     this.coreModuleSaleSerialService.ServiceRegisterUseSerialForSite(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelRegResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_series_was_successfully_registered_for_you'));
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

@@ -1,13 +1,13 @@
 <div *ngIf="optionsData.data.show" class="alert alert-info" style="direction: ltr">
   <!-- FileType Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="فرمت فایل خروجی" [(ngModel)]="filterModel.ExportFile.FileType"
-      name="filterModel.ExportFile.FileType" #RecordStatus="ngModel"
-      panelClass="recordStatus-{{ filterModel.ExportFile.FileType }}" required>
+    <mat-select placeholder="فرمت فایل خروجی" [(ngModel)]="filterModel.exportFile.fileType"
+      name="filterModel.exportFile.FileType" #RecordStatus="ngModel"
+      panelClass="recordStatus-{{ filterModel.exportFile.fileType }}" required>
       <mat-option *ngFor="
                   let item of fileTypeListItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
     </mat-select>
     <mat-hint align="end">انتخاب فرمت فایل</mat-hint>
     <mat-error *ngIf="RecordStatus.errors?.required">
@@ -16,13 +16,13 @@
   </mat-form-field>
   <!-- RecieveMethod Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="روش دریافت" [(ngModel)]="filterModel.ExportFile.RecieveMethod"
-      name="filterModel.ExportFile.RecieveMethod" #RecordStatus="ngModel"
-      panelClass="recordStatus-{{ filterModel.ExportFile.RecieveMethod }}" required>
+    <mat-select placeholder="روش دریافت" [(ngModel)]="filterModel.exportFile.recieveMethod"
+      name="filterModel.exportFile.recieveMethod" #RecordStatus="ngModel"
+      panelClass="recordStatus-{{ filterModel.exportFile.recieveMethod }}" required>
       <mat-option *ngFor="
                     let item of recieveMethodListItems;
                     index as i
-                  " [value]="item.Value">{{ item.Description }}</mat-option>
+                  " [value]="item.value">{{ item.description }}</mat-option>
     </mat-select>
     <mat-hint align="end">انتخاب روش دریافت فایل</mat-hint>
     <mat-error *ngIf="RecordStatus.errors?.required">
@@ -32,10 +32,10 @@
   <!-- CurrentPageNumber Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>از صفحه</mat-label>
-    <input matInput [(ngModel)]="filterModel.CurrentPageNumber" name="filterModel.CurrentPageNumber" #CurrentPageNumber
+    <input matInput [(ngModel)]="filterModel.currentPageNumber" name="filterModel.currentPageNumber" #CurrentPageNumber
       type="number" placeholder="شماره صفحه" required />
-    <mat-icon matSuffix *ngIf="filterModel.CurrentPageNumber" matSuffix mat-icon-button aria-label="Clear"
-      (click)="filterModel.CurrentPageNumber =0">close</mat-icon>
+    <mat-icon matSuffix *ngIf="filterModel.currentPageNumber" matSuffix mat-icon-button aria-label="Clear"
+      (click)="filterModel.currentPageNumber =0">close</mat-icon>
     <mat-icon matSuffix>mode_edit</mat-icon>
     <mat-error *ngIf="CurrentPageNumber.errors?.required">
       Current Page Number is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -45,10 +45,10 @@
   <!-- RowPerPage Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>تعداد ردیف</mat-label>
-    <input matInput [(ngModel)]="filterModel.RowPerPage" name="filterModel.RowPerPage" #RowPerPage type="number"
+    <input matInput [(ngModel)]="filterModel.rowPerPage" name="filterModel.rowPerPage" #RowPerPage type="number"
       placeholder="تعداد ردیف خروجی فایل" required />
-    <mat-icon matSuffix *ngIf="filterModel.RowPerPage" matSuffix mat-icon-button aria-label="Clear"
-      (click)="filterModel.RowPerPage = 100">close</mat-icon>
+    <mat-icon matSuffix *ngIf="filterModel.rowPerPage" matSuffix mat-icon-button aria-label="Clear"
+      (click)="filterModel.rowPerPage = 100">close</mat-icon>
     <mat-icon matSuffix>mode_edit</mat-icon>
     <mat-error *ngIf="RowPerPage.errors?.required">
       Row Per Page is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -57,10 +57,10 @@
   <!-- SkipRowData Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>پرش از تعداد ردیف</mat-label>
-    <input matInput [(ngModel)]="filterModel.SkipRowData" name="filterModel.SkipRowData" #SkipRowData type="number"
+    <input matInput [(ngModel)]="filterModel.skipRowData" name="filterModel.skipRowData" #SkipRowData type="number"
       placeholder="عدد تعداد ردیف ردیف پرش" required />
-    <mat-icon matSuffix *ngIf="filterModel.SkipRowData" matSuffix mat-icon-button aria-label="Clear"
-      (click)="filterModel.SkipRowData =0">close</mat-icon>
+    <mat-icon matSuffix *ngIf="filterModel.skipRowData" matSuffix mat-icon-button aria-label="Clear"
+      (click)="filterModel.skipRowData =0">close</mat-icon>
     <mat-icon matSuffix>mode_edit</mat-icon>
     <mat-error *ngIf="SkipRowData.errors?.required">
       Skip Row Data is <strong>{{'MESSAGE.required' | translate}}</strong>

@@ -64,10 +64,10 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
     this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('All', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'All');
 
@@ -80,15 +80,15 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('Active', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'Active');
 

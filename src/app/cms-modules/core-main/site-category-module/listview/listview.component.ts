@@ -26,10 +26,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDestroy {
   @Input() set optionSiteCategoryId(x: number) {
-    this.linkSiteCategoryId = x;
+    this.LinkSiteCategoryId = x;
     this.DataGetAll();
   }
-  linkSiteCategoryId = 0;
+  LinkSiteCategoryId = 0;
   constructor(
     private coreSiteCategoryCmsModuleService: CoreSiteCategoryCmsModuleService,
     public publicHelper: PublicHelper,
@@ -54,8 +54,8 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
 
 
   tabledisplayedColumns: string[] = [
-    'virtual_CmsSiteCategory.Title',
-    'virtual_CmsModule.Title',
+    'virtual_CmsSiteCategory.title',
+    'virtual_CmsModule.title',
     'virtual_CmsModule.Description',
   ];
 
@@ -63,7 +63,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -80,32 +80,32 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   DataGetAll(): void {
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteCategoryCmsModuleModel();
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
 
     const filteModel = JSON.parse(JSON.stringify(this.filteModelContent));
-    if (this.linkSiteCategoryId && this.linkSiteCategoryId > 0) {
+    if (this.LinkSiteCategoryId && this.LinkSiteCategoryId > 0) {
       const fastfilter = new FilterDataModel();
-      fastfilter.PropertyName = 'LinkCmsSiteCategoryId';
-      fastfilter.Value = this.linkSiteCategoryId;
-      filteModel.Filters.push(fastfilter);
+      fastfilter.propertyName = 'LinkCmsSiteCategoryId';
+      fastfilter.value = this.LinkSiteCategoryId;
+      filteModel.filters.push(fastfilter);
     }
     const pName = this.constructor.name + '.ServiceGetAll';
     this.loading.Start(pName, 'در حال دریافت لیست ماژول ها');
     this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        if (ret.IsSuccess) {
-          if (this.linkSiteCategoryId && this.linkSiteCategoryId > 0) {
+        if (ret.isSuccess) {
+          if (this.LinkSiteCategoryId && this.LinkSiteCategoryId > 0) {
             this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
               this.tabledisplayedColumns,
-              'virtual_CmsSiteCategory.Title'
+              'virtual_CmsSiteCategory.title'
             );
           }
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
+          this.tableSource.data = ret.listItems;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -122,25 +122,25 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 

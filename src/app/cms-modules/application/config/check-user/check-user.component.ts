@@ -63,7 +63,7 @@ export class ApplicationConfigCheckUserComponent implements OnInit, OnDestroy {
   }
   onLoadDate(): void {
     if (!this.requestLinkUserId || this.requestLinkUserId === 0) {
-      this.requestLinkUserId = this.tokenInfo.UserId;
+      this.requestLinkUserId = this.tokenInfo.userId;
     }
     if (!this.requestLinkUserId || this.requestLinkUserId === 0) {
       return;
@@ -76,9 +76,9 @@ export class ApplicationConfigCheckUserComponent implements OnInit, OnDestroy {
         async (next) => {
           this.loading.Stop(pName);
           this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
-          if (!next.IsSuccess) {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+          this.tableSource.data = next.listItems;
+          if (!next.isSuccess) {
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
         },
         (error) => {

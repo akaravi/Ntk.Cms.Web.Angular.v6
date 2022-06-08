@@ -1,19 +1,19 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
     <div class="ntk-cms-html-card-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.FormTitle }}
+        {{ formInfo.formTitle }}
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-card-body">
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus" name="dataModel.RecordStatus"
-          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}" required>
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
+          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
           <mat-option *ngFor="
-              let item of dataModelEnumRecordStatusResult.ListItems;
+              let item of dataModelEnumRecordStatusResult.listItems;
               index as i
-            " [value]="item.Value">{{ item.Description }}</mat-option>
+            " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
         <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
@@ -22,11 +22,11 @@
       </mat-form-field>
       <!-- SecurityKey Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['SecurityKey']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.SecurityKey" name="dataModel.SecurityKey" #SecurityKey type="text"
+        <mat-label>{{fieldsInfo['SecurityKey']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"
           placeholder="NTK.CMS.APP.1" minlength="3" maxlength="100" />
-        <mat-icon matSuffix *ngIf="dataModel.SecurityKey" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.SecurityKey = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.securityKey = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ SecurityKey.value.length }} / 100</mat-hint>
         <mat-error *ngIf="SecurityKey.errors?.required">
@@ -35,67 +35,67 @@
       </mat-form-field>
       <!-- PackageName Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['PackageName']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.PackageName" name="dataModel.PackageName" #PackageName type="text"
+        <mat-label>{{fieldsInfo['PackageName']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.packageName" name="dataModel.packageName" #PackageName type="text"
           placeholder="8.8.8.8" minlength="0" maxlength="500" />
-        <mat-icon matSuffix *ngIf="dataModel.PackageName" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.PackageName = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.packageName" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.packageName = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ PackageName.value.length }} / 500</mat-hint>
       </mat-form-field>
       <!-- DeviceIPsAllow Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['DeviceIPsAllow']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.DeviceIPsAllow" name="dataModel.DeviceIPsAllow" #DeviceIPsAllow
+        <mat-label>{{fieldsInfo['DeviceIPsAllow']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.deviceIPsAllow" name="dataModel.deviceIPsAllow" #DeviceIPsAllow
           type="text" placeholder="8.8.8.8" minlength="0" maxlength="500" />
-        <mat-icon matSuffix *ngIf="dataModel.DeviceIPsAllow" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.DeviceIPsAllow = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.deviceIPsAllow" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.deviceIPsAllow = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ DeviceIPsAllow.value.length }} / 500</mat-hint>
       </mat-form-field>
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkSiteId"
+    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkSiteId"
       [optionPlaceholder]="'سایت'"></app-cms-site-selector>
 
       <!-- LinkApplicationId Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['LinkApplicationId']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.LinkApplicationId" name="dataModel.LinkApplicationId"
+        <mat-label>{{fieldsInfo['LinkApplicationId']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.linkApplicationId" name="dataModel.linkApplicationId"
           #LinkApplicationId type="number" placeholder="number " />
-        <mat-icon matSuffix *ngIf="dataModel.LinkApplicationId" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.LinkApplicationId = null">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.linkApplicationId" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkApplicationId = null">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- OSType Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="OS Type" [(ngModel)]="dataModel.OSType" name="dataModel.OSType" #OSType="ngModel"
-          panelClass="OSType-{{ dataModel.OSType }}">
+        <mat-select placeholder="OS Type" [(ngModel)]="dataModel.oSType" name="dataModel.oSType" #OSType="ngModel"
+          panelClass="OSType-{{ dataModel.oSType }}">
           <mat-option *ngFor="
-              let item of dataModelEnumOperatingSystemTypeResult.ListItems;
+              let item of dataModelEnumOperatingSystemTypeResult.listItems;
               index as i
-            " [value]="item.Value">{{ item.Description }}</mat-option>
+            " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- DeviceType Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="Device Type" [(ngModel)]="dataModel.DeviceType" name="dataModel.DeviceType"
-          #DeviceType="ngModel" panelClass="DeviceType-{{ dataModel.DeviceType }}">
+        <mat-select placeholder="Device Type" [(ngModel)]="dataModel.deviceType" name="dataModel.deviceType"
+          #DeviceType="ngModel" panelClass="DeviceType-{{ dataModel.deviceType }}">
           <mat-option *ngFor="
-                        let item of dataModelEnumDeviceTypeResult.ListItems;
+                        let item of dataModelEnumDeviceTypeResult.listItems;
                         index as i
-                      " [value]="item.Value">{{ item.Description }}</mat-option>
+                      " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- Description Field -->
 
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-        <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-          placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-        <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Description = ''">close</mat-icon>
+        <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+          placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.description = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
         <mat-error *ngIf="Description.errors?.required">
@@ -104,11 +104,11 @@
       </mat-form-field>
 
       <!-- ExpireDate Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
-        <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
-        <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
-        <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
+        <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+        <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
+        <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessEditField" matSuffix
+          mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
         <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
         <mat-datepicker touchUi #ExpireDate></mat-datepicker>
       </mat-form-field>
@@ -117,15 +117,15 @@
 	 <div class="ntk-cms-html-card-message">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
       <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.formError }}
         </small>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </div>
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>

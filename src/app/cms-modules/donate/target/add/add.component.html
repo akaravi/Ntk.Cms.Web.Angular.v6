@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
     <div class="ntk-cms-html-card-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.FormTitle }}
+        {{ formInfo.formTitle }}
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <!-- RecordStatus Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-          name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+          name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
           required>
           <mat-option *ngFor="
-                  let item of dataModelEnumRecordStatusResult.ListItems;
+                  let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
         <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,15 +24,15 @@
       </mat-form-field>
       <!-- LinkTargetCategoryId Field -->
       <app-donate-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-        [optionSelectForce]="dataModel.LinkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
+        [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
       </app-donate-target-category-selector>
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-          placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Title = ''">close</mat-icon>
+        <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+          placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.title = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Title.errors?.required">
@@ -41,12 +41,12 @@
       </mat-form-field>
       <!-- Description Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-        <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-          placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="1000" required
+        <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+          placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="1000" required
           rows="5"></textarea>
-        <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.Description = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.description = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Description.value.length }} / 1000</mat-hint>
         <mat-error *ngIf="Description.errors?.required">
@@ -56,103 +56,103 @@
 
       <!-- IsPublic Field -->
       <div class="ntk-full-width">
-        <mat-slide-toggle [(ngModel)]="dataModel.IsPublic" *ngIf="fieldsInfo['IsPublic']?.AccessWatchField"
-          [disabled]="!fieldsInfo['IsPublic']?.AccessAddField" name="dataModel.IsPublic">
-          {{fieldsInfo['IsPublic']?.FieldTitle}}
+        <mat-slide-toggle [(ngModel)]="dataModel.isPublic" *ngIf="fieldsInfo['IsPublic']?.accessWatchField"
+          [disabled]="!fieldsInfo['IsPublic']?.accessAddField" name="dataModel.isPublic">
+          {{fieldsInfo['IsPublic']?.fieldTitle}}
         </mat-slide-toggle>
       </div>
       <!-- ToWebAddress Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['ToWebAddress']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.ToWebAddress" name="dataModel.ToWebAddress" #ToWebAddress type="text"
+        <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
           placeholder="https://...." minlength="0" maxlength="100" style="text-align: left;" dir="ltr" />
-        <mat-icon matSuffix *ngIf="dataModel.ToWebAddress" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.ToWebAddress = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.toWebAddress = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ ToWebAddress.value.length }} / 100</mat-hint>
 
       </mat-form-field>
       <!-- HashMd5 Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['HashMd5']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.HashMd5" name="dataModel.HashMd5" #HashMd5 type="text" placeholder="...."
+        <mat-label>{{fieldsInfo['HashMd5']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.hashMd5" name="dataModel.hashMd5" #HashMd5 type="text" placeholder="...."
           minlength="0" maxlength="100" />
-        <mat-icon matSuffix *ngIf="dataModel.HashMd5" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.HashMd5 = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.hashMd5" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.hashMd5 = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ HashMd5.value.length }} / 100</mat-hint>
       </mat-form-field>
       <!-- KeyCode Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['KeyCode']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.KeyCode" name="dataModel.KeyCode" #KeyCode type="text" placeholder="...."
+        <mat-label>{{fieldsInfo['KeyCode']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.keyCode" name="dataModel.keyCode" #KeyCode type="text" placeholder="...."
           minlength="0" maxlength="100" />
-        <mat-icon matSuffix *ngIf="dataModel.KeyCode" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.KeyCode = ''">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.keyCode" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.keyCode = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ KeyCode.value.length }} / 100</mat-hint>
       </mat-form-field>
 
       <!-- CurrentClickCount Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['CurrentClickCount']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.CurrentClickCount" name="dataModel.CurrentClickCount" #CurrentClickCount
+        <mat-label>{{fieldsInfo['CurrentClickCount']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount" #CurrentClickCount
           type="number" placeholder="0" />
-        <mat-icon matSuffix *ngIf="dataModel.CurrentClickCount" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.CurrentClickCount = 0">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.currentClickCount = 0">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- CurrentViewCount Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['CurrentViewCount']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.CurrentViewCount" name="dataModel.CurrentViewCount" #CurrentViewCount
+        <mat-label>{{fieldsInfo['CurrentViewCount']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.currentViewCount" name="dataModel.currentViewCount" #CurrentViewCount
           type="number" placeholder="0" />
-        <mat-icon matSuffix *ngIf="dataModel.CurrentViewCount" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.CurrentViewCount = 0">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.currentViewCount" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.currentViewCount = 0">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
 
       <!-- CurrentPaymentCount Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['CurrentPaymentCount']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.CurrentPaymentCount" name="dataModel.CurrentPaymentCount"
+        <mat-label>{{fieldsInfo['CurrentPaymentCount']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.currentPaymentCount" name="dataModel.currentPaymentCount"
           #CurrentPaymentCount type="number" placeholder="0" />
-        <mat-icon matSuffix *ngIf="dataModel.CurrentPaymentCount" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.CurrentPaymentCount = 0">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.currentPaymentCount" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.currentPaymentCount = 0">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
 
       <!-- CurrentPaymentSum Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['CurrentPaymentSum']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.CurrentPaymentSum" name="dataModel.CurrentPaymentSum" #CurrentPaymentSum
+        <mat-label>{{fieldsInfo['CurrentPaymentSum']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.currentPaymentSum" name="dataModel.currentPaymentSum" #CurrentPaymentSum
           type="number" placeholder="0" />
-        <mat-icon matSuffix *ngIf="dataModel.CurrentPaymentSum" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.CurrentPaymentSum = 0">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.currentPaymentSum" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.currentPaymentSum = 0">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- LinkCmsUserId Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['LinkCmsUserId']?.FieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.LinkCmsUserId" name="dataModel.LinkCmsUserId" #LinkCmsUserId
+        <mat-label>{{fieldsInfo['LinkCmsUserId']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.linkCmsUserId" name="dataModel.linkCmsUserId" #LinkCmsUserId
           type="number" placeholder="0" />
-        <mat-icon matSuffix *ngIf="dataModel.LinkCmsUserId" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.LinkCmsUserId = 0">close</mat-icon>
+        <mat-icon matSuffix *ngIf="dataModel.linkCmsUserId" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkCmsUserId = 0">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- LinkMainImageId Field -->
       <div class="mb-3">
-        <img *ngIf="dataModel?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-          src="{{dataModel.LinkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+        <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+          src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
       </div>
       <div class="mb-9">
         <mat-form-field class="ntk-full-width">
           <mat-label (click)="fileManagerOpenForm = true"> {{'TITLE.Icon_File' | translate}}
           </mat-label>
-          <input matInput [(ngModel)]="dataModel.LinkMainImageId" name="dataModel.LinkMainImageId" #LinkMainImageId
+          <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
             type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
-          <mat-icon matSuffix *ngIf="dataModel.LinkMainImageId " matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.LinkMainImageId = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.linkMainImageId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
         </mat-form-field>
         <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
@@ -164,8 +164,8 @@
     <div class="ntk-cms-html-card-message">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
       <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.formError }}
         </small>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
@@ -173,7 +173,7 @@
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>

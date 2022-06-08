@@ -4,19 +4,19 @@
     <div class="td"></div>
     <div class="td align" style="color: darkblue;"><h5><b> {{'TITLE.Selected_News'|translate}} </b> </h5></div>
     <div class="td" style="text-align: left;">
-      <!-- *ngIf="dataModelResult?.Item?.Id" -->
+      <!-- *ngIf="dataModelResult?.item?.id" -->
     </div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Id']?.FieldTitle}} </b>: </div>
-    <div class="td align">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
 
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Title']?.FieldTitle}} </b>: </div>
-    <div class="td align">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td"><b>{{fieldsInfo['Title']?.fieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.item?.title}}</div>
     <div class="td" style="text-align: left;">
       <abbr title="link to">
       <button class="btn btn-outline-primary">

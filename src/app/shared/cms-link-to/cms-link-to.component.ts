@@ -19,19 +19,19 @@ export class CmsLinkToComponent implements OnInit {
     private router: Router,
   ) {
     if (data) {
-      this.optionTitle = data.Title;
-      this.optionUrlViewContentQRCodeBase64 = data.UrlViewContentQRCodeBase64;
-      this.optionUrlViewContent = data.UrlViewContent;
+      this.optionTitle = data.title;
+      this.optionurlViewContentQRCodeBase64 = data.urlViewContentQRCodeBase64;
+      this.optionurlViewContent = data.urlViewContent;
     }
    }
   @Input() optionTitle = '';
-  @Input() optionUrlViewContentQRCodeBase64 = '';
-  @Input() optionUrlViewContent = '';
+  @Input() optionurlViewContentQRCodeBase64 = '';
+  @Input() optionurlViewContent = '';
   QDocModel: any = {};
   ngOnInit(): void {
   }
   onActionSendUrlToQDoc(): void {
-    this.QDocModel.message = this.optionUrlViewContent;
+    this.QDocModel.message = this.optionurlViewContent;
     if (!this.QDocModel.username && this.QDocModel.username.length <= 0) {
       const message = 'کد شناسه را از وبسایت https://Qdoc.ir دریافت نمایید';
       this.cmsToastrService.typeWarningSelected(message);
@@ -45,7 +45,7 @@ export class CmsLinkToComponent implements OnInit {
           this.cmsToastrService.typeSuccessMessage('دستور به وب سایت ارسال شد');
         })
         // 
-        //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');
+        //   this.cmsToastrService.typeerrorMessage('برروز خطا در ارسال دستور');
         // 
       ).toPromise();
   }
@@ -54,8 +54,8 @@ export class CmsLinkToComponent implements OnInit {
   }
   onActionOpenLink():void{
     const url = this.router.serializeUrl(
-      this.router.createUrlTree([this.optionUrlViewContent])
+      this.router.createUrlTree([this.optionurlViewContent])
     );
-    window.open(this.optionUrlViewContent, '_blank');
+    window.open(this.optionurlViewContent, '_blank');
   }
 }

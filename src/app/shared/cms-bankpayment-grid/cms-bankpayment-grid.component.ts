@@ -45,8 +45,8 @@ export class CmsBankpaymentGridComponent implements OnInit {
 
 
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
 
   }
 
@@ -59,14 +59,14 @@ export class CmsBankpaymentGridComponent implements OnInit {
       this.loading.Start(pName);
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayCoreList().subscribe(
         (next) => {
-          if (next.IsSuccess) {
+          if (next.isSuccess) {
             this.dataModelResult = next;
-            if (this.dataModelResult.ListItems && this.dataModelResult.ListItems.length == 1) {
-              this.onActionSelect(this.dataModelResult.ListItems[0]);
+            if (this.dataModelResult.listItems && this.dataModelResult.listItems.length == 1) {
+              this.onActionSelect(this.dataModelResult.listItems[0]);
             }
           }
           else {
-            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(next.errorMessage);
           }
           this.loading.Stop(pName);
 
@@ -84,11 +84,11 @@ export class CmsBankpaymentGridComponent implements OnInit {
       this.loading.Start(pName);
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayList().subscribe(
         (next) => {
-          if (next.IsSuccess) {
+          if (next.isSuccess) {
             this.dataModelResult = next;
           }
           else {
-            this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(next.errorMessage);
           }
           this.loading.Stop(pName);
 

@@ -55,17 +55,17 @@ export class CoreSiteSelectionComponent implements OnInit {
 
     this.coreSiteUserService.ServiceGetAll(null).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.statusCheckExistWebSite = false;
-          if (this.dataModelResult.ListItems?.length === 1) {
+          if (this.dataModelResult.listItems?.length === 1) {
             setTimeout(() => {
-              this.onActionClickSelectSite(this.dataModelResult.ListItems[0].LinkSiteId);
+              this.onActionClickSelectSite(this.dataModelResult.listItems[0].linkSiteId);
             }, 1000);
           }
         }
         else {
-          this.cmsToastrService.typeError(ret.ErrorMessage);
+          this.cmsToastrService.typeError(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -78,15 +78,15 @@ export class CoreSiteSelectionComponent implements OnInit {
     );
   }
   onActionClickSelectSite(id: number): void {
-    if (!this.formInfo.ButtonSubmittedEnabled) {
+    if (!this.formInfo.buttonSubmittedEnabled) {
       return;
     }
     this.selectSiteId = id;
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
-    authModel.SiteId = id;
-    authModel.Lang = this.translationService.getSelectedLanguage();
+    authModel.siteId = id;
+    authModel.lang = this.translationService.getSelectedLanguage();
 
 
     const pName = this.constructor.name + '.ServiceRenewToken';
@@ -94,20 +94,20 @@ export class CoreSiteSelectionComponent implements OnInit {
 
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next: (res) => {
-        if (res.IsSuccess && res.Item.SiteId > 0) {
+        if (res.isSuccess && res.item.siteId > 0) {
           this.cmsToastrService.typeSuccessSelected();
           this.loading.Stop(pName);
           this.router.navigate(['/']);
         }
         else {
           this.cmsToastrService.typeErrorSelected();
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.formInfo.ButtonSubmittedEnabled = true;
+        this.formInfo.buttonSubmittedEnabled = true;
         this.loading.Stop(pName);
       }
     }
@@ -116,7 +116,7 @@ export class CoreSiteSelectionComponent implements OnInit {
   }
 
   onActionAddFirstSite(model: ErrorExceptionResult<any>): void {
-    if (model.IsSuccess) {
+    if (model.isSuccess) {
       let authModel: AuthRenewTokenModel;
       authModel = new AuthRenewTokenModel();
 
@@ -125,7 +125,7 @@ export class CoreSiteSelectionComponent implements OnInit {
 
       this.coreAuthService.ServiceRenewToken(authModel).subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
             this.router.navigate(['/dashboard/']);
           }
           this.loading.Stop(pName);

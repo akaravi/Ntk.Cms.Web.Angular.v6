@@ -55,10 +55,10 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('All', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -68,15 +68,15 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     let fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('Active', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'Active');
       },
@@ -87,16 +87,16 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
     );
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    fastfilter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
-    filterStatist2.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+    filterStatist2.filters.push(fastfilter);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          if (ret.TotalRowCount > 0) {
-            this.modelData.set('InChecking', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          if (ret.totalRowCount > 0) {
+            this.modelData.set('InChecking', ret.totalRowCount);
             this.widgetInfoModel.link = '/estate/property/InChecking/true';
           }
           else {
@@ -104,7 +104,7 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
             this.widgetInfoModel.link = '/estate/property';
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'InChecking');
       },

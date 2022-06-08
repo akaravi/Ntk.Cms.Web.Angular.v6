@@ -33,7 +33,7 @@ export class CmsAuthService implements OnDestroy {
   isLoadingSubject: BehaviorSubject<boolean>;
   getUserByToken(): Observable<TokenInfoModel> {
     const auth = this.getAuthFromLocalStorage();
-    if (!auth || !auth.Token) {
+    if (!auth || !auth.token) {
       return of(undefined);
     }
 

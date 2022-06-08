@@ -48,10 +48,10 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('All', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       
       },
@@ -61,13 +61,13 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next:(ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('Active', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Active');
       }
@@ -79,15 +79,15 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     /**Comment */
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter2 = new FilterDataModel();
-    fastfilter2.PropertyName = 'RecordStatus';
-    fastfilter2.Value = EnumRecordStatus.Pending;
-    filterStatist2.Filters.push(fastfilter2);
+    fastfilter2.propertyName = 'RecordStatus';
+    fastfilter2.value = EnumRecordStatus.Pending;
+    filterStatist2.filters.push(fastfilter2);
     this.loading.Start(this.constructor.name + 'Pending_Comment');
     this.modelData.set('Pending_Comment', 0);
     this.serviceComment.ServiceGetCount(filterStatist2).subscribe({
       next:(ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Pending_Comment', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('Pending_Comment', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Pending_Comment');
       },

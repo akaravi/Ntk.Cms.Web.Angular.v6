@@ -46,7 +46,7 @@ export class CoreLocationAddComponent implements OnInit {
       this.requestId = +data.id || 0;
     }
     if (this.requestId > 0) {
-      this.dataModel.LinkParentId = this.requestId;
+      this.dataModel.linkParentId = this.requestId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -74,7 +74,7 @@ export class CoreLocationAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.getEnumLocationType();
     this.DataGetAccess();
@@ -95,10 +95,10 @@ export class CoreLocationAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -109,29 +109,29 @@ export class CoreLocationAddComponent implements OnInit {
   }
 
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreLocationService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -142,7 +142,7 @@ export class CoreLocationAddComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
 
     this.DataAddContent();
 
@@ -152,13 +152,13 @@ export class CoreLocationAddComponent implements OnInit {
     this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionParentSelect(model: CoreLocationModel): void {
-    this.dataModel.LinkParentId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkParentId = model.Id;
+    this.dataModel.linkParentId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkParentId = model.id;
     }
   }
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkImageId = model.id;
-    this.dataModel.LinkImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkImageId = model.id;
+    this.dataModel.linkImageIdSrc = model.downloadLinksrc;
   }
 }

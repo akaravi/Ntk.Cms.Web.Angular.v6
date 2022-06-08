@@ -44,7 +44,7 @@ export class TicketingAnswerAddComponent implements OnInit {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
-      this.requestLinkTaskId = +data.LinkTaskId || 0;
+      this.requestLinkTaskId = +data.linkTaskId || 0;
     }
 
   }
@@ -73,7 +73,7 @@ export class TicketingAnswerAddComponent implements OnInit {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
-    this.dataModel.LinkTaskId = this.requestLinkTaskId;
+    this.dataModel.linkTaskId = this.requestLinkTaskId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
   }
@@ -94,11 +94,11 @@ export class TicketingAnswerAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.isSuccess) {
+            this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
         },
         (error) => {
@@ -108,22 +108,22 @@ export class TicketingAnswerAddComponent implements OnInit {
   }
 
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
 
     this.ticketingAnswerService.ServiceAdd(this.dataModel).subscribe(async (next) => {
-      this.formInfo.FormSubmitAllow = !next.IsSuccess;
+      this.formInfo.formSubmitAllow = !next.isSuccess;
       this.dataModelResult = next;
-      if (next.IsSuccess) {
-        this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+      if (next.isSuccess) {
+        this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
         this.cmsToastrService.typeSuccessAdd();
         setTimeout(() => { this.dialogRef.close({ dialogChangedDate: true }); }, 1000);
       } else {
-        this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+        this.cmsToastrService.typeErrorAdd(next.errorMessage);
       }
       this.loading.Stop(pName);
 
@@ -131,7 +131,7 @@ export class TicketingAnswerAddComponent implements OnInit {
       (error) => {
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeErrorAdd(error);
       }
     );
@@ -153,19 +153,19 @@ export class TicketingAnswerAddComponent implements OnInit {
     this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionFileSelectedLinkMainImageId(): void {
-    // this.dataModel.LinkMainImageId = model.id;
-    // this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    // this.dataModel.linkMainImageId = model.id;
+    // this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 
   onActionSelectSource(model: ApplicationSourceModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'سورس را مشخص کنید',
         'سورس اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkTicketingDepartemenId = model.Id;
+    this.dataModel.linkTicketingDepartemenId = model.id;
   }
 
 }

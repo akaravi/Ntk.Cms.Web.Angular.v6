@@ -1,10 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreAuthService, CoreCpMainMenuModel, CoreCpMainMenuService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { CoreAuthService, CoreCpMainMenuModel, CoreCpMainMenuService,  TokenInfoModel } from 'ntk-cms-api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { environment } from 'src/environments/environment';
-import { DynamicAsideMenuConfig } from '../../configs/dynamic-aside-menu.config';
+
 
 const emptyMenuConfig = {
   items: []
@@ -27,25 +26,20 @@ export class DynamicAsideMenuService implements OnDestroy {
     // this.loadMenu();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo && this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId > 0) {
+      if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId > 0) {
         this.DataGetCpMenu();
       }
     });
   
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      if (this.tokenInfo && this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId > 0) {
+      if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId > 0) {
         this.DataGetCpMenu();
       }
     });
   }
   tokenInfo = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
-  // Here you able to load your menu from server/data-base/localStorage
-  // Default => from DynamicAsideMenuConfig
-  // private loadMenu() {
-  //   this.setMenu(DynamicAsideMenuConfig);
-  // }
 
   private setMenu(menuConfig) {
     this.menuConfigSubject.next(menuConfig);
@@ -67,18 +61,13 @@ export class DynamicAsideMenuService implements OnDestroy {
     this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
       (next) => {
         const list = [];
-        next.ListItems.forEach(element => {
+        next.listItems.forEach(element => {
           list.push(this.listItemAdd(element, true));
         });
         list.forEach(element => {
           menuItems.push(element);
         });
-        if (environment.loadDemoMenu) {
-          DynamicAsideMenuConfig.items.forEach(element => {
-            menuItems.push(element);
-          });
-        }
-        // this.setMenu(DynamicAsideMenuConfig);
+
         this.setMenu(menuItems);
       }
     );
@@ -86,22 +75,22 @@ export class DynamicAsideMenuService implements OnDestroy {
   listItemAdd(item: CoreCpMainMenuModel, rootStatus = false): any {
     let retOut: any;
     retOut = {
-      title: item.TitleML,
+      title: item.titleML,
       root: rootStatus,
-      page: item.RouteAddressLink,
-      Color: item.Color,
-      Icon: item.Icon,
+      page: item.routeAddressLink,
+      color: item.color,
+      icon: item.icon,
       svg: '',
     };
-    if (item.Children && item.Children.length > 0) {
+    if (item.children && item.children.length > 0) {
       retOut.submenu = this.listItemsChildAdd(item);
     }
     return retOut;
   }
   listItemsChildAdd(item: CoreCpMainMenuModel): any {
     const list = [];
-    if (item && item.Children) {
-      item.Children.forEach(element => {
+    if (item && item.children) {
+      item.children.forEach(element => {
         list.push(this.listItemAdd(element));
       });
     }

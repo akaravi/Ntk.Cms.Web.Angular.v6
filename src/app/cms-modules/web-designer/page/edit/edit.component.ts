@@ -62,7 +62,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
   fileManagerOpenForm = false;
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.FormTitle = 'ویرایش  ';
+      this.formInfo.formTitle = 'ویرایش  ';
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -81,26 +81,26 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'webDesignerMainPageService.ServiceGetOneById';
     this.loading.Start(pName);
     this.webDesignerMainPageService.setAccessLoad();
     this.webDesignerMainPageService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        this.dataModel = next.Item;
-        if (next.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+        this.dataModel = next.item;
+        if (next.isSuccess) {
           this.keywordDataModel = [];
-          if (this.dataModel.Keyword && this.dataModel.Keyword.length > 0) {
-            this.keywordDataModel = this.dataModel.Keyword.split(',');
+          if (this.dataModel.keyword && this.dataModel.keyword.length > 0) {
+            this.keywordDataModel = this.dataModel.keyword.split(',');
           }
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + next.Item.Title;
-          this.formInfo.FormAlert = '';
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.title;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -112,61 +112,61 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.webDesignerMainPageService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (next.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
       (error) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
       }
     );
   }
   onActionSelectParent(model: WebDesignerMainPageModel | null): void {
-    this.dataModel.LinkPageParentGuId = model.Id;
+    this.dataModel.linkPageParentGuId = model.id;
   }
   onActionSelectDependency(model: WebDesignerMainPageDependencyModel | null): void {
-    if (!model || model.Id?.length <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id?.length <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'محل نمایش را مشخص کنید',
         'صفحه نمایش  اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkPageDependencyGuId = model.Id;
+    this.dataModel.linkPageDependencyGuId = model.id;
   }
   onActionSelectTemplate(model: WebDesignerMainPageTemplateModel | null): void {
-    if (!model || model.Id?.length <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id?.length <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'قالب را مشخص کنید',
         'قالب صفحه مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkPageTemplateGuId = model.Id;
+    this.dataModel.linkPageTemplateGuId = model.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
-    this.dataModel.Keyword = '';
+    this.formInfo.formSubmitAllow = false;
+    this.dataModel.keyword = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -177,7 +177,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.Keyword = listKeyword.join(',');
+        this.dataModel.keyword = listKeyword.join(',');
       }
     }
     this.DataEditContent();
@@ -186,11 +186,11 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionSelectCategory(model: CoreSiteCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'دسته بندی سایت مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.PageDependencyIsDefaultPageLinkSiteCategoryId = model.Id;
+    this.dataModel.pageDependencyIsDefaultPageLinkSiteCategoryId = model.id;
   }
 }

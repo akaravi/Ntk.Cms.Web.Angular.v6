@@ -30,12 +30,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
+      if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
         this.IsAdminSite = true;
       }
       else {
@@ -50,11 +50,11 @@ export class DashboardComponent implements OnInit {
     this.dataCoreModuleModelResult = await this.publicHelper.getCurrentSiteModule();
   }
   CheckModuleExist(name: string): boolean {
-    if (!name || name.length === 0 || !this.dataCoreModuleModelResult.ListItems || this.dataCoreModuleModelResult.ListItems.length === 0) {
+    if (!name || name.length === 0 || !this.dataCoreModuleModelResult.listItems || this.dataCoreModuleModelResult.listItems.length === 0) {
       return false;
     }
-    const retMdule = this.dataCoreModuleModelResult.ListItems.find(x => x.ClassName.toLowerCase() === name.toLowerCase());
-    if (retMdule && retMdule.Id > 0) {
+    const retMdule = this.dataCoreModuleModelResult.listItems.find(x => x.className.toLowerCase() === name.toLowerCase());
+    if (retMdule && retMdule.id > 0) {
       return true;
     }
     return false;

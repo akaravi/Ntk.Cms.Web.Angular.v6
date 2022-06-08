@@ -51,7 +51,7 @@ export class NewsContentDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_list');
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_list');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.contentService.setAccessLoad();
@@ -59,22 +59,22 @@ export class NewsContentDeleteComponent implements OnInit {
       .ServiceGetOneById(this.requestId)
       .subscribe({
         next: (ret) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResultContent = ret;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
-            this.formInfo.FormErrorStatus = true;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
+            this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
-            this.formInfo.FormAlert = '';
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.formInfo.formAlert = '';
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormErrorStatus = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }}
@@ -85,8 +85,8 @@ export class NewsContentDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
@@ -94,24 +94,24 @@ export class NewsContentDeleteComponent implements OnInit {
       .ServiceDelete(this.requestId)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
             this.cmsToastrService.typeSuccessRemove();
             this.dialogRef.close({ dialogChangedDate: true });
           }
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         }}
       );

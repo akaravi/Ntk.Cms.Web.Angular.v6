@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-                  let item of dataModelEnumRecordStatusResult.ListItems;
+                  let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,20 +24,20 @@
     </mat-form-field>
     <!-- LinkTargetPeriodId Field -->
     <app-donate-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.LinkTargetPeriodId" [optionPlaceholder]="'دسته بندی'">
+      [optionSelectForce]="dataModel.linkTargetPeriodId" [optionPlaceholder]="'دسته بندی'">
     </app-donate-target-category-selector>
        <!-- LinkSponsorId Field -->
        <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['LinkSponsorId']?.FieldTitle}}</mat-label>
-        <input matInput [matDatepicker]="LinkSponsorId" [(ngModel)]="dataModel.LinkSponsorId" name="dataModel.LinkSponsorId" />
-        <mat-icon matSuffix *ngIf="dataModel.LinkSponsorId && fieldsInfo['LinkSponsorId']?.AccessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.LinkSponsorId = null">close</mat-icon>
+        <mat-label>{{fieldsInfo['LinkSponsorId']?.fieldTitle}}</mat-label>
+        <input matInput [matDatepicker]="LinkSponsorId" [(ngModel)]="dataModel.linkSponsorId" name="dataModel.linkSponsorId" />
+        <mat-icon matSuffix *ngIf="dataModel.linkSponsorId && fieldsInfo['LinkSponsorId']?.accessEditField" matSuffix
+          mat-icon-button aria-label="Clear" (click)="dataModel.linkSponsorId = null">close</mat-icon>
         <mat-datepicker-toggle matSuffix [for]="LinkSponsorId"></mat-datepicker-toggle>
         <mat-datepicker touchUi #LinkSponsorId></mat-datepicker>
       </mat-form-field>
          <!-- payment Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['payment']?.FieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['payment']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="payment" [(ngModel)]="dataModel.payment" name="dataModel.payment" />
       <mat-icon matSuffix *ngIf="dataModel.payment && fieldsInfo['payment']?.payment" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.payment = null">close</mat-icon>
@@ -49,15 +49,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

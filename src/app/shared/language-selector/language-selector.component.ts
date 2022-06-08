@@ -87,7 +87,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
-      this.setLanguage(value.Language);
+      this.setLanguage(value.language);
     });
   }
   cmsApiStoreSubscribe: Subscription;
@@ -108,13 +108,13 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   setLanguageWithRefresh(lang: string): void {
     this.setLanguage(lang);
     /** */
-    if (this.tokenInfo && this.tokenInfo.UserId > 0) {
+    if (this.tokenInfo && this.tokenInfo.userId > 0) {
       const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
-      authModel.UserAccessAdminAllowToProfessionalData = this.tokenInfo.UserAccessAdminAllowToProfessionalData;
-      authModel.UserAccessAdminAllowToAllData = this.tokenInfo.UserAccessAdminAllowToAllData;
-      authModel.UserId = this.tokenInfo.UserId;
-      authModel.SiteId = this.tokenInfo.SiteId;
-      authModel.Lang = lang;
+      authModel.userAccessAdminAllowToProfessionalData = this.tokenInfo.userAccessAdminAllowToProfessionalData;
+      authModel.userAccessAdminAllowToAllData = this.tokenInfo.userAccessAdminAllowToAllData;
+      authModel.userId = this.tokenInfo.userId;
+      authModel.siteId = this.tokenInfo.siteId;
+      authModel.lang = lang;
 
       const title = this.translate.instant('TITLE.Information');
       const message = this.translate.instant('MESSAGE.Request_to_change_language_was_sent_to_the_server');
@@ -123,9 +123,9 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       this.coreAuthService.ServiceRenewToken(authModel).subscribe(
         (next) => {
           // this.loadingStatus = false;
-          if (next.IsSuccess) {
+          if (next.isSuccess) {
             this.cdr.detectChanges();
-            if (next.Item.Language === lang) {
+            if (next.item.language === lang) {
               this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed') , title);
               // if (lang == 'fa' || lang == 'ar') {
               //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
@@ -138,7 +138,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
               this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
             }
           } else {
-            this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);
+            this.cmsToastrService.typeErrorAccessChange(next.errorMessage);
           }
 
         },

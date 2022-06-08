@@ -55,8 +55,8 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Ascending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Ascending;
   }
   comment: string;
   author: string;
@@ -88,7 +88,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   expandedElement: ApiTelegramBotConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'ShowInMenuOrder';
+    this.filteModelContent.sortColumn = 'ShowInMenuOrder';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -102,7 +102,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
       this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
         this.tabledisplayedColumns,
         'LinkSiteId',
@@ -118,22 +118,22 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ApiTelegramBotConfigModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.isSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
+          this.tableSource.data = ret.listItems;
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.Access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -148,32 +148,32 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
   onActionbuttonNewRow(): void {
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
@@ -189,22 +189,22 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonEditRow(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const dialogRef = this.dialog.open(ApiTelegramBotConfigEditComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -213,7 +213,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonDeleteRow(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -222,22 +222,22 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
-              if (ret.IsSuccess) {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -260,14 +260,14 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       );
   }
   onActionbuttonGoToModuleList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/core/siteModule/', this.tableRowSelected.Id]);
+    this.router.navigate(['/core/siteModule/', this.tableRowSelected.id]);
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -279,12 +279,12 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -294,17 +294,17 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -314,25 +314,25 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonInboxList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['api-telegram/log-input/LinkBotConfigId/', model.Id]);
+    this.router.navigate(['api-telegram/log-input/LinkBotConfigId/', model.id]);
   }
   onActionbuttonOutboxList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['api-telegram/log-output/LinkBotConfigId/', model.Id]);
+    this.router.navigate(['api-telegram/log-output/LinkBotConfigId/', model.id]);
   }
   onActionbuttonSendMessage(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -342,7 +342,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ApiTelegramActionSendMessageComponent, {
       // height: "90%",
       data: {
-        LinkBotConfigId: model.Id,
+        LinkBotConfigId: model.id,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -353,7 +353,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     //open popup
   }
   onActionbuttonReceiveMessageAll(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -361,12 +361,12 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
     const pName = this.constructor.name + 'ServiceGetUpdatesAsync';
 
-    this.contentService.ServiceGetUpdatesAsync(model.Id).subscribe({
+    this.contentService.ServiceGetUpdatesAsync(model.id).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessAdd();
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -378,7 +378,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonGetMeAsync(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -386,14 +386,14 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
     const pName = this.constructor.name + 'ServiceGetMeAsync';
 
-    this.contentService.ServiceGetMeAsync(model.Id).subscribe({
+    this.contentService.ServiceGetMeAsync(model.id).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           //open popup
           const dialogRef = this.dialog.open(CmsViewComponent, {
             // height: "90%",
             data: {
-              optionItem: ret.Item,
+              optionItem: ret.item,
             },
           });
           dialogRef.afterClosed().subscribe((result) => {
@@ -403,7 +403,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
           });
           //open popup
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -415,19 +415,19 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonReceiveMessageLast(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
     this.tableRowSelected = model;
     const pName = this.constructor.name + 'ServiceGetUpdatesAsyncLast';
-    this.contentService.ServiceGetUpdatesAsyncLast(model.Id).subscribe({
+    this.contentService.ServiceGetUpdatesAsyncLast(model.id).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessAdd();
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -442,10 +442,10 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'ServiceSetAllWebhookUpdate';
     this.contentService.ServiceSetAllWebhookUpdate().subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessAdd();
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -465,12 +465,12 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -483,39 +483,39 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApiTelegramBotConfigModel): void {
     this.tableRowSelected = row;
   }
   onActionbuttonLinkTo(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
-    this.contentService.ServiceGetOneById(this.tableRowSelected.Id)
+    this.contentService.ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: ret.Item.Title,
-                UrlViewContentQRCodeBase64: ret.Item.UrlViewContentQRCodeBase64,
-                UrlViewContent: ret.Item.UrlViewContent,
+                Title: ret.item.title,
+                urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
+                urlViewContent: ret.item.urlViewContent,
               },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -525,7 +525,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
             });
             //open popup
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },

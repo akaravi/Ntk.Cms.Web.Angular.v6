@@ -3,7 +3,7 @@
   <div [ngClass]="'col-xl-12'">
     <!--begin::Header-->
     <div  class="ntk-cms-html-list-header">
-      <button *ngIf=" tableRowSelected.LinkTypeId>0" (click)="onActionbuttonEditRow()" type="button"
+      <button *ngIf=" tableRowSelected.linkTypeId>0" (click)="onActionbuttonEditRow()" type="button"
         class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
         translate}}</button>
   
@@ -19,29 +19,29 @@
     <div>
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <div class="row">
-        <div *ngFor="let item of dataModelResult.ListItems" class="col-4">
+        <div *ngFor="let item of dataModelResult.listItems" class="col-4">
           <mat-card class="example-card">
             <mat-card-header>
               <div mat-card-avatar
-                style="background-image: url('{{item.TypeLinkMainImageIdSrc}}'); background-size: cover;"></div>
-              <mat-card-title><i [ngClass]="item.IsApproved | boolclass"></i> {{'ACTION.STATUS' | translate}}</mat-card-title>
-              <mat-card-subtitle>{{item.TypeTitle}}</mat-card-subtitle>
+                style="background-image: url('{{item.typeLinkMainImageIdSrc}}'); background-size: cover;"></div>
+              <mat-card-title><i [ngClass]="item.isApproved | boolclass"></i> {{'ACTION.STATUS' | translate}}</mat-card-title>
+              <mat-card-subtitle>{{item.typeTitle}}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{item.LinkFileContentIdSrc}}" alt="{{item.TypeTitle}}">
+            <img mat-card-image src="{{item.linkFileContentIdSrc}}" alt="{{item.typeTitle}}">
             <mat-card-content>
-              <p *ngIf="item.IsApproved && item.ApprovedExpireDate">
-                {{item.ApprovedExpireDate}}
+              <p *ngIf="item.isApproved && item.approvedExpireDate">
+                {{item.approvedExpireDate}}
               </p>
   
-              <p *ngIf="!item.IsApproved">
-                {{item.TypeDescription}}
+              <p *ngIf="!item.isApproved">
+                {{item.typeDescription}}
               </p>
-              <p *ngIf="item.ApprovedResult && item.ApprovedResult.length>0">
-                {{item.ApprovedResult}}
+              <p *ngIf="item.approvedResult && item.approvedResult.length>0">
+                {{item.approvedResult}}
               </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button type="button" class="btn btn-secondary width" *ngIf="!item.IsApproved" (click)="onActionbuttonEditRow(item)">{{'ACTION.SEND_DOCUMENTS' | translate}}</button>
+              <button mat-button type="button" class="btn btn-secondary width" *ngIf="!item.isApproved" (click)="onActionbuttonEditRow(item)">{{'ACTION.SEND_DOCUMENTS' | translate}}</button>
             </mat-card-actions>
           </mat-card>
   

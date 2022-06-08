@@ -106,16 +106,16 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
 
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFilePodcastId(model: NodeInterface): void {
-    this.dataModel.LinkFilePodcastId = model.id;
-    this.dataModel.LinkFilePodcastIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFilePodcastId = model.id;
+    this.dataModel.linkFilePodcastIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileMovieId(model: NodeInterface): void {
-    this.dataModel.LinkFileMovieId = model.id;
-    this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFileMovieId = model.id;
+    this.dataModel.linkFileMovieIdSrc = model.downloadLinksrc;
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -137,9 +137,9 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   }
 
   DataGetOne(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -151,18 +151,18 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
         next: (ret) => {
 
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           this.loading.Stop(pName);
 
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
 
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
-            const lat = this.dataModel.Geolocationlatitude;
-            const lon = this.dataModel.Geolocationlongitude;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
+            const lat = this.dataModel.geolocationlatitude;
+            const lon = this.dataModel.geolocationlongitude;
             if (lat > 0 && lon > 0) {
               this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
@@ -172,56 +172,56 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
             this.loading.Stop(pName);
 
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
         error: (er) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
         }
       }
       );
   }
   DataOptionGetAll(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Options_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Options_From_The_Server');
+    this.formInfo.formError = '';
     this.loadingOption.Start('main');
 
 
     const filteModel = new FilterModel();
 
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkPollingContentId';
-    filter.Value = this.requestId;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'LinkPollingContentId';
+    filter.value = this.requestId;
+    filteModel.filters.push(filter);
     this.pollingOptionService
       .ServiceGetAll(filteModel)
       .subscribe({
         next: (ret) => {
           this.loadingOption.Stop('main');
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.dataOptionModelResult = ret;
-          if (ret.IsSuccess) {
-            this.optionDataModel = ret.ListItems;
-            this.optionTabledataSource.data = ret.ListItems;
+          if (ret.isSuccess) {
+            this.optionDataModel = ret.listItems;
+            this.optionTabledataSource.data = ret.listItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
           }
         },
         error: (er) => {
           this.loadingOption.Stop('main');
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(er);
         }
       }
       );
   }
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
@@ -232,58 +232,58 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
         next: (ret) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
 
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
 
             setTimeout(() => this.router.navigate(['/polling/content']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
 
         },
         error: (er) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);;
         }
       }
       );
   }
   onActionSelectorSelect(model: PollingCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkCategoryId = model.Id;
+    this.dataModel.linkCategoryId = model.id;
   }
 
   onActionOptionAddToList(): void {
     if (!this.optionSelected) {
       return;
     }
-    if (this.optionDataModel.find(x => x.Option === this.optionSelected.Option)) {
+    if (this.optionDataModel.find(x => x.option === this.optionSelected.option)) {
       this.cmsToastrService.typeErrorAddDuplicate();
       return;
     }
 
     this.optionActionButtomEnable = false;
-    if (this.optionSelected.Id > 0) {
+    if (this.optionSelected.id > 0) {
       this.pollingOptionService.ServiceEdit(this.optionSelected).subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
             this.optionSelected = new PollingOptionModel();
             this.optionActionTitle = this.translate.instant('ACTION.Add_To_List');
             this.optionSelected = new PollingOptionModel();
             this.DataOptionGetAll();
           }
           else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.optionActionButtomEnable = true;
         },
@@ -295,16 +295,16 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
       );
     }
     else {
-      this.optionSelected.LinkPollingContentId = this.requestId;
+      this.optionSelected.linkPollingContentId = this.requestId;
       this.pollingOptionService.ServiceAdd(this.optionSelected).subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
             this.optionSelected = new PollingOptionModel();
             this.optionActionTitle = this.translate.instant('ACTION.Add_To_List');
             this.optionSelected = new PollingOptionModel();
             this.DataOptionGetAll();
           } else {
-            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.errorMessage);
           }
           this.optionActionButtomEnable = true;
         },
@@ -328,13 +328,13 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
       return;
     }
     this.optionSelected = this.optionDataModel[index];
-    this.pollingOptionService.ServiceDelete(this.optionSelected.Id).subscribe({
+    this.pollingOptionService.ServiceDelete(this.optionSelected.id).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.DataOptionGetAll();
           this.optionSelected = new PollingOptionModel();
         } else {
-          this.cmsToastrService.typeErrorRemove(ret.ErrorMessage);
+          this.cmsToastrService.typeErrorRemove(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -395,14 +395,14 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.Geolocationlatitude && lon === this.dataModel.Geolocationlongitude) {
-        this.dataModel.Geolocationlatitude = null;
-        this.dataModel.Geolocationlongitude = null;
+      if (lat === this.dataModel.geolocationlatitude && lon === this.dataModel.geolocationlongitude) {
+        this.dataModel.geolocationlatitude = null;
+        this.dataModel.geolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.Geolocationlatitude = lat;
-      this.dataModel.Geolocationlongitude = lon;
+      this.dataModel.geolocationlatitude = lat;
+      this.dataModel.geolocationlongitude = lon;
     });
 
   }
@@ -412,12 +412,12 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
 
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
+    if (!model || !model.id || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Information_area_deleted');
       this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkLocationId = null;
+      this.dataModel.linkLocationId = null;
       return;
     }
-    this.dataModel.LinkLocationId = model.Id;
+    this.dataModel.linkLocationId = model.id;
   }
 }

@@ -11,13 +11,13 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
+    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.LinkUserClaimGroupId>0"
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.linkUserClaimGroupId>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.LinkUserClaimGroupId>0"
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.linkUserClaimGroupId>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
@@ -55,31 +55,31 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.Id === tableRowSelected.Id ? '' : 'none' }">
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
+           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select> </mat-cell>
       </ng-container>
       <!-- LinkUserClaimGroupId Column -->
       <ng-container matColumnDef="LinkUserClaimGroupId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserClaimGroupId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserClaimGroupId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkUserClaimGroupId | cmstitle :
-          dataModelCoreUserClaimGroupResult.ListItems}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkUserClaimGroupId | cmstitle :
+          dataModelCoreUserClaimGroupResult.listItems}} </mat-cell>
       </ng-container>
       <!-- LinkUserClaimTypeId Column -->
       <ng-container matColumnDef="LinkUserClaimTypeId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserClaimTypeId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserClaimTypeId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkUserClaimTypeId | cmstitle :
-          dataModelCoreUserClaimTypeResult.ListItems}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkUserClaimTypeId | cmstitle :
+          dataModelCoreUserClaimTypeResult.listItems}} </mat-cell>
       </ng-container>
       <!-- IsRequired Column -->
       <ng-container matColumnDef="IsRequired">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsRequired']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsRequired']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.IsRequired | boolclass"></i></mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.isRequired | boolclass"></i></mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -90,11 +90,11 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
@@ -103,7 +103,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': (row.LinkUserClaimGroupId === tableRowSelected.LinkUserClaimGroupId && row.LinkUserClaimTypeId === tableRowSelected.LinkUserClaimTypeId)? '#d3d3da' : '' }">
+        [ngStyle]="{'background': (row.linkUserClaimGroupId === tableRowSelected.linkUserClaimGroupId && row.linkUserClaimTypeId === tableRowSelected.linkUserClaimTypeId)? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
 
@@ -111,8 +111,8 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
 

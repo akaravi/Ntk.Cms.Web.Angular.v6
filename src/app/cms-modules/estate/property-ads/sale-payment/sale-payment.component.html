@@ -1,30 +1,30 @@
-<h2 mat-dialog-title>{{ formInfo.FormTitle }}</h2>
+<h2 mat-dialog-title>{{ formInfo.formTitle }}</h2>
 <mat-dialog-content>
 
   <app-cms-bankpayment-grid [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
   </app-cms-bankpayment-grid>
   <div *ngIf="viewCalculate">
     {{ 'FeeTax' }}:
-     {{dataModelCalculateResult.Item.FeeTax|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+     {{dataModelCalculateResult.item.feeTax|currency:' '+dataModelCalculateResult.item.currency+' '}}
     <br>
     {{ 'AmountPure' }}:
-     {{dataModelCalculateResult.Item.AmountPure|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+     {{dataModelCalculateResult.item.amountPure|currency:' '+dataModelCalculateResult.item.currency+' '}}
     <br>
     {{ 'FeeTransport' }}:
-    {{dataModelCalculateResult.Item.FeeTransport|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    {{dataModelCalculateResult.item.feeTransport|currency:' '+dataModelCalculateResult.item.currency+' '}}
     <hr>
     {{ 'Amount' }}:
-    {{dataModelCalculateResult.Item.Amount|currency:' '+dataModelCalculateResult.Item.Currency+' '}}
+    {{dataModelCalculateResult.item.amount|currency:' '+dataModelCalculateResult.item.currency+' '}}
   </div>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
     </small>
   </div>
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
     <button type="button" (click)="onFormCancel()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>

@@ -9,18 +9,18 @@
           <!-- Warrning Column -->
           <ng-container matColumnDef="Accepted">
             <mat-header-cell *matHeaderCellDef > {{'TITLE.Accepted' | translate}} </mat-header-cell>
-            <mat-cell *matCellDef="let row">  <i [ngClass]="row.Accepted|boolclass"></i> </mat-cell>
+            <mat-cell *matCellDef="let row">  <i [ngClass]="row.accepted|boolclass"></i> </mat-cell>
         </ng-container>
     
         <!-- Title Column -->
         <ng-container matColumnDef="Title">
-            <mat-header-cell *matHeaderCellDef > {{'TITLE.Title' | translate}} </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.Title}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef > {{'TITLE.title' | translate}} </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
         </ng-container>
         <!-- Description Column -->
         <ng-container matColumnDef="Description">
             <mat-header-cell *matHeaderCellDef > {{'TITLE.Description' | translate}} </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.Description}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>

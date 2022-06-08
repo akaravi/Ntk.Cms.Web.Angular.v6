@@ -10,21 +10,21 @@
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-18 alert-text">
       <br>
-      <p *ngIf="dataModelResult.Item?.UserTitle?.length>0">
+      <p *ngIf="dataModelResult.item?.userTitle?.length>0">
 
         نام شما:
         <br>
-        {{dataModelResult.Item.UserTitle}}
+        {{dataModelResult.item.userTitle}}
       </p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-18">
-      <p *ngIf="dataModelResult.Item?.SiteTitle?.length>0">
+      <p *ngIf="dataModelResult.item?.siteTitle?.length>0">
 
         عنوان سامانه:
         <br>
-        {{dataModelResult.Item.SiteTitle}}
+        {{dataModelResult.item.siteTitle}}
       </p>
     </div>
   </div>
@@ -33,7 +33,7 @@
 
 <!-- آدرس وب سایت -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.Item?.UrlSiteHome?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlSiteHome?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -57,10 +57,10 @@
     <h5>
       آدرس وب سایت
     </h5>
-    <a href="{{dataModelResult.Item?.UrlSiteHome}}">
-      {{dataModelResult.Item.UrlSiteHome}}
+    <a href="{{dataModelResult.item?.urlSiteHome}}">
+      {{dataModelResult.item.urlSiteHome}}
     </a>
-    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteHome" (click)="onActionCopied()"><i
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.item.urlSiteHome" (click)="onActionCopied()"><i
         class="flaticon2-copy"></i></span>
     <br>
     <br>
@@ -80,14 +80,14 @@
 
 <!-- آدرس سامانه مدیریت محتوا -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.Item?.UrlSiteCPanel?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlSiteCPanel?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
         <span class="svg-icon svg-icon-3x svg-icon-primary"
           [inlineSVG]="'assets/media/svg/icons/General/User.svg'"></span>
       </div>
-      <div class="col-11" *ngIf="dataModelResult.Item?.UrlSiteCPanel?.length>0">
+      <div class="col-11" *ngIf="dataModelResult.item?.urlSiteCPanel?.length>0">
         <h5>
           آدرس سامانه مدیریت محتوا
         </h5>
@@ -109,10 +109,10 @@
     <h5>
       آدرس سامانه مدیریت محتوا
     </h5>
-    <a href="{{dataModelResult.Item.UrlSiteCPanel}}">
-      {{dataModelResult.Item.UrlSiteCPanel}}
+    <a href="{{dataModelResult.item.urlSiteCPanel}}">
+      {{dataModelResult.item.urlSiteCPanel}}
     </a>
-    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlSiteCPanel" (click)="onActionCopied()"><i
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.item.urlSiteCPanel" (click)="onActionCopied()"><i
         class="flaticon2-copy"></i></span>
     <br>
     <br>
@@ -132,14 +132,14 @@
 
 <!-- آدرس اشتراک گزاری وب سایت -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.Item?.UrlResellerSiteShortLinkUrl?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlResellerSiteShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
         <span class="svg-icon svg-icon-3x svg-icon-primary"
           [inlineSVG]="'assets/media/svg/icons/Map/Location-arrow.svg'"></span>
       </div>
-      <div class="col-11" *ngIf="dataModelResult.Item?.UrlResellerSite?.length>0">
+      <div class="col-11" *ngIf="dataModelResult.item?.urlResellerSite?.length>0">
         <h5>
           آدرس اشتراک گزاری وب سایت
         </h5>
@@ -162,10 +162,10 @@
       آدرس اشتراک گزاری وب سایت
     </h5>
 
-    <a href="{{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}">
-      {{dataModelResult.Item.UrlResellerSiteShortLinkUrl}}
+    <a href="{{dataModelResult.item.urlResellerSiteShortLinkUrl}}">
+      {{dataModelResult.item.urlResellerSiteShortLinkUrl}}
     </a>
-    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerSiteShortLinkUrl"
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.item.urlResellerSiteShortLinkUrl"
       (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
     <br>
     <br>
@@ -192,14 +192,14 @@
 
 <!-- آدرس اشتراک گزاری با حساب کاربری شما -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.Item?.UrlResellerUserShortLinkUrl?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.item?.urlResellerUserShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
         <span class="svg-icon svg-icon-3x svg-icon-primary"
           [inlineSVG]="'assets/media/svg/icons/Map/Location-arrow.svg'"></span>
       </div>
-      <div class="col-11" *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
+      <div class="col-11" *ngIf="dataModelResult.item?.urlResellerUser?.length>0">
         <h5>
           آدرس اشتراک گزاری با حساب کاربری شما
         </h5>
@@ -223,10 +223,10 @@
       آدرس اشتراک گزاری با حساب کاربری شما
     </h5>
 
-    <a href="{{dataModelResult.Item.UrlResellerUserShortLinkUrl}}">
-      {{dataModelResult.Item.UrlResellerUserShortLinkUrl}}
+    <a href="{{dataModelResult.item.urlResellerUserShortLinkUrl}}">
+      {{dataModelResult.item.urlResellerUserShortLinkUrl}}
     </a>
-    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerUserShortLinkUrl"
+    <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.item.urlResellerUserShortLinkUrl"
       (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
     <br>
     <br>
@@ -253,14 +253,14 @@
 
 <!-- آدرس اشتراک گزاری با دسته بندی سامانه موجود -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.Item?.UrlResellerSiteCategoryShortLinkUrl?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.item?.urlResellerSiteCategoryShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
         <span class="svg-icon svg-icon-3x svg-icon-primary"
           [inlineSVG]="'assets/media/svg/icons/Map/Location-arrow.svg'"></span>
       </div>
-      <div class="col-11" *ngIf="dataModelResult.Item?.UrlResellerUser?.length>0">
+      <div class="col-11" *ngIf="dataModelResult.item?.urlResellerUser?.length>0">
         <h5>
           آدرس اشتراک گزاری با دسته بندی سامانه موجود
         </h5>
@@ -284,10 +284,10 @@
       <h5>
         آدرس اشتراک گزاری با دسته بندی سامانه موجود
       </h5>
-      <a href="{{dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl}}">
-        {{dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl}}
+      <a href="{{dataModelResult.item.urlResellerSiteCategoryShortLinkUrl}}">
+        {{dataModelResult.item.urlResellerSiteCategoryShortLinkUrl}}
       </a>
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.Item.UrlResellerSiteCategoryShortLinkUrl"
+      <span class="navi-icon" [cdkCopyToClipboard]="dataModelResult.item.urlResellerSiteCategoryShortLinkUrl"
         (click)="onActionCopied()"><i class="flaticon2-copy"></i></span>
       <br>
       <br>

@@ -30,10 +30,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   @Input() set optionHeaderId(x: number) {
-    this.linkHeaderId = x;
+    this.LinkHeaderId = x;
     this.DataGetAll();
   }
-  linkHeaderId = 0;
+  LinkHeaderId = 0;
   constructor(
     private coreModuleSaleItemService: CoreModuleSaleItemService,
     public publicHelper: PublicHelper,
@@ -71,7 +71,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -87,7 +87,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   }
   getModuleList(): void {
     const filter = new FilterModel();
-    filter.RowPerPage = 100;
+    filter.rowPerPage = 100;
     this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
       this.dataModelCoreModuleResult = next;
     });
@@ -108,25 +108,25 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
 
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
 
     const filteModel = JSON.parse(JSON.stringify(this.filteModelContent));
-    if (this.linkHeaderId && this.linkHeaderId > 0) {
+    if (this.LinkHeaderId && this.LinkHeaderId > 0) {
       const fastfilter = new FilterDataModel();
-      fastfilter.PropertyName = 'LinkModuleSaleHeader';
-      fastfilter.Value = this.linkHeaderId;
-      filteModel.Filters.push(fastfilter);
+      fastfilter.propertyName = 'LinkModuleSaleHeader';
+      fastfilter.value = this.LinkHeaderId;
+      filteModel.filters.push(fastfilter);
     }
-    filteModel.SortColumn = 'Id';
+    filteModel.sortColumn = 'Id';
     this.coreModuleSaleItemService.ServiceGetAll(filteModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
+          this.tableSource.data = ret.listItems;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -144,25 +144,25 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
