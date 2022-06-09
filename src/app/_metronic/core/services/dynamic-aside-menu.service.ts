@@ -55,7 +55,7 @@ export class DynamicAsideMenuService implements OnDestroy {
       icon: 'flaticon2-architecture-and-city',
       svg: './assets/media/svg/icons/Design/Layers.svg',
       page: '/dashboard',
-      //translate: 'MENU.DASHBOARD',
+      translate: this.translate.instant( 'MENU.DASHBOARD'),
       bullet: 'dot',
     }];
     this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(

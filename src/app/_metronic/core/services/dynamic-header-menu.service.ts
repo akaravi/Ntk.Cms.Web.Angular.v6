@@ -59,7 +59,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
       root: true,
       alignment: 'left',
       page: '/dashboard',
-      //translate: 'MENU.DASHBOARD',
+      translate:this.translate.instant( 'MENU.DASHBOARD'),
     }];
     this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
       (next) => {
