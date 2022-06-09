@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CoreModuleLogComponent } from './core-module-log.component';
 import { CoreModuleLogFavoriteListComponent } from './favorite/list/list.component';
 import { CoreModuleLogLikeListComponent } from './like/list/list.component';
+import { CoreModuleLogMemoListComponent } from './memo/list/list.component';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogScoreListComponent } from './score/list/list.component';
 import { CoreModuleLogSiteCreditBlockedListComponent } from './site-credit-blocked/list/list.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'report-abuse',
         component: CoreModuleLogReportAbuseListComponent
+      },
+      {
+        path: 'memo',
+        component: CoreModuleLogMemoListComponent
       },
       {
         path: 'favorite',

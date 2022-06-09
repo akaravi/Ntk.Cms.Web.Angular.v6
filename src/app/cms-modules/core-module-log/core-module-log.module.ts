@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import { TagInputModule } from 'ngx-chips';
-import { CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogReportAbuseEditComponent } from './report-abuse/edit/edit.component';
 import { CoreModuleLogReportAbuseViewComponent } from './report-abuse/view/view.component';
@@ -27,6 +27,10 @@ import { CoreModuleLogSiteCreditBlockedViewComponent } from './site-credit-block
 import { CoreModuleLogSiteUserCreditBlockedEditComponent } from './site-user-credit-blocked/edit/edit.component';
 import { CoreModuleLogSiteUserCreditBlockedListComponent } from './site-user-credit-blocked/list/list.component';
 import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-credit-blocked/view/view.component';
+import { CoreModuleLogMemoListComponent } from './memo/list/list.component';
+import { CoreModuleLogMemoEditComponent } from './memo/edit/edit.component';
+import { CoreModuleLogMemoViewComponent } from './memo/view/view.component';
+import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
 
 
 
@@ -44,6 +48,11 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
   ],
   declarations: [
     CoreModuleLogComponent,
+    /**Memo */
+    CoreModuleLogMemoListComponent,
+    CoreModuleLogMemoEditComponent,
+    CoreModuleLogMemoAddComponent,
+    CoreModuleLogMemoViewComponent,
     /**ReportAbuse */
     CoreModuleLogReportAbuseListComponent,
     CoreModuleLogReportAbuseEditComponent,
@@ -71,30 +80,35 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
   ],
   exports: [
     CoreModuleLogComponent,
-      /**ReportAbuse */
-      CoreModuleLogReportAbuseListComponent,
-      CoreModuleLogReportAbuseEditComponent,
-      CoreModuleLogReportAbuseViewComponent,
-      /**Favorite */
-      CoreModuleLogFavoriteListComponent,
-      CoreModuleLogFavoriteEditComponent,
-      CoreModuleLogFavoriteViewComponent,
-      /**Like */
-      CoreModuleLogLikeListComponent,
-      CoreModuleLogLikeEditComponent,
-      CoreModuleLogLikeViewComponent,
-      /**score */
-      CoreModuleLogScoreListComponent,
-      CoreModuleLogScoreEditComponent,
-      CoreModuleLogScoreViewComponent,
-      /**SiteCreditBlocked */
-      CoreModuleLogSiteCreditBlockedListComponent,
-      CoreModuleLogSiteCreditBlockedEditComponent,
-      CoreModuleLogSiteCreditBlockedViewComponent,
-      /**SiteUserCreditBlocked */
-      CoreModuleLogSiteUserCreditBlockedListComponent,
-      CoreModuleLogSiteUserCreditBlockedEditComponent,
-      CoreModuleLogSiteUserCreditBlockedViewComponent,
+    /**Memo */
+    CoreModuleLogMemoListComponent,
+    CoreModuleLogMemoEditComponent,
+    CoreModuleLogMemoAddComponent,
+    CoreModuleLogMemoViewComponent,
+    /**ReportAbuse */
+    CoreModuleLogReportAbuseListComponent,
+    CoreModuleLogReportAbuseEditComponent,
+    CoreModuleLogReportAbuseViewComponent,
+    /**Favorite */
+    CoreModuleLogFavoriteListComponent,
+    CoreModuleLogFavoriteEditComponent,
+    CoreModuleLogFavoriteViewComponent,
+    /**Like */
+    CoreModuleLogLikeListComponent,
+    CoreModuleLogLikeEditComponent,
+    CoreModuleLogLikeViewComponent,
+    /**score */
+    CoreModuleLogScoreListComponent,
+    CoreModuleLogScoreEditComponent,
+    CoreModuleLogScoreViewComponent,
+    /**SiteCreditBlocked */
+    CoreModuleLogSiteCreditBlockedListComponent,
+    CoreModuleLogSiteCreditBlockedEditComponent,
+    CoreModuleLogSiteCreditBlockedViewComponent,
+    /**SiteUserCreditBlocked */
+    CoreModuleLogSiteUserCreditBlockedListComponent,
+    CoreModuleLogSiteUserCreditBlockedEditComponent,
+    CoreModuleLogSiteUserCreditBlockedViewComponent,
   ],
   providers: [
     CoreModuleService,
@@ -104,6 +118,7 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
     CoreModuleSiteUserCreditService,
     CoreModuleLogFavoriteService,
     CoreModuleLogLikeService,
+    CoreModuleLogMemoService,
     CoreModuleLogReportAbuseService,
     CoreModuleLogScoreService,
     CoreModuleLogSiteCreditBlockedService,

@@ -27,7 +27,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodulelog-report-abuse-view',
+  selector: 'app-coremodulelog-site-user-credit-blocked-view',
   templateUrl: './view.component.html',
 })
 export class CoreModuleLogSiteUserCreditBlockedViewComponent implements OnInit, OnDestroy {

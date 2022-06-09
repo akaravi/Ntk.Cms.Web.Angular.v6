@@ -1,11 +1,10 @@
 //**msh */
 import {
   CoreEnumService,
-  EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  CoreModuleLogFavoriteService,
-  CoreModuleLogFavoriteModel,
+  CoreModuleLogMemoService,
+  CoreModuleLogMemoModel,
   TokenInfoModel,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
@@ -27,16 +26,17 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodulelog-favorite-view',
-  templateUrl: './view.component.html',
+  selector: 'app-coremodulelog-memo-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss'],
 })
-export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
+export class CoreModuleLogMemoEditComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CoreModuleLogFavoriteViewComponent>,
+    private dialogRef: MatDialogRef<CoreModuleLogMemoEditComponent>,
     public coreEnumService: CoreEnumService,
-    public coreModuleLogFavoriteService: CoreModuleLogFavoriteService,
+    public coreModuleLogMemoService: CoreModuleLogMemoService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -46,28 +46,34 @@ export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId = data.id + '';
+      this.requestId = data.id;
     }
   }
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
   tokenInfo = new TokenInfoModel();
+
+
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogFavoriteModel> = new ErrorExceptionResult<CoreModuleLogFavoriteModel>();
-  dataModel: CoreModuleLogFavoriteModel = new CoreModuleLogFavoriteModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
+  dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+
+
   fileManagerOpenForm = false;
 
   cmsApiStoreSubscribe: Subscription;
+
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'مشاهده  ';
-    if (this.requestId.length === 0) {
+    if (this.requestId && this.requestId.length > 0) {
+      this.formInfo.FormTitle = 'ویرایش  ';
+      this.DataGetOneContent();
+    } else {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    this.DataGetOneContent();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
@@ -75,14 +81,9 @@ export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
     });
-    this.getEnumSendSmsStatusType();
   }
 
-  getEnumSendSmsStatusType(): void {
-    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
-      this.dataModelEnumSendSmsStatusTypeResult = next;
-    });
-  }
+
 
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -90,15 +91,20 @@ export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
 
 
   DataGetOneContent(): void {
+    if (!this.requestId || this.requestId.length === 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
+
     this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.FormError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.coreModuleLogFavoriteService.setAccessLoad();
+    this.coreModuleLogMemoService.setAccessLoad();
 
-    this.coreModuleLogFavoriteService.ServiceGetOneById(this.requestId).subscribe({
+    this.coreModuleLogMemoService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;
@@ -122,6 +128,46 @@ export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
     }
     );
   }
+
+  DataEditContent(): void {
+    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.FormError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+
+    this.coreModuleLogMemoService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
+        this.dataModelResult = ret;
+        if (ret.IsSuccess) {
+          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.cmsToastrService.typeSuccessEdit();
+          this.dialogRef.close({ dialogChangedDate: true });
+        } else {
+          this.formInfo.FormAlert = 'برروز خطا';
+          this.formInfo.FormError = ret.ErrorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+        }
+        this.loading.Stop(pName);
+
+        this.formInfo.FormSubmitAllow = true;
+      },
+      error: (er) => {
+        this.formInfo.FormSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+
+  onFormSubmit(): void {
+    if (!this.formGroup.valid) {
+      return;
+    }
+    this.formInfo.FormSubmitAllow = false;
+    this.DataEditContent();
+  }
+
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }

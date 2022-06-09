@@ -1,0 +1,103 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.FormTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
+        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+        required>
+        <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.ListItems;
+                index as i
+              " [value]="item.Value">{{ item.Description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- LinkCmsSiteId Field -->
+    <app-cms-site-selector (optionChange)="onActionSelectorSiteSelect($event)" [optionDisabled]="false"
+      [optionSelectForce]="this.dataModel.LinkSiteId" [optionPlaceholder]="'سایت'"></app-cms-site-selector>
+
+    <!-- ModuleName Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>ModuleName</mat-label>
+      <input matInput [(ngModel)]="dataModel.ModuleName" name="dataModel.ModuleName" #ModuleName type="text"
+        placeholder="ModuleName" />
+      <mat-icon matSuffix *ngIf="dataModel.ModuleName" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.ModuleName = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- ModuleEntityName Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>ModuleEntityName</mat-label>
+      <input matInput [(ngModel)]="dataModel.ModuleEntityName" name="dataModel.ModuleEntityName" #ModuleEntityName
+        type="text" placeholder="ModuleEntityName" />
+      <mat-icon matSuffix *ngIf="dataModel.ModuleEntityName" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.ModuleEntityName = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- SubjectBody Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>SubjectBody</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.SubjectBody" name="dataModel.SubjectBody" #SubjectBody type="text"
+        placeholder="SubjectBody"></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.SubjectBody" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.SubjectBody = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+        <!-- SubjectTitle Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>SubjectTitle</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.SubjectTitle" name="dataModel.SubjectTitle" #SubjectTitle type="text"
+            placeholder="SubjectTitle"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.SubjectTitle" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SubjectTitle = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+    <!-- ExpireDate Field
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.AccessWatchField">
+      <mat-label>{{fieldsInfo['ExpireDate']?.FieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.ExpireDate" name="dataModel.ExpireDate" />
+      <mat-icon matSuffix *ngIf="dataModel.ExpireDate && fieldsInfo['ExpireDate']?.AccessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.ExpireDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #ExpireDate></mat-datepicker>
+    </mat-form-field> -->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+
+</form>

@@ -1,0 +1,175 @@
+<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
+  <ng-container cms-tree>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+    --------------------------------------
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+  </ng-container>
+  <ng-container cms-header>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </ng-container>
+  <ng-container cms-action>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+<!-- 
+
+    <button *ngIf="dataModelResult.Access.AccessAddRow"
+      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+
+
+
+
+ -->
+
+
+    <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected?.Id?.length>0"
+      (click)="onActionbuttonViewRow()" type="button" class="btn btn-outline-secondary BTN" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected?.Id?.length>0"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected?.Id?.length>0"
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
+    </a>
+
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
+      </mat-slide-toggle>
+    </a>
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
+      </mat-slide-toggle>
+    </a>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    </button>
+    <button (click)="onActionBackToParent()" *ngIf="this.requestLinkSiteId>0" type="button"
+      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
+  </ng-container>
+  <ng-container cms-action-area>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+    <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
+    <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
+    <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+  </ng-container>
+  <ng-container cms-body>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+      </ng-container>
+      <!-- RecordStatus Column -->
+      <ng-container matColumnDef="RecordStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass" ></i>
+           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.Id === tableRowSelected.Id ? '' : 'none' }">
+          </select> </mat-cell>
+      </ng-container>
+      <!-- LinkSiteId Column -->
+      <ng-container matColumnDef="LinkSiteId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.LinkSiteId}} </mat-cell>
+      </ng-container>
+      <!-- ModuleName Column -->
+      <ng-container matColumnDef="ModuleName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.ModuleName }} </mat-cell>
+      </ng-container>
+     <!-- ModuleEntityName Column -->
+     <ng-container matColumnDef="ModuleEntityName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.FieldTitle}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ModuleEntityName}} </mat-cell>
+    </ng-container>
+      <!-- ModuleEntityId Column -->
+      <ng-container matColumnDef="ModuleEntityId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityId']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.ModuleEntityId}} </mat-cell>
+      </ng-container>
+      <!-- SubjectBody Column -->
+      <ng-container matColumnDef="SubjectBody">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SubjectBody']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.SubjectBody}} </mat-cell>
+      </ng-container>
+ 
+      <!-- CreatedDate Column -->
+      <ng-container matColumnDef="CreatedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
+        <mat-cell *matCellDef="let row" class=' Action'>
+          <!-- Action Menu -->
+          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #actionMenu="matMenu">
+            <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+              <mat-icon>view</mat-icon>
+              <span>{{'ACTION.VIEW' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
+              <mat-icon>mode_edit</mat-icon>
+              <span>{{'ACTION.EDIT' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+              <mat-icon>delete_forever</mat-icon>
+              <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <td></td>
+                <td> {{row.SubjectTitle}} </td>
+              </tr>
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+      </mat-row>
+    </mat-table>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </ng-container>
+  <ng-container cms-footer>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
+      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+      [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </ng-container>
+</app-cms-html-list>

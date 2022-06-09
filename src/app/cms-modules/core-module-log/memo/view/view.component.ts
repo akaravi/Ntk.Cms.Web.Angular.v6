@@ -4,8 +4,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  CoreModuleLogFavoriteService,
-  CoreModuleLogFavoriteModel,
+  CoreModuleLogMemoService,
+  CoreModuleLogMemoModel,
   TokenInfoModel,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
@@ -27,16 +27,16 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodulelog-favorite-view',
+  selector: 'app-coremodulelog-memo-view',
   templateUrl: './view.component.html',
 })
-export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
+export class CoreModuleLogMemoViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CoreModuleLogFavoriteViewComponent>,
+    private dialogRef: MatDialogRef<CoreModuleLogMemoViewComponent>,
     public coreEnumService: CoreEnumService,
-    public coreModuleLogFavoriteService: CoreModuleLogFavoriteService,
+    public coreModuleLogMemoService: CoreModuleLogMemoService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -52,8 +52,8 @@ export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogFavoriteModel> = new ErrorExceptionResult<CoreModuleLogFavoriteModel>();
-  dataModel: CoreModuleLogFavoriteModel = new CoreModuleLogFavoriteModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
+  dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -96,9 +96,9 @@ export class CoreModuleLogFavoriteViewComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.coreModuleLogFavoriteService.setAccessLoad();
+    this.coreModuleLogMemoService.setAccessLoad();
 
-    this.coreModuleLogFavoriteService.ServiceGetOneById(this.requestId).subscribe({
+    this.coreModuleLogMemoService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;

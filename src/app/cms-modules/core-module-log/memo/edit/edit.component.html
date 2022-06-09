@@ -1,0 +1,93 @@
+<form  #vform="ngForm">
+    <div class="ntk-cms-html-card-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.FormTitle }}
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+	<app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+        
+  
+        <!-- LinkSiteId Field -->
+        <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.LinkSiteId"
+          [optionPlaceholder]="'سایت'"></app-cms-site-selector>
+        <!-- ModuleName Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ModuleName</mat-label>
+          <input matInput [(ngModel)]="dataModel.ModuleName" name="dataModel.ModuleName" #ModuleName type="text"
+            placeholder="ModuleName" />
+          <mat-icon matSuffix *ngIf="dataModel.ModuleName" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ModuleName = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+  
+        <!-- ModuleEntityName Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ModuleEntityName</mat-label>
+          <input matInput [(ngModel)]="dataModel.ModuleEntityName" name="dataModel.ModuleEntityName" #ModuleEntityName
+            type="text" placeholder="ModuleEntityName" />
+          <mat-icon matSuffix *ngIf="dataModel.ModuleEntityName" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ModuleEntityName = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- ModuleEntityId Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>ModuleEntityId</mat-label>
+          <input matInput [(ngModel)]="dataModel.ModuleEntityId" name="dataModel.ModuleEntityId" #ModuleEntityId
+            type="text" placeholder="ModuleEntityId" />
+          <mat-icon matSuffix *ngIf="dataModel.ModuleEntityId" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.ModuleEntityId = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+  
+        <!-- SubjectBody Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>SubjectBody</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.SubjectBody" name="dataModel.SubjectBody" #SubjectBody type="text"
+            placeholder="SubjectBody"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.SubjectBody" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SubjectBody = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <!-- SubjectTitle Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>SubjectTitle</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.SubjectTitle" name="dataModel.SubjectTitle" #SubjectTitle type="text"
+            placeholder="SubjectTitle"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.SubjectTitle" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.SubjectTitle = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+  
+        <!-- <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataModel | prettyjson"></div>
+        </div> -->
+  
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+     </div>
+	 <div class="ntk-cms-html-card-message">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.FormError }}
+        </small>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </div>
+    <div class="ntk-cms-html-card-footer">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+        <button type="button" (click)="onFormCancel()" class="btn btn-light">
+          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
+        <button type="button" (click)="onFormSubmit()" class="btn btn-success">
+          <i class="ft-x"></i> {{'ACTION.SAVE' | translate}}
+        </button>
+
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
+</form>

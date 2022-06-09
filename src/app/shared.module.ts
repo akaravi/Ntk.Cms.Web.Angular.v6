@@ -97,6 +97,7 @@ import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-si
 import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
 import { SelfSaveDirective } from './core/directive/self-save.directive';
 import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-status-self-save.directive';
+import { CmsMemoComponent } from './shared/cms-memo/cms-memo.component';
 
 
 @NgModule({
@@ -154,6 +155,7 @@ import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-st
         CmsQDocComponent,
         CmsViewComponent,
         CmsLinkToComponent,
+        CmsMemoComponent,
         CmsMapComponent,
         CmsTagAutocompleteComponent,
         ProgressSpinnerComponent,
@@ -239,6 +241,7 @@ import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-st
         CmsQDocComponent,
         CmsViewComponent,
         CmsLinkToComponent,
+        CmsMemoComponent,
         CmsTagAutocompleteComponent,
         ProgressSpinnerComponent,
         PasswordStrengthComponent,
