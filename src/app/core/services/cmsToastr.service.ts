@@ -446,7 +446,7 @@ export class CmsToastrService {
     }
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorSelectedRow'));
   }
-  typeerrorMessage(message: string, title: string = 'Error!'): void {
+  typeErrorMessage(message: string, title: string = 'Error!'): void {
 
     this.toastr.error(message, this.now() + title);
   }

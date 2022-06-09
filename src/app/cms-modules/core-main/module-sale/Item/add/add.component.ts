@@ -127,7 +127,7 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -142,7 +142,7 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
   }
   onActionSelectModule(model: CoreModuleModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'ماژول را مشخص کنید',
         'ماژول اطلاعات مشخص نیست'
       );
@@ -152,7 +152,7 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
   }
   onActionSelectHeader(model: CoreModuleSaleHeaderModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'دسته بندی را مشخص کنید',
         'دسته بندی اطلاعات مشخص نیست'
       );

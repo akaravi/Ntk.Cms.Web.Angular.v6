@@ -131,7 +131,7 @@ export class NewsContentSelectorComponent implements OnInit {
           this.formControl.setValue(ret.item);
         }
         else{
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       }
       });

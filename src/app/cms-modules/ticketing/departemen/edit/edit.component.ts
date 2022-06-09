@@ -97,7 +97,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeerrorMessage(next.errorMessage);
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -125,7 +125,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeerrorMessage(next.errorMessage);
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 

@@ -229,14 +229,14 @@ export class ApplicationAppEditComponent implements OnInit {
   }
   onActionSelectSource(model: ApplicationSourceModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'سورس را مشخص کنید',
         'سورس اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
     if (this.dataModel.linkSourceId !== model.id) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'سورس قابل تغییر نمی باشد',
         'سورس اپلیکیشن در حالت ویرایش قابل تغییر نمی باشد'
       );
@@ -244,7 +244,7 @@ export class ApplicationAppEditComponent implements OnInit {
   }
   onActionSelectTheme(model: ApplicationThemeConfigModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'قالب را مشخص کنید',
         'قالب اپلیکیشن اطلاعات مشخص نیست'
       );

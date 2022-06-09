@@ -58,7 +58,7 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
                 if (ret.isSuccess) {
                     this.currency = ret.item;
                 } else {
-                    this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+                    this.cmsToastrService.typeErrorMessage(ret.errorMessage);
                   }
             },
             error: (er) => {

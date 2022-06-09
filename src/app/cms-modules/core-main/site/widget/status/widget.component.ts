@@ -80,7 +80,7 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
             this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(ret.item.expireDate));
           }
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error:(er) => {

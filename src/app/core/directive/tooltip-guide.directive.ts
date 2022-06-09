@@ -90,7 +90,7 @@ export class TooltipGuideDirective {
               /*run */
             } else {
               if (this.viewError) {
-                this.cmsToastrService.typeerrorMessage(next.errorMessage);
+                this.cmsToastrService.typeErrorMessage(next.errorMessage);
               }
               /*run */
               this.create('Identity :' + this.Identity);
@@ -143,7 +143,7 @@ export class TooltipGuideDirective {
               /*run */
             } else {
               if (this.viewError) {
-                this.cmsToastrService.typeerrorMessage(next.errorMessage);
+                this.cmsToastrService.typeErrorMessage(next.errorMessage);
               }
               /*run */
               this.create('Key :' + this.tooltipGuide);

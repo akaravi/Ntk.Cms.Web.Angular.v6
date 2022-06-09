@@ -142,7 +142,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             }
           }
           else{
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -201,7 +201,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             }
           }
           else{
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -320,7 +320,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else{
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -341,7 +341,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else{
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -371,7 +371,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
         else{
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -435,7 +435,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
             });
             //open popup
           } else {
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },

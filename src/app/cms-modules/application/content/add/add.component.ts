@@ -204,7 +204,7 @@ export class ApplicationAppAddComponent implements OnInit {
   }
   onActionSelectSource(model: ApplicationSourceModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         this.translate.instant('MESSAGE.The_source_of_the_information_application_is_not_known'),
         this.translate.instant('MESSAGE.Specify_the_source')
       );
@@ -214,7 +214,7 @@ export class ApplicationAppAddComponent implements OnInit {
   }
   onActionSelectTheme(model: ApplicationThemeConfigModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         this.translate.instant('MESSAGE.Information_application_format_is_not_clear'),
         this.translate.instant('MESSAGE.Specify_the_template'));
       return;

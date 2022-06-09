@@ -105,7 +105,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -165,7 +165,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
           });
           //open popup
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -184,7 +184,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessAdd();
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -203,7 +203,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessAdd();
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

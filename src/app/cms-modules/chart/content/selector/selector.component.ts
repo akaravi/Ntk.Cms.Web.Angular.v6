@@ -142,7 +142,7 @@ export class ChartContentSelectorComponent implements OnInit {
             this.dataModelSelect = ret.item;
             this.formControl.setValue(ret.item);
           } else {
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
         }
       });

@@ -56,7 +56,7 @@ export class WebDesignerMainPageHeaderComponent implements OnInit {
         if (next.isSuccess) {
           this.dataModelResult = next;
         } else {
-          this.cmsToastrService.typeerrorMessage(next.errorMessage);
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },

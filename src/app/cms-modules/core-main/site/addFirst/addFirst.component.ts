@@ -105,7 +105,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
             this.dataModel.subDomain = 'myname';
           }
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -126,22 +126,22 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
   onFormSubmit(): void {
     if (this.dataModel.linkSiteCategoryId <= 0) {
-      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
+      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
       return;
     }
     if (!this.dataModel.title || this.dataModel.title.length === 0) {
-      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.As_the_system_is_not_selected'));
+      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.As_the_system_is_not_selected'));
 
       return;
     }
     if (!this.dataModel.domain || this.dataModel.domain.length === 0) {
 
-      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_domain_not_selected'));
+      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_domain_not_selected'));
 
       return;
     }
     if (!this.dataModel.subDomain || this.dataModel.subDomain.length === 0) {
-      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_parent_domain_not_selected'));
+      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_parent_domain_not_selected'));
 
 
       return;
@@ -193,7 +193,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   }
   onActionSelectorSelect(model: CoreSiteCategoryModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'نوع سامانه را مشخص کنید',
         'نوع سامانه اطلاعات مشخص نیست'
       );
@@ -214,7 +214,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
       }
       if (!this.dataModel.linkSiteCategoryId || this.dataModel.linkSiteCategoryId <= 0) {
 
-        this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
+        this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();

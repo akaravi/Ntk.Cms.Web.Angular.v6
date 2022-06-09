@@ -51,7 +51,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.modelData.set('All', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       
       },

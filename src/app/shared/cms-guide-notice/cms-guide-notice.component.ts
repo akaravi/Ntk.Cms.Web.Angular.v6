@@ -88,7 +88,7 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
               }
 
             } else {
-              this.cmsToastrService.typeerrorMessage(next.errorMessage);
+              this.cmsToastrService.typeErrorMessage(next.errorMessage);
             }
           },
           (error) => {
@@ -135,7 +135,7 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
               }
 
             } else {
-              this.cmsToastrService.typeerrorMessage(next.errorMessage);
+              this.cmsToastrService.typeErrorMessage(next.errorMessage);
             }
           },
           (error) => {

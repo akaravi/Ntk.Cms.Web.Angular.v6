@@ -103,7 +103,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -117,7 +117,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   }
   onActionSelectApp(model: ApplicationAppModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'اپلیکیشن را مشخص کنید',
         'اپلیکیشن اطلاعات مشخص نیست'
       );
@@ -127,7 +127,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   }
   onActionSelectMemberInfo(model: ApplicationMemberInfoModel | null): void {
     if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'عضو اپلیکیشن را مشخص کنید',
         'عضو اپلیکیشن اطلاعات مشخص نیست'
       );
@@ -146,7 +146,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
       this.dataModel.appId = this.applicationMemberInfoModel.linkApplicationId;
     }
     if ((this.LinkMemberId || this.LinkMemberId.length === 0) && this.dataModel.appId <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'گیرنده را مشخص کنید',
         'اپلیکیشن و یا کاربری جهت دریافت مشخص نشده است'
       );

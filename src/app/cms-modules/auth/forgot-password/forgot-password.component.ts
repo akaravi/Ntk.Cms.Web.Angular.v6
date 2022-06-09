@@ -68,7 +68,7 @@ export class AuthForgotPasswordComponent implements OnInit {
             this.forgetState = 'entrycode';
           }
           else {
-            this.cmsToastrService.typeerrorMessage(res.errorMessage);
+            this.cmsToastrService.typeErrorMessage(res.errorMessage);
           }
           this.formInfo.buttonSubmittedEnabled = true;
           this.onCaptchaOrder();
@@ -99,7 +99,7 @@ export class AuthForgotPasswordComponent implements OnInit {
             this.forgetState = 'entrycode';
           }
           else {
-            this.cmsToastrService.typeerrorMessage(res.errorMessage);
+            this.cmsToastrService.typeErrorMessage(res.errorMessage);
           }
           this.formInfo.buttonSubmittedEnabled = true;
           this.onCaptchaOrder();
@@ -128,7 +128,7 @@ export class AuthForgotPasswordComponent implements OnInit {
             setTimeout(() => this.router.navigate(['/']), 1000);
           }
           else {
-            this.cmsToastrService.typeerrorMessage(res.errorMessage);
+            this.cmsToastrService.typeErrorMessage(res.errorMessage);
           }
           this.formInfo.buttonSubmittedEnabled = true;
           this.onCaptchaOrder();

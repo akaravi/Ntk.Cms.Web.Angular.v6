@@ -133,7 +133,7 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
           this.treeControl.dataNodes = this.dataModelResult.listItems;
           this.loadCheked();
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

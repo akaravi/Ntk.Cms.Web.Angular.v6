@@ -103,7 +103,7 @@ export class NewsCategoryAddComponent implements OnInit {
         } else {
           this.formInfo.formAlert = this.translate.instant('TITLE.typeErrorRegistration');
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

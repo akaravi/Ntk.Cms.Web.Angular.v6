@@ -94,7 +94,7 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
             this.modelData.delete('InChecking');
           }
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'InChecking');
 

@@ -64,11 +64,9 @@ export class HyperShopContentAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-<<<<<<< HEAD
-    this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_New_Content');
-=======
-    this.formInfo.formTitle = 'ثبت محتوای جدید';
->>>>>>> main
+
+    this.formInfo.formTitle = this.translate.instant('TITLE.Submit_New_Content');
+
     this.getEnumRecordStatus();
     this.DataGetAccess();
 
@@ -114,7 +112,7 @@ export class HyperShopContentAddComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

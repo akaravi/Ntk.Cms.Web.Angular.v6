@@ -83,7 +83,7 @@ export class CmsGuideinfoComponent implements OnInit ,OnDestroy {
               }
               this.open(content);
             } else {
-              this.cmsToastrService.typeerrorMessage(next.errorMessage);
+              this.cmsToastrService.typeErrorMessage(next.errorMessage);
             }
           },
           (error) => {
@@ -129,7 +129,7 @@ export class CmsGuideinfoComponent implements OnInit ,OnDestroy {
               }
               this.open(content);
             } else {
-              this.cmsToastrService.typeerrorMessage(next.errorMessage);
+              this.cmsToastrService.typeErrorMessage(next.errorMessage);
             }
           },
           (error) => {

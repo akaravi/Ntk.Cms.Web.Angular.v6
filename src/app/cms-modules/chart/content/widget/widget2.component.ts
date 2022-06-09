@@ -60,7 +60,7 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.modelData.set('All', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
@@ -79,7 +79,7 @@ export class ChartContentWidget2Component implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.modelData.set('Active', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'Active');
       },

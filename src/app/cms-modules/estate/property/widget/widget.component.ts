@@ -58,7 +58,7 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.modelData.set('All', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -76,7 +76,7 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.modelData.set('Active', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'Active');
       },
@@ -104,7 +104,7 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
             this.widgetInfoModel.link = '/estate/property';
           }
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'InChecking');
       },
