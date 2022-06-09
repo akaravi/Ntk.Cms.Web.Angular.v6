@@ -101,7 +101,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   }
   getUserClaimType(): void {
     const filter = new FilterModel();
-    filter.RowPerPage = 100;
+    filter.rowPerPage = 100;
     this.coreUserClaimTypeService.ServiceGetAll(filter).subscribe((next) => {
       this.dataModelCoreUserClaimTypeResult = next;
     });
@@ -119,22 +119,22 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     if (this.requestLinkUserId > 0 && this.requestLinkSiteId > 0) {
       /** */
       const model = new CoreUserClaimCheckDtoModel();
-      model.UserId = this.requestLinkUserId;
-      model.SiteId = this.requestLinkSiteId;
+      model.userId = this.requestLinkUserId;
+      model.siteId = this.requestLinkSiteId;
       this.coreUserClaimContentService.setAccessLoad();
       this.coreUserClaimContentService.ServiceClaimCheck(model).subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
             this.dataModelResult = ret;
-            this.tableSource.data = ret.ListItems;
+            this.tableSource.data = ret.listItems;
 
             if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(ret.Access);
+              this.optionsSearch.childMethods.setAccess(ret.access);
             }
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
 
@@ -153,17 +153,17 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
       this.coreUserClaimContentService.setAccessLoad();
       this.coreUserClaimContentService.ServiceClaimCheckCurrent().subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
             this.dataModelResult = ret;
-            this.tableSource.data = ret.ListItems;
+            this.tableSource.data = ret.listItems;
 
             if (this.optionsSearch.childMethods) {
-              this.optionsSearch.childMethods.setAccess(ret.Access);
+              this.optionsSearch.childMethods.setAccess(ret.access);
             }
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
 
@@ -194,15 +194,15 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   }
 
   onActionbuttonEditRow(model: CoreUserClaimCheckModel = this.tableRowSelected): void {
-    if (!model || !model.LinkTypeId || model.LinkTypeId === 0) {
+    if (!model || !model.linkTypeId || model.linkTypeId === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    if (model.LinkContentId && model.LinkContentId > 0) {
+    if (model.linkContentId && model.linkContentId > 0) {
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
         height: '90%',
-        data: { id: this.tableRowSelected.LinkContentId }
+        data: { id: this.tableRowSelected.linkContentId }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {
@@ -212,7 +212,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     } else {
       const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
         height: '90%',
-        data: { LinkUserClaimTypeId: this.tableRowSelected.LinkTypeId }
+        data: { LinkUserClaimTypeId: this.tableRowSelected.linkTypeId }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {

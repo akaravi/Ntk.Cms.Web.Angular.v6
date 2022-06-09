@@ -30,10 +30,10 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
   loading = new ProgressSpinnerModel();
 
   ngOnInit(): void {
-    this.dataModel.AppVersion = this.dataItemModel.AppVersion;
-    this.dataModel.LastBuildAppKey = this.dataItemModel.LastBuildAppKey;
-    this.dataModel.LinkApplicationId = this.dataItemModel.Id;
-    this.formInfo.FormSubmitAllow = false;
+    this.dataModel.appVersion = this.dataItemModel.appVersion;
+    this.dataModel.lastBuildAppKey = this.dataItemModel.lastBuildAppKey;
+    this.dataModel.linkApplicationId = this.dataItemModel.id;
+    this.formInfo.formSubmitAllow = false;
     this.DataGetAccess();
   }
   DataGetAccess(): void {
@@ -44,10 +44,10 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -62,32 +62,32 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    if (!this.dataModel.UploadFileGUID || this.dataModel.UploadFileGUID.length === 0) {
+    if (!this.dataModel.uploadFileGUID || this.dataModel.uploadFileGUID.length === 0) {
       this.cmsToastrService.typeErrorEdit('فایل آپلود نشده است');
       return;
     }
-    if (!this.dataModel.LinkApplicationId || this.dataModel.LinkApplicationId > 0) {
+    if (!this.dataModel.linkApplicationId || this.dataModel.linkApplicationId > 0) {
       this.cmsToastrService.typeErrorEdit('اپلکیشن مشخص نیست');
       return;
     }
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.applicationAppService.ServiceUploadUpdate(this.dataModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormSubmitAllow = false;
+        if (ret.isSuccess) {
+          this.formInfo.formSubmitAllow = false;
           this.cmsToastrService.typeSuccessAppUpload();
         } else {
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+          this.formInfo.formSubmitAllow = true;
+          this.cmsToastrService.typeErrorEdit(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
-        this.cmsToastrService.typeErrorEdit(er);
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);;
         this.loading.Stop(pName);
       }
     });
@@ -102,9 +102,9 @@ export class ApplicationAppUploadUpdateComponent implements OnInit {
     console.log(e);
   }
   OnActionUploadSuccess(model: FilePreviewModel): void {
-    if (model.uploadResponse && model.uploadResponse.Item && model.uploadResponse.Item.FileKey) {
-      this.dataModel.UploadFileGUID = model.uploadResponse.Item.FileKey;
-      this.formInfo.FormSubmitAllow = true;
+    if (model.uploadResponse && model.uploadResponse.item && model.uploadResponse.item.fileKey) {
+      this.dataModel.uploadFileGUID = model.uploadResponse.item.fileKey;
+      this.formInfo.formSubmitAllow = true;
     }
   }
 }

@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-                  let item of dataModelEnumRecordStatusResult.ListItems;
+                  let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,26 +24,26 @@
     </mat-form-field>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required
-        [disabled]="!fieldsInfo['Title']?.AccessEditField" />
-      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required
+        [disabled]="!fieldsInfo['Title']?.accessEditField" />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
-        {{fieldsInfo['Title']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['Title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- TitleResourceLanguage Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.AccessWatchField">
-      <mat-label> {{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TitleResourceLanguage" name="dataModel.TitleResourceLanguage"
-        #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.AccessEditField"
-        placeholder="{{fieldsInfo['TitleResourceLanguage']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.TitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.TitleResourceLanguage = ''">close</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
+        #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleResourceLanguage.errors?.required">
@@ -52,45 +52,45 @@
     </mat-form-field>
     <!-- Folder Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Folder']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Folder" name="dataModel.Folder" #Folder type="text" placeholder="مسیر شاخه"
-        minlength="3" maxlength="100" required [disabled]="!fieldsInfo['Folder']?.AccessEditField" />
-      <mat-icon matSuffix *ngIf="dataModel.Folder" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Folder = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Folder']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.folder" name="dataModel.folder" #Folder type="text" placeholder="مسیر شاخه"
+        minlength="3" maxlength="100" required [disabled]="!fieldsInfo['Folder']?.accessEditField" />
+      <mat-icon matSuffix *ngIf="dataModel.folder" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.folder = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Folder.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Folder.errors?.required">
-        {{fieldsInfo['Folder']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['Folder']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- IndexFile Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['IndexFile']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.IndexFile" name="dataModel.IndexFile" #IndexFile type="text"
+      <mat-label>{{fieldsInfo['IndexFile']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.indexFile" name="dataModel.indexFile" #IndexFile type="text"
         placeholder="index.html" minlength="3" maxlength="100" required
-        [disabled]="!fieldsInfo['IndexFile']?.AccessEditField" />
-      <mat-icon matSuffix *ngIf="dataModel.IndexFile" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.IndexFile = ''">close</mat-icon>
+        [disabled]="!fieldsInfo['IndexFile']?.accessEditField" />
+      <mat-icon matSuffix *ngIf="dataModel.indexFile" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.indexFile = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ IndexFile.value.length }} / 100</mat-hint>
       <mat-error *ngIf="IndexFile.errors?.required">
-        {{fieldsInfo['IndexFile']?.FieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['IndexFile']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- IsPublish Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.IsPublish" *ngIf="fieldsInfo['IsPublish']?.AccessWatchField"
-        [disabled]="!fieldsInfo['IsPublish']?.AccessEditField" name="dataModel.IsPublish">
-        {{fieldsInfo['IsPublish']?.FieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isPublish" *ngIf="fieldsInfo['IsPublish']?.accessWatchField"
+        [disabled]="!fieldsInfo['IsPublish']?.accessEditField" name="dataModel.isPublish">
+        {{fieldsInfo['IsPublish']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
@@ -109,15 +109,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

@@ -6,35 +6,35 @@
 <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <div class="table" *ngIf="dataModelResult.Item&& dataModelResult.Item.Id>0">
+    <div class="table" *ngIf="dataModelResult.item&& dataModelResult.item.id>0">
         <div class="tr">
             <div class="td">شناسه تراکنش</div>
-            <div class="td">{{dataModelResult.Item.Id}}</div>
+            <div class="td">{{dataModelResult.item.id}}</div>
             <div style="clear: both;"></div>
         </div>
         <div class="tr">
             <div class="td">وضعیت تراکنش</div>
             <div class="td">
-                <div *ngIf="this.dataModelResult.Item.TransactionStatus==TransactionSuccessful">
+                <div *ngIf="this.dataModelResult.item.transactionStatus==TransactionSuccessful">
                     <span
                     class="svg-icon svg-icon-3x svg-icon-primary"
                     [inlineSVG]="'assets/media/svg/icons/General/Shield-check.svg'"
                   ></span>
                   <br>
                 </div>
-                {{dataModelResult.Item.TransactionStatus | enums : dataModelEnumTransactionRecordStatusResult.ListItems}}
+                {{dataModelResult.item.transactionStatus | enums : dataModelEnumTransactionRecordStatusResult.listItems}}
             </div>
             <div style="clear: both;"></div>
         </div>
 
         <div class="tr">
             <div class="td"> {{'TITLE.Amount' | translate}} </div>
-            <div class="td">{{dataModelResult.Item.Amount}} {{dataModelResult.Item.CurrencyUnit}}</div>
+            <div class="td">{{dataModelResult.item.amount}} {{dataModelResult.item.currencyUnit}}</div>
             <div style="clear: both;"></div>
         </div>
         <div class="tr">
             <div class="td">پیام</div>
-            <div class="td">{{dataModelResult.Item.LastStatusMessage}}</div>
+            <div class="td">{{dataModelResult.item.lastStatusMessage}}</div>
             <div style="clear: both;"></div>
         </div>
 

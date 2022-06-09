@@ -26,7 +26,7 @@ export class TooltipGuideDirective {
     private cmsToastrService: CmsToastrService,
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
-      this.lang = value.Language;
+      this.lang = value.language;
 
     });
 
@@ -38,7 +38,7 @@ export class TooltipGuideDirective {
   @HostListener('mouseenter') onMouseEnter(): void {
     if (!this.tooltip) {
       this.tokenHelper.getCurrentToken().then((value) => {
-        this.lang = value.Language;
+        this.lang = value.language;
       });
       this.show();
     }
@@ -60,27 +60,27 @@ export class TooltipGuideDirective {
               if (this.tooltip) { this.hide(); }
               return;
             }
-            if (next.IsSuccess) {
+            if (next.isSuccess) {
               /*run */
               switch (this.lang) {
                 case 'fa': {
-                  this.create(next.Item.DescriptionFa);
+                  this.create(next.item.descriptionFa);
                   break;
                 }
                 case 'en': {
-                  this.create(next.Item.DescriptionEn);
+                  this.create(next.item.descriptionEn);
                   break;
                 }
                 case 'ar': {
-                  this.create(next.Item.DescriptionAr);
+                  this.create(next.item.descriptionAr);
                   break;
                 }
                 case 'de': {
-                  this.create(next.Item.DescriptionDe);
+                  this.create(next.item.descriptionDe);
                   break;
                 }
                 default: {
-                  this.create(next.Item.DescriptionFa);
+                  this.create(next.item.descriptionFa);
                   break;
                 }
               }
@@ -90,7 +90,7 @@ export class TooltipGuideDirective {
               /*run */
             } else {
               if (this.viewError) {
-                this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+                this.cmsToastrService.typeerrorMessage(next.errorMessage);
               }
               /*run */
               this.create('Identity :' + this.Identity);
@@ -114,27 +114,27 @@ export class TooltipGuideDirective {
               if (this.tooltip) { this.hide(); }
               return;
             }
-            if (next.IsSuccess) {
+            if (next.isSuccess) {
               /*run */
               switch (this.lang) {
                 case 'fa': {
-                  this.create(next.Item.DescriptionFa);
+                  this.create(next.item.descriptionFa);
                   break;
                 }
                 case 'en': {
-                  this.create(next.Item.DescriptionEn);
+                  this.create(next.item.descriptionEn);
                   break;
                 }
                 case 'ar': {
-                  this.create(next.Item.DescriptionAr);
+                  this.create(next.item.descriptionAr);
                   break;
                 }
                 case 'de': {
-                  this.create(next.Item.DescriptionDe);
+                  this.create(next.item.descriptionDe);
                   break;
                 }
                 default: {
-                  this.create(next.Item.DescriptionFa);
+                  this.create(next.item.descriptionFa);
                   break;
                 }
               }
@@ -143,7 +143,7 @@ export class TooltipGuideDirective {
               /*run */
             } else {
               if (this.viewError) {
-                this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+                this.cmsToastrService.typeerrorMessage(next.errorMessage);
               }
               /*run */
               this.create('Key :' + this.tooltipGuide);

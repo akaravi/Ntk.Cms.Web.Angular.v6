@@ -47,8 +47,8 @@ export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
       if (data.Credit && data.Credit > 0) {
         this.requestCredit = data.Credit;
       }
-      if (data.LinkModuleId && data.LinkModuleId > 0) {
-        this.requestLinkModuleId = data.LinkModuleId;
+      if (data.linkModuleId && data.linkModuleId > 0) {
+        this.requestLinkModuleId = data.linkModuleId;
       }
     }
     if (this.requestCredit === 0) {
@@ -62,11 +62,11 @@ export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
       return;
     }
 
-    this.dataModelCalculate.Credit = this.requestCredit;
-    this.dataModelCalculate.LinkModuleId = this.requestLinkModuleId;
-    this.dataModelPayment.Credit = this.requestCredit;
-    this.dataModelPayment.LinkModuleId = this.requestLinkModuleId;
-    this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
+    this.dataModelCalculate.credit = this.requestCredit;
+    this.dataModelCalculate.linkModuleId = this.requestLinkModuleId;
+    this.dataModelPayment.credit = this.requestCredit;
+    this.dataModelPayment.linkModuleId = this.requestLinkModuleId;
+    this.dataModelPayment.lastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
 
@@ -83,7 +83,7 @@ export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
+    this.formInfo.formTitle = 'انتخاب درگاه پرداخت';
 
   }
 
@@ -93,12 +93,12 @@ export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
     this.loading.Start(pName);
     this.coreModuleSiteUserCreditService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelCalculateResult = ret;
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -112,35 +112,35 @@ export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
     );
   }
   DataPayment(): void {
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
     this.coreModuleSiteUserCreditService.ServiceOrderPayment(this.dataModelPayment).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelPaymentResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-          localStorage.setItem('TransactionId', ret.Item.TransactionId.toString());
-          this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
+          localStorage.setItem('TransactionId', ret.item.transactionId.toString());
+          this.document.location.href = this.dataModelPaymentResult.item.urlToPay;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
-          this.formInfo.FormSubmitAllow = true;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.formInfo.formSubmitAllow = true;
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.loading.Stop(pName);
       }
     }
     );
   }
   onActionSelectCalculate(model: BankPaymentPrivateSiteConfigModel): void {
-    this.dataModelCalculate.BankPaymentPrivateId = model.Id;
-    this.dataModelPayment.BankPaymentPrivateId = model.Id;
+    this.dataModelCalculate.bankPaymentPrivateId = model.id;
+    this.dataModelPayment.bankPaymentPrivateId = model.id;
     this.DataCalculate();
   }
   onActionSelectBankPayment(): void {

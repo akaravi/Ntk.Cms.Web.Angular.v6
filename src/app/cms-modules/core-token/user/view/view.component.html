@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -12,15 +12,15 @@
 <div class="ntk-cms-html-card-message">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
   <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
     </small>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
     <button type="button" (click)="onFormCancel()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>

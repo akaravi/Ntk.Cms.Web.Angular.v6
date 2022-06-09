@@ -56,7 +56,7 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
       this.requestLinkPageId = this.activatedRoute.snapshot.paramMap.get('LinkPageId');
     }
     if (this.requestLinkPageId.length > 0) {
-      this.dataModel.LinkPageId = this.requestLinkPageId;
+      this.dataModel.linkPageId = this.requestLinkPageId;
     }
     this.DataGetAccess();
     this.getEnumRecordStatus();
@@ -76,11 +76,11 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.isSuccess) {
+            this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
         },
         (error) => {
@@ -89,29 +89,29 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.webDesignerMainIntroService
       .ServiceAdd(this.dataModel)
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
+          this.formInfo.formSubmitAllow = !next.isSuccess;
           this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (next.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/webdesigner/intro/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }
       );
@@ -131,11 +131,11 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
     this.router.navigate(['/webdesigner/intro/']);
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkMainVideoId(model: NodeInterface): void {
-    this.dataModel.LinkMainVideoId = model.id;
-    this.dataModel.LinkMainVideoIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainVideoId = model.id;
+    this.dataModel.linkMainVideoIdSrc = model.downloadLinksrc;
   }
 }

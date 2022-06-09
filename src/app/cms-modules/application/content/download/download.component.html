@@ -4,21 +4,21 @@
 
   <mat-card-header *ngIf="!loading.display">
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{dataModel.Title}}</mat-card-title>
-    <mat-card-subtitle>ver : {{dataModel.AppVersion}}</mat-card-subtitle>
+    <mat-card-title>{{dataModel.title}}</mat-card-title>
+    <mat-card-subtitle>ver : {{dataModel.appVersion}}</mat-card-subtitle>
   </mat-card-header>
-  <img [src]="dataModel.DownloadLinkSrcQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
-  <img [src]="dataModel.LinkMainImageIdSrc" *ngIf="dataModel.LinkMainImageId>0 &&dataModel.LinkMainImageIdSrc.length>0"
+  <img [src]="dataModel.downloadLinkSrcQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
+  <img [src]="dataModel.linkMainImageIdSrc" *ngIf="dataModel.linkMainImageId>0 &&dataModel.linkMainImageIdSrc.length>0"
     height="300px" width="300px">
   <mat-card-content>
     <p>
-      {{dataModel.DownloadLinkSrc}}
+      {{dataModel.downloadLinkSrc}}
     </p>
     <p>
-      {{dataModel.DownloadLinkSrcCustomize}}
+      {{dataModel.downloadLinkSrcCustomize}}
     </p>
     <p>
-      {{dataModel.DownloadLinkUpdateSrc}}
+      {{dataModel.downloadLinkUpdateSrc}}
     </p>
   </mat-card-content>
   <mat-card-actions>

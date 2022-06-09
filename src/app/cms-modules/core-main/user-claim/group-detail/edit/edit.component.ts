@@ -71,8 +71,8 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.requestModel && this.requestModel.LinkUserClaimTypeId > 0) {
-      this.formInfo.FormTitle = 'ویرایش  ';
+    if (this.requestModel && this.requestModel.linkUserClaimTypeId > 0) {
+      this.formInfo.formTitle = 'ویرایش  ';
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -87,36 +87,36 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
   }
   DataGetOneContent(): void {
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
 
     const filteModelContent = new FilterModel();
     let fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'LinkUserClaimGroupId';
-    fastfilter.Value = this.requestModel.LinkUserClaimGroupId;
-    filteModelContent.Filters.push(fastfilter);
+    fastfilter.propertyName = 'LinkUserClaimGroupId';
+    fastfilter.value = this.requestModel.linkUserClaimGroupId;
+    filteModelContent.filters.push(fastfilter);
     /** */
     fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'LinkUserClaimTypeId';
-    fastfilter.Value = this.requestModel.LinkUserClaimTypeId;
-    filteModelContent.Filters.push(fastfilter);
+    fastfilter.propertyName = 'LinkUserClaimTypeId';
+    fastfilter.value = this.requestModel.linkUserClaimTypeId;
+    filteModelContent.filters.push(fastfilter);
 
     this.coreUserClaimGroupDetailService.setAccessLoad();
     this.coreUserClaimGroupDetailService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        if (ret.IsSuccess && ret.ListItems.length > 0) {
-          this.dataModel = ret.ListItems[0];
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' +
-            this.dataModel.LinkUserClaimGroupId + '<-->' + this.dataModel.LinkUserClaimTypeId;
-          this.formInfo.FormAlert = '';
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess && ret.listItems.length > 0) {
+          this.dataModel = ret.listItems[0];
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' +
+            this.dataModel.linkUserClaimGroupId + '<-->' + this.dataModel.linkUserClaimTypeId;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -130,30 +130,30 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.coreUserClaimGroupDetailService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -161,30 +161,30 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
     );
   }
   onActionSelectClaimGroup(model: CoreUserClaimGroupModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'دسته را مشخص کنید',
         'گروه مدارک اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkUserClaimGroupId = model.Id;
+    this.dataModel.linkUserClaimGroupId = model.id;
   }
   onActionSelectClaimType(model: CoreUserClaimTypeModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'دسته را مشخص کنید',
         'نوع مدارک اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkUserClaimTypeId = model.Id;
+    this.dataModel.linkUserClaimTypeId = model.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

@@ -70,7 +70,7 @@ export class EstateAccountUserAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = this.translate.instant('TITLE.ADD');
+    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
 
@@ -84,10 +84,10 @@ export class EstateAccountUserAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -97,29 +97,29 @@ export class EstateAccountUserAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estateAccountUserService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -148,14 +148,14 @@ export class EstateAccountUserAddComponent implements OnInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.Geolocationlatitude && lon === this.dataModel.Geolocationlongitude) {
-        this.dataModel.Geolocationlatitude = null;
-        this.dataModel.Geolocationlongitude = null;
+      if (lat === this.dataModel.geolocationlatitude && lon === this.dataModel.geolocationlongitude) {
+        this.dataModel.geolocationlatitude = null;
+        this.dataModel.geolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.Geolocationlatitude = lat;
-      this.dataModel.Geolocationlongitude = lon;
+      this.dataModel.geolocationlatitude = lat;
+      this.dataModel.geolocationlongitude = lon;
     });
 
   }
@@ -163,22 +163,22 @@ export class EstateAccountUserAddComponent implements OnInit {
   receiveZoom(zoom: number): void {
   }
   onActionSelectorUser(model: CoreUserModel | null): void {
-    this.dataModel.LinkCmsUserId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkCmsUserId = model.Id;
+    this.dataModel.linkCmsUserId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkCmsUserId = model.id;
     }
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {
-    this.dataModel.LinkLocationId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkLocationId = model.Id;
+    this.dataModel.linkLocationId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkLocationId = model.id;
     }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataAddContent();
   }
   onFormCancel(): void {
@@ -186,8 +186,8 @@ export class EstateAccountUserAddComponent implements OnInit {
   }
 
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
 
   }
 }

@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-                  let item of dataModelEnumRecordStatusResult.ListItems;
+                  let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,23 +24,23 @@
     </mat-form-field>
     <!-- LinkExternalCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
-      [optionDisabled]="!fieldsInfo['LinkExternalCmsUserId']?.AccessAddField"
-      [optionSelectForce]="dataModel.LinkExternalCmsUserId" [optionPlaceholder]="'حساب کاربری'">
+      [optionDisabled]="!fieldsInfo['LinkExternalCmsUserId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkExternalCmsUserId" [optionPlaceholder]="'حساب کاربری'">
     </app-cms-user-selector>
     <!-- IsInBlackList Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.IsInBlackList" *ngIf="fieldsInfo['IsInBlackList']?.AccessWatchField"
-        [disabled]="!fieldsInfo['IsInBlackList']?.AccessEditField" name="dataModel.IsInBlackList">
-        {{fieldsInfo['IsInBlackList']?.FieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isInBlackList" *ngIf="fieldsInfo['IsInBlackList']?.accessWatchField"
+        [disabled]="!fieldsInfo['IsInBlackList']?.accessEditField" name="dataModel.isInBlackList">
+        {{fieldsInfo['IsInBlackList']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
@@ -50,11 +50,11 @@
 
     <!-- CurrentDebtor Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentDebtor']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.CurrentDebtor" name="dataModel.CurrentDebtor" #CurrentDebtor type="number"
+      <mat-label>{{fieldsInfo['CurrentDebtor']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.currentDebtor" name="dataModel.currentDebtor" #CurrentDebtor type="number"
         placeholder="اعتبار فعلی بدهکار" min="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.CurrentDebtor" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.CurrentDebtor = 0">close</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.currentDebtor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.currentDebtor = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="CurrentDebtor.errors?.required">
         CurrentDebtor is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -62,11 +62,11 @@
     </mat-form-field>
     <!-- CurrentCreditor Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentCreditor']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.CurrentCreditor" name="dataModel.CurrentCreditor" #CurrentCreditor
+      <mat-label>{{fieldsInfo['CurrentCreditor']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.currentCreditor" name="dataModel.currentCreditor" #CurrentCreditor
         type="number" placeholder="اعتبار فعلی بستانکار" min="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.CurrentCreditor" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.CurrentCreditor = 0">close</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.currentCreditor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.currentCreditor = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="CurrentCreditor.errors?.required">
         CurrentCreditor is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -77,15 +77,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

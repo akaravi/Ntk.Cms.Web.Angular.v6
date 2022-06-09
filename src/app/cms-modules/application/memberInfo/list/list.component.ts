@@ -56,8 +56,8 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'CreatedDate';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'CreatedDate';
+    this.filteModelContent.sortType = EnumSortType.Descending;
   }
   comment: string;
   author: string;
@@ -99,14 +99,14 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.requestLinkMemberId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkMemberId'));
     const filter = new FilterDataModel();
     if (this.requestLinkApplicationId > 0) {
-      filter.PropertyName = 'LinkApplicationId';
-      filter.Value = this.requestLinkApplicationId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'LinkApplicationId';
+      filter.value = this.requestLinkApplicationId;
+      this.filteModelContent.filters.push(filter);
     }
     if (this.requestLinkMemberId > 0) {
-      filter.PropertyName = 'LinkMemberId';
-      filter.Value = this.requestLinkMemberId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'LinkMemberId';
+      filter.value = this.requestLinkMemberId;
+      this.filteModelContent.filters.push(filter);
     }
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -125,23 +125,23 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ApplicationMemberInfoModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     const filter = new FilterDataModel();
-    if (this.categoryModelSelected && this.categoryModelSelected.Id) {
-      filter.PropertyName = 'LinkApplicationId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
+    if (this.categoryModelSelected && this.categoryModelSelected.id) {
+      filter.propertyName = 'LinkApplicationId';
+      filter.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        if (ret.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          this.tableSource.data = ret.listItems;
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'LinkSiteId',
@@ -160,10 +160,10 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
             );
           }
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.Access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -178,44 +178,44 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
   onActionbuttonViewRow(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
     ) {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
     const dialogRef = this.dialog.open(ApplicationMemberInfoViewComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -224,22 +224,22 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonEditRow(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
   }
   onActionbuttonDeleteRow(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -247,24 +247,24 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' +
-      '<br> ( ' + this.tableRowSelected.Id + ' ) ';
+      '<br> ( ' + this.tableRowSelected.id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
-              if (ret.IsSuccess) {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -287,42 +287,42 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       );
   }
   onActionbuttonNotifictionList(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/application/notification/LinkApplicationMemberId', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/notification/LinkApplicationMemberId', this.tableRowSelected.id]);
   }
   onActionbuttonNotifictionActionSend(model: ApplicationMemberInfoModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (!model.NotificationId || model.NotificationId.length === 0) {
+    if (!model.notificationId || model.notificationId.length === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Selected_row_does_not_have_ID_notification'));
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
-      data: { LinkApplicationMemberId: this.tableRowSelected.Id }
+      data: { LinkApplicationMemberId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -345,11 +345,11 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -359,16 +359,16 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -386,11 +386,11 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -403,7 +403,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationMemberInfoModel): void {

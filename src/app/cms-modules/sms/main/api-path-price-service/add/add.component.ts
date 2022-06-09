@@ -71,7 +71,7 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
 
     this.DataGetAccess();
@@ -97,11 +97,11 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -111,30 +111,30 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.smsMainApiPathPriceServiceService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -142,47 +142,47 @@ export class SmsMainApiPathPriceServiceAddComponent implements OnInit {
     );
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreUserId = null;
+    if (!model || !model.id || model.id <= 0) {
+      this.dataModel.linkCoreUserId = null;
       return;
     }
-    this.dataModel.LinkCoreUserId = model.Id;
+    this.dataModel.linkCoreUserId = model.id;
   }
   onActionSelectorCmsSite(model: CoreSiteModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreSiteId = null;
+    if (!model || !model.id || model.id <= 0) {
+      this.dataModel.linkCoreSiteId = null;
       return;
     }
-    this.dataModel.LinkCoreSiteId = model.Id;
+    this.dataModel.linkCoreSiteId = model.id;
   }
   onActionSelectorCoreUserGroup(model: CoreUserGroupModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreUserGroupId = null;
+    if (!model || !model.id || model.id <= 0) {
+      this.dataModel.linkCoreUserGroupId = null;
       return;
     }
-    this.dataModel.LinkCoreUserGroupId = model.Id;
+    this.dataModel.linkCoreUserGroupId = model.id;
   }
   onActionSelectorCoreSiteCategory(model: CoreSiteCategoryModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCoreSiteCategoryId = null;
+    if (!model || !model.id || model.id <= 0) {
+      this.dataModel.linkCoreSiteCategoryId = null;
       return;
     }
-    this.dataModel.LinkCoreSiteCategoryId = model.Id;
+    this.dataModel.linkCoreSiteCategoryId = model.id;
   }
   onActionSelectorSelectLinkApiPathId(model: SmsMainApiPathModel | null): void {
-    if (!model || model.Id.length <= 0) {
+    if (!model || model.id.length <= 0) {
       const message = 'مسیر سرویس دهنده مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkApiPathId = model.Id;
+    this.dataModel.linkApiPathId = model.id;
   }
 
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
 
     this.DataAddContent();
 

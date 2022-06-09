@@ -60,11 +60,11 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
     this.headerService.setAccessLoad();
     this.headerService.ServiceGetOneById(this.optionId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        if (ret.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -75,8 +75,8 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
     }
     );
   }
-  onActionbuttonLinkTo(model: EstateCustomerOrderModel = this.dataModelResult.Item): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+  onActionbuttonLinkTo(model: EstateCustomerOrderModel = this.dataModelResult.item): void {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -84,9 +84,9 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        Title: model.Title,
-        UrlViewContentQRCodeBase64: model.UrlViewContentQRCodeBase64,
-        UrlViewContent: model.UrlViewContent,
+        Title: model.title,
+        urlViewContentQRCodeBase64: model.urlViewContentQRCodeBase64,
+        urlViewContent: model.urlViewContent,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

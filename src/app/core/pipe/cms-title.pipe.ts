@@ -7,13 +7,13 @@ export class CmsTitlePipe implements PipeTransform {
     if (!value || !args || args.length === 0) {
       return '';
     }
-    const find = args.find(x => x.Id === value);
+    const find = args.find(x => x.id === value);
     if (!find) {
       return value;
     }
-    if (!find.TitleML || find.TitleML.length === 0) {
-      return find.Title;
+    if (!find.titleML || find.titleML.length === 0) {
+      return find.title;
     }
-    return find.TitleML;
+    return find.titleML;
   }
 }

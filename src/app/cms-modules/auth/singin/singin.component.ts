@@ -43,25 +43,25 @@ export class AuthSingInComponent implements OnInit {
     this.returnUrl =
       this.route.snapshot.queryParams['returnUrl'.toString()] || '/';
     if (this.firstRun) {
-      this.dataModel.CaptchaText = '0000';
+      this.dataModel.captchaText = '0000';
     }
   }
   onActionSubmit(): void {
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     this.hasError = false;
-    this.dataModel.CaptchaKey = this.captchaModel.Key;
+    this.dataModel.captchaKey = this.captchaModel.key;
     this.dataModel.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUser';
     this.loading.Start(pName, this.translate.instant('MESSAGE.login_to_user_account'));
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
-      this.dataModel.SiteId = siteId;
+      this.dataModel.siteId = siteId;
     }
     this.coreAuthService.ServiceSigninUser(this.dataModel).subscribe({
       next: (res) => {
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.cmsToastrService.typeSuccessLogin();
-          if (res.Item.SiteId > 0) {
+          if (res.item.siteId > 0) {
             setTimeout(() => this.router.navigate(['/dashboard']), 1000);
           }
           else {
@@ -69,15 +69,15 @@ export class AuthSingInComponent implements OnInit {
           }
         } else {
           this.firstRun = false;
-          this.formInfo.ButtonSubmittedEnabled = true;
-          this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
+          this.formInfo.buttonSubmittedEnabled = true;
+          this.cmsToastrService.typeErrorLogin(res.errorMessage);
           this.onCaptchaOrder();
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
         this.firstRun = false;
-        this.formInfo.ButtonSubmittedEnabled = true;
+        this.formInfo.buttonSubmittedEnabled = true;
         this.cmsToastrService.typeError(er);
         this.onCaptchaOrder();
         this.loading.Stop(pName);
@@ -92,15 +92,15 @@ export class AuthSingInComponent implements OnInit {
     if (this.onCaptchaOrderInProcess) {
       return;
     }
-    this.dataModel.CaptchaText = '';
+    this.dataModel.captchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe({
       next: (ret) => {
-        this.captchaModel = ret.Item;
-        this.expireDate = ret.Item.Expire.split('+')[1];
+        this.captchaModel = ret.item;
+        this.expireDate = ret.item.expire.split('+')[1];
         const startDate = new Date();
-        const endDate = new Date(ret.Item.Expire);
+        const endDate = new Date(ret.item.expire);
         const seconds = (endDate.getTime() - startDate.getTime());
         if (this.aoutoCaptchaOrder < 10) {
           this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
@@ -109,8 +109,8 @@ export class AuthSingInComponent implements OnInit {
               this.onCaptchaOrder();
           }, seconds);
         }
-        if (!ret.IsSuccess) {
-          this.cmsToastrService.typeErrorGetCpatcha(ret.ErrorMessage);
+        if (!ret.isSuccess) {
+          this.cmsToastrService.typeErrorGetCpatcha(ret.errorMessage);
         }
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);

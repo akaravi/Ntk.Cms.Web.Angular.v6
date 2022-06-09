@@ -69,7 +69,7 @@ export class LinkManagementConfigCheckSiteComponent implements OnInit, OnDestroy
   }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
-      this.requestLinkSiteId = this.tokenInfo.SiteId;
+      this.requestLinkSiteId = this.tokenInfo.siteId;
     }
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
       return;
@@ -82,9 +82,9 @@ export class LinkManagementConfigCheckSiteComponent implements OnInit, OnDestroy
         next: (ret) => {
           this.loading.Stop(pName);
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (!ret.IsSuccess) {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+          this.tableSource.data = ret.listItems;
+          if (!ret.isSuccess) {
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
         error: (er) => {

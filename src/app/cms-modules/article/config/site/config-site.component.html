@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -12,22 +12,22 @@
         <p>تنظیمات که ماژول به سایت به کارگیری می شود </p>
         <!-- StatusRenderUser Field -->
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.StatusRenderUser"
-            name="dataConfigSiteValuesModel.StatusRenderUser">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.statusRenderUser"
+            name="dataConfigSiteValuesModel.statusRenderUser">
             StatusRenderUser
           </mat-slide-toggle>
         </div>
         <!-- UseDataDefaulteSite -->
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.UseDataDefaulteSite"
-            name="dataConfigSiteValuesModel.UseDataDefaulteSite">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.useDataDefaulteSite"
+            name="dataConfigSiteValuesModel.useDataDefaulteSite">
             نمایش اطلاعات سایت پیش فرض در سایت
           </mat-slide-toggle>
         </div>
-        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteValuesModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
@@ -43,27 +43,27 @@
         <p>مقادیر ذخیره شده توسط سیستم </p>
         <!-- RowCount Field -->
         <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.RowCount" name="dataSiteStorageModel.RowCount">
+          <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.rowCount" name="dataSiteStorageModel.rowCount">
             RowCount
           </mat-slide-toggle>
         </div>
         <!-- MainDataContentRowCount Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>MainDataContentRowCount</mat-label>
-          <input matInput [(ngModel)]="dataSiteStorageModel.MainDataContentRowCount"
-            name="dataSiteStorageModel.MainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
+          <input matInput [(ngModel)]="dataSiteStorageModel.mainDataContentRowCount"
+            name="dataSiteStorageModel.mainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
             type="number" placeholder="0" />
-          <mat-icon matSuffix *ngIf="dataSiteStorageModel.MainDataContentRowCount" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataSiteStorageModel.MainDataContentRowCount = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.mainDataContentRowCount" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataSiteStorageModel.mainDataContentRowCount = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- UpdatedContent Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>UpdatedContent</mat-label>
           <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent"
-            [(ngModel)]="dataSiteStorageModel.UpdatedContent" name="dataSiteStorageModel.UpdatedContent" />
-          <mat-icon matSuffix *ngIf="dataSiteStorageModel.UpdatedContent " matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataSiteStorageModel.UpdatedContent = null">close</mat-icon>
+            [(ngModel)]="dataSiteStorageModel.updatedContent" name="dataSiteStorageModel.updatedContent" />
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.updatedContent " matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataSiteStorageModel.updatedContent = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedContent"></mat-datepicker-toggle>
           <mat-datepicker touchUi #dataSiteStorageModel_UpdatedContent></mat-datepicker>
         </mat-form-field>
@@ -71,9 +71,9 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>UpdatedNewsCategory</mat-label>
           <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedNewsCategory"
-            [(ngModel)]="dataSiteStorageModel.UpdatedNewsCategory" name="dataSiteStorageModel.UpdatedNewsCategory" />
-          <mat-icon matSuffix *ngIf="dataSiteStorageModel.UpdatedNewsCategory " matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataSiteStorageModel.UpdatedNewsCategory = null">close</mat-icon>
+            [(ngModel)]="dataSiteStorageModel.updatedNewsCategory" name="dataSiteStorageModel.updatedNewsCategory" />
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.updatedNewsCategory " matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataSiteStorageModel.updatedNewsCategory = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedNewsCategory"></mat-datepicker-toggle>
           <mat-datepicker touchUi #dataSiteStorageModel_UpdatedNewsCategory></mat-datepicker>
         </mat-form-field>
@@ -81,16 +81,16 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>UpdatedNewsContent</mat-label>
           <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedNewsContent"
-            [(ngModel)]="dataSiteStorageModel.UpdatedNewsContent" name="dataSiteStorageModel.UpdatedNewsContent" />
-          <mat-icon matSuffix *ngIf="dataSiteStorageModel.UpdatedNewsContent " matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataSiteStorageModel.UpdatedNewsContent = null">close</mat-icon>
+            [(ngModel)]="dataSiteStorageModel.updatedNewsContent" name="dataSiteStorageModel.updatedNewsContent" />
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.updatedNewsContent " matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataSiteStorageModel.updatedNewsContent = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedNewsContent"></mat-datepicker-toggle>
           <mat-datepicker touchUi #dataSiteStorageModel_UpdatedNewsContent></mat-datepicker>
         </mat-form-field>
-        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
@@ -107,11 +107,11 @@
         <!-- MainDataContentRowCount Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>MainDataContentRowCount</mat-label>
-          <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.MainDataContentRowCount"
-            name="dataConfigSiteAccessValuesModel.MainDataContentRowCount"
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.mainDataContentRowCount"
+            name="dataConfigSiteAccessValuesModel.mainDataContentRowCount"
             #dataConfigSiteAccessValuesModel_MainDataContentRowCount type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.MainDataContentRowCount" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.MainDataContentRowCount = null">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.mainDataContentRowCount" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.mainDataContentRowCount = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigSiteAccessValuesModel_MainDataContentRowCount.errors?.required">
             MainDataContentRowCount is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -120,17 +120,17 @@
         <!-- UseDataDefaulteSiteId Field -->
         <!-- <mat-form-field class="ntk-full-width">
           <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
-          <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
-            name="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId"
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
+            name="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
             #dataConfigSiteAccessValuesModel_UseDataDefaulteSiteId type="number" placeholder="0" />
-          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.UseDataDefaulteSiteId = 0">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field> -->
-        <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
         </div>
-        <div *ngIf="formInfo.FormSubmitAllow  && !loading.display" class="ntk-button-row">
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

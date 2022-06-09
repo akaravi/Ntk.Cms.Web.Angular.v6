@@ -33,7 +33,7 @@ export class CmsSearchListComponent implements OnInit {
   }
 
 
-  Filters: Array<FilterDataModel>;
+  filters: Array<FilterDataModel>;
   lang: string;
   model: any;
   query: RuleSet;
@@ -52,40 +52,40 @@ export class CmsSearchListComponent implements OnInit {
     // }
   }
   setAccess(model: AccessModel): void {
-    this.optionsData.data.Access = model;
-    if (!this.Filters || this.Filters.length === 0) {
+    this.optionsData.data.access = model;
+    if (!this.filters || this.filters.length === 0) {
       this.setFields();
     }
   }
   setFields(): void {
     if (
       this.optionsData &&
-      this.optionsData.data.Access &&
-      this.optionsData.data.Access.FieldsInfo
+      this.optionsData.data.access &&
+      this.optionsData.data.access.fieldsInfo
     ) {
-      this.optionsData.data.Access.FieldsInfo.forEach((column) => {
-        if (!column.AccessSearchField) { return; }
+      this.optionsData.data.access.fieldsInfo.forEach((column) => {
+        if (!column.accessSearchField) { return; }
         if (
-          column.FieldType === 'System.Int32' ||
-          column.FieldType === 'System.Int64'
+          column.fieldType === 'System.Int32' ||
+          column.fieldType === 'System.Int64'
         ) {
-          this.fieldMap[column.FieldName] = {
-            name: column.FieldTitle,
+          this.fieldMap[column.fieldName] = {
+            name: column.fieldTitle,
             type: 'integer',
           };
-        } else if (column.FieldType === 'System.String') {
-          this.fieldMap[column.FieldName] = {
-            name: column.FieldTitle,
+        } else if (column.fieldType === 'System.String') {
+          this.fieldMap[column.fieldName] = {
+            name: column.fieldTitle,
             type: 'string',
           };
-        } else if (column.FieldType === 'MongoDB.Bson.ObjectId') {
-          this.fieldMap[column.FieldName] = {
-            name: column.FieldName,
+        } else if (column.fieldType === 'MongoDB.Bson.ObjectId') {
+          this.fieldMap[column.fieldName] = {
+            name: column.fieldName,
             type: 'string',
           };
-        } else if (column.FieldType === 'System.Boolean') {
-          this.fieldMap[column.FieldName] = {
-            name: column.FieldTitle,
+        } else if (column.fieldType === 'System.Boolean') {
+          this.fieldMap[column.fieldName] = {
+            name: column.fieldTitle,
             type: 'select',
 
             options: [
@@ -93,15 +93,15 @@ export class CmsSearchListComponent implements OnInit {
               { name: 'خیر', value: false },
             ],
           };
-        } else if (column.FieldType === 'System.DateTime') {
-          this.fieldMap[column.FieldName] = {
-            name: column.FieldTitle,
+        } else if (column.fieldType === 'System.DateTime') {
+          this.fieldMap[column.fieldName] = {
+            name: column.fieldTitle,
             type: 'date',
             settings: {},
           };
-        } else if (column.FieldType === 'link') {
-          this.fieldMap[column.FieldName] = {
-            name: column.FieldTitle,
+        } else if (column.fieldType === 'link') {
+          this.fieldMap[column.fieldName] = {
+            name: column.fieldTitle,
             type: 'string',
           };
         } else {
@@ -111,7 +111,7 @@ export class CmsSearchListComponent implements OnInit {
     }
   }
   getRules(): void {
-    this.Filters = new Array<FilterDataModel>();
+    this.filters = new Array<FilterDataModel>();
     let clauseType: EnumClauseType = EnumClauseType.And;
     if (!this.query || !this.query.condition) { return; }
 
@@ -126,22 +126,22 @@ export class CmsSearchListComponent implements OnInit {
         ruleSet.rules.length > 0
       ) {
         const filter = new FilterDataModel();
-        filter.Filters = this.getRulesSetChild(ruleSet);
-        filter.ClauseType = clauseType;
-        this.Filters.push(filter);
+        filter.filters = this.getRulesSetChild(ruleSet);
+        filter.clauseType = clauseType;
+        this.filters.push(filter);
       } else if (rule) {
         const Filter = this.getRulesChild(rule);
-        Filter.ClauseType = clauseType;
-        this.Filters.push(Filter);
+        Filter.clauseType = clauseType;
+        this.filters.push(Filter);
       }
     });
   }
   getRulesChild(rule: Rule): FilterDataModel {
     const searchType = this.getSearchType(rule.operator);
     const filter = new FilterDataModel();
-    filter.PropertyName = rule.field;
-    filter.Value = rule.value;
-    filter.SearchType = searchType;
+    filter.propertyName = rule.field;
+    filter.value = rule.value;
+    filter.searchType = searchType;
     return filter;
   }
   getRulesSetChild(ruleSetInput: RuleSet): Array<FilterDataModel> {
@@ -158,12 +158,12 @@ export class CmsSearchListComponent implements OnInit {
         ruleSet.rules.length > 0
       ) {
         const filter = new FilterDataModel();
-        filter.Filters = this.getRulesSetChild(ruleSet);
-        filter.ClauseType = clauseType;
+        filter.filters = this.getRulesSetChild(ruleSet);
+        filter.clauseType = clauseType;
         Filters.push(filter);
       } else if (rule) {
         const filter = this.getRulesChild(rule);
-        filter.ClauseType = clauseType;
+        filter.clauseType = clauseType;
         Filters.push(filter);
       }
     });
@@ -173,7 +173,7 @@ export class CmsSearchListComponent implements OnInit {
   onSubmit(): void {
     this.getRules();
     if (this.optionsData.parentMethods) {
-      this.optionsData.parentMethods.onSubmit(this.Filters);
+      this.optionsData.parentMethods.onSubmit(this.filters);
     }
   }
   onGetRules(): void {

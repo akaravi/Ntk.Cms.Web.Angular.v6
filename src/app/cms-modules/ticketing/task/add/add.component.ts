@@ -60,7 +60,7 @@ export class TicketingTaskAddComponent implements OnInit {
   ngOnInit(): void {
     this.requestLinkDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDepartemenId'));
 
-    this.dataModel.LinkTicketingDepartemenId = this.requestLinkDepartemenId;
+    this.dataModel.linkTicketingDepartemenId = this.requestLinkDepartemenId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
   }
@@ -81,11 +81,11 @@ export class TicketingTaskAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.isSuccess) {
+            this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
         },
         (error) => {
@@ -95,9 +95,9 @@ export class TicketingTaskAddComponent implements OnInit {
   }
 
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -107,14 +107,14 @@ export class TicketingTaskAddComponent implements OnInit {
       .subscribe(
         async (next) => {
 
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
+          this.formInfo.formSubmitAllow = !next.isSuccess;
           this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (next.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/app/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(next.errorMessage);
           }
           this.loading.Stop(pName);
 
@@ -122,7 +122,7 @@ export class TicketingTaskAddComponent implements OnInit {
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorEdit(error);
         }
       );
@@ -144,19 +144,19 @@ export class TicketingTaskAddComponent implements OnInit {
     this.router.navigate(['/application/app/']);
   }
   onActionFileSelectedLinkMainImageId(): void {
-    // this.dataModel.LinkMainImageId = model.id;
-    // this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    // this.dataModel.linkMainImageId = model.id;
+    // this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 
   onActionSelectSource(model: ApplicationSourceModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'سورس را مشخص کنید',
         'سورس اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkTicketingDepartemenId = model.Id;
+    this.dataModel.linkTicketingDepartemenId = model.id;
   }
 
 }

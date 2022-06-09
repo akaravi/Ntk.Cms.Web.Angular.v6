@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- AccountUserType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['AccountUserType']?.FieldTitle}}" [(ngModel)]="dataModel.AccountUserType"
-        name="dataModel.AccountUserType" #AccountUserType="ngModel"
-        panelClass="AccountUserType-{{ dataModel.AccountUserType }}" required>
+      <mat-select placeholder="{{fieldsInfo['AccountUserType']?.fieldTitle}}" [(ngModel)]="dataModel.accountUserType"
+        name="dataModel.accountUserType" #AccountUserType="ngModel"
+        panelClass="AccountUserType-{{ dataModel.accountUserType }}" required>
         <mat-option *ngFor="
-                  let item of dataModelEnumEstateUserTypeResult.ListItems;
+                  let item of dataModelEnumEstateUserTypeResult.listItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="AccountUserType.errors?.required">
@@ -25,17 +25,17 @@
 
     <!-- LinkAccountUserId Field -->
     <app-estate-accountuser-selector (optionChange)="onActionSelectorAccountUser($event)"
-      [optionSelectForce]="dataModel.LinkAccountUserId" [optionPlaceholder]="'user'">
+      [optionSelectForce]="dataModel.linkAccountUserId" [optionPlaceholder]="'user'">
     </app-estate-accountuser-selector>
 
     <!-- LinkAccountAgencyId Field -->
     <app-estate-accountagency-selector (optionChange)="onActionSelectorAccountAgency($event)"
-      [optionSelectForce]="dataModel.LinkAccountAgencyId" [optionPlaceholder]="'Agency'">
+      [optionSelectForce]="dataModel.linkAccountAgencyId" [optionPlaceholder]="'Agency'">
     </app-estate-accountagency-selector>
 
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)"
-      [optionSelectForce]="dataModel.LinkPropertyId" [optionPlaceholder]="'Property'"></app-estate-property-selector>
+      [optionSelectForce]="dataModel.linkPropertyId" [optionPlaceholder]="'Property'"></app-estate-property-selector>
 
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -43,15 +43,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

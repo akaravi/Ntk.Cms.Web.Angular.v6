@@ -63,7 +63,7 @@ export class BiographyConfigCheckUserComponent implements OnInit, OnDestroy {
   }
   onLoadDate(): void {
     if (!this.requestLinkUserId || this.requestLinkUserId === 0) {
-      this.requestLinkUserId = this.tokenInfo.UserId;
+      this.requestLinkUserId = this.tokenInfo.userId;
     }
     if (!this.requestLinkUserId || this.requestLinkUserId === 0) {
       return;
@@ -76,9 +76,9 @@ export class BiographyConfigCheckUserComponent implements OnInit, OnDestroy {
         next: (ret) => {
           this.loading.Stop(pName);
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (!ret.IsSuccess) {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+          this.tableSource.data = ret.listItems;
+          if (!ret.isSuccess) {
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
         error:(er) => {

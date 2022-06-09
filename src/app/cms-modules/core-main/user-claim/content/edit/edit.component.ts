@@ -57,9 +57,9 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
-        this.dataModel.LinkUserId = this.tokenInfo.UserId;
-        this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
+      if (!this.tokenInfo.userAccessAdminAllowToProfessionalData && this.tokenInfo.userAccessAdminAllowToAllData) {
+        this.dataModel.linkUserId = this.tokenInfo.userId;
+        this.dataModel.linkSiteId = this.tokenInfo.siteId;
         this.ProfessionalData = true;
       } else {
         this.ProfessionalData = false;
@@ -68,9 +68,9 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe({
       next: (ret) => {
         this.tokenInfo = ret;
-        if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData && this.tokenInfo.UserAccessAdminAllowToAllData) {
-          this.dataModel.LinkUserId = this.tokenInfo.UserId;
-          this.dataModel.LinkSiteId = this.tokenInfo.SiteId;
+        if (!this.tokenInfo.userAccessAdminAllowToProfessionalData && this.tokenInfo.userAccessAdminAllowToAllData) {
+          this.dataModel.linkUserId = this.tokenInfo.userId;
+          this.dataModel.linkSiteId = this.tokenInfo.siteId;
           this.ProfessionalData = true;
         } else {
           this.ProfessionalData = false;
@@ -100,7 +100,7 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.FormTitle = 'ویرایش  ';
+      this.formInfo.formTitle = 'ویرایش  ';
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -122,25 +122,25 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreUserClaimContentService.setAccessLoad();
     this.coreUserClaimContentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
 
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Id;
-          this.formInfo.FormAlert = '';
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -154,30 +154,30 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.coreUserClaimContentService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -185,45 +185,45 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
     );
   }
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkFileContentId = model.id;
-    this.dataModel.LinkFileContentIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFileContentId = model.id;
+    this.dataModel.linkFileContentIdSrc = model.downloadLinksrc;
   }
   onActionSelectUser(model: CoreUserModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'کاربر را مشخص کنید',
         'کاربر  اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkUserId = model.Id;
+    this.dataModel.linkUserId = model.id;
   }
   onActionSelectSite(model: CoreSiteModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'سایت را مشخص کنید',
         'سایت  اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkSiteId = model.Id;
+    this.dataModel.linkSiteId = model.id;
   }
 
   onActionSelectClaimType(model: CoreUserClaimTypeModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'دسته را مشخص کنید',
         'نوع مدارک اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkUserClaimTypeId = model.Id;
+    this.dataModel.linkUserClaimTypeId = model.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

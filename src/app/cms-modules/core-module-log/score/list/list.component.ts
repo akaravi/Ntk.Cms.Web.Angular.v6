@@ -61,21 +61,21 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
 
     if (this.requestLinkSiteId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkCmsSiteId';
-      filter.Value = this.requestLinkSiteId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'LinkCmsSiteId';
+      filter.value = this.requestLinkSiteId;
+      this.filteModelContent.filters.push(filter);
     }
     if (this.requestLinkUserId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkUserId';
-      filter.Value = this.requestLinkUserId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'LinkUserId';
+      filter.value = this.requestLinkUserId;
+      this.filteModelContent.filters.push(filter);
     }
     if (this.requestlinkMemberUserId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'linkMemberUserId';
-      filter.Value = this.requestlinkMemberUserId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'linkMemberUserId';
+      filter.value = this.requestlinkMemberUserId;
+      this.filteModelContent.filters.push(filter);
     }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -84,8 +84,8 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'CreatedDate';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'CreatedDate';
+    this.filteModelContent.sortType = EnumSortType.Descending;
   }
   comment: string;
   author: string;
@@ -126,8 +126,8 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -147,18 +147,18 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new CoreModuleLogScoreModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.isSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          this.tableSource.data = ret.listItems;
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'LinkSiteId',
@@ -172,10 +172,10 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
           }
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.Access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -194,25 +194,25 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
@@ -220,22 +220,22 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
 
   onActionbuttonViewRow(model: CoreModuleLogScoreModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
     ) {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleLogScoreViewComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -245,22 +245,22 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonEditRow(model: CoreModuleLogScoreModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const dialogRef = this.dialog.open(CoreModuleLogScoreEditComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -269,7 +269,7 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonDeleteRow(model: CoreModuleLogScoreModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -278,8 +278,8 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
@@ -288,16 +288,16 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' +
-      '<br> ( ' + this.tableRowSelected.Id + ' ) ';
+      '<br> ( ' + this.tableRowSelected.id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
-              if (ret.IsSuccess) {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -335,11 +335,11 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -350,16 +350,16 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -372,44 +372,44 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
 
   onActionbuttonViewUserRow(model: CoreModuleLogScoreModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    if (!this.tableRowSelected.LinkUserId || this.tableRowSelected.LinkUserId === 0) {
+    if (!this.tableRowSelected.linkUserId || this.tableRowSelected.linkUserId === 0) {
       this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات کاربر نمی باشد');
       return;
     }
-    this.router.navigate(['/core/user/edit', this.tableRowSelected.LinkUserId]);
+    this.router.navigate(['/core/user/edit', this.tableRowSelected.linkUserId]);
   }
 
   onActionbuttonViewMemberRow(model: CoreModuleLogScoreModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    if (!this.tableRowSelected.LinkMemberUserId || this.tableRowSelected.LinkMemberUserId === 0) {
+    if (!this.tableRowSelected.linkMemberUserId || this.tableRowSelected.linkMemberUserId === 0) {
       this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات عضو نمی باشد');
       return;
     }
-    this.router.navigate(['/member/user/edit', this.tableRowSelected.LinkMemberUserId]);
+    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
   }
 
   onActionbuttonViewSiteRow(model: CoreModuleLogScoreModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    if (!this.tableRowSelected.LinkSiteId || this.tableRowSelected.LinkSiteId === 0) {
+    if (!this.tableRowSelected.linkSiteId || this.tableRowSelected.linkSiteId === 0) {
       this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات سایت نمی باشد');
       return;
     }
-    this.router.navigate(['/core/site/edit', this.tableRowSelected.LinkSiteId]);
+    this.router.navigate(['/core/site/edit', this.tableRowSelected.linkSiteId]);
   }
 
   onActionbuttonExport(): void {
@@ -421,11 +421,11 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -439,7 +439,7 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: CoreModuleLogScoreModel): void {

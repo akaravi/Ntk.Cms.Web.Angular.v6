@@ -85,20 +85,20 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   fileManagerOpenForm = false;
 
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 
   ngOnInit(): void {
     if (this.requestId === 0) {
-      this.requestId = this.tokenInfo.UserId;
+      this.requestId = this.tokenInfo.userId;
     }
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
 
-    this.formInfo.FormTitle = 'ویرایش  ';
+    this.formInfo.formTitle = 'ویرایش  ';
     this.DataGetOneContent();
     this.getEnumRecordStatus();
   }
@@ -110,8 +110,8 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   }
   DataGetOneContent(): void {
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -120,17 +120,17 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     this.coreUserService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
-        this.dataAccessModel = ret.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.dataAccessModel = ret.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Username;
-          this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.username;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -143,31 +143,31 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
 
     this.coreUserService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
-          if (ret.Item.Id === this.tokenInfo.UserId) {
+          if (ret.item.id === this.tokenInfo.userId) {
             this.tokenHelper.getCurrentToken();
           }
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -178,7 +178,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onActionBackToParent(): void {
@@ -196,32 +196,32 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     }
   }
   onActionSelectorLinkResellerSiteIdSelect(model: CoreSiteModel | null): void {
-    this.dataModel.LinkResellerSiteId = null;
-    if (!model || model.Id <= 0) {
+    this.dataModel.linkResellerSiteId = null;
+    if (!model || model.id <= 0) {
       return;
     }
-    this.dataModel.LinkResellerSiteId = model.Id;
+    this.dataModel.linkResellerSiteId = model.id;
   }
   onActionSelectorLinkResellerUserIdSelect(model: CoreUserModel | null): void {
-    this.dataModel.LinkResellerUserId = null;
-    if (!model || model.Id <= 0) {
+    this.dataModel.linkResellerUserId = null;
+    if (!model || model.id <= 0) {
       return;
     }
-    this.dataModel.LinkResellerUserId = model.Id;
+    this.dataModel.linkResellerUserId = model.id;
   }
   onActionbuttonChangePassword(): void {
-    if (this.tokenInfo.UserId != this.dataModel.Id &&
+    if (this.tokenInfo.userId != this.dataModel.id &&
       (
         this.dataModelResult == null ||
-        this.dataModelResult.Access == null ||
-        !this.dataModelResult.Access.AccessEditRow
+        this.dataModelResult.access == null ||
+        !this.dataModelResult.access.accessEditRow
       )) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
       height: '90%',
-      data: { LinkUserId: this.dataModel.Id }
+      data: { LinkUserId: this.dataModel.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

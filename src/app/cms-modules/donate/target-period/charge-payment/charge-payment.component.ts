@@ -28,7 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./charge-payment.component.scss'],
 })
 export class DonateTargetPeriodChargePaymentComponent implements OnInit {
-  requestSupportPayment = 0;
+  requestsupportPayment = 0;
   requestLinkTargetPeriodId = 0;
   requestBankPrivateMaster = false;
   constructor(
@@ -43,14 +43,14 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      if (data.SupportPayment && data.SupportPayment > 0) {
-        this.requestSupportPayment = data.SupportPayment;
+      if (data.supportPayment && data.supportPayment > 0) {
+        this.requestsupportPayment = data.supportPayment;
       }
-      if (data.LinkTargetPeriodId && data.LinkTargetPeriodId > 0) {
-        this.requestLinkTargetPeriodId = data.LinkTargetPeriodId;
+      if (data.linkTargetPeriodId && data.linkTargetPeriodId > 0) {
+        this.requestLinkTargetPeriodId = data.linkTargetPeriodId;
       }
     }
-    if (this.requestSupportPayment === 0) {
+    if (this.requestsupportPayment === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
@@ -61,11 +61,11 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
       return;
     }
 
-    this.dataModelCalculate.SupportPayment = this.requestSupportPayment;
-    this.dataModelCalculate.LinkTargetPeriodId = this.requestLinkTargetPeriodId;
-    this.dataModelPayment.SupportPayment = this.requestSupportPayment;
-    this.dataModelPayment.LinkTargetPeriodId = this.requestLinkTargetPeriodId;
-    this.dataModelPayment.LastUrlAddressInUse = this.document.location.href;
+    this.dataModelCalculate.supportPayment = this.requestsupportPayment;
+    this.dataModelCalculate.linkTargetPeriodId = this.requestLinkTargetPeriodId;
+    this.dataModelPayment.supportPayment = this.requestsupportPayment;
+    this.dataModelPayment.linkTargetPeriodId = this.requestLinkTargetPeriodId;
+    this.dataModelPayment.lastUrlAddressInUse = this.document.location.href;
   }
   viewCalculate = false;
 
@@ -82,7 +82,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'انتخاب درگاه پرداخت';
+    this.formInfo.formTitle = 'انتخاب درگاه پرداخت';
 
   }
 
@@ -92,12 +92,12 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
     this.loading.Start(pName);
     this.donateTransactionService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelCalculateResult = ret;
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -110,34 +110,34 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
     );
   }
   DataPayment(): void {
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'ServiceOrderPayment';
     this.loading.Start(pName);
     this.donateTransactionService.ServiceOrderPayment(this.dataModelPayment).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelPaymentResult = ret;
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-          localStorage.setItem('TransactionId', ret.Item.TransactionId.toString());
-          this.document.location.href = this.dataModelPaymentResult.Item.UrlToPay;
+          localStorage.setItem('TransactionId', ret.item.transactionId.toString());
+          this.document.location.href = this.dataModelPaymentResult.item.urlToPay;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
-          this.formInfo.FormSubmitAllow = true;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.formInfo.formSubmitAllow = true;
         }
         this.loading.Stop(pName)
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.loading.Stop(pName);
       }
     }
     );
   }
   onActionSelectCalculate(model: BankPaymentPrivateSiteConfigModel): void {
-    this.dataModelCalculate.BankPaymentPrivateId = model.Id;
-    this.dataModelPayment.BankPaymentPrivateId = model.Id;
+    this.dataModelCalculate.bankPaymentPrivateId = model.id;
+    this.dataModelPayment.bankPaymentPrivateId = model.id;
     this.DataCalculate();
   }
   onActionSelectBankPayment(): void {

@@ -77,7 +77,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   hidden = true;
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -90,10 +90,10 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -103,31 +103,31 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.DataGetOneContent();
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
 
           this.optionReload();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -137,24 +137,24 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estateCustomerOrderService.setAccessLoad();
-    this.estateCustomerOrderService.ServiceGetOneById(this.dataModelResult.Item.Id).subscribe({
+    this.estateCustomerOrderService.ServiceGetOneById(this.dataModelResult.item.id).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
-          this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -167,29 +167,29 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.optionReload();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -199,33 +199,33 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   DataGetPropertyDetailGroup(id: string): void {
     const filteModelProperty = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkPropertyTypeLanduseId';
-    filter.Value = id;
-    filteModelProperty.Filters.push(filter);
-    this.dataModel.PropertyDetailGroups = [];
+    filter.propertyName = 'LinkPropertyTypeLanduseId';
+    filter.value = id;
+    filteModelProperty.filters.push(filter);
+    this.dataModel.propertyDetailGroups = [];
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_detailed_information'));
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataModel.PropertyDetailGroups = ret.ListItems;
+          if (ret.isSuccess) {
+            this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
-            this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
-              itemGroup.PropertyDetails.forEach(element => {
-                this.propertyDetails[element.Id] = 0;
+            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+              itemGroup.propertyDetails.forEach(element => {
+                this.propertyDetails[element.id] = 0;
 
-                if (this.dataModel.PropertyDetailValues) {
-                  const value = this.dataModel.PropertyDetailValues.find(x => x.LinkPropertyDetailId === element.Id);
+                if (this.dataModel.propertyDetailValues) {
+                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
                   if (value) {
-                    this.propertyDetails[element.Id] = value.Value;
+                    this.propertyDetails[element.id] = value.value;
                   }
                 }
               });
             });
             /** load Value */
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -237,56 +237,56 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       );
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyTypeUsageId = model.Id;
+    this.dataModel.linkPropertyTypeUsageId = model.id;
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     this.PropertyTypeSelected = null;
-    this.dataModel.LinkPropertyTypeLanduseId = null;
-    if (!model || !model.Id || model.Id.length <= 0) {
+    this.dataModel.linkPropertyTypeLanduseId = null;
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.PropertyTypeSelected = model;
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
-    this.DataGetPropertyDetailGroup(model.Id);
+    this.dataModel.linkPropertyTypeLanduseId = model.id;
+    this.DataGetPropertyDetailGroup(model.id);
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
-    this.dataModel.LinkEstateUserId = null;
-    if (!model || !model.Id || model.Id.length <= 0) {
+    this.dataModel.linkEstateUserId = null;
+    if (!model || !model.id || model.id.length <= 0) {
       return;
     }
-    this.dataModel.LinkEstateUserId = model.Id;
+    this.dataModel.linkEstateUserId = model.id;
   }
 
   onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
-    this.dataModel.LinkContractTypeId = null;
-    if (!model || !model.Id || model.Id.length <= 0) {
+    this.dataModel.linkContractTypeId = null;
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.contractTypeSelected = model;
-    this.dataModel.LinkContractTypeId = model.Id;
-    this.dataModel.RentPriceMin = 0;
-    this.dataModel.RentPriceMax = 0;
-    this.dataModel.SalePriceMin = 0;
-    this.dataModel.SalePriceMax = 0;
-    this.dataModel.DepositPriceMin = 0;
-    this.dataModel.DepositPriceMax = 0;
+    this.dataModel.linkContractTypeId = model.id;
+    this.dataModel.rentPriceMin = 0;
+    this.dataModel.rentPriceMax = 0;
+    this.dataModel.salePriceMin = 0;
+    this.dataModel.salePriceMax = 0;
+    this.dataModel.depositPriceMin = 0;
+    this.dataModel.depositPriceMax = 0;
   }
   onActionSelectorLocation(model: number[] | null): void {
 
-    this.dataModel.LinkLocationIds = model;
+    this.dataModel.linkLocationIds = model;
   }
   onActionSelectorProperty(model: string[] | null): void {
-    this.dataModel.LinkPropertyIds = model;
+    this.dataModel.linkPropertyIds = model;
   }
   setStep(index: number): void {
     this.step = index;
@@ -304,19 +304,19 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     // ** Save Value */
-    this.dataModel.PropertyDetailValues = [];
-    this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
-      itemGroup.PropertyDetails.forEach(element => {
+    this.dataModel.propertyDetailValues = [];
+    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+      itemGroup.propertyDetails.forEach(element => {
         const value = new EstatePropertyDetailValueModel();
-        value.LinkPropertyDetailId = element.Id;
-        value.Value = this.propertyDetails[element.Id];
-        this.dataModel.PropertyDetailValues.push(value);
+        value.linkPropertyDetailId = element.id;
+        value.value = this.propertyDetails[element.id];
+        this.dataModel.propertyDetailValues.push(value);
       });
     });
     // ** Save Value */
-    if (this.dataModel.Id && this.dataModel.Id.length > 0) {
+    if (this.dataModel.id && this.dataModel.id.length > 0) {
       this.DataEditContent();
     }
     else {

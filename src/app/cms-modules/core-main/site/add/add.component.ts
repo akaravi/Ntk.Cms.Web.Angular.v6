@@ -101,7 +101,7 @@ export class CoreSiteAddComponent implements OnInit {
       this.cmsToastrService.typeErrorAdd('سورس کد برنامه مشخص  کنید');
       return;
     }
-    this.dataModel.SeoKeyword = '';
+    this.dataModel.seoKeyword = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -112,7 +112,7 @@ export class CoreSiteAddComponent implements OnInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.SeoKeyword = listKeyword.join(',');
+        this.dataModel.seoKeyword = listKeyword.join(',');
       }
     }
     this.DataAddContent();
@@ -122,11 +122,11 @@ export class CoreSiteAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataAccessModel = ret.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.dataAccessModel = ret.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -136,29 +136,29 @@ export class CoreSiteAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.coreSiteService
       .ServiceAdd(this.dataModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (ret.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             setTimeout(() => this.router.navigate(['/core/site/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(er);
         }
       }
@@ -188,45 +188,45 @@ export class CoreSiteAddComponent implements OnInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.AboutUsGeolocationlatitude && lon === this.dataModel.AboutUsGeolocationlongitude) {
-        this.dataModel.AboutUsGeolocationlatitude = null;
-        this.dataModel.AboutUsGeolocationlongitude = null;
+      if (lat === this.dataModel.aboutUsGeolocationlatitude && lon === this.dataModel.aboutUsGeolocationlongitude) {
+        this.dataModel.aboutUsGeolocationlatitude = null;
+        this.dataModel.aboutUsGeolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.AboutUsGeolocationlatitude = lat;
-      this.dataModel.AboutUsGeolocationlongitude = lon;
+      this.dataModel.aboutUsGeolocationlatitude = lat;
+      this.dataModel.aboutUsGeolocationlongitude = lon;
     });
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);
   }
   onActionFileSelectedAboutUsLinkImageId(model: NodeInterface): void {
-    this.dataModel.AboutUsLinkImageId = model.id;
-    this.dataModel.AboutUsLinkImageIdSrc = model.downloadLinksrc;
+    this.dataModel.aboutUsLinkImageId = model.id;
+    this.dataModel.aboutUsLinkImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFavIconId(model: NodeInterface): void {
-    this.dataModel.LinkFavIconId = model.id;
-    this.dataModel.LinkFavIconIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFavIconId = model.id;
+    this.dataModel.linkFavIconIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedPwaIconSize190x192Id(model: NodeInterface): void {
-    this.dataModel.PwaIconSize190x192Id = model.id;
-    this.dataModel.PwaIconSize190x192IdSrc = model.downloadLinksrc;
+    this.dataModel.pwaIconSize190x192Id = model.id;
+    this.dataModel.pwaIconSize190x192IdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedPwaIconSize512x512Id(model: NodeInterface): void {
-    this.dataModel.LinkFavIconId = model.id;
-    this.dataModel.PwaIconSize512x512IdSrc = model.downloadLinksrc;
+    this.dataModel.linkFavIconId = model.id;
+    this.dataModel.pwaIconSize512x512IdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkImageLogoId(model: NodeInterface): void {
-    this.dataModel.LinkImageLogoId = model.id;
-    this.dataModel.LinkImageLogoIdSrc = model.downloadLinksrc;
+    this.dataModel.linkImageLogoId = model.id;
+    this.dataModel.linkImageLogoIdSrc = model.downloadLinksrc;
   }
   onActionSelectCategory(model: CoreSiteCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'دسته بندی سایت مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkSiteCategoryId = model.Id;
+    this.dataModel.linkSiteCategoryId = model.id;
   }
 }

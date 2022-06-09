@@ -16,7 +16,7 @@
         <div class="row">
           <div class="offset-md-3 col-md-6">
             <span class="svg-icon svg-icon-full">
-              <!--begin::Svg Icon | path:assets/media/svg/illustrations/مخاطب.svg--><svg
+              <!--begin::Svg icon | path:assets/media/svg/illustrations/مخاطب.svg--><svg
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 id="ae37f038-3a9e-4b82-ad68-fc94ba16af2a" data-name="Layer 1" width="1096" height="574.74"
                 viewBox="0 0 1096 574.74">
@@ -442,13 +442,13 @@
                 <ellipse cx="505.04" cy="584.74" rx="1.31" ry="1.75"
                   transform="translate(-302.82 261.95) rotate(-37.22)" fill="#fbbebe" />
               </svg>
-              <!--end::Svg Icon-->
+              <!--end::Svg icon-->
             </span>
           </div>
         </div>
       </div>
       <!--end::Section-->
-      <ng-container *ngIf="this.formInfo?.FormSubmitedStatus != enumFormSubmitedStatus.Success">
+      <ng-container *ngIf="this.formInfo?.formSubmitedStatus != enumFormSubmitedStatus.Success">
         <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
           <div class="ntk-cms-html-card-header">
             <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -468,7 +468,7 @@
                 <!--begin::ورودی-->
                 <div class="form-group">
                   <label>{{'AUTH.INPUT.FULLNAME' | translate}}</label>
-                  <input type="text" [(ngModel)]="dataModel.FullName" name="dataModel.FullName" #FullName required
+                  <input type="text" [(ngModel)]="dataModel.fullName" name="dataModel.fullName" #FullName required
                     class="form-control form-control-solid form-control-lg"
                     placeholder="نام و نام خانوادگی خود را وارد کنید" />
                   <mat-error *ngIf="FullName.errors?.required">
@@ -480,7 +480,7 @@
                 <!--begin::ورودی-->
                 <div class="form-group">
                   <label>{{'AUTH.INPUT.MOBILE' | translate}}</label>
-                  <input type="text" [(ngModel)]="dataModel.PhoneNo" name="dataModel.PhoneNo" #PhoneNo required
+                  <input type="text" [(ngModel)]="dataModel.phoneNo" name="dataModel.phoneNo" #PhoneNo required
                     class="form-control form-control-solid form-control-lg" placeholder="تلفن خود را وارد کنید" />
 
                   <mat-error *ngIf="PhoneNo.errors?.required">
@@ -492,7 +492,7 @@
                 <!--begin::ورودی-->
                 <div class="form-group">
                   <label>{{'AUTH.INPUT.EMAIL' | translate}}</label>
-                  <input type="email" [(ngModel)]="dataModel.Email" name="dataModel.Email" #Email required
+                  <input type="email" [(ngModel)]="dataModel.email" name="dataModel.email" #Email required
                     class="form-control form-control-solid form-control-lg" placeholder="ایمیل را وارد کنید" />
 
                   <mat-error *ngIf="Email.errors?.required">
@@ -505,7 +505,7 @@
                 <!--begin::ورودی-->
                 <div class="form-group">
                   <label for="exampleتکس اریا">{{'AUTH.INPUT.YOURMEESAGE' | translate}}</label>
-                  <textarea [(ngModel)]="dataModel.HtmlBody" name="dataModel.HtmlBody" #HtmlBody
+                  <textarea [(ngModel)]="dataModel.htmlBody" name="dataModel.htmlBody" #HtmlBody
                     class="form-control form-control-solid form-control-lg" id="exampleتکس اریا" rows="3"
                     required></textarea>
 
@@ -517,22 +517,22 @@
                 <!--end::ورودی-->
 
 
-                <!--CaptchaText Field-->
-                <img src="{{captchaModel.Image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
+                <!--captchaText Field-->
+                <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
                 <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
 
                 <mat-form-field class="ntk-full-width">
                   <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
-                  <input matInput [(ngModel)]="dataModel.CaptchaText" name="dataModel.CaptchaText"
-                    [disabled]=" !formInfo.ButtonSubmittedEnabled" #CaptchaText type="number"
+                  <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
+                    [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
                     class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4" autocomplete="off"
                     placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-                  <mat-icon matSuffix *ngIf="dataModel.CaptchaText" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="dataModel.CaptchaText = ''">
+                  <mat-icon matSuffix *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="dataModel.captchaText = ''">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
-                  <mat-error *ngIf="CaptchaText.errors?.required">
-                    CaptchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
+                  <mat-error *ngIf="captchaText.errors?.required">
+                    captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
                 </mat-form-field>
 
@@ -554,7 +554,7 @@
         </form>
       </ng-container>
 
-      <ng-container *ngIf="this.formInfo?.FormSubmitedStatus == enumFormSubmitedStatus.Success">
+      <ng-container *ngIf="this.formInfo?.formSubmitedStatus == enumFormSubmitedStatus.Success">
         <!--begin::Row-->
         <div class="row">
           <div class="col-lg-12">
@@ -570,7 +570,7 @@
                     <p class="text-dark-50">
                       برای پیگری های بعدی کد پیگیری را یاداشت نمایید.
                     </p>
-                    <div [innerHTML]="this.dataModelResult.Item?.virtual_Departemen?.DefaultAnswerBody">
+                    <div [innerHTML]="this.dataModelResult.item?.virtual_Departemen?.DefaultAnswerBody">
 
                     </div>
                   </div>
@@ -580,7 +580,7 @@
                   <div class="ml-6 flex-shrink-0" style="font-size: xx-large;">
                     <b>
                       کد پیگیری :
-                      {{this.dataModelResult.Item.Id}}
+                      {{this.dataModelResult.item.id}}
                     </b>
                   </div>
                   <!--end::دکمه-->

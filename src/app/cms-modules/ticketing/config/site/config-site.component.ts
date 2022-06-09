@@ -88,7 +88,7 @@ export class TicketingConfigSiteComponent implements OnInit {
   }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
-      this.requestLinkSiteId = this.tokenInfo.SiteId;
+      this.requestLinkSiteId = this.tokenInfo.siteId;
     }
 
     if (this.requestLinkSiteId > 0) {
@@ -105,7 +105,7 @@ export class TicketingConfigSiteComponent implements OnInit {
 
     if (this.requestLinkSiteId > 0) {
       this.SetServiceSiteConfigSave(this.requestLinkSiteId);
-      if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      if (this.tokenInfo.userAccessAdminAllowToProfessionalData) {
         this.SetServiceSiteStorageSave(this.requestLinkSiteId);
         this.SetServiceSiteAccessSave(this.requestLinkSiteId);
       }
@@ -131,9 +131,9 @@ export class TicketingConfigSiteComponent implements OnInit {
   }
 
   GetServiceSiteStorage(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteStorage';
     this.loading.Start(pName, 'دریافت مقادیر ذخیره شده ماژول');
 
@@ -141,26 +141,26 @@ export class TicketingConfigSiteComponent implements OnInit {
       .ServiceSiteStorage(SiteId)
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataSiteStorageModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataSiteStorageModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetOne(error);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         }
       );
   }
   SetServiceSiteStorageSave(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteStorageSave';
     this.loading.Start(pName, 'ذخیره مقادیر ذخیره شده ماژول');
@@ -168,26 +168,26 @@ export class TicketingConfigSiteComponent implements OnInit {
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
       .subscribe(
         async (next) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (next.IsSuccess) {
-            this.dataSiteStorageModel = next.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (next.isSuccess) {
+            this.dataSiteStorageModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   GetServiceSiteConfig(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfig';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
@@ -195,25 +195,25 @@ export class TicketingConfigSiteComponent implements OnInit {
       .ServiceSiteConfig(SiteId)
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesModel = next.Item;
+          if (next.isSuccess) {
+            this.dataConfigSiteValuesModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   SetServiceSiteConfigSave(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigSave';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
 
@@ -221,25 +221,25 @@ export class TicketingConfigSiteComponent implements OnInit {
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteValuesModel = next.Item;
+          if (next.isSuccess) {
+            this.dataConfigSiteValuesModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   GetServiceSiteAccess(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccess';
     this.loading.Start(pName, 'دریافت دسترسی های ماژول');
@@ -248,25 +248,25 @@ export class TicketingConfigSiteComponent implements OnInit {
       .ServiceSiteAccess(SiteId)
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesModel = next.Item;
+          if (next.isSuccess) {
+            this.dataConfigSiteAccessValuesModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
           this.loading.Stop(pName);
         }
       );
   }
   SetServiceSiteAccessSave(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
 
 
@@ -277,17 +277,17 @@ export class TicketingConfigSiteComponent implements OnInit {
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataConfigSiteAccessValuesModel = next.Item;
+          if (next.isSuccess) {
+            this.dataConfigSiteAccessValuesModel = next.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetOne(error);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         }
       );

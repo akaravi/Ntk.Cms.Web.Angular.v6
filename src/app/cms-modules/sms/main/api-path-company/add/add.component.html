@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-              let item of dataModelEnumRecordStatusResult.ListItems;
+              let item of dataModelEnumRecordStatusResult.listItems;
               index as i
-            " [value]="item.Value">{{ item.Description }}</mat-option>
+            " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,11 +24,11 @@
     </mat-form-field>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
@@ -36,69 +36,69 @@
       </mat-error>
     </mat-form-field>
     <!-- ServiceAvailableCredit Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceAvailableCredit']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['ServiceAvailableCredit']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ServiceAvailableCredit"
-        [disabled]="!fieldsInfo['ServiceAvailableCredit']?.AccessAddField" name="dataModel.ServiceAvailableCredit"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceAvailableCredit']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['ServiceAvailableCredit']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.serviceAvailableCredit"
+        [disabled]="!fieldsInfo['ServiceAvailableCredit']?.accessAddField" name="dataModel.serviceAvailableCredit"
         #ServiceAvailableCredit type="number" placeholder="0" required />
       <mat-icon matSuffix
-        *ngIf="dataModel.ServiceAvailableCredit && fieldsInfo['ServiceAvailableCredit']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.ServiceAvailableCredit = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ServiceAvailableCredit']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+        *ngIf="dataModel.serviceAvailableCredit && fieldsInfo['ServiceAvailableCredit']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.serviceAvailableCredit = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ServiceAvailableCredit']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="ServiceAvailableCredit.errors?.required">
-        {{ fieldsInfo['ServiceAvailableCredit']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['ServiceAvailableCredit']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- ServiceSumCredit Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceSumCredit']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['ServiceSumCredit']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ServiceSumCredit"
-        [disabled]="!fieldsInfo['ServiceSumCredit']?.AccessAddField" name="dataModel.ServiceSumCredit" #ServiceSumCredit
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceSumCredit']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['ServiceSumCredit']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.serviceSumCredit"
+        [disabled]="!fieldsInfo['ServiceSumCredit']?.accessAddField" name="dataModel.serviceSumCredit" #ServiceSumCredit
         type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.ServiceSumCredit && fieldsInfo['ServiceSumCredit']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.ServiceSumCredit = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ServiceSumCredit']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.serviceSumCredit && fieldsInfo['ServiceSumCredit']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.serviceSumCredit = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ServiceSumCredit']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="ServiceSumCredit.errors?.required">
-        {{ fieldsInfo['ServiceSumCredit']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['ServiceSumCredit']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- UserAvailableCredit Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserAvailableCredit']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['UserAvailableCredit']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.UserAvailableCredit"
-        [disabled]="!fieldsInfo['UserAvailableCredit']?.AccessAddField" name="dataModel.UserAvailableCredit"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserAvailableCredit']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['UserAvailableCredit']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.userAvailableCredit"
+        [disabled]="!fieldsInfo['UserAvailableCredit']?.accessAddField" name="dataModel.userAvailableCredit"
         #UserAvailableCredit type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.UserAvailableCredit && fieldsInfo['UserAvailableCredit']?.AccessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.UserAvailableCredit = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['UserAvailableCredit']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.userAvailableCredit && fieldsInfo['UserAvailableCredit']?.accessAddField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.userAvailableCredit = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['UserAvailableCredit']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="UserAvailableCredit.errors?.required">
-        {{ fieldsInfo['UserAvailableCredit']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['UserAvailableCredit']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- UserSumCredit Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserSumCredit']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['UserSumCredit']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.UserSumCredit" [disabled]="!fieldsInfo['UserSumCredit']?.AccessAddField"
-        name="dataModel.UserSumCredit" #UserSumCredit type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.UserSumCredit && fieldsInfo['UserSumCredit']?.AccessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.UserSumCredit = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['UserSumCredit']?.AccessAddField" matSuffix>mode_edit</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserSumCredit']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['UserSumCredit']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.userSumCredit" [disabled]="!fieldsInfo['UserSumCredit']?.accessAddField"
+        name="dataModel.userSumCredit" #UserSumCredit type="number" placeholder="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.userSumCredit && fieldsInfo['UserSumCredit']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.userSumCredit = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['UserSumCredit']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="UserSumCredit.errors?.required">
-        {{ fieldsInfo['UserSumCredit']?.FieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['UserSumCredit']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
@@ -112,15 +112,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

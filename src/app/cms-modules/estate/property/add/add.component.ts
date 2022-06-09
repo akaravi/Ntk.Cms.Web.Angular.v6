@@ -73,22 +73,22 @@ export class EstatePropertyAddComponent implements OnInit {
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
 
     if (this.requestLinkPropertyTypeLanduseId && this.requestLinkPropertyTypeLanduseId.length > 0) {
-      this.dataModel.LinkPropertyTypeLanduseId = this.requestLinkPropertyTypeLanduseId;
+      this.dataModel.linkPropertyTypeLanduseId = this.requestLinkPropertyTypeLanduseId;
     }
     this.requestLinkPropertyTypeUsageId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeUsageId');
 
     if (this.requestLinkPropertyTypeUsageId && this.requestLinkPropertyTypeUsageId.length > 0) {
-      this.dataModel.LinkPropertyTypeUsageId = this.requestLinkPropertyTypeUsageId;
+      this.dataModel.linkPropertyTypeUsageId = this.requestLinkPropertyTypeUsageId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
+      if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
         this.IsAdminSite = true;
       }
       else {
@@ -143,13 +143,17 @@ export class EstatePropertyAddComponent implements OnInit {
 
   ngOnInit(): void {
 
+<<<<<<< HEAD
     this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_New_Content');
+=======
+    this.formInfo.formTitle = 'ثبت محتوای جدید';
+>>>>>>> main
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.getEstateContractType();
     this.getEstatePropertyType();
     this.getEstatePropertyTypeLanduse();
-    this.dataModel.CaseCode = this.publicHelper.StringRandomGenerator(5, true);
+    this.dataModel.caseCode = this.publicHelper.StringRandomGenerator(5, true);
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.getEnumRecordStatus();
       this.DataGetAccess();
@@ -204,10 +208,10 @@ export class EstatePropertyAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -222,19 +226,19 @@ export class EstatePropertyAddComponent implements OnInit {
   DataGetPropertyDetailGroup(id: string): void {
     const filteModelProperty = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkPropertyTypeLanduseId';
-    filter.Value = id;
-    filteModelProperty.Filters.push(filter);
-    this.dataModel.PropertyDetailGroups = [];
+    filter.propertyName = 'LinkPropertyTypeLanduseId';
+    filter.value = id;
+    filteModelProperty.filters.push(filter);
+    this.dataModel.propertyDetailGroups = [];
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
     this.loading.Start(pName, this.translate.instant('TITLE.Get_Details'));
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataModel.PropertyDetailGroups = ret.ListItems;
+          if (ret.isSuccess) {
+            this.dataModel.propertyDetailGroups = ret.listItems;
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -246,40 +250,40 @@ export class EstatePropertyAddComponent implements OnInit {
       );
   }
   DataAdd(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
 
     if (this.dataFileModelFiles) {
       const keys = Array.from(this.dataFileModelFiles.keys());
       if (keys && keys.length > 0) {
-        this.dataModel.LinkFileIds = keys.join(',');
+        this.dataModel.linkFileIds = keys.join(',');
       }
     }
     if (this.dataFileModelImgaes) {
       const keys = Array.from(this.dataFileModelImgaes.keys());
       if (keys && keys.length > 0) {
-        this.dataModel.LinkExtraImageIds = keys.join(',');
+        this.dataModel.linkExtraImageIds = keys.join(',');
       }
     }
     const pName = this.constructor.name + 'ServiceAdd';
     this.loading.Start(pName, this.translate.instant('TITLE.Property_registration'));
     this.estatePropertyService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           setTimeout(() => this.router.navigate(['/estate/property']), 1000);
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -309,14 +313,14 @@ export class EstatePropertyAddComponent implements OnInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.Geolocationlatitude && lon === this.dataModel.Geolocationlongitude) {
-        this.dataModel.Geolocationlatitude = null;
-        this.dataModel.Geolocationlongitude = null;
+      if (lat === this.dataModel.geolocationlatitude && lon === this.dataModel.geolocationlongitude) {
+        this.dataModel.geolocationlatitude = null;
+        this.dataModel.geolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.Geolocationlatitude = lat;
-      this.dataModel.Geolocationlongitude = lon;
+      this.dataModel.geolocationlatitude = lat;
+      this.dataModel.geolocationlongitude = lon;
     });
 
   }
@@ -324,18 +328,18 @@ export class EstatePropertyAddComponent implements OnInit {
   receiveZoom(zoom: number): void {
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyTypeUsageId = model.Id;
-    if (this.dataModelEstatePropertyTypeResult.IsSuccess && this.dataModelEstatePropertyTypeLanduseResult.IsSuccess) {
+    this.dataModel.linkPropertyTypeUsageId = model.id;
+    if (this.dataModelEstatePropertyTypeResult.isSuccess && this.dataModelEstatePropertyTypeLanduseResult.isSuccess) {
       this.listTypeLanduse = [];
-      this.dataModelEstatePropertyTypeResult.ListItems.forEach(element => {
-        if (element.LinkPropertyTypeUsageId === model.Id) {
-          this.dataModelEstatePropertyTypeLanduseResult.ListItems.forEach(elementLanduser => {
-            if (elementLanduser.Id === element.LinkPropertyTypeLanduseId) {
+      this.dataModelEstatePropertyTypeResult.listItems.forEach(element => {
+        if (element.linkPropertyTypeUsageId === model.id) {
+          this.dataModelEstatePropertyTypeLanduseResult.listItems.forEach(elementLanduser => {
+            if (elementLanduser.id === element.linkPropertyTypeLanduseId) {
               this.listTypeLanduse.push(elementLanduser);
             }
           });
@@ -345,77 +349,77 @@ export class EstatePropertyAddComponent implements OnInit {
     }
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.PropertyTypeSelected = model;
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
-    this.DataGetPropertyDetailGroup(model.Id);
+    this.dataModel.linkPropertyTypeLanduseId = model.id;
+    this.DataGetPropertyDetailGroup(model.id);
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
+    if (!model || !model.id || model.id <= 0) {
       //  const message = 'کاربر اطلاعات مشخص نیست';
       //  this.cmsToastrService.typeErrorSelected(message);
-      this.dataModel.LinkCmsUserId = null;
+      this.dataModel.linkCmsUserId = null;
       return;
     }
-    this.dataModel.LinkCmsUserId = model.Id;
+    this.dataModel.linkCmsUserId = model.id;
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
+    if (!model || !model.id || model.id <= 0) {
       const message = 'منطقه اطلاعات مشخص نیست';
       this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkLocationId = null;
+      this.dataModel.linkLocationId = null;
       return;
     }
-    this.dataModel.LinkLocationId = model.Id;
+    this.dataModel.linkLocationId = model.id;
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
-    this.dataModel.LinkEstateUserId = null;
-    if (!model || !model.Id || model.Id.length <= 0) {
+    this.dataModel.linkEstateUserId = null;
+    if (!model || !model.id || model.id.length <= 0) {
       return;
     }
-    this.dataModel.LinkEstateUserId = model.Id;
+    this.dataModel.linkEstateUserId = model.id;
   }
 
 
   onActionSelectorContractType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.contractTypeSelected = model;
     this.contractDataModel = new EstateContractModel();
-    this.contractDataModel.ContractType = this.contractTypeSelected;
-    this.contractDataModel.LinkEstateContractTypeId = this.contractTypeSelected.Id;
+    this.contractDataModel.contractType = this.contractTypeSelected;
+    this.contractDataModel.linkEstateContractTypeId = this.contractTypeSelected.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     // ** Save Value */
-    this.dataModel.PropertyDetailValues = [];
-    this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
-      itemGroup.PropertyDetails.forEach(element => {
+    this.dataModel.propertyDetailValues = [];
+    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+      itemGroup.propertyDetails.forEach(element => {
         const value = new EstatePropertyDetailValueModel();
-        value.LinkPropertyDetailId = element.Id;
-        value.Value = this.propertyDetails[element.Id];
-        this.dataModel.PropertyDetailValues.push(value);
+        value.linkPropertyDetailId = element.id;
+        value.value = this.propertyDetails[element.id];
+        this.dataModel.propertyDetailValues.push(value);
       });
     });
     // ** Save Value */
-    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+    if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       this.onActionOptionAddToList(false);
     }
-    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+    if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
-      this.formInfo.FormSubmitAllow = true;
+      this.formInfo.formSubmitAllow = true;
       return;
     }
 
@@ -428,7 +432,7 @@ export class EstatePropertyAddComponent implements OnInit {
         this.dataModel = result.model;
         this.DataAdd();
       } else {
-        this.formInfo.FormSubmitAllow = false;
+        this.formInfo.formSubmitAllow = false;
       }
     });
 
@@ -442,49 +446,59 @@ export class EstatePropertyAddComponent implements OnInit {
   }
 
   onActionOptionAddToList(viewAlert: boolean = true): void {
-    if (!this.contractTypeSelected || this.contractTypeSelected.Id.length === 0) {
+    if (!this.contractTypeSelected || this.contractTypeSelected.id.length === 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       if (viewAlert) {
         this.cmsToastrService.typeErrorSelected(message);
       }
       return;
     }
-    if (!this.dataModel.Contracts) {
-      this.dataModel.Contracts = [];
+    if (!this.dataModel.contracts) {
+      this.dataModel.contracts = [];
     }
-    this.dataModel.Contracts.push(this.contractDataModel);
+    this.dataModel.contracts.push(this.contractDataModel);
     this.contractDataModel = new EstateContractModel();
-    this.optionTabledataSource.data = this.dataModel.Contracts;
+    this.optionTabledataSource.data = this.dataModel.contracts;
   }
   onActionOptionRemoveFromList(index: number): void {
     if (index < 0) {
       return;
     }
-    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+    if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       return;
     }
-    this.contractDataModel = this.dataModel.Contracts[index];
-    this.dataModel.Contracts.splice(index, 1);
+    this.contractDataModel = this.dataModel.contracts[index];
+    this.dataModel.contracts.splice(index, 1);
     this.contractDataModel = new EstateContractModel();
-    this.optionTabledataSource.data = this.dataModel.Contracts;
+    this.optionTabledataSource.data = this.dataModel.contracts;
   }
 
 
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
+<<<<<<< HEAD
       if (!this.dataModel.LinkPropertyTypeUsageId || this.dataModel.LinkPropertyTypeUsageId.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Usage'));
+=======
+      if (!this.dataModel.linkPropertyTypeUsageId || this.dataModel.linkPropertyTypeUsageId.length === 0) {
+        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری ملک انتخاب شود');
+>>>>>>> main
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();
         }, 10);
       }
+<<<<<<< HEAD
       if (!this.dataModel.LinkPropertyTypeLanduseId || this.dataModel.LinkPropertyTypeLanduseId.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Landuse'));
+=======
+      if (!this.dataModel.linkPropertyTypeLanduseId || this.dataModel.linkPropertyTypeLanduseId.length === 0) {
+        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری زمین انتخاب شود');
+>>>>>>> main
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();
@@ -517,18 +531,18 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   // ** Accardon */
   onActionClickSalePriceAllowAgreement(): void {
-    if (this.contractDataModel.SalePriceByAgreement) {
-      this.contractDataModel.SalePrice = 0;
+    if (this.contractDataModel.salePriceByAgreement) {
+      this.contractDataModel.salePrice = 0;
     }
   }
   onActionClickRentPriceAllowAgreement(): void {
-    if (this.contractDataModel.RentPriceByAgreement) {
-      this.contractDataModel.RentPrice = 0;
+    if (this.contractDataModel.rentPriceByAgreement) {
+      this.contractDataModel.rentPrice = 0;
     }
   }
   onActionClickDepositPriceByAgreement(): void {
-    if (this.contractDataModel.DepositPriceByAgreement) {
-      this.contractDataModel.DepositPrice = 0;
+    if (this.contractDataModel.depositPriceByAgreement) {
+      this.contractDataModel.depositPrice = 0;
     }
   }
   ActionCurrentPoint(): void {
@@ -541,8 +555,8 @@ export class EstatePropertyAddComponent implements OnInit {
         }
         this.mapMarkerPoints = [];
         this.mapMarkerPoints.push({ lat, lon });
-        this.dataModel.Geolocationlatitude = lat;
-        this.dataModel.Geolocationlongitude = lon;
+        this.dataModel.geolocationlatitude = lat;
+        this.dataModel.geolocationlongitude = lon;
         this.receiveMap();
       }
     });

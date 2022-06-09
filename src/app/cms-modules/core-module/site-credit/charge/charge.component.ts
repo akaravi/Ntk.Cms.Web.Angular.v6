@@ -26,7 +26,7 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
         public translate: TranslateService
     ) {
         this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
-        this.dataModelCalculate.LinkModuleId = this.requestLinkModuleId;
+        this.dataModelCalculate.linkModuleId = this.requestLinkModuleId;
 
     }
     currency = '';
@@ -56,10 +56,10 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
     DataGetCurrency(): void {
         this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
             next: (ret) => {
-                if (ret.IsSuccess) {
-                    this.currency = ret.Item;
+                if (ret.isSuccess) {
+                    this.currency = ret.item;
                 } else {
-                    this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+                    this.cmsToastrService.typeerrorMessage(ret.errorMessage);
                 }
             },
             error: (er) => {
@@ -73,8 +73,8 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
         const dialogRef = this.dialog.open(CoreModuleSiteCreditChargePaymentComponent, {
             height: '90%',
             data: {
-                Credit: this.dataModelCalculate.Credit,
-                LinkModuleId: this.dataModelCalculate.LinkModuleId,
+                Credit: this.dataModelCalculate.credit,
+                LinkModuleId: this.dataModelCalculate.linkModuleId,
             }
         });
         dialogRef.afterClosed().subscribe(result => {

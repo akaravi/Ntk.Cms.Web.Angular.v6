@@ -8,10 +8,10 @@ export class EnumsPipe implements PipeTransform {
     if (!args || args.length === 0) {
       return '';
     }
-    const find = args.find(x => x.Key === value || x.Value === value);
+    const find = args.find(x => x.key === value || x.value === value);
     if (!find) {
       return '';
     }
-    return find.Description;
+    return find.description;
   }
 }

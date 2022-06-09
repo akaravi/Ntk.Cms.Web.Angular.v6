@@ -43,15 +43,15 @@ export class CmsRecordStatusSelfSaveDirective {
   }
   async getEnumRecordStatus(): Promise<void> {
     const dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
-    dataModelEnumRecordStatusResult.ListItems.forEach(co => {
+    dataModelEnumRecordStatusResult.listItems.forEach(co => {
       const option = document.createElement('option');
-      option.innerHTML = ' '+co.Title + ' ' + '<i Class="' + this.iconStatus(co.Value) + '"></i>';
-      option.value = co.Value.toString();
+      option.innerHTML = ' '+co.title + ' ' + '<i Class="' + this.iconStatus(co.value) + '"></i>';
+      option.value = co.value.toString();
       this.elRef.nativeElement.add(option);
     });
 
-    if (this.elRef.nativeElement.options.length > 0 && this.row && this.row.RecordStatus) {
-      this.renderer.setProperty(this.elRef.nativeElement, 'value', this.row.RecordStatus);
+    if (this.elRef.nativeElement.options.length > 0 && this.row && this.row.recordStatus) {
+      this.renderer.setProperty(this.elRef.nativeElement, 'value', this.row.recordStatus);
     }
   }
 
@@ -60,22 +60,22 @@ export class CmsRecordStatusSelfSaveDirective {
     const element: HTMLElement = this.elRef.nativeElement;
     const recordStatus = element['value'] as EnumRecordStatus;
     this.addLoader(element);
-    this.contentService.ServiceSetStatus(this.row.Id, recordStatus).subscribe(
+    this.contentService.ServiceSetStatus(this.row.id, recordStatus).subscribe(
       (next) => {
-        if (next.IsSuccess) {
+        if (next.isSuccess) {
           this.handleSuccessCase(element);
-          this.cmsToastrService.typeSuccessSetStatus(next.ErrorMessage);
-          this.row.RecordStatus = recordStatus|0;
+          this.cmsToastrService.typeSuccessSetStatus(next.errorMessage);
+          this.row.recordStatus = recordStatus|0;
           this.cdr.markForCheck();
         }
         else {
-          this.renderer.setProperty(this.elRef.nativeElement, 'value', this.row.RecordStatus);
-          this.cmsToastrService.typeErrorSetStatus(next.ErrorMessage);
+          this.renderer.setProperty(this.elRef.nativeElement, 'value', this.row.recordStatus);
+          this.cmsToastrService.typeErrorSetStatus(next.errorMessage);
           this.handleErrorCase(element);
         }
       },
       (error) => {
-        this.renderer.setProperty(this.elRef.nativeElement, 'value', this.row.RecordStatus);
+        this.renderer.setProperty(this.elRef.nativeElement, 'value', this.row.recordStatus);
         this.cmsToastrService.typeError(error);
         this.handleErrorCase(element);
       }

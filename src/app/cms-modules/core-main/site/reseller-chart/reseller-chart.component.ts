@@ -55,7 +55,7 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<RessellerChartModel> = new ErrorExceptionResult<RessellerChartModel>();
   filteModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<RessellerChartModel>(node => node.SiteChilds);
+  treeControl = new NestedTreeControl<RessellerChartModel>(node => node.siteChilds);
 
   dataSource = new MatTreeNestedDataSource<RessellerChartModel>();
   @Output() optionChange = new EventEmitter<RessellerChartModel>();
@@ -64,10 +64,10 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
 
   // hasChild = (_: number, node: RessellerChartModel) => false;
   hasChild(_: number, node: RessellerChartModel): boolean {
-    if (node && node.SiteChilds && node.SiteChilds.length > 0) {
+    if (node && node.siteChilds && node.siteChilds.length > 0) {
       return true;
     }
-    // if (node && node.UserChilds && node.UserChilds.length > 0) {
+    // if (node && node.userChilds && node.userChilds.length > 0) {
     //   return true;
     // }
     return false;
@@ -83,19 +83,19 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.RowPerPage = 200;
-    this.filteModel.AccessLoad = true;
+    this.filteModel.rowPerPage = 200;
+    this.filteModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.categoryService.ServiceGetRessellerChart(this.requestLinkSiteId).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.dataSource.data = [this.dataModelResult.Item];
+          this.dataSource.data = [this.dataModelResult.item];
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

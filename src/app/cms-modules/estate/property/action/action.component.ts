@@ -50,14 +50,14 @@ export class EstatePropertyActionComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'فعالیت ها ';
+    this.formInfo.formTitle = 'فعالیت ها ';
   }
 
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.dialogRef.close({
       dialogChangedDate: true,
       model: this.dataModel

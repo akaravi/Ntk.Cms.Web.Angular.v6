@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-                  let item of dataModelEnumRecordStatusResult.ListItems;
+                  let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -24,17 +24,17 @@
     </mat-form-field>
     <!-- LinkManagementAccountingId Field -->
     <app-linkmanagement-accounting-selector (optionChange)="onActionSelectorAccount($event)"
-      [optionDisabled]="!fieldsInfo['LinkManagementAccountingId']?.AccessAddField"
-      [optionSelectForce]="dataModel.LinkManagementAccountingId" [optionPlaceholder]="'حساب '">
+      [optionDisabled]="!fieldsInfo['LinkManagementAccountingId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkManagementAccountingId" [optionPlaceholder]="'حساب '">
     </app-linkmanagement-accounting-selector>
     <!-- AccountingType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع حساب" [(ngModel)]="dataModel.AccountingType" name="dataModel.AccountingType"
-        #AccountingType="ngModel" panelClass="recordStatus-{{ dataModel.AccountingType }}" required>
+      <mat-select placeholder="نوع حساب" [(ngModel)]="dataModel.accountingType" name="dataModel.accountingType"
+        #AccountingType="ngModel" panelClass="recordStatus-{{ dataModel.accountingType }}" required>
         <mat-option *ngFor="
-                            let item of dataModelEnumRecordStatusResult.ListItems;
+                            let item of dataModelEnumRecordStatusResult.listItems;
                             index as i
-                          " [value]="item.Value">{{ item.Description }}</mat-option>
+                          " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
       <mat-error *ngIf="AccountingType.errors?.required">
@@ -43,11 +43,11 @@
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.Description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.Description" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Description = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
@@ -57,11 +57,11 @@
 
     <!-- Debtor Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Debtor']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Debtor" name="dataModel.Debtor" #Debtor type="number"
+      <mat-label>{{fieldsInfo['Debtor']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.debtor" name="dataModel.debtor" #Debtor type="number"
         placeholder="اعتبار  بدهکار" min="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.Debtor" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Debtor = 0">close</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.debtor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.debtor = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="Debtor.errors?.required">
         Debtor is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -69,11 +69,11 @@
     </mat-form-field>
     <!-- Creditor Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Creditor']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Creditor" name="dataModel.Creditor" #Creditor type="number"
+      <mat-label>{{fieldsInfo['Creditor']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.creditor" name="dataModel.creditor" #Creditor type="number"
         placeholder="اعتبار  بستانکار" min="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.Creditor" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Creditor = 0">close</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.creditor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.creditor = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="Creditor.errors?.required">
         Creditor is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -81,30 +81,30 @@
     </mat-form-field>
     <!-- LinkExternalShopInvoiceSaleDetailId Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['LinkExternalShopInvoiceSaleDetailId']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.LinkExternalShopInvoiceSaleDetailId"
-        name="dataModel.LinkExternalShopInvoiceSaleDetailId" #LinkExternalShopInvoiceSaleDetailId type="number"
-        placeholder="{{fieldsInfo['LinkExternalShopInvoiceSaleDetailId']?.FieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.LinkExternalShopInvoiceSaleDetailId" matSuffix mat-icon-button
-        aria-label="Clear" (click)="dataModel.LinkExternalShopInvoiceSaleDetailId = 0">close</mat-icon>
+      <mat-label>{{fieldsInfo['LinkExternalShopInvoiceSaleDetailId']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.linkExternalShopInvoiceSaleDetailId"
+        name="dataModel.linkExternalShopInvoiceSaleDetailId" #LinkExternalShopInvoiceSaleDetailId type="number"
+        placeholder="{{fieldsInfo['LinkExternalShopInvoiceSaleDetailId']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.linkExternalShopInvoiceSaleDetailId" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.linkExternalShopInvoiceSaleDetailId = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- RowNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['RowNumber']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.RowNumber" name="dataModel.RowNumber" #RowNumber type="number"
-        placeholder="{{fieldsInfo['RowNumber']?.FieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.RowNumber" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.RowNumber = 0">close</mat-icon>
+      <mat-label>{{fieldsInfo['RowNumber']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.rowNumber" name="dataModel.rowNumber" #RowNumber type="number"
+        placeholder="{{fieldsInfo['RowNumber']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.rowNumber" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.rowNumber = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- FishNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['FishNumber']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.FishNumber" name="dataModel.FishNumber" #FishNumber type="text"
-        placeholder="{{fieldsInfo['FishNumber']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.FishNumber" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.FishNumber = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['FishNumber']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.fishNumber" name="dataModel.fishNumber" #FishNumber type="text"
+        placeholder="{{fieldsInfo['FishNumber']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.fishNumber" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.fishNumber = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ FishNumber.value.length }} / 100</mat-hint>
       <mat-error *ngIf="FishNumber.errors?.required">
@@ -113,11 +113,11 @@
     </mat-form-field>
     <!-- TokenNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TokenNumber']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.TokenNumber" name="dataModel.TokenNumber" #TokenNumber type="text"
-        placeholder="{{fieldsInfo['TokenNumber']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.TokenNumber" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.TokenNumber = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TokenNumber']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.tokenNumber" name="dataModel.tokenNumber" #TokenNumber type="text"
+        placeholder="{{fieldsInfo['TokenNumber']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.tokenNumber" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.tokenNumber = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TokenNumber.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TokenNumber.errors?.required">
@@ -126,11 +126,11 @@
     </mat-form-field>
     <!-- ReceiptCode Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ReceiptCode']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ReceiptCode" name="dataModel.ReceiptCode" #ReceiptCode type="text"
-        placeholder="{{fieldsInfo['ReceiptCode']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.ReceiptCode" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.ReceiptCode = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['ReceiptCode']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.receiptCode" name="dataModel.receiptCode" #ReceiptCode type="text"
+        placeholder="{{fieldsInfo['ReceiptCode']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.receiptCode" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.receiptCode = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ReceiptCode.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ReceiptCode.errors?.required">
@@ -142,15 +142,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

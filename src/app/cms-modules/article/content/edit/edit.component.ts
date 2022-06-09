@@ -110,16 +110,16 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFilePodcastId(model: NodeInterface): void {
-    this.dataModel.LinkFilePodcastId = model.id;
-    this.dataModel.LinkFilePodcastIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFilePodcastId = model.id;
+    this.dataModel.linkFilePodcastIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileMovieId(model: NodeInterface): void {
-    this.dataModel.LinkFileMovieId = model.id;
-    this.dataModel.LinkFileMovieIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFileMovieId = model.id;
+    this.dataModel.linkFileMovieIdSrc = model.downloadLinksrc;
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -133,7 +133,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    this.dataModel.Keyword = '';
+    this.dataModel.keyword = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -144,15 +144,15 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.Keyword = listKeyword.join(',');
+        this.dataModel.keyword = listKeyword.join(',');
       }
     }
     this.DataEditContent();
   }
   DataGetOne(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     /*َAccess Field*/
@@ -162,33 +162,33 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe({
         next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.loading.Stop(pName);
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
-            const lat = this.dataModel.Geolocationlatitude;
-            const lon = this.dataModel.Geolocationlongitude;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
+            const lat = this.dataModel.geolocationlatitude;
+            const lon = this.dataModel.geolocationlongitude;
             if (lat > 0 && lon > 0) {
               this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
-            this.dataModel.Keyword = this.dataModel.Keyword + '';
-            this.keywordDataModel = this.dataModel.Keyword.split(',');
+            this.dataModel.keyword = this.dataModel.keyword + '';
+            this.keywordDataModel = this.dataModel.keyword.split(',');
             this.DataTagGetAll();
             this.DataOtherInfoGetAll();
             this.DataSimilarGetAllIds();
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -196,37 +196,37 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       );
   }
   DataTagGetAll(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkContentId';
-    filter.Value = this.requestId;
-    filter.ClauseType = EnumClauseType.And;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'LinkContentId';
+    filter.value = this.requestId;
+    filter.clauseType = EnumClauseType.And;
+    filteModel.filters.push(filter);
     this.tagIdsData = [];
     this.contentTagService
       .ServiceGetAll(filteModel)
       .subscribe({
         next: (ret) => {
           this.dataContentTagModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
             const list = [];
-            this.dataContentTagModelResult.ListItems.forEach(x => {
-              list.push(x.LinkTagId);
+            this.dataContentTagModelResult.listItems.forEach(x => {
+              list.push(x.linkTagId);
             });
             this.tagIdsData = list;
           } else {
-            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
@@ -234,34 +234,34 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       );
   }
   DataOtherInfoGetAll(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkContentId';
-    filter.Value = this.requestId;
-    filter.ClauseType = EnumClauseType.And;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'LinkContentId';
+    filter.value = this.requestId;
+    filter.clauseType = EnumClauseType.And;
+    filteModel.filters.push(filter);
     this.contentOtherInfoService
       .ServiceGetAll(filteModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.dataContentOtherInfoModelResult = ret;
-          if (ret.IsSuccess) {
-            this.otherInfoDataModel = ret.ListItems;
-            this.otherInfoTabledataSource.data = ret.ListItems;
+          if (ret.isSuccess) {
+            this.otherInfoDataModel = ret.listItems;
+            this.otherInfoTabledataSource.data = ret.listItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
@@ -269,44 +269,44 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       );
   }
   DataSimilarGetAllIds(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkSourceId';
-    filter.Value = this.requestId;
-    filter.ClauseType = EnumClauseType.Or;
-    filteModel.Filters.push(filter);
-    filter.PropertyName = 'LinkDestinationId';
-    filter.Value = this.requestId;
-    filter.ClauseType = EnumClauseType.Or;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'LinkSourceId';
+    filter.value = this.requestId;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
+    filter.propertyName = 'LinkDestinationId';
+    filter.value = this.requestId;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
     this.contentSimilarService
       .ServiceGetAll(filteModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.dataContentSimilarModelResult = ret;
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
             const listIds = Array<number>();
-            ret.ListItems.forEach(x => {
-              if (x.LinkDestinationId === this.requestId) {
-                listIds.push(x.LinkSourceId);
+            ret.listItems.forEach(x => {
+              if (x.linkDestinationId === this.requestId) {
+                listIds.push(x.linkSourceId);
               } else {
-                listIds.push(x.LinkDestinationId);
+                listIds.push(x.linkDestinationId);
               }
             });
             this.DataSimilarGetAll(listIds);
           } else {
-            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
@@ -317,37 +317,37 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     if (!ids || ids.length === 0) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
     const filteModel = new FilterModel();
     ids.forEach(item => {
       if (item > 0) {
         const filter = new FilterDataModel();
-        filter.PropertyName = 'Id';
-        filter.Value = item;
-        filter.ClauseType = EnumClauseType.Or;
-        filteModel.Filters.push(filter);
+        filter.propertyName = 'Id';
+        filter.value = item;
+        filter.clauseType = EnumClauseType.Or;
+        filteModel.filters.push(filter);
       }
     });
     this.contentService
       .ServiceGetAll(filteModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.similarDataModel = ret.ListItems;
-            this.similarTabledataSource.data = ret.ListItems;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.similarDataModel = ret.listItems;
+            this.similarTabledataSource.data = ret.listItems;
           } else {
-            this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
@@ -355,9 +355,9 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       );
   }
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.contentService
@@ -365,24 +365,24 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       .subscribe(
         async (next) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-            this.cmsToastrService.typeSuccessAdd();
+          if (next.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.cmsToastrService.typeSuccessEdit();
             await this.DataActionAfterAddContentSuccessfulTag(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulSimilar(this.dataModel);
             await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModel);
             setTimeout(() => this.router.navigate(['/article/content']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(next.errorMessage);
           }
           this.loading.Stop(pName);
         },
         (error) => {
 
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
+          this.formInfo.formSubmitAllow = true;
+          this.cmsToastrService.typeErrorEdit(error);
           this.loading.Stop(pName);
         }
       );
@@ -393,16 +393,16 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     if (this.tagIdsData) {
       this.tagIdsData.forEach(item => {
         const row = new ArticleContentTagModel();
-        row.LinkContentId = model.Id;
-        row.LinkTagId = item;
-        if (!this.dataContentTagModelResult.ListItems || !this.dataContentTagModelResult.ListItems.find(x => x.LinkTagId === item)) {
+        row.linkContentId = model.id;
+        row.linkTagId = item;
+        if (!this.dataContentTagModelResult.listItems || !this.dataContentTagModelResult.listItems.find(x => x.linkTagId === item)) {
           dataListAdd.push(row);
         }
       });
     }
-    if (this.dataContentTagModelResult.ListItems) {
-      this.dataContentTagModelResult.ListItems.forEach(item => {
-        if (!this.tagIdsData || !this.tagIdsData.find(x => x === item.LinkTagId)) {
+    if (this.dataContentTagModelResult.listItems) {
+      this.dataContentTagModelResult.listItems.forEach(item => {
+        if (!this.tagIdsData || !this.tagIdsData.find(x => x === item.linkTagId)) {
           dataListDelete.push(item);
         }
       });
@@ -418,17 +418,17 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     if (this.otherInfoDataModel) {
       this.otherInfoDataModel.forEach(item => {
         const row = new ArticleContentOtherInfoModel();
-        row.LinkContentId = model.Id;
-        if (!this.dataContentOtherInfoModelResult.ListItems ||
-          !item.Id ||
-          !this.dataContentOtherInfoModelResult.ListItems.find(x => x.Id === item.Id)) {
+        row.linkContentId = model.id;
+        if (!this.dataContentOtherInfoModelResult.listItems ||
+          !item.id ||
+          !this.dataContentOtherInfoModelResult.listItems.find(x => x.id === item.id)) {
           dataListAdd.push(row);
         }
       });
     }
-    if (this.dataContentOtherInfoModelResult.ListItems) {
-      this.dataContentOtherInfoModelResult.ListItems.forEach(item => {
-        if (!this.otherInfoDataModel || !this.otherInfoDataModel.find(x => x.Id === item.Id)) {
+    if (this.dataContentOtherInfoModelResult.listItems) {
+      this.dataContentOtherInfoModelResult.listItems.forEach(item => {
+        if (!this.otherInfoDataModel || !this.otherInfoDataModel.find(x => x.id === item.id)) {
           dataListDelete.push(item);
         }
       });
@@ -444,17 +444,17 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     if (this.similarDataModel) {
       this.similarDataModel.forEach(item => {
         const row = new ArticleContentSimilarModel();
-        row.LinkSourceId = model.Id;
-        row.LinkDestinationId = item.Id;
-        if (!this.dataContentSimilarModelResult.ListItems ||
-          !this.dataContentSimilarModelResult.ListItems.find(x => x.LinkSourceId === item.Id || x.LinkDestinationId === item.Id)) {
+        row.linkSourceId = model.id;
+        row.linkDestinationId = item.id;
+        if (!this.dataContentSimilarModelResult.listItems ||
+          !this.dataContentSimilarModelResult.listItems.find(x => x.linkSourceId === item.id || x.linkDestinationId === item.id)) {
           dataListAdd.push(row);
         }
       });
     }
-    if (this.dataContentSimilarModelResult.ListItems) {
-      this.dataContentSimilarModelResult.ListItems.forEach(item => {
-        if (!this.similarDataModel || !this.similarDataModel.find(x => x.Id === item.LinkSourceId || x.Id === item.LinkDestinationId)) {
+    if (this.dataContentSimilarModelResult.listItems) {
+      this.dataContentSimilarModelResult.listItems.forEach(item => {
+        if (!this.similarDataModel || !this.similarDataModel.find(x => x.id === item.linkSourceId || x.id === item.linkDestinationId)) {
           dataListDelete.push(item);
         }
       });
@@ -465,40 +465,40 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     }
   }
   onActionSelectorSelect(model: ArticleCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkCategoryId = model.Id;
+    this.dataModel.linkCategoryId = model.id;
   }
   DataCategoryGetAll(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_category_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_category_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_category_information_from_the_server'));
     const filteModel = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkContentId';
-    filter.Value = this.requestId;
-    filter.ClauseType = EnumClauseType.And;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'LinkContentId';
+    filter.value = this.requestId;
+    filter.clauseType = EnumClauseType.And;
+    filteModel.filters.push(filter);
     this.tagIdsData = [];
     this.contentCategoryService
       .ServiceGetAll(filteModel)
       .subscribe({
         next: (ret) => {
           const itemList = [];
-          ret.ListItems.forEach(element => {
-            itemList.push(element.LinkCategoryId);
+          ret.listItems.forEach(element => {
+            itemList.push(element.linkCategoryId);
           });
           this.dataContentCategoryModel = itemList;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetAll(er);
           this.loading.Stop(pName);
         }
@@ -512,21 +512,21 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       return;
     }
     const entity = new ArticleContentCategoryModel();
-    entity.LinkCategoryId = model;
-    entity.LinkContentId = this.dataModel.Id;
+    entity.linkCategoryId = model;
+    entity.linkContentId = this.dataModel.id;
     this.contentCategoryService.ServiceAdd(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -539,21 +539,21 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       return;
     }
     const entity = new ArticleContentCategoryModel();
-    entity.LinkCategoryId = model;
-    entity.LinkContentId = this.dataModel.Id;
+    entity.linkCategoryId = model;
+    entity.linkContentId = this.dataModel.id;
     this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -563,16 +563,16 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.tagIdsData = ids;
   }
   onActionContentSimilarSelect(model: ArticleContentModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       return;
     }
     this.contentSimilarSelected = model;
   }
   onActionContentSimilarAddToLIst(): void {
-    if (!this.contentSimilarSelected || this.contentSimilarSelected.Id <= 0) {
+    if (!this.contentSimilarSelected || this.contentSimilarSelected.id <= 0) {
       return;
     }
-    if (this.similarDataModel.find(x => x.Id === this.contentSimilarSelected.Id)) {
+    if (this.similarDataModel.find(x => x.id === this.contentSimilarSelected.id)) {
       this.cmsToastrService.typeErrorAddDuplicate();
       return;
     }
@@ -580,7 +580,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     this.similarTabledataSource.data = this.similarDataModel;
   }
   onActionContentSimilarRemoveFromLIst(model: ArticleContentModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       return;
     }
     if (!this.similarDataModel || this.similarDataModel.length === 0) {
@@ -588,7 +588,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     }
     const retOut = new Array<ArticleContentModel>();
     this.similarDataModel.forEach(x => {
-      if (x.Id !== model.Id) {
+      if (x.id !== model.id) {
         retOut.push(x);
       }
     });
@@ -599,7 +599,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     if (!this.contentOtherInfoSelected) {
       return;
     }
-    if (this.otherInfoDataModel.find(x => x.Title === this.contentOtherInfoSelected.Title)) {
+    if (this.otherInfoDataModel.find(x => x.title === this.contentOtherInfoSelected.title)) {
       this.cmsToastrService.typeErrorAddDuplicate();
       return;
     }
@@ -663,27 +663,27 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.Geolocationlatitude && lon === this.dataModel.Geolocationlongitude) {
-        this.dataModel.Geolocationlatitude = null;
-        this.dataModel.Geolocationlongitude = null;
+      if (lat === this.dataModel.geolocationlatitude && lon === this.dataModel.geolocationlongitude) {
+        this.dataModel.geolocationlatitude = null;
+        this.dataModel.geolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.Geolocationlatitude = lat;
-      this.dataModel.Geolocationlongitude = lon;
+      this.dataModel.geolocationlatitude = lat;
+      this.dataModel.geolocationlongitude = lon;
     });
   }
   receiveZoom(mode: leafletMap): void {
   }
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
+    if (!model || !model.id || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Information_area_deleted');
       this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkLocationId = null;
+      this.dataModel.linkLocationId = null;
       return;
     }
-    this.dataModel.LinkLocationId = model.Id;
+    this.dataModel.linkLocationId = model.id;
   }
 
 }

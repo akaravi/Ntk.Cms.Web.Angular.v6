@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-                  let item of dataModelEnumRecordStatusResult.ListItems;
+                  let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
-                " [value]="item.Value">{{ item.Description }}</mat-option>
+                " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -25,78 +25,78 @@
 
     <!-- LinkCoreUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreUserId"
+      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
       [optionPlaceholder]="'کاربر'">
     </app-cms-user-selector>
     <!-- LinkCoreSiteId Field -->
     <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.AccessAddField" [optionSelectForce]="dataModel.LinkCoreSiteId"
+      [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
       [optionPlaceholder]="'سایت'">
     </app-cms-site-selector>
     <!-- LinkCoreUserGroupId Field -->
     <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.AccessAddField"
-      [optionSelectForce]="dataModel.LinkCoreUserGroupId" [optionPlaceholder]="'نوع کاربری'">
+      [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkCoreUserGroupId" [optionPlaceholder]="'نوع کاربری'">
     </app-cms-usergroup-selector>
     <!-- LinkCoreSiteCategoryId Field -->
     <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.AccessAddField"
-      [optionSelectForce]="dataModel.LinkCoreSiteCategoryId" [optionPlaceholder]="'نوع سایت'">
+      [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkCoreSiteCategoryId" [optionPlaceholder]="'نوع سایت'">
     </app-cms-sitecategory-selector>
     <!-- LinkApiPathId Field -->
     <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
-      [optionSelectForce]="dataModel.LinkApiPathId" [optionPlaceholder]="'مسیر'">
+      [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="'مسیر'">
     </app-sms-apipath-selector>
 
     <!-- RegulatorNumber Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RegulatorNumber']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['RegulatorNumber']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.RegulatorNumber"
-        [disabled]="!fieldsInfo['RegulatorNumber']?.AccessEditField" name="dataModel.RegulatorNumber" #RegulatorNumber
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RegulatorNumber']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['RegulatorNumber']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.regulatorNumber"
+        [disabled]="!fieldsInfo['RegulatorNumber']?.accessEditField" name="dataModel.regulatorNumber" #RegulatorNumber
         type="text" placeholder="123" />
-      <mat-icon matSuffix *ngIf="dataModel.RegulatorNumber && fieldsInfo['RegulatorNumber']?.AccessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.RegulatorNumber = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['RegulatorNumber']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.regulatorNumber && fieldsInfo['RegulatorNumber']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.regulatorNumber = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['RegulatorNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">{{ RegulatorNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
 
 
     <!-- ServicePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServicePrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['ServicePrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.ServicePrice" [disabled]="!fieldsInfo['ServicePrice']?.AccessEditField"
-        name="dataModel.ServicePrice" #ServicePrice type="number" placeholder="0" />
-      <mat-icon matSuffix *ngIf="dataModel.ServicePrice && fieldsInfo['ServicePrice']?.AccessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.ServicePrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ServicePrice']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServicePrice']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['ServicePrice']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.servicePrice" [disabled]="!fieldsInfo['ServicePrice']?.accessEditField"
+        name="dataModel.servicePrice" #ServicePrice type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.servicePrice && fieldsInfo['ServicePrice']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.servicePrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ServicePrice']?.accessEditField" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- EndUserPrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['EndUserPrice']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['EndUserPrice']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.EndUserPrice" [disabled]="!fieldsInfo['EndUserPrice']?.AccessEditField"
-        name="dataModel.EndUserPrice" #EndUserPrice type="number" placeholder="0" />
-      <mat-icon matSuffix *ngIf="dataModel.EndUserPrice && fieldsInfo['EndUserPrice']?.AccessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.EndUserPrice = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['EndUserPrice']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['EndUserPrice']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['EndUserPrice']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.endUserPrice" [disabled]="!fieldsInfo['EndUserPrice']?.accessEditField"
+        name="dataModel.endUserPrice" #EndUserPrice type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.endUserPrice && fieldsInfo['EndUserPrice']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.endUserPrice = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['EndUserPrice']?.accessEditField" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- MessageLength Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MessageLength']?.AccessWatchField">
-      <mat-label>{{ fieldsInfo['MessageLength']?.FieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.MessageLength" [disabled]="!fieldsInfo['MessageLength']?.AccessEditField"
-        name="dataModel.MessageLength" #MessageLength type="number" placeholder="0" />
-      <mat-icon matSuffix *ngIf="dataModel.MessageLength && fieldsInfo['MessageLength']?.AccessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.MessageLength = 0">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['MessageLength']?.AccessEditField" matSuffix>mode_edit</mat-icon>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MessageLength']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['MessageLength']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.messageLength" [disabled]="!fieldsInfo['MessageLength']?.accessEditField"
+        name="dataModel.messageLength" #MessageLength type="number" placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.messageLength && fieldsInfo['MessageLength']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.messageLength = 0">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['MessageLength']?.accessEditField" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- MessageType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع پیام" [(ngModel)]="dataModel.MessageType" name="dataModel.MessageType"
-        #MessageType="ngModel" panelClass="recordStatus-{{ dataModel.MessageType }}" required>
+      <mat-select placeholder="نوع پیام" [(ngModel)]="dataModel.messageType" name="dataModel.messageType"
+        #MessageType="ngModel" panelClass="recordStatus-{{ dataModel.messageType }}" required>
         <mat-option *ngFor="
-                      let item of dataModelSmsMessageTypeEnumResult.ListItems;
+                      let item of dataModelSmsMessageTypeEnumResult.listItems;
                       index as i
-                    " [value]="item.Value">{{ item.Description }}</mat-option>
+                    " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">انتخاب نوع پیام</mat-hint>
       <mat-error *ngIf="MessageType.errors?.required">
@@ -105,12 +105,12 @@
     </mat-form-field>
     <!-- OutBoxType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع ارسال" [(ngModel)]="dataModel.OutBoxType" name="dataModel.OutBoxType"
-        #OutBoxType="ngModel" panelClass="recordStatus-{{ dataModel.OutBoxType }}" required>
+      <mat-select placeholder="نوع ارسال" [(ngModel)]="dataModel.outBoxType" name="dataModel.outBoxType"
+        #OutBoxType="ngModel" panelClass="recordStatus-{{ dataModel.outBoxType }}" required>
         <mat-option *ngFor="
-                let item of dataModelSmsOutBoxTypeEnumResult.ListItems;
+                let item of dataModelSmsOutBoxTypeEnumResult.listItems;
                 index as i
-              " [value]="item.Value">{{ item.Description }}</mat-option>
+              " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">انتخاب نوع ارسال</mat-hint>
       <mat-error *ngIf="OutBoxType.errors?.required">
@@ -124,15 +124,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

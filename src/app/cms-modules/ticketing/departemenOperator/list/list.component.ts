@@ -52,8 +52,8 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -112,28 +112,28 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     this.tableRowSelected = new TicketingDepartemenOperatorModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     const filter = new FilterDataModel();
     if (this.requestDepartemenId > 0) {
-      filter.PropertyName = 'LinkSourceId';
-      filter.Value = this.requestDepartemenId;
-      filterModel.Filters.push(filter);
+      filter.propertyName = 'LinkSourceId';
+      filter.value = this.requestDepartemenId;
+      filterModel.filters.push(filter);
     }
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
-      filter.PropertyName = 'LinkSourceId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
+    if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
+      filter.propertyName = 'LinkSourceId';
+      filter.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        if (next.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+        if (next.isSuccess) {
           this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          this.tableSource.data = next.listItems;
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'LinkSiteId',
@@ -152,11 +152,11 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
             );
           }
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(next.access);
           }
         }
         else {
-          this.cmsToastrService.typeErrorGetAll(next.ErrorMessage);
+          this.cmsToastrService.typeErrorGetAll(next.errorMessage);
 
         }
         this.loading.Stop(pName);
@@ -176,25 +176,25 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
@@ -211,8 +211,8 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     }
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
@@ -229,40 +229,40 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     this.DataGetAll();
   }
   onActionbuttonEditRow(mode: TicketingDepartemenOperatorModel = this.tableRowSelected): void {
-    if (!mode || !mode.Id || mode.Id === 0) {
+    if (!mode || !mode.id || mode.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = mode;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
 
   
-    this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/app/edit/', this.tableRowSelected.id]);
 
   }
   onActionbuttonDeleteRow(mode: TicketingDepartemenOperatorModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = mode;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
 
-    this.router.navigate(['/application/app/delete/', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/app/delete/', this.tableRowSelected.id]);
 
   }
   onActionbuttonStatist(): void {
@@ -275,8 +275,8 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+        if (next.isSuccess) {
+          statist.set('All', next.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
       },
@@ -287,13 +287,13 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+        if (next.isSuccess) {
+          statist.set('Active', next.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
       }
@@ -313,8 +313,8 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+        if (next.isSuccess) {
+          exportlist.set('Download', next.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
       },
@@ -328,7 +328,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: TicketingDepartemenOperatorModel): void {

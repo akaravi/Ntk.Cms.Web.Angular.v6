@@ -50,9 +50,9 @@ export class CoreSiteUserEditComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkUserId = +data.LinkUserId || 0;
-      this.requestLinkSiteId = +data.LinkSiteId || 0;
-      this.requestLinkUserGroupId = +data.LinkUserGroupId || 0;
+      this.requestLinkUserId = +data.linkUserId || 0;
+      this.requestLinkSiteId = +data.linkSiteId || 0;
+      this.requestLinkUserGroupId = +data.linkUserGroupId || 0;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -87,8 +87,8 @@ export class CoreSiteUserEditComponent implements OnInit {
   DataGetOneContent(): void {
 
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -96,38 +96,38 @@ export class CoreSiteUserEditComponent implements OnInit {
     const filteModelContent = new FilterModel();
     /*make filter*/
     let filter = new FilterDataModel();
-    filter.PropertyName = 'LinkUserId';
-    filter.Value = this.requestLinkUserId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkUserId';
+    filter.value = this.requestLinkUserId;
+    filteModelContent.filters.push(filter);
     /*make filter*/
     filter = new FilterDataModel();
-    filter.PropertyName = 'LinkSiteId';
-    filter.Value = this.requestLinkSiteId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkSiteId';
+    filter.value = this.requestLinkSiteId;
+    filteModelContent.filters.push(filter);
 
-    filteModelContent.AccessLoad = true;
+    filteModelContent.accessLoad = true;
 
     this.coreSiteUserService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
         /*َAccess Field*/
-        this.dataAccessModel = ret.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.dataAccessModel = ret.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          if (ret.ListItems && ret.ListItems.length > 0) {
-            this.dataModel = ret.ListItems[0];
-            this.formInfo.FormTitle = this.formInfo.FormTitle;
-            this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          if (ret.listItems && ret.listItems.length > 0) {
+            this.dataModel = ret.listItems[0];
+            this.formInfo.formTitle = this.formInfo.formTitle;
+            this.formInfo.formAlert = '';
           }
           else {
             this.cmsToastrService.typeError('ماژول جهت ویرایش یافت نشد');
 
           }
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -141,30 +141,30 @@ export class CoreSiteUserEditComponent implements OnInit {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreSiteUserService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -173,28 +173,28 @@ export class CoreSiteUserEditComponent implements OnInit {
   }
 
   onActionSelectorSiteSelect(model: CoreSiteModel): void {
-    this.dataModel.LinkSiteId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkSiteId = model.Id;
+    this.dataModel.linkSiteId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkSiteId = model.id;
     }
   }
   onActionSelectorUserSelect(model: CoreUserModel): void {
-    this.dataModel.LinkUserId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkUserId = model.Id;
+    this.dataModel.linkUserId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkUserId = model.id;
     }
   }
   onActionSelectorUserGroupSelect(model: CoreUserGroupModel): void {
-    this.dataModel.LinkUserGroupId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkUserGroupId = model.Id;
+    this.dataModel.linkUserGroupId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkUserGroupId = model.id;
     }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

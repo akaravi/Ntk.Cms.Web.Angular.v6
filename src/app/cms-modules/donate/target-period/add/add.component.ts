@@ -42,10 +42,10 @@ export class DonateTargetPeriodAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkTargeId = +data.LinkTargeId || 0;
+      this.requestLinkTargeId = +data.linkTargeId || 0;
     }
     if (this.requestLinkTargeId > 0) {
-      this.dataModel.LinkTargeId = this.requestLinkTargeId;
+      this.dataModel.linkTargeId = this.requestLinkTargeId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -68,7 +68,7 @@ export class DonateTargetPeriodAddComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = this.translate.instant('TITLE.Register_New_Categories');
+    this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -82,11 +82,11 @@ export class DonateTargetPeriodAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -97,28 +97,28 @@ export class DonateTargetPeriodAddComponent implements OnInit {
   }
 
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.donateTargetPeriodService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -126,19 +126,19 @@ export class DonateTargetPeriodAddComponent implements OnInit {
     );
   }
   onActionSelectorSelect(model: DonateTargetPeriodModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkTargeId = model.Id;
+    this.dataModel.linkTargeId = model.id;
   }
 
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataAddContent();
   }
   onFormCancel(): void {

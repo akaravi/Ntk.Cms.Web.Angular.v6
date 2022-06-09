@@ -63,29 +63,29 @@ export class DataProviderPlanPriceSelectorComponent implements OnInit {
   }
 
   displayFn(model?: DataProviderPlanPriceModel): string | undefined {
-    return model ? model.Title : undefined;
+    return model ? model.title : undefined;
   }
   displayOption(model?: DataProviderPlanPriceModel): string | undefined {
-    return model ? model.Title : undefined;
+    return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<DataProviderPlanPriceModel[]> {
     const filteModel = new FilterModel();
-    filteModel.RowPerPage = 20;
-    filteModel.AccessLoad = true;
+    filteModel.rowPerPage = 20;
+    filteModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
-    filter.PropertyName = 'Title';
-    filter.Value = text;
-    filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-    filter.ClauseType = EnumClauseType.Or;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'Title';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
-      filter.PropertyName = 'Id';
-      filter.Value = text;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.ClauseType = EnumClauseType.Or;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'Id';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
     }
     
     const pName = this.constructor.name + 'main';
@@ -97,16 +97,16 @@ export class DataProviderPlanPriceSelectorComponent implements OnInit {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.Id || this.dataModelSelect.Id <= 0) &&
-            this.dataModelResult.ListItems.length > 0) {
+            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&
+            this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.ListItems[0]);
+            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
+            this.onActionSelect(this.dataModelResult.listItems[0]);
           }
           /*select First Item */
           this.loading.Stop(pName);
 
-          return response.ListItems;
+          return response.listItems;
         })
       ).toPromise();
   }
@@ -121,7 +121,7 @@ export class DataProviderPlanPriceSelectorComponent implements OnInit {
   }
   push(newvalue: DataProviderPlanPriceModel): Observable<DataProviderPlanPriceModel[]> {
     return this.filteredOptions.pipe(map(items => {
-      if (items.find(x => x.Id === newvalue.Id)) {
+      if (items.find(x => x.id === newvalue.id)) {
         return items;
       }
       items.push(newvalue);
@@ -131,21 +131,21 @@ export class DataProviderPlanPriceSelectorComponent implements OnInit {
   }
   onActionSelectForce(id: number | DataProviderPlanPriceModel): void {
     if (typeof id === 'number' && id > 0) {
-      if (this.dataModelSelect && this.dataModelSelect.Id === id) {
+      if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
       }
-      if (this.dataModelResult && this.dataModelResult.ListItems && this.dataModelResult.ListItems.find(x => x.Id === id)) {
-        const item = this.dataModelResult.ListItems.find(x => x.Id === id);
+      if (this.dataModelResult && this.dataModelResult.listItems && this.dataModelResult.listItems.find(x => x.id === id)) {
+        const item = this.dataModelResult.listItems.find(x => x.id === id);
         this.dataModelSelect = item;
         this.formControl.setValue(item);
         return;
       }
       this.categoryService.ServiceGetOneById(id).subscribe((next) => {
-        if (next.IsSuccess) {
-          this.filteredOptions = this.push(next.Item);
-          this.dataModelSelect = next.Item;
-          this.formControl.setValue(next.Item);
-          this.optionChange.emit(next.Item);
+        if (next.isSuccess) {
+          this.filteredOptions = this.push(next.item);
+          this.dataModelSelect = next.item;
+          this.formControl.setValue(next.item);
+          this.optionChange.emit(next.item);
         }
       });
       return;

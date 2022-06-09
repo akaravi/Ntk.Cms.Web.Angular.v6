@@ -46,7 +46,7 @@ export class CoreSiteDomainAliasAddComponent implements OnInit {
       this.requestId = +data.id || 0;
     }
     if (this.requestId > 0) {
-      this.dataModel.LinkCmsSiteId = this.requestId;
+      this.dataModel.linkCmsSiteId = this.requestId;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -64,7 +64,7 @@ export class CoreSiteDomainAliasAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -77,10 +77,10 @@ export class CoreSiteDomainAliasAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -91,29 +91,29 @@ export class CoreSiteDomainAliasAddComponent implements OnInit {
   }
 
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreSiteDomainAliasService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorAdd(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -124,17 +124,17 @@ export class CoreSiteDomainAliasAddComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    if (!this.dataModel.LinkCmsSiteId || this.dataModel.LinkCmsSiteId <= 0) {
+    if (!this.dataModel.linkCmsSiteId || this.dataModel.linkCmsSiteId <= 0) {
       this.cmsToastrService.typeErrorAdd('شناسه وب سایت مشخص نشده است');
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataAddContent();
   }
   onActionSiteSelect(model: CoreSiteModel): void {
-    this.dataModel.LinkCmsSiteId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkCmsSiteId = model.Id;
+    this.dataModel.linkCmsSiteId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkCmsSiteId = model.id;
     }
   }
   onFormCancel(): void {

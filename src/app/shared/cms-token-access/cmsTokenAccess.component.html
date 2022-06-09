@@ -1,19 +1,19 @@
 <span class="ml-3" *ngIf=" loadingStatus">Loading ...</span>
 <div>
   <a (click)="onActionbuttonUserAccessAdminAllowToAllData()"
-    *ngIf="tokenInfo &&( tokenInfo.UserAccessUserType == 1 || tokenInfo.UserAccessUserType == 2 || tokenInfo.UserAccessUserType == 3)"
+    *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
     class="btn btn-raised mr-1 shadow-z-2 btn-success " style="width:95% ;margin: 4px;">
-    <i [className]="tokenInfo.UserAccessAdminAllowToAllData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'"></i>&nbsp;نمایش
+    <i [className]="tokenInfo.userAccessAdminAllowToAllData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'"></i>&nbsp;نمایش
     همه اطلاعات
   </a>
   <a (click)="onActionbuttonUserAccessAdminAllowToProfessionalData()"
-    *ngIf="tokenInfo &&( tokenInfo.UserAccessUserType == 1 || tokenInfo.UserAccessUserType == 2 || tokenInfo.UserAccessUserType == 3)"
+    *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
     class="btn btn-raised mr-1 shadow-z-2 btn-success" style="width:95%;margin: 4px;">
-    <i [className]="tokenInfo.UserAccessAdminAllowToProfessionalData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'">
+    <i [className]="tokenInfo.userAccessAdminAllowToProfessionalData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'">
     </i>&nbsp;نمایش اطلاعات تخصصی
   </a>
   <div class="input-group"
-    *ngIf="tokenInfo &&( tokenInfo.UserAccessUserType == 1 || tokenInfo.UserAccessUserType == 2 || tokenInfo.UserAccessUserType == 3)"
+    *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
     style="direction: ltr;width:95%;margin: 4px;">
     <div class="input-group-prepend">
       <button (click)="onActionbuttonSelectUser()" class="btn btn-outline-primary" type="button">برو</button>
@@ -21,7 +21,7 @@
     <input [(ngModel)]="inputUserId" type="text" class="form-control" placeholder="شناسه کاربر">
   </div>
   <div class="input-group"
-    *ngIf="tokenInfo &&( tokenInfo.UserAccessUserType == 1 || tokenInfo.UserAccessUserType == 2 || tokenInfo.UserAccessUserType == 3)"
+    *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
     style="direction: ltr;width:95%;margin: 4px;">
     <div class="input-group-prepend">
       <button (click)="onActionbuttonSelectSite()" class="btn btn-outline-primary" type="button">برو</button>
@@ -31,6 +31,6 @@
   <!-- LinkCmsSiteId Field -->
   <div style="margin: 4px;">
     <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="this.tokenInfo.SiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
+      [optionSelectForce]="this.tokenInfo.siteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
   </div>
 </div>

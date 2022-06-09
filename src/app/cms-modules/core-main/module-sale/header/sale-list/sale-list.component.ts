@@ -114,10 +114,10 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
   DataGetCurrency(): void {
     this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.currency = ret.Item;
+        if (ret.isSuccess) {
+          this.currency = ret.item;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -128,7 +128,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
   }
   getModuleList(): void {
     const filter = new FilterModel();
-    filter.RowPerPage = 100;
+    filter.rowPerPage = 100;
     this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
       this.dataModelCoreModuleResult = next;
     });
@@ -153,13 +153,13 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
     const model = new FilterModel();
     this.coreModuleSaleHeaderService.ServiceGetAllSale(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.showBuy = true;
           this.dataModelResult = ret;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -181,7 +181,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
     const dialogRef = this.dialog.open(CoreModuleSaleHeaderSalePaymentComponent, {
       height: '90%',
       width: '40%',
-      data: { LinkHeaderId: model.Id }
+      data: { LinkHeaderId: model.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

@@ -6,27 +6,27 @@
       <h5><b> {{'TITLE.Selected_Task'|translate}} </b> </h5>
     </div>
     <div class="td" style="text-align: left;">
-      <!-- *ngIf="dataModelResult?.Item?.Id" -->
+      <!-- *ngIf="dataModelResult?.item?.id" -->
     </div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Id']?.FieldTitle}} </b>: </div>
-    <div class="td align">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
 
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Title']?.FieldTitle}} </b>: </div>
-    <div class="td align">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td"><b>{{fieldsInfo['Title']?.fieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.item?.title}}</div>
     <div class="td" style="text-align: left;">
 
     </div>
     <div style="clear: both;"></div>
   </div>
-  <div class="tr" *ngIf="dataModelResult?.Item?.HtmlBody?.length>0">
-    <div class="td"><b>{{fieldsInfo['HtmlBody']?.FieldTitle}} </b>: </div>
-    <div class="td align" [innerText]="dataModelResult.Item.HtmlBody"></div>
+  <div class="tr" *ngIf="dataModelResult?.item?.htmlBody?.length>0">
+    <div class="td"><b>{{fieldsInfo['HtmlBody']?.fieldTitle}} </b>: </div>
+    <div class="td align" [innerText]="dataModelResult.item.htmlBody"></div>
     <div class="td" style="text-align: left;">
 
     </div>

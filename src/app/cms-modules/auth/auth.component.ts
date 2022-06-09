@@ -40,7 +40,7 @@ export class AuthComponent implements OnInit {
     this.loading.Start(pName, 'دریافت اطلاعات سرور');
     this.configService.ServiceIp().subscribe({
       next: (ret) => {
-          this.publicHelper.appServerVersion = ret.AppVersion
+          this.publicHelper.appServerVersion = ret.appVersion
         this.loading.Stop(pName);
       },
       error:(er) => {

@@ -68,29 +68,29 @@ export class CoreModuleSaleHeaderSelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreModuleSaleHeaderModel): string | undefined {
-    return model ? (model.Id + ' # ' + model.Title) : undefined;
+    return model ? (model.id + ' # ' + model.title) : undefined;
   }
   displayOption(model?: CoreModuleSaleHeaderModel): string | undefined {
-    return model ? (model.Id + ' # ' + model.Title) : undefined;
+    return model ? (model.id + ' # ' + model.title) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreModuleSaleHeaderModel[]> {
     const filteModel = new FilterModel();
-    filteModel.RowPerPage = 20;
-    filteModel.AccessLoad = true;
+    filteModel.rowPerPage = 20;
+    filteModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
-    filter.PropertyName = 'Title';
-    filter.Value = text;
-    filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-    filter.ClauseType = EnumClauseType.Or;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'Title';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
-      filter.PropertyName = 'Id';
-      filter.Value = text;
-      filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.ClauseType = EnumClauseType.Or;
-      filteModel.Filters.push(filter);
+      filter.propertyName = 'Id';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
     }
 
     const pName = this.constructor.name + 'main';
@@ -102,16 +102,16 @@ export class CoreModuleSaleHeaderSelectorComponent implements OnInit {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.Id || this.dataModelSelect.Id <= 0) &&
-            this.dataModelResult.ListItems.length > 0) {
+            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&
+            this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.ListItems[0]);
+            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
+            this.onActionSelect(this.dataModelResult.listItems[0]);
           }
           /*select First Item */
           this.loading.Stop(pName);
 
-          return response.ListItems;
+          return response.listItems;
         })
       ).toPromise();
   }
@@ -132,7 +132,7 @@ export class CoreModuleSaleHeaderSelectorComponent implements OnInit {
 
   push(newvalue: CoreModuleSaleHeaderModel): Observable<CoreModuleSaleHeaderModel[]> {
     return this.filteredOptions.pipe(map(items => {
-      if (items.find(x => x.Id === newvalue.Id)) {
+      if (items.find(x => x.id === newvalue.id)) {
         return items;
       }
       items.push(newvalue);
@@ -142,24 +142,24 @@ export class CoreModuleSaleHeaderSelectorComponent implements OnInit {
   }
   onActionSelectForce(id: number | CoreModuleSaleHeaderModel): void {
     if (typeof id === 'number' && id > 0) {
-      if (this.dataModelSelect && this.dataModelSelect.Id === id) {
+      if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
       }
-      if (this.dataModelResult && this.dataModelResult.ListItems && this.dataModelResult.ListItems.find(x => x.Id === id)) {
-        const item = this.dataModelResult.ListItems.find(x => x.Id === id);
+      if (this.dataModelResult && this.dataModelResult.listItems && this.dataModelResult.listItems.find(x => x.id === id)) {
+        const item = this.dataModelResult.listItems.find(x => x.id === id);
         this.dataModelSelect = item;
         this.formControl.setValue(item);
         return;
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.filteredOptions = this.push(ret.Item);
-            this.dataModelSelect = ret.Item;
-            this.formControl.setValue(ret.Item);
-            this.optionChange.emit(ret.Item);
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+            this.optionChange.emit(ret.item);
           } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           }
         }
       });
@@ -175,7 +175,7 @@ export class CoreModuleSaleHeaderSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
+    // if (this.dataModelSelect && this.dataModelSelect.id > 0) {
     //   this.onActionSelect(null);
     // }
     this.dataModelSelect = new CoreModuleSaleHeaderModel();

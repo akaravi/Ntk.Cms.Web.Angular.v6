@@ -87,7 +87,7 @@ export class DataProviderConfigSiteComponent implements OnInit {
   }
   onLoadDate(): void {
     if (!this.requestLinkSiteId || this.requestLinkSiteId === 0) {
-      this.requestLinkSiteId = this.tokenInfo.SiteId;
+      this.requestLinkSiteId = this.tokenInfo.siteId;
     }
 
     if (this.requestLinkSiteId > 0) {
@@ -104,7 +104,7 @@ export class DataProviderConfigSiteComponent implements OnInit {
 
     if (this.requestLinkSiteId > 0) {
       this.SetServiceSiteConfigSave(this.requestLinkSiteId);
-      if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+      if (this.tokenInfo.userAccessAdminAllowToProfessionalData) {
         this.SetServiceSiteStorageSave(this.requestLinkSiteId);
         this.SetServiceSiteAccessSave(this.requestLinkSiteId);
       }
@@ -130,9 +130,9 @@ export class DataProviderConfigSiteComponent implements OnInit {
   }
 
   GetServiceSiteStorage(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteStorage';
     this.loading.Start(pName, 'دریافت مقادیر ذخیره شده ماژول');
 
@@ -140,27 +140,27 @@ export class DataProviderConfigSiteComponent implements OnInit {
       .ServiceSiteStorage(SiteId)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataSiteStorageModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataSiteStorageModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetOne(er);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         }
       }
       );
   }
   SetServiceSiteStorageSave(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteStorageSave';
     this.loading.Start(pName, 'ذخیره مقادیر ذخیره شده ماژول');
@@ -168,17 +168,17 @@ export class DataProviderConfigSiteComponent implements OnInit {
       .ServiceSiteStorageSave(SiteId, this.dataSiteStorageModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataSiteStorageModel = ret.Item;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataSiteStorageModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -186,9 +186,9 @@ export class DataProviderConfigSiteComponent implements OnInit {
       );
   }
   GetServiceSiteConfig(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfig';
     this.loading.Start(pName, 'دریافت تنظیمات ماژول');
@@ -196,16 +196,16 @@ export class DataProviderConfigSiteComponent implements OnInit {
       .ServiceSiteConfig(SiteId)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataConfigSiteValuesModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataConfigSiteValuesModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -213,9 +213,9 @@ export class DataProviderConfigSiteComponent implements OnInit {
       );
   }
   SetServiceSiteConfigSave(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigSave';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
 
@@ -223,16 +223,16 @@ export class DataProviderConfigSiteComponent implements OnInit {
       .ServiceSiteConfigSave(SiteId, this.dataConfigSiteValuesModel)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataConfigSiteValuesModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataConfigSiteValuesModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -240,9 +240,9 @@ export class DataProviderConfigSiteComponent implements OnInit {
       );
   }
   GetServiceSiteAccess(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccess';
     this.loading.Start(pName, 'دریافت دسترسی های ماژول');
@@ -251,16 +251,16 @@ export class DataProviderConfigSiteComponent implements OnInit {
       .ServiceSiteAccess(SiteId)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataConfigSiteAccessValuesModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataConfigSiteAccessValuesModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -268,9 +268,9 @@ export class DataProviderConfigSiteComponent implements OnInit {
       );
   }
   SetServiceSiteAccessSave(SiteId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = 'در حال ذخیره اطلاعات در سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formError = '';
 
 
 
@@ -281,17 +281,17 @@ export class DataProviderConfigSiteComponent implements OnInit {
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataConfigSiteAccessValuesModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataConfigSiteAccessValuesModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetOne(er);
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
         }
       }

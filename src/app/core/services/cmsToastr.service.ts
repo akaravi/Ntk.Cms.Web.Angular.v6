@@ -446,7 +446,7 @@ export class CmsToastrService {
     }
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorSelectedRow'));
   }
-  typeErrorMessage(message: string, title: string = 'Error!'): void {
+  typeerrorMessage(message: string, title: string = 'Error!'): void {
 
     this.toastr.error(message, this.now() + title);
   }
@@ -460,7 +460,7 @@ export class CmsToastrService {
     if (model.error) {
       errorExceptionResult = model.error;
       if (errorExceptionResult) {
-        if (errorExceptionResult.Status === 401) {
+        if (errorExceptionResult.status === 401) {
           message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError_login') + ' ' + str;
 
           this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
@@ -473,9 +473,9 @@ export class CmsToastrService {
       message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError_viewConsoleLog') + ' ' + str;
       this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
       return;
-    } else if (model && model.ErrorMessage) {
+    } else if (model && model.errorMessage) {
 
-      message = model.ErrorMessage + ' ' + str;
+      message = model.errorMessage + ' ' + str;
       this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
     }
     message = (model.message) ? model.message : model.status ? `${model.status} - ${model.statusText}` : 'Server error';

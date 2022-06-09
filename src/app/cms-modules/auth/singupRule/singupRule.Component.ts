@@ -27,10 +27,10 @@ export class SingupRuleComponent implements OnInit {
       .ServiceUserMembershipRule()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
             this.dataModelResult = ret;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },

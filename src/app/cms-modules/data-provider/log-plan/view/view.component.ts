@@ -60,7 +60,7 @@ export class DataProviderLogPlanViewComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'مشاهده  ';
+    this.formInfo.formTitle = 'مشاهده  ';
     if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -89,8 +89,8 @@ export class DataProviderLogPlanViewComponent implements OnInit, OnDestroy {
 
 
   DataGetOneContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -100,16 +100,16 @@ export class DataProviderLogPlanViewComponent implements OnInit, OnDestroy {
     this.DataProviderLogPlanService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
-        // this.dataAccessModel = next.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Id;
-          this.formInfo.FormAlert = '';
+        // this.dataAccessModel = next.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

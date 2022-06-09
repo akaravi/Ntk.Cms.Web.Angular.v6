@@ -160,10 +160,10 @@
           id="kt_quick_user_toggle">
           <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">{{'TRANSLATOR.HI'|translate}},</span>
           <span
-            class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{ tokenInfo?.Name }}</span>
+            class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{ tokenInfo?.name }}</span>
           <span class="symbol symbol-35">
             <span
-              class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">{{ tokenInfo?.LastName }}</span>
+              class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">{{ tokenInfo?.lastName }}</span>
           </span>
         </div>
       </div>
@@ -172,16 +172,16 @@
 
   <ng-container *ngIf="extrasUserLayout === 'dropdown'">
     <!--begin::User-->
-    <ng-container *ngIf="tokenInfo && tokenInfo.UserId>0">
+    <ng-container *ngIf="tokenInfo && tokenInfo.userId>0">
       <div class="dropdown" ngbDropdown placement="bottom-left">
         <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px" ngbDropdownToggle>
           <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto">
             <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">{{'TRANSLATOR.HI'|translate}}</span>
             <span
-              class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{ tokenInfo?.Name }}</span>
+              class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{ tokenInfo?.name }}</span>
             <span class="symbol symbol-35">
               <span
-                class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">{{ tokenInfo?.LastName }}</span>
+                class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">{{ tokenInfo?.lastName }}</span>
             </span>
           </div>
         </div>

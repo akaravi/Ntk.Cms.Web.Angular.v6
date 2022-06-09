@@ -68,7 +68,7 @@ export class CoreGuideEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.FormTitle = 'ویرایش  ';
+      this.formInfo.formTitle = 'ویرایش  ';
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -88,8 +88,8 @@ export class CoreGuideEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -99,16 +99,16 @@ export class CoreGuideEditComponent implements OnInit {
     this.coreGuideService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
-        this.dataAccessModel = ret.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.TitleFa;
-          this.formInfo.FormAlert = '';
+        this.dataAccessModel = ret.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.titleFa;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -121,28 +121,28 @@ export class CoreGuideEditComponent implements OnInit {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.coreGuideService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -153,7 +153,7 @@ export class CoreGuideEditComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {
@@ -172,9 +172,9 @@ export class CoreGuideEditComponent implements OnInit {
   }
 
   onActionSelectorSelect(model: CoreGuideModel): void {
-    this.dataModel.LinkParentId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkParentId = model.Id;
+    this.dataModel.linkParentId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkParentId = model.id;
     }
   }
 

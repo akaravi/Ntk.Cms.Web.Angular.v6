@@ -51,16 +51,16 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
   }
   onActionbuttonUserAccessAdminAllowToAllData(): void {
     const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
-    const NewToall = !this.tokenInfo.UserAccessAdminAllowToAllData;
-    authModel.UserAccessAdminAllowToProfessionalData = this.tokenInfo.UserAccessAdminAllowToProfessionalData;
-    authModel.UserAccessAdminAllowToAllData = NewToall;
-    authModel.SiteId = this.tokenInfo.SiteId;
-    authModel.UserId = this.tokenInfo.UserId;
-    authModel.Lang = this.tokenInfo.Language;
+    const NewToall = !this.tokenInfo.userAccessAdminAllowToAllData;
+    authModel.userAccessAdminAllowToProfessionalData = this.tokenInfo.userAccessAdminAllowToProfessionalData;
+    authModel.userAccessAdminAllowToAllData = NewToall;
+    authModel.siteId = this.tokenInfo.siteId;
+    authModel.userId = this.tokenInfo.userId;
+    authModel.lang = this.tokenInfo.language;
 
     const title = this.translate.instant('TITLE.Information');
     let message = '';
-    if (authModel.UserAccessAdminAllowToAllData) {
+    if (authModel.userAccessAdminAllowToAllData) {
       message = 'درخواست برای دسترسی به کلیه اطلاعات به سرور ارسال شد';
     } else {
       message = 'درخواست قطع  دسترسی به کل اطلاعات  به سرور ارسال شد';
@@ -70,10 +70,10 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (next) => {
         this.loadingStatus = false;
-        if (next.IsSuccess) {
+        if (next.isSuccess) {
           const etitle = this.translate.instant('TITLE.Information');
           const emessage = '';
-          if (next.Item.UserAccessAdminAllowToAllData === NewToall) {
+          if (next.item.userAccessAdminAllowToAllData === NewToall) {
             message = 'دسترسی تایید شد';
             this.cmsToastrService.toastr.success(emessage, etitle);
           } else {
@@ -81,7 +81,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
             this.cmsToastrService.toastr.warning(emessage, etitle);
           }
         } else {
-          this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);
+          this.cmsToastrService.typeErrorAccessChange(next.errorMessage);
         }
       },
       (error) => {
@@ -92,16 +92,16 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
   onActionbuttonUserAccessAdminAllowToProfessionalData(): void {
     const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
-    const NewToPerf = !this.tokenInfo.UserAccessAdminAllowToProfessionalData;
-    authModel.UserAccessAdminAllowToProfessionalData = NewToPerf;
-    authModel.UserAccessAdminAllowToAllData = this.tokenInfo.UserAccessAdminAllowToAllData;
-    authModel.SiteId = this.tokenInfo.SiteId;
-    authModel.UserId = this.tokenInfo.UserId;
-    authModel.Lang = this.tokenInfo.Language;
+    const NewToPerf = !this.tokenInfo.userAccessAdminAllowToProfessionalData;
+    authModel.userAccessAdminAllowToProfessionalData = NewToPerf;
+    authModel.userAccessAdminAllowToAllData = this.tokenInfo.userAccessAdminAllowToAllData;
+    authModel.siteId = this.tokenInfo.siteId;
+    authModel.userId = this.tokenInfo.userId;
+    authModel.lang = this.tokenInfo.language;
 
     const title = this.translate.instant('TITLE.Information');
     let message = '';
-    if (authModel.UserAccessAdminAllowToProfessionalData) {
+    if (authModel.userAccessAdminAllowToProfessionalData) {
       message = 'درخواست برای دسترسی حرفه ایی به سرور ارسال شد';
     } else {
       message = 'درخواست قطع  دسترسی حرفه ایی  به سرور ارسال شد';
@@ -111,9 +111,9 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (next) => {
         this.loadingStatus = false;
-        if (next.IsSuccess) {
+        if (next.isSuccess) {
           const etitle = this.translate.instant('TITLE.Information');
-          if (next.Item.UserAccessAdminAllowToProfessionalData === NewToPerf) {
+          if (next.item.userAccessAdminAllowToProfessionalData === NewToPerf) {
             const emessage = 'دسترسی تایید شد';
             this.cmsToastrService.toastr.success(emessage, etitle);
           } else {
@@ -121,7 +121,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
             this.cmsToastrService.toastr.warning(emessage, etitle);
           }
         } else {
-          this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);
+          this.cmsToastrService.typeErrorAccessChange(next.errorMessage);
         }
       },
       (error) => {
@@ -131,18 +131,18 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonSelectUser(): void {
-    if (this.inputUserId === this.tokenInfo.UserId) {
+    if (this.inputUserId === this.tokenInfo.userId) {
       const etitle = 'هشدار';
       const emessage = 'شناسه درخواستی این کاربر با کاربری که در آن هستید یکسان است';
       this.cmsToastrService.toastr.warning(emessage, etitle);
       return;
     }
     const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
-    authModel.UserAccessAdminAllowToProfessionalData = this.tokenInfo.UserAccessAdminAllowToProfessionalData;
-    authModel.UserAccessAdminAllowToAllData = this.tokenInfo.UserAccessAdminAllowToAllData;
-    authModel.SiteId = this.tokenInfo.SiteId;
-    authModel.UserId = this.inputUserId;
-    authModel.Lang = this.tokenInfo.Language;
+    authModel.userAccessAdminAllowToProfessionalData = this.tokenInfo.userAccessAdminAllowToProfessionalData;
+    authModel.userAccessAdminAllowToAllData = this.tokenInfo.userAccessAdminAllowToAllData;
+    authModel.siteId = this.tokenInfo.siteId;
+    authModel.userId = this.inputUserId;
+    authModel.lang = this.tokenInfo.language;
 
     const title = this.translate.instant('TITLE.Information');
     const message = 'درخواست تغییر کاربر به سرور ارسال شد';
@@ -151,8 +151,8 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (next) => {
         this.loadingStatus = false;
-        if (next.IsSuccess) {
-          if (next.Item.UserId === +this.inputUserId) {
+        if (next.isSuccess) {
+          if (next.item.userId === +this.inputUserId) {
 
             this.cmsToastrService.toastr.success('دسترسی به کاربر جدید تایید شد', title);
             this.inputSiteId = null;
@@ -161,7 +161,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
             this.cmsToastrService.toastr.warning('دسترسی به کاربر جدید تایید نشد', title);
           }
         } else {
-          this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);
+          this.cmsToastrService.typeErrorAccessChange(next.errorMessage);
         }
       },
       (error) => {
@@ -171,18 +171,18 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonSelectSite(): void {
-    if (this.inputSiteId === this.tokenInfo.SiteId) {
+    if (this.inputSiteId === this.tokenInfo.siteId) {
       const etitle = 'هشدار';
       const emessage = 'شناسه این وب سایت با وب سایتی که در آن هستید یکسان است';
       this.cmsToastrService.toastr.warning(emessage, etitle);
       return;
     }
     const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
-    authModel.UserAccessAdminAllowToProfessionalData = this.tokenInfo.UserAccessAdminAllowToProfessionalData;
-    authModel.UserAccessAdminAllowToAllData = this.tokenInfo.UserAccessAdminAllowToAllData;
-    authModel.UserId = this.tokenInfo.UserId;
-    authModel.SiteId = this.inputSiteId;
-    authModel.Lang = this.tokenInfo.Language;
+    authModel.userAccessAdminAllowToProfessionalData = this.tokenInfo.userAccessAdminAllowToProfessionalData;
+    authModel.userAccessAdminAllowToAllData = this.tokenInfo.userAccessAdminAllowToAllData;
+    authModel.userId = this.tokenInfo.userId;
+    authModel.siteId = this.inputSiteId;
+    authModel.lang = this.tokenInfo.language;
 
     const title = this.translate.instant('TITLE.Information');
     const message = this.translate.instant('MESSAGE.Request_to_change_site_was_sent_to_the_server');
@@ -191,8 +191,8 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       (next) => {
         this.loadingStatus = false;
-        if (next.IsSuccess) {
-          if (next.Item.SiteId === +this.inputSiteId) {
+        if (next.isSuccess) {
+          if (next.item.siteId === +this.inputSiteId) {
             this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_site_acess_confirmed'), title);
             this.inputSiteId = null;
             this.inputUserId = null;
@@ -200,7 +200,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
             this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_site_acess_denied'), title);
           }
         } else {
-          this.cmsToastrService.typeErrorAccessChange(next.ErrorMessage);
+          this.cmsToastrService.typeErrorAccessChange(next.errorMessage);
         }
 
       },
@@ -210,9 +210,9 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     );
   }
   onActionSiteSelect(model: CoreSiteModel): void {
-    if (model && model.Id > 0) {
-      if (model.Id !== this.tokenInfo.SiteId) {
-        this.inputSiteId = model.Id;
+    if (model && model.id > 0) {
+      if (model.id !== this.tokenInfo.siteId) {
+        this.inputSiteId = model.id;
         this.onActionbuttonSelectSite();
       }
     }

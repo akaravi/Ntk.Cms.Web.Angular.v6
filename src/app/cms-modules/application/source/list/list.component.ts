@@ -51,8 +51,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
   }
   comment: string;
   author: string;
@@ -91,7 +91,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -110,18 +110,18 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ApplicationSourceModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          this.tableSource.data = ret.listItems;
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'Title',
@@ -135,7 +135,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
           }
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.Access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         }
         this.loading.Stop(pName);
@@ -155,25 +155,25 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
@@ -182,8 +182,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
@@ -194,24 +194,24 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
 
   onActionbuttonEditRow(model: ApplicationSourceModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
 
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/application/source/edit/', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/source/edit/', this.tableRowSelected.id]);
   }
   onActionbuttonDeleteRow(model: ApplicationSourceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -220,23 +220,23 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
-              if (ret.IsSuccess) {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -259,22 +259,22 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       );
   }
   onActionbuttonApplicationList(model: ApplicationSourceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/application/app/LinkSourceId', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/app/LinkSourceId', this.tableRowSelected.id]);
   }
   onActionbuttonThemeList(model: ApplicationSourceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/application/themeconfig/LinkSourceId', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/themeconfig/LinkSourceId', this.tableRowSelected.id]);
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -286,8 +286,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
           this.cmsToastrService.typeErrorRemove();
@@ -301,13 +301,13 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
           this.cmsToastrService.typeErrorRemove();
@@ -330,8 +330,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
           this.cmsToastrService.typeErrorRemove();
@@ -344,7 +344,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonBuildApps(mode: ApplicationSourceModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
 
       const message = 'ردیفی  انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
@@ -355,14 +355,14 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
 
-    this.contentService.ServiceBuildApp(this.tableRowSelected.Id).subscribe({
+    this.contentService.ServiceBuildApp(this.tableRowSelected.id).subscribe({
       next: (ret) => {
 
-        if (ret.IsSuccess) {
-          this.cmsToastrService.typeSuccessAppBuild(ret.ErrorMessage);
+        if (ret.isSuccess) {
+          this.cmsToastrService.typeSuccessAppBuild(ret.errorMessage);
         }
         else {
-          this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+          this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -379,7 +379,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationSourceModel): void {

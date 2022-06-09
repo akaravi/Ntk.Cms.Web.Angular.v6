@@ -1,20 +1,20 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.RecordStatus"
-        name="dataModel.RecordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.RecordStatus }}"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
-              let item of dataModelEnumRecordStatusResult.ListItems;
+              let item of dataModelEnumRecordStatusResult.listItems;
               index as i
-            " [value]="item.Value">{{ item.Description }}</mat-option>
+            " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
@@ -23,11 +23,11 @@
     </mat-form-field>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Title" name="dataModel.Title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Title = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
@@ -36,11 +36,11 @@
     </mat-form-field>
     <!-- Username Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Username']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.Username" name="dataModel.Username" #Username type="text"  class="input-ltr"
-        placeholder="{{fieldsInfo['Username']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.Username" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.Username = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['Username']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.username" name="dataModel.username" #Username type="text"  class="input-ltr"
+        placeholder="{{fieldsInfo['Username']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.username = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Username.errors?.required">
@@ -50,11 +50,11 @@
 
     <!-- BotToken Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['BotToken']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.BotToken" name="dataModel.BotToken" #BotToken type="text"  class="input-ltr"
-        placeholder="{{fieldsInfo['BotToken']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.BotToken" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.BotToken = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['BotToken']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.botToken" name="dataModel.botToken" #BotToken type="text"  class="input-ltr"
+        placeholder="{{fieldsInfo['BotToken']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.botToken" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.botToken = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ BotToken.value.length }} / 100</mat-hint>
       <mat-error *ngIf="BotToken.errors?.required">
@@ -64,11 +64,11 @@
 
     <!-- SecurityKey Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['SecurityKey']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.SecurityKey" name="dataModel.SecurityKey" #SecurityKey type="text"  class="input-ltr"
-        placeholder="{{fieldsInfo['SecurityKey']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.SecurityKey" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.SecurityKey = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['SecurityKey']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"  class="input-ltr"
+        placeholder="{{fieldsInfo['SecurityKey']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.securityKey = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ SecurityKey.value.length }} / 100</mat-hint>
       <mat-error *ngIf="SecurityKey.errors?.required">
@@ -79,11 +79,11 @@
 
     <!-- UrlWebhook Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['UrlWebhook']?.FieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.UrlWebhook" name="dataModel.UrlWebhook" #UrlWebhook type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['UrlWebhook']?.FieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.UrlWebhook" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.UrlWebhook = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['UrlWebhook']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.urlWebhook" name="dataModel.urlWebhook" #UrlWebhook type="text" class="input-ltr"
+        placeholder="{{fieldsInfo['UrlWebhook']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.urlWebhook" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.urlWebhook = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ UrlWebhook.value.length }} / 100</mat-hint>
       <mat-error *ngIf="UrlWebhook.errors?.required">
@@ -92,9 +92,9 @@
     </mat-form-field>
     <!-- StatusWebhook Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.StatusWebhook" *ngIf="fieldsInfo['StatusWebhook']?.AccessWatchField"
-        [disabled]="!fieldsInfo['StatusWebhook']?.AccessEditField" name="dataModel.StatusWebhook">
-        {{fieldsInfo['StatusWebhook']?.FieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.statusWebhook" *ngIf="fieldsInfo['StatusWebhook']?.accessWatchField"
+        [disabled]="!fieldsInfo['StatusWebhook']?.accessEditField" name="dataModel.statusWebhook">
+        {{fieldsInfo['StatusWebhook']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
@@ -104,8 +104,8 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
@@ -113,7 +113,7 @@
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

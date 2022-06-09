@@ -1,15 +1,15 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  <mat-form-field class="ntk-full-width" *ngIf="dataModelResultContent.Item">
-    <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResultContent.Item.Title" name="Title" #Title
-      type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" required readonly />
+  <mat-form-field class="ntk-full-width" *ngIf="dataModelResultContent.item">
+    <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+    <input matInput [(ngModel)]="dataModelResultContent.item.title" name="Title" #Title
+      type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" required readonly />
   </mat-form-field>
 
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -17,17 +17,17 @@
 <div class="ntk-cms-html-card-message">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
   <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
     </small>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
 
-    <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+    <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.buttonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
     </button>

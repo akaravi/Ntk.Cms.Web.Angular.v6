@@ -51,12 +51,12 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
         }
         if (this.privatePropertiesInfos && this.privatePropertiesInfos.length > 0) {
           this.privatePropertiesInfos.forEach(x => {
-            if ((update[x.FieldName] || update[x.FieldName] === '')) {
-              // if (this.formValues && (this.formValues[x.FieldName] || this.formValues[x.FieldName] == '')) {
-              //   this.formValues[x.FieldName] = update[x.FieldName];
+            if ((update[x.fieldName] || update[x.fieldName] === '')) {
+              // if (this.formValues && (this.formValues[x.fieldName] || this.formValues[x.fieldName] == '')) {
+              //   this.formValues[x.fieldName] = update[x.fieldName];
               //   this.jsonValueChange.emit(JSON.stringify(this.formValues));
               // }
-              this.formValues[x.FieldName] = update[x.FieldName];
+              this.formValues[x.fieldName] = update[x.fieldName];
             }
             this.jsonValueChange.emit(JSON.stringify(this.formValues));
           });
@@ -69,18 +69,18 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
       this.fields = [];
       this.privatePropertiesInfos.forEach(x => {
         let fValue = '';
-        if (this.formValues && this.formValues[x.FieldName]) {
-          fValue = this.formValues[x.FieldName];
+        if (this.formValues && this.formValues[x.fieldName]) {
+          fValue = this.formValues[x.fieldName];
         }
 
 
 
-        switch (x.FieldType) {
+        switch (x.fieldType) {
           case 'System.String':
             this.fields.push({
               type: 'text',
-              name: x.FieldName,
-              label: x.FieldTitle,
+              name: x.fieldName,
+              label: x.fieldTitle,
               value: fValue,
               required: false,
             });
@@ -88,8 +88,8 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
           case 'System.Int64':
             this.fields.push({
               type: 'text',
-              name: x.FieldName,
-              label: x.FieldTitle,
+              name: x.fieldName,
+              label: x.fieldTitle,
               value: fValue,
               required: false,
             });
@@ -97,8 +97,8 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
           case 'System.Int32':
             this.fields.push({
               type: 'text',
-              name: x.FieldName,
-              label: x.FieldTitle,
+              name: x.fieldName,
+              label: x.fieldTitle,
               value: fValue,
               required: false,
             });
@@ -106,8 +106,8 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
           default:
             this.fields.push({
               type: 'text',
-              name: x.FieldName,
-              label: x.FieldTitle,
+              name: x.fieldName,
+              label: x.fieldTitle,
               value: fValue,
               required: false,
             });
@@ -134,15 +134,15 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
         if (!this.formValues) {
           this.formValues = {};
         }
-        if (this.privateJsonValue[x.FieldName]) {
-          this.formValues[x.FieldName] = this.privateJsonValue[x.FieldName];
+        if (this.privateJsonValue[x.fieldName]) {
+          this.formValues[x.fieldName] = this.privateJsonValue[x.fieldName];
         } else {
-          this.formValues[x.FieldName] = '';
+          this.formValues[x.fieldName] = '';
         }
-        if (this.formValues[x.FieldName] && this.fields.findIndex(y => y.name === x.FieldName) >= 0) {
-          const val = this.formValues[x.FieldName];
-          this.fields.find(y => y.name === x.FieldName).value = val;
-          this.formGroup.get(x.FieldName).setValue(val, { emitEvent: false });
+        if (this.formValues[x.fieldName] && this.fields.findIndex(y => y.name === x.fieldName) >= 0) {
+          const val = this.formValues[x.fieldName];
+          this.fields.find(y => y.name === x.fieldName).value = val;
+          this.formGroup.get(x.fieldName).setValue(val, { emitEvent: false });
         }
       });
     }

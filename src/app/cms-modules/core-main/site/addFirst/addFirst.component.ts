@@ -40,13 +40,13 @@ export class CoreSiteAddFirstComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.formInfo.FormTitle = 'ایجاد اولین سامانه شما';
+    this.formInfo.formTitle = 'ایجاد اولین سامانه شما';
 
 
     /** read storage */
     this.siteTypeId = + localStorage.getItem('siteTypeId');
     if (this.siteTypeId > 0) {
-      this.dataModel.LinkSiteCategoryId = this.siteTypeId;
+      this.dataModel.linkSiteCategoryId = this.siteTypeId;
     }
     /** read storage */
   }
@@ -66,7 +66,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.DataGetAccess();
   }
   checkValidateDomain() {
-    this.validateDomain = this.alphaExp.test(this.dataModel.SubDomain);
+    this.validateDomain = this.alphaExp.test(this.dataModel.subDomain);
   }
   DataGetAccess(): void {
     const pName = this.constructor.name + '.DataGetAccess';
@@ -75,11 +75,11 @@ export class CoreSiteAddFirstComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -94,18 +94,18 @@ export class CoreSiteAddFirstComponent implements OnInit {
   GetDomainList(): void {
     const pName = this.constructor.name + '.GetDomainList';
     this.loading.Start(pName, 'دریافت لیست دامنه های مجاز');
-    this.coreSiteService.ServiceGetRegDomains(this.dataModel.LinkSiteCategoryId).subscribe({
+    this.coreSiteService.ServiceGetRegDomains(this.dataModel.linkSiteCategoryId).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResultDomains = ret;
-          if (ret.ListItems.length > 0) {
-            this.dataModel.Domain = ret.ListItems[0];
+          if (ret.listItems.length > 0) {
+            this.dataModel.domain = ret.listItems[0];
           }
-          if (!this.dataModel.SubDomain || this.dataModel.SubDomain?.length === 0) {
-            this.dataModel.SubDomain = 'myname';
+          if (!this.dataModel.subDomain || this.dataModel.subDomain?.length === 0) {
+            this.dataModel.subDomain = 'myname';
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -121,49 +121,49 @@ export class CoreSiteAddFirstComponent implements OnInit {
   }
 
   domain(item): void {
-    this.dataModel.Domain = item;
+    this.dataModel.domain = item;
   }
 
   onFormSubmit(): void {
-    if (this.dataModel.LinkSiteCategoryId <= 0) {
-      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
+    if (this.dataModel.linkSiteCategoryId <= 0) {
+      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
       return;
     }
-    if (!this.dataModel.Title || this.dataModel.Title.length === 0) {
-      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.As_the_system_is_not_selected'));
-
-      return;
-    }
-    if (!this.dataModel.Domain || this.dataModel.Domain.length === 0) {
-
-      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_domain_not_selected'));
+    if (!this.dataModel.title || this.dataModel.title.length === 0) {
+      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.As_the_system_is_not_selected'));
 
       return;
     }
-    if (!this.dataModel.SubDomain || this.dataModel.SubDomain.length === 0) {
-      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_parent_domain_not_selected'));
+    if (!this.dataModel.domain || this.dataModel.domain.length === 0) {
+
+      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_domain_not_selected'));
+
+      return;
+    }
+    if (!this.dataModel.subDomain || this.dataModel.subDomain.length === 0) {
+      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_parent_domain_not_selected'));
 
 
       return;
     }
 
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + '.onFormSubmit';
     this.loading.Start(pName, 'در حال ثبت اطلاعات اولین سامانه شما');
     this.coreSiteService.ServiceAddFirstSite(this.dataModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessAddFirstSite();
-          this.clickSelectSite(ret.Item.Id);
+          this.clickSelectSite(ret.item.id);
         } else {
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
+          this.formInfo.formSubmitAllow = true;
+          this.cmsToastrService.typeErrorAdd(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.loading.Stop(pName);
       }
     }
@@ -176,12 +176,12 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
-    authModel.SiteId = Id;
+    authModel.siteId = Id;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next: (res) => {
         this.loading.Stop(pName);
-        if (res.IsSuccess) {
-          setTimeout(() => this.router.navigate([environment.cmsUiConfig.Pathdashboard]), 2000);
+        if (res.isSuccess) {
+          setTimeout(() => this.router.navigate(['/dashboard/']), 2000);
         }
       },
       error: (er) => {
@@ -192,15 +192,15 @@ export class CoreSiteAddFirstComponent implements OnInit {
     );
   }
   onActionSelectorSelect(model: CoreSiteCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'نوع سامانه را مشخص کنید',
         'نوع سامانه اطلاعات مشخص نیست'
       );
       return;
     }
     this.modelDateSiteCategory = model;
-    this.dataModel.LinkSiteCategoryId = model.Id;
+    this.dataModel.linkSiteCategoryId = model.id;
     this.GetDomainList();
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
@@ -212,9 +212,9 @@ export class CoreSiteAddFirstComponent implements OnInit {
           // stepper.previous();
         }, 10);
       }
-      if (!this.dataModel.LinkSiteCategoryId || this.dataModel.LinkSiteCategoryId <= 0) {
+      if (!this.dataModel.linkSiteCategoryId || this.dataModel.linkSiteCategoryId <= 0) {
 
-        this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
+        this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.System_type_not_selected'));
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();

@@ -17,23 +17,23 @@
 </app-progress-spinner>
 <div *ngIf="!this.statusCheckExistWebSite">
   <app-core-site-add-first
-    *ngIf=" (!dataModelResult || !dataModelResult.ListItems || dataModelResult.ListItems.length === 0)">
+    *ngIf=" (!dataModelResult || !dataModelResult.listItems || dataModelResult.listItems.length === 0)">
   </app-core-site-add-first>
-  <div *ngIf=" dataModelResult && dataModelResult.ListItems && dataModelResult.ListItems.length > 0"
+  <div *ngIf=" dataModelResult && dataModelResult.listItems && dataModelResult.listItems.length > 0"
     class=" container ">
     <div class="row">
-      <div *ngFor="let item of dataModelResult.ListItems" style="margin-left: 10px;max-width: min-content;">
-        <div *ngIf="selectSiteId==0 || selectSiteId==item.Id" (click)="onActionClickSelectSite(item.virtual_CmsSite.Id)"
+      <div *ngFor="let item of dataModelResult.listItems" style="margin-left: 10px;max-width: min-content;">
+        <div *ngIf="selectSiteId==0 || selectSiteId==item.id" (click)="onActionClickSelectSite(item.virtual_CmsSite.id)"
           class="card card-custom card-stretch gutter-b cursor-pointer" style="top: 15px;width: fit-content;">
           <div class="card-body d-flex flex-column">
             <div class="flex-grow-1 pb-5">
               <div class="d-flex align-items-center pr-2 mb-6 ">
                 <span class="text-muted font-weight-bold font-size-lg flex-grow-1" style="width: 100px;">
-                  {{item.virtual_CmsSite.Title}}
+                  {{item.virtual_CmsSite.title}}
                 </span>
                 <div class="symbol symbol-50">
                   <span class="symbol-label bg-light-light">
-                    <img src="{{item.virtual_CmsSite.MainImageSrc | cmsthumbnail}}"
+                    <img src="{{item.virtual_CmsSite.mainImageSrc | cmsthumbnail}}"
                       class="h-90px align-self-center custom" width="40px" height="40px" alt="">
                   </span>
                 </div>
@@ -42,7 +42,7 @@
                 دامنه
               </p>
               <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
-                {{item.virtual_CmsSite.CurrentSiteDomainUrl}}
+                {{item.virtual_CmsSite.currentSiteDomainUrl}}
               </p>
             </div>
             <div>
@@ -50,21 +50,21 @@
                 دسترسی
               </p>
               <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
-                {{item.virtual_CmsUserGroup.Title}}
+                {{item.virtual_CmsUserGroup.title}}
               </p>
             </div>
-            <div *ngIf="item.ExpireDate" [style.backgroundColor]="item.ExpireDate < today ? 'red':''">
+            <div *ngIf="item.expireDate" [style.backgroundColor]="item.expireDate < today ? 'red':''">
               <p class="text-dark font-weight-bolder text-hover-primary font-size-h4 ">
                 تاریخ انقضا
               </p>
               <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
-                {{item.ExpireDate|persianDate}}
+                {{item.expireDate|persianDate}}
               </p>
             </div>
             <br>
-            <button *ngIf="this.formInfo.ButtonSubmittedEnabled || selectSiteId==item.Id"
-              (click)="onActionClickSelectSite(item.virtual_CmsSite.Id)" type="button"
-              [disabled]="!this.formInfo.ButtonSubmittedEnabled" class="btn btn-outline-success BTN">ورود</button>
+            <button *ngIf="this.formInfo.buttonSubmittedEnabled || selectSiteId==item.id"
+              (click)="onActionClickSelectSite(item.virtual_CmsSite.id)" type="button"
+              [disabled]="!this.formInfo.buttonSubmittedEnabled" class="btn btn-outline-success BTN">ورود</button>
 
           </div>
         </div>

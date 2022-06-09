@@ -67,12 +67,12 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-        || this.tokenInfo.UserAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
+      if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
         this.IsAdminSite = true;
       }
       else {
@@ -128,7 +128,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.router.navigate(['/estate/property']);
       return;
     }
-    this.formInfo.FormTitle = 'ویرایش  ';
+    this.formInfo.formTitle = 'ویرایش  ';
     this.DataGetOne();
     this.getEnumRecordStatus();
     this.getEstateContractType();
@@ -159,8 +159,8 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
 
   DataGetOne(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
 
 
     const pName = this.constructor.name + 'ServiceGetOneById';
@@ -168,48 +168,48 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.estatePropertyService.setAccessLoad();
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.optionTabledataSource.data = this.dataModel.Contracts;
-          this.DataGetPropertyDetailGroup(this.dataModel.LinkPropertyTypeLanduseId);
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.optionTabledataSource.data = this.dataModel.contracts;
+          this.DataGetPropertyDetailGroup(this.dataModel.linkPropertyTypeLanduseId);
 
 
-          const lat = this.dataModel.Geolocationlatitude;
-          const lon = this.dataModel.Geolocationlongitude;
+          const lat = this.dataModel.geolocationlatitude;
+          const lon = this.dataModel.geolocationlongitude;
           if (lat > 0 && lon > 0) {
             this.mapMarkerPoints = [];
             this.mapMarkerPoints.push({ lat, lon });
             this.receiveMap();
           }
-          this.formInfo.FormTitle = ret.Item.Title;
-          this.formInfo.FormAlert = '';
+          this.formInfo.formTitle = ret.item.title;
+          this.formInfo.formAlert = '';
           /*
           * check file attach list
           */
-          if (this.dataModel.LinkFileIds && this.dataModel.LinkFileIds.length > 0) {
-            this.dataModel.LinkFileIds.split(',').forEach((element, index) => {
+          if (this.dataModel.linkFileIds && this.dataModel.linkFileIds.length > 0) {
+            this.dataModel.linkFileIds.split(',').forEach((element, index) => {
               let link = '';
-              if (this.dataModel.LinkFileIdsSrc.length >= this.dataModel.LinkFileIdsSrc.length) {
-                link = this.dataModel.LinkFileIdsSrc[index];
+              if (this.dataModel.linkFileIdsSrc.length >= this.dataModel.linkFileIdsSrc.length) {
+                link = this.dataModel.linkFileIdsSrc[index];
               }
               this.dataFileModelFiles.set(+element, link);
             });
           }
-          if (this.dataModel.LinkExtraImageIdsSrc && this.dataModel.LinkExtraImageIdsSrc.length > 0) {
-            this.dataModel.LinkExtraImageIds.split(',').forEach((element, index) => {
+          if (this.dataModel.linkExtraImageIdsSrc && this.dataModel.linkExtraImageIdsSrc.length > 0) {
+            this.dataModel.linkExtraImageIds.split(',').forEach((element, index) => {
               let link = '';
-              if (this.dataModel.LinkExtraImageIdsSrc.length >= this.dataModel.LinkExtraImageIdsSrc.length) {
-                link = this.dataModel.LinkExtraImageIdsSrc[index];
+              if (this.dataModel.linkExtraImageIdsSrc.length >= this.dataModel.linkExtraImageIdsSrc.length) {
+                link = this.dataModel.linkExtraImageIdsSrc[index];
               }
               this.dataFileModelImgaes.set(+element, link);
             });
           }
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -224,33 +224,33 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   DataGetPropertyDetailGroup(id: string): void {
     const filteModelProperty = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkPropertyTypeLanduseId';
-    filter.Value = id;
-    filteModelProperty.Filters.push(filter);
-    this.dataModel.PropertyDetailGroups = [];
+    filter.propertyName = 'LinkPropertyTypeLanduseId';
+    filter.value = id;
+    filteModelProperty.filters.push(filter);
+    this.dataModel.propertyDetailGroups = [];
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_detailed_information'));
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataModel.PropertyDetailGroups = ret.ListItems;
+          if (ret.isSuccess) {
+            this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
-            this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
-              itemGroup.PropertyDetails.forEach(element => {
-                this.propertyDetails[element.Id] = 0;
+            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+              itemGroup.propertyDetails.forEach(element => {
+                this.propertyDetails[element.id] = 0;
 
-                if (this.dataModel.PropertyDetailValues) {
-                  const value = this.dataModel.PropertyDetailValues.find(x => x.LinkPropertyDetailId === element.Id);
+                if (this.dataModel.propertyDetailValues) {
+                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
                   if (value) {
-                    this.propertyDetails[element.Id] = value.Value;
+                    this.propertyDetails[element.id] = value.value;
                   }
                 }
               });
             });
             /** load Value */
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -262,18 +262,18 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       );
   }
   DataEdit(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     if (this.dataFileModelFiles) {
       const keys = Array.from(this.dataFileModelFiles.keys());
       if (keys && keys.length > 0) {
-        this.dataModel.LinkFileIds = keys.join(',');
+        this.dataModel.linkFileIds = keys.join(',');
       }
     }
     if (this.dataFileModelImgaes) {
       const keys = Array.from(this.dataFileModelImgaes.keys());
       if (keys && keys.length > 0) {
-        this.dataModel.LinkExtraImageIds = keys.join(',');
+        this.dataModel.linkExtraImageIds = keys.join(',');
       }
     }
     const pName = this.constructor.name + 'ServiceEdit';
@@ -281,21 +281,21 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
 
     this.estatePropertyService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -324,14 +324,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.Geolocationlatitude && lon === this.dataModel.Geolocationlongitude) {
-        this.dataModel.Geolocationlatitude = null;
-        this.dataModel.Geolocationlongitude = null;
+      if (lat === this.dataModel.geolocationlatitude && lon === this.dataModel.geolocationlongitude) {
+        this.dataModel.geolocationlatitude = null;
+        this.dataModel.geolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.Geolocationlatitude = lat;
-      this.dataModel.Geolocationlongitude = lon;
+      this.dataModel.geolocationlatitude = lat;
+      this.dataModel.geolocationlongitude = lon;
     });
 
   }
@@ -342,84 +342,84 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.cmsToastrService.typeSuccessCopedToClipboard();
   }
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyTypeUsageId = model.Id;
+    this.dataModel.linkPropertyTypeUsageId = model.id;
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.PropertyTypeSelected = model;
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
-    this.DataGetPropertyDetailGroup(model.Id);
+    this.dataModel.linkPropertyTypeLanduseId = model.id;
+    this.DataGetPropertyDetailGroup(model.id);
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
-      this.dataModel.LinkCmsUserId = null;
+    if (!model || !model.id || model.id <= 0) {
+      this.dataModel.linkCmsUserId = null;
       return;
     }
-    this.dataModel.LinkCmsUserId = model.Id;
+    this.dataModel.linkCmsUserId = model.id;
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {
-    if (!model || !model.Id || model.Id <= 0) {
+    if (!model || !model.id || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Information_area_deleted');
       this.cmsToastrService.typeWarningSelected(message);
-      this.dataModel.LinkLocationId = null;
+      this.dataModel.linkLocationId = null;
       return;
     }
-    this.dataModel.LinkLocationId = model.Id;
+    this.dataModel.linkLocationId = model.id;
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
-    this.dataModel.LinkEstateUserId = null;
-    if (!model || !model.Id || model.Id.length <= 0) {
+    this.dataModel.linkEstateUserId = null;
+    if (!model || !model.id || model.id.length <= 0) {
       return;
     }
-    this.dataModel.LinkEstateUserId = model.Id;
+    this.dataModel.linkEstateUserId = model.id;
   }
 
 
   onActionSelectorContractType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.contractTypeSelected = model;
     this.contractDataModel = new EstateContractModel();
-    this.contractDataModel.ContractType = this.contractTypeSelected;
-    this.contractDataModel.LinkEstateContractTypeId = this.contractTypeSelected.Id;
+    this.contractDataModel.contractType = this.contractTypeSelected;
+    this.contractDataModel.linkEstateContractTypeId = this.contractTypeSelected.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     /** Save Value */
-    this.dataModel.PropertyDetailValues = [];
-    this.dataModel.PropertyDetailGroups.forEach(itemGroup => {
-      itemGroup.PropertyDetails.forEach(element => {
+    this.dataModel.propertyDetailValues = [];
+    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+      itemGroup.propertyDetails.forEach(element => {
         const value = new EstatePropertyDetailValueModel();
-        value.LinkPropertyDetailId = element.Id;
-        value.Value = this.propertyDetails[element.Id];
+        value.linkPropertyDetailId = element.id;
+        value.value = this.propertyDetails[element.id];
 
-        this.dataModel.PropertyDetailValues.push(value);
+        this.dataModel.propertyDetailValues.push(value);
       });
     });
     /** Save Value */
-    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+    if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       this.onActionOptionAddToList();
     }
-    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+    if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
-      this.formInfo.FormSubmitAllow = true;
+      this.formInfo.formSubmitAllow = true;
       return;
     }
     this.DataEdit();
@@ -430,48 +430,58 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
 
   onActionOptionAddToList(viewAlert: boolean = true): void {
-    if (!this.contractTypeSelected || this.contractTypeSelected.Id.length === 0) {
+    if (!this.contractTypeSelected || this.contractTypeSelected.id.length === 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       if (viewAlert) {
         this.cmsToastrService.typeErrorSelected(message);
       }
       return;
     }
-    if (!this.dataModel.Contracts) {
-      this.dataModel.Contracts = [];
+    if (!this.dataModel.contracts) {
+      this.dataModel.contracts = [];
     }
-    this.dataModel.Contracts.push(this.contractDataModel);
+    this.dataModel.contracts.push(this.contractDataModel);
     this.contractDataModel = new EstateContractModel();
-    this.optionTabledataSource.data = this.dataModel.Contracts;
+    this.optionTabledataSource.data = this.dataModel.contracts;
   }
   onActionOptionRemoveFromList(index: number): void {
     if (index < 0) {
       return;
     }
-    if (!this.dataModel.Contracts || this.dataModel.Contracts.length === 0) {
+    if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       return;
     }
-    this.contractDataModel = this.dataModel.Contracts[index];
-    this.dataModel.Contracts.splice(index, 1);
-    this.optionTabledataSource.data = this.dataModel.Contracts;
+    this.contractDataModel = this.dataModel.contracts[index];
+    this.dataModel.contracts.splice(index, 1);
+    this.optionTabledataSource.data = this.dataModel.contracts;
   }
 
 
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
+<<<<<<< HEAD
       if (!this.dataModel.LinkPropertyTypeUsageId || this.dataModel.LinkPropertyTypeUsageId.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Usage'));
+=======
+      if (!this.dataModel.linkPropertyTypeUsageId || this.dataModel.linkPropertyTypeUsageId.length === 0) {
+        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری ملک انتخاب شود');
+>>>>>>> main
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();
         }, 10);
       }
+<<<<<<< HEAD
       if (!this.dataModel.LinkPropertyTypeLanduseId || this.dataModel.LinkPropertyTypeLanduseId.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Landuse'));
+=======
+      if (!this.dataModel.linkPropertyTypeLanduseId || this.dataModel.linkPropertyTypeLanduseId.length === 0) {
+        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری زمین انتخاب شود');
+>>>>>>> main
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();
@@ -502,18 +512,18 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
   // ** Accardon */
   onActionClickSalePriceAllowAgreement(): void {
-    if (this.contractDataModel.SalePriceByAgreement) {
-      this.contractDataModel.SalePrice = 0;
+    if (this.contractDataModel.salePriceByAgreement) {
+      this.contractDataModel.salePrice = 0;
     }
   }
   onActionClickRentPriceAllowAgreement(): void {
-    if (this.contractDataModel.RentPriceByAgreement) {
-      this.contractDataModel.RentPrice = 0;
+    if (this.contractDataModel.rentPriceByAgreement) {
+      this.contractDataModel.rentPrice = 0;
     }
   }
   onActionClickDepositPriceByAgreement(): void {
-    if (this.contractDataModel.DepositPriceByAgreement) {
-      this.contractDataModel.DepositPrice = 0;
+    if (this.contractDataModel.depositPriceByAgreement) {
+      this.contractDataModel.depositPrice = 0;
     }
   }
   ActionCurrentPoint(): void {
@@ -527,8 +537,8 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
         }
         this.mapMarkerPoints = [];
         this.mapMarkerPoints.push({ lat, lon });
-        this.dataModel.Geolocationlatitude = lat;
-        this.dataModel.Geolocationlongitude = lon;
+        this.dataModel.geolocationlatitude = lat;
+        this.dataModel.geolocationlongitude = lon;
         this.receiveMap();
       }
     });

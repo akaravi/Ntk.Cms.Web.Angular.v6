@@ -1,32 +1,32 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResultCategory.Item.Title" name="dataModelResultCategory.Item.Title" #Title
-      type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" minlength="3" maxlength="50" required readonly />
+    <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+    <input matInput [(ngModel)]="dataModelResultCategory.item.title" name="dataModelResultCategory.item.title" #Title
+      type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="50" required readonly />
   </mat-form-field>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
   <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
     </small>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
 
-    <button type="button" (click)="onFormDelete()" [disabled]="!formInfo.ButtonSubmittedEnabled"
+    <button type="button" (click)="onFormDelete()" [disabled]="!formInfo.buttonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
     </button>

@@ -41,7 +41,7 @@ export class CoreSiteModuleSiteOptimazeComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkSiteId = +data.LinkSiteId || 0;
+      this.requestLinkSiteId = +data.linkSiteId || 0;
     }
   }
 
@@ -56,7 +56,7 @@ export class CoreSiteModuleSiteOptimazeComponent implements OnInit {
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    this.formInfo.FormTitle = 'مشاهده نتیجه  ';
+    this.formInfo.formTitle = 'مشاهده نتیجه  ';
     this.DataGetAll();
   }
   DataGetAll(): void {
@@ -65,10 +65,10 @@ export class CoreSiteModuleSiteOptimazeComponent implements OnInit {
 
     this.coreSiteService.ServiceModuleDataOptimaze(this.requestLinkSiteId).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

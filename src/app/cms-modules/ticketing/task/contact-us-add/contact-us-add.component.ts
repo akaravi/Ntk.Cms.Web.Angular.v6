@@ -49,15 +49,15 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      this.dataModel.FullName = this.tokenInfo.FullName;
-      this.dataModel.Email = this.tokenInfo.Email;
-      this.dataModel.PhoneNo = this.tokenInfo.Mobile;
+      this.dataModel.fullName = this.tokenInfo.fullName;
+      this.dataModel.email = this.tokenInfo.email;
+      this.dataModel.phoneNo = this.tokenInfo.mobile;
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      this.dataModel.FullName = this.tokenInfo.FullName;
-      this.dataModel.Email = this.tokenInfo.Email;
-      this.dataModel.PhoneNo = this.tokenInfo.Mobile;
+      this.dataModel.fullName = this.tokenInfo.fullName;
+      this.dataModel.email = this.tokenInfo.email;
+      this.dataModel.phoneNo = this.tokenInfo.mobile;
     });
   }
   cmsApiStoreSubscribe: Subscription;
@@ -89,7 +89,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
     this.requestLinkDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDepartemenId'));
     this.onCaptchaOrder();
 
-    this.dataModel.LinkTicketingDepartemenId = this.requestLinkDepartemenId;
+    this.dataModel.linkTicketingDepartemenId = this.requestLinkDepartemenId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
   }
@@ -110,11 +110,11 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.isSuccess) {
+            this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
         },
         (error) => {
@@ -124,27 +124,27 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
   }
 
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.dataModel.CaptchaKey = this.captchaModel.Key;
+    this.dataModel.captchaKey = this.captchaModel.key;
     this.ticketingTaskService
       .ServiceContactUS(this.dataModel)
       .subscribe(
         async (next) => {
 
-          this.formInfo.FormSubmitAllow = !next.IsSuccess;
+          this.formInfo.formSubmitAllow = !next.isSuccess;
           this.dataModelResult = next;
-          if (next.IsSuccess) {
-            this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Success;
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (next.isSuccess) {
+            this.formInfo.formSubmitedStatus = EnumFormSubmitedStatus.Success;
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
           } else {
-            this.formInfo.FormSubmitedStatus = EnumFormSubmitedStatus.Error;
-            this.cmsToastrService.typeErrorAdd(next.ErrorMessage);
+            this.formInfo.formSubmitedStatus = EnumFormSubmitedStatus.Error;
+            this.cmsToastrService.typeErrorAdd(next.errorMessage);
           }
           this.loading.Stop(pName);
           this.cdr.markForCheck();
@@ -154,7 +154,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(error);
           this.cdr.markForCheck();
         }
@@ -177,40 +177,40 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
     this.router.navigate(['/application/app/']);
   }
   onActionFileSelectedLinkMainImageId(): void {
-    // this.dataModel.LinkMainImageId = model.id;
-    // this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    // this.dataModel.linkMainImageId = model.id;
+    // this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 
   onActionSelectSource(model: ApplicationSourceModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'سورس را مشخص کنید',
         'سورس اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkTicketingDepartemenId = model.Id;
+    this.dataModel.linkTicketingDepartemenId = model.id;
   }
 
   onCaptchaOrder(): void {
     if (this.onCaptchaOrderInProcess) {
       return;
     }
-    this.dataModel.CaptchaText = '';
+    this.dataModel.captchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
 
-        this.captchaModel = next.Item;
-        this.expireDate = next.Item.Expire.split('+')[1];
+        this.captchaModel = next.item;
+        this.expireDate = next.item.expire.split('+')[1];
         const startDate = new Date();
-        const endDate = new Date(next.Item.Expire);
+        const endDate = new Date(next.item.expire);
         const seconds = (endDate.getTime() - startDate.getTime());
         if (this.aoutoCaptchaOrder < 10) {
           this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
           setTimeout(() => { this.onCaptchaOrder(); }, seconds);
         }
-        if (!next.IsSuccess) {
-          this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
+        if (!next.isSuccess) {
+          this.cmsToastrService.typeErrorGetCpatcha(next.errorMessage);
         }
         this.onCaptchaOrderInProcess = false;
       }

@@ -44,7 +44,7 @@ export class TicketingTaskViewComponent implements OnInit {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
-      this.requestId = + data.Id | 0;
+      this.requestId = + data.id | 0;
     }
     if (this.requestId == 0) {
       this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
@@ -93,9 +93,9 @@ export class TicketingTaskViewComponent implements OnInit {
   }
 
   DataGetOne(requestId: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -106,33 +106,33 @@ export class TicketingTaskViewComponent implements OnInit {
       .subscribe(
         async (next) => {
           /*َAccess Field*/
-          this.dataAccessModel = next.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          this.dataAccessModel = next.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
 
           this.loading.Stop(pName);
 
           this.dataModelResult = next;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
 
-          if (next.IsSuccess) {
-            this.dataModel = next.Item;
+          if (next.isSuccess) {
+            this.dataModel = next.item;
 
           } else {
-            this.cmsToastrService.typeErrorGetOne(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
           }
         },
         (error) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(error);
         }
       );
   }
   // DataEditContent(): void {
-  //   this.formInfo.FormSubmitAllow = false;
-  //   this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-  //   this.formInfo.FormError = '';
+  //   this.formInfo.formSubmitAllow = false;
+  //   this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  //   this.formInfo.formError = '';
   //   const pName = this.constructor.name + 'main';
   //   this.loading.Start(pName);
 
@@ -142,14 +142,14 @@ export class TicketingTaskViewComponent implements OnInit {
   //     .subscribe(
   //       async (next) => {
 
-  //         this.formInfo.FormSubmitAllow = !next.IsSuccess;
+  //         this.formInfo.formSubmitAllow = !next.isSuccess;
   //         this.dataModelResult = next;
-  //         if (next.IsSuccess) {
-  //           this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+  //         if (next.isSuccess) {
+  //           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
   //           this.cmsToastrService.typeSuccessEdit();
   //           setTimeout(() => this.router.navigate(['/application/app/']), 1000);
   //         } else {
-  //           this.cmsToastrService.typeErrorEdit(next.ErrorMessage);
+  //           this.cmsToastrService.typeErrorEdit(next.errorMessage);
   //         }
   //         this.loading.Stop(pName);
 
@@ -157,7 +157,7 @@ export class TicketingTaskViewComponent implements OnInit {
   //       (error) => {
   //         this.loading.Stop(pName);
 
-  //         this.formInfo.FormSubmitAllow = true;
+  //         this.formInfo.formSubmitAllow = true;
   //         this.cmsToastrService.typeErrorEdit(error);
   //       }
   //     );
@@ -179,13 +179,13 @@ export class TicketingTaskViewComponent implements OnInit {
     this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionFileSelectedLinkMainImageId(): void {
-    // this.dataModel.LinkMainImageId = model.id;
-    // this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    // this.dataModel.linkMainImageId = model.id;
+    // this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 
   onActionSelectSource(model: ApplicationSourceModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'سورس را مشخص کنید',
         'سورس اپلیکیشن اطلاعات مشخص نیست'
       );

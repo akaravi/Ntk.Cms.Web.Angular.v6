@@ -12,16 +12,16 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.Access.AccessWatchRow && tableRowSelected.Id>0" (click)="onActionbuttonViewRow()"
+    <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected.id>0" (click)="onActionbuttonViewRow()"
       type="button" class="btn btn-outline-secondary BTN" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
       translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
+    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected.Id>0" (click)="onActionbuttonEditRow()"
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id>0" (click)="onActionbuttonDeleteRow()"
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
@@ -59,71 +59,71 @@
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.LinkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.LinkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkSiteId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.RecordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.Id === tableRowSelected.Id ? '' : 'none' }">
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
+           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select> </mat-cell>
       </ng-container>
       <!-- Username Column -->
       <ng-container matColumnDef="Username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Username']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Username}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Username']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
       </ng-container>
       <!-- Mobile Column -->
       <ng-container matColumnDef="Mobile">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Mobile']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Mobile}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Mobile']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.mobile}} </mat-cell>
       </ng-container>
       <!-- Email Column -->
       <ng-container matColumnDef="Email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Email']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Email}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Email']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Name']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Name']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
       </ng-container>
       <!-- LastName Column -->
       <ng-container matColumnDef="LastName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LastName']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LastName}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LastName']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
       </ng-container>
       <!-- CompanyName Column -->
       <ng-container matColumnDef="CompanyName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CompanyName']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.CompanyName}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CompanyName']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.companyName}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.UpdatedDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -138,22 +138,22 @@
               <mat-icon>visibility</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
-            <button mat-menu-item *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData || row.Id==tokenInfo.UserId"
+            <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
               (click)="onActionbuttonEditRow(row)">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
-            <button mat-menu-item *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData || row.Id==tokenInfo.UserId"
+            <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
               (click)="onActionbuttonChangePassword(row)">
               <mat-icon>lock</mat-icon>
               <span>تغییر کلمه عبور</span>
             </button>
-            <button mat-menu-item *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData"
+            <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
               (click)="onActionbuttonDeleteRow(row)">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData"
+            <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
               (click)="onActionbuttonLoginToRow(row)">
               <mat-icon>login</mat-icon>
               <span>ورود به این کاربر</span>
@@ -167,7 +167,7 @@
               <span>{{'ACTION.ACCESS_MEMBER_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonResller(row)"
-              *ngIf="tokenInfo.UserAccessAdminAllowToAllData || tokenInfo.SiteId==row.Id">
+              *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
               <mat-icon>devices</mat-icon>
               <span> زیرمجموع بازاریابی</span>
             </button>
@@ -176,7 +176,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
 
@@ -184,8 +184,8 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

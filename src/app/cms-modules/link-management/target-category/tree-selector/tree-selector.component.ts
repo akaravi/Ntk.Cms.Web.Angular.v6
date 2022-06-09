@@ -50,17 +50,17 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
       }
       const listId = [];
       this.checklistSelection.selected.forEach(element => {
-        listId.push(element.Id);
+        listId.push(element.id);
       });
       this.optionModelChange.emit(listId);
       if (x.added && x.added.length > 0) {
         x.added.forEach(element => {
-          this.optionSelectChecked.emit(element.Id);
+          this.optionSelectChecked.emit(element.id);
         });
       }
       if (x.removed && x.removed.length > 0) {
         x.removed.forEach(element => {
-          this.optionSelectDisChecked.emit(element.Id);
+          this.optionSelectDisChecked.emit(element.id);
         });
       }
     });
@@ -75,7 +75,7 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
   dataModelResult: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
   filteModel = new FilterModel();
   loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<LinkManagementTargetCategoryModel>(node => node.Children);
+  treeControl = new NestedTreeControl<LinkManagementTargetCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<LinkManagementTargetCategoryModel>();
   runComplate = false;
   @Output() optionSelectChecked = new EventEmitter<number>();
@@ -86,8 +86,8 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
   checklistSelection = new SelectionModel<LinkManagementTargetCategoryModel>(true /* multiple */);
 
 
-  hasChild = (_: number, node: LinkManagementTargetCategoryModel) => !!node.Children && node.Children.length > 0;
-  hasNoContent = (_: number, nodeData: LinkManagementTargetCategoryModel) => nodeData.Children;
+  hasChild = (_: number, node: LinkManagementTargetCategoryModel) => !!node.children && node.children.length > 0;
+  hasNoContent = (_: number, nodeData: LinkManagementTargetCategoryModel) => nodeData.children;
 
 
   ngOnInit(): void {
@@ -103,7 +103,7 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
     this.runComplate = false;
     if (this.treeControl.dataNodes && this.dataModelSelect && this.dataModelSelect.length > 0) {
       model.forEach(element => {
-        const fItem = this.dataModelSelect.find(z => z === element.Id);
+        const fItem = this.dataModelSelect.find(z => z === element.id);
         if (fItem) {
           this.checklistSelection.select(element);
           // const descendants = this.treeControl.getDescendants(element);
@@ -111,29 +111,29 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
           // this.todoItemSelectionToggle(element);
           // this.treeControl.expand(element);
         }
-        if (element.Children && element.Children.length > 0) {
-          this.loadCheked(element.Children);
+        if (element.children && element.children.length > 0) {
+          this.loadCheked(element.children);
         }
       });
     }
     this.runComplate = true;
   }
   DataGetAll(): void {
-    this.filteModel.RowPerPage = 200;
-    this.filteModel.AccessLoad = true;
+    this.filteModel.rowPerPage = 200;
+    this.filteModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.dataSource.data = this.dataModelResult.ListItems;
-          this.treeControl.dataNodes = this.dataModelResult.ListItems;
+          this.dataSource.data = this.dataModelResult.listItems;
+          this.treeControl.dataNodes = this.dataModelResult.listItems;
           this.loadCheked();
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

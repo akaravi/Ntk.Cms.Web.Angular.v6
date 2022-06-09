@@ -17,15 +17,15 @@
       <!--begin::Header-->
       <div class="d-flex align-items-center mt-5">
         <div class="symbol symbol-100 mr-5">
-          <div class="symbol-label" style="background-image: url('{{tokenInfo.LinkMainImageIdSrc}}');"></div>
+          <div class="symbol-label" style="background-image: url('{{tokenInfo.linkMainImageIdSrc}}');"></div>
           <i class="symbol-badge bg-success"></i>
         </div>
         <div class="d-flex flex-column">
           <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
-            {{ this.tokenInfo.Name }} {{ this.tokenInfo.LastName }}
+            {{ this.tokenInfo.name }} {{ this.tokenInfo.lastName }}
           </a>
           <div class="text-muted mt-1">
-            {{this.tokenInfo.UserAccessUserTypeTitle}}
+            {{this.tokenInfo.userAccessUserTypeTitle}}
           </div>
           <div class="navi mt-2">
             <a href="#" class="navi-item">
@@ -35,7 +35,7 @@
                       './assets/media/svg/icons/Communication/Mail-notification.svg'
                     " cacheSVG="true" class="svg-icon svg-icon-lg svg-icon-primary"></span>
                 </span>
-                <span class="navi-text text-muted text-hover-primary">{{this.tokenInfo.Username}}</span>
+                <span class="navi-text text-muted text-hover-primary">{{this.tokenInfo.username}}</span>
               </span>
             </a>
 
@@ -54,7 +54,7 @@
       <!--begin::Nav-->
       <div class="navi navi-spacer-x-0 p-0">
         <!--begin::Item-->
-        <a class="navi-item cursor-pointer" routerLink="{{'/core/user/edit/' +this.tokenInfo.UserId}}">
+        <a class="navi-item cursor-pointer" routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}">
           <div class="navi-link">
             <div class="symbol symbol-40 bg-light mr-3">
               <div class="symbol-label">
@@ -70,9 +70,9 @@
               <div class="text-muted">
                 {{'TITLE.Account_settings_and_more'| translate}}
                 <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
-                  translate}}:{{this.tokenInfo.UserId}}</span>
+                  translate}}:{{this.tokenInfo.userId}}</span>
                 <span class="label label-light-success label-inline font-weight-bold">{{'TITLE.Site_Id'|
-                  translate}}:{{this.tokenInfo.SiteId}}</span>
+                  translate}}:{{this.tokenInfo.siteId}}</span>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@
               </div>
               <div class="text-muted">
                 {{'TITLE.Inbox_and_tasks'| translate}}
-                <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountEditorModelResult.TotalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
+                <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountEditorModelResult.totalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
               </div>
               
             </div>
@@ -119,7 +119,7 @@
               </div>
               <div class="text-muted">
                 {{'TITLE.latest_tasks_and_projects'| translate}}
-                <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountViewerModelResult.TotalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
+                <span class="label label-light-info label-inline font-weight-bold">{{dataTaskGetCountViewerModelResult.totalRowCount}} {{'TITLE.MESSAGES'|translate}}</span>
               </div>
             </div>
           </div>

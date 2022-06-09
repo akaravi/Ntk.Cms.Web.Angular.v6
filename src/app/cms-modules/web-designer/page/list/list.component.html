@@ -10,13 +10,13 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.Access.AccessAddRow " (click)="onActionbuttonNewRow()" type="button"
+    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessEditRow && tableRowSelected?.Id?.length>0"
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
-    <button *ngIf="dataModelResult.Access.AccessDeleteRow && tableRowSelected.Id?.length>0"
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
@@ -55,29 +55,29 @@
         <app-progress-spinner [options]="loading">
         </app-progress-spinner>
         <div class="row">
-          <div class="col-3" *ngFor="let row of dataModelResult.ListItems">
+          <div class="col-3" *ngFor="let row of dataModelResult.listItems">
             <mat-card class="example-card" style="border:groove ;">
               <mat-card-header>
                 <mat-card-title>
-                  {{row.Title}}
-                  <i [ngClass]="row.RecordStatus|statusClass" ></i>
+                  {{row.title}}
+                  <i [ngClass]="row.recordStatus|statusClass" ></i>
          
                 </mat-card-title>
-                <mat-card-subtitle>  شناسه: {{row.Id}}</mat-card-subtitle>
+                <mat-card-subtitle>  شناسه: {{row.id}}</mat-card-subtitle>
               </mat-card-header>
-              <img mat-card-image src="{{row.ThumbnailImageSrc}}">
+              <img mat-card-image src="{{row.thumbnailImageSrc}}">
               <mat-card-content>
                 عنوان قالب :
-                {{row.LinkPageTemplateGuId | cmstitle :
-                  dataModelWebDesignerMainPageTemplateResult.ListItems}} 
+                {{row.linkPageTemplateGuId | cmstitle :
+                  dataModelWebDesignerMainPageTemplateResult.listItems}} 
                   <br>
                   پیش فرض سامانه دسته بندی قالب :
-                  {{row.PageDependencyIsDefaultPageLinkSiteCategoryId | cmstitle : dataModelCoreSiteCategoryResult.ListItems }}
+                  {{row.pageDependencyIsDefaultPageLinkSiteCategoryId | cmstitle : dataModelCoreSiteCategoryResult.listItems }}
                   <br>
                   پیش فرض سامانه :
-                  <i [ngClass]="row.PageDependencyIsDefaultPage | boolclass"></i>
+                  <i [ngClass]="row.pageDependencyIsDefaultPage | boolclass"></i>
                 <p>
-                  {{row.Description }}
+                  {{row.description }}
                 </p>
               </mat-card-content>
               <mat-card-actions>    
@@ -86,11 +86,11 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.Access.AccessEditRow">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.Access.AccessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
@@ -103,7 +103,7 @@
               <span>نمایش صفحه</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonHtmlViewWithOutParent(row)"
-              *ngIf="row.LinkPageParentGuId?.length>0">
+              *ngIf="row.linkPageParentGuId?.length>0">
               <mat-icon>view_module</mat-icon>
               <span>نمایش صفحه بدون والد</span>
             </button>
@@ -122,8 +122,8 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>

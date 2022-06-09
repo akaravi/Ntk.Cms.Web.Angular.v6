@@ -56,12 +56,12 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
   }
 
   onActionStatist(): void {
-    if (!this.tokenInfoModel.UserId || this.tokenInfoModel.UserId <= 0) {
+    if (!this.tokenInfoModel.userId || this.tokenInfoModel.userId <= 0) {
       return;
     }
     this.loading.Start(this.constructor.name + 'All');
-    this.widgetInfoModel.link = '/core/user/edit/' + this.tokenInfoModel.UserId;
-    this.modelData.set('Id', this.tokenInfoModel.UserId + '');
+    this.widgetInfoModel.link = '/core/user/edit/' + this.tokenInfoModel.userId;
+    this.modelData.set('Id', this.tokenInfoModel.userId + '');
     this.modelData.set('Username', '...');
     this.modelData.set('Name', '...');
     this.modelData.set('Last Name', '...');
@@ -73,24 +73,24 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
 
     this.modelData.set('Created Date', '...');
     this.modelData.set('Expire Date', '...');
-    this.service.ServiceGetOneById(this.tokenInfoModel.UserId).subscribe({
+    this.service.ServiceGetOneById(this.tokenInfoModel.userId).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Username', ret.Item.Username);
-          this.modelData.set('Name', ret.Item.Name);
-          this.modelData.set('Last Name', ret.Item.LastName);
-          this.modelData.set('Compnay', ret.Item.CompanyName);
-          this.modelData.set('Email', ret.Item.Email);
-          this.modelData.set('Email Confirmed', ret.Item.EmailConfirmed + '');
-          this.modelData.set('Mobile', ret.Item.Mobile);
-          this.modelData.set('Mobile Confirmed', ret.Item.MobileConfirmed + '');
+        if (ret.isSuccess) {
+          this.modelData.set('Username', ret.item.username);
+          this.modelData.set('Name', ret.item.name);
+          this.modelData.set('Last Name', ret.item.lastName);
+          this.modelData.set('Compnay', ret.item.companyName);
+          this.modelData.set('Email', ret.item.email);
+          this.modelData.set('Email Confirmed', ret.item.emailConfirmed + '');
+          this.modelData.set('Mobile', ret.item.mobile);
+          this.modelData.set('Mobile Confirmed', ret.item.mobileConfirmed + '');
 
-          this.modelData.set('Created Date', this.persianCalendarService.PersianCalendar(ret.Item.CreatedDate));
-          if (ret.Item.ExpireDate) {
-            this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(ret.Item.ExpireDate));
+          this.modelData.set('Created Date', this.persianCalendarService.PersianCalendar(ret.item.createdDate));
+          if (ret.item.expireDate) {
+            this.modelData.set('Expire Date', this.persianCalendarService.PersianCalendar(ret.item.expireDate));
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'All');
       },

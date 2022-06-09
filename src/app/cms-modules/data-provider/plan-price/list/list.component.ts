@@ -55,8 +55,8 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
 
   }
   filteModelContent = new FilterModel();
@@ -88,9 +88,9 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     this.requestLinkPlanId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPlanId'));
     if (this.requestLinkPlanId && this.requestLinkPlanId > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkPlanId';
-      filter.Value = this.requestLinkPlanId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'LinkPlanId';
+      filter.value = this.requestLinkPlanId;
+      this.filteModelContent.filters.push(filter);
     }
 
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -111,7 +111,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new DataProviderPlanPriceModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
@@ -119,12 +119,12 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     this.contentService.setAccessLoad();
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          this.tableSource.data = ret.listItems;
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'LinkSiteId',
@@ -137,10 +137,10 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
             );
           }
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.Access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -158,25 +158,25 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
@@ -185,8 +185,8 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
@@ -209,25 +209,25 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonEditRow(model: DataProviderPlanPriceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    // this.router.navigate(['/polling/content/edit', this.tableRowSelected.Id]);
+    // this.router.navigate(['/polling/content/edit', this.tableRowSelected.id]);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
-    dialogConfig.data = { id: this.tableRowSelected.Id };
+    dialogConfig.data = { id: this.tableRowSelected.id };
 
 
     const dialogRef = this.dialog.open(DataProviderPlanPriceEditComponent, dialogConfig);
@@ -239,7 +239,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonDeleteRow(model: DataProviderPlanPriceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
@@ -247,13 +247,13 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderPlanPriceDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.Id } });
+    const dialogRef = this.dialog.open(DataProviderPlanPriceDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -262,13 +262,13 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonTransactionList(model: DataProviderPlanPriceModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/transaction/LinkPlanPriceId/' + model.Id]);
+    this.router.navigate(['/data-provider/transaction/LinkPlanPriceId/' + model.id]);
 
   }
   onActionbuttonStatist(): void {
@@ -281,11 +281,11 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -296,16 +296,16 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -324,11 +324,11 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -342,7 +342,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: DataProviderPlanPriceModel): void {

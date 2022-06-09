@@ -45,10 +45,10 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
-    if (data && data.LinkApiPathId) {
-      this.requestLinkApiPathId = data.LinkApiPathId;
+    if (data && data.linkApiPathId) {
+      this.requestLinkApiPathId = data.linkApiPathId;
     }
-    // this.dataModel.LastUrlAddressInUse = this.document.location.href;
+    // this.dataModel.lastUrlAddressInUse = this.document.location.href;
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -65,19 +65,19 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
+    this.dataModel.linkApiPathId = this.requestLinkApiPathId;
   }
 
 
 
   onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
-    this.dataModel.LinkApiPathId = this.requestLinkApiPathId;
+    this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     this.dataModelParentSelected = model;
-    if (model && model.Id.length > 0) {
-      this.dataModel.LinkApiPathId = model.Id;
-      const nums = this.publicHelper.SplitAllChar(model.ApiDefaultNumber);
+    if (model && model.id.length > 0) {
+      this.dataModel.linkApiPathId = model.id;
+      const nums = this.publicHelper.SplitAllChar(model.apiDefaultNumber);
       if (nums && nums.length > 0) {
-        this.dataModel.FromNumber = nums[0];
+        this.dataModel.fromNumber = nums[0];
       }
     }
   }
@@ -86,30 +86,30 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    if (!this.dataModel.LinkApiPathId || this.dataModel.LinkApiPathId.length <= 0) {
+    if (!this.dataModel.linkApiPathId || this.dataModel.linkApiPathId.length <= 0) {
       this.cmsToastrService.typeErrorFormInvalid();
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.smsMainApiPathService.ServiceSendMessageTest(this.dataModel).pipe(
       map((next) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = 'درخواست ارسال با موفقیت ثبت شد';
+        if (next.isSuccess) {
+          this.formInfo.formAlert = 'درخواست ارسال با موفقیت ثبت شد';
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       (error) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);
 

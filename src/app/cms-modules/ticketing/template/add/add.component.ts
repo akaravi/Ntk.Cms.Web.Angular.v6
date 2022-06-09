@@ -40,7 +40,7 @@ export class TicketingTemplateAddComponent implements OnInit {
       this.requestParentId = +data.parentId || 0;
     }
     if (this.requestParentId > 0) {
-      this.dataModel.LinkTicketingDepartemenId = this.requestParentId;
+      this.dataModel.linkTicketingDepartemenId = this.requestParentId;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -56,7 +56,11 @@ export class TicketingTemplateAddComponent implements OnInit {
 
 
   ngOnInit(): void {
+<<<<<<< HEAD
     this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_New_Content');
+=======
+    this.formInfo.formTitle = 'ثبت محتوای جدید';
+>>>>>>> main
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -69,11 +73,11 @@ export class TicketingTemplateAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe(
         async (next) => {
-          if (next.IsSuccess) {
-            // this.dataAccessModel = next.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+          if (next.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
         },
         (error) => {
@@ -82,29 +86,29 @@ export class TicketingTemplateAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.ticketingTemplateService.ServiceAdd(this.dataModel).subscribe(
       (next) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (next.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       (error) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
 
@@ -112,31 +116,31 @@ export class TicketingTemplateAddComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
 
     this.ticketingTemplateService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (next.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       (error) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
 
@@ -144,18 +148,18 @@ export class TicketingTemplateAddComponent implements OnInit {
     );
   }
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'دپارتمان اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkTicketingDepartemenId = model.Id;
+    this.dataModel.linkTicketingDepartemenId = model.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
 
     this.DataAddContent();
 

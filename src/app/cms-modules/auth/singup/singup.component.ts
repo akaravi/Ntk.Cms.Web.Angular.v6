@@ -46,105 +46,105 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
   onActionSubmit(): void {
-    if (!this.dataModel.Email || this.dataModel.Email.length === 0) {
-      this.formInfo.FormError = 'آدرس ایمیل خود را وارد کنید';
-      this.formInfo.FormErrorStatus = true;
-      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+    if (!this.dataModel.email || this.dataModel.email.length === 0) {
+      this.formInfo.formError = 'آدرس ایمیل خود را وارد کنید';
+      this.formInfo.formErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
-    if (!this.dataModel.Name || this.dataModel.Name.length === 0) {
-      this.formInfo.FormError = 'نام خود را وارد کنید';
-      this.formInfo.FormErrorStatus = true;
-      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+    if (!this.dataModel.name || this.dataModel.name.length === 0) {
+      this.formInfo.formError = 'نام خود را وارد کنید';
+      this.formInfo.formErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
-    if (!this.dataModel.Family || this.dataModel.Family.length === 0) {
-      this.formInfo.FormError = 'نام خانوادگی خود را وارد کنید';
-      this.formInfo.FormErrorStatus = true;
-      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+    if (!this.dataModel.family || this.dataModel.family.length === 0) {
+      this.formInfo.formError = 'نام خانوادگی خود را وارد کنید';
+      this.formInfo.formErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
-    if (!this.dataModel.Password || this.dataModel.Password.length === 0) {
-      this.formInfo.FormError = 'کلمه عبور را وارد کنید';
-      this.formInfo.FormErrorStatus = true;
-      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+    if (!this.dataModel.password || this.dataModel.password.length === 0) {
+      this.formInfo.formError = 'کلمه عبور را وارد کنید';
+      this.formInfo.formErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
     if (!this.RePasswordModel || this.RePasswordModel.length === 0) {
-      this.formInfo.FormError = 'تکرار کلمه عبور را وارد کنید';
-      this.formInfo.FormErrorStatus = true;
-      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      this.formInfo.formError = 'تکرار کلمه عبور را وارد کنید';
+      this.formInfo.formErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
-    if (!this.dataModel.CaptchaText || this.dataModel.CaptchaText.length === 0) {
-      this.formInfo.FormError = 'محتوای عکس امنیتی را وارد کنید';
-      this.formInfo.FormErrorStatus = true;
-      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+    if (!this.dataModel.captchaText || this.dataModel.captchaText.length === 0) {
+      this.formInfo.formError = 'محتوای عکس امنیتی را وارد کنید';
+      this.formInfo.formErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
-    if (this.dataModel.Password !== this.RePasswordModel) {
-      this.formInfo.FormError = 'محتوای کلمه عبور و تکرار کلمه عبور متفاوت است';
-      this.dataModel.Password = '';
+    if (this.dataModel.password !== this.RePasswordModel) {
+      this.formInfo.formError = 'محتوای کلمه عبور و تکرار کلمه عبور متفاوت است';
+      this.dataModel.password = '';
       this.RePasswordModel = '';
-      this.formInfo.FormErrorStatus = true;
-      this.cmsToastrService.typeErrorRegistery(this.formInfo.FormError);
+      this.formInfo.formErrorStatus = true;
+      this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
-    this.formInfo.FormErrorStatus = false;
-    this.dataModel.CaptchaKey = this.captchaModel.Key;
+    this.formInfo.formErrorStatus = false;
+    this.dataModel.captchaKey = this.captchaModel.key;
     const pName = this.constructor.name + '.ServiceSignupUser';
     this.loading.Start(pName, 'در حال ساخت حساب کاربری جدید');
     /** read storage */
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
-      this.dataModel.SiteId = siteId;
+      this.dataModel.siteId = siteId;
     }
     const ResellerSiteId = + localStorage.getItem('ResellerSiteId');
     if (ResellerSiteId > 0) {
-      this.dataModel.ResellerSiteId = ResellerSiteId;
+      this.dataModel.resellerSiteId = ResellerSiteId;
     }
     const ResellerUserId = + localStorage.getItem('ResellerUserId');
     if (ResellerUserId > 0) {
-      this.dataModel.ResellerUserId = ResellerUserId;
+      this.dataModel.resellerUserId = ResellerUserId;
     }
     /** read storage */
     this.coreAuthService.ServiceSignupUser(this.dataModel).subscribe((next) => {
-      if (next.IsSuccess) {
+      if (next.isSuccess) {
         this.cmsToastrService.typeSuccessRegistery();
-        this.formInfo.FormErrorStatus = false;
+        this.formInfo.formErrorStatus = false;
         if (!this.loginAuto) {
           setTimeout(() => this.router.navigate(['/']), 1000);
         }
         /** Login */
         if (this.loginAuto) {
           const dataLoginModel = new AuthUserSignInModel();
-          dataLoginModel.CaptchaKey = this.dataModel.CaptchaKey;
-          dataLoginModel.CaptchaText = this.dataModel.CaptchaText;
-          dataLoginModel.Email = this.dataModel.Email;
-          dataLoginModel.Password = this.dataModel.Password;
-          dataLoginModel.SiteId = this.dataModel.SiteId;
-          dataLoginModel.Mobile = this.dataModel.Mobile;
+          dataLoginModel.captchaKey = this.dataModel.captchaKey;
+          dataLoginModel.captchaText = this.dataModel.captchaText;
+          dataLoginModel.email = this.dataModel.email;
+          dataLoginModel.password = this.dataModel.password;
+          dataLoginModel.siteId = this.dataModel.siteId;
+          dataLoginModel.mobile = this.dataModel.mobile;
           const pName2 = this.constructor.name + 'ServiceSigninUser';
           this.loading.Start(pName2, 'ورود به حساب کاربری');
           this.coreAuthService.ServiceSigninUser(dataLoginModel).subscribe(
             (res) => {
-              if (res.IsSuccess) {
+              if (res.isSuccess) {
                 this.cmsToastrService.typeSuccessLogin();
-                if (res.Item.SiteId > 0) {
+                if (res.item.siteId > 0) {
                   setTimeout(() => this.router.navigate(['/dashboard']), 1000);
                 }
                 else {
                   setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
                 }
               } else {
-                this.formInfo.ButtonSubmittedEnabled = true;
-                this.cmsToastrService.typeErrorLogin(res.ErrorMessage);
+                this.formInfo.buttonSubmittedEnabled = true;
+                this.cmsToastrService.typeErrorLogin(res.errorMessage);
                 setTimeout(() => this.router.navigate(['/']), 1000);
               }
               this.loading.Stop(pName2);
             },
             (error) => {
-              this.formInfo.ButtonSubmittedEnabled = true;
+              this.formInfo.buttonSubmittedEnabled = true;
               this.cmsToastrService.typeError(error);
               this.loading.Stop(pName2);
             }
@@ -152,16 +152,16 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
         }
         /** Login */
       } else {
-        this.cmsToastrService.typeErrorRegistery(next.ErrorMessage);
-        this.formInfo.ButtonSubmittedEnabled = true;
-        this.formInfo.FormErrorStatus = true;
+        this.cmsToastrService.typeErrorRegistery(next.errorMessage);
+        this.formInfo.buttonSubmittedEnabled = true;
+        this.formInfo.formErrorStatus = true;
         this.onCaptchaOrder();
       }
       this.loading.Stop(pName);
     }, (error) => {
       this.cmsToastrService.typeError(error);
-      this.formInfo.FormErrorStatus = true;
-      this.formInfo.ButtonSubmittedEnabled = true;
+      this.formInfo.formErrorStatus = true;
+      this.formInfo.buttonSubmittedEnabled = true;
       this.onCaptchaOrder();
       this.loading.Stop(pName);
     });
@@ -180,22 +180,22 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     if (this.onCaptchaOrderInProcess) {
       return;
     }
-    this.dataModel.CaptchaText = '';
+    this.dataModel.captchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
     this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
-        this.captchaModel = next.Item;
-        this.expireDate = next.Item.Expire.split('+')[1];
+        this.captchaModel = next.item;
+        this.expireDate = next.item.expire.split('+')[1];
         const startDate = new Date();
-        const endDate = new Date(next.Item.Expire);
+        const endDate = new Date(next.item.expire);
         const seconds = (endDate.getTime() - startDate.getTime());
         if (this.aoutoCaptchaOrder < 10) {
           this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
           setTimeout(() => { this.onCaptchaOrder(); }, seconds);
         }
-        if (!next.IsSuccess) {
-          this.cmsToastrService.typeErrorGetCpatcha(next.ErrorMessage);
+        if (!next.isSuccess) {
+          this.cmsToastrService.typeErrorGetCpatcha(next.errorMessage);
         }
         this.onCaptchaOrderInProcess = false;
         this.loading.Stop(pName);
@@ -215,7 +215,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       const randomNumber = Math.floor(Math.random() * chars.length);
       password += chars.substring(randomNumber, randomNumber + 1);
     }
-    this.dataModel.Password = password;
+    this.dataModel.password = password;
     this.RePasswordModel = password;
     this.PasswordView = true;
   }

@@ -57,10 +57,10 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     this.loading.Start(this.constructor.name + 'All');
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('All', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'All');
 
@@ -72,15 +72,15 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.modelData.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          this.modelData.set('Active', ret.totalRowCount);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'Active');
 
@@ -94,9 +94,9 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
 
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastFilter2 = new FilterDataModel();
-    fastFilter2.PropertyName = 'ExpireDate';
-    fastFilter2.Value = new Date();
-    fastFilter2.SearchType = EnumFilterDataModelSearchTypes.GreaterThan;
-    filterStatist2.Filters.push(fastFilter2);
+    fastFilter2.propertyName = 'ExpireDate';
+    fastFilter2.value = new Date();
+    fastFilter2.searchType = EnumFilterDataModelSearchTypes.GreaterThan;
+    filterStatist2.filters.push(fastFilter2);
   }
 }

@@ -55,62 +55,62 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'اضافه کردن خود کار کلیه صفحات  ';
+    this.formInfo.formTitle = 'اضافه کردن خود کار کلیه صفحات  ';
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.webDesignerMainPageService.ServiceAutoAdd(this.dataModel).subscribe(
       (next) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
-        if (next.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (next.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = next.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = next.errorMessage;
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
       (error) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(error);
         this.loading.Stop(pName);
       }
     );
   }
   onActionSelectModule(model: WebDesignerMainPageTemplateModel | null): void {
-    if (!model || model.Id.length <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id.length <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'قالب را مشخص کنید',
         'قالب اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkPageTemplateGuId = model.Id;
+    this.dataModel.linkPageTemplateGuId = model.id;
   }
   onActionSelectParent(model: WebDesignerMainPageModel): void {
-    this.dataModel.LinkPageParentGuId = '';
-    if (model && model.Id && model.Id.length > 0) {
-      this.dataModel.LinkPageParentGuId = model.Id;
+    this.dataModel.linkPageParentGuId = '';
+    if (model && model.id && model.id.length > 0) {
+      this.dataModel.linkPageParentGuId = model.id;
     }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
-    if (!this.dataModel.LinkPageTemplateGuId || this.dataModel.LinkPageTemplateGuId.length <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    this.formInfo.formSubmitAllow = false;
+    if (!this.dataModel.linkPageTemplateGuId || this.dataModel.linkPageTemplateGuId.length <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'قالب را مشخص کنید',
         'قالب اطلاعات مشخص نیست'
       );

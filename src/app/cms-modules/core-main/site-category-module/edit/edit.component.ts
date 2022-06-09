@@ -51,8 +51,8 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkCmsSiteCategoryId = +data.LinkCmsSiteCategoryId || 0;
-      this.requestLinkCmsModuleId = +data.LinkCmsModuleId || 0;
+      this.requestLinkCmsSiteCategoryId = +data.linkCmsSiteCategoryId || 0;
+      this.requestLinkCmsModuleId = +data.linkCmsModuleId || 0;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -90,8 +90,8 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
   DataGetOneContent(): void {
 
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -99,16 +99,16 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
     const filteModelContent = new FilterModel();
     /*make filter*/
     let filter = new FilterDataModel();
-    filter.PropertyName = 'LinkCmsSiteCategoryId';
-    filter.Value = this.requestLinkCmsSiteCategoryId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkCmsSiteCategoryId';
+    filter.value = this.requestLinkCmsSiteCategoryId;
+    filteModelContent.filters.push(filter);
     /*make filter*/
     filter = new FilterDataModel();
-    filter.PropertyName = 'LinkCmsModuleId';
-    filter.Value = this.requestLinkCmsModuleId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkCmsModuleId';
+    filter.value = this.requestLinkCmsModuleId;
+    filteModelContent.filters.push(filter);
 
-    filteModelContent.AccessLoad = true;
+    filteModelContent.accessLoad = true;
     /*َAccess Field*/
     this.coreSiteCategoryCmsModuleService.setAccessLoad();
 
@@ -116,22 +116,22 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
       next: (ret) => {
 
         /*َAccess Field*/
-        this.dataAccessModel = ret.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          if (ret.ListItems && ret.ListItems.length > 0) {
-            this.dataModel = ret.ListItems[0];
-            this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.LinkCmsModuleId + '<==>' + ret.Item.LinkCmsSiteCategoryId;
-            this.formInfo.FormAlert = '';
+        this.dataAccessModel = ret.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          if (ret.listItems && ret.listItems.length > 0) {
+            this.dataModel = ret.listItems[0];
+            this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.linkCmsModuleId + '<==>' + ret.item.linkCmsSiteCategoryId;
+            this.formInfo.formAlert = '';
           }
           else {
-            this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Module_not_found_for_editing'));
+            this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.Module_not_found_for_editing'));
           }
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -145,30 +145,30 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.coreSiteCategoryCmsModuleService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -176,22 +176,22 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
     );
   }
   onActionSiteCategorySelect(model: CoreSiteCategoryModel): void {
-    this.dataModel.LinkCmsSiteCategoryId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkCmsSiteCategoryId = model.Id;
+    this.dataModel.linkCmsSiteCategoryId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkCmsSiteCategoryId = model.id;
     }
   }
   onActionSelectorModuleSelect(model: CoreModuleModel): void {
-    this.dataModel.LinkCmsModuleId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkCmsModuleId = model.Id;
+    this.dataModel.linkCmsModuleId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkCmsModuleId = model.id;
     }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

@@ -68,28 +68,28 @@ export class HyperShopCategorySelectorComponent implements OnInit {
   }
 
   displayFn(model?: HyperShopCategoryModel): string | undefined {
-    return model ? model.Name + ' # ' + model.Code : undefined;
+    return model ? model.name + ' # ' + model.code : undefined;
   }
   displayOption(model?: HyperShopCategoryModel): string | undefined {
-    return model ? model.Name + ' # ' + model.Code : undefined;
+    return model ? model.name + ' # ' + model.code : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<HyperShopCategoryModel[]> {
     const filteModel = new FilterModel();
-    filteModel.RowPerPage = 20;
-    filteModel.AccessLoad = true;
+    filteModel.rowPerPage = 20;
+    filteModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
-    filter.PropertyName = 'Name';
-    filter.Value = text;
-    filter.SearchType = EnumFilterDataModelSearchTypes.Contains;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'Name';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+    filteModel.filters.push(filter);
     /* */
     filter = new FilterDataModel();
-    filter.PropertyName = 'Code';
-    filter.Value = text;
-    filter.SearchType = EnumFilterDataModelSearchTypes.Equal;
-    filter.ClauseType = EnumClauseType.Or;
-    filteModel.Filters.push(filter);
+    filter.propertyName = 'Code';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
 
     
     const pName = this.constructor.name + 'main';
@@ -101,16 +101,16 @@ export class HyperShopCategorySelectorComponent implements OnInit {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.Code || this.dataModelSelect.Code.length === 0) &&
-            this.dataModelResult.ListItems.length > 0) {
+            (!this.dataModelSelect || !this.dataModelSelect.code || this.dataModelSelect.code.length === 0) &&
+            this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.ListItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.ListItems[0]);
+            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
+            this.onActionSelect(this.dataModelResult.listItems[0]);
           }
           /*select First Item */
           this.loading.Stop(pName);
 
-          return response.ListItems;
+          return response.listItems;
         })
       ).toPromise();
   }
@@ -131,7 +131,7 @@ export class HyperShopCategorySelectorComponent implements OnInit {
 
   push(newvalue: HyperShopCategoryModel): Observable<HyperShopCategoryModel[]> {
     return this.filteredOptions.pipe(map(items => {
-      if (items.find(x => x.Code === newvalue.Code)) {
+      if (items.find(x => x.code === newvalue.code)) {
         return items;
       }
       items.push(newvalue);
@@ -141,24 +141,24 @@ export class HyperShopCategorySelectorComponent implements OnInit {
   }
   onActionSelectForce(id: string | HyperShopCategoryModel): void {
     if (typeof id === 'string' && id.length > 0) {
-      if (this.dataModelSelect && this.dataModelSelect.Code === id) {
+      if (this.dataModelSelect && this.dataModelSelect.code === id) {
         return;
       }
-      if (this.dataModelResult && this.dataModelResult.ListItems && this.dataModelResult.ListItems.find(x => x.Code === id)) {
-        const item = this.dataModelResult.ListItems.find(x => x.Code === id);
+      if (this.dataModelResult && this.dataModelResult.listItems && this.dataModelResult.listItems.find(x => x.code === id)) {
+        const item = this.dataModelResult.listItems.find(x => x.code === id);
         this.dataModelSelect = item;
         this.formControl.setValue(item);
         return;
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.IsSuccess) {
-          this.filteredOptions = this.push(ret.Item);
-          this.dataModelSelect = ret.Item;
-          this.formControl.setValue(ret.Item);
-          this.optionChange.emit(ret.Item);
+        if (ret.isSuccess) {
+          this.filteredOptions = this.push(ret.item);
+          this.dataModelSelect = ret.item;
+          this.formControl.setValue(ret.item);
+          this.optionChange.emit(ret.item);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       }
       });

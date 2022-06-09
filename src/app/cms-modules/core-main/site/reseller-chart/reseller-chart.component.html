@@ -16,21 +16,21 @@
         <div class="ntk-cms-html-tree-body">
             <mat-tree class="category-tree cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
-                    [ngStyle]="{'background': dataModelSelect.LinkSiteId>0 && dataModelSelect.LinkSiteId === node.LinkSiteId ? '#d3d3da' : '' }">
+                    [ngStyle]="{'background': dataModelSelect.linkSiteId>0 && dataModelSelect.linkSiteId === node.linkSiteId ? '#d3d3da' : '' }">
                     <button mat-icon-button disabled></button>
-                    {{node.Site.Id}}/{{node.Site.Title}}
+                    {{node.Site.id}}/{{node.Site.title}}
                 </mat-tree-node>
                 <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
                     <li>
                         <div class="mat-tree-node" (click)="onActionSelect(node)"
-                            [ngStyle]="{'background': dataModelSelect.LinkSiteId>0 && dataModelSelect.LinkSiteId === node.LinkSiteId ? '#d3d3da' : '' }">
-                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.Title"
+                            [ngStyle]="{'background': dataModelSelect.linkSiteId>0 && dataModelSelect.linkSiteId === node.linkSiteId ? '#d3d3da' : '' }">
+                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.title"
                                 (click)="onActionSelect(node)">
                                 <mat-icon class="mat-icon-rtl-mirror">
                                     {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                                 </mat-icon>
                             </button>
-                            {{node.Site.Id}}/{{node.Site.Title}}
+                            {{node.Site.id}}/{{node.Site.title}}
                         </div>
                         <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">
                             <ng-container matTreeNodeOutlet></ng-container>
@@ -42,7 +42,7 @@
     </div>
     <div class="col-lg-6 col-sm-12">
         <div class="ntk-cms-html-tree-body">
-            <div class="table" *ngIf="dataModelSelect?.UserChilds?.length>0">
+            <div class="table" *ngIf="dataModelSelect?.userChilds?.length>0">
                 <div class="th">
                     <div class="td">شناسه کاربری</div>
                     <div class="td">نام</div>
@@ -51,12 +51,12 @@
                     <div class="td">تاریخ ساخت</div>
                     <div class="clear"></div>
                 </div>
-                <div class="tr" *ngFor="let item of dataModelSelect.UserChilds">
-                    <div class="td">{{item.User?.Id}}</div>
-                    <div class="td">{{item.User?.Name}}</div>
-                    <div class="td">{{item.User?.LastName}}</div>
-                    <div class="td">{{item.User?.CompanyName}}</div>
-                    <div class="td">{{item.User?.CreatedDate |persianDate}}</div>
+                <div class="tr" *ngFor="let item of dataModelSelect.userChilds">
+                    <div class="td">{{item.user?.id}}</div>
+                    <div class="td">{{item.user?.name}}</div>
+                    <div class="td">{{item.user?.lastName}}</div>
+                    <div class="td">{{item.user?.companyName}}</div>
+                    <div class="td">{{item.user?.createdDate |persianDate}}</div>
                     <div style="clear: both;"></div>
                 </div>
             </div>

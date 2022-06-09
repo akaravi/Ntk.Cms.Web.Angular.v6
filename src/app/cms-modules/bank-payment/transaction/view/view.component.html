@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -8,10 +8,10 @@
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <!-- LinkPrivateSiteConfigId Field -->
   <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true"
-    [optionSelectForce]=" this.dataModel.LinkPrivateSiteConfigId" [optionPlaceholder]="'حساب'">
+    [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId" [optionPlaceholder]="'حساب'">
   </app-bankpayment-privatesiteconfig-selector>
   <!-- LinkUserId Field -->
-  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.LinkUserId"
+  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId"
     [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
   <!-- LinkUserId Field -->
   <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
@@ -20,15 +20,15 @@
 <div class="ntk-cms-html-card-message">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
   <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
     </small>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
     <button type="button" (click)="onFormCancel()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>

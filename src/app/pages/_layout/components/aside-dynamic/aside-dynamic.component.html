@@ -30,7 +30,7 @@
       <a class="menu-link" [routerLink]="item.page" routerLinkActive="active">
         <span *ngIf="item.svg && item.svg.length>0" [inlineSVG]="item.svg" cacheSVG="true"
           class="svg-icon menu-icon"></span>
-        <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >{{
           item.title
@@ -48,7 +48,7 @@
         [ngClass]="{ 'active ': isMenuItemActive(item.page) }">
         <span *ngIf="item.svg && item.svg.length>0" [inlineSVG]="item.svg" cacheSVG="true"
           class="svg-icon menu-icon"></span>
-        <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >{{
           item.title
@@ -60,7 +60,7 @@
         <ul class="menu-subnav">
           <li class="menu-item menu-item-parent" aria-haspopup="true">
             <span class="menu-link">
-              <i [ngClass]="item.Icon"  class="menu-bullet"  [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
+              <i [ngClass]="item.icon"  class="menu-bullet"  [style.color]="item.color?.length>0 ? item.color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
               <span class="menu-text" >{{
                 item.title
                 }}</span>
@@ -82,10 +82,10 @@
   <ng-container *ngIf="!item.submenu">
     <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
       <a class="menu-link" [routerLink]="item.page" routerLinkActive="active">
-        <i *ngIf="!item.Icon || item.Icon.length===0" class="menu-bullet menu-bullet-dot">
+        <i *ngIf="!item.icon || item.icon.length===0" class="menu-bullet menu-bullet-dot">
           <span></span>
         </i>
-        <i [ngClass]="item.Icon" class="menu-bullet" [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
+        <i [ngClass]="item.icon" class="menu-bullet" [style.color]="item.color?.length>0 ? item.color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >{{item.title}}</span>
       </a>
     </li>
@@ -98,10 +98,10 @@
       [ngClass]="{ 'menu-item-open': isMenuItemActive(item.page) }" routerLinkActive="menu-item-open">
       <a class="menu-link menu-toggle" [attr.href]="item.page" [ngClass]="{ 'active ': isMenuItemActive(item.page) }"
         routerLinkActive="active">
-        <i *ngIf="!item.Icon || item.Icon.length===0" class="menu-bullet menu-bullet-dot">
+        <i *ngIf="!item.icon || item.icon.length===0" class="menu-bullet menu-bullet-dot">
           <span></span>
         </i>
-        <i [ngClass]="item.Icon"  class="menu-bullet" [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
+        <i [ngClass]="item.icon"  class="menu-bullet" [style.color]="item.color?.length>0 ? item.color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >
           {{item.title}}
         </span>
@@ -125,10 +125,10 @@
 <ng-template #menu3LevelTemplate let-item="item">
   <li class="menu-item" aria-haspopup="true" routerLinkActive="menu-item-active">
     <a class="menu-link" [routerLink]="item.page" routerLinkActive="active">
-      <i *ngIf="!item.Icon || item.Icon.length===0" class="menu-bullet menu-bullet-dot">
+      <i *ngIf="!item.icon || item.icon.length===0" class="menu-bullet menu-bullet-dot">
         <span></span>
       </i>
-      <i [ngClass]="item.Icon"  class="menu-bullet" [style.color]="item.Color?.length>0 ? item.Color:''" aria-hidden="true">
+      <i [ngClass]="item.icon"  class="menu-bullet" [style.color]="item.color?.length>0 ? item.color:''" aria-hidden="true">
         <span></span>
       </i>&nbsp;&nbsp;
       <span class="menu-text" >{{

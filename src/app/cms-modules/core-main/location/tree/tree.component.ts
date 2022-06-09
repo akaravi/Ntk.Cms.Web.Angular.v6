@@ -53,13 +53,13 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
   filteModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<CoreLocationModel>(node => node.Children);
+  treeControl = new NestedTreeControl<CoreLocationModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<CoreLocationModel>();
   @Output() optionChange = new EventEmitter<CoreLocationModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
-  hasChild = (_: number, node: CoreLocationModel) => !!node.Children && node.Children.length > 0;
+  hasChild = (_: number, node: CoreLocationModel) => !!node.children && node.children.length > 0;
 
 
   ngOnInit(): void {
@@ -72,19 +72,19 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.RowPerPage = 200;
-    this.filteModel.AccessLoad = true;
+    this.filteModel.rowPerPage = 200;
+    this.filteModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.dataSource.data = this.dataModelResult.ListItems;
+          this.dataSource.data = this.dataModelResult.listItems;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -100,7 +100,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
+    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
@@ -115,8 +115,8 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
 
   onActionAdd(): void {
     let parentId = 0;
-    if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-      parentId = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+      parentId = this.dataModelSelect.id;
     }
 
     const dialogConfig = new MatDialogConfig();
@@ -136,8 +136,8 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
 
   onActionEdit(): void {
     let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
@@ -158,12 +158,12 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
 
   onActionDelete(): void {
     // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
-    //   if (res.IsSuccess) {
+    //   if (res.isSuccess) {
     //   }
     // });
     let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');

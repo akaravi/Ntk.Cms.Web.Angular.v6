@@ -47,14 +47,14 @@ export class EstatePropertyDetailAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkPropertyTypeLanduseId = data.LinkPropertyTypeLanduseId;
-      this.requestLinkPropertyDetailGroupId = data.LinkPropertyDetailGroupId;
+      this.requestLinkPropertyTypeLanduseId = data.linkPropertyTypeLanduseId;
+      this.requestLinkPropertyDetailGroupId = data.linkPropertyDetailGroupId;
     }
     if (this.requestLinkPropertyTypeLanduseId && this.requestLinkPropertyTypeLanduseId.length > 0) {
-      this.dataModel.LinkPropertyTypeLanduseId = this.requestLinkPropertyTypeLanduseId;
+      this.dataModel.linkPropertyTypeLanduseId = this.requestLinkPropertyTypeLanduseId;
     }
     if (this.requestLinkPropertyDetailGroupId && this.requestLinkPropertyDetailGroupId.length > 0) {
-      this.dataModel.LinkPropertyDetailGroupId = this.requestLinkPropertyDetailGroupId;
+      this.dataModel.linkPropertyDetailGroupId = this.requestLinkPropertyDetailGroupId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
@@ -76,7 +76,7 @@ export class EstatePropertyDetailAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = 'اضافه کردن  ';
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.getEnumInputDataType();
@@ -95,10 +95,10 @@ export class EstatePropertyDetailAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -108,29 +108,29 @@ export class EstatePropertyDetailAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estatePropertyDetailService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -138,30 +138,30 @@ export class EstatePropertyDetailAddComponent implements OnInit {
     );
   }
   onActionSelectorSelect(model: EstatePropertyTypeLanduseModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
+    this.dataModel.linkPropertyTypeLanduseId = model.id;
   }
   onActionSelectorDetailGroup(model: EstatePropertyDetailGroupModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyDetailGroupId = model.Id;
+    this.dataModel.linkPropertyDetailGroupId = model.id;
   }
   onIconPickerSelect(model: any): void {
-    this.dataModel.IconFont = model;
+    this.dataModel.iconFont = model;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
-    this.dataModel.ConfigValueDefaultValueJson = '';
+    this.formInfo.formSubmitAllow = false;
+    this.dataModel.configValueDefaultValueJson = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -172,7 +172,7 @@ export class EstatePropertyDetailAddComponent implements OnInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.ConfigValueDefaultValueJson = listKeyword.join(',');
+        this.dataModel.configValueDefaultValueJson = listKeyword.join(',');
       }
     }
     this.DataAddContent();

@@ -3,22 +3,22 @@
   <div class="tr">
     <div class="td"></div>
     <div class="td align"><h5>{{'TITLE.Selected_Billboard'|translate}}</h5></div>
-    <div class="td" *ngIf="dataModelResult?.Item?.Id">
+    <div class="td" *ngIf="dataModelResult?.item?.id">
       link to
       <br>
-      <mat-icon (click)="onActionbuttonLinkTo()" *ngIf="dataModelResult?.Item?.Id">&#8599;</mat-icon>
+      <mat-icon (click)="onActionbuttonLinkTo()" *ngIf="dataModelResult?.item?.id">&#8599;</mat-icon>
     </div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Id']?.FieldTitle}} : </div>
-    <div class="td align">{{dataModelResult?.Item?.Id}}</div>
+    <div class="td">{{fieldsInfo['Id']?.fieldTitle}} : </div>
+    <div class="td align">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
 
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Title']?.FieldTitle}} : </div>
-    <div class="td align">{{dataModelResult?.Item?.Title}}</div>
+    <div class="td">{{fieldsInfo['Title']?.fieldTitle}} : </div>
+    <div class="td align">{{dataModelResult?.item?.title}}</div>
     <div class="td"></div>
     <div style="clear: both;"></div>
   </div>

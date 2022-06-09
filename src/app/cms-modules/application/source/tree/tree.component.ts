@@ -68,19 +68,19 @@ export class ApplicationSourceTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.RowPerPage = 200;
-    this.filteModel.AccessLoad = true;
+    this.filteModel.rowPerPage = 200;
+    this.filteModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.dataSource.data = this.dataModelResult.ListItems;
+          this.dataSource.data = this.dataModelResult.listItems;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -96,7 +96,7 @@ export class ApplicationSourceTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
+    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
@@ -116,8 +116,8 @@ export class ApplicationSourceTreeComponent implements OnInit, OnDestroy {
 
   onActionEdit(): void {
     let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
@@ -130,8 +130,8 @@ export class ApplicationSourceTreeComponent implements OnInit, OnDestroy {
   onActionDelete(): void {
 
     let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.Id > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');

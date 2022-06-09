@@ -13,40 +13,40 @@ import { Input } from '@angular/core';
 export class CmsExportListComponent implements OnInit {
   constructor() {
     let eum = new EnumInfoModel();
-    eum.Value = 1;
-    eum.Key = 'Excel';
-    eum.Description = 'Excel';
+    eum.value = 1;
+    eum.key = 'Excel';
+    eum.description = 'Excel';
     this.fileTypeListItems.push(eum);
 
     eum = new EnumInfoModel();
-    eum.Value = 2;
-    eum.Key = 'PDF';
-    eum.Description = 'PDF';
+    eum.value = 2;
+    eum.key = 'PDF';
+    eum.description = 'PDF';
     this.fileTypeListItems.push(eum);
 
     eum = new EnumInfoModel();
-    eum.Value = 3;
-    eum.Key = 'Text';
-    eum.Description = 'Text';
+    eum.value = 3;
+    eum.key = 'Text';
+    eum.description = 'Text';
     this.fileTypeListItems.push(eum);
 
 
     eum = new EnumInfoModel();
-    eum.Value = 0;
-    eum.Key = 'Now';
-    eum.Description = 'Now';
+    eum.value = 0;
+    eum.key = 'Now';
+    eum.description = 'Now';
     this.recieveMethodListItems.push(eum);
 
     eum = new EnumInfoModel();
-    eum.Value = 1;
-    eum.Key = 'Email';
-    eum.Description = 'Email';
+    eum.value = 1;
+    eum.key = 'Email';
+    eum.description = 'Email';
     this.recieveMethodListItems.push(eum);
 
     eum = new EnumInfoModel();
-    eum.Value = 2;
-    eum.Key = 'FileManager';
-    eum.Description = 'FileManager';
+    eum.value = 2;
+    eum.key = 'FileManager';
+    eum.description = 'FileManager';
     this.recieveMethodListItems.push(eum);
   }
   public optionsData: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -76,8 +76,8 @@ export class CmsExportListComponent implements OnInit {
   }
   setExportFilterModel(model: FilterModel): void {
     this.filterModel = JSON.parse(JSON.stringify(model));
-    if (!this.filterModel.ExportFile) {
-      this.filterModel.ExportFile = new ExportFileModel();
+    if (!this.filterModel.exportFile) {
+      this.filterModel.exportFile = new ExportFileModel();
     }
   }
 

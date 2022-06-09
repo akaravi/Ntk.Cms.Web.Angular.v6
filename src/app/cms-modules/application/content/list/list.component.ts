@@ -59,8 +59,8 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'Id';
-    this.filteModelContent.SortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
   }
   comment: string;
   author: string;
@@ -97,14 +97,14 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.requestLinkThemeConfigId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkThemeConfigId'));
     const filter = new FilterDataModel();
     if (this.requestLinkSourceId > 0) {
-      filter.PropertyName = 'LinkSourceId';
-      filter.Value = this.requestLinkSourceId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'LinkSourceId';
+      filter.value = this.requestLinkSourceId;
+      this.filteModelContent.filters.push(filter);
     }
     if (this.requestLinkThemeConfigId > 0) {
-      filter.PropertyName = 'LinkThemeConfigId';
-      filter.Value = this.requestLinkThemeConfigId;
-      this.filteModelContent.Filters.push(filter);
+      filter.propertyName = 'LinkThemeConfigId';
+      filter.value = this.requestLinkThemeConfigId;
+      this.filteModelContent.filters.push(filter);
     }
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -123,23 +123,23 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = new ApplicationAppModel();
     const pName = this.constructor.name + 'contentService.ServiceGetAll';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
-      filter.PropertyName = 'LinkSourceId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
+    if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
+      filter.propertyName = 'LinkSourceId';
+      filter.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        if (ret.isSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
-          this.tableSource.data = ret.ListItems;
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          this.tableSource.data = ret.listItems;
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
               this.tabledisplayedColumns,
               'LinkSiteId',
@@ -158,11 +158,11 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
             );
           }
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.Access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         }
         else {
-          this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+          this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -177,25 +177,25 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
   onActionbuttonNewRow(): void {
@@ -208,9 +208,9 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     if (
       this.categoryModelSelected &&
-      this.categoryModelSelected.Id > 0
+      this.categoryModelSelected.id > 0
     ) {
-      sourceId = this.categoryModelSelected.Id;
+      sourceId = this.categoryModelSelected.id;
     }
     if (sourceId === 0) {
       const message = 'نوع سورس اپلیکیشن انتخاب نشده است';
@@ -219,8 +219,8 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
@@ -233,23 +233,23 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionbuttonEditRow(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (!mode || !mode.Id || mode.Id === 0) {
+    if (!mode || !mode.id || mode.id === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
     this.tableRowSelected = mode;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    setTimeout(() => this.router.navigate(['/application/app/edit/', this.tableRowSelected.Id]), 1000);
+    setTimeout(() => this.router.navigate(['/application/app/edit/', this.tableRowSelected.id]), 1000);
   }
   onActionbuttonDeleteRow(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       const emessage = this.translate.instant('MESSAGE.No_row_selected_for_editing');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -257,23 +257,23 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = mode;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'contentService.ServiceDelete';
           this.loading.Start(pName);
 
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
-              if (ret.IsSuccess) {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -306,12 +306,12 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('All', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -321,16 +321,16 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          statist.set('Active', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       }
       ,
@@ -350,11 +350,11 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          exportlist.set('Download', ret.LinkFile);
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -367,7 +367,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationAppModel): void {
@@ -380,7 +380,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/application/themeconfig/']);
   }
   onActionbuttonUploadApp(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       const message = 'ردیفی  انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -397,7 +397,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonUploadUpdate(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       const message = 'ردیفی  انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -414,7 +414,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonBuildApp(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       const message = 'ردیفی  انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -422,14 +422,14 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = mode;
     const pName = this.constructor.name + 'contentService.ServiceBuild';
     this.loading.Start(pName);
-    this.contentService.ServiceBuild(this.tableRowSelected.Id).subscribe({
+    this.contentService.ServiceBuild(this.tableRowSelected.id).subscribe({
       next: (ret) => {
         this.loading.Stop(pName);
-        if (ret.IsSuccess) {
-          this.cmsToastrService.typeSuccessAppBuild(ret.ErrorMessage);
+        if (ret.isSuccess) {
+          this.cmsToastrService.typeSuccessAppBuild(ret.errorMessage);
         }
         else {
-          this.cmsToastrService.typeErrorGetAll(ret.ErrorMessage);
+          this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -440,7 +440,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonDownloadApp(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       const message = 'ردیفی  انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -457,22 +457,22 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonNotifictionActionSend(model: ApplicationAppModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
-      data: { LinkApplicationId: this.tableRowSelected.Id }
+      data: { LinkApplicationId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -481,21 +481,21 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonMemberList(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       const message = 'ردیفی  انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.tableRowSelected = mode;
-    this.router.navigate(['/application/memberinfo/LinkApplicationId/', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/memberinfo/LinkApplicationId/', this.tableRowSelected.id]);
   }
   onActionbuttonIntroList(mode: ApplicationAppModel = this.tableRowSelected): void {
-    if (mode == null || !mode.Id || mode.Id === 0) {
+    if (mode == null || !mode.id || mode.id === 0) {
       const message = 'ردیفی  انتخاب نشده است';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.tableRowSelected = mode;
-    this.router.navigate(['/application/intro/LinkApplicationId/', this.tableRowSelected.Id]);
+    this.router.navigate(['/application/intro/LinkApplicationId/', this.tableRowSelected.id]);
   }
 }

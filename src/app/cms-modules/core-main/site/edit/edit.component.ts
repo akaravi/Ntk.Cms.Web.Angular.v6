@@ -48,16 +48,23 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.requestId === 0) {
-      this.requestId = this.tokenInfo.SiteId;
+    if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId>0) {
+      this.requestId = this.tokenInfo.siteId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId>0)  {
+        this.requestId = this.tokenInfo.siteId;
+      }
       this.DataGetOne(this.requestId);
     });
+    
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
+      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId>0)  {
+        this.requestId = this.tokenInfo.siteId;
+      }
       this.DataGetOne(this.requestId);
     });
   }
@@ -120,7 +127,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
 
       return;
     }
-    this.dataModel.SeoKeyword = '';
+    this.dataModel.seoKeyword = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -131,15 +138,17 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.SeoKeyword = listKeyword.join(',');
+        this.dataModel.seoKeyword = listKeyword.join(',');
       }
     }
     this.DataEditContent();
   }
   DataGetOne(id: number): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    if(!id || id<=0)
+    return;
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     /*َAccess Field*/
@@ -149,30 +158,30 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
-            const lat = this.dataModel.AboutUsGeolocationlatitude;
-            const lon = this.dataModel.AboutUsGeolocationlongitude;
+          this.formInfo.formSubmitAllow = true;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
+            const lat = this.dataModel.aboutUsGeolocationlatitude;
+            const lon = this.dataModel.aboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
               this.mapMarkerPoints = [];
               this.mapMarkerPoints.push({ lat, lon });
               this.receiveMap();
             }
             this.keywordDataModel = [];
-            if (this.dataModel.SeoKeyword && this.dataModel.SeoKeyword.length > 0) {
-              this.keywordDataModel = this.dataModel.SeoKeyword.split(',');
+            if (this.dataModel.seoKeyword && this.dataModel.seoKeyword.length > 0) {
+              this.keywordDataModel = this.dataModel.seoKeyword.split(',');
             }
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }
@@ -180,30 +189,30 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
       );
   }
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.coreSiteService
       .ServiceEdit(this.dataModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (ret.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            this.formInfo.FormSubmitAllow = true;
+            this.formInfo.formSubmitAllow = true;
           } else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(er);
+          this.formInfo.formSubmitAllow = true;
+          this.cmsToastrService.typeError(er);;
         }
       }
       );
@@ -239,59 +248,59 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.AboutUsGeolocationlatitude && lon === this.dataModel.AboutUsGeolocationlongitude) {
-        this.dataModel.AboutUsGeolocationlatitude = null;
-        this.dataModel.AboutUsGeolocationlongitude = null;
+      if (lat === this.dataModel.aboutUsGeolocationlatitude && lon === this.dataModel.aboutUsGeolocationlongitude) {
+        this.dataModel.aboutUsGeolocationlatitude = null;
+        this.dataModel.aboutUsGeolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.AboutUsGeolocationlatitude = lat;
-      this.dataModel.AboutUsGeolocationlongitude = lon;
+      this.dataModel.aboutUsGeolocationlatitude = lat;
+      this.dataModel.aboutUsGeolocationlongitude = lon;
     });
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);
   }
   onActionFileSelectedAboutUsLinkImageId(model: NodeInterface): void {
-    this.dataModel.AboutUsLinkImageId = model.id;
-    this.dataModel.AboutUsLinkImageIdSrc = model.downloadLinksrc;
+    this.dataModel.aboutUsLinkImageId = model.id;
+    this.dataModel.aboutUsLinkImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFavIconId(model: NodeInterface): void {
-    this.dataModel.LinkFavIconId = model.id;
-    this.dataModel.LinkFavIconIdSrc = model.downloadLinksrc;
+    this.dataModel.linkFavIconId = model.id;
+    this.dataModel.linkFavIconIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedPwaIconSize190x192Id(model: NodeInterface): void {
-    this.dataModel.PwaIconSize190x192Id = model.id;
-    this.dataModel.PwaIconSize190x192IdSrc = model.downloadLinksrc;
+    this.dataModel.pwaIconSize190x192Id = model.id;
+    this.dataModel.pwaIconSize190x192IdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedPwaIconSize512x512Id(model: NodeInterface): void {
-    this.dataModel.LinkFavIconId = model.id;
-    this.dataModel.PwaIconSize512x512IdSrc = model.downloadLinksrc;
+    this.dataModel.linkFavIconId = model.id;
+    this.dataModel.pwaIconSize512x512IdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkImageLogoId(model: NodeInterface): void {
-    this.dataModel.LinkImageLogoId = model.id;
-    this.dataModel.LinkImageLogoIdSrc = model.downloadLinksrc;
+    this.dataModel.linkImageLogoId = model.id;
+    this.dataModel.linkImageLogoIdSrc = model.downloadLinksrc;
   }
   onActionSelectCategory(model: CoreSiteCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'دسته بندی سایت مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkSiteCategoryId = model.Id;
+    this.dataModel.linkSiteCategoryId = model.id;
   }
   onActionSelectorLinkResellerSiteIdSelect(model: CoreSiteModel | null): void {
-    this.dataModel.LinkResellerSiteId = null;
-    if (!model || model.Id <= 0) {
+    this.dataModel.linkResellerSiteId = null;
+    if (!model || model.id <= 0) {
       return;
     }
-    this.dataModel.LinkResellerSiteId = model.Id;
+    this.dataModel.linkResellerSiteId = model.id;
   }
   onActionSelectorLinkResellerUserIdSelect(model: CoreUserModel | null): void {
-    this.dataModel.LinkResellerUserId = null;
-    if (!model || model.Id <= 0) {
+    this.dataModel.linkResellerUserId = null;
+    if (!model || model.id <= 0) {
       return;
     }
-    this.dataModel.LinkResellerUserId = model.Id;
+    this.dataModel.linkResellerUserId = model.id;
   }
 }

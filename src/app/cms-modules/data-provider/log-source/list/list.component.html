@@ -42,19 +42,19 @@
     
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSourceId Column -->
       <ng-container matColumnDef="LinkSourceId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSourceId']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkSourceId}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSourceId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkSourceId}} </mat-cell>
       </ng-container>
    
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -65,7 +65,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.Access.AccessWatchRow">
+            <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessWatchRow">
               <mat-icon>visibility</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
@@ -74,7 +74,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
 
@@ -83,8 +83,8 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-      [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
       [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

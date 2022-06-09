@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,7 +9,7 @@
 
     <!-- ActionSendSmsToAgent Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.ActionSendSmsToAgent" name="dataModel.ActionSendSmsToAgent">
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToAgent" name="dataModel.actionSendSmsToAgent">
         پیامک به کارشناس املاک
       </mat-slide-toggle>
       <br>
@@ -17,7 +17,7 @@
     </div>
     <!-- ActionSendSmsToCustomer Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.ActionSendSmsToCustomer" name="dataModel.ActionSendSmsToCustomer">
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToCustomer" name="dataModel.actionSendSmsToCustomer">
         پیامک به مالک ملک
       </mat-slide-toggle>
       <br>
@@ -25,7 +25,7 @@
     </div>
     <!-- ActionSendSmsToCustomerOrder Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.ActionSendSmsToCustomerOrder" name="dataModel.ActionSendSmsToCustomerOrder">
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToCustomerOrder" name="dataModel.actionSendSmsToCustomerOrder">
         پیامک به لیست متقاضیان این ملک
       </mat-slide-toggle>
       <br>
@@ -38,15 +38,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

@@ -2,28 +2,21 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 
 export const environment = {
   production: true,
-  appVersion: '13.1.0305.1',
+  appVersion: '13.1.0318.1',
   USERDATA_KEY: 'authf649fc9a5f55',
-  loadDemoMenu: false,
   loadDemoDashboard: false,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
-    configApiServerPath: 'https://apicms.ir/api/v1/',
+    configApiServerPath: 'https://apicms.ir/api/v2/',
     configMvcServerPath: 'https://ntkcms.ir/',
     configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
-    configFileServerPath: 'https://apifile.ir/api/v1/',
+    configFileServerPath: 'https://apifile.ir/api/v2/',
     configQDocServerPath: 'https://qdoc.ir/api/chat',
+    configCompanyWebSite: 'https://ntk.ir'
   },
-  cmsUiConfig: {
-    Pathlogin: '/auth/singin',
-    Pathlogout: '/auth/singout',
-    PathRegistery: '/auth/registery',
-    PathSelectSite: '/core/site/select',
-    Pathdashboard: '/dashboard/',
-    ToolbarLinkUrlPath: 'https://ntk.ir',
-  },
+
   cmsTokenConfig: {
     SecurityKey: '123456789',
     ClientMACAddress: '',

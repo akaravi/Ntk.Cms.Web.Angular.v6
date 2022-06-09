@@ -133,8 +133,8 @@ export class PublicHelper {
 
   };
   treefileConfig: ConfigInterface = {
-    baseURL: 'https://apicms.ir/api/v1/',
-    baseUploadURL: 'https://apifile.ir/api/v1/',
+    baseURL: environment.cmsServerConfig.configApiServerPath,
+    baseUploadURL: environment.cmsServerConfig.configFileServerPath,
     api: {
       listFile: 'FileContent/GetAll',
       listFolder: 'FileCategory/GetAll',
@@ -172,20 +172,20 @@ export class PublicHelper {
     if (model.error) {
       errorExceptionResult = model.error;
       if (errorExceptionResult) {
-        if (errorExceptionResult.Status === 401) {
-          this.cmsToastrService.typeErrorMessage(
+        if (errorExceptionResult.status === 401) {
+          this.cmsToastrService.typeerrorMessage(
             this.translate.instant('ERRORMESSAGE.MESSAGE.typePleaseLogInAgaint'),
             this.translate.instant('ERRORMESSAGE.TITLE.typePleaseLogInAgaint')
           );
-          this.router.navigate([environment.cmsUiConfig.Pathlogin]);
+          this.router.navigate(['/auth/singin']);
           return;
         }
       }
     }
     if (model.errors) {
       return '';
-    } else if (model && model.ErrorMessage) {
-      return model.ErrorMessage;
+    } else if (model && model.errorMessage) {
+      return model.errorMessage;
     }
     return 'Error';
   }
@@ -235,10 +235,10 @@ export class PublicHelper {
   }
   fieldInfo(dataAccessModel: AccessModel, fieldName: string): DataFieldInfoModel {
     const retOut = new DataFieldInfoModel();
-    if (!dataAccessModel || !dataAccessModel.FieldsInfo || dataAccessModel.FieldsInfo.length === 0) {
+    if (!dataAccessModel || !dataAccessModel.fieldsInfo || dataAccessModel.fieldsInfo.length === 0) {
       return retOut;
     }
-    const field = dataAccessModel.FieldsInfo.find(x => x.FieldName === fieldName);
+    const field = dataAccessModel.fieldsInfo.find(x => x.fieldName === fieldName);
     if (!field) {
       return retOut;
     }
@@ -246,10 +246,10 @@ export class PublicHelper {
   }
   fieldInfoConvertor(dataAccessModel: AccessModel): Map<string, DataFieldInfoModel> {
     const retOut = new Map<string, DataFieldInfoModel>();
-    if (!dataAccessModel || !dataAccessModel.FieldsInfo || dataAccessModel.FieldsInfo.length === 0) {
+    if (!dataAccessModel || !dataAccessModel.fieldsInfo || dataAccessModel.fieldsInfo.length === 0) {
       return retOut;
     }
-    dataAccessModel.FieldsInfo.forEach((el) => retOut[el.FieldName] = el);
+    dataAccessModel.fieldsInfo.forEach((el) => retOut[el.fieldName] = el);
     return retOut;
   }
   RowStyleExpireDate(row: Date): string {
@@ -285,7 +285,7 @@ export class PublicHelper {
 
   async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumInfoModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
-    if (storeSnapshot?.EnumRecordStatusResultStore?.ListItems?.length > 0) {
+    if (storeSnapshot?.EnumRecordStatusResultStore?.listItems?.length > 0) {
       return storeSnapshot.EnumRecordStatusResultStore;
     }
 

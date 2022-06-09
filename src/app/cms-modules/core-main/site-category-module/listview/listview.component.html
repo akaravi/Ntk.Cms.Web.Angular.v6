@@ -5,15 +5,15 @@
     (matSortChange)="onTableSortData(tableSort)">
 
 
-    <!-- virtual_CmsSiteCategory.Title Column -->
-    <ng-container matColumnDef="virtual_CmsSiteCategory.Title">
+    <!-- virtual_CmsSiteCategory.title Column -->
+    <ng-container matColumnDef="virtual_CmsSiteCategory.title">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.SITE_CATEGORY' | translate}} </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.virtual_CmsSiteCategory.Title}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.virtual_CmsSiteCategory.title}} </mat-cell>
     </ng-container>
-    <!-- virtual_CmsModule.Title Column -->
-    <ng-container matColumnDef="virtual_CmsModule.Title">
+    <!-- virtual_CmsModule.title Column -->
+    <ng-container matColumnDef="virtual_CmsModule.title">
       <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.MODULE' | translate}} </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.virtual_CmsModule.Title}} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.virtual_CmsModule.title}} </mat-cell>
     </ng-container>
     <!-- virtual_CmsModule.Description Column -->
     <ng-container matColumnDef="virtual_CmsModule.Description">
@@ -24,12 +24,12 @@
 
     <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-      [ngStyle]="{'background': row.Id === tableRowSelected.Id ? '#d3d3da' : '' }">
+      [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
     </mat-row>
   </mat-table>
 
-  <mat-paginator #paginator [length]="(dataModelResult.TotalRowCount)"
-    [pageIndex]="(dataModelResult.CurrentPageNumber-1)" [pageSize]="dataModelResult.RowPerPage"
+  <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+    [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
     [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
 </div>

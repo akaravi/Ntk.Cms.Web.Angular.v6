@@ -51,7 +51,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkUserId = +data.LinkUserId || 0;
+      this.requestLinkUserId = +data.linkUserId || 0;
     }
     this.NewPasswordRepeat = '';
   }
@@ -77,7 +77,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'تغییر کلمه عبور  ';
+    this.formInfo.formTitle = 'تغییر کلمه عبور  ';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
@@ -90,31 +90,31 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     if (this.requestLinkUserId > 0) {
-      this.dataModel.LinkUserId = this.requestLinkUserId;
+      this.dataModel.linkUserId = this.requestLinkUserId;
     }
     this.coreAuthService.ServiceChangePassword(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        this.formInfo.formSubmitAllow = true;
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -128,31 +128,31 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
     if (!this.formGroup.valid) {
       return;
     }
-    if (this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
-      if (!this.dataModel.OldPassword || this.dataModel.OldPassword.length === 0) {
-        this.dataModel.OldPassword = '000';
+    if (this.tokenInfo.userAccessAdminAllowToProfessionalData) {
+      if (!this.dataModel.oldPassword || this.dataModel.oldPassword.length === 0) {
+        this.dataModel.oldPassword = '000';
       }
     } else {
-      if (!this.dataModel.OldPassword || this.dataModel.OldPassword.length === 0) {
-        this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Enter_the_previous_password'));
+      if (!this.dataModel.oldPassword || this.dataModel.oldPassword.length === 0) {
+        this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.Enter_the_previous_password'));
 
         return;
       }
     }
-    if (!this.dataModel.NewPassword || this.dataModel.NewPassword.length === 0) {
-      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Enter_the_new_password'));
+    if (!this.dataModel.newPassword || this.dataModel.newPassword.length === 0) {
+      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.Enter_the_new_password'));
 
 
 
       return;
     }
-    if (this.dataModel.NewPassword !== this.NewPasswordRepeat) {
-      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.The_new_password_is_equivalent_to_a_duplicate'));
+    if (this.dataModel.newPassword !== this.NewPasswordRepeat) {
+      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.The_new_password_is_equivalent_to_a_duplicate'));
 
 
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

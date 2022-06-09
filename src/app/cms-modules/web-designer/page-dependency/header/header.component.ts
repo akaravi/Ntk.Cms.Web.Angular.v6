@@ -53,11 +53,11 @@ export class WebDesignerMainPageDependencyHeaderComponent implements OnInit {
     this.webDesignerMainPageDependencyService.setAccessLoad();
     this.webDesignerMainPageDependencyService.ServiceGetOneById(this.optionId).subscribe(
       (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
-        if (next.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+        if (next.isSuccess) {
           this.dataModelResult = next;
         } else {
-          this.cmsToastrService.typeErrorMessage(next.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },

@@ -44,9 +44,9 @@ export class TokenHelper implements OnDestroy {
       return storeSnapshot.ntkCmsAPiState.tokenInfo;
     }
     return await this.coreAuthService.ServiceCurrentToken()
-      .pipe(map(response => {
-        this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: response.Item });
-        return response.Item;
+      .pipe(map(ret => {
+        this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: ret.item });
+        return ret.item;
       })).toPromise();
   }
   getCurrentTokenOnChange(): Observable<TokenInfoModel> {
@@ -62,20 +62,20 @@ export class TokenHelper implements OnDestroy {
     const DeviceToken = this.coreAuthService.getDeviceToken();
     if (!DeviceToken || DeviceToken.length === 0) {
       const model: TokenDeviceClientInfoDtoModel = {
-        SecurityKey: environment.cmsTokenConfig.SecurityKey,
-        ClientMACAddress: '',
-        OSType: EnumOperatingSystemType.none,
-        DeviceType: EnumDeviceType.WebSite,
-        PackageName: '',
-        AppBuildVer: 0,
-        AppSourceVer: '',
-        Country: '',
-        DeviceBrand: '',
-        Language: this.translationService.getSelectedLanguage(),
-        LocationLat: '',
-        LocationLong: '',
-        SimCard: '',
-        NotificationId: ''
+        securityKey: environment.cmsTokenConfig.SecurityKey,
+        clientMACAddress: '',
+        oSType: EnumOperatingSystemType.none,
+        deviceType: EnumDeviceType.WebSite,
+        packageName: '',
+        appBuildVer: 0,
+        appSourceVer: '',
+        country: '',
+        deviceBrand: '',
+        language: this.translationService.getSelectedLanguage(),
+        locationLat: '',
+        locationLong: '',
+        simCard: '',
+        notificationId: ''
 
       };
       this.translationService.setLanguage(this.translationService.getSelectedLanguage());
@@ -90,33 +90,33 @@ export class TokenHelper implements OnDestroy {
     this.cmsApiStoreSubscribe = this.cmsApiStore.getState((state) => state.ntkCmsAPiState.tokenInfo).subscribe((value) => {
       this.tokenInfo = value;
 
-      if (!this.tokenInfo || !this.tokenInfo.Token || this.tokenInfo.Token.length === 0) {
+      if (!this.tokenInfo || !this.tokenInfo.token || this.tokenInfo.token.length === 0) {
         if (this.router.url.indexOf('/auth/singin') < 0) {
           this.router.navigate(['/auth/singin']);
         }
-      } else if (this.tokenInfo.UserId <= 0) {
+      } else if (this.tokenInfo.userId <= 0) {
 
         if (this.router.url.indexOf('/auth/singin') < 0) {
           this.router.navigate(['/auth/singin']);
         }
-      } else if (this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId <= 0) {
+      } else if (this.tokenInfo.userId > 0 && this.tokenInfo.siteId <= 0) {
         if (this.router.url.indexOf('/core/site/selection') < 0) {
           this.router.navigate(['/core/site/selection']);
         }
       }
-      if (this.tokenInfo && this.tokenInfo.UserId <= 0) {
+      if (this.tokenInfo && this.tokenInfo.userId <= 0) {
         if (this.router.url.indexOf('/auth/singin') < 0) {
           this.router.navigate(['/auth/singin']);
         }
       }
 
-      if (this.tokenInfo && this.tokenInfo.UserId > 0 && this.tokenInfo.SiteId <= 0) {
+      if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId <= 0) {
         if (this.router.url.indexOf('/core/site/selection') < 0) {
           this.router.navigate(['/core/site/selection']);
         }
       }
-      // this.inputSiteId = this.tokenInfo.SiteId;
-      // this.inputUserId = this.tokenInfo.UserId;
+      // this.inputSiteId = this.tokenInfo.siteId;
+      // this.inputUserId = this.tokenInfo.userId;
     });
   }
 

@@ -14,16 +14,16 @@
     <app-progress-spinner [options]="loading">
     </app-progress-spinner>
     <div class="row">
-      <div class="col" *ngFor="let item of dataModelResult.ListItems">
+      <div class="col" *ngFor="let item of dataModelResult.listItems">
         <mat-card class="example-card">
           <mat-card-header>
-            <mat-card-title>{{item.Title}}</mat-card-title>
-            <mat-card-subtitle>{{item.SalePrice | currency:' '+currency+' '}}</mat-card-subtitle>
+            <mat-card-title>{{item.title}}</mat-card-title>
+            <mat-card-subtitle>{{item.salePrice | currency:' '+currency+' '}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{item.LinkMainImageIdSrc }}">
+          <img mat-card-image src="{{item.linkMainImageIdSrc }}">
           <mat-card-content>
             <p>
-              {{item.Description }}
+              {{item.description }}
             </p>
           </mat-card-content>
           <mat-card-actions>

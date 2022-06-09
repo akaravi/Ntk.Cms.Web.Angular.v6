@@ -61,8 +61,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.SortColumn = 'LinkModuleId';
-    this.filteModelContent.SortType = EnumSortType.Ascending;
+    this.filteModelContent.sortColumn = 'LinkModuleId';
+    this.filteModelContent.sortType = EnumSortType.Ascending;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   comment: string;
@@ -97,7 +97,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.SortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -110,7 +110,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   }
   getModuleList(): void {
     const filter = new FilterModel();
-    filter.RowPerPage = 100;
+    filter.rowPerPage = 100;
     this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
       this.dataModelCoreModuleResult = next;
     });
@@ -123,26 +123,26 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelContent.AccessLoad = true;
+    this.filteModelContent.accessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.Id > 0) {
-      filter.PropertyName = 'LinkModuleId';
-      filter.Value = this.categoryModelSelected.Id;
-      filterModel.Filters.push(filter);
+    if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
+      filter.propertyName = 'LinkModuleId';
+      filter.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAllEditor(filterModel).subscribe(
       (next) => {
-        if (next.IsSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.Access);
+        if (next.isSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           this.dataModelResult = next;
-          this.tableSource.data = next.ListItems;
+          this.tableSource.data = next.listItems;
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.Access);
+            this.optionsSearch.childMethods.setAccess(next.access);
           }
-          if (this.tokenInfo.UserAccessAdminAllowToAllData || this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Id', 0);
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'RecordStatus', 1);
             this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Title', 2);
@@ -168,39 +168,39 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
-        this.filteModelContent.SortColumn = sort.active;
-        this.filteModelContent.SortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
-        this.filteModelContent.SortColumn = '';
-        this.filteModelContent.SortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = '';
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
-      this.filteModelContent.SortColumn = sort.active;
-      this.filteModelContent.SortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelContent.CurrentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelContent.CurrentPageNumber = event.pageIndex + 1;
-    this.filteModelContent.RowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
   onActionbuttonNewRow(): void {
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
       height: '90%',
-      data: { LinkModuleId: this.categoryModelSelected.Id }
+      data: { LinkModuleId: this.categoryModelSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -211,8 +211,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   onActionbuttonNewRowAutoPage(): void {
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessAddRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
@@ -220,7 +220,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
       height: '90%',
       data: {
-        LinkModuleId: this.categoryModelSelected.Id
+        LinkModuleId: this.categoryModelSelected.id
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -237,7 +237,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
         map((ret: any) => {
           // tslint:disable-next-line: max-line-length
           const retOut = this.contentService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
-          if (retOut.IsSuccess) {
+          if (retOut.isSuccess) {
             this.cmsToastrService.typeSuccessAdd();
             this.DataGetAll();
           }
@@ -249,22 +249,22 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       ).toPromise();
   }
   onActionbuttonEditRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyEditComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.Id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -273,7 +273,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     });
   }
   onActionbuttonDeleteRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -282,22 +282,22 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessDeleteRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessDeleteRow
     ) {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'contentService.ServiceDelete';
           this.loading.Start(pName);
-          this.contentService.ServiceDelete(this.tableRowSelected.Id).subscribe(
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe(
             (next) => {
-              if (next.IsSuccess) {
+              if (next.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -320,17 +320,17 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
 
   }
   onActionbuttonPageList(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.tableRowSelected = model;
-    if (this.tokenInfo.UserAccessAdminAllowToAllData) {
-      this.router.navigate(['/webdesigner/page/list-grid/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+    if (this.tokenInfo.userAccessAdminAllowToAllData) {
+      this.router.navigate(['/webdesigner/page/list-grid/LinkPageDependencyGuId', this.tableRowSelected.id]);
     }
     else {
-      this.router.navigate(['/webdesigner/page/LinkPageDependencyGuId', this.tableRowSelected.Id]);
+      this.router.navigate(['/webdesigner/page/LinkPageDependencyGuId', this.tableRowSelected.id]);
     }
   }
   onActionbuttonStatist(): void {
@@ -343,8 +343,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     statist.set('All', 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
       (next) => {
-        if (next.IsSuccess) {
-          statist.set('All', next.TotalRowCount);
+        if (next.isSuccess) {
+          statist.set('All', next.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
       },
@@ -354,13 +354,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    filterStatist1.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe(
       (next) => {
-        if (next.IsSuccess) {
-          statist.set('Active', next.TotalRowCount);
+        if (next.isSuccess) {
+          statist.set('Active', next.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
       }
@@ -371,7 +371,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     );
   }
   onActionbuttonSiteRouteView(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -379,13 +379,13 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessWatchRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
     ) {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    const urlTemplate = this.tokenInfo.CurrentSiteDomainUrl + '/' + model.CmsModuleClassName + '/' + model.ClassActionName;
+    const urlTemplate = this.tokenInfo.currentSiteDomainUrl + '/' + model.cmsModuleClassName + '/' + model.classActionName;
     // this.document.location.href = urlTemplate;
     window.open(urlTemplate, '_blank');
   }
@@ -398,8 +398,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     exportlist.set('Download', 'loading ... ');
     this.contentService.ServiceExportFile(model).subscribe(
       (next) => {
-        if (next.IsSuccess) {
-          exportlist.set('Download', next.LinkFile);
+        if (next.isSuccess) {
+          exportlist.set('Download', next.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
       },
@@ -417,7 +417,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelContent.Filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: WebDesignerMainPageDependencyModel): void {

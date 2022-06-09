@@ -16,7 +16,7 @@
     <!-- begin::1 Level -->
     <li class="menu-item menu-item-rel" routerLinkActive="menu-item-active">
       <a class="menu-link" [routerLink]="item.page" routerLinkActive="active">
-        <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >
           {{item.title}}</span>
@@ -37,7 +37,7 @@
       [ngClass]="{ 'menu-item-active': isMenuItemActive(item.page) }">
       <a class="menu-link menu-toggle" [attr.href]="item.page" routerLinkActive="active"
         [ngClass]="{ 'active ': isMenuItemActive(item.page) }">
-        <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text">{{
           item.title
@@ -62,7 +62,7 @@
       [ngClass]="{ 'menu-item-active ': isMenuItemActive(item.page) }">
       <a class="menu-link menu-toggle" routerLinkActive="active" [attr.href]="item.page"
         [ngClass]="{ 'active ': isMenuItemActive(item.page) }">
-        <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text">{{item.title}}</span>
         <i class="menu-arrow"></i>
@@ -86,7 +86,7 @@
   <ng-container *ngIf="!item.submenu">
     <li class="menu-item" aria-haspopup="true" routerLinkActive="menu-item-active">
       <a class="menu-link" [attr.href]="item.page" routerLinkActive="active">
-        <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >{{
           item.title
@@ -105,7 +105,7 @@
         <ng-container *ngIf="item.svg">
           <span [inlineSVG]="item.svg" cacheSVG="true" class="svg-icon menu-icon"></span>
         </ng-container>
-        <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >{{
           item.title
@@ -131,7 +131,7 @@
   <li class="menu-item" routerLinkActive="menu-item-active">
     <a class="menu-link" [routerLink]="item.page" routerLinkActive="active">
       <i class="menu-bullet menu-bullet-dot"><span></span></i>
-      <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+      <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
         aria-hidden="true"><span></span></i>&nbsp;&nbsp;
       <span class="menu-text">{{
         item.title
@@ -147,7 +147,7 @@
   <li class="menu-item">
     <h3 class="menu-heading menu-toggle">
       <i class="menu-bullet menu-bullet-dot"><span></span></i>
-      <i [ngClass]="item.Icon" [style.color]="item.Color?.length>0 ? item.Color:''"
+      <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
         aria-hidden="true"><span></span></i>&nbsp;&nbsp;
       <span class="menu-text">{{
         item.title

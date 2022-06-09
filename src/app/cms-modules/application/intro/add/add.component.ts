@@ -61,7 +61,7 @@ export class ApplicationIntroAddComponent implements OnInit {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
-    this.dataModel.LinkApplicationId = this.requestLinkApplicationId;
+    this.dataModel.linkApplicationId = this.requestLinkApplicationId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
   }
@@ -73,7 +73,7 @@ export class ApplicationIntroAddComponent implements OnInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    if (this.dataModel.LinkApplicationId <= 0) {
+    if (this.dataModel.linkApplicationId <= 0) {
       this.cmsToastrService.typeErrorEdit(' برنامه مشخص  کنید');
       return;
     }
@@ -84,11 +84,11 @@ export class ApplicationIntroAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataAccessModel = ret.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.dataAccessModel = ret.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -98,28 +98,28 @@ export class ApplicationIntroAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'applicationIntroService.ServiceAdd';
     this.loading.Start(pName);
     this.applicationIntroService.ServiceAdd(this.dataModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (ret.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/application/intro/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorEdit(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorEdit(er);
+          this.formInfo.formSubmitAllow = true;
+          this.cmsToastrService.typeError(er);;
           this.loading.Stop(pName);
         }
       }
@@ -133,21 +133,21 @@ export class ApplicationIntroAddComponent implements OnInit {
     this.router.navigate(['/application/app/']);
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkMainVideoId(model: NodeInterface): void {
-    this.dataModel.LinkMainVideoId = model.id;
-    this.dataModel.LinkMainVideoIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainVideoId = model.id;
+    this.dataModel.linkMainVideoIdSrc = model.downloadLinksrc;
   }
   onActionSelectApplication(model: ApplicationAppModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         'اپلیکیشن را مشخص کنید',
         ' اپلیکیشن اطلاعات مشخص نیست'
       );
       return;
     }
-    this.dataModel.LinkApplicationId = model.Id;
+    this.dataModel.linkApplicationId = model.id;
   }
 }

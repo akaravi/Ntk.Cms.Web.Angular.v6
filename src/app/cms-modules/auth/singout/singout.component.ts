@@ -12,10 +12,10 @@ export class AuthSingoutComponent implements OnInit {
   ) {
     this.authService.ServiceLogout().subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessLogout();
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       }
     });

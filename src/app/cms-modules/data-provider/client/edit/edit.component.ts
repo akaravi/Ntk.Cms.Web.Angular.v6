@@ -91,7 +91,7 @@ export class DataProviderClientEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.FormTitle = 'ویرایش  دسته بندی';
+      this.formInfo.formTitle = 'ویرایش  دسته بندی';
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -110,24 +110,24 @@ export class DataProviderClientEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.dataProviderClientService.setAccessLoad();
     this.dataProviderClientService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
-          this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+          this.formInfo.formAlert = '';
           this.DataGetAllPlanClient();
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -140,29 +140,29 @@ export class DataProviderClientEditComponent implements OnInit {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.dataProviderClientService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -174,7 +174,7 @@ export class DataProviderClientEditComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
 
 
@@ -189,31 +189,31 @@ export class DataProviderClientEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormAlert = 'در دریافت دسته بندی دسترسی های از سرور';
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = 'در دریافت دسته بندی دسترسی های از سرور';
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
-    filter.PropertyName = 'LinkClientId';
-    filter.Value = this.requestId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkClientId';
+    filter.value = this.requestId;
+    filteModelContent.filters.push(filter);
 
     this.dataProviderPlanClientService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
-        this.dataCoreCpMainMenuCmsUserGroupModel = ret.ListItems;
+        this.dataCoreCpMainMenuCmsUserGroupModel = ret.listItems;
         const listG: number[] = [];
         this.dataCoreCpMainMenuCmsUserGroupModel.forEach(element => {
-          listG.push(element.LinkPlanId);
+          listG.push(element.linkPlanId);
         });
         this.dataCoreCpMainMenuIds = listG;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = '';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -232,11 +232,11 @@ export class DataProviderClientEditComponent implements OnInit {
     this.dataCoreCpMainMenuModel = model;
   }
   onActionSelectorPlanSelectAdded(model: DataProviderPlanModel): void {
-    if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (!this.tokenInfo.userAccessAdminAllowToProfessionalData) {
       /** */
       const listG: number[] = [];
       this.dataCoreCpMainMenuIds.forEach(element => {
-        if (element != model.Id)
+        if (element != model.id)
           listG.push(element);
       });
       setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
@@ -249,7 +249,7 @@ export class DataProviderClientEditComponent implements OnInit {
           if (confirmed) {
             const pName = this.constructor.name + 'main';
             //منتقل شود به صفحه خرید
-            this.router.navigate(['/data-provider/client-charge/', model.Id]);
+            this.router.navigate(['/data-provider/client-charge/', model.id]);
             this.dialogRef.close({ dialogChangedDate: false });
           }
         }
@@ -258,23 +258,23 @@ export class DataProviderClientEditComponent implements OnInit {
 
     }
     const entity = new DataProviderPlanClientModel();
-    entity.LinkPlanId = model.Id;
-    entity.LinkClientId = this.dataModel.Id;
+    entity.linkPlanId = model.id;
+    entity.linkClientId = this.dataModel.id;
 
     this.dataProviderPlanClientService.ServiceAdd(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
           /** */
           const listG: number[] = [];
           this.dataCoreCpMainMenuIds.forEach(element => {
-            if (element != model.Id)
+            if (element != model.id)
               listG.push(element);
           });
           setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
@@ -282,7 +282,7 @@ export class DataProviderClientEditComponent implements OnInit {
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }
@@ -290,14 +290,14 @@ export class DataProviderClientEditComponent implements OnInit {
   }
   onActionSelectorPlanSelectRemoved(model: DataProviderPlanModel): void {
 
-    if (!this.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    if (!this.tokenInfo.userAccessAdminAllowToProfessionalData) {
       /** */
       const listG: number[] = [];
       this.dataCoreCpMainMenuIds.forEach(element => {
         listG.push(element);
       });
-      if (listG.indexOf(model.Id) < 0)
-        listG.push(model.Id);
+      if (listG.indexOf(model.id) < 0)
+        listG.push(model.id);
       setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
       /** */
       this.cmsToastrService.typeErrorAccessDelete();
@@ -305,13 +305,13 @@ export class DataProviderClientEditComponent implements OnInit {
       return;
     }
     const entity = new DataProviderPlanClientModel();
-    entity.LinkPlanId = model.Id;
-    entity.LinkClientId = this.dataModel.Id;
+    entity.linkPlanId = model.id;
+    entity.linkClientId = this.dataModel.id;
 
     this.dataProviderPlanClientService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = 'حذف از این گروه با موفقیت انجام شد';
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
           this.cmsToastrService.typeSuccessEdit();
         } else {
 
@@ -320,19 +320,19 @@ export class DataProviderClientEditComponent implements OnInit {
           this.dataCoreCpMainMenuIds.forEach(element => {
             listG.push(element);
           });
-          if (listG.indexOf(model.Id) < 0)
-            listG.push(model.Id);
+          if (listG.indexOf(model.id) < 0)
+            listG.push(model.id);
 
           setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
           /** */
 
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
       }
     }

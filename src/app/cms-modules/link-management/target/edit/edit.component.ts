@@ -111,8 +111,8 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
 
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
 
 
@@ -136,9 +136,9 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   }
 
   DataGetOne(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -149,15 +149,15 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
       .subscribe({
         next: (ret) => {
           /*َAccess Field*/
-          this.dataAccessModel = ret.Access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.dataAccessModel = ret.access;
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
 
-          if (ret.IsSuccess) {
-            this.dataModel = ret.Item;
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
           } else {
-            this.cmsToastrService.typeErrorGetOne(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
           this.loading.Stop(pName);
 
@@ -165,7 +165,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
         error: (er) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorGetOne(er);
         }
       }
@@ -173,9 +173,9 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   }
 
   DataEditContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
@@ -186,42 +186,42 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
         next: (ret) => {
           this.loading.Stop(pName);
 
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
+          if (ret.isSuccess) {
 
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-            this.cmsToastrService.typeSuccessAdd();
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+            this.cmsToastrService.typeSuccessEdit();
             setTimeout(() => this.router.navigate(['/linkmanagement/target']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
           this.loading.Stop(pName);
-          this.formInfo.FormSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(er);
+          this.formInfo.formSubmitAllow = true;
+          this.cmsToastrService.typeError(er);;
         }
       }
       );
   }
 
   onActionSelectorSelect(model: LinkManagementTargetCategoryModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkTargetCategoryId = model.Id;
+    this.dataModel.linkTargetCategoryId = model.id;
   }
   onActionSelectorSelectLinkBillboardPatternId(model: LinkManagementBillboardPatternModel | null): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'دسته بندی بیلبرد اطلاعات مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkBillboardPatternId = model.Id;
+    this.dataModel.linkBillboardPatternId = model.id;
   }
 
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {

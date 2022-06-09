@@ -15,12 +15,12 @@
               <!-- Credit Field -->
               <mat-form-field class="ntk-full-width">
                 <mat-label> {{'TITLE.Amount' | translate}} </mat-label>
-                <input matInput [(ngModel)]="dataModelCalculate.LinkPlanPriceId" name="dataModelCalculate.LinkPlanPriceId"
+                <input matInput [(ngModel)]="dataModelCalculate.linkPlanPriceId" name="dataModelCalculate.linkPlanPriceId"
                   #Credit type="number" 
                   placeholder="0" />
                   <span matSuffix>{{currency}}</span>
-                <mat-icon matSuffix *ngIf="dataModelCalculate.LinkPlanPriceId" matSuffix mat-icon-button aria-label="Clear"
-                  (click)="dataModelCalculate.LinkPlanPriceId = 0">close</mat-icon>
+                <mat-icon matSuffix *ngIf="dataModelCalculate.linkPlanPriceId" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="dataModelCalculate.linkPlanPriceId = 0">close</mat-icon>
                 <mat-icon matSuffix>mode_edit</mat-icon>
               </mat-form-field>
             </p>

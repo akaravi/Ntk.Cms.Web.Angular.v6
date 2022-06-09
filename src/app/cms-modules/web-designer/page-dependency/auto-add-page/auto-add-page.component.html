@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.FormTitle }}
+      {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,20 +9,20 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkPageTemplateGuId Field -->
     <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectModule($event)"
-      [optionSelectForce]="this.dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'قالب را انتحاب کنید'"
+      [optionSelectForce]="this.dataModel.linkPageTemplateGuId" [optionPlaceholder]="'قالب را انتحاب کنید'"
       [optionDisabled]="false">
     </app-webdesigner-pagetemplate-selector>
     <!-- LinkPageParentGuId Field -->
     <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
-      *ngIf="dataModel.LinkPageTemplateGuId && dataModel.LinkPageTemplateGuId.length>0" [optionMasterPage]="true"
-      [optionMasterTemplateId]="dataModel.LinkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'"
+      *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0" [optionMasterPage]="true"
+      [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'"
       [optionDisabled]="false">
     </app-webdesigner-page-selector>
     <!-- PageDependencyIsDefaultPage Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.PageDependencyIsDefaultPage"
-        name="dataModel.PageDependencyIsDefaultPage">
-        {{fieldsInfo['PageDependencyIsDefaultPage']?.FieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.pageDependencyIsDefaultPage"
+        name="dataModel.pageDependencyIsDefaultPage">
+        {{fieldsInfo['PageDependencyIsDefaultPage']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -30,15 +30,15 @@
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
     <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.FormError }}
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>

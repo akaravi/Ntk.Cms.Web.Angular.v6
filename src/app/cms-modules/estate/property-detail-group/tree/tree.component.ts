@@ -65,9 +65,9 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
     this.filteModel = new FilterModel();
     if (id && id.length > 0) {
       const filter = new FilterDataModel();
-      filter.PropertyName = 'LinkPropertyTypeLanduseId';
-      filter.Value = id;
-      this.filteModel.Filters.push(filter);
+      filter.propertyName = 'LinkPropertyTypeLanduseId';
+      filter.value = id;
+      this.filteModel.filters.push(filter);
     }
   }
   @Input() optionReload = () => this.onActionReload();
@@ -84,19 +84,19 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.RowPerPage = 200;
-    this.filteModel.AccessLoad = true;
+    this.filteModel.rowPerPage = 200;
+    this.filteModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.categoryService.ServiceGetAll(this.filteModel).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.dataSource.data = this.dataModelResult.ListItems;
+          this.dataSource.data = this.dataModelResult.listItems;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -112,7 +112,7 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.Id && this.dataModelSelect.Id.length > 0) {
+    if (this.dataModelSelect && this.dataModelSelect.id && this.dataModelSelect.id.length > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
@@ -139,8 +139,8 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
 
   onActionEdit(): void {
     let id = '';
-    if (this.dataModelSelect && this.dataModelSelect.Id && this.dataModelSelect.Id.length > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect.id && this.dataModelSelect.id.length > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id === '') {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
@@ -161,8 +161,8 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   onActionDelete(): void {
 
     let id = '';
-    if (this.dataModelSelect && this.dataModelSelect.Id && this.dataModelSelect.Id.length > 0) {
-      id = this.dataModelSelect.Id;
+    if (this.dataModelSelect && this.dataModelSelect.id && this.dataModelSelect.id.length > 0) {
+      id = this.dataModelSelect.id;
     }
     if (id === '') {
       const message1 = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
@@ -171,16 +171,16 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
     }
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.dataModelSelect.Title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.dataModelSelect.title + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.categoryService.ServiceDelete(this.dataModelSelect.Id).subscribe({
+          this.categoryService.ServiceDelete(this.dataModelSelect.id).subscribe({
             next: (ret) => {
-              if (ret.IsSuccess) {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {

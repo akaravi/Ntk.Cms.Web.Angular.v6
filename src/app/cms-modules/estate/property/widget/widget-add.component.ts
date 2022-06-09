@@ -57,10 +57,10 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.rowExist = true;
           this.widgetInfoModel.title = this.translate.instant('TITLE.Add_Property');
-          this.widgetInfoModel.description = this.translate.instant('TITLE.Number_Registered_Property') + ' : ' + ret.TotalRowCount;
+          this.widgetInfoModel.description = this.translate.instant('TITLE.Number_Registered_Property') + ' : ' + ret.totalRowCount;
           this.widgetInfoModel.link = '/estate/property/add';
         }
         else {
@@ -79,22 +79,22 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
     );
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
-    fastfilter.PropertyName = 'RecordStatus';
-    fastfilter.Value = EnumRecordStatus.Available;
-    fastfilter.SearchType = EnumFilterDataModelSearchTypes.NotEqual;
-    filterStatist2.Filters.push(fastfilter);
+    fastfilter.propertyName = 'RecordStatus';
+    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+    filterStatist2.filters.push(fastfilter);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          if (ret.TotalRowCount > 0) {
-            this.modelData.set('InChecking', ret.TotalRowCount);
+        if (ret.isSuccess) {
+          if (ret.totalRowCount > 0) {
+            this.modelData.set('InChecking', ret.totalRowCount);
           }
           else {
             this.modelData.delete('InChecking');
           }
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(this.constructor.name + 'InChecking');
 

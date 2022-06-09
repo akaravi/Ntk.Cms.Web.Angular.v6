@@ -1,21 +1,21 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.FormTitle }}
+    {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Title']?.FieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResultContent.Item.Title" name="dataModelResultContent.Item.Title" #Writer
-      type="text" placeholder="{{fieldsInfo['Title']?.FieldTitle}}" required readonly />
+    <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+    <input matInput [(ngModel)]="dataModelResultContent.item.title" name="dataModelResultContent.item.title" #Writer
+      type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" required readonly />
   </mat-form-field>
   <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Description']?.FieldTitle}}</mat-label>
-    <textarea matInput [(ngModel)]="dataModelResultContent.Item.Description"
-      name="dataModelResultContent.Item.Description" #Content type="text"
-      placeholder="{{fieldsInfo['Description']?.FieldTitle}}" minlength="1" maxlength="100" readonly required
+    <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+    <textarea matInput [(ngModel)]="dataModelResultContent.item.description"
+      name="dataModelResultContent.item.description" #Content type="text"
+      placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="100" readonly required
       rows=5></textarea>
   </mat-form-field>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -23,16 +23,16 @@
 <div class="ntk-cms-html-card-message">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
   <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.FormAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.FormError }}
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
     </small>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  <div class="form-actions" *ngIf="formInfo.FormSubmitAllow  && !loading.display">
-    <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.ButtonSubmittedEnabled"
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+    <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.buttonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
     </button>

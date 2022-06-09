@@ -61,7 +61,7 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.FormAlert = 'در حال لود اطلاعات';
+    this.formInfo.formAlert = 'در حال لود اطلاعات';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -70,22 +70,22 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
       .ServiceGetOneById(this.requestId)
       .subscribe({
         next: (ret) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           this.dataModelResultCategory = ret;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
-            this.formInfo.FormErrorStatus = true;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
+            this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
           } else {
-            this.formInfo.FormAlert = '';
+            this.formInfo.formAlert = '';
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormErrorStatus = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
@@ -94,9 +94,9 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
 
   }
   DataGetAll(): void {
-    this.formInfo.FormAlert = 'در حال لود اطلاعات';
+    this.formInfo.formAlert = 'در حال لود اطلاعات';
     const filterModel: FilterModel = new FilterModel();
-    filterModel.RowPerPage = 100;
+    filterModel.rowPerPage = 100;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -105,20 +105,20 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           this.dataModelResultCategoryAllData = ret;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
-            this.formInfo.FormErrorStatus = true;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
+            this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
           } else {
-            this.formInfo.FormAlert = '';
+            this.formInfo.formAlert = '';
           }
           this.loading.Stop(pName);
 
         },
         error: (er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormErrorStatus = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
         }
@@ -134,15 +134,15 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = true;
-    if (this.dataModel.NewCatId === this.requestId) {
-      this.formInfo.FormAlert = 'برروز خطا';
-      this.formInfo.FormError =
+    this.formInfo.formSubmitAllow = true;
+    if (this.dataModel.newCatId === this.requestId) {
+      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formError =
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
-      this.formInfo.ButtonSubmittedEnabled = true;
+      this.formInfo.buttonSubmittedEnabled = true;
     }
 
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
   }
@@ -152,8 +152,8 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
       return;
     }
 
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.ButtonSubmittedEnabled = false;
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.buttonSubmittedEnabled = false;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -161,26 +161,26 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
       .ServiceDelete(this.requestId)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
-          if (!ret.IsSuccess) {
-            this.formInfo.FormAlert = 'برروز خطا';
-            this.formInfo.FormError = ret.ErrorMessage;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
+          if (!ret.isSuccess) {
+            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
 
           } else {
-            this.formInfo.FormAlert = 'حذف با موفقیت انجام شد';
+            this.formInfo.formAlert = 'حذف با موفقیت انجام شد';
             this.cmsToastrService.typeSuccessRemove();
             this.dialogRef.close({ dialogChangedDate: true });
           }
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
 
         },
         error: (er) => {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
-          this.formInfo.ButtonSubmittedEnabled = true;
+          this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         }
       }
@@ -188,20 +188,20 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
 
   }
   onFormChangeNewCatId(model: LinkManagementTargetCategoryModel): void {
-    this.formInfo.FormAlert = '';
-    if (this.requestId === 0 || !model || model.Id <= 0) {
+    this.formInfo.formAlert = '';
+    if (this.requestId === 0 || !model || model.id <= 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.dataModel.NewCatId = model.Id;
-    if (this.dataModel.NewCatId === this.requestId) {
-      this.formInfo.FormAlert = 'برروز خطا';
-      this.formInfo.FormError =
+    this.dataModel.newCatId = model.id;
+    if (this.dataModel.newCatId === this.requestId) {
+      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formError =
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
-      this.formInfo.ButtonSubmittedEnabled = false;
+      this.formInfo.buttonSubmittedEnabled = false;
     } else {
-      this.formInfo.ButtonSubmittedEnabled = true;
-      this.formInfo.FormError = '';
+      this.formInfo.buttonSubmittedEnabled = true;
+      this.formInfo.formError = '';
     }
   }
   onFormCancel(): void {

@@ -68,7 +68,7 @@ export class ApplicationAppAddComponent implements OnInit {
   ngOnInit(): void {
     this.requestSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('SourceId'));
 
-    this.dataModel.LinkSourceId = this.requestSourceId;
+    this.dataModel.linkSourceId = this.requestSourceId;
     this.DataGetAccess();
     this.getEnumRecordStatus();
     this.getEnumLang();
@@ -86,11 +86,11 @@ export class ApplicationAppAddComponent implements OnInit {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    if (this.dataModel.LinkSourceId <= 0) {
+    if (this.dataModel.linkSourceId <= 0) {
       this.cmsToastrService.typeErrorAdd(this.translate.instant('MESSAGE.Specify_the_source_code_of_the_program'));
       return;
     }
-    if (this.dataModel.LinkThemeConfigId <= 0) {
+    if (this.dataModel.linkThemeConfigId <= 0) {
       this.cmsToastrService.typeErrorAdd(this.translate.instant('MESSAGE.Specify_the_application_format'));
       return;
     }
@@ -101,11 +101,11 @@ export class ApplicationAppAddComponent implements OnInit {
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
-          if (ret.IsSuccess) {
-            this.dataAccessModel = ret.Access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+          if (ret.isSuccess) {
+            this.dataAccessModel = ret.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -115,9 +115,9 @@ export class ApplicationAppAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
-    this.formInfo.FormSubmitAllow = false;
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formSubmitAllow = false;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'setAccessLoad';
     this.loading.Start(pName);
     this.applicationAppService.setAccessLoad();
@@ -125,19 +125,19 @@ export class ApplicationAppAddComponent implements OnInit {
       .ServiceAdd(this.dataModel)
       .subscribe({
         next: (ret) => {
-          this.formInfo.FormSubmitAllow = !ret.IsSuccess;
+          this.formInfo.formSubmitAllow = !ret.isSuccess;
           this.dataModelResult = ret;
-          if (ret.IsSuccess) {
-            this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          if (ret.isSuccess) {
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
             setTimeout(() => this.router.navigate(['/application/app/']), 1000);
           } else {
-            this.cmsToastrService.typeErrorAdd(ret.ErrorMessage);
+            this.cmsToastrService.typeErrorAdd(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.FormSubmitAllow = true;
+          this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeErrorAdd(er);
           this.loading.Stop(pName);
         }
@@ -169,56 +169,56 @@ export class ApplicationAppAddComponent implements OnInit {
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
       }
-      if (lat === this.dataModel.AboutUsGeolocationlatitude && lon === this.dataModel.AboutUsGeolocationlongitude) {
-        this.dataModel.AboutUsGeolocationlatitude = null;
-        this.dataModel.AboutUsGeolocationlongitude = null;
+      if (lat === this.dataModel.aboutUsGeolocationlatitude && lon === this.dataModel.aboutUsGeolocationlongitude) {
+        this.dataModel.aboutUsGeolocationlatitude = null;
+        this.dataModel.aboutUsGeolocationlongitude = null;
         return;
       }
       this.mapMarker = Leaflet.marker([lat, lon]).addTo(this.mapModel);
-      this.dataModel.AboutUsGeolocationlatitude = lat;
-      this.dataModel.AboutUsGeolocationlongitude = lon;
+      this.dataModel.aboutUsGeolocationlatitude = lat;
+      this.dataModel.aboutUsGeolocationlongitude = lon;
     });
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);
   }
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
-    this.dataModel.LinkMainImageId = model.id;
-    this.dataModel.LinkMainImageIdSrc = model.downloadLinksrc;
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileIdIcon(model: NodeInterface): void {
-    this.dataModel.LinkFileIdIcon = model.id;
-    this.dataModel.LinkFileIdIconSrc = model.downloadLinksrc;
+    this.dataModel.linkFileIdIcon = model.id;
+    this.dataModel.linkFileIdIconSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileIdLogo(model: NodeInterface): void {
-    this.dataModel.LinkFileIdLogo = model.id;
-    this.dataModel.LinkFileIdLogoSrc = model.downloadLinksrc;
+    this.dataModel.linkFileIdLogo = model.id;
+    this.dataModel.linkFileIdLogoSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkFileIdSplashScreen(model: NodeInterface): void {
-    this.dataModel.LinkFileIdSplashScreen = model.id;
-    this.dataModel.LinkFileIdSplashScreenSrc = model.downloadLinksrc;
+    this.dataModel.linkFileIdSplashScreen = model.id;
+    this.dataModel.linkFileIdSplashScreenSrc = model.downloadLinksrc;
   }
   onActionFileSelectedAboutUsLinkImageId(model: NodeInterface): void {
-    this.dataModel.AboutUsLinkImageId = model.id;
-    this.dataModel.AboutUsLinkImageIdSrc = model.downloadLinksrc;
+    this.dataModel.aboutUsLinkImageId = model.id;
+    this.dataModel.aboutUsLinkImageIdSrc = model.downloadLinksrc;
   }
   onActionSelectSource(model: ApplicationSourceModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         this.translate.instant('MESSAGE.The_source_of_the_information_application_is_not_known'),
         this.translate.instant('MESSAGE.Specify_the_source')
       );
       return;
     }
-    this.dataModel.LinkSourceId = model.Id;
+    this.dataModel.linkSourceId = model.id;
   }
   onActionSelectTheme(model: ApplicationThemeConfigModel | null): void {
-    if (!model || model.Id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeerrorMessage(
         this.translate.instant('MESSAGE.Information_application_format_is_not_clear'),
         this.translate.instant('MESSAGE.Specify_the_template'));
       return;
     }
-    this.dataModel.LinkThemeConfigId = model.Id;
+    this.dataModel.linkThemeConfigId = model.id;
   }
 }

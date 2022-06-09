@@ -50,8 +50,8 @@ export class CoreSiteModuleEditComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkModuleId = +data.LinkModuleId || 0;
-      this.requestLinkSiteId = +data.LinkSiteId || 0;
+      this.requestLinkModuleId = +data.linkModuleId || 0;
+      this.requestLinkSiteId = +data.linkSiteId || 0;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -87,8 +87,8 @@ export class CoreSiteModuleEditComponent implements OnInit {
   DataGetOneContent(): void {
 
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -96,36 +96,36 @@ export class CoreSiteModuleEditComponent implements OnInit {
     const filteModelContent = new FilterModel();
     /*make filter*/
     let filter = new FilterDataModel();
-    filter.PropertyName = 'LinkModuleId';
-    filter.Value = this.requestLinkModuleId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkModuleId';
+    filter.value = this.requestLinkModuleId;
+    filteModelContent.filters.push(filter);
     /*make filter*/
     filter = new FilterDataModel();
-    filter.PropertyName = 'LinkSiteId';
-    filter.Value = this.requestLinkSiteId;
-    filteModelContent.Filters.push(filter);
+    filter.propertyName = 'LinkSiteId';
+    filter.value = this.requestLinkSiteId;
+    filteModelContent.filters.push(filter);
 
-    filteModelContent.AccessLoad = true;
+    filteModelContent.accessLoad = true;
     this.coreModuleSiteService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
         /*َAccess Field*/
-        this.dataAccessModel = ret.Access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.dataAccessModel = ret.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          if (ret.ListItems && ret.ListItems.length > 0) {
-            this.dataModel = ret.ListItems[0];
-            this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
-            this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          if (ret.listItems && ret.listItems.length > 0) {
+            this.dataModel = ret.listItems[0];
+            this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+            this.formInfo.formAlert = '';
           }
           else {
             this.cmsToastrService.typeError('ماژول جهت ویرایش یافت نشد');
           }
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -138,30 +138,30 @@ export class CoreSiteModuleEditComponent implements OnInit {
   }
 
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.coreModuleSiteService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -169,23 +169,23 @@ export class CoreSiteModuleEditComponent implements OnInit {
     );
   }
   onActionSiteSelect(model: CoreSiteModel): void {
-    this.dataModel.LinkSiteId = null;
-    if (model && model.Id > 0) {
-      this.dataModel.LinkSiteId = model.Id;
+    this.dataModel.linkSiteId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkSiteId = model.id;
     }
   }
   onActionSelectorModuleSelect(model: CoreModuleModel): void {
-    if (!model || model.Id <= 0) {
+    if (!model || model.id <= 0) {
       const message = 'ماژول مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
     }
-    this.dataModel.LinkModuleId = model.Id;
+    this.dataModel.linkModuleId = model.id;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

@@ -67,7 +67,7 @@ export class EstatePropertyDetailEditComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.FormTitle = 'ویرایش  ';
+    this.formInfo.formTitle = 'ویرایش  ';
     if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -88,26 +88,26 @@ export class EstatePropertyDetailEditComponent implements OnInit {
 
   DataGetOneContent(): void {
 
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estatePropertyDetailService.setAccessLoad();
     this.estatePropertyDetailService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-        this.dataModel = ret.Item;
-        if (ret.IsSuccess) {
-          this.dataModel.ConfigValueDefaultValueJson = this.dataModel.ConfigValueDefaultValueJson + '';
-          this.keywordDataModel = this.dataModel.ConfigValueDefaultValueJson.split(',');
-          this.formInfo.FormTitle = this.formInfo.FormTitle + ' ' + ret.Item.Title;
-          this.formInfo.FormAlert = '';
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.dataModel.configValueDefaultValueJson = this.dataModel.configValueDefaultValueJson + '';
+          this.keywordDataModel = this.dataModel.configValueDefaultValueJson.split(',');
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+          this.formInfo.formAlert = '';
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -119,29 +119,29 @@ export class EstatePropertyDetailEditComponent implements OnInit {
     );
   }
   DataEditContent(): void {
-    this.formInfo.FormAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.FormError = '';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.estatePropertyDetailService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
-        if (ret.IsSuccess) {
-          this.formInfo.FormAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.FormAlert = 'برروز خطا';
-          this.formInfo.FormError = ret.ErrorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.FormSubmitAllow = true;
+        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -149,30 +149,30 @@ export class EstatePropertyDetailEditComponent implements OnInit {
     );
   }
   onActionSelectorSelect(model: EstatePropertyTypeLanduseModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyTypeLanduseId = model.Id;
+    this.dataModel.linkPropertyTypeLanduseId = model.id;
   }
   onActionSelectorDetailGroup(model: EstatePropertyDetailGroupModel | null): void {
-    if (!model || !model.Id || model.Id.length <= 0) {
+    if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.dataModel.LinkPropertyDetailGroupId = model.Id;
+    this.dataModel.linkPropertyDetailGroupId = model.id;
   }
   onIconPickerSelect(model: any): void {
-    this.dataModel.IconFont = model;
+    this.dataModel.iconFont = model;
   }
 
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
-    this.dataModel.ConfigValueDefaultValueJson = '';
+    this.dataModel.configValueDefaultValueJson = '';
     if (this.keywordDataModel && this.keywordDataModel.length > 0) {
       const listKeyword = [];
       this.keywordDataModel.forEach(element => {
@@ -183,10 +183,10 @@ export class EstatePropertyDetailEditComponent implements OnInit {
         }
       });
       if (listKeyword && listKeyword.length > 0) {
-        this.dataModel.ConfigValueDefaultValueJson = listKeyword.join(',');
+        this.dataModel.configValueDefaultValueJson = listKeyword.join(',');
       }
     }
-    this.formInfo.FormSubmitAllow = false;
+    this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
   onFormCancel(): void {

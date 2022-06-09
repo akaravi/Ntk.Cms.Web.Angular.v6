@@ -72,11 +72,11 @@ export class ArticletHeaderComponent implements OnInit, OnDestroy {
     this.headerService.setAccessLoad();
     this.headerService.ServiceGetOneById(this.optionId).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.Access);
-        if (ret.IsSuccess) {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
           this.dataModelResult = ret;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -88,8 +88,8 @@ export class ArticletHeaderComponent implements OnInit, OnDestroy {
     }
     );
   }
-  onActionbuttonLinkTo(model: ArticleContentModel = this.dataModelResult.Item): void {
-    if (!model || !model.Id || model.Id === 0) {
+  onActionbuttonLinkTo(model: ArticleContentModel = this.dataModelResult.item): void {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -97,9 +97,9 @@ export class ArticletHeaderComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        Title: model.Title,
-        UrlViewContentQRCodeBase64: model.UrlViewContentQRCodeBase64,
-        UrlViewContent: model.UrlViewContent,
+        Title: model.title,
+        urlViewContentQRCodeBase64: model.urlViewContentQRCodeBase64,
+        urlViewContent: model.urlViewContent,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

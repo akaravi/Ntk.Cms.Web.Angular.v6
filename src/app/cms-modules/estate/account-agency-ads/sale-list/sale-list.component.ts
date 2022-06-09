@@ -106,10 +106,10 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
   DataGetCurrency(): void {
     this.coreSiteService.ServiceGetCurrencyMaster().subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
-          this.currency = ret.Item;
+        if (ret.isSuccess) {
+          this.currency = ret.item;
         } else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -138,12 +138,12 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
     const model = new FilterModel();
     this.estateAdsTypeService.ServiceGetAllSale(model).subscribe({
       next: (ret) => {
-        if (ret.IsSuccess) {
+        if (ret.isSuccess) {
           this.showBuy = true;
           this.dataModelResult = ret;
         }
         else {
-          this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -164,7 +164,7 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
       height: '90%',
       data: {
         LinkAccountAgencyId: this.requestLinkAccountAgencyId,
-        LinkAdsTypeId: model.Id
+        LinkAdsTypeId: model.id
       }
     });
     dialogRef.afterClosed().subscribe(result => {
