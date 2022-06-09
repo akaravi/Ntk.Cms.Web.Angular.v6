@@ -143,7 +143,7 @@ export class EstatePropertyAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = 'ثبت محتوای جدید';
+    this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_New_Content');
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.getEstateContractType();
@@ -227,7 +227,7 @@ export class EstatePropertyAddComponent implements OnInit {
     filteModelProperty.Filters.push(filter);
     this.dataModel.PropertyDetailGroups = [];
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
-    this.loading.Start(pName, 'دریافت جزئیات');
+    this.loading.Start(pName, this.translate.instant('TITLE.Get_Details'));
     this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe({
         next: (ret) => {
@@ -262,7 +262,7 @@ export class EstatePropertyAddComponent implements OnInit {
       }
     }
     const pName = this.constructor.name + 'ServiceAdd';
-    this.loading.Start(pName, 'ثبت ملک');
+    this.loading.Start(pName, this.translate.instant('TITLE.Property_registration'));
     this.estatePropertyService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.FormSubmitAllow = true;
@@ -477,14 +477,14 @@ export class EstatePropertyAddComponent implements OnInit {
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.dataModel.LinkPropertyTypeUsageId || this.dataModel.LinkPropertyTypeUsageId.length === 0) {
-        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری ملک انتخاب شود');
+        this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Usage'));
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();
         }, 10);
       }
       if (!this.dataModel.LinkPropertyTypeLanduseId || this.dataModel.LinkPropertyTypeLanduseId.length === 0) {
-        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری زمین انتخاب شود');
+        this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Landuse'));
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();

@@ -464,14 +464,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.dataModel.LinkPropertyTypeUsageId || this.dataModel.LinkPropertyTypeUsageId.length === 0) {
-        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری ملک انتخاب شود');
+        this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Usage'));
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();
         }, 10);
       }
       if (!this.dataModel.LinkPropertyTypeLanduseId || this.dataModel.LinkPropertyTypeLanduseId.length === 0) {
-        this.cmsToastrService.typeErrorFormInvalid('نوع کاربری زمین انتخاب شود');
+        this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Landuse'));
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();

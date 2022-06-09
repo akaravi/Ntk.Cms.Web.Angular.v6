@@ -64,7 +64,7 @@ export class HyperShopContentAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.FormTitle = 'ثبت محتوای جدید';
+    this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_New_Content');
     this.getEnumRecordStatus();
     this.DataGetAccess();
 

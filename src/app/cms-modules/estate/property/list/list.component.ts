@@ -36,6 +36,7 @@ import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-di
 import { TokenHelper } from "src/app/core/helpers/tokenHelper";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
 import { TranslateService } from '@ngx-translate/core';
+import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
 
 
 @Component({
@@ -62,8 +63,10 @@ export class EstatePropertyListComponent
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     public translate: TranslateService,
+    // private CoreModuleLogMemoModel : CoreModuleLogMemoModel,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyTypeLanduseId =
       this.activatedRoute.snapshot.paramMap.get("LinkPropertyTypeLanduseId");
     this.requestLinkPropertyTypeUsageId =
@@ -130,7 +133,7 @@ export class EstatePropertyListComponent
       this.requestLinkBillboardId = id;
     }
   }
-
+  // SubjectTitle : string
   comment: string;
   author: string;
   dataSource: any;
@@ -183,6 +186,8 @@ export class EstatePropertyListComponent
         this.tokenInfo = next;
         this.DataGetAll();
       });
+
+    // this.SubjectTitle = this.CoreModuleLogMemoModel.SubjectTitle;
   }
 
   ngAfterViewInit(): void {
@@ -464,7 +469,7 @@ export class EstatePropertyListComponent
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message =
-    this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') +
+      this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') +
       "?" +
       "<br> ( " +
       this.tableRowSelected.Title +
@@ -545,6 +550,60 @@ export class EstatePropertyListComponent
     }
     );
   }
+
+  onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
+
+    if (!model || !model.Id || model.Id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.Access == null ||
+      !this.dataModelResult.Access.AccessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.Id)
+      .subscribe({
+        next: (ret) => {
+          if (ret.IsSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsMemoComponent, {
+              // height: "90%",
+              data: {
+                // Title: ret.Item.Title,
+                // UrlViewContentQRCodeBase64: ret.Item.UrlViewContentQRCodeBase64,
+                LinkSiteId: ret.Item.LinkSiteId,
+                // Id: ret.Item.Id,  
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+  }
+
+
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(
