@@ -60,7 +60,7 @@ export class AuthSingInBySmsComponent implements OnInit {
   onActionSubmitOrderCodeBySms(): void {
     if (this.forgetState == 'entrycode') {
       if (!this.dataModelAuthUserSignInBySms.captchaText || this.dataModelAuthUserSignInBySms.captchaText.length == 0) {
-        this.cmsToastrService.typeerrorMessage("محتوای عکس امنیتی را وارد کنید");
+        this.cmsToastrService.typeErrorMessage("محتوای عکس امنیتی را وارد کنید");
         return;
       }
     }
@@ -99,7 +99,7 @@ export class AuthSingInBySmsComponent implements OnInit {
             //TimeDown 
           }
           else {
-            this.cmsToastrService.typeerrorMessage(res.errorMessage);
+            this.cmsToastrService.typeErrorMessage(res.errorMessage);
           }
           this.formInfo.buttonSubmittedEnabled = true;
           this.onCaptchaOrder();
@@ -150,7 +150,7 @@ export class AuthSingInBySmsComponent implements OnInit {
           }
           else {
             this.onCaptchaOrder();
-            this.cmsToastrService.typeerrorMessage(res.errorMessage);
+            this.cmsToastrService.typeErrorMessage(res.errorMessage);
           }
           this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);

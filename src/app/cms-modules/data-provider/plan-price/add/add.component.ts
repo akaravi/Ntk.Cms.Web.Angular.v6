@@ -94,7 +94,7 @@ export class DataProviderPlanPriceAddComponent implements OnInit {
         if (ret.isSuccess) {
           this.currency = ret.item;
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -140,7 +140,7 @@ export class DataProviderPlanPriceAddComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

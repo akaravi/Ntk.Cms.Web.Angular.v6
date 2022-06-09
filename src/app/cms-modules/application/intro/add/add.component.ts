@@ -142,7 +142,7 @@ export class ApplicationIntroAddComponent implements OnInit {
   }
   onActionSelectApplication(model: ApplicationAppModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'اپلیکیشن را مشخص کنید',
         ' اپلیکیشن اطلاعات مشخص نیست'
       );

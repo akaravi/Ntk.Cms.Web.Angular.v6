@@ -111,7 +111,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
             this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
           }
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

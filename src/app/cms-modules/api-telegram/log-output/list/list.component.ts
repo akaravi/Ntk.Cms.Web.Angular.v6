@@ -147,7 +147,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
           }
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -216,7 +216,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
           statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -237,7 +237,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       }
       ,
@@ -282,7 +282,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {

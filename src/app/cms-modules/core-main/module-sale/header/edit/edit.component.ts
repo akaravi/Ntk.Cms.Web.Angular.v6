@@ -106,7 +106,7 @@ export class CoreModuleSaleHeaderEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -136,7 +136,7 @@ export class CoreModuleSaleHeaderEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -155,7 +155,7 @@ export class CoreModuleSaleHeaderEditComponent implements OnInit {
   }
   onActionSelectHeaderGroup(model: CoreModuleSaleHeaderGroupModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'دسته بندی را مشخص کنید',
         'دسته بندی اطلاعات مشخص نیست'
       );

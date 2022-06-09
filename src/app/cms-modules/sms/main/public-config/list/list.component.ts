@@ -137,7 +137,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -287,7 +287,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
           this.DataGetAll();
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -314,7 +314,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
           statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -334,7 +334,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
           statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -377,7 +377,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {

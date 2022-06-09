@@ -281,7 +281,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
           statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -301,7 +301,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
           statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -346,7 +346,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {

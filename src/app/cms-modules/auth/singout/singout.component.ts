@@ -15,7 +15,7 @@ export class AuthSingoutComponent implements OnInit {
         if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessLogout();
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       }
     });

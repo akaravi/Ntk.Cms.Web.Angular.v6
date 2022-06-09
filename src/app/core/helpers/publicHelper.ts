@@ -173,7 +173,7 @@ export class PublicHelper {
       errorExceptionResult = model.error;
       if (errorExceptionResult) {
         if (errorExceptionResult.status === 401) {
-          this.cmsToastrService.typeerrorMessage(
+          this.cmsToastrService.typeErrorMessage(
             this.translate.instant('ERRORMESSAGE.MESSAGE.typePleaseLogInAgaint'),
             this.translate.instant('ERRORMESSAGE.TITLE.typePleaseLogInAgaint')
           );

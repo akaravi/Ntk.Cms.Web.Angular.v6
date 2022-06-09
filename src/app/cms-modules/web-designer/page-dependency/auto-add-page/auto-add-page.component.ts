@@ -77,7 +77,7 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeerrorMessage(next.errorMessage);
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -90,7 +90,7 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
   }
   onActionSelectModule(model: WebDesignerMainPageTemplateModel | null): void {
     if (!model || model.id.length <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'قالب را مشخص کنید',
         'قالب اطلاعات مشخص نیست'
       );
@@ -110,7 +110,7 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
     }
     this.formInfo.formSubmitAllow = false;
     if (!this.dataModel.linkPageTemplateGuId || this.dataModel.linkPageTemplateGuId.length <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'قالب را مشخص کنید',
         'قالب اطلاعات مشخص نیست'
       );

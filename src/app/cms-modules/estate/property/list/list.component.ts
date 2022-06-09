@@ -521,7 +521,7 @@ export class EstatePropertyListComponent
             statist.set("All", ret.totalRowCount);
             this.optionsStatist.childMethods.setStatistValue(statist);
           } else {
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -541,7 +541,7 @@ export class EstatePropertyListComponent
           statist.set("Active", ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -553,15 +553,15 @@ export class EstatePropertyListComponent
 
   onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
 
-    if (!model || !model.Id || model.Id.length === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.Access == null ||
-      !this.dataModelResult.Access.AccessEditRow
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
@@ -569,19 +569,16 @@ export class EstatePropertyListComponent
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
-    this.contentService
-      .ServiceGetOneById(this.tableRowSelected.Id)
-      .subscribe({
-        next: (ret) => {
-          if (ret.IsSuccess) {
+  
             //open popup
             const dialogRef = this.dialog.open(CmsMemoComponent, {
               // height: "90%",
               data: {
-                // Title: ret.Item.Title,
-                // UrlViewContentQRCodeBase64: ret.Item.UrlViewContentQRCodeBase64,
-                LinkSiteId: ret.Item.LinkSiteId,
-                // Id: ret.Item.Id,  
+        
+                ModuleName : this.dataModelResult.access.moduleName,
+                ModuleEntityName : this.dataModelResult.access.moduleEntityName,
+                ModuleEntityId :model.id,
+                Title :model.title
               },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -590,17 +587,8 @@ export class EstatePropertyListComponent
               }
             });
             //open popup
-          } else {
-            this.cmsToastrService.typeErrorMessage(ret.ErrorMessage);
-          }
-          this.loading.Stop(pName);
-        },
-        error: (er) => {
-          this.cmsToastrService.typeError(er);
-          this.loading.Stop(pName);
-        }
-      }
-      );
+         
+
   }
 
 
@@ -624,7 +612,7 @@ export class EstatePropertyListComponent
           exportlist.set("Download", ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -699,7 +687,7 @@ export class EstatePropertyListComponent
             });
             //open popup
           } else {
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },

@@ -97,7 +97,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -122,7 +122,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
           this.document.location.href = this.dataModelPaymentResult.item.urlToPay;
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           this.formInfo.formSubmitAllow = true;
         }
         this.loading.Stop(pName)

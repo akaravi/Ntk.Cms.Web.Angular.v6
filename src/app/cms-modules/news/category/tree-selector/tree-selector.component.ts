@@ -119,7 +119,7 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
           this.loadCheked();
         }
         else{
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

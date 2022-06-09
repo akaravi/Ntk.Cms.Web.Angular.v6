@@ -105,7 +105,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

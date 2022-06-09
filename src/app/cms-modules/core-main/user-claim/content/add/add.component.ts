@@ -150,7 +150,7 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -169,7 +169,7 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
   }
   onActionSelectUser(model: CoreUserModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'کاربر را مشخص کنید',
         'کاربر  اطلاعات مشخص نیست'
       );
@@ -179,7 +179,7 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
   }
   onActionSelectSite(model: CoreSiteModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'سایت را مشخص کنید',
         'سایت  اطلاعات مشخص نیست'
       );
@@ -190,7 +190,7 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
 
   onActionSelectClaimType(model: CoreUserClaimTypeModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'دسته را مشخص کنید',
         'نوع مدارک اطلاعات مشخص نیست'
       );

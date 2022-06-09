@@ -68,7 +68,7 @@ export class NewsContentDeleteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne();
           } else {
             this.formInfo.formAlert = '';
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },

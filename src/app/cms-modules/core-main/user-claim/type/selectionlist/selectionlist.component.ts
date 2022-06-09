@@ -68,7 +68,7 @@ export class CoreUserClaimTypeSelectionlistComponent implements OnInit {
             }
           });
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

@@ -151,7 +151,7 @@ export class DonateTargetCategorySelectorComponent implements OnInit {
             this.formControl.setValue(ret.item);
             this.optionChange.emit(ret.item);
           } else {
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
         }
       });

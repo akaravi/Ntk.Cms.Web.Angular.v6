@@ -117,7 +117,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
         if (ret.isSuccess) {
           this.currency = ret.item;
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -159,7 +159,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

@@ -127,7 +127,7 @@ export class DataProviderClientEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -157,7 +157,7 @@ export class DataProviderClientEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -213,7 +213,7 @@ export class DataProviderClientEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -270,7 +270,7 @@ export class DataProviderClientEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           /** */
           const listG: number[] = [];
           this.dataCoreCpMainMenuIds.forEach(element => {
@@ -328,7 +328,7 @@ export class DataProviderClientEditComponent implements OnInit {
 
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {

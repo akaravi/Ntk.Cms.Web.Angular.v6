@@ -56,11 +56,9 @@ export class TicketingTemplateAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    this.formInfo.FormTitle = this.translate.instant('TITLE.Submit_New_Content');
-=======
-    this.formInfo.formTitle = 'ثبت محتوای جدید';
->>>>>>> main
+
+    this.formInfo.formTitle = this.translate.instant('TITLE.Submit_New_Content');
+
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -102,7 +100,7 @@ export class TicketingTemplateAddComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeerrorMessage(next.errorMessage);
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -134,7 +132,7 @@ export class TicketingTemplateAddComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeerrorMessage(next.errorMessage);
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
 

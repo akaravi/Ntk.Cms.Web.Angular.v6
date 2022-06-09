@@ -285,7 +285,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
           } else {
             this.formInfo.formAlert = 'برروز خطا';
             this.formInfo.formError = ret.errorMessage;
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
         },
         error: (er) => {
@@ -317,7 +317,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {

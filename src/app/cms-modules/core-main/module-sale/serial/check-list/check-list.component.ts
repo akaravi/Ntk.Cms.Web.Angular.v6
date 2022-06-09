@@ -132,7 +132,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.tableSource.data = ret.listItems;
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -159,7 +159,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_series_was_successfully_registered_for_you'));
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

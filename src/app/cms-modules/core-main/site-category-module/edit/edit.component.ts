@@ -126,12 +126,12 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
             this.formInfo.formAlert = '';
           }
           else {
-            this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.Module_not_found_for_editing'));
+            this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Module_not_found_for_editing'));
           }
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -162,7 +162,7 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

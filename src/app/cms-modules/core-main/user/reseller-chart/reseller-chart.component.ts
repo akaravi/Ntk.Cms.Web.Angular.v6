@@ -96,7 +96,7 @@ export class CoreUserResellerChartComponent implements OnInit, OnDestroy {
           this.dataModelResult = ret;
           this.dataSource.data = [this.dataModelResult.item];
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

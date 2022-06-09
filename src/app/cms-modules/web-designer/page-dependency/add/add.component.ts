@@ -101,7 +101,7 @@ export class WebDesignerMainPageDependencyAddComponent implements OnInit {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeerrorMessage(next.errorMessage);
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -114,7 +114,7 @@ export class WebDesignerMainPageDependencyAddComponent implements OnInit {
   }
   onActionSelectModule(model: CoreModuleModel | null): void {
     if (!model || model.id <= 0) {
-      this.cmsToastrService.typeerrorMessage(
+      this.cmsToastrService.typeErrorMessage(
         'ماژول را مشخص کنید',
         'ماژول اطلاعات مشخص نیست'
       );

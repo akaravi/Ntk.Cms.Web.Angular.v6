@@ -87,7 +87,7 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
           this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.listItems;
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },

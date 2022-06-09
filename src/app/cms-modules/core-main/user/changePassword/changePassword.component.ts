@@ -108,7 +108,7 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
         } else {
           this.formInfo.formAlert = 'برروز خطا';
           this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -134,20 +134,20 @@ export class CoreUserChangePasswordComponent implements OnInit, OnDestroy {
       }
     } else {
       if (!this.dataModel.oldPassword || this.dataModel.oldPassword.length === 0) {
-        this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.Enter_the_previous_password'));
+        this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Enter_the_previous_password'));
 
         return;
       }
     }
     if (!this.dataModel.newPassword || this.dataModel.newPassword.length === 0) {
-      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.Enter_the_new_password'));
+      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Enter_the_new_password'));
 
 
 
       return;
     }
     if (this.dataModel.newPassword !== this.NewPasswordRepeat) {
-      this.cmsToastrService.typeerrorMessage(this.translate.instant('MESSAGE.The_new_password_is_equivalent_to_a_duplicate'));
+      this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.The_new_password_is_equivalent_to_a_duplicate'));
 
 
       return;

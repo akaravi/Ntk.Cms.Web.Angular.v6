@@ -84,7 +84,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
           this.viewCalculate = true;
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
@@ -109,7 +109,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
           this.document.location.href = this.dataModelPaymentResult.item.urlToPay;
         }
         else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 

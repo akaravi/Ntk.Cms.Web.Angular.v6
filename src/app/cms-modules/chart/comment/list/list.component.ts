@@ -171,7 +171,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
@@ -327,7 +327,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
           statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -347,7 +347,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
           statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -374,7 +374,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         } else {
-          this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
       error: (er) => {
@@ -435,7 +435,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
             });
             //open poup
           } else {
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
@@ -502,7 +502,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
             });
             //open popup
           } else {
-            this.cmsToastrService.typeerrorMessage(ret.errorMessage);
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
