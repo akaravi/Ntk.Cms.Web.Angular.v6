@@ -590,6 +590,13 @@ export class EstatePropertyListComponent
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]
   }
+  onActionTableRowMouseEnter(row: EstatePropertyModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: EstatePropertyModel): void {
+    row["expanded"] =false;
+  }
   onActionBackToParent(): void {
     this.router.navigate(["/ticketing/departemen/"]);
   }

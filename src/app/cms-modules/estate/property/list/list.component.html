@@ -221,9 +221,11 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+      (mouseenter) ="onActionTableRowMouseEnter(row)"  (mouseleave) ="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
       <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+      (mouseenter) ="onActionTableRowMouseEnter(row)"  (mouseleave) ="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
 
