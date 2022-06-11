@@ -64,7 +64,7 @@ export class CoreSiteDeleteComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
@@ -74,7 +74,7 @@ export class CoreSiteDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -97,7 +97,7 @@ export class CoreSiteDeleteComponent implements OnInit {
         next: (ret) => {
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
@@ -109,7 +109,7 @@ export class CoreSiteDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
@@ -126,7 +126,7 @@ export class CoreSiteDeleteComponent implements OnInit {
     }
     this.dataModel.newCatId = model.id;
     if (this.dataModel.newCatId === this.requestId) {
-      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
       this.formInfo.buttonSubmittedEnabled = false;

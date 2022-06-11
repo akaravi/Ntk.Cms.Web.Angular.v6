@@ -60,7 +60,7 @@ export class EstateAdsTypeEditComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'ویرایش  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -90,7 +90,7 @@ export class EstateAdsTypeEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -118,7 +118,7 @@ export class EstateAdsTypeEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

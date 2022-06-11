@@ -59,7 +59,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'ویرایش  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -95,7 +95,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
@@ -123,7 +123,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }

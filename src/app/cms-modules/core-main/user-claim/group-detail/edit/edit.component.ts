@@ -72,7 +72,7 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestModel && this.requestModel.linkUserClaimTypeId > 0) {
-      this.formInfo.formTitle = 'ویرایش  ';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -114,7 +114,7 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
             this.dataModel.linkUserClaimGroupId + '<-->' + this.dataModel.linkUserClaimTypeId;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -145,7 +145,7 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

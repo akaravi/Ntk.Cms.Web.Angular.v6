@@ -68,7 +68,7 @@ export class SmsMainCustomerCreditEditComponent implements OnInit {
   SmsMainCustomerCreditModel: SmsMainCustomerCreditModel[];
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.formTitle = 'ویرایش  ';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
 
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -114,7 +114,7 @@ export class SmsMainCustomerCreditEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -144,7 +144,7 @@ export class SmsMainCustomerCreditEditComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

@@ -11,16 +11,6 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <!-- 
-
-    <button *ngIf="dataModelResult.Access.AccessAddRow"
-      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
-      data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
-
-
-
-
- -->
 
 
     <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected?.id?.length>0"
@@ -67,55 +57,50 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.FieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
-            [ngStyle]="{'display': row.Id === tableRowSelected.id ? '' : 'none' }">
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
         </mat-cell>
       </ng-container>
-      <!-- LinkSiteId Column -->
-      <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.FieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.LinkSiteId}} </mat-cell>
-      </ng-container>
+
       <!-- ModuleName Column -->
       <ng-container matColumnDef="ModuleName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ModuleName }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.moduleName }} </mat-cell>
       </ng-container>
       <!-- ModuleEntityName Column -->
       <ng-container matColumnDef="ModuleEntityName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ModuleEntityName}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.moduleEntityName}} </mat-cell>
       </ng-container>
       <!-- ModuleEntityId Column -->
       <ng-container matColumnDef="ModuleEntityId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityId']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ModuleEntityId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.moduleEntityId}} </mat-cell>
       </ng-container>
       <!-- SubjectBody Column -->
       <ng-container matColumnDef="SubjectBody">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SubjectBody']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SubjectBody']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.SubjectBody}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.subjectBody}} </mat-cell>
       </ng-container>
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.FieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.CreatedDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
 
       <!-- Action Column -->
@@ -128,7 +113,7 @@
           </button>
           <mat-menu #actionMenu="matMenu">
             <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessWatchRow">
-              <mat-icon>view</mat-icon>
+              <mat-icon>visibility</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">

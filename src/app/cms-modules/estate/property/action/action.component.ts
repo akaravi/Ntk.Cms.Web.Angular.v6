@@ -4,7 +4,6 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   EstateAdsTypeService,
-  EstateAdsTypeModel,
   DataFieldInfoModel,
   EstatePropertyModel,
 } from 'ntk-cms-api';
@@ -13,7 +12,6 @@ import {
   OnInit,
   ViewChild,
   Inject,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -50,7 +48,7 @@ export class EstatePropertyActionComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'فعالیت ها ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Activities');
   }
 
   onFormSubmit(): void {

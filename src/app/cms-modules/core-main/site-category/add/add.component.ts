@@ -65,7 +65,7 @@ export class CoreSiteCategoryAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -108,7 +108,7 @@ export class CoreSiteCategoryAddComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

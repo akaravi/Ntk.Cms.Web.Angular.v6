@@ -74,7 +74,7 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.requestId && this.requestId.length > 0) {
-      this.formInfo.formTitle = 'ویرایش  ';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -134,7 +134,7 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -165,7 +165,7 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorEdit(ret.errorMessage);
 

@@ -70,7 +70,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
   dataEstatePropertyTypeModel: EstatePropertyTypeModel[];
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'ویرایش  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -104,7 +104,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -142,7 +142,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -170,7 +170,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -200,7 +200,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -220,10 +220,10 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     this.estatePropertyTypeService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_from_this_group_Was_Successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

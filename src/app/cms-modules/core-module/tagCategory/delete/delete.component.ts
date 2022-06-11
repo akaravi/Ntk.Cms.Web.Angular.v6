@@ -75,7 +75,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
 
           this.dataModelResultCategory = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
@@ -86,7 +86,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
 
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -108,7 +108,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
         next: (ret) => {
           this.dataModelResultCategoryAllData = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
@@ -118,7 +118,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -137,7 +137,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
     }
     this.formInfo.formSubmitAllow = true;
     if (this.dataModel.newCatId === this.requestId) {
-      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
       this.formInfo.buttonSubmittedEnabled = true;
@@ -168,7 +168,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
         next: (ret) => {
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
 
@@ -181,7 +181,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
@@ -199,7 +199,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
     }
     this.dataModel.newCatId = model.id;
     if (this.dataModel.newCatId === this.requestId) {
-      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
       this.formInfo.buttonSubmittedEnabled = false;

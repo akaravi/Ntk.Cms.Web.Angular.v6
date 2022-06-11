@@ -60,7 +60,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
   dataWebDesignerMainMenuIds: number[] = [];
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.formTitle = 'ویرایش  ';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -95,7 +95,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
@@ -121,7 +121,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }

@@ -73,7 +73,7 @@ export class DonateTargetDeleteComponent implements OnInit {
 
           this.dataModelResultContent = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
@@ -84,7 +84,7 @@ export class DonateTargetDeleteComponent implements OnInit {
 
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -110,7 +110,7 @@ export class DonateTargetDeleteComponent implements OnInit {
         next: (ret) => {
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
 
@@ -124,7 +124,7 @@ export class DonateTargetDeleteComponent implements OnInit {
 
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;

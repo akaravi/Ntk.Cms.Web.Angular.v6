@@ -14,6 +14,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-article-category-delete',
   templateUrl: './delete.component.html',
@@ -67,7 +68,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResultCategory = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
@@ -77,7 +78,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -97,7 +98,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
         next: (ret) => {
           this.dataModelResultCategoryAllData = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
@@ -107,7 +108,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -125,7 +126,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
     }
     this.formInfo.formSubmitAllow = true;
     if (this.dataModel.newCatId === this.requestId) {
-      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
       this.formInfo.buttonSubmittedEnabled = true;
@@ -138,7 +139,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorMove();
           } else {
@@ -150,7 +151,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
           this.formInfo.formSubmitAllow = true;
@@ -174,7 +175,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
         next: (ret) => {
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
@@ -186,7 +187,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
@@ -203,7 +204,7 @@ export class ArticleCategoryDeleteComponent implements OnInit {
     }
     this.dataModel.newCatId = model.id;
     if (this.dataModel.newCatId === this.requestId) {
-      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
         'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
       this.formInfo.buttonSubmittedEnabled = false;

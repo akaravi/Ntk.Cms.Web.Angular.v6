@@ -80,7 +80,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   step = 0;
   hidden = true;
   ngOnInit(): void {
-    this.formInfo.formTitle = 'ویرایش  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       setTimeout(() => this.router.navigate(['/estate/customer-order']), 1000);
@@ -124,7 +124,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           });
           /** load Value */
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -152,7 +152,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.optionReload();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

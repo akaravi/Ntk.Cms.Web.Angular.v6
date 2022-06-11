@@ -61,7 +61,7 @@ export class WebDesignerMainPageDependencyAddComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
-    this.formInfo.formTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -99,7 +99,7 @@ export class WebDesignerMainPageDependencyAddComponent implements OnInit {
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }

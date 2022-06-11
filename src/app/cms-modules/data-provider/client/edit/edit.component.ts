@@ -125,7 +125,7 @@ export class DataProviderClientEditComponent implements OnInit {
           this.formInfo.formAlert = '';
           this.DataGetAllPlanClient();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -155,7 +155,7 @@ export class DataProviderClientEditComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -211,7 +211,7 @@ export class DataProviderClientEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -268,7 +268,7 @@ export class DataProviderClientEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           // this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           /** */
@@ -311,7 +311,7 @@ export class DataProviderClientEditComponent implements OnInit {
     this.dataProviderPlanClientService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_from_this_group_Was_Successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
 
@@ -326,7 +326,7 @@ export class DataProviderClientEditComponent implements OnInit {
           setTimeout(() => this.dataCoreCpMainMenuIds = listG, 1000);
           /** */
 
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

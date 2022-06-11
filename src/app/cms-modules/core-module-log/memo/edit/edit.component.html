@@ -9,10 +9,6 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         
   
-        <!-- LinkSiteId Field -->
-        <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
-          [optionPlaceholder]="'سایت'"></app-cms-site-selector>
-        <!-- ModuleName Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ModuleName</mat-label>
           <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"

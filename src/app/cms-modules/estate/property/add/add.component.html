@@ -599,7 +599,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.Location' | translate}}" state="loaction">
-        <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
+        <p>{{'MESSAGE.Click_on_map_to_specify_the_location' | translate}}{{'MESSAGE.Click_on_map_to_specify_the_location' | translate}}</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
         <button type="button" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>

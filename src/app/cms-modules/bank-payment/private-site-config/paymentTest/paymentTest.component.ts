@@ -100,7 +100,7 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Payment_request_was_successfully_registered'));
           this.dataModelResultGotoBank = true;
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }

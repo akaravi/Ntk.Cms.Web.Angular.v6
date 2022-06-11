@@ -1,4 +1,3 @@
-
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -13,7 +12,8 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
@@ -36,8 +36,7 @@
       </mat-slide-toggle>
     </a>
     <button *ngIf="requestLinkPropertyId && requestLinkPropertyId.length>0" (click)="onActionbuttonBuy()" type="button"
-      class="btn btn-outline-danger">{{'ACTION.BUY' |
-      translate}}</button>
+      class="btn btn-outline-danger">{{'ACTION.BUY' | translate}}</button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
@@ -120,7 +119,7 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonContentList(row)">
               <mat-icon>list</mat-icon>
-              <span>املاک مورد معامله</span>
+              <span>{{'ACTION.Property_to_be_traded' | translate}}</span>
             </button>
 
           </mat-menu>
@@ -131,6 +130,7 @@
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
+
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </ng-container>

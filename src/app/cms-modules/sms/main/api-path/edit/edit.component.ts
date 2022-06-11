@@ -70,7 +70,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.formTitle = 'ویرایش  ';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -117,7 +117,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
           this.formInfo.formAlert = '';
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -146,7 +146,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           setTimeout(() => this.router.navigate(['/sms/main/api-path/list']), 1000);
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

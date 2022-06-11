@@ -58,7 +58,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResultCategory = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
@@ -68,7 +68,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -87,7 +87,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
         next:(ret) => {
           this.dataModelResultCategoryAllData = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetAll();
@@ -97,7 +97,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -114,7 +114,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     }
     this.formInfo.formSubmitAllow = true;
     if (this.dataModel.newCatId === this.requestId) {
-      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
       this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.buttonSubmittedEnabled = true;
@@ -127,7 +127,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
       .subscribe({
         next:(ret) => {
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorMove();
           } else {
@@ -139,7 +139,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
           this.formInfo.formSubmitAllow = true;
@@ -162,7 +162,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
         next:(ret) => {
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
@@ -174,7 +174,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error:(er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
@@ -190,7 +190,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     }
     this.dataModel.newCatId = model.id;
     if (this.dataModel.newCatId === this.requestId) {
-      this.formInfo.formAlert = 'برروز خطا';
+      this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
       this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.buttonSubmittedEnabled = false;

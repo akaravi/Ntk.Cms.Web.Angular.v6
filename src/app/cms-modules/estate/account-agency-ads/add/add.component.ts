@@ -42,7 +42,7 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data && data.linkAccountAgencyId) {
       this.requestLinkAccountAgencyId = data.linkAccountAgencyId;
     }
@@ -66,7 +66,7 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.formTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
 
@@ -107,7 +107,7 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -125,7 +125,9 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
   }
   onActionSelectorSelectLinkAccountAgencyId(model: EstateAccountAgencyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = 'شناسه ملک مشخص نیست';
+
+      const message = this.translate.instant('MESSAGE.Property_ID_is_unknown');
+
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -133,7 +135,7 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
   }
   onActionSelectorSelectLinkAdsTypeId(model: EstateAccountAgencyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = 'شناسه نوع تبلیغ مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Advertisement_ID_is_unknown');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

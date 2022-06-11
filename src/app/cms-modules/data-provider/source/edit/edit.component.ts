@@ -114,7 +114,7 @@ export class DataProviderSourceEditComponent implements OnInit {
           this.formInfo.formAlert = '';
           this.DataGetAllPlanSource();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -145,7 +145,7 @@ export class DataProviderSourceEditComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -202,7 +202,7 @@ export class DataProviderSourceEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -233,7 +233,7 @@ export class DataProviderSourceEditComponent implements OnInit {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -253,10 +253,10 @@ export class DataProviderSourceEditComponent implements OnInit {
     this.dataProviderPlanSourceService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_from_this_group_Was_Successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

@@ -103,7 +103,7 @@ export class SmsActionSendMessageComponent implements OnInit {
           this.formInfo.formAlert = 'درخواست ارسال با موفقیت ثبت شد';
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Send_request_was_successfully_registered'));
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
