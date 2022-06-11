@@ -52,7 +52,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
       if (data.linkAdsTypeId && data.linkAdsTypeId.length > 0) {
         this.requestLinkAdsTypeId = data.linkAdsTypeId;
       }
-      if (data.BankPrivateMaster && data.BankPrivateMaster === true) {
+      if (data.bankPrivateMaster && data.bankPrivateMaster === true) {
         this.requestBankPrivateMaster = true;
       }
     }

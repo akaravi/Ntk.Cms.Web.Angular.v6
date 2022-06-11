@@ -158,9 +158,9 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EstatePropertyAdsSalePaymentComponent, {
       height: '90%',
       data: {
-        LinkPropertyId: this.requestLinkPropertyId,
-        LinkAdsTypeId: model.id,
-        BankPrivateMaster: model.paymentForMainSite
+        linkPropertyId: this.requestLinkPropertyId,
+        linkAdsTypeId: model.id,
+        bankPrivateMaster: model.paymentForMainSite
       }
     });
     dialogRef.afterClosed().subscribe(result => {
