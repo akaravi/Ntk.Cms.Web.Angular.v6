@@ -1,6 +1,6 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Shopping/Sale2.svg'">
-  <h4> تبلیغات</h4>
-  نسبت به نیازمندی های خود و مدت زمان اقدام به خرید نمایید
+  <h4> {{'MESSAGE.ADS' | translate}}</h4>
+  {{'MESSAGE.Make_purchases_according_to_your_needs_and_duration' | translate}}
   <br>
   <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
     <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
@@ -8,9 +8,7 @@
 </app-cms-html-notice>
 <div class="row">
   <div Class="col-xl-12">
-    <!-- <div class="button-row">
-      نسبت به نیازمندی های خود و مدت زمان اقدام به خرید نمایید
-    </div> -->
+
     <app-progress-spinner [options]="loading">
     </app-progress-spinner>
     <div class="row">

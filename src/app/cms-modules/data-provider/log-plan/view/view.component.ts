@@ -107,7 +107,7 @@ export class DataProviderLogPlanViewComponent implements OnInit, OnDestroy {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

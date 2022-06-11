@@ -33,6 +33,7 @@ import {
   CoreCurrencyService,
   CoreGuideService,
   CoreLocationService,
+  CoreModuleLogMemoService,
   CoreModuleSiteCreditService,
   CoreModuleSiteUserCreditService,
   CoreSiteCategoryService,
@@ -298,7 +299,7 @@ import { CmsMemoComponent } from './shared/cms-memo/cms-memo.component';
         BankPaymentEnumService,
         CoreModuleSiteCreditService,
         CoreModuleSiteUserCreditService,
-
+        CoreModuleLogMemoService,
     ]
     /* No providers here! Since they’ll be already provided in AppModule. */
 })

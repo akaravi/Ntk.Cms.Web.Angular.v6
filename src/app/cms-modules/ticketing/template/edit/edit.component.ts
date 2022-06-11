@@ -100,7 +100,7 @@ export class TicketingTemplateEditComponent implements OnInit {
           this.formInfo.formAlert = '';
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
@@ -132,7 +132,7 @@ export class TicketingTemplateEditComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }

@@ -30,7 +30,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreModuleLogMemoEditComponent } from '../edit/edit.component';
 import { CoreModuleLogMemoViewComponent } from '../view/view.component';
-// import { CoreModuleLogMemoAddComponent } from '../add/add.component';
 
 @Component({
   selector: 'app-coremodulelog-memo-list',
@@ -91,8 +90,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
 
 
   tabledisplayedColumns: string[] = [
-    'Id',
-    'LinkSiteId',
+    'RecordStatus',
     'ModuleName',
     'ModuleEntityName',
     'ModuleEntityId',
@@ -134,8 +132,8 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        if (ret.isSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) { 
+                   this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;

@@ -71,7 +71,7 @@ export class BiographyContentDeleteComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResultContent = ret;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.formInfo.formErrorStatus = true;
             this.cmsToastrService.typeErrorGetOne();
@@ -81,7 +81,7 @@ export class BiographyContentDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
@@ -104,7 +104,7 @@ export class BiographyContentDeleteComponent implements OnInit {
         next: (ret) => {
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           if (!ret.isSuccess) {
-            this.formInfo.formAlert = 'برروز خطا';
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
@@ -116,7 +116,7 @@ export class BiographyContentDeleteComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;

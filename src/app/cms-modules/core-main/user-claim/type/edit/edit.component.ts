@@ -79,7 +79,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle = 'ویرایش  ';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -121,7 +121,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -164,7 +164,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -192,7 +192,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -247,7 +247,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -267,10 +267,10 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
     this.coreUserClaimGroupDetailService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_from_this_group_Was_Successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

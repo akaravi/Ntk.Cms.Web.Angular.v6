@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -20,7 +22,7 @@ export class CmsMemoComponent implements OnInit {
     public http: HttpClient,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
-    public contentService: CoreModuleLogMemoService,
+    public coreModuleLogMemoService: CoreModuleLogMemoService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
@@ -29,61 +31,66 @@ export class CmsMemoComponent implements OnInit {
       this.requestModuleName = data.ModuleName;
       this.requestModuleEntityName = data.ModuleEntityName;
       this.requestModuleEntityId = data.ModuleEntityId;
-      this.requestTitle = data.title
+      this.requestTitle = data.title;
     }
-    else
-    {
+    else {
       this.dialogRef.close({ dialogChangedDate: true });
     }
-    if(!this.requestModuleEntityId|| !this.requestModuleEntityName ||!this.requestModuleName)
-    this.dialogRef.close({ dialogChangedDate: true });
+    if (!this.requestModuleEntityId || !this.requestModuleEntityName || !this.requestModuleName)
+      this.dialogRef.close({ dialogChangedDate: true });
 
   }
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+  showAdd: boolean = true;
   loading = new ProgressSpinnerModel();
   requestModuleName: string;
   requestModuleEntityName: string;
   requestModuleEntityId: string;
   requestTitle: string;
   dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
+  dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
+  
 
   ngOnInit(): void {
     this.DataGetAll();
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  formInfo: FormInfoModel = new FormInfoModel();
   DataGetAll(): void {
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
     /*filter CLone*/
-   var  filterModel = new FilterModel();
-     /*filter Sort*/
-     filterModel.sortColumn = 'CreatedDate';
-     filterModel.sortType = EnumSortType.Descending;
-     const filter1 = new FilterDataModel(); 
-     filter1.propertyName = 'ModuleName';
-     filter1.value = this.requestModuleName;
-     filterModel.filters.push(filter1);
+    var filterModel = new FilterModel();
+    /*filter Sort*/
+    filterModel.sortColumn = 'CreatedDate';
+    filterModel.sortType = EnumSortType.Descending;
 
-     const filter2 = new FilterDataModel(); 
-     filter2.propertyName = 'ModuleEntityName';
-     filter2.value = this.requestModuleEntityName;
-     filterModel.filters.push(filter2);
+    const filter1 = new FilterDataModel();
+    filter1.propertyName = 'ModuleName';
+    filter1.value = this.requestModuleName;
+    filterModel.filters.push(filter1);
 
-     const filter3 = new FilterDataModel(); 
-     filter3.propertyName = 'ModuleEntityId';
-     filter3.value = this.requestModuleEntityId;
-     filterModel.filters.push(filter3);
+    const filter2 = new FilterDataModel();
+    filter2.propertyName = 'ModuleEntityName';
+    filter2.value = this.requestModuleEntityName;
+    filterModel.filters.push(filter2);
 
-     filterModel.accessLoad=true;
+    const filter3 = new FilterDataModel();
+    filter3.propertyName = 'ModuleEntityId';
+    filter3.value = this.requestModuleEntityId;
+    filterModel.filters.push(filter3);
+
+    filterModel.accessLoad = true;
     /*filter CLone*/
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+    console.log(filterModel);
+    
+    this.coreModuleLogMemoService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
-          this.dataModelResult = ret;
+          this.dataModel = ret.item;
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -97,53 +104,52 @@ export class CmsMemoComponent implements OnInit {
       }
     }
     );
+    console.log(this.dataModelResult);
   }
 
-  onActionbuttonNewRow(): void {
+  DataAddContent(): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
 
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessAddRow
-    ) {
-      this.cmsToastrService.typeErrorAccessAdd();
+    this.coreModuleLogMemoService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
+        this.formInfo.formSubmitAllow = true;
+        this.dataModelResult = ret;
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.cmsToastrService.typeSuccessAdd();
+          this.dialogRef.close({ dialogChangedDate: true });
+
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      error: (er) => {
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+
+
+  onFormSubmit(): void {
+    if (!this.formGroup.valid) {
       return;
     }
-   
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+    this.formInfo.formSubmitAllow = false;
+    this.DataAddContent();
   }
 
-  // onActionSendUrlToQDoc(): void {
-  //   this.QDocModel.message = this.optionUrlViewContent;
-  //   if (!this.QDocModel.username && this.QDocModel.username.length <= 0) {
-  //     const message = 'کد شناسه را از وبسایت https://Qdoc.ir دریافت نمایید';
-  //     this.cmsToastrService.typeWarningSelected(message);
-  //     return;
-  //   }
-  //   this.http.post(environment.cmsServerConfig.configQDocServerPath, this.QDocModel, {
-  //     headers: {},
-  //   })
-  //     .pipe(
-  //       map((ret: any) => {
-  //         this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_order_was_sent_to_the_website'));
-  //       })
-  //       // 
-  //       //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');
-  //       // 
-  //     ).toPromise();
-  // }
-  // onActionCopied(): void {
-  //   this.cmsToastrService.typeSuccessCopedToClipboard();
-  // }
-  // onActionOpenLink():void{
-  //   const url = this.router.serializeUrl(
-  //     this.router.createUrlTree([this.optionUrlViewContent])
-  //   );
-  //   window.open(this.optionUrlViewContent, '_blank');
-  // }
+  onActionAdd() {
+    this.showAdd = !this.showAdd
+  }
+
 }

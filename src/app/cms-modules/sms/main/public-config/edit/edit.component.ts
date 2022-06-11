@@ -68,7 +68,7 @@ export class SmsMainApiPathPublicConfigEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId.length > 0) {
-      this.formInfo.formTitle = 'ویرایش  ';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -102,7 +102,7 @@ export class SmsMainApiPathPublicConfigEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -133,7 +133,7 @@ export class SmsMainApiPathPublicConfigEditComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

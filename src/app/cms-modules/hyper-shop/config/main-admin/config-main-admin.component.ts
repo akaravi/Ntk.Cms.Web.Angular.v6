@@ -157,7 +157,7 @@ export class HyperShopConfigMainAdminComponent implements OnInit, OnDestroy {
   }
   SetServiceSiteConfigDefaultSave(): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
 
 
@@ -213,7 +213,7 @@ export class HyperShopConfigMainAdminComponent implements OnInit, OnDestroy {
   }
   SetServiceSiteAccessDefaultSave(): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteAccessDefaultSave';
@@ -267,7 +267,7 @@ export class HyperShopConfigMainAdminComponent implements OnInit, OnDestroy {
   }
   SetServiceAdminMainSave(): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceAdminMain';

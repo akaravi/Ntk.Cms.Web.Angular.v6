@@ -61,7 +61,7 @@ export class EstatePropertyAdsEditComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'ویرایش  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -91,7 +91,7 @@ export class EstatePropertyAdsEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -118,7 +118,7 @@ export class EstatePropertyAdsEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -136,7 +136,7 @@ export class EstatePropertyAdsEditComponent implements OnInit {
   }
   onActionSelectorSelectLinkPropertyId(model: EstatePropertyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = 'شناسه ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Property_ID_is_unknown');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -144,7 +144,7 @@ export class EstatePropertyAdsEditComponent implements OnInit {
   }
   onActionSelectorSelectLinkAdsTypeId(model: EstatePropertyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = 'شناسه نوع تبلیغ مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Advertisement_ID_is_unknown');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

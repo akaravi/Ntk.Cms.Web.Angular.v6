@@ -102,7 +102,7 @@ export class CmsSiteCreditViewComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.linkSiteId;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }
@@ -134,7 +134,7 @@ export class CmsSiteCreditViewComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.title;
           this.formInfo.formAlert = '';
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }

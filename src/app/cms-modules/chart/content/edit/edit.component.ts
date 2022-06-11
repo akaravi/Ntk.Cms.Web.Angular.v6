@@ -586,7 +586,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -616,7 +616,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

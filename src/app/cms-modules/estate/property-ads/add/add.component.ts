@@ -66,7 +66,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formInfo.formTitle = 'اضافه کردن  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
 
@@ -106,7 +106,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -124,7 +124,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
   }
   onActionSelectorSelectLinkPropertyId(model: EstatePropertyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = 'شناسه ملک مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Property_ID_is_unknown');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -132,7 +132,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
   }
   onActionSelectorSelectLinkAdsTypeId(model: EstatePropertyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = 'شناسه نوع تبلیغ مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Advertisement_ID_is_unknown');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

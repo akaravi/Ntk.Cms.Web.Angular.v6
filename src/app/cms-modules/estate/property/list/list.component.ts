@@ -569,25 +569,27 @@ export class EstatePropertyListComponent
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
-  
-            //open popup
-            const dialogRef = this.dialog.open(CmsMemoComponent, {
-              // height: "90%",
-              data: {
-        
-                ModuleName : this.dataModelResult.access.moduleName,
-                ModuleEntityName : this.dataModelResult.access.moduleEntityName,
-                ModuleEntityId :model.id,
-                Title :model.title
-              },
-            });
-            dialogRef.afterClosed().subscribe((result) => {
-              if (result && result.dialogChangedDate) {
-                this.DataGetAll();
-              }
-            });
-            //open popup
-         
+
+    //open popup
+    const dialogRef = this.dialog.open(CmsMemoComponent, {
+      height: "90%",
+      width: "70%",
+      data: {
+        ModuleName: this.dataModelResult.access.moduleName,
+        ModuleEntityName: this.dataModelResult.access.moduleEntityName,
+        ModuleEntityId: model.id,
+        Title: model.title
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+    //open popup
+    this.loading.Stop(pName);
+
 
   }
 
@@ -642,7 +644,7 @@ export class EstatePropertyListComponent
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertyModel): void {
-    row["expanded"] =false;
+    row["expanded"] = false;
   }
   onActionBackToParent(): void {
     this.router.navigate(["/ticketing/departemen/"]);

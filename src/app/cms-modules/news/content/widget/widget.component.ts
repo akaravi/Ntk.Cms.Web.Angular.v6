@@ -30,7 +30,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'اخبار های ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_News');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/news/content';
     this.onActionStatist();

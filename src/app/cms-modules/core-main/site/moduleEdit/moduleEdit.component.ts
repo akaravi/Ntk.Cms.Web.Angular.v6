@@ -123,7 +123,7 @@ export class CoreSiteModuleEditComponent implements OnInit {
             this.cmsToastrService.typeError('ماژول جهت ویرایش یافت نشد');
           }
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -153,7 +153,7 @@ export class CoreSiteModuleEditComponent implements OnInit {
           this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

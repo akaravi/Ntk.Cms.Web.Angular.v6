@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.FieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -22,10 +22,6 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
-    <!-- LinkCmsSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSelectorSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="'سایت'"></app-cms-site-selector>
 
     <!-- ModuleName Field -->
     <mat-form-field class="ntk-full-width">

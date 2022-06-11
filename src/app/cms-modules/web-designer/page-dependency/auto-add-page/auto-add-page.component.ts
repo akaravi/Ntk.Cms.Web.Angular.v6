@@ -75,7 +75,7 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = next.errorMessage;
           this.cmsToastrService.typeErrorMessage(next.errorMessage);
         }

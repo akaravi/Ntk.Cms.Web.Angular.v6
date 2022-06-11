@@ -128,7 +128,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.router.navigate(['/estate/property']);
       return;
     }
-    this.formInfo.formTitle = 'ویرایش  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     this.DataGetOne();
     this.getEnumRecordStatus();
     this.getEstateContractType();
@@ -207,7 +207,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
             });
           }
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -287,7 +287,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }

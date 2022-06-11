@@ -161,7 +161,7 @@ export class EstateConfigSiteComponent implements OnInit {
   }
   SetServiceSiteStorageSave(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteStorageSave';
@@ -216,7 +216,7 @@ export class EstateConfigSiteComponent implements OnInit {
   }
   SetServiceSiteConfigSave(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigSave';
     this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
@@ -271,13 +271,13 @@ export class EstateConfigSiteComponent implements OnInit {
   }
   SetServiceSiteAccessSave(SiteId: number): void {
     this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = 'در حال ذخیره اطلاعات در سرور';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
 
 
 
     const pName = this.constructor.name + 'ServiceSiteAccessSave';
-    this.loading.Start(pName, 'ذخیره دسترسی های ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_module_access'));
 
     this.configService
       .ServiceSiteAccessSave(SiteId, this.dataConfigSiteAccessValuesModel)
