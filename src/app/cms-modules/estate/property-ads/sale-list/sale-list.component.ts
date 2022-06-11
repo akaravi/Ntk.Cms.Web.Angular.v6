@@ -152,7 +152,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     );
   }
 
-  onActionbuttonBuy(model: EstateAdsTypeModel): void {
+  onActionButtonBuy(model: EstateAdsTypeModel): void {
     this.tableRowSelected = model;
 
     const dialogRef = this.dialog.open(EstatePropertyAdsSalePaymentComponent, {
