@@ -26,6 +26,39 @@ ncu -u
 npm install --force
 ng serve --open
 
+
+==last log
+[==========] 61/61 100%
+
+ @angular/animations                 ~13.2.1  →   ~14.0.1     
+ @angular/cdk                        ^13.2.1  →   ^14.0.1
+ @angular/common                     ~13.2.1  →   ~14.0.1
+ @angular/core                       ~13.2.1  →   ~14.0.1
+ @angular/forms                      ~13.2.1  →   ~14.0.1
+ @angular/localize                   ~13.2.1  →   ~14.0.1
+ @angular/material                   ^13.2.1  →   ^14.0.1
+ @angular/material-moment-adapter    ^13.2.1  →   ^14.0.1
+ @angular/platform-browser           ~13.2.1  →   ~14.0.1
+ @angular/platform-browser-dynamic   ~13.2.1  →   ~14.0.1
+ @angular/router                     ~13.2.1  →   ~14.0.1
+ @angular/service-worker             ~13.2.1  →   ~14.0.1
+ @asymmetrik/ngx-leaflet              ^8.1.0  →   ^13.0.2
+ @fortawesome/fontawesome-free       ^5.15.4  →    ^6.1.1
+ @ng-bootstrap/ng-bootstrap          ^11.0.0  →   ^12.1.2
+ apexcharts                          ^3.33.0  →   ^3.35.3
+ leaflet                              ^1.7.1  →    ^1.8.0
+ moment                              ^2.29.1  →   ^2.29.3
+ ng-apexcharts                        ^1.7.0  →    ^1.7.1
+ ng-inline-svg-2                     ^14.0.1  →   ^14.0.2
+ ngx-awesome-uploader                ^13.0.0  →   ^13.0.1
+ ngx-color-picker                    ^11.0.0  →   ^12.0.1
+ ngx-icon-picker                      ^1.8.0  →    ^1.9.1
+ ngx-toastr                          ^14.2.1  →   ^14.3.0
+ rxjs                                 ^7.5.2  →    ^7.5.5
+ karma-jasmine-html-reporter          ~1.7.0  →    ~2.0.0
+ ng-packagr                          ^13.2.1  →   ^14.0.2
+ typescript                           ^4.5.5  →    ^4.7.3
+==last log
 =========================================Update all npm
 
 ============================ this only ok
