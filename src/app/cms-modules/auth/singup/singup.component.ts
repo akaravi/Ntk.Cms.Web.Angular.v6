@@ -77,7 +77,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       return;
     }
     if (!this.dataModel.captchaText || this.dataModel.captchaText.length === 0) {
-      this.formInfo.formError = 'محتوای عکس امنیتی را وارد کنید';
+      this.formInfo.formError = this.translate.instant('MESSAGE.Receiving_information');
       this.formInfo.formErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
@@ -182,7 +182,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     }
     this.dataModel.captchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_security_photo_content'));
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
         this.captchaModel = next.item;

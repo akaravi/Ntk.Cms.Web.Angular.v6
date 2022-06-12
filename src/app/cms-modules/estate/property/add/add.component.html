@@ -48,7 +48,7 @@
         <br>
         <br>
       <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
-        محتوای تکمیلی
+        {{'TITLE.Completed_Content' | translate}}
       </mat-slide-toggle>
         <br>
         <!-- RecordStatus Field -->
@@ -282,8 +282,8 @@
 
       <mat-step label="{{'TITLE.Details' | translate}}" state="seo"
         *ngIf="dataProfessional &&  dataModel.propertyDetailGroups && dataModel.propertyDetailGroups.length>0">
-        <p>جزئیات ملک نسبت به نوع ملک</p>
-
+        <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
+        
 
         <mat-accordion class="example-headers-align">
           <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
@@ -362,7 +362,8 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Transaction' | translate}}" state="seo">
-        <p>نوع معامله این ملک را مشخص کنید</p>
+        <p>{{'TITLE.Specify_the_type_of_transaction_for_this_property' | translate}}</p>
+
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionTypeView]="2"
           [optionDisabled]="false" [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')"
           [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
@@ -419,7 +420,7 @@
                 *ngIf="contractTypeSelected.hasRentPrice && contractTypeSelected.rentPriceAllowAgreement"
                 [(ngModel)]="contractDataModel.rentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()"
                 name="contractDataModel.rentPriceByAgreement">
-                توافق در اجاره
+                {{'TITLE.Lease_Agreement' | translate}}
               </mat-slide-toggle>
             </div>
           </div>
@@ -445,7 +446,7 @@
                 *ngIf="contractTypeSelected.hasDepositPrice && contractTypeSelected.depositPriceAllowAgreement"
                 [(ngModel)]="contractDataModel.depositPriceByAgreement"
                 (change)="onActionClickDepositPriceByAgreement()" name="contractDataModel.depositPriceByAgreement">
-                توافق در رهن
+                {{'TITLE.Mortage_Agreement' | translate}}
               </mat-slide-toggle>
             </div>
           </div>
@@ -551,7 +552,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-        <p>فایل های پیوست محتوا.</p>
+        <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <div class="mb-3" *ngIf="dataProfessional">
           <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
             aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
@@ -559,7 +560,7 @@
         <div class="mb-9" *ngIf="dataProfessional">
           <mat-form-field class="ntk-full-width">
 
-            <mat-label (click)="fileManagerOpenForm = true">عکس اصلی</mat-label>
+            <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
             <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
               type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
@@ -573,13 +574,13 @@
             [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <hr>
-        <p>لیست عکس های پیوست</p>
+        <p>{{'TITLE.List_of_attached_photos' | translate}}</p>
         <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [optionFileType]="selectFileTypeMainImage"
           [openDirectUploadView]="true">
         </app-cms-files-selector>
         <hr>
         <div *ngIf="dataProfessional  && !hidden">
-          <p>لیست فایل های پیوست</p>
+          <p>{{'TITLE.List_of_attached_files' | translate}}</p>
           <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
           </app-cms-files-selector>
           <br>

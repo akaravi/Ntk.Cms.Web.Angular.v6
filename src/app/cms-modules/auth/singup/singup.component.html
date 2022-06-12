@@ -104,7 +104,7 @@
             RePassword is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
           <mat-error *ngIf=" RePassword.value!=Password.value">
-            پسورد و تاییدیه پسورد با هم مغایرت دارد
+            {{'MESSAGE.Password_and_password_confirmation_are_different' | translate}}
           </mat-error>
         </mat-form-field>
         <!--captchaText Field-->

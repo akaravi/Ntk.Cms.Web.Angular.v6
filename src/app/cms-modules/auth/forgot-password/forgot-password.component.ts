@@ -58,7 +58,7 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordEntryPinCode.email = '';
     this.dataModelforgetPasswordEntryPinCode.mobile = this.dataModelforgetPasswordBySms.mobile;
     const pName = this.constructor.name + '.ServiceForgetPassword';
-    this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
+    this.loading.Start(pName, this.translate.instant('AUTH.FORGOT.REQUEST_PASSWORD_REMINDER'));
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordBySms)
       .subscribe({
@@ -152,7 +152,7 @@ export class AuthForgotPasswordComponent implements OnInit {
     }
     this.dataModelforgetPasswordBySms.captchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_security_photo_content'));
     this.coreAuthService.ServiceCaptcha().subscribe({
       next: (ret) => {
         this.captchaModel = ret.item;
