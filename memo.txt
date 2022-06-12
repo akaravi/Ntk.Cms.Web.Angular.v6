@@ -1,6 +1,6 @@
 npm install --save --legacy-peer-deps
 npm i --legacy-peer-deps
-npm config set legacy-peer-deps true
+
 ========================*
 
 git init
