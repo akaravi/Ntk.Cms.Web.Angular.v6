@@ -37,7 +37,7 @@ export class AuthComponent implements OnInit {
   }
   GetServiceVer(): void {
     const pName = this.constructor.name + 'ServiceIp';
-    this.loading.Start(pName, 'دریافت اطلاعات سرور');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_Information_From_The_Server'));
     this.configService.ServiceIp().subscribe({
       next: (ret) => {
           this.publicHelper.appServerVersion = ret.appVersion

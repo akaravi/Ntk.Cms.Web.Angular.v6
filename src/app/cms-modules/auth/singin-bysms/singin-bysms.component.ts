@@ -60,7 +60,7 @@ export class AuthSingInBySmsComponent implements OnInit {
   onActionSubmitOrderCodeBySms(): void {
     if (this.forgetState == 'entrycode') {
       if (!this.dataModelAuthUserSignInBySms.captchaText || this.dataModelAuthUserSignInBySms.captchaText.length == 0) {
-        this.cmsToastrService.typeErrorMessage("محتوای عکس امنیتی را وارد کنید");
+        this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Receiving_information'));
         return;
       }
     }
@@ -173,7 +173,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     }
     this.dataModelAuthUserSignInBySms.captchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_security_photo_content'));
     this.coreAuthService.ServiceCaptcha().subscribe({
       next: (ret) => {
         this.captchaModel = ret.item;

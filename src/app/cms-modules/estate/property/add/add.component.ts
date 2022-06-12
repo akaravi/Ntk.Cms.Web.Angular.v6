@@ -367,7 +367,7 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = 'منطقه اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
       this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.linkLocationId = null;
       return;

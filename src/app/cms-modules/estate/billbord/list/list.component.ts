@@ -386,7 +386,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
     }
 
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات بیلبورد ها");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_billboards_information'));
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({

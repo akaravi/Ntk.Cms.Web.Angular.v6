@@ -87,13 +87,13 @@
       <mat-slide-toggle [(ngModel)]="dataModel.paymentForMainSite" name="dataModel.paymentForMainSite">
         {{fieldsInfo['PaymentForMainSite']?.fieldTitle}}
       </mat-slide-toggle>
-      با فعال شدن این تنظیم در آمد این تبلیغ به حساب وب سایت مرجع واریز می شود
+      {{'MESSAGE.By_activating_this_setting_the_income_of_this_ad_will_be_deposited_in_the_account_of_the_reference_website' | translate}}
     </div>
     <!-- LinkMainImageId Field -->
     <mat-form-field class="ntk-full-width">
       <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
         src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
-      <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
+      <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.PHOTO_FILE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
         type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
       <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"

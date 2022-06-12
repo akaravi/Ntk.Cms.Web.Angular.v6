@@ -277,7 +277,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       }
     }
     const pName = this.constructor.name + 'ServiceEdit';
-    this.loading.Start(pName, 'ثبت تغیرات اطلاعات ملک');
+    this.loading.Start(pName, this.translate.instant('registration_chaneges_in_property_information'));
 
     this.estatePropertyService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {

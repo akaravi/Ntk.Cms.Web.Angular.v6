@@ -16,8 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-property-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss']
+  templateUrl: './autocomplete.component.html'
 })
 export class EstatePropertyCompleteComponent implements OnInit {
   constructor(

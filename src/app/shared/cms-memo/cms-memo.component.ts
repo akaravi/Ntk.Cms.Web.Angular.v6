@@ -84,9 +84,8 @@ export class CmsMemoComponent implements OnInit {
 
     filterModel.accessLoad = true;
     /*filter CLone*/
-    console.log(filterModel);
     
-    this.coreModuleLogMemoService.ServiceGetAllEditor(filterModel).subscribe({
+    this.coreModuleLogMemoService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -94,8 +93,7 @@ export class CmsMemoComponent implements OnInit {
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-        this.loading.Stop(pName);
-
+        this.loading.Stop(pName);           
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
@@ -104,7 +102,6 @@ export class CmsMemoComponent implements OnInit {
       }
     }
     );
-    console.log(this.dataModelResult);
   }
 
   DataAddContent(): void {

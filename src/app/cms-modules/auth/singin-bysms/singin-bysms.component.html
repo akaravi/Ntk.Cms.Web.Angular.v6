@@ -127,7 +127,7 @@
         <button type="button" id="kt_login_forgot_submit" (click)="onActionSubmitOrderCodeBySms()"
           [disabled]="buttonnResendSmsDisable" class="btn btn-primary font-weight-bolder font-size-h5  col-12"
           style="margin: 1px;">
-          ارسال مجدد پیامک {{prorocess.message}}
+          {{'AUTH.LOGIN.RESEND_SMS' | translate}} {{prorocess.message}}
         </button>
         <progress *ngIf="prorocess?.progressBarValue>0 && buttonnResendSmsDisable" [value]="prorocess.progressBarValue"
           max="{{prorocess.progressBarMaxValue}}" style="width: inherit;"></progress>

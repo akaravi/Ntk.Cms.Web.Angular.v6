@@ -94,7 +94,7 @@ export class AuthSingInComponent implements OnInit {
     }
     this.dataModel.captchaText = '';
     const pName = this.constructor.name + '.ServiceCaptcha';
-    this.loading.Start(pName, 'دریافت محتوای عکس امنیتی');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_security_photo_content'));
     this.coreAuthService.ServiceCaptcha().subscribe({
       next: (ret) => {
         this.captchaModel = ret.item;

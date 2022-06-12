@@ -26,25 +26,30 @@
     </div>
 </div> -->
 <!-- ==================================================  -->
-<div [hidden]="!showAdd">
-    <div>
-        <div class="col-md-4 col-sm-4 col-xs-6 float">Title : {{ requestTitle }}</div>
-        <div class="col-md-8 col-sm-8 col-xs-12 float">CreatDate : {{ dataModel.createdDate }}</div>
+
+<div [hidden]="!showAdd" class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-xs-12 float"><strong> {{fieldsInfo['CreatedBy']?.fieldTitle}} : 
+            {{ dataModel.createdDate }} aa</strong>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-6 float"><strong> Title : {{ requestTitle }} aa</strong></div>
     </div>
     <br>
-    <div>
-        <div class="col-md-4 col-sm-4 col-xs-6 float">subjet title: {{ dataModel.subjectTitle }}</div>
-        <div class="col-md-8 col-sm-8 col-xs-12 float">subject body:  {{ dataModel.subjectBody }}</div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectTitle']?.fieldTitle}} : {{
+            dataModel.subjectTitle }} aa
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectBody']?.fieldTitle}} : {{
+            dataModel.subjectBody }} aa</div>
     </div>
-
-
 
 </div>
 
 
 <!-- ============================================ -->
-
-<button  class="btn  btn-success float" (click)="onActionAdd()">{{'ACTION.ADD' |translate}}</button>
+<br>
+<br>
+<button class="btn  btn-success float" (click)="onActionAdd()">{{'ACTION.ADD' |translate}}</button>
 
 <!-- add memo -->
 

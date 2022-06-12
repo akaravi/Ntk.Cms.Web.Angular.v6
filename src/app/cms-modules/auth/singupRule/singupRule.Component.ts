@@ -22,7 +22,7 @@ export class SingupRuleComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<string> = new ErrorExceptionResult<string>();
   ngOnInit(): void {
     const pName = this.constructor.name + 'ServiceUserMembershipRule';
-    this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_the_module_default_access'));
     this.coreConfigurationService
       .ServiceUserMembershipRule()
       .subscribe({
