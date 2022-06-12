@@ -30,6 +30,7 @@ jobs:
 
     - name: Install all dependencies
       run: npm config set legacy-peer-deps true
+    - name: Install all dependencies
       run: npm ci -force
 
     - name: Build
