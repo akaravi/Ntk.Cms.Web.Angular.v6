@@ -26,7 +26,7 @@
           index as i
         " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong>
           </mat-hint>
@@ -46,7 +46,7 @@
           <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.username = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Username']?.FieldDescription}}</strong>
           </mat-hint>
@@ -66,7 +66,7 @@
           <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.email = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong>
           </mat-hint>
@@ -93,7 +93,7 @@
           <mat-icon matSuffix *ngIf="dataModel.mobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.mobile = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Mobile']?.FieldDescription}}</strong>
           </mat-hint>
@@ -118,7 +118,7 @@
             placeholder="{{fieldsInfo['ExpireDate']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['ExpireDate']?.FieldDescription}}</strong>
           </mat-hint>
@@ -158,7 +158,7 @@
           <mat-icon matSuffix *ngIf="dataModel.name" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.name = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Name']?.FieldDescription}}</strong>
           </mat-hint>
@@ -178,7 +178,7 @@
           <mat-icon matSuffix *ngIf="dataModel.lastName" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['LastName']?.FieldDescription}}</strong>
           </mat-hint>
@@ -196,7 +196,7 @@
             placeholder="{{fieldsInfo['BirthDay']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.birthDay && fieldsInfo['BirthDay']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.birthDay = null">close</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['BirthDay']?.FieldDescription}}</strong>
           </mat-hint>
@@ -212,7 +212,7 @@
           <mat-icon matSuffix *ngIf="dataModel.companyName" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.companyName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['CompanyName']?.FieldDescription}}</strong>
           </mat-hint>
@@ -231,7 +231,7 @@
           <mat-icon matSuffix *ngIf="dataModel.tell" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.tell = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Tell']?.FieldDescription}}</strong>
           </mat-hint>
@@ -249,7 +249,7 @@
           <mat-icon matSuffix *ngIf="dataModel.postalCode" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.postalCode = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['PostalCode']?.FieldDescription}}</strong>
           </mat-hint>
@@ -267,7 +267,7 @@
           <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.address = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
           </mat-hint>

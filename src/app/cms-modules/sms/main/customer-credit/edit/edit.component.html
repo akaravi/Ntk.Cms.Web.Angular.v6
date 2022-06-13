@@ -17,7 +17,7 @@
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -33,7 +33,7 @@
       <mat-icon matSuffix *ngIf="dataModel.number && fieldsInfo['Number']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.number = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['Number']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint align="start">{{ Number.value.length }} / 100</mat-hint>
+      <mat-hint  style="text-align: right;">{{ Number.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- Description Field -->
@@ -44,7 +44,7 @@
       <mat-icon matSuffix *ngIf="dataModel.description && fieldsInfo['Description']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['Description']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint align="start">{{ Description.value.length }} / 100</mat-hint>
+      <mat-hint  style="text-align: right;">{{ Description.value.length }} / 100</mat-hint>
     </mat-form-field>
     
     <!-- Debtor Field -->
@@ -131,7 +131,7 @@
       <mat-icon matSuffix *ngIf="dataModel.cardNumber && fieldsInfo['CardNumber']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.cardNumber = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['CardNumber']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint align="start">{{ CardNumber.value.length }} / 100</mat-hint>
+      <mat-hint  style="text-align: right;">{{ CardNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- AccountNumber Field -->
@@ -142,7 +142,7 @@
       <mat-icon matSuffix *ngIf="dataModel.accountNumber && fieldsInfo['AccountNumber']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.accountNumber = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['AccountNumber']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint align="start">{{ AccountNumber.value.length }} / 100</mat-hint>
+      <mat-hint  style="text-align: right;">{{ AccountNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

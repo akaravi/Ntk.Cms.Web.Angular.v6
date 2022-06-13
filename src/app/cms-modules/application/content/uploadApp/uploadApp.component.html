@@ -29,8 +29,8 @@
         <mat-icon matSuffix *ngIf="dataModel.lastBuildAppKey && fieldsInfo['LastBuildAppKey']?.accessEditField"
           matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.lastBuildAppKey = ''">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['LastBuildAppKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
-        <mat-hint style="text-align: right;">{{ 'Application.source.LastBuildAppKey_hint' | translate }}</mat-hint>
-        <mat-hint align="start">{{ LastBuildAppKey.value.length }} / 100</mat-hint>
+        <mat-hint style="text-align: left;">{{ 'Application.source.LastBuildAppKey_hint' | translate }}</mat-hint>
+        <mat-hint  style="text-align: right;">{{ LastBuildAppKey.value.length }} / 100</mat-hint>
         <mat-error *ngIf="LastBuildAppKey.errors?.required">
           {{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>

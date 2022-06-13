@@ -19,7 +19,7 @@
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
-        <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+        <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
         <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
@@ -35,7 +35,7 @@
         <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.writer = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+        <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['Writer']?.FieldDescription}}</strong> </mat-hint>
         <mat-hint align="end">{{ Writer.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Writer.errors?.required">
@@ -51,7 +51,7 @@
         <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.comment = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+        <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['Comment']?.FieldDescription}}</strong> </mat-hint>
         <mat-hint align="end">{{ Comment.value.length }} / 1000</mat-hint>
         <mat-error *ngIf="Comment.errors?.required">

@@ -18,7 +18,7 @@
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ title.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="title.errors?.required">
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -32,7 +32,7 @@
       <mat-icon matSuffix *ngIf="dataModel.text" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.text = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ text.value.length }} / 1000</mat-hint>
+      <mat-hint style="text-align: left;">{{ text.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="text.errors?.required">
         text is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -46,7 +46,7 @@
       <mat-icon matSuffix *ngIf="compModel.ChatIds" matSuffix mat-icon-button aria-label="Clear"
         (click)="compModel.ChatIds = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ ChatIds.value.length }} / 1000</mat-hint>
+      <mat-hint style="text-align: left;">{{ ChatIds.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="ChatIds.errors?.required">
         ChatIds is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

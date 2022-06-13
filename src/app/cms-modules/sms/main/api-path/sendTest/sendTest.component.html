@@ -20,11 +20,11 @@
         <mat-icon matSuffix *ngIf="dataModel.fromNumber" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.fromNumber = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="start">
+        <mat-hint  style="text-align: right;">
           <mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">شماره فرستنده ای که در این مسیر فعال است</strong>
         </mat-hint>
-        <mat-hint style="text-align: right;">{{ FromNumber.value.length }} / 50</mat-hint>
+        <mat-hint style="text-align: left;">{{ FromNumber.value.length }} / 50</mat-hint>
       </mat-form-field>
       <!-- ToNumber Field -->
       <mat-form-field class="ntk-full-width">
@@ -34,11 +34,11 @@
         <mat-icon matSuffix *ngIf="dataModel.toNumber" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.toNumber = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="start">
+        <mat-hint  style="text-align: right;">
           <mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">شماره گیرنده پیام را می توانید با کاما از هم جدا کنید</strong>
         </mat-hint>
-        <mat-hint style="text-align: right;">{{ ToNumber.value.length }} / 50</mat-hint>
+        <mat-hint style="text-align: left;">{{ ToNumber.value.length }} / 50</mat-hint>
       </mat-form-field>
       <!-- Message Field -->
       <mat-form-field class="ntk-full-width">
@@ -48,7 +48,7 @@
         <mat-icon matSuffix *ngIf="dataModel.message" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.message = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint style="text-align: right;">{{ Message.value.length }} / 500</mat-hint>
+        <mat-hint style="text-align: left;">{{ Message.value.length }} / 500</mat-hint>
         <mat-error *ngIf="Message.errors?.required">
           متن پیام <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>

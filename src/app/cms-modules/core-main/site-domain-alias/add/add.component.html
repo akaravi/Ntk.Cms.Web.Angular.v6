@@ -55,11 +55,11 @@
           <mat-icon matSuffix *ngIf="dataModel.configNeshanMapApiKey && fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.configNeshanMapApiKey = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
+          <mat-hint  style="text-align: right;">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['ConfigNeshanMapApiKey']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
+          <mat-hint  style="text-align: right;">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
         </mat-form-field>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
      </div>

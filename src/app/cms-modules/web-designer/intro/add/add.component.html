@@ -20,9 +20,9 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+          <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint style="text-align: right;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+          <mat-hint style="text-align: left;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -36,9 +36,9 @@
           <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+          <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -51,9 +51,9 @@
           <mat-icon matSuffix *ngIf="dataModel.linkPageId && fieldsInfo['LinkPageId']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.linkPageId = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['LinkPageId']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+          <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['LinkPageId']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint style="text-align: right;">{{ LinkPageId.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ LinkPageId.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- Priority Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.accessWatchField">
@@ -66,7 +66,7 @@
           <mat-error *ngIf="Priority.errors?.required">
             {{ fieldsInfo['Priority']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+          <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Priority']?.FieldDescription}}</strong> </mat-hint>
         </mat-form-field>
         <!-- Description Field -->
@@ -79,9 +79,9 @@
           <mat-icon matSuffix *ngIf="dataModel.description && fieldsInfo['Description']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Description']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
+          <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong> </mat-hint>
-          <mat-hint style="text-align: right;">{{ Description.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Description.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             {{ fieldsInfo['Description']?.FieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

@@ -17,7 +17,7 @@
             index as i
           " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: right;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+      <mat-hint style="text-align: left;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -32,7 +32,7 @@
       <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
         aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
         {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -46,7 +46,7 @@
       <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleResourceLanguage.errors?.required">
         TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -64,7 +64,7 @@
       <mat-icon matSuffix *ngIf="dataModel.typeId && fieldsInfo['TypeId']?.accessEditField" matSuffix mat-icon-button
         aria-label="Clear" (click)="dataModel.typeId = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['TypeId']?.accessEditField" matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ TypeId.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ TypeId.value.length }} / 100</mat-hint>
 
     </mat-form-field>
     <!-- ThemeConfigBuilderJsonValues Field -->
@@ -79,7 +79,7 @@
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigBuilderJsonValues = ''">close
       </mat-icon>
       <mat-icon *ngIf="fieldsInfo['ThemeConfigBuilderJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ ThemeConfigBuilderJsonValues.value.length }} / 100000</mat-hint>
+      <mat-hint style="text-align: left;">{{ ThemeConfigBuilderJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- ThemeConfigRuntimeJsonValues Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigRuntimeJsonValues']?.accessWatchField">
@@ -93,7 +93,7 @@
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigRuntimeJsonValues = ''">close
       </mat-icon>
       <mat-icon *ngIf="fieldsInfo['ThemeConfigRuntimeJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ ThemeConfigRuntimeJsonValues.value.length }} / 100000</mat-hint>
+      <mat-hint style="text-align: left;">{{ ThemeConfigRuntimeJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- ThemeConfigLayoutJsonValues Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigLayoutJsonValues']?.accessWatchField">
@@ -107,7 +107,7 @@
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigLayoutJsonValues = ''">close
       </mat-icon>
       <mat-icon *ngIf="fieldsInfo['ThemeConfigLayoutJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ ThemeConfigLayoutJsonValues.value.length }} / 100000</mat-hint>
+      <mat-hint style="text-align: left;">{{ ThemeConfigLayoutJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- ThemeConfigJsonValues Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ThemeConfigJsonValues']?.accessWatchField">
@@ -119,7 +119,7 @@
       <mat-icon matSuffix *ngIf="dataModel.themeConfigJsonValues && fieldsInfo['ThemeConfigJsonValues']?.accessAddField"
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.themeConfigJsonValues = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['ThemeConfigJsonValues']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ ThemeConfigJsonValues.value.length }} / 100000</mat-hint>
+      <mat-hint style="text-align: left;">{{ ThemeConfigJsonValues.value.length }} / 100000</mat-hint>
     </mat-form-field>
     <!-- LinkMainImageId Field -->
     <div class="mb-3">

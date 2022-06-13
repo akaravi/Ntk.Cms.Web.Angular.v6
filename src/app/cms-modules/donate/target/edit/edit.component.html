@@ -17,7 +17,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -34,7 +34,7 @@
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -48,7 +48,7 @@
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ Description.value.length }} / 1000</mat-hint>
+      <mat-hint style="text-align: left;">{{ Description.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -69,7 +69,7 @@
       <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.toWebAddress = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ ToWebAddress.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ ToWebAddress.value.length }} / 100</mat-hint>
 
     </mat-form-field>
     <!-- HashMd5 Field -->
@@ -80,7 +80,7 @@
       <mat-icon matSuffix *ngIf="dataModel.hashMd5" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.hashMd5 = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ HashMd5.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ HashMd5.value.length }} / 100</mat-hint>
     </mat-form-field>
     <!-- KeyCode Field -->
     <mat-form-field class="ntk-full-width">
@@ -90,7 +90,7 @@
       <mat-icon matSuffix *ngIf="dataModel.keyCode" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.keyCode = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ KeyCode.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ KeyCode.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- CurrentClickCount Field -->

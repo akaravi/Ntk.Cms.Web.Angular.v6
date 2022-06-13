@@ -17,7 +17,7 @@
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -57,7 +57,7 @@
       <mat-icon matSuffix *ngIf="dataModel.regulatorNumber && fieldsInfo['RegulatorNumber']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.regulatorNumber = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['RegulatorNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
-      <mat-hint align="start">{{ RegulatorNumber.value.length }} / 100</mat-hint>
+      <mat-hint  style="text-align: right;">{{ RegulatorNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
 
@@ -98,7 +98,7 @@
                       index as i
                     " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: right;">انتخاب نوع پیام</mat-hint>
+      <mat-hint style="text-align: left;">انتخاب نوع پیام</mat-hint>
       <mat-error *ngIf="MessageType.errors?.required">
         MessageType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -112,7 +112,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: right;">انتخاب نوع ارسال</mat-hint>
+      <mat-hint style="text-align: left;">انتخاب نوع ارسال</mat-hint>
       <mat-error *ngIf="OutBoxType.errors?.required">
         OutBoxType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

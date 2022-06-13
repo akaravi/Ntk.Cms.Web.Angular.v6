@@ -17,7 +17,7 @@
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -34,7 +34,7 @@
       <mat-icon matSuffix *ngIf="dataModel.question" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.question = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: right;">{{ Question.value.length }} / 1000</mat-hint>
+      <mat-hint style="text-align: left;">{{ Question.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="Question.errors?.required">
         Question is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
