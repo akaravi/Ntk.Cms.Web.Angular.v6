@@ -1,6 +1,6 @@
 {
   "name": "ntk-cms-web-angular-v2",
-  "version": "1.00.000",
+  "version": "13.00.000",
   "scripts": {
     "ng": "ng",
     "serve1": "node --max_old_space_size=4048 ./node_modules/@angular/cli/bin/ng serve",

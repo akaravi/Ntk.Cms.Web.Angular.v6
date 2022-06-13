@@ -560,6 +560,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     );
   }
   onActionTagChange(ids: number[]): void {
+    debugger
     this.tagIdsData = ids;
   }
   onActionContentSimilarSelect(model: NewsContentModel | null): void {

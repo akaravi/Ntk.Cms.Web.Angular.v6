@@ -1,20 +1,24 @@
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import {
-  CoreModuleTagModel,
   CoreModuleTagService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult,
   FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Output } from '@angular/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 
-
-
+class chipModel {
+  display: string;
+  value: number;
+}
 
 @Component({
   selector: 'app-cms-tag-autocomplete',
@@ -25,22 +29,38 @@ export class CmsTagAutocompleteComponent implements OnInit {
   constructor(
     public coreModuleTagService: CoreModuleTagService,
     private cmsToastrService: CmsToastrService) {
+
+    this.filteredOptions = this.tagCtrl.valueChanges.pipe(
+      startWith(null),
+      debounceTime(400),
+      switchMap(val => {
+        return this.filter(val || '')
+      })
+    );
   }
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+  @Input() optionPlaceholder = '+ Tag';
+  @Input() optionLabel = " Select"
+  @Output() optionChange = new EventEmitter<number[]>();
   @Input() set optionSelectForce(x: number[]) {
     this.onActionSelectForce(x);
   }
-  datatagDataModelResult: ErrorExceptionResult<CoreModuleTagModel> = new ErrorExceptionResult<CoreModuleTagModel>();
-  tagDataModel = [];
-
-
-  @Input() optionPlaceholder = '+ Tag';
-  @Output() optionChange = new EventEmitter<number[]>();
-
+  tagDataModel: chipModel[] = [];
+  tagLastDataModel: chipModel[] = [];
   selectForceStatus = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  tagCtrl = new FormControl('');
+  filteredOptions: Observable<chipModel[]>;
+
+
+
+  addOnBlur = true;
   ngOnInit(): void {
   }
 
-  public requestAutocompleteItems = (text: string): Observable<any> => {
+  // filter and return the values
+  filter(text: string): Observable<chipModel[]> {
+
     const filteModel = new FilterModel();
     filteModel.rowPerPage = 20;
     filteModel.accessLoad = true;
@@ -59,12 +79,47 @@ export class CmsTagAutocompleteComponent implements OnInit {
       filteModel.filters.push(filter);
     }
     return this.coreModuleTagService.ServiceGetAll(filteModel).pipe(
-      map((data) => data.listItems.map(val => ({
-        value: val.id,
-        display: val.title
-      })))
+      map((data) => {
+        this.tagLastDataModel = data.listItems.map(val => ({ display: val.title, value: val.id }));
+        return this.tagLastDataModel;
+      })
     );
+
   }
+
+
+  add(event: MatChipInputEvent): void {
+    // Add our item
+    if (event.value) {
+
+      this.tagLastDataModel.forEach(element => {
+        if ((element.display == event.value || element.value + "" == event.value) && this.tagDataModel.indexOf(element) < 0) {
+          this.tagDataModel.push(element);
+          this.onActionChange();
+        }
+      });
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+    this.tagCtrl.setValue(null);
+  }
+
+  remove(item: chipModel): void {
+    const index = this.tagDataModel.indexOf(item);
+    if (index >= 0) {
+      this.tagDataModel.splice(index, 1);
+      this.onActionChange();
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.tagDataModel.push(event.option.value as unknown as chipModel);
+    this.tagInput.nativeElement.value = '';
+    this.tagCtrl.setValue(null);
+    this.onActionChange();
+  }
+
+
   onActionChange(): void {
     const retIds = [];
     this.tagDataModel.forEach(x => { retIds.push(x.value); });

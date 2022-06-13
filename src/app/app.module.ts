@@ -20,6 +20,8 @@ import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CmsAuthService } from './core/services/cmsAuth.service';
+import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 function appInitializer(authService: CmsAuthService) {
   return () => {
@@ -81,6 +83,12 @@ export function CreateTranslateLoader(http: HttpClient): any {
       deps: [CmsAuthService],
     },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: MAT_CHIPS_DEFAULT_OPTIONS,
+      useValue: {
+        separatorKeyCodes: [ENTER, COMMA]
+      }
+    }
   ],
   bootstrap: [AppComponent],
 })
