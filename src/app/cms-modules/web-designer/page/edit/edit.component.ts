@@ -24,6 +24,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'src/filemanager-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
   selector: 'app-webdesigner-page-edit',
   templateUrl: './edit.component.html',
@@ -193,4 +195,31 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     }
     this.dataModel.pageDependencyIsDefaultPageLinkSiteCategoryId = model.id;
   }
+  
+		
+		 /**
+   * tag
+   */
+      addOnBlurTag = true;
+      readonly separatorKeysCodes = [ENTER, COMMA] as const;
+      addTag(event: MatChipInputEvent): void {
+        const value = (event.value || '').trim();
+        // Add our item
+        if (value) {
+          this.keywordDataModel.push( value);
+        }
+        // Clear the input value
+        event.chipInput!.clear();
+      }
+    
+      removeTag(item: string): void {
+        const index = this.keywordDataModel.indexOf(item);
+    
+        if (index >= 0) {
+          this.keywordDataModel.splice(index, 1);
+        }
+      }
+      /**
+       * tag
+       */
 }

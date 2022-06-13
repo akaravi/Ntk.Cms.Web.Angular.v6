@@ -457,9 +457,24 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <!-- KeywordModel Field -->
-        <tag-input [(ngModel)]="keywordDataModel" name="keywordDataModel" [placeholder]="'+ کلمه کلیدی'"
-          [secondaryPlaceholder]="'انتخاب کلمات کلیدی نسبت به مطلب'" [identifyBy]="'display'">
-        </tag-input>
+        <mat-form-field style="width: 100%;" appearance="fill">
+          <mat-label>انتخاب کلمات کلیدی نسبت به مطلب</mat-label>
+          <mat-chip-list #chipList aria-label="کلمه کلیدی">
+            <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
+              {{item}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="کلمه کلیدی +"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlurTag"
+                   (matChipInputTokenEnd)="addTag($event)">
+          </mat-chip-list>
+        </mat-form-field>
+		
+		
         <!-- CurrentSiteDomainUrl Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['CurrentSiteDomainUrl']?.accessWatchField">
           <mat-label>{{ fieldsInfo['CurrentSiteDomainUrl']?.fieldTitle }}</mat-label>

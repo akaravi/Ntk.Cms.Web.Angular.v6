@@ -24,6 +24,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-file-content-edit',
@@ -301,4 +303,30 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
   receiveZoom(zoom: number): void {
   }
+  
+		 /**
+   * tag
+   */
+      addOnBlurTag = true;
+      readonly separatorKeysCodes = [ENTER, COMMA] as const;
+      addTag(event: MatChipInputEvent): void {
+        const value = (event.value || '').trim();
+        // Add our item
+        if (value) {
+          this.keywordDataModel.push( value);
+        }
+        // Clear the input value
+        event.chipInput!.clear();
+      }
+    
+      removeTag(item: string): void {
+        const index = this.keywordDataModel.indexOf(item);
+    
+        if (index >= 0) {
+          this.keywordDataModel.splice(index, 1);
+        }
+      }
+      /**
+       * tag
+       */
 }

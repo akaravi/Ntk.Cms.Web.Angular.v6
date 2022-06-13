@@ -36,6 +36,8 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreLocationModel } from 'ntk-cms-api';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-blog-content-edit',
@@ -745,4 +747,30 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     }
     this.dataModel.linkLocationId = model.id;
   }
+  	
+		 /**
+   * tag
+   */
+      addOnBlurTag = true;
+      readonly separatorKeysCodes = [ENTER, COMMA] as const;
+      addTag(event: MatChipInputEvent): void {
+        const value = (event.value || '').trim();
+        // Add our item
+        if (value) {
+          this.keywordDataModel.push( value);
+        }
+        // Clear the input value
+        event.chipInput!.clear();
+      }
+    
+      removeTag(item: string): void {
+        const index = this.keywordDataModel.indexOf(item);
+    
+        if (index >= 0) {
+          this.keywordDataModel.splice(index, 1);
+        }
+      }
+      /**
+       * tag
+       */
 }

@@ -23,6 +23,8 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { Map as leafletMap } from 'leaflet';
 import * as Leaflet from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
   selector: 'app-core-site-add',
   templateUrl: './add.component.html',
@@ -229,4 +231,29 @@ export class CoreSiteAddComponent implements OnInit {
     }
     this.dataModel.linkSiteCategoryId = model.id;
   }
+   /**
+   * tag
+   */
+    addOnBlurTag = true;
+    readonly separatorKeysCodes = [ENTER, COMMA] as const;
+    addTag(event: MatChipInputEvent): void {
+      const value = (event.value || '').trim();
+      // Add our item
+      if (value) {
+        this.keywordDataModel.push( value);
+      }
+      // Clear the input value
+      event.chipInput!.clear();
+    }
+  
+    removeTag(item: string): void {
+      const index = this.keywordDataModel.indexOf(item);
+  
+      if (index >= 0) {
+        this.keywordDataModel.splice(index, 1);
+      }
+    }
+    /**
+     * tag
+     */
 }
