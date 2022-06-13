@@ -48,7 +48,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{fieldsInfo['RecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -69,7 +69,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['MainAdminRecordStatus']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
             {{fieldsInfo['MainAdminRecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -84,7 +84,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['LinkSiteId']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ LinkSiteId.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ LinkSiteId.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LinkSiteId.errors?.required">
             {{fieldsInfo['LinkSiteId']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -102,7 +102,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -120,7 +120,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['CaseCode']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ CaseCode.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ CaseCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CaseCode.errors?.required">
             {{fieldsInfo['CaseCode']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -221,7 +221,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
+          <mat-hint style="text-align: right;">{{ Address.value.length }} / 500</mat-hint>
         </mat-form-field>
 
         <!-- AboutAgentTel Field -->
@@ -237,7 +237,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutAgentTel']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ AboutAgentTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutAgentMobile Field -->
         <mat-form-field class="ntk-full-width " *ngIf="fieldsInfo['AboutAgentMobile']?.accessWatchField">
@@ -252,7 +252,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutAgentMobile']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ AboutAgentMobile.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ AboutAgentMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
 
@@ -269,7 +269,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutCustomerTel']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutCustomerMobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutCustomerMobile']?.accessWatchField">
@@ -284,7 +284,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutCustomerMobile']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
         <!-- Description Field -->
@@ -300,7 +300,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
+          <mat-hint style="text-align: right;">{{ Description.value.length }} / 2000</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             Description is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -522,7 +522,7 @@
             <mat-icon matSuffix *ngIf="contractDataModel.description" matSuffix mat-icon-button aria-label="Clear"
               (click)="contractDataModel.description = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ contractDataModel_Description.value.length }} / 500</mat-hint>
+            <mat-hint style="text-align: right;">{{ contractDataModel_Description.value.length }} / 500</mat-hint>
 
           </mat-form-field>
         </div>

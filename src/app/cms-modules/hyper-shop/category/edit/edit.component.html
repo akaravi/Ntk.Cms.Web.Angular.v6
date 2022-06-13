@@ -16,7 +16,7 @@
       <mat-icon matSuffix *ngIf="dataModel.name" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.name = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: right;">{{ Name.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Name.errors?.required">
         Name is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

@@ -17,7 +17,7 @@
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -81,7 +81,7 @@
       <mat-icon matSuffix *ngIf="dataModel.deviceId" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.deviceId = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ DeviceId.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: right;">{{ DeviceId.value.length }} / 100</mat-hint>
       <mat-error *ngIf="DeviceId.errors?.required">
         DeviceId is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -94,7 +94,7 @@
       <mat-icon matSuffix *ngIf="dataModel.ipAddress" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.ipAddress = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ IpAddress.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: right;">{{ IpAddress.value.length }} / 100</mat-hint>
       <mat-error *ngIf="IpAddress.errors?.required">
         IpAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -107,7 +107,7 @@
       <mat-icon matSuffix *ngIf="dataModel.browserName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.browserName = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ BrowserName.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: right;">{{ BrowserName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="BrowserName.errors?.required">
         BrowserName is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

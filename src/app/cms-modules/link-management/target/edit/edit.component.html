@@ -19,7 +19,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-hint style="text-align: right;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -46,7 +46,7 @@
                           index as i
                         " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+          <mat-hint style="text-align: right;">انتخاب نوع این محتوا</mat-hint>
           <mat-error *ngIf="ContentSettingType.errors?.required">
             ContentSettingType is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -62,7 +62,7 @@
                           index as i
                         " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="end">انتخاب نوع این محتوا</mat-hint>
+          <mat-hint style="text-align: right;">انتخاب نوع این محتوا</mat-hint>
           <mat-error *ngIf="SharingLinkType.errors?.required">
             SharingLinkType is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -76,7 +76,7 @@
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             Title is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -96,7 +96,7 @@
           <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.toWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ ToWebAddress.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ ToWebAddress.value.length }} / 100</mat-hint>
           <mat-error *ngIf="ToWebAddress.errors?.required">
             ToWebAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -109,7 +109,7 @@
           <mat-icon matSuffix *ngIf="dataModel.webAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.webAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ WebAddress.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ WebAddress.value.length }} / 100</mat-hint>
           <mat-error *ngIf="WebAddress.errors?.required">
             WebAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -123,7 +123,7 @@
           <mat-icon matSuffix *ngIf="dataModel.carryToWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.carryToWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ CarryToWebAddress.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ CarryToWebAddress.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CarryToWebAddress.errors?.required">
             CarryToWebAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -136,7 +136,7 @@
           <mat-icon matSuffix *ngIf="dataModel.smallPreview" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.smallPreview = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ SmallPreview.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ SmallPreview.value.length }} / 100</mat-hint>
           <mat-error *ngIf="SmallPreview.errors?.required">
             SmallPreview is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
