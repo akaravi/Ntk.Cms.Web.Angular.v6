@@ -1,46 +1,11 @@
-<!-- <div class="row">
 
-    <div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-18">
-                <p> {{requestTitle}}</p>
-                <p> {{requestModuleName}}</p>
-                <p> {{requestModuleEntityName}}</p>
-            </div>
-        </div> -->
-<!-- requestModuleEntityName Column -->
-<!-- <ng-container matColumnDef="requestModuleEntityName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['requestModuleEntityName']?.fieldTitle}}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.requestModuleEntityName}} </mat-cell>
-        </ng-container>
-        <div class="row">
-
-
-            <button (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
-                data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}
-            </button>
-
-            {{this.dataModelResult |json}}
+<div [hidden]="!showAdd" class="container" >
+    <div class="row" *ngFor="let item of dataModelResult.listItems">
+        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['CreatedBy']?.fieldTitle}} : {{ item.createdBy }}
         </div>
-    </div>
-</div> -->
-<!-- ==================================================  -->
-
-<div [hidden]="!showAdd" class="container">
-    <div class="row">
-        <div class="col-md-8 col-sm-8 col-xs-12 float"><strong> {{fieldsInfo['CreatedBy']?.fieldTitle}} : 
-            {{ dataModel.createdDate }} aa</strong>
+        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectTitle']?.fieldTitle}} : {{ item.subjectTitle }}
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-6 float"><strong> Title : {{ requestTitle }} aa</strong></div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectTitle']?.fieldTitle}} : {{
-            dataModel.subjectTitle }} aa
-        </div>
-        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectBody']?.fieldTitle}} : {{
-            dataModel.subjectBody }} aa</div>
+        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectBody']?.fieldTitle}} : {{            item.subjectBody }}</div>
     </div>
 
 </div>
