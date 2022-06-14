@@ -38,6 +38,9 @@ export class CmsMemoComponent implements OnInit {
     }
     if (!this.requestModuleEntityId || !this.requestModuleEntityName || !this.requestModuleName)
       this.dialogRef.close({ dialogChangedDate: true });
+      this.dataModel.id=this.requestModuleEntityId;
+      this.dataModel.moduleName=this.requestModuleName;
+      this.dataModel.moduleEntityName=this.requestModuleEntityName;
 
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
