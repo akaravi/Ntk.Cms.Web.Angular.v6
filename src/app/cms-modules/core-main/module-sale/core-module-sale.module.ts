@@ -13,7 +13,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreModuleSaleComponent } from './core-module-sale.component';
 import { CoreModuleSaleRouting } from './core-module-sale.routing';
 import { SharedModule } from 'src/app/shared.module';
@@ -148,7 +148,7 @@ import { CoreModuleSaleHeaderSalePaymentComponent } from './header/sale-payment/
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     
   ],
   providers: [

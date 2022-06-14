@@ -11,7 +11,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreUserClaimComponent } from './core-user-claim.component';
 import { CoreUserClaimRouting } from './core-user-claim.routing';
 import { SharedModule } from 'src/app/shared.module';
@@ -117,7 +117,7 @@ import { CoreUserClaimGroupSelectionlistComponent } from './group/selectionlist/
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     
   ],
   providers: [

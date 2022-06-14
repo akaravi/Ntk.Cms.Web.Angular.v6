@@ -12,7 +12,7 @@ import { CmsStatistListComponent } from './shared/cms-statist-list/cmsStatistLis
 import { CmsExportListComponent } from './shared/cms-export-list/cmsExportList.component';
 import { CmsMapComponent } from './shared/cms-map/cms-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { TagInputModule } from 'ngx-chips';
+
 import { RecordStatusClassPipe } from './core/pipe/recordStatusClass.pipe';
 import { BoolStatusClassPipe } from './core/pipe/boolStatusClass.pipe';
 import { PersianDateFull } from './core/pipe/PersianDatePipe/persian-date-full.pipe';
@@ -112,7 +112,7 @@ import { CmsMemoComponent } from './shared/cms-memo/cms-memo.component';
         TreeModule,
         NgxNtkQueryBuilderModule,
         LeafletModule,
-        TagInputModule,
+        
         NgbDropdownModule,
         CmsFileManagerModule.forRoot(),
         ClipboardModule,

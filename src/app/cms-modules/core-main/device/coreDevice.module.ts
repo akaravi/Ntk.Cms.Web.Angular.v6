@@ -15,7 +15,7 @@ import { CoreDeviceAddComponent } from './add/add.component';
 import { CoreDeviceListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import { TagInputModule } from 'ngx-chips';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }), 
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     // CmsFileManagerModule
 
   ],

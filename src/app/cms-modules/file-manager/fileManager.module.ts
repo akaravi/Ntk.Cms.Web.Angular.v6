@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileManagerRouting } from './fileManager.routing';
 import { FileManagerComponent } from './fileManager.component';
-import { TagInputModule } from 'ngx-chips';
+
 
 import {
   CoreEnumService,
@@ -46,7 +46,7 @@ import { FileContentExplorerComponent } from './content/explorer/explorer.compon
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     
     
   ],

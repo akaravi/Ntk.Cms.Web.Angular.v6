@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TicketingRouting } from './ticketing.routing';
 import { TicketingComponent } from './ticketing.component';
-import { TagInputModule } from 'ngx-chips';
+
 
 import {
   CoreEnumService,
@@ -111,7 +111,7 @@ import { TicketingTaskHeaderComponent } from './task/header/header.component';
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   providers: [

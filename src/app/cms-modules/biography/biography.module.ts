@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BiographyRouting } from './biography.routing';
 import { BiographyComponent } from './biography.component';
-import { TagInputModule } from 'ngx-chips';
+
 import {
   CoreEnumService,
   CoreModuleTagService,
@@ -64,7 +64,7 @@ import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   providers: [

@@ -30,7 +30,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -50,7 +50,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Username']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Username.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Username.errors?.required">
             {{fieldsInfo['Username']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -70,7 +70,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Email']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
             {{fieldsInfo['Email']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -97,7 +97,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Mobile']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Mobile.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
             {{fieldsInfo['Mobile']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -162,7 +162,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Name']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Name.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
             {{fieldsInfo['Name']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -182,7 +182,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['LastName']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ LastName.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ LastName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LastName.errors?.required">
             {{fieldsInfo['LastName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -216,7 +216,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['CompanyName']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ CompanyName.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ CompanyName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CompanyName.errors?.required">
             {{fieldsInfo['CompanyName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -235,7 +235,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Tell']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Tell.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Tell.errors?.required">
             {{fieldsInfo['Tell']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -253,7 +253,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['PostalCode']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ PostalCode.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ PostalCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PostalCode.errors?.required">
             {{fieldsInfo['PostalCode']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -271,7 +271,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ Address.value.length }} / 1000</mat-hint>
+          <mat-hint style="text-align: left;">{{ Address.value.length }} / 1000</mat-hint>
         </mat-form-field>
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
@@ -318,7 +318,7 @@
           <mat-icon matSuffix *ngIf="dataModel.firewallAllowIP" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.firewallAllowIP = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ FirewallAllowIP.value.length }} / 1000</mat-hint>
+          <mat-hint style="text-align: left;">{{ FirewallAllowIP.value.length }} / 1000</mat-hint>
         </mat-form-field>
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">

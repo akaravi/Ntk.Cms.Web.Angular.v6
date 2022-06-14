@@ -14,7 +14,7 @@ import { CoreSiteDomainAliasAddComponent } from './add/add.component';
 import { CoreSiteDomainAliasListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreSiteModule } from '../site/coreSite.module';
 
@@ -42,7 +42,7 @@ import { CoreSiteModule } from '../site/coreSite.module';
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CoreSiteModule
 
   ],

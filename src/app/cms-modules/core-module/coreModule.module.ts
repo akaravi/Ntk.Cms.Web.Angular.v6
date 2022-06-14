@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreModuleTagListComponent } from './tag/list/list.component';
 import { CoreModuleTagCategoryDeleteComponent } from './tagCategory/delete/delete.component';
 import { CoreModuleTagCategoryEditComponent } from './tagCategory/edit/edit.component';
@@ -37,7 +37,7 @@ import { CoreModuleSiteUserCreditChargePaymentComponent } from './site-user-cred
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   declarations: [

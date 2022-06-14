@@ -16,7 +16,7 @@ import { CoreSiteCategoryAddComponent } from './add/add.component';
 import { CoreSiteCategoryListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreModuleModule } from '../module/coreModule.module';
 // import { CoreSiteCategoryCmsModuleListComponent } from './moduleList/moduleList.component';
 
@@ -46,7 +46,7 @@ import { CoreModuleModule } from '../module/coreModule.module';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CoreModuleModule,
   ],
   providers: [

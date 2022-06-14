@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogReportAbuseEditComponent } from './report-abuse/edit/edit.component';
@@ -43,7 +43,7 @@ import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   declarations: [

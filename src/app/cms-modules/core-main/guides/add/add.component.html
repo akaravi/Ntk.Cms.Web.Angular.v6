@@ -18,7 +18,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -36,7 +36,7 @@
       <mat-icon matSuffix *ngIf="dataModel.key" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.key = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ Key.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ Key.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Key.errors?.required">
         Key is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -49,7 +49,7 @@
       <mat-icon matSuffix *ngIf="dataModel.titleFa" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleFa = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ TitleFa.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ TitleFa.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleFa.errors?.required">
         TitleFa is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -75,7 +75,7 @@
       <mat-icon matSuffix *ngIf="dataModel.titleEn" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleEn = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ TitleEn.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ TitleEn.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleEn.errors?.required">
         TitleEn is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -98,7 +98,7 @@
       <mat-icon matSuffix *ngIf="dataModel.titleAr" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleAr = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ TitleAr.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ TitleAr.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleAr.errors?.required">
         TitleAr is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -121,7 +121,7 @@
       <mat-icon matSuffix *ngIf="dataModel.titleDe" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleDe = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ TitleDe.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ TitleDe.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleDe.errors?.required">
         TitleDe is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

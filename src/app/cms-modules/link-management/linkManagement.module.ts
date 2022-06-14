@@ -5,7 +5,7 @@ import { LinkManagementRoutes } from './linkManagement.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import {
   CoreAuthService,
   CoreEnumService,
@@ -174,7 +174,7 @@ import { LinkManagementBillboardPatternListComponent } from './billboard-pattern
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
 
     MatIconModule,
     MatFormFieldModule,

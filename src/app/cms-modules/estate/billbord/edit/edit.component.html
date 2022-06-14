@@ -104,7 +104,7 @@
       <br>
     </div>
 
-    <div class="col-md-6 col-sm-6 col-xs-9" align="center"
+    <div class="col-md-6 col-sm-6 col-xs-9"  style="text-align: center;"	
       *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
 
       <a href="{{dataModel.urlViewContent}}" target="_blank">
@@ -113,11 +113,11 @@
       <span class="navi-icon" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
         <i class="flaticon2-copy"></i></span>
 
-      <h5 align="right">توضیحات:</h5>
-      <p dir="rtl" align="right" style="font-size: 17px;">
+      <h5  style="text-align: right;"	>توضیحات:</h5>
+      <p dir="rtl"  style="text-align: right;"	 style="font-size: 17px;">
         میتوانید با اسکن کردن بارکد بالا و یا کپی کردن لینک آن خروجی بیلبورد خود را مشاهده نمایید.
       </p>
-      <p dir="rtl" align="right" style="font-size: 17px;">
+      <p dir="rtl"  style="text-align: right;"	 style="font-size: 17px;">
         در بخش 'عنوان' میتوانید عنوان بیلبورد خود را ویرایش نمایید و برای آن توضیحات بنویسید.
         <br>
         در بخش بعدی میتوانید سرعت اسکرول شدن صفحه و بارگذاری مجدد صفحه در هر دقیقه را تنظیم نمایید و برای آن عکس انتخاب

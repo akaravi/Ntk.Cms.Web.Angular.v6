@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'src/filemanager-api';
-import { TagInputModule } from 'ngx-chips';
+
 import {
   CoreLogCurrencyService,
   CoreLogErrorService,
@@ -33,7 +33,7 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   declarations: [

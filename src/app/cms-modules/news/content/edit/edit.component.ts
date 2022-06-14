@@ -38,6 +38,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CoreLocationModel } from 'ntk-cms-api';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { map, of } from 'rxjs';
 @Component({
   selector: 'app-news-content-edit',
   templateUrl: './edit.component.html',
@@ -196,6 +197,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       );
   }
   DataTagGetAll(): void {
+    
     this.formInfo.formSubmitAllow = false;
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server');
     this.formInfo.formError = '';
@@ -215,6 +217,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           this.loading.Stop(pName);
           this.dataContentTagModelResult = ret;
           this.formInfo.formSubmitAllow = true;
+          
           if (ret.isSuccess) {
             const list = [];
             this.dataContentTagModelResult.listItems.forEach(x => {
@@ -390,6 +393,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   async DataActionAfterAddContentSuccessfulTag(model: NewsContentModel): Promise<any> {
     const dataListAdd = new Array<NewsContentTagModel>();
     const dataListDelete = new Array<NewsContentTagModel>();
+    
     if (this.tagIdsData) {
       this.tagIdsData.forEach(item => {
         const row = new NewsContentTagModel();
@@ -408,8 +412,29 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       });
     }
     if (dataListAdd && dataListAdd.length > 0) {
+      this.contentTagService.ServiceAddBatch(dataListAdd).pipe(
+        map(response => {
+          if (response.isSuccess) {
+            this.cmsToastrService.typeSuccessAddTag();
+          } else {
+            this.cmsToastrService.typeErrorAddTag();
+          }
+          
+          return of(response);
+        })).toPromise();
     }
     if (dataListDelete && dataListDelete.length > 0) {
+
+      this.contentTagService.ServiceDeleteBatch(dataListDelete).pipe(
+        map(response => {
+          if (response.isSuccess) {
+            this.cmsToastrService.typeSuccessRemoveTag();
+          } else {
+            this.cmsToastrService.typeErrorRemoveTag();
+          }
+          
+          return of(response);
+        })).toPromise();
     }
   }
   async DataActionAfterAddContentSuccessfulOtherInfo(model: NewsContentModel): Promise<any> {
@@ -560,7 +585,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     );
   }
   onActionTagChange(ids: number[]): void {
-    debugger
+    
     this.tagIdsData = ids;
   }
   onActionContentSimilarSelect(model: NewsContentModel | null): void {

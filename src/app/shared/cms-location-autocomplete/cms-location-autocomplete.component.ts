@@ -1,22 +1,24 @@
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import {
-  CoreLocationModel,
   CoreLocationService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult,
   FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Output } from '@angular/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-
-
-
-
+class chipModel {
+  display: string;
+  value: number;
+}
 @Component({
   selector: 'app-cms-location-autocomplete',
   templateUrl: './cms-location-autocomplete.component.html',
@@ -24,27 +26,39 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CmsLocationCompleteComponent implements OnInit {
   constructor(
-    public coreLocationService: CoreLocationService,
+    public service: CoreLocationService,
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
     ) {
+      this.filteredOptions = this.tagCtrl.valueChanges.pipe(
+        startWith(null),
+        debounceTime(400),
+        switchMap(val => {
+          return this.filter(val || '')
+        })
+      );
   }
+  @Input() optionDisabled = false;
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+  @Input() optionPlaceholder = '+ Tag';
+  @Input() optionLabel = " Select"
+  @Output() optionChange = new EventEmitter<number[]>();
   @Input() set optionSelectForce(x: number[]) {
     this.onActionSelectForce(x);
   }
-  datatagDataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
-  tagDataModel = [];
-
-
-  @Input() optionPlaceholder = '';
-  @Input() optionDisabled = false;
-  @Output() optionChange = new EventEmitter<number[]>();
-
+  tagDataModel: chipModel[] = [];
+  tagLastDataModel: chipModel[] = [];
   selectForceStatus = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  tagCtrl = new FormControl('');
+  filteredOptions: Observable<chipModel[]>;
+  addOnBlur = true;
   ngOnInit(): void {
   }
 
-  public requestAutocompleteItems = (text: string): Observable<any> => {
+  // filter and return the values
+  filter(text: string): Observable<chipModel[]> {
+
     const filteModel = new FilterModel();
     filteModel.rowPerPage = 20;
     filteModel.accessLoad = true;
@@ -54,7 +68,7 @@ export class CmsLocationCompleteComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
     filteModel.filters.push(filter);
-    if (text && typeof text === 'number' && text > 0) {
+    if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
@@ -62,33 +76,82 @@ export class CmsLocationCompleteComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filteModel.filters.push(filter);
     }
-    return this.coreLocationService.ServiceGetAll(filteModel).pipe(
-      map((data) =>
-        data.listItems.map(val => ({
-          value: val.id,
-          display: val.titleML
-        })))
+    return this.service.ServiceGetAll(filteModel).pipe(
+      map((data) => {
+        this.tagLastDataModel = data.listItems.map(val => ({ display: val.title, value: val.id }));
+        return this.tagLastDataModel;
+      })
     );
+
   }
+
+  checkIndex(val: number): number {
+    var index = 0;
+    var ret=-1;
+    this.tagDataModel.forEach(element => {
+      if (element.value == val) {
+        ret= index;
+      }
+      index++;
+    });
+    return ret;
+  }
+  add(event: MatChipInputEvent): void {
+    // Add our item
+    var val:chipModel;
+    if (event.value) {
+      this.tagLastDataModel.forEach(element => {
+        if ((element.display == event.value || element.value + "" == event.value)) {
+          val=element;
+        }
+      });
+    }
+    if (val && this.checkIndex(val.value) < 0) {
+      this.tagDataModel.push(val);
+      this.onActionChange();
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+    this.tagCtrl.setValue(null);
+  }
+
+  remove(item: chipModel): void {
+    const index = this.checkIndex(item.value);
+    if (index >= 0) {
+      this.tagDataModel.splice(index, 1);
+      this.onActionChange();
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const val = event.option.value as unknown as chipModel;
+    if (this.checkIndex(val.value) < 0) {
+      this.tagDataModel.push(val);
+    }
+    this.tagInput.nativeElement.value = '';
+    this.tagCtrl.setValue(null);
+    this.onActionChange();
+  }
+
+
   onActionChange(): void {
     const retIds = [];
-    this.tagDataModel.forEach(x => {
-      retIds.push(x.value);
-    });
+    this.tagDataModel.forEach(x => { retIds.push(x.value); });
     this.selectForceStatus = false;
     this.optionChange.emit(retIds);
   }
+
   onActionSelectForce(ids: number[]): void {
-    
     if (!this.selectForceStatus) {
       return;
     }
     if (!ids || ids.length === 0) {
       return;
     }
+
     const filteModel = new FilterModel();
     ids.forEach(item => {
-      if (item && item > 0) {
+      if (item > 0) {
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
@@ -97,13 +160,13 @@ export class CmsLocationCompleteComponent implements OnInit {
       }
     });
 
-    this.coreLocationService.ServiceGetAll(filteModel).pipe(
+    this.service.ServiceGetAll(filteModel).pipe(
       map((next) => {
         if (next.isSuccess) {
           next.listItems.forEach(val => {
             this.tagDataModel.push({
               value: val.id,
-              display: val.titleML
+              display: val.title
             });
           });
         } else {
@@ -115,10 +178,11 @@ export class CmsLocationCompleteComponent implements OnInit {
       },
         (error) => {
 
-          const title = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorReceivingInformation');
+          
           this.cmsToastrService.typeErrorGetAll(error);
         })).toPromise();
   }
+
 
 
 }

@@ -14,7 +14,7 @@ import { CoreGuideEditComponent } from './edit/edit.component';
 import { CoreGuideAddComponent } from './add/add.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreGuideListComponent } from './list/list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CoreInfoComponent } from '../site/info/core-info.component';
@@ -47,7 +47,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     InlineSVGModule,
 
     // CmsFileManagerModule

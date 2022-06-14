@@ -15,7 +15,7 @@ import { CoreLocationAddComponent } from './add/add.component';
 import { CoreLocationListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreLocationAddBulkComponent } from './add-bulk/add-bulk.component';
 
@@ -46,7 +46,7 @@ import { CoreLocationAddBulkComponent } from './add-bulk/add-bulk.component';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     // CmsFileManagerModule
 
   ],

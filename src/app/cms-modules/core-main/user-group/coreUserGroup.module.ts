@@ -15,7 +15,7 @@ import { CoreUserGroupAddComponent } from './add/add.component';
 import { CoreUserGroupListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreUserGroupSelectionlistComponent } from './selectionlist/selectionlist.component';
 
 
@@ -46,7 +46,7 @@ import { CoreUserGroupSelectionlistComponent } from './selectionlist/selectionli
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     // CmsFileManagerModule
 
   ],

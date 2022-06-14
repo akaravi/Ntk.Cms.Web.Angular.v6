@@ -17,7 +17,7 @@
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -30,7 +30,7 @@
       <mat-icon matSuffix *ngIf="dataModel.serialNumber" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.serialNumber = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ SerialNumber.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ SerialNumber.value.length }} / 100</mat-hint>
       <mat-error *ngIf="SerialNumber.errors?.required">
         {{fieldsInfo['SerialNumber']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -43,7 +43,7 @@
       <mat-icon matSuffix *ngIf="dataModel.pwdForUse" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.pwdForUse = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ PwdForUse.value.length }} / 100</mat-hint>
+      <mat-hint style="text-align: left;">{{ PwdForUse.value.length }} / 100</mat-hint>
       <mat-error *ngIf="PwdForUse.errors?.required">
         {{fieldsInfo['PwdForUse']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

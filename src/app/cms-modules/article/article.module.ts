@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleRouting } from './article.routing';
 import { ArticleComponent } from './article.component';
-import { TagInputModule } from 'ngx-chips';
+
 import {
   CoreEnumService,
   CoreModuleTagService,
@@ -66,7 +66,7 @@ import { ArticletHeaderComponent } from './content/header/header.component';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   providers: [

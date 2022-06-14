@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <div [innerHTML]="dataModelResult.item"></div>
 </mat-dialog-content>
-<mat-dialog-actions align="end" class="ntk-button-row">
+<mat-dialog-actions style="text-align: left;" class="ntk-button-row">
   <button mat-raised-button color="accent" mat-dialog-close>{{'ACTION.DENY' | translate}}</button>
   <button mat-raised-button color="success" [mat-dialog-close]="true" cdkFocusInitial>{{'ACTION.ACCEPT' | translate}}</button>s
 </mat-dialog-actions>

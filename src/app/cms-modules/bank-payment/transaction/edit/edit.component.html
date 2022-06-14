@@ -17,7 +17,7 @@
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+          <mat-hint style="text-align: left;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -32,7 +32,7 @@
                     index as i
                   " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="end">{{ 'Application.source.BankStatus_hint' | translate }}</mat-hint>
+          <mat-hint style="text-align: left;">{{ 'Application.source.BankStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="BankStatus.errors?.required">
             {{ fieldsInfo['BankStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -48,7 +48,7 @@
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="end">{{ 'Application.source.TransactionStatus_hint' | translate }}</mat-hint>
+          <mat-hint style="text-align: left;">{{ 'Application.source.TransactionStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="TransactionStatus.errors?.required">
             {{ fieldsInfo['TransactionStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

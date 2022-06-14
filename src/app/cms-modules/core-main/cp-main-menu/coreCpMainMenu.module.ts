@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import {
    CoreEnumService,
    CoreSiteUserService,
@@ -51,7 +51,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CoreModuleModule,
     CoreUserGroupCmsModule,
     ColorPickerModule,

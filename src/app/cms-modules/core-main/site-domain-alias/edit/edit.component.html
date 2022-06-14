@@ -15,7 +15,7 @@
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
-        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+        <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
           RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -32,7 +32,7 @@
         <mat-icon matSuffix *ngIf="dataModel.domain" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.domain = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Domain.value.length }} / 100</mat-hint>
+        <mat-hint style="text-align: left;">{{ Domain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Domain.errors?.required">
           Domain is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -44,7 +44,7 @@
         <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.subDomain = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ SubDomain.value.length }} / 100</mat-hint>
+        <mat-hint style="text-align: left;">{{ SubDomain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="SubDomain.errors?.required">
           SubDomain is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>

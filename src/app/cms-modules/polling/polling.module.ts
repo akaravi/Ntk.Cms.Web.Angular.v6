@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PollingRouting } from './polling.routing';
 import { PollingComponent } from './polling.component';
-import { TagInputModule } from 'ngx-chips';
+
 
 import {
   CoreEnumService,
@@ -60,7 +60,7 @@ import { PollingConfigSiteComponent } from './config/site/config-site.component'
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   providers: [

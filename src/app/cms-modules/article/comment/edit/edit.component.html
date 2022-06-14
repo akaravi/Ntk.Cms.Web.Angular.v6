@@ -21,7 +21,7 @@
         </mat-select>
         <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
-        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+        <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
           {{fieldsInfo['RecordStatus']?.fieldTitle}}  <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -37,7 +37,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['Writer']?.FieldDescription}}</strong> </mat-hint>
-        <mat-hint align="end">{{ Writer.value.length }} / 100</mat-hint>
+        <mat-hint style="text-align: left;">{{ Writer.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Writer.errors?.required">
           {{fieldsInfo['Writer']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -53,7 +53,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['Comment']?.FieldDescription}}</strong> </mat-hint>
-        <mat-hint align="end">{{ Comment.value.length }} / 1000</mat-hint>
+        <mat-hint style="text-align: left;">{{ Comment.value.length }} / 1000</mat-hint>
         <mat-error *ngIf="Comment.errors?.required">
           {{fieldsInfo['Comment']?.fieldTitle}}  <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>

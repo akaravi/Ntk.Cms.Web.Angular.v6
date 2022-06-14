@@ -5,7 +5,7 @@ import { UniversalMenuRoutes } from './universalMenu.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
   CoreAuthService,
@@ -29,7 +29,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,

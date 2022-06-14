@@ -5,7 +5,7 @@ import { BankPaymentRoutes } from './bank-payment.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import {
   CoreAuthService,
   CoreEnumService,
@@ -68,7 +68,7 @@ import { BankPaymentPublicConfigHeaderComponent } from './public-config/header/h
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     DynamicFormBuilderModule
   ],
   providers: [

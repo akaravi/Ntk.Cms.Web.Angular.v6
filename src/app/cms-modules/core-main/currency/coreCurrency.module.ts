@@ -14,7 +14,7 @@ import { CoreCurrencyAddComponent } from './add/add.component';
 import { CoreCurrencyListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CmsFileManagerModule } from 'src/filemanager-api';
 
 
@@ -40,7 +40,7 @@ import { CmsFileManagerModule } from 'src/filemanager-api';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
 
   ],

@@ -14,7 +14,7 @@ import { CoreModuleAddComponent } from './add/add.component';
 import { CoreModuleListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.component';
 import { CoreModuleHeaderComponent } from './header/header.component';
 import { CoreSharedModule } from '../core.shared.module';
@@ -46,7 +46,7 @@ import { CoreSharedModule } from '../core.shared.module';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CoreSharedModule,
   ],
   providers: [

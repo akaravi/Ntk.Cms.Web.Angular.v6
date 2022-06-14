@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
 
@@ -50,7 +50,7 @@ import { SmsSharedModule } from '../sms.shared.module';
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     
     MatIconModule,
     MatFormFieldModule,

@@ -12,7 +12,7 @@ import { CoreSiteCategoryCmsModuleSelectorComponent } from './selector/selector.
 import { CoreSiteCategoryCmsModuleListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TagInputModule } from 'ngx-chips';
+
 import { CoreSiteCategoryCmsModuleComponent } from './coreSiteCategoryCmsModule.component';
 import { CoreSiteCategoryCmsModuleRouting } from './coreSiteCategoryCmsModule.routing';
 import { CoreSiteCategoryCmsModuleListViewComponent } from './listview/listview.component';
@@ -51,7 +51,7 @@ import { CoreSiteCategoryCmsModule } from '../site-category/coreSiteCategory.mod
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CoreModuleModule,
     CoreSiteCategoryCmsModule,
   ],

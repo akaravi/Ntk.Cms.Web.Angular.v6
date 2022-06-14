@@ -27,7 +27,7 @@ class chipModel {
 })
 export class CmsTagAutocompleteComponent implements OnInit {
   constructor(
-    public coreModuleTagService: CoreModuleTagService,
+    public service: CoreModuleTagService,
     private cmsToastrService: CmsToastrService) {
 
     this.filteredOptions = this.tagCtrl.valueChanges.pipe(
@@ -38,6 +38,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
       })
     );
   }
+  @Input() optionDisabled = false;
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @Input() optionPlaceholder = '+ Tag';
   @Input() optionLabel = " Select"
@@ -51,9 +52,6 @@ export class CmsTagAutocompleteComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl('');
   filteredOptions: Observable<chipModel[]>;
-
-
-
   addOnBlur = true;
   ngOnInit(): void {
   }
@@ -78,7 +76,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filteModel.filters.push(filter);
     }
-    return this.coreModuleTagService.ServiceGetAll(filteModel).pipe(
+    return this.service.ServiceGetAll(filteModel).pipe(
       map((data) => {
         this.tagLastDataModel = data.listItems.map(val => ({ display: val.title, value: val.id }));
         return this.tagLastDataModel;
@@ -86,18 +84,31 @@ export class CmsTagAutocompleteComponent implements OnInit {
     );
 
   }
-
+  checkIndex(val: number): number {
+    var index = 0;
+    var ret=-1;
+    this.tagDataModel.forEach(element => {
+      if (element.value == val) {
+        ret= index;
+      }
+      index++;
+    });
+    return ret;
+  }
 
   add(event: MatChipInputEvent): void {
     // Add our item
+    var val:chipModel;
     if (event.value) {
-
       this.tagLastDataModel.forEach(element => {
-        if ((element.display == event.value || element.value + "" == event.value) && this.tagDataModel.indexOf(element) < 0) {
-          this.tagDataModel.push(element);
-          this.onActionChange();
+        if ((element.display == event.value || element.value + "" == event.value)) {
+          val=element;
         }
       });
+    }
+    if (val && this.checkIndex(val.value) < 0) {
+      this.tagDataModel.push(val);
+      this.onActionChange();
     }
     // Clear the input value
     event.chipInput!.clear();
@@ -105,7 +116,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
   }
 
   remove(item: chipModel): void {
-    const index = this.tagDataModel.indexOf(item);
+    const index = this.checkIndex(item.value);
     if (index >= 0) {
       this.tagDataModel.splice(index, 1);
       this.onActionChange();
@@ -113,7 +124,10 @@ export class CmsTagAutocompleteComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tagDataModel.push(event.option.value as unknown as chipModel);
+    const val = event.option.value as unknown as chipModel;
+    if (this.checkIndex(val.value) < 0) {
+      this.tagDataModel.push(val);
+    }
     this.tagInput.nativeElement.value = '';
     this.tagCtrl.setValue(null);
     this.onActionChange();
@@ -146,7 +160,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
       }
     });
 
-    this.coreModuleTagService.ServiceGetAll(filteModel).pipe(
+    this.service.ServiceGetAll(filteModel).pipe(
       map((next) => {
         if (next.isSuccess) {
           next.listItems.forEach(val => {
@@ -163,8 +177,6 @@ export class CmsTagAutocompleteComponent implements OnInit {
         return;
       },
         (error) => {
-
-          const title = 'برروی خطا در دریافت طلاعات تگ';
           this.cmsToastrService.typeErrorGetAll(error);
         })).toPromise();
   }

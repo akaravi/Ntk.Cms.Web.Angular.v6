@@ -1,9 +1,28 @@
-<tag-input [(ngModel)]="tagDataModel" (ngModelChange)="onActionChange()" name="TagModel"
-  [placeholder]="optionPlaceholder" [onTextChangeDebounce]="500" [secondaryPlaceholder]="optionPlaceholder"
-  [onlyFromAutocomplete]="true" [identifyBy]="'id'" [displayBy]="'display'">
-  <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems">
-    <ng-template let-item="item" let-index="index">
-      {{ item.display }}
-    </ng-template>
-  </tag-input-dropdown>
-</tag-input>
+
+<mat-form-field style="width:100%" appearance="fill">
+  <mat-label>{{optionLabel}}</mat-label>
+  <mat-chip-list #chipList aria-label="tag selection"  [disabled]="optionDisabled">
+    <mat-chip
+      *ngFor="let item of tagDataModel"
+      (removed)="remove(item)">
+      {{item.display}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      [placeholder]="optionPlaceholder"
+      #tagInput
+      [matChipInputAddOnBlur]="addOnBlur"
+      [formControl]="tagCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let item of filteredOptions  | async" [value]="item">
+      {{item.display}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

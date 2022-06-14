@@ -38,6 +38,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CoreLocationModel } from 'ntk-cms-api';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { map, of } from 'rxjs';
 @Component({
   selector: 'app-biography-content-edit',
   templateUrl: './edit.component.html',
@@ -410,8 +411,28 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
       });
     }
     if (dataListAdd && dataListAdd.length > 0) {
+      this.contentTagService.ServiceAddBatch(dataListAdd).pipe(
+        map(response => {
+          if (response.isSuccess) {
+            this.cmsToastrService.typeSuccessAddTag();
+          } else {
+            this.cmsToastrService.typeErrorAddTag();
+          }
+          
+          return of(response);
+        })).toPromise();
     }
     if (dataListDelete && dataListDelete.length > 0) {
+      this.contentTagService.ServiceDeleteBatch(dataListDelete).pipe(
+        map(response => {
+          if (response.isSuccess) {
+            this.cmsToastrService.typeSuccessRemoveTag();
+          } else {
+            this.cmsToastrService.typeErrorRemoveTag();
+          }
+          
+          return of(response);
+        })).toPromise();
     }
   }
   async DataActionAfterAddContentSuccessfulOtherInfo(model: BiographyContentModel): Promise<any> {
@@ -438,6 +459,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     if (dataListAdd && dataListAdd.length > 0) {
     }
     if (dataListDelete && dataListDelete.length > 0) {
+   
     }
   }
   async DataActionAfterAddContentSuccessfulSimilar(model: BiographyContentModel): Promise<any> {

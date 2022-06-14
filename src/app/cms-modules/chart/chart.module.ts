@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartRouting } from './chart.routing';
 import { ChartComponent } from './chart.component';
-import { TagInputModule } from 'ngx-chips';
+
 
 import {
   CoreEnumService,
@@ -71,7 +71,7 @@ import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tre
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    TagInputModule,
+    
     CmsFileManagerModule
   ],
   providers: [

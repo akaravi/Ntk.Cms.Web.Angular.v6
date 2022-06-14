@@ -23,7 +23,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -38,7 +38,7 @@
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             Title is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -51,7 +51,7 @@
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+          <mat-hint style="text-align: left;">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             Description is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -98,7 +98,7 @@
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.source = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Source.value.length }} / 500</mat-hint>
+          <mat-hint style="text-align: left;">{{ Source.value.length }} / 500</mat-hint>
 
         </mat-form-field>
 
@@ -216,7 +216,7 @@
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="contentOtherInfoSelected.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ contentOtherInfoSelected_Title.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: left;">{{ contentOtherInfoSelected_Title.value.length }} / 100</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="ntk-full-width">
@@ -236,7 +236,7 @@
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.source" matSuffix mat-icon-button aria-label="Clear"
             (click)="contentOtherInfoSelected.source = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ contentOtherInfoSelected_Source.value.length }} / 500</mat-hint>
+          <mat-hint style="text-align: left;">{{ contentOtherInfoSelected_Source.value.length }} / 500</mat-hint>
         </mat-form-field>
 
         <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="OtherInfo"
