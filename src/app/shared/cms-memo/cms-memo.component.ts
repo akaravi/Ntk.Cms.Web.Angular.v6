@@ -87,9 +87,9 @@ export class CmsMemoComponent implements OnInit {
     
     this.coreModuleLogMemoService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
+        this.dataModelResult = ret;
         if (ret.isSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-          this.dataModel = ret.item;
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -113,7 +113,7 @@ export class CmsMemoComponent implements OnInit {
     this.coreModuleLogMemoService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = ret;
+        // this.dataModelResult = ret;
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();

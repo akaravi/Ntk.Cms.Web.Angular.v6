@@ -106,20 +106,6 @@ text-left {
     direction: ltr !important;
 }
 
-// category-tree-invisible {
-//   display: none;
-// }
-// .category-tree {
-//   box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-//     0 3px 14px 2px color(0 0 0 0.12);
-// }
-// .category-tree ul,
-// .category-tree li {
-//   margin-top: 0;
-//   margin-bottom: 0;
-//   list-style-type: none;
-// }
-
 .category-tree-invisible {
     display: none;
 }
@@ -561,27 +547,3 @@ karavi tooltip guid
     opacity: 1;
 }
 
-/*
-karavi tooltip guid
-*/
-//Add this to your css
-// mat-cell  {
-//     text-overflow: ellipsis;
-//     overflow: hidden;
-//     white-space: nowrap;
-//  }
-//  mat-header-cell {
-//     text-overflow: ellipsis;
-//     overflow: hidden;
-//     white-space: nowrap;
-//     word-wrap:break-all ;
-//     color: red;
-//  }
-//  .test {
-//     text-overflow: ellipsis;
-//     overflow: hidden;
-//     white-space: nowrap;
-//     word-wrap:break-all ;
-//     color: red;
-
-//  }
