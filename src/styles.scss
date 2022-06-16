@@ -401,7 +401,7 @@ mat-paginator {
     border: 10px solid #000;
     border-radius: 10px;
     left: -999em;
-    z-index: 990;
+    z-index: 1060;
 }
 
 .ntk-hover-big:hover {
@@ -467,7 +467,9 @@ mat-paginator {
 .mat-icon-button.mat-submit {
     color: #3c64bb;
 }
-
+ngb-modal-window  {
+    z-index: 1060 !important;
+  }
 /*mat-raised-button*/
 /*
 karavi
@@ -501,7 +503,7 @@ karavi tooltip guid
     padding: 3px 8px;
     background: #282a36;
     border-radius: 4px;
-    z-index: 1000;
+    z-index: 1060;
     opacity: 0;
 }
 

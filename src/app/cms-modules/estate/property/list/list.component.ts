@@ -454,6 +454,7 @@ export class EstatePropertyListComponent
   onActionbuttonDeleteRow(
     mode: EstatePropertyModel = this.tableRowSelected
   ): void {
+   
     if (mode == null || !mode.id || mode.id.length === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
@@ -467,20 +468,16 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
+    
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message =
-      this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') +
-      "?" +
-      "<br> ( " +
-      this.tableRowSelected.title +
-      " ) ";
+    var message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content');
+    message += "?" + "<br> ( " + this.tableRowSelected.title + " ) ";
     this.cmsConfirmationDialogService
       .confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + "main";
-          this.loading.Start(pName, this.translate.instant('MESSAGE.Deleting_information'));
-
+           const pName = this.constructor.name + "main";
+           this.loading.Start(pName, this.translate.instant('MESSAGE.Deleting_information'));
           this.contentService
             .ServiceDelete(this.tableRowSelected.id)
             .subscribe({
@@ -497,8 +494,7 @@ export class EstatePropertyListComponent
                 this.cmsToastrService.typeError(er);
                 this.loading.Stop(pName);
               }
-            }
-            );
+            });
         }
       })
       .catch(() => {
