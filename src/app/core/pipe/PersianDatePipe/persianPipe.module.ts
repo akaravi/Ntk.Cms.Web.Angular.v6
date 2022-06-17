@@ -7,18 +7,6 @@ import { PersianCalendarService } from './persian-date.service';
   name: 'irc',
   pure: false
 })
-// export class ExIRCurrencyPipe extends IRCurrencyPipe { }
-// //
-// @Pipe({
-//   name: 'cjdate',
-//   pure: false
-// })
-// export class ExJdatePipe extends JdatePipe { }
-// //
-// @Pipe({
-//   name: 'persianDate',
-//   pure: false
-// })
 export class ExPersianDate extends PersianDate { }
 @NgModule({
   declarations: [

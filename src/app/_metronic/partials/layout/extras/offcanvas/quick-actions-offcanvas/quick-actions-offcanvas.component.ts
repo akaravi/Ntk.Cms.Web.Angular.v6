@@ -7,7 +7,6 @@ import { LayoutService } from '../../../../../core';
 @Component({
   selector: 'app-quick-actions-offcanvas',
   templateUrl: './quick-actions-offcanvas.component.html',
-  styleUrls: ['./quick-actions-offcanvas.component.scss'],
 })
 export class QuickActionsOffcanvasComponent implements OnInit , OnDestroy {
 

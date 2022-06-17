@@ -10,13 +10,12 @@ import { NgForm } from '@angular/forms';
 import { LayoutService } from '../../_metronic/core/';
 import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import {  TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-builder',
   templateUrl: './builder.component.html',
-  styleUrls: ['./builder.component.scss'],
 })
 export class BuilderComponent implements OnInit, AfterViewInit, OnDestroy {
   model: any;

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SearchDropdownInnerComponent } from './dropdown-inner/search-dropdown-inner/search-dropdown-inner.component';
@@ -17,10 +16,8 @@ import { QuickActionsOffcanvasComponent } from './offcanvas/quick-actions-offcan
 import { CartOffcanvasComponent } from './offcanvas/cart-offcanvas/cart-offcanvas.component';
 import { QuickPanelOffcanvasComponent } from './offcanvas/quick-panel-offcanvas/quick-panel-offcanvas.component';
 import { UserOffcanvasComponent } from './offcanvas/user-offcanvas/user-offcanvas.component';
-// import { CoreModule } from '../../../core';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { TranslationModule } from 'src/app/core/i18n/translation.module';
 import { SharedModule } from 'src/app/shared.module';
 import { TicketingTaskService } from 'ntk-cms-api';
 
@@ -51,7 +48,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // PerfectScrollbarModule,
     // CoreModule,
     RouterModule,
-    TranslationModule,
     SharedModule.forRoot(),
   ],
   providers: [

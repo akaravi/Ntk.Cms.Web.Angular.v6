@@ -20,7 +20,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-cms-sitecategory-selector',
   templateUrl: './cmsSiteCategorySelector.component.html',
-  styleUrls: ['./cmsSiteCategorySelector.component.scss']
 })
 export class CmsSiteCategorySelectorComponent implements OnInit {
 

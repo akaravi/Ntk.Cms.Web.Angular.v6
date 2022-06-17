@@ -20,7 +20,6 @@ import { HeaderMenuDynamicComponent } from './_layout/components/header/header-m
 import { CoreSiteModule } from '../cms-modules/core-main/site/coreSite.module';
 import { SharedModule } from '../shared.module';
 import { CoreAuthService, CoreConfigurationService, CoreCpMainMenuService, CoreModuleService } from 'ntk-cms-api';
-import { TranslationModule } from '../core/i18n/translation.module';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TestComponent } from './test/test.component';
 
@@ -39,7 +38,6 @@ import { TestComponent } from './test/test.component';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    TranslationModule,
     InlineSVGModule,
     ExtrasModule,
     NgbDropdownModule,

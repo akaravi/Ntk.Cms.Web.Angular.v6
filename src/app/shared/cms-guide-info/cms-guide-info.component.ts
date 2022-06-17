@@ -9,7 +9,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-cms-guide-info',
   templateUrl: './cms-guide-info.component.html',
-  styleUrls: ['./cms-guide-info.component.scss']
 })
 export class CmsGuideinfoComponent implements OnInit ,OnDestroy {
 

@@ -11,7 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-cms-sitecategory-selectionlist',
   templateUrl: './cmsSiteCategorySelectionList.component.html',
-  styleUrls: ['./cmsSiteCategorySelectionList.component.scss']
 })
 export class CmsSiteCategorySelectionListComponent implements OnInit {
 

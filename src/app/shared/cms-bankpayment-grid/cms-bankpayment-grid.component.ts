@@ -22,7 +22,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-cms-bankpayment-grid',
   templateUrl: './cms-bankpayment-grid.component.html',
-  styleUrls: ['./cms-bankpayment-grid.component.scss'],
 })
 export class CmsBankpaymentGridComponent implements OnInit {
   constructor(

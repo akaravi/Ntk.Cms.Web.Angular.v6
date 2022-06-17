@@ -20,7 +20,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-cms-member-selector',
   templateUrl: './cmsMemberSelector.component.html',
-  styleUrls: ['./cmsMemberSelector.component.scss']
 })
 export class CmsMemberSelectorComponent implements OnInit {
 

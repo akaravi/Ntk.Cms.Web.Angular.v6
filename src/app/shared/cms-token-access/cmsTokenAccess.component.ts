@@ -15,7 +15,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-cms-token-access',
   templateUrl: './cmsTokenAccess.component.html',
-  styleUrls: ['./cmsTokenAccess.component.scss'],
 })
 export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
@@ -200,6 +199,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
             this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_site_acess_denied'), title);
           }
         } else {
+          this.inputSiteId = this.tokenInfo.siteId;
           this.cmsToastrService.typeErrorAccessChange(next.errorMessage);
         }
 

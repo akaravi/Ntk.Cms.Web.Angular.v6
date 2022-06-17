@@ -4,7 +4,6 @@ import { GetPropertiesInfoModel } from 'ntk-cms-api';
 @Component({
   selector: 'app-cms-form-builder-properties',
   templateUrl: './cms-form-builder-properties.component.html',
-  styleUrls: ['./cms-form-builder-properties.component.scss']
 })
 export class CmsFormBuilderPropertiesComponent implements OnInit {
 

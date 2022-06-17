@@ -13,7 +13,6 @@ import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base
 @Component({
   selector: 'app-cms-search-list',
   templateUrl: './cmsSearchList.component.html',
-  styleUrls: ['./cmsSearchList.component.scss'],
 })
 export class CmsSearchListComponent implements OnInit {
   public optionsData: ComponentOptionSearchModel = new ComponentOptionSearchModel();

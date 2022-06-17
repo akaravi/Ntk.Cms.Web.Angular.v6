@@ -4,7 +4,6 @@ import { LayoutService } from '../../../../../core';
 @Component({
   selector: 'app-quick-panel-offcanvas',
   templateUrl: './quick-panel-offcanvas.component.html',
-  styleUrls: ['./quick-panel-offcanvas.component.scss'],
 })
 export class QuickPanelOffcanvasComponent implements OnInit {
   extrasQuickPanelOffcanvasDirectionCSSClass = 'offcanvas-right';

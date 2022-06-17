@@ -8,7 +8,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-cms-files-selector',
   templateUrl: './cms-files-selector.component.html',
-  styleUrls: ['./cms-files-selector.component.scss'],
 })
 export class CmsFilesSelectorComponent implements OnInit {
   fileManagerOpenForm = false;

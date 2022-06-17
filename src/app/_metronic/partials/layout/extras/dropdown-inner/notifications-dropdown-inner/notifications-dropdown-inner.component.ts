@@ -4,7 +4,6 @@ import { LayoutService } from '../../../../../core';
 @Component({
   selector: 'app-notifications-dropdown-inner',
   templateUrl: './notifications-dropdown-inner.component.html',
-  styleUrls: ['./notifications-dropdown-inner.component.scss'],
 })
 export class NotificationsDropdownInnerComponent implements OnInit {
   extrasNotificationsDropdownStyle: 'light' | 'dark' = 'dark';

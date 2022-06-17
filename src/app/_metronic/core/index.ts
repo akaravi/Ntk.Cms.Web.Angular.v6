@@ -7,4 +7,4 @@ export { DynamicHeaderMenuService } from './services/dynamic-header-menu.service
 export * from '../../core/utils/types-convertion.utils';
 export * from '../../core/utils/date-picker.utils';
 // Module
-// export { CoreModule } from './core.module';
+

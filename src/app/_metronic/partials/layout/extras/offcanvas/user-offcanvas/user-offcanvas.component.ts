@@ -13,7 +13,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-user-offcanvas',
   templateUrl: './user-offcanvas.component.html',
-  styleUrls: ['./user-offcanvas.component.scss'],
 })
 export class UserOffcanvasComponent implements OnInit, OnDestroy {
   extrasUserOffcanvasDirection = 'offcanvas-right';

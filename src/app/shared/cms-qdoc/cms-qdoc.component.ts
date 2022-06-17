@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-cms-qdoc',
   templateUrl: './cms-qdoc.component.html',
-  styleUrls: ['./cms-qdoc.component.scss']
 })
 export class CmsQDocComponent implements OnInit {
 

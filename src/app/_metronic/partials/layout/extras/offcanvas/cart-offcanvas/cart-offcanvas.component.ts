@@ -4,7 +4,6 @@ import { LayoutService } from '../../../../../core';
 @Component({
   selector: 'app-cart-offcanvas',
   templateUrl: './cart-offcanvas.component.html',
-  styleUrls: ['./cart-offcanvas.component.scss'],
 })
 export class CartOffcanvasComponent implements OnInit {
   extrasCartOffcanvasDirectionCSSClass = 'offcanvas-right';

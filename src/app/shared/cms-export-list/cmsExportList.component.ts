@@ -8,7 +8,6 @@ import { Input } from '@angular/core';
 @Component({
   selector: 'app-cms-export-list',
   templateUrl: './cmsExportList.component.html',
-  styleUrls: ['./cmsExportList.component.scss']
 })
 export class CmsExportListComponent implements OnInit {
   constructor() {

@@ -7,7 +7,6 @@ import { LayoutService } from '../../../../../core';
 @Component({
   selector: 'app-quick-actions-dropdown-inner',
   templateUrl: './quick-actions-dropdown-inner.component.html',
-  styleUrls: ['./quick-actions-dropdown-inner.component.scss'],
 })
 export class QuickActionsDropdownInnerComponent implements OnInit, OnDestroy {
   constructor(

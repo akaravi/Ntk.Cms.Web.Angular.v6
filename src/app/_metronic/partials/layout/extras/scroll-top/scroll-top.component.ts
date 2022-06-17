@@ -5,7 +5,6 @@ import { KTUtil } from '../../../../../../assets/js/components/util';
 @Component({
   selector: 'app-scroll-top',
   templateUrl: './scroll-top.component.html',
-  styleUrls: ['./scroll-top.component.scss'],
 })
 export class ScrollTopComponent implements OnInit, AfterViewInit {
   constructor() {}

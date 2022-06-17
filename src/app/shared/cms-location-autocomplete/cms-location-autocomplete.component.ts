@@ -22,7 +22,6 @@ class chipModel {
 @Component({
   selector: 'app-cms-location-autocomplete',
   templateUrl: './cms-location-autocomplete.component.html',
-  styleUrls: ['./cms-location-autocomplete.component.scss']
 })
 export class CmsLocationCompleteComponent implements OnInit {
   constructor(

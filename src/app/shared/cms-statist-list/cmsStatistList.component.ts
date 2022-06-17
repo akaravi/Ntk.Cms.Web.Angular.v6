@@ -6,7 +6,6 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 @Component({
   selector: 'app-cms-statist-list',
   templateUrl: './cmsStatistList.component.html',
-  styleUrls: ['./cmsStatistList.component.scss'],
 })
 export class CmsStatistListComponent implements OnInit {
   constructor() { }

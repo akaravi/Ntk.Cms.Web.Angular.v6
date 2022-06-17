@@ -23,7 +23,6 @@ class chipModel {
 @Component({
   selector: 'app-cms-tag-autocomplete',
   templateUrl: './cms-tag-autocomplete.component.html',
-  styleUrls: ['./cms-tag-autocomplete.component.scss']
 })
 export class CmsTagAutocompleteComponent implements OnInit {
   constructor(

@@ -8,7 +8,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-cms-guide-notice',
   templateUrl: './cms-guide-notice.component.html',
-  styleUrls: ['./cms-guide-notice.component.scss']
 })
 export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
 

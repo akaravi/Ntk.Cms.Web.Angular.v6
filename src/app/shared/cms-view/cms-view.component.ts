@@ -6,7 +6,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-cms-view',
   templateUrl: './cms-view.component.html',
-  styleUrls: ['./cms-view.component.scss']
 })
 export class CmsViewComponent implements OnInit, OnDestroy {
 

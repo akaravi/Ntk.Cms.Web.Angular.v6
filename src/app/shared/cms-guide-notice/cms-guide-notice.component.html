@@ -18,7 +18,7 @@
         <div [innerHTML]="description"></div>
         <div *ngIf="bodyShow" [innerHTML]="body"></div>
       </div>
-      <div class="align-self">
+      <div style="align-self: end;">
         <button type="button" *ngIf="!bodyShow&& body?.length>0" class="btn btn-outline-primary"
           (click)="onActionBottunClick()">
           بیشتر...

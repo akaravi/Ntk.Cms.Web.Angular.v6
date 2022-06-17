@@ -4,7 +4,6 @@ import {LayoutService} from '../../../../../core';
 @Component({
   selector: 'app-search-offcanvas',
   templateUrl: './search-offcanvas.component.html',
-  styleUrls: ['./search-offcanvas.component.scss']
 })
 export class SearchOffcanvasComponent implements OnInit {
   extrasSearchOffcanvasDirectionCSSClass: string;

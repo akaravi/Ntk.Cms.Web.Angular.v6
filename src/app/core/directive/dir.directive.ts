@@ -42,16 +42,3 @@ export class DirDirective {
   set value(v: LayoutDirection) { this.dir = v; }
 }
 
-
-// @NgModule({
-//   exports: [Dir],
-//   declarations: [Dir]
-// })
-// export class RtlModule {
-//   static forRoot(): ModuleWithProviders {
-//     return {
-//       ngModule: RtlModule,
-//       providers: []
-//     };
-//   }
-// }

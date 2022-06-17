@@ -20,7 +20,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-cms-currency-selector',
   templateUrl: './cms-currency-selector.component.html',
-  styleUrls: ['./cms-currency-selector.component.scss']
+
 })
 export class CmsCurrencySelectorComponent implements OnInit {
 

@@ -20,7 +20,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-cms-application-selector',
   templateUrl: './cms-application-selector.component.html',
-  styleUrls: ['./cms-application-selector.component.scss']
 })
 export class CmsApplicationSelectorComponent implements OnInit {
 

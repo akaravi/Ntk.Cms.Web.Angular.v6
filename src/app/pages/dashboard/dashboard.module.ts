@@ -29,11 +29,9 @@ import {
   NewsContentService
 } from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
-import { CmsFileManagerModule } from 'src/filemanager-api';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NewsContentWidget2Component } from 'src/app/cms-modules/news/content/widget/widget2.component';
 import { CmsHtmlWidgetComponent } from 'src/app/shared/cms-html-widget/cms-html-widget.component';
-import { TranslationModule } from 'src/app/core/i18n/translation.module';
 import { ApplicationAppWidget2Component } from 'src/app/cms-modules/application/content/widget/widget2.component';
 import { ArticleContentWidget2Component } from 'src/app/cms-modules/article/content/widget/widget2.component';
 import { BiographyContentWidgetComponent } from 'src/app/cms-modules/biography/content/widget/widget.component';
@@ -96,7 +94,6 @@ import { CoreModuleLogReportAbuseWidget2Component } from 'src/app/cms-modules/co
     DashboardsModule,
     InlineSVGModule,
     NgApexchartsModule,
-    TranslationModule,
     SharedModule.forRoot(),
     // CmsFileManagerModule
   ],
