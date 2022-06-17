@@ -396,11 +396,7 @@ import { TranslateModule } from '@ngx-translate/core';
   providers: [
     OverlayService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
-    {
-      provide: DateAdapter,
-      useClass: MaterialPersianDateAdapter,
-      deps: [MAT_DATE_LOCALE],
-    },
+    { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS },
     MemberUserService,
     CoreUserService,

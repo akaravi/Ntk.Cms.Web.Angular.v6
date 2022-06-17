@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 // import { locale as jpLang } from './modules/i18n/vocabs/jp';
 // import { locale as deLang } from './modules/i18n/vocabs/de';
 // import { locale as frLang } from './modules/i18n/vocabs/fr';
-import { SplashScreenService } from './_metronic/partials/layout/splash-screen/splash-screen.service';
+import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
 // import { TableExtendedService } from './_metronic/shared/crud-table';
 import { CoreAuthService } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // to display back the body content
         setTimeout(() => {
           document.body.classList.add('page-loaded');
-        }, 500);
+        }, 1000);
       }
     });
     this.unsubscribe.push(routerSubscription);

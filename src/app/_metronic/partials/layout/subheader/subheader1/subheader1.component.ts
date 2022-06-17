@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LayoutService } from '../../../../core';
+
 import { SubheaderService } from '../_services/subheader.service';
 import { BreadcrumbItemModel } from '../_models/breadcrumb-item.model';
+import { LayoutService } from 'src/app/core/services/layout.service';
 
 @Component({
   selector: 'app-subheader1',

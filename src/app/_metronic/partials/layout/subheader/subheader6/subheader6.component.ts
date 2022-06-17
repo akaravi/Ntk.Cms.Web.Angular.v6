@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreadcrumbItemModel } from '../_models/breadcrumb-item.model';
-import { LayoutService } from '../../../../core';
+import { LayoutService } from 'src/app/core/services/layout.service';
 import { SubheaderService } from '../_services/subheader.service';
 
 @Component({

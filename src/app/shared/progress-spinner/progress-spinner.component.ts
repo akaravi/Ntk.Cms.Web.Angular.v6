@@ -38,6 +38,7 @@ export class ProgressSpinnerComponent implements DoCheck, OnInit {
     private overlayService: OverlayService
   ) { }
   ngOnInit(): void {
+    
     if (!this.optionsData || !this.optionsData.Globally) {
       return;
     }
@@ -58,7 +59,6 @@ export class ProgressSpinnerComponent implements DoCheck, OnInit {
     }
 
     // Based on status of displayProgressSpinner attach/detach overlay to progress spinner template
-
     if (this.optionsData.display && !this.overlayRef.hasAttached()) {
       this.overlayService.attachTemplatePortal(
         this.overlayRef,

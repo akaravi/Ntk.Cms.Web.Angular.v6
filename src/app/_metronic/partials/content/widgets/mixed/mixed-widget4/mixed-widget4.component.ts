@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LayoutService } from '../../../../../core';
+import { LayoutService } from 'src/app/core/services/layout.service';
 
 @Component({
   selector: 'app-mixed-widget4',

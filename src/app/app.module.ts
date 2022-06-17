@@ -7,9 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
-// import { AuthService } from './modules/auth/_services/auth.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { SplashScreenModule } from './_metronic/partials/layout/splash-screen/splash-screen.module';
 import { TeardownLogic } from 'rxjs';
 import { SharedModule } from './shared.module';
 import { ToastrModule } from 'ngx-toastr';
@@ -22,6 +20,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { SplashScreenComponent } from './shared/splash-screen/splash-screen.component';
 
 function appInitializer(authService: CmsAuthService) {
   return () => {
@@ -34,11 +33,14 @@ export function CreateTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    SplashScreenComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SplashScreenModule,
+    
     TranslateModule.forRoot(),
     SharedModule.forRoot(),
     ToastrModule.forRoot({

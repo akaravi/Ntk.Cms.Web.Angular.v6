@@ -7,11 +7,12 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LayoutService } from '../../_metronic/core/';
+
 import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import {  TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { LayoutService } from 'src/app/core/services/layout.service';
 
 @Component({
   selector: 'app-builder',
