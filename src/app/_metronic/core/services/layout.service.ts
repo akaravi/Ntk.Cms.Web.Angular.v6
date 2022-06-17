@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
-import { DefaultLayoutConfig } from '../../configs/default-layout.config';
+import { DefaultLayoutConfig } from '../../../core/configs/default-layout.config';
 import * as objectPath from 'object-path';
 
 const LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `${environment.appVersion}-layoutConfig`;
