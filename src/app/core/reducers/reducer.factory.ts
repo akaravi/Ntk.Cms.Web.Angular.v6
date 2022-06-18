@@ -1,5 +1,5 @@
 import { CoreModuleModel, CoreSiteModel, EnumInfoModel, ErrorExceptionResult, TokenInfoModel } from 'ntk-cms-api';
-import { ProcessInfoModel, ProgressSpinnerModel } from '../models/progressSpinnerModel';
+import { ProcessInfoModel } from '../models/progressSpinnerModel';
 
 export interface ReducerCmsStore {
   CoreSiteResultStore: ErrorExceptionResult<CoreSiteModel>;
