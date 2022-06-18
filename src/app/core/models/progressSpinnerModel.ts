@@ -8,6 +8,19 @@ export class ProcessInfoModel {
   title = '';
 }
 export class ProgressSpinnerModel {
+  constructor() {
+    /** GUID */
+    this.guid = `${this.S4()}${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}${this.S4()}${this.S4()}`;
+    /** GUID */
+    this.consoleLog = environment.ProgressConsoleLog;
+    this.mode = "indeterminate";
+  }
+  /** GUID */
+  private S4(): string {
+    const ran = (1 + Math.random()) * 0x10000;
+    return (ran | 0).toString(16).substring(1);
+  }
+  /** GUID */
   cdr: ChangeDetectorRef;
   message = 'در حال دریافت اطلاعات';
   color?: ThemePalette;
@@ -21,25 +34,9 @@ export class ProgressSpinnerModel {
   processRunList: string[];
   display = false;
   consoleLog = true;
+  guid = '';
   processInfo = new Map<string, ProcessInfoModel>();
-  constructor() {
-    /** GUID */
-    this.guid = this.newGuid();
-    /** GUID */
-    this.consoleLog = environment.ProgressConsoleLog;
-  }
-  /** GUID */
-  private guid = '';
-  private S4(): string {
-    const ran = (1 + Math.random()) * 0x10000;
-    return (ran | 0).toString(16).substring(1);
-  }
-  newGuid(): string {
-    const isString = `${this.S4()}${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}-${this.S4()}${this.S4()}${this.S4()}`;
-    return isString;
-  }
-  /** GUID */
-
+  
   displayItem(name: string): boolean {
     if (!this.processInfo) {
       return false;
@@ -75,7 +72,7 @@ export class ProgressSpinnerModel {
 
     /** Display */
     if (this.consoleLog) {
-      console.log(this.guid, 'Start:', name, 'Display:', this.display,'key:',key,'title:',model.title, 'processRunList:', this.processRunList);
+      console.log(this.guid, 'Start:', name, 'Globally:', this.Globally, 'Display:', this.display, 'key:', key, 'title:', model.title, 'processRunList:', this.processRunList);
     }
     if (this.cdr && !this.display) {
       this.cdr.detectChanges();
@@ -107,12 +104,11 @@ export class ProgressSpinnerModel {
 
     /** Display */
     if (this.consoleLog) {
-      console.log(this.guid, 'Stop:', name, 'Display:', this.display,'key:',key,'title:',model.title,  'processRunList:', this.processRunList);
+      console.log(this.guid, 'Stop:', name, 'Globally:', this.Globally, 'Display:', 'Display:', this.display, 'key:', key, 'title:', model.title, 'processRunList:', this.processRunList);
     }
 
     if (this.cdr && !this.display) {
       this.cdr.detectChanges();
     }
   }
-
 }
