@@ -60,7 +60,7 @@
         <!-- linkCreatedBySiteId Field -->
         <app-core-site-selector (optionChange)="onActionSelectCategory($event)"
           [optionSelectForce]="this.dataModel.linkCreatedBySiteId" [optionPlaceholder]="'سایت والد'"
-          [optionDisabled]="!fieldsInfo['linkCreatedBySiteId']?.accessAddField"></app-core-site-selector>
+          [optionDisabled]="!fieldsInfo['LinkCreatedBySiteId']?.accessAddField"></app-core-site-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
           <mat-label>{{ fieldsInfo['Title']?.fieldTitle }}</mat-label>

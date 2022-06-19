@@ -2,7 +2,7 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 
 export const environment = {
   production: true,
-  appVersion: '14.1.0328.1',
+  appVersion: '14.1.0329.1',
   USERDATA_KEY: 'authf649fc9a5f55',
   loadDemoDashboard: false,
   ProgressConsoleLog: false,
@@ -14,7 +14,8 @@ export const environment = {
     configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
     configFileServerPath: 'https://apifile.ir/api/v2/',
     configQDocServerPath: 'https://qdoc.ir/api/chat',
-    configCompanyWebSite: 'https://ntk.ir'
+    configCompanyWebSite: 'https://ntk.ir',
+    modules:['']
   },
 
   cmsTokenConfig: {

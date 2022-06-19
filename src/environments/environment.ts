@@ -22,7 +22,8 @@ export const environment = {
     configFileServerPath: 'https://apifile.ir/api/v2/',
     // configFileServerPath: 'http://localhost:2392/api/v1/' // Test Api
     configQDocServerPath: 'https://qdoc.ir/api/chat',
-    configCompanyWebSite: 'https://ntk.ir'
+    configCompanyWebSite: 'https://ntk.ir',
+    modules:['']
   },
   cmsTokenConfig: {
     SecurityKey: '123456789',

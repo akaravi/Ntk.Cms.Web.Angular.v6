@@ -351,4 +351,9 @@ export class PublicHelper {
     const alphaExp = /<(\"[^\"]*\"|'[^']*'|[^'\">])*>/g;
     return alphaExp.test(text);
    }
+   checkModule(moduleName: string): boolean {
+    if (environment.cmsServerConfig.modules && environment.cmsServerConfig.modules.length > 0 && environment.cmsServerConfig.modules.findIndex(x => x.toLowerCase() == moduleName.toLowerCase()) < 0)
+      return false;
+    return true;
+  }
 }

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-cms-guide-notice',
   templateUrl: './cms-guide-notice.component.html',
@@ -85,9 +85,9 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
                   break;
                 }
               }
+            } else if (!environment.production) {
 
-            } else {
-              this.cmsToastrService.typeErrorMessage(next.errorMessage);
+              this.cmsToastrService.typeErrorMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
             }
           },
           (error) => {
@@ -133,8 +133,9 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
                 }
               }
 
-            } else {
-              this.cmsToastrService.typeErrorMessage(next.errorMessage);
+            } else if (!environment.production) {
+
+              this.cmsToastrService.typeErrorMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
             }
           },
           (error) => {
