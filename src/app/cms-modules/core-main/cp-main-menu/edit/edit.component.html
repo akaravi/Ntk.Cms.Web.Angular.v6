@@ -72,17 +72,7 @@
                 " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <!-- AddressLink Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AddressLink']?.accessWatchField">
-          <mat-label> {{fieldsInfo['AddressLink']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.addressLink" name="dataModel.addressLink" #AddressLink type="text"
-            [disabled]="!fieldsInfo['AddressLink']?.accessEditField"
-            placeholder="{{fieldsInfo['AddressLink']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.addressLink" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.addressLink = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ AddressLink.value.length }} / 100</mat-hint>
-        </mat-form-field>
+
         <!-- RouteAddressLink Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.accessWatchField">
           <mat-label> {{fieldsInfo['RouteAddressLink']?.fieldTitle}}</mat-label>

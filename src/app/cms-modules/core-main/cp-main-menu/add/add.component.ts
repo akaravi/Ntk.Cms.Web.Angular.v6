@@ -107,7 +107,7 @@ export class CoreCpMainMenuAddComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.dialogRef.close({ dialogChangedDate: true });
+          this.dialogRef.close({ dialogChangedDate: true,model:ret.item });
 
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');

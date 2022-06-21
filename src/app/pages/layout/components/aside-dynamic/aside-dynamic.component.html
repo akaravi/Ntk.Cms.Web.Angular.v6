@@ -44,7 +44,7 @@
   <ng-container *ngIf="item.submenu">
     <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover"
       [ngClass]="{ 'menu-item-open': isMenuItemActive(item.page) }" routerLinkActive="menu-item-open">
-      <a class="menu-link menu-toggle" [attr.href]="item.page" routerLinkActive="active"
+      <a class="menu-link menu-toggle" [routerLink]="item.page" routerLinkActive="active"
         [ngClass]="{ 'active ': isMenuItemActive(item.page) }">
         <span *ngIf="item.svg && item.svg.length>0" [inlineSVG]="item.svg" cacheSVG="true"
           class="svg-icon menu-icon"></span>
@@ -96,7 +96,7 @@
   <ng-container *ngIf="item.submenu">
     <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover"
       [ngClass]="{ 'menu-item-open': isMenuItemActive(item.page) }" routerLinkActive="menu-item-open">
-      <a class="menu-link menu-toggle" [attr.href]="item.page" [ngClass]="{ 'active ': isMenuItemActive(item.page) }"
+      <a class="menu-link menu-toggle" [routerLink]="item.page" [ngClass]="{ 'active ': isMenuItemActive(item.page) }"
         routerLinkActive="active">
         <i *ngIf="!item.icon || item.icon.length===0" class="menu-bullet menu-bullet-dot">
           <span></span>
