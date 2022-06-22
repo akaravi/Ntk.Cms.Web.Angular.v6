@@ -221,7 +221,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
       height: '90%',
-      data: { LinkUserId: this.dataModel.id }
+      data: { linkUserId: this.dataModel.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
