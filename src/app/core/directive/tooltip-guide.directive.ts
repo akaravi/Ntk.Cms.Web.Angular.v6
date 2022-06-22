@@ -1,6 +1,7 @@
 import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { CoreGuideService } from 'ntk-cms-api';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { PublicHelper } from '../helpers/publicHelper';
 import { TokenHelper } from '../helpers/tokenHelper';
 import { CmsToastrService } from '../services/cmsToastr.service';
@@ -14,7 +15,7 @@ export class TooltipGuideDirective {
   @Input() placement: string;
   @Input() delay: number;
   tooltip: HTMLElement;
-  viewError = false;
+  
   // 호스트 요소와 tooltip 요소 간의 거리
   offset = 10;
   constructor(
@@ -89,7 +90,8 @@ export class TooltipGuideDirective {
               this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
               /*run */
             } else {
-              if (this.viewError) {
+              if (!environment.production) {
+                console.log('tooltip',next.errorMessage);
                 this.cmsToastrService.typeErrorMessage(next.errorMessage);
               }
               /*run */
@@ -100,7 +102,7 @@ export class TooltipGuideDirective {
             }
           },
           (error) => {
-            if (this.viewError) {
+            if (!environment.production) {
               this.cmsToastrService.typeError(error);
             }
           })
@@ -142,7 +144,8 @@ export class TooltipGuideDirective {
               this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
               /*run */
             } else {
-              if (this.viewError) {
+              if (!environment.production) {
+                console.log('tooltip',next.errorMessage);
                 this.cmsToastrService.typeErrorMessage(next.errorMessage);
               }
               /*run */
@@ -153,7 +156,7 @@ export class TooltipGuideDirective {
             }
           },
           (error) => {
-            if (this.viewError) {
+            if (!environment.production) {
               this.cmsToastrService.typeError(error);
             }
           })

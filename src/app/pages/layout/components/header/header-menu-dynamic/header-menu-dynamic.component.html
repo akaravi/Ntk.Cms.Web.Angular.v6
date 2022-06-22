@@ -15,7 +15,16 @@
   <ng-container *ngIf="!item.submenu">
     <!-- begin::1 Level -->
     <li class="menu-item menu-item-rel" routerLinkActive="menu-item-active">
-      <a class="menu-link" [routerLink]="item.page" routerLinkActive="active">
+      <a *ngIf="item.page && item.page.length>0" class="menu-link" [routerLink]="item.page"  routerLinkActive="active">
+        <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
+          aria-hidden="true"><span></span></i>&nbsp;&nbsp;
+        <span class="menu-text" >
+          {{item.title}}</span>
+        <ng-container *ngIf="rootArrowEnabled">
+          <i class="menu-arrow"></i>
+        </ng-container>
+      </a>
+      <a *ngIf="!item.page || item.page.length==0" class="menu-link" [routerLink]="item.page"  routerLinkActive="active">
         <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
         <span class="menu-text" >

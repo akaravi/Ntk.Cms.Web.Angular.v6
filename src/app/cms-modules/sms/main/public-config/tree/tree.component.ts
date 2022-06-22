@@ -99,7 +99,7 @@ export class SmsMainApiPathPublicConfigTreeComponent implements OnInit, OnDestro
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id.length > 0) {
+    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
@@ -126,7 +126,7 @@ export class SmsMainApiPathPublicConfigTreeComponent implements OnInit, OnDestro
 
   onActionEdit(): void {
     let id = '';
-    if (this.dataModelSelect && this.dataModelSelect.id.length > 0) {
+    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
       id = this.dataModelSelect.id;
     }
     if (id.length === 0) {
