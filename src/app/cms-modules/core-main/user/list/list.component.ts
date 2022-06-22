@@ -274,7 +274,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
-      height: '90%',
+      //height: '90%',
       data: { linkUserId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
