@@ -69,7 +69,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.dataModelAuthUserSignInBySms.captchaKey = this.captchaModel.key;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
-    this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Send_login_request_with_one_time_password'));
     this.coreAuthService
       .ServiceSigninUserBySMS(this.dataModelAuthUserSignInBySms)
       .subscribe({
@@ -119,7 +119,7 @@ export class AuthSingInBySmsComponent implements OnInit {
     this.dataModelAuthUserSignInBySms.captchaKey = this.captchaModel.key;
     this.dataModelAuthUserSignInBySms.lang = this.translationService.getSelectedLanguage();
     const pName = this.constructor.name + '.ServiceSigninUserBySMS';
-    this.loading.Start(pName, 'ارسال درخواست ورود با یک بار رمز');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Send_login_request_with_one_time_password'));
     /** read storage */
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {

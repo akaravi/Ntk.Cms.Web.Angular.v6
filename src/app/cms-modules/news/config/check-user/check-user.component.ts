@@ -31,7 +31,8 @@ export class NewsConfigCheckUserComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -68,7 +69,7 @@ export class NewsConfigCheckUserComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + '.ServiceCheckUser';
-    this.loading.Start(pName, 'بررسی حساب کاربری');
+    this.loading.Start(pName, this.translate.instant('TITLE.Check_account'));
     this.configService
       .ServiceCheckUser(this.requestLinkUserId)
       .subscribe({

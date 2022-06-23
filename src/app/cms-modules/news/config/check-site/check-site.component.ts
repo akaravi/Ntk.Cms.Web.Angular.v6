@@ -31,7 +31,8 @@ export class NewsConfigCheckSiteComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -68,7 +69,7 @@ export class NewsConfigCheckSiteComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + '.ServiceCheckSite';
-    this.loading.Start(pName, 'بررسی وب سایت');
+    this.loading.Start(pName, this.translate.instant('TITLE.Check_website'));
     this.configService
       .ServiceCheckSite(this.requestLinkSiteId)
       .subscribe({

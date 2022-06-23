@@ -89,7 +89,7 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.dataModelforgetPasswordEntryPinCode.mobile = '';
     this.dataModelforgetPasswordEntryPinCode.email = this.dataModelforgetPasswordByEmail.email;
     const pName = this.constructor.name + '.ServiceForgetPassword';
-    this.loading.Start(pName, 'در خواست یاد آوری کلمه عبور ');
+    this.loading.Start(pName, this.translate.instant('AUTH.FORGOT.REQUEST_PASSWORD_REMINDER'));
     this.coreAuthService
       .ServiceForgetPassword(this.dataModelforgetPasswordByEmail)
       .subscribe({

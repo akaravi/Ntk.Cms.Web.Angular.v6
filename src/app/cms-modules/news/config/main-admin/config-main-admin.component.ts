@@ -114,7 +114,7 @@ export class NewsConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
-    this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_the_module_default_settings'));
     this.configService
       .ServiceSiteConfigDefault()
       .subscribe({
@@ -140,7 +140,7 @@ export class NewsConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
-    this.loading.Start(pName, 'ذخیره تنظیمات پیش فرض ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_module_default_setting'));
     this.configService
       .ServiceSiteConfigDefaultSave(this.dataConfigSiteValuesDefaultModel)
       .subscribe({
@@ -166,7 +166,7 @@ export class NewsConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteAccessDefault';
-    this.loading.Start(pName, 'دریافت دسترسی پیش فرض ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_the_module_default_access'));
     this.configService
       .ServiceSiteAccessDefault()
       .subscribe({
@@ -192,7 +192,7 @@ export class NewsConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceSiteAccessDefaultSave';
-    this.loading.Start(pName, 'ذخیره دسترسی پیش فرض ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_the_module_default_access'));
     this.configService
       .ServiceSiteAccessDefaultSave(this.dataConfigSiteAccessValuesDefaultModel)
       .subscribe({
@@ -218,7 +218,7 @@ export class NewsConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceAdminMain';
-    this.loading.Start(pName, 'دریافت تنظیمات ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_module_setting'));
     this.configService
       .ServiceAdminMain()
       .subscribe({
@@ -244,7 +244,7 @@ export class NewsConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceAdminMain';
-    this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_module_setting'));
     this.configService
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe({

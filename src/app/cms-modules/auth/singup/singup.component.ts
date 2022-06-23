@@ -47,31 +47,31 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   }
   onActionSubmit(): void {
     if (!this.dataModel.email || this.dataModel.email.length === 0) {
-      this.formInfo.formError = 'آدرس ایمیل خود را وارد کنید';
+      this.formInfo.formError = this.translate.instant('ERRORMESSAGE.MESSAGE.enter_your_email_address');
       this.formInfo.formErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
     if (!this.dataModel.name || this.dataModel.name.length === 0) {
-      this.formInfo.formError = 'نام خود را وارد کنید';
+      this.formInfo.formError = this.translate.instant('ERRORMESSAGE.MESSAGE.enter_your_name');
       this.formInfo.formErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
     if (!this.dataModel.family || this.dataModel.family.length === 0) {
-      this.formInfo.formError = 'نام خانوادگی خود را وارد کنید';
+      this.formInfo.formError = this.translate.instant('ERRORMESSAGE.MESSAGE.enter_your_last_name');
       this.formInfo.formErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
     if (!this.dataModel.password || this.dataModel.password.length === 0) {
-      this.formInfo.formError = 'کلمه عبور را وارد کنید';
+      this.formInfo.formError = this.translate.instant('ERRORMESSAGE.MESSAGE.enter_the_password');
       this.formInfo.formErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
     }
     if (!this.RePasswordModel || this.RePasswordModel.length === 0) {
-      this.formInfo.formError = 'تکرار کلمه عبور را وارد کنید';
+      this.formInfo.formError = this.translate.instant('ERRORMESSAGE.MESSAGE.re_enter_the_password');
       this.formInfo.formErrorStatus = true;
       this.cmsToastrService.typeErrorRegistery(this.formInfo.formError);
       return;
@@ -83,7 +83,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       return;
     }
     if (this.dataModel.password !== this.RePasswordModel) {
-      this.formInfo.formError = 'محتوای کلمه عبور و تکرار کلمه عبور متفاوت است';
+      this.formInfo.formError = this.translate.instant('ERRORMESSAGE.MESSAGE.password_and_re_password_are_different');
       this.dataModel.password = '';
       this.RePasswordModel = '';
       this.formInfo.formErrorStatus = true;
@@ -93,7 +93,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     this.formInfo.formErrorStatus = false;
     this.dataModel.captchaKey = this.captchaModel.key;
     const pName = this.constructor.name + '.ServiceSignupUser';
-    this.loading.Start(pName, 'در حال ساخت حساب کاربری جدید');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Creating_new_account'));
     /** read storage */
     const siteId = + localStorage.getItem('siteId');
     if (siteId > 0) {
@@ -125,7 +125,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
           dataLoginModel.siteId = this.dataModel.siteId;
           dataLoginModel.mobile = this.dataModel.mobile;
           const pName2 = this.constructor.name + 'ServiceSigninUser';
-          this.loading.Start(pName2, 'ورود به حساب کاربری');
+          this.loading.Start(pName2, this.translate.instant('MESSAGE.login_to_user_account'));
           this.coreAuthService.ServiceSigninUser(dataLoginModel).subscribe(
             (res) => {
               if (res.isSuccess) {
