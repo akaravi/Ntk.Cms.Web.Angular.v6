@@ -13,6 +13,7 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   ErrorExceptionResultBase,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'src/filemanager-api';
 import { map } from 'rxjs/operators';
@@ -124,7 +125,7 @@ export class PublicHelper {
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
       [
-        'redo',      
+        'redo',
       ],
       [
         'removeFormat',
@@ -347,13 +348,32 @@ export class PublicHelper {
     }
     return password;
   }
-  checkIsHTML(text:string):boolean {
+  checkIsHTML(text: string): boolean {
     const alphaExp = /<(\"[^\"]*\"|'[^']*'|[^'\">])*>/g;
     return alphaExp.test(text);
-   }
-   checkModule(moduleName: string): boolean {
+  }
+  checkModule(moduleName: string): boolean {
     if (environment.cmsServerConfig.modules && environment.cmsServerConfig.modules.length > 0 && environment.cmsServerConfig.modules.findIndex(x => x.toLowerCase() == moduleName.toLowerCase()) < 0)
       return false;
     return true;
+  }
+  TabledisplayedColumnsCheckByAllDataAccess(cloumn: string[], cloumnCheck: string[], token: TokenInfoModel): string[] {
+
+    if (!cloumnCheck || cloumnCheck.length == 0) {
+      cloumnCheck = [];
+    }
+    cloumnCheck.push('Id');
+    cloumnCheck.push('LinkSiteId');
+    if (token.userAccessAdminAllowToAllData || token.userAccessAdminAllowToProfessionalData) {
+      var i=0;
+      cloumnCheck.forEach(element => {
+        cloumn = this.listAddIfNotExist(cloumn, element, ++i);
+      });
+    } else {
+      cloumnCheck.forEach(element => {
+        cloumn = this.listRemoveIfExist(cloumn, element);
+      });
+    }
+    return cloumn;
   }
 }

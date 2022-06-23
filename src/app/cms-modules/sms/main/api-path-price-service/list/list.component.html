@@ -1,7 +1,8 @@
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="!requestLinkApiPathId || requestLinkApiPathId.length==0">
+<app-cms-html-list [optionLoading]="loading"
+  [optionTreeDisplay]="!requestLinkApiPathId || requestLinkApiPathId.length==0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-sms-apipath-tree [loading]="loading" (optionChange)="onActionSelectorSelect($event)" ></app-sms-apipath-tree>
+    <app-sms-apipath-tree [loading]="loading" (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
@@ -12,13 +13,16 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id?.length>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id?.length>0"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
-    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id?.length>0" (click)="onActionbuttonDeleteRow()"
-      type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id?.length>0"
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
@@ -60,16 +64,42 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+          </select>
+        </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      <!-- LinkApiPathId Column -->
+      <ng-container matColumnDef="LinkApiPathId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkApiPathId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.linkApiPathId | cmstitle: dataModelPrivateResult.listItems}}</mat-cell>
       </ng-container>
-    
+      <!-- RegulatorNumber Column -->
+      <ng-container matColumnDef="RegulatorNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RegulatorNumber']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.regulatorNumber}} </mat-cell>
+      </ng-container>
+      <!-- ServicePrice Column -->
+      <ng-container matColumnDef="ServicePrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ServicePrice']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.servicePrice}} </mat-cell>
+      </ng-container>
+      <!-- EndUserPrice Column -->
+      <ng-container matColumnDef="EndUserPrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['EndUserPrice']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.endUserPrice}} </mat-cell>
+      </ng-container>
+      <!-- MessageLength Column -->
+      <ng-container matColumnDef="MessageLength">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['MessageLength']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.mssageLength}} </mat-cell>
+      </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
@@ -87,11 +117,8 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonApiList(row)">
-              <mat-icon>view_module</mat-icon>
-              <span>مسیر ها</span>
-            </button>
-           
+ 
+
           </mat-menu>
         </mat-cell>
       </ng-container>

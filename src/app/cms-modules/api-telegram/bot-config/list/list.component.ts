@@ -88,6 +88,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   expandedElement: ApiTelegramBotConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
+    
     this.filteModelContent.sortColumn = 'ShowInMenuOrder';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -102,18 +103,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        'LinkSiteId',
-        0
-      );
-    } else {
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        'LinkSiteId'
-      );
-    }
+   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramBotConfigModel();
     const pName = this.constructor.name + 'main';

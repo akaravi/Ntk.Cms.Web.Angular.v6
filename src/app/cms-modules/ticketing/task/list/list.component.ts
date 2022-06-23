@@ -118,6 +118,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     });
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingTaskModel();
     const pName = this.constructor.name + 'main';
@@ -147,18 +148,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
         if (next.isSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.listItems;
-          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
-          }
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.access);
           }

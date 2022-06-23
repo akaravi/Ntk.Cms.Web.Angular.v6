@@ -14,7 +14,8 @@ import {
   DataFieldInfoModel,
   SmsMainApiPathModel,
   EnumInfoModel,
-  SmsEnumService
+  SmsEnumService,
+  SmsMainApiPathService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -48,6 +49,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
+    private smsMainApiPathService:SmsMainApiPathService,
     public smsEnumService: SmsEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -81,11 +83,15 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
   categoryModelSelected: SmsMainApiPathModel;
   dataModelSmsMessageTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelSmsOutBoxTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
+  dataModelPrivateResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
-    'Title',
+    'LinkApiPathId',
+    'RegulatorNumber',
+    'ServicePrice',
+    'EndUserPrice',
+    'MessageLength',
     'Action'
   ];
 
@@ -114,11 +120,18 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
       this.tokenInfo = next;
       this.DataGetAll();
     });
+    this.getPrivateConfig();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
+  getPrivateConfig(): void {
+    const filter = new FilterModel();
+    filter.rowPerPage = 100;
+    this.smsMainApiPathService.ServiceGetAll(filter).subscribe((next) => {
+      this.dataModelPrivateResult = next;
+    });
+  }
   getSmsMessageTypeEnum(): void {
     this.smsEnumService.ServiceSmsMessageTypeEnum().subscribe((res) => {
       this.dataModelSmsMessageTypeEnumResult = res;
@@ -130,6 +143,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     });
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsMainApiPathPriceServiceModel();
     const pName = this.constructor.name + 'main';
@@ -218,7 +232,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     }
     const dialogRef = this.dialog.open(SmsMainApiPathPriceServiceAddComponent, {
       height: '90%',
-      data: {}
+      data: {linkApiPathId:this.categoryModelSelected.id}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -350,27 +364,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
 
   }
 
-  onActionbuttonApiList(model: SmsMainApiPathPriceServiceModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length == 0) {
 
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessDeleteRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/sms/main/api-path/list/LinkPriceServiceId', this.tableRowSelected.id]);
-
-
-  }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);

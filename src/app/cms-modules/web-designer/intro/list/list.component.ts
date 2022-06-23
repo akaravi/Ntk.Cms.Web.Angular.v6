@@ -104,6 +104,14 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    
+    if (this.requestLinkPageId === 0) {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'LinkPageId'
+      );
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainIntroModel();
     const pName = this.constructor.name + 'main';
@@ -118,24 +126,7 @@ export class WebDesignerMainIntroListComponent implements OnInit, OnDestroy {
         if (next.isSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.listItems;
-          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
-          }
-          if (this.requestLinkPageId === 0) {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkPageId'
-            );
-          }
+ 
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.access);
           }
