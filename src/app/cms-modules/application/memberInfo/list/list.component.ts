@@ -322,7 +322,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
-      data: { LinkApplicationMemberId: this.tableRowSelected.id }
+      data: { linkApplicationMemberId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

@@ -228,7 +228,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(ApplicationThemeConfigAddComponent, {
       height: '90%',
-      data: { LinkSourceId: sourceId }
+      data: { linkSourceId: sourceId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

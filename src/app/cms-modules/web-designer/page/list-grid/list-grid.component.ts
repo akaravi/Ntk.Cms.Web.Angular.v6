@@ -217,7 +217,7 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageAddComponent, {
       height: '90%',
-      data: { LinkPageDependencyGuId: this.requestLinkPageDependencyGuId }
+      data: { linkPageDependencyGuId: this.requestLinkPageDependencyGuId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

@@ -212,7 +212,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     } else {
       const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
         height: '90%',
-        data: { LinkUserClaimTypeId: this.tableRowSelected.linkTypeId }
+        data: { linkUserClaimTypeId: this.tableRowSelected.linkTypeId }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {

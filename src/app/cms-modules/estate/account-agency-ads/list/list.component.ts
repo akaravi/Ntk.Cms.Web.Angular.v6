@@ -35,6 +35,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class EstateAccountAgencyAdsListComponent implements OnInit, OnDestroy {
   requestLinkAccountAgencyId = '';
+  requestLinkPropertyId='';
   constructor(
     private estateAccountAgencyAdsService: EstateAccountAgencyAdsService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -187,7 +188,7 @@ export class EstateAccountAgencyAdsListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(EstateAccountAgencyAdsAddComponent, {
       height: '90%',
-      data: { LinkAccountAgencyId: this.requestLinkAccountAgencyId }
+      data: { linkAccountAgencyId: this.requestLinkAccountAgencyId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

@@ -472,7 +472,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
-      data: { LinkApplicationId: this.tableRowSelected.id }
+      data: { linkApplicationId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

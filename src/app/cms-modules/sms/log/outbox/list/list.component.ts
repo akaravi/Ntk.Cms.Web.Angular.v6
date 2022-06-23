@@ -493,7 +493,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     }
     // const dialogRef = this.dialog.open(SmsLogOutBoxSendTestComponent, {
     //   height: '90%',
-    //   data: { LinkApiPathId: this.tableRowSelected.id }
+    //   data: { linkApiPathId: this.tableRowSelected.id }
     // });
     // dialogRef.afterClosed().subscribe(result => {
     //   // console.log(`Dialog result: ${result}`);

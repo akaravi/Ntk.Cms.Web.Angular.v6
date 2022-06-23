@@ -225,7 +225,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(TicketingTaskAddComponent, {
       height: '90%',
-      data: { LinkDepartemenId: parentId }
+      data: { linkDepartemenId: parentId }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

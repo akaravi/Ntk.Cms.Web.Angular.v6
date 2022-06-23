@@ -284,7 +284,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
-      data: { LinkApplicationMemberId: this.tableRowSelected.linkApplicationMemberId }
+      data: { linkApplicationMemberId: this.tableRowSelected.linkApplicationMemberId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

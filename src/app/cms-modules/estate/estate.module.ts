@@ -36,7 +36,8 @@ import {
   FileCategoryService,
   EstateBillboardService,
   EstateCustomerOrderService,
-  BankPaymentTransactionService
+  BankPaymentTransactionService,
+  EstateAccountAgencyAdsService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -125,6 +126,11 @@ import { EstateCustomerOrderHeaderComponent } from './customer-order/header/head
 import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
 import { EstatePropertyActionComponent } from './property/action/action.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EstateAccountAgencyAdsAddComponent } from './account-agency-ads/add/add.component';
+import { EstateAccountAgencyAdsEditComponent } from './account-agency-ads/edit/edit.component';
+import { EstateAccountAgencyAdsListComponent } from './account-agency-ads/list/list.component';
+import { EstateAccountAgencyAdsSaleListComponent } from './account-agency-ads/sale-list/sale-list.component';
+import { EstateAccountAgencyAdsSalePaymentComponent } from './account-agency-ads/sale-payment/sale-payment.component';
 
 @NgModule({
   declarations: [
@@ -222,6 +228,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EstateAccountAgencyTypeUserListComponent,
     EstateAccountAgencyTypeUserSelectorComponent,
     /* */
+    EstateAccountAgencyAdsAddComponent,
+    EstateAccountAgencyAdsEditComponent,
+    EstateAccountAgencyAdsListComponent,
+    EstateAccountAgencyAdsSaleListComponent,
+    EstateAccountAgencyAdsSalePaymentComponent,
+
   ],
   imports: [
     CommonModule,
@@ -270,6 +282,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EstatePropertyTypeService,
     EstatePropertyAdsService,
     EstateAdsTypeService,
+    /** */
+    EstateAccountAgencyAdsService,
     /** */
     CmsConfirmationDialogService,
     CoreModuleTagService,

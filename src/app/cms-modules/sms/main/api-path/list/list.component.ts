@@ -260,7 +260,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       linkCompanyId = this.requestLinkCompanyId;
     const dialogRef = this.dialog.open(SmsMainApiPathAddComponent, {
       height: '90%',
-      data: { LinkApiPathCompanyId: linkCompanyId }
+      data: { linkApiPathCompanyId: linkCompanyId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -517,17 +517,10 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
+    
     const dialogRef = this.dialog.open(SmsMainApiPathSendTestComponent, {
       height: '90%',
-      data: { LinkApiPathId: this.tableRowSelected.id }
+      data: { linkApiPathId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

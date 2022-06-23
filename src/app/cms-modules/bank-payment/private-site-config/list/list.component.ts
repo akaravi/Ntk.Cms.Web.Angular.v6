@@ -380,7 +380,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     }
     const dialogRef = this.dialog.open(BankPaymentPrivateSiteConfigPaymentTestComponent, {
       height: '90%',
-      data: { LinkPrivateSiteConfigId: this.tableRowSelected.id }
+      data: { linkPrivateSiteConfigId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
