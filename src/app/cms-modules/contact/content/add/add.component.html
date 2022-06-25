@@ -1,0 +1,84 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+        required>
+        <mat-option *ngFor="
+            let item of dataModelEnumRecordStatusResult.listItems;
+            index as i
+          " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+        <!-- LinkCategoryId Field -->
+        <app-contact-content-category-selector (optionChange)="onActionSelectCategory($event)"
+        [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی '"
+        [optionDisabled]="!fieldsInfo['LinkCategoryId']?.accessAddField"></app-contact-content-category-selector>
+
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- Numbers Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Numbers']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.numbers" name="dataModel.numbers" #Numbers type="text"
+        placeholder="{{fieldsInfo['Numbers']?.fieldTitle}}" minlength="1" maxlength="5000" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.numbers" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.numbers = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ Numbers.value.length }} / 5000</mat-hint>
+      <mat-error *ngIf="Numbers.errors?.required">
+        Numbers is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+   
+  
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>
