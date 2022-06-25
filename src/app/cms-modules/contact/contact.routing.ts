@@ -4,10 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContactComponent } from './contact.component';
 import { ContactContentAddComponent } from './content/add/add.component';
 import { ContactContentEditComponent } from './content/edit/edit.component';
-import { ContactVoteListComponent } from './vote/list/list.component';
-import { ContactConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { ContactConfigSiteComponent } from './config/site/config-site.component';
-
 
 
 const routes: Routes = [

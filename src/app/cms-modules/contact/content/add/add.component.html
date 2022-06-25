@@ -26,9 +26,9 @@
     </mat-form-field>
 
         <!-- LinkCategoryId Field -->
-        <app-contact-content-category-selector (optionChange)="onActionSelectCategory($event)"
+        <app-contact-category-selector (optionChange)="onActionSelectCategory($event)"
         [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی '"
-        [optionDisabled]="!fieldsInfo['LinkCategoryId']?.accessAddField"></app-contact-content-category-selector>
+        ></app-contact-category-selector>
 
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">

@@ -30,7 +30,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./edit.component.scss'],
 })
 export class ContactContentEditComponent implements OnInit {
-  requestId = '';
+  requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ContactContentEditComponent>,
@@ -72,7 +72,7 @@ export class ContactContentEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.requestId.length > 0) {
+    if (this.requestId > 0) {
       this.formInfo.formTitle = 'ویرایش  دسته بندی';
       this.DataGetOneContent();
     } else {
@@ -87,7 +87,7 @@ export class ContactContentEditComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    if (this.requestId.length === 0) {
+    if (this.requestId === 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }

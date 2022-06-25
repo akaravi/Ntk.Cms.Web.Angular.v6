@@ -36,7 +36,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
   templateUrl: './list.component.html',
 })
 export class ContactContentListComponent implements OnInit, OnDestroy {
-  requestLinkCategoryId = '';
+  requestLinkCategoryId = 0;
   constructor(
     public publicHelper: PublicHelper,
     public contentService: ContactContentService,
@@ -50,7 +50,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.requestLinkCategoryId = this.activatedRoute.snapshot.paramMap.get('LinkCategoryId');
+    this.requestLinkCategoryId = +this.activatedRoute.snapshot.paramMap.get('LinkCategoryId')||0;
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -61,7 +61,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
-    if (this.requestLinkCategoryId && this.requestLinkCategoryId.length > 0) {
+    if (this.requestLinkCategoryId && this.requestLinkCategoryId > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = 'LinkCategoryId';
       filter.value = this.requestLinkCategoryId;
@@ -205,7 +205,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonEditRow(model: ContactContentModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
+    if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -236,7 +236,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonDeleteRow(model: ContactContentModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
+    if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
