@@ -1,0 +1,14 @@
+<mat-form-field class="ntk-full-width">
+    <span matPrefix><img *ngIf="dataModelSelect && dataModelSelect.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{dataModelSelect.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" /> &nbsp;</span>
+    <input type="text" placeholder="{{optionPlaceholder}}" aria-label="Assignee" matInput [formControl]="formControl" [matAutocomplete]="auto29">
+    <mat-autocomplete #auto29="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onActionSelect($event.option.value)">
+        <mat-option *ngFor="let state of filteredOptions | async" [value]="state">
+            <img *ngIf="state.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{state.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
+            <span>{{ displayOption(state) }}</span>
+        </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix *ngIf="dataModelSelect.id" matSuffix
+    mat-icon-button aria-label="Clear" (click)="onActionSelectClear()">close</mat-icon>
+    <ng-content></ng-content>
+</mat-form-field>
+

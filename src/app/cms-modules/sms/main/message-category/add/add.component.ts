@@ -4,8 +4,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  ContactCategoryService,
-  ContactCategoryModel,
+  SmsMainMessageCategoryService,
+  SmsMainMessageCategoryModel,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -24,17 +24,17 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-contact-category-add',
+  selector: 'app-sms-main-message-category-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class ContactCategoryAddComponent implements OnInit {
-  requestParentId = '';
+export class SmsMainMessageCategoryAddComponent implements OnInit {
+  requestParentId ='';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ContactCategoryAddComponent>,
+    private dialogRef: MatDialogRef<SmsMainMessageCategoryAddComponent>,
     public coreEnumService: CoreEnumService,
-    public contactCategoryService: ContactCategoryService,
+    public smsMainMessageCategoryService: SmsMainMessageCategoryService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -58,8 +58,8 @@ export class ContactCategoryAddComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<ContactCategoryModel> = new ErrorExceptionResult<ContactCategoryModel>();
-  dataModel: ContactCategoryModel = new ContactCategoryModel();
+  dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
+  dataModel: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -86,7 +86,7 @@ export class ContactCategoryAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
-    this.contactCategoryService
+    this.smsMainMessageCategoryService
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
@@ -109,7 +109,7 @@ export class ContactCategoryAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.contactCategoryService.ServiceAdd(this.dataModel).subscribe({
+    this.smsMainMessageCategoryService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;

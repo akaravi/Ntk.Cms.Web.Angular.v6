@@ -29,6 +29,8 @@ import { ContactCategoryTreeComponent } from './category/tree/tree.component';
 import { ContactCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { ContactContentSelectorComponent } from './content/selector/selector.component';
+import { ContactCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { ContactContentSelectionlistComponent } from './content/selection-list/selectionlist.component';
 
 
 @NgModule({
@@ -39,10 +41,12 @@ import { ContactContentSelectorComponent } from './content/selector/selector.com
     ContactCategoryEditComponent,
     ContactCategoryDeleteComponent,
     ContactCategoryTreeComponent,
+    ContactCategoryTreeSelectorComponent,
     ContactContentSelectorComponent,
     ContactContentListComponent,
     ContactContentAddComponent,
     ContactContentEditComponent,
+    ContactContentSelectionlistComponent,
   ],
   imports: [
     CommonModule,

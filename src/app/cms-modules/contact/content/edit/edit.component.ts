@@ -30,7 +30,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./edit.component.scss'],
 })
 export class ContactContentEditComponent implements OnInit {
-  requestId = 0;
+  requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ContactContentEditComponent>,
@@ -72,7 +72,7 @@ export class ContactContentEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.requestId > 0) {
+    if (this.requestId.length > 0) {
       this.formInfo.formTitle = 'ویرایش  دسته بندی';
       this.DataGetOneContent();
     } else {
@@ -87,7 +87,7 @@ export class ContactContentEditComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    if (this.requestId === 0) {
+    if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }
@@ -157,7 +157,7 @@ export class ContactContentEditComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    if (!this.dataModel.linkCategoryId || this.dataModel.linkCategoryId == 0) {
+    if (!this.dataModel.linkCategoryId || this.dataModel.linkCategoryId.length == 0) {
       const message = 'دست بندی مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -172,7 +172,7 @@ export class ContactContentEditComponent implements OnInit {
   }
   
   onActionSelectCategory(model: ContactCategoryModel | null): void {
-    if (!model || model.id == 0) {
+    if (!model || model.id?.length == 0) {
       const message = 'دست بندی مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;

@@ -1,4 +1,3 @@
-//**msh */
 import {
   ChangeDetectorRef,
   Component,
@@ -16,53 +15,53 @@ import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
-  CoreCpMainMenuModel,
-  CoreCpMainMenuService,
-  EnumSortType,
+  SmsMainMessageCategoryModel,
+  SmsMainMessageCategoryService,
 } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CoreCpMainMenuEditComponent } from '../edit/edit.component';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { SmsMainMessageCategoryEditComponent } from '../edit/edit.component';
+import { SmsMainMessageCategoryDeleteComponent } from '../delete/delete.component';
+
 import { Subscription } from 'rxjs';
-import { CoreCpMainMenuAddComponent } from '../add/add.component';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { SmsMainMessageCategoryAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 
 @Component({
-  selector: 'app-core-cpmainmenu-tree',
+  selector: 'app-sms-main-message-category-tree',
   templateUrl: './tree.component.html',
+  styleUrls: ['./tree.component.scss'],
 })
-export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
+export class SmsMainMessageCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
-    public categoryService: CoreCpMainMenuService,
+    public categoryService: SmsMainMessageCategoryService,
     public dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
-    private cdr: ChangeDetectorRef,
   ) {
-    this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.filteModel.sortColumn = 'ShowInMenuOrder';
-    this.filteModel.sortType = EnumSortType.Ascending;
+    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
-  @Input() set optionSelectForce(x: number | CoreCpMainMenuModel) {
+  @Input() set optionSelectForce(x: string | SmsMainMessageCategoryModel) {
     this.onActionSelectForce(x);
   }
-  dataModelSelect: CoreCpMainMenuModel = new CoreCpMainMenuModel();
-  dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
+  dataModelSelect: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
+  dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
   filteModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<CoreCpMainMenuModel>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<CoreCpMainMenuModel>();
-  @Output() optionChange = new EventEmitter<CoreCpMainMenuModel>();
+  treeControl = new NestedTreeControl<SmsMainMessageCategoryModel>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<SmsMainMessageCategoryModel>();
+  @Output() optionChange = new EventEmitter<SmsMainMessageCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
-  hasChild = (_: number, node: CoreCpMainMenuModel) => !!node.children && node.children.length > 0;
+  hasChild = (_: string, node: SmsMainMessageCategoryModel) => !!node.children && node.children.length > 0;
 
 
   ngOnInit(): void {
@@ -81,7 +80,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
@@ -98,29 +97,27 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     }
     );
   }
-  onActionSelect(model: CoreCpMainMenuModel): void {
-
+  onActionSelect(model: SmsMainMessageCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    if (this.dataModelSelect && this.dataModelSelect.id.length > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
       this.onActionSelect(null);
     }
-    this.dataModelSelect = new CoreCpMainMenuModel();
-    // this.optionsData.data.Select = new CoreCpMainMenuModel();
+    this.dataModelSelect = new SmsMainMessageCategoryModel();
     this.DataGetAll();
   }
-  onActionSelectForce(id: number | CoreCpMainMenuModel): void {
+  onActionSelectForce(id: string | SmsMainMessageCategoryModel): void {
 
   }
 
   onActionAdd(): void {
-    let parentId = 0;
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    let parentId = '';
+    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
       parentId = this.dataModelSelect.id;
     }
 
@@ -130,28 +127,26 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     dialogConfig.data = { parentId };
 
 
-    const dialogRef = this.dialog.open(CoreCpMainMenuAddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(SmsMainMessageCategoryAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
-        this.dataModelSelect=result.model;
-        this.onActionEdit();
-        //this.DataGetAll();
+        this.DataGetAll();
       }
     });
   }
 
   onActionEdit(): void {
-    let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    let id = '';
+    if (this.dataModelSelect && this.dataModelSelect.id.length > 0) {
       id = this.dataModelSelect.id;
     }
-    if (id === 0) {
+    if (id.length === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    const dialogRef = this.dialog.open(CoreCpMainMenuEditComponent, {
+    const dialogRef = this.dialog.open(SmsMainMessageCategoryEditComponent, {
       height: '90%',
       data: { id }
     });
@@ -168,16 +163,25 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     //   if (res.isSuccess) {
     //   }
     // });
-    let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    let id = '';
+    if (this.dataModelSelect && this.dataModelSelect.id.length > 0) {
       id = this.dataModelSelect.id;
     }
-    if (id === 0) {
+    if (id.length === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-
+    const dialogRef = this.dialog.open(SmsMainMessageCategoryDeleteComponent, {
+      height: '90%',
+      data: { id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
   }
 
 }

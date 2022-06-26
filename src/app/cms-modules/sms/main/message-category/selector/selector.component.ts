@@ -1,4 +1,4 @@
-
+//**msh */
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {
   CoreEnumService,
@@ -7,8 +7,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  ContactContentModel,
-  ContactContentService
+  SmsMainMessageCategoryModel,
+  SmsMainMessageCategoryService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -20,32 +20,32 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-contact-content-selector',
+  selector: 'app-sms-main-message-category-selector',
   templateUrl: './selector.component.html',
 })
-export class ContactContentSelectorComponent implements OnInit {
+export class SmsMainMessageCategorySelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
-    public categoryService: ContactContentService) {
+    public categoryService: SmsMainMessageCategoryService) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
-  dataModelResult: ErrorExceptionResult<ContactContentModel> = new ErrorExceptionResult<ContactContentModel>();
-  dataModelSelect: ContactContentModel = new ContactContentModel();
+  dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
+  dataModelSelect: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<ContactContentModel[]>;
+  filteredOptions: Observable<SmsMainMessageCategoryModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionChange = new EventEmitter<ContactContentModel>();
+  @Output() optionChange = new EventEmitter<SmsMainMessageCategoryModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | ContactContentModel) {
+  @Input() set optionSelectForce(x: string | SmsMainMessageCategoryModel) {
     this.onActionSelectForce(x);
   }
-  @Input() optionDisabled = false;
+
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -65,13 +65,13 @@ export class ContactContentSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: ContactContentModel): string | undefined {
+  displayFn(model?: SmsMainMessageCategoryModel): string | undefined {
     return model ? model.title : undefined;
   }
-  displayOption(model?: ContactContentModel): string | undefined {
+  displayOption(model?: SmsMainMessageCategoryModel): string | undefined {
     return model ? model.title : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<ContactContentModel[]> {
+  async DataGetAll(text: string | number | any): Promise<SmsMainMessageCategoryModel[]> {
     const filteModel = new FilterModel();
     filteModel.rowPerPage = 20;
     filteModel.accessLoad = true;
@@ -90,7 +90,7 @@ export class ContactContentSelectorComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filteModel.filters.push(filter);
     }
-
+    
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -113,7 +113,7 @@ export class ContactContentSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: ContactContentModel): void {
+  onActionSelect(model: SmsMainMessageCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
 
@@ -122,7 +122,7 @@ export class ContactContentSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-  push(newvalue: ContactContentModel): Observable<ContactContentModel[]> {
+  push(newvalue: SmsMainMessageCategoryModel): Observable<SmsMainMessageCategoryModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.id === newvalue.id)) {
         return items;
@@ -132,7 +132,7 @@ export class ContactContentSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | ContactContentModel): void {
+  onActionSelectForce(id: string | SmsMainMessageCategoryModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
@@ -145,21 +145,21 @@ export class ContactContentSelectorComponent implements OnInit {
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-          if (ret.isSuccess) {
-            this.filteredOptions = this.push(ret.item);
-            this.dataModelSelect = ret.item;
-            this.formControl.setValue(ret.item);
-            this.optionChange.emit(ret.item);
-          } else {
-            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-          }
+        if (ret.isSuccess) {
+          this.filteredOptions = this.push(ret.item);
+          this.dataModelSelect = ret.item;
+          this.formControl.setValue(ret.item);
+          this.optionChange.emit(ret.item);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+      }
       });
       return;
     }
-    if (typeof id === typeof ContactContentModel) {
-      this.filteredOptions = this.push((id as ContactContentModel));
-      this.dataModelSelect = (id as ContactContentModel);
+    if (typeof id === typeof SmsMainMessageCategoryModel) {
+      this.filteredOptions = this.push((id as SmsMainMessageCategoryModel));
+      this.dataModelSelect = (id as SmsMainMessageCategoryModel);
       this.formControl.setValue(id);
       return;
     }
@@ -167,7 +167,7 @@ export class ContactContentSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    this.dataModelSelect = new ContactContentModel();
+    this.dataModelSelect = new SmsMainMessageCategoryModel();
     this.DataGetAll(null);
   }
 }

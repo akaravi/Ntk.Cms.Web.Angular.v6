@@ -4,8 +4,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  ContactCategoryService,
-  ContactCategoryModel,
+  SmsMainMessageCategoryService,
+  SmsMainMessageCategoryModel,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import {
@@ -24,29 +24,27 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-contact-category-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
+  selector: 'app-sms-main-message-category-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss'],
 })
-export class ContactCategoryAddComponent implements OnInit {
-  requestParentId = '';
+export class SmsMainMessageCategoryEditComponent implements OnInit {
+  requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ContactCategoryAddComponent>,
+    private dialogRef: MatDialogRef<SmsMainMessageCategoryEditComponent>,
     public coreEnumService: CoreEnumService,
-    public contactCategoryService: ContactCategoryService,
+    public smsMainMessageCategoryService: SmsMainMessageCategoryService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    if (data && data.parentId && data.parentId.length>0) {
-      this.requestParentId = data.parentId ;
+    if (data && data.id && data.id.length>0) {
+      this.requestId = data.id;
     }
-    if (this.requestParentId.length > 0) {
-      this.dataModel.linkParentId = this.requestParentId;
-    }
+
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -58,8 +56,8 @@ export class ContactCategoryAddComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<ContactCategoryModel> = new ErrorExceptionResult<ContactCategoryModel>();
-  dataModel: ContactCategoryModel = new ContactCategoryModel();
+  dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
+  dataModel: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -75,48 +73,71 @@ export class ContactCategoryAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
+    if (this.requestId.length > 0) {
+      this.formInfo.formTitle = 'ویرایش  دسته بندی';
+      this.DataGetOneContent();
+    } else {
+      this.cmsToastrService.typeErrorComponentAction();
+      this.dialogRef.close({ dialogChangedDate: false });
+      return;
+    }
     this.getEnumRecordStatus();
-    this.DataGetAccess();
-
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
+  DataGetOneContent(): void {
+    if (this.requestId.length == 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
 
-  DataGetAccess(): void {
-    this.contactCategoryService
-      .ServiceViewModel()
-      .subscribe({
-        next: (ret) => {
-          if (ret.isSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-          } else {
-            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
-          }
-        },
-        error: (er) => {
-          this.cmsToastrService.typeErrorGetAccess(er);
-        }
-      }
-      );
-  }
-  DataAddContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
+    this.smsMainMessageCategoryService.setAccessLoad();
+    this.smsMainMessageCategoryService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-    this.contactCategoryService.ServiceAdd(this.dataModel).subscribe({
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+          this.formInfo.formAlert = '';
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+
+  DataEditContent(): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+
+    this.smsMainMessageCategoryService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessAdd();
+          this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
+
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -132,13 +153,12 @@ export class ContactCategoryAddComponent implements OnInit {
     }
     );
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     this.formInfo.formSubmitAllow = false;
-    this.DataAddContent();
+    this.DataEditContent();
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

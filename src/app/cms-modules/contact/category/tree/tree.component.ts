@@ -49,7 +49,7 @@ export class ContactCategoryTreeComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
-  @Input() set optionSelectForce(x: number | ContactCategoryModel) {
+  @Input() set optionSelectForce(x: string | ContactCategoryModel) {
     this.onActionSelectForce(x);
   }
   dataModelSelect: ContactCategoryModel = new ContactCategoryModel();
@@ -62,7 +62,7 @@ export class ContactCategoryTreeComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
-  hasChild = (_: number, node: ContactCategoryModel) => !!node.children && node.children.length > 0;
+  hasChild = (_: string, node: ContactCategoryModel) => !!node.children && node.children.length > 0;
 
 
   ngOnInit(): void {
@@ -103,7 +103,7 @@ export class ContactCategoryTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
       this.onActionSelect(this.dataModelSelect);
     }
     else {
@@ -112,13 +112,13 @@ export class ContactCategoryTreeComponent implements OnInit, OnDestroy {
     this.dataModelSelect = new ContactCategoryModel();
     this.DataGetAll();
   }
-  onActionSelectForce(id: number | ContactCategoryModel): void {
+  onActionSelectForce(id: string | ContactCategoryModel): void {
 
   }
 
   onActionAdd(): void {
-    let parentId = 0;
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    let parentId = '';
+    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
       parentId = this.dataModelSelect.id;
     }
 
@@ -138,11 +138,11 @@ export class ContactCategoryTreeComponent implements OnInit, OnDestroy {
   }
 
   onActionEdit(): void {
-    let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    let id = '';
+    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
       id = this.dataModelSelect.id;
     }
-    if (id === 0) {
+    if (id.length === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -164,11 +164,11 @@ export class ContactCategoryTreeComponent implements OnInit, OnDestroy {
     //   if (res.isSuccess) {
     //   }
     // });
-    let id = 0;
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
+    let id = '';
+    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
       id = this.dataModelSelect.id;
     }
-    if (id === 0) {
+    if (id.length === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;

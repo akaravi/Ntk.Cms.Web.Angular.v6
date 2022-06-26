@@ -7,8 +7,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  ContactContentModel,
-  ContactContentService
+  SmsMainMessageContentModel,
+  SmsMainMessageContentService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -20,29 +20,29 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-contact-content-selector',
+  selector: 'app-sms-main-message-content-selector',
   templateUrl: './selector.component.html',
 })
-export class ContactContentSelectorComponent implements OnInit {
+export class SmsMainMessageContentSelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
-    public categoryService: ContactContentService) {
+    public categoryService: SmsMainMessageContentService) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
-  dataModelResult: ErrorExceptionResult<ContactContentModel> = new ErrorExceptionResult<ContactContentModel>();
-  dataModelSelect: ContactContentModel = new ContactContentModel();
+  dataModelResult: ErrorExceptionResult<SmsMainMessageContentModel> = new ErrorExceptionResult<SmsMainMessageContentModel>();
+  dataModelSelect: SmsMainMessageContentModel = new SmsMainMessageContentModel();
   loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<ContactContentModel[]>;
+  filteredOptions: Observable<SmsMainMessageContentModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionChange = new EventEmitter<ContactContentModel>();
+  @Output() optionChange = new EventEmitter<SmsMainMessageContentModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | ContactContentModel) {
+  @Input() set optionSelectForce(x: string | SmsMainMessageContentModel) {
     this.onActionSelectForce(x);
   }
   @Input() optionDisabled = false;
@@ -65,13 +65,13 @@ export class ContactContentSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: ContactContentModel): string | undefined {
+  displayFn(model?: SmsMainMessageContentModel): string | undefined {
     return model ? model.title : undefined;
   }
-  displayOption(model?: ContactContentModel): string | undefined {
+  displayOption(model?: SmsMainMessageContentModel): string | undefined {
     return model ? model.title : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<ContactContentModel[]> {
+  async DataGetAll(text: string | number | any): Promise<SmsMainMessageContentModel[]> {
     const filteModel = new FilterModel();
     filteModel.rowPerPage = 20;
     filteModel.accessLoad = true;
@@ -113,7 +113,7 @@ export class ContactContentSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: ContactContentModel): void {
+  onActionSelect(model: SmsMainMessageContentModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
 
@@ -122,7 +122,7 @@ export class ContactContentSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-  push(newvalue: ContactContentModel): Observable<ContactContentModel[]> {
+  push(newvalue: SmsMainMessageContentModel): Observable<SmsMainMessageContentModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.id === newvalue.id)) {
         return items;
@@ -132,7 +132,7 @@ export class ContactContentSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | ContactContentModel): void {
+  onActionSelectForce(id: string | SmsMainMessageContentModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
@@ -157,9 +157,9 @@ export class ContactContentSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof ContactContentModel) {
-      this.filteredOptions = this.push((id as ContactContentModel));
-      this.dataModelSelect = (id as ContactContentModel);
+    if (typeof id === typeof SmsMainMessageContentModel) {
+      this.filteredOptions = this.push((id as SmsMainMessageContentModel));
+      this.dataModelSelect = (id as SmsMainMessageContentModel);
       this.formControl.setValue(id);
       return;
     }
@@ -167,7 +167,7 @@ export class ContactContentSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    this.dataModelSelect = new ContactContentModel();
+    this.dataModelSelect = new SmsMainMessageContentModel();
     this.DataGetAll(null);
   }
 }

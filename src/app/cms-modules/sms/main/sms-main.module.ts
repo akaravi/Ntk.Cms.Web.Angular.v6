@@ -20,7 +20,9 @@ import {
   SmsMainApiPathService,
   SmsMainApiNumberService,
   SmsMainApiNumberPermissionService,
-  SmsMainCustomerCreditService
+  SmsMainCustomerCreditService,
+  SmsMainMessageContentService,
+  SmsMainMessageCategoryService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';
@@ -60,6 +62,16 @@ import { SmsMainApiNumberPermissionListComponent } from './api-number-permission
 import { SmsMainCustomerCreditListComponent } from './customer-credit/list/list.component';
 import { SmsMainCustomerCreditEditComponent } from './customer-credit/edit/edit.component';
 import { SmsMainCustomerCreditAddComponent } from './customer-credit/add/add.component';
+import { SmsMainMessageCategoryAddComponent } from './message-category/add/add.component';
+import { SmsMainMessageCategoryDeleteComponent } from './message-category/delete/delete.component';
+import { SmsMainMessageCategoryEditComponent } from './message-category/edit/edit.component';
+import { SmsMainMessageCategorySelectorComponent } from './message-category/selector/selector.component';
+import { SmsMainMessageCategoryTreeComponent } from './message-category/tree/tree.component';
+import { SmsMainMessageContentAddComponent } from './message-content/add/add.component';
+import { SmsMainMessageContentEditComponent } from './message-content/edit/edit.component';
+import { SmsMainMessageContentListComponent } from './message-content/list/list.component';
+import { SmsMainMessageContentSelectorComponent } from './message-content/selector/selector.component';
+
 
 
 @NgModule({
@@ -107,6 +119,18 @@ import { SmsMainCustomerCreditAddComponent } from './customer-credit/add/add.com
     SmsMainCustomerCreditListComponent,
     SmsMainCustomerCreditEditComponent,
     SmsMainCustomerCreditAddComponent,
+      /** */
+      SmsMainMessageCategoryAddComponent,
+      SmsMainMessageCategoryDeleteComponent,
+      SmsMainMessageCategoryEditComponent,
+      SmsMainMessageCategorySelectorComponent,
+      SmsMainMessageCategoryTreeComponent,
+      /** */
+      SmsMainMessageContentAddComponent,
+      SmsMainMessageContentEditComponent,
+      SmsMainMessageContentListComponent,
+      SmsMainMessageContentSelectorComponent,
+      /** */
   ],
   exports: [
     SmsMainApiPathPublicConfigAddComponent,
@@ -150,6 +174,19 @@ import { SmsMainCustomerCreditAddComponent } from './customer-credit/add/add.com
     SmsMainCustomerCreditListComponent,
     SmsMainCustomerCreditEditComponent,
     SmsMainCustomerCreditAddComponent,
+
+    /** */
+    SmsMainMessageCategoryAddComponent,
+    SmsMainMessageCategoryDeleteComponent,
+    SmsMainMessageCategoryEditComponent,
+    SmsMainMessageCategorySelectorComponent,
+    SmsMainMessageCategoryTreeComponent,
+    /** */
+    SmsMainMessageContentAddComponent,
+    SmsMainMessageContentEditComponent,
+    SmsMainMessageContentListComponent,
+    SmsMainMessageContentSelectorComponent,
+    /** */
   ],
   imports: [
     CommonModule,
@@ -179,7 +216,10 @@ import { SmsMainCustomerCreditAddComponent } from './customer-credit/add/add.com
     SmsMainApiPathPublicConfigService,
     SmsMainApiNumberService,
     SmsMainApiPathAndApiNumberService,
-    SmsMainCustomerCreditService
+    SmsMainCustomerCreditService,
+    SmsMainMessageContentService,
+    SmsMainMessageCategoryService,
+
   ]
 })
 export class SmsMainModule { }

@@ -22,7 +22,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-contact-category-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
 })
 export class ContactCategorySelectorComponent implements OnInit {
   constructor(
@@ -43,7 +42,7 @@ export class ContactCategorySelectorComponent implements OnInit {
   @Input() optionSelectFirstItem = false;
   @Output() optionChange = new EventEmitter<ContactCategoryModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: number | ContactCategoryModel) {
+  @Input() set optionSelectForce(x: string | ContactCategoryModel) {
     this.onActionSelectForce(x);
   }
 
@@ -83,7 +82,7 @@ export class ContactCategorySelectorComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
     filteModel.filters.push(filter);
-    if (text && typeof +text === 'number' && +text > 0) {
+    if (text && typeof +text === 'string' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
@@ -101,7 +100,7 @@ export class ContactCategorySelectorComponent implements OnInit {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&
+            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length == 0) &&
             this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
@@ -133,8 +132,8 @@ export class ContactCategorySelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: number | ContactCategoryModel): void {
-    if (typeof id === 'number' && id > 0) {
+  onActionSelectForce(id: string | ContactCategoryModel): void {
+    if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
       }

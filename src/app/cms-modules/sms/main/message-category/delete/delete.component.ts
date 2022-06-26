@@ -6,8 +6,8 @@ import {
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
-  ContactCategoryModel,
-  ContactCategoryService
+  SmsMainMessageCategoryModel,
+  SmsMainMessageCategoryService
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,17 +17,17 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-contact-category-delete',
+  selector: 'app-sms-main-message-category-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss']
 })
-export class ContactCategoryDeleteComponent implements OnInit {
+export class SmsMainMessageCategoryDeleteComponent implements OnInit {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ContactCategoryDeleteComponent>,
+    private dialogRef: MatDialogRef<SmsMainMessageCategoryDeleteComponent>,
     private publicHelper: PublicHelper,
-    private contactCategoryService: ContactCategoryService,
+    private smsMainMessageCategoryService: SmsMainMessageCategoryService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     private cmsToastrService: CmsToastrService
@@ -41,8 +41,8 @@ export class ContactCategoryDeleteComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   loading = new ProgressSpinnerModel();
-  dataModelResultCategory: ErrorExceptionResult<ContactCategoryModel> = new ErrorExceptionResult<ContactCategoryModel>();
-  dataModelResultCategoryAllData: ErrorExceptionResult<ContactCategoryModel> = new ErrorExceptionResult<ContactCategoryModel>();
+  dataModelResultCategory: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
+  dataModelResultCategoryAllData: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
   dataModel: any = {};
   formInfo: FormInfoModel = new FormInfoModel();
   ngOnInit(): void {
@@ -65,8 +65,8 @@ export class ContactCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.contactCategoryService.setAccessLoad();
-    this.contactCategoryService
+    this.smsMainMessageCategoryService.setAccessLoad();
+    this.smsMainMessageCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({
         next: (ret) => {
@@ -100,7 +100,7 @@ export class ContactCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.contactCategoryService
+    this.smsMainMessageCategoryService
       .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
@@ -145,7 +145,7 @@ export class ContactCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.contactCategoryService
+    this.smsMainMessageCategoryService
       .ServiceMove(this.requestId, this.dataModel.newCatId)
       .subscribe({
         next: (ret) => {
@@ -182,7 +182,7 @@ export class ContactCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.contactCategoryService
+    this.smsMainMessageCategoryService
       .ServiceDelete(this.requestId)
       .subscribe({
         next: (ret) => {
@@ -210,7 +210,7 @@ export class ContactCategoryDeleteComponent implements OnInit {
       );
 
   }
-  onFormChangeNewCatId(model: ContactCategoryModel): void {
+  onFormChangeNewCatId(model: SmsMainMessageCategoryModel): void {
     this.formInfo.formAlert = '';
     if (this.requestId.length === 0 || !model || model.id.length <= 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();

@@ -134,7 +134,7 @@ export class ContactContentAddComponent implements OnInit {
     if (!this.formGroup.valid) {
       return;
     }
-    if (!this.dataModel.linkCategoryId || this.dataModel.linkCategoryId == 0) {
+    if (!this.dataModel.linkCategoryId || this.dataModel.linkCategoryId.length == 0) {
       const message = 'دست بندی   مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;
@@ -149,7 +149,7 @@ export class ContactContentAddComponent implements OnInit {
   }
   
   onActionSelectCategory(model: ContactCategoryModel | null): void {
-    if (!model || model.id == 0) {
+    if (!model || model.id?.length == 0) {
       const message = 'دست بندی مشخص نیست';
       this.cmsToastrService.typeErrorSelected(message);
       return;

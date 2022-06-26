@@ -234,7 +234,7 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
-        this.onActionbuttonEditRow(result.model)
+        this.onActionbuttonEditRow(result.model);
         //this.DataGetAll();
       }
     });

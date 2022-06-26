@@ -6,18 +6,15 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  ContactContentModel,
-  ContactContentService,
+  SmsMainMessageContentModel,
+  SmsMainMessageContentService,
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  ContactCategoryModel,
+  SmsMainMessageCategoryModel,
 
 } from 'ntk-cms-api';
-import { PublicHelper } from '../../../../core/helpers/publicHelper';
-import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
@@ -25,21 +22,24 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { ContactContentAddComponent } from '../add/add.component';
-import { ContactContentEditComponent } from '../edit/edit.component';
+import { SmsMainMessageContentAddComponent } from '../add/add.component';
+import { SmsMainMessageContentEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
-  selector: 'app-contact-content-list',
+  selector: 'app-sms-main-message-content-list',
   templateUrl: './list.component.html',
 })
-export class ContactContentListComponent implements OnInit, OnDestroy {
+export class SmsMainMessageContentListComponent implements OnInit, OnDestroy {
   requestLinkCategoryId = '';
   constructor(
     public publicHelper: PublicHelper,
-    public contentService: ContactContentService,
+    public contentService: SmsMainMessageContentService,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
@@ -70,16 +70,16 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
   }
   filteModelContent = new FilterModel();
 
-  dataModelResult: ErrorExceptionResult<ContactContentModel> = new ErrorExceptionResult<ContactContentModel>();
-  categoryModelSelected: ContactCategoryModel = new ContactCategoryModel();
+  dataModelResult: ErrorExceptionResult<SmsMainMessageContentModel> = new ErrorExceptionResult<SmsMainMessageContentModel>();
+  categoryModelSelected: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<ContactContentModel> = [];
-  tableRowSelected: ContactContentModel = new ContactContentModel();
-  tableSource: MatTableDataSource<ContactContentModel> = new MatTableDataSource<ContactContentModel>();
+  tableRowsSelected: Array<SmsMainMessageContentModel> = [];
+  tableRowSelected: SmsMainMessageContentModel = new SmsMainMessageContentModel();
+  tableSource: MatTableDataSource<SmsMainMessageContentModel> = new MatTableDataSource<SmsMainMessageContentModel>();
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
@@ -109,7 +109,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ContactContentModel();
+    this.tableRowSelected = new SmsMainMessageContentModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -185,7 +185,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     dialogConfig.height = '90%';
     dialogConfig.data = { linkCategoryId: this.categoryModelSelected?.id };
 
-    const dialogRef = this.dialog.open(ContactContentAddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(SmsMainMessageContentAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -194,7 +194,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onActionbuttonEditRow(model: ContactContentModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: SmsMainMessageContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -216,7 +216,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     dialogConfig.data = { id: this.tableRowSelected.id };
 
 
-    const dialogRef = this.dialog.open(ContactContentEditComponent, dialogConfig);
+    const dialogRef = this.dialog.open(SmsMainMessageContentEditComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -225,7 +225,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onActionbuttonDeleteRow(model: ContactContentModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: SmsMainMessageContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
@@ -346,10 +346,10 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: ContactContentModel): void {
+  onActionTableRowSelect(row: SmsMainMessageContentModel): void {
     this.tableRowSelected = row;
   }
-  onActionSelectorSelect(model: ContactCategoryModel | null): void {
+  onActionSelectorSelect(model: SmsMainMessageCategoryModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
     this.DataGetAll();

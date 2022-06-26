@@ -1,19 +1,20 @@
-//**msh */
+
 import {
   CoreEnumService,
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  ContactCategoryService,
-  ContactCategoryModel,
+  SmsMainMessageContentService,
+  SmsMainMessageContentModel,
   DataFieldInfoModel,
+  SmsMainMessageCategoryModel,
 } from 'ntk-cms-api';
 import {
   Component,
   OnInit,
   ViewChild,
-  ChangeDetectorRef,
   Inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -24,29 +25,26 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-contact-category-add',
+  selector: 'app-sms-main-message-content-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class ContactCategoryAddComponent implements OnInit {
-  requestParentId = '';
+export class SmsMainMessageContentAddComponent implements OnInit {
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ContactCategoryAddComponent>,
+    private dialogRef: MatDialogRef<SmsMainMessageContentAddComponent>,
     public coreEnumService: CoreEnumService,
-    public contactCategoryService: ContactCategoryService,
+    public SmsMainMessageContentService: SmsMainMessageContentService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    if (data && data.parentId && data.parentId.length>0) {
-      this.requestParentId = data.parentId ;
-    }
-    if (this.requestParentId.length > 0) {
-      this.dataModel.linkParentId = this.requestParentId;
-    }
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    
+    if (data && data.linkCategoryId && data.linkCategoryId.length > 0)
+      this.dataModel.linkCategoryId = data.linkCategoryId;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -58,8 +56,8 @@ export class ContactCategoryAddComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<ContactCategoryModel> = new ErrorExceptionResult<ContactCategoryModel>();
-  dataModel: ContactCategoryModel = new ContactCategoryModel();
+  dataModelResult: ErrorExceptionResult<SmsMainMessageContentModel> = new ErrorExceptionResult<SmsMainMessageContentModel>();
+  dataModel: SmsMainMessageContentModel = new SmsMainMessageContentModel();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -69,8 +67,6 @@ export class ContactCategoryAddComponent implements OnInit {
 
 
   onActionFileSelected(model: NodeInterface): void {
-    this.dataModel.linkMainImageId = model.id;
-    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
 
   }
 
@@ -78,7 +74,6 @@ export class ContactCategoryAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
     this.DataGetAccess();
-
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -86,11 +81,12 @@ export class ContactCategoryAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
-    this.contactCategoryService
+    this.SmsMainMessageContentService
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
+            // this.dataAccessModel = next.access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
@@ -102,6 +98,7 @@ export class ContactCategoryAddComponent implements OnInit {
       }
       );
   }
+
   DataAddContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
@@ -109,7 +106,7 @@ export class ContactCategoryAddComponent implements OnInit {
     this.loading.Start(pName);
 
 
-    this.contactCategoryService.ServiceAdd(this.dataModel).subscribe({
+    this.SmsMainMessageContentService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
@@ -123,6 +120,7 @@ export class ContactCategoryAddComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
+
       },
       error: (er) => {
         this.formInfo.formSubmitAllow = true;
@@ -132,15 +130,30 @@ export class ContactCategoryAddComponent implements OnInit {
     }
     );
   }
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
+    if (!this.dataModel.linkCategoryId || this.dataModel.linkCategoryId.length == 0) {
+      const message = 'دست بندی   مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
     this.formInfo.formSubmitAllow = false;
+
     this.DataAddContent();
+
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  
+  onActionSelectCategory(model: SmsMainMessageCategoryModel | null): void {
+    if (!model || model.id?.length == 0) {
+      const message = 'دست بندی مشخص نیست';
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.linkCategoryId = model.id;
   }
 }

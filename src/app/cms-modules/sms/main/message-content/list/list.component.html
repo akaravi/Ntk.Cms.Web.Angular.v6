@@ -1,8 +1,8 @@
-  <app-cms-guide-notice [Key]="'contact.content.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+  <app-cms-guide-notice [Key]="'sms.message.content.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
   <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="!requestLinkCategoryId || requestLinkCategoryId.length ==0">
     <ng-container cms-tree>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-      <app-contact-category-tree (optionChange)="onActionSelectorSelect($event)"></app-contact-category-tree>
+      <app-sms-main-message-category-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-main-message-category-tree>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
     </ng-container>
   <ng-container cms-header>

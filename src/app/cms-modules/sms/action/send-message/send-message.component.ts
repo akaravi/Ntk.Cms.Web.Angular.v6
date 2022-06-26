@@ -155,4 +155,19 @@ export class SmsActionSendMessageComponent implements OnInit {
   onFormCancel(): void {
     // this.dialogRef.close({ dialogChangedDate: false });
   }
+  onActionContactSelectChecked(model: number): void {
+    if (!model || model <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+  
+  }
+  onActionContactSelectDisChecked(model: number): void {
+    if (!model || model <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+  }
 }

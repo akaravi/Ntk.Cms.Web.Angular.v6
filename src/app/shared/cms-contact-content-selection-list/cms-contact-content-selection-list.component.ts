@@ -9,10 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-contact-content-selection-list',
-  templateUrl: './selectionlist.component.html',
+  selector: 'app-cms-contact-content-selection-list',
+  templateUrl: './cms-contact-content-selection-list.component.html',
 })
-export class ContactContentSelectionlistComponent implements OnInit {
+export class CmsContactContentSelectionListComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,

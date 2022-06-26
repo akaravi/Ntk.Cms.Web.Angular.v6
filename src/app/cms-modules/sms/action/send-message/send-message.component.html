@@ -19,7 +19,9 @@
             مسیر ارسال
           </mat-tab>
           <mat-tab label="مخاطب">
-            مخاطب
+            <app-cms-contact-category-tree-selector        
+             (optionSelectChecked)="onActionContactSelectChecked($event)"
+            (optionSelectDisChecked)="onActionContactSelectDisChecked($event)"></app-cms-contact-category-tree-selector>
 
           </mat-tab>
           <mat-tab label="زمان ارسال">
