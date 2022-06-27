@@ -133,6 +133,7 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
     }
     this.dataModel.linkAccountAgencyId = model.id;
   }
+  
   onActionSelectorSelectLinkAdsTypeId(model: EstateAccountAgencyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.Advertisement_ID_is_unknown');

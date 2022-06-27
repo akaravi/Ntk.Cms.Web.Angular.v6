@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let item of dataModelResult.listItems,index as i ">
+    <mat-checkbox (change)="onActionSelect(item)" [checked]="fieldsStatus.get(item.id)" [disabled]="optionDisabled">
+      {{item.title}} 
+    </mat-checkbox>
+  </li>
+</ul>

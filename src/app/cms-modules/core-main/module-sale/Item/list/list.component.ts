@@ -220,7 +220,7 @@ export class CoreModuleSaleItemListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(CoreModuleSaleItemAddComponent, {
       height: '90%',
-      data: { LinkModuleSaleHeader: this.requestLinkModuleSaleHeader }
+      data: { linkModuleSaleHeader: this.requestLinkModuleSaleHeader }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

@@ -105,18 +105,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        'LinkSiteId',
-        0
-      );
-    } else {
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        'LinkSiteId'
-      );
-    }
+   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
 
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramReceivedFileModel();

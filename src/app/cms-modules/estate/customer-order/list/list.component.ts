@@ -94,27 +94,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        'LinkSiteId',
-        0
-      );
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        'Id',
-        0
-      );
-    } else {
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        'LinkSiteId'
-      );
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        'Id'
-      );
-    }
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();
     const pName = this.constructor.name + 'main';

@@ -121,6 +121,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,['LinkCmsSiteId'],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteDomainAliasModel();
     const pName = this.constructor.name + 'main';
@@ -136,18 +137,6 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
 
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkCmsSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkCmsSiteId'
-            );
-          }
 
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);

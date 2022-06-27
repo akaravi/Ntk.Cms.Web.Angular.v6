@@ -23,10 +23,10 @@
     </mat-form-field>
 
     <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
-      [optionPlaceholder]="'شناسه ملک'">
-    </app-estate-property-selector>
+    <app-estate-accountagency-selector (optionChange)="onActionSelectorSelectLinkAccountAgencyId($event)"
+      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkAccountAgencyId"
+      [optionPlaceholder]="'شناسه آژانس'">
+    </app-estate-accountagency-selector>
 
     <!-- LinkAdsTypeId Field -->
     <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"

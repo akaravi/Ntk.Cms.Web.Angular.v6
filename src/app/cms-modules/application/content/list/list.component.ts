@@ -119,6 +119,14 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+
+    if (this.requestLinkSourceId === 0) {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'LinkSourceId'
+      );
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationAppModel();
     const pName = this.constructor.name + 'contentService.ServiceGetAll';
@@ -139,24 +147,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
-          }
-          if (this.requestLinkSourceId === 0) {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSourceId'
-            );
-          }
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
@@ -472,7 +463,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
-      data: { LinkApplicationId: this.tableRowSelected.id }
+      data: { linkApplicationId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

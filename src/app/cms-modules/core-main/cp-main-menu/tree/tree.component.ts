@@ -134,7 +134,9 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
-        this.DataGetAll();
+        this.dataModelSelect=result.model;
+        this.onActionEdit();
+        //this.DataGetAll();
       }
     });
   }

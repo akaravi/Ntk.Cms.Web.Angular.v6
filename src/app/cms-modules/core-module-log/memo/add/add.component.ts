@@ -44,7 +44,7 @@ export class CoreModuleLogMemoAddComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestLinkSiteId = +data.LinkSiteId || 0;
+      this.requestLinkSiteId = +data.linkSiteId || 0;
     }
     if (this.requestLinkSiteId > 0) {
       this.dataModel.linkSiteId = this.requestLinkSiteId;

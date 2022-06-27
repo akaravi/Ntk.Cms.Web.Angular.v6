@@ -22,7 +22,11 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
+    <!-- LinkApiPathId Field -->
+    <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
+      [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="'مسیر'">
+    </app-sms-apipath-selector>
+    
     <!-- LinkCoreUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
       [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
@@ -43,10 +47,7 @@
       [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.accessAddField"
       [optionSelectForce]="dataModel.linkCoreSiteCategoryId" [optionPlaceholder]="'نوع سایت'">
     </app-cms-sitecategory-selector>
-    <!-- LinkApiPathId Field -->
-    <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
-      [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="'مسیر'">
-    </app-sms-apipath-selector>
+
 
     <!-- RegulatorNumber Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RegulatorNumber']?.accessWatchField">

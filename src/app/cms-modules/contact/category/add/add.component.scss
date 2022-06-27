@@ -1,0 +1,32 @@
+.form-body {
+  width: 500px;
+}
+@media (max-width: 700px) {
+  .form-body {
+    display: contents;
+  }
+}
+#file-manager {
+  width: calc(100vw - 16px);
+  height: calc(100vh - 16px);
+}
+.recordStatus-1.mat-select-panel {
+  background: yellow;
+  /* .mat-option-text {
+    color: black;
+  } */
+}
+
+.recordStatus-2.mat-select-panel {
+  background: black;
+  /* .mat-option-text {
+    color: white;
+  } */
+}
+
+.recordStatus-3.mat-select-panel {
+  background: red;
+  /* .mat-option-text {
+    color: white;
+  } */
+}

@@ -214,7 +214,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     
     const dialogRef = this.dialog.open(TicketingAnswerAddComponent, {
       height: '90%',
-      data: { LinkTaskId: this.requestLinkTaskId>0 ? this.requestLinkTaskId: this.categoryModelSelected.id }
+      data: { linkTaskId: this.requestLinkTaskId>0 ? this.requestLinkTaskId: this.categoryModelSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

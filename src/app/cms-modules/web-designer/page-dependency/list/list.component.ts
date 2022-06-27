@@ -119,6 +119,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,['RecordStatus','Title','CmsModuleClassName','ClassActionName'],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
     const pName = this.constructor.name + 'main';
@@ -142,19 +143,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.access);
           }
-          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Id', 0);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'RecordStatus', 1);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'Title', 2);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'CmsModuleClassName', 4);
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(this.tabledisplayedColumns, 'ClassActionName', 5);
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'Id');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'RecordStatus');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'Title');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'CmsModuleClassName');
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumns, 'ClassActionName');
-          }
+        
         }
         this.loading.Stop(pName);
       },
@@ -200,7 +189,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     }
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
       height: '90%',
-      data: { LinkModuleId: this.categoryModelSelected.id }
+      data: { linkModuleId: this.categoryModelSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

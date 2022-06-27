@@ -133,30 +133,8 @@ export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    if (
-      this.tokenInfo.userAccessAdminAllowToAllData ||
-      this.tokenInfo.userAccessAdminAllowToProfessionalData
-    ) {
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        "LinkSiteId",
-        0
-      );
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        "Id",
-        0
-      );
-    } else {
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        "LinkSiteId"
-      );
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        "Id"
-      );
-    }
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderTransactionModel();
     const pName = this.constructor.name + 'main';
@@ -173,18 +151,7 @@ export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
-          }
+     
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }

@@ -200,6 +200,7 @@ export class EstatePropertyListComponent
   }
 
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     if (!this.optionloadComponent) {
       return;
     }
@@ -228,30 +229,7 @@ export class EstatePropertyListComponent
       filter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.filters.push(filter);
     }
-    if (
-      this.tokenInfo.userAccessAdminAllowToAllData ||
-      this.tokenInfo.userAccessAdminAllowToProfessionalData
-    ) {
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        "LinkSiteId",
-        0
-      );
-      this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-        this.tabledisplayedColumns,
-        "Id",
-        0
-      );
-    } else {
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        "LinkSiteId"
-      );
-      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-        this.tabledisplayedColumns,
-        "Id"
-      );
-    }
+
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
       this.contentService

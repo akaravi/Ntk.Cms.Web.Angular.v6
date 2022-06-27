@@ -121,6 +121,13 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    if (this.requestLinkApplicationId === 0) {
+      this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
+        this.tabledisplayedColumns,
+        'LinkApplicationId'
+      );
+    }
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationMemberInfoModel();
     const pName = this.constructor.name + 'main';
@@ -141,24 +148,8 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-          if (this.tokenInfo.userAccessAdminAllowToAllData || this.tokenInfo.userAccessAdminAllowToProfessionalData) {
-            this.tabledisplayedColumns = this.publicHelper.listAddIfNotExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId',
-              0
-            );
-          } else {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkSiteId'
-            );
-          }
-          if (this.requestLinkApplicationId === 0) {
-            this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
-              this.tabledisplayedColumns,
-              'LinkApplicationId'
-            );
-          }
+        
+        
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
@@ -322,7 +313,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
-      data: { LinkApplicationMemberId: this.tableRowSelected.id }
+      data: { linkApplicationMemberId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

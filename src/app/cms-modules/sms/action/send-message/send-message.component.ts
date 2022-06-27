@@ -23,6 +23,7 @@ import { DOCUMENT } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { Clipboard } from "@angular/cdk/clipboard"; // first import this in .ts
 
 
 @Component({
@@ -43,7 +44,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loadingAction.cdr = this.cdr;
 
   }
@@ -55,14 +56,43 @@ export class SmsActionSendMessageComponent implements OnInit {
   dataModel: SmsApiSendMessageDtoModel = new SmsApiSendMessageDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
-
+  clipboardText = '';
 
   ngOnInit(): void {
     if (this.requestLinkApiPathId?.length > 0) {
       this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     }
+    // setTimeout(async () => {
+    //   navigator['clipboard'].readText().then(text => {
+    //     debugger
+    //     this.clipboardText = text;
+    //   }).catch(err => {
+    //     debugger
+    //     console.error('Failed to read clipboard contents: ', err);
+    //   })
+    // }, 3000);
+    //setTimeout(async () => this.clipboardText = await window.navigator.clipboard.readText(), 3000);
+    this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
+
   }
 
+  readClipboardFromDevTools() {
+    return new Promise((resolve, reject) => {
+      const _asyncCopyFn = (async () => {
+        try {
+          const value = await navigator.clipboard.readText();
+          console.log(`${value} is read!`);
+          resolve(value);
+        } catch (e) {
+          reject(e);
+        }
+        window.removeEventListener("focus", _asyncCopyFn);
+      });
+
+      window.addEventListener("focus", _asyncCopyFn);
+      console.log("Hit <Tab> to give focus back to document (or we will face a DOMException);");
+    });
+  }
 
 
   onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
@@ -124,5 +154,20 @@ export class SmsActionSendMessageComponent implements OnInit {
   }
   onFormCancel(): void {
     // this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onActionContactSelectChecked(model: number): void {
+    if (!model || model <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+  
+  }
+  onActionContactSelectDisChecked(model: number): void {
+    if (!model || model <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
   }
 }

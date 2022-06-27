@@ -120,6 +120,11 @@ const routes: Routes = [
           import('../cms-modules/polling/polling.module').then(m => m.PollingModule)
       },
       {
+        path: 'contact',
+        loadChildren: () =>
+          import('../cms-modules/contact/contact.module').then(m => m.ContactModule)
+      },
+      {
         path: 'sms',
         loadChildren: () =>
           import('../cms-modules/sms/sms.module').then(m => m.SmsModule)

@@ -10,6 +10,7 @@ import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/li
 import { SmsMainComponent } from './sms-main.component';
 import { SmsMainApiNumberPermissionListComponent } from './api-number-permission/list/list.component';
 import { SmsMainCustomerCreditListComponent } from './customer-credit/list/list.component';
+import { SmsMainMessageContentListComponent } from './message-content/list/list.component';
 
 
 const routes: Routes = [
@@ -80,6 +81,10 @@ const routes: Routes = [
       {
         path: 'customer-credit',
         component: SmsMainCustomerCreditListComponent
+      },
+      {
+        path: 'message',
+        component: SmsMainMessageContentListComponent
       },
      ]
   },

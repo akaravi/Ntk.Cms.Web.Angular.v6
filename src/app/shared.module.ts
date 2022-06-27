@@ -139,6 +139,8 @@ import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-st
 import { CmsMemoComponent } from './shared/cms-memo/cms-memo.component';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/material/material.persian-date.adapter';
 import { TranslateModule } from '@ngx-translate/core';
+import { CmsContactCategoryTreeSelectorComponent } from './shared/cms-contact-category-tree-selector/cms-contact-category-tree-selector.component';
+import { CmsContactContentSelectionListComponent } from './shared/cms-contact-content-selection-list/cms-contact-content-selection-list.component';
 
 @NgModule({
   imports: [
@@ -252,6 +254,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CodePreviewComponent,
     CmsSiteCreditViewComponent,
     CmsSiteUserCreditViewComponent,
+    CmsContactCategoryTreeSelectorComponent,
+    CmsContactContentSelectionListComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -373,6 +377,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CodePreviewComponent,
     CmsSiteCreditViewComponent,
     CmsSiteUserCreditViewComponent,
+    CmsContactCategoryTreeSelectorComponent,
+    CmsContactContentSelectionListComponent,
     /** input */
     StringComponent,
     IntComponent,

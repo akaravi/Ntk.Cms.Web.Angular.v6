@@ -170,7 +170,7 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(EstatePropertyAdsAddComponent, {
       height: '90%',
-      data: { LinkPropertyId: this.requestLinkPropertyId }
+      data: { linkPropertyId: this.requestLinkPropertyId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
