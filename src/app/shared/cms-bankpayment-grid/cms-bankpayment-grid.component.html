@@ -4,14 +4,14 @@
         <mat-card-header>
           <mat-card-title>{{item.title}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image  style="width:95%;height:95%;"  src="{{item.linkModuleFileLogoIdSrc }}">
+        <img class="rounded mx-auto d-block mat-card-image"  style="width:95%;height:95%;"  src="{{item.linkModuleFileLogoIdSrc }}">
         <mat-card-content>
-          <p>
+          <p class="d-flex justify-content-center">
             {{item.title }}
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button (click)="onActionSelect(item)">{{'ACTION.SELECT' | translate}}</button>
+          <button class="btn btn-lg btn-block border" mat-button (click)="onActionSelect(item)">{{'ACTION.SELECT' | translate}}</button>
         </mat-card-actions>
       </mat-card>
     </div>

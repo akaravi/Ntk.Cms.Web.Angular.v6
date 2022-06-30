@@ -55,7 +55,7 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
     this.dataModelPayment.linkHeaderId = this.requestLinkHeaderId;
     this.dataModelPayment.lastUrlAddressInUse = this.document.location.href;
   }
-  viewCalculate = false;
+  viewCalculate = true;
 
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
@@ -74,14 +74,16 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
   }
 
   DataCalculate(): void {
-    this.viewCalculate = false;
+    // this.viewCalculate = true;
+    console.log('r');
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
     this.coreModuleSaleHeaderService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelCalculateResult = ret;
-          this.viewCalculate = true;
+          console.log('a');
+          this.viewCalculate = !this.viewCalculate;
         }
         else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
