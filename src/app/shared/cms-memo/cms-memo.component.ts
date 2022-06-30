@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -56,6 +54,7 @@ export class CmsMemoComponent implements OnInit {
 
   ngOnInit(): void {
     this.DataGetAll();
+    
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -87,7 +86,6 @@ export class CmsMemoComponent implements OnInit {
 
     filterModel.accessLoad = true;
     /*filter CLone*/
-    
     this.coreModuleLogMemoService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;

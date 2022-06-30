@@ -56,7 +56,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
 
     if (this.requestLinkSiteId > 0) {
-      const filter = new FilterDataModel(); 
+      const filter = new FilterDataModel();
       filter.propertyName = 'LinkCmsSiteId';
       filter.value = this.requestLinkSiteId;
       this.filteModelContent.filters.push(filter);
@@ -122,7 +122,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleLogMemoModel();
     const pName = this.constructor.name + 'main';
@@ -133,12 +133,12 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        if (ret.isSuccess) { 
-                   this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-   
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }

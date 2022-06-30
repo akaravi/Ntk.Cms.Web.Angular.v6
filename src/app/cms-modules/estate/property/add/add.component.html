@@ -41,7 +41,6 @@
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessAddField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
-
         </app-estate-propertytypelanduse-selector>
 
         <br>
@@ -366,7 +365,7 @@
 
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionTypeView]="2"
           [optionDisabled]="false" [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')"
-          [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
+          [optionSelectForce]="contractDataModel.linkEstateContractTypeId" >
         </app-estate-contract-type-selector>
 
         <div class="container" *ngIf="contractTypeSelected && contractTypeSelected.id.length>0">

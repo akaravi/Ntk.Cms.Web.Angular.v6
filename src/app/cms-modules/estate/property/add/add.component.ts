@@ -496,8 +496,20 @@ export class EstatePropertyAddComponent implements OnInit {
           // stepper.previous();
         }, 10);
       }
+      
       if (!this.formGroup.valid) {
         this.cmsToastrService.typeErrorFormInvalid();
+        setTimeout(() => {
+          stepper.selectedIndex = event.previouslySelectedIndex;
+          // stepper.previous();
+        }, 10);
+      }      
+    }
+    if (event.selectedIndex === 2) {
+
+      if (!this.contractDataModel.linkEstateContractTypeId || this.contractDataModel.linkEstateContractTypeId.length === 0) {
+        this.cmsToastrService.typeErrorFormInvalid('نوع معامله انتخاب شود');
+
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();

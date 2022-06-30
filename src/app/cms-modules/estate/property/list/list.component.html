@@ -171,7 +171,7 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonMemo(row)" *ngIf="dataModelResult.access.accessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonMemo(row)" >
               <mat-icon>description</mat-icon>
               <span>{{'ACTION.MEMO' | translate}}</span>
             </button>
@@ -219,8 +219,9 @@
           </div>
         </mat-cell>
       </ng-container>
+      <!-- ['action'] -->
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+      <mat-row *matRowDef="let row; columns: tabledisplayedColumns" (click)="onActionTableRowSelect(row)"
       (mouseenter) ="onActionTableRowMouseEnter(row)"  (mouseleave) ="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
