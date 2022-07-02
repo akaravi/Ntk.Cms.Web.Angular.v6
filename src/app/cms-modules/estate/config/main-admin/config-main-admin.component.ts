@@ -134,7 +134,7 @@ export class EstateConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formError = '';
 
     const pName = this.constructor.name + 'ServiceSiteConfigDefault';
-    this.loading.Start(pName, 'دریافت تنظیمات پیش فرض ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_the_module_default_settings'));
     this.configService
       .ServiceSiteConfigDefault()
       .subscribe({

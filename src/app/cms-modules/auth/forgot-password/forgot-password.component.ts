@@ -118,7 +118,7 @@ export class AuthForgotPasswordComponent implements OnInit {
     this.errorState = ErrorStates.NotSubmitted;
     this.dataModelforgetPasswordEntryPinCode.captchaKey = this.captchaModel.key;
     const pName = this.constructor.name + '.ServiceForgetPasswordEntryPinCode';
-    this.loading.Start(pName, 'بررسی کد در سرور');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Check_the_code_on_the_server'));
     this.coreAuthService
       .ServiceForgetPasswordEntryPinCode(this.dataModelforgetPasswordEntryPinCode)
       .subscribe({
