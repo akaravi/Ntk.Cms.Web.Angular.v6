@@ -331,7 +331,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
     const pName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(pName, 'دریافت فایل خروجی');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {

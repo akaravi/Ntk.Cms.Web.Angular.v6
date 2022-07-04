@@ -60,7 +60,7 @@
 
 
       <p>{{'MESSAGE.Content_of_your_choice_to_display' | translate}}</p>
-      <P>با انتخاب هر کدام از موارد زیر محدوده نتایج جستجو کوچکتر می شود</P>
+      <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
         [optionDisabled]="!fieldsInfo['LinkLocationIds']?.accessEditField"
@@ -204,7 +204,7 @@
       </mat-form-field>
       <br>
       <p>
-        لیست املاک خاص
+        {{'MESSAGE.specific_property_list' | translate}}
       </p>
       <!-- LinkPropertyIds Field -->
       <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"

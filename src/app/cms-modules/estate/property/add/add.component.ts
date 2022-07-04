@@ -509,7 +509,7 @@ export class EstatePropertyAddComponent implements OnInit {
     if (event.selectedIndex === 2) {
 
       if (!this.contractDataModel.linkEstateContractTypeId || this.contractDataModel.linkEstateContractTypeId.length === 0) {
-        this.cmsToastrService.typeErrorFormInvalid('نوع معامله انتخاب شود');
+        this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
 
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
