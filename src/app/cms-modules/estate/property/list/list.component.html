@@ -4,16 +4,20 @@
 <app-estate-billboard-header *ngIf="this.requestLinkBillboardId?.length>0" [optionId]="this.requestLinkBillboardId">
 
 </app-estate-billboard-header>
-<app-estate-contract-type-header *ngIf="this.requestLinkContractTypeId?.length>0"  [optionId]="this.requestLinkContractTypeId">
+<app-estate-contract-type-header *ngIf="this.requestLinkContractTypeId?.length>0"
+  [optionId]="this.requestLinkContractTypeId">
 
 </app-estate-contract-type-header>
-<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0"  [optionId]="this.requestLinkCustomerOrderId">
+<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0"
+  [optionId]="this.requestLinkCustomerOrderId">
 
 </app-estate-customer-order-header>
-<app-estate-property-type-landuse-header *ngIf="this.requestLinkPropertyTypeLanduseId?.length>0"  [optionId]="this.requestLinkPropertyTypeLanduseId">
+<app-estate-property-type-landuse-header *ngIf="this.requestLinkPropertyTypeLanduseId?.length>0"
+  [optionId]="this.requestLinkPropertyTypeLanduseId">
 
 </app-estate-property-type-landuse-header>
-<app-estate-property-type-usage-header *ngIf="this.requestLinkPropertyTypeUsageId?.length>0"  [optionId]="this.requestLinkPropertyTypeUsageId">
+<app-estate-property-type-usage-header *ngIf="this.requestLinkPropertyTypeUsageId?.length>0"
+  [optionId]="this.requestLinkPropertyTypeUsageId">
 
 </app-estate-property-type-usage-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
@@ -65,8 +69,10 @@
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="manageAllRows(true)" class="btn btn-outline-success BTN float-left">{{'ACTION.EXPAND_ALL' | translate}}</button>
-    <button (click)="manageAllRows(false)" class="btn btn-outline-success BTN float-left">{{'ACTION.COLLPASE_ALL' | translate}}</button>
+    <button (click)="manageAllRows(true)" class="btn btn-outline-success BTN float-left">{{'ACTION.EXPAND_ALL' |
+      translate}}</button>
+    <button (click)="manageAllRows(false)" class="btn btn-outline-success BTN float-left">{{'ACTION.COLLPASE_ALL' |
+      translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -105,9 +111,11 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+          </select>
+        </mat-cell>
       </ng-container>
       <!-- MainAdminRecordStatus Column -->
       <ng-container matColumnDef="MainAdminRecordStatus">
@@ -171,7 +179,7 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonMemo(row)" >
+            <button mat-menu-item (click)="onActionbuttonMemo(row)">
               <mat-icon>description</mat-icon>
               <span>{{'ACTION.MEMO' | translate}}</span>
             </button>
@@ -215,18 +223,32 @@
                 <td></td>
                 <td> {{row.address}} </td>
               </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <a (click)="onActionbuttonAdsRow(row)" class="link-primary pointer"> {{'ACTION.ADS' | translate}}
+                  </a>|
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                  <a (click)="onActionbuttonMemo(row)" class="link-primary pointer"> {{'ACTION.MEMO' | translate}} </a>
+                </td>
+              </tr>
+
             </table>
           </div>
         </mat-cell>
       </ng-container>
-      <!-- ['action'] -->
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns" (click)="onActionTableRowSelect(row)"
-      (mouseenter) ="onActionTableRowMouseEnter(row)"  (mouseleave) ="onActionTableRowMouseLeave(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
       <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
-      (mouseenter) ="onActionTableRowMouseEnter(row)"  (mouseleave) ="onActionTableRowMouseLeave(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
 
