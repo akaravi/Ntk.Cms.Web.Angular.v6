@@ -1,20 +1,52 @@
-
-<div [hidden]="!showAdd" class="container" >
-    <div class="row" *ngFor="let item of dataModelResult.listItems">
-        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['CreatedBy']?.fieldTitle}} : {{ item.createdBy }}
+<!-- <div [hidden]="!showAdd" class="container" >
+    <div class="row" *ngFor="let item of dataModelResult.listItems ; let i = index">
+        <div class="col-md-1 col-sm-1 col-xs-1 d-block"> {{ i+1 }} </div>
+        <br>
+        <div class="col-md-11 col-sm-11 col-xs-17 d-block"> {{fieldsInfo['CreatedBy']?.fieldTitle}} : {{ item.createdBy }}
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectTitle']?.fieldTitle}} : {{ item.subjectTitle }}
+        <br>
+        <div class="col-md-11 col-sm-11 col-xs-17 d-block">  {{fieldsInfo['SubjectTitle']?.fieldTitle}} : {{ item.subjectTitle }}
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-18 float"> {{fieldsInfo['SubjectBody']?.fieldTitle}} : {{ item.subjectBody }}</div>
+        <br>
+        <div class="col-md-11 col-sm-11 col-xs-17 d-block"> {{fieldsInfo['SubjectBody']?.fieldTitle}} : {{ item.subjectBody }}</div>
     </div>
 
-</div>
+</div> -->
 
+
+
+<table [hidden]="!showAdd" class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">{{fieldsInfo['CreatedBy']?.fieldTitle}}</th>
+            <th scope="col">{{fieldsInfo['CreatedDate']?.fieldTitle}}</th>
+            <th scope="col">{{fieldsInfo['SubjectTitle']?.fieldTitle}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let item of dataModelResult.listItems ; let i = index">
+                <tr class="myDIV">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ item.createdBy }}</td>
+                    <td>{{ publicHelper.LocaleDate(item.createdDate) }}</td>
+                    <td>{{ item.subjectTitle }}</td>
+                </tr>
+            <tr class="hide">
+                <td></td>
+                <td  colspan="3">
+                    {{ item.subjectBody }}
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
 
 <!-- ============================================ -->
 <br>
 <br>
-<button class="btn  btn-success float" (click)="onActionAdd()">{{'ACTION.ADD' |translate}}</button>
+<button [hidden]="!showAdd" class="btn btn-success btn-lg btn-block" (click)="onActionAdd()">{{'ACTION.ADD'
+    |translate}}</button>
 
 <!-- add memo -->
 
@@ -27,27 +59,25 @@
     <div class="ntk-cms-html-card-body">
         <app-progress-spinner [options]="loading"> </app-progress-spinner>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-
-        <!-- SubjectBody Field -->
-        <mat-form-field class="ntk-full-width">
-            <mat-label>SubjectBody</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.subjectBody" name="dataModel.subjectBody" #SubjectBody type="text"
-                placeholder="SubjectBody"></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.subjectBody" matSuffix mat-icon-button aria-label="Clear"
-                (click)="dataModel.subjectBody = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-
         <!-- SubjectTitle Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>SubjectTitle</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle
-                type="text" placeholder="SubjectTitle"></textarea>
+            <input matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle type="text"
+                placeholder="SubjectTitle" required>
             <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear"
                 (click)="dataModel.subjectTitle = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
+        <!-- SubjectBody Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-label>SubjectBody</mat-label>
+            <textarea matInput [(ngModel)]="dataModel.subjectBody" name="dataModel.subjectBody" #SubjectBody type="text"
+                placeholder="SubjectBody" rows="9" required></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.subjectBody" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.subjectBody = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
     <div class="ntk-cms-html-card-message">
@@ -62,8 +92,12 @@
     <div class="ntk-cms-html-card-footer">
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
         <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <button type="submit" (click)="onFormSubmit()" class="btn btn-success btn-lg btn-block"
+                [disabled]="!vform.form.valid">
                 <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+            </button>
+            <button type="button" (click)="onFormCancel()" class="btn btn-light btn-lg btn-block">
+                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
             </button>
         </div>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

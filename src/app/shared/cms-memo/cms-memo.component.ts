@@ -8,6 +8,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
+
 @Component({
   selector: 'app-cms-memo',
   templateUrl: './cms-memo.component.html',
@@ -36,13 +37,14 @@ export class CmsMemoComponent implements OnInit {
     }
     if (!this.requestModuleEntityId || !this.requestModuleEntityName || !this.requestModuleName)
       this.dialogRef.close({ dialogChangedDate: true });
-      this.dataModel.id=this.requestModuleEntityId;
-      this.dataModel.moduleName=this.requestModuleName;
-      this.dataModel.moduleEntityName=this.requestModuleEntityName;
+    this.dataModel.moduleEntityId = this.requestModuleEntityId;
+    this.dataModel.moduleName = this.requestModuleName;
+    this.dataModel.moduleEntityName = this.requestModuleEntityName;
 
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   showAdd: boolean = true;
+
   loading = new ProgressSpinnerModel();
   requestModuleName: string;
   requestModuleEntityName: string;
@@ -50,16 +52,15 @@ export class CmsMemoComponent implements OnInit {
   requestTitle: string;
   dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
   dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
-  
+
+
 
   ngOnInit(): void {
     this.DataGetAll();
-    
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   DataGetAll(): void {
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
@@ -94,7 +95,7 @@ export class CmsMemoComponent implements OnInit {
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-        this.loading.Stop(pName);           
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
@@ -137,7 +138,6 @@ export class CmsMemoComponent implements OnInit {
     );
   }
 
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
@@ -148,6 +148,10 @@ export class CmsMemoComponent implements OnInit {
 
   onActionAdd() {
     this.showAdd = !this.showAdd
+  }
+  onFormCancel(): void {
+    this.dialogRef.close({ dialogChangedDate: false });
+
   }
 
 }

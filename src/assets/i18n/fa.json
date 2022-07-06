@@ -138,6 +138,7 @@
 	"ACTION.LOGIN_TO_THIS_SITE":"ورود به این سایت",
 	"ACTION.FILE_CREATION":"ساخت فایل",
 	"ACTION.Add_To_List":"اضافه به لیست",
+	"ACTION.Send_Message": "ارسال پیام",
 	"ACTION.Property_to_be_traded":"املاک مورد معامله",
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "تکرار کلمه عبور جدید",
 	"AUTH.FORGOT.DESC": "ایمیل تان را وارد کنید تا پسوردتان ریست شود",

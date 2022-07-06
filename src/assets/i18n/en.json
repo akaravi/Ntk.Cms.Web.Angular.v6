@@ -139,6 +139,7 @@
 	"ACTION.LOGIN_TO_THIS_SITE":"Login to this site",
 	"ACTION.FILE_CREATION":"File creation",
 	"ACTION.Add_To_List":"Add to list",
+	"ACTION.Send_Message": "Send message",
 	"ACTION.Property_to_be_traded":"Property to be traded",
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "Confirm Password",
 	"AUTH.FORGOT.DESC": "Enter your email to reset your password",

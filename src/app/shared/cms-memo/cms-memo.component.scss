@@ -1,7 +1,7 @@
-.float{
-    float: left !important;
-}
-
-.text-align{
-    text-align: left;
-}
+.hide {
+    display: none;
+  }
+  
+  .myDIV:hover + .hide {
+    display: contents;
+  }
