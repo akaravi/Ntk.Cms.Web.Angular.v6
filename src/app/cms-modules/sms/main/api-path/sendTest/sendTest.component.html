@@ -90,7 +90,8 @@
       </button>
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.valid"
         *ngIf="!this.loading.display">
-        <i class="fa fa-check-square-o"></i> ارسال پیام
+        <i class="fa fa-check-square-o"></i>
+        {{'ACTION.Send_Message' | translate}}
       </button>
 
     </div>

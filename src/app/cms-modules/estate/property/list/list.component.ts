@@ -200,7 +200,7 @@ export class EstatePropertyListComponent
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     if (!this.optionloadComponent) {
       return;
     }
@@ -432,7 +432,7 @@ export class EstatePropertyListComponent
   onActionbuttonDeleteRow(
     mode: EstatePropertyModel = this.tableRowSelected
   ): void {
-   
+
     if (mode == null || !mode.id || mode.id.length === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
@@ -446,7 +446,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    
+
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     var message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content');
     message += "?" + "<br> ( " + this.tableRowSelected.title + " ) ";
@@ -454,8 +454,8 @@ export class EstatePropertyListComponent
       .confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-           const pName = this.constructor.name + "main";
-           this.loading.Start(pName, this.translate.instant('MESSAGE.Deleting_information'));
+          const pName = this.constructor.name + "main";
+          this.loading.Start(pName, this.translate.instant('MESSAGE.Deleting_information'));
           this.contentService
             .ServiceDelete(this.tableRowSelected.id)
             .subscribe({
@@ -546,8 +546,8 @@ export class EstatePropertyListComponent
 
     //open popup
     const dialogRef = this.dialog.open(CmsMemoComponent, {
-      height: "90%",
-      width: "70%",
+      height: "50%",
+      width: "50%",
       data: {
         ModuleName: this.dataModelResult.access.moduleName,
         ModuleEntityName: this.dataModelResult.access.moduleEntityName,
