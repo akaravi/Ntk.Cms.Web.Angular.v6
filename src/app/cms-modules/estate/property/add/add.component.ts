@@ -508,7 +508,7 @@ export class EstatePropertyAddComponent implements OnInit {
     }
     if (event.selectedStep.label ==="فایل های پیوست" || event.selectedStep.label ==="file") {
 
-      if (!this.contractDataModel.linkEstateContractTypeId || this.contractDataModel.linkEstateContractTypeId.length === 0) {
+      if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
 
         setTimeout(() => {
