@@ -479,7 +479,7 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
-
+      console.log(event);
       if (!this.dataModel.linkPropertyTypeUsageId || this.dataModel.linkPropertyTypeUsageId.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Usage'));
 
@@ -506,7 +506,7 @@ export class EstatePropertyAddComponent implements OnInit {
         }, 10);
       }      
     }
-    if (event.selectedIndex === 2) {
+    if (event.selectedStep.label ==="فایل های پیوست" || event.selectedStep.label ==="file") {
 
       if (!this.contractDataModel.linkEstateContractTypeId || this.contractDataModel.linkEstateContractTypeId.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
