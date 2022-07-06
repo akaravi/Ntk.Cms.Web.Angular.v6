@@ -7,6 +7,8 @@ import {
   SmsMainApiPathService,
   SmsMainApiPathModel,
   SmsMainApiNumberModel,
+  SmsMainMessageCategoryModel,
+  SmsMainMessageContentModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -38,7 +40,9 @@ export class SmsActionSendMessageComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loadingAction.cdr = this.cdr;
-
+    if (this.requestLinkApiPathId?.length > 0) {
+      this.dataModel.linkApiPathId = this.requestLinkApiPathId;
+    }
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -51,20 +55,9 @@ export class SmsActionSendMessageComponent implements OnInit {
   clipboardText = '';
 
   ngOnInit(): void {
-    if (this.requestLinkApiPathId?.length > 0) {
-      this.dataModel.linkApiPathId = this.requestLinkApiPathId;
-    }
-    // setTimeout(async () => {
-    //   navigator['clipboard'].readText().then(text => {
-    //     debugger
-    //     this.clipboardText = text;
-    //   }).catch(err => {
-    //     debugger
-    //     console.error('Failed to read clipboard contents: ', err);
-    //   })
-    // }, 3000);
-    //setTimeout(async () => this.clipboardText = await window.navigator.clipboard.readText(), 3000);
-    this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
+    
+    
+    //this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
 
   }
 
@@ -73,7 +66,7 @@ export class SmsActionSendMessageComponent implements OnInit {
       const _asyncCopyFn = (async () => {
         try {
           const value = await navigator.clipboard.readText();
-          console.log(`${value} is read!`);
+          //console.log(`${value} is read!`);
           resolve(value);
         } catch (e) {
           reject(e);
@@ -92,7 +85,24 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.dataModelParentSelected = model;
     if (model && model.id.length > 0) {
       this.dataModel.linkApiPathId = model.id;
-
+    }
+  }
+  dataMessageCategoryModel: SmsMainMessageCategoryModel=new SmsMainMessageCategoryModel();
+  onActionSelectMessageCategory(model: SmsMainMessageCategoryModel):void{
+    if (model && model.id.length > 0) {
+      this.dataMessageCategoryModel = model;
+    }
+    else{
+      this.dataMessageCategoryModel=new SmsMainMessageCategoryModel();
+    }
+  }
+  dataMessageContentModel: SmsMainMessageContentModel=new SmsMainMessageContentModel();
+  onActionSelectMessageContent(model: SmsMainMessageContentModel):void{
+    if (model && model.id.length > 0) {
+      this.dataMessageContentModel = model;
+    }
+    else{
+      this.dataMessageContentModel=new SmsMainMessageContentModel();
     }
   }
 

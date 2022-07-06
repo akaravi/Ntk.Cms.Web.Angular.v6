@@ -68,7 +68,7 @@ export class SmsActionSendMessageApiComponent implements OnInit {
     this.filteredPathOptions = this.formPathControl.valueChanges
       .pipe(
         startWith(''),
-        debounceTime(1000),
+        debounceTime(1500),
         distinctUntilChanged(),
         switchMap(val => {
           if (typeof val === 'string') {
@@ -81,7 +81,7 @@ export class SmsActionSendMessageApiComponent implements OnInit {
       this.filteredNumberOptions = this.formNumberControl.valueChanges
       .pipe(
         startWith(''),
-        debounceTime(1000),
+        debounceTime(1500),
         distinctUntilChanged(),
         switchMap(val => {
           if (typeof val === 'string') {

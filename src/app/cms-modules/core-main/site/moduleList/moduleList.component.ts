@@ -223,8 +223,8 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CoreSiteModuleAddComponent, {
       height: '90%',
       data: {
-        LinkSiteId: LinkSiteId,
-        LinkModuleId: LinkModuleId,
+        linkSiteId: LinkSiteId,
+        linkModuleId: LinkModuleId,
       }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -30,12 +30,12 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public categoryService: SmsMainMessageContentService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<SmsMainMessageContentModel> = new ErrorExceptionResult<SmsMainMessageContentModel>();
   dataModelSelect: SmsMainMessageContentModel = new SmsMainMessageContentModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainMessageContentModel[]>;
   @Input() optionPlaceholder = '';
@@ -45,7 +45,17 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | SmsMainMessageContentModel) {
     this.onActionSelectForce(x);
   }
+
+  @Input() set optionLinkCategryId(x: string) {
+    if (x == this.privateLinkCategryId)
+      return;
+    if (this.privateLinkCategryId != '')
+      this.onActionSelectClear();
+    this.privateLinkCategryId = x;
+    this.loadOptions();
+  }
   @Input() optionDisabled = false;
+  privateLinkCategryId = '';
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -53,7 +63,7 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
-        debounceTime(1000),
+        debounceTime(1500),
         distinctUntilChanged(),
         switchMap(val => {
           if (typeof val === 'string' || typeof val === 'number') {
@@ -90,7 +100,13 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filteModel.filters.push(filter);
     }
-
+    if (this.privateLinkCategryId && this.privateLinkCategryId.length > 0) {
+      filter = new FilterDataModel();
+      filter.propertyName = 'linkCategoryId';
+      filter.value = this.privateLinkCategryId;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filteModel.filters.push(filter);
+    }
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -103,8 +119,10 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
             (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length == 0) &&
             this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.listItems[0]);
+            setTimeout(() => {
+              this.formControl.setValue(this.dataModelResult.listItems[0]); this.onActionSelect(this.dataModelResult.listItems[0]);
+            }, 1000);
+
           }
           /*select First Item */
           this.loading.Stop(pName);

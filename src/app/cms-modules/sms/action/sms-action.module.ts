@@ -24,6 +24,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { SmsActionSendMessageComponent } from './send-message/send-message.component';
 import { SmsSharedModule } from '../sms.shared.module';
 import { SmsActionSendMessageApiComponent } from './send-message-api/send-message-api.component';
+import { SmsMainModule } from '../main/sms-main.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SmsActionSendMessageApiComponent } from './send-message-api/send-messag
   ],
   imports: [
     CommonModule,
+    SmsMainModule,
     SmsActionRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),

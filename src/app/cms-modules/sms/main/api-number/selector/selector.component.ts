@@ -32,7 +32,7 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: SmsMainApiNumberService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
 
   dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
@@ -48,7 +48,16 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | SmsMainApiNumberModel) {
     this.onActionSelectForce(x);
   }
-  @Input() optionLinkApiPathId = '';
+  
+  @Input() set optionLinkApiPathId(x: string) {
+    if (x == this.privateLinkApiPathId)
+      return;
+    if (this.privateLinkApiPathId != '')
+      this.onActionSelectClear();
+    this.privateLinkApiPathId = x;
+    this.loadOptions();
+  }
+  public privateLinkApiPathId = '';
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -56,7 +65,7 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
-        debounceTime(1000),
+        debounceTime(1500),
         distinctUntilChanged(),
         switchMap(val => {
           if (typeof val === 'string' || typeof val === 'number') {
@@ -84,11 +93,11 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
     filteModel.filters.push(filter);
-    if (this.optionLinkApiPathId && this.optionLinkApiPathId.length > 0) {
+    if (this.privateLinkApiPathId && this.privateLinkApiPathId.length > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'ApiPathAndApiNumbers';
       filter.propertyAnyName = 'LinkApiPathId';
-      filter.value = this.optionLinkApiPathId;
+      filter.value = this.privateLinkApiPathId;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filteModel.filters.push(filter);
     }
@@ -102,8 +111,10 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
             (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length <= 0) &&
             this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.listItems[0]);
+            setTimeout(() => { 
+              this.formControl.setValue(this.dataModelResult.listItems[0]);
+              this.onActionSelect(this.dataModelResult.listItems[0])
+             }, 1000);
           }
           /*select First Item */
           this.loading.Stop('DataGetAll');
@@ -122,6 +133,7 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
     if (this.optionDisabled) {
       return;
     }
+    this.dataModelSelect = new SmsMainApiNumberModel();
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }

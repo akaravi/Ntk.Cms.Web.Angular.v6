@@ -11,17 +11,25 @@
 
       <div class="col-6">
         <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-          <mat-tab label="پیام ارسال">
-            <textarea [ngModel]="clipboardText" name="clipboardText" readonly="readonly" ></textarea>
-            متن ارسال
+          <mat-tab label="پیام ها">
+            <app-sms-main-message-category-selector (optionChange)="onActionSelectMessageCategory($event)" ></app-sms-main-message-category-selector>
+            <app-sms-main-message-content-selector (optionChange)="onActionSelectMessageContent($event)" [optionLinkCategryId]="dataMessageCategoryModel.id" ></app-sms-main-message-content-selector>
           </mat-tab>
+  
           <mat-tab label="مسیر">
-            <app-sms-action-send-message-api ></app-sms-action-send-message-api>
+            <!-- LinkPrivateSiteConfigId Field -->
+            <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
+              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'">
+            </app-sms-apipath-selector>
+            <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
+              (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
+              [optionLinkApiPathId]="dataModel.linkApiPathId" [optionPlaceholder]="' شماره فرستنده'" [optionSelectFirstItem]="true">
+            </app-sms-api-number-selector>
           </mat-tab>
           <mat-tab label="مخاطب">
-            <app-cms-contact-category-tree-selector        
-             (optionSelectChecked)="onActionContactSelectChecked($event)"
-            (optionSelectDisChecked)="onActionContactSelectDisChecked($event)"></app-cms-contact-category-tree-selector>
+            <app-cms-contact-category-tree-selector (optionSelectChecked)="onActionContactSelectChecked($event)"
+              (optionSelectDisChecked)="onActionContactSelectDisChecked($event)">
+            </app-cms-contact-category-tree-selector>
 
           </mat-tab>
           <mat-tab label="زمان ارسال">
@@ -37,14 +45,7 @@
       <div class="col-3">
 
 
-        <!-- LinkPrivateSiteConfigId Field -->
-        <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
-          [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'">
-        </app-sms-apipath-selector>
-        <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
-          (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
-          [optionLinkApiPathId]="dataModel.linkApiPathId" [optionPlaceholder]="' شماره فرستنده'">
-        </app-sms-api-number-selector>
+
 
 
 

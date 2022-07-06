@@ -35,7 +35,7 @@ export class SmsMainMessageCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
   dataModelSelect: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainMessageCategoryModel[]>;
   @Input() optionPlaceholder = '';
@@ -53,7 +53,7 @@ export class SmsMainMessageCategorySelectorComponent implements OnInit {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
-        debounceTime(1000),
+        debounceTime(1500),
         distinctUntilChanged(),
         switchMap(val => {
           if (typeof val === 'string' || typeof val === 'number') {

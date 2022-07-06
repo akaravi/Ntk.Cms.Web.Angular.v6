@@ -56,7 +56,7 @@ export class CoreUserClaimGroupSelectorComponent implements OnInit {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
-        debounceTime(1000),
+        debounceTime(1500),
         distinctUntilChanged(),
         switchMap(val => {
           if (typeof val === 'string' || typeof val === 'number') {
