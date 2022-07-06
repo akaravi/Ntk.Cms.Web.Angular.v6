@@ -362,10 +362,12 @@ export class PublicHelper {
     if (!cloumnCheck || cloumnCheck.length == 0) {
       cloumnCheck = [];
     }
-    cloumnCheck.push('Id');
-    cloumnCheck.push('LinkSiteId');
+    if (cloumn.indexOf('Id') >= 0)
+      cloumnCheck.push('Id');
+    if (cloumn.indexOf('LinkSiteId') >= 0)
+      cloumnCheck.push('LinkSiteId');
     if (token.userAccessAdminAllowToAllData || token.userAccessAdminAllowToProfessionalData) {
-      var i=0;
+      var i = 0;
       cloumnCheck.forEach(element => {
         cloumn = this.listAddIfNotExist(cloumn, element, ++i);
       });
