@@ -8,8 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import { CmsFileManagerModule } from 'src/filemanager-api';
 import {
+  ContactCategoryService,
+  ContactContentService,
   CoreAuthService,
   CoreEnumService,
   CoreModuleService,
@@ -22,11 +23,13 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { SmsActionSendMessageComponent } from './send-message/send-message.component';
 import { SmsSharedModule } from '../sms.shared.module';
+import { SmsActionSendMessageApiComponent } from './send-message-api/send-message-api.component';
 
 @NgModule({
   declarations: [
     SmsActionComponent,
     SmsActionSendMessageComponent,
+    SmsActionSendMessageApiComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +53,8 @@ import { SmsSharedModule } from '../sms.shared.module';
     CmsConfirmationDialogService ,
     CoreModuleTagService,
     SmsMainApiPathService,
-
+    ContactCategoryService, 
+    ContactContentService, 
   ]
 })
 export class SmsActionModule { }

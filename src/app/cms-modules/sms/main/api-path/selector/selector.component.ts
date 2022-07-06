@@ -22,7 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-sms-apipath-selector',
   templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss']
+  
 })
 export class SmsMainApiPathSelectorComponent implements OnInit {
 

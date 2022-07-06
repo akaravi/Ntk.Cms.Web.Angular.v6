@@ -12,18 +12,13 @@ import {
   Component,
   OnInit,
   ViewChild,
-  Inject,
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { DOCUMENT } from '@angular/common';
-import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { Clipboard } from "@angular/cdk/clipboard"; // first import this in .ts
 
 
 @Component({
@@ -34,9 +29,6 @@ import { Clipboard } from "@angular/cdk/clipboard"; // first import this in .ts
 export class SmsActionSendMessageComponent implements OnInit {
   requestLinkApiPathId = '';
   constructor(
-    // @Inject(MAT_DIALOG_DATA) public data: any,
-    // @Inject(DOCUMENT) private document: any,
-    // private dialogRef: MatDialogRef<SmsActionSendMessageComponent>,
     public coreEnumService: CoreEnumService,
     public smsMainApiPathService: SmsMainApiPathService,
     private cmsToastrService: CmsToastrService,

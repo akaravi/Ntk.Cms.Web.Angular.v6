@@ -1,0 +1,23 @@
+<mat-form-field class="ntk-full-width">
+    <input type="text" placeholder="مسیر ارسال" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formPathControl" [matAutocomplete]="auto17">
+    <mat-autocomplete #auto17="matAutocomplete" [displayWith]="displayPathFn"  (optionSelected)="onActionSelectPath($event.option.value)">
+        <mat-option *ngFor="let state of filteredPathOptions | async" [value]="state"  [disabled]="optionDisabled">
+            <span>{{ displayPathOption(state) }}</span>
+        </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix *ngIf="dataPathModelSelect.id" matSuffix
+    mat-icon-button aria-label="Clear" (click)="onActionSelectClearPath()">close</mat-icon>
+    <ng-content></ng-content>
+</mat-form-field>
+
+<mat-form-field class="ntk-full-width">
+    <input type="text" placeholder="شماره" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formNumberControl" [matAutocomplete]="auto18">
+    <mat-autocomplete #auto18="matAutocomplete" [displayWith]="displayNumberFn"  (optionSelected)="onActionSelectNumber($event.option.value)">
+        <mat-option *ngFor="let state of filteredNumberOptions | async" [value]="state"  [disabled]="optionDisabled">
+            <span>{{ displayNumberOption(state) }}</span>
+        </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix *ngIf="dataNumberModelSelect.id" matSuffix
+    mat-icon-button aria-label="Clear" (click)="onActionSelectClearNumber()">close</mat-icon>
+    <ng-content></ng-content>
+</mat-form-field>

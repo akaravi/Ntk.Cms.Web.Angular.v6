@@ -32,9 +32,7 @@
           class="svg-icon menu-icon"></span>
         <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-        <span class="menu-text" >{{
-          item.title
-          }}</span>
+        <span class="menu-text" >{{item.title}}</span>
       </a>
     </li>
   </ng-container>
@@ -50,9 +48,7 @@
           class="svg-icon menu-icon"></span>
         <i [ngClass]="item.icon" [style.color]="item.color?.length>0 ? item.color:''"
           aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-        <span class="menu-text" >{{
-          item.title
-          }}</span>
+        <span class="menu-text" >{{item.title}}</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="menu-submenu">
@@ -61,9 +57,7 @@
           <li class="menu-item menu-item-parent" aria-haspopup="true">
             <span class="menu-link">
               <i [ngClass]="item.icon"  class="menu-bullet"  [style.color]="item.color?.length>0 ? item.color:''" aria-hidden="true"><span></span></i>&nbsp;&nbsp;
-              <span class="menu-text" >{{
-                item.title
-                }}</span>
+              <span class="menu-text" >{{item.title}}</span>
             </span>
           </li>
           <ng-container *ngFor="let sub of item.submenu" [ngTemplateOutlet]="menu2LevelTemplate"
@@ -131,9 +125,7 @@
       <i [ngClass]="item.icon"  class="menu-bullet" [style.color]="item.color?.length>0 ? item.color:''" aria-hidden="true">
         <span></span>
       </i>&nbsp;&nbsp;
-      <span class="menu-text" >{{
-        item.title
-        }}</span>
+      <span class="menu-text" >{{item.title}}</span>
     </a>
   </li>
 </ng-template>
