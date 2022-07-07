@@ -70,11 +70,11 @@
             (click)="dataModel.fromNumber = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-        <!-- ToNumber Field -->
+        <!-- toNumber Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>ToNumber</mat-label>
-          <input matInput [(ngModel)]="dataModel.toNumber" name="dataModel.toNumber" #ToNumber type="text"
-            placeholder="ToNumber" />
+          <mat-label>toNumber</mat-label>
+          <input matInput [(ngModel)]="dataModel.toNumber" name="dataModel.toNumber" #toNumber type="text"
+            placeholder="toNumber" />
           <mat-icon matSuffix *ngIf="dataModel.toNumber" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.toNumber = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

@@ -30,7 +30,7 @@
       <mat-form-field class="ntk-full-width">
         <mat-label>شماره گیرنده</mat-label>
         <input matInput [(ngModel)]="dataModel.toNumber" name="dataModel.toNumber" #ToNumber type="text"
-          placeholder="0912" minlength="0" maxlength="50" />
+          placeholder="0912" minlength="0" maxlength="100" />
         <mat-icon matSuffix *ngIf="dataModel.toNumber" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.toNumber = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -38,7 +38,7 @@
           <mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">شماره گیرنده پیام را می توانید با کاما از هم جدا کنید</strong>
         </mat-hint>
-        <mat-hint style="text-align: left;">{{ ToNumber.value.length }} / 50</mat-hint>
+        <mat-hint style="text-align: left;">{{ ToNumber.value.length }} / 100</mat-hint>
       </mat-form-field>
       <!-- Message Field -->
       <mat-form-field class="ntk-full-width">

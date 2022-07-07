@@ -46,6 +46,8 @@ export class SmsActionSendMessageComponent implements OnInit {
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
+
+
   loading = new ProgressSpinnerModel();
   loadingAction = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
@@ -55,8 +57,8 @@ export class SmsActionSendMessageComponent implements OnInit {
   clipboardText = '';
 
   ngOnInit(): void {
-    
-    
+
+
     //this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
 
   }
@@ -87,22 +89,22 @@ export class SmsActionSendMessageComponent implements OnInit {
       this.dataModel.linkApiPathId = model.id;
     }
   }
-  dataMessageCategoryModel: SmsMainMessageCategoryModel=new SmsMainMessageCategoryModel();
-  onActionSelectMessageCategory(model: SmsMainMessageCategoryModel):void{
+  dataMessageCategoryModel: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
+  onActionSelectMessageCategory(model: SmsMainMessageCategoryModel): void {
     if (model && model.id.length > 0) {
       this.dataMessageCategoryModel = model;
     }
-    else{
-      this.dataMessageCategoryModel=new SmsMainMessageCategoryModel();
+    else {
+      this.dataMessageCategoryModel = new SmsMainMessageCategoryModel();
     }
   }
-  dataMessageContentModel: SmsMainMessageContentModel=new SmsMainMessageContentModel();
-  onActionSelectMessageContent(model: SmsMainMessageContentModel):void{
+  dataMessageContentModel: SmsMainMessageContentModel = new SmsMainMessageContentModel();
+  onActionSelectMessageContent(model: SmsMainMessageContentModel): void {
     if (model && model.id.length > 0) {
       this.dataMessageContentModel = model;
     }
-    else{
-      this.dataMessageContentModel=new SmsMainMessageContentModel();
+    else {
+      this.dataMessageContentModel = new SmsMainMessageContentModel();
     }
   }
 
@@ -157,19 +159,34 @@ export class SmsActionSendMessageComponent implements OnInit {
   onFormCancel(): void {
     // this.dialogRef.close({ dialogChangedDate: false });
   }
-  onActionContactSelectChecked(model: number): void {
-    if (!model || model <= 0) {
+  onActionContactCategorySelectChecked(model: string): void {
+    if (!model || model.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-  
+    if (!this.dataModel.toContactCategories)
+      this.dataModel.toContactCategories = [];
+    if (!this.dataModel.toContactContents)
+      this.dataModel.toContactContents = [];
+    this.publicHelper.listAddIfNotExist(this.dataModel.toContactCategories, model, 0);
+    if (this.dataModel.toContactCategories.length > 0 || this.dataModel.toContactContents.length > 0) {
+      this.dataModel.toNumbers = '';
+    }
   }
-  onActionContactSelectDisChecked(model: number): void {
-    if (!model || model <= 0) {
+  onActionContactCategorySelectDisChecked(model: string): void {
+    if (!model || model.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
+    }
+    if (!this.dataModel.toContactCategories)
+      this.dataModel.toContactCategories = [];
+    if (!this.dataModel.toContactContents)
+      this.dataModel.toContactContents = [];
+    this.publicHelper.listRemoveIfExist(this.dataModel.toContactCategories, model);
+    if (this.dataModel.toContactCategories.length > 0 || this.dataModel.toContactContents.length > 0) {
+      this.dataModel.toNumbers = '';
     }
   }
 }

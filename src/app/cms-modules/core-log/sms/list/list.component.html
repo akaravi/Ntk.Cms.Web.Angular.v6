@@ -96,11 +96,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.fromNumber}} </mat-cell>
       </ng-container>
-      <!-- ToNumber Column -->
-      <ng-container matColumnDef="ToNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ToNumber']?.fieldTitle}}
+      <!-- ToNumbers Column -->
+      <ng-container matColumnDef="ToNumbers">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ToNumbers']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.toNumber}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.toNumbers}} </mat-cell>
       </ng-container>
       <!-- SendStatusType Column -->
       <ng-container matColumnDef="SendStatusType">
