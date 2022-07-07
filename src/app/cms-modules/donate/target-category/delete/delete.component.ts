@@ -60,7 +60,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.formAlert = 'در حال لود اطلاعات';
+    this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -92,7 +92,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
 
   }
   DataGetAll(): void {
-    this.formInfo.formAlert = 'در حال لود اطلاعات';
+    this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const filterModel: FilterModel = new FilterModel();
     filterModel.rowPerPage = 100;
     const pName = this.constructor.name + 'main';

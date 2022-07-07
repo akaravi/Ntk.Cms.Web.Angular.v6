@@ -217,7 +217,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   }
   onActionSelectorSelectLinkBillboardPatternId(model: LinkManagementBillboardPatternModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'دسته بندی بیلبرد اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Category_of_billboard_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

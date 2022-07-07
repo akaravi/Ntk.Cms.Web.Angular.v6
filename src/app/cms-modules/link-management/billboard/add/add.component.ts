@@ -252,7 +252,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
 
   onActionSelectorSelectLinkManagementMemberId(model: LinkManagementMemberModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'حساب کاربری اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Type_of_User_account_is_not_known');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -260,7 +260,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
   }
   onActionSelectorSelectLinkBillboardPatternId(model: LinkManagementBillboardPatternModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'دسته بندی بیلبرد اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Category_of_billboard_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

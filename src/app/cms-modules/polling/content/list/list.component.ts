@@ -311,7 +311,7 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
 
   onActionbuttonComment(model: PollingContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = 'ردیفی   انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

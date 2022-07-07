@@ -388,7 +388,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات زندگی نامه");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_biographical_information'));
     this.biographyContentService
       .ServiceGetOneById(this.tableRowSelected.linkContentId)
       .subscribe({
@@ -454,7 +454,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات زندگی نامه");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_biographical_information'));
     this.biographyContentService
       .ServiceGetOneById(this.tableRowSelected.linkContentId)
       .subscribe({

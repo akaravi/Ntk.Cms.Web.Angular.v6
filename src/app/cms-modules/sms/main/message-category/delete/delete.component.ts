@@ -61,7 +61,7 @@ export class SmsMainMessageCategoryDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.formAlert = 'در حال لود اطلاعات';
+    this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -94,7 +94,7 @@ export class SmsMainMessageCategoryDeleteComponent implements OnInit {
 
   }
   DataGetAll(): void {
-    this.formInfo.formAlert = 'در حال لود اطلاعات';
+    this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const filterModel: FilterModel = new FilterModel();
     filterModel.rowPerPage = 100;
     const pName = this.constructor.name + 'main';
@@ -154,7 +154,7 @@ export class SmsMainMessageCategoryDeleteComponent implements OnInit {
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorMove();
           } else {
-            this.formInfo.formAlert = 'جابجایی با موفقیت انجام شد';
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.The_Transfer_Was_Successful');
             this.cmsToastrService.typeSuccessMove();
           }
           this.formInfo.formSubmitAllow = true;

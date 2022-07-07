@@ -364,7 +364,7 @@ export class CoreModuleLogSiteCreditBlockedListComponent implements OnInit, OnDe
     }
     this.tableRowSelected = model;
     if (!this.tableRowSelected.linkSiteId || this.tableRowSelected.linkSiteId === 0) {
-      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات سایت نمی باشد');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_site_information'));
       return;
     }
     this.router.navigate(['/core/site/edit', this.tableRowSelected.linkSiteId]);

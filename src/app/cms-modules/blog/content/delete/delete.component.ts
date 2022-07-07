@@ -55,7 +55,7 @@ export class BlogContentDeleteComponent implements OnInit {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.formInfo.formAlert = 'در حال لود اطلاعات';
+    this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

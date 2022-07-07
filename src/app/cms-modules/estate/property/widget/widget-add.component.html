@@ -20,7 +20,7 @@
         <a routerLink="/estate/property/InChecking/true" routerLinkActive="active"
           *ngIf="this.modelData.get('InChecking') && this.modelData.get('InChecking')>0">
           <h3 class="text-black font-weight-bolder line-height-lg mb-5">
-            تعداد ردیف در صف تایید : {{this.modelData.get('InChecking')}}
+            {{'TITLE.Number_of_rows_in_the_confirmation_queue' | translate}} : {{this.modelData.get('InChecking')}}
           </h3>
         </a>
       </div>

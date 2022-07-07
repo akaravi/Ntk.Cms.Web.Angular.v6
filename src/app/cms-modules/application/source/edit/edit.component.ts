@@ -233,7 +233,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.applicationSourceSiteCategoryService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.formInfo.formAlert = 'حذف از این گروه با موفقیت انجام شد';
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_from_this_group_Was_Successful');
           this.cmsToastrService.typeSuccessEdit();
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');

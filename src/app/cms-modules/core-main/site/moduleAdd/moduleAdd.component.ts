@@ -146,7 +146,7 @@ export class CoreSiteModuleAddComponent implements OnInit {
   }
   onActionSelectorModuleSelect(model: CoreModuleModel): void {
     if (!model || model.id <= 0) {
-      const message = 'ماژول مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Module_is_not_specified');
       this.cmsToastrService.typeErrorSelected(message);
     }
     this.dataModel.linkModuleId = model.id;

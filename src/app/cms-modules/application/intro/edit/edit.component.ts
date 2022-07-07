@@ -157,8 +157,8 @@ export class ApplicationIntroEditComponent implements OnInit {
   onActionSelectApplication(model: ApplicationSourceModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'اپلیکیشن را مشخص کنید',
-        ' اپلیکیشن اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_application'),
+        this.translate.instant('MESSAGE.Application_information_is_not_clear')
       );
       return;
     }

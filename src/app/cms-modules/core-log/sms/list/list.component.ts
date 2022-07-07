@@ -374,7 +374,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     if (!this.tableRowSelected.linkUserId || this.tableRowSelected.linkUserId === 0) {
-      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات کاربر نمی باشد');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_contain_user_information'));
       return;
     }
     this.router.navigate(['/core/user/edit', this.tableRowSelected.linkUserId]);
@@ -402,7 +402,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     if (!this.tableRowSelected.linkSiteId || this.tableRowSelected.linkSiteId === 0) {
-      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات سایت نمی باشد');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_site_information'));
       return;
     }
     this.router.navigate(['/core/site/edit', this.tableRowSelected.linkSiteId]);

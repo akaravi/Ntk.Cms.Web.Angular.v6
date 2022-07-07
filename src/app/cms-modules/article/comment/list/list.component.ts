@@ -390,7 +390,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات مقاله");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_article_information'));
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.linkContentId)
       .subscribe({
@@ -456,7 +456,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات مقاله");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_article_information'));
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.linkContentId)
       .subscribe({

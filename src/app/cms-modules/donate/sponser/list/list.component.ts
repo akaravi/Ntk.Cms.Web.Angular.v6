@@ -340,7 +340,7 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
 
   onActionbuttonTargetPeriodSponserRow(model: DonateSponsorModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = 'ردیفی   انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -349,7 +349,7 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
 
   onActionbuttonTransactionsRow(model: DonateSponsorModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      const message = 'ردیفی   انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

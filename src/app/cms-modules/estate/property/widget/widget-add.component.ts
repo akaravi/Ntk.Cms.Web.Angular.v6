@@ -37,8 +37,8 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
   loading = new ProgressSpinnerModel();
   rowExist = false;
   ngOnInit() {
-    this.widgetInfoModel.title = 'بررسی املاک ثبت شده';
-    this.widgetInfoModel.description = 'معرفی املاک شما';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Check_registered_properties');
+    this.widgetInfoModel.description = this.translate.instant('TITLE.Introduction_of_your_property');
     this.widgetInfoModel.link = '/estate/property';
 
     this.onActionStatist();
@@ -64,14 +64,14 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
           this.widgetInfoModel.link = '/estate/property/add';
         }
         else {
-          this.widgetInfoModel.title = 'اولین ملک خود را ثبت کنید';
+          this.widgetInfoModel.title = this.translate.instant('TITLE.Register_your_first_property');
           this.widgetInfoModel.link = '/estate/property/add';
         }
         this.loading.Stop(this.constructor.name + 'All');
 
       },
       error: (er) => {
-        this.widgetInfoModel.title = 'املاک جدید اضافه کنید';
+        this.widgetInfoModel.title = this.translate.instant('TITLE.Add_new_properties');
         this.widgetInfoModel.link = '/estate/property/add';
         this.loading.Stop(this.constructor.name + 'All');
       }

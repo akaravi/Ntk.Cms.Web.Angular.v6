@@ -37,7 +37,7 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
   @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = 'املاک ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_property');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/estate/property';
 
