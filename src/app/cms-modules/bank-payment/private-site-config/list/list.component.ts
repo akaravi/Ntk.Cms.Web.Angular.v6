@@ -197,7 +197,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       ApplicationId = this.categoryModelSelected.id;
     }
     if (ApplicationId <= 0) {
-      const message = 'سورسی انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Source_is_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

@@ -90,7 +90,7 @@
         </mat-step>
 
         <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
-          <p>این بخش کمک می کند موتورهای سرچ بهتر مطالب را ایندکس کنند</p>
+          <p>{{'TITLE.This_section_helps_search_engines_better_index_content' | translate}}</p>
           <!-- Source Field -->
           <mat-form-field class="ntk-full-width">
             <mat-label>آدرس صفحه منبع مطلب</mat-label>
@@ -106,7 +106,7 @@
           </app-cms-tag-autocomplete>
           <!-- KeywordModel Field -->
           <mat-form-field style="width: 100%;" appearance="fill">
-            <mat-label>انتخاب کلمات کلیدی نسبت به مطلب</mat-label>
+            <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
             <mat-chip-list #chipList aria-label="کلمه کلیدی">
               <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
                 {{item}}
@@ -133,7 +133,7 @@
           </div>
         </mat-step>
         <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-          <p>فایل های پیوست</p>
+          <p>{{'TITLE.ATTACH_FILES' | translate}}</p>
           <!-- LinkMainImageIdSrc Field -->
           <div class="mb-3">
             <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden

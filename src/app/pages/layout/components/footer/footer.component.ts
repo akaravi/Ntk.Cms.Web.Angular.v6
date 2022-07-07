@@ -24,7 +24,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
     public publicHelper: PublicHelper) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     const currentDate = new Date();
     this.currentYear = currentDate.getFullYear().toString();
     this.publicHelper.appServerVersion
@@ -45,7 +46,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   }
   GetServiceVer(): void {
     const pName = this.constructor.name + 'ServiceIp';
-    this.loading.Start(pName, 'دریافت اطلاعات سرور');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
     this.configService.ServiceIp().subscribe(
       async (next) => {
           this.publicHelper.appServerVersion=next.appVersion

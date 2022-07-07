@@ -372,7 +372,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonUploadApp(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = 'ردیفی  انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -389,7 +389,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonUploadUpdate(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = 'ردیفی  انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -406,7 +406,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonBuildApp(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = 'ردیفی  انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -432,7 +432,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonDownloadApp(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = 'ردیفی  انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -473,7 +473,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonMemberList(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = 'ردیفی  انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -482,7 +482,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonIntroList(mode: ApplicationAppModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
-      const message = 'ردیفی  انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

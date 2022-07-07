@@ -133,7 +133,7 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
   }
   onActionSelectorSelect(model: ApiTelegramBotConfigModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'ربات تلگرام را انتخاب کنید';
+      const message = this.translate.instant('MESSAGE.Select_the_Telegram_bot');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

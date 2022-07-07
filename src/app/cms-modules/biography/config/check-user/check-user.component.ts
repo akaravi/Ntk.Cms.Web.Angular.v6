@@ -69,7 +69,7 @@ export class BiographyConfigCheckUserComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + '.ServiceCheckUser';
-    this.loading.Start(pName, 'بررسی حساب کاربری');
+    this.loading.Start(pName, this.translate.instant('TITLE.Check_account'));
     this.configService
       .ServiceCheckUser(this.requestLinkUserId)
       .subscribe({

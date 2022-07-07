@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
       <mat-step label="تنظیمات ماژول" state="main">
-        <p>تنظیمات که ماژول به سایت به کارگیری می شود </p>
+        <p>{{'TITLE.Settings_that_the_module_applies_to_the_site' | translate}} </p>
 
         <!-- StatusRenderUser Field -->
         <div class="ntk-full-width">
@@ -22,7 +22,7 @@
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.useDataDefaulteSite"
             name="dataConfigSiteValuesModel.useDataDefaulteSite">
-            نمایش اطلاعات سایت پیش فرض در سایت
+            {{'TITLE.Display_the_default_site_information_on_the_site' | translate}}
           </mat-slide-toggle>
         </div>
         <!-- DomainsGoogleSitekey Field -->
@@ -109,7 +109,7 @@
       </mat-step>
 
       <mat-step label="مقادیر ذخیره شده" state="main">
-        <p>مقادیر ذخیره شده توسط سیستم </p>
+        <p>{{'TITLE.Values_saved_by_the_system' | translate}} </p>
 
 
         <!-- RowCount Field -->

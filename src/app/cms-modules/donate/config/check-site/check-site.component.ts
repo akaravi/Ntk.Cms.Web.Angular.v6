@@ -76,7 +76,7 @@ export class DonateConfigCheckSiteComponent implements OnInit, OnDestroy {
       return;
     }
     const pName = this.constructor.name + '.ServiceCheckSite';
-    this.loading.Start(pName, 'بررسی وب سایت');
+    this.loading.Start(pName, this.translate.instant('TITLE.Check_website'));
     this.configService
       .ServiceCheckSite(this.requestLinkSiteId)
       .subscribe({

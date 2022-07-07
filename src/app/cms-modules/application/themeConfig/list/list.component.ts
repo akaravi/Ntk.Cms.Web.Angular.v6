@@ -196,7 +196,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       sourceId = this.categoryModelSelected.id;
     }
     if (sourceId <= 0) {
-      const message = 'سورسی انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Source_is_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

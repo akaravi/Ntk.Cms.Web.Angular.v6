@@ -336,7 +336,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   onActionbuttonBuildApps(mode: ApplicationSourceModel = this.tableRowSelected): void {
     if (mode == null || !mode.id || mode.id === 0) {
 
-      const message = 'ردیفی  انتخاب نشده است';
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
