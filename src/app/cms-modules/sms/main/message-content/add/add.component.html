@@ -43,17 +43,17 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    <!-- Numbers Field -->
+    <!-- messageBody Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Numbers']?.fieldTitle}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.numbers" name="dataModel.numbers" #Numbers type="text"
-        placeholder="{{fieldsInfo['Numbers']?.fieldTitle}}" minlength="1" maxlength="5000" rows=5></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.numbers" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.numbers = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['messageBody']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.messageBody" name="dataModel.messageBody" #messageBody type="text"
+        placeholder="{{fieldsInfo['messageBody']?.fieldTitle}}" minlength="1" maxlength="5000" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.messageBody" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.messageBody = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Numbers.value.length }} / 5000</mat-hint>
-      <mat-error *ngIf="Numbers.errors?.required">
-        Numbers is <strong>{{'MESSAGE.required' | translate}}</strong>
+      <mat-hint style="text-align: left;">{{ messageBody.value.length }} / 5000</mat-hint>
+      <mat-error *ngIf="messageBody.errors?.required">
+        messageBody is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
    
