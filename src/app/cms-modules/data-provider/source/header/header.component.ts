@@ -92,7 +92,7 @@ export class DataProviderSourceHeaderComponent implements OnInit, OnDestroy {
     //open popup
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       data: {
-        // Title: model.title,
+        // title: model.title,
         urlViewContentQRCodeBase64: '',
         urlViewContent: '',
       },

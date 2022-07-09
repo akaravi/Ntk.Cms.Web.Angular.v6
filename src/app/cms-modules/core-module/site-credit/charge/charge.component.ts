@@ -42,7 +42,7 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
             const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
                 // height: "90%",
                 data: {
-                    Id: transactionId,
+                    id: transactionId,
                 },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -73,8 +73,8 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
         const dialogRef = this.dialog.open(CoreModuleSiteCreditChargePaymentComponent, {
             height: '90%',
             data: {
-                Credit: this.dataModelCalculate.credit,
-                LinkModuleId: this.dataModelCalculate.linkModuleId,
+                credit: this.dataModelCalculate.credit,
+                linkModuleId: this.dataModelCalculate.linkModuleId,
             }
         });
         dialogRef.afterClosed().subscribe(result => {

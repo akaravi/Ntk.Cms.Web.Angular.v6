@@ -403,7 +403,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: ret.item.title,
+                title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
                 urlViewContent: ret.item.urlViewContent,
               },
@@ -466,7 +466,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: ret.item.title,
+                title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
                 urlViewContent: ret.item.urlViewContent,
               },

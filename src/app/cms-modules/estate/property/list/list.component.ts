@@ -549,10 +549,10 @@ export class EstatePropertyListComponent
       height: "50%",
       width: "50%",
       data: {
-        ModuleName: this.dataModelResult.access.moduleName,
-        ModuleEntityName: this.dataModelResult.access.moduleEntityName,
-        ModuleEntityId: model.id,
-        Title: model.title
+        moduleName: this.dataModelResult.access.moduleName,
+        moduleEntityName: this.dataModelResult.access.moduleEntityName,
+        moduleEntityId: model.id,
+        title: model.title
       },
     }
     );
@@ -651,7 +651,7 @@ export class EstatePropertyListComponent
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               // height: "90%",
               data: {
-                Title: ret.item.title,
+                title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
                 urlViewContent: ret.item.urlViewContent,
               },

@@ -33,6 +33,12 @@
               <textarea matInput [(ngModel)]="dataMessageContentModel.messageBody" name="dataMessageContentModel.messageBody"  type="text"
               *ngIf="dataMessageContentModel?.messageBody?.length>0"
                rows="10"></textarea>
+               <button type="button" (click)="onActionMessageContentAdd()" class="btn btn-light" *ngIf="dataMessageContentModel?.messageBody?.length>0 && dataModel.message?.length>0">
+                <i class="ft-x"></i> اضافه به متن
+              </button>
+              <button type="button" (click)="onActionMessageContentNew()" class="btn btn-light" *ngIf="dataMessageContentModel?.messageBody?.length>0">
+                <i class="ft-x"></i> متن پیام
+              </button>
           </mat-tab>
           <mat-tab label="مخاطب">
             <app-cms-contact-category-tree-selector (optionSelectChecked)="onActionContactCategorySelectChecked($event)"

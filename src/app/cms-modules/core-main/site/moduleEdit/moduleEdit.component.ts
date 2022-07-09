@@ -49,6 +49,7 @@ export class CoreSiteModuleEditComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    
     if (data) {
       this.requestLinkModuleId = +data.linkModuleId || 0;
       this.requestLinkSiteId = +data.linkSiteId || 0;

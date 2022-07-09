@@ -248,7 +248,7 @@ export class ApiTelegramLogOutputListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ApiTelegramActionSendMessageComponent, {
       // height: "90%",
       data: {
-        LinkBotConfigId: model.linkBotConfigId,
+        linkBotConfigId: model.linkBotConfigId,
         ChatId: model.chatId
       },
     });

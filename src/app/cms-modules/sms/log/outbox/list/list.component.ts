@@ -491,16 +491,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    // const dialogRef = this.dialog.open(SmsLogOutBoxSendTestComponent, {
-    //   height: '90%',
-    //   data: { linkApiPathId: this.tableRowSelected.id }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log(`Dialog result: ${result}`);
-    //   if (result && result.dialogChangedDate) {
-    //     this.DataGetAll();
-    //   }
-    // });
+
   }
   onActionbuttonReload(): void {
     this.DataGetAll();

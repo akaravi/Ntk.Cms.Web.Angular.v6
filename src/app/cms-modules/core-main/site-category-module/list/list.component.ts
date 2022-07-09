@@ -195,8 +195,8 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
     const dialogRef = this.dialog.open(CoreSiteCategoryCmsModuleAddComponent, {
       height: '90%',
       data: {
-        LinkCmsModuleId: this.requestLinkCmsModuleId,
-        LinkCmsSiteCategoryId: this.requestLinkCmsSiteCategoryId
+        linkCmsModuleId: this.requestLinkCmsModuleId,
+        linkCmsSiteCategoryId: this.requestLinkCmsSiteCategoryId
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -224,8 +224,8 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
     const dialogRef = this.dialog.open(CoreSiteCategoryCmsModuleEditComponent, {
       height: '90%',
       data: {
-        LinkCmsModuleId: this.tableRowSelected.linkCmsModuleId,
-        LinkCmsSiteCategoryId: this.tableRowSelected.linkCmsSiteCategoryId
+        linkCmsModuleId: this.tableRowSelected.linkCmsModuleId,
+        linkCmsSiteCategoryId: this.tableRowSelected.linkCmsSiteCategoryId
       }
     });
     dialogRef.afterClosed().subscribe(result => {

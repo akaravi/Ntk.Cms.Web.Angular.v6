@@ -209,7 +209,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
       height: '90%',
       data: {
-        LinkModuleId: this.categoryModelSelected.id
+        linkModuleId: this.categoryModelSelected.id
       }
     });
     dialogRef.afterClosed().subscribe(result => {

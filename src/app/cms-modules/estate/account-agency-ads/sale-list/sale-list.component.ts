@@ -92,7 +92,7 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
       const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
         // height: "90%",
         data: {
-          Id: transactionId,
+          id: transactionId,
         },
       });
       dialogRef.afterClosed().subscribe((result) => {
@@ -163,8 +163,8 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
     const dialogRef = this.dialog.open(EstateAccountAgencyAdsSalePaymentComponent, {
       height: '90%',
       data: {
-        LinkAccountAgencyId: this.requestLinkAccountAgencyId,
-        LinkAdsTypeId: model.id
+        linkAccountAgencyId: this.requestLinkAccountAgencyId,
+        linkAdsTypeId: model.id
       }
     });
     dialogRef.afterClosed().subscribe(result => {

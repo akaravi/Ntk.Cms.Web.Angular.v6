@@ -40,7 +40,7 @@ export class DataProviderPlanPriceChargeComponent implements OnInit {
             const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
                 // height: "90%",
                 data: {
-                    Id: transactionId,
+                    id: transactionId,
                 },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -69,8 +69,8 @@ export class DataProviderPlanPriceChargeComponent implements OnInit {
         const dialogRef = this.dialog.open(DataProviderPlanPriceChargePaymentComponent, {
             height: '90%',
             data: {
-                LinkPlanPriceId: this.dataModelCalculate.linkPlanPriceId,
-                LinkClientId: this.dataModelCalculate.linkClientId,
+                linkPlanPriceId: this.dataModelCalculate.linkPlanPriceId,
+                linkClientId: this.dataModelCalculate.linkClientId,
             }
 
         });

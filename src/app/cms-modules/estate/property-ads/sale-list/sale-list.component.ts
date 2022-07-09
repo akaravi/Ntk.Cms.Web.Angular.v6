@@ -92,7 +92,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
       const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
         // height: "90%",
         data: {
-          Id: transactionId,
+          id: transactionId,
         },
       });
       dialogRef.afterClosed().subscribe((result) => {

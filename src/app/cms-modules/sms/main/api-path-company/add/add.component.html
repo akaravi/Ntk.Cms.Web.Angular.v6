@@ -35,6 +35,22 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- CheckCredit Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.checkCredit" *ngIf="fieldsInfo['CheckCredit']?.accessWatchField"
+        [disabled]="!fieldsInfo['CheckCredit']?.accessEditField" name="dataModel.checkCredit">
+        {{fieldsInfo['CheckCredit']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+
+
+    <!-- CalculateCredit Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.calculateCredit" *ngIf="fieldsInfo['CalculateCredit']?.accessWatchField"
+        [disabled]="!fieldsInfo['CalculateCredit']?.accessEditField" name="dataModel.calculateCredit">
+        {{fieldsInfo['CalculateCredit']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
     <!-- ServiceAvailableCredit Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ServiceAvailableCredit']?.accessWatchField">
       <mat-label>{{ fieldsInfo['ServiceAvailableCredit']?.fieldTitle }}</mat-label>

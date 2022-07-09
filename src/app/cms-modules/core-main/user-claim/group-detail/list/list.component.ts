@@ -226,8 +226,8 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
     const dialogRef = this.dialog.open(CoreUserClaimGroupDetailAddComponent, {
       height: '90%',
       data: {
-        LinkUserClaimGroupId: this.requestLinkUserClaimGroupId,
-        LinkUserClaimTypeId: this.requestLinkUserClaimTypeId,
+        linkUserClaimGroupId: this.requestLinkUserClaimGroupId,
+        linkUserClaimTypeId: this.requestLinkUserClaimTypeId,
       }
     });
     dialogRef.afterClosed().subscribe(result => {

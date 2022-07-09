@@ -84,7 +84,7 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        Title: model.title,
+        title: model.title,
         urlViewContentQRCodeBase64: model.urlViewContentQRCodeBase64,
         urlViewContent: model.urlViewContent,
       },

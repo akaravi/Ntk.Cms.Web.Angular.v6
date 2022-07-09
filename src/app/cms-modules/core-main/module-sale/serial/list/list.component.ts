@@ -191,13 +191,13 @@ export class CoreModuleSaleSerialListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    let LinkModuleSaleHeaderId = this.requestHeaderId;
+    let linkModuleSaleHeaderId = this.requestHeaderId;
     if (this.categoryModelSelected.id > 0) {
-      LinkModuleSaleHeaderId = this.categoryModelSelected.id;
+      linkModuleSaleHeaderId = this.categoryModelSelected.id;
     }
     const dialogRef = this.dialog.open(CoreModuleSaleSerialAddComponent, {
       height: '90%',
-      data: { LinkModuleSaleHeaderId }
+      data: { linkModuleSaleHeaderId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

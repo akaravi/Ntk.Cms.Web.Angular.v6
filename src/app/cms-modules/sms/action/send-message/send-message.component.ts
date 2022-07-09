@@ -21,6 +21,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { I } from '@angular/cdk/keycodes';
 
 
 @Component({
@@ -114,7 +115,23 @@ export class SmsActionSendMessageComponent implements OnInit {
       this.dataModel.linkFromNumber = model.id;
     }
   }
-
+  onActionMessageContentAdd(){
+   if(this.dataMessageContentModel?.messageBody?.length>0) 
+   {
+if(this.dataModel.message.length>0)
+this.dataModel.message=this.dataModel.message+' '+this.dataMessageContentModel.messageBody
+   }
+   else
+   {
+    this.dataModel.message=this.dataMessageContentModel.messageBody
+   }
+  }
+  onActionMessageContentNew(){
+    if(this.dataMessageContentModel?.messageBody?.length>0) 
+   {
+    this.dataModel.message=this.dataMessageContentModel.messageBody
+   }
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

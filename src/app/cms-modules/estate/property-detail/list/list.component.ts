@@ -255,8 +255,8 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EstatePropertyDetailAddComponent, {
       height: '90%',
       data: {
-        LinkPropertyTypeLanduseId: this.requestLinkPropertyTypeLanduseId,
-        LinkPropertyDetailGroupId: this.categoryModelSelected.id
+        linkPropertyTypeLanduseId: this.requestLinkPropertyTypeLanduseId,
+        linkPropertyDetailGroupId: this.categoryModelSelected.id
       }
     });
     dialogRef.afterClosed().subscribe(result => {

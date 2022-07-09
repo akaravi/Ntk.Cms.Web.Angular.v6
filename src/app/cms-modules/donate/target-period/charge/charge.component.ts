@@ -41,7 +41,7 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
             const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
                 // height: "90%",
                 data: {
-                    Id: transactionId,
+                    id: transactionId,
                 },
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -73,7 +73,7 @@ export class DonateTargetPeriodChargeComponent implements OnInit {
             height: '90%',
             data: {
                 supportPayment: this.dataModelCalculate.supportPayment,
-                LinkTargetPeriodId: this.dataModelCalculate.linkTargetPeriodId,
+                linkTargetPeriodId: this.dataModelCalculate.linkTargetPeriodId,
             }
 
         });

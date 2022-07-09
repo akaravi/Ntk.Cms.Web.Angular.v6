@@ -27,9 +27,9 @@ export class CmsMemoComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestModuleName = data.ModuleName;
-      this.requestModuleEntityName = data.ModuleEntityName;
-      this.requestModuleEntityId = data.ModuleEntityId;
+      this.requestModuleName = data.moduleName;
+      this.requestModuleEntityName = data.moduleEntityName;
+      this.requestModuleEntityId = data.moduleEntityId;
       this.requestTitle = data.title;
     }
     else {

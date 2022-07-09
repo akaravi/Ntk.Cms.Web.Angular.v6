@@ -44,8 +44,8 @@ export class CoreModuleSiteUserCreditChargePaymentComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      if (data.Credit && data.Credit > 0) {
-        this.requestCredit = data.Credit;
+      if (data.credit && data.credit > 0) {
+        this.requestCredit = data.credit;
       }
       if (data.linkModuleId && data.linkModuleId > 0) {
         this.requestLinkModuleId = data.linkModuleId;

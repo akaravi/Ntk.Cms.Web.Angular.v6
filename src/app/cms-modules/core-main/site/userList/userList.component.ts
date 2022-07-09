@@ -219,9 +219,9 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CoreSiteUserAddComponent, {
       height: '90%',
       data: {
-        LinkSiteId: this.requestLinkSiteId,
-        LinkUserId: this.requestLinkUserId,
-        LinkUserGroupId: this.requestLinkUserGroupId,
+        linkSiteId: this.requestLinkSiteId,
+        linkUserId: this.requestLinkUserId,
+        linkUserGroupId: this.requestLinkUserGroupId,
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -249,9 +249,9 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CoreSiteUserEditComponent, {
       height: '90%',
       data: {
-        LinkSiteId: model.linkSiteId,
-        LinkUserId: model.linkUserId,
-        LinkUserGroupId: model.linkUserGroupId,
+        linkSiteId: model.linkSiteId,
+        linkUserId: model.linkUserId,
+        linkUserGroupId: model.linkUserGroupId,
       }
     });
     dialogRef.afterClosed().subscribe(result => {

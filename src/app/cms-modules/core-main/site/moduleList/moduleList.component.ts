@@ -235,7 +235,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonEditRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
-
+  
     if (!model || !model.linkModuleId || model.linkModuleId === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -256,8 +256,8 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CoreSiteModuleEditComponent, {
       height: '90%',
       data: {
-        LinkSiteId: model.linkSiteId,
-        LinkModuleId: model.linkModuleId
+        linkSiteId: model.linkSiteId,
+        linkModuleId: model.linkModuleId
       }
     });
     dialogRef.afterClosed().subscribe(result => {
