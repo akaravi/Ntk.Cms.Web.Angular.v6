@@ -76,7 +76,6 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [
     'RecordStatus',
     'LinkSiteId',
-    'LinkUserId',
     'LinkModuleId',
     'Credit',
     'SumCreditBlocked',

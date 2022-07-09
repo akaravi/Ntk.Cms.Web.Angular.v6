@@ -71,7 +71,7 @@ export class CoreModuleSiteCreditChargeComponent implements OnInit {
 
     onActionbuttonBuy(): void {
         const dialogRef = this.dialog.open(CoreModuleSiteCreditChargePaymentComponent, {
-            height: '90%',
+            //height: '90%',
             data: {
                 credit: this.dataModelCalculate.credit,
                 linkModuleId: this.dataModelCalculate.linkModuleId,
