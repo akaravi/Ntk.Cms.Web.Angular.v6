@@ -16,7 +16,7 @@
           <mat-tab label="مسیر">
             <!-- LinkPrivateSiteConfigId Field -->
             <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
-              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'">
+              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'" [optionSelectFirstItem]="true">
             </app-sms-apipath-selector>
             <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
               (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
@@ -30,15 +30,17 @@
             <app-sms-main-message-content-selector (optionChange)="onActionSelectMessageContent($event)"
               [optionLinkCategryId]="dataMessageCategoryModel.id"></app-sms-main-message-content-selector>
 
-              <textarea matInput [(ngModel)]="dataMessageContentModel.messageBody" name="dataMessageContentModel.messageBody"  type="text"
-              *ngIf="dataMessageContentModel?.messageBody?.length>0"
-               rows="10"></textarea>
-               <button type="button" (click)="onActionMessageContentAdd()" class="btn btn-light" *ngIf="dataMessageContentModel?.messageBody?.length>0 && dataModel.message?.length>0">
-                <i class="ft-x"></i> اضافه به متن
-              </button>
-              <button type="button" (click)="onActionMessageContentNew()" class="btn btn-light" *ngIf="dataMessageContentModel?.messageBody?.length>0">
-                <i class="ft-x"></i> متن پیام
-              </button>
+            <textarea matInput [(ngModel)]="dataMessageContentModel.messageBody"
+              name="dataMessageContentModel.messageBody" type="text"
+              *ngIf="dataMessageContentModel?.messageBody?.length>0" rows="10"></textarea>
+            <button type="button" (click)="onActionMessageContentAdd()" class="btn btn-light"
+              *ngIf="dataMessageContentModel?.messageBody?.length>0 && dataModel.message?.length>0">
+              <i class="ft-x"></i> اضافه به متن
+            </button>
+            <button type="button" (click)="onActionMessageContentNew()" class="btn btn-light"
+              *ngIf="dataMessageContentModel?.messageBody?.length>0">
+              <i class="ft-x"></i> متن پیام
+            </button>
           </mat-tab>
           <mat-tab label="مخاطب">
             <app-cms-contact-category-tree-selector (optionSelectChecked)="onActionContactCategorySelectChecked($event)"
@@ -47,7 +49,34 @@
 
           </mat-tab>
           <mat-tab label="زمان ارسال">
-            زمان ارسال
+            <!-- scheduleSend Field -->
+            <mat-form-field class="ntk-full-width">
+              <mat-label>تاریخ ارسال</mat-label>
+              <input matInput [matDatepicker]="scheduleSendDate" [(ngModel)]="dataModelDateByClock.date"
+                name="scheduleSendDate" />
+              <mat-icon matSuffix *ngIf="scheduleSendDate" matSuffix mat-icon-button aria-label="Clear"
+                (click)="onActionMessageContentNew()">close</mat-icon>
+              <mat-datepicker-toggle matSuffix [for]="scheduleSendDate"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #scheduleSendDate (closed)="onActionScheduleSendCheck()"></mat-datepicker>
+              <mat-icon matTooltip="زمان ارسال پیام" matSuffix>info</mat-icon>
+            </mat-form-field>
+
+            <!-- scheduleSendClock Field -->
+            <mat-form-field class="ntk-full-width">
+              <mat-label>ساعت ارسال</mat-label>
+              <input matInput [ngxTimepicker]="scheduleSendClock" [(ngModel)]="dataModelDateByClock.clock" [format]="24" 
+                name="scheduleSendClock" />
+              <mat-icon matSuffix  mat-icon-button aria-label="Clear" (click)="onActionMessageContentNew()">
+                close</mat-icon>
+              <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendClock"></ngx-material-timepicker-toggle>
+              <ngx-material-timepicker touchUi #scheduleSendClock (closed)="onActionScheduleSendCheck()"></ngx-material-timepicker>
+            </mat-form-field>
+            
+            {{dataModel.scheduleSend | persianDateFull}}
+           
+<hr>
+{{this.dataModel.scheduleSend}}
+
           </mat-tab>
           <mat-tab label="تنظیمات">
             <!-- IsFlash Field -->
@@ -88,7 +117,8 @@
           </mat-error>
         </mat-form-field>
         <!-- ToNumbers Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="(!this.dataModel.toContactCategories ||this.dataModel.toContactCategories?.length == 0) && (!this.dataModel.toContactContents||this.dataModel.toContactContents?.length == 0)">
+        <mat-form-field class="ntk-full-width"
+          *ngIf="(!this.dataModel.toContactCategories ||this.dataModel.toContactCategories?.length == 0) && (!this.dataModel.toContactContents||this.dataModel.toContactContents?.length == 0)">
           <mat-label>شماره گیرنده</mat-label>
           <textarea matInput [(ngModel)]="dataModel.toNumbers" name="dataModel.toNumbers" #ToNumbers type="text"
             placeholder="0912" rows="5"></textarea>

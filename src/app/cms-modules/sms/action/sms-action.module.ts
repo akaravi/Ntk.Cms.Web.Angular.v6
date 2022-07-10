@@ -25,6 +25,7 @@ import { SmsActionSendMessageComponent } from './send-message/send-message.compo
 import { SmsSharedModule } from '../sms.shared.module';
 import { SmsActionSendMessageApiComponent } from './send-message-api/send-message-api.component';
 import { SmsMainModule } from '../main/sms-main.module';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SmsMainModule } from '../main/sms-main.module';
     SharedModule.forRoot(),
     AngularEditorModule,
     
-    
+    NgxMaterialTimepickerModule,
+
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,

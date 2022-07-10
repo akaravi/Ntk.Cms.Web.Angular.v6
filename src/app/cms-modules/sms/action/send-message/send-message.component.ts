@@ -21,8 +21,10 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { I } from '@angular/cdk/keycodes';
-
+export class DateByClock {
+  date: Date;
+  clock: string;
+}
 
 @Component({
   selector: 'app-sms-action-send-message',
@@ -44,6 +46,8 @@ export class SmsActionSendMessageComponent implements OnInit {
     if (this.requestLinkApiPathId?.length > 0) {
       this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     }
+
+
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -54,16 +58,31 @@ export class SmsActionSendMessageComponent implements OnInit {
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataModel: SmsApiSendMessageDtoModel = new SmsApiSendMessageDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
+  dataModelDateByClock: DateByClock = new DateByClock();
   formInfo: FormInfoModel = new FormInfoModel();
   clipboardText = '';
 
   ngOnInit(): void {
-
-
     //this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
-
+    this.onActionScheduleSendNow();
   }
-
+  onActionScheduleSendNow() {
+    const now = new Date();
+    this.dataModel.scheduleSend = now;
+    this.dataModelDateByClock.clock = now.getHours() + ':' + now.getMinutes();
+    this.dataModelDateByClock.date = now;
+  }
+  onActionScheduleSendCheck() {
+    const now = new Date();
+    if (!this.dataModelDateByClock.clock)
+      this.dataModelDateByClock.clock = now.getHours() + ':' + now.getMinutes();
+    if (!this.dataModelDateByClock.date)
+      this.dataModelDateByClock.date = now;
+    this.dataModelDateByClock.date =new Date( this.dataModelDateByClock.date);
+    this.dataModelDateByClock.date.setHours(+this.dataModelDateByClock.clock.split(':')[0] | 0,+this.dataModelDateByClock.clock.split(':')[1] | 0)
+    
+    this.dataModel.scheduleSend = this.dataModelDateByClock.date;
+  }
   readClipboardFromDevTools() {
     return new Promise((resolve, reject) => {
       const _asyncCopyFn = (async () => {
@@ -115,23 +134,21 @@ export class SmsActionSendMessageComponent implements OnInit {
       this.dataModel.linkFromNumber = model.id;
     }
   }
-  onActionMessageContentAdd(){
-   if(this.dataMessageContentModel?.messageBody?.length>0) 
-   {
-if(this.dataModel.message.length>0)
-this.dataModel.message=this.dataModel.message+' '+this.dataMessageContentModel.messageBody
-   }
-   else
-   {
-    this.dataModel.message=this.dataMessageContentModel.messageBody
-   }
+  onActionMessageContentAdd() {
+    if (this.dataMessageContentModel?.messageBody?.length > 0) {
+      if (this.dataModel.message.length > 0)
+        this.dataModel.message = this.dataModel.message + ' ' + this.dataMessageContentModel.messageBody
+    }
+    else {
+      this.dataModel.message = this.dataMessageContentModel.messageBody
+    }
   }
-  onActionMessageContentNew(){
-    if(this.dataMessageContentModel?.messageBody?.length>0) 
-   {
-    this.dataModel.message=this.dataMessageContentModel.messageBody
-   }
+  onActionMessageContentNew() {
+    if (this.dataMessageContentModel?.messageBody?.length > 0) {
+      this.dataModel.message = this.dataMessageContentModel.messageBody
+    }
   }
+
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
@@ -139,9 +156,8 @@ this.dataModel.message=this.dataModel.message+' '+this.dataMessageContentModel.m
     if (!this.dataModel.linkApiPathId || this.dataModel.linkApiPathId.length <= 0) {
       this.cmsToastrService.typeErrorFormInvalid();
     }
-    // if (!this.dataModel.amount || this.dataModel.amount <= 0) {
-    //   this.cmsToastrService.typeErrorFormInvalid();
-    // }
+    this.onActionScheduleSendCheck();
+
     this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'main';
     this.loadingAction.Start(pName);
