@@ -15,12 +15,15 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectorRef,
+  ElementRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { CronOptionsInterface } from 'ngx-ntk-cron-editor';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 export class DateByClock {
   date: Date;
   clock: string;
@@ -62,10 +65,49 @@ export class SmsActionSendMessageComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   clipboardText = '';
 
+
+  hourlyCron: string;
+  cronOptions: CronOptionsInterface = {
+    includeMinutes: true,
+    includeHours: true,
+    includeDates: true,
+    includeMonths: true,
+    includeDays: true,
+    includeMinutesBetween: true,
+    includeHoursBetween: true,
+    includeDaysBetween: true,
+    includeMonthsBetween: true,
+    includeDatesBetween: true,
+    showHints: true,
+    defaultCron: '0 0 1 1 *',
+    flexDirection: 'row'
+  };
+  
+
+  otherSettings: string[] = ['includeMinutes', 'includeHours', 'includeDates', 'includeMonths', 'includeDays', 'showHints'];
+  betweenSettings: string[] = ['includeMinutesBetween', 'includeHoursBetween', 'includeDatesBetween', 'includeMonthsBetween', 'includeDaysBetween'];
+  @ViewChild('defaultCron') defaultCronInput: ElementRef;
+
+
+
+
   ngOnInit(): void {
     //this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
     this.onActionScheduleSendNow();
   }
+
+  setCron(cronObject: { cron: string }): void {
+    this.hourlyCron = cronObject.cron;
+  }
+
+  updateSetting(event: MatCheckboxChange, setting: string): void {
+    this.cronOptions[setting] = event.checked;
+  }
+
+  showCron(event): void {
+    this.dataModel.scheduleCron = event.cronValue;
+  }
+
   onActionScheduleSendNow() {
     const now = new Date();
     this.dataModel.scheduleSend = now;

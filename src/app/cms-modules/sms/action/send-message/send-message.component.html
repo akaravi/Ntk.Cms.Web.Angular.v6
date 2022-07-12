@@ -16,7 +16,8 @@
           <mat-tab label="مسیر">
             <!-- LinkPrivateSiteConfigId Field -->
             <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
-              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'" [optionSelectFirstItem]="true">
+              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'"
+              [optionSelectFirstItem]="true">
             </app-sms-apipath-selector>
             <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
               (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
@@ -64,19 +65,22 @@
             <!-- scheduleSendClock Field -->
             <mat-form-field class="ntk-full-width">
               <mat-label>ساعت ارسال</mat-label>
-              <input matInput [ngxTimepicker]="scheduleSendClock" [(ngModel)]="dataModelDateByClock.clock" [format]="24" 
+              <input matInput [ngxTimepicker]="scheduleSendClock" [(ngModel)]="dataModelDateByClock.clock" [format]="24"
                 name="scheduleSendClock" />
-              <mat-icon matSuffix  mat-icon-button aria-label="Clear" (click)="onActionMessageContentNew()">
+              <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="onActionMessageContentNew()">
                 close</mat-icon>
               <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendClock"></ngx-material-timepicker-toggle>
-              <ngx-material-timepicker touchUi #scheduleSendClock (closed)="onActionScheduleSendCheck()"></ngx-material-timepicker>
+              <ngx-material-timepicker touchUi #scheduleSendClock (closed)="onActionScheduleSendCheck()">
+              </ngx-material-timepicker>
             </mat-form-field>
-            
-            {{dataModel.scheduleSend | persianDateFull}}
-           
-<hr>
-{{this.dataModel.scheduleSend}}
 
+            {{dataModel.scheduleSend | persianDateFull}}
+
+            <hr>
+            {{this.dataModel.scheduleSend}}
+            <mat-cron-editor (cronEvent)="showCron($event)" [cronOptions]="cronOptions"></mat-cron-editor>
+            <br>
+            <h2 style="direction: ltr;">Resulting Cron: {{dataModel.scheduleCron}}</h2>
           </mat-tab>
           <mat-tab label="تنظیمات">
             <!-- IsFlash Field -->

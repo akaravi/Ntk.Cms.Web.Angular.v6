@@ -26,6 +26,7 @@ import { SmsSharedModule } from '../sms.shared.module';
 import { SmsActionSendMessageApiComponent } from './send-message-api/send-message-api.component';
 import { SmsMainModule } from '../main/sms-main.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MaterialCronJobsModule } from 'ngx-ntk-cron-editor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     AngularEditorModule,
     
     NgxMaterialTimepickerModule,
-
+    MaterialCronJobsModule,//cron
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
