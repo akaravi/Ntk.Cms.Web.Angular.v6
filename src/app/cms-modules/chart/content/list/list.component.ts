@@ -33,6 +33,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-chart-content-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class ChartContentListComponent implements OnInit, OnDestroy {
 
@@ -356,7 +357,18 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: ChartContentModel): void {
     this.tableRowSelected = row;
-  }
+
+    if (!row["expanded"])
+    row["expanded"] = false;
+  row["expanded"] = !row["expanded"]
+}
+onActionTableRowMouseEnter(row: ChartContentModel): void {
+  this.tableRowSelected = row;
+  row["expanded"] = true;
+}
+onActionTableRowMouseLeave(row: ChartContentModel): void {
+  row["expanded"] = false;
+}
   onActionbuttonComment(model: ChartContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -414,5 +426,14 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
         }
       }
       );
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

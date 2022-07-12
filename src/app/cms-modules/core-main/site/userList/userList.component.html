@@ -42,6 +42,10 @@
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <button (click)="onActionBackToParentUserGroupList()" *ngIf="this.requestLinkUserGroupId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+      <button (click)="manageAllRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
+        translate}}</button>
+      <button (click)="manageAllRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
+        translate}}</button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -55,7 +59,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+    multiTemplateDataRows>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
@@ -74,7 +79,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserGroupId}} </mat-cell>
       </ng-container>
-
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
@@ -88,16 +92,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> نام کاربری </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.username}} </mat-cell>
       </ng-container>
-      <!-- Mobile Column -->
-      <ng-container matColumnDef="virtual_CmsUser.mobile">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.mobile}} </mat-cell>
-      </ng-container>
-      <!-- Email Column -->
-      <ng-container matColumnDef="virtual_CmsUser.email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.email}} </mat-cell>
-      </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="virtual_CmsUser.name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
@@ -107,11 +101,6 @@
       <ng-container matColumnDef="virtual_CmsUser.lastName">
         <mat-header-cell *matHeaderCellDef mat-sort-header> LastName </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.lastName}} </mat-cell>
-      </ng-container>
-      <!-- CompanyName Column -->
-      <ng-container matColumnDef="virtual_CmsUser.CompanyName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.virtual_CmsUser.CompanyName}} </mat-cell>
       </ng-container>
       <!-- CompanyName Column -->
       <ng-container matColumnDef="virtual_CmsUserGroup.title">
@@ -188,10 +177,83 @@
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{row.virtual_CmsUser.id}}</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td>نام کاربری : {{row.virtual_CmsUser.username}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>نام : {{row.virtual_CmsUser.name}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>فامیل : {{row.virtual_CmsUser.lastName}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>موبایل : {{row.virtual_CmsUser.mobile}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>ایمیل : {{row.virtual_CmsUser.email}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>شرکت : {{row.virtual_CmsUser.companyName}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonEditRow(row)"
+                    *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} |</a>
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} |</a>
+
+                  <a (click)="onActionbuttonSiteList(row)"
+                    class="link-primary pointer"> {{'ACTION.MEMBER_SITES' | translate}}|</a>
+
+                  <a (click)="onActionbuttonEditSiteRow(row)"
+                    class="link-primary pointer"> {{'ACTION.EDIT_SITES' | translate}}|</a>
+
+                  <a (click)="onActionbuttonEditUserRow(row)"
+                    class="link-primary pointer"> {{'ACTION.USER_EDITING' | translate}}|</a>
+
+                  <a (click)="onActionbuttonResllerUser(row)"
+                  *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
+                    class="link-primary pointer"> زیرمجموع بازاریابی کاربر |</a>
+
+                  <a (click)="onActionbuttonResllerSite(row)"
+                    *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
+                    class="link-primary pointer"> زیرمجموع بازاریابی سایت </a>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+      (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background':( row.linkSiteId === tableRowSelected.linkSiteId  && row.linkUserId===tableRowSelected.linkUserId )? '#d3d3da' :'' }">
-
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
     </mat-table>
 

@@ -33,6 +33,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-blog-content-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class BlogContentListComponent implements OnInit, OnDestroy {
 
@@ -361,6 +362,17 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: BlogContentModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: BlogContentModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: BlogContentModel): void {
+    row["expanded"] = false;
   }
   onActionbuttonComment(model: BlogContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
@@ -419,5 +431,14 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
         }
       }
       );
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

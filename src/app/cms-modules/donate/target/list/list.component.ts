@@ -33,6 +33,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-donate-target-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class DonateTargetListComponent implements OnInit, OnDestroy {
 
@@ -80,7 +81,6 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'Title',
     'CreatedDate',
-    'UpdatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -340,6 +340,17 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DonateTargetModel): void {
     this.tableRowSelected = row;
+
+  if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: DonateTargetModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: DonateTargetModel): void {
+    row["expanded"] = false;
   }
 
   onActionbuttonTargetPeriodList(model: DonateTargetModel = this.tableRowSelected): void {
@@ -360,5 +371,14 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate(['/donate/log-view/', model.id]);
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

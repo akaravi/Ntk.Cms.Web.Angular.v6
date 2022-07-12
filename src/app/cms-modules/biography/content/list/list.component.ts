@@ -32,6 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-biography-content-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class BiographyContentListComponent implements OnInit, OnDestroy {
   constructor(
@@ -341,7 +342,18 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: BiographyContentModel): void {
     this.tableRowSelected = row;
-  }
+
+    if (!row["expanded"])
+    row["expanded"] = false;
+  row["expanded"] = !row["expanded"]
+}
+onActionTableRowMouseEnter(row: BiographyContentModel): void {
+  this.tableRowSelected = row;
+  row["expanded"] = true;
+}
+onActionTableRowMouseLeave(row: BiographyContentModel): void {
+  row["expanded"] = false;
+}
   onActionbuttonComment(model: BiographyContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -398,5 +410,14 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
         }
       }
       );
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

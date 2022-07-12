@@ -32,6 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-site-user-list',
   templateUrl: './userList.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
@@ -108,11 +109,8 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     'LinkUserGroupId',
     'RecordStatus',
     'virtual_CmsUser.username',
-    'virtual_CmsUser.mobile',
-    'virtual_CmsUser.email',
     'virtual_CmsUser.name',
     'virtual_CmsUser.lastName',
-    'virtual_CmsUser.CompanyName',
     'virtual_CmsUserGroup.title',
     'virtual_CmsSite.title',
     'virtual_CmsSite.domain',
@@ -426,6 +424,17 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreSiteUserModel): void {
     this.tableRowSelected = row;
+
+  if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: CoreSiteUserModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: CoreSiteUserModel): void {
+    row["expanded"] = false;
   }
   onActionbuttonSiteList(model: CoreSiteUserModel = this.tableRowSelected): void {
     if (!model || !model.linkUserId || model.linkUserId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
@@ -443,5 +452,12 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   }
   onActionBackToParentUserGroupList(): void {
     this.router.navigate(['/core/usergroup/']);
+  }
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

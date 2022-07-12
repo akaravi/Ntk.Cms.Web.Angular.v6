@@ -69,9 +69,9 @@
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="manageAllRows(true)" class="btn btn-outline-success BTN float-left">{{'ACTION.EXPAND_ALL' |
+    <button (click)="manageAllRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
       translate}}</button>
-    <button (click)="manageAllRows(false)" class="btn btn-outline-success BTN float-left">{{'ACTION.COLLPASE_ALL' |
+    <button (click)="manageAllRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
       translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -135,9 +135,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.viewConfigHiddenInList | boolclass"></i></mat-cell>
       </ng-container>
-      <!-- Title Column -->
-
-
       <!-- ViewCount Column -->
       <ng-container matColumnDef="ViewCount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewCount']?.fieldTitle}}
