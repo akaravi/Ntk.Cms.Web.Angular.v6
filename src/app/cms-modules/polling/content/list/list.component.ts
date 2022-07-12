@@ -30,7 +30,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-polling-content-list',
-  templateUrl: './list.component.html'
+  templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class PollingContentListComponent implements OnInit, OnDestroy {
 
@@ -224,7 +225,6 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(PollingContentDeleteComponent, { height: '90%', data: { id: this.tableRowSelected.id } });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
@@ -272,7 +272,6 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
       }
     }
     );
-
   }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -306,7 +305,18 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: PollingContentModel): void {
     this.tableRowSelected = row;
-  }
+
+    if (!row["expanded"])
+    row["expanded"] = false;
+  row["expanded"] = !row["expanded"]
+}
+onActionTableRowMouseEnter(row: PollingContentModel): void {
+  this.tableRowSelected = row;
+  row["expanded"] = true;
+}
+onActionTableRowMouseLeave(row: PollingContentModel): void {
+  row["expanded"] = false;
+}
 
 
   onActionbuttonComment(model: PollingContentModel = this.tableRowSelected): void {
@@ -316,5 +326,14 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate(['/polling/vote/', model.id]);
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

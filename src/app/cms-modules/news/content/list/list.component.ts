@@ -32,6 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-content-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class NewsContentListComponent implements OnInit, OnDestroy {
   constructor(
@@ -72,7 +73,6 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'Title',
     'CreatedDate',
-    'UpdatedDate',
     'Action',
     "LinkTo",
   ];
@@ -358,6 +358,17 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: NewsContentModel): void {
     this.tableRowSelected = row;
+  
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: NewsContentModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: NewsContentModel): void {
+    row["expanded"] = false;
   }
   onActionbuttonComment(model: NewsContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
@@ -412,5 +423,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           this.loading.Stop(pName);
         }
       });
+  }
+
+  expandedElement: any;
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

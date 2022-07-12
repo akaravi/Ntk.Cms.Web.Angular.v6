@@ -32,6 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-article-content-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class ArticleContentListComponent implements OnInit, OnDestroy {
   constructor(
@@ -74,7 +75,6 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'Title',
     'CreatedDate',
-    'UpdatedDate',
     'Action',
     "LinkTo",
   ];
@@ -95,7 +95,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new ArticleContentModel();
     const pName = this.constructor.name + 'main';
@@ -116,7 +116,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-         
+
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }
@@ -160,7 +160,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-         
+
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }
@@ -346,6 +346,17 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: ArticleContentModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: ArticleContentModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: ArticleContentModel): void {
+    row["expanded"] = false;
   }
   onActionbuttonComment(model: ArticleContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
@@ -403,5 +414,14 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
         }
       }
       );
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

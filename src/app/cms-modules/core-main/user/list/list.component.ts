@@ -34,7 +34,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-core-user-list',
   templateUrl: './list.component.html',
-
+  styleUrls: ["./list.component.scss"],
 })
 export class CoreUserListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
@@ -93,9 +93,6 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
-    'Username',
-    'Mobile',
-    'Email',
     'Name',
     'LastName',
     'CompanyName',
@@ -122,7 +119,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreUserModel();
     const pName = this.constructor.name + 'main';
@@ -427,6 +424,17 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreUserModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: CoreUserModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: CoreUserModel): void {
+    row["expanded"] = false;
   }
   onActionbuttonSiteList(model: CoreUserModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
@@ -456,5 +464,12 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   }
   onActionBackToParentSiteList(): void {
     this.router.navigate(['/core/site/']);
+  }
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

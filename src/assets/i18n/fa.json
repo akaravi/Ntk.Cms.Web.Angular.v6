@@ -14,6 +14,8 @@
 	"ACTION.USED_ITEMS": "موارد استفاده",
 	"ACTION.SEND_DOCUMENTS": "ارسال مدارک",
 	"ACTION.BUY": "خرید",
+	"ACTION.PRICE": "قیمت",
+	"ACTION.DATA": "داده ها",
 	"ACTION.VIEW_STATISTICS": "مشاهده امار",
 	"ACTION.PROPERTYLIST": "لیست املاک",
 	"ACTION.TARGET_PERIOD": "لیست دوره های هدف",

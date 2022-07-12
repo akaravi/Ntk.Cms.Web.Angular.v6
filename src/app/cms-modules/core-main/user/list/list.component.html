@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'core.user.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'core.user.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+</app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -13,10 +14,12 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected.id>0" (click)="onActionbuttonViewRow()"
-      type="button" class="btn btn-outline-secondary BTN" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
+      type="button" class="btn btn-outline-secondary BTN" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.VIEW' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
@@ -41,7 +44,10 @@
     </button>
     <button (click)="onActionBackToParentSiteList()" *ngIf="this.requestLinkSiteId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-
+    <button (click)="manageAllRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
+      translate}}</button>
+    <button (click)="manageAllRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
+      translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -54,13 +60,14 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+      multiTemplateDataRows>
       <!-- LinkMainImageIdSrc Column -->
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>
@@ -79,25 +86,13 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+          </select>
+        </mat-cell>
       </ng-container>
-      <!-- Username Column -->
-      <ng-container matColumnDef="Username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Username']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
-      </ng-container>
-      <!-- Mobile Column -->
-      <ng-container matColumnDef="Mobile">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Mobile']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.mobile}} </mat-cell>
-      </ng-container>
-      <!-- Email Column -->
-      <ng-container matColumnDef="Email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Email']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
-      </ng-container>
+
       <!-- Name Column -->
       <ng-container matColumnDef="Name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Name']?.fieldTitle}} </mat-header-cell>
@@ -174,9 +169,86 @@
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{row.id}}</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['Username']?.fieldTitle}} : {{row.username}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['Name']?.fieldTitle}} : {{row.name}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['LastName']?.fieldTitle}} : {{row.lastName}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['Mobile']?.fieldTitle}} : {{row.mobile}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['Email']?.fieldTitle}} : {{row.email}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['CompanyName']?.fieldTitle}} : {{row.companyName}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonViewRow(row)" class="link-primary pointer"> {{'ACTION.VIEW' | translate}}
+                  |</a>
+
+                  <a (click)="onActionbuttonEditRow(row)"
+                    *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} |</a>
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} |</a>
+
+                  <a (click)="onActionbuttonChangePassword(row)"
+                    *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
+                    class="link-primary pointer"> تغییر کلمه عبور |</a>
+
+                  <a (click)="onActionbuttonLoginToRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
+                    class="link-primary pointer"> ورود به این کاربر |</a>
+
+                  <a (click)="onActionbuttonSiteList(row)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES'
+                    | translate}}|</a>
+
+                  <a (click)="onActionbuttonSiteByGroupList(row)" class="link-primary pointer"> {{'ACTION.ACCESS_MEMBER_SITES'
+                    | translate}}|</a>
+
+                  <a (click)="onActionbuttonResller(row)"
+                    *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
+                    class="link-primary pointer"> زیرمجموع بازاریابی </a>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
     </mat-table>
 

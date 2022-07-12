@@ -14,6 +14,8 @@
 	"ACTION.USED_ITEMS": "Used Items",
 	"ACTION.SEND_DOCUMENTS": "Send documents",
 	"ACTION.BUY": "Buy",
+	"ACTION.PRICE": "Price",
+	"ACTION.DATA": "Data",
 	"ACTION.VIEW_STATISTICS": "View statistics",
 	"ACTION.PROPERTYLIST": "Property list",
 	"ACTION.TARGET_PERIOD": "Target period",

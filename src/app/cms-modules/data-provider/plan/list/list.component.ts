@@ -355,5 +355,25 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderPlanModel): void {
     this.tableRowSelected = row;
+
+  if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: DataProviderPlanModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: DataProviderPlanModel): void {
+    row["expanded"] = false;
+  }
+  expandedElement: any;
+
+
+
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }
