@@ -1,3 +1,5 @@
+<cron-editor [(cron)]="dataModel.scheduleCron" [disabled]="isCronDisabled" [options]="cronOptions"></cron-editor>
+<h2 style="direction: ltr;">Resulting Cron: {{dataModel.scheduleCron}}</h2>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -13,7 +15,7 @@
         <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
 
 
-          <mat-tab label="مسیر">
+          <mat-tab label="مسیر" dynamicHeight>
             <!-- LinkPrivateSiteConfigId Field -->
             <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
               [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'"
@@ -78,7 +80,7 @@
 
             <hr>
             {{this.dataModel.scheduleSend}}
-            <mat-cron-editor (cronEvent)="showCron($event)" [cronOptions]="cronOptions"></mat-cron-editor>
+            
             <br>
             <h2 style="direction: ltr;">Resulting Cron: {{dataModel.scheduleCron}}</h2>
           </mat-tab>
@@ -140,7 +142,7 @@
     </div>
     <app-cms-json-list [dataModel]="dataModelResult.item" [optionMethod]="1" *ngIf="dataModelResult?.item">
     </app-cms-json-list>
-
+    
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
