@@ -163,8 +163,8 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
   onActionSelectClaimGroup(model: CoreUserClaimGroupModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'دسته را مشخص کنید',
-        'گروه مدارک اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_category'),
+        this.translate.instant('MESSAGE.group_of_information_documents_is_not_clear')
       );
       return;
     }
@@ -173,8 +173,8 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
   onActionSelectClaimType(model: CoreUserClaimTypeModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'دسته را مشخص کنید',
-        'نوع مدارک اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_category'),
+        this.translate.instant('MESSAGE.type_of_information_documents_is_not_clear')
       );
       return;
     }

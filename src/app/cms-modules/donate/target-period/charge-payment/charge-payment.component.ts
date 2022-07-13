@@ -82,7 +82,7 @@ export class DonateTargetPeriodChargePaymentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'انتخاب درگاه پرداخت';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Select_Payment_Gateway');
 
   }
 

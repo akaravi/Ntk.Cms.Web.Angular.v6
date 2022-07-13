@@ -49,7 +49,8 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
     public translate: TranslateService,
   ) {
 
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       // this.requestLinkSiteId = +data.linkSiteId || 0;
       // this.requestLinkUserId = +data.linkUserId || 0;
@@ -71,7 +72,7 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'اعتبار  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.VALIDITY');
 
 
     if (this.requestLinkModuleId <= 0) {

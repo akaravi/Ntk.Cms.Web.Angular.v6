@@ -28,7 +28,7 @@ export class ApplicationAppWidgetComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'اپلیکیشن های شما';
+    this.widgetInfoModel.title = this.translate.instant('Your_applications');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/application/app';
     this.onActionStatist();

@@ -52,7 +52,7 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
         map(
           (next) => {
             if (next.isSuccess) {
-              
+
               switch (this.lang) {
                 case 'fa': {
                   this.title = next.item.titleFa;
@@ -86,7 +86,7 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
                 }
               }
             } else if (!environment.production) {
-console.log(next.errorMessage, this.Key);
+              // console.log(next.errorMessage, this.Key);
               this.cmsToastrService.typeErrorMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
             }
           },
@@ -99,7 +99,7 @@ console.log(next.errorMessage, this.Key);
         map(
           (next) => {
             if (next.isSuccess) {
-             
+
               switch (this.lang) {
                 case 'fa': {
                   this.title = next.item.titleFa;
@@ -134,7 +134,7 @@ console.log(next.errorMessage, this.Key);
               }
 
             } else if (!environment.production) {
-              console.log(next.errorMessage, this.Key);
+              // console.log(next.errorMessage, this.Key);
               this.cmsToastrService.typeErrorMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
             }
           },
@@ -147,8 +147,8 @@ console.log(next.errorMessage, this.Key);
   }
 
   onActionBottunClick() {
-      this.bodyShow = true;
-      this.cdr.detectChanges();
+    this.bodyShow = true;
+    this.cdr.detectChanges();
   }
   onActionCloseBottunClick() {
     this.bodyShow = false;

@@ -180,8 +180,8 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
   onActionSelectSite(model: CoreSiteModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'سایت را مشخص کنید',
-        'سایت  اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_site'),
+        this.translate.instant('MESSAGE.Information_site_is_not_clear')
       );
       return;
     }
@@ -191,8 +191,8 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
   onActionSelectClaimType(model: CoreUserClaimTypeModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'دسته را مشخص کنید',
-        'نوع مدارک اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_category'),
+        this.translate.instant('MESSAGE.type_of_information_documents_is_not_clear')
       );
       return;
     }

@@ -61,7 +61,7 @@ export class CoreModuleSaleInvoiceViewComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.formInfo.formTitle = 'مشاهده  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.VIEW');
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });

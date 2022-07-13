@@ -28,7 +28,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
   loading = new ProgressSpinnerModel();
   rowExist = false;
   ngOnInit() {
-    this.widgetInfoModel.title = 'بررسی اپلیکیشن ها';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Check_applications');
     this.widgetInfoModel.description = this.translate.instant('TITLE.Software_Introduce');
     this.widgetInfoModel.link = '/application/app';
     this.onActionStatist();

@@ -64,7 +64,7 @@ export class TicketingTemplateEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle = 'ویرایش  دسته بندی';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit_Categories');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -149,7 +149,7 @@ export class TicketingTemplateEditComponent implements OnInit {
   }
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'دپارتمان اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_department_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

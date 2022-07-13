@@ -72,7 +72,7 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
     if (this.requestLinkBotConfigId > 0) {
       this.dataModel.botId = this.requestLinkBotConfigId;
     }
-    this.formInfo.formTitle = 'ارسال پیام  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Send_Message');
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {

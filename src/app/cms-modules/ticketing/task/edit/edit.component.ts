@@ -41,7 +41,7 @@ export class TicketingTaskEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
       this.requestId = + data.id | 0;
@@ -143,7 +143,7 @@ export class TicketingTaskEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
 
     this.ticketingTaskService
@@ -198,8 +198,8 @@ export class TicketingTaskEditComponent implements OnInit {
   onActionSelectSource(model: ApplicationSourceModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'سورس را مشخص کنید',
-        'سورس اپلیکیشن اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_source'),
+        this.translate.instant('MESSAGE.The_source_of_the_information_application_is_not_known')
       );
       return;
     }

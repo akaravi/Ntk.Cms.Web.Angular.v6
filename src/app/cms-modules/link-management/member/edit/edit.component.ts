@@ -68,7 +68,7 @@ export class LinkManagementMemberEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle = 'ویرایش  دسته بندی';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit_Categories');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();

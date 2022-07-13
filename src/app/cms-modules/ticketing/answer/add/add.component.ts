@@ -41,7 +41,7 @@ export class TicketingAnswerAddComponent implements OnInit {
     public translate: TranslateService,
 
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
       this.requestLinkTaskId = +data.linkTaskId || 0;
@@ -160,8 +160,8 @@ export class TicketingAnswerAddComponent implements OnInit {
   onActionSelectSource(model: ApplicationSourceModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'سورس را مشخص کنید',
-        'سورس اپلیکیشن اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_source'),
+        this.translate.instant('MESSAGE.The_source_of_the_information_application_is_not_known')
       );
       return;
     }

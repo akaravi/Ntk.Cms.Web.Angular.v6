@@ -111,7 +111,7 @@ export class ChartContentDeleteComponent implements OnInit {
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
-            this.formInfo.formAlert = 'حذف با موفقیت انجام شد';
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
             this.cmsToastrService.typeSuccessRemove();
             this.dialogRef.close({ dialogChangedDate: true });
           }

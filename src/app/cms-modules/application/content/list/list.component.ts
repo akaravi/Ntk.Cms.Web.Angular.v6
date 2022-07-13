@@ -204,7 +204,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       sourceId = this.categoryModelSelected.id;
     }
     if (sourceId === 0) {
-      const message = 'نوع سورس اپلیکیشن انتخاب نشده است';
+      const message = this.translate.instant('MESSAGE.Application_source_type_is_not_selected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

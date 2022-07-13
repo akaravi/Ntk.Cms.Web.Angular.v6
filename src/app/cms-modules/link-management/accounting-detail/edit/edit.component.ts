@@ -68,7 +68,7 @@ export class LinkManagementAccountingDetailEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle = 'ویرایش  دسته بندی';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit_Categories');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -150,7 +150,7 @@ export class LinkManagementAccountingDetailEditComponent implements OnInit {
   }
   onActionSelectorAccount(model: LinkManagementAccountingModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = 'حساب اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Account_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

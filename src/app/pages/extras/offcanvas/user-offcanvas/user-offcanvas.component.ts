@@ -82,7 +82,7 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
 
   async logout() {
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, 'خروج حساب کاربری');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Sign_out_of_user_account'));
     this.cmsToastrService.typeOrderActionLogout();
     const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
       if (next.isSuccess) {
