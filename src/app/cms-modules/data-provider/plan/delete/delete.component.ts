@@ -118,7 +118,7 @@ export class DataProviderPlanDeleteComponent implements OnInit {
             this.cmsToastrService.typeErrorRemove();
 
           } else {
-            this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful')MESSAGE.Deletion_Was_Successful');
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
             this.cmsToastrService.typeSuccessRemove();
             this.dialogRef.close({ dialogChangedDate: true });
           }

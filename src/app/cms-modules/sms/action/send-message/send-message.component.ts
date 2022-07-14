@@ -54,14 +54,15 @@ export class SmsActionSendMessageComponent implements OnInit {
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-
+@ViewChild('Message') message:ElementRef;
 
   loading = new ProgressSpinnerModel();
   loadingAction = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataModel: SmsApiSendMessageDtoModel = new SmsApiSendMessageDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
-  dataModelDateByClock: DateByClock = new DateByClock();
+  dataModelDateByClockStart: DateByClock = new DateByClock();
+  dataModelDateByClockExpire: DateByClock = new DateByClock();
   formInfo: FormInfoModel = new FormInfoModel();
   clipboardText = '';
 
@@ -105,20 +106,36 @@ export class SmsActionSendMessageComponent implements OnInit {
 
   onActionScheduleSendNow() {
     const now = new Date();
-    this.dataModel.scheduleSend = now;
-    this.dataModelDateByClock.clock = now.getHours() + ':' + now.getMinutes();
-    this.dataModelDateByClock.date = now;
+    this.dataModel.scheduleSendStart = now;
+    this.dataModelDateByClockStart.clock = now.getHours() + ':' + now.getMinutes();
+    this.dataModelDateByClockStart.date = now;
+
+
+    
+    this.dataModel.scheduleSendExpire = now;
+    this.dataModelDateByClockExpire.clock = now.getHours() + ':' + now.getMinutes();
+    this.dataModelDateByClockExpire.date = now;
   }
   onActionScheduleSendCheck() {
+    /**Start */
     const now = new Date();
-    if (!this.dataModelDateByClock.clock)
-      this.dataModelDateByClock.clock = now.getHours() + ':' + now.getMinutes();
-    if (!this.dataModelDateByClock.date)
-      this.dataModelDateByClock.date = now;
-    this.dataModelDateByClock.date =new Date( this.dataModelDateByClock.date);
-    this.dataModelDateByClock.date.setHours(+this.dataModelDateByClock.clock.split(':')[0] | 0,+this.dataModelDateByClock.clock.split(':')[1] | 0)
+    if (!this.dataModelDateByClockStart.clock)
+      this.dataModelDateByClockStart.clock = now.getHours() + ':' + now.getMinutes();
+    if (!this.dataModelDateByClockStart.date)
+      this.dataModelDateByClockStart.date = now;
+    this.dataModelDateByClockStart.date =new Date( this.dataModelDateByClockStart.date);
+    this.dataModelDateByClockStart.date.setHours(+this.dataModelDateByClockStart.clock.split(':')[0] | 0,+this.dataModelDateByClockStart.clock.split(':')[1] | 0)
     
-    this.dataModel.scheduleSend = this.dataModelDateByClock.date;
+    this.dataModel.scheduleSendStart = this.dataModelDateByClockStart.date;
+    /**Expire */
+    if (!this.dataModelDateByClockExpire.clock)
+      this.dataModelDateByClockExpire.clock = now.getHours() + ':' + now.getMinutes();
+    if (!this.dataModelDateByClockExpire.date)
+      this.dataModelDateByClockExpire.date = now;
+    this.dataModelDateByClockExpire.date =new Date( this.dataModelDateByClockExpire.date);
+    this.dataModelDateByClockExpire.date.setHours(+this.dataModelDateByClockExpire.clock.split(':')[0] | 0,+this.dataModelDateByClockExpire.clock.split(':')[1] | 0)
+    
+    this.dataModel.scheduleSendExpire = this.dataModelDateByClockExpire.date;
   }
   readClipboardFromDevTools() {
     return new Promise((resolve, reject) => {
@@ -138,7 +155,15 @@ export class SmsActionSendMessageComponent implements OnInit {
     });
   }
 
-
+  onActionMessageLTR(){
+    this.message.nativeElement.style.direction="ltr";
+    this.message.nativeElement.style.textAlign="left";
+  }
+  
+  onActionMessageRTL(){
+    this.message.nativeElement.style.direction="rtl";
+    this.message.nativeElement.style.textAlign="right";
+  }
   onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
     this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     this.dataModelParentSelected = model;
@@ -258,5 +283,18 @@ export class SmsActionSendMessageComponent implements OnInit {
     if (this.dataModel.toContactCategories.length > 0 || this.dataModel.toContactContents.length > 0) {
       this.dataModel.toNumbers = '';
     }
+  }
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }
