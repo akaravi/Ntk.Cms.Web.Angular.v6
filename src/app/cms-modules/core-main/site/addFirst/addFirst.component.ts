@@ -70,7 +70,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   }
   DataGetAccess(): void {
     const pName = this.constructor.name + '.DataGetAccess';
-    this.loading.Start(pName, 'دریافت دسترسی ها');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_access'));
     this.coreSiteService
       .ServiceViewModel()
       .subscribe({

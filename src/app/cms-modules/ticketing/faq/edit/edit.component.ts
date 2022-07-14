@@ -167,7 +167,7 @@ export class TicketingFaqEditComponent implements OnInit {
   }
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'دپارتمان اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_department_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

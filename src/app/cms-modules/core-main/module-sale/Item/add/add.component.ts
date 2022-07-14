@@ -143,8 +143,8 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
   onActionSelectModule(model: CoreModuleModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'ماژول را مشخص کنید',
-        'ماژول اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_module'),
+        this.translate.instant('MESSAGE.Information_module_is_not_clear')
       );
       return;
     }
@@ -153,8 +153,8 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
   onActionSelectHeader(model: CoreModuleSaleHeaderModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'دسته بندی را مشخص کنید',
-        'دسته بندی اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_category'),
+        this.translate.instant('MESSAGE.category_of_information_is_not_clear')
       );
       return;
     }

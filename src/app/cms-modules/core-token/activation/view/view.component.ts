@@ -62,7 +62,7 @@ export class CoreTokenActivationViewComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.formInfo.formTitle = 'مشاهده  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.VIEW');
     if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });

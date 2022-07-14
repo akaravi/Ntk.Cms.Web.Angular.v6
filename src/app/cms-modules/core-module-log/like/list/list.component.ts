@@ -380,7 +380,7 @@ export class CoreModuleLogLikeListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     if (!this.tableRowSelected.linkMemberUserId || this.tableRowSelected.linkMemberUserId === 0) {
-      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات عضو نمی باشد');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_member_informations'));
       return;
     }
     this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);

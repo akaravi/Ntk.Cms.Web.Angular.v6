@@ -30,7 +30,7 @@ export class ArticleContentWidgetComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'مقالات ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_article');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/article/content';
 

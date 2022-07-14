@@ -41,7 +41,8 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       if (data.linkPlanPriceId && data.linkPlanPriceId > 0) {
         this.requestLinkPlanPriceId = data.linkPlanPriceId;
@@ -82,7 +83,7 @@ export class DataProviderClientChargePaymentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formInfo.formTitle = 'انتخاب درگاه پرداخت';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Select_Payment_Gateway');
 
   }
 

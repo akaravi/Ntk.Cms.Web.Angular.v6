@@ -78,7 +78,7 @@ export class FileCategoryEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.requestId > 0) {
       this.ComponentAction = ComponentActionEnum.edit;
-      this.formInfo.formTitle = 'ویرایش  دسته بندی';
+      this.formInfo.formTitle = this.translate.instant('TITLE.Edit_Categories');
       this.DataGetOneContent();
     } else if (this.requestId === 0) {
       this.ComponentAction = ComponentActionEnum.add;

@@ -28,7 +28,8 @@ export class CmsSiteSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public categoryService: CoreSiteService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
   dataModelSelect: CoreSiteModel = new CoreSiteModel();
@@ -109,7 +110,7 @@ export class CmsSiteSelectorComponent implements OnInit {
     }
 
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,'لیست سایتهای مجاز');
+    this.loading.Start(pName,this.translate.instant('MESSAGE.List_of_authorized_sites'));
 
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(

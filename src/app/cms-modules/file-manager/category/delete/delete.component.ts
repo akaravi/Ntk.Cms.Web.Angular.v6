@@ -138,7 +138,7 @@ export class FileCategoryDeleteComponent implements OnInit {
     if (this.dataModel.newCatId === this.requestId) {
       this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
-        'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
+        this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.buttonSubmittedEnabled = true;
     }
 
@@ -194,7 +194,7 @@ export class FileCategoryDeleteComponent implements OnInit {
             this.formInfo.formError = ret.errorMessage;
             this.cmsToastrService.typeErrorRemove();
           } else {
-            this.formInfo.formAlert = 'حذف با موفقیت انجام شد';
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_Was_Successful');
             this.cmsToastrService.typeSuccessRemove();
             this.dialogRef.close({ dialogChangedDate: true });
           }
@@ -222,7 +222,7 @@ export class FileCategoryDeleteComponent implements OnInit {
     if (this.dataModel.newCatId === this.requestId) {
       this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
-        'شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است';
+        this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.buttonSubmittedEnabled = false;
     } else {
       this.formInfo.buttonSubmittedEnabled = true;

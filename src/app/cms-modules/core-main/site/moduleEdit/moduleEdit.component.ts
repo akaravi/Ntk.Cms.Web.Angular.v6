@@ -121,7 +121,7 @@ export class CoreSiteModuleEditComponent implements OnInit {
             this.formInfo.formAlert = '';
           }
           else {
-            this.cmsToastrService.typeError('ماژول جهت ویرایش یافت نشد');
+            this.cmsToastrService.typeError(this.translate.instant('MESSAGE.Module_not_found_for_editing'));
           }
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');

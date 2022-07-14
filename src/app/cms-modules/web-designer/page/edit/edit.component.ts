@@ -156,7 +156,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
   onActionSelectTemplate(model: WebDesignerMainPageTemplateModel | null): void {
     if (!model || model.id?.length <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'قالب را مشخص کنید',
+        this.translate.instant('MESSAGE.Specify_the_template'),
         'قالب صفحه مشخص نیست'
       );
       return;
@@ -189,7 +189,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
   }
   onActionSelectCategory(model: CoreSiteCategoryModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'دسته بندی سایت مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_site_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

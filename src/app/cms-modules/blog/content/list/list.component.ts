@@ -399,7 +399,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
     }
 
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات دست نوشته");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_blog_information'));
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({

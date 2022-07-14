@@ -138,8 +138,8 @@ export class CoreModuleSaleHeaderAddComponent implements OnInit {
   onActionSelectHeaderGroup(model: CoreModuleSaleHeaderGroupModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'دسته بندی را مشخص کنید',
-        'دسته بندی اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_category'),
+        this.translate.instant('MESSAGE.category_of_information_is_not_clear')
       );
       return;
     }

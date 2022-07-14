@@ -238,7 +238,7 @@ export class ArticleConfigMainAdminComponent implements OnInit, OnDestroy {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Saving_Information_On_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceAdminMain';
-    this.loading.Start(pName, 'ذخیره تنظیمات ماژول');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Save_module_setting'));
     this.configService
       .ServiceAdminMainSave(this.dataConfigAdminMainModel)
       .subscribe({

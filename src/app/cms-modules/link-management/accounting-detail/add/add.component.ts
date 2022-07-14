@@ -134,7 +134,7 @@ export class LinkManagementAccountingDetailAddComponent implements OnInit {
   }
   onActionSelectorAccount(model: LinkManagementAccountingModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = 'حساب اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Account_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

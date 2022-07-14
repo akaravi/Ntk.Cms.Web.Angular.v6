@@ -225,7 +225,7 @@ export class CoreSiteAddComponent implements OnInit {
   }
   onActionSelectCategory(model: CoreSiteCategoryModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'دسته بندی سایت مشخص نیست';
+      const message = this.translate.instant('MESSAGE.category_of_site_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

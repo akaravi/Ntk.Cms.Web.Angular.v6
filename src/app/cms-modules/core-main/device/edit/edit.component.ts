@@ -162,8 +162,8 @@ export class CoreDeviceEditComponent implements OnInit {
   onActionSelectSite(model: CoreSiteModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'سایت را مشخص کنید',
-        'سایت  اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_site'),
+        this.translate.instant('MESSAGE.Information_site_is_not_clear')
       );
       return;
     }

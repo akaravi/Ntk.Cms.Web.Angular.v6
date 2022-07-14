@@ -91,8 +91,8 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
   onActionSelectModule(model: WebDesignerMainPageTemplateModel | null): void {
     if (!model || model.id.length <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'قالب را مشخص کنید',
-        'قالب اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_template'),
+        this.translate.instant('MESSAGE.Information_of_template_is_not_clear')
       );
       return;
     }
@@ -111,8 +111,8 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
     this.formInfo.formSubmitAllow = false;
     if (!this.dataModel.linkPageTemplateGuId || this.dataModel.linkPageTemplateGuId.length <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'قالب را مشخص کنید',
-        'قالب اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_template'),
+        this.translate.instant('MESSAGE.Information_of_template_is_not_clear')
       );
       return;
     }
