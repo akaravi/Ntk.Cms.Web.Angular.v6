@@ -43,7 +43,6 @@ import { CronEditorModule } from 'ngx-ntk-cron-editor';
     
     SharedModule.forRoot(),
     AngularEditorModule,
-    
     NgxMaterialTimepickerModule,
     CronEditorModule,//cron
     MatIconModule,
