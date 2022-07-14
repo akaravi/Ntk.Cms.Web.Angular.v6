@@ -38,22 +38,22 @@ const members = {
   type: 1,
   items: [
     {
-      imgPath: 'assets/media/users/300_20.jpg',
+      imgPath: 'assets/media/users/blank.jpg',
       title: 'Milena Gibson',
       description: 'UI Designer',
     },
     {
-      imgPath: 'assets/media/users/300_15.jpg',
+      imgPath: 'assets/media/users/default.jpg',
       title: 'Stefan JohnStefan',
       description: 'Marketing Manager',
     },
     {
-      imgPath: 'assets/media/users/300_12.jpg',
+      imgPath: 'assets/media/users/blank.jpg',
       title: 'Anna Strong',
       description: 'Software Developer',
     },
     {
-      imgPath: 'assets/media/users/300_16.jpg',
+      imgPath: 'assets/media/users/blank.jpg',
       title: 'Nick Bold',
       description: 'Project Coordinator',
     },
