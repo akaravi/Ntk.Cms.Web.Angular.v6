@@ -42,7 +42,8 @@ export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data && data.id) {
       this.requestId = data.id + '';
     }
@@ -151,7 +152,7 @@ export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
   }
   onActionSelectorLinkManagementBillboardId(model: LinkManagementBillboardModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = 'بیلبرد اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_billboard_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -159,7 +160,7 @@ export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
   }
   onActionSelectorLinkManagementTargetId(model: LinkManagementTargetModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = 'هدف اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_target_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

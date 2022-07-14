@@ -163,7 +163,7 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
 
   onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
     if (!model || model.id.length <= 0) {
-      const message = 'کمپانی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_application_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -195,7 +195,7 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
       return;
     }
     if (!this.dataModel.linkApiPathCompanyId || this.dataModel.linkApiPathCompanyId.length == 0) {
-      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Service_company_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

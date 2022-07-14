@@ -145,7 +145,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'DataGetAllCoreUserClaimType'
-    this.loading.Start(pName, 'دریافت لیست مدارک');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_list_of_documents'));
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();

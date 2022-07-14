@@ -170,8 +170,8 @@ export class CoreUserClaimContentAddComponent implements OnInit, OnDestroy {
   onActionSelectUser(model: CoreUserModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'کاربر را مشخص کنید',
-        'کاربر  اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_user'),
+        this.translate.instant('MESSAGE.Information_user_is_not_clear')
       );
       return;
     }

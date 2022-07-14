@@ -31,7 +31,7 @@ export class CoreSiteWidgetCountComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'سایت های ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_sites');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/core/site';
 

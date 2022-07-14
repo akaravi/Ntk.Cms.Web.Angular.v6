@@ -50,13 +50,13 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
           this.widgetInfoModel.link = '/application/app';
         }
         else {
-          this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
+          this.widgetInfoModel.title = this.translate.instant('TITLE.Build_Your_own_Application');
           this.widgetInfoModel.link = '/application/app/add';
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
       error: (er) => {
-        this.widgetInfoModel.title = 'اپلیکیشن خود را بسازید';
+        this.widgetInfoModel.title = this.translate.instant('TITLE.Build_Your_own_Application');
         this.widgetInfoModel.link = '/application/app';
         this.loading.Stop(this.constructor.name + 'All');
       }

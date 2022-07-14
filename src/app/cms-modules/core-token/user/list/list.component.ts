@@ -392,7 +392,7 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     if (!this.tableRowSelected.linkMemberUserId || this.tableRowSelected.linkMemberUserId === 0) {
-      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات دستگاه نمی باشد');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Content_does_not_include_device_information'));
       return;
     }
     this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
@@ -419,7 +419,7 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
     if (!this.tableRowSelected.linkDeviceId || this.tableRowSelected.linkDeviceId === 0) {
-      this.cmsToastrService.typeErrorSelected('محتوا شامل اطلاعات دستگاه نمی باشد');
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Content_does_not_include_device_information'));
       return;
     }
     this.router.navigate(['/core/site/edit', this.tableRowSelected.linkDeviceId]);

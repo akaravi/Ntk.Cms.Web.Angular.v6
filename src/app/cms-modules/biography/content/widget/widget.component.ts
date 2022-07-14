@@ -30,7 +30,7 @@ export class BiographyContentWidgetComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'اخبار های ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Biography');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/biography/content';
     this.onActionStatist();

@@ -127,7 +127,7 @@ export class LinkManagementMemberAddComponent implements OnInit {
   }
   onActionSelectorCmsUser(model: CoreUserModel | null): void {
     if (!model || !model.id || model.id <= 0) {
-      const message = 'کاربر اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_user_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

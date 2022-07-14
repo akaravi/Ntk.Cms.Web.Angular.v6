@@ -30,8 +30,8 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'کاربران شما';
-    this.widgetInfoModel.description = 'کاربرانی که در اپلیکیشن های شما وارد شده اند';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Your_users');
+    this.widgetInfoModel.description = this.translate.instant('TITLE.Users_loggedin_to_your_applications');
     this.widgetInfoModel.link = '/application/memberinfo';
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {

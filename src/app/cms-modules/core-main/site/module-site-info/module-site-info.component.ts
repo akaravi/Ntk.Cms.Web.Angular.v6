@@ -56,7 +56,7 @@ export class CoreSiteModuleSiteInfoComponent implements OnInit {
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    this.formInfo.formTitle = 'مشاهده آمار  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.VIEW_STATISTICS');
     this.DataGetAll();
   }
   DataGetAll(): void {

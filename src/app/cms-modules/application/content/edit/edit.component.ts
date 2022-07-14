@@ -237,8 +237,8 @@ export class ApplicationAppEditComponent implements OnInit {
     }
     if (this.dataModel.linkSourceId !== model.id) {
       this.cmsToastrService.typeErrorMessage(
-        'سورس قابل تغییر نمی باشد',
-        'سورس اپلیکیشن در حالت ویرایش قابل تغییر نمی باشد'
+        this.translate.instant('MESSAGE.The_source_can_not_changed'),
+        this.translate.instant('MESSAGE.Application_source_cannot_be_changed_in_editing_mode')
       );
     }
   }
@@ -246,7 +246,7 @@ export class ApplicationAppEditComponent implements OnInit {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
         this.translate.instant('MESSAGE.Specify_the_template'),
-        'قالب اپلیکیشن اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Information_application_format_is_not_clear')
       );
       return;
     }

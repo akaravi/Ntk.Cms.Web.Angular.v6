@@ -239,7 +239,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     if (
       (!this.requestLinkCompanyId) || (this.requestLinkCompanyId && this.requestLinkCompanyId.length == 0)) {
       if (this.categoryModelSelected == null || this.categoryModelSelected.id.length === 0) {
-        const message = 'کمپانی انتخاب نشده است';
+        const message = this.translate.instant('MESSAGE.Company_not_selected');
         this.cmsToastrService.typeErrorSelected(message);
         return;
       }

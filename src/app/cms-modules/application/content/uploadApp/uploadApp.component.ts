@@ -1,13 +1,13 @@
 //**msh */
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { FilePreviewModel } from 'ngx-awesome-uploader';
 import { ApplicationAppModel, ApplicationAppService, DataFieldInfoModel, FormInfoModel, UploadApplictionDtoModel } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-upload-app',
   templateUrl: './uploadApp.component.html',
@@ -19,8 +19,12 @@ export class ApplicationAppUploadAppComponent implements OnInit {
     private dialogRef: MatDialogRef<ApplicationAppUploadAppComponent>,
     private applicationAppService: ApplicationAppService,
     private cmsToastrService: CmsToastrService,
-    private publicHelper: PublicHelper
+    private publicHelper: PublicHelper,
+    private cdr: ChangeDetectorRef,
+    public translate: TranslateService,
   ) {
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   formInfo: FormInfoModel = new FormInfoModel();
@@ -63,11 +67,11 @@ export class ApplicationAppUploadAppComponent implements OnInit {
       return;
     }
     if (!this.dataModel.uploadFileGUID || this.dataModel.uploadFileGUID.length === 0) {
-      this.cmsToastrService.typeErrorEdit('فایل آپلود نشده است');
+      this.cmsToastrService.typeErrorEdit(this.translate.instant('MESSAGE.File_has_not_been_uploaded'));
       return;
     }
     if (!this.dataModel.linkApplicationId || this.dataModel.linkApplicationId > 0) {
-      this.cmsToastrService.typeErrorEdit('اپلکیشن مشخص نیست');
+      this.cmsToastrService.typeErrorEdit(this.translate.instant('MESSAGE.Application_is_not_clear'));
       return;
     }
     const pName = this.constructor.name + 'main';

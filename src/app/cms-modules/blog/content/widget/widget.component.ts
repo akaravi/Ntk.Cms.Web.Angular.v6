@@ -32,7 +32,7 @@ export class BlogContentWidgetComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'اخبار های ثبت شده';
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_Blog');
     this.widgetInfoModel.description = '';
     this.widgetInfoModel.link = '/blog/content';
 

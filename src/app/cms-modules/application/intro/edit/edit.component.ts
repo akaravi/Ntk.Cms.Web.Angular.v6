@@ -72,7 +72,7 @@ export class ApplicationIntroEditComponent implements OnInit {
       return;
     }
     if (this.dataModel.linkApplicationId <= 0) {
-      this.cmsToastrService.typeErrorEdit('  برنامه مشخص  کنید');
+      this.cmsToastrService.typeErrorEdit(this.translate.instant('MESSAGE.Specify_the_application'));
       return;
     }
     this.DataEditContent();

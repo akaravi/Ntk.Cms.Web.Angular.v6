@@ -173,7 +173,7 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
   }
   onActionSelectorSelect(model: DataProviderPlanModel | null): void {
     if (!model || model.id <= 0) {
-      const message = 'پلن اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_plan_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

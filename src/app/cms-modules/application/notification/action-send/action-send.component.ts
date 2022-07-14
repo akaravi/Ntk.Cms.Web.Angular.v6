@@ -128,8 +128,8 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   onActionSelectMemberInfo(model: ApplicationMemberInfoModel | null): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorMessage(
-        'عضو اپلیکیشن را مشخص کنید',
-        'عضو اپلیکیشن اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_member_of_application'),
+        this.translate.instant('MESSAGE.Information_application_member_is_not_clear')
       );
       return;
     }
@@ -147,8 +147,8 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     }
     if ((this.LinkMemberId || this.LinkMemberId.length === 0) && this.dataModel.appId <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'گیرنده را مشخص کنید',
-        'اپلیکیشن و یا کاربری جهت دریافت مشخص نشده است'
+        this.translate.instant('MESSAGE.Specify_the_recipient'),
+        this.translate.instant('MESSAGE.Application_or_user_to_receive_has_not_been_specified')
       );
     }
     this.formInfo.formSubmitAllow = false;

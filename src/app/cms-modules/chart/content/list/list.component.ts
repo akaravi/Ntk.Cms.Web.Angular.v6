@@ -394,7 +394,7 @@ onActionTableRowMouseLeave(row: ChartContentModel): void {
     }
 
     const pName = this.constructor.name + "ServiceGetOneById";
-    this.loading.Start(pName, "دریافت اطلاعات چارت");
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_chart_information'));
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({

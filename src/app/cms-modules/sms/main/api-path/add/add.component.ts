@@ -131,7 +131,7 @@ export class SmsMainApiPathAddComponent implements OnInit {
   }
   onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
     if (!model || model.id.length <= 0) {
-      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Service_company_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
