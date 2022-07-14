@@ -12,6 +12,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./cms-link-to.component.scss']
 })
 export class CmsLinkToComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsLinkToComponent.nextId;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsLinkToComponent>,

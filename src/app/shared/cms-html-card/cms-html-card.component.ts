@@ -6,6 +6,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   templateUrl: './cms-html-card.component.html',
 })
 export class CmsHtmlCardComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsHtmlCardComponent.nextId;
   @Input() optionHeaderDisplay = true;
   @Input() optionActionDisplay = true;
   @Input() optionFooterDisplay = true;

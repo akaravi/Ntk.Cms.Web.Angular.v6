@@ -6,7 +6,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './cmsConfirmationDialog.component.html',
 })
 export class ConfirmationDialogComponent implements OnInit {
-
+  static nextId = 0;
+  id = ++ConfirmationDialogComponent.nextId;
   @Input() title: string;
   @Input() message: string;
   @Input() btnOkText: string;

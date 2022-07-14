@@ -23,6 +23,8 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './cms-bankpayment-grid.component.html',
 })
 export class CmsBankpaymentGridComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsBankpaymentGridComponent.nextId;
   constructor(
     public bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
     

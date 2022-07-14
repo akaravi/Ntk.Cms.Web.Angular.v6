@@ -23,7 +23,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 })
 export class CmsCurrencySelectorComponent implements OnInit {
-
+  static nextId = 0;
+  id = ++CmsCurrencySelectorComponent.nextId;
   constructor(
     public coreEnumService: CoreEnumService,
     public translate: TranslateService,

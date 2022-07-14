@@ -13,7 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './cmsSiteCategorySelectionList.component.html',
 })
 export class CmsSiteCategorySelectionListComponent implements OnInit {
-
+  static nextId = 0;
+  id = ++CmsSiteCategorySelectionListComponent.nextId;
   constructor(
     public coreEnumService: CoreEnumService,
     public categoryService: CoreSiteCategoryService,

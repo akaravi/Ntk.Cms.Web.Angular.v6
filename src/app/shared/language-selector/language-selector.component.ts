@@ -21,6 +21,8 @@ interface LanguageFlag {
   templateUrl: './language-selector.component.html',
 })
 export class LanguageSelectorComponent implements OnInit, OnDestroy {
+  static nextId = 0;
+  id = ++LanguageSelectorComponent.nextId;
   language: LanguageFlag;
   languages: LanguageFlag[] = [
     {

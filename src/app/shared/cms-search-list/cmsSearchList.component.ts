@@ -15,6 +15,8 @@ import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base
   templateUrl: './cmsSearchList.component.html',
 })
 export class CmsSearchListComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsSearchListComponent.nextId;
   public optionsData: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   @Output() optionsChange: EventEmitter<ComponentOptionSearchModel> = new EventEmitter<ComponentOptionSearchModel>();
   @Input() set options(model: ComponentOptionSearchModel) {

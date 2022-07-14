@@ -9,7 +9,8 @@ import { FilePreviewModel } from 'ngx-awesome-uploader/lib/file-preview.model';
   styleUrls: ['./cms-file-uploader.component.scss'],
 })
 export class CmsFileUploaderComponent implements OnInit {
-
+  static nextId = 0;
+  id = ++CmsFileUploaderComponent.nextId;
   constructor(private http: HttpClient) { }
   adapter = new FileUploaderPickerAdapter(this.http);
   fileType: string | string[];

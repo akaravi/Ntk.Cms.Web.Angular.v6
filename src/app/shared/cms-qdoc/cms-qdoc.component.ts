@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
   templateUrl: './cms-qdoc.component.html',
 })
 export class CmsQDocComponent implements OnInit {
-
+  static nextId = 0;
+  id = ++CmsQDocComponent.nextId;
   constructor(
     private cmsToastrService: CmsToastrService,
     public http: HttpClient,

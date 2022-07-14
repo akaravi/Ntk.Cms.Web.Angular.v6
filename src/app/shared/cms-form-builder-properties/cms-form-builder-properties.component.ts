@@ -6,7 +6,8 @@ import { GetPropertiesInfoModel } from 'ntk-cms-api';
   templateUrl: './cms-form-builder-properties.component.html',
 })
 export class CmsFormBuilderPropertiesComponent implements OnInit {
-
+  static nextId = 0;
+  id = ++CmsFormBuilderPropertiesComponent.nextId;
   constructor() { }
   @Input() field: GetPropertiesInfoModel = new GetPropertiesInfoModel();
   @Output() jsonValueChange: EventEmitter<string> = new EventEmitter<string>();

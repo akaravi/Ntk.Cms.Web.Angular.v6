@@ -8,7 +8,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   templateUrl: './cms-view.component.html',
 })
 export class CmsViewComponent implements OnInit, OnDestroy {
-
+  static nextId = 0;
+  id = ++CmsViewComponent.nextId;
   constructor(
     private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,

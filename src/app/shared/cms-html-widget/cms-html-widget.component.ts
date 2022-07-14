@@ -6,6 +6,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   templateUrl: './cms-html-widget.component.html',
 })
 export class CmsHtmlWidgetComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsHtmlWidgetComponent.nextId;
   @Input()
   public set optionLoading(v: ProgressSpinnerModel) {
     this.loading = v;

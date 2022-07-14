@@ -25,6 +25,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./cms-bankpayment-transaction-info.component.scss'],
 })
 export class CmsBankpaymentTransactionInfoComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsBankpaymentTransactionInfoComponent.nextId;
   requestId=0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

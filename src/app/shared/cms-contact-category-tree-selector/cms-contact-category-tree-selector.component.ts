@@ -31,6 +31,8 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './cms-contact-category-tree-selector.component.html',
 })
 export class CmsContactCategoryTreeSelectorComponent implements OnInit, OnDestroy {
+  static nextId = 0;
+  id = ++CmsContactCategoryTreeSelectorComponent.nextId;
   constructor(
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,

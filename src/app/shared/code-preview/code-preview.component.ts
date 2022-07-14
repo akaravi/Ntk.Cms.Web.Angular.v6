@@ -12,6 +12,8 @@ import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
   templateUrl: './code-preview.component.html',
 })
 export class CodePreviewComponent implements OnInit, AfterViewInit {
+  static nextId = 0;
+  id = ++CodePreviewComponent.nextId;
   // Public properties
   @Input() viewItem: any;
   constructor(private el: ElementRef) {}

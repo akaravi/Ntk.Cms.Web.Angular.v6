@@ -6,6 +6,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   templateUrl: './cms-html-modal.component.html',
 })
 export class CmsHtmlModalComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsHtmlModalComponent.nextId;
   @Input() optionHeaderDisplay = true;
   @Input() optionActionDisplay = true;
   @Input() optionFooterDisplay = true;
