@@ -52,7 +52,7 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
 
   }
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+  @ViewChild(' ', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
@@ -164,7 +164,7 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
 
   onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {
     if (!model || model.id.length <= 0) {
-      const message = 'کمپانی اطلاعات مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Information_application_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -196,7 +196,7 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
       return;
     }
     if (!this.dataModel.linkApiPathCompanyId || this.dataModel.linkApiPathCompanyId.length == 0) {
-      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Service_company_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
