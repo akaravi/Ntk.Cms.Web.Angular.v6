@@ -55,7 +55,7 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
-    this.formInfo.formTitle = 'اضافه کردن خود کار کلیه صفحات  ';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Automatically_add_all_pages');
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {

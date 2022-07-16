@@ -243,7 +243,7 @@ export class DataProviderClientEditComponent implements OnInit {
       /** */
 
       const title = this.translate.instant('MESSAGE.Please_Confirm');
-      const message = 'آیا مایل به خرید این محتوا می باشید ' + '؟';
+      const message = this.translate.instant('MESSAGE.Would_you_like_to_buy_this_content') + '؟';
       this.cmsConfirmationDialogService.confirm(title, message)
         .then((confirmed) => {
           if (confirmed) {

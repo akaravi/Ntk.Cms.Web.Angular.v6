@@ -260,7 +260,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
     }
 
 
-    const title = 'لطفا تایید کنید...';
+    const title = this.translate.instant('TITLE.Please_Confirm');
     const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
