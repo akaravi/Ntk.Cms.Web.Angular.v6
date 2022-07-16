@@ -158,7 +158,7 @@ export class ContactContentEditComponent implements OnInit {
       return;
     }
     if (!this.dataModel.linkCategoryId || this.dataModel.linkCategoryId.length == 0) {
-      const message = 'دست بندی مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Category_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -173,7 +173,7 @@ export class ContactContentEditComponent implements OnInit {
   
   onActionSelectCategory(model: ContactCategoryModel | null): void {
     if (!model || model.id?.length == 0) {
-      const message = 'دست بندی مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Category_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

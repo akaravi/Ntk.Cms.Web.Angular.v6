@@ -143,7 +143,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     authModel.lang = this.tokenInfo.language;
 
     const title = this.translate.instant('TITLE.Information');
-    const message = 'درخواست تغییر کاربر به سرور ارسال شد';
+    const message = this.translate.instant('MESSAGE.Request_to_change_user_was_sent_to_the_server');
     this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
@@ -152,11 +152,11 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
         if (next.isSuccess) {
           if (next.item.userId === +this.inputUserId) {
 
-            this.cmsToastrService.toastr.success('دسترسی به کاربر جدید تایید شد', title);
+            this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.Access_to_the_new_user_has_been_approved'), title);
             this.inputSiteId = null;
             this.inputUserId = null;
           } else {
-            this.cmsToastrService.toastr.warning('دسترسی به کاربر جدید تایید نشد', title);
+            this.cmsToastrService.toastr.warning(this.translate.instant('MESSAGE.Access_to_the_new_user_was_not_approved'), title);
           }
         } else {
           this.cmsToastrService.typeErrorAccessChange(next.errorMessage);

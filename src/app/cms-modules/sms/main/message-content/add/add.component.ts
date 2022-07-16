@@ -150,7 +150,7 @@ export class SmsMainMessageContentAddComponent implements OnInit {
   
   onActionSelectCategory(model: SmsMainMessageCategoryModel | null): void {
     if (!model || model.id?.length == 0) {
-      const message = 'دست بندی مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Category_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

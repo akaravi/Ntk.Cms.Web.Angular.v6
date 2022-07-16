@@ -12,7 +12,7 @@
     </app-api-telegram-bot-config-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>عنوان</mat-label>
+      <mat-label>{{'TITLE.title' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text" placeholder="عنوان پیام"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"

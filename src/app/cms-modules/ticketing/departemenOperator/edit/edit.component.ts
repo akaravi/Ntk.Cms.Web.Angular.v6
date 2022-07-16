@@ -185,8 +185,8 @@ export class TicketingDepartemenOperatorEditComponent implements OnInit {
     }
     if (this.dataModel.linkDepartemenId !== model.id) {
       this.cmsToastrService.typeErrorMessage(
-        'سورس قابل تغییر نمی باشد',
-        'سورس اپلیکیشن در حالت ویرایش قابل تغییر نمی باشد'
+        this.translate.instant('MESSAGE.The_source_can_not_changed'),
+        this.translate.instant('MESSAGE.Application_source_cannot_be_changed_in_editing_mode')
       );
     }
 
