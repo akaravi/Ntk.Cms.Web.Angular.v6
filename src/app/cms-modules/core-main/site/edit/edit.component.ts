@@ -125,7 +125,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
       return;
     }
     if (this.dataModel.linkCreatedBySiteId <= 0) {
-      this.cmsToastrService.typeErrorEdit('سورس کد برنامه مشخص  کنید');
+      this.cmsToastrService.typeErrorEdit(this.translate.instant('MESSAGE.Specify_the_source_code_of_the_program'));
 
       return;
     }

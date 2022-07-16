@@ -130,7 +130,7 @@ export class SmsMainApiNumberEditComponent implements OnInit {
       return;
     }
 
-    this.formInfo.formAlert = 'در دریافت دسته بندی دسترسی های از سرور';
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Getting_access_category_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

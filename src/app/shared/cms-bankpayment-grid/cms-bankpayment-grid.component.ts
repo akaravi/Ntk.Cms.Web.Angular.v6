@@ -88,7 +88,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
                 this.dataModelResult = ret;
                 if(!this.dataModelResult.listItems|| this.dataModelResult.listItems.length==0)
                 {
-                  this.errorMessage='درگاهی برای پرداخت فعال نمی باشد';  
+                  this.errorMessage=this.translate.instant('MESSAGE.Payment_portal_is_not_active');  
                 }
               }
               else {

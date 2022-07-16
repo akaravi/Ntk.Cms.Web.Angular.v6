@@ -79,7 +79,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
       return;
     }
     if (this.dataModel.linkDepartemenId <= 0) {
-      this.cmsToastrService.typeErrorEdit('دپارتمان را مشخص کنید');
+      this.cmsToastrService.typeErrorEdit(this.translate.instant('MESSAGE.Specify_the_department'));
 
       return;
     }

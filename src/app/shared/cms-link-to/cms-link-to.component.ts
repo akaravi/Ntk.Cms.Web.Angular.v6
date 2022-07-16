@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { environment } from 'src/environments/environment';
@@ -19,6 +20,7 @@ export class CmsLinkToComponent implements OnInit {
     private dialogRef: MatDialogRef<CmsLinkToComponent>,
     public http: HttpClient,
     private router: Router,
+    public translate: TranslateService,
   ) {
     if (data) {
       this.optionTitle = data.title;
@@ -44,7 +46,7 @@ export class CmsLinkToComponent implements OnInit {
     })
       .pipe(
         map((ret: any) => {
-          this.cmsToastrService.typeSuccessMessage('دستور به وب سایت ارسال شد');
+          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_order_was_sent_to_the_website'));
         })
         // 
         //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');

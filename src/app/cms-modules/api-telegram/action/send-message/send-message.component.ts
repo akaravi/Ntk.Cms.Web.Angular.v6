@@ -93,7 +93,7 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = 'برروز خطا';
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -121,7 +121,7 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
       });
     }
     if (this.dataModel.chatId.length == 0) {
-      this.cmsToastrService.typeWarning('لیست گیرنده  معتبر نمی باشد');
+      this.cmsToastrService.typeWarning(this.translate.instant('MESSAGE.Recipient_list_is_not_valid'));
       return;
     }
     this.formInfo.formSubmitAllow = false;

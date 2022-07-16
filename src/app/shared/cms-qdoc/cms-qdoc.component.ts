@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { environment } from 'src/environments/environment';
@@ -14,6 +15,7 @@ export class CmsQDocComponent implements OnInit {
   constructor(
     private cmsToastrService: CmsToastrService,
     public http: HttpClient,
+    public translate: TranslateService,
   ) { }
   @Input() optionUrl = '';
   QDocModel: any = {};
@@ -32,7 +34,7 @@ export class CmsQDocComponent implements OnInit {
     })
       .pipe(
         map((ret: any) => {
-          this.cmsToastrService.typeSuccessMessage('دستور به وب سایت ارسال شد');
+          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_order_was_sent_to_the_website'));
         })
         // 
         //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');

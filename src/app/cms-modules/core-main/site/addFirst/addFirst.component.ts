@@ -40,7 +40,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.formInfo.formTitle = 'ایجاد اولین سامانه شما';
+    this.formInfo.formTitle = this.translate.instant('TITLE.Create_your_first_system');
 
 
     /** read storage */
@@ -93,7 +93,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
   GetDomainList(): void {
     const pName = this.constructor.name + '.GetDomainList';
-    this.loading.Start(pName, 'دریافت لیست دامنه های مجاز');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_list_of_authorized_domains'));
     this.coreSiteService.ServiceGetRegDomains(this.dataModel.linkSiteCategoryId).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -149,7 +149,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
     this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + '.onFormSubmit';
-    this.loading.Start(pName, 'در حال ثبت اطلاعات اولین سامانه شما');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Registering_your_first_system_information'));
     this.coreSiteService.ServiceAddFirstSite(this.dataModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -172,7 +172,7 @@ export class CoreSiteAddFirstComponent implements OnInit {
 
   clickSelectSite(Id: number): void {
     const pName = this.constructor.name + '.clickSelectSite';
-    this.loading.Start(pName, 'درخواست دسترسی جدید');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Request_new_access'));
 
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
@@ -194,8 +194,8 @@ export class CoreSiteAddFirstComponent implements OnInit {
   onActionSelectorSelect(model: CoreSiteCategoryModel | null): void {
     if (!model || model.id <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'نوع سامانه را مشخص کنید',
-        'نوع سامانه اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_system_type'),
+        this.translate.instant('MESSAGE.Information_system_type_is_not_clear')
       );
       return;
     }

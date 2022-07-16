@@ -94,8 +94,8 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
       // this.inputSiteId = model.id;
       if (model.id !== this.tokenInfoModel.siteId) {
         if (model.id === this.tokenInfoModel.siteId) {
-          const etitle = 'هشدار';
-          const emessage = 'شناسه این وب سایت با وب سایتی که در آن هستید یکسان است';
+          const etitle = this.translate.instant('TITLE.Warrning');
+          const emessage = this.translate.instant('MESSAGE.The_ID_of_this_website_is_the_same_as_the_website_you_are_on');
           this.cmsToastrService.toastr.warning(emessage, etitle);
           return;
         }

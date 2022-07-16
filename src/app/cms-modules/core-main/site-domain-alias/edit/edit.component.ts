@@ -156,7 +156,7 @@ export class CoreSiteDomainAliasEditComponent implements OnInit {
       return;
     }
     if (!this.dataModel.linkCmsSiteId || this.dataModel.linkCmsSiteId <= 0) {
-      this.cmsToastrService.typeErrorEdit('شناسه وب سایت مشخص نشده است');
+      this.cmsToastrService.typeErrorEdit(this.translate.instant('MESSAGE.Website_ID_is_not_specified'));
       return;
     }
     this.formInfo.formSubmitAllow = false;

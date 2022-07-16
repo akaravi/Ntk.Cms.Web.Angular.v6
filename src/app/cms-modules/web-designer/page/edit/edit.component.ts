@@ -146,8 +146,8 @@ export class WebDesignerMainPageEditComponent implements OnInit {
   onActionSelectDependency(model: WebDesignerMainPageDependencyModel | null): void {
     if (!model || model.id?.length <= 0) {
       this.cmsToastrService.typeErrorMessage(
-        'محل نمایش را مشخص کنید',
-        'صفحه نمایش  اطلاعات مشخص نیست'
+        this.translate.instant('MESSAGE.Specify_the_display_location'),
+        this.translate.instant('MESSAGE.information_screen_is_not_clear')
       );
       return;
     }
@@ -157,7 +157,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     if (!model || model.id?.length <= 0) {
       this.cmsToastrService.typeErrorMessage(
         this.translate.instant('MESSAGE.Specify_the_template'),
-        'قالب صفحه مشخص نیست'
+        this.translate.instant('MESSAGE.Screen_template_is_not_clear')
       );
       return;
     }

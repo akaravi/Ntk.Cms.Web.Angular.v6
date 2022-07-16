@@ -148,12 +148,12 @@ export class SmsMainApiPathAddComponent implements OnInit {
       return;
     }
     if (!this.dataModel.linkApiPathCompanyId || this.dataModel.linkApiPathCompanyId.length == 0) {
-      const message = 'کمپانی سرویس دهنده مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Service_company_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     if (!this.dataModel.linkPublicConfigId || this.dataModel.linkPublicConfigId.length == 0) {
-      const message = 'نوع سرویس دهنده مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Service_type_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }

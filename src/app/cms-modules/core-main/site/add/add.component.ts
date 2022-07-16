@@ -100,7 +100,7 @@ export class CoreSiteAddComponent implements OnInit {
       return;
     }
     if (this.dataModel.linkCreatedBySiteId <= 0) {
-      this.cmsToastrService.typeErrorAdd('سورس کد برنامه مشخص  کنید');
+      this.cmsToastrService.typeErrorAdd(this.translate.instant('MESSAGE.Specify_the_source_code_of_the_program'));
       return;
     }
     this.dataModel.seoKeyword = '';

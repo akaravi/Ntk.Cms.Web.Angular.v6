@@ -12,7 +12,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-core-user-widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
 })
 export class CoreUserWidgetComponent implements OnInit, OnDestroy {
   tokenInfoModel = new TokenInfoModel();

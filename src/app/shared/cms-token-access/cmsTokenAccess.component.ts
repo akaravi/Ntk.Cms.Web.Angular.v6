@@ -1,11 +1,9 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AuthRenewTokenModel,
   CoreAuthService,
   TokenInfoModel,
-  NtkCmsApiStoreService,
   CoreSiteModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -61,9 +59,9 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     const title = this.translate.instant('TITLE.Information');
     let message = '';
     if (authModel.userAccessAdminAllowToAllData) {
-      message = 'درخواست برای دسترسی به کلیه اطلاعات به سرور ارسال شد';
+      message = this.translate.instant('MESSAGE.Request_to_access_all_information_has_been_sent_to_the_server');
     } else {
-      message = 'درخواست قطع  دسترسی به کل اطلاعات  به سرور ارسال شد';
+      message = this.translate.instant('MESSAGE.Request_to_terminate_access_to_all_information_has been_sent_to_the_server');
     }
     this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
@@ -74,10 +72,10 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
           const etitle = this.translate.instant('TITLE.Information');
           const emessage = '';
           if (next.item.userAccessAdminAllowToAllData === NewToall) {
-            message = 'دسترسی تایید شد';
+            message = this.translate.instant('MESSAGE.Access_is_approved');
             this.cmsToastrService.toastr.success(emessage, etitle);
           } else {
-            message = 'دسترسی  جدید تایید نشد';
+            message = this.translate.instant('MESSAGE.New_access_not_approved');
             this.cmsToastrService.toastr.warning(emessage, etitle);
           }
         } else {
@@ -102,9 +100,9 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     const title = this.translate.instant('TITLE.Information');
     let message = '';
     if (authModel.userAccessAdminAllowToProfessionalData) {
-      message = 'درخواست برای دسترسی حرفه ایی به سرور ارسال شد';
+      message = this.translate.instant('MESSAGE.Request_for_professional_access_to_the_server_has_been_sent');
     } else {
-      message = 'درخواست قطع  دسترسی حرفه ایی  به سرور ارسال شد';
+      message = this.translate.instant('MESSAGE.Request_to_terminate_professional_access_has_been_sent_to_the_server');
     }
     this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
@@ -114,10 +112,10 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
         if (next.isSuccess) {
           const etitle = this.translate.instant('TITLE.Information');
           if (next.item.userAccessAdminAllowToProfessionalData === NewToPerf) {
-            const emessage = 'دسترسی تایید شد';
+            const emessage = this.translate.instant('MESSAGE.Access_is_approved');
             this.cmsToastrService.toastr.success(emessage, etitle);
           } else {
-            const emessage = 'دسترسی  جدید تایید نشد';
+            const emessage = this.translate.instant('MESSAGE.New_access_not_approved');
             this.cmsToastrService.toastr.warning(emessage, etitle);
           }
         } else {
@@ -132,8 +130,8 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
   onActionbuttonSelectUser(): void {
     if (this.inputUserId === this.tokenInfo.userId) {
-      const etitle = 'هشدار';
-      const emessage = 'شناسه درخواستی این کاربر با کاربری که در آن هستید یکسان است';
+      const etitle = this.translate.instant('TITLE.Warrning');
+      const emessage = this.translate.instant('MESSAGE.The_ID_of_this_website_is_the_same_as_the_website_you_are_on');
       this.cmsToastrService.toastr.warning(emessage, etitle);
       return;
     }
@@ -172,8 +170,8 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
   onActionbuttonSelectSite(): void {
     if (this.inputSiteId === this.tokenInfo.siteId) {
-      const etitle = 'هشدار';
-      const emessage = 'شناسه این وب سایت با وب سایتی که در آن هستید یکسان است';
+      const etitle = this.translate.instant('TITLE.Warrning');
+      const emessage = this.translate.instant('MESSAGE.The_ID_of_this_website_is_the_same_as_the_website_you_are_on');
       this.cmsToastrService.toastr.warning(emessage, etitle);
       return;
     }
