@@ -22,7 +22,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CronOptions } from 'ngx-ntk-cron-editor';
 export class DateByClock {
   date: Date;
@@ -49,12 +48,12 @@ export class SmsActionSendMessageComponent implements OnInit {
     if (this.requestLinkApiPathId?.length > 0) {
       this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     }
-
+    this.dataModel.scheduleCron = this.cronExpression;
 
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-@ViewChild('Message') message:ElementRef;
+  @ViewChild('Message') message: ElementRef;
 
   loading = new ProgressSpinnerModel();
   loadingAction = new ProgressSpinnerModel();
@@ -69,7 +68,7 @@ export class SmsActionSendMessageComponent implements OnInit {
 
   // Hangfire 1.7+ compatible expression: '3 2 12 1/1 ?'
   // Quartz compatible expression: '4 3 2 12 1/1 ? *'
-  //public cronExpression = '0 12 1W 1/1 ?';
+  public cronExpression = '0 12 1W 1/1 ?';
   public isCronDisabled = false;
   public cronOptions: CronOptions = {
     formInputClass: 'form-control cron-editor-input',
@@ -93,8 +92,8 @@ export class SmsActionSendMessageComponent implements OnInit {
     removeYears: true
   };
 
-  
-  
+
+
 
 
 
@@ -111,7 +110,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.dataModelDateByClockStart.date = now;
 
 
-    
+
     this.dataModel.scheduleSendExpire = now;
     this.dataModelDateByClockExpire.clock = now.getHours() + ':' + now.getMinutes();
     this.dataModelDateByClockExpire.date = now;
@@ -123,18 +122,18 @@ export class SmsActionSendMessageComponent implements OnInit {
       this.dataModelDateByClockStart.clock = now.getHours() + ':' + now.getMinutes();
     if (!this.dataModelDateByClockStart.date)
       this.dataModelDateByClockStart.date = now;
-    this.dataModelDateByClockStart.date =new Date( this.dataModelDateByClockStart.date);
-    this.dataModelDateByClockStart.date.setHours(+this.dataModelDateByClockStart.clock.split(':')[0] | 0,+this.dataModelDateByClockStart.clock.split(':')[1] | 0)
-    
+    this.dataModelDateByClockStart.date = new Date(this.dataModelDateByClockStart.date);
+    this.dataModelDateByClockStart.date.setHours(+this.dataModelDateByClockStart.clock.split(':')[0] | 0, +this.dataModelDateByClockStart.clock.split(':')[1] | 0)
+
     this.dataModel.scheduleSendStart = this.dataModelDateByClockStart.date;
     /**Expire */
     if (!this.dataModelDateByClockExpire.clock)
       this.dataModelDateByClockExpire.clock = now.getHours() + ':' + now.getMinutes();
     if (!this.dataModelDateByClockExpire.date)
       this.dataModelDateByClockExpire.date = now;
-    this.dataModelDateByClockExpire.date =new Date( this.dataModelDateByClockExpire.date);
-    this.dataModelDateByClockExpire.date.setHours(+this.dataModelDateByClockExpire.clock.split(':')[0] | 0,+this.dataModelDateByClockExpire.clock.split(':')[1] | 0)
-    
+    this.dataModelDateByClockExpire.date = new Date(this.dataModelDateByClockExpire.date);
+    this.dataModelDateByClockExpire.date.setHours(+this.dataModelDateByClockExpire.clock.split(':')[0] | 0, +this.dataModelDateByClockExpire.clock.split(':')[1] | 0)
+
     this.dataModel.scheduleSendExpire = this.dataModelDateByClockExpire.date;
   }
   readClipboardFromDevTools() {
@@ -155,14 +154,14 @@ export class SmsActionSendMessageComponent implements OnInit {
     });
   }
 
-  onActionMessageLTR(){
-    this.message.nativeElement.style.direction="ltr";
-    this.message.nativeElement.style.textAlign="left";
+  onActionMessageLTR() {
+    this.message.nativeElement.style.direction = "ltr";
+    this.message.nativeElement.style.textAlign = "left";
   }
-  
-  onActionMessageRTL(){
-    this.message.nativeElement.style.direction="rtl";
-    this.message.nativeElement.style.textAlign="right";
+
+  onActionMessageRTL() {
+    this.message.nativeElement.style.direction = "rtl";
+    this.message.nativeElement.style.textAlign = "right";
   }
   onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
     this.dataModel.linkApiPathId = this.requestLinkApiPathId;
@@ -251,9 +250,7 @@ export class SmsActionSendMessageComponent implements OnInit {
 
     );
   }
-  onFormCancel(): void {
-    // this.dialogRef.close({ dialogChangedDate: false });
-  }
+
   onActionContactCategorySelectChecked(model: string): void {
     if (!model || model.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');

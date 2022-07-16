@@ -15,6 +15,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   styleUrls: ['./cms-memo.component.scss']
 })
 export class CmsMemoComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsMemoComponent.nextId;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsMemoComponent>,

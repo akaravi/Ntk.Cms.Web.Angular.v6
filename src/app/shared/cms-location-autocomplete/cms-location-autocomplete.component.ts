@@ -24,6 +24,8 @@ class chipModel {
   templateUrl: './cms-location-autocomplete.component.html',
 })
 export class CmsLocationCompleteComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsLocationCompleteComponent.nextId;
   constructor(
     public service: CoreLocationService,
     private cmsToastrService: CmsToastrService,

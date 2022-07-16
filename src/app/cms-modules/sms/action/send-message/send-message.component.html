@@ -96,7 +96,7 @@
                 زمان ارسال
               </mat-panel-title>
               <mat-panel-description>
-                زمان شروع به ارسال و اتمام 
+                زمان شروع به ارسال و اتمام
                 <mat-icon>date_range</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -108,10 +108,10 @@
                   <input matInput [matDatepicker]="scheduleSendStartDate" [(ngModel)]="dataModelDateByClockStart.date"
                     name="scheduleSendStartDate" />
                   <mat-icon matSuffix *ngIf="scheduleSendStartDate" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="onActionMessageContentNew()">close</mat-icon>
+                    (click)="onActionScheduleSendNow()">close</mat-icon>
                   <mat-datepicker-toggle matSuffix [for]="scheduleSendStartDate"></mat-datepicker-toggle>
-                  <mat-datepicker touchUi #scheduleSendStartDate (closed)="onActionscheduleSendCheck()"></mat-datepicker>
-                  <mat-icon matTooltip="زمان ارسال پیام" matSuffix>info</mat-icon>
+                  <mat-datepicker touchUi #scheduleSendStartDate (closed)="onActionScheduleSendCheck()">
+                  </mat-datepicker>
                 </mat-form-field>
               </div>
               <div class="col-6">
@@ -120,10 +120,9 @@
                   <mat-label>ساعت ارسال</mat-label>
                   <input matInput [ngxTimepicker]="scheduleSendStartClock" [(ngModel)]="dataModelDateByClockStart.clock"
                     [format]="24" name="scheduleSendStartClock" />
-                  <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="onActionMessageContentNew()">
-                    close</mat-icon>
-                  <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendStartClock"></ngx-material-timepicker-toggle>
-                  <ngx-material-timepicker touchUi #scheduleSendStartClock (closed)="onActionscheduleSendCheck()">
+                  <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendStartClock">
+                  </ngx-material-timepicker-toggle>
+                  <ngx-material-timepicker touchUi #scheduleSendStartClock (closed)="onActionScheduleSendCheck()">
                   </ngx-material-timepicker>
                 </mat-form-field>
               </div>
@@ -134,28 +133,27 @@
                   <input matInput [matDatepicker]="scheduleSendExpireDate" [(ngModel)]="dataModelDateByClockExpire.date"
                     name="scheduleSendExpireDate" />
                   <mat-icon matSuffix *ngIf="scheduleSendExpireDate" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="onActionMessageContentNew()">close</mat-icon>
+                    (click)="onActionScheduleSendNow()">close</mat-icon>
                   <mat-datepicker-toggle matSuffix [for]="scheduleSendExpireDate"></mat-datepicker-toggle>
-                  <mat-datepicker touchUi #scheduleSendExpireDate (closed)="onActionScheduleSendCheck()"></mat-datepicker>
-                  <mat-icon matTooltip="زمان ارسال پیام" matSuffix>info</mat-icon>
+                  <mat-datepicker touchUi #scheduleSendExpireDate (closed)="onActionScheduleSendCheck()">
+                  </mat-datepicker>
                 </mat-form-field>
               </div>
               <div class="col-6">
                 <!-- scheduleSendExpireClock Field -->
                 <mat-form-field class="ntk-full-width">
                   <mat-label>ساعت پایان ارسال</mat-label>
-                  <input matInput [ngxTimepicker]="scheduleSendExpireClock" [(ngModel)]="dataModelDateByClockExpire.clock"
-                    [format]="24" name="scheduleSendExpireClock" />
-                  <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="onActionMessageContentNew()">
-                    close</mat-icon>
-                  <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendExpireClock"></ngx-material-timepicker-toggle>
-                  <ngx-material-timepicker touchUi #scheduleSendExpireClock (closed)="onActionscheduleSendCheck()">
+                  <input matInput [ngxTimepicker]="scheduleSendExpireClock"
+                    [(ngModel)]="dataModelDateByClockExpire.clock" [format]="24" name="scheduleSendExpireClock" />
+                  <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendExpireClock">
+                  </ngx-material-timepicker-toggle>
+                  <ngx-material-timepicker touchUi #scheduleSendExpireClock (closed)="onActionScheduleSendCheck()">
                   </ngx-material-timepicker>
                 </mat-form-field>
               </div>
             </div>
             <hr>
-            {{this.dataModel.scheduleSendStart}} >>>  {{this.dataModel.scheduleSendExpire}}
+            {{this.dataModel.scheduleSendStart}} >>> {{this.dataModel.scheduleSendExpire}}
             <mat-action-row>
               <button type="button" mat-button color="warn" (click)="prevStep()">Previous</button>
               <button type="button" mat-button color="primary" (click)="nextStep()">Next</button>
@@ -175,6 +173,9 @@
 
             <cron-editor [(cron)]="dataModel.scheduleCron" [disabled]="isCronDisabled" [options]="cronOptions">
             </cron-editor>
+
+
+
             <h2 style="direction: ltr;">Resulting Cron: {{dataModel.scheduleCron}}</h2>
 
             <mat-action-row>
@@ -212,25 +213,6 @@
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -286,8 +268,7 @@
         </div>
       </div>
     </div>
-    <app-cms-json-list [dataModel]="dataModelResult.item" [optionMethod]="1" *ngIf="dataModelResult?.item">
-    </app-cms-json-list>
+
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
@@ -298,17 +279,13 @@
       <small class="form-text text-muted danger">{{ formInfo.formError }}
       </small>
     </div>
+    <app-cms-json-list [dataModel]="dataModelResult.item" [optionMethod]="1" *ngIf="dataModelResult?.item">
+    </app-cms-json-list>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
   </div>
   <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <app-progress-spinner [options]="loadingAction"> </app-progress-spinner>
-    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-      <button type="button" (click)="onFormCancel()" class="btn btn-light">
-        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-      </button>
 
-    </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>

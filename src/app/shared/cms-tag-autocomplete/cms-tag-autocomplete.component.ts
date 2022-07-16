@@ -25,6 +25,8 @@ class chipModel {
   templateUrl: './cms-tag-autocomplete.component.html',
 })
 export class CmsTagAutocompleteComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsTagAutocompleteComponent.nextId;
   constructor(
     public service: CoreModuleTagService,
     private cmsToastrService: CmsToastrService) {

@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
   templateUrl: './cms-guide-notice.component.html',
 })
 export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
-
+  static nextId = 0;
+  id = ++CmsGuideNoticeComponent.nextId;
   @Input() Identity: number;
   @Input() Key: string;
   @Input() title: string;

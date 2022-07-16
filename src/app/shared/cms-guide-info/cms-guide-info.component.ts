@@ -11,7 +11,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   templateUrl: './cms-guide-info.component.html',
 })
 export class CmsGuideinfoComponent implements OnInit ,OnDestroy {
-
+  static nextId = 0;
+  id = ++CmsGuideinfoComponent.nextId;
   @Input() Identity: number;
   @Input() Key: string;
   @Input() title: string;

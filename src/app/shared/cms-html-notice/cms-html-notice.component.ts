@@ -5,6 +5,8 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './cms-html-notice.component.html',
 })
 export class CmsHtmlNoticeComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsHtmlNoticeComponent.nextId;
   // Public properties
   @Input() classes: string;
   @Input() icon: string;

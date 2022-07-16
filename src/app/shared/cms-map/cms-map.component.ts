@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./cms-map.component.scss']
 })
 export class CmsMapComponent implements OnInit, OnDestroy, AfterViewInit {
+  static nextId = 0;
+  id = ++CmsMapComponent.nextId;
   @Output() map$: EventEmitter<Map> = new EventEmitter<Map>();
   @Output() zoom$: EventEmitter<number> = new EventEmitter<number>();
   @Input() options: MapOptions = {

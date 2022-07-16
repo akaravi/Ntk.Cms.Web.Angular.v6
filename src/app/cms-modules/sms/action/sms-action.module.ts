@@ -42,8 +42,7 @@ import { CronEditorModule } from 'ngx-ntk-cron-editor';
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     
     SharedModule.forRoot(),
-    AngularEditorModule,
-    
+    //AngularEditorModule,
     NgxMaterialTimepickerModule,
     CronEditorModule,//cron
     MatIconModule,

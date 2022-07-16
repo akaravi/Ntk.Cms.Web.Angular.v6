@@ -22,7 +22,8 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './cmsSiteSelector.component.html',
 })
 export class CmsSiteSelectorComponent implements OnInit {
-
+  static nextId = 0;
+  id = ++CmsSiteSelectorComponent.nextId;
   constructor(
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,

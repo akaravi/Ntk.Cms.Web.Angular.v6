@@ -32,6 +32,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./cms-site-user-credit-view.component.scss'],
 })
 export class CmsSiteUserCreditViewComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsSiteUserCreditViewComponent.nextId;
   // requestLinkSiteId = 0;
   // requestLinkUserId = 0;
   requestLinkModuleId = 0;

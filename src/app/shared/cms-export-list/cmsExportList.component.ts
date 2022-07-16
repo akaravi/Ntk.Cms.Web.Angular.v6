@@ -10,6 +10,8 @@ import { Input } from '@angular/core';
   templateUrl: './cmsExportList.component.html',
 })
 export class CmsExportListComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsExportListComponent.nextId;
   constructor() {
     let eum = new EnumInfoModel();
     eum.value = 1;

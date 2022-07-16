@@ -17,7 +17,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   templateUrl: './cmsTokenAccess.component.html',
 })
 export class CmsTokenAccessComponent implements OnInit, OnDestroy {
-
+  static nextId = 0;
+  id = ++CmsTokenAccessComponent.nextId;
   constructor(
     public coreAuthService: CoreAuthService,
     public translate: TranslateService,

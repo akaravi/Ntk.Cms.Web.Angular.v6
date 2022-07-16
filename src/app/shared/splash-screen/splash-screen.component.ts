@@ -7,6 +7,8 @@ import { SplashScreenService } from './splash-screen.service';
   styleUrls: ['./splash-screen.component.scss'],
 })
 export class SplashScreenComponent implements OnInit {
+  static nextId = 0;
+  id = ++SplashScreenComponent.nextId;
   @ViewChild('splashScreen', { static: true }) splashScreen: ElementRef;
 
   constructor(

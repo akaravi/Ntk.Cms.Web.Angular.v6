@@ -20,6 +20,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   styleUrls: ['./progress-spinner.component.scss'],
 })
 export class ProgressSpinnerComponent implements DoCheck, OnInit {
+  static nextId = 0;
+  id = ++ProgressSpinnerComponent.nextId;
   @Input()
   set options(modelInput: ProgressSpinnerModel) {
     this.optionsData = modelInput;

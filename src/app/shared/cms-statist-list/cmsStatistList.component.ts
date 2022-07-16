@@ -8,6 +8,8 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
   templateUrl: './cmsStatistList.component.html',
 })
 export class CmsStatistListComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsStatistListComponent.nextId;
   constructor() { }
   public optionsData: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   @Output()

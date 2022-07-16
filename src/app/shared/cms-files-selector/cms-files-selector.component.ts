@@ -10,6 +10,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   templateUrl: './cms-files-selector.component.html',
 })
 export class CmsFilesSelectorComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsFilesSelectorComponent.nextId;
   fileManagerOpenForm = false;
   appLanguage = 'fa';
   selectFileTypeMainImage = [];

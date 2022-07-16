@@ -6,6 +6,8 @@ import { Component, Input, OnChanges, SimpleChange, Output, EventEmitter } from 
   styleUrls: ['./password-strength.component.scss']
 })
 export class PasswordStrengthComponent implements OnChanges {
+  static nextId = 0;
+  id = ++PasswordStrengthComponent.nextId;
   @Input() public passwordToCheck: string;
   @Output() passwordStrength = new EventEmitter<boolean>();
   bar0: string;

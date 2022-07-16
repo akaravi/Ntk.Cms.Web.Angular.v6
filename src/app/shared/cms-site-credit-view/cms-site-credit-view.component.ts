@@ -32,6 +32,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./cms-site-credit-view.component.scss'],
 })
 export class CmsSiteCreditViewComponent implements OnInit {
+  static nextId = 0;
+  id = ++CmsSiteCreditViewComponent.nextId;
   requestLinkModuleId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
