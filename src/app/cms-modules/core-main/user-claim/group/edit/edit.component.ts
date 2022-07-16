@@ -115,7 +115,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'DataGetOneContent';
-    this.loading.Start(pName, 'دریافت دسته بندی مدارک');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Receive_categories_of_documents'));
 
     this.coreUserClaimGroupService.setAccessLoad();
     this.coreUserClaimGroupService.ServiceGetOneById(this.requestId).subscribe({
@@ -146,7 +146,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, 'ثبت دسته بندی مدارک');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Registration_of categories_of_documents'));
     this.coreUserClaimGroupService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
@@ -238,7 +238,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'DataGetAllCoreUserClaimType'
-    this.loading.Start(pName, 'دریافت لیست مدارک');
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Receive_categories_of_documents'));
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
