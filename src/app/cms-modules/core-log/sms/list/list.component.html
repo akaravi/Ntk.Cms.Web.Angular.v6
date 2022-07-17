@@ -143,11 +143,11 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonViewUserRow(row)" *ngIf="row.linkUserId > 0">
               <mat-icon>supervisor_account</mat-icon>
-              <span>کاربر</span>
+              <span>{{'ACTION.USER' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonViewMemberRow(row)" *ngIf="row.linkMemberUserId > 0">
               <mat-icon>assignment_ind</mat-icon>
-              <span>عضو</span>
+              <span>{{'ACTION.MEMBER' | translate}}</span>
             </button>
 
           </mat-menu>

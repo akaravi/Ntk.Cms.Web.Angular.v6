@@ -119,15 +119,15 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonGetMeAsync(row)">
               <mat-icon>extension</mat-icon>
-              <span>بررسی وضعیت</span>
+              <span>{{'ACTION.CHECK_SITUATION' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonInboxList(row)">
               <mat-icon>extension</mat-icon>
-              <span>لیست دریافت ها</span>
+              <span>{{'ACTION.LIST_OF_RECEIPTS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonOutboxList(row)">
               <mat-icon>extension</mat-icon>
-              <span>لیست ارسال ها</span>
+              <span>{{'ACTION.LIST_OF_SUBMISSIONS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSendMessage(row)">
               <mat-icon>extension</mat-icon>
@@ -135,11 +135,11 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonReceiveMessageAll(row)">
               <mat-icon>extension</mat-icon>
-              <span>دریافت پیام ها</span>
+              <span>{{'ACTION.RECEIVE_MESSAGES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonReceiveMessageLast(row)">
               <mat-icon>extension</mat-icon>
-              <span>دریافت آخرین پیام </span>
+              <span>{{'ACTION.GET_LATEST_MESSAGE' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

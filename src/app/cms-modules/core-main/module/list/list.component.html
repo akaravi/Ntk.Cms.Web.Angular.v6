@@ -130,17 +130,17 @@
             <button mat-menu-item (click)="onActionbuttonConfigMainAdminRow(row)"
               *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
               <mat-icon>extension</mat-icon>
-              <span>تنظیمات مدیریتی</span>
+              <span>{{'ACTION.ADMINISTRATIVE_SETTINGS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteList(row)"
               *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
               <mat-icon>extension</mat-icon>
-              <span>لیست سایتهایی</span>
+              <span>{{'ACTION.LIST_SITES' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteCategoryList(row)"
               *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
               <mat-icon>extension</mat-icon>
-              <span>لیست دسته بندی سایتهایی</span>
+              <span>{{'ACTION.CATEGORY_LIST_SITES' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

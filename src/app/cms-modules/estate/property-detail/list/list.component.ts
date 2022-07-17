@@ -37,8 +37,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-hypershop-category-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
   requestLinkPropertyTypeLanduseId = '';

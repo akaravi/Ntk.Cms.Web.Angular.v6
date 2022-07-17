@@ -438,7 +438,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.SEO' | translate}}" state="seo">
-        <p>تنطیمات بهینه سازی سئو</p>
+        <p>{{'TITLE.SEO_optimization_settings' | translate}}</p>
         <div class="mb-3">
           <img *ngIf="dataModel?.linkFavIconIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
             aria-hidden src="{{dataModel.linkFavIconIdSrc | cmsthumbnail}}" height="50" width="50" />
@@ -998,7 +998,7 @@
             [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
           </angular-editor>
         </div>
-        <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
+        <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
         <app-cms-map (map$)="receiveMap($event)" [optonCenter]="mapOptonCenter" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
 
@@ -1027,7 +1027,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Accounting' | translate}}" state="seo">
-        <p>وضعیت مالی و تراکنش حسابداری</p>
+        <p>{{'TITLE.Financial_Status_And_Sccounting_Transactions' | translate}}</p>
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.accessEditField"
           [optionSelectForce]="dataModel.linkResellerUserId"

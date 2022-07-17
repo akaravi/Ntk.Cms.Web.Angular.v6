@@ -21,8 +21,7 @@ class chipModel {
 }
 @Component({
   selector: 'app-estate-property-type-usage-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss']
+  templateUrl: './autocomplete.component.html'
 })
 export class EstatePropertyTypeUsageCompleteComponent implements OnInit {
   constructor(

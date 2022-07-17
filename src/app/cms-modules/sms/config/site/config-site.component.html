@@ -90,7 +90,7 @@
         </div>
       </mat-step>
       <mat-step label="دسترسی" state="main">
-        <p>دسترسی ها این وب سایت به این ماژول</p>
+        <p>{{'TITLE.This_website_accesses_this_module' | translate}}</p>
         <!-- MainDataContentRowCount Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>MainDataContentRowCount</mat-label>
@@ -107,7 +107,7 @@
 
         <!-- UseDataDefaulteSiteId Field -->
         <!-- <mat-form-field class="ntk-full-width">
-          <mat-label>شناسه سایت اطلاعات پیش فرض</mat-label>
+          <mat-label>{{'TITLE.Default_information_site_ID' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
             name="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
             #dataConfigSiteAccessValuesModel_UseDataDefaulteSiteId type="number" placeholder="0" />

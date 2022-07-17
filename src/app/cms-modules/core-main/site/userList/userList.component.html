@@ -166,13 +166,13 @@
             <button mat-menu-item (click)="onActionbuttonResllerUser(row)"
             *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
             <mat-icon>devices</mat-icon>
-            <span> زیرمجموع بازاریابی کاربر</span>
+            <span> {{'ACTION.SUBSET_OF_USER_MARKETING' | translate}}</span>
           </button>
           
           <button mat-menu-item (click)="onActionbuttonResllerSite(row)"
           *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
           <mat-icon>devices</mat-icon>
-          <span> زیرمجموع بازاریابی سایت</span>
+          <span>{{'ACTION.SUBSET_OF_SITE_MARKETING' | translate}}</span>
         </button>
           </mat-menu>
         </mat-cell>

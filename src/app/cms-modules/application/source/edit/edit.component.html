@@ -250,7 +250,7 @@
       </mat-step>
 
       <mat-step label="تنظیمات قالب و ساخت" state="otherinfo">
-        <p>تنظیمات پیش فرض مدیریت کل در ساخت</p>
+        <p>{{'TITLE.Total_management_default_settings_in_build' | translate}}</p>
 
         در سایت ها با دسته بندی زیر قالب بکار گیری باشد:
         <br>
@@ -454,15 +454,7 @@
       </mat-step>
 
       <mat-step label="گزارش" state="loaction">
-        <p>گزارش آخرین وضعیت ها</p>
-
-
-
-
-
-
-
-
+        <p>{{'TITLE.Latest_Status_Report' | translate}}</p>
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastSuccessfullyBuildDate']?.accessWatchField">
           <mat-label>{{fieldsInfo['LastSuccessfullyBuildDate']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.lastSuccessfullyBuildDate"

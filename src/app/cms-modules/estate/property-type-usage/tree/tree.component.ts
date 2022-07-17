@@ -30,8 +30,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-propertytypeusage-tree',
-  templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
+  templateUrl: './tree.component.html'
 })
 export class EstatePropertyTypeUsageTreeComponent implements OnInit, OnDestroy {
   constructor(

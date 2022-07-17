@@ -31,7 +31,7 @@
     </mat-slide-toggle>
   </a>
   <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN"><mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
-  <button (click)="onActionbuttonBuildApps()"  *ngIf="tableRowSelected.id>0" type="button" class="btn btn-outline-success BTN">ساخت اپ</button>
+  <button (click)="onActionbuttonBuildApps()"  *ngIf="tableRowSelected.id>0" type="button" class="btn btn-outline-success BTN">{{'ACTION.BUILDANAPP' | translate}}</button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -131,11 +131,11 @@
                   </button>
                   <button mat-menu-item (click)="onActionbuttonThemeList(row)">
                     <mat-icon>theme</mat-icon>
-                    <span>لیست تم ها</span>
+                    <span>{{'ACTION.LIST_THEMES' | translate}}</span>
                   </button>
                   <button mat-menu-item (click)="onActionbuttonApplicationList(row)">
                     <mat-icon>list</mat-icon>
-                    <span>لیست اپ ها</span>
+                    <span>{{'ACTION.LIST_APPS' | translate}}</span>
                   </button>
                 </mat-menu>
         </mat-cell>

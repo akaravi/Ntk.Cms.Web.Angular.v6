@@ -138,17 +138,17 @@
             <button mat-menu-item (click)="onActionbuttonConfigMainAdminRow(row)"
               *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
               <mat-icon>extension</mat-icon>
-              <span>تنظیمات مدیریتی</span>
+              <span>{{'ACTION.ADMINISTRATIVE_SETTINGS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteCreditAccountRow(row)"
               *ngIf="row.virtual_CmsModule.NeedSiteCreditAccount">
               <mat-icon>extension</mat-icon>
-              <span>اعتبار سایت</span>
+              <span>{{'ACTION.CREDIT_SITE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteUserCreditAccountRow(row)"
               *ngIf="row.virtual_CmsModule.NeedSiteUserCreditAccount">
               <mat-icon>extension</mat-icon>
-              <span>اعتبار کاربرشما</span>
+              <span>{{'ACTION.YOUR_USER_CREDENTIALS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

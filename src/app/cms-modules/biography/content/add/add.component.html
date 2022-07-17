@@ -85,7 +85,7 @@
       <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
         <p>{{'TITLE.This_section_helps_search_engines_better_index_content' | translate}}</p>
         <mat-form-field class="ntk-full-width">
-          <mat-label>آدرس صفحه منبع مطلب</mat-label>
+          <mat-label>{{'TITLE.Source_page_address' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
             style="text-align: left;" placeholder="لینک وب سایت مرجع محتوا" minlength="3" maxlength="500" />
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
@@ -192,7 +192,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.OTHER_INFO' | translate}}" state="otherinfo">
-        <p>سایر اطلاعات در رابطه با این محتوا در این قسمت اضافه کنید</p>
+        <p>{{'TITLE.Add_other_information_related_to_this_content_in_this_section' | translate}}</p>
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.title" name="contentOtherInfoSelected.title"
@@ -204,7 +204,7 @@
           <mat-hint style="text-align: left;">{{ contentOtherInfoSelected_Title.value.length }} / 100</mat-hint>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label>کلید</mat-label>
+          <mat-label>{{'TITLE.Key' | translate}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.typeId" name="contentOtherInfoSelected.typeId"
             #contentOtherInfoSelected_TypeId type="number" placeholder="عددی توافقی برای نمایش" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.typeId" matSuffix mat-icon-button aria-label="Clear"
@@ -212,7 +212,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label>منبع</mat-label>
+          <mat-label>{{'TITLE.Source' | translate}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.source" name="contentOtherInfoSelected.source"
             #contentOtherInfoSelected_Source type="text" dir="ltr" style="text-align: left;" placeholder="http://"
             maxlength="100" />
@@ -227,7 +227,7 @@
           class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
           {{'ACTION.Add_To_List' | translate}}
         </button>
-        <p>لیست سایر اطلاعات</p>
+        <p>{{'TITLE.List_of_other_information' | translate}}</p>
         <!-- TABLE  -->
         <div class="example-container mat-elevation-z8">
           <mat-table [dataSource]="otherInfoTabledataSource">
@@ -266,7 +266,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
-        <p>مطالب مرتبط را مشخص کنید</p>
+        <p>{{'TITLE.Specify_relevant_content' | translate}}</p>
         <app-biography-content-selector (optionChange)="onActionContentSimilarSelect($event)"
           [optionPlaceholder]="'محتوای مشابه'">
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.id"
@@ -288,17 +288,17 @@
             </ng-container>
             <!-- Id Column -->
             <ng-container matColumnDef="Id">
-              <mat-header-cell *matHeaderCellDef> شناسه </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.Id' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
             </ng-container>
             <!-- LinkSiteId Column -->
             <ng-container matColumnDef="LinkSiteId">
-              <mat-header-cell *matHeaderCellDef> شناسه سایت </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.Site_Id' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
             </ng-container>
             <!-- RecordStatus Column -->
             <ng-container matColumnDef="RecordStatus">
-              <mat-header-cell *matHeaderCellDef> وضعیت </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.RecordStatus' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
         </mat-cell>
             </ng-container>
@@ -336,7 +336,7 @@
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
-        <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
+        <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)"  [optonCenter]="mapOptonCenter" id='main-map'></app-cms-map>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>

@@ -141,7 +141,7 @@
             <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
               (click)="onActionbuttonChangePassword(row)">
               <mat-icon>lock</mat-icon>
-              <span>تغییر کلمه عبور</span>
+              <span>{{'ACTION.CHANGE_PASSWORD' | translate}}</span>
             </button>
             <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
               (click)="onActionbuttonDeleteRow(row)">
@@ -151,7 +151,7 @@
             <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
               (click)="onActionbuttonLoginToRow(row)">
               <mat-icon>login</mat-icon>
-              <span>ورود به این کاربر</span>
+              <span>{{'ACTION.LOGIN_TO_THIS_USER' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteList(row)">
               <mat-icon>supervised_user_circle</mat-icon>
@@ -164,7 +164,7 @@
             <button mat-menu-item (click)="onActionbuttonResller(row)"
               *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
               <mat-icon>devices</mat-icon>
-              <span> زیرمجموع بازاریابی</span>
+              <span>{{'ACTION.MARKETING_SUBCATEGORY' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>
@@ -220,10 +220,10 @@
 
                   <a (click)="onActionbuttonChangePassword(row)"
                     *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
-                    class="link-primary pointer"> تغییر کلمه عبور |</a>
+                    class="link-primary pointer"> {{'ACTION.CHANGE_PASSWORD' | translate}} |</a>
 
                   <a (click)="onActionbuttonLoginToRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
-                    class="link-primary pointer"> ورود به این کاربر |</a>
+                    class="link-primary pointer"> {{'ACTION.LOGIN_TO_THIS_USER' | translate}} |</a>
 
                   <a (click)="onActionbuttonSiteList(row)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES'
                     | translate}}|</a>
@@ -233,7 +233,7 @@
 
                   <a (click)="onActionbuttonResller(row)"
                     *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
-                    class="link-primary pointer"> زیرمجموع بازاریابی </a>
+                    class="link-primary pointer"> {{'ACTION.MARKETING_SUBCATEGORY' | translate}} </a>
                 </td>
               </tr>
 

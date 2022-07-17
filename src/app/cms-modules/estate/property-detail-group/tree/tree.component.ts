@@ -31,8 +31,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-detailgroup-tree',
-  templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
+  templateUrl: './tree.component.html'
 })
 export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy {
   requestLinkPropertyTypeLanduseId = '';

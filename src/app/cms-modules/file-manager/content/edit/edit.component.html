@@ -89,7 +89,7 @@
       <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
         <p>{{'TITLE.This_section_helps_search_engines_better_index_content' | translate}}</p>
         <mat-form-field class="ntk-full-width">
-          <mat-label>آدرس صفحه منبع مطلب</mat-label>
+          <mat-label>{{'TITLE.Source_page_address' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
             style="text-align: left;" placeholder="لینک وب سایت مرجع محتوا" minlength="3" maxlength="500" />
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
@@ -135,7 +135,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
-        <p>روی نقشه کلیک کنید تا موقیت مکانی مشخص گردد</p>
+        <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">

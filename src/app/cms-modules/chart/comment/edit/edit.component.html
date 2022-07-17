@@ -21,7 +21,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label>نویسنده</mat-label>
+          <mat-label>{{'TITLE.AUTHOR' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
@@ -34,7 +34,7 @@
         </mat-form-field>
 
         <mat-form-field class="ntk-full-width">
-          <mat-label>کامنت</mat-label>
+          <mat-label>{{'TITLE.COMMENT' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.comment" name="dataModel.comment" #Comment type="text"
             placeholder="کامنت" minlength="1" maxlength="500" required rows=5></textarea>
           <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"

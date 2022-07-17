@@ -101,17 +101,12 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleEntityId}} </mat-cell>
       </ng-container>
-
-   
-
-
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
-
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -136,7 +131,7 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonViewContent(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>arrow_right_alt</mat-icon>
-              <span>محتوا</span>
+              <span>{{'ACTION.CONTENT' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonViewUserRow(row)" *ngIf="row.linkUserId > 0">
               <mat-icon>supervisor_account</mat-icon>

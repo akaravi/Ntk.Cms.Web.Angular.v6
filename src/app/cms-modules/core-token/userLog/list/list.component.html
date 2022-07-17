@@ -143,19 +143,19 @@
             </button>
             <button mat-menu-item *ngIf="row.linkSiteId>0" (click)="onActionbuttonViewSiteRow(row)">
               <mat-icon>web</mat-icon>
-              <span>سایت</span>
+              <span>{{'ACTION.SITE' | translate}}</span>
             </button>
             <button mat-menu-item *ngIf="row.linkUserId>0" (click)="onActionbuttonViewUserRow(row)">
               <mat-icon>supervisor_account</mat-icon>
-              <span>کاربر</span>
+              <span>{{'ACTION.USER' | translate}}</span>
             </button>
             <button mat-menu-item *ngIf="row.linkMemberUserId>0" (click)="onActionbuttonViewMemberRow(row)">
               <mat-icon>assignment_ind</mat-icon>
-              <span>عضو</span>
+              <span>{{'ACTION.MEMBER' | translate}}</span>
             </button>
             <button mat-menu-item *ngIf="row.deviceClientMAC?.length>0" (click)="onActionbuttonViewDeviceRow(row)">
               <mat-icon>device_unknown</mat-icon>
-              <span>دستگاه</span>
+              <span>{{'ACTION.DEVICE' | translate}}</span>
             </button>
           </mat-menu>
 

@@ -18,8 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-propertytypelanduse-selectionlist',
-  templateUrl: './selectionlist.component.html',
-  styleUrls: ['./selectionlist.component.scss']
+  templateUrl: './selectionlist.component.html'
 })
 export class EstatePropertyTypeLanduseSelectionlistComponent implements OnInit, OnDestroy {
 

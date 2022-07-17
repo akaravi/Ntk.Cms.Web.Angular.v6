@@ -30,8 +30,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-propertytypelanduse-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy {
   constructor(
