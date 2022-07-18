@@ -48,7 +48,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     if (this.requestLinkApiPathId?.length > 0) {
       this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     }
-    this.dataModel.scheduleCron = this.cronExpression;
+    this.dataModel.scheduleCron = "";
 
   }
 
@@ -68,7 +68,7 @@ export class SmsActionSendMessageComponent implements OnInit {
 
   // Hangfire 1.7+ compatible expression: '3 2 12 1/1 ?'
   // Quartz compatible expression: '4 3 2 12 1/1 ? *'
-  public cronExpression = '0 12 1W 1/1 ?';
+  //public cronExpression = '0 12 1W 1/1 ?';
   public isCronDisabled = false;
   public cronOptions: CronOptions = {
     formInputClass: 'form-control cron-editor-input',
