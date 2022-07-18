@@ -9,9 +9,9 @@ export const environment = {
   cmsServerConfig: {
     configApiRetry: 1,
         // configApiServerPath: 'https://apicms.ir/api/v2/',
-    //configApiServerPath: 'http://localhost:2390/api/v1/', // Test Api
+    configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
      // configApiServerPath: 'https://localhost:49155/api/v2/', // Test Api Docer
-    configApiServerPath: 'https://localhost:7128/api/v2/', // Test Api 
+    
 
     configMvcServerPath: 'https://ntkcms.ir/',
     // configMvcServerPath: 'http://localhost:2391/', // Test Api
