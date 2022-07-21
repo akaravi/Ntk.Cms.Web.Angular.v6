@@ -97,7 +97,10 @@ text-left {
 .timepicker {
     direction: ltr !important;
 }
-
+.grid-row-ltr {
+    direction: ltr !important;
+    text-align: left !important;
+}
 .input-ltr {
     direction: ltr !important;
     text-align: left !important;
