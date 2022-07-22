@@ -30,10 +30,10 @@ import { SmsMainApiLogOutBoxEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { SmsMainApiLogOutBoxViewComponent } from '../view/view.component';
 @Component({
   selector: 'app-sms-log-inbox-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './list.component.html'
 })
 export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
@@ -61,7 +61,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
   }
   comment: string;
@@ -158,6 +158,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsLogOutBoxModel();
     const pName = this.constructor.name + 'main';
@@ -252,6 +253,30 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     });
     // this.router.navigate(['/sms/main/api-path/edit', this.tableRowSelected.id]);
 
+  }
+  
+  onActionbuttonViewRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(SmsMainApiLogOutBoxViewComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
   }
   onActionbuttonDeleteRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
