@@ -31,6 +31,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsViewComponent } from 'src/app/shared/cms-view/cms-view.component';
 import { TranslateService } from '@ngx-translate/core';
+import { SmsMainApiLogInBoxViewComponent } from '../view/view.component';
 @Component({
   selector: 'app-sms-log-inbox-list',
   templateUrl: './list.component.html'
@@ -59,8 +60,8 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    // this.filteModelContent.sortColumn = 'Id';
-    // this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'CreatedDate';
+    this.filteModelContent.sortType = EnumSortType.Descending;
   }
   comment: string;
   author: string;
@@ -157,6 +158,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsLogInBoxModel();
     const pName = this.constructor.name + 'main';
@@ -305,7 +307,6 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonViewRow(model: SmsLogInBoxModel = this.tableRowSelected): void {
-
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -319,18 +320,12 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-    const dialogRef = this.dialog.open(CmsViewComponent, {
+    const dialogRef = this.dialog.open(SmsMainApiLogInBoxViewComponent, {
       height: '90%',
-      data: {
-        optionMethod: 1,
-        optionListItems: [],
-        optionItem: model,
-        optionTitle: "نمایش",
-      }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
-        // this.DataGetAll();
       }
     });
   }

@@ -4,7 +4,7 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  SmsMainApiPathService,
+  SmsLogOutBoxService,
   SmsMainApiPathModel,
   DataFieldInfoModel,
   SmsMainApiPathCompanyModel,
@@ -36,7 +36,7 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
   requestId = '';
   constructor(
     public coreEnumService: CoreEnumService,
-    public smsMainApiPathService: SmsMainApiPathService,
+    public smsLogOutBoxService: SmsLogOutBoxService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private router: Router,
@@ -95,41 +95,41 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.smsMainApiPathService.setAccessLoad();
-    this.smsMainApiPathService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe({
-      next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        if (!ret.item.perriodStartWorkTime) {
-          ret.item.perriodStartWorkTime = '';
-        }
-        else {
-          ret.item.perriodStartWorkTime = ret.item.perriodStartWorkTime.substring(0, ret.item.perriodStartWorkTime.indexOf(':', ret.item.perriodStartWorkTime.indexOf(':') + 1))
-        }
-        if (!ret.item.perriodEndWorkTime) {
-          ret.item.perriodEndWorkTime = '';
-        }
-        else {
-          ret.item.perriodEndWorkTime = ret.item.perriodEndWorkTime.substring(0, ret.item.perriodEndWorkTime.indexOf(':', ret.item.perriodEndWorkTime.indexOf(':') + 1))
-        }
-        this.dataModel = ret.item;
-        if (ret.isSuccess) {
-          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
-          this.formInfo.formAlert = '';
+    this.smsLogOutBoxService.setAccessLoad();
+    // this.smsLogOutBoxService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe({
+    //   next: (ret) => {
+    //     this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+    //     if (!ret.item.perriodStartWorkTime) {
+    //       ret.item.perriodStartWorkTime = '';
+    //     }
+    //     else {
+    //       ret.item.perriodStartWorkTime = ret.item.perriodStartWorkTime.substring(0, ret.item.perriodStartWorkTime.indexOf(':', ret.item.perriodStartWorkTime.indexOf(':') + 1))
+    //     }
+    //     if (!ret.item.perriodEndWorkTime) {
+    //       ret.item.perriodEndWorkTime = '';
+    //     }
+    //     else {
+    //       ret.item.perriodEndWorkTime = ret.item.perriodEndWorkTime.substring(0, ret.item.perriodEndWorkTime.indexOf(':', ret.item.perriodEndWorkTime.indexOf(':') + 1))
+    //     }
+    //     this.dataModel = ret.item;
+    //     if (ret.isSuccess) {
+    //       this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+    //       this.formInfo.formAlert = '';
 
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
+    //     } else {
+    //       this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+    //       this.formInfo.formError = ret.errorMessage;
+    //       this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+    //     }
+    //     this.loading.Stop(pName);
 
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
-    );
+    //   },
+    //   error: (er) => {
+    //     this.cmsToastrService.typeError(er);
+    //     this.loading.Stop(pName);
+    //   }
+    // }
+    // );
   }
 
   DataEditContent(): void {
@@ -138,28 +138,28 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.smsMainApiPathService.ServiceEdit(this.dataModel).subscribe({
-      next: (ret) => {
-        this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = ret;
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessEdit();
-          setTimeout(() => this.router.navigate(['/sms/main/api-path/list']), 1000);
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
-    );
+    // this.smsLogOutBoxService.ServiceEdit(this.dataModel).subscribe({
+    //   next: (ret) => {
+    //     this.formInfo.formSubmitAllow = true;
+    //     this.dataModelResult = ret;
+    //     if (ret.isSuccess) {
+    //       this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+    //       this.cmsToastrService.typeSuccessEdit();
+    //       setTimeout(() => this.router.navigate(['/sms/main/api-path/list']), 1000);
+    //     } else {
+    //       this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+    //       this.formInfo.formError = ret.errorMessage;
+    //       this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+    //     }
+    //     this.loading.Stop(pName);
+    //   },
+    //   error: (er) => {
+    //     this.formInfo.formSubmitAllow = true;
+    //     this.cmsToastrService.typeError(er);
+    //     this.loading.Stop(pName);
+    //   }
+    // }
+    // );
   }
 
   onActionSelectorSelectLinkApiPathCompanyId(model: SmsMainApiPathCompanyModel | null): void {

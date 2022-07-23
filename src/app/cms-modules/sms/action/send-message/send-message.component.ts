@@ -222,7 +222,8 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'main';
     this.loadingAction.Start(pName);
-
+    this.formInfo.formAlert='';
+    this.formInfo.formError='';
     this.smsMainApiPathService.ServiceSendMessage(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;

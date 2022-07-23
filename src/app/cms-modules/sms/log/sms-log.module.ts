@@ -33,6 +33,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { SmsMainApiLogOutBoxListComponent } from './outbox/list/list.component';
 import { SmsMainApiLogOutBoxEditComponent } from './outbox/edit/edit.component';
 import { SmsSharedModule } from '../sms.shared.module';
+import { SmsMainApiLogInBoxViewComponent } from './inbox/view/view.component';
+import { SmsMainApiLogOutBoxViewComponent } from './outbox/view/view.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { SmsSharedModule } from '../sms.shared.module';
     SmsMainApiLogInBoxListComponent,
     SmsMainApiLogInBoxEditComponent,
     SmsMainApiLogOutBoxListComponent,
-    SmsMainApiLogOutBoxEditComponent
+    SmsMainApiLogOutBoxEditComponent,
+    SmsMainApiLogInBoxViewComponent,
+    SmsMainApiLogOutBoxViewComponent
   ],
   imports: [
     CommonModule,
