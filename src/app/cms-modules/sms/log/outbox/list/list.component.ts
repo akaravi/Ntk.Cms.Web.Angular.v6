@@ -133,7 +133,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       filter.value = this.requestLinkSiteId;
       this.filteModelContent.filters.push(filter);
     }
-    this.filteModelContent.sortColumn = 'Title';
+    //this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
