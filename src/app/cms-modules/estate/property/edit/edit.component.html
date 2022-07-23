@@ -34,7 +34,7 @@
         </app-estate-propertytypelanduse-selector>
         <br>
         <!-- RecordStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}"
             [disabled]="!fieldsInfo['RecordStatus']?.accessEditField" [(ngModel)]="dataModel.recordStatus"
             name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
@@ -54,7 +54,7 @@
           </mat-error>
         </mat-form-field>
         <!-- MainAdminRecordStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
           <mat-select placeholder="{{fieldsInfo['MainAdminRecordStatus']?.fieldTitle}}"
             [disabled]="!fieldsInfo['MainAdminRecordStatus']?.accessEditField"
             [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus"
@@ -75,7 +75,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkSiteId Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkSiteId']?.accessWatchField">
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['LinkSiteId']?.accessWatchField">
           <mat-label>{{fieldsInfo['LinkSiteId']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text"
             disabled="{{!fieldsInfo['LinkSiteId']?.accessEditField}}"
@@ -90,7 +90,7 @@
           </mat-error>
         </mat-form-field>
         <!-- Title Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['Title']?.accessWatchField">
           <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
             disabled="{{!fieldsInfo['Title']?.accessEditField}}" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
@@ -108,7 +108,7 @@
           </mat-error>
         </mat-form-field>
         <!-- CaseCode Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['CaseCode']?.accessWatchField">
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['CaseCode']?.accessWatchField">
           <mat-label>{{fieldsInfo['CaseCode']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text"
             disabled="{{!fieldsInfo['CaseCode']?.accessEditField}}" placeholder="{{fieldsInfo['CaseCode']?.fieldTitle}}"
@@ -390,11 +390,11 @@
               </ng-container>
             </ng-container>
             <mat-action-row>
-              <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">Previous</button>
+              <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.PREVIOUS' | translate}}</button>
               <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length"
-                (click)="nextStep()">Next</button>
+                (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
               <button mat-button type="button" color="primary" *ngIf="(i+1)==dataModel.propertyDetailGroups.length"
-                (click)="nextStep()">End</button>
+                (click)="nextStep()">{{'ACTION.END' | translate}}</button>
 
             </mat-action-row>
           </mat-expansion-panel>
@@ -530,7 +530,7 @@
         <br>
         <button (click)="onActionOptionAddToList()" type="button" mat-button *ngIf="contractTypeSelected && contractTypeSelected.id.length>0"
           class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
-          {{optionActionTitle}} ...
+          {{'ACTION.Add_To_List' | translate}} ...
         </button>
         <hr>
         <p> {{'TITLE.List_Of_Transaction_Details_Of_This_Property' | translate}} </p>
@@ -587,7 +587,7 @@
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <button mat-icon-button>
                   <small (click)="onActionOptionRemoveFromList(i)">
-                    <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}
+                    <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon>
                   </small>
                 </button>
               </mat-cell>

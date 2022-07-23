@@ -105,7 +105,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
-  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'Action'];

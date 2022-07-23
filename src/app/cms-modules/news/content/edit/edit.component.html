@@ -1,10 +1,10 @@
-
-<app-cms-guide-notice [Key]="'news.content.list.edit'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'news.content.list.edit'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+</app-cms-guide-notice>
 
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -13,11 +13,11 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
-         <!-- RecordStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
+        <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
           <mat-label>{{fieldsInfo['RecordStatus']?.fieldTitle}}</mat-label>
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}"
-           [disabled]="!fieldsInfo['RecordStatus']?.accessEditField"  [(ngModel)]="dataModel.recordStatus"
+            [disabled]="!fieldsInfo['RecordStatus']?.accessEditField" [(ngModel)]="dataModel.recordStatus"
             name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
             required>
             <mat-option *ngFor="
@@ -25,9 +25,12 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-          <mat-hint style="text-align: left;" ><mat-icon matTooltip="{{fieldsInfo['RecordStatus']?.FieldDescription}}" matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text"></strong></mat-hint>
+          <mat-hint style="text-align: left;">
+            <mat-icon matTooltip="{{fieldsInfo['RecordStatus']?.FieldDescription}}" matSuffix class="info-field-icon">
+              info</mat-icon>
+            <strong class="info-field-text"></strong>
+          </mat-hint>
+          <mat-hint style="text-align: left;">&nbsp;{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{fieldsInfo['RecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -36,15 +39,14 @@
         <app-news-category-selector (optionChange)="onActionSelectorSelect($event)"
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی'">
         </app-news-category-selector>
-         <!-- Title Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['Title']?.accessWatchField">
           <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-          disabled="{{!fieldsInfo['Title']?.accessEditField}}" 
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            disabled="{{!fieldsInfo['Title']?.accessEditField}}" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+            minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['Title']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -54,11 +56,10 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Description']?.accessWatchField">
           <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-          disabled="{{!fieldsInfo['Description']?.accessEditField}}" 
+            disabled="{{!fieldsInfo['Description']?.accessEditField}}"
             placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.description = ''">close</mat-icon>
-            <mat-icon matTooltip="{{fieldsInfo['Description']?.FieldDescription}}" matSuffix>info</mat-icon>
           <mat-hint style="text-align: left;">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             {{fieldsInfo['Description']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -67,27 +68,25 @@
         <!-- FromDate Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FromDate']?.accessWatchField">
           <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" 
-          disabled="{{!fieldsInfo['FromDate']?.accessEditField}}" 
-            placeholder="{{fieldsInfo['FromDate']?.fieldTitle}}"/>
+          <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate"
+            disabled="{{!fieldsInfo['FromDate']?.accessEditField}}"
+            placeholder="{{fieldsInfo['FromDate']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #FromDate></mat-datepicker>
-          <mat-icon matTooltip="{{fieldsInfo['FromDate']?.FieldDescription}}" matSuffix>info</mat-icon>
         </mat-form-field>
 
         <!-- ExpireDate Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
           <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
           <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate"
-          disabled="{{!fieldsInfo['ExpireDate']?.accessEditField}}" 
-            placeholder="{{fieldsInfo['ExpireDate']?.fieldTitle}}"/>
+            disabled="{{!fieldsInfo['ExpireDate']?.accessEditField}}"
+            placeholder="{{fieldsInfo['ExpireDate']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
-          <mat-icon matTooltip="{{fieldsInfo['ExpireDate']?.FieldDescription}}" matSuffix>info</mat-icon>
         </mat-form-field>
         <hr class="pb-5" />
         <!-- editorConfig Field -->
@@ -124,17 +123,19 @@
 
       <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
         <p>{{'TITLE.This_section_helps_search_engines_better_index_content' | translate}}</p>
-         <!-- Source Field -->
+        <!-- Source Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Source']?.accessWatchField">
           <mat-label>{{fieldsInfo['Source']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
             style="text-align: left;" placeholder="لینک وب سایت مرجع محتوا"
-            disabled="{{!fieldsInfo['Source']?.accessEditField}}"  minlength="3" maxlength="500" />
+            disabled="{{!fieldsInfo['Source']?.accessEditField}}" minlength="3" maxlength="500" />
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.source = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Source']?.FieldDescription}}</strong> </mat-hint>
+          <mat-hint style="text-align: right;">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Source']?.FieldDescription}}</strong>
+          </mat-hint>
           <mat-hint style="text-align: left;">{{ Source.value.length }} / 500</mat-hint>
 
         </mat-form-field>
@@ -145,23 +146,21 @@
 
 
 
-     
-<mat-form-field style="width: 100%;" appearance="fill">
-  <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
-  <mat-chip-list #chipList aria-label="کلمه کلیدی">
-    <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
-      {{item}}
-      <button matChipRemove>
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </mat-chip>
-    <input placeholder="کلمه کلیدی +"
-           [matChipInputFor]="chipList"
-           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-           [matChipInputAddOnBlur]="addOnBlurTag"
-           (matChipInputTokenEnd)="addTag($event)">
-  </mat-chip-list>
-</mat-form-field>
+
+        <mat-form-field style="width: 100%;" appearance="fill">
+          <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
+          <mat-chip-list #chipList aria-label="کلمه کلیدی">
+            <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
+              {{item}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="کلمه کلیدی +" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+              (matChipInputTokenEnd)="addTag($event)">
+          </mat-chip-list>
+        </mat-form-field>
 
 
 
@@ -179,8 +178,8 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.Content_attachments' | translate}}</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
@@ -271,7 +270,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
 
         </mat-form-field>
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width mb-1">
           <mat-label>{{'TITLE.Source' | translate}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.source" name="contentOtherInfoSelected.source"
             #contentOtherInfoSelected_Source type="text" dir="ltr" style="text-align: left;" placeholder="http://"
@@ -289,7 +288,7 @@
           class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
           {{'ACTION.Add_To_List' | translate}}
         </button>
-        <p>{{'List_of_other_information' | translate}}</p>
+        <p>{{'TITLE.List_of_other_information' | translate}}</p>
         <!-- TABLE  -->
         <div class="example-container mat-elevation-z8">
           <mat-table [dataSource]="otherInfoTabledataSource">
@@ -312,9 +311,15 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionContentOtherInfoEditFromLIst(i)"><mat-icon aria-hidden="false" style="color: blue;" >edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
-                <small (click)="onActionContentOtherInfoRemoveFromLIst(i)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionContentOtherInfoEditFromLIst(i)">
+                  <mat-icon matTooltip="{{'ACTION.EDIT' | translate}}" matTooltipPosition="before" aria-hidden="false"
+                    style="color: blue;">edit</mat-icon>
+                </small>|
+                <small (click)="onActionContentOtherInfoRemoveFromLIst(i)">
+                  <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon>
+                </small>
               </mat-cell>
+
             </ng-container>
             <mat-header-row *matHeaderRowDef="otherInfoTabledisplayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: otherInfoTabledisplayedColumns;"
@@ -355,8 +360,8 @@
             <ng-container matColumnDef="LinkMainImageIdSrc">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-                  src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+                <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+                  aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
               </mat-cell>
             </ng-container>
             <!-- Id Column -->
@@ -372,8 +377,8 @@
             <!-- RecordStatus Column -->
             <ng-container matColumnDef="RecordStatus">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.RecordStatus' | translate}} </mat-header-cell>
-              <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-      </mat-cell>
+              <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+              </mat-cell>
             </ng-container>
             <!-- Title Column -->
             <ng-container matColumnDef="Title">
@@ -385,7 +390,9 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionContentSimilarRemoveFromLIst(row)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionContentSimilarRemoveFromLIst(row)">
+                  <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon>
+                </small>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="similarTabledisplayedColumns"></mat-header-row>
@@ -406,8 +413,8 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
-          <!-- LinkLocationId Field -->
-          <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+        <!-- LinkLocationId Field -->
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>

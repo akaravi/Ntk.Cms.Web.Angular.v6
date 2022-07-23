@@ -3,30 +3,30 @@
   <a (click)="onActionbuttonUserAccessAdminAllowToAllData()"
     *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
     class="btn btn-raised mr-1 shadow-z-2 btn-success " style="width:95% ;margin: 4px;">
-    <i [className]="tokenInfo.userAccessAdminAllowToAllData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'"></i>&nbsp;نمایش
-    همه اطلاعات
+    <i [className]="tokenInfo.userAccessAdminAllowToAllData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'"></i>
+    &nbsp;{{'TITLE.Show_all_information'| translate}}
   </a>
   <a (click)="onActionbuttonUserAccessAdminAllowToProfessionalData()"
     *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
     class="btn btn-raised mr-1 shadow-z-2 btn-success" style="width:95%;margin: 4px;">
     <i [className]="tokenInfo.userAccessAdminAllowToProfessionalData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'">
-    </i>&nbsp;نمایش اطلاعات تخصصی
+    </i>&nbsp;{{'TITLE.Display_specialized_information'| translate}}
   </a>
   <div class="input-group"
     *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
-    style="direction: ltr;width:95%;margin: 4px;">
+    style="direction: rtl;width:95%;margin: 4px;">
     <div class="input-group-prepend">
-      <button (click)="onActionbuttonSelectUser()" class="btn btn-outline-primary" type="button">برو</button>
+      <button (click)="onActionbuttonSelectUser()" class="btn btn-outline-primary" type="button">{{'ACTION.GO'| translate}}</button>
     </div>
-    <input [(ngModel)]="inputUserId" type="text" class="form-control" placeholder="شناسه کاربر">
+    <input [(ngModel)]="inputUserId" type="text" class="form-control" placeholder="{{'TITLE.User_Id'| translate}}">
   </div>
   <div class="input-group"
     *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
-    style="direction: ltr;width:95%;margin: 4px;">
+    style="direction: rtl;width:95%;margin: 4px;">
     <div class="input-group-prepend">
-      <button (click)="onActionbuttonSelectSite()" class="btn btn-outline-primary" type="button">برو</button>
+      <button (click)="onActionbuttonSelectSite()" class="btn btn-outline-primary" type="button">{{'ACTION.GO'| translate}}</button>
     </div>
-    <input [(ngModel)]="inputSiteId" type="text" class="form-control" placeholder="شناسه سایت">
+    <input [(ngModel)]="inputSiteId" type="text" class="form-control" placeholder="{{'TITLE.Site_Id'| translate}}">
   </div>
   <!-- LinkCmsSiteId Field -->
   <div style="margin: 4px;">

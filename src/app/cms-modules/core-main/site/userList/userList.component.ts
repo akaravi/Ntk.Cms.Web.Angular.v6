@@ -108,7 +108,6 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     'LinkUserId',
     'LinkUserGroupId',
     'RecordStatus',
-    'virtual_CmsUser.username',
     'virtual_CmsUser.name',
     'virtual_CmsUser.lastName',
     'virtual_CmsUserGroup.title',

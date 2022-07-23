@@ -283,8 +283,8 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionContentOtherInfoEditFromLIst(i)"><mat-icon aria-hidden="false" style="color: blue;" >edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
-                <small (click)="onActionContentOtherInfoRemoveFromLIst(i)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionContentOtherInfoEditFromLIst(i)"><mat-icon matTooltip="{{'ACTION.EDIT' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: blue;" >edit</mat-icon></small>|
+                <small (click)="onActionContentOtherInfoRemoveFromLIst(i)"><mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;" >delete</mat-icon></small>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="otherInfoTabledisplayedColumns"></mat-header-row>
@@ -356,7 +356,7 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionContentSimilarRemoveFromLIst(row)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionContentSimilarRemoveFromLIst(row)"><mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;" >delete</mat-icon></small>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="similarTabledisplayedColumns"></mat-header-row>
