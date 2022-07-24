@@ -14,12 +14,36 @@
         </div>
       </ng-container>
       <div class="alert-text">
-        <h4>Access Check</h4>
+        <h4 class="text-center">Access Check</h4>
         <div *ngIf="bodyShow">
-          {{access|json}}
+          
+    
+          <table class="table table-bordered">
+            <tr>
+              <td [ngClass]="detectColor(access.accessDeleteRow)">accessDeleteRow : {{access.accessDeleteRow}}</td>
+              <td [ngClass]="detectColor(access.accessRowInPanelDemo)">accessRowInPanelDemo : {{access.accessRowInPanelDemo}}</td>
+              <td [ngClass]="detectColor(access.accessDeleteRowOtherCreatedBy)">accessDeleteRowOtherCreatedBy : {{access.accessDeleteRowOtherCreatedBy}}</td>
+            </tr>
+            <tr>
+              <td [ngClass]="detectColor(access.accessEditRow)">accessEditRow : {{access.accessEditRow}}</td>
+              <td [ngClass]="detectColor(access.accessEditRowOtherCreatedBy)">accessEditRowOtherCreatedBy : {{access.accessEditRowOtherCreatedBy}}</td>
+              <td [ngClass]="detectColor(access.accessEditRowOtherSiteId)">accessEditRowOtherSiteId : {{access.accessEditRowOtherSiteId}}</td>
+            </tr>
+            <tr>
+              <td [ngClass]="detectColor(access.accessWatchRow)">accessWatchRow : {{access.accessWatchRow}}</td>
+              <td [ngClass]="detectColor(access.accessRowWatchInSharingCategory)">accessRowWatchInSharingCategory : {{access.accessRowWatchInSharingCategory}}</td>
+              <td [ngClass]="detectColor(access.accessWatchRowOtherSiteId)">accessWatchRowOtherSiteId : {{access.accessWatchRowOtherSiteId}}</td>
+            </tr>
+            <tr>
+            <td [ngClass]="detectColor(access.accessAddRow)">accessAddRow : {{access.accessAddRow}}</td>
+            <td colspan="2" [ngClass]="detectColor(access.accessWatchRowOtherCreatedBy)">accessWatchRowOtherCreatedBy : {{access.accessWatchRowOtherCreatedBy}}</td>
+            
+          </tr>
+          </table>
 
         </div>
       </div>
+    </div>
       <div style="align-self: end;">
         <button type="button" *ngIf="!bodyShow&& body?.length>0" class="btn btn-outline-primary"
           (click)="onActionBottunClick()">
@@ -29,7 +53,6 @@
           بستن 
         </button>
       </div>
-    </div>
   </div>
 </div>
 

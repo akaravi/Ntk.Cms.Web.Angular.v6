@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AccessModel, CoreGuideService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -23,6 +23,7 @@ export class CmsAccessInfoComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<CmsAccessInfoComponent>,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
@@ -32,7 +33,7 @@ export class CmsAccessInfoComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-
+    console.log(this.access);
   }
 
   bodyShow = true;
@@ -43,5 +44,13 @@ export class CmsAccessInfoComponent implements OnInit {
   onActionCloseBottunClick() {
     this.bodyShow = false;
     this.cdr.detectChanges();
+    this.dialogRef.close({ dialogChangedDate: false });
+  }
+  detectColor(value) {
+    if (value === true) {
+      return "table-success"
+    } else {
+      return "table-danger"
+    }
   }
 }

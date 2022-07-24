@@ -259,6 +259,7 @@ export class PublicHelper {
       dialogConfig.disableClose = false;
       dialogConfig.autoFocus = true;
       dialogConfig.data = { access: dataAccessModel };
+      dialogConfig.height = '70%' ;
       const dialogRef = this.dialog.open(CmsAccessInfoComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {
