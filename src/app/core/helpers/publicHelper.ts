@@ -254,17 +254,18 @@ export class PublicHelper {
       return retOut;
     }
     dataAccessModel.fieldsInfo.forEach((el) => retOut[el.fieldName] = el);
+    if (environment.checkAccess) {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = { access: dataAccessModel };
+      const dialogRef = this.dialog.open(CmsAccessInfoComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
 
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = { access:dataAccessModel };
-    const dialogRef = this.dialog.open(CmsAccessInfoComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        
-      }
-    });
+        }
+      });
+    }
     return retOut;
   }
   RowStyleExpireDate(row: Date): string {
