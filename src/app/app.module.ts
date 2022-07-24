@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER, OnInit } from '@angular/core';
+import { NgModule, APP_INITIALIZER, OnInit, HostListener } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -29,6 +29,7 @@ function appInitializer(authService: CmsAuthService) {
     });
   };
 }
+
 export function CreateTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
@@ -40,7 +41,7 @@ export function CreateTranslateLoader(http: HttpClient): any {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
+
     TranslateModule.forRoot(),
     SharedModule.forRoot(),
     ToastrModule.forRoot({
@@ -94,21 +95,22 @@ export function CreateTranslateLoader(http: HttpClient): any {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule  implements OnInit {
+export class AppModule implements OnInit {
   constructor(private swUpdate: SwUpdate) {
-
   }
+
+
   ngOnInit() {
 
     if (this.swUpdate.isEnabled) {
 
-        this.swUpdate.available.subscribe(() => {
+      this.swUpdate.available.subscribe(() => {
 
-            if(confirm("New version available. Load New Version?")) {
+        if (confirm("New version available. Load New Version?")) {
 
-                window.location.reload();
-            }
-        });
-    }        
-}
+          window.location.reload();
+        }
+      });
+    }
+  }
 }

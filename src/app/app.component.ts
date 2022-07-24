@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   OnInit,
+  HostListener,
 } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -53,7 +54,15 @@ export class AppComponent implements OnInit, OnDestroy {
       //   frLang
     );
   }
-
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "F9") {
+      if (localStorage.getItem('KeyboardEventF9'))
+        localStorage.removeItem('KeyboardEventF9')
+      else
+        localStorage.setItem('KeyboardEventF9', "F9");
+    }
+  }
   ngOnInit() {
     const url = window.location.href;
     if (url.includes('?')) {

@@ -254,7 +254,7 @@ export class PublicHelper {
       return retOut;
     }
     dataAccessModel.fieldsInfo.forEach((el) => retOut[el.fieldName] = el);
-    if (environment.checkAccess) {
+    if (environment.checkAccess|| localStorage.getItem('KeyboardEventF9')) {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.autoFocus = true;
