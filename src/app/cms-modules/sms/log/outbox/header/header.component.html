@@ -1,0 +1,22 @@
+<div class="table">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <div class="tr">
+    <div class="td"></div>
+    <div class="td align" style="color: darkblue;"><h5><b> پیام انتخاب شده </b> </h5></div>
+    <div class="td" style="text-align: left;">
+      <!-- *ngIf="dataModelResult?.item?.id" -->
+    </div>
+  </div>
+  <div class="tr">
+    <div class="td"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.item?.id}}</div>
+    <div class="td"></div>
+
+    <div style="clear: both;"></div>
+  </div>
+  <div class="tr">
+    <div class="td"><b>{{fieldsInfo['Title']?.fieldTitle}} </b>: </div>
+    <div class="td align">{{dataModelResult?.item?.title}}</div>
+    <div style="clear: both;"></div>
+  </div>
+</div>

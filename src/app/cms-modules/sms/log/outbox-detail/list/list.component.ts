@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
+  // SmsLogOutBoxDetailModel,
+  SmsLogOutBoxDetailService,
   SmsLogOutBoxModel,
   SmsLogOutBoxService,
   EnumSortType,
@@ -14,7 +16,9 @@ import {
   DataFieldInfoModel,
   CoreCurrencyModel,
   SmsMainApiPathService,
-  SmsMainApiPathModel
+  SmsMainApiPathModel,
+  EnumFilterDataModelSearchTypes,
+  SmsLogOutBoxDetailModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -26,23 +30,17 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { SmsMainApiLogOutBoxEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { SmsMainApiLogOutBoxViewComponent } from '../view/view.component';
 @Component({
   selector: 'app-sms-log-outbox-list',
   templateUrl: './list.component.html'
 })
-export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
-  requestLinkSiteId = 0;
-  requestLinkPrivateConfigId = '';
-  requestLinkApiNumberId = '';
+export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy {
+  requestContentId = '';
   constructor(
     private smsLogOutBoxService: SmsLogOutBoxService,
-    // private smsMainApiPathCompanyService: SmsMainApiPathCompanyService,
-    // private smsMainApiPathPublicConfigService: SmsMainApiPathPublicConfigService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
@@ -83,65 +81,35 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<SmsLogOutBoxModel> = [];
-  tableRowSelected: SmsLogOutBoxModel = new SmsLogOutBoxModel();
-  tableSource: MatTableDataSource<SmsLogOutBoxModel> = new MatTableDataSource<SmsLogOutBoxModel>();
+  tableRowsSelected: Array<SmsLogOutBoxDetailModel> = [];
+  tableRowSelected: SmsLogOutBoxDetailModel = new SmsLogOutBoxDetailModel();
+  tableSource: MatTableDataSource<SmsLogOutBoxDetailModel> = new MatTableDataSource<SmsLogOutBoxDetailModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
   tabledisplayedColumns: string[] = [
     'Id',
     'SendDate',
-    'IsAccepted',
-    'LinkPrivateConfigId',
-    'Message',
-    'UpdatedDate',
-    'Action'
+    'isSended',
+    'senderNumber',
+    'receiverNumber',
+    // 'Action'
   ];
-
-
 
   expandedElement: SmsLogOutBoxModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
 
-    if (this.activatedRoute.snapshot.paramMap.get('LinkSiteId')) {
-      this.requestLinkSiteId = +this.activatedRoute.snapshot.paramMap.get('LinkSiteId') || 0;
-    }
-    if (this.activatedRoute.snapshot.paramMap.get('LinkPrivateConfigId')) {
-      this.requestLinkPrivateConfigId = this.activatedRoute.snapshot.paramMap.get('LinkPrivateConfigId');
-    }
-    if (this.activatedRoute.snapshot.paramMap.get('LinkApiNumberId')) {
-      this.requestLinkApiNumberId = this.activatedRoute.snapshot.paramMap.get('LinkApiNumberId');
-    }
-    const filter = new FilterDataModel();
-    if (this.requestLinkPrivateConfigId?.length > 0) {
-      filter.propertyName = 'LinkPrivateConfigId';
-      filter.value = this.requestLinkPrivateConfigId;
-      this.filteModelContent.filters.push(filter);
-    }
-    if (this.requestLinkApiNumberId?.length > 0) {
-      filter.propertyName = 'LinkApiNumberId';
-      filter.value = this.requestLinkApiNumberId;
-      this.filteModelContent.filters.push(filter);
-    }
-
-    if (this.requestLinkSiteId > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'LinkSiteId';
-      filter.value = this.requestLinkSiteId;
-      this.filteModelContent.filters.push(filter);
-    }
-    //this.filteModelContent.sortColumn = 'Title';
+    
+    this.requestContentId = this.activatedRoute.snapshot.paramMap.get('id');
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      this.DataGetAll();
+      this.DataGetOne();
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      this.DataGetAll();
+      this.DataGetOne();
     });
 
     this.getPrivateConfig();
@@ -157,35 +125,28 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  DataGetAll(): void {
+  DataGetOne(): void {
     this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    
     this.tableRowsSelected = [];
-    this.tableRowSelected = new SmsLogOutBoxModel();
+    this.tableRowSelected = new SmsLogOutBoxDetailModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
-    /*filter CLone*/
-    const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
-    /*filter CLone*/
-    /** filter Category */
-    if (this.categoryModelSelected && this.categoryModelSelected.id.length > 0) {
-      let fastfilter = new FilterDataModel();
-      fastfilter.propertyName = 'LinkPrivateConfigId';
-      fastfilter.value = this.categoryModelSelected.id;
-      filterModel.filters.push(fastfilter);
-    }
-    /** filter Category */
-    this.smsLogOutBoxService.ServiceGetAllEditor(filterModel).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-          this.dataModelResult = ret;
-          this.tableSource.data = ret.listItems;
 
+    this.smsLogOutBoxService.ServiceGetOneById(this.requestContentId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+    
+        if (ret.isSuccess) {
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.item.outBoxDetails;
+     
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
-        } else {
+        }
+        else{
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -217,85 +178,16 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
-    this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
     this.filteModelContent.currentPageNumber = event.pageIndex + 1;
     this.filteModelContent.rowPerPage = event.pageSize;
-    this.DataGetAll();
   }
 
-
-  onActionbuttonEditRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
-      return;
-    }
-    const dialogRef = this.dialog.open(SmsMainApiLogOutBoxEditComponent, {
-      height: '90%',
-      data: { id: this.tableRowSelected.id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
-    // this.router.navigate(['/sms/main/api-path/edit', this.tableRowSelected.id]);
-
-  }
   
-  onActionbuttonViewRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorAccessWatch();
-      return;
-    }
-    const dialogRef = this.dialog.open(SmsMainApiLogOutBoxViewComponent, {
-      height: '90%',
-      data: { id: this.tableRowSelected.id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-      }
-    });
-  }
 
-  onActionbuttonDetailRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
-      return;
-    }
-    this.router.navigate(["/sms/log/outbox-detail/list", this.tableRowSelected.id]);
-  }
 
-  onActionbuttonDeleteRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: SmsLogOutBoxDetailModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -325,7 +217,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
-                this.DataGetAll();
+                this.DataGetOne();
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
@@ -351,7 +243,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 
-    this.DataGetAll();
+    this.DataGetOne();
   }
 
   onActionbuttonStatist(): void {
@@ -398,101 +290,6 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     );
 
   }
-  onActionbuttonSuperSedersList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.id]);
-  }
-  onActionbuttonMustSuperSedersList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.id]);
-  }
-  onActionbuttonNumbersList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.id]);
-  }
-  onActionbuttonPermitionList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/sms/main/api-path-permission/LinkApiPathId', this.tableRowSelected.id]);
-  }
-  onActionbuttonPriceServicesList(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-    this.router.navigate(['/sms/main/api-path-price-service/LinkApiPathId', this.tableRowSelected.id]);
-  }
 
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
@@ -516,35 +313,15 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     }
     );
   }
-  onActionbuttonSendMessage(model: SmsLogOutBoxModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
-
-  }
-
   
   onActionbuttonReload(): void {
-    this.DataGetAll();
+    this.DataGetOne();
   }
   onSubmitOptionsSearch(model: any): void {
     this.filteModelContent.filters = model;
-    this.DataGetAll();
+    this.DataGetOne();
   }
-  onActionTableRowSelect(row: SmsLogOutBoxModel): void {
+  onActionTableRowSelect(row: SmsLogOutBoxDetailModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
