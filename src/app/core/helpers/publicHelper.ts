@@ -20,6 +20,8 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
+import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 // import { ProviderAst } from '@angular/compiler';
 
 @Injectable({
@@ -33,7 +35,8 @@ export class PublicHelper {
     private coreEnumService: CoreEnumService,
     private coreSiteService: CoreSiteService,
     private coreModuleService: CoreModuleService,
-    private cmsStoreService: CmsStoreService
+    private cmsStoreService: CmsStoreService,
+    public dialog: MatDialog,
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
 
@@ -251,6 +254,17 @@ export class PublicHelper {
       return retOut;
     }
     dataAccessModel.fieldsInfo.forEach((el) => retOut[el.fieldName] = el);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = { access:dataAccessModel };
+    const dialogRef = this.dialog.open(CmsAccessInfoComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        
+      }
+    });
     return retOut;
   }
   RowStyleExpireDate(row: Date): string {
