@@ -141,6 +141,7 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/mater
 import { TranslateModule } from '@ngx-translate/core';
 import { CmsContactCategoryTreeSelectorComponent } from './shared/cms-contact-category-tree-selector/cms-contact-category-tree-selector.component';
 import { CmsContactContentSelectionListComponent } from './shared/cms-contact-content-selection-list/cms-contact-content-selection-list.component';
+import { CmsAccessInfoComponent } from './shared/cms-access-info/cms-access-info.component';
 
 @NgModule({
   imports: [
@@ -256,6 +257,7 @@ import { CmsContactContentSelectionListComponent } from './shared/cms-contact-co
     CmsSiteUserCreditViewComponent,
     CmsContactCategoryTreeSelectorComponent,
     CmsContactContentSelectionListComponent,
+    CmsAccessInfoComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -380,6 +382,7 @@ import { CmsContactContentSelectionListComponent } from './shared/cms-contact-co
     CmsSiteUserCreditViewComponent,
     CmsContactCategoryTreeSelectorComponent,
     CmsContactContentSelectionListComponent,
+    CmsAccessInfoComponent,
     /** input */
     StringComponent,
     IntComponent,
