@@ -10,10 +10,10 @@ export class BoolStatusClassPipe implements PipeTransform {
 
   transform(value: boolean | null): SafeHtml {
     if (value === true) {
-      return 'fa fa-thumbs-up';
+      return 'fa fa-thumbs-up color-green';
 
     } else if (value === false) {
-      return 'fa fa-thumbs-down';
+      return 'fa fa-thumbs-down color-red';
     }
     return 'fa fa-archive';
 
