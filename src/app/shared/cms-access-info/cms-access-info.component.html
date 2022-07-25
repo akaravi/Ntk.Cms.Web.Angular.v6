@@ -15,15 +15,15 @@
       </ng-container>
       <div class="alert-text">
         <h4 class="text-center">Access Check</h4>
-        <div *ngIf="bodyShow">
+        <div>
           
           <table class="table table-bordered">
             <tr>
-              <td>Watch</td>
-              <td>Count</td>
-              <td>Add</td>
-              <td>Edit</td>
-              <td>Delete</td>
+              <td class="text-center">Watch</td>
+              <td class="text-center">Count</td>
+              <td class="text-center">Add</td>
+              <td class="text-center">Edit</td>
+              <td class="text-center">Delete</td>
             </tr>
             <tr>
               <td [ngClass]="detectColor(access.accessWatchRow)" class="grid-row-ltr">AccessWatchRow :<i [ngClass]="access.accessWatchRow|boolclass"></i> </td>
@@ -54,19 +54,42 @@
             </tr>
             
           </table>
-
+          
         </div>
-      </div>
+          <hr>
+          <div *ngFor="let item of access.fieldsInfo">
+            <ng-container *ngIf="bodyShow">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center" colspan="4">{{item.fieldName}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td [ngClass]="detectColor(item.accessAddField)" class="grid-row-ltr">accessAddField: {{item.accessAddField}}</td>
+                    <td [ngClass]="detectColor(item.accessEditField)" class="grid-row-ltr">accessEditField: {{item.accessEditField}}</td>
+                    <td [ngClass]="detectColor(item.accessSearchField)" class="grid-row-ltr">accessSearchField: {{item.accessSearchField}}</td>
+                    <td [ngClass]="detectColor(item.accessWatchField)" class="grid-row-ltr">accessWatchField: {{item.accessWatchField}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline-primary ms-2" (click)="onActionCloseBottunClick()">
+              بستن
+            </button>
+            <button type="button" *ngIf="!bodyShow" class="btn btn btn-secondary" (click)="onActionMoreBottunClick()">
+              بیشتر
+            </button>
+            <button type="button" *ngIf="bodyShow" class="btn btn btn-secondary" (click)="onActionLessBottunClick()">
+              کمتر
+            </button>
+          </div>
+        </div>
     </div>
-      <div style="align-self: end;">
-        <button type="button" *ngIf="!bodyShow&& body?.length>0" class="btn btn-outline-primary"
-          (click)="onActionBottunClick()">
-          بیشتر...
-        </button>
-        <button type="button" *ngIf="bodyShow" class="btn btn-outline-primary" (click)="onActionCloseBottunClick()">
-          بستن 
-        </button>
-      </div>
+      
   </div>
 </div>
 

@@ -229,11 +229,11 @@
 
                   <a (click)="onActionbuttonResllerUser(row)"
                   *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
-                    class="link-primary pointer"> زیرمجموع بازاریابی کاربر |</a>
+                    class="link-primary pointer">  {{'ACTION.USER_MARKETING_SUBCATEGORY' | translate}}|</a>
 
                   <a (click)="onActionbuttonResllerSite(row)"
                     *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
-                    class="link-primary pointer"> زیرمجموع بازاریابی سایت </a>
+                    class="link-primary pointer"> {{'ACTION.SITE_MARKETING_SUBCATEGORY' | translate}}</a>
                 </td>
               </tr>
 

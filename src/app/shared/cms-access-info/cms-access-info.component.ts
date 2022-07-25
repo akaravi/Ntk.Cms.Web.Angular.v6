@@ -1,11 +1,8 @@
-import { ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AccessModel, CoreGuideService } from 'ntk-cms-api';
-import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { AccessModel } from 'ntk-cms-api';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cms-access-info',
@@ -33,20 +30,22 @@ export class CmsAccessInfoComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    console.log(this.access);
   }
 
-  bodyShow = true;
-  onActionBottunClick() {
+  bodyShow = false;
+  onActionMoreBottunClick() {
     this.bodyShow = true;
     this.cdr.detectChanges();
   }
-  onActionCloseBottunClick() {
+  onActionLessBottunClick() {
     this.bodyShow = false;
     this.cdr.detectChanges();
-    this.dialogRef.close({ dialogChangedDate: false });
   }
-  detectColor(value) {
+  onActionCloseBottunClick() {
+    this.dialogRef.close({ dialogChangedDate: false });
+    this.cdr.detectChanges();
+  }
+  detectColor(value: boolean) {
     if (value === true) {
       return "table-success"
     } else {

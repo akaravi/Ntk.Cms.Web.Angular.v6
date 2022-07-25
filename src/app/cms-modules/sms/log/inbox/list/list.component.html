@@ -41,7 +41,7 @@
     </button>
     <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected?.id?.length>0"
       (click)="onActionbuttonSendMessage()" type="button" class="btn btn-primary" id="openModalButton"
-      data-toggle="modal" data-target="#categoryModal">ارسال پاسخ</button>
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.SEND_ANSWER' | translate}}</button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPrivateConfigId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->

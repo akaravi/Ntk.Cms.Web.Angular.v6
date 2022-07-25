@@ -36,10 +36,10 @@
     </button>
     <button (click)="onActionbuttonUploadApp()"
       *ngIf="tableRowSelected.id>0 && this.tokenInfo.userAccessAdminAllowToProfessionalData" type="button"
-      class="btn btn-outline-success BTN">بارگزاری فایل نصب</button>
+      class="btn btn-outline-success BTN">{{'ACTION.UPLOAD_THE_INSTALLATION_FILE' | translate}}</button>
     <button (click)="onActionbuttonUploadUpdate()"
       *ngIf="tableRowSelected.id>0 && this.tokenInfo.userAccessAdminAllowToProfessionalData" type="button"
-      class="btn btn-outline-success BTN">بارگزاری فایل برروزرسانی</button>
+      class="btn btn-outline-success BTN">{{'ACTION.UPLOAD_THE_UPDATE_FILE' | translate}}</button>
     <button (click)="onActionbuttonBuildApp()" *ngIf="tableRowSelected.id>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BUILDANAPP' | translate}}</button>
     <button (click)="onActionbuttonDownloadApp()"

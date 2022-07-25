@@ -39,8 +39,7 @@
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonSendTest()"
-      type="button" class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">تست
-      ارسال</button>
+      type="button" class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.SEND_TEST' | translate}}</button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkCompanyId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
@@ -121,7 +120,7 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonSendTest(row)">
               <mat-icon>payment</mat-icon>
-              <span>تست ارسال</span>
+              <span>{{'ACTION.SEND_TEST' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSuperSedersList(row)">
               <mat-icon>view_module</mat-icon>

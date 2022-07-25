@@ -73,7 +73,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>حداکثر امتیاز به هر گزینه</mat-label>
           <input matInput [(ngModel)]="dataModel.maxVoteForEachOption" name="dataModel.maxVoteForEachOption"
-            #MaxVoteForEachOption type="number" placeholder="حداکثر امتیازی که کاربری می تواند بدهد" min="1" max="100"
+            #MaxVoteForEachOption type="number" placeholder="حداکثر امتیزی که کاربری می تواند بدهد" min="1" max="100"
             required />
           <mat-icon matSuffix *ngIf="dataModel.maxVoteForEachOption" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.maxVoteForEachOption = 1">close</mat-icon>
