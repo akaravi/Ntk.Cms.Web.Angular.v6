@@ -16,7 +16,7 @@
       <div class="alert-text">
         <h4 class="text-center">Access Check</h4>
         <div>
-          
+
           <table class="table table-bordered">
             <tr>
               <td class="text-center">Watch</td>
@@ -26,71 +26,91 @@
               <td class="text-center">Delete</td>
             </tr>
             <tr>
-              <td [ngClass]="detectColor(access.accessWatchRow)" class="grid-row-ltr">AccessWatchRow :<i [ngClass]="access.accessWatchRow|boolclass"></i> </td>
-              <td [ngClass]="detectColor(access.accessCountRow)" class="grid-row-ltr">AccessCountRow : <i [ngClass]="access.accessCountRow|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessAddRow)" class="grid-row-ltr">AccessAddRow : <i [ngClass]="access.accessAddRow|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessEditRow)" class="grid-row-ltr">AccessEditRow : <i [ngClass]="access.accessEditRow|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessDeleteRow)" class="grid-row-ltr">AccessDeleteRow : <i [ngClass]="access.accessDeleteRow|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessWatchRow)" class="grid-row-ltr">AccessWatchRow :<i
+                  [ngClass]="access.accessWatchRow|boolclass"></i> </td>
+              <td [ngClass]="detectColor(access.accessCountRow)" class="grid-row-ltr">AccessCountRow : <i
+                  [ngClass]="access.accessCountRow|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessAddRow)" class="grid-row-ltr">AccessAddRow : <i
+                  [ngClass]="access.accessAddRow|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessEditRow)" class="grid-row-ltr">AccessEditRow : <i
+                  [ngClass]="access.accessEditRow|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessDeleteRow)" class="grid-row-ltr">AccessDeleteRow : <i
+                  [ngClass]="access.accessDeleteRow|boolclass"></i></td>
             </tr>
             <tr>
-              <td [ngClass]="detectColor(access.accessWatchRowOtherCreatedBy)" class="grid-row-ltr">AccessWatchRowOtherCreatedBy : <i [ngClass]="access.accessWatchRowOtherCreatedBy|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessCountRowOtherCreatedBy)" class="grid-row-ltr">AccessCountRowOtherCreatedBy : <i [ngClass]="access.accessCountRowOtherCreatedBy|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessWatchRowOtherCreatedBy)" class="grid-row-ltr">
+                AccessWatchRowOtherCreatedBy : <i [ngClass]="access.accessWatchRowOtherCreatedBy|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessCountRowOtherCreatedBy)" class="grid-row-ltr">
+                AccessCountRowOtherCreatedBy : <i [ngClass]="access.accessCountRowOtherCreatedBy|boolclass"></i></td>
               <td>-</td>
-              <td [ngClass]="detectColor(access.accessEditRowOtherCreatedBy)" class="grid-row-ltr">AccessEditRowOtherCreatedBy : <i [ngClass]="access.accessEditRowOtherCreatedBy|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessDeleteRowOtherCreatedBy)" class="grid-row-ltr">accessDeleteRowOtherCreatedBy : <i [ngClass]="access.accessDeleteRowOtherCreatedBy|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessEditRowOtherCreatedBy)" class="grid-row-ltr">
+                AccessEditRowOtherCreatedBy : <i [ngClass]="access.accessEditRowOtherCreatedBy|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessDeleteRowOtherCreatedBy)" class="grid-row-ltr">
+                accessDeleteRowOtherCreatedBy : <i [ngClass]="access.accessDeleteRowOtherCreatedBy|boolclass"></i></td>
             </tr>
             <tr>
-              <td [ngClass]="detectColor(access.accessWatchRowOtherSiteId)" class="grid-row-ltr">AccessWatchRowOtherSiteId : <i [ngClass]="access.accessWatchRowOtherSiteId|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessCountRowOtherSiteId)" class="grid-row-ltr">AccessCountRowOtherSiteId : <i [ngClass]="access.accessCountRowOtherSiteId|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessWatchRowOtherSiteId)" class="grid-row-ltr">
+                AccessWatchRowOtherSiteId : <i [ngClass]="access.accessWatchRowOtherSiteId|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessCountRowOtherSiteId)" class="grid-row-ltr">
+                AccessCountRowOtherSiteId : <i [ngClass]="access.accessCountRowOtherSiteId|boolclass"></i></td>
               <td>-</td>
-              <td [ngClass]="detectColor(access.accessEditRowOtherSiteId)" class="grid-row-ltr">AccessEditRowOtherSiteId : <i [ngClass]="access.accessEditRowOtherSiteId|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessEditRowOtherSiteId)" class="grid-row-ltr">AccessEditRowOtherSiteId
+                : <i [ngClass]="access.accessEditRowOtherSiteId|boolclass"></i></td>
               <td>-</td>
             </tr>
             <tr>
-              <td [ngClass]="detectColor(access.accessRowWatchInSharingCategory)" class="grid-row-ltr">AccessRowWatchInSharingCategory : <i [ngClass]="access.accessRowWatchInSharingCategory|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessRowWatchInSharingCategory)" class="grid-row-ltr">
+                AccessRowWatchInSharingCategory : <i [ngClass]="access.accessRowWatchInSharingCategory|boolclass"></i>
+              </td>
               <td>-</td>
               <td>-</td>
               <td>-</td>
             </tr>
-            
+
           </table>
-          
+
         </div>
-          <hr>
-          <div *ngFor="let item of access.fieldsInfo">
-            <ng-container *ngIf="bodyShow">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="text-center" colspan="4">{{item.fieldName}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td [ngClass]="detectColor(item.accessAddField)" class="grid-row-ltr">accessAddField: {{item.accessAddField}}</td>
-                    <td [ngClass]="detectColor(item.accessEditField)" class="grid-row-ltr">accessEditField: {{item.accessEditField}}</td>
-                    <td [ngClass]="detectColor(item.accessSearchField)" class="grid-row-ltr">accessSearchField: {{item.accessSearchField}}</td>
-                    <td [ngClass]="detectColor(item.accessWatchField)" class="grid-row-ltr">accessWatchField: {{item.accessWatchField}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </ng-container>
-          </div>
-          <div>
-            <button type="button" class="btn btn-outline-primary ms-2" (click)="onActionCloseBottunClick()">
-              بستن
-            </button>
-            <button type="button" *ngIf="!bodyShow" class="btn btn btn-secondary" (click)="onActionMoreBottunClick()">
-              بیشتر
-            </button>
-            <button type="button" *ngIf="bodyShow" class="btn btn btn-secondary" (click)="onActionLessBottunClick()">
-              کمتر
-            </button>
-          </div>
+        <hr>
+
+        <ng-container *ngIf="bodyShow">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td class="text-center">Field Name</td>
+                <td class="text-center">Watch</td>
+                <td class="text-center">Add</td>
+                <td class="text-center">Edit</td>
+                <td class="text-center">Search</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of access.fieldsInfo">
+                <th class="text-center">{{item.fieldName}}</th>
+                <td [ngClass]="detectColor(item.accessWatchField)" class="grid-row-ltr">accessWatchField:
+                  {{item.accessWatchField}}</td>
+                <td [ngClass]="detectColor(item.accessAddField)" class="grid-row-ltr">accessAddField:
+                  {{item.accessAddField}}</td>
+                <td [ngClass]="detectColor(item.accessEditField)" class="grid-row-ltr">accessEditField:
+                  {{item.accessEditField}}</td>
+                <td [ngClass]="detectColor(item.accessSearchField)" class="grid-row-ltr">accessSearchField:
+                  {{item.accessSearchField}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <div>
+          <button type="button" class="btn btn-outline-primary ms-2" (click)="onActionCloseBottunClick()">
+            بستن
+          </button>
+          <button type="button" *ngIf="!bodyShow" class="btn btn btn-secondary" (click)="onActionMoreBottunClick()">
+            بیشتر
+          </button>
+          <button type="button" *ngIf="bodyShow" class="btn btn btn-secondary" (click)="onActionLessBottunClick()">
+            کمتر
+          </button>
         </div>
+      </div>
     </div>
-      
+
   </div>
 </div>
-
-<!--end::Notice-->
