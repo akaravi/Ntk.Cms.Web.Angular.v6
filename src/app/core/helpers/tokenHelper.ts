@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {
   CoreAuthService,
   EnumDeviceType,
+  EnumManageUserAccessUserTypes,
   EnumOperatingSystemType,
   NtkCmsApiStoreService,
   SET_TOKEN_INFO,
@@ -32,7 +33,7 @@ export class TokenHelper implements OnDestroy {
 
   tokenInfo: TokenInfoModel = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
-
+  isAdminSite = false;
 
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -41,22 +42,41 @@ export class TokenHelper implements OnDestroy {
     const storeSnapshot = this.cmsApiStore.getStateSnapshot();
     if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
       this.tokenInfo = storeSnapshot.ntkCmsAPiState.tokenInfo;
+      this.CheckIsAdmin();
       return storeSnapshot.ntkCmsAPiState.tokenInfo;
     }
     return await this.coreAuthService.ServiceCurrentToken()
       .pipe(map(ret => {
         this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: ret.item });
+        this.tokenInfo = ret.item;
+        this.CheckIsAdmin();
         return ret.item;
       })).toPromise();
   }
   getCurrentTokenOnChange(): Observable<TokenInfoModel> {
     return this.cmsApiStore.getState((state) => {
       this.cmsStoreService.setState({ EnumRecordStatusResultStore: null });
+      this.tokenInfo = state.ntkCmsAPiState.tokenInfo;
+      this.CheckIsAdmin();
       return state.ntkCmsAPiState.tokenInfo;
     });
   }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();
+  }
+  CheckIsAdmin(): boolean {
+    if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
+      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
+      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
+      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
+      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms)
+    {
+      this.isAdminSite=true;
+      return true;
+    }
+    this.isAdminSite=false;
+    return false;
   }
   getDeviceToken(): void {
     const DeviceToken = this.coreAuthService.getDeviceToken();

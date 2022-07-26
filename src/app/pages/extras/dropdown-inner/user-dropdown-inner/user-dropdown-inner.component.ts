@@ -21,7 +21,7 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     private coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
-    private tokenHelper: TokenHelper,
+    public tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     private ticketingTaskService: TicketingTaskService,
     public translate: TranslateService,
@@ -43,33 +43,16 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataTaskViewerGetCount();
-      if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
-        this.IsAdminSite = true;
+      if (this.tokenHelper.isAdminSite) {
         this.DataTaskEditorGetCount();
       }
-      else {
-        this.IsAdminSite = false;
-      }
+
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
       this.DataTaskViewerGetCount();
-      if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
-        this.IsAdminSite = true;
+      if (this.tokenHelper.isAdminSite) {
         this.DataTaskEditorGetCount();
-      }
-      else {
-        this.IsAdminSite = false;
       }
       this.cdr.detectChanges();
     });
@@ -92,8 +75,8 @@ export class UserDropdownInnerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  dataTaskGetCountViewerModelResult =new ErrorExceptionResultBase();
-  dataTaskGetCountEditorModelResult =new ErrorExceptionResultBase();
+  dataTaskGetCountViewerModelResult = new ErrorExceptionResultBase();
+  dataTaskGetCountEditorModelResult = new ErrorExceptionResultBase();
   DataTaskViewerGetCount(): void {
 
     const pName = this.constructor.name + 'main';

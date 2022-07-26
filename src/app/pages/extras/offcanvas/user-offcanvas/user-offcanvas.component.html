@@ -103,7 +103,7 @@
         </a>
         <!--end:Item-->
         <!--begin::Item-->
-        <ng-container *ngIf="IsAdminSite">
+        <ng-container *ngIf="this.tokenHelper.isAdminSite">
         <a class="navi-item cursor-pointer" routerLink="{{'/ticketing/task'}}">
           <div class="navi-link">
             <div class="symbol symbol-40 bg-light mr-3">
@@ -128,7 +128,7 @@
         <!--end:Item-->
 
         <!--begin::Item-->
-        <ng-container *ngIf="IsAdminSite">
+        <ng-container *ngIf="this.tokenHelper.isAdminSite">
 
           <a class="navi-item cursor-pointer" routerLink="{{'/coretoken/userlog'}}">
             <div class="navi-link">

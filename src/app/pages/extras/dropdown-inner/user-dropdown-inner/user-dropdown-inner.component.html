@@ -91,7 +91,7 @@
     </a>
     <!--end::Item-->
     <!--begin::Item-->
-    <ng-container *ngIf="IsAdminSite">
+    <ng-container *ngIf="this.tokenHelper.isAdminSite">
       <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task'}}">
         <div class="navi-link">
           <div class="navi-icon mr-2">

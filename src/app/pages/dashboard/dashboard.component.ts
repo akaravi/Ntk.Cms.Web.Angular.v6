@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
-    private tokenHelper: TokenHelper,
+    public tokenHelper: TokenHelper,
   ) {
 
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -25,21 +25,9 @@ export class DashboardComponent implements OnInit {
   env = environment;
   dataCoreModuleModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   loading = new ProgressSpinnerModel();
-  IsAdminSite=false;
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-        || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms) {
-        this.IsAdminSite = true;
-      }
-      else {
-        this.IsAdminSite = false;
-      }
     });
     this.getCurrentSiteModule();
     localStorage.removeItem('siteId');

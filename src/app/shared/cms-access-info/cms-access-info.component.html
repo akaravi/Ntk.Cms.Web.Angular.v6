@@ -14,7 +14,7 @@
         </div>
       </ng-container>
       <div class="alert-text">
-        <h4 class="text-center">Access Check</h4>
+        <h4 class="text-center">Access Check (   Module Name:{{access.moduleName}}     Module Entity Name: {{access.moduleEntityName}})</h4>
         <div>
 
           <table class="table table-bordered">
@@ -71,9 +71,7 @@
 
         </div>
         <hr>
-
-        <ng-container *ngIf="bodyShow">
-          <table class="table table-bordered">
+          <table class="table table-bordered"  *ngIf="bodyShow">
             <thead>
               <tr>
                 <td class="text-center">Field Name</td>
@@ -100,7 +98,7 @@
               </tr>
             </tbody>
           </table>
-        </ng-container>
+
         <div>
           <button type="button" class="btn btn-outline-primary ms-2" (click)="onActionCloseBottunClick()">
             بستن

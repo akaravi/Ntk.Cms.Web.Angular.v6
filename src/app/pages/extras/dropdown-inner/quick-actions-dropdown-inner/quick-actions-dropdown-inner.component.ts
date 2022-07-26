@@ -11,7 +11,7 @@ import { LayoutService } from 'src/app/core/services/layout.service';
 export class QuickActionsDropdownInnerComponent implements OnInit, OnDestroy {
   constructor(
     private layout: LayoutService,
-    private tokenHelper: TokenHelper,
+    public tokenHelper: TokenHelper,
   ) {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -19,6 +19,7 @@ export class QuickActionsDropdownInnerComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
     });
+    
   }
   tokenInfo: TokenInfoModel;
   extrasQuickActionsDropdownStyle: 'light' | 'dark' = 'light';

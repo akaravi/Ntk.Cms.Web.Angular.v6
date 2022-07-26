@@ -44,7 +44,7 @@
 
   <!--begin:Item-->
   <div class="col-6"
-    *ngIf="this.tokenInfo?.siteId>0 && (tokenInfo.userAccessAdminAllowToProfessionalData || tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 31 || tokenInfo.userAccessUserType == 11 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 32 || tokenInfo.userAccessUserType == 12)">
+    *ngIf="this.tokenInfo?.siteId>0 && this.tokenHelper.isAdminSite">
     <a [routerLink]="'core/site/edit'" class="d-block py-10 px-5 text-center bg-hover-light border-right">
       <span [inlineSVG]="'./assets/media/svg/icons/General/Settings-1.svg'" cacheSVG="true"
         class="svg-icon svg-icon-3x svg-icon-success m-0"></span>
@@ -56,7 +56,7 @@
   <!--end:Item-->
 
   <!--begin:Item-->
-  <div class="col-6" *ngIf="this.tokenInfo?.siteId>0 && (tokenInfo.userAccessAdminAllowToProfessionalData || tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 31 || tokenInfo.userAccessUserType == 11 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 32 || tokenInfo.userAccessUserType == 12)">
+  <div class="col-6" *ngIf="this.tokenInfo?.siteId>0 && this.tokenHelper.isAdminSite">
     <a [routerLink]="'core/site/modulelist'" class="d-block py-10 px-5 text-center bg-hover-light">
       <span [inlineSVG]="'./assets/media/svg/icons/General/Thunder-move.svg'" cacheSVG="true"
         class="svg-icon svg-icon-3x svg-icon-success m-0"></span>
