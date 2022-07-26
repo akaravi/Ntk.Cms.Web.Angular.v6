@@ -78,11 +78,16 @@ export class EstatePropertyWidgetAddComponent implements OnInit, OnDestroy {
     }
     );
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
-    const fastfilter = new FilterDataModel();
-    fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
-    fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
-    filterStatist2.filters.push(fastfilter);
+    const fastfilter1 = new FilterDataModel();
+    fastfilter1.propertyName = 'RecordStatus';
+    fastfilter1.value = EnumRecordStatus.Available;
+    fastfilter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+    filterStatist2.filters.push(fastfilter1);
+    const fastfilter2 = new FilterDataModel();
+    fastfilter2.propertyName = 'RecordStatus';
+    fastfilter2.value = EnumRecordStatus.DeniedConfirmed;
+    fastfilter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+    filterStatist2.filters.push(fastfilter2);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe({
       next: (ret) => {

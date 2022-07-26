@@ -224,11 +224,16 @@ export class EstatePropertyListComponent
       filterModel.filters.push(filter);
     }
     if (this.searchInChecking) {
-      const filter = new FilterDataModel();
-      filter.propertyName = "RecordStatus";
-      filter.value = EnumRecordStatus.Available;
-      filter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
-      filterModel.filters.push(filter);
+      const filter1 = new FilterDataModel();
+      filter1.propertyName = "RecordStatus";
+      filter1.value = EnumRecordStatus.Available;
+      filter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filterModel.filters.push(filter1);
+      const filter2 = new FilterDataModel();
+      filter2.propertyName = "RecordStatus";
+      filter2.value = EnumRecordStatus.DeniedConfirmed;
+      filter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filterModel.filters.push(filter2);
     }
 
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
