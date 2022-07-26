@@ -134,6 +134,7 @@ export class EstatePropertyListComponent
     }
   }
   // SubjectTitle : string
+  link: any;
   comment: string;
   author: string;
   dataSource: any;
@@ -390,7 +391,7 @@ export class EstatePropertyListComponent
   }
 
   onActionbuttonEditRow(
-    mode: EstatePropertyModel = this.tableRowSelected
+    mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
   ): void {
     if (!mode || !mode.id || mode.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -405,10 +406,15 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(["/estate/property/edit", this.tableRowSelected.id]);
+    if (event.ctrlKey) {
+      this.link = "/#/estate/property/edit/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/property/edit", this.tableRowSelected.id]);
+    }
   }
   onActionbuttonAdsRow(
-    mode: EstatePropertyModel = this.tableRowSelected
+    mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
   ): void {
     if (!mode || !mode.id || mode.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -423,10 +429,13 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate([
-      "/estate/property-ads/LinkPropertyId",
-      this.tableRowSelected.id,
-    ]);
+
+    if (event.ctrlKey) {
+      this.link = "/#/estate/property-ads/LinkPropertyId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/property-ads/LinkPropertyId", this.tableRowSelected.id]);
+    }
   }
 
   onActionbuttonDeleteRow(
@@ -563,8 +572,6 @@ export class EstatePropertyListComponent
     });
     //open popup
     this.loading.Stop(pName);
-
-
   }
 
 

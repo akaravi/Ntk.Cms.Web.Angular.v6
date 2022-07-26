@@ -17,6 +17,8 @@
 	"ACTION.PRICE": "Price",
 	"ACTION.DATA": "Data",
 	"ACTION.VIEW_STATISTICS": "View statistics",
+	"ACTION.VIEW_USER": "View user",
+	"ACTION.VIEW_SITE": "View site",
 	"ACTION.PROPERTYLIST": "Property list",
 	"ACTION.TARGET_PERIOD": "Target period",
 	"ACTION.TARGET_PERIOD_SPONSER": "Target period sponser",
