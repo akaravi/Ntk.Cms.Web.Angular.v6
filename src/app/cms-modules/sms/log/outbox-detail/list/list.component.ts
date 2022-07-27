@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  // SmsLogOutBoxDetailModel,
-  SmsLogOutBoxDetailService,
   SmsLogOutBoxModel,
   SmsLogOutBoxService,
   EnumSortType,
@@ -17,7 +15,6 @@ import {
   CoreCurrencyModel,
   SmsMainApiPathService,
   SmsMainApiPathModel,
-  EnumFilterDataModelSearchTypes,
   SmsLogOutBoxDetailModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
