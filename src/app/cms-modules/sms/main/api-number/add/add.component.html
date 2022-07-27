@@ -59,39 +59,39 @@
     <mat-icon *ngIf="fieldsInfo['Priority']?.accessEditField" matSuffix>mode_edit</mat-icon>
   </mat-form-field>
 
-  <!-- deliveryRelayUrl Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['deliveryRelayUrl']?.accessWatchField">
-    <mat-label>{{ fieldsInfo['deliveryRelayUrl']?.fieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.deliveryRelayUrl" [disabled]="!fieldsInfo['deliveryRelayUrl']?.accessAddField"
-      name="dataModel.deliveryRelayUrl" #deliveryRelayUrl type="text" placeholder="123" />
-    <mat-icon matSuffix *ngIf="dataModel.deliveryRelayUrl && fieldsInfo['deliveryRelayUrl']?.accessAddField" matSuffix
+  <!-- DeliveryRelayUrl Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessWatchField">
+    <mat-label>{{ fieldsInfo['DeliveryRelayUrl']?.fieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.deliveryRelayUrl" [disabled]="!fieldsInfo['DeliveryRelayUrl']?.accessAddField"
+      name="dataModel.deliveryRelayUrl" #DeliveryRelayUrl type="text" placeholder="123" />
+    <mat-icon matSuffix *ngIf="dataModel.deliveryRelayUrl && fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix
       mat-icon-button aria-label="Clear" (click)="dataModel.deliveryRelayUrl = ''">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['deliveryRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
-    <mat-hint  style="text-align: right;">{{ deliveryRelayUrl.value.length }} / 100</mat-hint>
+    <mat-icon *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
+    <mat-hint  style="text-align: left;">{{ DeliveryRelayUrl.value.length }} / 100</mat-hint>
   </mat-form-field>
-  <!-- deliveryRelayStatus Field -->
+  <!-- DeliveryRelayStatus Field -->
   <div class="ntk-full-width">
-    <mat-slide-toggle [(ngModel)]="dataModel.deliveryRelayStatus" *ngIf="fieldsInfo['deliveryRelayStatus']?.accessWatchField"
-      [disabled]="!fieldsInfo['deliveryRelayStatus']?.accessAddField" name="dataModel.deliveryRelayStatus">
-      {{fieldsInfo['deliveryRelayStatus']?.fieldTitle}}
+    <mat-slide-toggle [(ngModel)]="dataModel.deliveryRelayStatus" *ngIf="fieldsInfo['DeliveryRelayStatus']?.accessWatchField"
+      [disabled]="!fieldsInfo['DeliveryRelayStatus']?.accessAddField" name="dataModel.deliveryRelayStatus">
+      {{fieldsInfo['DeliveryRelayStatus']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
 
-  <!-- smsRelayUrl Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['smsRelayUrl']?.accessWatchField">
-    <mat-label>{{ fieldsInfo['smsRelayUrl']?.fieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.smsRelayUrl" [disabled]="!fieldsInfo['smsRelayUrl']?.accessAddField"
-      name="dataModel.smsRelayUrl" #smsRelayUrl type="text" placeholder="123" />
-    <mat-icon matSuffix *ngIf="dataModel.smsRelayUrl && fieldsInfo['smsRelayUrl']?.accessAddField" matSuffix
+  <!-- SmsRelayUrl Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SmsRelayUrl']?.accessWatchField">
+    <mat-label>{{ fieldsInfo['SmsRelayUrl']?.fieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.smsRelayUrl" [disabled]="!fieldsInfo['SmsRelayUrl']?.accessAddField"
+      name="dataModel.smsRelayUrl" #SmsRelayUrl type="text" placeholder="123" />
+    <mat-icon matSuffix *ngIf="dataModel.smsRelayUrl && fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix
       mat-icon-button aria-label="Clear" (click)="dataModel.smsRelayUrl = ''">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['smsRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
-    <mat-hint  style="text-align: right;">{{ smsRelayUrl.value.length }} / 100</mat-hint>
+    <mat-icon *ngIf="fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
+    <mat-hint  style="text-align: left;">{{ SmsRelayUrl.value.length }} / 100</mat-hint>
   </mat-form-field>
-  <!-- smsRelayStatus Field -->
+  <!-- SmsRelayStatus Field -->
   <div class="ntk-full-width">
-    <mat-slide-toggle [(ngModel)]="dataModel.smsRelayStatus" *ngIf="fieldsInfo['smsRelayStatus']?.accessWatchField"
-      [disabled]="!fieldsInfo['smsRelayStatus']?.accessAddField" name="dataModel.smsRelayStatus">
-      {{fieldsInfo['smsRelayStatus']?.fieldTitle}}
+    <mat-slide-toggle [(ngModel)]="dataModel.smsRelayStatus" *ngIf="fieldsInfo['SmsRelayStatus']?.accessWatchField"
+      [disabled]="!fieldsInfo['SmsRelayStatus']?.accessAddField" name="dataModel.smsRelayStatus">
+      {{fieldsInfo['SmsRelayStatus']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
 
@@ -123,15 +123,15 @@
       <mat-datepicker touchUi #ExpireDate></mat-datepicker>
     </mat-form-field>
 
-    <!-- actionMemo Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['actionMemo']?.fieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="actionMemo" [(ngModel)]="dataModel.actionMemo" name="dataModel.actionMemo" />
-      <mat-icon matSuffix *ngIf="dataModel.actionMemo && fieldsInfo['actionMemo']?.accessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.actionMemo = null">close</mat-icon>
-      <mat-datepicker-toggle matSuffix [for]="actionMemo"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #actionMemo></mat-datepicker>
-    </mat-form-field>
+    <!-- ActionMemo Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ActionMemo']?.accessWatchField">
+    <mat-label>{{ fieldsInfo['ActionMemo']?.fieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.actionMemo" [disabled]="!fieldsInfo['ActionMemo']?.accessEditField"
+      name="dataModel.actionMemo" #ActionMemo type="text" placeholder="1" />
+    <mat-icon matSuffix *ngIf="dataModel.actionMemo && fieldsInfo['ActionMemo']?.accessAddField" matSuffix
+      mat-icon-button aria-label="Clear" (click)="dataModel.actionMemo = ''">close</mat-icon>
+    <mat-icon *ngIf="fieldsInfo['ActionMemo']?.accessEditField" matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
