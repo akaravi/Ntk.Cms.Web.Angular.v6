@@ -57,15 +57,6 @@
     <mat-icon *ngIf="fieldsInfo['Priority']?.accessEditField" matSuffix>mode_edit</mat-icon>
   </mat-form-field>
 
-  <!-- DeliveryRelayUrl Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessWatchField">
-    <mat-label>{{ fieldsInfo['DeliveryRelayUrl']?.fieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.deliveryRelayUrl" [disabled]="!fieldsInfo['DeliveryRelayUrl']?.accessEditField"
-      name="dataModel.deliveryRelayUrl" #DeliveryRelayUrl type="text" placeholder="1" />
-    <mat-icon matSuffix *ngIf="dataModel.deliveryRelayUrl && fieldsInfo['DeliveryRelayUrl']?.accessEditField" matSuffix
-      mat-icon-button aria-label="Clear" (click)="dataModel.deliveryRelayUrl = ''">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessEditField" matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
   <!-- DeliveryRelayStatus Field -->
   <div class="ntk-full-width">
     <mat-slide-toggle [(ngModel)]="dataModel.deliveryRelayStatus" *ngIf="fieldsInfo['DeliveryRelayStatus']?.accessWatchField"
@@ -73,16 +64,16 @@
       {{fieldsInfo['DeliveryRelayStatus']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
-
-  <!-- SmsRelayUrl Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SmsRelayUrl']?.accessWatchField">
-    <mat-label>{{ fieldsInfo['SmsRelayUrl']?.fieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.smsRelayUrl" [disabled]="!fieldsInfo['SmsRelayUrl']?.accessEditField"
-      name="dataModel.smsRelayUrl" #SmsRelayUrl type="text" placeholder="1" />
-    <mat-icon matSuffix *ngIf="dataModel.smsRelayUrl && fieldsInfo['SmsRelayUrl']?.accessEditField" matSuffix
-      mat-icon-button aria-label="Clear" (click)="dataModel.smsRelayUrl = ''">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['SmsRelayUrl']?.accessEditField" matSuffix>mode_edit</mat-icon>
+  <!-- DeliveryRelayUrl Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessWatchField">
+    <mat-label>{{ fieldsInfo['DeliveryRelayUrl']?.fieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.deliveryRelayUrl" [readonly]="!dataModel.deliveryRelayStatus" [disabled]="!fieldsInfo['DeliveryRelayUrl']?.accessEditField"
+      name="dataModel.deliveryRelayUrl" #DeliveryRelayUrl type="text" placeholder="" />
+    <mat-icon matSuffix *ngIf="dataModel.deliveryRelayUrl && fieldsInfo['DeliveryRelayUrl']?.accessEditField" matSuffix
+      mat-icon-button aria-label="Clear" (click)="dataModel.deliveryRelayUrl = ''">close</mat-icon>
+    <mat-icon *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessEditField" matSuffix>mode_edit</mat-icon>
   </mat-form-field>
+  
   <!-- SmsRelayStatus Field -->
   <div class="ntk-full-width">
     <mat-slide-toggle [(ngModel)]="dataModel.smsRelayStatus" *ngIf="fieldsInfo['SmsRelayStatus']?.accessWatchField"
@@ -90,6 +81,15 @@
       {{fieldsInfo['SmsRelayStatus']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
+  <!-- SmsRelayUrl Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SmsRelayUrl']?.accessWatchField">
+    <mat-label>{{ fieldsInfo['SmsRelayUrl']?.fieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.smsRelayUrl" [readonly]="!dataModel.smsRelayStatus" [disabled]="!fieldsInfo['SmsRelayUrl']?.accessEditField"
+      name="dataModel.smsRelayUrl" #SmsRelayUrl type="text" placeholder="" />
+    <mat-icon matSuffix *ngIf="dataModel.smsRelayUrl && fieldsInfo['SmsRelayUrl']?.accessEditField" matSuffix
+      mat-icon-button aria-label="Clear" (click)="dataModel.smsRelayUrl = ''">close</mat-icon>
+    <mat-icon *ngIf="fieldsInfo['SmsRelayUrl']?.accessEditField" matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
 
     <!-- FirstSubmit Field -->
     <mat-form-field class="ntk-full-width">

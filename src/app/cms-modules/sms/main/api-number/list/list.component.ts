@@ -207,6 +207,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(SmsMainApiNumberAddComponent, {
       height: '90%',
+      width: '60%',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {

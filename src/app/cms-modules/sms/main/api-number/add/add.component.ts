@@ -75,7 +75,6 @@ export class SmsMainApiNumberAddComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-
   DataGetAccess(): void {
     this.smsMainApiNumberService
       .ServiceViewModel()
@@ -126,8 +125,6 @@ export class SmsMainApiNumberAddComponent implements OnInit {
     );
   }
 
-
-
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
@@ -135,8 +132,6 @@ export class SmsMainApiNumberAddComponent implements OnInit {
     this.formInfo.formSubmitAllow = false;
 
     this.DataAddContent();
-
-
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

@@ -59,16 +59,6 @@
     <mat-icon *ngIf="fieldsInfo['Priority']?.accessEditField" matSuffix>mode_edit</mat-icon>
   </mat-form-field>
 
-  <!-- DeliveryRelayUrl Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessWatchField">
-    <mat-label>{{ fieldsInfo['DeliveryRelayUrl']?.fieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.deliveryRelayUrl" [disabled]="!fieldsInfo['DeliveryRelayUrl']?.accessAddField"
-      name="dataModel.deliveryRelayUrl" #DeliveryRelayUrl type="text" placeholder="123" />
-    <mat-icon matSuffix *ngIf="dataModel.deliveryRelayUrl && fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix
-      mat-icon-button aria-label="Clear" (click)="dataModel.deliveryRelayUrl = ''">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
-    <mat-hint  style="text-align: left;">{{ DeliveryRelayUrl.value.length }} / 100</mat-hint>
-  </mat-form-field>
   <!-- DeliveryRelayStatus Field -->
   <div class="ntk-full-width">
     <mat-slide-toggle [(ngModel)]="dataModel.deliveryRelayStatus" *ngIf="fieldsInfo['DeliveryRelayStatus']?.accessWatchField"
@@ -76,17 +66,17 @@
       {{fieldsInfo['DeliveryRelayStatus']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
-
-  <!-- SmsRelayUrl Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SmsRelayUrl']?.accessWatchField">
-    <mat-label>{{ fieldsInfo['SmsRelayUrl']?.fieldTitle }}</mat-label>
-    <input matInput [(ngModel)]="dataModel.smsRelayUrl" [disabled]="!fieldsInfo['SmsRelayUrl']?.accessAddField"
-      name="dataModel.smsRelayUrl" #SmsRelayUrl type="text" placeholder="123" />
-    <mat-icon matSuffix *ngIf="dataModel.smsRelayUrl && fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix
-      mat-icon-button aria-label="Clear" (click)="dataModel.smsRelayUrl = ''">close</mat-icon>
-    <mat-icon *ngIf="fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
-    <mat-hint  style="text-align: left;">{{ SmsRelayUrl.value.length }} / 100</mat-hint>
+  <!-- DeliveryRelayUrl Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessWatchField && dataModel.deliveryRelayStatus">
+    <mat-label>{{ fieldsInfo['DeliveryRelayUrl']?.fieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.deliveryRelayUrl" [disabled]="!fieldsInfo['DeliveryRelayUrl']?.accessAddField"
+      name="dataModel.deliveryRelayUrl" #DeliveryRelayUrl type="text" placeholder="" />
+    <mat-icon matSuffix *ngIf="dataModel.deliveryRelayUrl && fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix
+      mat-icon-button aria-label="Clear" (click)="dataModel.deliveryRelayUrl = ''">close</mat-icon>
+    <mat-icon *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
+    <mat-hint  style="text-align: left;">{{ DeliveryRelayUrl.value.length }} / 100</mat-hint>
   </mat-form-field>
+  
   <!-- SmsRelayStatus Field -->
   <div class="ntk-full-width">
     <mat-slide-toggle [(ngModel)]="dataModel.smsRelayStatus" *ngIf="fieldsInfo['SmsRelayStatus']?.accessWatchField"
@@ -94,6 +84,16 @@
       {{fieldsInfo['SmsRelayStatus']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
+  <!-- SmsRelayUrl Field -->
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SmsRelayUrl']?.accessWatchField && dataModel.smsRelayStatus">
+    <mat-label>{{ fieldsInfo['SmsRelayUrl']?.fieldTitle }}</mat-label>
+    <input matInput [(ngModel)]="dataModel.smsRelayUrl" [disabled]="!fieldsInfo['SmsRelayUrl']?.accessAddField"
+      name="dataModel.smsRelayUrl" #SmsRelayUrl type="text" placeholder="" />
+    <mat-icon matSuffix *ngIf="dataModel.smsRelayUrl && fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix
+      mat-icon-button aria-label="Clear" (click)="dataModel.smsRelayUrl = ''">close</mat-icon>
+    <mat-icon *ngIf="fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
+    <mat-hint  style="text-align: left;">{{ SmsRelayUrl.value.length }} / 100</mat-hint>
+  </mat-form-field>
 
     <!-- FirstSubmit Field -->
     <mat-form-field class="ntk-full-width">
