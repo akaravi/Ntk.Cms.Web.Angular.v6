@@ -81,6 +81,20 @@
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.saleStatus|statusClass"></i> </mat-cell>
       </ng-container>
 
+      <!-- deliveryRelayStatus Column -->
+      <ng-container matColumnDef="deliveryRelayStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['deliveryRelayStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.deliveryRelayStatus|statusClass"></i> </mat-cell>
+      </ng-container>
+
+      <!-- smsRelayStatus Column -->
+      <ng-container matColumnDef="smsRelayStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['smsRelayStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.smsRelayStatus|statusClass"></i> </mat-cell>
+      </ng-container>
+
       <!-- FirstSubmit Column -->
       <ng-container matColumnDef="FirstSubmit">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['FirstSubmit']?.fieldTitle}}
