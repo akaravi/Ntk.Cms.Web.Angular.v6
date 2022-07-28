@@ -51,6 +51,13 @@
         {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- isDefault Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.isDefault" *ngIf="fieldsInfo['IsDefault']?.accessWatchField"
+        [disabled]="!fieldsInfo['IsDefault']?.accessAddField" name="dataModel.isDefault">
+        {{fieldsInfo['IsDefault']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
     <!-- Symbol Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Symbol']?.fieldTitle}}</mat-label>

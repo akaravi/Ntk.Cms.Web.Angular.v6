@@ -79,6 +79,7 @@ export class CoreCurrencyListComponent implements OnInit, OnDestroy {
     'Id',
     'RecordStatus',
     'Title',
+    'IsDefault',
     'Symbol',
     'ExchangeBuyRatio',
     'ExchangeSaleRatio',
