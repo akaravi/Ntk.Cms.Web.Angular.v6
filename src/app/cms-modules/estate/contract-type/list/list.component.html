@@ -12,7 +12,8 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
@@ -68,18 +69,25 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasSalePrice | boolclass"></i></mat-cell>
       </ng-container>
-      <!-- HasRentPrice Column -->
-      <ng-container matColumnDef="HasRentPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasRentPrice']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasRentPrice | boolclass"></i> </mat-cell>
-      </ng-container>
       <!-- HasDepositPrice Column -->
       <ng-container matColumnDef="HasDepositPrice">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasDepositPrice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasDepositPrice | boolclass"></i> </mat-cell>
       </ng-container>
+      <!-- HasPeriodPrice Column -->
+      <ng-container matColumnDef="HasPeriodPrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasPeriodPrice']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasPeriodPrice | boolclass"></i> </mat-cell>
+      </ng-container>
+      <!-- HasRentPrice Column -->
+      <ng-container matColumnDef="HasRentPrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasRentPrice']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasRentPrice | boolclass"></i> </mat-cell>
+      </ng-container>
+
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">

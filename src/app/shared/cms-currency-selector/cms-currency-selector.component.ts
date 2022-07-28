@@ -63,10 +63,10 @@ export class CmsCurrencySelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreCurrencyModel): string | undefined {
-    return model ? (model.title) : undefined;
+    return model ? (model.titleML) : undefined;
   }
   displayOption(model?: CoreCurrencyModel): string | undefined {
-    return model ? (model.title) : undefined;
+    return model ? (model.titleML) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreCurrencyModel[]> {
     const filteModel = new FilterModel();

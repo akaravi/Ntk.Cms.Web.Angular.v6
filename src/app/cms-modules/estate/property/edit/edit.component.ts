@@ -24,6 +24,7 @@ import {
   EstatePropertyDetailGroupService,
   TokenInfoModel,
   EnumManageUserAccessUserTypes,
+  CoreCurrencyModel,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -45,7 +46,6 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
 })
 export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   requestId = '';
@@ -62,7 +62,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     public tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -83,7 +83,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModelEstateContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
   dataModel: EstatePropertyModel = new EstatePropertyModel();
-
+  dataModelCorCurrencySelector = new CoreCurrencyModel();
   dataFileModelImgaes = new Map<number, string>();
   dataFileModelFiles = new Map<number, string>();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -95,7 +95,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   contractDataModel = new EstateContractModel();
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
-  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'Action'];
+  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice','DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
 
   propertyDetails: Map<string, string> = new Map<string, string>();
   /** map */
@@ -502,6 +502,11 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.contractDataModel.rentPrice = 0;
     }
   }
+  onActionClickPeriodPriceAllowAgreement(): void {
+    if (this.contractDataModel.periodPriceByAgreement) {
+      this.contractDataModel.periodPrice = 0;
+    }
+  }
   onActionClickDepositPriceByAgreement(): void {
     if (this.contractDataModel.depositPriceByAgreement) {
       this.contractDataModel.depositPrice = 0;
@@ -523,6 +528,16 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
         this.receiveMap();
       }
     });
+  }
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.contractDataModel.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.contractDataModel.linkCoreCurrencyId = model.id;
   }
 }
 

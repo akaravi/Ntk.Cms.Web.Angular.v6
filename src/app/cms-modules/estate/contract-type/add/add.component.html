@@ -21,6 +21,27 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- titleML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label> {{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleML" name="dataModel.titleML" type="text" [disabled]="true" />
+    </mat-form-field>
+    <!-- titleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
+        #titleResourceLanguage type="text" placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}"
+        minlength="1" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ titleResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="titleResourceLanguage.errors?.required">
+        titleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+
     <!-- TitleSoldIt Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleSoldIt']?.fieldTitle}}</mat-label>
@@ -34,26 +55,53 @@
         TitleSoldIt is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- titleSoldItML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label> {{fieldsInfo['TitleSoldIt']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleSoldItML" name="dataModel.titleSoldItML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
+    <!-- titleSoldItResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['TitleSoldItResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleSoldItResourceLanguage" name="dataModel.titleSoldItResourceLanguage"
+        #titleSoldItResourceLanguage type="text" placeholder="{{fieldsInfo['TitleSoldItResourceLanguage']?.fieldTitle}}"
+        minlength="1" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleSoldItResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleSoldItResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ titleSoldItResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="titleSoldItResourceLanguage.errors?.required">
+        titleSoldItResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
     <div class="ntk-full-width">
       <!-- HasSalePrice Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.hasSalePrice" *ngIf="fieldsInfo['HasSalePrice']?.accessWatchField"
-        [disabled]="!fieldsInfo['HasSalePrice']?.accessAddField" name="dataModel.hasSalePrice">
+        [disabled]="!fieldsInfo['HasSalePrice']?.accessEditField" name="dataModel.hasSalePrice">
         {{fieldsInfo['HasSalePrice']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
       <!-- HasRentPrice Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.hasRentPrice" *ngIf="fieldsInfo['HasRentPrice']?.accessWatchField"
-        [disabled]="!fieldsInfo['HasRentPrice']?.accessAddField" name="dataModel.hasRentPrice">
+        [disabled]="!fieldsInfo['HasRentPrice']?.accessEditField" name="dataModel.hasRentPrice">
         {{fieldsInfo['HasRentPrice']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
       <!-- HasDepositPrice Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.hasDepositPrice" *ngIf="fieldsInfo['HasDepositPrice']?.accessWatchField"
-        [disabled]="!fieldsInfo['HasDepositPrice']?.accessAddField" name="dataModel.hasDepositPrice">
+        [disabled]="!fieldsInfo['HasDepositPrice']?.accessEditField" name="dataModel.hasDepositPrice">
         {{fieldsInfo['HasDepositPrice']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <div class="ntk-full-width">
+      <!-- HasPeriodPrice Field -->
+      <mat-slide-toggle [(ngModel)]="dataModel.hasPeriodPrice" *ngIf="fieldsInfo['HasPeriodPrice']?.accessWatchField"
+        [disabled]="!fieldsInfo['HasPeriodPrice']?.accessEditField" name="dataModel.hasPeriodPrice">
+        {{fieldsInfo['HasPeriodPrice']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
@@ -71,12 +119,13 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+
     <hr *ngIf="dataModel.hasSalePrice">
     <div class="ntk-full-width" *ngIf="dataModel.hasSalePrice">
       <!-- SalePriceAllowAgreement Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.salePriceAllowAgreement"
         *ngIf="fieldsInfo['SalePriceAllowAgreement']?.accessWatchField"
-        [disabled]="!fieldsInfo['SalePriceAllowAgreement']?.accessAddField" name="dataModel.salePriceAllowAgreement">
+        [disabled]="!fieldsInfo['SalePriceAllowAgreement']?.accessEditField" name="dataModel.salePriceAllowAgreement">
         {{fieldsInfo['SalePriceAllowAgreement']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
@@ -84,49 +133,30 @@
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasSalePrice">
       <mat-label>{{fieldsInfo['TitleSalePrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleSalePrice" name="dataModel.titleSalePrice" #TitleSalePrice type="text"
-        placeholder="{{fieldsInfo['TitleSalePrice']?.fieldTitle}}" minlength="1" maxlength="100" required />
+        placeholder="{{fieldsInfo['TitleSalePrice']?.fieldTitle}}" minlength="1" maxlength="100" />
       <mat-icon matSuffix *ngIf="dataModel.titleSalePrice" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleSalePrice = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint style="text-align: left;">{{ TitleSalePrice.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="TitleSalePrice.errors?.required">
-        TitleSalePrice is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
+
     </mat-form-field>
-    <!-- UnitSalePrice Field -->
+    <!-- titleSalePriceML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label> {{fieldsInfo['TitleSalePrice']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleSalePriceML" name="dataModel.titleSalePriceML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
+    <!-- titleSalePriceResourceLanguage Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasSalePrice">
-      <mat-label>{{fieldsInfo['UnitSalePrice']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.unitSalePrice" name="dataModel.unitSalePrice" #UnitSalePrice type="text"
-        placeholder="{{fieldsInfo['UnitSalePrice']?.fieldTitle}}" minlength="1" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.unitSalePrice" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.unitSalePrice = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleSalePriceResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleSalePriceResourceLanguage"
+        name="dataModel.titleSalePriceResourceLanguage" #titleSalePriceResourceLanguage type="text"
+        placeholder="{{fieldsInfo['TitleSalePriceResourceLanguage']?.fieldTitle}}" minlength="1" maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.titleSalePriceResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleSalePriceResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ UnitSalePrice.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="UnitSalePrice.errors?.required">
-        UnitSalePrice is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
-    <!-- SalePriceMin Field -->
-    <mat-form-field class="ntk-full-width"
-      *ngIf="dataModel.hasSalePrice && fieldsInfo['SalePriceMin']?.accessWatchField">
-      <mat-label> {{fieldsInfo['SalePriceMin']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.salePriceMin" name="dataModel.salePriceMin" #SalePriceMin type="number"
-        [disabled]="!fieldsInfo['SalePriceMin']?.accessAddField"
-        placeholder="{{fieldsInfo['SalePriceMin']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.salePriceMin" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.salePriceMin = 1">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <!-- SalePriceMax Field -->
-    <mat-form-field class="ntk-full-width"
-      *ngIf="dataModel.hasSalePrice && fieldsInfo['SalePriceMax']?.accessWatchField">
-      <mat-label> {{fieldsInfo['SalePriceMax']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.salePriceMax" name="dataModel.salePriceMax" #SalePriceMax type="number"
-        [disabled]="!fieldsInfo['SalePriceMax']?.accessAddField"
-        placeholder="{{fieldsInfo['SalePriceMax']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.salePriceMax" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.salePriceMax = 1">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ titleSalePriceResourceLanguage.value.length }} / 100</mat-hint>
+
     </mat-form-field>
 
 
@@ -139,7 +169,7 @@
       <!-- RentPriceAllowAgreement Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.rentPriceAllowAgreement"
         *ngIf="fieldsInfo['RentPriceAllowAgreement']?.accessWatchField"
-        [disabled]="!fieldsInfo['RentPriceAllowAgreement']?.accessAddField" name="dataModel.rentPriceAllowAgreement">
+        [disabled]="!fieldsInfo['RentPriceAllowAgreement']?.accessEditField" name="dataModel.rentPriceAllowAgreement">
         {{fieldsInfo['RentPriceAllowAgreement']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
@@ -147,49 +177,60 @@
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasRentPrice">
       <mat-label>{{fieldsInfo['TitleRentPrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleRentPrice" name="dataModel.titleRentPrice" #TitleRentPrice type="text"
-        placeholder="{{fieldsInfo['TitleRentPrice']?.fieldTitle}}" minlength="1" maxlength="100" required />
+        placeholder="{{fieldsInfo['TitleRentPrice']?.fieldTitle}}" minlength="1" maxlength="100" />
       <mat-icon matSuffix *ngIf="dataModel.titleRentPrice" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleRentPrice = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint style="text-align: left;">{{ TitleRentPrice.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="TitleRentPrice.errors?.required">
-        TitleRentPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
+
     </mat-form-field>
-    <!-- UnitRentPrice Field -->
+    <!-- TitleRentPriceML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label> {{fieldsInfo['TitleRentPrice']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleRentPriceML" name="dataModel.titleRentPriceML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
+    <!-- titleRentPriceResourceLanguage Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasRentPrice">
-      <mat-label>{{fieldsInfo['UnitRentPrice']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.unitRentPrice" name="dataModel.unitRentPrice" #UnitRentPrice type="text"
-        placeholder="{{fieldsInfo['UnitRentPrice']?.fieldTitle}}" minlength="1" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.unitRentPrice" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.unitRentPrice = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleRentPriceResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleRentPriceResourceLanguage"
+        name="dataModel.titleRentPriceResourceLanguage" #titleRentPriceResourceLanguage type="text"
+        placeholder="{{fieldsInfo['TitleRentPriceResourceLanguage']?.fieldTitle}}" minlength="1" maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.titleRentPriceResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleRentPriceResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ UnitRentPrice.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="UnitRentPrice.errors?.required">
-        UnitRentPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
+      <mat-hint style="text-align: left;">{{ titleRentPriceResourceLanguage.value.length }} / 100</mat-hint>
+
     </mat-form-field>
-    <!-- RentPriceMin Field -->
-    <mat-form-field class="ntk-full-width"
-      *ngIf="dataModel.hasRentPrice && fieldsInfo['RentPriceMin']?.accessWatchField">
-      <mat-label> {{fieldsInfo['RentPriceMin']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.rentPriceMin" name="dataModel.rentPriceMin" #RentPriceMin type="number"
-        [disabled]="!fieldsInfo['RentPriceMin']?.accessAddField"
-        placeholder="{{fieldsInfo['RentPriceMin']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.rentPriceMin" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.rentPriceMin = 1">close</mat-icon>
+    <!-- hasRentPrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasRentPrice">
+      <mat-label>{{fieldsInfo['RentPricePriodTitle']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.rentPricePriodTitle" name="dataModel.rentPricePriodTitle"
+        #rentPricePriodTitle type="text" placeholder="{{fieldsInfo['RentPricePriodTitle']?.fieldTitle}}" minlength="1"
+        maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.rentPricePriodTitle" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.rentPricePriodTitle = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ rentPricePriodTitle.value.length }} / 100</mat-hint>
+
     </mat-form-field>
-    <!-- RentPriceMax Field -->
-    <mat-form-field class="ntk-full-width"
-      *ngIf="dataModel.hasRentPrice && fieldsInfo['RentPriceMax']?.accessWatchField">
-      <mat-label> {{fieldsInfo['RentPriceMax']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.rentPriceMax" name="dataModel.rentPriceMax" #RentPriceMax type="number"
-        [disabled]="!fieldsInfo['RentPriceMax']?.accessAddField"
-        placeholder="{{fieldsInfo['RentPriceMax']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.rentPriceMax" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.rentPriceMax = 1">close</mat-icon>
+    <!-- rentPricePriodTitleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label> {{fieldsInfo['RentPricePriodTitle']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.rentPricePriodTitleML" name="dataModel.rentPricePriodTitleML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
+    <!-- rentPricePriodTitleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasRentPrice">
+      <mat-label>{{fieldsInfo['RentPricePriodTitleResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.rentPricePriodTitleResourceLanguage"
+        name="dataModel.rentPricePriodTitleResourceLanguage" #rentPricePriodTitleResourceLanguage type="text"
+        placeholder="{{fieldsInfo[RrentPricePriodTitleResourceLanguage']?.fieldTitle}}" minlength="1" maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.rentPricePriodTitleResourceLanguage" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.rentPricePriodTitleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ rentPricePriodTitleResourceLanguage.value.length }} / 100</mat-hint>
+
     </mat-form-field>
 
 
@@ -199,7 +240,7 @@
       <!-- DepositPriceAllowAgreement Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.depositPriceAllowAgreement"
         *ngIf="fieldsInfo['DepositPriceAllowAgreement']?.accessWatchField"
-        [disabled]="!fieldsInfo['DepositPriceAllowAgreement']?.accessAddField"
+        [disabled]="!fieldsInfo['DepositPriceAllowAgreement']?.accessEditField"
         name="dataModel.depositPriceAllowAgreement">
         {{fieldsInfo['DepositPriceAllowAgreement']?.fieldTitle}}
       </mat-slide-toggle>
@@ -208,53 +249,71 @@
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasDepositPrice">
       <mat-label>{{fieldsInfo['TitleDepositPrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleDepositPrice" name="dataModel.titleDepositPrice" #TitleDepositPrice
-        type="text" placeholder="{{fieldsInfo['TitleDepositPrice']?.fieldTitle}}" minlength="1" maxlength="100"
-        required />
+        type="text" placeholder="{{fieldsInfo['TitleDepositPrice']?.fieldTitle}}" minlength="1" maxlength="100" />
       <mat-icon matSuffix *ngIf="dataModel.titleDepositPrice" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleDepositPrice = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint style="text-align: left;">{{ TitleDepositPrice.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="TitleDepositPrice.errors?.required">
-        TitleDepositPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
+
     </mat-form-field>
-    <!-- UnitDepositPrice Field -->
+    <!-- titleDepositPriceML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label> {{fieldsInfo['TitleDepositPriceML']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleDepositPriceML" name="dataModel.titleDepositPriceML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
+    <!-- titleDepositPriceResourceLanguage Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasDepositPrice">
-      <mat-label>{{fieldsInfo['UnitDepositPrice']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.unitDepositPrice" name="dataModel.unitDepositPrice" #UnitDepositPrice
-        type="text" placeholder="{{fieldsInfo['UnitDepositPrice']?.fieldTitle}}" minlength="1" maxlength="100"
-        required />
-      <mat-icon matSuffix *ngIf="dataModel.unitDepositPrice" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.unitDepositPrice = ''">close</mat-icon>
+      <mat-label>{{fieldsInfo['TitleDepositPriceResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleDepositPriceResourceLanguage"
+        name="dataModel.titleDepositPriceResourceLanguage" #titleDepositPriceResourceLanguage type="text"
+        placeholder="{{fieldsInfo['TitleDepositPriceResourceLanguage']?.fieldTitle}}" minlength="1" maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.titleDepositPriceResourceLanguage" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.titleDepositPriceResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ UnitDepositPrice.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="UnitDepositPrice.errors?.required">
-        UnitDepositPrice is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
-    <!-- DepositPriceMin Field -->
-    <mat-form-field class="ntk-full-width"
-      *ngIf="dataModel.hasDepositPrice && fieldsInfo['DepositPriceMin']?.accessWatchField">
-      <mat-label> {{fieldsInfo['DepositPriceMin']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.depositPriceMin" name="dataModel.depositPriceMin" #DepositPriceMin
-        type="number" [disabled]="!fieldsInfo['DepositPriceMin']?.accessAddField"
-        placeholder="{{fieldsInfo['DepositPriceMin']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.depositPriceMin" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.depositPriceMin = 1">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <!-- DepositPriceMax Field -->
-    <mat-form-field class="ntk-full-width"
-      *ngIf="dataModel.hasDepositPrice &&fieldsInfo['DepositPriceMax']?.accessWatchField">
-      <mat-label> {{fieldsInfo['DepositPriceMax']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.depositPriceMax" name="dataModel.depositPriceMax" #DepositPriceMax
-        type="number" [disabled]="!fieldsInfo['DepositPriceMax']?.accessAddField"
-        placeholder="{{fieldsInfo['DepositPriceMax']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.depositPriceMax" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.depositPriceMax = 1">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ titleDepositPriceResourceLanguage.value.length }} / 100</mat-hint>
+
     </mat-form-field>
 
+    <hr *ngIf="dataModel.hasPeriodPrice">
+    <div class="ntk-full-width" *ngIf="dataModel.hasPeriodPrice">
+      <!-- PeriodPriceAllowAgreement Field -->
+      <mat-slide-toggle [(ngModel)]="dataModel.periodPriceAllowAgreement"
+        *ngIf="fieldsInfo['PeriodPriceAllowAgreement']?.accessWatchField"
+        [disabled]="!fieldsInfo['PeriodPriceAllowAgreement']?.accessEditField"
+        name="dataModel.periodPriceAllowAgreement">
+        {{fieldsInfo['PeriodPriceAllowAgreement']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- TitlePeriodPrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasPeriodPrice">
+      <mat-label>{{fieldsInfo['TitlePeriodPrice']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titlePeriodPrice" name="dataModel.titlePeriodPrice" #TitlePeriodPrice
+        type="text" placeholder="{{fieldsInfo['TitlePeriodPrice']?.fieldTitle}}" minlength="1" maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.titlePeriodPrice" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titlePeriodPrice = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ TitlePeriodPrice.value.length }} / 100</mat-hint>
+
+    </mat-form-field>
+    <!-- titlePeriodPriceML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label> {{fieldsInfo['TitlePeriodPrice']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titlePeriodPriceML" name="dataModel.titlePeriodPriceML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
+    <!-- titlePeriodPriceResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.hasPeriodPrice">
+      <mat-label>{{fieldsInfo['TitlePeriodPriceResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titlePeriodPriceResourceLanguage"
+        name="dataModel.titlePeriodPriceResourceLanguage" #titlePeriodPriceResourceLanguage type="text"
+        placeholder="{{fieldsInfo['TitlePeriodPriceResourceLanguage']?.fieldTitle}}" minlength="1" maxlength="100" />
+      <mat-icon matSuffix *ngIf="dataModel.titlePeriodPriceResourceLanguage" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.titlePeriodPriceResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint style="text-align: left;">{{ titlePeriodPriceResourceLanguage.value.length }} / 100</mat-hint>
+
+    </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

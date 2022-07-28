@@ -27,6 +27,7 @@ import {
   EstatePropertyTypeLanduseService,
   EnumManageUserAccessUserTypes,
   TokenInfoModel,
+  CoreCurrencyModel,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -84,7 +85,7 @@ export class EstatePropertyAddComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      
+
     });
   }
 
@@ -110,7 +111,7 @@ export class EstatePropertyAddComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-
+  dataModelCorCurrencySelector = new CoreCurrencyModel();
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
@@ -485,16 +486,16 @@ export class EstatePropertyAddComponent implements OnInit {
           // stepper.previous();
         }, 10);
       }
-      
+
       if (!this.formGroup.valid) {
         this.cmsToastrService.typeErrorFormInvalid();
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;
           // stepper.previous();
         }, 10);
-      }      
+      }
     }
-    if (event.previouslySelectedStep.label ==="معامله" || event.previouslySelectedStep.label ==="Transaction") {
+    if (event.previouslySelectedStep.label === "معامله" || event.previouslySelectedStep.label === "Transaction") {
 
       if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
@@ -533,6 +534,11 @@ export class EstatePropertyAddComponent implements OnInit {
       this.contractDataModel.rentPrice = 0;
     }
   }
+  onActionClickPeriodPriceAllowAgreement(): void {
+    if (this.contractDataModel.periodPriceByAgreement) {
+      this.contractDataModel.periodPrice = 0;
+    }
+  }
   onActionClickDepositPriceByAgreement(): void {
     if (this.contractDataModel.depositPriceByAgreement) {
       this.contractDataModel.depositPrice = 0;
@@ -553,5 +559,15 @@ export class EstatePropertyAddComponent implements OnInit {
         this.receiveMap();
       }
     });
+  }
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.contractDataModel.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.contractDataModel.linkCoreCurrencyId = model.id;
   }
 }

@@ -72,7 +72,6 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     },
   ];
   constructor(
-    @Inject(DOCUMENT) private document,
     private translationService: TranslationService,
     public coreAuthService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
@@ -122,29 +121,31 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       this.cmsToastrService.toastr.info(message, title);
       // this.loadingStatus = true;
       this.coreAuthService.ServiceRenewToken(authModel).subscribe(
-        (next) => {
-          // this.loadingStatus = false;
-          if (next.isSuccess) {
-            this.cdr.detectChanges();
-            if (next.item.language === lang) {
-              this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed') , title);
-              // if (lang == 'fa' || lang == 'ar') {
-              //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
-              // }
-              // else {
-              //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
-              // }
-              // window.location.reload();
+        {
+          next(ret) {
+            // this.loadingStatus = false;
+            if (ret.isSuccess) {
+              this.cdr.detectChanges();
+              if (ret.item.language === lang) {
+                this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed'), title);
+                // if (lang == 'fa' || lang == 'ar') {
+                //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
+                // }
+                // else {
+                //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
+                // }
+                // window.location.reload();
+              } else {
+                this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
+              }
             } else {
-              this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
+              this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
             }
-          } else {
-            this.cmsToastrService.typeErrorAccessChange(next.errorMessage);
-          }
 
-        },
-        (error) => {
-          this.cmsToastrService.typeErrorAccessChange(error);
+          },
+          error(err) {
+            this.cmsToastrService.typeErrorAccessChange(err);
+          }
         }
       );
     }
