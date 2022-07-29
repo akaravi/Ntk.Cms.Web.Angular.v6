@@ -7,7 +7,8 @@ import {
   CoreGuideService,
   CoreGuideModel,
   AccessModel,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import {
   Component,
@@ -95,7 +96,7 @@ export class CoreGuideEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.coreGuideService.setAccessLoad();
-
+    this.coreGuideService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreGuideService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

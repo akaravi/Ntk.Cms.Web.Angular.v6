@@ -7,6 +7,7 @@ import {
   BiographyCategoryService,
   BiographyCategoryModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -85,6 +86,7 @@ export class BiographyCategoryEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.biographyCategoryService.setAccessLoad();
+    this.biographyCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.biographyCategoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

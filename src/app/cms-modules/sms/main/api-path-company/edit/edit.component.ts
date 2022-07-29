@@ -7,6 +7,7 @@ import {
   DataFieldInfoModel,
   SmsMainApiPathCompanyService,
   SmsMainApiPathCompanyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -90,6 +91,7 @@ export class SmsMainApiPathCompanyEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiPathCompanyService.setAccessLoad();
+    this.smsMainApiPathCompanyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.smsMainApiPathCompanyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

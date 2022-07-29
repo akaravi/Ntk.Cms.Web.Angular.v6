@@ -7,6 +7,7 @@ import {
   CoreModuleLogSiteUserCreditBlockedModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -105,7 +106,7 @@ export class CoreModuleLogSiteUserCreditBlockedEditComponent implements OnInit, 
 
     /*َAccess Field*/
     this.coreModuleLogSiteUserCreditBlockedService.setAccessLoad();
-
+    this.coreModuleLogSiteUserCreditBlockedService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleLogSiteUserCreditBlockedService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

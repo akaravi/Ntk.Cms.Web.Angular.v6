@@ -14,6 +14,7 @@ import {
   CoreSiteCategoryModel,
   DataFieldInfoModel,
   EnumInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
@@ -103,6 +104,7 @@ export class ApplicationSourceEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.applicationSourceService.setAccessLoad();
+    this.applicationSourceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.applicationSourceService
       .ServiceGetOneById(requestId)
       .subscribe({

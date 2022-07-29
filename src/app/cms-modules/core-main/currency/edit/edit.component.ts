@@ -7,6 +7,7 @@ import {
   CoreCurrencyService,
   CoreCurrencyModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -93,6 +94,7 @@ export class CoreCurrencyEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreCurrencyService.setAccessLoad();
+    this.coreCurrencyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreCurrencyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

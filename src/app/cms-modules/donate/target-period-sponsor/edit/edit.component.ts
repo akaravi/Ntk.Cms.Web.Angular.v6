@@ -8,6 +8,7 @@ import {
   DonateTargetPeriodSponsorModel,
   DataFieldInfoModel,
   DonateTargetCategoryModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -92,6 +93,7 @@ export class DonateTargetPeriodSponserEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateTargetPeriodSponsorService.setAccessLoad();
+    this.donateTargetPeriodSponsorService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.donateTargetPeriodSponsorService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

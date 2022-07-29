@@ -8,6 +8,7 @@ import {
   CoreTokenMicroServiceModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -120,8 +121,7 @@ export class CoreTokenMicroServiceEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreTokenMicroServiceService.setAccessLoad();
-
-
+    this.coreTokenMicroServiceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreTokenMicroServiceService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

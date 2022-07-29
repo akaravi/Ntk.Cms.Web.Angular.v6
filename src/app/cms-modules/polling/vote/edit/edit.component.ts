@@ -7,6 +7,7 @@ import {
   PollingVoteService,
   PollingVoteModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -99,6 +100,7 @@ export class PollingVoteEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.pollingVoteService.setAccessLoad();
+    this.pollingVoteService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.pollingVoteService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

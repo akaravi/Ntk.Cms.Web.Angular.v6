@@ -7,6 +7,7 @@ import {
   WebDesignerMainPageDependencyModel,
   DataFieldInfoModel,
   CoreModuleModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -77,6 +78,7 @@ export class WebDesignerMainPageDependencyEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.webDesignerMainPageDependencyService.setAccessLoad();
+    this.webDesignerMainPageDependencyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.webDesignerMainPageDependencyService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

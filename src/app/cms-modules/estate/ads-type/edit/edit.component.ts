@@ -7,6 +7,7 @@ import {
   EstateAdsTypeService,
   EstateAdsTypeModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -81,6 +82,7 @@ export class EstateAdsTypeEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateAdsTypeService.setAccessLoad();
+    this.estateAdsTypeService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estateAdsTypeService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

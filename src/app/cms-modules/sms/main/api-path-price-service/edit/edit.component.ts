@@ -12,6 +12,7 @@ import {
   CoreSiteCategoryModel,
   CoreSiteModel,
   CoreUserGroupModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -111,6 +112,7 @@ export class SmsMainApiPathPriceServiceEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiPathPriceServiceService.setAccessLoad();
+    this.smsMainApiPathPriceServiceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.smsMainApiPathPriceServiceService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

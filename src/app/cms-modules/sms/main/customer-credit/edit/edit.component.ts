@@ -7,6 +7,7 @@ import {
   DataFieldInfoModel,
   SmsMainCustomerCreditModel,
   SmsMainCustomerCreditService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -105,6 +106,7 @@ export class SmsMainCustomerCreditEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.SmsMainCustomerCreditService.setAccessLoad();
+    this.SmsMainCustomerCreditService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.SmsMainCustomerCreditService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

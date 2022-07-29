@@ -9,6 +9,7 @@ import {
   DataFieldInfoModel,
   CoreLocationModel,
   CoreUserModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -94,6 +95,7 @@ export class EstateAccountUserEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateAccountUserService.setAccessLoad();
+    this.estateAccountUserService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estateAccountUserService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

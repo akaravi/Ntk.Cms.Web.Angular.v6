@@ -10,6 +10,7 @@ import {
   SmsMainApiPathCompanyModel,
   SmsMainApiPathPublicConfigModel,
   SmsMainApiPathAliasJsonModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -96,6 +97,7 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsLogInBoxService.setAccessLoad();
+    this.smsLogInBoxService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     // this.smsLogInBoxService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe({
     //   next: (ret) => {
     //     this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

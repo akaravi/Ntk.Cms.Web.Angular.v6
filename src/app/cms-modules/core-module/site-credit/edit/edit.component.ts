@@ -7,6 +7,7 @@ import {
   CoreModuleSiteCreditService,
   CoreModuleSiteCreditModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -107,6 +108,7 @@ export class CoreModuleSiteCreditEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreModuleSiteCreditService.setAccessLoad();
+    this.coreModuleSiteCreditService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleSiteCreditService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -25,6 +25,7 @@ import {
   TokenInfoModel,
   EnumManageUserAccessUserTypes,
   CoreCurrencyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -153,6 +154,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'ServiceGetOneById';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
     this.estatePropertyService.setAccessLoad();
+    this.estatePropertyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

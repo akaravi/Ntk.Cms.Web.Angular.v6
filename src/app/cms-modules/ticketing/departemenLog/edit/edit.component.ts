@@ -10,6 +10,7 @@ import {
   FormInfoModel,
   NtkCmsApiStoreService,
   TokenInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -87,6 +88,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     this.ticketingDepartemenLogService.setAccessLoad();
+    this.ticketingDepartemenLogService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.ticketingDepartemenLogService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

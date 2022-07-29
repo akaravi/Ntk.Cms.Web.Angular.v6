@@ -8,6 +8,7 @@ import {
   ContactContentModel,
   DataFieldInfoModel,
   ContactCategoryModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -98,6 +99,7 @@ export class ContactContentEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.ContactContentService.setAccessLoad();
+    this.ContactContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.ContactContentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

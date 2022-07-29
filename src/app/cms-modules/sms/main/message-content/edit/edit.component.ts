@@ -8,6 +8,7 @@ import {
   SmsMainMessageContentModel,
   DataFieldInfoModel,
   SmsMainMessageCategoryModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -98,6 +99,7 @@ export class SmsMainMessageContentEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.SmsMainMessageContentService.setAccessLoad();
+    this.SmsMainMessageContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.SmsMainMessageContentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

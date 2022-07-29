@@ -9,6 +9,7 @@ import {
   WebDesignerMainPageDependencyModel,
   WebDesignerEnumService,
   CoreSiteCategoryModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -88,6 +89,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     const pName = this.constructor.name + 'webDesignerMainPageService.ServiceGetOneById';
     this.loading.Start(pName);
     this.webDesignerMainPageService.setAccessLoad();
+    this.webDesignerMainPageService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.webDesignerMainPageService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

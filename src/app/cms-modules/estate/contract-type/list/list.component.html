@@ -67,7 +67,7 @@
       <ng-container matColumnDef="HasSalePrice">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasSalePrice']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasSalePrice | boolclass"></i></mat-cell>
+        <mat-cell *matCellDef="let row" > <i [ngClass]="row.hasSalePrice | boolclass"></i></mat-cell>
       </ng-container>
       <!-- HasDepositPrice Column -->
       <ng-container matColumnDef="HasDepositPrice">

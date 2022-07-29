@@ -7,6 +7,7 @@ import {
   HyperShopCategoryService,
   HyperShopCategoryModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -84,6 +85,7 @@ export class HyperShopCategoryEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.hyperShopCategoryService.setAccessLoad();
+    this.hyperShopCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.hyperShopCategoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -11,6 +11,7 @@ import {
   CoreSiteModel,
   CoreUserModel,
   TokenInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -128,6 +129,7 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     this.coreUserClaimContentService.setAccessLoad();
+    this.coreUserClaimContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreUserClaimContentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

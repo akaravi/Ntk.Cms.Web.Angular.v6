@@ -7,6 +7,7 @@ import {
   ApiTelegramBotConfigService,
   ApiTelegramBotConfigModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -95,6 +96,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.apiTelegramBotConfigService.setAccessLoad();
+    this.apiTelegramBotConfigService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.apiTelegramBotConfigService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.dataModel = ret.item;

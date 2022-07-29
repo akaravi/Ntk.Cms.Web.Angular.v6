@@ -8,6 +8,7 @@ import {
   CoreLogSmsModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -110,7 +111,7 @@ export class CoreLogSmsEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreLogSmsService.setAccessLoad();
-
+    this.coreLogSmsService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreLogSmsService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

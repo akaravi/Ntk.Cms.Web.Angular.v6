@@ -12,6 +12,7 @@ import {
   FileCategoryModel,
   DataFieldInfoModel,
   AccessModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -132,7 +133,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.fileContentService.setAccessLoad();
-
+    this.fileContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.fileContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

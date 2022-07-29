@@ -10,6 +10,7 @@ import {
   FormInfoModel,
   HyperShopCategoryModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -87,6 +88,7 @@ export class HyperShopContentEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.hyperShopContentService.setAccessLoad();
+    this.hyperShopContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.hyperShopContentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

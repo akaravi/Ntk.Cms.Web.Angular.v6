@@ -12,6 +12,7 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   ApplicationSourceModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -96,6 +97,7 @@ export class TicketingAnswerEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.ticketingAnswerService.setAccessLoad();
+    this.ticketingAnswerService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.ticketingAnswerService
       .ServiceGetOneById(requestId)
       .subscribe(

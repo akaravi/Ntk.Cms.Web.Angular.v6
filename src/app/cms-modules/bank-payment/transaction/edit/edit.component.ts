@@ -9,6 +9,7 @@ import {
   AccessModel,
   DataFieldInfoModel,
   BankPaymentEnumService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -94,6 +95,7 @@ export class BankPaymentTransactionEditComponent implements OnInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.bankPaymentTransactionService.setAccessLoad();
+    this.bankPaymentTransactionService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.bankPaymentTransactionService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

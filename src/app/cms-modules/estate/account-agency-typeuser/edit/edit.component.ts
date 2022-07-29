@@ -11,6 +11,7 @@ import {
   EstateAccountUserModel,
   EstateAccountAgencyModel,
   EstatePropertyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -95,6 +96,7 @@ export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateAccountAgencyTypeUserService.setAccessLoad();
+    this.estateAccountAgencyTypeUserService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estateAccountAgencyTypeUserService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

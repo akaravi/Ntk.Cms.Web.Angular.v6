@@ -22,7 +22,8 @@ import {
   DataFieldInfoModel,
   EnumClauseType,
   BlogContentCategoryModel,
-  BlogContentCategoryService
+  BlogContentCategoryService,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -174,6 +175,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

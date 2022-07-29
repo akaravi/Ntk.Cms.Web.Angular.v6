@@ -6,6 +6,7 @@ import {
   TicketingDepartemenService,
   TicketingDepartemenModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -86,6 +87,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.ticketingDepartemenService.setAccessLoad();
+    this.ticketingDepartemenService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.ticketingDepartemenService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

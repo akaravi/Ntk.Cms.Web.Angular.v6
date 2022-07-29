@@ -8,6 +8,7 @@ import {
   LinkManagementMemberModel,
   DataFieldInfoModel,
   CoreUserModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -93,6 +94,7 @@ export class LinkManagementMemberEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.categoryService.setAccessLoad();
+    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.categoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

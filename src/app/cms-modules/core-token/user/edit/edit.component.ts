@@ -11,6 +11,7 @@ import {
   CoreUserModel,
   MemberUserModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -123,6 +124,7 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreTokenUserService.setAccessLoad();
+    this.coreTokenUserService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreTokenUserService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

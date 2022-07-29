@@ -9,6 +9,7 @@ import {
   AccessModel,
   DataFieldInfoModel,
   CoreSiteCategoryModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -91,6 +92,7 @@ export class ApplicationThemeConfigEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.applicationThemeConfigService.setAccessLoad();
+    this.applicationThemeConfigService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.applicationThemeConfigService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

@@ -8,6 +8,7 @@ import {
   CoreDeviceModel,
   DataFieldInfoModel,
   CoreSiteModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -108,6 +109,7 @@ export class CoreDeviceEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreDeviceService.setAccessLoad();
+    this.coreDeviceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreDeviceService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

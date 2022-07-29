@@ -7,6 +7,7 @@ import {
   CoreModuleLogMemoModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -103,7 +104,7 @@ export class CoreModuleLogMemoEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreModuleLogMemoService.setAccessLoad();
-
+    this.coreModuleLogMemoService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleLogMemoService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

@@ -17,6 +17,7 @@ import {
   EnumInputDataType,
   EstatePropertyDetailValueModel,
   CoreCurrencyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -103,6 +104,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateCustomerOrderService.setAccessLoad();
+    this.estateCustomerOrderService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

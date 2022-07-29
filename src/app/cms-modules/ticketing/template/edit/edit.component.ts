@@ -9,6 +9,7 @@ import {
   FormInfoModel,
   TicketingDepartemenModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -91,6 +92,7 @@ export class TicketingTemplateEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.ticketingTemplateService.setAccessLoad();
+    this.ticketingTemplateService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.ticketingTemplateService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

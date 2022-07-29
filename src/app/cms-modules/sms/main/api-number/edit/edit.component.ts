@@ -12,6 +12,7 @@ import {
   SmsMainApiPathModel,
   SmsMainApiPathAndApiNumberModel,
   SmsMainApiPathAndApiNumberService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -100,6 +101,7 @@ export class SmsMainApiNumberEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiNumberService.setAccessLoad();
+    this.smsMainApiNumberService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.smsMainApiNumberService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

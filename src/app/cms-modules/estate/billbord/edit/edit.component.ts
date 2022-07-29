@@ -9,6 +9,7 @@ import {
   DataFieldInfoModel,
   EstatePropertyDetailGroupService,
   CoreCurrencyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -89,6 +90,7 @@ export class EstateBillboardEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateBillboardService.setAccessLoad();
+    this.estateBillboardService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estateBillboardService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

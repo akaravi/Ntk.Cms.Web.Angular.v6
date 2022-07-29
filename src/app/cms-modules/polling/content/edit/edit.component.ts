@@ -16,6 +16,7 @@ import {
   AccessModel,
   PollingOptionModel,
   PollingOptionService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -145,6 +146,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.pollingContentService.setAccessLoad();
+    this.pollingContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.pollingContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({
