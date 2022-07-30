@@ -51,7 +51,7 @@ export class EstateContractTypeCompleteComponent implements OnInit {
   tagDataModel: chipModel[] = [];
   tagLastDataModel: chipModel[] = [];
   selectForceStatus = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  separatorKeysCodes: number[] = [ENTER];
   tagCtrl = new FormControl('');
   filteredOptions: Observable<chipModel[]>;
   addOnBlur = true;
