@@ -8,6 +8,7 @@ import {
   CoreTokenUserBadLoginModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -114,7 +115,7 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreTokenUserBadLoginService.setAccessLoad();
-
+    this.coreTokenUserBadLoginService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreTokenUserBadLoginService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

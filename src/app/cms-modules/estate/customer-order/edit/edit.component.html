@@ -136,6 +136,11 @@
       </mat-form-field>
 
 
+      <!-- linkCoreCurrencyId Field -->
+      <app-cms-currency-selector [optionSelectFirstItem]="true"
+      [optionSelectForce]="dataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
+      [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'">
+</app-cms-currency-selector>
       <!-- SalePriceMin Field -->
       <mat-form-field class="ntk-full-width"
         *ngIf="fieldsInfo['SalePriceMin']?.accessWatchField && contractTypeSelected?.hasSalePrice">

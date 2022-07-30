@@ -13,6 +13,7 @@ import {
   FilterModel,
   FilterDataModel,
   TokenInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -115,6 +116,7 @@ export class DataProviderClientEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.dataProviderClientService.setAccessLoad();
+    this.dataProviderClientService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.dataProviderClientService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -13,6 +13,7 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   ApplicationSourceModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -85,6 +86,7 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_from_the_server'));
     /*َAccess Field*/
     this.applicationIntroService.setAccessLoad();
+    this.applicationIntroService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.applicationIntroService
       .ServiceGetOneById(requestId)
       .subscribe({

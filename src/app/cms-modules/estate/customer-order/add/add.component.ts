@@ -16,6 +16,7 @@ import {
   EstateAccountUserModel,
   EnumInputDataType,
   EstatePropertyDetailValueModel,
+  CoreCurrencyModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -65,6 +66,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
+  dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -335,5 +337,14 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
-
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      // this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.dataModel.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.dataModel.linkCoreCurrencyId = model.id;
+  }
 }

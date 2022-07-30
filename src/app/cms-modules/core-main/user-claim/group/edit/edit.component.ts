@@ -17,6 +17,7 @@ import {
   FilterDataModel,
   ApplicationSourceModel,
   CoreUserGroupModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -118,6 +119,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.Receive_categories_of_documents'));
 
     this.coreUserClaimGroupService.setAccessLoad();
+    this.coreUserClaimGroupService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreUserClaimGroupService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

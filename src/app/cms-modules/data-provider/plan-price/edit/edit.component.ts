@@ -9,6 +9,7 @@ import {
   DataProviderPlanModel,
   DataFieldInfoModel,
   CoreSiteService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -116,6 +117,7 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.dataproviderplanpriceservice.setAccessLoad();
+    this.dataproviderplanpriceservice.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.dataproviderplanpriceservice.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

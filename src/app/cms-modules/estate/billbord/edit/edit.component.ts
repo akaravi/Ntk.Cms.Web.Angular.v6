@@ -8,6 +8,8 @@ import {
   EstateBillboardModel,
   DataFieldInfoModel,
   EstatePropertyDetailGroupService,
+  CoreCurrencyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -60,6 +62,7 @@ export class EstateBillboardEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
   dataModel: EstateBillboardModel = new EstateBillboardModel();
+  dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -87,6 +90,7 @@ export class EstateBillboardEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateBillboardService.setAccessLoad();
+    this.estateBillboardService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estateBillboardService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -201,5 +205,14 @@ export class EstateBillboardEditComponent implements OnInit {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
-
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      // this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.dataModel.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.dataModel.linkCoreCurrencyId = model.id;
+  }
 }

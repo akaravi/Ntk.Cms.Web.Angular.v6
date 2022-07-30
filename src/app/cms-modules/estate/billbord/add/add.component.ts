@@ -7,6 +7,7 @@ import {
   EstateBillboardService,
   EstateBillboardModel,
   DataFieldInfoModel,
+  CoreCurrencyModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -55,6 +56,7 @@ export class EstateBillboardAddComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
   dataModel: EstateBillboardModel = new EstateBillboardModel();
+  dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -238,5 +240,15 @@ export class EstateBillboardAddComponent implements OnInit {
   onFormLoadResult(): void {
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
+  }
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      // this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.dataModel.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.dataModel.linkCoreCurrencyId = model.id;
   }
 }

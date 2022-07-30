@@ -8,6 +8,7 @@ import {
   LinkManagementBillboardPatternModel,
   DataFieldInfoModel,
   LinkManagementEnumService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -118,6 +119,7 @@ export class LinkManagementBillboardPatternEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.categoryService.setAccessLoad();
+    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.categoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

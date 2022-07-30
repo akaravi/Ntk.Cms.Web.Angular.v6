@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -36,6 +36,13 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- isDefault Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.isDefault" *ngIf="fieldsInfo['IsDefault']?.accessWatchField"
+        [disabled]="!fieldsInfo['IsDefault']?.accessEditField" name="dataModel.isDefault">
+        {{fieldsInfo['IsDefault']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
     <!-- Symbol Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Symbol']?.fieldTitle}}</mat-label>
@@ -75,8 +82,8 @@
     </mat-form-field>
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-        src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+        aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">

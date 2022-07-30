@@ -56,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.key === "F9") {
+    if (event?.key === "F9") {
       if (localStorage.getItem('KeyboardEventF9'))
         localStorage.removeItem('KeyboardEventF9')
       else

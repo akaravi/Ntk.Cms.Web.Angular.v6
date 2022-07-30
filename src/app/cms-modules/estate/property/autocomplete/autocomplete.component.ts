@@ -170,9 +170,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
           });
         } else {
           this.cmsToastrService.typeErrorGetAll(next.errorMessage);
-
         }
-
         return;
       },
         (error) => {

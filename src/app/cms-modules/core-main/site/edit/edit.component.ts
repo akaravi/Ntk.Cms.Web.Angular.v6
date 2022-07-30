@@ -16,6 +16,7 @@ import {
   CoreSiteCategoryModel,
   TokenInfoModel,
   CoreUserModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -155,6 +156,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.coreSiteService.setAccessLoad();
+    this.coreSiteService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreSiteService
       .ServiceGetOneById(id)
       .subscribe({

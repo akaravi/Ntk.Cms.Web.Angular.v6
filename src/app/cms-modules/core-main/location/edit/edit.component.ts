@@ -7,6 +7,7 @@ import {
   CoreLocationService,
   CoreLocationModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -100,6 +101,7 @@ export class CoreLocationEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreLocationService.setAccessLoad();
+    this.coreLocationService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreLocationService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

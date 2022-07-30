@@ -50,7 +50,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
   tagDataModel: chipModel[] = [];
   tagLastDataModel: chipModel[] = [];
   selectForceStatus = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  separatorKeysCodes: number[] = [ENTER];//, COMMA];
   tagCtrl = new FormControl('');
   filteredOptions: Observable<chipModel[]>;
   addOnBlur = true;
@@ -83,7 +83,6 @@ export class CmsTagAutocompleteComponent implements OnInit {
         return this.tagLastDataModel;
       })
     );
-
   }
   checkIndex(val: number): number {
     var index = 0;
@@ -172,9 +171,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
           });
         } else {
           this.cmsToastrService.typeErrorGetAll(next.errorMessage);
-
         }
-
         return;
       },
         (error) => {

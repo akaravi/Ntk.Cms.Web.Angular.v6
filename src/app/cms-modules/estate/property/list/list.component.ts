@@ -411,7 +411,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    if (event.ctrlKey) {
+    if (event?.ctrlKey) {
       this.link = "/#/estate/property/edit/" + this.tableRowSelected.id;
       window.open(this.link, "_blank");
     } else {
@@ -435,7 +435,7 @@ export class EstatePropertyListComponent
       return;
     }
 
-    if (event.ctrlKey) {
+    if (event?.ctrlKey) {
       this.link = "/#/estate/property-ads/LinkPropertyId/" + this.tableRowSelected.id;
       window.open(this.link, "_blank");
     } else {

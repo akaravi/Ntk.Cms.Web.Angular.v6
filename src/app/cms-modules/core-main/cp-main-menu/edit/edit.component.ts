@@ -13,7 +13,8 @@ import {
   CoreCpMainMenuCmsUserGroupModel,
   CoreCpMainMenuCmsUserGroupService,
   FilterModel,
-  FilterDataModel
+  FilterDataModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import {
   Component,
@@ -111,6 +112,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.coreCpMainMenuService.setAccessLoad();
+    this.coreCpMainMenuService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreCpMainMenuService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

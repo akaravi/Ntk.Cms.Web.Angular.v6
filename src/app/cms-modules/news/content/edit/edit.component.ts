@@ -22,7 +22,8 @@ import {
   DataFieldInfoModel,
   EnumClauseType,
   NewsContentCategoryModel,
-  NewsContentCategoryService
+  NewsContentCategoryService,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -159,6 +160,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     /*َAccess Field*/
     this.contentService.setAccessLoad();
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

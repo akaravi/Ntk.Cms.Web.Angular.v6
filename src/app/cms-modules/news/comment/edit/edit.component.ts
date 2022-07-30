@@ -7,6 +7,7 @@ import {
   NewsCommentService,
   NewsCommentModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -107,6 +108,7 @@ export class NewsCommentEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.commentService.setAccessLoad();
+    this.commentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.commentService.ServiceGetOneById(this.requestId).subscribe({
       next:(ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -7,6 +7,7 @@ import {
   CoreModuleService,
   CoreModuleModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -92,6 +93,7 @@ export class CoreModuleEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.coreModuleService.setAccessLoad();
+    this.coreModuleService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.dataModel = ret.item;

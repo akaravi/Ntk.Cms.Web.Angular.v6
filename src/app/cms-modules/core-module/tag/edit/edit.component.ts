@@ -8,6 +8,7 @@ import {
   CoreModuleTagModel,
   CoreModuleTagCategoryModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -112,6 +113,7 @@ export class CoreModuleTagEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreModuleTagService.setAccessLoad();
+    this.coreModuleTagService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleTagService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

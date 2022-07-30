@@ -8,6 +8,7 @@ import {
   CoreSiteDomainAliasModel,
   CoreSiteModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -89,6 +90,7 @@ export class CoreSiteDomainAliasEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreSiteDomainAliasService.setAccessLoad();
+    this.coreSiteDomainAliasService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreSiteDomainAliasService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

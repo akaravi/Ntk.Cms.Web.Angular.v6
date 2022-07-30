@@ -8,6 +8,7 @@ import {
   CoreModuleSaleSerialModel,
   DataFieldInfoModel,
   CoreModuleSaleHeaderModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -94,6 +95,7 @@ export class CoreModuleSaleSerialEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreModuleSaleSerialService.setAccessLoad();
+    this.coreModuleSaleSerialService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleSaleSerialService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

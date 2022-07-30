@@ -11,6 +11,7 @@ import {
   CoreSiteCategoryModel,
   BankPaymentPrivateSiteConfigAliasJsonModel,
   BankPaymentPublicConfigModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -81,6 +82,7 @@ export class BankPaymentPrivateSiteConfigEditComponent implements OnInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.bankPaymentPrivateSiteConfigService.setAccessLoad();
+    this.bankPaymentPrivateSiteConfigService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.bankPaymentPrivateSiteConfigService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

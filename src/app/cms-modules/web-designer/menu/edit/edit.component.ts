@@ -7,7 +7,8 @@ import {
   WebDesignerMainMenuModel,
   AccessModel,
   DataFieldInfoModel,
-  CoreUserGroupModel} from 'ntk-cms-api';
+  CoreUserGroupModel,
+  EnumManageUserAccessDataTypes} from 'ntk-cms-api';
 import {
   Component,
   OnInit,
@@ -85,6 +86,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.webDesignerMainMenuService.setAccessLoad();
+    this.webDesignerMainMenuService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.webDesignerMainMenuService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         /*َAccess Field*/

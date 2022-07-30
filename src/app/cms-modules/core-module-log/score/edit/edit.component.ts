@@ -7,6 +7,7 @@ import {
   CoreModuleLogScoreModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -102,7 +103,7 @@ export class CoreModuleLogScoreEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreModuleLogScoreService.setAccessLoad();
-
+    this.coreModuleLogScoreService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleLogScoreService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

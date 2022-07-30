@@ -22,7 +22,8 @@ import {
   DataFieldInfoModel,
   EnumClauseType,
   ChartContentCategoryModel,
-  ChartContentCategoryService
+  ChartContentCategoryService,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -175,6 +176,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

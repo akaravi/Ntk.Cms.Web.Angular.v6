@@ -13,6 +13,7 @@ import {
   LinkManagementEnumService,
   LinkManagementTargetCategoryModel,
   LinkManagementBillboardPatternModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -144,6 +145,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
 
     /*َAccess Field*/
     this.linkManagementTargetService.setAccessLoad();
+    this.linkManagementTargetService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.linkManagementTargetService
       .ServiceGetOneById(this.requestId)
       .subscribe({

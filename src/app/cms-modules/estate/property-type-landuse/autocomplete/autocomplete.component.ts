@@ -77,7 +77,7 @@ export class EstatePropertyTypeLanduseCompleteComponent implements OnInit {
     }
     return this.service.ServiceGetAll(filteModel).pipe(
       map((data) => {
-        this.tagLastDataModel = data.listItems.map(val => ({ display: val.title, value: val.id }));
+        this.tagLastDataModel = data.listItems.map(val => ({ display: val.titleML, value: val.id }));
         return this.tagLastDataModel;
       })
     );
@@ -165,14 +165,12 @@ export class EstatePropertyTypeLanduseCompleteComponent implements OnInit {
           next.listItems.forEach(val => {
             this.tagDataModel.push({
               value: val.id,
-              display: val.title
+              display: val.titleML
             });
           });
         } else {
           this.cmsToastrService.typeErrorGetAll(next.errorMessage);
-
         }
-
         return;
       },
         (error) => {

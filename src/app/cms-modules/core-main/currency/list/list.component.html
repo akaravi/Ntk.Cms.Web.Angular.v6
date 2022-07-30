@@ -12,7 +12,8 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
@@ -54,8 +55,8 @@
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>
@@ -69,33 +70,46 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+          </select>
+        </mat-cell>
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
+      <!-- TitleML Column -->
+      <ng-container matColumnDef="TitleML">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="grid-row-ltr"> {{row.titleML}} </mat-cell>
+      </ng-container>
       <!-- Symbol Column -->
       <ng-container matColumnDef="Symbol">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Symbol']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <div style="direction: ltr;"> {{row.symbol}} / {{row.masterCurrency}} </div>
+        <mat-cell *matCellDef="let row" class="grid-row-ltr">
+          {{row.symbol}} / {{row.masterCurrency}}
         </mat-cell>
+      </ng-container>
+      <!-- IsDefault Column -->
+      <ng-container matColumnDef="IsDefault">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsDefault']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.isDefault | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- ExchangeBuyRatio Column -->
       <ng-container matColumnDef="ExchangeBuyRatio">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExchangeBuyRatio']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.exchangeBuyRatio | number }} </mat-cell>
+        <mat-cell *matCellDef="let row" class="grid-row-ltr"> {{row.exchangeBuyRatio | number }} </mat-cell>
       </ng-container>
       <!-- ExchangeSaleRatio Column -->
       <ng-container matColumnDef="ExchangeSaleRatio">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExchangeSaleRatio']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.exchangeSaleRatio | number }} </mat-cell>
+        <mat-cell *matCellDef="let row" class="grid-row-ltr"> {{row.exchangeSaleRatio | number }} </mat-cell>
       </ng-container>
 
       <!-- UpdatedDate Column -->

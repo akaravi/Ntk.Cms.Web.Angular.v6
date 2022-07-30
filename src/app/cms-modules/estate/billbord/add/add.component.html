@@ -120,6 +120,10 @@
       *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkContractTypeIds']?.accessAddField"
       [optionSelectForce]="dataModel.linkContractTypeIds" [optionPlaceholder]="'نوع معامله'">
     </app-estate-contract-type-autocomplete>
+      <!-- linkCoreCurrencyId Field -->
+      <app-cms-currency-selector [optionSelectFirstItem]="true"
+      [optionSelectForce]="dataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
+      [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'"></app-cms-currency-selector>
     <!-- LinkLocationIds Field -->
     <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" *ngIf="!LinkPropertyIdsInUse"
       [optionDisabled]="!fieldsInfo['LinkLocationIds']?.accessAddField" [optionSelectForce]="dataModel.linkLocationIds"

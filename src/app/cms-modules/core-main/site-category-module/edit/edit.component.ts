@@ -12,6 +12,7 @@ import {
   AccessModel,
   DataFieldInfoModel,
   CoreSiteCategoryModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -111,7 +112,7 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
     filteModelContent.accessLoad = true;
     /*َAccess Field*/
     this.coreSiteCategoryCmsModuleService.setAccessLoad();
-
+    this.coreSiteCategoryCmsModuleService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
 

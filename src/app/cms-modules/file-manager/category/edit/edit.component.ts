@@ -7,6 +7,7 @@ import {
   FileCategoryService,
   FileCategoryModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -109,6 +110,7 @@ export class FileCategoryEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.fileCategoryService.setAccessLoad();
+    this.fileCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.fileCategoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

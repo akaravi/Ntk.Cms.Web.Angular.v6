@@ -11,6 +11,7 @@ import {
   WebDesignerMainPageTemplateSiteCategoryService,
   FilterModel,
   FilterDataModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -85,6 +86,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.webDesignerMainPageTemplateService.setAccessLoad();
+    this.webDesignerMainPageTemplateService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.webDesignerMainPageTemplateService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

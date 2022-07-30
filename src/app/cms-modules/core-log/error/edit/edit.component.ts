@@ -7,6 +7,7 @@ import {
   CoreLogErrorModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -101,7 +102,7 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreLogErrorService.setAccessLoad();
-
+    this.coreLogErrorService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreLogErrorService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

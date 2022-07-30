@@ -9,6 +9,7 @@ import {
   BankPaymentPublicConfigAliasJsonModel,
   DataFieldInfoModel,
   CoreCurrencyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -83,6 +84,7 @@ export class BankPaymentPublicConfigEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.bankPaymentPublicConfigService.setAccessLoad();
+    this.bankPaymentPublicConfigService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.bankPaymentPublicConfigService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

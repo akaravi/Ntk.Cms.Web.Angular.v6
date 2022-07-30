@@ -16,6 +16,7 @@ import {
   FilterModel,
   FilterDataModel,
   EnumClauseType,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -137,6 +138,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
 
     /*َAccess Field*/
     this.linkManagementBillboardService.setAccessLoad();
+    this.linkManagementBillboardService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.linkManagementBillboardService
       .ServiceGetOneById(this.requestId)
       .subscribe({

@@ -76,8 +76,10 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [
     'Title',
     'HasSalePrice',
-    'HasRentPrice',
     'HasDepositPrice',
+    'HasDepositPrice',
+    'HasRentPrice',
+    'HasPeriodPrice',
     'Action'
   ];
 

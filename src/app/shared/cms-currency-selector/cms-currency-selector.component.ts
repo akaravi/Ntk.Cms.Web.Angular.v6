@@ -7,7 +7,8 @@ import {
   CoreCurrencyModel,
   CoreCurrencyService,
   EnumFilterDataModelSearchTypes,
-  EnumClauseType
+  EnumClauseType,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -63,10 +64,10 @@ export class CmsCurrencySelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreCurrencyModel): string | undefined {
-    return model ? (model.title) : undefined;
+    return model ? (model.titleML) : undefined;
   }
   displayOption(model?: CoreCurrencyModel): string | undefined {
-    return model ? (model.title) : undefined;
+    return model ? (model.titleML) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreCurrencyModel[]> {
     const filteModel = new FilterModel();
@@ -104,7 +105,7 @@ export class CmsCurrencySelectorComponent implements OnInit {
 
     const pName = this.constructor.name + 'ServiceGetAll';
     this.loading.Start(pName);
-
+    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Viewer);
     return await this.categoryService.ServiceGetAll(filteModel)
       .pipe(
         map(response => {

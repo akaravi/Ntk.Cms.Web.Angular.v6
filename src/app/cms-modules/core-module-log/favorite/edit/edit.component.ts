@@ -7,6 +7,7 @@ import {
   CoreModuleLogFavoriteModel,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -103,7 +104,7 @@ export class CoreModuleLogFavoriteEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreModuleLogFavoriteService.setAccessLoad();
-
+    this.coreModuleLogFavoriteService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleLogFavoriteService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

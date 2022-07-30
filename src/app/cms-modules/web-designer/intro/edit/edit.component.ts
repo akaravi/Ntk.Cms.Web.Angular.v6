@@ -11,6 +11,7 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -80,6 +81,7 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.webDesignerMainIntroService.setAccessLoad();
+    this.webDesignerMainIntroService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.webDesignerMainIntroService
       .ServiceGetOneById(requestId)
       .subscribe(
