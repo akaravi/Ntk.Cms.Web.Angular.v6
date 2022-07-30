@@ -89,7 +89,7 @@ export function CreateTranslateLoader(http: HttpClient): any {
     {
       provide: MAT_CHIPS_DEFAULT_OPTIONS,
       useValue: {
-        separatorKeyCodes: [ENTER, COMMA]
+        separatorKeyCodes: [ENTER]
       }
     }
   ],

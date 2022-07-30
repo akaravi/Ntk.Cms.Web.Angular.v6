@@ -775,7 +775,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
    * tag
    */
       addOnBlurTag = true;
-      readonly separatorKeysCodes = [ENTER, COMMA] as const;
+      readonly separatorKeysCodes = [ENTER] as const;
       addTag(event: MatChipInputEvent): void {
         const value = (event.value || '').trim();
         // Add our item
