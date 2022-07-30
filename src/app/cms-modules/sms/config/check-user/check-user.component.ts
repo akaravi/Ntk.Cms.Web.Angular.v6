@@ -18,8 +18,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-sms-config-checkuser',
-  templateUrl: './check-user.component.html',
-  styleUrls: ['./check-user.component.scss']
+  templateUrl: './check-user.component.html'
 })
 export class SmsConfigCheckUserComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;
