@@ -28,8 +28,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 
 @Component({
   selector: 'app-sms-config-site',
-  templateUrl: './config-site.component.html',
-  styleUrls: ['./config-site.component.scss']
+  templateUrl: './config-site.component.html'
 })
 export class SmsConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;

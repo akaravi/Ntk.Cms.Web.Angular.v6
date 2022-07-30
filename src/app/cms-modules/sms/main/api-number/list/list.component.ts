@@ -89,8 +89,6 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
     'Action'
   ];
 
-
-
   expandedElement: SmsMainApiNumberModel | null;
   cmsApiStoreSubscribe: Subscription;
 
