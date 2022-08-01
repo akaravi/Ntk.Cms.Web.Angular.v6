@@ -118,7 +118,7 @@ export class EstatePropertyAddComponent implements OnInit {
   optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
-  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'Action'];
+  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'PeriodPrice', 'Action'];
   propertyDetails: Map<string, string> = new Map<string, string>();
   step = 0;
   /** map */
@@ -448,6 +448,7 @@ export class EstatePropertyAddComponent implements OnInit {
     this.dataModel.contracts.push(this.contractDataModel);
     this.contractDataModel = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.contracts;
+
   }
   onActionOptionRemoveFromList(index: number): void {
     if (index < 0) {

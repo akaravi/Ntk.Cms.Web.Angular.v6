@@ -392,8 +392,8 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.salePrice" name="contractDataModel.salePrice"
-                    matInputCommified [disabled]="contractDataModel.salePriceByAgreement" #CurrentClickCount type="text"
-                    placeholder="0" />
+                    matInputCommified [disabled]="contractDataModel.salePriceByAgreement" #CurrentClickCount
+                    type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -491,7 +491,7 @@
                   *ngIf="contractTypeSelected.hasPeriodPrice && contractTypeSelected.periodPriceAllowAgreement"
                   [(ngModel)]="contractDataModel.periodPriceByAgreement"
                   (change)="onActionClickPeriodPriceAllowAgreement()" name="contractDataModel.periodPriceByAgreement">
-                  {{'TITLE.Lease_Agreement' | translate}}
+                  {{'TITLE.Installments_Agreement' | translate}}
                 </mat-slide-toggle>
               </div>
             </div>
@@ -525,7 +525,7 @@
         </app-progress-spinner>
         <!-- TABLE  -->
         <div class="example-container mat-elevation-z8" *ngIf="!loadingOption.display">
-          <mat-table [dataSource]="optionTabledataSource">
+          <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
             <!-- LinkEstateContractTypeId Column -->
             <ng-container matColumnDef="LinkEstateContractTypeId">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.Contract' | translate}} </mat-header-cell>
@@ -589,20 +589,32 @@
               </mat-cell>
             </ng-container>
 
-
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <button mat-icon-button>
                   <small (click)="onActionOptionRemoveFromList(i)">
-                    <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}
+                    <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;" >delete</mat-icon>
                   </small>
                 </button>
               </mat-cell>
             </ng-container>
+
+            <!-- description Detail -->
+              <ng-container matColumnDef="descriptionDetail">
+                <mat-cell *matCellDef="let row" colspan="6">
+                  {{'TITLE.DESCRIPTION' | translate}} :
+                  <ng-container *ngIf="row.description">
+                    {{ row.description }}
+                  </ng-container>
+                </mat-cell>
+              </ng-container>
+
             <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: optionTabledisplayedColumns;">
+            </mat-row>
+            <mat-row *matRowDef="let row; columns: ['descriptionDetail']">
             </mat-row>
           </mat-table>
         </div>
