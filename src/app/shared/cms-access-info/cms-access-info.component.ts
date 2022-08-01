@@ -46,10 +46,10 @@ export class CmsAccessInfoComponent implements OnInit {
     this.cdr.detectChanges();
   }
   detectColor(value: boolean) {
-    if (value === true) {
+    if (value === true)
       return "table-success"
-    } else {
-      return "table-danger"
-    }
+
+    return "table-danger"
+
   }
 }

@@ -32,7 +32,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-sms-apipath-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class SmsMainApiPathTreeComponent implements OnInit, OnDestroy {
   constructor(

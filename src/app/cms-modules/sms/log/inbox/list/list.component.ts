@@ -228,7 +228,6 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
 
 
   onActionbuttonEditRow(model: SmsLogInBoxModel = this.tableRowSelected): void {
-
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
