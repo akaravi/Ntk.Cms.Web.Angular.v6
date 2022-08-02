@@ -367,7 +367,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="{{'TITLE.Transaction' | translate}}" state="seo">
+      <mat-step label="{{'TITLE.Transaction' | translate}}" state="contract">
         <p>{{'TITLE.Specify_the_type_of_transaction_for_this_property' | translate}}</p>
 
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionTypeView]="2"
@@ -392,8 +392,8 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.salePrice" name="contractDataModel.salePrice"
-                    matInputCommified [disabled]="contractDataModel.salePriceByAgreement" #CurrentClickCount type="text"
-                    placeholder="0" />
+                     [disabled]="contractDataModel.salePriceByAgreement" 
+                    type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -419,8 +419,8 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.depositPrice" name="contractDataModel.depositPrice"
-                    matInputCommified [disabled]="contractDataModel.depositPriceByAgreement" #CurrentClickCount
-                    type="text" placeholder="0" />
+                     [disabled]="contractDataModel.depositPriceByAgreement" 
+                    type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.depositPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -446,7 +446,7 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.rentPrice" name="contractDataModel.rentPrice"
-                    matInputCommified [disabled]="contractDataModel.rentPriceByAgreement" #CurrentClickCount type="text"
+                     [disabled]="contractDataModel.rentPriceByAgreement"  type="number"
                     placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.rentPrice = 0">
                     close</mat-icon>
@@ -473,8 +473,8 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.PeriodPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.periodPrice" name="contractDataModel.periodPrice"
-                    matInputCommified [disabled]="contractDataModel.periodPriceByAgreement" #CurrentClickCount
-                    type="text" placeholder="0" />
+                     [disabled]="contractDataModel.periodPriceByAgreement" 
+                    type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.periodPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -491,7 +491,7 @@
                   *ngIf="contractTypeSelected.hasPeriodPrice && contractTypeSelected.periodPriceAllowAgreement"
                   [(ngModel)]="contractDataModel.periodPriceByAgreement"
                   (change)="onActionClickPeriodPriceAllowAgreement()" name="contractDataModel.periodPriceByAgreement">
-                  {{'TITLE.Lease_Agreement' | translate}}
+                  {{'TITLE.Installments_Agreement' | translate}}
                 </mat-slide-toggle>
               </div>
             </div>
@@ -525,7 +525,7 @@
         </app-progress-spinner>
         <!-- TABLE  -->
         <div class="example-container mat-elevation-z8" *ngIf="!loadingOption.display">
-          <mat-table [dataSource]="optionTabledataSource">
+          <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
             <!-- LinkEstateContractTypeId Column -->
             <ng-container matColumnDef="LinkEstateContractTypeId">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.Contract' | translate}} </mat-header-cell>
@@ -589,20 +589,32 @@
               </mat-cell>
             </ng-container>
 
-
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <button mat-icon-button>
                   <small (click)="onActionOptionRemoveFromList(i)">
-                    <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}
+                    <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;" >delete</mat-icon>
                   </small>
                 </button>
               </mat-cell>
             </ng-container>
+
+            <!-- description Detail -->
+              <ng-container matColumnDef="descriptionDetail">
+                <mat-cell *matCellDef="let row" colspan="6">
+                  {{'TITLE.DESCRIPTION' | translate}} :
+                  <ng-container *ngIf="row.description">
+                    {{ row.description }}
+                  </ng-container>
+                </mat-cell>
+              </ng-container>
+
             <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: optionTabledisplayedColumns;">
+            </mat-row>
+            <mat-row *matRowDef="let row; columns: ['descriptionDetail']">
             </mat-row>
           </mat-table>
         </div>
@@ -611,7 +623,7 @@
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
-          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="this.dataModel.contracts&& this.dataModel.contracts.length>0">
             {{'ACTION.NEXT' | translate}}
           </button>
         </div>

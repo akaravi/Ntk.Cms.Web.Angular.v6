@@ -40,8 +40,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
   selector: 'app-blog-content-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'
-  ]
+  styleUrls: ['./add.component.scss']
 })
 export class BlogContentAddComponent implements OnInit, AfterViewInit {
   requestCategoryId = 0;

@@ -164,11 +164,13 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonAdsRow(row,$event)" *ngIf="dataModelResult.access.accessEditRow">
+            <button mat-menu-item (click)="onActionbuttonAdsRow(row,$event)"
+              *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>ads_click</mat-icon>
               <span>{{'ACTION.ADS' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonEditRow(row,$event)" *ngIf="dataModelResult.access.accessEditRow">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row,$event)"
+              *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
@@ -223,19 +225,26 @@
               <tr>
                 <td></td>
                 <td>
-                  <a (click)="onActionbuttonAdsRow(row,$event)" class="link-primary pointer"> {{'ACTION.ADS' | translate}} </a>|
-                  
+                  <a (click)="onActionbuttonAdsRow(row,$event)" class="link-primary pointer"> {{'ACTION.ADS' |
+                    translate}} </a>|
+
                   <a (click)="onActionbuttonEditRow(row,$event)" *ngIf="dataModelResult.access.accessEditRow"
                     class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
 
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
 
+                  <a (click)="onActionbuttonViewOtherUserAdvertise(row)"
+                    class="link-primary pointer">{{'ACTION.VIEW_OTHER_USER_ADVERTISE' | translate}} </a>|
+
                   <a routerLink="{{'/core/user/edit/' +this.tableRowSelected.createdBy}}" target="_blank"
                     class="link-primary pointer"> {{'ACTION.VIEW_USER' | translate}} </a>|
 
-                  <a routerLink="{{'/core/site/edit'}}" target="_blank"
-                    class="link-primary pointer"> {{'ACTION.VIEW_SITE' | translate}} </a>|
+                  <ng-container *ngIf="row.linkSiteId!=tokenHelper.tokenInfo.siteId">
+                    <a routerLink="{{'/core/site/edit/'+row.linkSiteId}}" target="_blank" class="link-primary pointer">
+                      {{'ACTION.VIEW_SITE' | translate}} </a>
+                    |
+                  </ng-container>
 
                   <a (click)="onActionbuttonMemo(row)" class="link-primary pointer"> {{'ACTION.MEMO' | translate}} </a>
                 </td>

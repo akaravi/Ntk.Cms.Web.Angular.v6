@@ -17,6 +17,7 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectorRef,
+  Inject,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -27,6 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sms-log-inbox-edit',
@@ -36,6 +38,8 @@ import { MatStepper } from '@angular/material/stepper';
 export class SmsMainApiLogInBoxEditComponent implements OnInit {
   requestId = '';
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<SmsMainApiLogInBoxEditComponent>,
     public coreEnumService: CoreEnumService,
     public smsLogInBoxService: SmsLogInBoxService,
     private cmsToastrService: CmsToastrService,
@@ -46,8 +50,9 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    if (this.activatedRoute.snapshot.paramMap.get('Id')) {
-      this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
+
+    if (data) {
+      this.requestId = data.id + '';
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -75,7 +80,7 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
-      this.router.navigate(['/sms/main/api-path/list']);
+      this.router.navigate(['/sms/log/inbox']);
       return;
     }
 
@@ -123,7 +128,7 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
     //       this.formInfo.formError = ret.errorMessage;
     //       this.cmsToastrService.typeErrorMessage(ret.errorMessage);
     //     }
-    //     this.loading.Stop(pName);
+        this.loading.Stop(pName);
     //   },
     //   error: (er) => {
     //     this.cmsToastrService.typeError(er);
@@ -183,9 +188,9 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
       }
     }
   }
-  onActionBackToParent(): void {
-    this.router.navigate(['/sms/main/api-path/list']);
-  }
+  // onActionBackToParent(): void {
+  //   this.router.navigate(['/sms/log/inbox']);
+  // }
   onActionSelectSource(model: SmsMainApiPathPublicConfigModel): void {
     this.dataModel.linkPublicConfigId = null;
     if (model && model.id.length > 0) {
@@ -202,7 +207,7 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
       return;
     }
     if (!this.dataModel.linkPublicConfigId || this.dataModel.linkPublicConfigId.length == 0) {
-      const message = 'نوع سرویس دهنده مشخص نیست';
+      const message = this.translate.instant('MESSAGE.Service_type_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -210,6 +215,6 @@ export class SmsMainApiLogInBoxEditComponent implements OnInit {
     this.DataEditContent();
   }
   onFormCancel(): void {
-    this.router.navigate(['/sms/main/api-path/list']);
+    this.dialogRef.close({ dialogChangedDate: false });
   }
 }

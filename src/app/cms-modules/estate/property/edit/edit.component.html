@@ -7,9 +7,11 @@
     class="link-primary pointer float-right">
     {{'ACTION.VIEW_USER' | translate}} </a>
 
-  <a routerLink="{{'/core/site/edit'}}" target="_blank" class="link-primary pointer float-right"> {{'ACTION.VIEW_SITE' |
-    translate}}|&nbsp;
-  </a>
+  <ng-container *ngIf="dataModel.linkSiteId!=tokenHelper.tokenInfo.siteId">
+    <a routerLink="{{'/core/site/edit/'+dataModel.linkSiteId}}" target="_blank" class="link-primary pointer">
+      {{'ACTION.VIEW_SITE' | translate}} </a>
+    |
+  </ng-container>
 </app-cms-html-notice>
 
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -445,7 +447,8 @@
         <hr>
         <p>{{'TITLE.Specify_the_type_of_transaction_for_this_property' | translate}}</p>
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)"
-          [optionDisabled]="false" [optionTypeView]="2" [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')"
+          [optionDisabled]="false" [optionTypeView]="2"
+          [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')"
           [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
         </app-estate-contract-type-selector>
         <div class="container" *ngIf="contractTypeSelected && contractTypeSelected.id.length>0">
@@ -453,7 +456,8 @@
 
           <br>
           <app-cms-currency-selector [optionSelectFirstItem]="true"
-            [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'">
+            [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
+            [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'">
           </app-cms-currency-selector>
           <div *ngIf="contractDataModel.linkCoreCurrencyId>0">
 
@@ -463,12 +467,13 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.salePrice" name="contractDataModel.salePrice"
-                    matInputCommified [disabled]="contractDataModel.salePriceByAgreement" #CurrentClickCount type="text"
+                     [disabled]="contractDataModel.salePriceByAgreement"  type="number"
                     placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
-                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )                  </mat-label>
+                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                  </mat-label>
                 </mat-form-field>
               </div>
               <div class="col-3">
@@ -489,12 +494,13 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.depositPrice" name="contractDataModel.depositPrice"
-                    matInputCommified [disabled]="contractDataModel.depositPriceByAgreement" #CurrentClickCount
-                    type="text" placeholder="0" />
+                     [disabled]="contractDataModel.depositPriceByAgreement" 
+                    type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.depositPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
-                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )                  </mat-label>
+                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                  </mat-label>
                 </mat-form-field>
               </div>
               <div class="col-3">
@@ -515,12 +521,13 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.rentPrice" name="contractDataModel.rentPrice"
-                    matInputCommified [disabled]="contractDataModel.rentPriceByAgreement" #CurrentClickCount type="text"
+                     [disabled]="contractDataModel.rentPriceByAgreement"  type="number"
                     placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.rentPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
-                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )                  </mat-label>
+                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                  </mat-label>
                 </mat-form-field>
               </div>
               <div class="col-3">
@@ -541,12 +548,13 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.PeriodPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.periodPrice" name="contractDataModel.periodPrice"
-                    matInputCommified [disabled]="contractDataModel.periodPriceByAgreement" #CurrentClickCount
-                    type="text" placeholder="0" />
+                     [disabled]="contractDataModel.periodPriceByAgreement" 
+                    type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.periodPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
-                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )                  </mat-label>
+                  <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                  </mat-label>
                 </mat-form-field>
               </div>
 
@@ -590,12 +598,13 @@
         </app-progress-spinner>
         <!-- TABLE  -->
         <div class="example-container mat-elevation-z8" *ngIf="!loadingOption.display">
-          <mat-table [dataSource]="optionTabledataSource">
+          <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
             <!-- LinkEstateContractTypeId Column -->
             <ng-container matColumnDef="LinkEstateContractTypeId">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.Contract' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.linkEstateContractTypeId | cmstitle:
                 dataModelEstateContractTypeResult.listItems}} </mat-cell>
+
             </ng-container>
             <!-- SalePrice Column -->
             <ng-container matColumnDef="SalePrice">
@@ -660,8 +669,21 @@
                 </button>
               </mat-cell>
             </ng-container>
+
+            <!-- description Detail -->
+            <ng-container matColumnDef="descriptionDetail">
+              <mat-cell *matCellDef="let row" colspan="6">
+                {{'TITLE.DESCRIPTION' | translate}} :
+                <ng-container *ngIf="row.description">
+                  {{ row.description }}
+                </ng-container>
+              </mat-cell>
+            </ng-container>
+
             <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: optionTabledisplayedColumns;">
+            </mat-row>
+            <mat-row *matRowDef="let row; columns: ['descriptionDetail']">
             </mat-row>
           </mat-table>
         </div>
@@ -676,8 +698,6 @@
           </button>
         </div>
       </mat-step>
-
-
 
       <div class="row alert alert-custom alert-white alert-shadow gutter-b">
         <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">

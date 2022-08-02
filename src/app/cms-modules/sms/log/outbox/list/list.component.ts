@@ -105,7 +105,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-
+    
     if (this.activatedRoute.snapshot.paramMap.get('LinkSiteId')) {
       this.requestLinkSiteId = +this.activatedRoute.snapshot.paramMap.get('LinkSiteId') || 0;
     }

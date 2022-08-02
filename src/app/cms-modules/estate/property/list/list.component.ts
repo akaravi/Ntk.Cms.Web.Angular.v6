@@ -51,6 +51,7 @@ export class EstatePropertyListComponent
   requestLinkContractTypeId = "";
   requestLinkBillboardId = "";
   requestLinkCustomerOrderId = "";
+  requestLinkUserId = 0;
   requestInChecking = false;
   constructor(
     public contentService: EstatePropertyService,
@@ -58,7 +59,7 @@ export class EstatePropertyListComponent
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private tokenHelper: TokenHelper,
+    public tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
@@ -78,6 +79,9 @@ export class EstatePropertyListComponent
     this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get(
       "LinkCustomerOrderId"
     );
+    this.requestLinkUserId = +this.activatedRoute.snapshot.paramMap.get(
+      "LinkUserId"
+    ) | 0;
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
       this.searchInChecking =
         this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
@@ -117,6 +121,12 @@ export class EstatePropertyListComponent
       filter.propertyName = "Contracts";
       filter.propertyAnyName = "LinkEstateContractTypeId";
       filter.value = this.requestLinkContractTypeId;
+      this.filteModelProperty.filters.push(filter);
+    }
+    if (this.requestLinkUserId && this.requestLinkUserId > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "linkCmsUserId";
+      filter.value = this.requestLinkUserId;
       this.filteModelProperty.filters.push(filter);
     }
   }
@@ -539,8 +549,22 @@ export class EstatePropertyListComponent
     );
   }
 
-  onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
+  onActionbuttonViewOtherUserAdvertise(model: EstatePropertyModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.requestLinkUserId = model.linkCmsUserId;
+    if (this.requestLinkUserId && this.requestLinkUserId > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "linkCmsUserId";
+      filter.value = this.requestLinkUserId;
+      this.filteModelProperty.filters.push(filter);
+    }
+    this.DataGetAll();
+  }
 
+  onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
