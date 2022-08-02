@@ -445,9 +445,62 @@ export class EstatePropertyAddComponent implements OnInit {
     if (!this.dataModel.contracts) {
       this.dataModel.contracts = [];
     }
+    var accepted = false;
+    if (this.contractTypeSelected.hasSalePrice) {
+      if (this.contractDataModel.salePrice && this.contractDataModel.salePrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.salePriceAllowAgreement && this.contractDataModel.salePriceByAgreement)
+        accepted = true;
+
+        if(!accepted)
+        {
+
+          return;
+        }
+    }
+    accepted = false;
+    if (this.contractTypeSelected.hasRentPrice) {
+      if (this.contractDataModel.rentPrice && this.contractDataModel.rentPrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.rentPriceAllowAgreement && this.contractDataModel.rentPriceByAgreement)
+        accepted = true;
+
+        if(!accepted)
+        {
+
+          return;
+        }
+    }
+    accepted = false;
+    if (this.contractTypeSelected.hasPeriodPrice) {
+      if (this.contractDataModel.periodPrice && this.contractDataModel.periodPrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.periodPriceAllowAgreement && this.contractDataModel.periodPriceByAgreement)
+        accepted = true;
+
+        if(!accepted)
+        {
+
+          return;
+        }
+    }
+    accepted = false;
+    if (this.contractTypeSelected.hasDepositPrice) {
+      if (this.contractDataModel.depositPrice && this.contractDataModel.depositPrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.depositPriceAllowAgreement && this.contractDataModel.depositPriceByAgreement)
+        accepted = true;
+
+        if(!accepted)
+        {
+
+          return;
+        }
+    }
     this.dataModel.contracts.push(this.contractDataModel);
     this.contractDataModel = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.contracts;
+    this.contractTypeSelected = null;
 
   }
   onActionOptionRemoveFromList(index: number): void {
@@ -469,6 +522,7 @@ export class EstatePropertyAddComponent implements OnInit {
     this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
+
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.dataModel.linkPropertyTypeUsageId || this.dataModel.linkPropertyTypeUsageId.length === 0) {
         this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_Property_Type_Usage'));
@@ -496,17 +550,26 @@ export class EstatePropertyAddComponent implements OnInit {
         }, 10);
       }
     }
-    if (event.previouslySelectedStep.label === "معامله" || event.previouslySelectedStep.label === "Transaction") {
-
-      if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
-        this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
-
-        setTimeout(() => {
-          stepper.selectedIndex = event.previouslySelectedIndex;
-          // stepper.previous();
-        }, 10);
-      }
+  debugger
+    if((!this.dataModel.contracts|| this.dataModel.contracts.length==0) && event.previouslySelectedStep.state=="contract" && event.previouslySelectedIndex < event.selectedIndex )
+    {
+      setTimeout(() => {
+        stepper.selectedIndex = event.previouslySelectedIndex;
+        // stepper.previous();
+      }, 10);
     }
+    // if (event.previouslySelectedStep.label === "معامله" || event.previouslySelectedStep.label === "Transaction") {
+
+    //   if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
+    //     this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
+
+    //     setTimeout(() => {
+    //       stepper.selectedIndex = event.previouslySelectedIndex;
+    //       // stepper.previous();
+    //     }, 10);
+    //   }
+    // }
+
   }
   onActionBackToParent(): void {
     this.router.navigate(['/estate/property/']);
