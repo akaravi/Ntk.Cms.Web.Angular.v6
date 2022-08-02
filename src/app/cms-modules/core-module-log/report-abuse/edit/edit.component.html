@@ -71,7 +71,7 @@
         <!-- SubjectUrl Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>SubjectUrl</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.subjectUrl" name="dataModel.subjectUrl" #SubjectUrl type="text"
+          <textarea matInput [(ngModel)]="dataModel.subjectUrl" name="dataModel.subjectUrl" #SubjectUrl type="text" class="input-ltr"
             placeholder="SubjectUrl"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.subjectUrl" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.subjectUrl = null">close</mat-icon>

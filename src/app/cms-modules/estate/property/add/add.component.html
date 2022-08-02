@@ -2,13 +2,8 @@
 </app-cms-guide-notice>
 
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <!-- <div class="ntk-cms-html-card-header p-4"> -->
+
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  <!-- <h3 class="card-label">
-      {{formInfo.formTitle}}
-    </h3> -->
-
-
 
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   <!-- </div> -->
@@ -280,7 +275,7 @@
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
           </button>
-          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">
             {{'ACTION.NEXT' | translate}}
           </button>
         </div>

@@ -67,7 +67,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label> آدرس برگشت از پرداخت</mat-label>
           <input matInput [(ngModel)]="dataModel.lastUrlAddressInUse" name="dataModel.lastUrlAddressInUse"
-            #LastUrlAddressInUse type="text" placeholder="LastUrlAddressInUse" minlength="3" maxlength="500" required />
+            #LastUrlAddressInUse type="text" class="input-ltr" placeholder="LastUrlAddressInUse" minlength="3" maxlength="500" required />
           <mat-icon matSuffix *ngIf="dataModel.lastUrlAddressInUse" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastUrlAddressInUse = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

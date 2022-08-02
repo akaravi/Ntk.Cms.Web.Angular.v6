@@ -353,7 +353,7 @@
           <mat-label>{{ fieldsInfo['FirebaseDatabaseURL']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.firebaseDatabaseURL"
             [disabled]="!fieldsInfo['FirebaseDatabaseURL']?.accessAddField" name="dataModel.firebaseDatabaseURL"
-            #FirebaseDatabaseURL type="text" placeholder="" />
+            #FirebaseDatabaseURL type="text" class="input-ltr" placeholder="" />
           <mat-icon matSuffix *ngIf="dataModel.firebaseDatabaseURL && fieldsInfo['FirebaseDatabaseURL']?.accessAddField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.firebaseDatabaseURL = ''">close</mat-icon>
           <mat-icon matTooltip="{{fieldsInfo['FirebaseDatabaseURL']?.FieldDescription}}" matSuffix>info</mat-icon>
@@ -480,7 +480,7 @@
           <mat-label>{{ fieldsInfo['CurrentSiteDomainUrl']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.currentSiteDomainUrl"
             [disabled]="!fieldsInfo['CurrentSiteDomainUrl']?.accessAddField" name="dataModel.currentSiteDomainUrl"
-            #CurrentSiteDomainUrl type="text" placeholder="https://...." minlength="3" maxlength="100"
+            #CurrentSiteDomainUrl type="text" class="input-ltr" placeholder="https://...." minlength="3" maxlength="100"
             style="text-align: left;" dir="ltr" />
           <mat-icon matSuffix
             *ngIf="dataModel.currentSiteDomainUrl && fieldsInfo['CurrentSiteDomainUrl']?.accessAddField" matSuffix
@@ -702,7 +702,7 @@
           <mat-label>{{ fieldsInfo['AboutUsMoreInfoUrl']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutUsMoreInfoUrl"
             [disabled]="!fieldsInfo['AboutUsMoreInfoUrl']?.accessAddField" name="dataModel.aboutUsMoreInfoUrl"
-            #AboutUsMoreInfoUrl type="text" placeholder="https://...." style="text-align: left;" dir="ltr" />
+            #AboutUsMoreInfoUrl type="text" class="input-ltr" placeholder="https://...." style="text-align: left;" dir="ltr" />
           <mat-icon matSuffix *ngIf="dataModel.aboutUsMoreInfoUrl && fieldsInfo['AboutUsMoreInfoUrl']?.accessAddField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsMoreInfoUrl = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['AboutUsMoreInfoUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>

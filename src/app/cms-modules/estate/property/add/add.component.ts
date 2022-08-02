@@ -452,11 +452,11 @@ export class EstatePropertyAddComponent implements OnInit {
       if (this.contractTypeSelected.salePriceAllowAgreement && this.contractDataModel.salePriceByAgreement)
         accepted = true;
 
-        if(!accepted)
-        {
-
-          return;
-        }
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Sales_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
     }
     accepted = false;
     if (this.contractTypeSelected.hasRentPrice) {
@@ -465,11 +465,11 @@ export class EstatePropertyAddComponent implements OnInit {
       if (this.contractTypeSelected.rentPriceAllowAgreement && this.contractDataModel.rentPriceByAgreement)
         accepted = true;
 
-        if(!accepted)
-        {
-
-          return;
-        }
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Rent_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
     }
     accepted = false;
     if (this.contractTypeSelected.hasPeriodPrice) {
@@ -478,11 +478,11 @@ export class EstatePropertyAddComponent implements OnInit {
       if (this.contractTypeSelected.periodPriceAllowAgreement && this.contractDataModel.periodPriceByAgreement)
         accepted = true;
 
-        if(!accepted)
-        {
-
-          return;
-        }
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Period_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
     }
     accepted = false;
     if (this.contractTypeSelected.hasDepositPrice) {
@@ -491,11 +491,11 @@ export class EstatePropertyAddComponent implements OnInit {
       if (this.contractTypeSelected.depositPriceAllowAgreement && this.contractDataModel.depositPriceByAgreement)
         accepted = true;
 
-        if(!accepted)
-        {
-
-          return;
-        }
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Deposit_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
     }
     this.dataModel.contracts.push(this.contractDataModel);
     this.contractDataModel = new EstateContractModel();
@@ -515,7 +515,6 @@ export class EstatePropertyAddComponent implements OnInit {
     this.contractDataModel = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.contracts;
   }
-
 
   onActionFileSelectedLinkMainImageId(model: NodeInterface): void {
     this.dataModel.linkMainImageId = model.id;
@@ -550,25 +549,14 @@ export class EstatePropertyAddComponent implements OnInit {
         }, 10);
       }
     }
-    if((!this.dataModel.contracts|| this.dataModel.contracts.length==0) && event.previouslySelectedStep.state=="contract" && event.previouslySelectedIndex < event.selectedIndex )
-    {
+    if ((!this.dataModel.contracts || this.dataModel.contracts.length == 0) && event.previouslySelectedStep.state == "contract" && event.previouslySelectedIndex < event.selectedIndex) {
+      this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
+
       setTimeout(() => {
         stepper.selectedIndex = event.previouslySelectedIndex;
         // stepper.previous();
       }, 10);
     }
-    // if (event.previouslySelectedStep.label === "معامله" || event.previouslySelectedStep.label === "Transaction") {
-
-    //   if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
-    //     this.cmsToastrService.typeErrorFormInvalid(this.translate.instant('TITLE.Select_the_transaction_type'));
-
-    //     setTimeout(() => {
-    //       stepper.selectedIndex = event.previouslySelectedIndex;
-    //       // stepper.previous();
-    //     }, 10);
-    //   }
-    // }
-
   }
   onActionBackToParent(): void {
     this.router.navigate(['/estate/property/']);
