@@ -550,7 +550,6 @@ export class EstatePropertyAddComponent implements OnInit {
         }, 10);
       }
     }
-  debugger
     if((!this.dataModel.contracts|| this.dataModel.contracts.length==0) && event.previouslySelectedStep.state=="contract" && event.previouslySelectedIndex < event.selectedIndex )
     {
       setTimeout(() => {
