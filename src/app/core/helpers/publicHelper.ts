@@ -221,7 +221,14 @@ export class PublicHelper {
   getTime(model): string {
     if (model) {
       const d = new Date(model);
-      return d.getHours() + ":" + d.getMinutes();
+      return d.getHours() + ':' + d.getMinutes();
+    }
+    return '';
+  }
+  LocaleDateTime(model): string {
+    if (model) {
+      const d = new Date(model);
+      return d.toLocaleDateString('fa-Ir')+' '+d.getHours() + ':' + d.getMinutes();;
     }
     return '';
   }
