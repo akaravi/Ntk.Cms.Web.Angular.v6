@@ -9,6 +9,7 @@ import {
   SmsMainApiNumberModel,
   SmsMainMessageCategoryModel,
   SmsMainMessageContentModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -23,6 +24,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { CronOptions } from 'ngx-ntk-cron-editor';
+import { ActivatedRoute, Router } from '@angular/router';
 export class DateByClock {
   date: Date;
   clock: string;
@@ -38,23 +40,36 @@ export class SmsActionSendMessageComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     public smsMainApiPathService: SmsMainApiPathService,
+    private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
+    private router: Router
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loadingAction.cdr = this.cdr;
+    this.requestLinkApiPathId = this.activatedRoute.snapshot.paramMap.get('LinkApiPathId');
     if (this.requestLinkApiPathId?.length > 0) {
       this.dataModel.linkApiPathId = this.requestLinkApiPathId;
     }
     this.dataModel.scheduleCron = "";
 
+    if (this.router.getCurrentNavigation().extras.state != null) {
+      this.receiverNumber = this.router.getCurrentNavigation().extras.state.ReceiverNumber;
+      this.senderNumber = this.router.getCurrentNavigation().extras.state.SenderNumber;
+      this.linkApiId = this.router.getCurrentNavigation().extras.state.LinkApiId;
+      this.linkNumberId = this.router.getCurrentNavigation().extras.state.LinkNumberId;
+    }
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild('Message') message: ElementRef;
 
+  receiverNumber: string = '';
+  senderNumber: string = '';
+  linkApiId: string = '';
+  linkNumberId: string = '';
   loading = new ProgressSpinnerModel();
   loadingAction = new ProgressSpinnerModel();
   dataModelParentSelected: SmsMainApiPathModel = new SmsMainApiPathModel();
@@ -94,13 +109,16 @@ export class SmsActionSendMessageComponent implements OnInit {
 
 
 
-
-
-
-
   ngOnInit(): void {
     //this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
     this.onActionScheduleSendNow();
+
+    if (this.linkApiId && this.linkApiId?.length > 0)
+      this.dataModel.linkApiPathId = this.linkApiId;
+    if (this.receiverNumber && this.receiverNumber?.length > 0)
+      this.dataModel.toNumbers = this.receiverNumber;
+    if (this.senderNumber && this.senderNumber?.length > 0)
+      this.dataModel.linkFromNumber = this.senderNumber;
   }
 
   onActionScheduleSendNow() {
@@ -222,8 +240,8 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.formInfo.formSubmitAllow = false;
     const pName = this.constructor.name + 'main';
     this.loadingAction.Start(pName);
-    this.formInfo.formAlert='';
-    this.formInfo.formError='';
+    this.formInfo.formAlert = '';
+    this.formInfo.formError = '';
     this.smsMainApiPathService.ServiceSendMessage(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;

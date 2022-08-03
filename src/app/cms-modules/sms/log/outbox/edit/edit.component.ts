@@ -17,6 +17,7 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectorRef,
+  Inject,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -27,6 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sms-log-inbox-edit',
@@ -36,6 +38,8 @@ import { MatStepper } from '@angular/material/stepper';
 export class SmsMainApiLogOutBoxEditComponent implements OnInit {
   requestId = '';
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<SmsMainApiLogOutBoxEditComponent>,
     public coreEnumService: CoreEnumService,
     public smsLogOutBoxService: SmsLogOutBoxService,
     private cmsToastrService: CmsToastrService,
@@ -46,8 +50,8 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    if (this.activatedRoute.snapshot.paramMap.get('Id')) {
-      this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
+    if (data) {
+      this.requestId = data.id + '';
     }
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -75,7 +79,7 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
-      this.router.navigate(['/sms/main/api-path/list']);
+      this.router.navigate(['/sms/log/outbox']);
       return;
     }
 
@@ -211,6 +215,6 @@ export class SmsMainApiLogOutBoxEditComponent implements OnInit {
     this.DataEditContent();
   }
   onFormCancel(): void {
-    this.router.navigate(['/sms/main/api-path/list']);
+    this.dialogRef.close({ dialogChangedDate: false });
   }
 }

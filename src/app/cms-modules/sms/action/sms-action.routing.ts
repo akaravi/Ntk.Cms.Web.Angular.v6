@@ -12,6 +12,10 @@ const routes: Routes = [
         path: 'send-message',
         component: SmsActionSendMessageComponent
       },
+      {
+        path: 'send-message/extras',
+        component: SmsActionSendMessageComponent
+      },
     
     ]
   },

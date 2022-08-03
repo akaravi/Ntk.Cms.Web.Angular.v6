@@ -87,9 +87,9 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
   tabledisplayedColumns: string[] = [
     'Id',
     'SendDate',
-    'isSended',
-    'senderNumber',
-    'receiverNumber',
+    'IsSended',
+    'SenderNumber',
+    'ReceiverNumber',
     // 'Action'
   ];
 
@@ -322,6 +322,6 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/sms/main/api-path-company']);
+    this.router.navigate(['/sms/log/outbox']);
   }
 }

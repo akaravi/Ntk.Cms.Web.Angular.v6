@@ -1,5 +1,5 @@
 //**msh */
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -52,7 +52,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -158,7 +158,7 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsLogInBoxModel();
     const pName = this.constructor.name + 'main';
@@ -514,6 +514,15 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
+    const navigationExtras: NavigationExtras = {
+      state: {
+        LinkApiId: model.linkPrivateConfigId,
+        LinkNumberId: model.linkApiNumberId,
+        ReceiverNumber: model.senderNumber,
+        SenderNumber: model.receiverNumber,
+      }
+    };
+    this.router.navigate(['/sms/action/send-message/extras'], navigationExtras);
   }
   onActionbuttonReload(): void {
     this.DataGetAll();
@@ -526,6 +535,6 @@ export class SmsMainApiLogInBoxListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/sms/main/api-path-company']);
+    // this.router.navigate(['/sms/main/api-path-company']);
   }
 }

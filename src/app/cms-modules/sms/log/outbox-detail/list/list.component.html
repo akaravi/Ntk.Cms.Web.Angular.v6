@@ -35,6 +35,8 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
+    <button (click)="onActionBackToParent()" type="button" class="btn btn-outline-success BTN">{{'ACTION.BACK' |
+      translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -55,18 +57,18 @@
       </ng-container>
 
       <!-- isSended Column -->
-      <ng-container matColumnDef="isSended">
+      <ng-container matColumnDef="IsSended">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsSended']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.isSended|statusClass"></i> </mat-cell>
       </ng-container>
       <!-- senderNumber Column -->
-      <ng-container matColumnDef="senderNumber">
+      <ng-container matColumnDef="SenderNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SenderNumber']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.senderNumber}} </mat-cell>
       </ng-container>
       <!-- receiverNumber Column -->
-      <ng-container matColumnDef="receiverNumber">
+      <ng-container matColumnDef="ReceiverNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReceiverNumber']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.receiverNumber}} </mat-cell>
       </ng-container>
