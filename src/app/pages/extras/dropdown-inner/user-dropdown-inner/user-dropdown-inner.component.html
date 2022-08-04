@@ -50,24 +50,26 @@
   <div class="navi navi-spacer-x-0 pt-5">
     <!--begin::Item-->
     <a class="navi-item px-8 cursor-pointer" routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}">
-      <div class="navi-link">
-        <div class="navi-icon mr-2">
-          <i class="flaticon2-calendar-3 text-success"></i>
+    <div class="navi-link">
+      <div class="navi-icon mr-2">
+        <i class="flaticon2-calendar-3 text-success"></i>
+      </div>
+      <div class="navi-text">
+        <div class="font-weight-bold">
+          {{'TITLE.User_Profile'| translate}}
         </div>
-        <div class="navi-text">
-          <div class="font-weight-bold">
-            {{'TITLE.User_Profile'| translate}}
-          </div>
-          <div class="text-muted">
-            {{'TITLE.Account_settings_and_more'| translate}}
-            <br>
-            <span class="label label-light-success label-inline font-weight-bold ms-1">{{'TITLE.Site_Id'|
-              translate}}:{{this.tokenInfo.siteId}}</span>
-            <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
-              translate}}:{{this.tokenInfo.userId}}</span>
-          </div>
+        <div class="text-muted">
+          {{'TITLE.Account_settings_and_more'| translate}}
+          <br>
+          <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
+            translate}}:{{this.tokenInfo.userId}}</span>
+          <a class="navi-item cursor-pointer" routerLink="{{'/core/site/edit/' +this.tokenInfo.siteId}}">
+            <span class="label label-light-success label-inline font-weight-bold ms-1"
+              >{{'TITLE.Site_Id'| translate}}:{{this.tokenInfo.siteId}}</span>
+          </a>
         </div>
       </div>
+    </div>
     </a>
     <!--end::Item-->
     <!--begin::Item-->

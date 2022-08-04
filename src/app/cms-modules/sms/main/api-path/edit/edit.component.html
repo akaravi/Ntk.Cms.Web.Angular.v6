@@ -32,7 +32,7 @@
           <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -70,11 +70,23 @@
             mat-icon-button aria-label="Clear" (click)="dataModel.apiIdentity = 1">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ApiIdentity']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
+        <!-- apiMinPathNeedToCheck Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiMinPathNeedToCheck']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['ApiMinPathNeedToCheck']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.apiMinPathNeedToCheck"
+            [disabled]="!fieldsInfo['ApiMinPathNeedToCheck']?.accessEditField" name="dataModel.apiMinPathNeedToCheck"
+            #ApiMinPathNeedToCheck type="number" placeholder="" />
+          <mat-icon matSuffix
+            *ngIf="dataModel.apiMinPathNeedToCheck && fieldsInfo['ApiMinPathNeedToCheck']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.apiMinPathNeedToCheck = 1">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ApiMinPathNeedToCheck']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
         <!-- ApiReceiveKey Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiReceiveKey']?.accessWatchField">
           <mat-label>{{ fieldsInfo['ApiReceiveKey']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.apiReceiveKey" [disabled]="!fieldsInfo['ApiReceiveKey']?.accessEditField" class="input-ltr"
-            name="dataModel.apiReceiveKey" #ApiReceiveKey type="text" placeholder="" />
+          <input matInput [(ngModel)]="dataModel.apiReceiveKey"
+            [disabled]="!fieldsInfo['ApiReceiveKey']?.accessEditField" class="input-ltr" name="dataModel.apiReceiveKey"
+            #ApiReceiveKey type="text" placeholder="" />
           <mat-icon matSuffix *ngIf="dataModel.apiReceiveKey && fieldsInfo['ApiReceiveKey']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.apiReceiveKey = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ApiReceiveKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -84,9 +96,33 @@
           <mat-label>{{ fieldsInfo['HookAddressAPIById']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.hookAddressAPIById" readonly class="input-ltr"
             name="dataModel.hookAddressAPIById" #HookAddressAPIById type="test" placeholder="" />
-          <mat-icon matSuffix *ngIf="dataModel.hookAddressAPIById && fieldsInfo['HookAddressAPIById']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.hookAddressAPIById = ''">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.hookAddressAPIById && fieldsInfo['HookAddressAPIById']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.hookAddressAPIById = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['HookAddressAPIById']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- apiAbilityLengthMinToSend Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiAbilityLengthMinToSend']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['ApiAbilityLengthMinToSend']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.apiAbilityLengthMinToSend"
+            [disabled]="!fieldsInfo['ApiAbilityLengthMinToSend']?.accessEditField"
+            name="dataModel.apiAbilityLengthMinToSend" #ApiAbilityLengthMinToSend type="number" placeholder="" />
+          <mat-icon matSuffix
+            *ngIf="dataModel.apiAbilityLengthMinToSend && fieldsInfo['ApiAbilityLengthMinToSend']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.apiAbilityLengthMinToSend = 1">close
+          </mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ApiAbilityLengthMinToSend']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- apiAbilityLengthMaxToSend Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ApiAbilityLengthMaxToSend']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['ApiAbilityLengthMaxToSend']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.apiAbilityLengthMaxToSend"
+            [disabled]="!fieldsInfo['ApiAbilityLengthMaxToSend']?.accessEditField"
+            name="dataModel.apiAbilityLengthMaxToSend" #ApiAbilityLengthMaxToSend type="number" placeholder="" />
+          <mat-icon matSuffix
+            *ngIf="dataModel.apiAbilityLengthMaxToSend && fieldsInfo['ApiAbilityLengthMaxToSend']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.apiAbilityLengthMaxToSend = 1">close
+          </mat-icon>
+          <mat-icon *ngIf="fieldsInfo['ApiAbilityLengthMaxToSend']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Priority Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.accessWatchField">
@@ -151,8 +187,8 @@
         <!-- PerriodStartWorkTime Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PerriodStartWorkTime']?.accessWatchField">
           <mat-label>{{fieldsInfo['PerriodStartWorkTime']?.fieldTitle}}</mat-label>
-          <input matInput [ngxTimepicker]="PerriodStartWorkTime" [(ngModel)]="dataModel.perriodStartWorkTime" 
-          [format]="24" name="dataModel.perriodStartWorkTime" />
+          <input matInput [ngxTimepicker]="PerriodStartWorkTime" [(ngModel)]="dataModel.perriodStartWorkTime"
+            [format]="24" name="dataModel.perriodStartWorkTime" />
           <mat-icon matSuffix
             *ngIf="dataModel.perriodStartWorkTime && fieldsInfo['PerriodStartWorkTime']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.perriodStartWorkTime = null">close</mat-icon>
@@ -164,8 +200,8 @@
         <!-- PerriodEndWorkTime Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PerriodEndWorkTime']?.accessWatchField">
           <mat-label>{{fieldsInfo['PerriodEndWorkTime']?.fieldTitle}}</mat-label>
-          <input matInput [ngxTimepicker]="PerriodEndWorkTime" [(ngModel)]="dataModel.perriodEndWorkTime"
-          [format]="24" name="dataModel.perriodEndWorkTime" />
+          <input matInput [ngxTimepicker]="PerriodEndWorkTime" [(ngModel)]="dataModel.perriodEndWorkTime" [format]="24"
+            name="dataModel.perriodEndWorkTime" />
           <mat-icon matSuffix *ngIf="dataModel.perriodEndWorkTime && fieldsInfo['PerriodEndWorkTime']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.perriodEndWorkTime = null">close</mat-icon>
           <ngx-material-timepicker-toggle matSuffix [for]="PerriodEndWorkTime"></ngx-material-timepicker-toggle>
@@ -229,7 +265,52 @@
         </div>
       </mat-step>
       <mat-step label="متغیرهای دریافت وضعیت" state="seo">
-
+        <p>تنظیم دسترسی ها</p>
+        <!-- apiAbilitySendUnicodeMessage Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.apiAbilitySendUnicodeMessage"
+            *ngIf="fieldsInfo['ApiAbilitySendUnicodeMessage']?.accessWatchField"
+            [disabled]="!fieldsInfo['ApiAbilitySendUnicodeMessage']?.accessEditField"
+            name="dataModel.apiAbilitySendUnicodeMessage">
+            {{fieldsInfo['ApiAbilitySendUnicodeMessage']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- apiAbilitySendNormalMessage Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.apiAbilitySendNormalMessage"
+            *ngIf="fieldsInfo['ApiAbilitySendNormalMessage']?.accessWatchField"
+            [disabled]="!fieldsInfo['ApiAbilitySendNormalMessage']?.accessEditField"
+            name="dataModel.apiAbilitySendNormalMessage">
+            {{fieldsInfo['ApiAbilitySendNormalMessage']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- apiAllowSuperSeder Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.apiAllowSuperSeder"
+            *ngIf="fieldsInfo['ApiAllowSuperSeder']?.accessWatchField"
+            [disabled]="!fieldsInfo['ApiAllowSuperSeder']?.accessEditField"
+            name="dataModel.apiAllowSuperSeder">
+            {{fieldsInfo['ApiAllowSuperSeder']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- apiAbilityUseWebservice Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.apiAbilityUseWebservice"
+            *ngIf="fieldsInfo['ApiAbilityUseWebservice']?.accessWatchField"
+            [disabled]="!fieldsInfo['ApiAbilityUseWebservice']?.accessEditField"
+            name="dataModel.apiAbilityUseWebservice">
+            {{fieldsInfo['ApiAbilityUseWebservice']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- apiAbilityUseInside Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.apiAbilityUseInside"
+            *ngIf="fieldsInfo['ApiAbilityUseInside']?.accessWatchField"
+            [disabled]="!fieldsInfo['ApiAbilityUseInside']?.accessEditField"
+            name="dataModel.apiAbilityUseInside">
+            {{fieldsInfo['ApiAbilityUseInside']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
