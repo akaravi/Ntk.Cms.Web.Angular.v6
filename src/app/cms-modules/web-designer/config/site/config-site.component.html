@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-      <mat-step label="تنظیمات ماژول" state="main">
+      <mat-step label="{{'TITLE.Config_Module' | translate}}" state="main">
         <p>{{'TITLE.Settings_that_the_module_applies_to_the_site' | translate}} </p>
         <!-- StatusRenderUser Field -->
         <div class="ntk-full-width">
@@ -39,7 +39,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="مقادیر ذخیره شده" state="main">
+      <mat-step label="{{'TITLE.Saved_Value' | translate}}" state="main">
         <p>مقادیر ذخیره شده توسط سیستم </p>
         <!-- RowCount Field -->
         <div class="ntk-full-width">

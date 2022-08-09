@@ -4,6 +4,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel,
+  CoreCurrencyModel,
+  CoreCurrencyService,
   CoreEnumService,
   CoreModuleModel,
   CoreModuleService,
@@ -34,6 +36,7 @@ export class PublicHelper {
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
     private coreEnumService: CoreEnumService,
+    private coreCurrencyService: CoreCurrencyService,
     private coreSiteService: CoreSiteService,
     private coreModuleService: CoreModuleService,
     private cmsStoreService: CmsStoreService,
@@ -228,7 +231,7 @@ export class PublicHelper {
   LocaleDateTime(model): string {
     if (model) {
       const d = new Date(model);
-      return d.toLocaleDateString('fa-Ir')+' '+d.getHours() + ':' + d.getMinutes();;
+      return d.toLocaleDateString('fa-Ir') + ' ' + d.getHours() + ':' + d.getMinutes();;
     }
     return '';
   }
@@ -272,12 +275,12 @@ export class PublicHelper {
       return retOut;
     }
     dataAccessModel.fieldsInfo.forEach((el) => retOut[el.fieldName] = el);
-    if (environment.checkAccess|| localStorage.getItem('KeyboardEventF9')) {
+    if (environment.checkAccess || localStorage.getItem('KeyboardEventF9')) {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.autoFocus = true;
       dialogConfig.data = { access: dataAccessModel };
-      dialogConfig.height = '70%' ;
+      dialogConfig.height = '70%';
       const dialogRef = this.dialog.open(CmsAccessInfoComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {
@@ -317,15 +320,52 @@ export class PublicHelper {
 
     return oid;
   }
+  getCurrencyActionIndo = false;
+  async getCurrency(): Promise<ErrorExceptionResult<CoreCurrencyModel>> {
+    var i = 0;
+    while (this.getCurrencyActionIndo) {
+      //**indo */
+      setTimeout(() => {
+      }, 10000);
+      i++
+      if (i == 100)
+        this.getCurrencyActionIndo = false;
+    }
+    const storeSnapshot = this.cmsStoreService.getStateSnapshot();
+    if (storeSnapshot?.CurrencyResultStore?.isSuccess && storeSnapshot?.CurrencyResultStore?.listItems?.length > 0) {
+      return storeSnapshot.CurrencyResultStore;
+    }
 
+    this.getCurrencyActionIndo = true;
+    return await this.coreCurrencyService.ServiceGetAll(null)
+      .pipe(map(response => {
+        this.getCurrencyActionIndo = false;
+        this.cmsStoreService.setState({ CurrencyResultStore: response });
+
+        return response;
+      })).toPromise();
+
+  }
+  getEnumRecordStatusActionIndo = false;
   async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumInfoModel>> {
+    var i = 0;
+    while (this.getEnumRecordStatusActionIndo) {
+      //**indo */
+      setTimeout(() => {
+      }, 10000);
+      i++
+      if (i == 100)
+        this.getEnumRecordStatusActionIndo = false;
+    }
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
     if (storeSnapshot?.EnumRecordStatusResultStore?.listItems?.length > 0) {
       return storeSnapshot.EnumRecordStatusResultStore;
     }
 
+    this.getEnumRecordStatusActionIndo = true;
     return await this.coreEnumService.ServiceEnumRecordStatus()
       .pipe(map(response => {
+        this.getEnumRecordStatusActionIndo = false;
         this.cmsStoreService.setState({ EnumRecordStatusResultStore: response });
         return response;
       })).toPromise();

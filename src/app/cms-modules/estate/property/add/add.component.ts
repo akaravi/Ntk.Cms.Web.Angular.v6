@@ -91,7 +91,7 @@ export class EstatePropertyAddComponent implements OnInit {
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
-
+  currencyOptionSelectFirstItem=true;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
   tokenInfo = new TokenInfoModel();
@@ -381,6 +381,7 @@ export class EstatePropertyAddComponent implements OnInit {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    this.currencyOptionSelectFirstItem=true;
     this.contractTypeSelected = model;
     this.contractDataModel = new EstateContractModel();
     this.contractDataModel.contractType = this.contractTypeSelected;

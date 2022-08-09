@@ -90,7 +90,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-
+  currencyOptionSelectFirstItem=true;
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
@@ -266,7 +266,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       }
     }
     const pName = this.constructor.name + 'ServiceEdit';
-    this.loading.Start(pName, this.translate.instant('registration_chaneges_in_property_information'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.registration_chaneges_in_property_information'));
 
     this.estatePropertyService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
@@ -380,6 +380,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    this.currencyOptionSelectFirstItem=true;
     this.contractTypeSelected = model;
     this.contractDataModel = new EstateContractModel();
     this.contractDataModel.contractType = this.contractTypeSelected;

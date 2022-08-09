@@ -16,6 +16,7 @@ import { catchError, debounceTime, distinctUntilChanged, map, startWith, switchM
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 
 @Component({
@@ -30,8 +31,9 @@ export class CmsCurrencySelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
+    private publicHelper: PublicHelper,
     public categoryService: CoreCurrencyService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
   dataModelSelect: CoreCurrencyModel = new CoreCurrencyModel();
@@ -69,7 +71,27 @@ export class CmsCurrencySelectorComponent implements OnInit {
   displayOption(model?: CoreCurrencyModel): string | undefined {
     return model ? (model.titleML) : undefined;
   }
+
+  dateUseStore = true;
   async DataGetAll(text: string | number | any): Promise<CoreCurrencyModel[]> {
+    if (this.dateUseStore) {
+      //** */
+      
+      this.dataModelResult = await this.publicHelper.getCurrency();
+      if (this.dataModelResult.isSuccess){
+        /*select First Item */
+        if (this.optionSelectFirstItem &&
+          (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&
+          this.dataModelResult.listItems.length > 0) {
+          this.optionSelectFirstItem = false;
+          setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
+          this.onActionSelect(this.dataModelResult.listItems[0]);
+        }
+        /*select First Item */
+        return this.dataModelResult.listItems;
+      }
+      //** */
+    }       //** */
     const filteModel = new FilterModel();
     filteModel.rowPerPage = 20;
     filteModel.accessLoad = true;
@@ -124,6 +146,8 @@ export class CmsCurrencySelectorComponent implements OnInit {
           return response.listItems;
         })
       ).toPromise();
+    //** */
+
   }
   onActionSelect(model: CoreCurrencyModel): void {
     if (this.optionDisabled) {
@@ -132,6 +156,7 @@ export class CmsCurrencySelectorComponent implements OnInit {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
+
   onActionSelectClear(): void {
     if (this.optionDisabled) {
       return;
