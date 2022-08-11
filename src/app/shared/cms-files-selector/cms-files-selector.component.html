@@ -3,7 +3,7 @@
   <mat-form-field class="ntk-full-width">
     <mat-label (click)="fileManagerOpenForm = true">فایل
     </mat-label>
-    <input matInput name="dataModel.linkMainImageId" #LinkMainImageId type="text" placeholder="شناسه فایل اصلی"
+    <input matInput name="dataModel.linkMainImageId" #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
       (click)="fileManagerOpenForm = true" />
     <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
   </mat-form-field>

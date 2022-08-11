@@ -337,9 +337,9 @@
         <mat-form-field class="ntk-full-width">
           <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
-          <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
+          <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.PHOTO_FILE' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-            type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
+            type="text" placeholder="{{'TITLE.Icon_File_ID' | translate}}" (click)="fileManagerOpenForm = true" />
           <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.linkMainImageId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

@@ -28,14 +28,14 @@
     </mat-form-field>
     <!-- ContentType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع پیام" [(ngModel)]="dataModel.contentType" name="dataModel.contentType"
+      <mat-select placeholder="{{'TITLE.Message_Type' | translate}}" [(ngModel)]="dataModel.contentType" name="dataModel.contentType"
         #ContentType="ngModel" panelClass="recordStatus-{{ dataModel.contentType }}" required>
         <mat-option *ngFor="
                         let item of dataModelEnumContentTypeResult.listItems;
                         index as i
                       " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب نوع این محتوا</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
       <mat-error *ngIf="ContentType.errors?.required">
         ContentType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -124,7 +124,7 @@
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-        <i class="fa fa-check-square-o"></i> ارسال
+        <i class="fa fa-check-square-o"></i> {{'TITLE.Send' | translate}}
       </button>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

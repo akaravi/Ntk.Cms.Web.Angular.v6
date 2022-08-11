@@ -2,7 +2,7 @@
 <div class="table" *ngIf="optionMethod===1 && dataModel">
   <div class="th" *ngIf="optionViewHead">
     <div class="td">پارامتر</div>
-    <div class="td">مقادیر</div>
+    <div class="td">{{'TITLE.Values' | translate}}</div>
     <div class="clear"></div>
   </div>
   <div class="tr" *ngFor="let head of dataModel | keys : optionFields ">

@@ -26,9 +26,9 @@
         </mat-form-field>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>کارمزد</mat-label>
+          <mat-label>{{'TITLE.Wage' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.feeTransport" name="dataModel.feeTransport" #FeeTransport type="number"
-            placeholder="کارمزد" required />
+            placeholder="{{'TITLE.Wage' | translate}}" required />
           <mat-icon matSuffix *ngIf="dataModel.feeTransport" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.feeTransport = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

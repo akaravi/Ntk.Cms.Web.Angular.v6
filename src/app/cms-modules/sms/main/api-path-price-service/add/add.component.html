@@ -96,28 +96,28 @@
 
     <!-- MessageType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع پیام" [(ngModel)]="dataModel.messageType" name="dataModel.messageType"
+      <mat-select placeholder="{{'TITLE.Message_Type' | translate}}" [(ngModel)]="dataModel.messageType" name="dataModel.messageType"
         #MessageType="ngModel" panelClass="recordStatus-{{ dataModel.messageType }}" required>
         <mat-option *ngFor="
                           let item of dataModelSmsMessageTypeEnumResult.listItems;
                           index as i
                         " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب نوع پیام</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_message' | translate}}</mat-hint>
       <mat-error *ngIf="MessageType.errors?.required">
         MessageType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- OutBoxType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع ارسال" [(ngModel)]="dataModel.outBoxType" name="dataModel.outBoxType"
+      <mat-select placeholder="{{'TITLE.Send_Type' | translate}}" [(ngModel)]="dataModel.outBoxType" name="dataModel.outBoxType"
         #OutBoxType="ngModel" panelClass="recordStatus-{{ dataModel.outBoxType }}" required>
         <mat-option *ngFor="
                     let item of dataModelSmsOutBoxTypeEnumResult.listItems;
                     index as i
                   " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب نوع ارسال</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_sending' | translate}}</mat-hint>
       <mat-error *ngIf="OutBoxType.errors?.required">
         OutBoxType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

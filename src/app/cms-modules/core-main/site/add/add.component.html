@@ -200,7 +200,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.pwaIconSize190x192Id"
               [disabled]="!fieldsInfo['PwaIconSize190x192Id']?.accessAddField" name="dataModel.pwaIconSize190x192Id"
-              #PwaIconSize190x192Id type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              #PwaIconSize190x192Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenFormPwaIconSize190x192Id = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.pwaIconSize190x192Id && fieldsInfo['PwaIconSize190x192Id']?.accessAddField" matSuffix
@@ -228,7 +228,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.pwaIconSize512x512Id"
               [disabled]="!fieldsInfo['PwaIconSize512x512Id']?.accessAddField" name="dataModel.pwaIconSize512x512Id"
-              #PwaIconSize512x512Id type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              #PwaIconSize512x512Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenFormPwaIconSize512x512Id = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.pwaIconSize512x512Id && fieldsInfo['PwaIconSize512x512Id']?.accessAddField" matSuffix
@@ -440,7 +440,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.linkFavIconId"
               [disabled]="!fieldsInfo['LinkFavIconId']?.accessAddField" name="dataModel.linkFavIconId" #LinkFavIconId
-              type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenFormLinkFavIconId = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkFavIconId && fieldsInfo['LinkFavIconId']?.accessAddField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.linkFavIconId = null">close</mat-icon>
@@ -590,7 +590,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.linkImageLogoId"
               [disabled]="!fieldsInfo['LinkImageLogoId']?.accessAddField" name="dataModel.linkImageLogoId"
-              #LinkImageLogoId type="text" placeholder="شناسه فایل اصلی"
+              #LinkImageLogoId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
               (click)="fileManagerOpenFormLinkImageLogoId = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkImageLogoId && fieldsInfo['LinkImageLogoId']?.accessAddField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkImageLogoId = null">close</mat-icon>
@@ -879,7 +879,7 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.aboutUsLinkImageId"
               [disabled]="!fieldsInfo['AboutUsLinkImageId']?.accessAddField" name="dataModel.aboutUsLinkImageId"
-              #AboutUsLinkImageId type="text" placeholder="شناسه فایل اصلی"
+              #AboutUsLinkImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
               (click)="fileManagerOpenFormAboutUsLinkImageId = true" />
             <mat-icon matSuffix *ngIf="dataModel.aboutUsLinkImageId && fieldsInfo['AboutUsLinkImageId']?.accessAddField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsLinkImageId = null">close

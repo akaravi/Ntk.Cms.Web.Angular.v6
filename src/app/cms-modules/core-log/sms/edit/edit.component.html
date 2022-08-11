@@ -9,7 +9,7 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- SendStatusType Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.sendStatusType" name="dataModel.sendStatusType"
+          <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.sendStatusType" name="dataModel.sendStatusType"
             #SendStatusType="ngModel" panelClass="SendStatusType-{{ dataModel.sendStatusType }}" required>
             <mat-option *ngFor="
                   let item of dataModelEnumSendSmsStatusTypeResult.listItems;

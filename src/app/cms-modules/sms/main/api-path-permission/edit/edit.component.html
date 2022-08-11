@@ -58,14 +58,14 @@
     </div>
     <!-- AccessStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع وضعیت" [(ngModel)]="dataModel.accessStatus" name="dataModel.accessStatus"
+      <mat-select placeholder="{{'TITLE.Status_Type' | translate}}" [(ngModel)]="dataModel.accessStatus" name="dataModel.accessStatus"
         #AccessStatus="ngModel" panelClass="recordStatus-{{ dataModel.accessStatus }}" required>
         <mat-option *ngFor="
                           let item of dataModelEnumApiPathPermissionAccessStatusResult.listItems;
                           index as i
                         " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب نوع این محتوا</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
       <mat-error *ngIf="AccessStatus.errors?.required">
         AccessStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -80,7 +80,7 @@
                               index as i
                             " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب نوع این محتوا</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
       <mat-error *ngIf="Action.errors?.required">
         Action is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

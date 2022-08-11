@@ -76,7 +76,7 @@
         <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Icon_File' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.linkModuleFileLogoId" name="dataModel.linkModuleFileLogoId"
-          #LinkModuleFileLogoId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+          #LinkModuleFileLogoId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
           (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkModuleFileLogoId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkModuleFileLogoId = null">close</mat-icon>
@@ -87,7 +87,7 @@
         [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false">
       </cms-file-manager>
     </div>
-    <p>تنظیمات درگاه عمومی</p>
+    <p>{{'TITLE.Public_port_settings' | translate}}</p>
     <dynamic-form-builder-cms [formGroup]="vform.form" [propertiesInfos]="dataModel.publicConfigJsonFormatter"
       [(jsonValue)]="dataModel.publicConfigJsonValues"></dynamic-form-builder-cms>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

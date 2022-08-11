@@ -225,7 +225,7 @@
             <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.linkMainImageId"
               [disabled]="!fieldsInfo['LinkMainImageId']?.accessEditField" name="dataModel.linkMainImageId"
-              #LinkMainImageId type="text" placeholder="شناسه فایل اصلی" autocomplete="off"
+              #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId && fieldsInfo['LinkMainImageId']?.accessEditField"
               matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainImageId = null">close</mat-icon>
@@ -249,7 +249,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="تنظیمات قالب و ساخت" state="otherinfo">
+      <mat-step label="{{'TITLE.Config_Template_and_Build' | translate}}" state="otherinfo">
         <p>{{'TITLE.Total_management_default_settings_in_build' | translate}}</p>
 
         در سایت ها با دسته بندی زیر قالب بکار گیری باشد:

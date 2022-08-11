@@ -28,9 +28,9 @@
     </app-ticketing-departemen-selector>
     <!-- Question Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>سوال</mat-label>
+      <mat-label>{{'TITLE.Question' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.question" name="dataModel.question" #Question type="text"
-        placeholder="سوال" minlength="3" maxlength="1000" required />
+        placeholder="{{'TITLE.Question' | translate}}" minlength="3" maxlength="1000" required />
       <mat-icon matSuffix *ngIf="dataModel.question" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.question = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -40,7 +40,7 @@
       </mat-error>
     </mat-form-field>
     <!-- Answer Field -->
-    <p> پاسخ </p>
+    <p> {{'TITLE.Answer' | translate}} </p>
     <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="Answer"
       [(ngModel)]="dataModel.answer" name="dataModel.answer"></angular-editor>
     <br>

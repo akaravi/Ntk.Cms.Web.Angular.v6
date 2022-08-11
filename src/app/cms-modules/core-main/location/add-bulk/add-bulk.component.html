@@ -24,14 +24,14 @@
       </mat-form-field>
       <!-- LocationType Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="نوع منطقه" [(ngModel)]="dataModel.locationType" name="dataModel.locationType"
+        <mat-select placeholder="{{'TITLE.Area_Type' | translate}}" [(ngModel)]="dataModel.locationType" name="dataModel.locationType"
           #LocationType="ngModel" panelClass="LocationType-{{ dataModel.locationType }}">
           <mat-option *ngFor="
                   let item of dataModelEnumLocationTypeResult.listItems;
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
-        <mat-hint style="text-align: left;">انتخاب نوع این محتوا</mat-hint>
+        <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
         <mat-error *ngIf="LocationType.errors?.required">
           LocationType is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -77,9 +77,9 @@
       <mat-form-field class="ntk-full-width">
         <img *ngIf="dataModel?.linkImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
           src="{{dataModel.linkImageIdSrc | cmsthumbnail}}" height="50" width="50" />
-        <mat-label (click)="fileManagerOpenForm = true">فایل عکس</mat-label>
+        <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.PHOTO_FILE' | translate}}</mat-label>
         <input matInput [(ngModel)]="dataModel.linkImageId" name="dataModel.linkImageId" #LinkImageId
-          type="text" placeholder="شناسه فایل آیکن" (click)="fileManagerOpenForm = true" />
+          type="text" placeholder="{{'TITLE.Icon_File_ID' | translate}}" (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkImageId" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

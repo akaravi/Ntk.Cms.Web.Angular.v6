@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-      <mat-step label="مشخصات ادعا" state="main">
+      <mat-step label="{{'TITLE.Details_Claim' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
@@ -59,14 +59,14 @@
         </mat-form-field>
         <!-- Kind Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.kind" name="dataModel.kind" #Kind="ngModel"
+          <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.kind" name="dataModel.kind" #Kind="ngModel"
             panelClass="Kind-{{ dataModel.kind }}" required>
             <mat-option *ngFor="
                 let item of dataModelEnumUserClaimKindsResult.listItems;
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: left;">انتخاب نوع این محتوا</mat-hint>
+          <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
           <mat-error *ngIf="Kind.errors?.required">
             Kind is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -88,10 +88,10 @@
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
-            <mat-label (click)="fileManagerOpenForm = true">فایل نمونه
+            <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Sample_File' | translate}}
             </mat-label>
             <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-              type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
+              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -116,7 +116,7 @@
           </mat-error>
         </mat-form-field>
       </mat-step>
-      <mat-step label="بکارگیری شده" state="main">
+      <mat-step label="{{'TITLE.Get_Used' | translate}}" state="main">
         <app-core-userclaimgroup-selectionlist [optionSelectForce]="dataCoreClaimGroupIds" [optionDisabled]="false"
           (optionChange)="onActionSelectorUserCategorySelect($event)"
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"

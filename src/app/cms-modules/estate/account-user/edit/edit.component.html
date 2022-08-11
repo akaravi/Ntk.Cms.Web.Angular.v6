@@ -17,7 +17,7 @@
           <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Profile_Picture' | translate}}
           </mat-label>
           <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-            type="text" placeholder="شناسه فایل عکس پروفایل" autocomplete="off" (click)="fileManagerOpenForm = true" />
+            type="text" placeholder="{{'TITLE.ID_OF_PROFILE_PHOTO_FILE' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
           <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.linkMainImageId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

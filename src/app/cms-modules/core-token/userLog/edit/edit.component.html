@@ -23,7 +23,7 @@
   </mat-form-field>
   <!-- LinkMemberUserId Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.linkMemberUserId" name="dataModel.linkMemberUserId"
+    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.linkMemberUserId" name="dataModel.linkMemberUserId"
       #LinkMemberUserId="ngModel" panelClass="LinkMemberUserId-{{ dataModel.linkMemberUserId }}" required>
       <mat-option *ngFor="
                   let item of dataModelEnumManageUserAccessUserTypesResult.listItems;
@@ -37,7 +37,7 @@
   </mat-form-field>
   <!-- UserAccessAreaType Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.userAccessAreaType" name="dataModel.userAccessAreaType"
+    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType" name="dataModel.userAccessAreaType"
       #UserAccessAreaType="ngModel" panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
       <mat-option *ngFor="
                     let item of dataModelEnumManageUserAccessAreaTypesResult.listItems;

@@ -94,7 +94,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Source_page_address' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
-            style="text-align: left;" placeholder="لینک وب سایت مرجع محتوا" minlength="3" maxlength="500" />
+            style="text-align: left;" placeholder="{{'TITLE.Content_reference_website_link' | translate}}" minlength="3" maxlength="500" />
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.source = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -144,7 +144,7 @@
 
             <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
             <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-              type="text" placeholder="شناسه فایل اصلی" autocomplete="off" (click)="fileManagerOpenForm = true" />
+              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -164,7 +164,7 @@
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
             <input matInput [(ngModel)]="dataModel.linkFilePodcastId" name="dataModel.linkFilePodcastId"
-              #LinkFilePodcastId type="text" placeholder="شناسه فایل صوتی"
+              #LinkFilePodcastId type="text" placeholder="{{'TITLE.Audio_File_ID' | translate}}"
               (click)="fileManagerOpenFormPodcast = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkFilePodcastId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkFilePodcastId = null">close</mat-icon>
@@ -222,7 +222,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Key' | translate}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.typeId" name="contentOtherInfoSelected.typeId"
-            #contentOtherInfoSelected_TypeId type="number" placeholder="عددی توافقی برای نمایش" />
+            #contentOtherInfoSelected_TypeId type="number" placeholder="{{'TITLE.Agreement_number_to_display' | translate}}" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.typeId" matSuffix mat-icon-button aria-label="Clear"
             (click)="contentOtherInfoSelected.typeId = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -257,7 +257,7 @@
             </ng-container>
             <!-- TypeId Column -->
             <ng-container matColumnDef="TypeId">
-              <mat-header-cell *matHeaderCellDef> نوع </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.TypeId' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.typeId}} </mat-cell>
             </ng-container>
             <!-- Action Column -->

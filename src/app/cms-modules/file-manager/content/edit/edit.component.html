@@ -91,7 +91,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Source_page_address' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
-            style="text-align: left;" placeholder="لینک وب سایت مرجع محتوا" minlength="3" maxlength="500" />
+            style="text-align: left;" placeholder="{{'TITLE.Content_reference_website_link' | translate}}" minlength="3" maxlength="500" />
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.source = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

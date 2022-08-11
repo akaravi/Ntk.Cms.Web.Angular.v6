@@ -66,7 +66,7 @@
     </mat-form-field>
     <!-- InputDataType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع" [(ngModel)]="dataModel.inputDataType" name="dataModel.inputDataType"
+      <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.inputDataType" name="dataModel.inputDataType"
         #InputDataType="ngModel" panelClass="InputDataType-{{ dataModel.inputDataType }}">
         <mat-option *ngFor="
                       let item of dataModelEnumInputDataTypeResult.listItems;

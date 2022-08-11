@@ -13,7 +13,7 @@
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.title' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text" placeholder="عنوان پیام"
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text" placeholder="{{'TITLE.Message_Title' | translate}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
@@ -26,8 +26,8 @@
 
     <!-- text Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>متن پیام</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.text" name="dataModel.text" #text type="text" placeholder="متن پیام"
+      <mat-label>{{'MESSAGE.Message_Text' | translate}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.text" name="dataModel.text" #text type="text" placeholder="{{'MESSAGE.Message_Text' | translate}}"
         row="10" required></textarea>
       <mat-icon matSuffix *ngIf="dataModel.text" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.text = ''">close</mat-icon>
@@ -40,8 +40,8 @@
 
     <!-- chatId Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>گیرنده/ها</mat-label>
-      <textarea matInput [(ngModel)]="compModel.ChatIds" name="compModel.ChatIds"   #ChatIds type="text" placeholder="چت آی دی"
+      <mat-label>{{'TITLE.Receivers' | translate}}</mat-label>
+      <textarea matInput [(ngModel)]="compModel.ChatIds" name="compModel.ChatIds"   #ChatIds type="text" placeholder="{{'TITLE.Chat_ID' | translate}}"
         row="10" required></textarea>
       <mat-icon matSuffix *ngIf="compModel.ChatIds" matSuffix mat-icon-button aria-label="Clear"
         (click)="compModel.ChatIds = ''">close</mat-icon>

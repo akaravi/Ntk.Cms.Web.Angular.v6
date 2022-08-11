@@ -24,7 +24,7 @@
     </mat-form-field>
     <!-- EnumCmsModuleSaleItemType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.enumCmsModuleSaleItemType"
+      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.enumCmsModuleSaleItemType"
         name="dataModel.enumCmsModuleSaleItemType" #EnumCmsModuleSaleItemType="ngModel"
         panelClass="EnumCmsModuleSaleItemType-{{ dataModel.enumCmsModuleSaleItemType }}" required>
         <mat-option *ngFor="

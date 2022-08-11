@@ -56,7 +56,7 @@
         </div>
         <!-- UserRegidteryRecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="وضعیت" [(ngModel)]="dataConfigSiteValuesModel.userRegidteryRecordStatus"
+          <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataConfigSiteValuesModel.userRegidteryRecordStatus"
             name="dataConfigSiteValuesModel.userRegidteryRecordStatus" #UserRegidteryRecordStatus="ngModel"
             panelClass="UserRegidteryRecordStatus-{{ dataConfigSiteValuesModel.userRegidteryRecordStatus }}">
             <mat-option *ngFor="

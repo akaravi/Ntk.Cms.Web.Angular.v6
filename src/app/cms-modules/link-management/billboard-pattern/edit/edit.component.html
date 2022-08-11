@@ -39,14 +39,14 @@
 
     <!-- SettingType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع محتوا" [(ngModel)]="dataModel.settingType" name="dataModel.settingType"
+      <mat-select placeholder="{{'TITLE.Content_Type' | translate}}" [(ngModel)]="dataModel.settingType" name="dataModel.settingType"
         #SettingType="ngModel" panelClass="recordStatus-{{ dataModel.settingType }}" required>
         <mat-option *ngFor="
                           let item of dataModelEnumManagementContentSettingTypeResult.listItems;
                           index as i
                         " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب نوع این محتوا</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
       <mat-error *ngIf="SettingType.errors?.required">
         SettingType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -54,7 +54,7 @@
 
     <!-- SharingLinkType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع اشتراک گزاری" [(ngModel)]="dataModel.sharingLinkType"
+      <mat-select placeholder="{{'TITLE.Sharing_Type' | translate}}" [(ngModel)]="dataModel.sharingLinkType"
         name="dataModel.sharingLinkType" #SharingLinkType="ngModel"
         panelClass="recordStatus-{{ dataModel.sharingLinkType }}" required>
         <mat-option *ngFor="
@@ -62,7 +62,7 @@
                           index as i
                         " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب نوع این محتوا</mat-hint>
+      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
       <mat-error *ngIf="SharingLinkType.errors?.required">
         SharingLinkType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -136,10 +136,10 @@
       </div>
       <div class="mb-9">
         <mat-form-field class="ntk-full-width">
-          <mat-label (click)="fileManagerOpenForm = true">نمونه عکس بنر
+          <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.EXAMPLE_OF_BANNER_PHOTO' | translate}}
           </mat-label>
           <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-            type="text" placeholder="شناسه فایل عکس بنر" autocomplete="off" (click)="fileManagerOpenForm = true" />
+            type="text" placeholder="{{'TITLE.ID_OF_BANNER_PHOTO_FILE' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
           <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.linkMainImageId = null">close</mat-icon>
           <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

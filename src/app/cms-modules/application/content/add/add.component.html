@@ -595,13 +595,13 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="تنظیمات قالب و ساخت" state="otherinfo">
+      <mat-step label="{{'TITLE.Config_Template_and_Build' | translate}}" state="otherinfo">
         <p>{{'TITLE.Total_management_default_settings_in_build' | translate}}</p>
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigBuilderAdminJsonValues']?.accessWatchField">
           <mat-label>{{fieldsInfo['ConfigBuilderAdminJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configBuilderAdminJsonValues"
             [disabled]="!fieldsInfo['ConfigBuilderAdminJsonValues']?.accessAddField"
-            name="dataModel.configBuilderAdminJsonValues" #ConfigBuilderAdminJsonValues type="text" placeholder="مقادیر"
+            name="dataModel.configBuilderAdminJsonValues" #ConfigBuilderAdminJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
             rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configBuilderAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.configBuilderAdminJsonValues = ''">close</mat-icon>
@@ -611,7 +611,7 @@
           <mat-label>{{fieldsInfo['ConfigRuntimeAdminJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configRuntimeAdminJsonValues"
             [disabled]="!fieldsInfo['ConfigRuntimeAdminJsonValues']?.accessAddField"
-            name="dataModel.configRuntimeAdminJsonValues" #ConfigRuntimeAdminJsonValues type="text" placeholder="مقادیر"
+            name="dataModel.configRuntimeAdminJsonValues" #ConfigRuntimeAdminJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
             rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configRuntimeAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.configRuntimeAdminJsonValues = ''">close</mat-icon>
@@ -621,7 +621,7 @@
           <mat-label>{{fieldsInfo['ConfigBuilderSiteJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configBuilderSiteJsonValues"
             [disabled]="!fieldsInfo['ConfigBuilderSiteJsonValues']?.accessAddField"
-            name="dataModel.configBuilderSiteJsonValues" #ConfigBuilderSiteJsonValues type="text" placeholder="مقادیر"
+            name="dataModel.configBuilderSiteJsonValues" #ConfigBuilderSiteJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
             rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configBuilderSiteJsonValues" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.configBuilderSiteJsonValues = ''">close</mat-icon>
@@ -631,7 +631,7 @@
           <mat-label>{{fieldsInfo['ConfigRuntimeSiteJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configRuntimeSiteJsonValues"
             [disabled]="!fieldsInfo['ConfigRuntimeSiteJsonValues']?.accessAddField"
-            name="dataModel.configRuntimeSiteJsonValues" #ConfigRuntimeSiteJsonValues type="text" placeholder="مقادیر"
+            name="dataModel.configRuntimeSiteJsonValues" #ConfigRuntimeSiteJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
             rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configRuntimeSiteJsonValues" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.configRuntimeSiteJsonValues = ''">close</mat-icon>

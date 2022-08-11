@@ -23,7 +23,7 @@
     </mat-form-field>
     <!-- UserType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="وضعیت" [(ngModel)]="dataModel.userType" name="dataModel.userType" #UserType="ngModel"
+      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userType" name="dataModel.userType" #UserType="ngModel"
         panelClass="UserType-{{ dataModel.userType }}" required>
         <mat-option *ngFor="
                 let item of dataModelEnumManageUserAccessUserTypesResult.listItems;
