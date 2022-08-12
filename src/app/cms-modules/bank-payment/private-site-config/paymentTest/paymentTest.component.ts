@@ -96,6 +96,7 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = next;
         if (next.isSuccess) {
+          localStorage.setItem('TransactionId', next.item.transactionId.toString());
           this.formInfo.formAlert = this.translate.instant('MESSAGE.Payment_request_was_successfully_registered');
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Payment_request_was_successfully_registered'));
           this.dataModelResultGotoBank = true;

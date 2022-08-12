@@ -87,7 +87,8 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
 
     this.DataGetAll();
     this.DataGetCurrency();
-    const transactionId = + localStorage.getItem('TransactionId');
+    //**بررسی تراکنش از قبل */
+    const transactionId = + localStorage.getItem('TransactionId')|0;
     if (transactionId > 0) {
       const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
         // height: "90%",
@@ -101,6 +102,7 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
         }
       });
     }
+    //**بررسی تراکنش از قبل */
   }
 
   DataGetCurrency(): void {
