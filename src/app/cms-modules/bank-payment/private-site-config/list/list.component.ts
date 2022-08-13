@@ -31,6 +31,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { BankPaymentPrivateSiteConfigPaymentTestComponent } from '../paymentTest/paymentTest.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 @Component({
   selector: 'app-bankpayment-privateconfig-list',
   templateUrl: './list.component.html',
@@ -107,6 +108,22 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.DataGetAll();
     });
     this.getPublicConfig();
+        //**بررسی تراکنش از قبل */
+        const transactionId = + localStorage.getItem('TransactionId')|0;
+        if (transactionId > 0) {
+          const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
+            // height: "90%",
+            data: {
+              id: transactionId,
+            },
+          });
+          dialogRef.afterClosed().subscribe((result) => {
+            if (result && result.dialogChangedDate) {
+              localStorage.removeItem('TransactionId');
+            }
+          });
+        }
+        //**بررسی تراکنش از قبل */
   }
   getPublicConfig(): void {
     const filter = new FilterModel();
