@@ -1,4 +1,3 @@
-
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
