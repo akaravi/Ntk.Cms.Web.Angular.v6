@@ -1,4 +1,4 @@
-//**msh */
+
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreConfigurationService, ErrorExceptionResult } from 'ntk-cms-api';
