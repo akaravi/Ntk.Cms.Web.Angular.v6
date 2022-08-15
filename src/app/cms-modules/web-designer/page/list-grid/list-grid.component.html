@@ -131,20 +131,20 @@
             </button>
             <button mat-menu-item (click)="onActionbuttonHtmlEditor(row)">
               <mat-icon>view_module</mat-icon>
-              <span>طراحی صفحه</span>
+              <span>{{'ACTION.PAGE_DESIGN' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonHtmlView(row)">
               <mat-icon>view_module</mat-icon>
-              <span>نمایش صفحه</span>
+              <span>{{'ACTION.SHOW_PAGE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonHtmlViewWithOutParent(row)"
               *ngIf="row.linkPageParentGuId?.length>0">
               <mat-icon>view_module</mat-icon>
-              <span>نمایش صفحه بدون والد</span>
+              <span>{{'ACTION.DISPLAY_PAGE_WITHOUT_PARENT' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonSiteRouteView(row)">
               <mat-icon>view_module</mat-icon>
-              <span>نمایش وب</span>
+              <span>{{'ACTION.SHOW_WEB' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

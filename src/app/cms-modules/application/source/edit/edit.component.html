@@ -453,7 +453,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="گزارش" state="loaction">
+      <mat-step label="{{'TITLE.Report' | translate}}" state="loaction">
         <p>{{'TITLE.Latest_Status_Report' | translate}}</p>
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastSuccessfullyBuildDate']?.accessWatchField">
           <mat-label>{{fieldsInfo['LastSuccessfullyBuildDate']?.fieldTitle}}</mat-label>

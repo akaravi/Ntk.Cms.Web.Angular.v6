@@ -11,15 +11,15 @@
       <mat-step label="مشخضات سامانه" state="main">
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>عنوان سامانه</mat-label>
+          <mat-label>{{'TITLE.System_Title' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-            placeholder="عنوان سامانه" minlength="3" maxlength="100" required />
+            placeholder="{{'TITLE.System_Title' | translate}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            عنوان سامانه الزامی است
+            {{'MESSAGE.System.title_required' | translate}}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">

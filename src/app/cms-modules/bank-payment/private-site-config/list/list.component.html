@@ -36,8 +36,7 @@
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected.id>0" (click)="onActionbuttonTestPayment()"
-      type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">تست
-      پرداخت</button>
+      type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.PAYMENTTEST' | translate}}</button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPublicConfigId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->

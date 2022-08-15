@@ -51,7 +51,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['CurrentDebtor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentDebtor" name="dataModel.currentDebtor" #CurrentDebtor type="number"
-        placeholder="اعتبار فعلی بدهکار" min="0" required />
+        placeholder="{{'TITLE.Current_Credit_Of_Debtor' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.currentDebtor" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.currentDebtor = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -63,7 +63,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['CurrentCreditor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentCreditor" name="dataModel.currentCreditor" #CurrentCreditor
-        type="number" placeholder="اعتبار فعلی بستانکار" min="0" required />
+        type="number" placeholder="{{'TITLE.Current_Credit_Of_Creditor' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.currentCreditor" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.currentCreditor = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

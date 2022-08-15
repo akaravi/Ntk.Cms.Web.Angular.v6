@@ -70,7 +70,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['ClickPrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.clickPrice" name="dataModel.clickPrice" #ClickPrice type="number"
-        placeholder="مبلغ هر کلیک" min="0" required />
+        placeholder="{{'TITLE.Amount_Per_Click' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.clickPrice" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.clickPrice = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -82,7 +82,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['ViewPrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.viewPrice" name="dataModel.viewPrice" #ViewPrice type="number"
-        placeholder="مبلغ هر نمایش" min="0" required />
+        placeholder="{{'TITLE.Amount_Per_Show' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.viewPrice" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.viewPrice = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -157,10 +157,10 @@
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
-        <mat-label (click)="fileManagerOpenForm = true">بگراند بنر
+        <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.BANNER_BACKGROUND' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.linkBackgroundId" name="dataModel.linkBackgroundId" #LinkBackgroundId
-          type="text" placeholder="شناسه فایل بگراند بنر" autocomplete="off" (click)="fileManagerOpenForm = true" />
+          type="text" placeholder="{{'TITLE.ID_OF_BANNER_BACKGROUND_FILE' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkBackgroundId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkBackgroundId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

@@ -35,7 +35,7 @@
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Comment']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.comment" name="dataModel.comment" #Comment type="text"
-          placeholder="کامنت" minlength="1" maxlength="500" required rows=5></textarea>
+          placeholder="{{'TITLE.COMMENT' | translate}}" minlength="1" maxlength="500" required rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.comment = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>

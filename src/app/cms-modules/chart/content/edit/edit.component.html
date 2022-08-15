@@ -88,7 +88,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="دسته بندی ها" state="seo">
+      <mat-step label="{{'TITLE.Categories' | translate}}" state="seo">
         <app-chart-category-treeselector [(optionModel)]="dataContentCategoryModel"
           (optionSelectChecked)="onActionCategorySelectChecked($event)"
           (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-chart-category-treeselector>
@@ -199,7 +199,7 @@
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
             <input matInput [(ngModel)]="dataModel.linkFileMovieId" name="dataModel.linkFileMovieId" #LinkFileMovieId
-              type="text" placeholder="شناسه فایل ویدیو" (click)="fileManagerOpenFormMovie = true" />
+              type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkFileMovieId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkFileMovieId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>

@@ -65,7 +65,7 @@
         </mat-form-field>
         <!-- LastUrlAddressInUse Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label> آدرس برگشت از پرداخت</mat-label>
+          <mat-label>{{'TITLE.Return_Address_from_Payment' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.lastUrlAddressInUse" name="dataModel.lastUrlAddressInUse"
             #LastUrlAddressInUse type="text" class="input-ltr" placeholder="LastUrlAddressInUse" minlength="3" maxlength="500" required />
           <mat-icon matSuffix *ngIf="dataModel.lastUrlAddressInUse" matSuffix mat-icon-button aria-label="Clear"
@@ -98,11 +98,11 @@
         </button>
         <button type="submit" (click)="onFormSubmit()" class="btn btn-success"
           *ngIf="!dataModelResultGotoBank" [disabled]="!vform.valid">
-          <i class="fa fa-check-square-o"></i> پرداخت
+          <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
         </button>
         <button type="button" (click)="onGotoBank()" class="btn btn-raised btn-info mr-1"
           *ngIf="dataModelResultGotoBank">
-          <i class="ft-x"></i> انتقال به درگاه
+          <i class="ft-x"></i> {{'ACTION.TRANSFER_TO_PORT' | translate}}
         </button>
       </div>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

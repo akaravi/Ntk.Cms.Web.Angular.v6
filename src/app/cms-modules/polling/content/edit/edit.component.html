@@ -57,9 +57,9 @@
         </mat-form-field>
 
         <mat-form-field class="ntk-full-width">
-          <mat-label>حداکثر مجموع امتیاز</mat-label>
+          <mat-label>{{'TITLE.Maximum_Total_Score' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.maxVoteForThisContent" name="dataModel.maxVoteForThisContent"
-            #MaxVoteForThisContent type="number" placeholder="حداکثر امتیازی که کاربری می تواند بدهد" min="1" max="100"
+            #MaxVoteForThisContent type="number" placeholder="{{'MESSAGE.Maximum_Score_That_User_Can_Give' | translate}}" min="1" max="100"
             required />
           <mat-icon matSuffix *ngIf="dataModel.maxVoteForThisContent" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.maxVoteForThisContent = 1">close</mat-icon>
@@ -70,9 +70,9 @@
         </mat-form-field>
 
         <mat-form-field class="ntk-full-width">
-          <mat-label>حداکثر امتیاز به هر گزینه</mat-label>
+          <mat-label>{{'TITLE.Maximum_Score_For_Per_Option' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.maxVoteForEachOption" name="dataModel.maxVoteForEachOption"
-            #MaxVoteForEachOption type="number" placeholder="حداکثر امتیازی که کاربری می تواند بدهد" min="1" max="100"
+            #MaxVoteForEachOption type="number" placeholder="{{'MESSAGE.Maximum_Score_That_User_Can_Give' | translate}}" min="1" max="100"
             required />
           <mat-icon matSuffix *ngIf="dataModel.maxVoteForEachOption" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.maxVoteForEachOption = 1">close</mat-icon>
@@ -136,7 +136,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.Poll_Option' | translate}}" state="seo">
-        <p>این بخش برای نوع و کزینه ای نظر سنجی می باشد</p>
+        <p>{{'TITLE.This_section_is_for_the_type_and_option_of_the_survey' | translate}}</p>
 
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.OPTION' | translate}}</mat-label>
@@ -285,7 +285,7 @@
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
             <input matInput [(ngModel)]="dataModel.linkFileMovieId" name="dataModel.linkFileMovieId" #LinkFileMovieId
-              type="text" placeholder="شناسه فایل ویدیو" (click)="fileManagerOpenFormMovie = true" />
+              type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkFileMovieId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkFileMovieId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>

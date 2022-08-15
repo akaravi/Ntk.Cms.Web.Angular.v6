@@ -66,7 +66,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['CurrentClickCount']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount"
-            #CurrentClickCount type="number" placeholder="تعداد کلیک تا کنون" min="0" required />
+            #CurrentClickCount type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.currentClickCount = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -78,7 +78,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['CurrentViewCount']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.currentViewCount" name="dataModel.currentViewCount" #CurrentViewCount
-            type="number" placeholder="تعداد بازدید تا کنون" min="0" required />
+            type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0" required />
           <mat-icon matSuffix *ngIf="dataModel.currentViewCount" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.currentViewCount = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -108,7 +108,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="انتخاب هدف" state="seo">
+      <mat-step label="{{'TITLE.TARGET_SELECTION' | translate}}" state="seo">
         <app-linkmanagement-target-category-treeselector [(optionModel)]="dataContentCategoryModel"
           (optionSelectChecked)="onActionCategorySelectChecked($event)"
           (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-linkmanagement-target-category-treeselector>

@@ -35,7 +35,7 @@
         </mat-form-field>
         <!-- OwnerSiteSetStatus Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="وضعیت سایت" [(ngModel)]="dataModel.ownerSiteSetStatus"
+          <mat-select placeholder="{{'TITLE.Site_Status' | translate}}" [(ngModel)]="dataModel.ownerSiteSetStatus"
             name="dataModel.ownerSiteSetStatus" #OwnerSiteSetStatus="ngModel"
             panelClass="OwnerSiteSetStatus-{{ dataModel.ownerSiteSetStatus }}">
             <mat-option *ngFor="
@@ -46,7 +46,7 @@
         </mat-form-field>
         <!-- UserLanguage Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="زبان سایت" [(ngModel)]="dataModel.userLanguage" name="dataModel.userLanguage"
+          <mat-select placeholder="{{'TITLE.Site_Language' | translate}}" [(ngModel)]="dataModel.userLanguage" name="dataModel.userLanguage"
             #UserLanguage="ngModel" panelClass="UserLanguage-{{ dataModel.userLanguage }}">
             <mat-option *ngFor="
                                   let item of dataModelEnumLanguageResult.listItems;

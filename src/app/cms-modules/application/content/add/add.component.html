@@ -134,7 +134,7 @@
           <mat-label>{{ fieldsInfo['AboutUsTitle']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutUsTitle" [disabled]="!fieldsInfo['AboutUsTitle']?.accessAddField"
             name="dataModel.aboutUsTitle" #AboutUsTitle type="text"
-            disabled="{{!fieldsInfo['AboutUsTitle']?.accessAddField}}" placeholder="عنوان درباره  ما" minlength="0"
+            disabled="{{!fieldsInfo['AboutUsTitle']?.accessAddField}}" placeholder="{{'TITLE.Title_About_Us' | translate}}" minlength="0"
             maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutUsTitle && fieldsInfo['AboutUsTitle']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsTitle = ''">close</mat-icon>
@@ -748,7 +748,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="گزارش" state="loaction">
+      <mat-step label="{{'TITLE.Report' | translate}}" state="loaction">
         <p>{{'TITLE.Latest_Status_Report' | translate}}</p>
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AppKey']?.accessWatchField">
           <mat-label>{{fieldsInfo['AppKey']?.fieldTitle}}</mat-label>

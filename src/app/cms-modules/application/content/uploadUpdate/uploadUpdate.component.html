@@ -25,7 +25,7 @@
         <mat-label>{{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }}</mat-label>
         <input matInput [(ngModel)]="dataModel.lastBuildAppKey"
           [disabled]="!fieldsInfo['LastBuildAppKey']?.accessEditField" name="dataModel.lastBuildAppKey" #LastBuildAppKey
-          type="text" placeholder="کلید ساخت اپ" minlength="0" maxlength="100" required />
+          type="text" placeholder="{{'TITLE.Key_To_making_app' | translate}}" minlength="0" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.lastBuildAppKey && fieldsInfo['LastBuildAppKey']?.accessEditField"
           matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.lastBuildAppKey = ''">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['LastBuildAppKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
