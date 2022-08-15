@@ -37,7 +37,7 @@
     </mat-form-field>
     <!-- LinkParentId Field -->
     <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="'دسته بندی'">
+      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-tag-category-selector>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">

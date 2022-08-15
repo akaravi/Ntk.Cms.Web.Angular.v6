@@ -55,7 +55,7 @@
         </mat-form-field>
         <!-- LinkSourceId Field -->
         <app-application-source-selector (optionChange)="onActionSelectSource($event)"
-          [optionSelectForce]="this.dataModel.linkSourceId" [optionPlaceholder]="'سورس اپلیکیشن'"
+          [optionSelectForce]="this.dataModel.linkSourceId" [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
           [optionDisabled]="!fieldsInfo['LinkSourceId']?.accessEditField"></app-application-source-selector>
         <!-- LinkThemeConfigId Field -->
         <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"

@@ -34,7 +34,7 @@
         </mat-form-field>
         <!-- LinkApplicationId Field -->
         <app-application-app-selector (optionChange)="onActionSelectApplication($event)"
-          [optionSelectForce]="this.dataModel.linkApplicationId" [optionPlaceholder]="' اپلیکیشن'"
+          [optionSelectForce]="this.dataModel.linkApplicationId" [optionPlaceholder]="this.translate.instant('TITLE.Application')"
           [optionDisabled]="!fieldsInfo['LinkApplicationId']?.accessAddField"></app-application-app-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">

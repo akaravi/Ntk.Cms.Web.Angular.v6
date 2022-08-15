@@ -53,7 +53,7 @@
         </mat-form-field> -->
         <!-- sitecategory Field -->
         <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
-          [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="'نوع سامانه'"
+          [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.System_Type')"
           [optionDisabled]="siteTypeId>0"></app-core-sitecategory-selector>
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">

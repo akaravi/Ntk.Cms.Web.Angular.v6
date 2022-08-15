@@ -55,7 +55,7 @@
     <!-- LinkSourceId Field -->
     <app-application-source-selector (optionChange)="onActionSelectSource($event)"
       [optionDisabled]="!fieldsInfo['LinkSourceId']?.accessAddField" [optionSelectForce]="dataModel.linkSourceId"
-      [optionPlaceholder]="'سورس اپلیکیشن'">
+      [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')">
     </app-application-source-selector>
 
     <!-- TypeId Field -->

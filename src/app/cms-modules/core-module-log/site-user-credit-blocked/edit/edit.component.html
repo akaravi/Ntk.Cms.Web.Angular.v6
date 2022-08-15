@@ -11,10 +11,10 @@
   
         <!-- LinkUserId Field -->
         <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
-          [optionPlaceholder]="'سایت'"></app-cms-site-selector>
+          [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
         <!-- LinkUserId Field -->
         <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId"
-          [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
+          [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
        
   
         <!-- <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">

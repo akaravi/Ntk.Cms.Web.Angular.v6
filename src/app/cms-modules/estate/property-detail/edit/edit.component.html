@@ -29,7 +29,7 @@
     </app-estate-propertytypelanduse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
     <app-estate-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="'دسته بندی'"
+      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['LinkPropertyDetailGroupId']?.accessEditField">
     </app-estate-propertydetailgroup-selector>
     <!-- IconFont Field -->

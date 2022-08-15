@@ -31,6 +31,6 @@
   <!-- LinkCmsSiteId Field -->
   <div style="margin: 4px;">
     <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="this.tokenInfo.siteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
+      [optionSelectForce]="this.tokenInfo.siteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
   </div>
 </div>

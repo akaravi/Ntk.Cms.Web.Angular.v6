@@ -24,11 +24,11 @@
     </mat-form-field>
     <!-- LinkTargetPeriodId Field -->
     <app-donate-target-period-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.linkTargetPeriodId" [optionPlaceholder]="'دسته بندی'">
+      [optionSelectForce]="dataModel.linkTargetPeriodId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-donate-target-period-selector>
        <!-- LinkSponsorId Field -->
     <app-donate-sponser-selector (optionChange)="onActionSelectorSelect($event)"
-    [optionSelectForce]="dataModel.linkSponsorId" [optionPlaceholder]="'دسته بندی'">
+    [optionSelectForce]="dataModel.linkSponsorId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
   </app-donate-sponser-selector>
          <!-- payment Field -->
     <mat-form-field class="ntk-full-width">

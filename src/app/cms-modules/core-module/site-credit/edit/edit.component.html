@@ -23,10 +23,10 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="'وب سایت'">
+    <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
     </app-cms-site-selector>
     <!-- LinkModuleId Field -->
-    <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [optionPlaceholder]="'ماژول'">
+    <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-cms-module-selector>
 
     <!-- Credit Field -->

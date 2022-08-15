@@ -40,13 +40,13 @@
         </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
         <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
-          [optionSelectForce]="dataModel.linkManagementMemberId" [optionPlaceholder]="'حساب کاربر'">
+          [optionSelectForce]="dataModel.linkManagementMemberId" [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
         </app-linkmanagement-member-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-linkmanagement-billboard-pattern-selector>
 
 

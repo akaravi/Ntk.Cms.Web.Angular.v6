@@ -24,11 +24,11 @@
     </mat-form-field>
     <!-- LinkPlanId Field -->
     <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.linkPlanId" [optionPlaceholder]="'دسته بندی'">
+      [optionSelectForce]="dataModel.linkPlanId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-data-provider-plan-category-selector>
     <!-- LinkSourceId Field -->
     <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.linkSourceId" [optionPlaceholder]="'دسته بندی'">
+      [optionSelectForce]="dataModel.linkSourceId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-data-provider-plan-category-selector>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

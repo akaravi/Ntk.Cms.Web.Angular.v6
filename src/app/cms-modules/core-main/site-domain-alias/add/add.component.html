@@ -21,7 +21,7 @@
         </mat-error>
       </mat-form-field>
       <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-        [optionSelectForce]="dataModel.linkCmsSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
+        [optionSelectForce]="dataModel.linkCmsSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
       <mat-form-field class="ntk-full-width">
         <mat-label>Domain</mat-label>
         <input matInput [(ngModel)]="dataModel.domain" name="dataModel.domain" #Domain type="text"

@@ -32,22 +32,22 @@
     <!-- LinkCoreUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
       [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
-      [optionPlaceholder]="'کاربر'">
+      [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-cms-user-selector>
     <!-- LinkCoreSiteId Field -->
     <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
       [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
-      [optionPlaceholder]="'سایت'">
+      [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
     </app-cms-site-selector>
     <!-- LinkCoreUserGroupId Field -->
     <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
       [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkCoreUserGroupId" [optionPlaceholder]="'نوع کاربری'">
+      [optionSelectForce]="dataModel.linkCoreUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
     </app-cms-usergroup-selector>
     <!-- LinkCoreSiteCategoryId Field -->
     <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
       [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkCoreSiteCategoryId" [optionPlaceholder]="'نوع سایت'">
+      [optionSelectForce]="dataModel.linkCoreSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.TITLE.Site_Type')">
     </app-cms-sitecategory-selector>
 
   

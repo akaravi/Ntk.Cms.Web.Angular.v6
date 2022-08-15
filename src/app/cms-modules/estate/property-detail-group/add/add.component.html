@@ -22,7 +22,7 @@
     </mat-form-field>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="'دسته بندی'">
+      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-propertytypelanduse-selector>
     <!-- IconFont Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">

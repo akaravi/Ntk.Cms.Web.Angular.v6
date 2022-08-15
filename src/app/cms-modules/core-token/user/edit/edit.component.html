@@ -53,11 +53,11 @@
     </mat-form-field>
     <!-- LinkSiteId Field -->
     <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="'وب سایت'"></app-cms-site-selector>
+      [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
 
     <!-- LinkUserId Field -->
     <app-cms-user-selector (optionChange)="onActionUserSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
+      [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
     <!-- LinkMemberUserId Field -->
     <app-cms-member-selector (optionChange)="onActionMemberSelect($event)" [optionDisabled]="false"
       [optionSelectForce]="this.dataModel.linkMemberUserId" [optionPlaceholder]="'عضو'"></app-cms-member-selector>

@@ -55,19 +55,19 @@
     </mat-form-field>
     <!-- LinkUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [optionSelectForce]="this.dataModel.linkUserId"
-      *ngIf="ProfessionalData" [optionPlaceholder]="'کاربر'"
+      *ngIf="ProfessionalData" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
       [optionDisabled]="!fieldsInfo['LinkUserId']?.accessEditField">
     </app-cms-user-selector>
 
     <!-- LinkSiteId Field -->
     <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionSelectForce]="this.dataModel.linkSiteId"
-      *ngIf="ProfessionalData" [optionPlaceholder]="'سایت'"
+      *ngIf="ProfessionalData" [optionPlaceholder]="this.translate.instant('TITLE.SITE')"
       [optionDisabled]="!fieldsInfo['LinkSiteId']?.accessEditField">
     </app-cms-site-selector>
 
     <!-- LinkUserClaimTypeId Field -->
     <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" *ngIf="ProfessionalData"
-      [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [optionPlaceholder]="'دسته مدارک'"
+      [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
       [optionDisabled]="!fieldsInfo['LinkUserClaimTypeId']?.accessEditField">
     </app-core-userclaimtype-selector>
     <!-- LinkFileContentId Field -->

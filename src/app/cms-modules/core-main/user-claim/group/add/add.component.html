@@ -69,14 +69,14 @@
     <hr>
     <!-- LinkModuleId Field -->
     <app-cms-module-selector (optionChange)="onActionSelectModuleId($event)"
-      [optionSelectForce]="this.dataModel.linkModuleId" [optionPlaceholder]="'ماژول'"
+      [optionSelectForce]="this.dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')"
       [optionDisabled]="!fieldsInfo['LinkModuleId']?.accessEditField">
     </app-cms-module-selector>
 
 
     <!-- LinkSiteCategoryId Field -->
     <app-cms-sitecategory-selector (optionChange)="onActionSelectSiteCategory($event)"
-      [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="'دسته بندی سایت'"
+      [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.SITE_CATEGORY')"
       [optionDisabled]="!fieldsInfo['LinkSiteCategoryId']?.accessEditField">
     </app-cms-sitecategory-selector>
 
@@ -95,7 +95,7 @@
 
     <!-- LinkApplicationSourceId Field -->
     <app-cms-application-selector (optionChange)="onActionSelectApplicationSource($event)"
-      [optionSelectForce]="this.dataModel.linkApplicationSourceId" [optionPlaceholder]="'سورس اپلیکیشن'"
+      [optionSelectForce]="this.dataModel.linkApplicationSourceId" [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
       [optionDisabled]="!fieldsInfo['LinkApplicationSourceId']?.accessEditField">
     </app-cms-application-selector>
 

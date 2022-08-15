@@ -10,7 +10,7 @@
       <div *ngIf="!dataModelResultGotoBank">
         <!-- LinkPrivateSiteConfigId Field -->
         <app-bankpayment-privatesiteconfig-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
-          [optionSelectForce]="dataModel.bankPaymentPrivateId" [optionPlaceholder]="' حساب'">
+          [optionSelectForce]="dataModel.bankPaymentPrivateId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
         </app-bankpayment-privatesiteconfig-selector>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">

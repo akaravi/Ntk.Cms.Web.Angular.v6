@@ -42,7 +42,7 @@
 
     <!-- Answer Field -->
     <p> {{'TITLE.Answer' | translate}} </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="Answer"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="Answer"
       [(ngModel)]="dataModel.answer" name="dataModel.answer"></angular-editor>
     <br>
 

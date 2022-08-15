@@ -25,7 +25,7 @@
 
   <!-- LinkUserId Field -->
   <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
-    [optionPlaceholder]="'سایت'"></app-cms-site-selector>
+    [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
 
 
   <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">

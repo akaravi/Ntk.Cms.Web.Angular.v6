@@ -27,7 +27,7 @@
     </app-estate-propertytypelanduse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
     <app-estate-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="'دسته بندی'">
+      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-propertydetailgroup-selector>
     <!-- IconFont Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">

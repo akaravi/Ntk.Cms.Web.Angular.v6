@@ -25,14 +25,14 @@
 
     <!-- LinkCmsSiteId Field -->
     <app-core-site-selector (optionChange)="onActionSelectorSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
+      [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
     <!-- LinkuserId Field -->
     <app-core-user-selector (optionChange)="onActionSelectorUserSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkUserId" [optionPlaceholder]="'کاربر'">
+      [optionSelectForce]="dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-core-user-selector>
     <!-- LinkUserGroupId Field -->
     <app-core-usercategory-selector (optionChange)="onActionSelectorUserGroupSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkUserGroupId" [optionPlaceholder]="'نوع حساب'">
+      [optionSelectForce]="dataModel.linkUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
     </app-core-usercategory-selector>
 
 

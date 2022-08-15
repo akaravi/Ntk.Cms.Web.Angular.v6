@@ -79,13 +79,13 @@
       <!-- LinkPropertyTypeUsageIds Field -->
       <app-estate-property-type-usage-autocomplete (optionChange)="onActionSelectorSelectUsage($event)"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageIds']?.accessEditField"
-        [optionSelectForce]="dataModel.linkPropertyTypeUsageIds" [optionPlaceholder]="'نوع کاربری'">
+        [optionSelectForce]="dataModel.linkPropertyTypeUsageIds" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       </app-estate-property-type-usage-autocomplete>
 
       <!-- LinkPropertyTypeLanduseIds Field -->
       <app-estate-property-type-landuse-autocomplete (optionChange)="onActionSelectorSelectLanduse($event)"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseIds']?.accessEditField"
-        [optionSelectForce]="dataModel.linkPropertyTypeLanduseIds" [optionPlaceholder]="'نوع ملک'">
+        [optionSelectForce]="dataModel.linkPropertyTypeLanduseIds" [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
       </app-estate-property-type-landuse-autocomplete>
 
@@ -93,7 +93,7 @@
       <!-- LinkContractTypeIds Field -->
       <app-estate-contract-type-autocomplete (optionChange)="onActionSelectorContarctType($event)"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkContractTypeIds']?.accessEditField"
-        [optionSelectForce]="dataModel.linkContractTypeIds" [optionPlaceholder]="'نوع معامله'">
+        [optionSelectForce]="dataModel.linkContractTypeIds" [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
       </app-estate-contract-type-autocomplete>
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"

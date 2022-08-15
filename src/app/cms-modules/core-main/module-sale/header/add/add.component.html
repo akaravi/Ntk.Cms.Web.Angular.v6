@@ -24,7 +24,7 @@
         </mat-form-field>
         <!-- LinkModuleSaleHeaderGroupId Field -->
         <app-core-modulesaleheadergroup-selector (optionChange)="onActionSelectHeaderGroup($event)"
-          [optionSelectForce]="this.dataModel.linkModuleSaleHeaderGroupId" [optionPlaceholder]="'دسته بندی'"
+          [optionSelectForce]="this.dataModel.linkModuleSaleHeaderGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
           [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderGroupId']?.accessAddField">
         </app-core-modulesaleheadergroup-selector>
   

@@ -25,7 +25,7 @@
       <!-- LinkPublicConfigId Field -->
       <app-bankpayment-publicconfig-selector (optionChange)="onActionSelectSource($event)"
         [optionDisabled]="!fieldsInfo['LinkPublicConfigId']?.accessEditField"
-        [optionSelectForce]="dataModel.linkPublicConfigId" [optionPlaceholder]="'نوع حساب'">
+        [optionSelectForce]="dataModel.linkPublicConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
       </app-bankpayment-publicconfig-selector>
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">

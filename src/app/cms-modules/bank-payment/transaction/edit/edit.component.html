@@ -55,11 +55,11 @@
         </mat-form-field>
         <!-- LinkPrivateSiteConfigId Field -->
         <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true"
-          [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId" [optionPlaceholder]="'حساب'">
+          [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
         </app-bankpayment-privatesiteconfig-selector>
         <!-- LinkUserId Field -->
         <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId"
-          [optionPlaceholder]="'کاربر'"></app-cms-user-selector>
+          [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
         <!-- LinkUserId Field -->
         <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

@@ -26,7 +26,7 @@
         </mat-form-field>
         <!-- Title Field -->
         <app-webdesigner-menu-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-          [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="'منوی والد'">
+          [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
         </app-webdesigner-menu-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">

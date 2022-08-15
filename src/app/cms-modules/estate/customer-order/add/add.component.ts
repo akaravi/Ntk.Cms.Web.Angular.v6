@@ -51,7 +51,8 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     public http: HttpClient,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;

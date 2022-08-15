@@ -55,7 +55,7 @@
       </mat-form-field>
     <!-- LinkSiteId Field -->
     <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionDisabled]="false" [optionSelectForce]=" this.dataModel.linkSiteId"
-      [optionPlaceholder]="'سایت'"></app-cms-site-selector>
+      [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
 
       <!-- LinkApplicationId Field -->
       <mat-form-field class="ntk-full-width">

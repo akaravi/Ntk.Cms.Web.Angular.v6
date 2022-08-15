@@ -23,10 +23,10 @@
 
       <!-- LinkCmsSiteId Field -->
       <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-        [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="'وب سایت'"></app-core-site-selector>
+        [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
       <!-- LinkModuleId Field -->
       <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
-        [optionSelectForce]="dataModel.linkModuleId" [optionPlaceholder]="'ماژول'">
+        [optionSelectForce]="dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
       </app-core-module-selector>
        <!-- ExpireDate Field -->
        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">

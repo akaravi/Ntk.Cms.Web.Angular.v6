@@ -51,7 +51,7 @@
       <!-- LinkCurrencyId Field -->
       <app-cms-currency-selector (optionChange)="onActionSelectCurrency($event)"
         [optionDisabled]="!fieldsInfo['LinkCurrencyId']?.accessEditField" [optionSelectForce]="dataModel.linkCurrencyId"
-        [optionPlaceholder]="'واحد مالی'">
+        [optionPlaceholder]="this.translate.instant('TITLE.Financial_Unit')">
       </app-cms-currency-selector>
       <!-- Memo Field -->
       <mat-form-field class="ntk-full-width">

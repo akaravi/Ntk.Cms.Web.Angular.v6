@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- AppId Field -->
     <app-application-app-selector (optionChange)="onActionSelectApp($event)" *ngIf="LinkMemberId.length===0"
-      [optionSelectForce]="this.dataModel.appId" [optionPlaceholder]="'اپلیکیشن'"></app-application-app-selector>
+      [optionSelectForce]="this.dataModel.appId" [optionPlaceholder]="this.translate.instant('TITLE.Application')"></app-application-app-selector>
     <!-- AppId Field -->
     <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)"
       [optionSelectForce]="LinkMemberId" [optionPlaceholder]="'عضو'"></app-application-memberinfo-selector>

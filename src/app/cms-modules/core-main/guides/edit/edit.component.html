@@ -24,7 +24,7 @@
     </mat-form-field>
     <!-- Title Field -->
     <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="'منوی والد'">
+      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
     </app-core-guide-selector>
     <!-- TitleFa Field -->
     <mat-form-field class="ntk-full-width">
@@ -41,12 +41,12 @@
     </mat-form-field>
     <!-- DescriptionFa Field -->
     <p> Description Fa </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionFa"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionFa"
       [(ngModel)]="dataModel.descriptionFa" name="dataModel.descriptionFa"></angular-editor>
     <br>
     <!-- BodyFa Field -->
     <p> Body Fa </p>
-    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyFa"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyFa"
       [(ngModel)]="dataModel.bodyFa" name="dataModel.bodyFa"></angular-editor>
     <br>
     <!-- TitleEn Field -->
@@ -64,12 +64,12 @@
     </mat-form-field>
     <!-- DescriptionEn Field -->
     <p> Description En </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionEn"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionEn"
       [(ngModel)]="dataModel.descriptionEn" name="dataModel.descriptionEn"></angular-editor>
     <br>
     <!-- BodyEn Field -->
     <p> Body En </p>
-    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyEn"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyEn"
       [(ngModel)]="dataModel.bodyEn" name="dataModel.bodyEn"></angular-editor>
     <br>
     <!-- TitleAr Field -->
@@ -87,12 +87,12 @@
     </mat-form-field>
     <!-- DescriptionAr Field -->
     <p> Description Ar </p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionAr"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionAr"
       [(ngModel)]="dataModel.descriptionAr" name="dataModel.descriptionAr"></angular-editor>
     <br>
     <!-- BodyAr Field -->
     <p> Body Ar </p>
-    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyAr"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyAr"
       [(ngModel)]="dataModel.bodyAr" name="dataModel.bodyAr"></angular-editor>
     <br>
     <!-- TitleDe Field -->
@@ -110,12 +110,12 @@
     </mat-form-field>
     <!-- DescriptionDe Field -->
     <p> Description De</p>
-    <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="DescriptionDe"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionDe"
       [(ngModel)]="dataModel.descriptionDe" name="dataModel.descriptionDe"></angular-editor>
     <br>
     <!-- Body De Field -->
     <p> Body De </p>
-    <angular-editor [placeholder]="'فایل را وارد کنید ...'" [config]="publicHelper.editorConfig" id="BodyDe"
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyDe"
       [(ngModel)]="dataModel.bodyDe" name="dataModel.bodyDe"></angular-editor>
     <br>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

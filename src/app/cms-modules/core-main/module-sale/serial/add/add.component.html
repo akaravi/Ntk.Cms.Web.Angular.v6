@@ -51,7 +51,7 @@
 
     <!-- LinkModuleSaleHeaderId Field -->
     <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)"
-      [optionSelectForce]="this.dataModel.linkModuleSaleHeaderId" [optionPlaceholder]="'دسته بندی'"
+      [optionSelectForce]="this.dataModel.linkModuleSaleHeaderId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderId']?.accessEditField">
     </app-core-modulesaleheader-selector>
     <!-- HasDemo Field -->

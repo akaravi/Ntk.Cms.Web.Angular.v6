@@ -37,7 +37,7 @@
         </mat-form-field>
         <!-- LinkCategoryId Field -->
         <app-news-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-news-category-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['Title']?.accessWatchField">
@@ -90,7 +90,7 @@
         </mat-form-field>
         <hr class="pb-5" />
         <!-- editorConfig Field -->
-        <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="main"
           [(ngModel)]="dataModel.body" name="dataModel.body"></angular-editor>
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
@@ -281,7 +281,7 @@
           <mat-hint style="text-align: left;">{{ contentOtherInfoSelected_Source.value.length }} / 500</mat-hint>
         </mat-form-field>
 
-        <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="OtherInfo"
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="OtherInfo"
           [(ngModel)]="contentOtherInfoSelected.htmlBody" name="contentOtherInfoSelected.htmlBody"></angular-editor>
 
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
@@ -342,7 +342,7 @@
       <mat-step label="{{'TITLE.Location' | translate}} " state="info">
         <p>{{'TITLE.Specify_relevant_content' | translate}}</p>
         <app-news-content-selector (optionChange)="onActionContentSimilarSelect($event)"
-          [optionPlaceholder]="'محتوای مشابه'">
+          [optionPlaceholder]="this.translate.instant('TITLE.Similar_Content')">
 
 
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.id"

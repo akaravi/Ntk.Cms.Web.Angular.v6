@@ -27,7 +27,7 @@
           </mat-error>
         </mat-form-field>
         <app-biography-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-biography-category-selector>
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
@@ -72,7 +72,7 @@
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>
         <hr class="pb-5" />
-        <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="main"
           [(ngModel)]="dataModel.body" name="dataModel.body"></angular-editor>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
@@ -234,7 +234,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint style="text-align: left;">{{ contentOtherInfoSelected_Source.value.length }} / 500</mat-hint>
         </mat-form-field>
-        <angular-editor [placeholder]="'متن را وارد کنید ...'" [config]="publicHelper.editorConfig" id="OtherInfo"
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="OtherInfo"
           [(ngModel)]="contentOtherInfoSelected.htmlBody" name="contentOtherInfoSelected.htmlBody"></angular-editor>
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
           class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
@@ -286,7 +286,7 @@
       <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
         <p>{{'TITLE.Specify_relevant_content' | translate}}</p>
         <app-biography-content-selector (optionChange)="onActionContentSimilarSelect($event)"
-          [optionPlaceholder]="'محتوای مشابه'">
+          [optionPlaceholder]="this.translate.instant('TITLE.Similar_Content')">
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.id"
             (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
             class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4">

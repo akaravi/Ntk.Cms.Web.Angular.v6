@@ -24,11 +24,11 @@
 
     <!-- LinkCmsSiteId Field -->
     <app-core-sitecategory-selector (optionChange)="onActionSiteCategorySelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkCmsSiteCategoryId" [optionPlaceholder]="'دسته بندی سایت'">
+      [optionSelectForce]="dataModel.linkCmsSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.SITE_CATEGORY')">
     </app-core-sitecategory-selector>
     <!-- LinkModuleId Field -->
     <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
-      [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCmsModuleId" [optionPlaceholder]="'ماژول'">
+      [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCmsModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-selector>
     <!-- ConfigValuesJson Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigValuesJson']?.accessWatchField">

@@ -26,13 +26,13 @@
         </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
         <app-linkmanagement-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-linkmanagement-billboard-pattern-selector>
 
 

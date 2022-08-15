@@ -24,7 +24,7 @@
       </mat-form-field>
       <!-- LinkTargetCategoryId Field -->
       <app-donate-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-        [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="'دسته بندی'">
+        [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
       </app-donate-target-category-selector>
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">

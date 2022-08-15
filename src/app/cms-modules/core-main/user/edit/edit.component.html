@@ -289,12 +289,12 @@
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.accessEditField"
           [optionSelectForce]="dataModel.linkResellerUserId"
-          (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)" [optionPlaceholder]="'کاربر معرف'">
+          (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)" [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
         </app-cms-user-selector>
         <!-- LinkResellerSiteId Field -->
         <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.accessEditField"
           [optionSelectForce]="dataModel.linkResellerSiteId"
-          (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)" [optionPlaceholder]="'سایت معرف'">
+          (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)" [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
         </app-cms-site-selector>
         <!-- ExpireLockAccount Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireLockAccount']?.accessWatchField">

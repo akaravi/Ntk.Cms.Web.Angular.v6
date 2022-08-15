@@ -54,7 +54,7 @@
     <!-- LinkSourceId Field -->
     <app-application-source-selector (optionChange)="onActionSelectSource($event)"
       [optionDisabled]="!fieldsInfo['LinkSourceId']?.accessEditField" [optionSelectForce]="dataModel.linkSourceId"
-      [optionPlaceholder]="'سورس اپلیکیشن'">
+      [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')">
     </app-application-source-selector>
     <!-- TypeId Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TypeId']?.accessWatchField">

@@ -30,14 +30,14 @@
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
+          [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
         </app-estate-propertytypeusage-selector>
         <br>
         <!-- LinkPropertyTypeLanduseId Field -->
         <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
           *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'"
+          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.Property_type')"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
         </app-estate-propertytypelanduse-selector>
         <br>

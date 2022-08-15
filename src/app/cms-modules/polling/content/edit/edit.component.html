@@ -28,7 +28,7 @@
           </mat-error>
         </mat-form-field>
         <app-polling-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی'">
+          [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-polling-category-selector>
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>

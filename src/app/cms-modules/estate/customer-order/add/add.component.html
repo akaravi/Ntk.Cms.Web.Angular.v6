@@ -76,7 +76,7 @@
     <!-- LinkPropertyTypeUsageId Field -->
     <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
-      [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="'نوع کاربری'">
+      [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close
       </mat-icon>
@@ -88,7 +88,7 @@
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
-      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="'نوع ملک'">
+      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="onActionSelectorSelectLanduse(null)">close
@@ -101,7 +101,7 @@
     <!-- LinkContractTypeIds Field -->
     <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
       [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkContractTypeId" [optionPlaceholder]="'نوع معامله'">
+      [optionSelectForce]="dataModel.linkContractTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
       <mat-icon matSuffix *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.linkContractTypeId = null;">close
       </mat-icon>
