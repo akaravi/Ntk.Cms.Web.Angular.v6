@@ -1,4 +1,3 @@
-//**msh */
 import {
   EnumInfoModel,
   ErrorExceptionResult,

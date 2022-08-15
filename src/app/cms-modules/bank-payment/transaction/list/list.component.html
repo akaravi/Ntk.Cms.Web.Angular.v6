@@ -65,8 +65,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select> </mat-cell>
+           </mat-cell>
       </ng-container>
       <!-- TransactionStatus Column -->
       <ng-container matColumnDef="TransactionStatus">
