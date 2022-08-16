@@ -2,9 +2,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import {
-  SmsLogOutBoxModel,
-  SmsLogOutBoxService,
+import {  
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -15,7 +13,8 @@ import {
   CoreCurrencyModel,
   SmsMainApiPathService,
   SmsMainApiPathModel,
-  SmsLogOutBoxDetailModel
+  SmsLogOutBoxDetailModel,
+  SmsLogOutBoxDetailService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -35,9 +34,9 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html'
 })
 export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy {
-  requestContentId = '';
+  requestId = '';
   constructor(
-    private smsLogOutBoxService: SmsLogOutBoxService,
+    private smsLogOutBoxDetailService: SmsLogOutBoxDetailService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
@@ -48,7 +47,9 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -58,6 +59,12 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
+    const filter = new FilterDataModel();
+    if (this.requestId && this.requestId.length > 0) {
+      filter.propertyName = 'linkOutBoxId';
+      filter.value = this.requestId;
+      this.filteModelContent.filters.push(filter);
+    }
   }
   comment: string;
   author: string;
@@ -66,7 +73,7 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<SmsLogOutBoxModel> = new ErrorExceptionResult<SmsLogOutBoxModel>();
+  dataModelResult: ErrorExceptionResult<SmsLogOutBoxDetailModel> = new ErrorExceptionResult<SmsLogOutBoxDetailModel>();
   dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
   // dataModelCompanyResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
   // dataModelPublicResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
@@ -93,20 +100,18 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     // 'Action'
   ];
 
-  expandedElement: SmsLogOutBoxModel | null;
+  expandedElement: SmsLogOutBoxDetailModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
 
-    
-    this.requestContentId = this.activatedRoute.snapshot.paramMap.get('id');
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      this.DataGetOne();
+      this.DataGetAll();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      this.DataGetOne();
+      this.DataGetAll();
     });
 
     this.getPrivateConfig();
@@ -122,7 +127,7 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  DataGetOne(): void {
+  DataGetAll(): void {
     this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
     
     this.tableRowsSelected = [];
@@ -130,14 +135,17 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
+    /*filter CLone*/
+    const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
+    /*filter CLone*/
 
-    this.smsLogOutBoxService.ServiceGetOneById(this.requestContentId).subscribe({
+    this.smsLogOutBoxDetailService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
     
         if (ret.isSuccess) {
           this.dataModelResult = ret;
-          this.tableSource.data = ret.item.outBoxDetails;
+          this.tableSource.data = ret.listItems;
      
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
@@ -210,11 +218,11 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsLogOutBoxService.ServiceDelete(this.tableRowSelected.id).subscribe({
+          this.smsLogOutBoxDetailService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
-                this.DataGetOne();
+                this.DataGetAll();
               } else {
                 this.cmsToastrService.typeErrorRemove();
               }
@@ -240,7 +248,7 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 
-    this.DataGetOne();
+    this.DataGetAll();
   }
 
   onActionbuttonStatist(): void {
@@ -251,7 +259,7 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsLogOutBoxService.ServiceGetCount(this.filteModelContent).subscribe({
+    this.smsLogOutBoxDetailService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('All', ret.totalRowCount);
@@ -271,7 +279,7 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     fastfilter.propertyName = 'RecordStatus';
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
-    this.smsLogOutBoxService.ServiceGetCount(filterStatist1).subscribe({
+    this.smsLogOutBoxDetailService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('Active', ret.totalRowCount);
@@ -295,7 +303,7 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.smsLogOutBoxService.ServiceExportFile(model).subscribe({
+    this.smsLogOutBoxDetailService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           exportlist.set('Download', ret.linkFile);
@@ -312,11 +320,11 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
   }
   
   onActionbuttonReload(): void {
-    this.DataGetOne();
+    this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
     this.filteModelContent.filters = model;
-    this.DataGetOne();
+    this.DataGetAll();
   }
   onActionTableRowSelect(row: SmsLogOutBoxDetailModel): void {
     this.tableRowSelected = row;
