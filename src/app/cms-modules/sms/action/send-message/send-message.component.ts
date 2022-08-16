@@ -55,7 +55,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     }
     this.dataModel.scheduleCron = "";
 
-    if (this.router.getCurrentNavigation().extras.state != null) {
+    if (this.router && this.router.getCurrentNavigation()&& this.router.getCurrentNavigation().extras.state != null) {
       this.receiverNumber = this.router.getCurrentNavigation().extras.state.ReceiverNumber;
       this.senderNumber = this.router.getCurrentNavigation().extras.state.SenderNumber;
       this.linkApiId = this.router.getCurrentNavigation().extras.state.LinkApiId;
