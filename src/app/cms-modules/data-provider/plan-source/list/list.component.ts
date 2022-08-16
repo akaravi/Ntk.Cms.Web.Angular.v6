@@ -83,17 +83,17 @@ export class DataProviderPlanSourceListComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.requestLinkPlanId = + Number(this.activatedRoute.snapshot.paramMap.get('requestLinkPlanId'));
+    this.requestLinkPlanId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkPlanId'));
     if (this.requestLinkPlanId && this.requestLinkPlanId > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'requestLinkPlanId';
+      filter.propertyName = 'LinkPlanId';
       filter.value = this.requestLinkPlanId;
       this.filteModelContent.filters.push(filter);
     }
-    this.requestLinkSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('requestLinkSourceId'));
+    this.requestLinkSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSourceId'));
     if (this.requestLinkSourceId && this.requestLinkSourceId > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'requestLinkSourceId';
+      filter.propertyName = 'LinkSourceId';
       filter.value = this.requestLinkSourceId;
       this.filteModelContent.filters.push(filter);
     }

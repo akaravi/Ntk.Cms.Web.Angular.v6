@@ -16,6 +16,8 @@
 	"ACTION.BUY": "خرید",
 	"ACTION.PRICE": "قیمت",
 	"ACTION.DATA": "داده ها",
+	"ACTION.CLIENT": "مشتری",
+	"ACTION.SOURCE": "منبع",
 	"ACTION.VIEW_STATISTICS": "مشاهده امار",
 	"ACTION.VIEW_USER": "مشاهده کاربر",
 	"ACTION.VIEW_SITE": "مشاهده سایت ",

@@ -16,6 +16,8 @@
 	"ACTION.BUY": "Buy",
 	"ACTION.PRICE": "Price",
 	"ACTION.DATA": "Data",
+	"ACTION.CLIENT": "Client",
+	"ACTION.SOURCE": "Source",
 	"ACTION.VIEW_STATISTICS": "View statistics",
 	"ACTION.VIEW_USER": "View user",
 	"ACTION.VIEW_SITE": "View site",

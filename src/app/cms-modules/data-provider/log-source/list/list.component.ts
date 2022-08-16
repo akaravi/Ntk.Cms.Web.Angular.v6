@@ -81,7 +81,7 @@ export class DataProviderLogSourceListComponent implements OnInit, OnDestroy {
     this.requestLinkSourceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSourceId'));
     if (this.requestLinkSourceId && this.requestLinkSourceId > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'DonateTargetId';
+      filter.propertyName = 'linkSourceId';
       filter.value = this.requestLinkSourceId;
       this.filteModelContent.filters.push(filter);
     }

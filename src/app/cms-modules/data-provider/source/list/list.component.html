@@ -1,4 +1,4 @@
-  <app-cms-guide-notice [Key]="'donate.target.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+  <app-cms-guide-notice [Key]="'dataprovider.source.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -114,8 +114,12 @@
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonDataRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
-              <mat-icon>delete_forever</mat-icon>
+              <mat-icon>data_usage</mat-icon>
               <span>{{'ACTION.DATA' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonSourceList(row)" *ngIf="dataModelResult.access.accessWatchRow">
+              <mat-icon>source</mat-icon>
+              <span>{{'ACTION.SOURCE' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

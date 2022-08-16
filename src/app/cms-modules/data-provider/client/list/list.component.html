@@ -1,4 +1,4 @@
-  <app-cms-guide-notice [Key]="'donate.target.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+  <app-cms-guide-notice [Key]="'dataprovider.client.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -106,6 +106,10 @@
             <button mat-menu-item (click)="onActionbuttonDataRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>data_usage</mat-icon>
               <span>{{'ACTION.DATA' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonClientList(row)" *ngIf="dataModelResult.access.accessWatchRow">
+              <mat-icon>people</mat-icon>
+              <span>{{'ACTION.CLIENT' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

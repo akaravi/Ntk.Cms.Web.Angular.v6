@@ -114,7 +114,6 @@ const routes: Routes = [
         path: 'plan-price/LinkPlanId/:LinkPlanId',
         component: DataProviderPlanPriceListComponent
       },
-    
       {
         path: 'transaction',
         component: DataProviderTransactionListComponent

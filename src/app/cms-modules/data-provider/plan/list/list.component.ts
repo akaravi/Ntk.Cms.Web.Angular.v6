@@ -259,6 +259,15 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonDataRow(model: DataProviderPlanModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0) {
+      const emessage = this.translate.instant('MESSAGE.No_row_selected_for_viewing');
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/log-plan/LinkPlanId/' + model.id]);
+  }
   onActionbuttonPriceList(model: DataProviderPlanModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
@@ -267,6 +276,24 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
 
     this.router.navigate(['/data-provider/plan-price/LinkPlanId/' + model.id]);
+  }
+  onActionbuttonSourceList(model: DataProviderPlanModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/plan-source/LinkPlanId/' + model.id]);
+  }
+  onActionbuttonClientList(model: DataProviderPlanModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/plan-client/LinkPlanId/' + model.id]);
   }
 
   onActionbuttonTransactionList(model: DataProviderPlanModel = this.tableRowSelected): void {

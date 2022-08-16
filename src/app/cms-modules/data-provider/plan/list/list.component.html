@@ -1,4 +1,4 @@
-  <app-cms-guide-notice [Key]="'donate.target.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+  <app-cms-guide-notice [Key]="'dataprovider.plan.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -111,9 +111,21 @@
               <mat-icon>credit_card</mat-icon>
               <span>{{'ACTION.PRICE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonSourceList(row)" *ngIf="dataModelResult.access.accessWatchRow">
+              <mat-icon>source</mat-icon>
+              <span>{{'ACTION.SOURCE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonClientList(row)" *ngIf="dataModelResult.access.accessWatchRow">
+              <mat-icon>people</mat-icon>
+              <span>{{'ACTION.CLIENT' | translate}}</span>
+            </button>
             <button mat-menu-item (click)="onActionbuttonTransactionList(row)" *ngIf="dataModelResult.access.accessWatchRow">
               <mat-icon>paid</mat-icon>
               <span>{{'ACTION.TRANSACTIONS' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonDataRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
+              <mat-icon>data_usage</mat-icon>
+              <span>{{'ACTION.DATA' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

@@ -274,6 +274,15 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonSourceList(model: DataProviderSourceModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage); return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/plan-source/LinkSourceId/' + model.id]);
+  }
   onActionbuttonDataRow(model: DataProviderSourceModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.No_row_selected_for_viewing');
