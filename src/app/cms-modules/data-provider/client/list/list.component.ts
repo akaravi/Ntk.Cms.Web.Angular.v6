@@ -332,6 +332,16 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     }
     );
   }
+  onActionbuttonClientCreditAccountRow(model: DataProviderClientModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0 || !model.linkSiteId || model.linkSiteId === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    this.router.navigate(['/data-provider/client-charge/', model.id]);
+  }
   onActionbuttonClientList(model: DataProviderClientModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');

@@ -126,8 +126,12 @@ const routes: Routes = [
       {
         path: 'transaction/LinkCmsUserId/:LinkCmsUserId',
         component: DataProviderTransactionListComponent
-      }
-      , {
+      },
+      {
+        path: 'transaction/LinkClientId/:LinkClientId',
+        component: DataProviderTransactionListComponent
+      },
+      {
         path: 'transaction/LinkSponsorId/:LinkSponsorId',
         component: DataProviderTransactionListComponent
       }
@@ -136,8 +140,8 @@ const routes: Routes = [
         path: 'transaction/LinkPlanPriceId/:LinkPlanPriceId',
         component: DataProviderTransactionListComponent
       }
-/** */
-    
+      /** */
+
 
     ]
   },

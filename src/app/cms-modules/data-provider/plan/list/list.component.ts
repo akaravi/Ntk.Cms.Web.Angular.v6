@@ -33,6 +33,7 @@ import { DataProviderPlanDeleteComponent } from '../delete/delete.component';
 @Component({
   selector: 'app-data-provider-plan-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class DataProviderPlanListComponent implements OnInit, OnDestroy {
 

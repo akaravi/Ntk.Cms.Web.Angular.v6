@@ -103,6 +103,10 @@
               <mat-icon>paid</mat-icon>
               <span>{{'ACTION.TRANSACTIONS' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonClientCreditAccountRow(row)">
+              <mat-icon>shopping_cart</mat-icon>
+              <span>client charge</span>
+            </button>
             <button mat-menu-item (click)="onActionbuttonDataRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>data_usage</mat-icon>
               <span>{{'ACTION.DATA' | translate}}</span>
