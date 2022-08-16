@@ -30,11 +30,11 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-sms-log-outbox-list',
+  selector: 'app-sms-log-outboxdetail-list',
   templateUrl: './list.component.html'
 })
 export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy {
-  requestId = '';
+  requestLinkOutBoxId = '';
   constructor(
     private smsLogOutBoxDetailService: SmsLogOutBoxDetailService,
     public publicHelper: PublicHelper,
@@ -49,7 +49,7 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.requestLinkOutBoxId = this.activatedRoute.snapshot.paramMap.get('LinkOutBoxId');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -60,9 +60,9 @@ export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
     const filter = new FilterDataModel();
-    if (this.requestId && this.requestId.length > 0) {
-      filter.propertyName = 'linkOutBoxId';
-      filter.value = this.requestId;
+    if (this.requestLinkOutBoxId && this.requestLinkOutBoxId.length > 0) {
+      filter.propertyName = 'LinkOutBoxId';
+      filter.value = this.requestLinkOutBoxId;
       this.filteModelContent.filters.push(filter);
     }
   }

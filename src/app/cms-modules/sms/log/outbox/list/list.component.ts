@@ -292,7 +292,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(["/sms/log/outbox-detail/list", this.tableRowSelected.id]);
+    this.router.navigate(["/sms/log/outbox-detail/LinkOutBoxId", this.tableRowSelected.id]);
   }
 
   onActionbuttonDeleteRow(model: SmsLogOutBoxModel = this.tableRowSelected): void {

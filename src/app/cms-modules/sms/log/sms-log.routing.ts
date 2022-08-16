@@ -45,7 +45,7 @@ const routes: Routes = [
         component: SmsMainApiLogOutBoxListComponent
       },
       {
-        path: 'outbox-detail/list/:id',
+        path: 'outbox-detail/LinkOutBoxId/:LinkOutBoxId',
         component: SmsMainApiLogOutBoxDetailListComponent
       },
       //   {
