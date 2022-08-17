@@ -16,7 +16,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -39,7 +39,7 @@
       <mat-icon matSuffix *ngIf="dataModel.configValuesJson && fieldsInfo['ConfigValuesJson']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.configValuesJson = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['ConfigValuesJson']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint  style="text-align: right;">{{ ConfigValuesJson.value.length }} / 10000</mat-hint>
+      <mat-hint align="start">{{ ConfigValuesJson.value.length }} / 10000</mat-hint>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>

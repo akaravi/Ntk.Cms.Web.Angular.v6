@@ -17,7 +17,7 @@
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -61,7 +61,7 @@
       <mat-icon matSuffix *ngIf="dataModel.regulatorNumber && fieldsInfo['RegulatorNumber']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.regulatorNumber = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['RegulatorNumber']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint  style="text-align: right;">{{ RegulatorNumber.value.length }} / 100</mat-hint>
+      <mat-hint align="start">{{ RegulatorNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- ServicePrice Field -->
@@ -103,7 +103,7 @@
                           index as i
                         " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_message' | translate}}</mat-hint>
+      <mat-hint align="end">{{'TITLE.Select_type_of_message' | translate}}</mat-hint>
       <mat-error *ngIf="MessageType.errors?.required">
         MessageType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -117,7 +117,7 @@
                     index as i
                   " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">{{'TITLE.Select_type_of_sending' | translate}}</mat-hint>
+      <mat-hint align="end">{{'TITLE.Select_type_of_sending' | translate}}</mat-hint>
       <mat-error *ngIf="OutBoxType.errors?.required">
         OutBoxType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

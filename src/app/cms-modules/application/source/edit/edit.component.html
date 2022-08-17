@@ -20,7 +20,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: left;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+          <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -35,7 +35,7 @@
           <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -49,7 +49,7 @@
           <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
           <mat-error *ngIf="TitleResourceLanguage.errors?.required">
             TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -63,7 +63,7 @@
                         index as i
                       " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: left;">{{ 'Application.source.OSType_hint' | translate }}</mat-hint>
+          <mat-hint align="end">{{ 'Application.source.OSType_hint' | translate }}</mat-hint>
           <mat-error *ngIf="OSType.errors?.required">
             {{ fieldsInfo['OSType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -77,7 +77,7 @@
           <mat-icon matSuffix *ngIf="dataModel.className && fieldsInfo['ClassName']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.className = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ClassName']?.accessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ ClassName.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ ClassName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="ClassName.errors?.required">
             ClassName is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -91,7 +91,7 @@
           <mat-icon matSuffix *ngIf="dataModel.packageName && fieldsInfo['PackageName']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.packageName = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['PackageName']?.accessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ PackageName.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ PackageName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PackageName.errors?.required">
             PackageName is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -121,7 +121,7 @@
             *ngIf="dataModel.extensionUpdateFile && fieldsInfo['ExtensionUpdateFile']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.extensionUpdateFile = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ExtensionUpdateFile']?.accessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ ExtensionUpdateFile.value.length }} / 10</mat-hint>
+          <mat-hint align="end">{{ ExtensionUpdateFile.value.length }} / 10</mat-hint>
           <mat-error *ngIf="ExtensionUpdateFile.errors?.required">
             Extension Update File is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -190,7 +190,7 @@
           <mat-icon matSuffix *ngIf="dataModel.sourceNameGit && fieldsInfo['SourceNameGit']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.sourceNameGit = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['SourceNameGit']?.accessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ SourceNameGit.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ SourceNameGit.value.length }} / 100</mat-hint>
         </mat-form-field>
 
         <!-- FireBaseServerKey Field -->
@@ -322,7 +322,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey1String"
                   [disabled]="!fieldsInfo['BuildKey1String']?.accessEditField" name="dataModel.buildKey1String"
                   #BuildKey1String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey1String.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey1String.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -331,7 +331,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey1Value"
                   [disabled]="!fieldsInfo['BuildKey1Value']?.accessEditField" name="dataModel.buildKey1Value"
                   #BuildKey1Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey1Value.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey1Value.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -344,7 +344,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey2String"
                   [disabled]="!fieldsInfo['BuildKey2String']?.accessEditField" name="dataModel.buildKey2String"
                   #BuildKey2String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey2String.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey2String.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -353,7 +353,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey2Value"
                   [disabled]="!fieldsInfo['BuildKey2Value']?.accessEditField" name="dataModel.buildKey2Value"
                   #BuildKey2Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey2Value.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey2Value.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -367,7 +367,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey3String"
                   [disabled]="!fieldsInfo['BuildKey3String']?.accessEditField" name="dataModel.buildKey3String"
                   #BuildKey3String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey3String.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey3String.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -376,7 +376,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey3Value"
                   [disabled]="!fieldsInfo['BuildKey3Value']?.accessEditField" name="dataModel.buildKey3Value"
                   #BuildKey3Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey3Value.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey3Value.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -389,7 +389,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey4String"
                   [disabled]="!fieldsInfo['BuildKey4String']?.accessEditField" name="dataModel.buildKey4String"
                   #BuildKey4String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey4String.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey4String.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -398,7 +398,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey4Value"
                   [disabled]="!fieldsInfo['BuildKey4Value']?.accessEditField" name="dataModel.buildKey4Value"
                   #BuildKey4Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey4Value.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey4Value.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -412,7 +412,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey5String"
                   [disabled]="!fieldsInfo['BuildKey5String']?.accessEditField" name="dataModel.buildKey5String"
                   #BuildKey5String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey5String.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey5String.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -421,7 +421,7 @@
                 <input matInput [(ngModel)]="dataModel.buildKey5Value"
                   [disabled]="!fieldsInfo['BuildKey5Value']?.accessEditField" name="dataModel.buildKey5Value"
                   #BuildKey5Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint style="text-align: left;">{{ BuildKey5Value.value.length }} / 1000</mat-hint>
+                <mat-hint align="end">{{ BuildKey5Value.value.length }} / 1000</mat-hint>
               </mat-form-field>
             </td>
           </tr>

@@ -71,7 +71,7 @@
           <mat-icon matSuffix *ngIf="dataModel.lastUrlAddressInUse" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastUrlAddressInUse = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ LastUrlAddressInUse.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ LastUrlAddressInUse.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LastUrlAddressInUse.errors?.required">
             LastUrlAddressInUse is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

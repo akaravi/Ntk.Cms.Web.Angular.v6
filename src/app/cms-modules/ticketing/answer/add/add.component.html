@@ -20,7 +20,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: left;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+          <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -40,8 +40,8 @@
           <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['HtmlBody']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.htmlBody = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['HtmlBody']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ 'Application.source.htmlBody_hint' | translate }}</mat-hint>
-          <mat-hint  style="text-align: right;">{{ HtmlBody.value.length }} / 1000</mat-hint>
+          <mat-hint align="end">{{ 'Application.source.htmlBody_hint' | translate }}</mat-hint>
+          <mat-hint align="start">{{ HtmlBody.value.length }} / 1000</mat-hint>
 
         </mat-form-field>
 

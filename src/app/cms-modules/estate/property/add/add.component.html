@@ -60,11 +60,11 @@
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{fieldsInfo['RecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -80,11 +80,11 @@
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -98,11 +98,11 @@
           <mat-icon matSuffix *ngIf="dataModel.caseCode" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.caseCode = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['CaseCode']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ CaseCode.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ CaseCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CaseCode.errors?.required">
             {{fieldsInfo['CaseCode']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -144,7 +144,7 @@
           <mat-icon matSuffix *ngIf="dataModel.area" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.area = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Area']?.FieldDescription}}</strong>
           </mat-hint>
@@ -173,11 +173,11 @@
           <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.address = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ Address.value.length }} / 500</mat-hint>
+          <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
         </mat-form-field>
 
 
@@ -191,11 +191,11 @@
           <mat-icon matSuffix *ngIf="dataModel.aboutAgentTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutAgentTel = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutAgentTel']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ AboutAgentTel.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutAgentMobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutAgentMobile']?.accessWatchField">
@@ -207,11 +207,11 @@
           <mat-icon matSuffix *ngIf="dataModel.aboutAgentMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutAgentMobile = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutAgentTel']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ AboutAgentMobile.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutAgentMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
 
@@ -226,11 +226,11 @@
           <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutCustomerTel']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutCustomerMobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutCustomerMobile']?.accessWatchField">
@@ -242,11 +242,11 @@
           <mat-icon matSuffix *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutCustomerMobile']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
 
@@ -260,11 +260,11 @@
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint style="text-align: left;">{{ Description.value.length }} / 2000</mat-hint>
+          <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             {{fieldsInfo['Description']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -500,7 +500,7 @@
               <mat-icon matSuffix *ngIf="contractDataModel.description" matSuffix mat-icon-button aria-label="Clear"
                 (click)="contractDataModel.description = ''">close</mat-icon>
               <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-hint style="text-align: left;">{{ contractDataModel_Description.value.length }} / 500</mat-hint>
+              <mat-hint align="end">{{ contractDataModel_Description.value.length }} / 500</mat-hint>
 
             </mat-form-field>
           </div>

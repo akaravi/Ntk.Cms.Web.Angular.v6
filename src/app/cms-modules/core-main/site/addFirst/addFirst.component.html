@@ -17,7 +17,7 @@
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{'MESSAGE.System.title_required' | translate}}
           </mat-error>
@@ -30,7 +30,7 @@
           <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.subDomain = 'myname'">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ SubDomain2.value.length }} / 20</mat-hint>
+          <mat-hint align="end">{{ SubDomain2.value.length }} / 20</mat-hint>
           <mat-error *ngIf="SubDomain2.errors?.required">
             عنوان لاتین الزامی است
           </mat-error>
@@ -46,7 +46,7 @@
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Description.value.length }} / 500</mat-hint>
+          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             ورود توضیحات سامانه الزامی است
           </mat-error>
@@ -105,7 +105,7 @@
         index as i
       " [value]="item">{{ item }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: left;">انتخاب دامنه برای این سامانه</mat-hint>
+          <mat-hint align="end">انتخاب دامنه برای این سامانه</mat-hint>
         </mat-form-field>
         <!-- Domain Field -->
         <div class="row input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
