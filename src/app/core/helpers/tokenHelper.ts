@@ -111,27 +111,27 @@ export class TokenHelper implements OnDestroy {
       this.tokenInfo = value;
 
       if (!this.tokenInfo || !this.tokenInfo.token || this.tokenInfo.token.length === 0) {
-        if (this.router.url.indexOf('/auth/singin') < 0) {
+        if (this.router && this.router.url.indexOf('/auth/singin') < 0) {
           this.router.navigate(['/auth/singin']);
         }
       } else if (this.tokenInfo.userId <= 0) {
 
-        if (this.router.url.indexOf('/auth/singin') < 0) {
+        if (this.router&& this.router.url.indexOf('/auth/singin') < 0) {
           this.router.navigate(['/auth/singin']);
         }
       } else if (this.tokenInfo.userId > 0 && this.tokenInfo.siteId <= 0) {
-        if (this.router.url.indexOf('/core/site/selection') < 0) {
+        if (this.router&& this.router.url.indexOf('/core/site/selection') < 0) {
           this.router.navigate(['/core/site/selection']);
         }
       }
       if (this.tokenInfo && this.tokenInfo.userId <= 0) {
-        if (this.router.url.indexOf('/auth/singin') < 0) {
+        if (this.router && this.router.url.indexOf('/auth/singin') < 0) {
           this.router.navigate(['/auth/singin']);
         }
       }
 
       if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId <= 0) {
-        if (this.router.url.indexOf('/core/site/selection') < 0) {
+        if (this.router&& this.router.url.indexOf('/core/site/selection') < 0) {
           this.router.navigate(['/core/site/selection']);
         }
       }
