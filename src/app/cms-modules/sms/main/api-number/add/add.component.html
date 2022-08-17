@@ -17,7 +17,7 @@
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -31,7 +31,7 @@
       <mat-icon matSuffix *ngIf="dataModel.numberChar && fieldsInfo['NumberChar']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.numberChar = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['NumberChar']?.accessAddField" matSuffix>mode_edit</mat-icon>
-      <mat-hint  style="text-align: right;">{{ NumberChar.value.length }} / 100</mat-hint>
+      <mat-hint align="start">{{ NumberChar.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- IsPublic Field -->
@@ -74,7 +74,7 @@
     <mat-icon matSuffix *ngIf="dataModel.deliveryRelayUrl && fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix
       mat-icon-button aria-label="Clear" (click)="dataModel.deliveryRelayUrl = ''">close</mat-icon>
     <mat-icon *ngIf="fieldsInfo['DeliveryRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
-    <mat-hint  style="text-align: left;">{{ DeliveryRelayUrl.value.length }} / 100</mat-hint>
+    <mat-hint align="end">{{ DeliveryRelayUrl.value.length }} / 100</mat-hint>
   </mat-form-field>
   
   <!-- SmsRelayStatus Field -->
@@ -92,7 +92,7 @@
     <mat-icon matSuffix *ngIf="dataModel.smsRelayUrl && fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix
       mat-icon-button aria-label="Clear" (click)="dataModel.smsRelayUrl = ''">close</mat-icon>
     <mat-icon *ngIf="fieldsInfo['SmsRelayUrl']?.accessAddField" matSuffix>mode_edit</mat-icon>
-    <mat-hint  style="text-align: left;">{{ SmsRelayUrl.value.length }} / 100</mat-hint>
+    <mat-hint align="end">{{ SmsRelayUrl.value.length }} / 100</mat-hint>
   </mat-form-field>
 
     <!-- FirstSubmit Field -->

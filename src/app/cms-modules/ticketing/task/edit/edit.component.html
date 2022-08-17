@@ -20,7 +20,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
-          <mat-hint style="text-align: left;">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+          <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -40,7 +40,7 @@
           <mat-icon matSuffix *ngIf="dataModel.fullName && fieldsInfo['FullName']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.fullName = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FullName']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">{{ FullName.value.length }} / 100</mat-hint>
+          <mat-hint align="start">{{ FullName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="FullName.errors?.required">
             {{ fieldsInfo['FullName']?.FieldFullName }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -54,7 +54,7 @@
           <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -69,7 +69,7 @@
           <mat-icon matSuffix *ngIf="dataModel.phoneNo && fieldsInfo['PhoneNo']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.phoneNo = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['PhoneNo']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">{{ PhoneNo.value.length }} / 100</mat-hint>
+          <mat-hint align="start">{{ PhoneNo.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PhoneNo.errors?.required">
             {{ fieldsInfo['PhoneNo']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -83,7 +83,7 @@
           <mat-icon matSuffix *ngIf="dataModel.email && fieldsInfo['Email']?.accessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.email = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Email']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">{{ Email.value.length }} / 100</mat-hint>
+          <mat-hint align="start">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
             {{ fieldsInfo['Email']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -97,7 +97,7 @@
           <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -111,7 +111,7 @@
           <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['HtmlBody']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.htmlBody = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['HtmlBody']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">{{ HtmlBody.value.length }} / 1000</mat-hint>
+          <mat-hint align="start">{{ HtmlBody.value.length }} / 1000</mat-hint>
 
         </mat-form-field>
 
@@ -153,8 +153,8 @@
           <mat-icon matSuffix *ngIf="dataModel.userIpAddress && fieldsInfo['UserIpAddress']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.userIpAddress = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['UserIpAddress']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ 'Application.source.UserIpAddress_hint' | translate }}</mat-hint>
-          <mat-hint  style="text-align: right;">{{ UserIpAddress.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ 'Application.source.UserIpAddress_hint' | translate }}</mat-hint>
+          <mat-hint align="start">{{ UserIpAddress.value.length }} / 100</mat-hint>
 
         </mat-form-field>
 
@@ -167,8 +167,8 @@
           <mat-icon matSuffix *ngIf="dataModel.deviceInformation && fieldsInfo['DeviceInformation']?.accessAddField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.deviceInformation = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['DeviceInformation']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ 'Application.source.DeviceInformation_hint' | translate }}</mat-hint>
-          <mat-hint  style="text-align: right;">{{ DeviceInformation.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ 'Application.source.DeviceInformation_hint' | translate }}</mat-hint>
+          <mat-hint align="start">{{ DeviceInformation.value.length }} / 100</mat-hint>
 
         </mat-form-field>
 

@@ -15,7 +15,7 @@
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
-        <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
           RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -29,7 +29,7 @@
         <mat-icon matSuffix *ngIf="dataModel.domain" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.domain = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint style="text-align: left;">{{ Domain.value.length }} / 100</mat-hint>
+        <mat-hint align="end">{{ Domain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Domain.errors?.required">
           Domain is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -41,7 +41,7 @@
         <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.subDomain = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint style="text-align: left;">{{ SubDomain.value.length }} / 100</mat-hint>
+        <mat-hint align="end">{{ SubDomain.value.length }} / 100</mat-hint>
         <mat-error *ngIf="SubDomain.errors?.required">
           SubDomain is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -55,11 +55,11 @@
           <mat-icon matSuffix *ngIf="dataModel.configNeshanMapApiKey && fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.configNeshanMapApiKey = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint  style="text-align: right;">
+          <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['ConfigNeshanMapApiKey']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint  style="text-align: right;">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
+          <mat-hint align="start">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
         </mat-form-field>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
      </div>

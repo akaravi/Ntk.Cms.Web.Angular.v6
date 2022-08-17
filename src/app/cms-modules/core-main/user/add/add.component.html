@@ -17,7 +17,7 @@
           index as i
         " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -33,7 +33,7 @@
       <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.username = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Username.value.length }} / 100</mat-hint>
+      <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Username.errors?.required">
         Username is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -47,7 +47,7 @@
       <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.email = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Email.value.length }} / 100</mat-hint>
+      <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Email.errors?.required">
         Email is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -63,7 +63,7 @@
       <mat-icon matSuffix *ngIf="dataModel.mobile" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.mobile = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Mobile.value.length }} / 20</mat-hint>
+      <mat-hint align="end">{{ Mobile.value.length }} / 20</mat-hint>
       <mat-error *ngIf="Mobile.errors?.required">
         Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -79,7 +79,7 @@
       <mat-icon matSuffix *ngIf="dataModel.pwd" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.pwd = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Pwd.value.length }} / 50</mat-hint>
+      <mat-hint align="end">{{ Pwd.value.length }} / 50</mat-hint>
       <mat-error *ngIf="Pwd.errors?.required">
         password is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

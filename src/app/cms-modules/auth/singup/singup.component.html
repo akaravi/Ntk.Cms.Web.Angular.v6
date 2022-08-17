@@ -21,7 +21,7 @@
             (click)="dataModel.name = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Name.value.length }} / 50</mat-hint>
+          <mat-hint align="end">{{ Name.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
             Name is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -36,7 +36,7 @@
             (click)="dataModel.family = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Family.value.length }} / 50</mat-hint>
+          <mat-hint align="end">{{ Family.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Family.errors?.required">
             Family is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -51,7 +51,7 @@
             (click)="dataModel.email = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Email.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
             Email is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -66,7 +66,7 @@
             (click)="dataModel.mobile = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Mobile.value.length }} / 15</mat-hint>
+          <mat-hint align="end">{{ Mobile.value.length }} / 15</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
             Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -81,7 +81,7 @@
             (click)="dataModel.password = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ Password.value.length }} / 50</mat-hint>
+          <mat-hint align="end">{{ Password.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Password.errors?.required">
             Password is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -99,7 +99,7 @@
             (click)="RePasswordModel = ''">
             close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint style="text-align: left;">{{ RePassword.value.length }} / 50</mat-hint>
+          <mat-hint align="end">{{ RePassword.value.length }} / 50</mat-hint>
           <mat-error *ngIf="RePassword.errors?.required">
             RePassword is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

@@ -26,7 +26,7 @@
         (click)="dataModelAuthUserSignInBySms.mobile = ''">
         close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Mobile.value.length }} / 100</mat-hint>
+      <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Mobile.errors?.required">
         Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -92,7 +92,7 @@
         (click)="dataModelAuthUserSignInBySms.code = ''">
         close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Code.value.length }} / 100</mat-hint>
+      <mat-hint align="end">{{ Code.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Code.errors?.required">
         PIN Code is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>

@@ -17,7 +17,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -31,7 +31,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint style="text-align: left;">انتخاب قابلیت این محتوا</mat-hint>
+      <mat-hint align="end">انتخاب قابلیت این محتوا</mat-hint>
       <mat-error *ngIf="PageAbilityType.errors?.required">
         PageAbilityType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -45,7 +45,7 @@
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Title.value.length }} / 100</mat-hint>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
         {{fieldsInfo['Title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -108,7 +108,7 @@
       <mat-icon matSuffix *ngIf="dataModel.specialIdendity" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.specialIdendity = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ SpecialIdendity.value.length }} / 500</mat-hint>
+      <mat-hint align="end">{{ SpecialIdendity.value.length }} / 500</mat-hint>
     </mat-form-field>
     <!-- SpecialUrlParameter Field -->
     <mat-form-field class="ntk-full-width">
@@ -119,7 +119,7 @@
       <mat-icon matSuffix *ngIf="dataModel.specialUrlParameter" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.specialUrlParameter = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ SpecialUrlParameter.value.length }} / 500</mat-hint>
+      <mat-hint align="end">{{ SpecialUrlParameter.value.length }} / 500</mat-hint>
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
@@ -129,7 +129,7 @@
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint style="text-align: left;">{{ Description.value.length }} / 500</mat-hint>
+      <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
