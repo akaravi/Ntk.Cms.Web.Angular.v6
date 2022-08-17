@@ -33,6 +33,7 @@ import { DataProviderClientDeleteComponent } from '../delete/delete.component';
 @Component({
   selector: 'app-data-provider-client-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class DataProviderClientListComponent implements OnInit, OnDestroy {
 
@@ -46,7 +47,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -62,7 +63,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   categoryModelSelected: DataProviderPlanModel;
   dataModelResult: ErrorExceptionResult<DataProviderClientModel> = new ErrorExceptionResult<DataProviderClientModel>();
-
+  link: string;
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -97,7 +98,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderClientModel();
     const pName = this.constructor.name + 'main';
@@ -332,7 +333,7 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     }
     );
   }
-  onActionbuttonClientCreditAccountRow(model: DataProviderClientModel = this.tableRowSelected): void {
+  onActionbuttonClientCreditAccountRow(model: DataProviderClientModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -340,18 +341,29 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/client-charge/', model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/client-charge/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/client-charge/', model.id]);
+    } 
+    
   }
-  onActionbuttonClientList(model: DataProviderClientModel = this.tableRowSelected): void {
+  onActionbuttonClientList(model: DataProviderClientModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/plan-client/LinkClientId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/plan-client/LinkClientId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/plan-client/LinkClientId/' + model.id]);
+    } 
   }
-  onActionbuttonDataRow(model: DataProviderClientModel = this.tableRowSelected): void {
+  onActionbuttonDataRow(model: DataProviderClientModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.No_row_selected_for_viewing');
       this.cmsToastrService.typeErrorSelected(emessage); return;
@@ -366,7 +378,13 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    this.router.navigate(['/data-provider/log-client/LinkClientId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/log-client/LinkClientId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/log-client/LinkClientId/' + model.id]);
+    } 
+    
   }
   onActionbuttonReload(): void {
     this.DataGetAll();
@@ -377,15 +395,30 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderClientModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
   }
-  onActionbuttonTransactionList(model: DataProviderClientModel = this.tableRowSelected): void {
+  onActionTableRowMouseEnter(row: DataProviderClientModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: DataProviderClientModel): void {
+    row["expanded"] = false;
+  }
+  expandedElement: any;
+  onActionbuttonTransactionList(model: DataProviderClientModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/transaction/LinkClientId/' + model.id]);
-
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/transaction/LinkClientId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/transaction/LinkClientId/' + model.id]);
+    } 
   }
 }

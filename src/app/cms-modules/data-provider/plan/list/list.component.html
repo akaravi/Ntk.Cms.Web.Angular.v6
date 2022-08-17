@@ -159,10 +159,16 @@
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
 
-                  <a (click)="onActionbuttonTransactionList(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                  <a (click)="onActionbuttonTransactionList(row,$event)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.TRANSACTIONS' | translate}} </a>|
 
-                  <a (click)="onActionbuttonPriceList(row)" class="link-primary pointer"> {{'ACTION.PRICE' | translate}} </a>
+                  <a (click)="onActionbuttonSourceList(row,$event)" class="link-primary pointer"> {{'ACTION.SOURCE' | translate}} </a>|
+
+                  <a (click)="onActionbuttonClientList(row,$event)" class="link-primary pointer"> {{'ACTION.CLIENT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDataRow(row,$event)" class="link-primary pointer"> {{'ACTION.DATA' | translate}} </a>|
+
+                  <a (click)="onActionbuttonPriceList(row,$event)" class="link-primary pointer"> {{'ACTION.PRICE' | translate}} </a>
                 </td>
               </tr>
 

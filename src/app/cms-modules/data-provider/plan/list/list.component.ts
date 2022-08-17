@@ -63,7 +63,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   categoryModelSelected: DataProviderPlanCategoryModel;
   dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
-
+  link: string;
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -260,51 +260,76 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDataRow(model: DataProviderPlanModel = this.tableRowSelected): void {
+  onActionbuttonDataRow(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.No_row_selected_for_viewing');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/log-plan/LinkPlanId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/log-plan/LinkPlanId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/log-plan/LinkPlanId/' + model.id]);
+    }
   }
-  onActionbuttonPriceList(model: DataProviderPlanModel = this.tableRowSelected): void {
+  onActionbuttonPriceList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/plan-price/LinkPlanId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/plan-price/LinkPlanId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/plan-price/LinkPlanId/' + model.id]);
+    }
   }
-  onActionbuttonSourceList(model: DataProviderPlanModel = this.tableRowSelected): void {
+  onActionbuttonSourceList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/plan-source/LinkPlanId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/plan-source/LinkPlanId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/plan-source/LinkPlanId/' + model.id]);
+    }
   }
-  onActionbuttonClientList(model: DataProviderPlanModel = this.tableRowSelected): void {
+  onActionbuttonClientList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/plan-client/LinkPlanId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/plan-client/LinkPlanId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/plan-client/LinkPlanId/' + model.id]);
+    }
   }
 
-  onActionbuttonTransactionList(model: DataProviderPlanModel = this.tableRowSelected): void {
+  onActionbuttonTransactionList(model: DataProviderPlanModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/transaction/LinkPlanId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/transaction/LinkPlanId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/transaction/LinkPlanId/' + model.id]);
+    }
   }
 
   onActionbuttonStatist(): void {

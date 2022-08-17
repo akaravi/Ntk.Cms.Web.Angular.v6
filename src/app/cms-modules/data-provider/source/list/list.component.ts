@@ -33,6 +33,7 @@ import { DataProviderSourceDeleteComponent } from '../delete/delete.component';
 @Component({
   selector: 'app-data-provider-source-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class DataProviderSourceListComponent implements OnInit, OnDestroy {
 
@@ -62,7 +63,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
   filteModelContent = new FilterModel();
   categoryModelSelected: DataProviderPlanModel;
   dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
-
+  link: string;
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
@@ -274,16 +275,21 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonSourceList(model: DataProviderSourceModel = this.tableRowSelected): void {
+  onActionbuttonSourceList(model: DataProviderSourceModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/data-provider/plan-source/LinkSourceId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/plan-source/LinkSourceId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/plan-source/LinkSourceId/' + model.id]);
+    }
   }
-  onActionbuttonDataRow(model: DataProviderSourceModel = this.tableRowSelected): void {
+  onActionbuttonDataRow(model: DataProviderSourceModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.No_row_selected_for_viewing');
       this.cmsToastrService.typeErrorSelected(emessage); return;
@@ -298,7 +304,12 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    this.router.navigate(['/data-provider/log-source/LinkSourceId/' + model.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/data-provider/log-source/LinkSourceId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/data-provider/log-source/LinkSourceId/' + model.id]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -376,5 +387,16 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderSourceModel): void {
     this.tableRowSelected = row;
-  }
+    if (!row["expanded"])
+    row["expanded"] = false;
+  row["expanded"] = !row["expanded"]
+}
+onActionTableRowMouseEnter(row: DataProviderSourceModel): void {
+  this.tableRowSelected = row;
+  row["expanded"] = true;
+}
+onActionTableRowMouseLeave(row: DataProviderSourceModel): void {
+  row["expanded"] = false;
+}
+expandedElement: any;
 }

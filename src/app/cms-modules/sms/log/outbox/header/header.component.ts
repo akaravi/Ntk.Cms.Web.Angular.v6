@@ -28,7 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class SmsMainApiLogOutBoxHeaderComponent implements OnInit ,OnDestroy {
+export class SmsLogOutBoxHeaderComponent implements OnInit ,OnDestroy {
   constructor(
     private headerService: SmsLogOutBoxService,
     public publicHelper: PublicHelper,

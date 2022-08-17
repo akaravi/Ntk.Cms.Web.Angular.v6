@@ -33,7 +33,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-sms-log-outboxdetail-list',
   templateUrl: './list.component.html'
 })
-export class SmsMainApiLogOutBoxDetailListComponent implements OnInit, OnDestroy {
+export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
   requestLinkOutBoxId = '';
   constructor(
     private smsLogOutBoxDetailService: SmsLogOutBoxDetailService,

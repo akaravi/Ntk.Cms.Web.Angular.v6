@@ -27,30 +27,31 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { SmsMainApiLogInBoxListComponent } from './inbox/list/list.component';
-import { SmsMainApiLogInBoxEditComponent } from './inbox/edit/edit.component';
+
 import { DynamicFormBuilderModule } from 'src/app/core/dynamic-form-builder/dynamic-form-builder.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { SmsMainApiLogOutBoxListComponent } from './outbox/list/list.component';
-import { SmsMainApiLogOutBoxEditComponent } from './outbox/edit/edit.component';
 import { SmsSharedModule } from '../sms.shared.module';
-import { SmsMainApiLogInBoxViewComponent } from './inbox/view/view.component';
-import { SmsMainApiLogOutBoxViewComponent } from './outbox/view/view.component';
-import { SmsMainApiLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
-import { SmsMainApiLogOutBoxHeaderComponent } from './outbox/header/header.component';
+import { SmsLogInBoxEditComponent } from './inbox/edit/edit.component';
+import { SmsLogInBoxListComponent } from './inbox/list/list.component';
+import { SmsLogInBoxViewComponent } from './inbox/view/view.component';
+import { SmsLogOutBoxListComponent } from './outbox/list/list.component';
+import { SmsLogOutBoxEditComponent } from './outbox/edit/edit.component';
+import { SmsLogOutBoxHeaderComponent } from './outbox/header/header.component';
+import { SmsLogOutBoxViewComponent } from './outbox/view/view.component';
+import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
 
 
 @NgModule({
   declarations: [
     SmsLogComponent,
-    SmsMainApiLogInBoxListComponent,
-    SmsMainApiLogInBoxEditComponent,
-    SmsMainApiLogOutBoxListComponent,
-    SmsMainApiLogOutBoxEditComponent,
-    SmsMainApiLogOutBoxHeaderComponent,
-    SmsMainApiLogInBoxViewComponent,
-    SmsMainApiLogOutBoxViewComponent,
-    SmsMainApiLogOutBoxDetailListComponent,
+    SmsLogInBoxListComponent,
+    SmsLogInBoxEditComponent,
+    SmsLogInBoxViewComponent,
+    SmsLogOutBoxListComponent,
+    SmsLogOutBoxEditComponent,
+    SmsLogOutBoxHeaderComponent,
+    SmsLogOutBoxViewComponent,
+    SmsLogOutBoxDetailListComponent,
 
   ],
   imports: [

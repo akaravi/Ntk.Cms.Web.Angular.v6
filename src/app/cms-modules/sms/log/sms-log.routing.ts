@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SmsMainApiLogInBoxListComponent } from './inbox/list/list.component';
-import { SmsMainApiLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
-import { SmsMainApiLogOutBoxListComponent } from './outbox/list/list.component';
+import { SmsLogInBoxListComponent } from './inbox/list/list.component';
+import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
+import { SmsLogOutBoxListComponent } from './outbox/list/list.component';
 import { SmsLogComponent } from './sms-log.component';
 
 const routes: Routes = [
@@ -13,40 +13,40 @@ const routes: Routes = [
       /**inbox */
       {
         path: 'inbox',
-        component: SmsMainApiLogInBoxListComponent
+        component: SmsLogInBoxListComponent
       },
       {
         path: 'inbox/list/LinkPrivateConfigId/:LinkPrivateConfigId',
-        component: SmsMainApiLogInBoxListComponent
+        component: SmsLogInBoxListComponent
       },
       {
         path: 'inbox/list/LinkApiNumberId/:LinkApiNumberId',
-        component: SmsMainApiLogInBoxListComponent
+        component: SmsLogInBoxListComponent
       },
       {
         path: 'inbox/list/LinkSiteId/:LinkSiteId',
-        component: SmsMainApiLogInBoxListComponent
+        component: SmsLogInBoxListComponent
       },
       /**outbox */
       {
         path: 'outbox',
-        component: SmsMainApiLogOutBoxListComponent
+        component: SmsLogOutBoxListComponent
       },
       {
         path: 'outbox/list/LinkPrivateConfigId/:LinkPrivateConfigId',
-        component: SmsMainApiLogOutBoxListComponent
+        component: SmsLogOutBoxListComponent
       },
       {
         path: 'outbox/list/LinkApiNumberId/:LinkApiNumberId',
-        component: SmsMainApiLogOutBoxListComponent
+        component: SmsLogOutBoxListComponent
       },
       {
         path: 'outbox/list/LinkSiteId/:LinkSiteId',
-        component: SmsMainApiLogOutBoxListComponent
+        component: SmsLogOutBoxListComponent
       },
       {
         path: 'outbox-detail/LinkOutBoxId/:LinkOutBoxId',
-        component: SmsMainApiLogOutBoxDetailListComponent
+        component: SmsLogOutBoxDetailListComponent
       },
       //   {
       //     path: 'source/edit/:Id',

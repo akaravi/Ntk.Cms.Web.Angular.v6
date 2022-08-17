@@ -30,11 +30,11 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-sms-log-outbox-view',
   templateUrl: './view.component.html',
 })
-export class SmsMainApiLogOutBoxViewComponent implements OnInit, OnDestroy {
+export class SmsLogOutBoxViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<SmsMainApiLogOutBoxViewComponent>,
+    private dialogRef: MatDialogRef<SmsLogOutBoxViewComponent>,
     public coreEnumService: CoreEnumService,
     public smsLogOutBoxService: SmsLogOutBoxService,
     private cmsToastrService: CmsToastrService,

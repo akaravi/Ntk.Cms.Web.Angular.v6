@@ -1,5 +1,3 @@
-<app-cms-guide-notice [Key]="'donate.target.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
-</app-cms-guide-notice>
 <app-data-provider-plan-header *ngIf="requestLinkPlanId>0" [optionId]="requestLinkPlanId">
 </app-data-provider-plan-header>
 
@@ -120,8 +118,8 @@
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonTransactionList(row)" *ngIf="dataModelResult.access.accessWatchRow">
-              <mat-icon>transaction</mat-icon>
-              <span>{{'ACTION.TRANSACTION' | translate}}</span>
+              <mat-icon>paid</mat-icon>
+              <span>{{'ACTION.TRANSACTIONS' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

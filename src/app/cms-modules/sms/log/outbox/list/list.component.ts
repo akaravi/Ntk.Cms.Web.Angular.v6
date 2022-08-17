@@ -26,16 +26,16 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { SmsMainApiLogOutBoxEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { SmsMainApiLogOutBoxViewComponent } from '../view/view.component';
+import { SmsLogOutBoxEditComponent } from '../edit/edit.component';
+import { SmsLogOutBoxViewComponent } from '../view/view.component';
 @Component({
   selector: 'app-sms-log-outbox-list',
   templateUrl: './list.component.html'
 })
-export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
+export class SmsLogOutBoxListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkPrivateConfigId = '';
   requestLinkApiNumberId = '';
@@ -95,6 +95,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
     'IsAccepted',
     'LinkPrivateConfigId',
     'Message',
+    'SendDate',
     'UpdatedDate',
     'Action'
   ];
@@ -241,7 +242,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(SmsMainApiLogOutBoxEditComponent, {
+    const dialogRef = this.dialog.open(SmsLogOutBoxEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -268,7 +269,7 @@ export class SmsMainApiLogOutBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-    const dialogRef = this.dialog.open(SmsMainApiLogOutBoxViewComponent, {
+    const dialogRef = this.dialog.open(SmsLogOutBoxViewComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });

@@ -47,7 +47,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+    multiTemplateDataRows>
       <!-- LinkMainImageIdSrc Column -->
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
@@ -124,9 +125,54 @@
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{row.id}}</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.title}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.description}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                    <a (click)="onActionbuttonDataRow(row,$event)" class="link-primary pointer"> {{'ACTION.DATA' | translate}} </a>|
+
+                    <a (click)="onActionbuttonSourceList(row,$event)" class="link-primary pointer"> {{'ACTION.SOURCE' | translate}} </a>
+
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+      (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
     </mat-table>
 

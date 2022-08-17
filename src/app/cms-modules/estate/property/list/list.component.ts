@@ -144,7 +144,7 @@ export class EstatePropertyListComponent
     }
   }
   // SubjectTitle : string
-  link: any;
+  link: string;
   comment: string;
   author: string;
   dataSource: any;
