@@ -7,11 +7,6 @@ import {
   DataFieldInfoModel,
   SmsLogInBoxService,
   SmsLogInBoxModel,
-  CoreUserModel,
-  SmsMainApiPathModel,
-  CoreSiteCategoryModel,
-  CoreSiteModel,
-  CoreUserGroupModel,
   EnumManageUserAccessDataTypes,
   SmsMainApiNumberModel,
 } from 'ntk-cms-api';
