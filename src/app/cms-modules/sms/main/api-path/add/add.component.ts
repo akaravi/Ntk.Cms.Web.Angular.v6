@@ -31,7 +31,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./add.component.scss'],
 })
 export class SmsMainApiPathAddComponent implements OnInit {
-
+  requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<SmsMainApiPathAddComponent>,
@@ -42,7 +42,10 @@ export class SmsMainApiPathAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    if (data && data.id) {
+      this.requestId = data.id;
+    }
     if (data && data.linkApiPathCompanyId) {
       this.dataModel.linkApiPathCompanyId = data.linkApiPathCompanyId + '';
     }
@@ -70,8 +73,14 @@ export class SmsMainApiPathAddComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.requestId && this.requestId.length > 0) {
+      this.formInfo.formTitle = this.translate.instant('TITLE.ADD') + " copy";
+      this.DataClone();
+    }
+    else {
+      this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
+    }
 
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -79,6 +88,35 @@ export class SmsMainApiPathAddComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
+  DataClone(): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+      this.formInfo.formError = '';
+      const pName = this.constructor.name + 'main';
+      this.loading.Start(pName);
+      this.smsMainApiPathService.ServiceGetOneById(this.requestId).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+
+          if (ret.isSuccess) {
+            this.dataModel = ret.item;
+            ret.item.title = ret.item.title + " copy";
+            this.formInfo.formTitle = this.formInfo.formTitle;
+            this.formInfo.formAlert = '';
+          } else {
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+            this.formInfo.formError = ret.errorMessage;
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+  }
 
   DataGetAccess(): void {
     this.smsMainApiPathService

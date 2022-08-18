@@ -7,6 +7,7 @@
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
@@ -23,9 +24,9 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkApiNumberId Field -->
-    <app-sms-api-number-selector (optionChange)="onActionSelectorSelectLinkApiNumberId($event)"
+    <!-- <app-sms-api-number-selector (optionChange)="onActionSelectorSelectLinkApiNumberId($event)"
       [optionSelectForce]="dataModel.linkApiNumberId" [optionPlaceholder]="'شماره'">
-    </app-sms-api-number-selector>
+    </app-sms-api-number-selector> -->
     <!-- ReceiverDate Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReceiverDate']?.accessWatchField">
       <mat-label>{{fieldsInfo['ReceiverDate']?.fieldTitle}}</mat-label>
@@ -48,6 +49,18 @@
         mat-icon-button aria-label="Clear" (click)="dataModel.senderNumber = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['SenderNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint  style="text-align: right;">{{ SenderNumber.value.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <!-- ReceiverNumber Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReceiverNumber']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['ReceiverNumber']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.receiverNumber"
+        [disabled]="!fieldsInfo['ReceiverNumber']?.accessEditField" name="dataModel.receiverNumber" #ReceiverNumber
+        type="text" placeholder="123" />
+      <mat-icon matSuffix *ngIf="dataModel.receiverNumber && fieldsInfo['ReceiverNumber']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.receiverNumber = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['ReceiverNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-hint  style="text-align: right;">{{ ReceiverNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- Message Field -->
