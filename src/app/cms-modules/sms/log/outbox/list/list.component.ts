@@ -1,5 +1,5 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -534,7 +534,15 @@ export class SmsLogOutBoxListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-
+    const navigationExtras: NavigationExtras = {
+      state: {
+        LinkApiId: model.linkPrivateConfigId,
+        LinkNumberId: model.linkApiNumberId,
+        // ReceiverNumber: model.senderNumber,
+        // SenderNumber: model.receiverNumber,
+      }
+    };
+    this.router.navigate(['/sms/action/send-message/outbox-extras'], navigationExtras);
   }
 
   

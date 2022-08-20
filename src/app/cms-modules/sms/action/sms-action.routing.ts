@@ -13,7 +13,11 @@ const routes: Routes = [
         component: SmsActionSendMessageComponent
       },
       {
-        path: 'send-message/extras',
+        path: 'send-message/inbox-extras',
+        component: SmsActionSendMessageComponent
+      },
+      {
+        path: 'send-message/outbox-extras',
         component: SmsActionSendMessageComponent
       },
     

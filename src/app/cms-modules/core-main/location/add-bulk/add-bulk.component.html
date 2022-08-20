@@ -39,7 +39,7 @@
 
       <!-- LinkParentId Field -->
       <app-core-location-selector (optionChange)="onActionParentSelect($event)" [optionDisabled]="false"
-        [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="'منطقه والد'">
+        [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Area')">
       </app-core-location-selector>
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">

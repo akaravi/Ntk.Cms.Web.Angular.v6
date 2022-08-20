@@ -522,7 +522,7 @@ export class SmsLogInBoxListComponent implements OnInit, OnDestroy {
         SenderNumber: model.receiverNumber,
       }
     };
-    this.router.navigate(['/sms/action/send-message/extras'], navigationExtras);
+    this.router.navigate(['/sms/action/send-message/inbox-extras'], navigationExtras);
   }
   onActionbuttonReload(): void {
     this.DataGetAll();

@@ -41,7 +41,8 @@ export class ContactContentAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     
     if (data && data.linkCategoryId && data.linkCategoryId.length > 0)
       this.dataModel.linkCategoryId = data.linkCategoryId;

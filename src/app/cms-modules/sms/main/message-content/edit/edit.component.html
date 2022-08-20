@@ -26,7 +26,7 @@
 
     <!-- LinkCategoryId Field -->
     <app-sms-main-message-category-selector (optionChange)="onActionSelectCategory($event)"
-      [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی '"
+      [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
     >
     </app-sms-main-message-category-selector>
 

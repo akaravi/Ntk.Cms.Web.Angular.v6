@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -25,10 +25,10 @@
       </mat-error>
     </mat-form-field>
 
-        <!-- LinkCategoryId Field -->
-        <app-contact-category-selector (optionChange)="onActionSelectCategory($event)"
-        [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="'دسته بندی '"
-        ></app-contact-category-selector>
+    <!-- LinkCategoryId Field -->
+    <app-contact-category-selector (optionChange)="onActionSelectCategory($event)"
+      [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+    </app-contact-category-selector>
 
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
@@ -56,8 +56,8 @@
         Numbers is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-   
-  
+
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
