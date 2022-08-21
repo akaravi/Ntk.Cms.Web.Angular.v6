@@ -13,6 +13,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-cms-token-access',
   templateUrl: './cmsTokenAccess.component.html',
+  
 })
 export class CmsTokenAccessComponent implements OnInit, OnDestroy {
   static nextId = 0;
@@ -37,6 +38,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
   tokenInfo: TokenInfoModel = new TokenInfoModel();
   loadingStatus = false;
+  disabledAllow = false;
   inputSiteId?: number;
   inputUserId?: number;
   cmsApiStoreSubscribe: Subscription;
@@ -65,9 +67,11 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     }
     if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
+    this.disabledAllow = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next: (ret) => {
         this.loadingStatus = false;
+        this.disabledAllow = false;
         if (ret.isSuccess) {
           const etitle = this.translate.instant('TITLE.Information');
           let emessage = '';
@@ -84,6 +88,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
       },
       error: (er) => {
         this.loadingStatus = false;
+        this.disabledAllow = false;
         if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(er);
       }
     }
@@ -108,9 +113,11 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     }
     if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
+    this.disabledAllow = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next: (ret) => {
         this.loadingStatus = false;
+        this.disabledAllow = false;
         if (ret.isSuccess) {
           const etitle = this.translate.instant('TITLE.Information');
           if (ret.item.userAccessAdminAllowToProfessionalData === NewToPerf) {
@@ -126,6 +133,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
       },
       error: (er) => {
         this.loadingStatus = false;
+        this.disabledAllow = false;
         if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(er);
       }
     }

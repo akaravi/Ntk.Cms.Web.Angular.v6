@@ -145,7 +145,7 @@ export class TooltipGuideDirective {
               /*run */
             } else {
               if (!environment.production) {
-                console.log('tooltip',next.errorMessage);
+                // console.log('tooltip',next.errorMessage);
                 this.cmsToastrService.typeErrorMessage(next.errorMessage);
               }
               /*run */

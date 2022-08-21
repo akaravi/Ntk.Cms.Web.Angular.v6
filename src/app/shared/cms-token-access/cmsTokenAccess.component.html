@@ -2,13 +2,13 @@
 <div>
   <a (click)="onActionbuttonUserAccessAdminAllowToAllData()"
     *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
-    class="btn btn-raised mr-1 shadow-z-2 btn-success " style="width:95% ;margin: 4px;">
+    class="btn btn-raised mr-1 shadow-z-2 btn-success " style="width:95% ;margin: 4px;" [class.disabled]="disabledAllow">
     <i [className]="tokenInfo.userAccessAdminAllowToAllData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'"></i>
     &nbsp;{{'TITLE.Show_all_information'| translate}}
   </a>
   <a (click)="onActionbuttonUserAccessAdminAllowToProfessionalData()"
     *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
-    class="btn btn-raised mr-1 shadow-z-2 btn-success" style="width:95%;margin: 4px;">
+    class="btn btn-raised mr-1 shadow-z-2 btn-success" style="width:95%;margin: 4px;" [class.disabled]="disabledAllow">
     <i [className]="tokenInfo.userAccessAdminAllowToProfessionalData ? 'fa fa-toggle-on' : 'fa fa-toggle-off'">
     </i>&nbsp;{{'TITLE.Display_specialized_information'| translate}}
   </a>
