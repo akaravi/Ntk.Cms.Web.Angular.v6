@@ -47,7 +47,7 @@
     </app-cms-user-selector>
     <!-- LinkLocationId Field -->
     <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-      [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="'منطقه جغرافیایی'"
+      [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
       [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessAddField"></app-cms-location-selector>
     <!-- JoinId Field -->
     <mat-form-field class="ntk-full-width">

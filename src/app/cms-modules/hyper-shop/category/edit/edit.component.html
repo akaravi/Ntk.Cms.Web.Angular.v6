@@ -10,9 +10,9 @@
 
     <!-- Name Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['Name']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.name" name="dataModel.name" #Name type="text"
-        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['Name']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.name" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.name = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

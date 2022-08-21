@@ -56,11 +56,11 @@
         </mat-form-field>
         <!-- LinkSiteCategoryId Field -->
         <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)"
-          [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="'نوع وب سایت'"
+          [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
           [optionDisabled]="!fieldsInfo['LinkSiteCategoryId']?.accessEditField"></app-core-sitecategory-selector>
         <!-- linkCreatedBySiteId Field -->
         <app-core-site-selector (optionChange)="onActionSelectCategory($event)"
-          [optionSelectForce]="this.dataModel.linkCreatedBySiteId" [optionPlaceholder]="'سایت والد'"
+          [optionSelectForce]="this.dataModel.linkCreatedBySiteId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Site')"
           [optionDisabled]="!fieldsInfo['LinkCreatedBySiteId']?.accessEditField"></app-core-site-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">

@@ -82,13 +82,13 @@
 
     <!-- LinkUserGroupId Field -->
     <app-cms-usergroup-selector (optionChange)="onActionSelectUserGroup($event)"
-      [optionSelectForce]="this.dataModel.linkUserGroupId" [optionPlaceholder]="'گروه کاربری'"
+      [optionSelectForce]="this.dataModel.linkUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.User_Group')"
       [optionDisabled]="!fieldsInfo['LinkUserGroupId']?.accessEditField">
     </app-cms-usergroup-selector>
 
     <!-- LinkApplicationId Field -->
     <app-cms-application-selector (optionChange)="onActionSelectApplication($event)"
-      [optionSelectForce]="this.dataModel.linkApplicationId" [optionPlaceholder]="'اپلیکشن'"
+      [optionSelectForce]="this.dataModel.linkApplicationId" [optionPlaceholder]="this.translate.instant('TITLE.Application')"
       [optionDisabled]="!fieldsInfo['LinkApplicationId']?.accessEditField">
     </app-cms-application-selector>
 

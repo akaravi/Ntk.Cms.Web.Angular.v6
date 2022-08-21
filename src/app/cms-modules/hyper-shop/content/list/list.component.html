@@ -17,7 +17,8 @@
       data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
 
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessEditRow && (tableRowSelected?.code?.length>0 || requestPareintId.length>0)"
@@ -25,7 +26,8 @@
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessDeleteRow && (tableRowSelected?.code?.length>0 || requestPareintId.length>0)"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
@@ -62,14 +64,14 @@
       <ng-container matColumnDef="Image">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.Image?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.image}}" height="40"
-            width="40" />
+          <img *ngIf="row?.Image?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+            src="{{row.image}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>
-      <!-- code Column -->
-      <ng-container matColumnDef="code">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['code']?.fieldTitle}} </mat-header-cell>
+      <!-- Code Column -->
+      <ng-container matColumnDef="Code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Code']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.code}} </mat-cell>
       </ng-container>
       <!-- Category Column -->

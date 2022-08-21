@@ -77,7 +77,7 @@
     <app-cms-sitecategory-selector *ngIf="dataModel.pageDependencyIsDefaultPage && fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.accessWatchField"
       (optionChange)="onActionSelectCategory($event)"
       [optionSelectForce]="this.dataModel.pageDependencyIsDefaultPageLinkSiteCategoryId"
-      [optionPlaceholder]="'نوع وب سایت'"
+      [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
       [optionDisabled]="!fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.accessEditField">
     </app-cms-sitecategory-selector>
     <!-- KeywordModel Field -->

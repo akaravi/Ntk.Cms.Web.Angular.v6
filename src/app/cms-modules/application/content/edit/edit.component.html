@@ -60,7 +60,7 @@
         <!-- LinkThemeConfigId Field -->
         <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
           [optionSelectForce]="this.dataModel.linkThemeConfigId" [optionSelectParentForce]="this.dataModel.linkSourceId"
-          [optionPlaceholder]="'قالب اپلیکیشن'" [optionDisabled]="!fieldsInfo['LinkThemeConfigId']?.accessEditField">
+          [optionPlaceholder]="this.translate.instant('TITLE.Application_Template')" [optionDisabled]="!fieldsInfo['LinkThemeConfigId']?.accessEditField">
         </app-application-themeconfig-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">

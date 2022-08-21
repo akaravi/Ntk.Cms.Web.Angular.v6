@@ -31,7 +31,7 @@ import { HyperShopContentViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-application-app-list',
+  selector: 'app-hypershop-content-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
@@ -86,13 +86,13 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
     'Unit',
     'Price',
     'SalePrice',
-
+    'Discount',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    if (this.requestPareintId === this.activatedRoute.snapshot.paramMap.get('PareintId')) {
+    if (this.activatedRoute.snapshot.paramMap.get('PareintId')) {
       this.requestPareintId = this.activatedRoute.snapshot.paramMap.get('PareintId');
     }
     if (this.requestPareintId.length > 0) {

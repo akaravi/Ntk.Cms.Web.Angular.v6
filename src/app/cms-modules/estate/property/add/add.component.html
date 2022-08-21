@@ -162,7 +162,7 @@
         <!-- LinkLocationId Field -->
         <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessAddField"
-          [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="'منطقه'">
+          [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
         <!-- Address Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.accessWatchField">
