@@ -63,7 +63,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     } else {
       message = this.translate.instant('MESSAGE.Request_to_terminate_access_to_all_information_has been_sent_to_the_server');
     }
-    if(this.cmsToastrService)this.cmsToastrService.toastr.info(message, title);
+    if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next(ret) {
@@ -73,18 +73,18 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
           const emessage = '';
           if (ret.item.userAccessAdminAllowToAllData === NewToall) {
             message = this.translate.instant('MESSAGE.Access_is_approved');
-            if(this.cmsToastrService)this.cmsToastrService.toastr.success(emessage, etitle);
+            if (this.cmsToastrService) this.cmsToastrService.toastr.success(emessage, etitle);
           } else {
             message = this.translate.instant('MESSAGE.New_access_not_approved');
-            if(this.cmsToastrService)this.cmsToastrService.toastr.warning(emessage, etitle);
+            if (this.cmsToastrService) this.cmsToastrService.toastr.warning(emessage, etitle);
           }
         } else {
-          if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
+          if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
         }
       },
       error(er) {
         this.loadingStatus = false;
-        if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(er);
+        if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(er);
       }
     }
     );
@@ -106,7 +106,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     } else {
       message = this.translate.instant('MESSAGE.Request_to_terminate_professional_access_has_been_sent_to_the_server');
     }
-    if(this.cmsToastrService)this.cmsToastrService.toastr.info(message, title);
+    if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next(ret) {
@@ -115,18 +115,18 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
           const etitle = this.translate.instant('TITLE.Information');
           if (ret.item.userAccessAdminAllowToProfessionalData === NewToPerf) {
             const emessage = this.translate.instant('MESSAGE.Access_is_approved');
-            if(this.cmsToastrService)this.cmsToastrService.toastr.success(emessage, etitle);
+            if (this.cmsToastrService) this.cmsToastrService.toastr.success(emessage, etitle);
           } else {
             const emessage = this.translate.instant('MESSAGE.New_access_not_approved');
-            if(this.cmsToastrService)this.cmsToastrService.toastr.warning(emessage, etitle);
+            if (this.cmsToastrService) this.cmsToastrService.toastr.warning(emessage, etitle);
           }
         } else {
-          if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
+          if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
         }
       },
       error(er) {
         this.loadingStatus = false;
-        if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(er);
+        if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(er);
       }
     }
     );
@@ -136,7 +136,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     if (this.inputUserId === this.tokenInfo.userId) {
       const etitle = this.translate.instant('TITLE.Warrning');
       const emessage = this.translate.instant('MESSAGE.The_ID_of_this_website_is_the_same_as_the_website_you_are_on');
-      if(this.cmsToastrService)this.cmsToastrService.toastr.warning(emessage, etitle);
+      if (this.cmsToastrService) this.cmsToastrService.toastr.warning(emessage, etitle);
       return;
     }
     const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
@@ -148,7 +148,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
     const title = this.translate.instant('TITLE.Information');
     const message = this.translate.instant('MESSAGE.Request_to_change_user_was_sent_to_the_server');
-    if(this.cmsToastrService)this.cmsToastrService.toastr.info(message, title);
+    if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       {
@@ -157,19 +157,19 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             if (ret.item.userId === +this.inputUserId) {
 
-              if(this.cmsToastrService)this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.Access_to_the_new_user_has_been_approved'), title);
+              if (this.cmsToastrService) this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.Access_to_the_new_user_has_been_approved'), title);
               this.inputSiteId = null;
               this.inputUserId = null;
             } else {
-              if(this.cmsToastrService)this.cmsToastrService.toastr.warning(this.translate.instant('MESSAGE.Access_to_the_new_user_was_not_approved'), title);
+              if (this.cmsToastrService) this.cmsToastrService.toastr.warning(this.translate.instant('MESSAGE.Access_to_the_new_user_was_not_approved'), title);
             }
           } else {
-            if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
+            if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
           }
         },
         error(err) {
           this.loadingStatus = false;
-          if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(err);
+          if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(err);
         }
       }
     );
@@ -179,7 +179,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     if (this.inputSiteId === this.tokenInfo.siteId) {
       const etitle = this.translate.instant('TITLE.Warrning');
       const emessage = this.translate.instant('MESSAGE.The_ID_of_this_website_is_the_same_as_the_website_you_are_on');
-      if(this.cmsToastrService)this.cmsToastrService.toastr.warning(emessage, etitle);
+      if (this.cmsToastrService) this.cmsToastrService.toastr.warning(emessage, etitle);
       return;
     }
     const authModel: AuthRenewTokenModel = new AuthRenewTokenModel();
@@ -191,28 +191,28 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
 
     const title = this.translate.instant('TITLE.Information');
     const message = this.translate.instant('MESSAGE.Request_to_change_site_was_sent_to_the_server');
-    if(this.cmsToastrService)this.cmsToastrService.toastr.info(message, title);
+    if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next(ret) {
         this.loadingStatus = false;
         if (ret.isSuccess) {
           if (ret.item.siteId === +this.inputSiteId) {
-            if(this.cmsToastrService)this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_site_acess_confirmed'), title);
+            if (this.cmsToastrService) this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_site_acess_confirmed'), title);
             this.inputSiteId = null;
             this.inputUserId = null;
           } else {
-            if(this.cmsToastrService)this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_site_acess_denied'), title);
+            if (this.cmsToastrService) this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_site_acess_denied'), title);
           }
         } else {
           this.inputSiteId = this.tokenInfo.siteId;
-          if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
+          if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
         }
 
       },
       error(err) {
         this.loadingStatus = false;
-        if(this.cmsToastrService)this.cmsToastrService.typeErrorAccessChange(err);
+        if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(err);
       }
     }
     );

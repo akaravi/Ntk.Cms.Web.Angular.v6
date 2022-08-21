@@ -88,7 +88,7 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
               }
             } else if (!environment.production) {
               // console.log(next.errorMessage, this.Key);
-              this.cmsToastrService.typeErrorMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
+              this.cmsToastrService.typeWarningMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
             }
           },
           (error) => {
@@ -136,7 +136,7 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
 
             } else if (!environment.production) {
               // console.log(next.errorMessage, this.Key);
-              this.cmsToastrService.typeErrorMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
+              this.cmsToastrService.typeWarningMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
             }
           },
           (error) => {

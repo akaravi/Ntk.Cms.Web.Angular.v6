@@ -450,6 +450,7 @@ export class CmsToastrService {
 
     this.toastr.error(message, this.now() + title);
   }
+  
   typeError(model: any, str: string = ''): void {
     let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError') + ' ' + str;
     if (!model) {
@@ -492,6 +493,10 @@ export class CmsToastrService {
       message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Error') + ': ' + str;
     }
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorForNotComplete'));
+  }
+  typeWarningMessage(message: string, title: string = 'Warning!'): void {
+
+    this.toastr.warning(message, this.now() + title);
   }
   typeWarningSelected(str: string = ''): void {
     // let message = 'برروز خطا در انتخاب';

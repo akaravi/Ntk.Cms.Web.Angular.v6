@@ -1,4 +1,4 @@
-<span class="ml-3" *ngIf=" loadingStatus">Loading ...</span>
+<span class="ml-3" *ngIf="loadingStatus">Loading ...</span>
 <div>
   <a (click)="onActionbuttonUserAccessAdminAllowToAllData()"
     *ngIf="tokenInfo &&( tokenInfo.userAccessUserType == 1 || tokenInfo.userAccessUserType == 2 || tokenInfo.userAccessUserType == 3)"
