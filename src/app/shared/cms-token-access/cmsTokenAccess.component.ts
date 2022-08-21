@@ -66,23 +66,23 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
-      next(ret) {
+      next: (ret) => {
         this.loadingStatus = false;
         if (ret.isSuccess) {
           const etitle = this.translate.instant('TITLE.Information');
-          const emessage = '';
+          let emessage = '';
           if (ret.item.userAccessAdminAllowToAllData === NewToall) {
-            message = this.translate.instant('MESSAGE.Access_is_approved');
+            emessage = this.translate.instant('MESSAGE.Access_is_approved');
             if (this.cmsToastrService) this.cmsToastrService.toastr.success(emessage, etitle);
           } else {
-            message = this.translate.instant('MESSAGE.New_access_not_approved');
+            emessage = this.translate.instant('MESSAGE.New_access_not_approved');
             if (this.cmsToastrService) this.cmsToastrService.toastr.warning(emessage, etitle);
           }
         } else {
           if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
         }
       },
-      error(er) {
+      error: (er) => {
         this.loadingStatus = false;
         if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(er);
       }
@@ -109,7 +109,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
-      next(ret) {
+      next: (ret) => {
         this.loadingStatus = false;
         if (ret.isSuccess) {
           const etitle = this.translate.instant('TITLE.Information');
@@ -124,7 +124,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
           if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
         }
       },
-      error(er) {
+      error: (er) => {
         this.loadingStatus = false;
         if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(er);
       }
@@ -152,7 +152,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe(
       {
-        next(ret) {
+        next: (ret) => {
           this.loadingStatus = false;
           if (ret.isSuccess) {
             if (ret.item.userId === +this.inputUserId) {
@@ -167,7 +167,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
             if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
           }
         },
-        error(err) {
+        error: (err) => {
           this.loadingStatus = false;
           if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(err);
         }
@@ -194,7 +194,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
     if (this.cmsToastrService) this.cmsToastrService.toastr.info(message, title);
     this.loadingStatus = true;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
-      next(ret) {
+      next: (ret) => {
         this.loadingStatus = false;
         if (ret.isSuccess) {
           if (ret.item.siteId === +this.inputSiteId) {
@@ -210,7 +210,7 @@ export class CmsTokenAccessComponent implements OnInit, OnDestroy {
         }
 
       },
-      error(err) {
+      error: (err) => {
         this.loadingStatus = false;
         if (this.cmsToastrService) this.cmsToastrService.typeErrorAccessChange(err);
       }

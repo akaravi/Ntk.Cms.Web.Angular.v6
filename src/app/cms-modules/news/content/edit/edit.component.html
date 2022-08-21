@@ -29,8 +29,8 @@
             <mat-icon matTooltip="{{fieldsInfo['RecordStatus']?.FieldDescription}}" matSuffix class="info-field-icon">
               info</mat-icon>
             <strong class="info-field-text"></strong>
+            {{'TITLE.SELECT_STATUS' | translate}}
           </mat-hint>
-          <mat-hint align="end">&nbsp;{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{fieldsInfo['RecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

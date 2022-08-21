@@ -1,8 +1,7 @@
-import { DOCUMENT } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthRenewTokenModel, CoreAuthService, NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { AuthRenewTokenModel, CoreAuthService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -122,7 +121,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       // this.loadingStatus = true;
       this.coreAuthService.ServiceRenewToken(authModel).subscribe(
         {
-          next(ret) {
+          next: (ret) => {
             // this.loadingStatus = false;
             if (ret.isSuccess) {
               this.cdr.detectChanges();
@@ -143,7 +142,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
             }
 
           },
-          error(err) {
+          error: (err) => {
             this.cmsToastrService.typeErrorAccessChange(err);
           }
         }
