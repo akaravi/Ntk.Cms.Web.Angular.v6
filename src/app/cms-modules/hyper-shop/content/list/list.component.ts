@@ -207,7 +207,7 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
     }
     let parentId: string = this.requestPareintId;
     if (this.categoryModelSelected && this.categoryModelSelected.code.length > 0) {
-      parentId = this.categoryModelSelected.code;
+      parentId = this.categoryModelSelected.id;
     }
     const dialogRef = this.dialog.open(HyperShopContentAddComponent, {
       height: '90%',
