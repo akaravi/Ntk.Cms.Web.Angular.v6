@@ -90,13 +90,13 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-  currencyOptionSelectFirstItem=true;
+  currencyOptionSelectFirstItem = true;
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
-  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice','DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
+  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
 
   propertyDetails: Map<string, string> = new Map<string, string>();
   /** map */
@@ -380,7 +380,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.currencyOptionSelectFirstItem=true;
+    this.currencyOptionSelectFirstItem = true;
     this.contractTypeSelected = model;
     this.contractDataModel = new EstateContractModel();
     this.contractDataModel.contractType = this.contractTypeSelected;
@@ -441,8 +441,10 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       return;
     }
+    let contracts: any
     this.contractDataModel = this.dataModel.contracts[index];
-    this.dataModel.contracts.splice(index, 1);
+    contracts = this.dataModel.contracts.splice(index, 1);
+    this.contractDataModel = contracts;
     this.optionTabledataSource.data = this.dataModel.contracts;
   }
 

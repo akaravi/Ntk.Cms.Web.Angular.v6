@@ -28,6 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HyperShopContentEditComponent implements OnInit {
   requestId = '';
+  requestParentId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<HyperShopContentEditComponent>,
@@ -41,8 +42,11 @@ export class HyperShopContentEditComponent implements OnInit {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id + '';
+      this.requestParentId = data.parentId + '';
     }
-
+    if (this.requestParentId.length > 0) {
+      this.dataModel.categoryCode = this.requestParentId;
+    }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;

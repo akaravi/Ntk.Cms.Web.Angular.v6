@@ -47,6 +47,7 @@
     <button (click)="onActionBackToParent()" *ngIf="requestPareintId.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
 
+      
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -59,7 +60,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+    multiTemplateDataRows>
       <!-- Image Column -->
       <ng-container matColumnDef="Image">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
@@ -145,10 +147,68 @@
           </mat-menu>
         </mat-cell>
       </ng-container>
+
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{row.id}}</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.name}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.linkLocationIdParentTitle}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.linkLocationIdTitle}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.address}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.createdBy | cmsuserinfo |async}} </td>
+              </tr>
+              
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.VIEW' | translate}} </a>|
+
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+      (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.code === tableRowSelected.code ? '#d3d3da' : '' }">
       </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+      (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+      [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
+    </mat-row>
     </mat-table>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
