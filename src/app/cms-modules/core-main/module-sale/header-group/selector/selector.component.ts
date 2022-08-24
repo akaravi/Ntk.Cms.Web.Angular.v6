@@ -180,6 +180,6 @@ export class CoreModuleSaleHeaderGroupSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreModuleSaleHeaderGroupModel();
     // this.optionsData.Select = new CoreModuleSaleHeaderGroupModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -180,6 +180,6 @@ export class CoreDeviceSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreDeviceModel();
     // this.optionsData.Select = new CoreDeviceModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

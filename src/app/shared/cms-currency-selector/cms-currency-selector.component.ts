@@ -50,6 +50,9 @@ export class CmsCurrencySelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadOptions();
+  }
+  loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
@@ -210,6 +213,6 @@ export class CmsCurrencySelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreCurrencyModel();
     // this.optionsData.Select = new CoreCurrencyModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

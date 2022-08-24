@@ -169,6 +169,6 @@ export class LinkManagementAccountingSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new LinkManagementAccountingModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

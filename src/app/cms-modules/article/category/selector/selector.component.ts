@@ -159,6 +159,6 @@ export class ArticleCategorySelectorComponent implements OnInit {
   onActionReload(): void {
 
     this.dataModelSelect = new ArticleCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

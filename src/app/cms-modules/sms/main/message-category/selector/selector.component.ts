@@ -168,6 +168,6 @@ export class SmsMainMessageCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new SmsMainMessageCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

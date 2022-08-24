@@ -183,6 +183,6 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
 
   onActionReload(): void {
     this.dataModelSelect = new EstatePropertyModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

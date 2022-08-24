@@ -168,6 +168,6 @@ export class CoreCurrencySelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreCurrencyModel();
     // this.optionsData.Select = new CoreCurrencyModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

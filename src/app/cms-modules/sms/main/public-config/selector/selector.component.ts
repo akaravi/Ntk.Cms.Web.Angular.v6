@@ -176,6 +176,6 @@ export class SmsMainApiPathPublicConfigSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new SmsMainApiPathPublicConfigModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

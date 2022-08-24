@@ -158,6 +158,6 @@ export class BlogContentSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new BlogContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

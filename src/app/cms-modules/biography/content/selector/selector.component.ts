@@ -148,6 +148,6 @@ export class BiographyContentSelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new BiographyContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

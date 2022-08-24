@@ -46,6 +46,9 @@ export class CmsUserGroupSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadOptions();
+  }
+  loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
@@ -198,6 +201,6 @@ export class CmsUserGroupSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreUserGroupModel();
     // this.optionsData.Select = new CoreUserGroupModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

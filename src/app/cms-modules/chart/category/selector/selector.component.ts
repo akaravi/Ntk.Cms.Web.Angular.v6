@@ -168,6 +168,6 @@ export class ChartCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new ChartCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

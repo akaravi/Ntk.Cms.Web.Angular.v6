@@ -180,6 +180,6 @@ export class CoreSiteCategoryCmsModuleSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreSiteCategoryCmsModuleModel();
     // this.optionsData.Select = new CoreSiteCategoryCmsModuleModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

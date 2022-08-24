@@ -211,6 +211,6 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDes
     // }
     this.dataModelSelect = new EstatePropertyTypeLanduseModel();
     // this.optionsData.Select = new EstatePropertyTypeLanduseModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -190,6 +190,6 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new SmsMainApiNumberModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

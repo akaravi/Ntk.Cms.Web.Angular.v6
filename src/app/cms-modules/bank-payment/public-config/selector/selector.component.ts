@@ -165,6 +165,6 @@ export class BankPaymentPublicConfigSelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new BankPaymentPublicConfigModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

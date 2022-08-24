@@ -175,6 +175,6 @@ export class CoreSiteDomainAliasSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreSiteDomainAliasModel();
     // this.optionsData.Select = new CoreSiteDomainAliasModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

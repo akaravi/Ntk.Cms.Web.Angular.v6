@@ -148,6 +148,6 @@ export class ArticleContentSelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new ArticleContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

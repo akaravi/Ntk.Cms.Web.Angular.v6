@@ -188,6 +188,6 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new WebDesignerMainPageModel();
     // this.optionsData.Select = new WebDesignerMainPageModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

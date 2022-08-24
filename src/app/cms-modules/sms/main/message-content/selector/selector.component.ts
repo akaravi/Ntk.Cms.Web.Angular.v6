@@ -186,6 +186,6 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new SmsMainMessageContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

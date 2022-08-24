@@ -170,6 +170,6 @@ export class CoreGuideSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreGuideModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

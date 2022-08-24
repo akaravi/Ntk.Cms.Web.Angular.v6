@@ -168,6 +168,6 @@ export class DonateTargetPeriodSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new DonateTargetPeriodModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

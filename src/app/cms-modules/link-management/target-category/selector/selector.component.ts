@@ -169,6 +169,6 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new LinkManagementTargetCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

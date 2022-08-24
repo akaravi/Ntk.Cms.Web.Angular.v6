@@ -168,6 +168,6 @@ export class LinkManagementBillboardPatternSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new LinkManagementBillboardPatternModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

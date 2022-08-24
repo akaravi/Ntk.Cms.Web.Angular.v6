@@ -47,6 +47,9 @@ export class CmsSiteSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadOptions();
+  }
+  loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
@@ -192,6 +195,6 @@ export class CmsSiteSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreSiteModel();
     // this.optionsData.Select = new CoreSiteModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

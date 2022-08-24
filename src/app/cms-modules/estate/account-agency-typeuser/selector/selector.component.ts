@@ -176,6 +176,6 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new EstateAccountAgencyTypeUserModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

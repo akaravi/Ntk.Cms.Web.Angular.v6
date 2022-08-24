@@ -162,6 +162,6 @@ export class WebDesignerMainPageDependencySelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new WebDesignerMainPageDependencyModel();
     // this.optionsData.Select = new WebDesignerMainPageDependencyModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

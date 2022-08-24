@@ -166,6 +166,6 @@ export class DataProviderPlanCategorySelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new DataProviderPlanCategoryModel();
     // this.optionsData.Select = new DonateTargetCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -168,6 +168,6 @@ export class DataProviderSourceSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new DataProviderSourceModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

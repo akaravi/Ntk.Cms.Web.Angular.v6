@@ -159,6 +159,6 @@ export class CoreModuleTagSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreModuleTagModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

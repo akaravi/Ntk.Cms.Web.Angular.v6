@@ -165,6 +165,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new ApplicationAppModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

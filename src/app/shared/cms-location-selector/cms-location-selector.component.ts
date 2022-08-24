@@ -46,6 +46,9 @@ export class CmsLocationSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadOptions();
+  }
+  loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
@@ -189,6 +192,6 @@ export class CmsLocationSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreLocationModel();
     // this.optionsData.Select = new CoreLocationModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

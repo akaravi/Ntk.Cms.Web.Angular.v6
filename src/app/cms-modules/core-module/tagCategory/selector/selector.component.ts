@@ -169,6 +169,6 @@ export class CoreModuleTagCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreModuleTagCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }
