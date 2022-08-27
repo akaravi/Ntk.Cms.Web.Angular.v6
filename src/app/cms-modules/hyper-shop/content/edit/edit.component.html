@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -10,19 +10,61 @@
 
     <!-- LinkCategoryId Field -->
     <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.categoryCode" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+      [optionSelectForce]="this.dataModel.categoryCode" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-hypershop-category-selector>
     <!-- Name Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['Name']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.name" name="dataModel.name" #Name type="text"
-        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="500" required />
+        placeholder="{{fieldsInfo['Name']?.fieldTitle}}" minlength="3" maxlength="500" required />
       <mat-icon matSuffix *ngIf="dataModel.name" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.name = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Name.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="Name.errors?.required">
         Name is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Price Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Price']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.price" name="dataModel.price" #Price type="number"
+        placeholder="{{fieldsInfo['Price']?.fieldTitle}}" minlength="3" maxlength="500" required />
+      <mat-icon matSuffix *ngIf="dataModel.price" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.price = 0">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Price.value.length }} / 1000</mat-hint>
+      <mat-error *ngIf="Price.errors?.required">
+        Price is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Discount Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Discount']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.discount" name="dataModel.discount" #Discount type="number"
+        placeholder="{{fieldsInfo['Discount']?.fieldTitle}}" minlength="3" maxlength="500" required />
+      <mat-icon matSuffix *ngIf="dataModel.discount" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.discount = 0">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Discount.value.length }} / 1000</mat-hint>
+      <mat-error *ngIf="Discount.errors?.required">
+        Discount is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Memo Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Memo']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.memo" name="dataModel.memo" #Memo type="text"
+        placeholder="{{fieldsInfo['Memo']?.fieldTitle}}" minlength="3" maxlength="500" required />
+      <mat-icon matSuffix *ngIf="dataModel.memo" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.memo = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Memo.value.length }} / 1000</mat-hint>
+      <mat-error *ngIf="Memo.errors?.required">
+        Memo is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 

@@ -443,8 +443,10 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       return;
     }
+    let contracts: any
     this.contractDataModel = this.dataModel.contracts[index];
-    this.dataModel.contracts.splice(index, 1);
+    contracts = this.dataModel.contracts.splice(index, 1);
+    this.contractDataModel = contracts;
     this.optionTabledataSource.data = this.dataModel.contracts;
   }
 

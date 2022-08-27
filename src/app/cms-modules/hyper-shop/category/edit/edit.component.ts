@@ -25,7 +25,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-ticketing-departemen-edit',
+  selector: 'app-hypershop-category-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

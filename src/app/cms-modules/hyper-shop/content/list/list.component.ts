@@ -48,7 +48,7 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -207,7 +207,7 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
     }
     let parentId: string = this.requestPareintId;
     if (this.categoryModelSelected && this.categoryModelSelected.code.length > 0) {
-      parentId = this.categoryModelSelected.code;
+      parentId = this.categoryModelSelected.id;
     }
     const dialogRef = this.dialog.open(HyperShopContentAddComponent, {
       height: '90%',
@@ -266,9 +266,16 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
       return;
     }
 
+    let parentId: string = this.requestPareintId;
+    if (this.categoryModelSelected && this.categoryModelSelected.code.length > 0) {
+      parentId = this.categoryModelSelected.id;
+    }
     const dialogRef = this.dialog.open(HyperShopContentEditComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.id }
+      data: {
+        id: this.tableRowSelected.id,
+        parentId
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -398,6 +405,16 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: HyperShopContentModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: HyperShopContentModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: HyperShopContentModel): void {
+    row["expanded"] = false;
   }
   onActionBackToParent(): void {
     this.router.navigate(['/ticketing/departemen/']);

@@ -7,11 +7,11 @@
     class="link-primary pointer float-right">
     {{'ACTION.VIEW_USER' | translate}} </a>
 
-  <ng-container *ngIf="dataModel.linkSiteId!=tokenHelper.tokenInfo.siteId">
+  <div *ngIf="dataModel.linkSiteId!=tokenHelper.tokenInfo.siteId" class="float-right">
     <a routerLink="{{'/core/site/edit/'+dataModel.linkSiteId}}" target="_blank" class="link-primary pointer">
       {{'ACTION.VIEW_SITE' | translate}} </a>
-    |
-  </ng-container>
+    |&nbsp;
+  </div>
 </app-cms-html-notice>
 
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">

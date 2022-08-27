@@ -77,7 +77,6 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
     'Title',
     'HasSalePrice',
     'HasDepositPrice',
-    'HasDepositPrice',
     'HasRentPrice',
     'HasPeriodPrice',
     'Action'

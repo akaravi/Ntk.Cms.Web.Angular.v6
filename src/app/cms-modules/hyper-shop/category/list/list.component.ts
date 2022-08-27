@@ -203,7 +203,7 @@ export class HyperShopCategoryListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(HyperShopCategoryEditComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.code }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

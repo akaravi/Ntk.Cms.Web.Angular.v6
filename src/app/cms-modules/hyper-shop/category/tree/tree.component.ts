@@ -31,7 +31,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-hypershop-category-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
 })
 export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
@@ -128,7 +127,7 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
   onActionEdit(): void {
     let id = '';
     if (this.dataModelSelect && this.dataModelSelect.code && this.dataModelSelect.code.length > 0) {
-      id = this.dataModelSelect.code;
+      id = this.dataModelSelect.id;
     }
     if (id === '') {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
@@ -137,7 +136,7 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(HyperShopCategoryEditComponent, {
       height: '90%',
-      data: { id }
+      data: { id:id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
