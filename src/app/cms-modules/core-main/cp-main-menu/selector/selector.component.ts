@@ -170,6 +170,6 @@ export class CoreCpMainMenuSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreCpMainMenuModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -181,6 +181,6 @@ export class CoreUserClaimTypeSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreUserClaimTypeModel();
     // this.optionsData.Select = new CoreUserClaimTypeModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

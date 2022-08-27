@@ -204,6 +204,6 @@ export class CoreUserSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreUserModel();
     // this.optionsData.Select = new CoreUserModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

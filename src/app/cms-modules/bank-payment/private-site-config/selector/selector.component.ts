@@ -195,10 +195,10 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
     if (this.parentId === befor) {
       return;
     }
-    this.DataGetAll(null);
+    this.loadOptions();
   }
   onActionReload(): void {
     this.dataModelSelect = new BankPaymentPrivateSiteConfigModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

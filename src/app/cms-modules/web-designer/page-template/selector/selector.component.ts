@@ -161,6 +161,6 @@ export class WebDesignerMainPageTemplateSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new WebDesignerMainPageTemplateModel();
     // this.optionsData.Select = new WebDesignerMainPageTemplateModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -210,6 +210,6 @@ export class EstateAccountUserSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new EstateAccountUserModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

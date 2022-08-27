@@ -159,6 +159,6 @@ export class BiographyCategorySelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new BiographyCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

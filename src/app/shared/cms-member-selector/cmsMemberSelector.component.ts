@@ -46,6 +46,9 @@ export class CmsMemberSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadOptions();
+  }
+  loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
@@ -189,6 +192,6 @@ export class CmsMemberSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new MemberUserModel();
     // this.optionsData.Select = new MemberUserModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

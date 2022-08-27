@@ -174,6 +174,6 @@ export class FileCategorySelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new FileCategoryModel();
     // this.optionsData.Select = new FileCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

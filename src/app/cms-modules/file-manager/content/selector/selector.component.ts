@@ -156,6 +156,6 @@ export class FileContentSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new FileContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

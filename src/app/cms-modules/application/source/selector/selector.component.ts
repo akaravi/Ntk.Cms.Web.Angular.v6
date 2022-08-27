@@ -175,6 +175,6 @@ export class ApplicationSourceSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new ApplicationSourceModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

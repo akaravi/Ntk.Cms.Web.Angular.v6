@@ -159,6 +159,6 @@ export class NewsCategorySelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new NewsCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

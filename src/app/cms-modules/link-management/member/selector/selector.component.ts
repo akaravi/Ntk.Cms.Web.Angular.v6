@@ -169,6 +169,6 @@ export class LinkManagementMemberSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new LinkManagementMemberModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -167,6 +167,6 @@ export class TicketingDepartemenSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new TicketingDepartemenModel();
     // this.optionsData.Select = new TicketingDepartemenModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

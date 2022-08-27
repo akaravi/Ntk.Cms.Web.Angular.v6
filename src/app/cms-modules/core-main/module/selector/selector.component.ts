@@ -184,6 +184,6 @@ export class CoreModuleSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreModuleModel();
     // this.optionsData.Select = new CoreModuleModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

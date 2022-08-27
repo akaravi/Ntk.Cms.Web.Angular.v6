@@ -169,6 +169,6 @@ export class PollingCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new PollingCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

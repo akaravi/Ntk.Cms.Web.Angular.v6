@@ -168,6 +168,6 @@ export class ApiTelegramBotConfigSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new ApiTelegramBotConfigModel();
     // this.optionsData.Select = new ApiTelegramBotConfigModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

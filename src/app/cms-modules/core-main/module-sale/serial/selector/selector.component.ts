@@ -176,6 +176,6 @@ export class CoreModuleSaleSerialSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreModuleSaleSerialModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

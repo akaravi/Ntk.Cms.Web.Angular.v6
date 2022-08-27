@@ -200,6 +200,6 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new ApplicationMemberInfoModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

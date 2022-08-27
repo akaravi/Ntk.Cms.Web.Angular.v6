@@ -172,6 +172,6 @@ export class CoreSiteCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreSiteCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

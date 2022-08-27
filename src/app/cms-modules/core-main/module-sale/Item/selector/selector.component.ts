@@ -180,6 +180,6 @@ export class CoreModuleSaleItemSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreModuleSaleItemModel();
     // this.optionsData.Select = new CoreModuleSaleItemModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

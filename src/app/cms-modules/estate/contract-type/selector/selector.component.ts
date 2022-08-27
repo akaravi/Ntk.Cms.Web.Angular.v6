@@ -212,6 +212,6 @@ export class EstateContractTypeSelectorComponent implements OnInit, OnDestroy {
     // }
     this.dataModelSelect = new EstateContractTypeModel();
     // this.optionsData.Select = new EstateContractTypeModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

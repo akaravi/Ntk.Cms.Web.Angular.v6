@@ -161,6 +161,6 @@ export class DataProviderPlanPriceSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new DataProviderPlanPriceModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

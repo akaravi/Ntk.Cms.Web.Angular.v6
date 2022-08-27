@@ -147,6 +147,6 @@ export class NewsContentSelectorComponent implements OnInit {
   }
   onActionReload(): void {
     this.dataModelSelect = new NewsContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

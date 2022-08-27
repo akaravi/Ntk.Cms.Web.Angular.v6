@@ -177,6 +177,6 @@ export class CoreUserClaimGroupSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreUserClaimGroupModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

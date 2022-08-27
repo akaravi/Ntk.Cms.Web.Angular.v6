@@ -176,6 +176,6 @@ export class EstateCustomerOrderSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new EstateCustomerOrderModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

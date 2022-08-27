@@ -46,6 +46,9 @@ export class CmsApplicationSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadOptions();
+  }
+  loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
@@ -191,6 +194,6 @@ export class CmsApplicationSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new ApplicationAppModel();
     // this.optionsData.Select = new ApplicationAppModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

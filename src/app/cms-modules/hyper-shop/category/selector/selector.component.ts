@@ -175,6 +175,6 @@ export class HyperShopCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new HyperShopCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

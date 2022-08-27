@@ -180,6 +180,6 @@ export class EstateBillboardSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new EstateBillboardModel();
     // this.optionsData.Select = new EstateBillboardModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -172,6 +172,6 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new SmsMainApiPathCompanyModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

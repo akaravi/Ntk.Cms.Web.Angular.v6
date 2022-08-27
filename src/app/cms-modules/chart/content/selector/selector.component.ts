@@ -159,6 +159,6 @@ export class ChartContentSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new ChartContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

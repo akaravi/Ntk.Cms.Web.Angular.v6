@@ -180,6 +180,6 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new EstateAccountAgencyModel();
     // this.optionsData.Select = new EstateAccountAgencyModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

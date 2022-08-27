@@ -169,6 +169,6 @@ export class BlogCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new BlogCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

@@ -168,6 +168,6 @@ export class ContactContentSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new ContactContentModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

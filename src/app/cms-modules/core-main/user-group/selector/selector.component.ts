@@ -167,6 +167,6 @@ export class CoreUserGroupSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreUserGroupModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

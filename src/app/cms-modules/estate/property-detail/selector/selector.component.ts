@@ -177,6 +177,6 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new EstatePropertyDetailModel();
     // this.optionsData.Select = new EstatePropertyDetailModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

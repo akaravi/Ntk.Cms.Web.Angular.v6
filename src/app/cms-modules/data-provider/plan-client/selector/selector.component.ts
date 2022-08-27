@@ -159,6 +159,6 @@ export class DataProviderPlanClientSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new DataProviderPlanClientModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

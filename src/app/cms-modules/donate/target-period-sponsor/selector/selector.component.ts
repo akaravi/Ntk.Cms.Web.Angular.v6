@@ -162,6 +162,6 @@ export class DonateTargetPeriodSponserSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new DonateTargetPeriodSponsorModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

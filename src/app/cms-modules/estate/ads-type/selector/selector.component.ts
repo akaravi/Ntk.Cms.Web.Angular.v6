@@ -180,6 +180,6 @@ export class EstateAdsTypeSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new EstateAdsTypeModel();
     // this.optionsData.Select = new EstateAdsTypeModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

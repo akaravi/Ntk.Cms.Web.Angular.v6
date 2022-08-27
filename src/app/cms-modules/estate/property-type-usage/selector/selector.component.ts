@@ -192,6 +192,6 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
     // }
     this.dataModelSelect = new EstatePropertyTypeUsageModel();
     // this.optionsData.Select = new EstatePropertyTypeUsageModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

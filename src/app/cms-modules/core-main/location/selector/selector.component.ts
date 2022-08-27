@@ -170,6 +170,6 @@ export class CoreLocationSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new CoreLocationModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

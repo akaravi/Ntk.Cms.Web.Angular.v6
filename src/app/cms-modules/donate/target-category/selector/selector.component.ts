@@ -168,6 +168,6 @@ export class DonateTargetCategorySelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new DonateTargetCategoryModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

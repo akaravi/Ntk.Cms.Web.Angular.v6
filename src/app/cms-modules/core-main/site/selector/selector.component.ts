@@ -203,6 +203,6 @@ export class CoreSiteSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new CoreSiteModel();
     // this.optionsData.Select = new CoreSiteModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

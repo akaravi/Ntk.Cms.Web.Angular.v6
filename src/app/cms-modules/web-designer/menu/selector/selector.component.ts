@@ -155,6 +155,6 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
     // }
     this.dataModelSelect = new WebDesignerMainMenuModel();
     // this.optionsData.Select = new WebDesignerMainMenuModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

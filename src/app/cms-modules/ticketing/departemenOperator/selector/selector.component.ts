@@ -164,6 +164,6 @@ export class TicketingDepartemenOperatorSelectorComponent implements OnInit {
 
   onActionReload(): void {
     this.dataModelSelect = new TicketingDepartemenOperatorModel();
-    this.DataGetAll(null);
+    this.loadOptions();
   }
 }

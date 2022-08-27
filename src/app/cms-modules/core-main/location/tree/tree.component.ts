@@ -18,12 +18,13 @@ import {
   FilterModel,
   CoreLocationModel,
   CoreLocationService,
+  FilterDataModel,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CoreLocationEditComponent } from '../edit/edit.component';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Subscription } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { CoreLocationAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
@@ -95,9 +96,47 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     }
     );
   }
+  DataGetAllChild(parentModel: CoreLocationModel):void {
+    var filteModel = new FilterModel();
+    filteModel.rowPerPage = 200;
+    filteModel.accessLoad = true;
+    var filter = new FilterDataModel();
+    filter.propertyName = 'LinkParentId';
+    filter.value = parentModel.id;
+    filteModel.filters.push(filter);
+
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+     this.categoryService.ServiceGetAllTree(filteModel).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          //debugger
+          parentModel.children= ret.listItems;
+          this.dataSource.data = null;
+          this.dataSource.data = this.dataModelResult.listItems;
+          this.loading.Stop(pName);
+          return;
+
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        return ;
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+        return ;
+      }
+    }
+    );
+  }
   onActionSelect(model: CoreLocationModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
+    if (this.dataModelSelect && this.dataModelSelect.id > 0 && (this.dataModelSelect.children == null || this.dataModelSelect.children?.length == 0)) {
+       this.DataGetAllChild(this.dataModelSelect)
+    }
   }
   onActionReload(): void {
     if (this.dataModelSelect && this.dataModelSelect.id > 0) {
