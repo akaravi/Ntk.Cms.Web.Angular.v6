@@ -20,6 +20,9 @@ import { EstateCustomerOrderAddComponent } from './customer-order/add/add.compon
 import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
 import { EstateBillboardAddComponent } from './billbord/add/add.component';
 import { EstateBillboardEditComponent } from './billbord/edit/edit.component';
+import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
+import { EstatePropertyProjectAddComponent } from './property-project/add/add.component';
+import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -132,6 +135,18 @@ const routes: Routes = [
         component: EstateBillboardEditComponent
       },
       /**/
+      {
+        path: 'project',
+        component: EstatePropertyProjectListComponent
+      },
+      {
+        path: 'project/add',
+        component: EstatePropertyProjectAddComponent
+      },
+      {
+        path: 'project/edit/:id',
+        component: EstatePropertyProjectEditComponent
+      },
       {
         path: 'customer-order',
         component: EstateCustomerOrderListComponent

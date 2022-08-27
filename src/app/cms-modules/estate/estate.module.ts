@@ -37,7 +37,8 @@ import {
   EstateBillboardService,
   EstateCustomerOrderService,
   BankPaymentTransactionService,
-  EstateAccountAgencyAdsService
+  EstateAccountAgencyAdsService,
+  EstatePropertyProjectService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -131,6 +132,12 @@ import { EstateAccountAgencyAdsEditComponent } from './account-agency-ads/edit/e
 import { EstateAccountAgencyAdsListComponent } from './account-agency-ads/list/list.component';
 import { EstateAccountAgencyAdsSaleListComponent } from './account-agency-ads/sale-list/sale-list.component';
 import { EstateAccountAgencyAdsSalePaymentComponent } from './account-agency-ads/sale-payment/sale-payment.component';
+import { EstatePropertyProjectAddComponent } from './property-project/add/add.component';
+import { EstatePropertyProjectDeleteComponent } from './property-project/delete/delete.component';
+import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
+import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
+import { EstatePropertyProjectSelectorComponent } from './property-project/selector/selector.component';
+import { EstatePropertyProjectComponent } from './property-project/header/header.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +151,13 @@ import { EstateAccountAgencyAdsSalePaymentComponent } from './account-agency-ads
     EstatePropertyTypeLanduseCompleteComponent,
     EstatePropertyTypeLanduseSelectionlistComponent,
     EstatePropertyTypeLanduseHeaderComponent,
+    /* */
+    EstatePropertyProjectAddComponent,
+    EstatePropertyProjectEditComponent,
+    EstatePropertyProjectListComponent,
+    EstatePropertyProjectSelectorComponent,
+    EstatePropertyProjectDeleteComponent,
+    EstatePropertyProjectComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,
@@ -277,6 +291,7 @@ import { EstateAccountAgencyAdsSalePaymentComponent } from './account-agency-ads
     EstatePropertyShareAgencyService,
     EstatePropertyShareAgentService,
     EstatePropertyShareSiteService,
+    EstatePropertyProjectService,
     EstatePropertyTypeLanduseService,
     EstatePropertyTypeUsageService,
     EstatePropertyTypeService,
