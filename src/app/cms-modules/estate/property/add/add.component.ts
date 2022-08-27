@@ -91,7 +91,7 @@ export class EstatePropertyAddComponent implements OnInit {
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
-  currencyOptionSelectFirstItem=true;
+  currencyOptionSelectFirstItem = true;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
   tokenInfo = new TokenInfoModel();
@@ -381,7 +381,7 @@ export class EstatePropertyAddComponent implements OnInit {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.currencyOptionSelectFirstItem=true;
+    this.currencyOptionSelectFirstItem = true;
     this.contractTypeSelected = model;
     this.contractDataModel = new EstateContractModel();
     this.contractDataModel.contractType = this.contractTypeSelected;
@@ -394,14 +394,15 @@ export class EstatePropertyAddComponent implements OnInit {
     this.formInfo.formSubmitAllow = false;
     // ** Save Value */
     this.dataModel.propertyDetailValues = [];
-    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-      itemGroup.propertyDetails.forEach(element => {
-        const value = new EstatePropertyDetailValueModel();
-        value.linkPropertyDetailId = element.id;
-        value.value = this.propertyDetails[element.id];
-        this.dataModel.propertyDetailValues.push(value);
+    if (this.dataModel.propertyDetailGroups)
+      this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+        itemGroup.propertyDetails.forEach(element => {
+          const value = new EstatePropertyDetailValueModel();
+          value.linkPropertyDetailId = element.id;
+          value.value = this.propertyDetails[element.id];
+          this.dataModel.propertyDetailValues.push(value);
+        });
       });
-    });
     // ** Save Value */
     if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       this.onActionOptionAddToList(false);

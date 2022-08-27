@@ -54,7 +54,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     public http: HttpClient,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
 
 
@@ -114,18 +114,19 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
           /** load Value */
-          this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-            itemGroup.propertyDetails.forEach(element => {
-              this.propertyDetails[element.id] = 0;
+          if (this.dataModel.propertyDetailGroups)
+            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+              itemGroup.propertyDetails.forEach(element => {
+                this.propertyDetails[element.id] = 0;
 
-              if (this.dataModel.propertyDetailValues) {
-                const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
-                if (value) {
-                  this.propertyDetails[element.id] = value.value;
+                if (this.dataModel.propertyDetailValues) {
+                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                  if (value) {
+                    this.propertyDetails[element.id] = value.value;
+                  }
                 }
-              }
+              });
             });
-          });
           /** load Value */
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -188,18 +189,19 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           if (ret.isSuccess) {
             this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
-            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-              itemGroup.propertyDetails.forEach(element => {
-                this.propertyDetails[element.id] = 0;
+            if (this.dataModel.propertyDetailGroups)
+              this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+                itemGroup.propertyDetails.forEach(element => {
+                  this.propertyDetails[element.id] = 0;
 
-                if (this.dataModel.propertyDetailValues) {
-                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
-                  if (value) {
-                    this.propertyDetails[element.id] = value.value;
+                  if (this.dataModel.propertyDetailValues) {
+                    const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                    if (value) {
+                      this.propertyDetails[element.id] = value.value;
+                    }
                   }
-                }
+                });
               });
-            });
             /** load Value */
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
@@ -289,14 +291,15 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.formInfo.formSubmitAllow = false;
     // ** Save Value */
     this.dataModel.propertyDetailValues = [];
-    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-      itemGroup.propertyDetails.forEach(element => {
-        const value = new EstatePropertyDetailValueModel();
-        value.linkPropertyDetailId = element.id;
-        value.value = this.propertyDetails[element.id];
-        this.dataModel.propertyDetailValues.push(value);
+    if (this.dataModel.propertyDetailGroups)
+      this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+        itemGroup.propertyDetails.forEach(element => {
+          const value = new EstatePropertyDetailValueModel();
+          value.linkPropertyDetailId = element.id;
+          value.value = this.propertyDetails[element.id];
+          this.dataModel.propertyDetailValues.push(value);
+        });
       });
-    });
     // ** Save Value */
     this.DataEditContent();
   }

@@ -90,13 +90,13 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-  currencyOptionSelectFirstItem=true;
+  currencyOptionSelectFirstItem = true;
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
-  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice','DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
+  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
 
   propertyDetails: Map<string, string> = new Map<string, string>();
   /** map */
@@ -225,18 +225,19 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
-            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-              itemGroup.propertyDetails.forEach(element => {
-                this.propertyDetails[element.id] = 0;
+            if (this.dataModel.propertyDetailGroups)
+              this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+                itemGroup.propertyDetails.forEach(element => {
+                  this.propertyDetails[element.id] = 0;
 
-                if (this.dataModel.propertyDetailValues) {
-                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
-                  if (value) {
-                    this.propertyDetails[element.id] = value.value;
+                  if (this.dataModel.propertyDetailValues) {
+                    const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                    if (value) {
+                      this.propertyDetails[element.id] = value.value;
+                    }
                   }
-                }
+                });
               });
-            });
             /** load Value */
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
@@ -380,7 +381,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.currencyOptionSelectFirstItem=true;
+    this.currencyOptionSelectFirstItem = true;
     this.contractTypeSelected = model;
     this.contractDataModel = new EstateContractModel();
     this.contractDataModel.contractType = this.contractTypeSelected;
@@ -393,15 +394,16 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.formInfo.formSubmitAllow = false;
     /** Save Value */
     this.dataModel.propertyDetailValues = [];
-    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-      itemGroup.propertyDetails.forEach(element => {
-        const value = new EstatePropertyDetailValueModel();
-        value.linkPropertyDetailId = element.id;
-        value.value = this.propertyDetails[element.id];
+    if (this.dataModel.propertyDetailGroups)
+      this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+        itemGroup.propertyDetails.forEach(element => {
+          const value = new EstatePropertyDetailValueModel();
+          value.linkPropertyDetailId = element.id;
+          value.value = this.propertyDetails[element.id];
 
-        this.dataModel.propertyDetailValues.push(value);
+          this.dataModel.propertyDetailValues.push(value);
+        });
       });
-    });
     /** Save Value */
     if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       this.onActionOptionAddToList();
