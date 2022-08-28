@@ -157,7 +157,7 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/estate/project/add']);
+    this.router.navigate(['/estate/property-project/add']);
   }
   onActionbuttonEditRow(model: EstatePropertyProjectModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
@@ -173,7 +173,7 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/estate/project/edit', this.tableRowSelected.id]);
+    this.router.navigate(['/estate/property-project/edit', this.tableRowSelected.id]);
   }
   onActionbuttonDeleteRow(model: EstatePropertyProjectModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
