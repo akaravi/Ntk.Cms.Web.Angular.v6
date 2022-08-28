@@ -111,6 +111,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
 
         this.dataModel = ret.item;
         if (ret.isSuccess) {
+          this.cdr.detectChanges();
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
           /** load Value */
@@ -187,6 +188,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
+            this.cdr.detectChanges();
             this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
             if (this.dataModel.propertyDetailGroups)
@@ -225,6 +227,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
       return;
     }
     this.dataModel.linkPropertyTypeUsageId = model.id;
+    this.cdr.detectChanges();
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     this.PropertyTypeSelected = null;
@@ -237,6 +240,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.PropertyTypeSelected = model;
     this.dataModel.linkPropertyTypeLanduseId = model.id;
     this.DataGetPropertyDetailGroup(model.id);
+    this.cdr.detectChanges();
   }
   onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
@@ -254,6 +258,9 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.dataModel.salePriceMax = 0;
     this.dataModel.depositPriceMin = 0;
     this.dataModel.depositPriceMax = 0;
+    this.dataModel.periodPriceMin = 0;
+    this.dataModel.periodPriceMax = 0;
+    this.cdr.detectChanges();
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
     this.dataModel.linkEstateUserId = null;
