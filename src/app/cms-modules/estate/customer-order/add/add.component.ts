@@ -214,18 +214,19 @@ export class EstateCustomerOrderAddComponent implements OnInit {
           if (ret.isSuccess) {
             this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
-            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-              itemGroup.propertyDetails.forEach(element => {
-                this.propertyDetails[element.id] = 0;
+            if (this.dataModel.propertyDetailGroups)
+              this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+                itemGroup.propertyDetails.forEach(element => {
+                  this.propertyDetails[element.id] = 0;
 
-                if (this.dataModel.propertyDetailValues) {
-                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
-                  if (value) {
-                    this.propertyDetails[element.id] = value.value;
+                  if (this.dataModel.propertyDetailValues) {
+                    const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                    if (value) {
+                      this.propertyDetails[element.id] = value.value;
+                    }
                   }
-                }
+                });
               });
-            });
             /** load Value */
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
@@ -310,14 +311,15 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.formInfo.formSubmitAllow = false;
     // ** Save Value */
     this.dataModel.propertyDetailValues = [];
-    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-      itemGroup.propertyDetails.forEach(element => {
-        const value = new EstatePropertyDetailValueModel();
-        value.linkPropertyDetailId = element.id;
-        value.value = this.propertyDetails[element.id];
-        this.dataModel.propertyDetailValues.push(value);
+    if (this.dataModel.propertyDetailGroups)
+      this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+        itemGroup.propertyDetails.forEach(element => {
+          const value = new EstatePropertyDetailValueModel();
+          value.linkPropertyDetailId = element.id;
+          value.value = this.propertyDetails[element.id];
+          this.dataModel.propertyDetailValues.push(value);
+        });
       });
-    });
     // ** Save Value */
     if (this.dataModel.id && this.dataModel.id.length > 0) {
       this.DataEditContent();
