@@ -234,7 +234,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
           if (ret.isSuccess) {
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/estate/project']), 1000);
+            setTimeout(() => this.router.navigate(['/estate/property-project']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }
@@ -298,7 +298,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     }
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/estate/project/']);
+    this.router.navigate(['/estate/property-project/']);
   }
   receiveMap(model: leafletMap = this.mapModel): void {
     if (!model) {

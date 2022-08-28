@@ -136,15 +136,15 @@ const routes: Routes = [
       },
       /**/
       {
-        path: 'project',
+        path: 'property-project',
         component: EstatePropertyProjectListComponent
       },
       {
-        path: 'project/add',
+        path: 'property-project/add',
         component: EstatePropertyProjectAddComponent
       },
       {
-        path: 'project/edit/:id',
+        path: 'property-project/edit/:id',
         component: EstatePropertyProjectEditComponent
       },
       {

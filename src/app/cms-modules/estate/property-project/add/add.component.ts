@@ -182,7 +182,7 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
           if (ret.isSuccess) {
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            setTimeout(() => this.router.navigate(['/estate/project/']), 1000);
+            setTimeout(() => this.router.navigate(['/estate/property-project/']), 1000);
           } else {
             this.cmsToastrService.typeErrorAdd(ret.errorMessage);
           }
@@ -237,7 +237,7 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
     }
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/estate/project/']);
+    this.router.navigate(['/estate/property-project/']);
   }
   
   onActionSelectorLocation(model: CoreLocationModel | null): void {
