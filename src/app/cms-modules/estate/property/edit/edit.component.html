@@ -30,14 +30,16 @@
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+          [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
         </app-estate-propertytypeusage-selector>
         <br>
         <!-- LinkPropertyTypeLanduseId Field -->
         <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
           *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.Property_type')"
+          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Property_type')"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
         </app-estate-propertytypelanduse-selector>
         <br>
@@ -216,6 +218,11 @@
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
+        <!-- LinkPropertyProjectId Field -->
+        <app-property-project-selector (optionChange)="onActionSelectorProject($event)"
+          [optionSelectForce]="dataModel.linkPropertyProjectId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Project')">
+        </app-property-project-selector>
         <!-- Address Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.accessWatchField">
           <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
@@ -467,8 +474,7 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.salePrice" name="contractDataModel.salePrice"
-                     [disabled]="contractDataModel.salePriceByAgreement"  type="number"
-                    placeholder="0" />
+                    [disabled]="contractDataModel.salePriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -494,8 +500,7 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.depositPrice" name="contractDataModel.depositPrice"
-                     [disabled]="contractDataModel.depositPriceByAgreement" 
-                    type="number" placeholder="0" />
+                    [disabled]="contractDataModel.depositPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.depositPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -521,8 +526,7 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.rentPrice" name="contractDataModel.rentPrice"
-                     [disabled]="contractDataModel.rentPriceByAgreement"  type="number"
-                    placeholder="0" />
+                    [disabled]="contractDataModel.rentPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.rentPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -548,8 +552,7 @@
                 <mat-form-field class="ntk-full-width">
                   <mat-label>{{'TITLE.PeriodPrice' | translate}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.periodPrice" name="contractDataModel.periodPrice"
-                     [disabled]="contractDataModel.periodPriceByAgreement" 
-                    type="number" placeholder="0" />
+                    [disabled]="contractDataModel.periodPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.periodPrice = 0">
                     close</mat-icon>
                   <mat-icon matSuffix>mode_edit</mat-icon>
@@ -714,8 +717,9 @@
 
                 <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId"
-                  #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}" autocomplete="off"
-                  (click)="fileManagerOpenForm = true" />
+                  #LinkMainImageId type="text"
+                  placeholder="{{'TITLE.Original_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}al_File_ID' | translate}}"
+                  autocomplete="off" (click)="fileManagerOpenForm = true" />
                 <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
                   (click)="dataModel.linkMainImageId = null">close</mat-icon>
                 <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -772,7 +776,8 @@
         <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
         <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
           id='main-map'></app-cms-map>
-        <button type="button" class="btn btn-light-primary" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' | translate}}</button>
+        <button type="button" class="btn btn-light-primary" (click)="ActionCurrentPoint()"> {{'ACTION.MY_LOCATION' |
+          translate}}</button>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}

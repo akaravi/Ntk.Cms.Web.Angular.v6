@@ -47,6 +47,7 @@ export class EstatePropertyProjectDeleteComponent implements OnInit {
   dataModelResultContent: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   ngOnInit(): void {
+    debugger
     if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       this.dialogRef.close({ dialogChangedDate: false });

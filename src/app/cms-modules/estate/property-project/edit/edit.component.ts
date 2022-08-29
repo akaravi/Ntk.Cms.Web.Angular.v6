@@ -49,6 +49,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -81,7 +82,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
   ngOnInit(): void {
-    this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
+    
     if (this.requestId?.length === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
@@ -253,13 +254,13 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     this.tagIdsData = ids;
   }
   onActionContentSimilarSelect(model: EstatePropertyProjectModel | null): void {
-    if (!model || model.id <= 0) {
+    if (!model || model.id.length <= 0) {
       return;
     }
     this.contentSimilarSelected = model;
   }
   onActionContentSimilarAddToLIst(): void {
-    if (!this.contentSimilarSelected || this.contentSimilarSelected.id <= 0) {
+    if (!this.contentSimilarSelected || this.contentSimilarSelected.id.length <= 0) {
       return;
     }
     if (this.similarDataModel.find(x => x.id === this.contentSimilarSelected.id)) {
@@ -270,7 +271,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     this.similarTabledataSource.data = this.similarDataModel;
   }
   onActionContentSimilarRemoveFromLIst(model: EstatePropertyProjectModel | null): void {
-    if (!model || model.id <= 0) {
+    if (!model || model.id.length <= 0) {
       return;
     }
     if (!this.similarDataModel || this.similarDataModel.length === 0) {

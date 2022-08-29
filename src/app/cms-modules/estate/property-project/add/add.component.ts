@@ -208,7 +208,7 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
 
 
   onActionContentSimilarRemoveFromLIst(model: EstatePropertyProjectModel | null): void {
-    if (!model || model.id <= 0) {
+    if (!model || model.id.length <= 0) {
       return;
     }
     if (!this.similarDataModel || this.similarDataModel.length === 0) {

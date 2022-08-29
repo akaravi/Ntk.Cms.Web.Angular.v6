@@ -23,9 +23,9 @@ import {
   FilterDataModel,
   EstatePropertyDetailGroupService,
   TokenInfoModel,
-  EnumManageUserAccessUserTypes,
   CoreCurrencyModel,
   EnumManageUserAccessDataTypes,
+  EstatePropertyProjectModel,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -364,6 +364,15 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       return;
     }
     this.dataModel.linkLocationId = model.id;
+  }
+  onActionSelectorProject(model: EstatePropertyProjectModel | null): void {
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.linkPropertyProjectId = null;
+      return;
+    }
+    this.dataModel.linkPropertyProjectId = model.id;
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
     this.dataModel.linkEstateUserId = null;

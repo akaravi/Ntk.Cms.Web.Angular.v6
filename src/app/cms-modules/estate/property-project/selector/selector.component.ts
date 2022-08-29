@@ -94,7 +94,7 @@ export class EstatePropertyProjectSelectorComponent implements OnInit {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&
+            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length <= 0) &&
             this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
             setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
@@ -111,6 +111,7 @@ export class EstatePropertyProjectSelectorComponent implements OnInit {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
+    this.dataModelSelect.linkMainImageIdSrc = '';
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }

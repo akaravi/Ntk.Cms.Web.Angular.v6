@@ -160,7 +160,7 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/estate/property-project/add']);
   }
   onActionbuttonEditRow(model: EstatePropertyProjectModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -176,7 +176,7 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/estate/property-project/edit', this.tableRowSelected.id]);
   }
   onActionbuttonDeleteRow(model: EstatePropertyProjectModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
+    if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
