@@ -63,7 +63,7 @@ export class DataProviderPlanCategoryDeleteComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
+    this.dataProviderPlanCategoryService.setAccessLoad();
     this.dataProviderPlanCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

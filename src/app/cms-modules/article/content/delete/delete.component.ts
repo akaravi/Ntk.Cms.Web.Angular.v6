@@ -62,7 +62,7 @@ export class ArticleContentDeleteComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'fieldInfoConvertor';
     this.loading.Start(pName);
-
+    this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

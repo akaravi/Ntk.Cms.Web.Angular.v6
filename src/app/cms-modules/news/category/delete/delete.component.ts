@@ -51,6 +51,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
+    this.categoryService.setAccessLoad();
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

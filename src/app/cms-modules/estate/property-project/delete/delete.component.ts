@@ -47,7 +47,6 @@ export class EstatePropertyProjectDeleteComponent implements OnInit {
   dataModelResultContent: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   ngOnInit(): void {
-    debugger
     if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -64,7 +63,7 @@ export class EstatePropertyProjectDeleteComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('TITLE.Loading_Information');
     const pName = this.constructor.name + 'fieldInfoConvertor';
     this.loading.Start(pName);
-
+    this.contentService.setAccessLoad();
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

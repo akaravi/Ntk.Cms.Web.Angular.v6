@@ -6,6 +6,7 @@
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  <ng-container *ngIf="dataModelResultContent?.item">
   <!-- Title Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
@@ -20,6 +21,7 @@
       placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="100" readonly required
       rows=5></textarea>
   </mat-form-field>
+</ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">

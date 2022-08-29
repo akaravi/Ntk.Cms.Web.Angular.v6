@@ -6,11 +6,14 @@
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  <ng-container *ngIf="dataModelResultCategory?.item">
+    <!-- Title Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
     <input matInput [(ngModel)]="dataModelResultCategory.item.title" name="dataModelResultCategory.item.title" #Title
       type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="50" required readonly />
   </mat-form-field>
+  <!-- Description Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
     <textarea matInput [(ngModel)]="dataModelResultCategory.item.description"
@@ -20,6 +23,7 @@
   </mat-form-field>
   <app-article-category-selector [optionPlaceholder]="'دسته بندی جایگزین جهت جابجایی اطلاعات به این  شاخه'">
   </app-article-category-selector>
+</ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">
