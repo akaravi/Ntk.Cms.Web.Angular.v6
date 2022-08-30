@@ -1,18 +1,19 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
+  {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Id']?.fieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResultContent.item.id" name="dataModelResultContent.item.id" #Writer
-      type="text" placeholder="{{fieldsInfo['Id']?.fieldTitle}}" required readonly />
-  </mat-form-field>
-
-
+  <ng-container *ngIf="dataModelResultContent?.item">
+    <!-- Id Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Id']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModelResultContent.item.id" name="dataModelResultContent.item.id" #Writer
+        type="text" placeholder="{{fieldsInfo['Id']?.fieldTitle}}" required readonly />
+    </mat-form-field>
+  </ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">
@@ -28,12 +29,12 @@
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
 
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
     <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.buttonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
-    </button>
-    <button type="button" (click)="onFormCancel()" class="btn btn-light">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

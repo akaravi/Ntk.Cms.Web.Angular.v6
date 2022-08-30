@@ -49,8 +49,6 @@
         </app-linkmanagement-billboard-pattern-selector>
 
 
-
-
         <!-- bgColor Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['bgColor']?.accessWatchField">
           <mat-label> {{fieldsInfo['bgColor']?.fieldTitle}}</mat-label>
@@ -95,7 +93,6 @@
           <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #FromDate></mat-datepicker>
         </mat-form-field>
-
 
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">

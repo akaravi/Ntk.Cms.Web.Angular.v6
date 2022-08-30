@@ -1,7 +1,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-----------------------
+    ----------------------
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
@@ -11,8 +11,8 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.access.accessAddRow"
-      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+    <button *ngIf="dataModelResult.access.accessAddRow" (click)="onActionbuttonNewRow()" type="button"
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
@@ -21,6 +21,8 @@
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
     <button *ngIf=" tableRowSelected.id>0" (click)="onActionbuttonComment()" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.RESULTS' | translate}}</button>
+    <button *ngIf=" tableRowSelected.id>0" (click)="onActionbuttonAccountingDetail()" type="button"
+      class="btn btn-outline-success BTN">{{'ACTION.DETAILS' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -48,7 +50,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+      multiTemplateDataRows>
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
@@ -65,14 +68,16 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+          <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
         </mat-cell>
       </ng-container>
       <!-- LinkManagementMemberId Column -->
       <ng-container matColumnDef="LinkManagementMemberId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkManagementMemberId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkManagementMemberId']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkManagementMemberId}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
@@ -84,6 +89,18 @@
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
+      </ng-container>
+      <!-- Debtor Column -->
+      <ng-container matColumnDef="Debtor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Debtor']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.debtor}} </mat-cell>
+      </ng-container>
+      <!-- Creditor Column -->
+      <ng-container matColumnDef="Creditor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Creditor']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.creditor}} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -106,12 +123,60 @@
               <mat-icon>list</mat-icon>
               <span>{{'ACTION.STATIST' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonAccountingDetail(row)">
+              <mat-icon>list</mat-icon>
+              <span>{{'ACTION.DETAILS' | translate}}</span>
+            </button>
           </mat-menu>
+        </mat-cell>
+      </ng-container>
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{row.id}}</th>
+              </tr>
+              <tr *ngIf="row.description">
+                <td></td>
+                <td> {{fieldsInfo['Description']?.fieldTitle}} : {{row.description}} </td>
+              </tr>
+              <tr *ngIf="row.beginDate">
+                <td></td>
+                <td> {{fieldsInfo['BeginDate']?.fieldTitle}} : {{ publicHelper.LocaleDate(row.beginDate) }} </td>
+              </tr>
+              <tr *ngIf="row.endDate">
+                <td></td>
+                <td> {{fieldsInfo['EndDate']?.fieldTitle}} : {{ publicHelper.LocaleDate(row.endDate) }} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>
+                </td>
+              </tr>
+
+            </table>
+          </div>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
     </mat-table>
 

@@ -85,11 +85,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
-      <!-- Description Column -->
-      <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
-      </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
@@ -143,11 +138,11 @@
               </tr>
               <tr>
                 <td></td>
-                <td> {{row.title}} </td>
+                <td> {{fieldsInfo['Title']?.fieldTitle}} : {{row.title}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td> {{row.description}} </td>
+                <td> {{fieldsInfo['Description']?.fieldTitle}} : {{row.description}} </td>
               </tr>
               <tr>
                 <td></td>

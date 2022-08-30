@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LinkManagementAccountingDetailListComponent } from './accounting-detail/list/list.component';
 import { LinkManagementAccountingListComponent } from './accounting/list/list.component';
 import { LinkManagementBillboardPatternListComponent } from './billboard-pattern/list/list.component';
+import { LinkManagementBillboardAddComponent } from './billboard/add/add.component';
 import { LinkManagementBillboardEditComponent } from './billboard/edit/edit.component';
 import { LinkManagementBillboardListComponent } from './billboard/list/list.component';
 import { LinkManagementComponent } from './linkManagement.component';
@@ -28,7 +30,7 @@ const routes: Routes = [
         component: LinkManagementTargetListComponent
       },
       {
-        path: 'target/add',
+        path: 'target/add/:CategoryId',
         component: LinkManagementTargetAddComponent
       },
       {
@@ -38,6 +40,10 @@ const routes: Routes = [
       {
         path: 'billboard',
         component: LinkManagementBillboardListComponent
+      },
+      {
+        path: 'billboard/add/:CategoryId',
+        component: LinkManagementBillboardAddComponent
       },
       {
         path: 'billboard/edit/:Id',
@@ -66,6 +72,14 @@ const routes: Routes = [
       {
         path: 'accounting',
         component: LinkManagementAccountingListComponent
+      },
+      {
+        path: 'accountingdetail',
+        component: LinkManagementAccountingDetailListComponent
+      },
+      {
+        path: 'accountingdetail/LinkManagementAccountingId/:LinkManagementAccountingId',
+        component: LinkManagementAccountingDetailListComponent
       },
       {
         path: 'member',

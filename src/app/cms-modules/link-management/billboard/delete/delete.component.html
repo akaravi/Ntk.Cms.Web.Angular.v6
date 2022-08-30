@@ -1,18 +1,19 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
+  {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResultContent.item.title" name="dataModelResultContent.item.title" #Writer
-      type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" required readonly />
-  </mat-form-field>
+  <ng-container *ngIf="dataModelResultContent?.item">
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModelResultContent.item.title" name="dataModelResultContent.item.title" #Writer
+        type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" required readonly />
+    </mat-form-field>
 
-
+  </ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">

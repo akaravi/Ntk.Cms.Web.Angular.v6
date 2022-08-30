@@ -120,6 +120,7 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
     }
 
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '90%';
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { parentId };

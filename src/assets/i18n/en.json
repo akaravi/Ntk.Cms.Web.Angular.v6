@@ -10,6 +10,7 @@
 	"ACTION.DENY": "Deny",
 	"ACTION.ACCEPT": "Accept",
 	"ACTION.STATUS": "Status",
+	"ACTION.DETAILS": "Details",
 	"ACTION.Components": "Components",
 	"ACTION.USED_ITEMS": "Used Items",
 	"ACTION.SEND_DOCUMENTS": "Send documents",

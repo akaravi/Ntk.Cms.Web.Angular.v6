@@ -1,6 +1,6 @@
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   EnumSortType,
   ErrorExceptionResult,
@@ -34,11 +34,12 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html',
 })
 export class LinkManagementAccountingDetailListComponent implements OnInit, OnDestroy {
-
+  requestLinkManagementAccountingId = 0;
   constructor(
     public publicHelper: PublicHelper,
     public contentService: LinkManagementAccountingDetailService,
     private cmsToastrService: CmsToastrService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -46,7 +47,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-
+    this.requestLinkManagementAccountingId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementAccountingId'));
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -57,6 +58,12 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
 
+    if (this.requestLinkManagementAccountingId > 0) {
+      const fastfilter = new FilterDataModel();
+      fastfilter.propertyName = 'LinkManagementAccountingId';
+      fastfilter.value = this.requestLinkManagementAccountingId;
+      this.filteModelContent.filters.push(fastfilter);
+    }
   }
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<LinkManagementAccountingDetailModel> = new ErrorExceptionResult<LinkManagementAccountingDetailModel>();
@@ -70,10 +77,8 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
   tableRowSelected: LinkManagementAccountingDetailModel = new LinkManagementAccountingDetailModel();
   tableSource: MatTableDataSource<LinkManagementAccountingDetailModel> = new MatTableDataSource<LinkManagementAccountingDetailModel>();
   tabledisplayedColumns: string[] = [
-    'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
-    'Title',
     'CreatedDate',
     'UpdatedDate',
     'Action'
@@ -164,6 +169,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
   onActionbuttonNewRow(): void {
 
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '90%';
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {};
@@ -303,7 +309,18 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
   }
   onActionTableRowSelect(row: LinkManagementAccountingDetailModel): void {
     this.tableRowSelected = row;
-  }
+    if (!row["expanded"])
+    row["expanded"] = false;
+  row["expanded"] = !row["expanded"]
+}
+onActionTableRowMouseEnter(row: LinkManagementAccountingDetailModel): void {
+  this.tableRowSelected = row;
+  row["expanded"] = true;
+}
+onActionTableRowMouseLeave(row: LinkManagementAccountingDetailModel): void {
+  row["expanded"] = false;
+}
+expandedElement: any;
 
 
   onActionbuttonComment(model: LinkManagementAccountingDetailModel = this.tableRowSelected): void {

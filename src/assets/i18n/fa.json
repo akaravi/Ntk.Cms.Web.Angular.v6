@@ -10,6 +10,7 @@
 	"ACTION.DENY": "رد می کنم",
 	"ACTION.ACCEPT": "قبول دارم",
 	"ACTION.STATUS": "وضعیت",
+	"ACTION.DETAILS": "جزئیات",
 	"ACTION.Components": "اجزاء",
 	"ACTION.USED_ITEMS": "موارد استفاده",
 	"ACTION.SEND_DOCUMENTS": "ارسال مدارک",

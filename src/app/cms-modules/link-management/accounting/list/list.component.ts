@@ -23,7 +23,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LinkManagementAccountingDeleteComponent } from '../delete/delete.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LinkManagementAccountingAddComponent } from '../add/add.component';
 import { LinkManagementAccountingEditComponent } from '../edit/edit.component';
@@ -32,6 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-linkmanagement-accounting-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class LinkManagementAccountingListComponent implements OnInit, OnDestroy {
 
@@ -75,6 +76,8 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     'LinkManagementMemberId',
     'CreatedDate',
     'UpdatedDate',
+    'Debtor',
+    'Creditor',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -163,6 +166,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
   onActionbuttonNewRow(): void {
 
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '90%';
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {};
@@ -302,8 +306,28 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
   }
   onActionTableRowSelect(row: LinkManagementAccountingModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
   }
+  onActionTableRowMouseEnter(row: LinkManagementAccountingModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: LinkManagementAccountingModel): void {
+    row["expanded"] = false;
+  }
+  expandedElement: any;
 
+  onActionbuttonAccountingDetail(model: LinkManagementAccountingModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0) {
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+    this.router.navigate(['/linkmanagement/accountingdetail/LinkManagementAccountingId', this.tableRowSelected.id]);
+  }
 
   onActionbuttonComment(model: LinkManagementAccountingModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {

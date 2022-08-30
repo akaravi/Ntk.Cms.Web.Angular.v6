@@ -14,7 +14,7 @@ import {
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
@@ -26,6 +26,8 @@ import { LinkManagementBillboardPatternDeleteComponent } from '../delete/delete.
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { LinkManagementBillboardPatternEditComponent } from '../edit/edit.component';
+import { LinkManagementBillboardPatternAddComponent } from '../add/add.component';
 
 @Component({
   selector: 'app-linkmanagement-billboard-pattern-list',
@@ -174,14 +176,6 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
 
   onActionbuttonNewRow(): void {
     if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.id === 0
-    ) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
       !this.dataModelResult.access.accessAddRow
@@ -189,7 +183,20 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/linkmanagement/billboard-pattern/add', this.categoryModelSelected.id]);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '90%';
+    dialogConfig.data = {};
+    
+    const dialogRef = this.dialog.open(LinkManagementBillboardPatternAddComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
   }
 
   onActionbuttonEditRow(model: LinkManagementBillboardPatternModel = this.tableRowSelected): void {
@@ -206,7 +213,15 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/linkmanagement/billboard-pattern/edit', this.tableRowSelected.id]);
+    const dialogRef = this.dialog.open(LinkManagementBillboardPatternEditComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
   }
   onActionbuttonDeleteRow(model: LinkManagementBillboardPatternModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
@@ -316,6 +331,6 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.router.navigate(['/linkmanagement/billboard-log/', model.id]);
+    this.router.navigate(['/linkmanagement/target-billboard-log/', model.id]);
   }
 }
