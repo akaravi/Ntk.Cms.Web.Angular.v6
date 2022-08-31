@@ -4,7 +4,6 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-// import { ErrorDialogService } from './errordialog.service';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
@@ -39,7 +38,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
           return;
         }
         if (error.status === 401) {
-          this.cmsToastrService.typeErrorUserToken();
+          //this.cmsToastrService.typeErrorUserToken();
           this.router.navigate(['auth/singin']);
           return;
         }
