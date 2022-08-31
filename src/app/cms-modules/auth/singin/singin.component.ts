@@ -62,10 +62,10 @@ export class AuthSingInComponent implements OnInit {
         if (res.isSuccess) {
           this.cmsToastrService.typeSuccessLogin();
           if (res.item.siteId > 0) {
-            setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+            setTimeout(() => this.router.navigate(['/dashboard']), 3000);
           }
           else {
-            setTimeout(() => this.router.navigate(['/core/site/selection']), 1000);
+            setTimeout(() => this.router.navigate(['/core/site/selection']), 3000);
           }
         } else {
           this.firstRun = false;

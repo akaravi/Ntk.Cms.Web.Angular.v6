@@ -11,7 +11,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { AuthSingUpComponent } from './singup/singup.component';
 import { SingupRuleComponent } from './singupRule/singupRule.Component';
 import { AuthSingInBySmsComponent } from './singin-bysms/singin-bysms.component';
-import { CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
+import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
 @NgModule({
   declarations: [
     AuthSingInComponent,
@@ -33,6 +33,7 @@ import { CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
   providers: [
     CoreModuleService,
     CoreConfigurationService,
+    CoreAuthService
   ]
 })
 export class AuthModule { }
