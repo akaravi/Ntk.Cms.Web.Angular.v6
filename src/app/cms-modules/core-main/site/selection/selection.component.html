@@ -22,9 +22,9 @@
   <div *ngIf=" dataModelResult && dataModelResult.listItems && dataModelResult.listItems.length > 0"
     class=" container ">
     <div class="row">
-      <div *ngFor="let item of dataModelResult.listItems" style="margin-left: 10px;max-width: min-content;">
+      <div *ngFor="let item of dataModelResult.listItems" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
         <div *ngIf="selectSiteId==0 || selectSiteId==item.id" (click)="onActionClickSelectSite(item.virtual_CmsSite.id)"
-          class="card card-custom card-stretch gutter-b cursor-pointer" style="top: 15px;width: fit-content;">
+          class="card card-custom card-stretch gutter-b cursor-pointer" style="top: 15px;">
           <div class="card-body d-flex flex-column">
             <div class="flex-grow-1 pb-5">
               <div class="d-flex align-items-center pr-2 mb-6 ">
@@ -38,26 +38,23 @@
                   </span>
                 </div>
               </div>
-              <p class="text-dark font-weight-bolder text-hover-primary font-size-h4">
-                دامنه
-              </p>
-              <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
+              <p class="text-dark-50 font-weight-normal font-size-lg mt-6" style="text-align: left;">
                 {{item.virtual_CmsSite.currentSiteDomainUrl}}
               </p>
             </div>
             <div>
-              <p class="text-dark font-weight-bolder text-hover-primary font-size-h4 ">
-                دسترسی
+              <p class="text-dark font-weight-bolder text-hover-primary font-size-h6 ">
+                دسترسی :
               </p>
-              <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
+              <p class="text-dark-50 font-weight-normal font-size-lg mt-6"  style="text-align: center;">
                 {{item.virtual_CmsUserGroup.title}}
               </p>
             </div>
             <div *ngIf="item.expireDate" [style.backgroundColor]="item.expireDate < today ? 'red':''">
-              <p class="text-dark font-weight-bolder text-hover-primary font-size-h4 ">
-                تاریخ انقضا
+              <p class="text-dark font-weight-bolder text-hover-primary font-size-h6 ">
+                تاریخ انقضا :
               </p>
-              <p class="text-dark-50 font-weight-normal font-size-lg mt-6">
+              <p class="text-dark-50 font-weight-normal font-size-lg mt-6"  style="text-align: center;">
                 {{item.expireDate|persianDate}}
               </p>
             </div>

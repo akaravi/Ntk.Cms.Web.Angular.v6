@@ -52,7 +52,7 @@ export class LayoutComponent implements OnInit, AfterViewInit , OnDestroy {
   constructor(
     private initService: LayoutInitService,
     private layout: LayoutService,
-    private tokenHelper: TokenHelper,
+    public tokenHelper: TokenHelper,
   ) {
     this.initService.init();
     this.tokenHelper.getCurrentToken().then((value) => {
