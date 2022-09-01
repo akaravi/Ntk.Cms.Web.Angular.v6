@@ -146,54 +146,29 @@
 
 
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserIpAddress']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['UserIpAddress']?.FieldUserIpAddress }}</mat-label>
+          <mat-label>{{fieldsInfo['UserIpAddress']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.userIpAddress"
             [disabled]="!fieldsInfo['UserIpAddress']?.accessAddField" name="dataModel.userIpAddress" #UserIpAddress
-            type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="0" maxlength="100" />
+            type="text" placeholder="{{fieldsInfo['UserIpAddress']?.fieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.userIpAddress && fieldsInfo['UserIpAddress']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.userIpAddress = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['UserIpAddress']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ 'Application.source.UserIpAddress_hint' | translate }}</mat-hint>
           <mat-hint align="start">{{ UserIpAddress.value.length }} / 100</mat-hint>
 
         </mat-form-field>
 
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeviceInformation']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['DeviceInformation']?.FieldDeviceInformation }}</mat-label>
+          <mat-label>{{fieldsInfo['DeviceInformation']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.deviceInformation"
             [disabled]="!fieldsInfo['DeviceInformation']?.accessAddField" name="dataModel.deviceInformation"
-            #DeviceInformation type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="0"
+            #DeviceInformation type="text" placeholder="{{fieldsInfo['DeviceInformation']?.fieldTitle}}" minlength="0"
             maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.deviceInformation && fieldsInfo['DeviceInformation']?.accessAddField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.deviceInformation = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['DeviceInformation']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ 'Application.source.DeviceInformation_hint' | translate }}</mat-hint>
           <mat-hint align="start">{{ DeviceInformation.value.length }} / 100</mat-hint>
 
         </mat-form-field>
-
-
-        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-          <button type="button" mat-raised-button color="accent" matStepperPrevious>
-            {{'ACTION.BEFOR' | translate}}
-          </button>
-          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-            {{'ACTION.NEXT' | translate}}
-          </button>
-        </div>
-      </mat-step>
-
-
-
-
-      <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-        <p>عکسها و فایل های </p>
-
-
-
-
-
-
 
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
@@ -205,7 +180,6 @@
           </button>
         </div>
       </mat-step>
-
 
 
     </mat-horizontal-stepper>

@@ -19,6 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'src/filemanager-api';
 import { TranslateService } from '@ngx-translate/core';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ticketing-task-add',
@@ -33,11 +34,12 @@ export class TicketingTaskAddComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private ticketingTaskService: TicketingTaskService,
     private cmsToastrService: CmsToastrService,
+    private dialogRef: MatDialogRef<TicketingTaskAddComponent>,
     private router: Router,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -141,7 +143,7 @@ export class TicketingTaskAddComponent implements OnInit {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/application/app/']);
+    this.dialogRef.close({ dialogChangedDate: false });
   }
   onActionFileSelectedLinkMainImageId(): void {
     // this.dataModel.linkMainImageId = model.id;

@@ -45,7 +45,7 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
     this.requestOperatorId = + Number(this.activatedRoute.snapshot.paramMap.get('OperatorId'));
     this.optionsSearch.parentMethods = {
@@ -131,7 +131,7 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingDepartemenLogModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -240,7 +240,7 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-  
+
     this.router.navigate(['/application/app/delete/', this.tableRowSelected.id]);
 
   }
@@ -314,7 +314,10 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/application/app/']);
+    if (this.requestOperatorId > 0)
+      this.router.navigate(['/application/app/']);
+    if (this.requestDepartemenId > 0)
+      this.router.navigate(['/ticketing/departemen/']);
   }
 
 }

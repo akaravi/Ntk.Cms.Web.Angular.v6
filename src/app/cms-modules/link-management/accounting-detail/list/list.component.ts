@@ -32,6 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-linkmanagement-AccountingDetail-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class LinkManagementAccountingDetailListComponent implements OnInit, OnDestroy {
   requestLinkManagementAccountingId = 0;

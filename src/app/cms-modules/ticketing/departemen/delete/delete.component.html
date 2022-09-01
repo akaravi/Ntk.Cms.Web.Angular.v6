@@ -6,11 +6,14 @@
 <div class="ntk-cms-html-card-body">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  <ng-container *ngIf="dataModelResultCategory?.item">
+
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
     <input matInput [(ngModel)]="dataModelResultCategory.item.title" name="dataModelResultCategory.item.title" #Title
       type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="50" required readonly />
   </mat-form-field>
+</ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">

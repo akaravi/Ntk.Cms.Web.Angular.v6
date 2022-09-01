@@ -49,7 +49,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private ticketingEnumService: TicketingEnumService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -102,10 +102,12 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       this.DataGetAll();
     });
 
-    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.getEnumTicketStatus();
-      this.tokenInfo = next;
-      this.DataGetAll();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe({
+      next: (ret) => {
+        this.getEnumTicketStatus();
+        this.tokenInfo = ret;
+        this.DataGetAll();
+      }
     });
     this.getEnumTicketStatus();
   }
@@ -113,16 +115,17 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   getEnumTicketStatus(): void {
-    this.ticketingEnumService.ServiceEnumTicketStatus().subscribe((next) => {
-      this.dataModelEnumTicketStatusResult = next;
-    });
+    this.ticketingEnumService.ServiceEnumTicketStatus().subscribe({
+      next: (ret) => {
+      this.dataModelEnumTicketStatusResult = ret;
+    }});
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingTaskModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -140,33 +143,33 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       filter.value = this.categoryModelSelected.id;
       filterModel.filters.push(filter);
     }
-    this.contentService.ServiceGetAll(filterModel).subscribe(
-      (next) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+    this.contentService.ServiceGetAll(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
 
-        if (next.isSuccess) {
-          this.dataModelResult = next;
-          this.tableSource.data = next.listItems;
+        if (ret.isSuccess) {
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.listItems;
 
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         }
         else {
-          this.cmsToastrService.typeErrorGetAll(next.errorMessage);
+          this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
 
         }
         this.loading.Stop(pName);
 
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
 
         this.loading.Stop(pName);
 
       }
-    );
+    });
   }
 
 
@@ -248,7 +251,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(TicketingTaskEditComponent, {
       height: '90%',
-      data: { Id: this.tableRowSelected.id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -299,11 +302,11 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Start(pName);
 
-          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe(
-            (next) => {
-              if (next.isSuccess) {
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
+            next: (ret) => {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
               } else {
                 this.cmsToastrService.typeErrorRemove();
@@ -311,12 +314,12 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
               this.loading.Stop(pName);
 
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
 
             }
-          );
+          });
         }
       }
       )
@@ -333,35 +336,35 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.isSuccess) {
-          statist.set('All', next.totalRowCount);
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-    );
+    });
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.isSuccess) {
-          statist.set('Active', next.totalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
       }
       ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-    );
+    });
 
   }
   onActionbuttonExport(): void {
@@ -371,17 +374,17 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.isSuccess) {
-          exportlist.set('Download', next.linkFile);
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
-    );
+    });
   }
 
   onActionbuttonReload(): void {

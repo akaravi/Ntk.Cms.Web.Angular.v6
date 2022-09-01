@@ -86,11 +86,11 @@ const routes: Routes = [
         path: 'task/:DepartemenId',
         component: TicketingTaskListComponent
       }
-      ,
-      {
-        path: 'task/edit/:id',
-        component: TicketingTaskEditComponent
-      }
+      // ,
+      // {
+      //   path: 'task/edit/:id',
+      //   component: TicketingTaskEditComponent
+      // }
       ,
       {
         path: 'answer',

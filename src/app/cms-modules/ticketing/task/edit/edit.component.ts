@@ -45,11 +45,11 @@ export class TicketingTaskEditComponent implements OnInit {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
-      this.requestId = + data.id | 0;
+      this.requestId = + data.id || 0;
     }
-    if (this.requestId == 0) {
-      this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    }
+    // if (this.requestId == 0) {
+    //   this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    // }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
