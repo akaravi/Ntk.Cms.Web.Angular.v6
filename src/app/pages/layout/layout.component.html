@@ -67,7 +67,7 @@
                 <ng-container *ngIf="asideSelfDisplay ">
                   <div class="d-lg-flex flex-row-fluid">
                
-                    <ng-container  *ng-If="this.tokenHelper?.tokenInfo?.siteId>0">
+                    <ng-container  *ngIf="this.tokenHelper?.tokenInfo?.siteId>0">
                       <!--begin::DYNAMIC Aside-->
                       <app-aside-dynamic
                         #ktAside

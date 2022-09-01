@@ -2,8 +2,9 @@
   <!-- Header -->
   <div class="card-header border-0 mt-4">
     <h3 class="card-title align-items-start flex-column">
-      <span class="card-label font-weight-bolder text-dark">بررسی حساب کاربری</span>
-      <span class="text-muted mt-3 font-weight-bold font-size-sm">بررسی سایتهایی که شما در آن عضویت دارید..</span>
+      <span class="card-label font-weight-bolder text-dark">{{'TITLE.Check_account' | translate}}</span>
+      <span class="text-muted mt-3 font-weight-bold font-size-sm">{{'TITLE.Check_Sites_You_Are_Member_of' |
+        translate}}</span>
     </h3>
     <div class="card-toolbar">
       ...
@@ -44,24 +45,25 @@
             </div>
             <div>
               <p class="text-dark font-weight-bolder text-hover-primary font-size-h6 ">
-                دسترسی :
+                {{'TITLE.Accessibility' | translate}} :
               </p>
-              <p class="text-dark-50 font-weight-normal font-size-lg mt-6"  style="text-align: center;">
+              <p class="text-dark-50 font-weight-normal font-size-lg mt-6" style="text-align: center;">
                 {{item.virtual_CmsUserGroup.title}}
               </p>
             </div>
             <div *ngIf="item.expireDate" [style.backgroundColor]="item.expireDate < today ? 'red':''">
               <p class="text-dark font-weight-bolder text-hover-primary font-size-h6 ">
-                تاریخ انقضا :
+                {{'TITLE.Expire_Date' | translate}} :
               </p>
-              <p class="text-dark-50 font-weight-normal font-size-lg mt-6"  style="text-align: center;">
+              <p class="text-dark-50 font-weight-normal font-size-lg mt-6" style="text-align: center;">
                 {{item.expireDate|persianDate}}
               </p>
             </div>
             <br>
             <button *ngIf="this.formInfo.buttonSubmittedEnabled || selectSiteId==item.id"
               (click)="onActionClickSelectSite(item.virtual_CmsSite.id)" type="button"
-              [disabled]="!this.formInfo.buttonSubmittedEnabled" class="btn btn-outline-success BTN">ورود</button>
+              [disabled]="!this.formInfo.buttonSubmittedEnabled" class="btn btn-outline-success BTN">{{'ACTION.LOGIN' |
+              translate}}</button>
 
           </div>
         </div>
