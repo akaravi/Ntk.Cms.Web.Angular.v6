@@ -15,7 +15,7 @@ import {
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { NodeInterface } from 'src/filemanager-api';
+import { NodeInterface } from 'ntk-cms-filemanager';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

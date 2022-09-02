@@ -107,7 +107,7 @@ import { LanguageSelectorComponent } from './shared/language-selector/language-s
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { CmsSiteCategorySelectionListComponent } from './shared/cms-site-category-selection-list/cmsSiteCategorySelectionList.component';
 import { CmsFilesSelectorComponent } from './shared/cms-files-selector/cms-files-selector.component';
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CmsTagAutocompleteComponent } from './shared/cms-tag-autocomplete/cms-tag-autocomplete.component';
 import { CmsTokenAccessComponent } from './shared/cms-token-access/cmsTokenAccess.component';

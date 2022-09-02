@@ -15,7 +15,7 @@ import { CoreCurrencyListComponent } from './list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 
 
 @NgModule({

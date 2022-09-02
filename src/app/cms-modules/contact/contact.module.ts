@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { ContactCategorySelectorComponent } from './category/selector/selector.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ContactContentListComponent } from './content/list/list.component';

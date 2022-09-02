@@ -45,7 +45,7 @@ import { CoreModuleSaleHeaderGroupHeaderComponent } from './header-group/header/
 import { CoreModuleSaleHeaderHeaderComponent } from './header/header/header.component';
 import { CoreModuleSaleSerialCheckListComponent } from './serial/check-list/check-list.component';
 import { CoreModuleSaleSerialHeaderComponent } from './serial/header/header.component';
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { CoreModuleSaleHeaderSaleListComponent } from './header/sale-list/sale-list.component';
 import { CoreModuleSaleItemListViewComponent } from './Item/listview/listview.component';
 import { CoreModuleSaleHeaderSalePaymentComponent } from './header/sale-payment/sale-payment.component';

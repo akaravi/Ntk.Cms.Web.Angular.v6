@@ -39,9 +39,9 @@
             <ng-container *ngIf="asideSelfDisplay">
               <div class="d-lg-flex flex-row-fluid">
       
-                <ng-container  *ng-If="this.tokenHelper?.tokenInfo?.siteId>0">
+                <ng-container >
                   <!--begin::DYNAMIC Aside-->
-                  <app-aside-dynamic
+                  <app-aside-dynamic  *ng-If="this.tokenHelper?.tokenInfo?.siteId>0"
                     #ktAside
                     id="kt_aside"
                     class="aside aside-left d-flex flex-column flex-row-auto"
@@ -64,12 +64,12 @@
             <div class="d-flex flex-column-fluid">
               <!--begin::Container-->
               <div [ngClass]="contentContainerClasses">
-                <ng-container *ngIf="asideSelfDisplay ">
+                <ng-container *ngIf="asideSelfDisplay">
                   <div class="d-lg-flex flex-row-fluid">
                
-                    <ng-container  *ngIf="this.tokenHelper?.tokenInfo?.siteId>0">
+                    <ng-container  >
                       <!--begin::DYNAMIC Aside-->
-                      <app-aside-dynamic
+                      <app-aside-dynamic *ngIf="this.tokenHelper?.tokenInfo?.siteId>0"
                         #ktAside
                         id="kt_aside"
                         class="aside aside-left d-flex flex-column flex-row-auto"

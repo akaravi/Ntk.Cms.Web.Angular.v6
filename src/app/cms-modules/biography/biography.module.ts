@@ -28,7 +28,7 @@ import { BiographyContentEditComponent } from './content/edit/edit.component';
 import { BiographyContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { BiographyCategorySelectorComponent } from './category/selector/selector.component';
 import { BiographyContentListComponent } from './content/list/list.component';
 import { BiographyCategoryTreeComponent } from './category/tree/tree.component';

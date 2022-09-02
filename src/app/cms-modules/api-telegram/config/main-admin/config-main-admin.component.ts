@@ -19,7 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TreeModel } from 'src/filemanager-api';
+import { TreeModel } from 'ntk-cms-filemanager';
 import { PoinModel } from 'src/app/core/models/pointModel';
 @Component({
   selector: 'app-apitelegram-config-mainadmin',

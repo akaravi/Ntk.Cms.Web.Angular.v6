@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 
 import { CoreModuleTagListComponent } from './tag/list/list.component';
 import { CoreModuleTagCategoryDeleteComponent } from './tagCategory/delete/delete.component';

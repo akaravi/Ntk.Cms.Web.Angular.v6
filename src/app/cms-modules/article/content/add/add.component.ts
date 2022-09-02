@@ -23,7 +23,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { NodeInterface, TreeModel } from 'src/filemanager-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';

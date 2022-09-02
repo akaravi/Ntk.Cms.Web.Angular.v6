@@ -28,7 +28,7 @@ import { NewsContentEditComponent } from './content/edit/edit.component';
 import { NewsContentAddComponent } from './content/add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { NewsCategorySelectorComponent } from './category/selector/selector.component';
 import { NewsContentListComponent } from './content/list/list.component';
 import { NewsCategoryTreeComponent } from './category/tree/tree.component';

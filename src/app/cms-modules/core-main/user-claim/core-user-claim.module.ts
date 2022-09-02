@@ -36,7 +36,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CoreUserClaimContentListComponent } from './content/list/list.component';
 import { CoreUserClaimContentAddComponent } from './content/add/add.component';
 import { CoreUserClaimContentEditComponent } from './content/edit/edit.component';
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { CoreUserClaimContentCheckListComponent } from './content/check-list/check-list.component';
 import { CoreUserClaimTypeSelectionlistComponent } from './type/selectionlist/selectionlist.component';
 import { CoreUserClaimGroupSelectionlistComponent } from './group/selectionlist/selectionlist.component';

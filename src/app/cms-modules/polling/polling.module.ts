@@ -21,7 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
 
-import { CmsFileManagerModule } from 'src/filemanager-api';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { PollingCategorySelectorComponent } from './category/selector/selector.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { PollingContentListComponent } from './content/list/list.component';
