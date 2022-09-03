@@ -33,7 +33,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
-      
+
       if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId > 0) {
         setTimeout(() => { this.DataGetCpMenu(); }, 1000);
       }
@@ -51,7 +51,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
     return this.menuConfigSubject.value;
   }
   ngOnDestroy() {
-    this.cmsApiStoreSubscribe .unsubscribe();
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetCpMenu(): void {
     const menuItems: any = [{
@@ -59,7 +59,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
       root: true,
       alignment: 'left',
       page: '/dashboard',
-      translate:this.translate.instant( 'MENU.DASHBOARD'),
+      translate: this.translate.instant('MENU.DASHBOARD'),
     }];
     this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
       (next) => {
@@ -87,7 +87,7 @@ export class DynamicHeaderMenuService implements OnDestroy {
     retOut = {
       title: item.titleML,
       root: rootStatus,
-      page: item.routeAddressLink,
+      page: (item.routeAddressLink?.length > 0) ? item.routeAddressLink : null,
       color: item.color,
       icon: item.icon,
       svg: '',
