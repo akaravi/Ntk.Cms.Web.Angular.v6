@@ -47,8 +47,6 @@ import { TicketingTaskAddComponent } from './task/add/add.component';
 import { TicketingDepartemenLogListComponent } from './departemenLog/list/list.component';
 import { TicketingDepartemenOperatorSelectorComponent } from './departemenOperator/selector/selector.component';
 import { TicketingDepartemenOperatorListComponent } from './departemenOperator/list/list.component';
-import { TicketingConfigSiteComponent } from './config/site/config-site.component';
-import { TicketingConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
 import { TicketingAnswerListComponent } from './answer/list/list.component';
 import { TicketingAnswerAddComponent } from './answer/add/add.component';
 import { TicketingAnswerEditComponent } from './answer/edit/edit.component';
@@ -58,6 +56,7 @@ import { TicketingTaskContactUsListComponent } from './task/contact-us-list/cont
 import { TicketingTaskViewComponent } from './task/view/view.component';
 import { TicketingAnswerViewComponent } from './answer/view/view.component';
 import { TicketingTaskHeaderComponent } from './task/header/header.component';
+import { TicketingTemplateSelectorComponent } from './template/selector/selector.component';
 
 
 
@@ -79,6 +78,7 @@ import { TicketingTaskHeaderComponent } from './task/header/header.component';
     TicketingTemplateAddComponent,
     TicketingTemplateEditComponent,
     TicketingTemplateListComponent,
+    TicketingTemplateSelectorComponent,
     /** */
     TicketingTaskListComponent,
     TicketingTaskEditComponent,

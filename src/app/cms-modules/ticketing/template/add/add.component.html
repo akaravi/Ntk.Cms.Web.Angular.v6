@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -41,8 +41,24 @@
     </mat-form-field>
 
     <!-- HtmlBody Field -->
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="HtmlBody"
-      [(ngModel)]="dataModel.htmlBody" name="dataModel.htmlBody"></angular-editor>
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['HtmlBody']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.htmlBody" name="dataModel.htmlBody" #HtmlBody type="text"
+        disabled="{{!fieldsInfo['HtmlBody']?.accessAddField}}" placeholder="{{fieldsInfo['HtmlBody']?.fieldTitle}}"
+        minlength="1" maxlength="2000" rows=7></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.htmlBody" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.htmlBody = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="start">
+        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+        <strong class="info-field-text">{{fieldsInfo['HtmlBody']?.FieldDescription}}</strong>
+      </mat-hint>
+      <mat-hint align="end">{{ HtmlBody.value.length }} / 2000</mat-hint>
+      <mat-error *ngIf="HtmlBody.errors?.required">
+        {{fieldsInfo['HtmlBody']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

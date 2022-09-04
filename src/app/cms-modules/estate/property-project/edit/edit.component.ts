@@ -57,6 +57,8 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
   dataModelResult: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataContentCategoryModel: number[] = [];
+  dataFileModelImgaes = new Map<number, string>();
+  dataFileModelFiles = new Map<number, string>();
   similarDataModel = new Array<EstatePropertyProjectModel>();
   contentSimilarSelected: EstatePropertyProjectModel = new EstatePropertyProjectModel();
   otherInfoTabledisplayedColumns = ['Id', 'Title', 'TypeId', 'Action'];
@@ -82,7 +84,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
   private mapMarkerPoints: Array<PoinModel> = [];
   mapOptonCenter = new PoinModel();
   ngOnInit(): void {
-    
+
     if (this.requestId?.length === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
@@ -163,6 +165,29 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
             }
             this.dataModel.keyword = this.dataModel.keyword + '';
             this.keywordDataModel = this.dataModel.keyword.split(',');
+
+            /*
+          * check file attach list
+          */
+            if (this.dataModel.linkFileIds && this.dataModel.linkFileIds.length > 0) {
+              this.dataModel.linkFileIds.split(',').forEach((element, index) => {
+                let link = '';
+                if (this.dataModel.linkFileIdsSrc.length >= this.dataModel.linkFileIdsSrc.length) {
+                  link = this.dataModel.linkFileIdsSrc[index];
+                }
+                this.dataFileModelFiles.set(+element, link);
+              });
+            }
+            if (this.dataModel.linkExtraImageIdsSrc && this.dataModel.linkExtraImageIdsSrc.length > 0) {
+              this.dataModel.linkExtraImageIds.split(',').forEach((element, index) => {
+                let link = '';
+                if (this.dataModel.linkExtraImageIdsSrc.length >= this.dataModel.linkExtraImageIdsSrc.length) {
+                  link = this.dataModel.linkExtraImageIdsSrc[index];
+                }
+                this.dataFileModelImgaes.set(+element, link);
+              });
+            }
+
           } else {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
@@ -177,7 +202,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
       }
       );
   }
-  
+
   DataSimilarGetAll(ids: Array<number>): void {
     if (!ids || ids.length === 0) {
       return;
@@ -223,6 +248,20 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     this.formInfo.formSubmitAllow = false;
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
+
+    if (this.dataFileModelFiles) {
+      const keys = Array.from(this.dataFileModelFiles.keys());
+      if (keys && keys.length > 0) {
+        this.dataModel.linkFileIds = keys.join(',');
+      }
+    }
+    if (this.dataFileModelImgaes) {
+      const keys = Array.from(this.dataFileModelImgaes.keys());
+      if (keys && keys.length > 0) {
+        this.dataModel.linkExtraImageIds = keys.join(',');
+      }
+    }
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.contentService
@@ -286,7 +325,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     this.similarDataModel = retOut;
     this.similarTabledataSource.data = this.similarDataModel;
   }
-  
+
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {
@@ -344,16 +383,16 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     }
     this.dataModel.linkLocationId = model.id;
   }
- /**
-   * tag
-   */
+  /**
+    * tag
+    */
   addOnBlurTag = true;
   readonly separatorKeysCodes = [ENTER] as const;
   addTag(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     // Add our item
     if (value) {
-      this.keywordDataModel.push( value);
+      this.keywordDataModel.push(value);
     }
     // Clear the input value
     event.chipInput!.clear();

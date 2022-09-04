@@ -11,7 +11,7 @@
           به دنبال راهنما هستید؟
         </h1>
         <div class="h4 text-white-50 font-weight-normal">
-          درخواست  خود را به یکی از کارشناسان ما ارسال کنید!
+          درخواست خود را به یکی از کارشناسان ما ارسال کنید!
         </div>
         <div class="row">
           <div class="offset-md-3 col-md-6">
@@ -481,7 +481,8 @@
                 <div class="form-group">
                   <label>{{'AUTH.INPUT.MOBILE' | translate}}</label>
                   <input type="text" [(ngModel)]="dataModel.phoneNo" name="dataModel.phoneNo" #PhoneNo required
-                    class="form-control form-control-solid form-control-lg" placeholder="تلفن خود را وارد کنید" />
+                    class="form-control form-control-solid form-control-lg text-left"
+                    placeholder="تلفن خود را وارد کنید" />
 
                   <mat-error *ngIf="PhoneNo.errors?.required">
                     PhoneNo is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -500,6 +501,12 @@
                   </mat-error>
 
                 </div>
+                <!-- LinkTicketingDepartemenId -->
+                <label>قالب</label>
+                <app-ticketing-template-selector (optionChange)="onActionSelectorSelect($event)">
+                </app-ticketing-template-selector>
+                <br>
+                <br>
                 <!--end::ورودی-->
 
                 <!--begin::ورودی-->
@@ -525,12 +532,8 @@
                   <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
                     [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
-                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4" autocomplete="off"
+                    class="form-control form-control-solid h-auto py-7 rounded-lg" autocomplete="off"
                     placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-                  <mat-icon matSuffix *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="dataModel.captchaText = ''">
-                    close</mat-icon>
-                  <mat-icon matSuffix>mode_edit</mat-icon>
                   <mat-error *ngIf="captchaText.errors?.required">
                     captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
@@ -547,7 +550,7 @@
             <div class="col-xl-6 ntk-button-row">
               <button type="reset" mat-raised-button>{{'ACTION.CANCEL' | translate}}</button>
               <button type="submit" mat-raised-button color="submit">{{'ACTION.SEND' | translate}}</button>
-              
+
             </div>
             <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
           </div>

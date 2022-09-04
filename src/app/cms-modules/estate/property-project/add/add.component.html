@@ -29,10 +29,7 @@
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <!-- LinkCategoryId Field -->
-        <!-- <app-article-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
-        </app-article-category-selector> -->
+
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
           <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>

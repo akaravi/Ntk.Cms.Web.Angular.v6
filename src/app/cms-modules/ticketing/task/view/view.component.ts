@@ -1,198 +1,130 @@
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import {
-  AccessModel,
-  TicketingTaskModel,
-  TicketingTaskService,
   CoreEnumService,
-  DataFieldInfoModel,
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  ApplicationSourceModel,
+  TicketingTaskModel,
+  TicketingTaskService,
+  TokenInfoModel,
+  DataFieldInfoModel,
 } from 'ntk-cms-api';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TreeModel } from 'ntk-cms-filemanager';
-import { TranslateService } from '@ngx-translate/core';
-import { PoinModel } from 'src/app/core/models/pointModel';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Inject,
+  OnDestroy,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-ticketing-task-edit',
+  selector: 'app-ticketing-task-view',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
 })
-export class TicketingTaskViewComponent implements OnInit {
+export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private activatedRoute: ActivatedRoute,
     private dialogRef: MatDialogRef<TicketingTaskViewComponent>,
-    public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
-    private ticketingTaskService: TicketingTaskService,
+    public ticketingTaskService: TicketingTaskService,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
+    private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId = + data.id || 0;
-    }
-    if (this.requestId == 0) {
-      this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+      this.requestId = +data.id || 0;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  formInfo: FormInfoModel = new FormInfoModel();
-  dataAccessModel: AccessModel;
-  dataModel = new TicketingTaskModel();
   dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
+  dataModel: TicketingTaskModel = new TicketingTaskModel();
+  formInfo: FormInfoModel = new FormInfoModel();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  appLanguage = 'fa';
 
-  fileManagerTree: TreeModel;
-  mapMarker: any;
-  mapOptonCenter = new PoinModel();
-
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-
+    this.formInfo.formTitle = this.translate.instant('TITLE.VIEW');
     if (this.requestId === 0) {
-      this.cmsToastrService.typeErrorAddRowParentIsNull();
+      this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
-    this.DataGetOne(this.requestId);
-    this.getEnumRecordStatus();
-  }
-  async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
-  }
+    this.DataGetOneContent();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
 
-  onFormSubmit(): void {
-    if (!this.formGroup.valid) {
-      this.cmsToastrService.typeErrorFormInvalid();
-      return;
-    }
-    this.dialogRef.close({ dialogChangedDate: false });
-
-    // this.DataEditContent();
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+    });
+    this.getEnumSendSmsStatusType();
   }
 
-  DataGetOne(requestId: number): void {
-    this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
+  getEnumSendSmsStatusType(): void {
+    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
+      this.dataModelEnumSendSmsStatusTypeResult = next;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
+
+
+  DataGetOneContent(): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     /*َAccess Field*/
     this.ticketingTaskService.setAccessLoad();
-    this.ticketingTaskService
-      .ServiceGetOneById(requestId)
-      .subscribe(
-        async (next) => {
-          /*َAccess Field*/
-          this.dataAccessModel = next.access;
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
 
-          this.loading.Stop(pName);
-
-          this.dataModelResult = next;
-          this.formInfo.formSubmitAllow = true;
-
-          if (next.isSuccess) {
-            this.dataModel = next.item;
-
-          } else {
-            this.cmsToastrService.typeErrorGetOne(next.errorMessage);
-          }
-        },
-        (error) => {
-          this.loading.Stop(pName);
-
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetOne(error);
+    this.ticketingTaskService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        /*َAccess Field*/
+        // this.dataAccessModel = next.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
+          this.formInfo.formAlert = '';
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-      );
-  }
-  // DataEditContent(): void {
-  //   this.formInfo.formSubmitAllow = false;
-  //   this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-  //   this.formInfo.formError = '';
-  //   const pName = this.constructor.name + 'main';
-  //   this.loading.Start(pName);
+        this.loading.Stop(pName);
 
-
-  //   this.ticketingTaskService
-  //     .ServiceEdit(this.dataModel)
-  //     .subscribe(
-  //       async (next) => {
-
-  //         this.formInfo.formSubmitAllow = !next.isSuccess;
-  //         this.dataModelResult = next;
-  //         if (next.isSuccess) {
-  //           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-  //           this.cmsToastrService.typeSuccessEdit();
-  //           setTimeout(() => this.router.navigate(['/application/app/']), 1000);
-  //         } else {
-  //           this.cmsToastrService.typeErrorEdit(next.errorMessage);
-  //         }
-  //         this.loading.Stop(pName);
-
-  //       },
-  //       (error) => {
-  //         this.loading.Stop(pName);
-
-  //         this.formInfo.formSubmitAllow = true;
-  //         this.cmsToastrService.typeErrorEdit(error);
-  //       }
-  //     );
-  // }
-
-  onStepClick(event: StepperSelectionEvent, stepper: any): void {
-    if (event.previouslySelectedIndex < event.selectedIndex) {
-      // if (!this.formGroup.valid) {
-      //   this.cmsToastrService.typeErrorFormInvalid();
-      //   setTimeout(() => {
-      //     stepper.selectedIndex = event.previouslySelectedIndex;
-      //     // stepper.previous();
-      //   }, 10);
-      // }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
     }
+    );
   }
 
-  onActionBackToParent(): void {
+
+  onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
-  onActionFileSelectedLinkMainImageId(): void {
-    // this.dataModel.linkMainImageId = model.id;
-    // this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
-  }
-
-  onActionSelectSource(model: ApplicationSourceModel | null): void {
-    if (!model || model.id <= 0) {
-      this.cmsToastrService.typeErrorMessage(
-        this.translate.instant('MESSAGE.Specify_the_source'),
-        this.translate.instant('MESSAGE.The_source_of_the_information_application_is_not_known')
-      );
-      return;
-    }
-
-
-  }
-
 }

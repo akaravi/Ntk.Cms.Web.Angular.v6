@@ -12,12 +12,12 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected.id>0" (click)="onActionbuttonViewRow()"
+      type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
+      translate}}</button>
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' |
-      translate}}</button>
-    <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected.id>0" (click)="onActionbuttonViewRow()"
-      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
       translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>

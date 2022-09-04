@@ -17,6 +17,7 @@ import {
   CaptchaModel,
   EnumFormSubmitedStatus,
   TokenInfoModel,
+  TicketingTemplateModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -161,25 +162,19 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
       );
   }
 
-  onStepClick(event: StepperSelectionEvent, stepper: any): void {
-    if (event.previouslySelectedIndex < event.selectedIndex) {
-      // if (!this.formGroup.valid) {
-      //   this.cmsToastrService.typeErrorFormInvalid();
-      //   setTimeout(() => {
-      //     stepper.selectedIndex = event.previouslySelectedIndex;
-      //     // stepper.previous();
-      //   }, 10);
-      // }
+  onActionSelectorSelect(model: TicketingTemplateModel | null): void {
+    if (!model || model.id <= 0) {
+      const message = this.translate.instant('MESSAGE.Information_department_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
     }
+    this.dataModel.htmlBody = model.htmlBody;
   }
 
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);
   }
-  onActionFileSelectedLinkMainImageId(): void {
-    // this.dataModel.linkMainImageId = model.id;
-    // this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
-  }
+
 
   onActionSelectSource(model: ApplicationSourceModel | null): void {
     if (!model || model.id <= 0) {
