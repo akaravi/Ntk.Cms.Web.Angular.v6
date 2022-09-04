@@ -8,7 +8,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   TicketingDepartemenModel,
   EnumRecordStatus,
@@ -232,7 +231,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(TicketingAnswerViewComponent, {
       height: '90%',
-      data: { Id: this.tableRowSelected.id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {        
@@ -262,7 +261,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(TicketingAnswerEditComponent, {
       height: '90%',
-      data: { Id: this.tableRowSelected.id }
+      data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

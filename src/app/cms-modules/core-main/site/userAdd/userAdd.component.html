@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -25,14 +25,16 @@
 
     <!-- LinkCmsSiteId Field -->
     <app-core-site-selector (optionChange)="onActionSelectorSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
+      [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
+    </app-core-site-selector>
     <!-- LinkuserId Field -->
     <app-core-user-selector (optionChange)="onActionSelectorUserSelect($event)" [optionDisabled]="false"
       [optionSelectForce]="dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-core-user-selector>
     <!-- LinkUserGroupId Field -->
     <app-core-usercategory-selector (optionChange)="onActionSelectorUserGroupSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
+      [optionSelectForce]="dataModel.linkUserGroupId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
     </app-core-usercategory-selector>
 
 
@@ -68,5 +70,5 @@
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
-  
+
 </form>

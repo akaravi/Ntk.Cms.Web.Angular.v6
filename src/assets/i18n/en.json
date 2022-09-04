@@ -235,6 +235,7 @@
 	"AUTH.INPUT.MOBILE": "phone number",
 	"AUTH.INPUT.PASSWORD": "Password",
 	"AUTH.INPUT.USERNAME": "Username",
+	"AUTH.INPUT.TEMPLATE": "Template",
 	"AUTH.LOGIN.BUTTON": "Sign In",
 	"AUTH.LOGIN.SMS": "disposable password",
 	"AUTH.LOGIN.TITLE": "Login Account",

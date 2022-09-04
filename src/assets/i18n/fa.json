@@ -235,6 +235,7 @@
 	"AUTH.INPUT.MOBILE": "شماره همراه",
 	"AUTH.INPUT.PASSWORD": "رمز عبور",
 	"AUTH.INPUT.USERNAME": "نام کاربری",
+	"AUTH.INPUT.TEMPLATE": "قالب",
 	"AUTH.LOGIN.BUTTON": "ورود به حساب",
 	"AUTH.LOGIN.SMS": "رمز یکبار مصرف",
 	"AUTH.LOGIN.TITLE": "حساب کاربری",
