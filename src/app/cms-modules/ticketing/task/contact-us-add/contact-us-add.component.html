@@ -502,7 +502,7 @@
 
                 </div>
                 <!-- LinkTicketingDepartemenId -->
-                <label>قالب</label>
+                <label>{{'AUTH.INPUT.TEMPLATE' | translate}}</label>
                 <app-ticketing-template-selector (optionChange)="onActionSelectorSelect($event)">
                 </app-ticketing-template-selector>
                 <br>
@@ -519,7 +519,7 @@
                   <mat-error *ngIf="HtmlBody.errors?.required">
                     HtmlBody is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
-                  <span class="form-text text-muted">ما هرگز ایمیل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>
+                  
                 </div>
                 <!--end::ورودی-->
 

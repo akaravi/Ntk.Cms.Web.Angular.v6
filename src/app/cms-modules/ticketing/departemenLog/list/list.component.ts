@@ -9,7 +9,6 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,
