@@ -85,7 +85,8 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkSiteId Field -->
-        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['LinkSiteId']?.accessWatchField && this.tokenHelper.isAdminSite">
+        <mat-form-field class="ntk-full-width mb-1"
+          *ngIf="fieldsInfo['LinkSiteId']?.accessWatchField && this.tokenHelper.isAdminSite">
           <mat-label>{{fieldsInfo['LinkSiteId']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text"
             disabled="{{!fieldsInfo['LinkSiteId']?.accessEditField}}"
@@ -354,6 +355,13 @@
         *ngIf="dataModel.propertyDetailGroups && dataModel.propertyDetailGroups.length>0">
         <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
 
+        <!-- LinkPropertyProjectId Field -->
+        <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
+          (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Project')">
+        </app-property-project-selector>
+
+        <hr>
 
         <mat-accordion class="example-headers-align">
           <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
@@ -368,11 +376,6 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <!-- LinkPropertyProjectId Field -->
-            <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
-              (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
-              [optionPlaceholder]="this.translate.instant('TITLE.Project')">
-            </app-property-project-selector>
             <!-- value-->
             <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
               <ng-container [ngSwitch]="itemDetail.inputDataType">
