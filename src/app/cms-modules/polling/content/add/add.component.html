@@ -88,7 +88,7 @@
             *ngIf="fieldsInfo['ViewStatisticsAfterVote']?.accessWatchField"
             [disabled]="!fieldsInfo['ViewStatisticsAfterVote']?.accessEditField"
             name="dataModel.viewStatisticsAfterVote">
-            {{fieldsInfo['ViewStatisticsAfterVote']?.fieldTitle}}
+            {{'TITLE.View_Statistics_After_Vote' | translate}}
           </mat-slide-toggle>
         </div>
 
@@ -98,7 +98,7 @@
             *ngIf="fieldsInfo['ViewStatisticsBeforeVote']?.accessWatchField"
             [disabled]="!fieldsInfo['ViewStatisticsBeforeVote']?.accessEditField"
             name="dataModel.viewStatisticsBeforeVote">
-            {{fieldsInfo['ViewStatisticsBeforeVote']?.fieldTitle}}
+            {{'TITLE.View_Statistics_Before_Vote' | translate}}
           </mat-slide-toggle>
         </div>
 
@@ -114,7 +114,7 @@
 
         <!-- ExpireDate Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-          <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+          <mat-label>{{'TITLE.Expire_Date' | translate}}</mat-label>
           <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
           <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
@@ -167,7 +167,7 @@
 
         <button (click)="onActionOptionAddToList()" [disabled]="!optionActionButtomEnable" type="button" mat-button
           class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
-          {{optionActionTitle}} ...
+          {{'ACTION.Add_To_List' | translate}} ...
         </button>
         <p>{{'TITLE.List_of_other_information' | translate}}</p>
         <app-progress-spinner [options]="loadingOption">
@@ -187,22 +187,22 @@
             </ng-container>
             <!-- OptionAnswer Column -->
             <ng-container matColumnDef="OptionAnswer">
-              <mat-header-cell *matHeaderCellDef> {{'TITLE.ANSWERS' | translate}} </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.Answers' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.optionAnswer}} </mat-cell>
             </ng-container>
             <!-- isCorrectAnswer Column -->
-            <ng-container matColumnDef="isCorrectAnswer">
-              <mat-header-cell *matHeaderCellDef> isCorrectAnswer </mat-header-cell>
+            <ng-container matColumnDef="IsCorrectAnswer">
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.Is_Correct_Answer' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"><i [ngClass]="row.isCorrectAnswer|boolclass"></i> </mat-cell>
             </ng-container>
             <!-- isCorrectAnswer Column -->
             <ng-container matColumnDef="NumberOfVotes">
-              <mat-header-cell *matHeaderCellDef> NumberOfVotes </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.Number_Of_Votes' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.numberOfVotes}} </mat-cell>
             </ng-container>
             <!-- ScoreOfVotes Column -->
             <ng-container matColumnDef="ScoreOfVotes">
-              <mat-header-cell *matHeaderCellDef> ScoreOfVotes </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.Score_Of_Votes' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.scoreOfVotes}} </mat-cell>
             </ng-container>
             <!-- Action Column -->

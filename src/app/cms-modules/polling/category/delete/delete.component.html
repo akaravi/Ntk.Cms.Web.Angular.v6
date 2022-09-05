@@ -39,16 +39,16 @@
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-    <button type="button" (click)="onFormMove()" [disabled]=" !formInfo.buttonSubmittedEnabled"
-      class="btn btn-raised btn-primary">
-      <i class="ft-x"></i> {{'TITLE.MOVE_DATA' | translate}}
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>
     <button type="button" (click)="onFormDelete()" [disabled]=" !formInfo.buttonSubmittedEnabled"
       class="btn btn-danger">
       <i class="fa fa-check-square-o"></i> {{'ACTION.DELETE' | translate}}
     </button>
-    <button type="button" (click)="onFormCancel()" class="btn btn-light">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    <button type="button" (click)="onFormMove()" [disabled]=" !formInfo.buttonSubmittedEnabled"
+      class="btn btn-raised btn-primary">
+      <i class="ft-x"></i> {{'TITLE.MOVE_DATA' | translate}}
     </button>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

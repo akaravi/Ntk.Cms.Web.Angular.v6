@@ -5,7 +5,6 @@ import {
   ErrorExceptionResult,
   PollingVoteModel,
   PollingVoteService,
-  NewsContentModel,
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel
@@ -75,8 +74,8 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<NewsContentModel> = [];
-  tableRowSelected: NewsContentModel = new NewsContentModel();
+  tableRowsSelected: Array<PollingVoteModel> = [];
+  tableRowSelected: PollingVoteModel = new PollingVoteModel();
   tableSource: MatTableDataSource<PollingVoteModel> = new MatTableDataSource<PollingVoteModel>();
   tabledisplayedColumns: string[] = [
     'Id',
@@ -87,7 +86,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  expandedElement: NewsContentModel | null;
+  expandedElement: PollingVoteModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -116,7 +115,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new NewsContentModel();
+    this.tableRowSelected = new PollingVoteModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -212,8 +211,8 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
   }
 
 
-  onActionbuttonEditRow(model: NewsContentModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
+  onActionbuttonEditRow(model: PollingVoteModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id?.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -238,8 +237,8 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: NewsContentModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
+  onActionbuttonDeleteRow(model: PollingVoteModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id?.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -256,14 +255,14 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
     }
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.pollingVoteService.ServiceDelete(this.tableRowSelected.id).subscribe({
+          this.pollingVoteService.ServiceDelete(this.tableRowSelected.id.length).subscribe({
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -361,10 +360,10 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: NewsContentModel): void {
+  onActionTableRowSelect(row: PollingVoteModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/news/content/']);
+    this.router.navigate(['/polling/content/']);
   }
 }
