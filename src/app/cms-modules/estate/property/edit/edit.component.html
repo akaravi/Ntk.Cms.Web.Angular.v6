@@ -85,7 +85,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkSiteId Field -->
-        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['LinkSiteId']?.accessWatchField">
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['LinkSiteId']?.accessWatchField && this.tokenHelper.isAdminSite">
           <mat-label>{{fieldsInfo['LinkSiteId']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text"
             disabled="{{!fieldsInfo['LinkSiteId']?.accessEditField}}"
@@ -203,13 +203,8 @@
           </mat-hint>
         </mat-form-field>
 
-        <!-- LinkEstateUserId Field -->
-        <app-estate-accountuser-selector (optionChange)="onActionSelectorEstateUser($event)"
-          [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
-        </app-estate-accountuser-selector>
         <!-- LinkCmsUserId Field -->
-        <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
+        <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)"
           [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessEditField" [optionSelectForce]="dataModel.linkCmsUserId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
         </app-cms-user-selector>
@@ -219,6 +214,21 @@
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
 
+        <!-- Address Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.accessWatchField">
+          <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
+            disabled="{{!fieldsInfo['Address']?.accessEditField}}" placeholder="{{fieldsInfo['Address']?.fieldTitle}}"
+            minlength="1" maxlength="500" rows=5 [disabled]="!fieldsInfo['Address']?.accessEditField"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.address = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
+        </mat-form-field>
 
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width">
@@ -255,12 +265,12 @@
       </mat-step>
 
       <mat-step label="اطلاعات شخصی" state="main">
-
-        <!-- LinkPropertyProjectId Field -->
-        <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
-          (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Project')">
-        </app-property-project-selector>
+        <!-- LinkEstateUserId Field -->
+        <app-estate-accountuser-selector *ngIf="this.tokenHelper.isAdminSite"
+          (optionChange)="onActionSelectorEstateUser($event)"
+          [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
+          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
+        </app-estate-accountuser-selector>
 
         <!-- AboutAgentTel Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutAgentTel']?.accessWatchField">
@@ -327,21 +337,7 @@
           <mat-hint align="end">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
-        <!-- Address Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.accessWatchField">
-          <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
-            disabled="{{!fieldsInfo['Address']?.accessEditField}}" placeholder="{{fieldsInfo['Address']?.fieldTitle}}"
-            minlength="1" maxlength="500" rows=5 [disabled]="!fieldsInfo['Address']?.accessEditField"></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.address = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
-          </mat-hint>
-          <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
-        </mat-form-field>
+
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
@@ -371,6 +367,12 @@
                 <mat-icon>{{itemGroup.iconFont}}</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
+
+            <!-- LinkPropertyProjectId Field -->
+            <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
+              (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
+              [optionPlaceholder]="this.translate.instant('TITLE.Project')">
+            </app-property-project-selector>
             <!-- value-->
             <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
               <ng-container [ngSwitch]="itemDetail.inputDataType">
@@ -732,9 +734,8 @@
 
                 <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId"
-                  #LinkMainImageId type="text"
-                  placeholder="{{'TITLE.Original_File_ID' | translate}}"
-                  autocomplete="off" (click)="fileManagerOpenForm = true" />
+                  #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+                  (click)="fileManagerOpenForm = true" />
                 <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
                   (click)="dataModel.linkMainImageId = null">close</mat-icon>
                 <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

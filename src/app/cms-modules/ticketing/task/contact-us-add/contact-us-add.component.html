@@ -481,7 +481,7 @@
                 <div class="form-group">
                   <label>{{'AUTH.INPUT.MOBILE' | translate}}</label>
                   <input type="text" [(ngModel)]="dataModel.phoneNo" name="dataModel.phoneNo" #PhoneNo required
-                    class="form-control form-control-solid form-control-lg text-left"
+                    class="form-control form-control-solid form-control-lg input-Mobile"
                     placeholder="تلفن خود را وارد کنید" />
 
                   <mat-error *ngIf="PhoneNo.errors?.required">
@@ -494,7 +494,7 @@
                 <div class="form-group">
                   <label>{{'AUTH.INPUT.EMAIL' | translate}}</label>
                   <input type="email" [(ngModel)]="dataModel.email" name="dataModel.email" #Email required
-                    class="form-control form-control-solid form-control-lg" placeholder="ایمیل را وارد کنید" />
+                    class="form-control form-control-solid form-control-lg " placeholder="ایمیل را وارد کنید" />
 
                   <mat-error *ngIf="Email.errors?.required">
                     Email is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -502,7 +502,7 @@
                   <span class="form-text text-muted">ما هرگز ایمیل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>
                 </div>
                 <!-- LinkTicketingDepartemenId -->
-                <label>{{'AUTH.INPUT.TEMPLATE' | translate}}</label>
+                <label>{{'TITLE.Categories' | translate}}</label>
                 <app-ticketing-template-selector (optionChange)="onActionSelectorSelect($event)">
                 </app-ticketing-template-selector>
                 <br>
@@ -532,7 +532,7 @@
                   <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
                   <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
                     [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
-                    class="form-control form-control-solid h-auto py-7 rounded-lg" autocomplete="off"
+                    class="form-control form-control-solid h-auto py-7 rounded-lg font-size-h6" autocomplete="off"
                     placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
                   <mat-error *ngIf="captchaText.errors?.required">
                     captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>

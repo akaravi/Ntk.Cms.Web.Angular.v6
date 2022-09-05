@@ -86,7 +86,6 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
     'AnswerStatus',
     'LinkTaskId',
     'LinkMemberUserId',
-    'HtmlBody',
     'CreatedDate',
     'UpdatedDate',
     'Action'

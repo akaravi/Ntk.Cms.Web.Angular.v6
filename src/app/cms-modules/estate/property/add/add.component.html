@@ -149,13 +149,10 @@
             <strong class="info-field-text">{{fieldsInfo['Area']?.FieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
-        <!-- LinkEstateUserId Field -->
-        <app-estate-accountuser-selector *ngIf="dataProfessional" (optionChange)="onActionSelectorEstateUser($event)"
-          [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
-          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
-        </app-estate-accountuser-selector>
+
         <!-- LinkCmsUserId Field -->
-        <app-cms-user-selector *ngIf="dataProfessional" (optionChange)="onActionSelectorCmsUser($event)"
+        <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
+          (optionChange)="onActionSelectorCmsUser($event)"
           [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId"
           [optionPlaceholder]="'مالک ملک'">
         </app-cms-user-selector>
@@ -165,6 +162,22 @@
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
 
+
+        <!-- Address Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.accessWatchField">
+          <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
+            placeholder="{{fieldsInfo['Address']?.fieldTitle}}" minlength="1" maxlength="500" rows=5
+            [disabled]="!fieldsInfo['Address']?.accessAddField"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.address = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
+        </mat-form-field>
 
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width">
@@ -199,12 +212,12 @@
       </mat-step>
 
       <mat-step label="اطلاعات شخصی" state="main">
-
-        <!-- LinkPropertyProjectId Field -->
-        <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
-          (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Project')">
-        </app-property-project-selector>
+        <!-- LinkEstateUserId Field -->
+        <app-estate-accountuser-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
+          (optionChange)="onActionSelectorEstateUser($event)"
+          [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
+          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
+        </app-estate-accountuser-selector>
 
         <!-- AboutAgentMobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutAgentMobile']?.accessWatchField">
@@ -274,22 +287,7 @@
           </mat-hint>
           <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
         </mat-form-field>
-        
-        <!-- Address Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Address']?.accessWatchField">
-          <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
-            placeholder="{{fieldsInfo['Address']?.fieldTitle}}" minlength="1" maxlength="500" rows=5
-            [disabled]="!fieldsInfo['Address']?.accessAddField"></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.address = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Address']?.FieldDescription}}</strong>
-          </mat-hint>
-          <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
-        </mat-form-field>
+
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
@@ -320,9 +318,16 @@
                 <mat-icon>{{itemGroup.iconFont}}</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
+
+            <!-- LinkPropertyProjectId Field -->
+            <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
+              (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
+              [optionPlaceholder]="this.translate.instant('TITLE.Project')">
+            </app-property-project-selector>
             <!-- value-->
             <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
               <ng-container [ngSwitch]="itemDetail.inputDataType">
+
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
                   <app-input-string [(model)]="propertyDetails[itemDetail.id]"

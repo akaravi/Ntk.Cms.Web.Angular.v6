@@ -33,16 +33,16 @@
 
 
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FullName']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['FullName']?.FieldFullName }}</mat-label>
+          <mat-label>{{ fieldsInfo['FullName']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.fullName" [disabled]="!fieldsInfo['FullName']?.accessAddField"
-            name="dataModel.fullName" #FullName type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+            name="dataModel.fullName" #FullName type="text" placeholder="{{fieldsInfo['FullName']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.fullName && fieldsInfo['FullName']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.fullName = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['FullName']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ FullName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="FullName.errors?.required">
-            {{ fieldsInfo['FullName']?.FieldFullName }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['FullName']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -62,9 +62,9 @@
 
 
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PhoneNo']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['PhoneNo']?.FieldPhoneNo }}</mat-label>
+          <mat-label>{{ fieldsInfo['PhoneNo']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.phoneNo" [disabled]="!fieldsInfo['PhoneNo']?.accessAddField"
-            name="dataModel.phoneNo" #PhoneNo type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+            name="dataModel.phoneNo" #PhoneNo type="text" placeholder="{{fieldsInfo['PhoneNo']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.phoneNo && fieldsInfo['PhoneNo']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.phoneNo = ''">close</mat-icon>
@@ -76,9 +76,9 @@
         </mat-form-field>
 
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['Email']?.FieldEmail }}</mat-label>
+          <mat-label>{{ fieldsInfo['Email']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.email" [disabled]="!fieldsInfo['Email']?.accessAddField"
-            name="dataModel.email" #Email type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
+            name="dataModel.email" #Email type="text" placeholder="{{fieldsInfo['Email']?.fieldTitle}}" minlength="3"
             maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.email && fieldsInfo['Email']?.accessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.email = ''">close</mat-icon>
@@ -89,24 +89,10 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['Title']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.title" [disabled]="!fieldsInfo['Title']?.accessAddField"
-            name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
-            maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessAddField" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['Title']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
-          <mat-error *ngIf="Title.errors?.required">
-            {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HtmlBody']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['HtmlBody']?.FieldHtmlBody }}</mat-label>
+          <mat-label>{{'TITLE.Description' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.htmlBody" [disabled]="!fieldsInfo['HtmlBody']?.accessAddField"
-            name="dataModel.htmlBody" #HtmlBody type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" row="5"
+            name="dataModel.htmlBody" #HtmlBody type="text" placeholder="{{'TITLE.Description' | translate}}" row="5"
             minlength="0" maxlength="1000"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['HtmlBody']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.htmlBody = ''">close</mat-icon>

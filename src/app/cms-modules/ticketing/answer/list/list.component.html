@@ -88,11 +88,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberUserId}} </mat-cell>
       </ng-container>
-      <!-- HtmlBody Column -->
-      <ng-container matColumnDef="HtmlBody">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HtmlBody']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.htmlBody}} </mat-cell>
-      </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
