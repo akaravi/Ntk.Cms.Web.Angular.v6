@@ -31,6 +31,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TicketingTaskAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { TicketingTaskViewComponent } from '../view/view.component';
 @Component({
   selector: 'app-ticketing-task-list',
   templateUrl: './list.component.html'
@@ -82,7 +83,6 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   tabledisplayedColumns: string[] = [
     'Id',
-    'RecordStatus',
     'TicketStatus',
     'Title',
     'CreatedDate',
@@ -224,6 +224,23 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
+      }
+    });
+  }
+  onActionbuttonViewRow(mode: TicketingTaskModel = this.tableRowSelected): void {
+    if (!mode || !mode.id || mode.id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+
+
+    const dialogRef = this.dialog.open(TicketingTaskViewComponent, { 
+      height: '90%',
+      data: { id: this.tableRowSelected.id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {        
       }
     });
   }

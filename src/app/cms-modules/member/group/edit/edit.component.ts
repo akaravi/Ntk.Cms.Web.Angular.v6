@@ -4,8 +4,8 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  PollingVoteService,
-  PollingVoteModel,
+  MemberGroupModel,
+  MemberGroupService,
   DataFieldInfoModel,
   EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
@@ -19,69 +19,55 @@ import {
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
-
 @Component({
-  selector: 'app-polling-vote-edit',
+  selector: 'app-member-group-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class PollingVoteEditComponent implements OnInit {
-  requestId = '';
-  requestParentId = 0;
-  requestContentId = 0;
+export class MemberGroupEditComponent implements OnInit {
+  requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<PollingVoteEditComponent>,
+    private dialogRef: MatDialogRef<MemberGroupEditComponent>,
     public coreEnumService: CoreEnumService,
-    public pollingVoteService: PollingVoteService,
+    public memberGroupService: MemberGroupService,
     private cmsToastrService: CmsToastrService,
-    private publicHelper: PublicHelper,
+    public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId = data.id || '';
-      this.requestParentId = +data.parentId || 0;
-      this.requestContentId = +data.contentId || 0;
+      this.requestId = data.id;
     }
+    this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-
+  selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
+  fileManagerTree: TreeModel;
+  appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<PollingVoteModel> = new ErrorExceptionResult<PollingVoteModel>();
-  dataModel: PollingVoteModel = new PollingVoteModel();
-
-  ComponentAction = ComponentActionEnum.none;
-
+  dataModelResult: ErrorExceptionResult<MemberGroupModel> = new ErrorExceptionResult<MemberGroupModel>();
+  dataModel: MemberGroupModel = new MemberGroupModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-
-  selected: any;
-  openFormFileManager = false;
-
-
+  fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    if (this.requestId.length > 0) {
-      this.ComponentAction = ComponentActionEnum.edit;
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit_Comment');
-      this.DataGetOneContent();
-    } else if (this.requestContentId > 0) {
-      this.ComponentAction = ComponentActionEnum.add;
-      this.formInfo.formTitle = this.translate.instant('TITLE.Submit_A_New_Comment');
-    }
-    if (this.ComponentAction === ComponentActionEnum.none) {
+    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
+    if (!this.requestId || this.requestId === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
+      return;
     }
+    this.DataGetOneContent();
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -89,24 +75,21 @@ export class PollingVoteEditComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    if (this.requestId.length <= 0) {
-      this.cmsToastrService.typeErrorEditRowIsNull();
-      return;
-    }
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.pollingVoteService.setAccessLoad();
-    this.pollingVoteService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.pollingVoteService.ServiceGetOneById(this.requestId).subscribe({
+    this.memberGroupService.setAccessLoad();
+    this.memberGroupService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.memberGroupService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
         this.dataModel = ret.item;
         if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -114,41 +97,9 @@ export class PollingVoteEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
-    );
-  }
-  DataAddContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    if (this.requestParentId > 0) {
-      this.dataModel.linkPollingContentId = this.requestParentId;
-    }
-    this.dataModel.linkPollingContentId = this.requestContentId;
-    this.pollingVoteService.ServiceAdd(this.dataModel).subscribe({
-      next: (ret) => {
-        this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = ret;
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessAdd();
-          this.dialogRef.close({ dialogChangedDate: true });
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -161,9 +112,8 @@ export class PollingVoteEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.pollingVoteService.ServiceEdit(this.dataModel).subscribe({
+    this.memberGroupService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
@@ -175,6 +125,8 @@ export class PollingVoteEditComponent implements OnInit {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
+
+        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
         this.formInfo.formSubmitAllow = true;
@@ -184,18 +136,13 @@ export class PollingVoteEditComponent implements OnInit {
     }
     );
   }
+
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     this.formInfo.formSubmitAllow = false;
-    if (this.ComponentAction === ComponentActionEnum.add) {
-      this.DataAddContent();
-    }
-    if (this.ComponentAction === ComponentActionEnum.edit) {
-      this.DataEditContent();
-    }
-
+    this.DataEditContent();
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

@@ -1,23 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MemberGroupAddComponent } from './group/add/add.component';
+import { MemberGroupEditComponent } from './group/edit/edit.component';
+import { MemberGroupListComponent } from './group/list/list.component';
 import { MemberComponent } from './member.component';
 const routes: Routes = [
   {
     path: '',
     component: MemberComponent,
-    // children: [
-    //   {
-    //     path: 'source',
-    //     component: ApplicationSourceListComponent
-    //   },
-    //   {
-    //     path: 'source/add',
-    //     component: ApplicationSourceAddComponent
-    //   },
-    //   {
-    //     path: 'source/edit/:Id',
-    //     component: ApplicationSourceEditComponent
-    //   },
+    children: [
+      {
+        path: 'group',
+        component: MemberGroupListComponent
+      },
     //   {
     //     path: 'app',
     //     component: ApplicationAppListComponent
@@ -58,7 +53,7 @@ const routes: Routes = [
     //     path: 'themeconfig',
     //     component: ApplicationThemeConfigListComponent
     //   },
-    // ]
+    ]
   },
 ];
 @NgModule({
