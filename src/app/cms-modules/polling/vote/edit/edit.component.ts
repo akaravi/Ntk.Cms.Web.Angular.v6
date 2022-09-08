@@ -26,7 +26,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-news-comment-edit',
+  selector: 'app-polling-vote-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
