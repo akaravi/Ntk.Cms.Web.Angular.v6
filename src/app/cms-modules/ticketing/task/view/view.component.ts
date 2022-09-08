@@ -8,6 +8,7 @@ import {
   TicketingTaskService,
   TokenInfoModel,
   DataFieldInfoModel,
+  TicketingEnumService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -29,6 +30,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-ticketing-task-view',
   templateUrl: './view.component.html',
+  styleUrls: ['./view.component.scss'],
 })
 export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   requestId = 0;
@@ -40,6 +42,7 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
+    private ticketingEnumService: TicketingEnumService,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
@@ -55,8 +58,9 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
   dataModel: TicketingTaskModel = new TicketingTaskModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  
   fileManagerOpenForm = false;
 
   cmsApiStoreSubscribe: Subscription;
@@ -75,13 +79,14 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
     });
-    this.getEnumSendSmsStatusType();
+    this.getEnumTicketStatus();
   }
 
-  getEnumSendSmsStatusType(): void {
-    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
-      this.dataModelEnumSendSmsStatusTypeResult = next;
-    });
+  getEnumTicketStatus(): void {
+    this.ticketingEnumService.ServiceEnumTicketStatus().subscribe({
+      next: (ret) => {
+      this.dataModelEnumTicketStatusResult = ret;
+    }});
   }
 
   ngOnDestroy(): void {

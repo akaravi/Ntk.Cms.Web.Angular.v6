@@ -104,6 +104,7 @@ export class TicketingAnswerViewComponent implements OnInit, OnDestroy {
         // this.dataAccessModel = next.access;
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         this.dataModel = ret.item;
+        console.log(this.dataModel);
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
           this.formInfo.formAlert = '';

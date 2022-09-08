@@ -67,14 +67,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkTaskId}} </mat-cell>
       </ng-container>
-      <!-- RecordStatus Column -->
-      <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select> </mat-cell>
-      </ng-container>
        <!-- AnswerStatus Column -->
        <ng-container matColumnDef="AnswerStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AnswerStatus']?.fieldTitle}}

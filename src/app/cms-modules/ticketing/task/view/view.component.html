@@ -1,33 +1,82 @@
-<div class="ntk-cms-html-card-header">
-  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
-  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-</div>
-<div class="ntk-cms-html-card-body">
-  <app-progress-spinner [options]="loading"> </app-progress-spinner>
-  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+<p>مشاهده</p>
+<!-- Grid row -->
+<!--Table-->
+<table class="table table-striped center">
+  <!--Table head-->
+  <thead style="background-color: #81D4FA;">
+    <tr>
+      <th>پارامتر</th>
+      <th>مقادیر</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+  <!--Table body-->
+  <tbody>
+    <tr>
+      <td>{{fieldsInfo['Id']?.fieldTitle}}</td>
+      <td>{{ dataModel.id }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['LinkSiteId']?.fieldTitle}}</td>
+      <td>{{ dataModel.linkSiteId }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['TicketStatus']?.fieldTitle}}</td>
+      <td>{{dataModel.ticketStatus | enums : dataModelEnumTicketStatusResult.listItems}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['Title']?.fieldTitle}}</td>
+      <td>{{dataModel.title}}</td>
+    </tr>
+    <tr>
+      <td>{{'TITLE.Message_Text' | translate}}</td>
+      <td>{{dataModel.htmlBody}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['FullName']?.fieldTitle}}</td>
+      <td>{{dataModel.fullName}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['PhoneNo']?.fieldTitle}}</td>
+      <td>{{dataModel.phoneNo}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['CreatedDate']?.fieldTitle}}</td>
+      <td>{{ publicHelper.LocaleDate(dataModel.createdDate) }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['UpdatedDate']?.fieldTitle}}</td>
+      <td>{{ publicHelper.LocaleDate(dataModel.updatedDate) }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['Email']?.fieldTitle}}</td>
+      <td>{{dataModel.email}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['LinkCmsUserId']?.fieldTitle}}</td>
+      <td>{{dataModel.linkCmsUserId}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['LinkMemberUserId']?.fieldTitle}}</td>
+      <td>{{dataModel.linkMemberUserId}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['LinkTicketingDepartemenId']?.fieldTitle}}</td>
+      <td>{{dataModel.linkTicketingDepartemenId}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['TicketingDepartemenDefaultAnswerBody']?.fieldTitle}}</td>
+      <td>{{dataModel.ticketingDepartemenDefaultAnswerBody}}</td>
+    </tr>
+  </tbody>
+  <!--Table body-->
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-
-  <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
-
-  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-</div>
-<div class="ntk-cms-html-card-message">
-  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.formError }}
-    </small>
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
-  <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-</div>
-<div class="ntk-cms-html-card-footer">
-  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
-  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-    <button type="button" (click)="onFormCancel()" class="btn btn-light">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-    </button>
-  </div>
-  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-</div>

@@ -13,6 +13,9 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected.id>0" (click)="onActionbuttonViewRow()"
+      type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
+      translate}}</button>
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' |
@@ -67,25 +70,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
-
-
-      <!-- RecordStatus Column -->
-      <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
-          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
-            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select>
-        </mat-cell>
-      </ng-container>
-      <!-- TicketStatus Column -->
-      <ng-container matColumnDef="TicketStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TicketStatus']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ticketStatus | cmstitle : dataModelEnumTicketStatusResult.listItems}}
-        </mat-cell>
-      </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
@@ -100,6 +84,13 @@
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
+      </ng-container>
+      <!-- TicketStatus Column -->
+      <ng-container matColumnDef="TicketStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TicketStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.ticketStatus | enums : dataModelEnumTicketStatusResult.listItems}}
+        </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">

@@ -31,7 +31,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./edit.component.scss'],
 })
 export class PollingVoteEditComponent implements OnInit {
-  requestId = 0;
+  requestId = '';
   requestParentId = 0;
   requestContentId = 0;
   constructor(
@@ -46,7 +46,7 @@ export class PollingVoteEditComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId = +data.id || 0;
+      this.requestId = data.id || '';
       this.requestParentId = +data.parentId || 0;
       this.requestContentId = +data.contentId || 0;
     }
@@ -70,7 +70,7 @@ export class PollingVoteEditComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.requestId > 0) {
+    if (this.requestId.length > 0) {
       this.ComponentAction = ComponentActionEnum.edit;
       this.formInfo.formTitle = this.translate.instant('TITLE.Edit_Comment');
       this.DataGetOneContent();
@@ -89,7 +89,7 @@ export class PollingVoteEditComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    if (this.requestId <= 0) {
+    if (this.requestId.length <= 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }
