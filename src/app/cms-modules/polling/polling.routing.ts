@@ -41,7 +41,11 @@ const routes: Routes = [
         component: PollingVoteListComponent
       },
       {
-        path: 'vote/:ContentId',
+        path: 'vote/ContentId/:ContentId',
+        component: PollingVoteListComponent
+      },
+      {
+        path: 'vote/OptionId/:OptionId',
         component: PollingVoteListComponent
       },
     ]

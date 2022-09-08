@@ -40,6 +40,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class PollingVoteListComponent implements OnInit, OnDestroy {
   requestContentId = 0;
+  requestOptionId=0;
   constructor(
     private pollingVoteService: PollingVoteService,
     private activatedRoute: ActivatedRoute,
@@ -90,6 +91,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.requestContentId = + Number(this.activatedRoute.snapshot.paramMap.get('ContentId'));
+    this.requestOptionId = + Number(this.activatedRoute.snapshot.paramMap.get('OptionId'));
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -113,6 +115,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
         'LinkContentId'
       );
     }
+
     this.tableRowsSelected = [];
     this.tableRowSelected = new PollingVoteModel();
     const pName = this.constructor.name + 'main';
@@ -125,6 +128,12 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
       const filter = new FilterDataModel();
       filter.propertyName = 'LinkPollingContentId';
       filter.value = this.requestContentId;
+      filterModel.filters.push(filter);
+    }
+    if (this.requestOptionId > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkPollingOptionId';
+      filter.value = this.requestOptionId;
       filterModel.filters.push(filter);
     }
     this.pollingVoteService.setAccessLoad();
