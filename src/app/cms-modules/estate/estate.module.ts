@@ -126,7 +126,6 @@ import { EstateContractTypeHeaderComponent } from './contract-type/header/header
 import { EstateCustomerOrderHeaderComponent } from './customer-order/header/header.component';
 import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
 import { EstatePropertyActionComponent } from './property/action/action.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EstateAccountAgencyAdsAddComponent } from './account-agency-ads/add/add.component';
 import { EstateAccountAgencyAdsEditComponent } from './account-agency-ads/edit/edit.component';
 import { EstateAccountAgencyAdsListComponent } from './account-agency-ads/list/list.component';

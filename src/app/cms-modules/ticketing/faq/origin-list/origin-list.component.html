@@ -37,7 +37,7 @@
                             <app-progress-spinner [options]="loadingCat">
                             </app-progress-spinner>
                             <ng-container *ngFor="let departemenItem of dataDepartemenModelResult.listItems">
-                                <li class="navi-item mb-{{departemenItem.id}}">
+                                <li class="pointer navi-item mb-{{departemenItem.id}}">
                                     <a [class]="DataDepartemanLinkSelect===departemenItem.id? 'navi-link active':'navi-link'"
                                         data-toggle="tab" (click)="onActionbuttonDeparteman(departemenItem.id)">
                                         <span
