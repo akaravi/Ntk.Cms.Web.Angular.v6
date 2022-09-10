@@ -89,7 +89,8 @@
       <ng-container matColumnDef="TicketStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TicketStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.ticketStatus | enums : dataModelEnumTicketStatusResult.listItems}}
+        <mat-cell *matCellDef="let row"  [ngStyle]="{'background':publicHelper.RowStyleTicketStatus(row.ticketStatus) }">
+           {{row.ticketStatus | enums : dataModelEnumTicketStatusResult.listItems}}
         </mat-cell>
       </ng-container>
       <!-- Action Column -->

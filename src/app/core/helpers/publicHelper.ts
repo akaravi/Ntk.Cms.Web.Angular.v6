@@ -12,8 +12,10 @@ import {
   CoreSiteModel,
   CoreSiteService,
   DataFieldInfoModel,
+  EnumAnswerStatus,
   EnumInfoModel,
   EnumManageUserAccessUserTypes,
+  EnumTicketStatus,
   ErrorExceptionResult,
   ErrorExceptionResultBase,
   TokenInfoModel,
@@ -311,6 +313,32 @@ export class PublicHelper {
       return '#d7ff91';
     }
     return '#91ffa5';
+  }
+  RowStyleTicketStatus(row: EnumTicketStatus): string {
+
+    if (row == EnumTicketStatus.Answered) {
+      return '#91ffa5';
+    }
+    if (row == EnumTicketStatus.Read) {
+      return '#FFFF99';
+    }
+    if (row == EnumTicketStatus.Ended) {
+      return '#CCCCCC';
+    }
+    return '#fc6868';
+  }
+  RowStyleAnswerStatus(row: EnumAnswerStatus): string {
+
+    if (row == EnumAnswerStatus.Answered) {
+      return '#91ffa5';
+    }
+    if (row == EnumAnswerStatus.Read) {
+      return '#FFFF99';
+    }
+    if (row == EnumAnswerStatus.Ended) {
+      return '#CCCCCC';
+    }
+    return '#fc6868';
   }
   generateId(): string {
     const timestamp = (new Date().getTime() / 1000 | 0).toString(16);

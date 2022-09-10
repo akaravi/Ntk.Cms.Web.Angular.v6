@@ -8,13 +8,13 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  NtkCmsApiStoreService,
   TokenInfoModel,
   TicketingDepartemenModel,
   EnumRecordStatus,
   DataFieldInfoModel,
   TicketingEnumService,
-  EnumInfoModel
+  EnumInfoModel,
+  ErrorExceptionResultBase
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -82,11 +82,10 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   categoryModelSelected: TicketingDepartemenModel;
   dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   tabledisplayedColumns: string[] = [
-    'Id',
-    'TicketStatus',
     'Title',
     'CreatedDate',
     'UpdatedDate',
+    'TicketStatus',
     'Action'
   ];
 
@@ -117,8 +116,9 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   getEnumTicketStatus(): void {
     this.ticketingEnumService.ServiceEnumTicketStatus().subscribe({
       next: (ret) => {
-      this.dataModelEnumTicketStatusResult = ret;
-    }});
+        this.dataModelEnumTicketStatusResult = ret;
+      }
+    });
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
@@ -232,18 +232,32 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    
+
     this.tableRowSelected = mode;
 
 
-    const dialogRef = this.dialog.open(TicketingTaskViewComponent, { 
+    const dialogRef = this.dialog.open(TicketingTaskViewComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {        
+      if (result && result.dialogChangedDate) {
       }
     });
   }
+
+  // this.contentService.ServiceExportFile(model).subscribe({
+  //   next: (ret) => {
+  //     if (ret.isSuccess) {
+  //       exportlist.set('Download', ret.linkFile);
+  //       this.optionsExport.childMethods.setExportLinkFile(exportlist);
+  //     }
+  //   },
+  //   error: (er) => {
+  //     this.cmsToastrService.typeError(er);
+  //   }
+  // });
 
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
     this.filteModelContent = new FilterModel();

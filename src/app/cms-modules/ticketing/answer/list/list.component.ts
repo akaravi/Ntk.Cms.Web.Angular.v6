@@ -82,11 +82,11 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   dataModelEnumAnswerStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   tabledisplayedColumns: string[] = [
     'Id',
-    'AnswerStatus',
     'LinkTaskId',
     'LinkMemberUserId',
     'CreatedDate',
     'UpdatedDate',
+    'AnswerStatus',
     'Action'
   ];
 

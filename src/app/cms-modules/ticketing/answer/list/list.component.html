@@ -16,7 +16,8 @@
       type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#categoryModal">{{'ACTION.VIEW' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
@@ -67,13 +68,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkTaskId}} </mat-cell>
       </ng-container>
-       <!-- AnswerStatus Column -->
-       <ng-container matColumnDef="AnswerStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AnswerStatus']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.answerStatus | cmstitle : dataModelEnumAnswerStatusResult.listItems}}
-        </mat-cell>
-      </ng-container>
       <!-- LinkMemberUserId Column -->
       <ng-container matColumnDef="LinkMemberUserId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberUserId']?.fieldTitle}}
@@ -91,12 +85,21 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
+      <!-- AnswerStatus Column -->
+      <ng-container matColumnDef="AnswerStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AnswerStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleAnswerStatus(row.ticketStatus) }">
+          {{row.answerStatus | enums : dataModelEnumAnswerStatusResult.listItems}}
+        </mat-cell>
+      </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
           <!-- Action Menu -->
-          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu"
+            [disabled]="!dataModelResult.access.accessEditRow && !dataModelResult.access.accessDeleteRow">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">

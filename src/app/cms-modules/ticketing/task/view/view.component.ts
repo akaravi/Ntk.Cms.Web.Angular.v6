@@ -9,6 +9,7 @@ import {
   TokenInfoModel,
   DataFieldInfoModel,
   TicketingEnumService,
+  ErrorExceptionResultBase,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -60,6 +61,7 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  dataTaskReadedResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   
   fileManagerOpenForm = false;
 
@@ -112,6 +114,13 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
           this.formInfo.formAlert = '';
+
+
+
+          this.dataTaskReaded(this.requestId);
+
+
+
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -128,6 +137,16 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
     );
   }
 
+  dataTaskReaded(id: number) {
+    this.ticketingTaskService.ServiceTaskReaded(id).subscribe({
+      next: (ret) => {
+        // console.log('ret',ret);
+        if (ret.isSuccess) {
+          this.dataTaskReadedResult = ret;
+        }
+      }
+    });;
+  }
 
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
