@@ -1,0 +1,157 @@
+<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
+  <ng-container cms-tree>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+    <app-member-propertydetailgroup-tree (optionChange)="onActionSelectorSelect($event)"
+      [optionLinkPropertyTypeId]="requestLinkPropertyTypeId"></app-member-propertydetailgroup-tree>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+  </ng-container>
+  <ng-container cms-header>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </ng-container>
+  <ng-container cms-action>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    <button *ngIf="dataModelResult.access.accessAddRow && categoryModelSelected?.id.length>0 "
+      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
+      translate}}</button>
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
+
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
+    </a>
+
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
+      </mat-slide-toggle>
+    </a>
+    <a class="btn btn-outline-info btn-sm BTN">
+      <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
+      </mat-slide-toggle>
+    </a>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    </button>
+    <!-- <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
+      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button> -->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
+  </ng-container>
+  <ng-container cms-action-area>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+    <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
+    <app-cms-export-list [(options)]="optionsExport"></app-cms-export-list>
+    <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+  </ng-container>
+  <ng-container cms-body>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+      <!-- ID Column -->
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+      <!-- IconFont Column -->
+      <ng-container matColumnDef="IconFont">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IconFont']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"><i [ngClass]="row.iconFont" [style.color]="row.iconColor"
+            aria-hidden="true"></i></mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="Title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      </ng-container>
+      <!-- Unit Column -->
+      <ng-container matColumnDef="Unit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Unit']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.unit}} </mat-cell>
+      </ng-container>
+
+      <!-- ShowInFormOrder Column -->
+      <ng-container matColumnDef="ShowInFormOrder">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInFormOrder']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.showInFormOrder}} </mat-cell>
+      </ng-container>
+      <!-- LinkPropertyTypeId Column -->
+      <ng-container matColumnDef="LinkPropertyTypeId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkPropertyTypeId| cmstitle:
+          dataModelMemberPropertyTypeResult.listItems}} </mat-cell>
+      </ng-container>
+      <!-- LinkPropertyDetailGroupId Column -->
+      <ng-container matColumnDef="LinkPropertyDetailGroupId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyDetailGroupId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkPropertyDetailGroupId| cmstitle:
+          dataModelMemberPropertyDetailGroupResult.listItems}} </mat-cell>
+      </ng-container>
+
+
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
+        <mat-cell *matCellDef="let row" class=' Action'>
+
+          <!-- Action Menu -->
+          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #actionMenu="matMenu">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
+              <mat-icon>mode_edit</mat-icon>
+              <span>{{'ACTION.EDIT' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
+              <mat-icon>delete_forever</mat-icon>
+              <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonContentList(row)">
+              <mat-icon>list</mat-icon>
+              <span>{{'ACTION.PRODUCTS' | translate}}</span>
+            </button>
+
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+      <!-- position Column -->
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>.
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon style="pointer-events: all;" cdkDragHandle>reorder</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+    </mat-table>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </ng-container>
+  <ng-container cms-footer>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
+      [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </ng-container>
+</app-cms-html-list>

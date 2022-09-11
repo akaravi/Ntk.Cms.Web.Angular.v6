@@ -1,0 +1,155 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+    <!-- LinkPropertyTypeId Field -->
+    <!-- <app-member-propertytypelanduse-selector (optionChange)="onActionSelectorSelect($event)"
+      [optionSelectForce]="dataModel.LinkPropertyTypeId" [optionPlaceholder]="'کاربری'"
+      [optionDisabled]="!fieldsInfo['LinkPropertyTypeId']?.accessEditField">
+    </app-member-propertytypelanduse-selector> -->
+
+
+
+    <!-- LinkPropertyDetailGroupId Field -->
+    <app-member-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"
+      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
+      [optionDisabled]="!fieldsInfo['LinkPropertyDetailGroupId']?.accessEditField">
+    </app-member-propertydetailgroup-selector>
+    <!-- IconFont Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
+      <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.iconFont" name="dataModel.iconFont" #IconFont
+        [iconPicker]="dataModel.iconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
+        (iconPickerSelect)="onIconPickerSelect($event)" type="text"
+        [disabled]="!fieldsInfo['IconFont']?.accessEditField" placeholder="{{fieldsInfo['IconFont']?.fieldTitle}}" />
+      <span class="input-group-addon"><i [ngClass]="dataModel.iconFont"></i></span>
+      <mat-icon>{{dataModel.iconFont}}</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.iconFont" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.iconFont = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- ShowInFormOrder Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInFormOrder']?.accessWatchField">
+      <mat-label> {{fieldsInfo['ShowInFormOrder']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.showInFormOrder" name="dataModel.showInFormOrder" #ShowInFormOrder
+        type="number" [disabled]="!fieldsInfo['ShowInFormOrder']?.accessEditField"
+        placeholder="{{fieldsInfo['ShowInFormOrder']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.showInFormOrder" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.showInFormOrder = 1">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- InputDataType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.inputDataType" name="dataModel.inputDataType"
+        #InputDataType="ngModel" panelClass="InputDataType-{{ dataModel.inputDataType }}">
+        <mat-option *ngFor="
+                      let item of dataModelEnumInputDataTypeResult.listItems;
+                      index as i
+                    " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- Unit Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Unit']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.unit" name="dataModel.unit" #Unit type="text"
+        placeholder="{{fieldsInfo['Unit']?.fieldTitle}}" minlength="1" maxlength="64" />
+      <mat-icon matSuffix *ngIf="dataModel.unit" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.unit = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Unit.value.length }} / 64</mat-hint>
+
+    </mat-form-field>
+
+    <!-- InvisibleForEndUser Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.invisibleForEndUser"
+        *ngIf="fieldsInfo['InvisibleForEndUser']?.accessWatchField"
+        [disabled]="!fieldsInfo['InvisibleForEndUser']?.accessEditField" name="dataModel.invisibleForEndUser">
+        {{fieldsInfo['InvisibleForEndUser']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- InvisibleForSubmiter Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.invisibleForSubmiter"
+        *ngIf="fieldsInfo['InvisibleForSubmiter']?.accessWatchField"
+        [disabled]="!fieldsInfo['InvisibleForSubmiter']?.accessEditField" name="dataModel.invisibleForSubmiter">
+        {{fieldsInfo['InvisibleForSubmiter']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- Required Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.required" *ngIf="fieldsInfo['Required']?.accessWatchField"
+        [disabled]="!fieldsInfo['Required']?.accessEditField" name="dataModel.required">
+        {{fieldsInfo['Required']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- IsHistoryable Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.isHistoryable" *ngIf="fieldsInfo['IsHistoryable']?.accessWatchField"
+        [disabled]="!fieldsInfo['IsHistoryable']?.accessEditField" name="dataModel.isHistoryable">
+        {{fieldsInfo['IsHistoryable']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+
+    <mat-form-field style="width: 100%;" appearance="fill">
+      <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
+      <mat-chip-list #chipList aria-label="کلمه کلیدی">
+        <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
+          {{item}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input placeholder="کلمه کلیدی +"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlurTag"
+               (matChipInputTokenEnd)="addTag($event)">
+      </mat-chip-list>
+    </mat-form-field>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

@@ -4,6 +4,9 @@ import { MemberGroupAddComponent } from './group/add/add.component';
 import { MemberGroupEditComponent } from './group/edit/edit.component';
 import { MemberGroupListComponent } from './group/list/list.component';
 import { MemberComponent } from './member.component';
+import { MemberPropertyAliasListComponent } from './property-alias/list/list.component';
+import { MemberPropertyDetailGroupListComponent } from './property-detail-group/list/list.component';
+import { MemberPropertyDetailListComponent } from './property-detail/list/list.component';
 const routes: Routes = [
   {
     path: '',
@@ -12,6 +15,22 @@ const routes: Routes = [
       {
         path: 'group',
         component: MemberGroupListComponent
+      },
+      {
+        path: 'property-alias',
+        component: MemberPropertyAliasListComponent
+      },
+      {
+        path: 'property-detail-group',
+        component: MemberPropertyDetailGroupListComponent
+      },
+      {
+        path: 'property-detail',
+        component: MemberPropertyDetailListComponent
+      },
+      {
+        path: 'property-detail/LinkPropertyId/:LinkPropertyId',
+        component: MemberPropertyDetailListComponent
       },
     //   {
     //     path: 'app',

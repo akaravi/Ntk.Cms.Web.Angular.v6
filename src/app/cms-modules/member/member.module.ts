@@ -39,6 +39,24 @@ import { MemberGroupDeleteComponent } from './group/delete/delete.component';
 import { MemberGroupSelectorComponent } from './group/selector/selector.component';
 import { MemberGroupHeaderComponent } from './group/header/header.component';
 import { MemberGroupTreeComponent } from './group/tree/tree.component';
+import { MemberPropertyAliasAddComponent } from './property-alias/add/add.component';
+import { MemberPropertyAliasDeleteComponent } from './property-alias/delete/delete.component';
+import { MemberPropertyAliasEditComponent } from './property-alias/edit/edit.component';
+import { MemberPropertyAliasHeaderComponent } from './property-alias/header/header.component';
+import { MemberPropertyAliasTreeComponent } from './property-alias/tree/tree.component';
+import { MemberPropertyAliasListComponent } from './property-alias/list/list.component';
+import { MemberPropertyAliasSelectorComponent } from './property-alias/selector/selector.component';
+import { MemberPropertyDetailGroupAddComponent } from './property-detail-group/add/add.component';
+import { MemberPropertyDetailGroupEditComponent } from './property-detail-group/edit/edit.component';
+import { MemberPropertyDetailGroupListComponent } from './property-detail-group/list/list.component';
+import { MemberPropertyDetailGroupSelectorComponent } from './property-detail-group/selector/selector.component';
+import { MemberPropertyDetailGroupTreeComponent } from './property-detail-group/tree/tree.component';
+import { IconPickerModule } from 'ngx-icon-picker';
+import { MemberPropertyDetailAddComponent } from './property-detail/add/add.component';
+import { MemberPropertyDetailEditComponent } from './property-detail/edit/edit.component';
+import { MemberPropertyDetailListComponent } from './property-detail/list/list.component';
+import { MemberPropertyDetailSelectorComponent } from './property-detail/selector/selector.component';
+import { MemberPropertyDetailTreeComponent } from './property-detail/tree/tree.component';
 @NgModule({
   declarations: [
     MemberComponent,
@@ -50,6 +68,26 @@ import { MemberGroupTreeComponent } from './group/tree/tree.component';
     MemberGroupHeaderComponent,
     MemberGroupSelectorComponent,
     MemberGroupTreeComponent,
+    /* */
+    MemberPropertyAliasListComponent,
+    MemberPropertyAliasAddComponent,
+    MemberPropertyAliasEditComponent,
+    MemberPropertyAliasDeleteComponent,
+    MemberPropertyAliasHeaderComponent,
+    MemberPropertyAliasSelectorComponent,
+    MemberPropertyAliasTreeComponent,
+    /* */
+    MemberPropertyDetailGroupListComponent,
+    MemberPropertyDetailGroupAddComponent,
+    MemberPropertyDetailGroupEditComponent,
+    MemberPropertyDetailGroupSelectorComponent,
+    MemberPropertyDetailGroupTreeComponent,
+    /* */
+    MemberPropertyDetailListComponent,
+    MemberPropertyDetailAddComponent,
+    MemberPropertyDetailEditComponent,
+    MemberPropertyDetailSelectorComponent,
+    MemberPropertyDetailTreeComponent,
     /* */
   ],
   imports: [
@@ -63,6 +101,7 @@ import { MemberGroupTreeComponent } from './group/tree/tree.component';
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
+    IconPickerModule,
   ],
   providers: [
     CoreModuleService,

@@ -114,13 +114,8 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
           this.formInfo.formAlert = '';
-
-
-
+          
           this.dataTaskReaded(this.requestId);
-
-
-
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;

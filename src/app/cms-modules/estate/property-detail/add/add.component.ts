@@ -29,7 +29,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
-  selector: 'app-ticketing-departemen-add',
+  selector: 'app-estate-propertydetail-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })

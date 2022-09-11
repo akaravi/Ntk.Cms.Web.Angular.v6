@@ -25,7 +25,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-ticketing-departemen-add',
+  selector: 'app-estate-propertydetailgroup-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })

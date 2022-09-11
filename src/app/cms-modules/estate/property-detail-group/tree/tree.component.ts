@@ -30,7 +30,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-estate-detailgroup-tree',
+  selector: 'app-estate-propertydetailgroup-tree',
   templateUrl: './tree.component.html'
 })
 export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy {

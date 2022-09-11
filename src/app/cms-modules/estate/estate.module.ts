@@ -58,7 +58,6 @@ import { EstatePropertyDetailGroupEditComponent } from './property-detail-group/
 import { EstatePropertyDetailGroupListComponent } from './property-detail-group/list/list.component';
 import { EstatePropertyDetailGroupSelectorComponent } from './property-detail-group/selector/selector.component';
 import { EstatePropertyDetailGroupTreeComponent } from './property-detail-group/tree/tree.component';
-import { IconPickerModule } from 'ngx-icon-picker';
 import { EstateAccountAgencyAddComponent } from './account-agency/add/add.component';
 import { EstateAccountAgencyEditComponent } from './account-agency/edit/edit.component';
 import { EstateAccountAgencyListComponent } from './account-agency/list/list.component';
@@ -84,6 +83,7 @@ import { EstatePropertyDetailSelectorComponent } from './property-detail/selecto
 import { EstatePropertyDetailTreeComponent } from './property-detail/tree/tree.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { IconPickerModule } from 'ngx-icon-picker';
 import { EstatePropertyTypeLanduseAddComponent } from './property-type-landuse/add/add.component';
 import { EstatePropertyTypeLanduseEditComponent } from './property-type-landuse/edit/edit.component';
 import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/list/list.component';
