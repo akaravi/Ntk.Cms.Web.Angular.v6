@@ -70,6 +70,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
+    
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
@@ -81,6 +82,24 @@
           </select>
         </mat-cell>
       </ng-container>
+           <!-- IsPublic Column -->
+           <ng-container matColumnDef="IsPublic">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsPublic']?.fieldTitle}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">  <i [ngClass]="row.isPublic | boolclass"></i> </mat-cell>
+          </ng-container>
+        <!-- CurrentViewCount Column -->
+        <ng-container matColumnDef="CurrentViewCount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentViewCount']?.fieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.currentViewCount}} </mat-cell>
+        </ng-container>
+        <!-- CurrentClickCount Column -->
+        <ng-container matColumnDef="CurrentClickCount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentClickCount']?.fieldTitle}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.currentClickCount}} </mat-cell>
+        </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>

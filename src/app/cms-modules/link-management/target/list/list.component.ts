@@ -76,6 +76,9 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
+    'IsPublic',
+    'CurrentViewCount',
+    'CurrentClickCount',
     'CreatedDate',
     'UpdatedDate',
     'Action'
