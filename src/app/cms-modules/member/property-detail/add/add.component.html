@@ -109,6 +109,13 @@
         {{fieldsInfo['IsHistoryable']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
+    <!-- IsSearchable Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.isSearchable" *ngIf="fieldsInfo['IsSearchable']?.accessWatchField"
+        [disabled]="!fieldsInfo['IsSearchable']?.accessAddField" name="dataModel.isSearchable">
+        {{fieldsInfo['IsSearchable']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
 
     <mat-form-field style="width: 100%;" appearance="fill">
       <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>

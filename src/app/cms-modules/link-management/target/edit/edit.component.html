@@ -32,7 +32,7 @@
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
         </app-linkmanagement-billboard-pattern-selector>
 
 
@@ -92,11 +92,11 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
-            placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="100" />
+            placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="700" />
           <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.toWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ ToWebAddress.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ ToWebAddress.value.length }} / 700</mat-hint>
           <mat-error *ngIf="ToWebAddress.errors?.required">
             ToWebAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

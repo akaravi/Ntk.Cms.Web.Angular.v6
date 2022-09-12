@@ -31,6 +31,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-linkmanagement-target-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 
 })
 export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
@@ -45,7 +46,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -74,7 +75,6 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
-    'Title',
     'CreatedDate',
     'UpdatedDate',
     'Action'
@@ -98,7 +98,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementTargetModel();
     const pName = this.constructor.name + 'main';
@@ -121,7 +121,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-      
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
@@ -306,7 +306,19 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: LinkManagementTargetModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
   }
+  onActionTableRowMouseEnter(row: LinkManagementTargetModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: LinkManagementTargetModel): void {
+    row["expanded"] = false;
+  }
+  expandedElement: any;
 
 
   onActionbuttonLog(model: LinkManagementTargetModel = this.tableRowSelected): void {
