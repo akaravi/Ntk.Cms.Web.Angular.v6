@@ -59,6 +59,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortType = EnumSortType.Descending;
 
   }
+  categorySelected: string = '';
   filteModelContent = new FilterModel();
   categoryModelSelected: LinkManagementTargetCategoryModel;
   dataModelResult: ErrorExceptionResult<LinkManagementTargetModel> = new ErrorExceptionResult<LinkManagementTargetModel>();
@@ -167,7 +168,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
   onActionSelectorSelect(model: LinkManagementTargetCategoryModel | null): void {
     this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
-
+    this.categorySelected = this.categoryModelSelected.title
     this.DataGetAll();
   }
 
