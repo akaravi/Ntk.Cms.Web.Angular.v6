@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 
-import { CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogReportAbuseEditComponent } from './report-abuse/edit/edit.component';
 import { CoreModuleLogReportAbuseViewComponent } from './report-abuse/view/view.component';
@@ -31,6 +31,9 @@ import { CoreModuleLogMemoListComponent } from './memo/list/list.component';
 import { CoreModuleLogMemoEditComponent } from './memo/edit/edit.component';
 import { CoreModuleLogMemoViewComponent } from './memo/view/view.component';
 import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
+import { CoreModuleLogContentCountEditComponent } from './content-count/edit/edit.component';
+import { CoreModuleLogContentCountListComponent } from './content-count/list/list.component';
+import { CoreModuleLogContentCountViewComponent } from './content-count/view/view.component';
 
 
 
@@ -43,7 +46,7 @@ import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CmsFileManagerModule
   ],
   declarations: [
@@ -61,6 +64,10 @@ import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
     CoreModuleLogFavoriteListComponent,
     CoreModuleLogFavoriteEditComponent,
     CoreModuleLogFavoriteViewComponent,
+    /**ContentCount */
+    CoreModuleLogContentCountListComponent,
+    CoreModuleLogContentCountEditComponent,
+    CoreModuleLogContentCountViewComponent,
     /**Like */
     CoreModuleLogLikeListComponent,
     CoreModuleLogLikeEditComponent,
@@ -93,6 +100,10 @@ import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
     CoreModuleLogFavoriteListComponent,
     CoreModuleLogFavoriteEditComponent,
     CoreModuleLogFavoriteViewComponent,
+    /**ContentCount */
+    CoreModuleLogContentCountListComponent,
+    CoreModuleLogContentCountEditComponent,
+    CoreModuleLogContentCountViewComponent,
     /**Like */
     CoreModuleLogLikeListComponent,
     CoreModuleLogLikeEditComponent,
@@ -117,6 +128,7 @@ import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
     CoreModuleSiteCreditService,
     CoreModuleSiteUserCreditService,
     CoreModuleLogFavoriteService,
+    CoreModuleLogContentCountService,
     CoreModuleLogLikeService,
     CoreModuleLogMemoService,
     CoreModuleLogReportAbuseService,

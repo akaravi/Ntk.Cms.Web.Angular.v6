@@ -108,7 +108,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
     'Id',
     'LinkSiteId',
     'LinkUserId',
-    'LinkMemberUserId',
+    'LinkMemberId',
     'UserAccessAreaType',
     'UsedUsername',
     'CreatedDate',
@@ -387,7 +387,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Content_does_not_include_device_information'));
       return;
     }
-    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
+    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberId]);
   }
 
   onActionbuttonViewSiteRow(model: CoreTokenUserBadLoginModel = this.tableRowSelected): void {

@@ -9,6 +9,7 @@ import {
   TokenInfoModel,
   NtkCmsApiStoreService,
   DataFieldInfoModel,
+  CoreLocationModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -111,6 +112,15 @@ export class ApplicationMemberInfoViewComponent implements OnInit, OnDestroy {
       }
     }
     );
+  }
+  onActionSelectorLocation(model: CoreLocationModel | null): void {
+    if (!model || !model.id || model.id <= 0) {
+      const message = this.translate.instant('MESSAGE.Information_area_deleted');
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.linkLocationId = null;
+      return;
+    }
+    this.dataModel.linkLocationId = model.id;
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

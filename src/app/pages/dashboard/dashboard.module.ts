@@ -26,7 +26,8 @@ import {
   CoreUserClaimTypeService,
   CoreUserService,
   EstatePropertyService,
-  NewsContentService
+  NewsContentService,
+  WebDesignerLogMemberInfoService
 } from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -48,10 +49,14 @@ import { EstatePropertyWidgetAddComponent } from 'src/app/cms-modules/estate/pro
 import { CoreUserClaimContentWidgetStatusComponent } from 'src/app/cms-modules/core-main/user-claim/content/widget/widget-status.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CoreModuleLogReportAbuseWidget2Component } from 'src/app/cms-modules/core-module-log/report-abuse/widget/widget2.component';
+import { WebDesignerLogMemberInfoWidgetComponent } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget.component';
+import { WebDesignerLogMemberInfoWidget2Component } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget2.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
+    WebDesignerLogMemberInfoWidgetComponent,
+    WebDesignerLogMemberInfoWidget2Component,
     ApplicationAppWidgetComponent,
     ApplicationAppWidget2Component,
     ApplicationAppWidgetCreateComponent,
@@ -99,6 +104,7 @@ import { CoreModuleLogReportAbuseWidget2Component } from 'src/app/cms-modules/co
   ],
   providers: [
     PublicHelper,
+    WebDesignerLogMemberInfoService,
     ApplicationAppService,
     ApplicationMemberInfoService,
     NewsContentService,

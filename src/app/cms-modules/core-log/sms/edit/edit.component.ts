@@ -28,7 +28,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-core-site-domainalias-edit',
+  selector: 'app-core-log-sms-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

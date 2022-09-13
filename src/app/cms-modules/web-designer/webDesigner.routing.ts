@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WebDesignerConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { WebDesignerConfigSiteComponent } from './config/site/config-site.component';
 import { WebDesignerMainIntroAddComponent } from './intro/add/add.component';
 import { WebDesignerMainIntroEditComponent } from './intro/edit/edit.component';
 import { WebDesignerMainIntroListComponent } from './intro/list/list.component';
+import { WebDesignerLogMemberInfoListComponent } from './log-member-info/list/list.component';
 import { WebDesignerMainMenuListComponent } from './menu/list/list.component';
 import { WebDesignerMainPageDependencyListComponent } from './page-dependency/list/list.component';
 import { WebDesignerMainPageTemplateListComponent } from './page-template/list/list.component';
@@ -49,6 +48,11 @@ const routes: Routes = [
       {
         path: 'menu',
         component: WebDesignerMainMenuListComponent
+      },
+      /** */
+      {
+        path: 'logmemberinfo',
+        component: WebDesignerLogMemberInfoListComponent
       },
       /** */
       {

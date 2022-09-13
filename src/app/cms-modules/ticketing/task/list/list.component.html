@@ -70,6 +70,12 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
+      <!-- LinkMemberId Column -->
+      <ng-container matColumnDef="LinkMemberId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
+      </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
@@ -89,8 +95,8 @@
       <ng-container matColumnDef="TicketStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TicketStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"  [ngStyle]="{'background':publicHelper.RowStyleTicketStatus(row.ticketStatus) }">
-           {{row.ticketStatus | enums : dataModelEnumTicketStatusResult.listItems}}
+        <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleTicketStatus(row.ticketStatus) }">
+          {{row.ticketStatus | enums : dataModelEnumTicketStatusResult.listItems}}
         </mat-cell>
       </ng-container>
       <!-- Action Column -->

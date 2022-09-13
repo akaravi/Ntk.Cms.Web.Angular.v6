@@ -83,7 +83,7 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [
     'Id',
     'LinkTaskId',
-    'LinkMemberUserId',
+    'LinkMemberId',
     'CreatedDate',
     'UpdatedDate',
     'AnswerStatus',

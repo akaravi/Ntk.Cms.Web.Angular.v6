@@ -12,15 +12,22 @@ import {
   CoreLogCurrencyService,
   CoreLogErrorService,
   CoreLogSmsService,
+  CoreLogMemberService,
   CoreModuleService,
+  CoreLogAvoidDuplicateDataEntryService,
 } from 'ntk-cms-api';
 import { CoreLogSmsListComponent } from './sms/list/list.component';
-import { CoreLogErrorEditComponent } from './error/edit/edit.component';
-import { CoreLogErrorListComponent } from './error/list/list.component';
 import { CoreLogSmsEditComponent } from './sms/edit/edit.component';
 import { CoreLogSmsViewComponent } from './sms/view/view.component';
+import { CoreLogMemberListComponent } from './member/list/list.component';
+import { CoreLogMemberEditComponent } from './member/edit/edit.component';
+import { CoreLogMemberViewComponent } from './member/view/view.component';
+import { CoreLogErrorEditComponent } from './error/edit/edit.component';
+import { CoreLogErrorListComponent } from './error/list/list.component';
 import { CoreLogCurrencyListComponent } from './currency/list/list.component';
 import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
+import { CoreLogAvoidDuplicateDataEntryListComponent } from './avoid-duplicate/list/list.component';
+import { CoreLogAvoidDuplicateDataEntryEditComponent } from './avoid-duplicate/edit/edit.component';
 
 
 
@@ -30,10 +37,10 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CmsFileManagerModule
   ],
   declarations: [
@@ -43,8 +50,15 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     CoreLogSmsEditComponent,
     CoreLogSmsViewComponent,
     /** */
+    CoreLogMemberListComponent,
+    CoreLogMemberEditComponent,
+    CoreLogMemberViewComponent,
+    /** */
     CoreLogErrorListComponent,
     CoreLogErrorEditComponent,
+    /** */
+    CoreLogAvoidDuplicateDataEntryListComponent,
+    CoreLogAvoidDuplicateDataEntryEditComponent,
     /** */
     CoreLogCurrencyListComponent,
     CoreLogCurrencyViewComponent,
@@ -56,8 +70,15 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     CoreLogSmsEditComponent,
     CoreLogSmsViewComponent,
     /** */
+    CoreLogMemberListComponent,
+    CoreLogMemberEditComponent,
+    CoreLogMemberViewComponent,
+    /** */
     CoreLogErrorListComponent,
     CoreLogErrorEditComponent,
+    /** */
+    CoreLogAvoidDuplicateDataEntryListComponent,
+    CoreLogAvoidDuplicateDataEntryEditComponent,
     /** */
     CoreLogCurrencyListComponent,
     CoreLogCurrencyViewComponent,
@@ -66,7 +87,9 @@ import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
     CoreModuleService,
     CoreLogErrorService,
     CoreLogSmsService,
+    CoreLogMemberService,
     CoreLogCurrencyService,
+    CoreLogAvoidDuplicateDataEntryService,
   ]
 })
 export class CoreLogModule { }

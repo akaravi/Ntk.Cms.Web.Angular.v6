@@ -1,0 +1,50 @@
+<form  #vform="ngForm">
+    <div class="ntk-cms-html-card-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.formTitle }}
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+	<app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  
+        <!-- LinkCoreUserId Field -->
+        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkCoreUserId"
+          [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+          
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>Description</mat-label>
+          <input matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+            placeholder="Description" />
+          <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.description = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+  
+  
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataModel | prettyjson"></div>
+        </div>
+  
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+     </div>
+	 <div class="ntk-cms-html-card-message">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.formError }}
+        </small>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </div>
+    <div class="ntk-cms-html-card-footer">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+        <button type="button" (click)="onFormCancel()" class="btn btn-light">
+          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
+</form>

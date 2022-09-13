@@ -14,6 +14,7 @@ import {
   CoreModuleTagService,
   CoreSiteCategoryService,
   WebDesignerEnumService,
+  WebDesignerLogMemberInfoService,
   WebDesignerLogPageSafeService,
   WebDesignerMainIntroService,
   WebDesignerMainMenuService,
@@ -58,6 +59,9 @@ import { WebDesignerMainPageTemplateHeaderComponent } from './page-template/head
 import { CoreModuleModule } from '../core-main/module/coreModule.module';
 import { WebDesignerMainPageDependencyAutoAddPageComponent } from './page-dependency/auto-add-page/auto-add-page.component';
 import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid.component';
+import { WebDesignerLogMemberInfoListComponent } from './log-member-info/list/list.component';
+import { WebDesignerLogMemberInfoSelectorComponent } from './log-member-info/selector/selector.component';
+import { WebDesignerLogMemberInfoViewComponent } from './log-member-info/view/view.component';
 @NgModule({
   declarations: [
     WebDesignerComponent,
@@ -99,6 +103,10 @@ import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid
     WebDesignerMainPageTreeComponent,
     WebDesignerMainPageHeaderComponent,
     /** */
+    WebDesignerLogMemberInfoListComponent,
+    WebDesignerLogMemberInfoSelectorComponent,
+    WebDesignerLogMemberInfoViewComponent,
+    /** */
   ],
   imports: [
     CommonModule,
@@ -124,6 +132,7 @@ import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid
     CoreModuleTagService,
     CoreSiteCategoryService,
     WebDesignerLogPageSafeService,
+    WebDesignerLogMemberInfoService,
     WebDesignerMainIntroService,
     WebDesignerMainMenuService,
     WebDesignerMainPageService,

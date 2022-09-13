@@ -6,7 +6,7 @@
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
@@ -14,26 +14,31 @@
     <button *ngIf="dataModelResult.access.accessAddRow && this.requestContentId>0" (click)="onActionbuttonNewRow()"
       type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
 
     <a class="btn btn-outline-info btn-sm BTN">
-      <mat-slide-toggle  (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
+      <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN"><mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
-    <button (click)="onActionBackToParent()" type="button" class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-   
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    </button>
+    <button (click)="onActionBackToParent()" type="button" class="btn btn-outline-success BTN">{{'ACTION.BACK' |
+      translate}}</button>
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -54,8 +59,15 @@
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i> </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i> </mat-cell>
+      </ng-container>
+      <!-- LinkMemberId Column -->
+      <ng-container matColumnDef="LinkMemberId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
@@ -97,10 +109,10 @@
   </ng-container>
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    
+
     <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
-    [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
-    [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
+      [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>

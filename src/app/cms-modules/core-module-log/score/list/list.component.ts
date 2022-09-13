@@ -39,7 +39,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkUserId = 0;
-  requestlinkMemberUserId = 0;
+  requestlinkMemberId = 0;
   constructor(
     private coreEnumService: CoreEnumService,
     public contentService: CoreModuleLogScoreService,
@@ -57,7 +57,7 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
-    this.requestlinkMemberUserId = + Number(this.activatedRoute.snapshot.paramMap.get('linkMemberUserId'));
+    this.requestlinkMemberId = + Number(this.activatedRoute.snapshot.paramMap.get('linkMemberId'));
 
     if (this.requestLinkSiteId > 0) {
       const filter = new FilterDataModel();
@@ -71,10 +71,10 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
       filter.value = this.requestLinkUserId;
       this.filteModelContent.filters.push(filter);
     }
-    if (this.requestlinkMemberUserId > 0) {
+    if (this.requestlinkMemberId > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'linkMemberUserId';
-      filter.value = this.requestlinkMemberUserId;
+      filter.propertyName = 'linkMemberId';
+      filter.value = this.requestlinkMemberId;
       this.filteModelContent.filters.push(filter);
     }
     this.optionsSearch.parentMethods = {
@@ -109,7 +109,7 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     'Id',
     'LinkUserId',
     'LinkSiteId',
-    'LinkMemberUserId',
+    'LinkMemberId',
     'ModuleName',
     'ModuleEntityName',
     'ModuleEntityId',
@@ -380,11 +380,11 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    if (!this.tableRowSelected.linkMemberUserId || this.tableRowSelected.linkMemberUserId === 0) {
+    if (!this.tableRowSelected.linkMemberId || this.tableRowSelected.linkMemberId === '') {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_member_informations'));
       return;
     }
-    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
+    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberId]);
   }
 
   onActionbuttonViewSiteRow(model: CoreModuleLogScoreModel = this.tableRowSelected): void {

@@ -18,7 +18,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-aplication-app-add',
+  selector: 'app-webdesigner-intro-add',
   templateUrl: './add.component.html',
 })
 export class WebDesignerMainIntroAddComponent implements OnInit {

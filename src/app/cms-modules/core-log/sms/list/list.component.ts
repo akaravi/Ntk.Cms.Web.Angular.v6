@@ -33,7 +33,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-corelog-user-list',
+  selector: 'app-core-log-sms-list',
   templateUrl: './list.component.html',
 
 })
@@ -110,7 +110,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     'Id',
     'LinkUserId',
     'LinkSiteId',
-    'LinkMemberUserId',
+    'LinkMemberId',
     'SendStatusType',
     'FromNumber',
     'ToNumber',
@@ -387,11 +387,11 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    if (!this.tableRowSelected.linkMemberUserId || this.tableRowSelected.linkMemberUserId === 0) {
+    if (!this.tableRowSelected.linkMemberId || this.tableRowSelected.linkMemberId === '') {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_member_informations'));
       return;
     }
-    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
+    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberId]);
   }
 
   onActionbuttonViewSiteRow(model: CoreLogSmsModel = this.tableRowSelected): void {

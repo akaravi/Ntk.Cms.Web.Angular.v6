@@ -105,7 +105,7 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
     'Id',
     'LinkSiteId',
     'LinkUserId',
-    'LinkMemberUserId',
+    'LinkMemberId',
     'UserAccessAreaType',
     'UserType',
     'UserAccessAdminAllowToAllData',
@@ -391,11 +391,11 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    if (!this.tableRowSelected.linkMemberUserId || this.tableRowSelected.linkMemberUserId === 0) {
+    if (!this.tableRowSelected.linkMemberId || this.tableRowSelected.linkMemberId === '') {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Content_does_not_include_device_information'));
       return;
     }
-    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
+    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberId]);
   }
 
   onActionbuttonViewSiteRow(model: CoreTokenUserModel = this.tableRowSelected): void {

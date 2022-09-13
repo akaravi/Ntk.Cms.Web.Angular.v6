@@ -26,7 +26,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-bankpayment-transactionlog-view',
+  selector: 'app-core-log-currency-view',
   templateUrl: './view.component.html',
 })
 export class CoreLogCurrencyViewComponent implements OnInit, OnDestroy {

@@ -30,7 +30,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-corelog-user-list',
+  selector: 'app-core-log-currency-list',
   templateUrl: './list.component.html',
 })
 export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {

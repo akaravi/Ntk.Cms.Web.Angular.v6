@@ -21,18 +21,18 @@
       RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
     </mat-error>
   </mat-form-field>
-  <!-- LinkMemberUserId Field -->
+  <!-- LinkMemberId Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.linkMemberUserId" name="dataModel.linkMemberUserId"
-      #LinkMemberUserId="ngModel" panelClass="LinkMemberUserId-{{ dataModel.linkMemberUserId }}" required>
+    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.linkMemberId" name="dataModel.linkMemberId"
+      #LinkMemberId="ngModel" panelClass="LinkMemberId-{{ dataModel.linkMemberId }}" required>
       <mat-option *ngFor="
                   let item of dataModelEnumManageUserAccessUserTypesResult.listItems;
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
     </mat-select>
     <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-    <mat-error *ngIf="LinkMemberUserId.errors?.required">
-      LinkMemberUserId is <strong>{{'MESSAGE.required' | translate}}</strong>
+    <mat-error *ngIf="LinkMemberId.errors?.required">
+      LinkMemberId is <strong>{{'MESSAGE.required' | translate}}</strong>
     </mat-error>
   </mat-form-field>
   <!-- UserAccessAreaType Field -->
@@ -56,8 +56,8 @@
   <!-- LinkUserId Field -->
   <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId"
     [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
-  <!-- LinkMemberUserId Field -->
-  <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberUserId"
+  <!-- linkMemberId Field -->
+  <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId"
     [optionPlaceholder]="'عضو'"></app-cms-member-selector>
   <!-- UserAccessAdminAllowToAllData Field -->
   <div class="ntk-full-width">

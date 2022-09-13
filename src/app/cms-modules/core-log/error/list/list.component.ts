@@ -30,7 +30,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-coretoken-user-list',
+  selector: 'app-core-log-error-list',
   templateUrl: './list.component.html',
 })
 export class CoreLogErrorListComponent implements OnInit, OnDestroy {
@@ -95,7 +95,7 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
     'ModuleName',
     'ModuleEntityName',
     'LinkUserId',
-    'LinkMemberUserId',
+    'LinkMemberId',
     'ModuleEntityId',
     'CreatedDate',
     'Action'
@@ -343,11 +343,11 @@ export class CoreLogErrorListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    if (!this.tableRowSelected.linkMemberUserId || this.tableRowSelected.linkMemberUserId === 0) {
+    if (!this.tableRowSelected.linkMemberId || this.tableRowSelected.linkMemberId === '') {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Content_does_not_include_device_information'));
       return;
     }
-    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
+    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberId]);
   }
 
   onActionbuttonExport(): void {

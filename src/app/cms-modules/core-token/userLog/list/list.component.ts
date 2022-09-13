@@ -396,7 +396,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Content_does_not_include_device_information'));
       return;
     }
-    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberUserId]);
+    this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberId]);
   }
 
   onActionbuttonViewSiteRow(model: CoreTokenUserLogModel = this.tableRowSelected): void {

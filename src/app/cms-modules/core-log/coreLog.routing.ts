@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CoreLogAvoidDuplicateDataEntryListComponent } from './avoid-duplicate/list/list.component';
 import { CoreLogComponent } from './coreLog.component';
 import { CoreLogCurrencyListComponent } from './currency/list/list.component';
 import { CoreLogErrorListComponent } from './error/list/list.component';
+import { CoreLogMemberListComponent } from './member/list/list.component';
 import { CoreLogSmsListComponent } from './sms/list/list.component';
 
 const routes: Routes = [
@@ -15,8 +17,20 @@ const routes: Routes = [
         component: CoreLogErrorListComponent
       },
       {
+        path: 'avoid-duplicate',
+        component: CoreLogAvoidDuplicateDataEntryListComponent
+      },
+      {
+        path: 'avoid-duplicate/:LinkUserId',
+        component: CoreLogAvoidDuplicateDataEntryListComponent
+      },
+      {
         path: 'sms',
         component: CoreLogSmsListComponent
+      },
+      {
+        path: 'member',
+        component: CoreLogMemberListComponent
       },
       {
         path: 'currency',

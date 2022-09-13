@@ -76,11 +76,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
       </ng-container>
-      <!-- LinkMemberUserId Column -->
-      <ng-container matColumnDef="LinkMemberUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberUserId']?.fieldTitle}}
+      <!-- LinkMemberId Column -->
+      <ng-container matColumnDef="LinkMemberId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkMemberUserId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
 
 
@@ -145,7 +145,7 @@
               <mat-icon>supervisor_account</mat-icon>
               <span>{{'ACTION.USER' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonViewMemberRow(row)" *ngIf="row.linkMemberUserId > 0">
+            <button mat-menu-item (click)="onActionbuttonViewMemberRow(row)" *ngIf="row.linkMemberId > 0">
               <mat-icon>assignment_ind</mat-icon>
               <span>{{'ACTION.MEMBER' | translate}}</span>
             </button>

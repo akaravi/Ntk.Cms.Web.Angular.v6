@@ -81,6 +81,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [
     'Id',
     'RecordStatus',
+    'LinkMemberId',
     'CreatedDate',
     'UpdatedDate',
     'Action'

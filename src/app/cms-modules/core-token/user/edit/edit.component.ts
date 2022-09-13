@@ -12,6 +12,7 @@ import {
   MemberUserModel,
   DataFieldInfoModel,
   EnumManageUserAccessDataTypes,
+  CoreLogMemberModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -193,9 +194,9 @@ export class CoreTokenUserEditComponent implements OnInit, OnDestroy {
       this.dataModel.linkUserId = model.id;
     }
   }
-  onActionMemberSelect(model: MemberUserModel): void {
-    if (model && model.id > 0) {
-      this.dataModel.linkMemberUserId = model.id;
+  onActionMemberSelect(model: CoreLogMemberModel): void {
+    if (model && model.id.length > 0) {
+      this.dataModel.linkMemberId = model.id;
     }
   }
   onFormSubmit(): void {

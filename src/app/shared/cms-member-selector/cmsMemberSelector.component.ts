@@ -4,10 +4,10 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  MemberUserModel,
-  MemberUserService,
   EnumFilterDataModelSearchTypes,
-  EnumClauseType
+  EnumClauseType,
+  CoreLogMemberModel,
+  CoreLogMemberService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -28,20 +28,20 @@ export class CmsMemberSelectorComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    public categoryService: MemberUserService) {
+    public categoryService: CoreLogMemberService) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
-  dataModelResult: ErrorExceptionResult<MemberUserModel> = new ErrorExceptionResult<MemberUserModel>();
-  dataModelSelect: MemberUserModel = new MemberUserModel();
+  dataModelResult: ErrorExceptionResult<CoreLogMemberModel> = new ErrorExceptionResult<CoreLogMemberModel>();
+  dataModelSelect: CoreLogMemberModel = new CoreLogMemberModel();
   @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
-  filteredOptions: Observable<MemberUserModel[]>;
+  filteredOptions: Observable<CoreLogMemberModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionChange = new EventEmitter<MemberUserModel>();
+  @Output() optionChange = new EventEmitter<CoreLogMemberModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: number | MemberUserModel) {
+  @Input() set optionSelectForce(x: string | CoreLogMemberModel) {
     this.onActionSelectForce(x);
   }
 
@@ -64,13 +64,13 @@ export class CmsMemberSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: MemberUserModel): string | undefined {
-    return model ? (model.firstName + ' # ' + model.lastName + ' # ' + model.email) : undefined;
+  displayFn(model?: CoreLogMemberModel): string | undefined {
+    return model ? (model.id) : undefined;
   }
-  displayOption(model?: MemberUserModel): string | undefined {
-    return model ? (model.firstName + ' # ' + model.lastName + ' # ' + model.email) : undefined;
+  displayOption(model?: CoreLogMemberModel): string | undefined {
+    return model ? (model.id) : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<MemberUserModel[]> {
+  async DataGetAll(text: string | number | any): Promise<CoreLogMemberModel[]> {
     const filteModel = new FilterModel();
     filteModel.rowPerPage = 20;
     filteModel.accessLoad = true;
@@ -132,7 +132,7 @@ export class CmsMemberSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: MemberUserModel): void {
+  onActionSelect(model: CoreLogMemberModel): void {
     if (this.optionDisabled) {
       return;
     }
@@ -146,7 +146,7 @@ export class CmsMemberSelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-  push(newvalue: MemberUserModel): Observable<MemberUserModel[]> {
+  push(newvalue: CoreLogMemberModel): Observable<CoreLogMemberModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.id === newvalue.id)) {
         return items;
@@ -156,8 +156,8 @@ export class CmsMemberSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: number | MemberUserModel): void {
-    if (typeof id === 'number' && id > 0) {
+  onActionSelectForce(id: string | CoreLogMemberModel): void {
+    if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
       }
@@ -177,9 +177,9 @@ export class CmsMemberSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof MemberUserModel) {
-      this.filteredOptions = this.push((id as MemberUserModel));
-      this.dataModelSelect = (id as MemberUserModel);
+    if (typeof id === typeof CoreLogMemberModel) {
+      this.filteredOptions = this.push((id as CoreLogMemberModel));
+      this.dataModelSelect = (id as CoreLogMemberModel);
       this.formControl.setValue(id);
       return;
     }
@@ -190,8 +190,8 @@ export class CmsMemberSelectorComponent implements OnInit {
     // if (this.dataModelSelect && this.dataModelSelect.id > 0) {
     //   this.onActionSelect(null);
     // }
-    this.dataModelSelect = new MemberUserModel();
-    // this.optionsData.Select = new MemberUserModel();
+    this.dataModelSelect = new CoreLogMemberModel();
+    // this.optionsData.Select = new CoreLogMemberModel();
     this.loadOptions();
   }
 }
