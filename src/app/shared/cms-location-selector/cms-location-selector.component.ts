@@ -71,6 +71,14 @@ export class CmsLocationSelectorComponent implements OnInit {
     return model ? (model.titleML) : undefined;
   }
   displayOption(model?: CoreLocationModel): string | undefined {
+    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0
+      && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0
+      && model.virtual_Parent.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.virtual_Parent.title.length > 0) {
+      return  model.virtual_Parent.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
+    }
+    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0&& model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0) {
+      return model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
+    }
     if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0) {
       return model.virtual_Parent.titleML + ' > ' + model.titleML;
     }
