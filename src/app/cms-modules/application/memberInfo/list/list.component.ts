@@ -32,6 +32,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-memberinfo-list',
   templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
   requestLinkApplicationId = 0;
@@ -80,9 +81,6 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'LinkUserId',
     'LinkMemberId',
-    'DeviceStatus',
-    'DeviceId',
-    'DeviceBrand',
     'SimCard',
     'AppBuildVer',
     'AppSourceVer',
@@ -121,7 +119,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     if (this.requestLinkApplicationId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,
@@ -131,7 +129,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationMemberInfoModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -148,8 +146,8 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-        
-        
+
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
@@ -399,6 +397,17 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: ApplicationMemberInfoModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: ApplicationMemberInfoModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: ApplicationMemberInfoModel): void {
+    row["expanded"] = false;
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);

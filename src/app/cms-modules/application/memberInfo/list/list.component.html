@@ -48,7 +48,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+      multiTemplateDataRows>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
@@ -86,32 +87,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
-      </ng-container>
-      <!-- LinkLocationIdTitle Column -->
-      <ng-container matColumnDef="LinkLocationIdTitle">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkLocationIdTitle']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkLocationIdTitle}} </mat-cell>
-      </ng-container>
-      <!-- LinkLocationIdParentTitle Column -->
-      <ng-container matColumnDef="LinkLocationIdParentTitle">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkLocationIdParentTitle']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkLocationIdParentTitle}} </mat-cell>
-      </ng-container>
-      <!-- DeviceStatus Column -->
-      <ng-container matColumnDef="DeviceStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceStatus']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.deviceStatus}} </mat-cell>
-      </ng-container>
-      <!-- DeviceId Column -->
-      <ng-container matColumnDef="DeviceId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceId']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.deviceId}} </mat-cell>
-      </ng-container>
-      <!-- DeviceBrand Column -->
-      <ng-container matColumnDef="DeviceBrand">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceBrand']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.deviceBrand}} </mat-cell>
       </ng-container>
       <!-- SimCard Column -->
       <ng-container matColumnDef="SimCard">
@@ -175,9 +150,74 @@
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{row.id}}</th>
+              </tr>
+              <tr *ngIf="row.updatedDate">
+                <td></td>
+                <td> {{fieldsInfo['UpdatedDate']?.fieldTitle}} : {{ publicHelper.LocaleDate(row.updatedDate) }}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{fieldsInfo['LinkLocationIdTitle']?.fieldTitle}}  {{row.LinkLocationIdTitle}} </td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td> {{fieldsInfo['LinkLocationIdParentTitle']?.fieldTitle}}  {{row.linkLocationIdParentTitle}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{fieldsInfo['DeviceStatus']?.fieldTitle}} : {{row.deviceStatus}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{fieldsInfo['DeviceId']?.fieldTitle}} : {{row.deviceId}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{fieldsInfo['DeviceBrand']?.fieldTitle}} : {{row.deviceBrand}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                  <a (click)="onActionbuttonNotifictionList(row)"
+                    *ngIf="row.notificationId && row.notificationId.length>0" class="link-primary pointer">
+                    {{'ACTION.NOTIFICATION_REPORT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonNotifictionActionSend(row)"
+                    *ngIf="row.notificationId && row.notificationId.length>0" class="link-primary pointer">
+                    {{'ACTION.SEND_NOTIFICATIONS' | translate}} </a>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
     </mat-table>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
