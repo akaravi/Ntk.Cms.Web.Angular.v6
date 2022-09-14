@@ -13,8 +13,8 @@
       <div *ngFor="let row of dataModelResult.listItems ; index as i" [ngClass]="textInverseCSSClass"
         class="row font-weight-bolder font-size-h5 mt-3">
         <div class="col-8 text-white"> {{row.typeTitle}} </div>
-        <div class="col-2"><i [ngClass]="row.isApproved | boolclass"></i></div>
-        <div class="col-2"><i *ngIf="!row.isApproved" ngClass="fa fa-edit" (click)="onActionbuttonEditRow(row)"></i>
+        <div class="col-2 pointer"><i [ngClass]="row.isApproved | boolclass"></i></div>
+        <div class="col-2 pointer"><i *ngIf="!row.isApproved" ngClass="fa fa-edit" (click)="onActionbuttonEditRow(row)"></i>
         </div>
       </div>
       <hr>

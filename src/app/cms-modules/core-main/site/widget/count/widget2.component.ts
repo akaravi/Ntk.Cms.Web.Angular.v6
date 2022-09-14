@@ -40,7 +40,7 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_MemberSite');
     this.widgetInfoModel.description = '';
-    this.widgetInfoModel.link = '/core/site/list';
+    this.widgetInfoModel.link = '/core/site';
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
