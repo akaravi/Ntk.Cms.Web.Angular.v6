@@ -760,6 +760,8 @@
 	"TITLE.Set_acess": "تنظیم دسترسی ها",
 	"TITLE.DepositPrice": "مبلغ رهن",
 	"TITLE.Description": "توضیحات",
+	"TITLE.General_Description": "توضیحات عمومی",
+	"TITLE.Description_Hidden": "توضیحات مخفی",
 	"TITLE.Short_link": "لینک کوتاه",
 	"TITLE.FAQ": "سوالات متداول",
 	"TITLE.Question": "سوال",

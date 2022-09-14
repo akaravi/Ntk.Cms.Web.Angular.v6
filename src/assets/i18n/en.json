@@ -758,6 +758,8 @@
 	"TITLE.Set_acess": "Set_acess",
 	"TITLE.DepositPrice": "DepositPrice",
 	"TITLE.Description": "Description",
+	"TITLE.General_Description": "General description",
+	"TITLE.Description_Hidden": "Description hidden",
 	"TITLE.Short_link": "Short link",
 	"TITLE.FAQ": "F.A.Q",
 	"TITLE.Question": "Question",

@@ -233,7 +233,7 @@
 
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+          <mat-label>{{'TITLE.General_Description' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
             disabled="{{!fieldsInfo['Description']?.accessEditField}}"
             placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="2000" rows=5
@@ -248,6 +248,25 @@
           <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
             Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- DescriptionHidden Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
+          <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
+            #DescriptionHidden type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1"
+            maxlength="2000" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.descriptionHidden = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['DescriptionHidden']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ DescriptionHidden.value.length }} / 2000</mat-hint>
+          <mat-error *ngIf="DescriptionHidden.errors?.required">
+            DescriptionHidden is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
