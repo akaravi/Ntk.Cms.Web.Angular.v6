@@ -12,7 +12,9 @@ import {
   EnumRecordStatus,
   CoreSiteUserService,
   CoreSiteUserModel,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  AuthRenewTokenModel,
+  CoreAuthService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -43,6 +45,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
+    private coreAuthService: CoreAuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
@@ -138,7 +141,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteUserModel();
 
@@ -347,6 +350,34 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/core/site/reseller-chart/LinkSiteId', model.linkSiteId]);
 
   }
+  onActionbuttonLoginToRow(model: CoreSiteUserModel = this.tableRowSelected): void {
+    if (!model || !model.linkUserId || model.linkUserId === 0) {
+
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    let authModel: AuthRenewTokenModel;
+    authModel = new AuthRenewTokenModel();
+    authModel.userId = this.tableRowSelected.linkUserId;
+    this.coreAuthService.ServiceRenewToken(authModel).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.cmsToastrService.typeSuccessSelected();
+          this.router.navigate(['/']);
+        }
+        else {
+          this.cmsToastrService.typeErrorSelected();
+        }
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+      }
+    }
+    );
+  }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -424,7 +455,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: CoreSiteUserModel): void {
     this.tableRowSelected = row;
 
-  if (!row["expanded"])
+    if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]
   }

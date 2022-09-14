@@ -327,7 +327,6 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
     authModel.userId = this.tableRowSelected.id;

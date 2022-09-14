@@ -121,6 +121,4 @@ export class CoreUserResellerChartComponent implements OnInit, OnDestroy {
     this.dataModelSelect = new RessellerChartModel();
     this.DataGetAll();
   }
-
-
 }

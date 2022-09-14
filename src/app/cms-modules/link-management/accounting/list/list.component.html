@@ -19,8 +19,6 @@
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-    <button *ngIf=" tableRowSelected.id>0" (click)="onActionbuttonComment()" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.RESULTS' | translate}}</button>
     <button *ngIf=" tableRowSelected.id>0" (click)="onActionbuttonAccountingDetail()" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.DETAILS' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">

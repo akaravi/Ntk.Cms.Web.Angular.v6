@@ -24,15 +24,30 @@
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.title = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
         <app-linkmanagement-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+          [optionSelectForce]="dataModel.linkTargetCategoryId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
+          [optionSelectForce]="dataModel.linkBillboardPatternId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
         </app-linkmanagement-billboard-pattern-selector>
 
 
@@ -68,19 +83,6 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- Title Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-          <mat-error *ngIf="Title.errors?.required">
-            Title is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
         <!-- isPublic Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.isPublic" *ngIf="fieldsInfo['isPublic']?.accessWatchField"
@@ -167,37 +169,12 @@
           </mat-error>
         </mat-form-field>
 
-
-        <!-- CurrentClickCount Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['CurrentClickCount']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount"
-            #CurrentClickCount type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.currentClickCount = 0">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="CurrentClickCount.errors?.required">
-            CurrentClickCount is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- CurrentViewCount Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['CurrentViewCount']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.currentViewCount" name="dataModel.currentViewCount" #CurrentViewCount
-            type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.currentViewCount" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.currentViewCount = 0">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="CurrentViewCount.errors?.required">
-            CurrentViewCount is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-
         <!-- MaxPriceOfSharePerDay Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['MaxPriceOfSharePerDay']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.maxPriceOfSharePerDay" name="dataModel.maxPriceOfSharePerDay"
-            #MaxPriceOfSharePerDay type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0" required />
+            #MaxPriceOfSharePerDay type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0"
+            required />
           <mat-icon matSuffix *ngIf="dataModel.maxPriceOfSharePerDay" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.maxPriceOfSharePerDay = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -209,7 +186,8 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['MaxPriceOfShareTotal']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.maxPriceOfShareTotal" name="dataModel.maxPriceOfShareTotal"
-            #MaxPriceOfShareTotal type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0" required />
+            #MaxPriceOfShareTotal type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0"
+            required />
           <mat-icon matSuffix *ngIf="dataModel.maxPriceOfShareTotal" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.maxPriceOfShareTotal = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -231,7 +209,31 @@
           </mat-error>
         </mat-form-field>
 
-
+        <!-- CurrentClickCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['CurrentClickCount']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount"
+            #CurrentClickCount type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0"
+            disabled />
+          <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.currentClickCount = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="CurrentClickCount.errors?.required">
+            CurrentClickCount is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- CurrentViewCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['CurrentViewCount']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.currentViewCount" name="dataModel.currentViewCount" #CurrentViewCount
+            type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0" disabled />
+          <mat-icon matSuffix *ngIf="dataModel.currentViewCount" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.currentViewCount = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="CurrentViewCount.errors?.required">
+            CurrentViewCount is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
 
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
@@ -248,15 +250,16 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
+          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
 
             <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
             <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+              (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

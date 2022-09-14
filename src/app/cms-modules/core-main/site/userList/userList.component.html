@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'core.site.userlist'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice> 
+<app-cms-guide-notice [Key]="'core.site.userlist'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+</app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -13,13 +14,15 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.linkSiteId>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.linkSiteId>0"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
@@ -42,10 +45,10 @@
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <button (click)="onActionBackToParentUserGroupList()" *ngIf="this.requestLinkUserGroupId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-      <button (click)="manageAllRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
-        translate}}</button>
-      <button (click)="manageAllRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
-        translate}}</button>
+    <button (click)="manageAllRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
+      translate}}</button>
+    <button (click)="manageAllRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
+      translate}}</button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -60,7 +63,7 @@
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
-    multiTemplateDataRows>
+      multiTemplateDataRows>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
@@ -83,9 +86,11 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
-          </select> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+          </select>
+        </mat-cell>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="virtual_CmsUser.name">
@@ -158,17 +163,22 @@
               <mat-icon>person_search</mat-icon>
               <span>{{'ACTION.USER_EDITING' | translate}}</span>
             </button>
+            <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
+              (click)="onActionbuttonLoginToRow(row)">
+              <mat-icon>login</mat-icon>
+              <span>{{'ACTION.LOGIN_TO_THIS_USER' | translate}}</span>
+            </button>
             <button mat-menu-item (click)="onActionbuttonResllerUser(row)"
-            *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
-            <mat-icon>devices</mat-icon>
-            <span> {{'ACTION.SUBSET_OF_USER_MARKETING' | translate}}</span>
-          </button>
-          
-          <button mat-menu-item (click)="onActionbuttonResllerSite(row)"
-          *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
-          <mat-icon>devices</mat-icon>
-          <span>{{'ACTION.SUBSET_OF_SITE_MARKETING' | translate}}</span>
-        </button>
+              *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
+              <mat-icon>devices</mat-icon>
+              <span> {{'ACTION.SUBSET_OF_USER_MARKETING' | translate}}</span>
+            </button>
+
+            <button mat-menu-item (click)="onActionbuttonResllerSite(row)"
+              *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
+              <mat-icon>devices</mat-icon>
+              <span>{{'ACTION.SUBSET_OF_SITE_MARKETING' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>
@@ -218,18 +228,21 @@
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} |</a>
 
-                  <a (click)="onActionbuttonSiteList(row)"
-                    class="link-primary pointer"> {{'ACTION.MEMBER_SITES' | translate}}|</a>
+                  <a (click)="onActionbuttonSiteList(row)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES' |
+                    translate}}|</a>
 
-                  <a (click)="onActionbuttonEditSiteRow(row)"
-                    class="link-primary pointer"> {{'ACTION.EDIT_SITES' | translate}}|</a>
+                  <a (click)="onActionbuttonEditSiteRow(row)" class="link-primary pointer"> {{'ACTION.EDIT_SITES' |
+                    translate}}|</a>
 
-                  <a (click)="onActionbuttonEditUserRow(row)"
-                    class="link-primary pointer"> {{'ACTION.USER_EDITING' | translate}}|</a>
+                  <a (click)="onActionbuttonEditUserRow(row)" class="link-primary pointer"> {{'ACTION.USER_EDITING' |
+                    translate}}|</a>
+
+                  <a (click)="onActionbuttonLoginToRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
+                    class="link-primary pointer"> {{'ACTION.LOGIN_TO_THIS_USER' | translate}} |</a>
 
                   <a (click)="onActionbuttonResllerUser(row)"
-                  *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
-                    class="link-primary pointer">  {{'ACTION.USER_MARKETING_SUBCATEGORY' | translate}}|</a>
+                    *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
+                    class="link-primary pointer"> {{'ACTION.USER_MARKETING_SUBCATEGORY' | translate}}|</a>
 
                   <a (click)="onActionbuttonResllerSite(row)"
                     *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
@@ -243,7 +256,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-      (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background':( row.linkSiteId === tableRowSelected.linkSiteId  && row.linkUserId===tableRowSelected.linkUserId )? '#d3d3da' :'' }">
       </mat-row>
       <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"

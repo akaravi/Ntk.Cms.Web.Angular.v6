@@ -27,6 +27,7 @@ import { LinkManagementTargetDeleteComponent } from '../delete/delete.component'
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
 @Component({
   selector: 'app-linkmanagement-target-list',
@@ -40,6 +41,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     public publicHelper: PublicHelper,
     public contentService: LinkManagementTargetService,
     private cmsToastrService: CmsToastrService,
+    private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -211,13 +213,14 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     }
     this.router.navigate(['/linkmanagement/target/edit', this.tableRowSelected.id]);
   }
+
   onActionbuttonDeleteRow(model: LinkManagementTargetModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
-      this.cmsToastrService.typeErrorSelected(emessage); return;
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
     }
     this.tableRowSelected = model;
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -226,13 +229,36 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(LinkManagementTargetDeleteComponent, { height: '90%', data: { id: this.tableRowSelected.id } });
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
+    const title = this.translate.instant('MESSAGE.Please_Confirm');
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content')+ '?';
+    this.cmsConfirmationDialogService.confirm(title, message)
+      .then((confirmed) => {
+        if (confirmed) {
+          const pName = this.constructor.name + 'main';
+          this.loading.Start(pName);
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
+            next: (ret) => {
+              if (ret.isSuccess) {
+                this.cmsToastrService.typeSuccessRemove();
+                this.DataGetAll();
+              } else {
+                this.cmsToastrService.typeErrorRemove();
+              }
+              this.loading.Stop(pName);
+            },
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
+              this.loading.Stop(pName);
+            }
+          }
+          );
+        }
       }
-    });
+      )
+      .catch(() => {
+        // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
+      }
+      );
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

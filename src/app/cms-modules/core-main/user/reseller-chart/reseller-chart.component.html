@@ -19,19 +19,23 @@
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
                     [ngStyle]="{'background': dataModelSelect.linkUserId>0 && dataModelSelect.linkUserId === node.linkUserId ? '#d3d3da' : '' }">
                     <button mat-icon-button disabled></button>
-                    {{node.User.id}}/{{node.User.name}} {{node.User.lastName}}
+                    <i [ngClass]="node.icon" aria-hidden="true"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {{node.linkUserId}} / {{node.user.name}} {{ node.user.lastName }}
                 </mat-tree-node>
                 <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
                     <li>
                         <div class="mat-tree-node" (click)="onActionSelect(node)"
                             [ngStyle]="{'background': dataModelSelect.linkUserId>0 && dataModelSelect.linkUserId === node.linkUserId ? '#d3d3da' : '' }">
-                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.title"
+                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle '"
                                 (click)="onActionSelect(node)">
                                 <mat-icon class="mat-icon-rtl-mirror">
                                     {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                                 </mat-icon>
                             </button>
-                            {{node.User.id}}/{{node.User.name}} {{node.User.lastName}}
+                            <i [ngClass]="node.icon" [style.color]="node.color" aria-hidden="true"></i>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            {{node.linkUserId}} / {{node.user.name}} {{ node.user.lastName }}
                         </div>
                         <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">
                             <ng-container matTreeNodeOutlet></ng-container>
