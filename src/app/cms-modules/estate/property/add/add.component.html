@@ -45,7 +45,7 @@
         <br>
         <br>
         <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
-          {{'TITLE.Completed_Content' | translate}}
+          {{'TITLE.Would_you_like_to_complete_your_information' | translate}}
         </mat-slide-toggle>
         <br>
         <!-- RecordStatus Field -->
@@ -232,7 +232,7 @@
 
       <mat-step label="اطلاعات شخصی" state="main">
         <!-- LinkEstateUserId Field -->
-        <app-estate-accountuser-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
+        <app-estate-accountuser-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
           [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
@@ -256,7 +256,7 @@
         </mat-form-field>
 
         <!-- AboutAgentTel Field -->
-        <mat-form-field *ngIf="fieldsInfo['AboutAgentTel']?.accessWatchField && dataProfessional"
+        <mat-form-field *ngIf="fieldsInfo['AboutAgentTel']?.accessWatchField"
           class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutAgentTel']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutAgentTel" name="dataModel.aboutAgentTel" class="input-Mobile"
@@ -290,7 +290,7 @@
         </mat-form-field>
 
         <!-- AboutCustomerTel Field -->
-        <mat-form-field *ngIf="dataProfessional && fieldsInfo['AboutCustomerTel']?.accessWatchField"
+        <mat-form-field *ngIf="fieldsInfo['AboutCustomerTel']?.accessWatchField"
           class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutCustomerTel" name="dataModel.aboutCustomerTel"
@@ -321,7 +321,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.Details' | translate}}" state="seo"
-        *ngIf="dataProfessional &&  dataModel.propertyDetailGroups && dataModel.propertyDetailGroups.length>0">
+        *ngIf="dataModel.propertyDetailGroups && dataModel.propertyDetailGroups.length>0">
         <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
 
         <!-- LinkPropertyProjectId Field -->
@@ -671,11 +671,11 @@
       </mat-step>
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
-        <div class="mb-3" *ngIf="dataProfessional">
+        <div class="mb-3">
           <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
             aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
-        <div class="mb-9" *ngIf="dataProfessional">
+        <div class="mb-9">
           <mat-form-field class="ntk-full-width">
 
             <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
@@ -698,7 +698,7 @@
           [openDirectUploadView]="true">
         </app-cms-files-selector>
         <hr>
-        <div *ngIf="dataProfessional  && !hidden">
+        <div *ngIf="!hidden">
           <p>{{'TITLE.List_of_attached_files' | translate}}</p>
           <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
           </app-cms-files-selector>
@@ -711,7 +711,7 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
-          <button *ngIf="dataProfessional" type="submit" mat-raised-button color="success"
+          <button type="submit" mat-raised-button color="success"
             [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}
           </button>

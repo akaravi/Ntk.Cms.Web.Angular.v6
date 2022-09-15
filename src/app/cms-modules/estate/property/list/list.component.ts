@@ -584,7 +584,7 @@ export class EstatePropertyListComponent
 
     //open popup
     const dialogRef = this.dialog.open(CmsMemoComponent, {
-      height: "50%",
+      height: "70%",
       width: "50%",
       data: {
         moduleName: this.dataModelResult.access.moduleName,
@@ -685,7 +685,8 @@ export class EstatePropertyListComponent
           if (ret.isSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
-              // height: "90%",
+              height: "70%",
+              width: "90%",
               data: {
                 title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,

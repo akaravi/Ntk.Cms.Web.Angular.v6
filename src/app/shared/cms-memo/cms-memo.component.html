@@ -14,39 +14,40 @@
 </div> -->
 
 
-
-<table [hidden]="!showAdd" class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">{{fieldsInfo['CreatedBy']?.fieldTitle}}</th>
-            <th scope="col">{{fieldsInfo['CreatedDate']?.fieldTitle}}</th>
-            <th scope="col">{{fieldsInfo['SubjectTitle']?.fieldTitle}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let item of dataModelResult.listItems ; let i = index">
+<div class="relative" [hidden]="!showAdd">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">{{fieldsInfo['CreatedBy']?.fieldTitle}}</th>
+                <th scope="col">{{fieldsInfo['CreatedDate']?.fieldTitle}}</th>
+                <th scope="col">{{fieldsInfo['SubjectTitle']?.fieldTitle}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of dataModelResult.listItems ; let i = index">
                 <tr class="myDIV">
                     <th scope="row">{{ i+1 }}</th>
                     <td>{{ item.createdBy }}</td>
                     <td>{{ publicHelper.LocaleDate(item.createdDate) }}</td>
                     <td>{{ item.subjectTitle }}</td>
                 </tr>
-            <tr class="hide">
-                <td></td>
-                <td  colspan="3">
-                    {{ item.subjectBody }}
-                </td>
-            </tr>
-        </ng-container>
-    </tbody>
-</table>
+                <tr class="hide">
+                    <td></td>
+                    <td colspan="3">
+                        {{ item.subjectBody }}
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
 
+    <br>
+    <br>
+    <button class="btn btn-success btn-lg btn-block absolute" (click)="onActionAdd()">{{'ACTION.ADD'
+        |translate}}</button>
+</div>
 <!-- ============================================ -->
-<br>
-<br>
-<button [hidden]="!showAdd" class="btn btn-success btn-lg btn-block" (click)="onActionAdd()">{{'ACTION.ADD'
-    |translate}}</button>
 
 <!-- add memo -->
 
