@@ -29,7 +29,8 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-customer-order-list',
-  templateUrl: './list.component.html'
+  templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   constructor(
@@ -42,7 +43,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -94,7 +95,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();
     const pName = this.constructor.name + 'main';
@@ -319,6 +320,16 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstateCustomerOrderModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: EstateCustomerOrderModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: EstateCustomerOrderModel): void {
+    row["expanded"] = false;
   }
   onActionbuttonLinkTo(
     model: EstateCustomerOrderModel = this.tableRowSelected
@@ -369,5 +380,10 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
         }
       }
       );
+  }
+  manageAllRows(flag: boolean) {
+    this.tableSource.data.forEach(row => {
+      row['expanded'] = flag;
+    })
   }
 }

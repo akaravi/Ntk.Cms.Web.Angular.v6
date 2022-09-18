@@ -5,3 +5,17 @@
   .myDIV:hover + .hide {
     display: contents;
   }
+  .relative{
+    position:relative;
+    height: 90%;
+  }
+  .absolute{
+     position:absolute;
+     bottom: 10px;
+  }
+  thead tr {
+    background-color: #81D4FA;
+  }
+  th,td {
+    text-align: center;
+  }
