@@ -13,8 +13,7 @@ import {
   EnumRecordStatus,
   DataFieldInfoModel,
   TicketingEnumService,
-  EnumInfoModel,
-  ErrorExceptionResultBase
+  EnumInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -38,6 +37,7 @@ import { TicketingTaskViewComponent } from '../view/view.component';
 })
 export class TicketingTaskListComponent implements OnInit, OnDestroy {
   requestDepartemenId = 0;
+  requestLinkCmsUserId = 0;
   constructor(
     public contentService: TicketingTaskService,
     private activatedRoute: ActivatedRoute,
@@ -51,6 +51,8 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     private ticketingEnumService: TicketingEnumService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+
+
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -97,6 +99,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
+    this.requestLinkCmsUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCmsUserId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -142,6 +145,11 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
 
       filter.propertyName = 'LinkTicketingDepartemenId';
       filter.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filter);
+    }
+    if (this.requestLinkCmsUserId > 0) {
+      filter.propertyName = 'LinkCmsUserId';
+      filter.value = this.requestLinkCmsUserId;
       filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAll(filterModel).subscribe({
@@ -233,7 +241,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    
+
 
     this.tableRowSelected = mode;
 

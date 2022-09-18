@@ -83,7 +83,15 @@ const routes: Routes = [
         component: TicketingTaskContactUsListComponent
       },
       {
+        path: 'task/contactus-list/LinkCmsUserId/:LinkCmsUserId',
+        component: TicketingTaskContactUsListComponent
+      },
+      {
         path: 'task/:DepartemenId',
+        component: TicketingTaskListComponent
+      },
+      {
+        path: 'task/LinkCmsUserId/:LinkCmsUserId',
         component: TicketingTaskListComponent
       }
       // ,

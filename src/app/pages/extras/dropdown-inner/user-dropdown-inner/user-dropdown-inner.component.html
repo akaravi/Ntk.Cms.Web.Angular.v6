@@ -73,7 +73,7 @@
     </a>
     <!--end::Item-->
     <!--begin::Item-->
-    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task/contactus-list'}}">
+    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task/contactus-list/LinkCmsUserId/' +this.tokenInfo.userId}}">
       <div class="navi-link">
         <div class="navi-icon mr-2">
           <i class="flaticon2-mail text-warning"></i>
@@ -94,7 +94,7 @@
     <!--end::Item-->
     <!--begin::Item-->
     <ng-container *ngIf="this.tokenHelper.isAdminSite">
-      <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task'}}">
+      <a class="navi-item px-8 cursor-pointer" routerLink="{{'/ticketing/task/LinkCmsUserId/' +this.tokenInfo.userId}}">
         <div class="navi-link">
           <div class="navi-icon mr-2">
             <i class="flaticon2-hourglass text-primary"></i>
@@ -115,7 +115,7 @@
     </ng-container>
     <!--end::Item-->
     <!--begin::Item-->
-    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/coretoken/userlog'}}">
+    <a class="navi-item px-8 cursor-pointer" routerLink="{{'/coretoken/userlog/LinkUserId/' +this.tokenInfo.userId}}">
       <div class="navi-link">
         <div class="navi-icon mr-2">
           <i class="flaticon2-rocket-1 text-danger"></i>

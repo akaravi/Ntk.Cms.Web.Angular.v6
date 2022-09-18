@@ -36,8 +36,9 @@
       <!-- DescriptionHidden Field -->
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
         <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
-        <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden" #DescriptionHidden type="text"
-          placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
+        <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
+          #DescriptionHidden type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="0"
+          maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.descriptionHidden = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -57,6 +58,19 @@
         [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
         [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل/مشتری املاک'">
       </app-estate-accountuser-selector>
+      <!-- ContactMobiles Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label>{{'TITLE.Mobile_staff_or_customer' | translate}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles type="text"
+          placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3" maxlength="100"/>
+        <mat-icon matSuffix *ngIf="dataModel.contactMobiles" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.contactMobiles = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ ContactMobiles.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="ContactMobiles.errors?.required">
+          ContactMobiles is <strong>{{'MESSAGE.required' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
       <!-- AreaAddress Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['AreaAddress']?.fieldTitle}}</mat-label>

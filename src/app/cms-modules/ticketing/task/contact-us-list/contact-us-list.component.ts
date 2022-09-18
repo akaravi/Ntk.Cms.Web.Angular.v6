@@ -33,6 +33,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
   requestDepartemenId = 0;
+  requestLinkCmsUserId = 0;
   constructor(
     public contentService: TicketingTaskService,
     private activatedRoute: ActivatedRoute,
@@ -43,7 +44,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -90,6 +91,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
+    this.requestLinkCmsUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCmsUserId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -105,7 +107,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingTaskModel();
 
@@ -124,10 +126,16 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
       filter.value = this.requestDepartemenId;
       filterModel.filters.push(filter);
     }
+
     if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
 
       filter.propertyName = 'LinkTicketingDepartemenId';
       filter.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filter);
+    }
+    if (this.requestLinkCmsUserId > 0) {
+      filter.propertyName = 'LinkCmsUserId';
+      filter.value = this.requestLinkCmsUserId;
       filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAllEditor(filterModel).subscribe(
@@ -211,7 +219,7 @@ export class TicketingTaskContactUsListComponent implements OnInit, OnDestroy {
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {        
+      if (result && result.dialogChangedDate) {
       }
     });
   }
