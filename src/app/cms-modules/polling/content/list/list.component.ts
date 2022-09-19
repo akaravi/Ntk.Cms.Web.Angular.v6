@@ -318,13 +318,13 @@ onActionTableRowMouseLeave(row: PollingContentModel): void {
 }
 
 
-  onActionbuttonComment(model: PollingContentModel = this.tableRowSelected): void {
+  onActionbuttonResults(model: PollingContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.router.navigate(['/polling/vote/', model.id]);
+    this.router.navigate(['/polling/vote/ContentId/', model.id]);
   }
   expandedElement: any;
 

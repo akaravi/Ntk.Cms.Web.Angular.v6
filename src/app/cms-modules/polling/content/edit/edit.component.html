@@ -195,7 +195,7 @@
               <mat-header-cell *matHeaderCellDef> {{'TITLE.Is_Correct_Answer' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"><i [ngClass]="row.isCorrectAnswer|boolclass"></i> </mat-cell>
             </ng-container>
-            <!-- IsCorrectAnswer Column -->
+            <!-- NumberOfVotes Column -->
             <ng-container matColumnDef="NumberOfVotes">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.Number_Of_Votes' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.numberOfVotes}} </mat-cell>
