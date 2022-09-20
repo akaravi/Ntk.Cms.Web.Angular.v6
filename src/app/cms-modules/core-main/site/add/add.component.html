@@ -74,7 +74,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
@@ -91,7 +91,7 @@
             <strong class="info-field-text">{{fieldsInfo['SubDomain']?.FieldDescription}}</strong>
           </mat-hint>
           <mat-icon *ngIf="fieldsInfo['SubDomain']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">{{ SubDomain.value.length }} / 20</mat-hint>
+          <mat-hint align="end">{{ SubDomain.value.length }} / 20</mat-hint>
         </mat-form-field>
         <!-- Domain Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Domain']?.accessWatchField">
@@ -105,7 +105,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Domain']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ Domain.value.length }} / 20</mat-hint>
+          <mat-hint align="end">{{ Domain.value.length }} / 20</mat-hint>
         </mat-form-field>
         <!-- ViewInCmsSiteList Field -->
         <div class="ntk-full-width">
@@ -490,7 +490,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['CurrentSiteDomainUrl']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ CurrentSiteDomainUrl.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ CurrentSiteDomainUrl.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- Redirect Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Redirect']?.accessWatchField">
@@ -505,7 +505,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Redirect']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ Redirect.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Redirect.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- Copyright Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Copyright']?.accessWatchField">
@@ -520,7 +520,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Copyright']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ Copyright.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ Copyright.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- SeoDescription Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SeoDescription']?.accessWatchField">
@@ -536,7 +536,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['SeoDescription']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ SeoDescription.value.length }} / 1000</mat-hint>
+          <mat-hint align="end">{{ SeoDescription.value.length }} / 1000</mat-hint>
         </mat-form-field>
         <!-- SeoGoogleHTMLtag Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SeoGoogleHTMLtag']?.accessWatchField">
@@ -551,7 +551,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['SeoGoogleHTMLtag']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ SeoGoogleHTMLtag.value.length }} / 1000</mat-hint>
+          <mat-hint align="end">{{ SeoGoogleHTMLtag.value.length }} / 1000</mat-hint>
         </mat-form-field>
         <!-- SeoGoogleAnalytics Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SeoGoogleAnalytics']?.accessWatchField">
@@ -566,7 +566,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['SeoGoogleAnalytics']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ SeoGoogleAnalytics.value.length }} / 1000</mat-hint>
+          <mat-hint align="end">{{ SeoGoogleAnalytics.value.length }} / 1000</mat-hint>
         </mat-form-field>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
@@ -619,7 +619,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutUsTitle']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ AboutUsTitle.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutUsTitle.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutUsDescription Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsDescription']?.accessWatchField">
@@ -635,7 +635,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutUsDescription']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ AboutUsDescription.value.length }} / 1000</mat-hint>
+          <mat-hint align="end">{{ AboutUsDescription.value.length }} / 1000</mat-hint>
         </mat-form-field>
         <!-- AboutUsTel Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsTel']?.accessWatchField">
@@ -650,7 +650,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutUsTel']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ AboutUsTel.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutUsTel.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutUsFax Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsFax']?.accessWatchField">
@@ -665,7 +665,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutUsFax']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ AboutUsFax.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutUsFax.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutUsEmail Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsEmail']?.accessWatchField">
@@ -680,7 +680,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutUsEmail']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ AboutUsEmail.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutUsEmail.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutUsAddress Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsAddress']?.accessWatchField">
@@ -695,7 +695,7 @@
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutUsAddress']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="start">{{ AboutUsAddress.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutUsAddress.value.length }} / 100</mat-hint>
         </mat-form-field>
         <!-- AboutUsMoreInfoUrl Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsMoreInfoUrl']?.accessWatchField">
