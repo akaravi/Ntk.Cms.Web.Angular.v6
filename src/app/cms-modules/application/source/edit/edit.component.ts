@@ -117,6 +117,7 @@ export class ApplicationSourceEditComponent implements OnInit {
 
           if (ret.isSuccess) {
             this.dataModel = ret.item;
+            this.CheckIsNull(this.dataModel);
           } else {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
@@ -171,7 +172,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
 
     this.applicationSourceService
@@ -249,9 +250,19 @@ export class ApplicationSourceEditComponent implements OnInit {
     }
     );
   }
+  CheckIsNull(dataModel: ApplicationSourceModel): void {
+    if (this.dataModel.defaultConfigBuilderAdminJsonValues == 'null')
+      this.dataModel.defaultConfigBuilderAdminJsonValues = '';
+    if (this.dataModel.defaultConfigRuntimeAdminJsonValues == 'null')
+      this.dataModel.defaultConfigRuntimeAdminJsonValues = '';
+    if (this.dataModel.defaultConfigBuilderSiteJsonValues == 'null')
+      this.dataModel.defaultConfigBuilderSiteJsonValues = '';
+    if (this.dataModel.defaultConfigRuntimeSiteJsonValues == 'null')
+      this.dataModel.defaultConfigRuntimeSiteJsonValues = '';
+  }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
-      
+
     }
   }
   onActionBackToParent(): void {

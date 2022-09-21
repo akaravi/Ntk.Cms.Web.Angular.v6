@@ -105,7 +105,7 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'ServiceGetOneById';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_from_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
     /*َAccess Field*/
     this.applicationAppService.setAccessLoad();
     this.applicationAppService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
@@ -120,6 +120,7 @@ export class ApplicationAppEditComponent implements OnInit {
           this.formInfo.formSubmitAllow = true;
           if (ret.isSuccess) {
             this.dataModel = ret.item;
+            this.CheckIsNull(this.dataModel);
             const lat = this.dataModel.aboutUsGeolocationlatitude;
             const lon = this.dataModel.aboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
@@ -145,7 +146,7 @@ export class ApplicationAppEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.applicationAppService
       .ServiceEdit(this.dataModel)
       .subscribe({
@@ -168,6 +169,16 @@ export class ApplicationAppEditComponent implements OnInit {
         }
       }
       );
+  }
+  CheckIsNull(dataModel: ApplicationAppModel): void {
+    if (this.dataModel.configBuilderAdminJsonValues == 'null')
+      this.dataModel.configBuilderAdminJsonValues = '';
+    if (this.dataModel.configRuntimeAdminJsonValues == 'null')
+      this.dataModel.configRuntimeAdminJsonValues = '';
+    if (this.dataModel.configBuilderSiteJsonValues == 'null')
+      this.dataModel.configBuilderSiteJsonValues = '';
+    if (this.dataModel.configRuntimeSiteJsonValues == 'null')
+      this.dataModel.configRuntimeSiteJsonValues = '';
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
