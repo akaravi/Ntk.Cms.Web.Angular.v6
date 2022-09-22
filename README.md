@@ -1,6 +1,26 @@
-# Demo2App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+# Ntk Cms
+
+Ntk Cms is an e-commerce built with Angular 13 (Angular CLI). You can create, moderate and manage pages, real estates, orders, customers, carts, admins and more with this admin pannel.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+
+## Technologies
+Project is created with:
+* Angular version: 13.3.0
+* Rxjs version : 7.5
+* TypeScript version: 4.6
+* Bootstrap version: 5.1
+
+## Setting up the local environment and workspace
+
+1. Install the latest LTS version of Node.js from https://nodejs.org.
+
+1. Install the Angular CLI: `npm install -g @angular/cli`
+
+1. Get in `Ntk-cms-web-angular` directory and run `npm install`
+
+1. Run `npm run serve1`
 
 ## Development server
 
