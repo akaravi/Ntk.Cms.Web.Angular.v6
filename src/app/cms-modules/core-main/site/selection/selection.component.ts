@@ -97,7 +97,7 @@ export class CoreSiteSelectionComponent implements OnInit {
         if (res.isSuccess && res.item.siteId > 0) {
           this.cmsToastrService.typeSuccessSelected();
           this.loading.Stop(pName);
-          this.router.navigate(['/']);
+          setTimeout(() => this.router.navigate(['/']), 5000);
         }
         else {
           this.cmsToastrService.typeErrorSelected();
@@ -126,7 +126,8 @@ export class CoreSiteSelectionComponent implements OnInit {
       this.coreAuthService.ServiceRenewToken(authModel).subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
-            this.router.navigate(['/dashboard/']);
+            
+            setTimeout(() => this.router.navigate(['/dashboard/']), 5000);
           }
           this.loading.Stop(pName);
         },

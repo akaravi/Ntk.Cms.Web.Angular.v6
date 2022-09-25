@@ -97,19 +97,20 @@ export class AuthSingInComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_security_photo_content'));
     this.coreAuthService.ServiceCaptcha().subscribe({
       next: (ret) => {
-        this.captchaModel = ret.item;
-        this.expireDate = ret.item.expire.split('+')[1];
-        const startDate = new Date();
-        const endDate = new Date(ret.item.expire);
-        const seconds = (endDate.getTime() - startDate.getTime());
-        if (this.aoutoCaptchaOrder < 10) {
-          this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
-          setTimeout(() => {
-            if (!this.firstRun)
-              this.onCaptchaOrder();
-          }, seconds);
-        }
-        if (!ret.isSuccess) {
+        if (ret.isSuccess) {
+          this.captchaModel = ret.item;
+          this.expireDate = ret.item.expire.split('+')[1];
+          const startDate = new Date();
+          const endDate = new Date(ret.item.expire);
+          const seconds = (endDate.getTime() - startDate.getTime());
+          if (this.aoutoCaptchaOrder < 10) {
+            this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
+            setTimeout(() => {
+              if (!this.firstRun)
+                this.onCaptchaOrder();
+            }, seconds);
+          }
+        } else {
           this.cmsToastrService.typeErrorGetCpatcha(ret.errorMessage);
         }
         this.onCaptchaOrderInProcess = false;

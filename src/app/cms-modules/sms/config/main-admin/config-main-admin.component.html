@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -26,6 +26,115 @@
             {{'TITLE.Display_the_default_site_information_on_the_site' | translate}}
           </mat-slide-toggle>
         </div>
+
+        <!-- messageTextFilteringCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.messageTextFilteringCheck"
+            name="dataConfigSiteValuesDefaultModel.messageTextFilteringCheck">
+            messageTextFilteringCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageTextFiltering Field -->
+        <div class="ntk-full-width">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageTextFiltering</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageTextFiltering"
+              name="dataConfigSiteValuesDefaultModel.messageTextFiltering" #messageTextFiltering type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.messageTextFiltering" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.messageTextFiltering = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageTextFiltering</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageTextFiltering.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+
+
+        <!-- messageTextForbiddenCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.messageTextForbiddenCheck"
+            name="dataConfigSiteValuesDefaultModel.messageTextForbiddenCheck">
+            messageTextForbiddenCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageTextForbidden Field -->
+        <div class="ntk-full-width">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageTextForbidden</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageTextForbidden"
+              name="dataConfigSiteValuesDefaultModel.messageTextForbidden" #messageTextForbidden type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.messageTextForbidden" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.messageTextForbidden = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageTextForbidden</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageTextForbidden.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        <!-- messageNumberFilteringCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.messageNumberFilteringCheck"
+            name="dataConfigSiteValuesDefaultModel.messageNumberFilteringCheck">
+            messageNumberFilteringCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageNumberFiltering Field -->
+        <div class="ntk-full-width">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageNumberFiltering</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageNumberFiltering"
+              name="dataConfigSiteValuesDefaultModel.messageNumberFiltering" #messageNumberFiltering type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.messageNumberFiltering" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.messageNumberFiltering = ''">
+              close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageNumberFiltering</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageNumberFiltering.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        <!-- messageNumberForbiddenCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.messageNumberForbiddenCheck"
+            name="dataConfigSiteValuesDefaultModel.messageNumberForbiddenCheck">
+            messageNumberForbiddenCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageNumberForbidden Field -->
+        <div class="ntk-full-width">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageNumberForbidden</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageNumberForbidden"
+              name="dataConfigSiteValuesDefaultModel.messageNumberForbidden" #messageNumberForbidden type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.messageNumberForbidden" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesDefaultModel.messageNumberForbidden = ''">
+              close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageNumberForbidden</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageNumberForbidden.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
         <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
         </div>
@@ -63,11 +172,10 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Default_information_site_ID' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataConfigAdminMainModel.useDataDefaulteSiteId"
-            name="dataConfigAdminMainModel.useDataDefaulteSiteId"
-            #dataConfigAdminMainModel_UseDataDefaulteSiteId type="number" placeholder="0" />
-          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.useDataDefaulteSiteId" matSuffix
-            mat-icon-button aria-label="Clear"
-            (click)="dataConfigAdminMainModel.useDataDefaulteSiteId = 0">close</mat-icon>
+            name="dataConfigAdminMainModel.useDataDefaulteSiteId" #dataConfigAdminMainModel_UseDataDefaulteSiteId
+            type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.useDataDefaulteSiteId" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.useDataDefaulteSiteId = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
@@ -94,8 +202,8 @@
             AccessBuy
           </mat-slide-toggle>
         </div>
-         <!-- ImageMainSizeWidth Field -->
-         <mat-form-field class="ntk-full-width">
+        <!-- ImageMainSizeWidth Field -->
+        <mat-form-field class="ntk-full-width">
           <mat-label>ImageMainSizeWidth</mat-label>
           <input matInput [(ngModel)]="dataConfigAdminMainModel.imageMainSizeWidth"
             name="dataConfigAdminMainModel.imageMainSizeWidth" #dataConfigAdminMainModel_ImageMainSizeWidth
@@ -169,6 +277,105 @@
             AccessFreeDay is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+
+        <hr>
+
+
+
+        <!-- messageTextForbiddenCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.messageTextForbiddenCheck"
+            name="dataConfigAdminMainModel.messageTextForbiddenCheck">
+            messageTextForbiddenCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageTextForbidden Field -->
+        <div class="ntk-full-width">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageTextForbidden</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigAdminMainModel.messageTextForbidden"
+              name="dataConfigAdminMainModel.messageTextForbidden" #messageTextForbidden type="text" placeholder="..."
+              minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.messageTextForbidden" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigAdminMainModel.messageTextForbidden = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageTextForbidden</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageTextForbidden.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        <!-- messageNumberFilteringCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.messageNumberFilteringCheck"
+            name="dataConfigAdminMainModel.messageNumberFilteringCheck">
+            messageNumberFilteringCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageNumberFiltering Field -->
+        <div class="ntk-full-width">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageNumberFiltering</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigAdminMainModel.messageNumberFiltering"
+              name="dataConfigAdminMainModel.messageNumberFiltering" #messageNumberFiltering type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.messageNumberFiltering" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigAdminMainModel.messageNumberFiltering = ''">
+              close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageNumberFiltering</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageNumberFiltering.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        <!-- messageNumberForbiddenCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.messageNumberForbiddenCheck"
+            name="dataConfigAdminMainModel.messageNumberForbiddenCheck">
+            messageNumberForbiddenCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageNumberForbidden Field -->
+        <div class="ntk-full-width">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageNumberForbidden</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigAdminMainModel.messageNumberForbidden"
+              name="dataConfigAdminMainModel.messageNumberForbidden" #messageNumberForbidden type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.messageNumberForbidden" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigAdminMainModel.messageNumberForbidden = ''">
+              close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageNumberForbidden</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageNumberForbidden.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <hr>
+        <!-- MessageNumberHiddenCharSymbol Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>messageNumberHiddenCharSymbol</mat-label>
+          <input matInput [(ngModel)]="dataConfigAdminMainModel.messageNumberHiddenCharSymbol"
+            name="dataConfigAdminMainModel.messageNumberHiddenCharSymbol"
+            #dataConfigAdminMainModel_messageNumberHiddenCharSymbol type="text" placeholder="#" required />
+          <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.messageNumberHiddenCharSymbol" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigAdminMainModel.messageNumberHiddenCharSymbol = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="dataConfigAdminMainModel_messageNumberHiddenCharSymbol.errors?.required">
+            messageNumberHiddenCharSymbol is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
 
         <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>

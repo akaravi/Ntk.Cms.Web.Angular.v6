@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@ang
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthUserSignInModel, AuthUserSignUpModel, CaptchaModel, CoreAuthService,  FormInfoModel } from 'ntk-cms-api';
+import { AuthUserSignInModel, AuthUserSignUpModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { MatDialog } from '@angular/material/dialog';
@@ -185,16 +185,17 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_security_photo_content'));
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
-        this.captchaModel = next.item;
-        this.expireDate = next.item.expire.split('+')[1];
-        const startDate = new Date();
-        const endDate = new Date(next.item.expire);
-        const seconds = (endDate.getTime() - startDate.getTime());
-        if (this.aoutoCaptchaOrder < 10) {
-          this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
-          setTimeout(() => { this.onCaptchaOrder(); }, seconds);
-        }
-        if (!next.isSuccess) {
+        if (next.isSuccess) {
+          this.captchaModel = next.item;
+          this.expireDate = next.item.expire.split('+')[1];
+          const startDate = new Date();
+          const endDate = new Date(next.item.expire);
+          const seconds = (endDate.getTime() - startDate.getTime());
+          if (this.aoutoCaptchaOrder < 10) {
+            this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
+            setTimeout(() => { this.onCaptchaOrder(); }, seconds);
+          }
+        } else {
           this.cmsToastrService.typeErrorGetCpatcha(next.errorMessage);
         }
         this.onCaptchaOrderInProcess = false;
