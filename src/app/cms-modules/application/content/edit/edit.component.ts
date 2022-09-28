@@ -120,7 +120,7 @@ export class ApplicationAppEditComponent implements OnInit {
           this.formInfo.formSubmitAllow = true;
           if (ret.isSuccess) {
             this.dataModel = ret.item;
-            this.CheckIsNull(this.dataModel);
+            this.checkIsNull(this.dataModel);
             const lat = this.dataModel.aboutUsGeolocationlatitude;
             const lon = this.dataModel.aboutUsGeolocationlongitude;
             if (lat > 0 && lon > 0) {
@@ -170,7 +170,7 @@ export class ApplicationAppEditComponent implements OnInit {
       }
       );
   }
-  CheckIsNull(dataModel: ApplicationAppModel): void {
+  checkIsNull(dataModel: ApplicationAppModel): void {
     if (this.dataModel.configBuilderAdminJsonValues == 'null')
       this.dataModel.configBuilderAdminJsonValues = '';
     if (this.dataModel.configRuntimeAdminJsonValues == 'null')

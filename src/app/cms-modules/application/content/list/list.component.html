@@ -133,11 +133,11 @@
               <span>{{'ACTION.BUILD_AN_APP' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonDownloadApp(row)" *ngIf="row.lastSuccessfullyBuildDate">
-              <mat-icon>devices_other</mat-icon>
+              <mat-icon>download</mat-icon>
               <span>{{'ACTION.DOWNLOAD_THE_APP' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonMemberList(row)" *ngIf="row.lastSuccessfullyBuildDate">
-              <mat-icon>user</mat-icon>
+              <mat-icon>person</mat-icon>
               <span>{{'ACTION.USERS' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonIntroList(row)" *ngIf="row.lastSuccessfullyBuildDate">

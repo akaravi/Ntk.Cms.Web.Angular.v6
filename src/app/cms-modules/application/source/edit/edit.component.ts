@@ -117,7 +117,7 @@ export class ApplicationSourceEditComponent implements OnInit {
 
           if (ret.isSuccess) {
             this.dataModel = ret.item;
-            this.CheckIsNull(this.dataModel);
+            this.checkIsNull(this.dataModel);
           } else {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
@@ -250,7 +250,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     }
     );
   }
-  CheckIsNull(dataModel: ApplicationSourceModel): void {
+  checkIsNull(dataModel: ApplicationSourceModel): void {
     if (this.dataModel.defaultConfigBuilderAdminJsonValues == 'null')
       this.dataModel.defaultConfigBuilderAdminJsonValues = '';
     if (this.dataModel.defaultConfigRuntimeAdminJsonValues == 'null')
