@@ -21,7 +21,8 @@ import {
   SmsMainApiPathService,
   SmsLogInBoxService,
   SmsLogOutBoxService,
-  SmsLogOutBoxDetailService
+  SmsLogOutBoxDetailService,
+  SmsLogOutBoxQueueService
 } from 'ntk-cms-api';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -39,6 +40,9 @@ import { SmsLogOutBoxEditComponent } from './outbox/edit/edit.component';
 import { SmsLogOutBoxHeaderComponent } from './outbox/header/header.component';
 import { SmsLogOutBoxViewComponent } from './outbox/view/view.component';
 import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
+import { SmsLogOutBoxQueueListComponent } from './outbox-queue/list/list.component';
+import { SmsLogOutBoxQueueEditComponent } from './outbox-queue/edit/edit.component';
+import { SmsLogOutBoxQueueViewComponent } from './outbox-queue/view/view.component';
 
 
 @NgModule({
@@ -51,6 +55,9 @@ import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.compo
     SmsLogOutBoxEditComponent,
     SmsLogOutBoxHeaderComponent,
     SmsLogOutBoxViewComponent,
+    SmsLogOutBoxQueueListComponent,
+    SmsLogOutBoxQueueEditComponent,
+    SmsLogOutBoxQueueViewComponent,
     SmsLogOutBoxDetailListComponent,
 
   ],
@@ -81,6 +88,7 @@ import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.compo
     SmsLogInBoxService,
     SmsLogOutBoxService,
     SmsLogOutBoxDetailService,
+    SmsLogOutBoxQueueService,
     SmsMainApiPathCompanyService,//بررسی شود آیا نیاز است
     SmsMainApiPathPublicConfigService,//بررسی شود آیا نیاز است
     SmsMainApiPathService,//بررسی شود آیا نیاز است

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SmsLogInBoxListComponent } from './inbox/list/list.component';
 import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
+import { SmsLogOutBoxQueueListComponent } from './outbox-queue/list/list.component';
 import { SmsLogOutBoxListComponent } from './outbox/list/list.component';
 import { SmsLogComponent } from './sms-log.component';
 
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: 'outbox-detail/LinkOutBoxId/:LinkOutBoxId',
         component: SmsLogOutBoxDetailListComponent
+      },
+      {
+        path: 'outbox-queue/LinkApiPathId/:LinkApiPathId',
+        component: SmsLogOutBoxQueueListComponent
       },
       //   {
       //     path: 'source/edit/:Id',
