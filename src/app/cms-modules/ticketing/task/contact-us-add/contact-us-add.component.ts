@@ -46,7 +46,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
     private router: Router,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -194,17 +194,17 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
     this.dataModel.captchaText = '';
     this.coreAuthService.ServiceCaptcha().subscribe(
       (next) => {
-
-        this.captchaModel = next.item;
-        this.expireDate = next.item.expire.split('+')[1];
-        const startDate = new Date();
-        const endDate = new Date(next.item.expire);
-        const seconds = (endDate.getTime() - startDate.getTime());
-        if (this.aoutoCaptchaOrder < 10) {
-          this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
-          setTimeout(() => { this.onCaptchaOrder(); }, seconds);
-        }
-        if (!next.isSuccess) {
+        if (next.isSuccess) {
+          this.captchaModel = next.item;
+          this.expireDate = next.item.expire.split('+')[1];
+          const startDate = new Date();
+          const endDate = new Date(next.item.expire);
+          const seconds = (endDate.getTime() - startDate.getTime());
+          if (this.aoutoCaptchaOrder < 10) {
+            this.aoutoCaptchaOrder = this.aoutoCaptchaOrder + 1;
+            setTimeout(() => { this.onCaptchaOrder(); }, seconds);
+          }
+        } else {
           this.cmsToastrService.typeErrorGetCpatcha(next.errorMessage);
         }
         this.onCaptchaOrderInProcess = false;

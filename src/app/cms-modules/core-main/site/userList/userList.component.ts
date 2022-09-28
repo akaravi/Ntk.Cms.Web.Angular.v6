@@ -362,6 +362,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
     authModel.userId = this.tableRowSelected.linkUserId;
+    authModel.siteId = this.tableRowSelected.linkSiteId;
     this.coreAuthService.ServiceRenewToken(authModel).subscribe({
       next: (res) => {
         if (res.isSuccess) {
