@@ -142,6 +142,10 @@
               <mat-icon>view_module</mat-icon>
               <span>{{'ACTION.ACEESS' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonOutBoxQueue(row)">
+              <mat-icon>view_module</mat-icon>
+              <span>{{'ACTION.QUEUE' | translate}}</span>
+            </button>
             <button mat-menu-item (click)="onActionbuttonCopy(row)" *ngIf="categoryModelSelected && categoryModelSelected.id.length > 0">
               <mat-icon>content_copy</mat-icon>
               <span>copy</span>

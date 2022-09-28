@@ -466,6 +466,25 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     }
     this.router.navigate(['/sms/main/api-path-permission/LinkApiPathId', this.tableRowSelected.id]);
   }
+  onActionbuttonOutBoxQueue(model: SmsMainApiPathModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorSelected();
+      return;
+    }
+    this.router.navigate(['/sms/log/outbox-queue/LinkApiPathId', this.tableRowSelected.id]);
+  }
   onActionbuttonCopy(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();

@@ -98,6 +98,7 @@
 	"ACTION.SELECT_SUBMENU_TOGGLE_MODE": "Select Submenu Toggle mode (works only when Scroll is disabled. *By default - mode is 'accordion')",
 	"ACTION.SUBMENU_TOGGLE_DROPDOWN": "Submenu toggle dropdown",
 	"ACTION.SELECT_FOOTER_LAYOUT": "Select footer layout",
+	"ACTION.QUEUE": "Queue",
 	"ACTION.COMPACT": "Compact",
 	"ACTION.EXTENDED": "Extended",
 	"ACTION.FOOTER_LAYOUT": "Footer Layout",
