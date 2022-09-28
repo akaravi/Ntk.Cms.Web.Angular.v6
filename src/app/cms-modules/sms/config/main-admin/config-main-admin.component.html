@@ -375,8 +375,18 @@
             messageNumberHiddenCharSymbol is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+        <!-- MessageNumberHiddenCharSymbol Field -->
+        <h3>مخفی سازی شماره مخاطب</h3>
+        <mat-button-toggle-group name="ingredients" aria-label="Ingredients"
+          
+          [(ngModel)]="dataConfigAdminMainModel.messageNumberHiddenCharIndexes" name="dataConfigAdminMainModel.messageNumberHiddenCharIndexes" multiple>
+
+          <mat-button-toggle value="{{button}}" *ngFor="let button of [1,2,3,4,5,6,7,8,9,10,11,12,13];let i = index" [ngClass]="dataConfigAdminMainModel.messageNumberHiddenCharIndexes?.indexOf(button)>=0?'toggleSelected':''"  ngDefaultControl>{{button}}
+          </mat-button-toggle>
 
 
+        </mat-button-toggle-group>
+        
         <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
         </div>

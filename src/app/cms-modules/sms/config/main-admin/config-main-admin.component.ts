@@ -26,7 +26,8 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 
 @Component({
   selector: 'app-sms-config-mainadmin',
-  templateUrl: './config-main-admin.component.html'
+  templateUrl: './config-main-admin.component.html',
+  styleUrls: ['./config-main-admin.component.scss']
 })
 export class SmsConfigMainAdminComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
@@ -58,6 +59,7 @@ export class SmsConfigMainAdminComponent implements OnInit, OnDestroy {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
+  
 
   fileManagerTree: TreeModel;
   mapMarker: any;
