@@ -20,6 +20,11 @@ npm run rtl
 =========================================
 npm rebuild node-sass 
 
+=========================================
+این سه با ورژن 14 مشکل دارند
+ "ngx-awesome-uploader": "^13.0.1",
+ "ngx-icon-picker": "^1.9.1",
+ "ntk-cms-filemanager": "^1.2.15",
 =========================================Update all npm
 npm i -g npm-check-updates
 ncu -u
