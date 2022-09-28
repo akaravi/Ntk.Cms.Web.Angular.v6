@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/ntk-cms-web-angular-v2'),
+      dir: require('path').join(__dirname, './coverage/ntk-cms-web-angular'),
       subdir: '.',
       reporters: [
         { type: 'html' },
