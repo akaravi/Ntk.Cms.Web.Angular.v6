@@ -41,7 +41,7 @@
       
                 <ng-container >
                   <!--begin::DYNAMIC Aside-->
-                  <app-aside-dynamic  *ng-If="this.tokenHelper?.tokenInfo?.siteId>0"
+                  <app-aside-dynamic  *ngIf="this.tokenHelper?.tokenInfo?.siteId>0"
                     #ktAside
                     id="kt_aside"
                     class="aside aside-left d-flex flex-column flex-row-auto"

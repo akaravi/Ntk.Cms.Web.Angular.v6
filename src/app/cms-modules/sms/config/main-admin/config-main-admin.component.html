@@ -26,7 +26,7 @@
             {{'TITLE.Display_the_default_site_information_on_the_site' | translate}}
           </mat-slide-toggle>
         </div>
-
+        <hr>
         <!-- messageTextFilteringCheck Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesDefaultModel.messageTextFilteringCheck"
@@ -35,7 +35,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageTextFiltering Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesDefaultModel.messageTextFilteringCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageTextFiltering</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageTextFiltering"
@@ -63,7 +63,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageTextForbidden Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesDefaultModel.messageTextForbiddenCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageTextForbidden</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageTextForbidden"
@@ -89,7 +89,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageNumberFiltering Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesDefaultModel.messageNumberFilteringCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageNumberFiltering</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageNumberFiltering"
@@ -116,7 +116,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageNumberForbidden Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesDefaultModel.messageNumberForbiddenCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageNumberForbidden</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.messageNumberForbidden"
@@ -280,7 +280,30 @@
 
         <hr>
 
-
+        <!-- messageTextFilteringCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigAdminMainModel.messageTextFilteringCheck"
+            name="dataConfigAdminMainModel.messageTextFilteringCheck">
+            messageTextFilteringCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageTextFiltering Field -->
+        <div class="ntk-full-width" *ngIf="dataConfigAdminMainModel.messageTextFilteringCheck">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageTextFiltering</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigAdminMainModel.messageTextFiltering"
+              name="dataConfigAdminMainModel.messageTextFiltering" #messageTextFiltering type="text" placeholder="..."
+              minlength="1" maxlength="2000" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigAdminMainModel.messageTextFiltering" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigAdminMainModel.messageTextFiltering = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageTextFiltering</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageTextFiltering.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
 
         <!-- messageTextForbiddenCheck Field -->
         <div class="ntk-full-width">
@@ -289,8 +312,9 @@
             messageTextForbiddenCheck
           </mat-slide-toggle>
         </div>
+
         <!-- messageTextForbidden Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigAdminMainModel.messageTextForbiddenCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageTextForbidden</mat-label>
             <textarea matInput [(ngModel)]="dataConfigAdminMainModel.messageTextForbidden"
@@ -316,7 +340,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageNumberFiltering Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ng_If="dataConfigAdminMainModel.messageNumberFilteringCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageNumberFiltering</mat-label>
             <textarea matInput [(ngModel)]="dataConfigAdminMainModel.messageNumberFiltering"
@@ -343,7 +367,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageNumberForbidden Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigAdminMainModel.messageNumberForbiddenCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageNumberForbidden</mat-label>
             <textarea matInput [(ngModel)]="dataConfigAdminMainModel.messageNumberForbidden"
@@ -378,15 +402,17 @@
         <!-- MessageNumberHiddenCharSymbol Field -->
         <h3>مخفی سازی شماره مخاطب</h3>
         <mat-button-toggle-group name="ingredients" aria-label="Ingredients"
-          
-          [(ngModel)]="dataConfigAdminMainModel.messageNumberHiddenCharIndexes" name="dataConfigAdminMainModel.messageNumberHiddenCharIndexes" multiple>
+          [(ngModel)]="dataConfigAdminMainModel.messageNumberHiddenCharIndexes"
+          name="dataConfigAdminMainModel.messageNumberHiddenCharIndexes" multiple>
 
-          <mat-button-toggle value="{{button}}" *ngFor="let button of [1,2,3,4,5,6,7,8,9,10,11,12,13];let i = index" [ngClass]="dataConfigAdminMainModel.messageNumberHiddenCharIndexes?.indexOf(button)>=0?'toggleSelected':''"  ngDefaultControl>{{button}}
+          <mat-button-toggle value="{{button}}" *ngFor="let button of [1,2,3,4,5,6,7,8,9,10,11,12,13];let i = index"
+            [ngClass]="dataConfigAdminMainModel.messageNumberHiddenCharIndexes?.indexOf(button)>=0?'toggleSelected':''"
+            ngDefaultControl>{{button}}
           </mat-button-toggle>
 
 
         </mat-button-toggle-group>
-        
+
         <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigAdminMainModel | prettyjson"></div>
         </div>
