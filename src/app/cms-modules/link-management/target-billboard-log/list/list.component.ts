@@ -87,7 +87,8 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   tableRowsSelected: Array<LinkManagementTargetBillboardLogModel> = [];
   tableRowSelected: LinkManagementTargetBillboardLogModel = new LinkManagementTargetBillboardLogModel();
   tableSource: MatTableDataSource<LinkManagementTargetBillboardLogModel> = new MatTableDataSource<LinkManagementTargetBillboardLogModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'ClickPrice',
     'ViewPrice',
@@ -115,7 +116,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementTargetBillboardLogModel();
     const pName = this.constructor.name + 'main';

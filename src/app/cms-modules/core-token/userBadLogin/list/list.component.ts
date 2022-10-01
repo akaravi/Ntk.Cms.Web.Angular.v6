@@ -104,7 +104,8 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreTokenUserBadLoginModel> = new MatTableDataSource<CoreTokenUserBadLoginModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
     'LinkUserId',
@@ -146,7 +147,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreTokenUserBadLoginModel();
     const pName = this.constructor.name + 'main';

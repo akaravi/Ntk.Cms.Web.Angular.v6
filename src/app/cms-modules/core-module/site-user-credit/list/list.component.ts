@@ -74,7 +74,8 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
   tableRowsSelected: Array<CoreModuleSiteUserCreditModel> = [];
   tableRowSelected: CoreModuleSiteUserCreditModel = new CoreModuleSiteUserCreditModel();
   tableSource: MatTableDataSource<CoreModuleSiteUserCreditModel> = new MatTableDataSource<CoreModuleSiteUserCreditModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'RecordStatus',
     'LinkSiteId',
     'LinkUserId',

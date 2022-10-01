@@ -70,7 +70,8 @@ export class LinkManagementMemberListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<LinkManagementMemberModel> = [];
   tableRowSelected: LinkManagementMemberModel = new LinkManagementMemberModel();
   tableSource: MatTableDataSource<LinkManagementMemberModel> = new MatTableDataSource<LinkManagementMemberModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
 
     'Id',
     'RecordStatus',
@@ -99,7 +100,7 @@ export class LinkManagementMemberListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementMemberModel();
     const pName = this.constructor.name + 'main';

@@ -80,7 +80,8 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<TicketingAnswerModel> = new MatTableDataSource<TicketingAnswerModel>();
   categoryModelSelected: TicketingDepartemenModel;
   dataModelEnumAnswerStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkTaskId',
     'LinkMemberId',

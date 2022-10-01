@@ -72,7 +72,8 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<ApplicationSourceModel> = new MatTableDataSource<ApplicationSourceModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -106,7 +107,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,['Title'],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,['Title'],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApplicationSourceModel();
     const pName = this.constructor.name + 'main';

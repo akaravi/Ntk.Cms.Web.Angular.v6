@@ -53,7 +53,8 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   tableSource: MatTableDataSource<CoreSiteCategoryCmsModuleModel> = new MatTableDataSource<CoreSiteCategoryCmsModuleModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'virtual_CmsSiteCategory.title',
     'virtual_CmsModule.title',
     'virtual_CmsModule.Description',

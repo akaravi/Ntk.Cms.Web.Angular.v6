@@ -74,7 +74,8 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<TicketingDepartemenModel> = new MatTableDataSource<TicketingDepartemenModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -104,7 +105,7 @@ export class TicketingDepartemenListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingDepartemenModel();
     const pName = this.constructor.name + 'main';

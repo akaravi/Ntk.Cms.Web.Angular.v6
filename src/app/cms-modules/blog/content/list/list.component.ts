@@ -76,7 +76,8 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<BlogContentModel> = [];
   tableRowSelected: BlogContentModel = new BlogContentModel();
   tableSource: MatTableDataSource<BlogContentModel> = new MatTableDataSource<BlogContentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -107,7 +108,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new BlogContentModel();
     const pName = this.constructor.name + 'main';

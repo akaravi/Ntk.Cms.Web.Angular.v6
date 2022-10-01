@@ -70,7 +70,8 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
   tableRowSelected: WebDesignerMainPageTemplateModel = new WebDesignerMainPageTemplateModel();
   tableSource: MatTableDataSource<WebDesignerMainPageTemplateModel> = new MatTableDataSource<WebDesignerMainPageTemplateModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',

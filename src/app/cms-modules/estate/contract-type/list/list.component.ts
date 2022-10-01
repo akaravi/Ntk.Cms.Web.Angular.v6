@@ -73,7 +73,8 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstateContractTypeModel> = new MatTableDataSource<EstateContractTypeModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Title',
     'HasSalePrice',
     'HasDepositPrice',

@@ -82,7 +82,8 @@ export class CoreLogAvoidDuplicateDataEntryListComponent implements OnInit, OnDe
   tableRowsSelected: Array<CoreLogAvoidDuplicateDataEntryModel> = [];
   tableRowSelected: CoreLogAvoidDuplicateDataEntryModel = new CoreLogAvoidDuplicateDataEntryModel();
   tableSource: MatTableDataSource<CoreLogAvoidDuplicateDataEntryModel> = new MatTableDataSource<CoreLogAvoidDuplicateDataEntryModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'ModuleName',
     'ModuleEntityName',

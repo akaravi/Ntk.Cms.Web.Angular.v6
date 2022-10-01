@@ -89,7 +89,8 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreModuleLogMemoModel> = new MatTableDataSource<CoreModuleLogMemoModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'RecordStatus',
     'ModuleName',
     'ModuleEntityName',
@@ -122,7 +123,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleLogMemoModel();
     const pName = this.constructor.name + 'main';

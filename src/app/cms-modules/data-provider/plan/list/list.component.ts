@@ -72,7 +72,8 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<DataProviderPlanModel> = [];
   tableRowSelected: DataProviderPlanModel = new DataProviderPlanModel();
   tableSource: MatTableDataSource<DataProviderPlanModel> = new MatTableDataSource<DataProviderPlanModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -98,7 +99,7 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderPlanModel();
     const pName = this.constructor.name + 'main';

@@ -75,7 +75,8 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   categoryModelSelected: CoreModuleSaleSerialModel = new CoreModuleSaleSerialModel();
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'MainImageSrc',
     'Id',
     'RecordStatus',

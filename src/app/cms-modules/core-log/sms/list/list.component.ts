@@ -106,7 +106,8 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreLogSmsModel> = new MatTableDataSource<CoreLogSmsModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkUserId',
     'LinkSiteId',
@@ -151,7 +152,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreLogSmsModel();
     const pName = this.constructor.name + 'main';

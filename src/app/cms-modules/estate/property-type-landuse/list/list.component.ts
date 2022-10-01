@@ -72,7 +72,8 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
   tableSource: MatTableDataSource<EstatePropertyTypeLanduseModel> = new MatTableDataSource<EstatePropertyTypeLanduseModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'IconFont',
     'Title',

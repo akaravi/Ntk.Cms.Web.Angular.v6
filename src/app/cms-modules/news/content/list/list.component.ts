@@ -68,7 +68,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<NewsContentModel> = [];
   tableRowSelected: NewsContentModel = new NewsContentModel();
   tableSource: MatTableDataSource<NewsContentModel> = new MatTableDataSource<NewsContentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -94,7 +95,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new NewsContentModel();
    

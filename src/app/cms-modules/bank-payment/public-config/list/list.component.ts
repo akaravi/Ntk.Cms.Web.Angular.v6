@@ -75,7 +75,8 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
   tableRowSelected: BankPaymentPublicConfigModel = new BankPaymentPublicConfigModel();
   tableSource: MatTableDataSource<BankPaymentPublicConfigModel> = new MatTableDataSource<BankPaymentPublicConfigModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkModuleFileLogoIdSrc',
     'Id',
     'RecordStatus',
@@ -110,6 +111,7 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentPublicConfigModel();
     const pName = this.constructor.name + 'main';

@@ -83,7 +83,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   tableSource: MatTableDataSource<WebDesignerMainPageDependencyModel> = new MatTableDataSource<WebDesignerMainPageDependencyModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   categoryModelSelected = new CoreModuleModel();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -119,7 +120,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,['RecordStatus','Title','CmsModuleClassName','ClassActionName'],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,['RecordStatus','Title','CmsModuleClassName','ClassActionName'],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
     const pName = this.constructor.name + 'main';

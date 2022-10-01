@@ -79,7 +79,8 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
   tableRowsSelected: Array<DonateTargetPeriodSponsorModel> = [];
   tableRowSelected: DonateTargetPeriodSponsorModel = new DonateTargetPeriodSponsorModel();
   tableSource: MatTableDataSource<DonateTargetPeriodSponsorModel> = new MatTableDataSource<DonateTargetPeriodSponsorModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -121,7 +122,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     
     if (this.requestLinkSponserId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(

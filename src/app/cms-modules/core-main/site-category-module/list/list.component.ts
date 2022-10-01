@@ -92,7 +92,8 @@ export class CoreSiteCategoryCmsModuleListComponent implements OnInit, OnDestroy
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkCmsModuleId',
     'LinkCmsSiteCategoryId',
     'RecordStatus',

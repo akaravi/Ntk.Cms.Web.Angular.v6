@@ -83,7 +83,8 @@ export class CoreUserClaimTypeListComponent implements OnInit, OnDestroy {
   dataModelEnumUserClaimKindsResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',

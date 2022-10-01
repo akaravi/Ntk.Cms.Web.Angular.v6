@@ -77,7 +77,8 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
   tableRowsSelected: Array<LinkManagementAccountingDetailModel> = [];
   tableRowSelected: LinkManagementAccountingDetailModel = new LinkManagementAccountingDetailModel();
   tableSource: MatTableDataSource<LinkManagementAccountingDetailModel> = new MatTableDataSource<LinkManagementAccountingDetailModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'CreatedDate',
@@ -103,7 +104,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementAccountingDetailModel();
     const pName = this.constructor.name + 'main';

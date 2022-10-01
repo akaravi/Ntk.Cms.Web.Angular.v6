@@ -80,7 +80,8 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
   tableSource: MatTableDataSource<MemberPropertyDetailGroupModel> = new MatTableDataSource<MemberPropertyDetailGroupModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'IconFont',
     'Title',
     'ShowInFormOrder',

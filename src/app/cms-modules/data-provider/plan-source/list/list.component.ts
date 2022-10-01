@@ -73,7 +73,8 @@ export class DataProviderPlanSourceListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<DataProviderPlanSourceModel> = [];
   tableRowSelected: DataProviderPlanSourceModel = new DataProviderPlanSourceModel();
   tableSource: MatTableDataSource<DataProviderPlanSourceModel> = new MatTableDataSource<DataProviderPlanSourceModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -112,7 +113,7 @@ export class DataProviderPlanSourceListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderPlanSourceModel();
 

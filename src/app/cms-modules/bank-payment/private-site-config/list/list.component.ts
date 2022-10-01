@@ -82,7 +82,8 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   expandedElement: BankPaymentPrivateSiteConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -136,7 +137,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     if (this.requestLinkPublicConfigId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,

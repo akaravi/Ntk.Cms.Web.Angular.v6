@@ -75,7 +75,8 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
   tableSource: MatTableDataSource<TicketingDepartemenOperatorModel> = new MatTableDataSource<TicketingDepartemenOperatorModel>();
   categoryModelSelected: ApplicationSourceModel;
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -108,7 +109,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     
     if (this.requestDepartemenId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(

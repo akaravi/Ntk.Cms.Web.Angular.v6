@@ -80,7 +80,8 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<ContactContentModel> = [];
   tableRowSelected: ContactContentModel = new ContactContentModel();
   tableSource: MatTableDataSource<ContactContentModel> = new MatTableDataSource<ContactContentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -107,7 +108,7 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new ContactContentModel();
     const pName = this.constructor.name + 'main';

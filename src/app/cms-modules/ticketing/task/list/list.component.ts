@@ -83,7 +83,8 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<TicketingTaskModel> = new MatTableDataSource<TicketingTaskModel>();
   categoryModelSelected: TicketingDepartemenModel;
   dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Title',
     'LinkMemberId',
     'CreatedDate',
@@ -125,7 +126,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     });
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingTaskModel();
     const pName = this.constructor.name + 'main';

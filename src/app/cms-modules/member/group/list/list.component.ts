@@ -67,7 +67,8 @@ export class MemberGroupListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<MemberGroupModel> = [];
   tableRowSelected: MemberGroupModel = new MemberGroupModel();
   tableSource: MatTableDataSource<MemberGroupModel> = new MatTableDataSource<MemberGroupModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',

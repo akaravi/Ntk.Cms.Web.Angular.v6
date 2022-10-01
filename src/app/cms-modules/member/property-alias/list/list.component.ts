@@ -67,7 +67,8 @@ export class MemberPropertyAliasListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<MemberPropertyAliasModel> = [];
   tableRowSelected: MemberPropertyAliasModel = new MemberPropertyAliasModel();
   tableSource: MatTableDataSource<MemberPropertyAliasModel> = new MatTableDataSource<MemberPropertyAliasModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
     'LinkCmsUserId',

@@ -74,7 +74,8 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<WebDesignerMainMenuModel> = [];
   tableRowSelected: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
   tableSource: MatTableDataSource<WebDesignerMainMenuModel> = new MatTableDataSource<WebDesignerMainMenuModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Icon',
     'Id',
     'RecordStatus',

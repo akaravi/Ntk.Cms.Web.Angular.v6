@@ -69,7 +69,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstateCustomerOrderModel> = [];
   tableRowSelected: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   tableSource: MatTableDataSource<EstateCustomerOrderModel> = new MatTableDataSource<EstateCustomerOrderModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
     'RecordStatus',
@@ -95,7 +96,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();
     const pName = this.constructor.name + 'main';

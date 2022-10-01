@@ -72,7 +72,8 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstatePropertyTypeUsageModel> = new MatTableDataSource<EstatePropertyTypeUsageModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'IconFont',
     'Title',

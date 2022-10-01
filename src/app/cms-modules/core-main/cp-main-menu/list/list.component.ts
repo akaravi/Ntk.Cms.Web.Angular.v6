@@ -76,7 +76,8 @@ export class CoreCpMainMenuListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreCpMainMenuModel> = new MatTableDataSource<CoreCpMainMenuModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Icon',
     'Id',
     'RecordStatus',

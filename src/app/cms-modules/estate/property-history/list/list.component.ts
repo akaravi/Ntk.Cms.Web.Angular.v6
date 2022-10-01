@@ -72,7 +72,8 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstatePropertyHistoryModel> = new MatTableDataSource<EstatePropertyHistoryModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Title',
     'Description',

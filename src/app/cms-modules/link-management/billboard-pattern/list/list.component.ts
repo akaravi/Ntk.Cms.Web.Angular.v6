@@ -71,7 +71,8 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
   tableRowsSelected: Array<LinkManagementBillboardPatternModel> = [];
   tableRowSelected: LinkManagementBillboardPatternModel = new LinkManagementBillboardPatternModel();
   tableSource: MatTableDataSource<LinkManagementBillboardPatternModel> = new MatTableDataSource<LinkManagementBillboardPatternModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -99,7 +100,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementBillboardPatternModel();
     const pName = this.constructor.name + 'main';

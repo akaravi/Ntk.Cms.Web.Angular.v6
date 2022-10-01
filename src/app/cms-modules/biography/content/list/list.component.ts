@@ -68,7 +68,8 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<BiographyContentModel> = [];
   tableRowSelected: BiographyContentModel = new BiographyContentModel();
   tableSource: MatTableDataSource<BiographyContentModel> = new MatTableDataSource<BiographyContentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -96,7 +97,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new BiographyContentModel();
     const pName = this.constructor.name + 'main';

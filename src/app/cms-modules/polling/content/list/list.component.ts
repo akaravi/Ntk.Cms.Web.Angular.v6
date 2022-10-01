@@ -69,7 +69,8 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<PollingContentModel> = [];
   tableRowSelected: PollingContentModel = new PollingContentModel();
   tableSource: MatTableDataSource<PollingContentModel> = new MatTableDataSource<PollingContentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -97,7 +98,7 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new PollingContentModel();
     const pName = this.constructor.name + 'main';

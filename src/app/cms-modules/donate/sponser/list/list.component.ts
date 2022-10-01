@@ -74,7 +74,8 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<DonateSponsorModel> = [];
   tableRowSelected: DonateSponsorModel = new DonateSponsorModel();
   tableSource: MatTableDataSource<DonateSponsorModel> = new MatTableDataSource<DonateSponsorModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -103,7 +104,7 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DonateSponsorModel();
     const pName = this.constructor.name + 'main';

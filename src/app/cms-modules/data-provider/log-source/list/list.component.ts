@@ -68,7 +68,8 @@ export class DataProviderLogSourceListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<DataProviderLogSourceModel> = [];
   tableRowSelected: DataProviderLogSourceModel = new DataProviderLogSourceModel();
   tableSource: MatTableDataSource<DataProviderLogSourceModel> = new MatTableDataSource<DataProviderLogSourceModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSourceId',
     'CreatedDate',
@@ -100,7 +101,7 @@ export class DataProviderLogSourceListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderLogSourceModel();
     const pName = this.constructor.name + 'main';

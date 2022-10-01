@@ -76,7 +76,8 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreGuideModel> = new MatTableDataSource<CoreGuideModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Key',

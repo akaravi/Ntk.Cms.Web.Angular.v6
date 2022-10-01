@@ -80,7 +80,8 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<BankPaymentTransactionModel> = [];
   tableRowSelected: BankPaymentTransactionModel = new BankPaymentTransactionModel();
   tableSource: MatTableDataSource<BankPaymentTransactionModel> = new MatTableDataSource<BankPaymentTransactionModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkUserId',
     'RecordStatus',
@@ -136,6 +137,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentTransactionModel();
     const pName = this.constructor.name + 'main';

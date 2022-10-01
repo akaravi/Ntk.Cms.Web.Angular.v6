@@ -69,7 +69,8 @@ export class FileContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<FileContentModel> = [];
   tableRowSelected: FileContentModel = new FileContentModel();
   tableSource: MatTableDataSource<FileContentModel> = new MatTableDataSource<FileContentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'fileName',
@@ -95,7 +96,7 @@ export class FileContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new FileContentModel();
     const pName = this.constructor.name + 'main';

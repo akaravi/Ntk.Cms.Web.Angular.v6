@@ -94,7 +94,8 @@ export class MemberPropertyDetailListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<MemberPropertyDetailModel> = new MatTableDataSource<MemberPropertyDetailModel>();
   categoryModelSelected: MemberPropertyDetailGroupModel;
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'IconFont',
     'Title',
     'Unit',

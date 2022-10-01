@@ -166,7 +166,8 @@ export class EstatePropertyListComponent
   tableSource: MatTableDataSource<EstatePropertyModel> =
     new MatTableDataSource<EstatePropertyModel>();
   categoryModelSelected: EstatePropertyTypeLanduseModel;
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     "LinkMainImageIdSrc",
     "Id",
     "RecordStatus",
@@ -211,7 +212,7 @@ export class EstatePropertyListComponent
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     if (!this.optionloadComponent) {
       return;
     }

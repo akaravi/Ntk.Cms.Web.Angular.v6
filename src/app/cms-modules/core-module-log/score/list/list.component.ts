@@ -105,7 +105,8 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreModuleLogScoreModel> = new MatTableDataSource<CoreModuleLogScoreModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkUserId',
     'LinkSiteId',
@@ -143,7 +144,7 @@ export class CoreModuleLogScoreListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleLogScoreModel();
     const pName = this.constructor.name + 'main';

@@ -105,7 +105,8 @@ export class CoreModuleLogSiteCreditBlockedListComponent implements OnInit, OnDe
   tableSource: MatTableDataSource<CoreModuleLogSiteCreditBlockedModel> = new MatTableDataSource<CoreModuleLogSiteCreditBlockedModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
 
@@ -138,7 +139,7 @@ export class CoreModuleLogSiteCreditBlockedListComponent implements OnInit, OnDe
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleLogSiteCreditBlockedModel();
     const pName = this.constructor.name + 'main';

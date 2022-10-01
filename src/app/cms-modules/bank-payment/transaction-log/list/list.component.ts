@@ -75,7 +75,8 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
   tableRowSelected: BankPaymentTransactionLogModel = new BankPaymentTransactionLogModel();
   tableSource: MatTableDataSource<BankPaymentTransactionLogModel> = new MatTableDataSource<BankPaymentTransactionLogModel>();
   dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'TransactionStatus',
     'LinkTransactionId',
@@ -113,6 +114,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new BankPaymentTransactionLogModel();
     const pName = this.constructor.name + 'main';

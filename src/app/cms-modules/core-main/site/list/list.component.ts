@@ -95,7 +95,8 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'MainImageSrc',
     'Id',
     'linkCreatedBySiteId',
@@ -130,7 +131,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,['linkCreatedBySiteId'],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,['linkCreatedBySiteId'],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteModel();
     const pName = this.constructor.name + 'main';

@@ -78,7 +78,8 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
   tableRowSelected: TicketingFaqModel = new TicketingFaqModel();
   tableSource: MatTableDataSource<TicketingFaqModel> = new MatTableDataSource<TicketingFaqModel>();
   categoryModelSelected: TicketingDepartemenModel;
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Question',
@@ -110,7 +111,7 @@ export class TicketingFaqListComponent implements OnInit, OnDestroy {
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingFaqModel();
     const pName = this.constructor.name + 'main';

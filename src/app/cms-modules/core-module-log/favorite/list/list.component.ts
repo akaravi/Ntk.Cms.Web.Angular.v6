@@ -105,7 +105,8 @@ export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreModuleLogFavoriteModel> = new MatTableDataSource<CoreModuleLogFavoriteModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkUserId',
     'LinkSiteId',
@@ -142,7 +143,7 @@ export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleLogFavoriteModel();
     const pName = this.constructor.name + 'main';

@@ -31,6 +31,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { ApplicationLogNotificationActionSendComponent } from '../../notification/action-send/action-send.component';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+
 @Component({
   selector: 'app-application-app-list',
   templateUrl: './list.component.html',
@@ -79,7 +80,8 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<ApplicationAppModel> = new MatTableDataSource<ApplicationAppModel>();
   categoryModelSelected: ApplicationSourceModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -119,7 +121,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
 
     if (this.requestLinkSourceId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(

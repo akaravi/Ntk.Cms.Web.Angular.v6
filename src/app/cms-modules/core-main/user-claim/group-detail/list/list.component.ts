@@ -100,7 +100,8 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
   dataModelCoreUserClaimTypeResult: ErrorExceptionResult<CoreUserClaimTypeModel> = new ErrorExceptionResult<CoreUserClaimTypeModel>();
   dataModelCoreUserClaimGroupResult: ErrorExceptionResult<CoreUserClaimGroupModel> = new ErrorExceptionResult<CoreUserClaimGroupModel>();
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'RecordStatus',
     'LinkUserClaimGroupId',
     'LinkUserClaimTypeId',

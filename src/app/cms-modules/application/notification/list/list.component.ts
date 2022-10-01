@@ -73,7 +73,8 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
   tableRowsSelected: Array<ApplicationLogNotificationModel> = [];
   tableRowSelected: ApplicationLogNotificationModel = new ApplicationLogNotificationModel();
   tableSource: MatTableDataSource<ApplicationLogNotificationModel> = new MatTableDataSource<ApplicationLogNotificationModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'LinkApplicationId',
@@ -117,7 +118,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     if (this.requestLinkApplicationId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,

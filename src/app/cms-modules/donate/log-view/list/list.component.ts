@@ -68,7 +68,8 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<DonateLogViewModel> = [];
   tableRowSelected: DonateLogViewModel = new DonateLogViewModel();
   tableSource: MatTableDataSource<DonateLogViewModel> = new MatTableDataSource<DonateLogViewModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -104,7 +105,7 @@ export class DonateLogViewListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DonateLogViewModel();
     const pName = this.constructor.name + 'main';

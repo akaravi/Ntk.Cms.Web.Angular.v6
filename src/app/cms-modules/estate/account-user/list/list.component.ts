@@ -73,7 +73,8 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstateAccountUserModel> = new MatTableDataSource<EstateAccountUserModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Title',
     'Description',

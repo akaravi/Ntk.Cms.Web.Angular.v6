@@ -76,7 +76,8 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<ApplicationMemberInfoModel> = [];
   tableRowSelected: ApplicationMemberInfoModel = new ApplicationMemberInfoModel();
   tableSource: MatTableDataSource<ApplicationMemberInfoModel> = new MatTableDataSource<ApplicationMemberInfoModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'LinkUserId',
@@ -119,7 +120,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     if (this.requestLinkApplicationId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,

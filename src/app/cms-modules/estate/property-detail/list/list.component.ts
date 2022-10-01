@@ -94,7 +94,8 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstatePropertyDetailModel> = new MatTableDataSource<EstatePropertyDetailModel>();
   categoryModelSelected: EstatePropertyDetailGroupModel;
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'IconFont',
     'Title',
     'Unit',

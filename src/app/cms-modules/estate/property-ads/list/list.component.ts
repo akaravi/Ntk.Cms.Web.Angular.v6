@@ -78,7 +78,8 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstatePropertyAdsModel> = [];
   tableRowSelected: EstatePropertyAdsModel = new EstatePropertyAdsModel();
   tableSource: MatTableDataSource<EstatePropertyAdsModel> = new MatTableDataSource<EstatePropertyAdsModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Title',
     'StationLevel',
     'ViewLevel',

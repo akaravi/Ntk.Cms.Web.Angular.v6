@@ -73,7 +73,8 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
   tableSource: MatTableDataSource<EstateAccountAgencyTypeUserModel> = new MatTableDataSource<EstateAccountAgencyTypeUserModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Title',
     'Description',

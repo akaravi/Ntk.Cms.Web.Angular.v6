@@ -76,7 +76,8 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   expandedElement: ApplicationThemeConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -110,7 +111,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,['Title'],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,['Title'],this.tokenInfo);
     
     if (this.requestLinkSourceId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(

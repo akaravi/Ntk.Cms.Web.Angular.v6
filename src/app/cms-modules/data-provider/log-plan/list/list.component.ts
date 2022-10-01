@@ -69,7 +69,8 @@ export class DataProviderLogPlanListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<DataProviderLogPlanModel> = [];
   tableRowSelected: DataProviderLogPlanModel = new DataProviderLogPlanModel();
   tableSource: MatTableDataSource<DataProviderLogPlanModel> = new MatTableDataSource<DataProviderLogPlanModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSourceId',
     'LinkPlanId',
@@ -109,7 +110,7 @@ export class DataProviderLogPlanListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderLogPlanModel();
     const pName = this.constructor.name + 'main';

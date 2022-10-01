@@ -77,7 +77,8 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<TicketingTemplateModel> = new MatTableDataSource<TicketingTemplateModel>();
   categoryModelSelected: TicketingDepartemenModel;
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -104,7 +105,7 @@ export class TicketingTemplateListComponent implements OnInit, OnDestroy {
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingTemplateModel();
     const pName = this.constructor.name + 'main';

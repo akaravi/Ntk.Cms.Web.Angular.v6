@@ -101,7 +101,8 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreTokenUserModel> = new MatTableDataSource<CoreTokenUserModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
     'LinkUserId',
@@ -154,7 +155,7 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreTokenUserModel();
     const pName = this.constructor.name + 'main';

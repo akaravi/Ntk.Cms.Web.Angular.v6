@@ -105,7 +105,8 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
   categoryModelSelected: CoreUserClaimTypeModel = new CoreUserClaimTypeModel();
   dataModelCoreUserClaimTypeResult: ErrorExceptionResult<CoreUserClaimTypeModel> = new ErrorExceptionResult<CoreUserClaimTypeModel>();
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkFileContentId',
     'Id',
     'RecordStatus',

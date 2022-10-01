@@ -87,7 +87,8 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreSiteDomainAliasModel> = new MatTableDataSource<CoreSiteDomainAliasModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkCmsSiteId',
     'RecordStatus',
@@ -121,7 +122,7 @@ export class CoreSiteDomainAliasListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,['LinkCmsSiteId'],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,['LinkCmsSiteId'],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreSiteDomainAliasModel();
     const pName = this.constructor.name + 'main';

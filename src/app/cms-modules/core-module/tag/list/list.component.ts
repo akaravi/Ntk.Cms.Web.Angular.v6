@@ -74,7 +74,8 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<CoreModuleTagModel> = [];
   tableRowSelected: CoreModuleTagModel = new CoreModuleTagModel();
   tableSource: MatTableDataSource<CoreModuleTagModel> = new MatTableDataSource<CoreModuleTagModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',

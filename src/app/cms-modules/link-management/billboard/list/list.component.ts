@@ -69,7 +69,8 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<LinkManagementBillboardModel> = [];
   tableRowSelected: LinkManagementBillboardModel = new LinkManagementBillboardModel();
   tableSource: MatTableDataSource<LinkManagementBillboardModel> = new MatTableDataSource<LinkManagementBillboardModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
@@ -97,7 +98,7 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementBillboardModel();
     const pName = this.constructor.name + 'main';

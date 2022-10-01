@@ -76,7 +76,8 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<TicketingDepartemenLogModel> = new MatTableDataSource<TicketingDepartemenLogModel>();
   categoryModelSelected: ApplicationSourceModel;
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',

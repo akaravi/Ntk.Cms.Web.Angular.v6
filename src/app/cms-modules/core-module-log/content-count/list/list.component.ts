@@ -105,7 +105,8 @@ export class CoreModuleLogContentCountListComponent implements OnInit, OnDestroy
   tableSource: MatTableDataSource<CoreModuleLogContentCountModel> = new MatTableDataSource<CoreModuleLogContentCountModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkUserId',
     'LinkMemberId',
@@ -141,7 +142,7 @@ export class CoreModuleLogContentCountListComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleLogContentCountModel();
     const pName = this.constructor.name + 'main';

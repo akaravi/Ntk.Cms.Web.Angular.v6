@@ -103,7 +103,8 @@ export class CoreTokenMicroServiceListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreTokenMicroServiceModel> = new MatTableDataSource<CoreTokenMicroServiceModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
     'LinkUserId',
@@ -156,7 +157,7 @@ export class CoreTokenMicroServiceListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreTokenMicroServiceModel();
     const pName = this.constructor.name + 'main';

@@ -78,7 +78,8 @@ export class CoreLocationListComponent implements OnInit, OnDestroy {
   dataModelEnumLocationTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkImageIdSrc',
     'Id',
     'RecordStatus',

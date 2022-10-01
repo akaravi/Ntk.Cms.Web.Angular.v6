@@ -80,7 +80,8 @@ export class SmsMainMessageContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<SmsMainMessageContentModel> = [];
   tableRowSelected: SmsMainMessageContentModel = new SmsMainMessageContentModel();
   tableSource: MatTableDataSource<SmsMainMessageContentModel> = new MatTableDataSource<SmsMainMessageContentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Title',
@@ -107,7 +108,7 @@ export class SmsMainMessageContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsMainMessageContentModel();
     const pName = this.constructor.name + 'main';

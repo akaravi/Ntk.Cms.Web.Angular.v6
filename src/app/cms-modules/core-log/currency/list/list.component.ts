@@ -84,7 +84,8 @@ export class CoreLogCurrencyListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreLogCurrencyModel> = new MatTableDataSource<CoreLogCurrencyModel>();
 
 
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'MainId',
     'RecordStatus',

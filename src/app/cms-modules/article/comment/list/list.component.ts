@@ -88,7 +88,8 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<ArticleCommentModel> = [];
   tableRowSelected: ArticleCommentModel = new ArticleCommentModel();
   tableSource: MatTableDataSource<ArticleCommentModel> = new MatTableDataSource<ArticleCommentModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
     'Writer',
@@ -120,7 +121,7 @@ export class ArticleCommentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumns,[],this.tokenInfo);
+    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     if (this.requestContentId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,

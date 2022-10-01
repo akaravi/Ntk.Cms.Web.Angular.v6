@@ -65,7 +65,8 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstatePropertyProjectModel> = [];
   tableRowSelected: EstatePropertyProjectModel = new EstatePropertyProjectModel();
   tableSource: MatTableDataSource<EstatePropertyProjectModel> = new MatTableDataSource<EstatePropertyProjectModel>();
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',

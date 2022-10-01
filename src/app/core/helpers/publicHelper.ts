@@ -459,11 +459,15 @@ export class PublicHelper {
       return false;
     return true;
   }
-  TabledisplayedColumnsCheckByAllDataAccess(cloumn: string[], cloumnCheck: string[], token: TokenInfoModel): string[] {
-
+  TabledisplayedColumnsCheckByAllDataAccess(cloumnSource: string[], cloumnCheck: string[], token: TokenInfoModel): string[] {
     if (!cloumnCheck || cloumnCheck.length == 0) {
       cloumnCheck = [];
     }
+    var cloumn: string[] = [];
+    if (cloumnSource && cloumnSource.length > 0)
+      cloumn = JSON.parse(JSON.stringify(cloumnSource));
+
+
     if (cloumn.indexOf('Id') >= 0)
       cloumnCheck.push('Id');
     if (cloumn.indexOf('LinkSiteId') >= 0)

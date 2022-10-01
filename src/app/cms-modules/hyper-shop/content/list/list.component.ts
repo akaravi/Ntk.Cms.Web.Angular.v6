@@ -76,7 +76,8 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
   tableRowSelected: HyperShopContentModel = new HyperShopContentModel();
   tableSource: MatTableDataSource<HyperShopContentModel> = new MatTableDataSource<HyperShopContentModel>();
   categoryModelSelected: HyperShopCategoryModel;
-  tabledisplayedColumns: string[] = [
+  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumnsSource: string[] = [
     'Image',
     'Status',
     'Code',
