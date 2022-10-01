@@ -341,6 +341,17 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   }
   onActionTableRowSelect(row: LinkManagementTargetBillboardLogModel): void {
     this.tableRowSelected = row;
+  
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: LinkManagementTargetBillboardLogModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: LinkManagementTargetBillboardLogModel): void {
+    row["expanded"] = false;
   }
   onActionBackToParent(): void {
     if (this.requestLinkManagementBillboardId > 0) {
