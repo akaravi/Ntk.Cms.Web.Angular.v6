@@ -23,7 +23,6 @@ import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { LinkManagementTargetDeleteComponent } from '../delete/delete.component';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';

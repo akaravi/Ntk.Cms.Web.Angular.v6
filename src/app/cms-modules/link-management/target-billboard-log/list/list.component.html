@@ -12,11 +12,13 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
 
-    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
-    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonDeleteRow()"
-      type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -31,7 +33,8 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-    <button (click)="onActionBackToParent()" *ngIf="requestLinkManagementBillboardId>0 || requestLinkManagementTargetId>0" type="button"
+    <button (click)="onActionBackToParent()"
+      *ngIf="requestLinkManagementBillboardId>0 || requestLinkManagementTargetId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -45,7 +48,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+      multiTemplateDataRows>
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
@@ -62,8 +66,9 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+          <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
         </mat-cell>
       </ng-container>
@@ -80,7 +85,8 @@
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
+          publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- LinkManagementBillboardId Column -->
       <ng-container matColumnDef="LinkManagementBillboardId">
@@ -115,16 +121,67 @@
               <mat-icon>dehaze</mat-icon>
               <span>{{'ACTION.BANNER' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonViewRowLinkBillbordId(row)" *ngIf="row.linkManagementBillboardId>0">
+            <button mat-menu-item (click)="onActionbuttonViewRowLinkBillbordId(row)"
+              *ngIf="row.linkManagementBillboardId>0">
               <mat-icon>add_to_queue</mat-icon>
               <span>{{'ACTION.BILLBOARD' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>
       </ng-container>
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>{{fieldsInfo['Id']?.fieldTitle}} : {{row.id}}</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['IpAddress']?.fieldTitle}} : {{row.ipAddress}}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['DeviceId']?.fieldTitle}} : {{row.deviceId}}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['BrowserName']?.fieldTitle}} : {{row.browserName}}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                  <a (click)="onActionbuttonViewRowLinkBillbordId(row)" *ngIf="row.linkManagementBillboardId>0"
+                    class="link-primary pointer"> {{'ACTION.BILLBOARD' | translate}} </a>|
+
+                  <a (click)="onActionbuttonViewRowLinkTargetId(row)" *ngIf="row.linkManagementTargetId>0" class="link-primary pointer">
+                    {{'ACTION.BANNER' | translate}} </a>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
     </mat-table>
 
