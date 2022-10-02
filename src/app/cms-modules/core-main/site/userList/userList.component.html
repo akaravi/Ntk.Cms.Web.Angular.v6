@@ -151,30 +151,35 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonSiteList(row)">
+            <button mat-menu-item (click)="onActionbuttonSiteList(row,$event)">
               <mat-icon>web</mat-icon>
               <span>{{'ACTION.MEMBER_SITES' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonEditSiteRow(row)">
+            <button mat-menu-item (click)="onActionbuttonEditSiteRow(row,$event)">
               <mat-icon>language</mat-icon>
               <span> {{'ACTION.EDIT_SITES' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonEditUserRow(row)">
+            <button mat-menu-item (click)="onActionbuttonEditUserRow(row,$event)">
               <mat-icon>person_search</mat-icon>
               <span>{{'ACTION.USER_EDITING' | translate}}</span>
+            </button>
+            <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
+              (click)="onActionbuttonChangePassword(row)">
+              <mat-icon>lock</mat-icon>
+              <span>{{'ACTION.CHANGE_PASSWORD' | translate}}</span>
             </button>
             <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
               (click)="onActionbuttonLoginToRow(row)">
               <mat-icon>login</mat-icon>
               <span>{{'ACTION.LOGIN_TO_THIS_USER' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonResllerUser(row)"
+            <button mat-menu-item (click)="onActionbuttonResllerUser(row,$event)"
               *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
               <mat-icon>devices</mat-icon>
               <span> {{'ACTION.SUBSET_OF_USER_MARKETING' | translate}}</span>
             </button>
 
-            <button mat-menu-item (click)="onActionbuttonResllerSite(row)"
+            <button mat-menu-item (click)="onActionbuttonResllerSite(row,$event)"
               *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
               <mat-icon>devices</mat-icon>
               <span>{{'ACTION.SUBSET_OF_SITE_MARKETING' | translate}}</span>
@@ -228,23 +233,27 @@
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} |</a>
 
-                  <a (click)="onActionbuttonSiteList(row)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES' |
+                  <a (click)="onActionbuttonSiteList(row,$event)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES' |
                     translate}}|</a>
 
-                  <a (click)="onActionbuttonEditSiteRow(row)" class="link-primary pointer"> {{'ACTION.EDIT_SITES' |
+                  <a (click)="onActionbuttonEditSiteRow(row,$event)" class="link-primary pointer"> {{'ACTION.EDIT_SITES' |
                     translate}}|</a>
 
-                  <a (click)="onActionbuttonEditUserRow(row)" class="link-primary pointer"> {{'ACTION.USER_EDITING' |
+                  <a (click)="onActionbuttonEditUserRow(row,$event)" class="link-primary pointer"> {{'ACTION.USER_EDITING' |
                     translate}}|</a>
+
+                    <a (click)="onActionbuttonChangePassword(row)"
+                    *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
+                    class="link-primary pointer"> {{'ACTION.CHANGE_PASSWORD' | translate}} |</a>
 
                   <a (click)="onActionbuttonLoginToRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
                     class="link-primary pointer"> {{'ACTION.LOGIN_TO_THIS_USER' | translate}} |</a>
 
-                  <a (click)="onActionbuttonResllerUser(row)"
+                  <a (click)="onActionbuttonResllerUser(row,$event)"
                     *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
                     class="link-primary pointer"> {{'ACTION.USER_MARKETING_SUBCATEGORY' | translate}}|</a>
 
-                  <a (click)="onActionbuttonResllerSite(row)"
+                  <a (click)="onActionbuttonResllerSite(row,$event)"
                     *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
                     class="link-primary pointer"> {{'ACTION.SITE_MARKETING_SUBCATEGORY' | translate}}</a>
                 </td>

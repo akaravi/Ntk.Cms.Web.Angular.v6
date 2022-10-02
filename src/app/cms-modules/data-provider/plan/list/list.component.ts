@@ -60,10 +60,10 @@ export class DataProviderPlanListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortType = EnumSortType.Descending;
 
   }
+  link: string;
   filteModelContent = new FilterModel();
   categoryModelSelected: DataProviderPlanCategoryModel;
   dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
-  link: string;
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();

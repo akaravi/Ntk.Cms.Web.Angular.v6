@@ -134,7 +134,7 @@
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
             <button mat-menu-item *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
-              (click)="onActionbuttonEditRow(row)">
+              (click)="onActionbuttonEditRow(row,$event)">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
@@ -153,15 +153,15 @@
               <mat-icon>login</mat-icon>
               <span>{{'ACTION.LOGIN_TO_THIS_USER' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonSiteList(row)">
+            <button mat-menu-item (click)="onActionbuttonSiteList(row,$event)">
               <mat-icon>supervised_user_circle</mat-icon>
               <span>{{'ACTION.MEMBER_SITES' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonSiteByGroupList(row)">
+            <button mat-menu-item (click)="onActionbuttonSiteByGroupList(row,$event)">
               <mat-icon>supervisor_account</mat-icon>
               <span>{{'ACTION.ACCESS_MEMBER_SITES' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonResller(row)"
+            <button mat-menu-item (click)="onActionbuttonResller(row,$event)"
               *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id">
               <mat-icon>devices</mat-icon>
               <span>{{'ACTION.MARKETING_SUBCATEGORY' | translate}}</span>
@@ -211,7 +211,7 @@
                   <a (click)="onActionbuttonViewRow(row)" class="link-primary pointer"> {{'ACTION.VIEW' | translate}}
                   |</a>
 
-                  <a (click)="onActionbuttonEditRow(row)"
+                  <a (click)="onActionbuttonEditRow(row,$event)"
                     *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
                     class="link-primary pointer"> {{'ACTION.EDIT' | translate}} |</a>
 
@@ -225,13 +225,13 @@
                   <a (click)="onActionbuttonLoginToRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
                     class="link-primary pointer"> {{'ACTION.LOGIN_TO_THIS_USER' | translate}} |</a>
 
-                  <a (click)="onActionbuttonSiteList(row)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES'
+                  <a (click)="onActionbuttonSiteList(row,$event)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES'
                     | translate}}|</a>
 
-                  <a (click)="onActionbuttonSiteByGroupList(row)" class="link-primary pointer"> {{'ACTION.ACCESS_MEMBER_SITES'
+                  <a (click)="onActionbuttonSiteByGroupList(row,$event)" class="link-primary pointer"> {{'ACTION.ACCESS_MEMBER_SITES'
                     | translate}}|</a>
 
-                  <a (click)="onActionbuttonResller(row)"
+                  <a (click)="onActionbuttonResller(row,$event)"
                     *ngIf="tokenInfo.userAccessAdminAllowToAllData || tokenInfo.siteId==row.id"
                     class="link-primary pointer"> {{'ACTION.MARKETING_SUBCATEGORY' | translate}} </a>
                 </td>

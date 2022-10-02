@@ -71,6 +71,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       this.filteModelContent.filters.push(filter);
     }
   }
+  link: string;
   comment: string;
   author: string;
   dataSource: any;
@@ -89,7 +90,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreUserModel> = new MatTableDataSource<CoreUserModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -228,7 +229,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonEditRow(model: CoreUserModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: CoreUserModel = this.tableRowSelected, event?: MouseEvent): void {
 
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -243,15 +244,22 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/core/user/edit', this.tableRowSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/core/user/edit/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/user/edit/', this.tableRowSelected.id]);
+    }
 
   }
   onActionbuttonChangePassword(model: CoreUserModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
+      this.cmsToastrService.typeErrorSelectedRow(); 
       return;
     }
     this.tableRowSelected = model;
+    console.log(this.tableRowSelected.id);
     if (this.tokenInfo.userId != model.id &&
       (
         this.dataModelResult == null ||
@@ -436,23 +444,36 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   onActionTableRowMouseLeave(row: CoreUserModel): void {
     row["expanded"] = false;
   }
-  onActionbuttonSiteList(model: CoreUserModel = this.tableRowSelected): void {
+  onActionbuttonSiteList(model: CoreUserModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/site/list/LinkUserId', this.tableRowSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/core/site/list/LinkUserId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/site/list/LinkUserId/', this.tableRowSelected.id]);
+    }
   }
-  onActionbuttonSiteByGroupList(model: CoreUserModel = this.tableRowSelected): void {
+  onActionbuttonSiteByGroupList(model: CoreUserModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/site/userlist/LinkUserId/', this.tableRowSelected.id]);
+
+
+    if (event?.ctrlKey) {
+      this.link = "/#/core/site/userlist/LinkUserId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/site/userlist/LinkUserId/', this.tableRowSelected.id]);
+    }
   }
-  onActionbuttonResller(model: CoreUserModel = this.tableRowSelected): void {
+  onActionbuttonResller(model: CoreUserModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
@@ -460,7 +481,12 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/core/user/reseller-chart/LinkUserId', this.tableRowSelected.id]);
+    if (event?.ctrlKey) {
+      this.link = "/#/core/user/reseller-chart/LinkUserId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/user/reseller-chart/LinkUserId/', this.tableRowSelected.id]);
+    }
   }
   onActionBackToParentSiteList(): void {
     this.router.navigate(['/core/site/']);

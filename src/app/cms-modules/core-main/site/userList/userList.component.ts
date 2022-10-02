@@ -31,6 +31,7 @@ import { CoreSiteUserAddComponent } from '../userAdd/userAdd.component';
 import { CoreSiteUserEditComponent } from '../userEdit/userEdit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CoreUserChangePasswordComponent } from '../../user/changePassword/changePassword.component';
 @Component({
   selector: 'app-core-site-user-list',
   templateUrl: './userList.component.html',
@@ -87,6 +88,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.filteModelContent.filters.push(filter);
     }
   }
+  link: string;
   comment: string;
   author: string;
   dataSource: any;
@@ -106,7 +108,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkSiteId',
     'LinkUserId',
@@ -311,45 +313,94 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       );
   }
 
-  onActionbuttonEditSiteRow(model: CoreSiteUserModel = this.tableRowSelected): void {
+  onActionbuttonEditSiteRow(model: CoreSiteUserModel = this.tableRowSelected, event?: MouseEvent): void {
 
     if (!model || !model.linkUserId || model.linkUserId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/site/edit', model.linkSiteId]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/core/site/edit/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/site/edit/', model.linkSiteId]);
+    }
+  }
+
+  onActionbuttonChangePassword(model: CoreSiteUserModel = this.tableRowSelected): void {
+    if (!model || !model.linkUserId || model.linkUserId === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (this.tokenInfo.userId != model.linkUserId &&
+      (
+        this.dataModelResult == null ||
+        this.dataModelResult.access == null ||
+        !this.dataModelResult.access.accessEditRow
+      )) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
+      //height: '90%',
+      data: { linkUserId: this.tableRowSelected.linkUserId }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
+
+  onActionbuttonEditUserRow(model: CoreSiteUserModel = this.tableRowSelected, event?: MouseEvent): void {
+
+    if (!model || !model.linkUserId || model.linkUserId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
+      return;
+    }
+    this.tableRowSelected = model;
+
+    if (event?.ctrlKey) {
+      this.link = "/#/core/user/edit/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/user/edit', model.linkUserId]);
+    }
 
   }
-  onActionbuttonEditUserRow(model: CoreSiteUserModel = this.tableRowSelected): void {
+  onActionbuttonResllerUser(model: CoreSiteUserModel = this.tableRowSelected, event?: MouseEvent): void {
 
     if (!model || !model.linkUserId || model.linkUserId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/user/edit', model.linkUserId]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/core/user/reseller-chart/LinkUserId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/user/reseller-chart/LinkUserId/', model.linkUserId]);
+    }
 
   }
-  onActionbuttonResllerUser(model: CoreSiteUserModel = this.tableRowSelected): void {
+  onActionbuttonResllerSite(model: CoreSiteUserModel = this.tableRowSelected, event?: MouseEvent): void {
 
     if (!model || !model.linkUserId || model.linkUserId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/user/reseller-chart/LinkUserId', model.linkUserId]);
 
-  }
-  onActionbuttonResllerSite(model: CoreSiteUserModel = this.tableRowSelected): void {
-
-    if (!model || !model.linkUserId || model.linkUserId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
-      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
-      return;
+    if (event?.ctrlKey) {
+      this.link = "/#/core/site/reseller-chart/LinkSiteId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/site/reseller-chart/LinkSiteId/', model.linkSiteId]);
     }
-    this.tableRowSelected = model;
-    this.router.navigate(['/core/site/reseller-chart/LinkSiteId', model.linkSiteId]);
-
   }
   onActionbuttonLoginToRow(model: CoreSiteUserModel = this.tableRowSelected): void {
     if (!model || !model.linkUserId || model.linkUserId === 0) {
@@ -468,13 +519,19 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   onActionTableRowMouseLeave(row: CoreSiteUserModel): void {
     row["expanded"] = false;
   }
-  onActionbuttonSiteList(model: CoreSiteUserModel = this.tableRowSelected): void {
+  onActionbuttonSiteList(model: CoreSiteUserModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.linkUserId || model.linkUserId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
-    this.router.navigate(['/core/site/list/LinkUserId/', model.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/core/site/list/LinkUserId/" + model.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/site/list/LinkUserId/', model.id]);
+    }
   }
   onActionBackToParentSiteList(): void {
     this.router.navigate(['/core/site/']);
