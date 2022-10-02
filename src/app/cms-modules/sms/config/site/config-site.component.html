@@ -57,7 +57,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageTextFiltering Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageTextFilteringCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageTextFiltering</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageTextFiltering"
@@ -85,7 +85,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageTextForbidden Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageTextForbiddenCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageTextForbidden</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageTextForbidden"
@@ -111,7 +111,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageNumberFiltering Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageNumberFilteringCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageNumberFiltering</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageNumberFiltering"
@@ -138,7 +138,7 @@
           </mat-slide-toggle>
         </div>
         <!-- messageNumberForbidden Field -->
-        <div class="ntk-full-width">
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageNumberForbiddenCheck">
           <mat-form-field class="ntk-full-width">
             <mat-label>messageNumberForbidden</mat-label>
             <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageNumberForbidden"
