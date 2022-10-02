@@ -3,8 +3,8 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 export const environment = {
   production: true,
   checkAccess:false,
-  appVersion: '14.1.0710.4',
-  USERDATA_KEY: 'authf649fc9a5f55',
+  appVersion: '14.1.0710.5',
+  authKey: 'authf649fc9a5f55',
   loadDemoDashboard: false,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',

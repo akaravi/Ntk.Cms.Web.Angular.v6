@@ -3,7 +3,7 @@ export const environment = {
   production: false,
   checkAccess: false,
   appVersion: '14.0.0000.0',
-  USERDATA_KEY: 'authf649fc9a5f55',
+  authKey: 'authf649fc9a5f55',
   loadDemoDashboard: false,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
